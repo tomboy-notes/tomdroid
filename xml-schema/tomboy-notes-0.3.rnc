@@ -11,12 +11,19 @@
 # TODO: narrow datatype information
 # TODO: Find out if the ordering of elements is relevant to Tomboy, if not, replace commas by &
 # 
+default namespace = "http://beatniksoftware.com/tomboy"
+namespace link = "http://beatniksoftware.com/tomboy/link"
+namespace size = "http://beatniksoftware.com/tomboy/size"
+
 element note {
   element title { text },
   element text {
-  # TODO: add version attribute to it (attribute version { text })
+    attribute xml:space { "default" | "preserve" }?,
   # TODO: be more precise about what is allowed inside it
-    element note-content { text }
+    element note-content { 
+      attribute version { text }?,
+      text
+    }
   },
   element tags { text }?,
   # use xsd:dateTime for type?

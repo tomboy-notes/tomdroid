@@ -14,16 +14,24 @@
   TODO: Find out if the ordering of elements is relevant to Tomboy, if not, replace commas by &
   
 -->
-<element name="note" xmlns="http://relaxng.org/ns/structure/1.0">
+<element name="note" ns="http://beatniksoftware.com/tomboy" xmlns="http://relaxng.org/ns/structure/1.0">
   <element name="title">
     <text/>
   </element>
   <element name="text">
-    <!--
-      TODO: add version attribute to it (attribute version { text })
-      TODO: be more precise about what is allowed inside it
-    -->
+    <optional>
+      <attribute name="xml:space">
+        <choice>
+          <value>default</value>
+          <value>preserve</value>
+        </choice>
+      </attribute>
+    </optional>
+    <!-- TODO: be more precise about what is allowed inside it -->
     <element name="note-content">
+      <optional>
+        <attribute name="version"/>
+      </optional>
       <text/>
     </element>
   </element>
