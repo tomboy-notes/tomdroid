@@ -15,6 +15,8 @@
   
 -->
 <element name="note" ns="http://beatniksoftware.com/tomboy" xmlns="http://relaxng.org/ns/structure/1.0">
+  <!-- Since we aim at validating for 0.3 notes format maybe we should force it here -->
+  <attribute name="version"/>
   <element name="title">
     <text/>
   </element>
@@ -41,11 +43,11 @@
     </element>
   </optional>
   <!-- use xsd:dateTime for type? -->
-  <element name="last-note-change">
+  <element name="last-change-date">
     <text/>
   </element>
   <optional>
-    <element name="last-metadata-change">
+    <element name="last-metadata-change-date">
       <text/>
     </element>
   </optional>
@@ -77,7 +79,9 @@
       <text/>
     </element>
   </optional>
-  <element name="open-on-startup">
-    <text/>
-  </element>
+  <optional>
+    <element name="open-on-startup">
+      <text/>
+    </element>
+  </optional>
 </element>

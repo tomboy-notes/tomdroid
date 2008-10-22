@@ -16,6 +16,8 @@ namespace link = "http://beatniksoftware.com/tomboy/link"
 namespace size = "http://beatniksoftware.com/tomboy/size"
 
 element note {
+  # Since we aim at validating for 0.3 notes format maybe we should force it here
+  attribute version { text },
   element title { text },
   element text {
     attribute xml:space { "default" | "preserve" }?,
@@ -27,13 +29,13 @@ element note {
   },
   element tags { text }?,
   # use xsd:dateTime for type?
-  element last-note-change { text },
-  element last-metadata-change { text }?,
+  element last-change-date { text },
+  element last-metadata-change-date { text }?,
   element create-date { text },
   element cursor-position { text }?,
   element width { text }?,
   element height { text }?,
   element x { text }?,
   element y { text }?,
-  element open-on-startup { text }
+  element open-on-startup { text }?
 }
