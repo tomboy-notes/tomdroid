@@ -42,6 +42,7 @@ element note {
       start = Note-Content
       Note-Content = (text
                       # I think I'm missing fontsize here but I never saw it activated
+                      # TODO add std web link and check how do addin work (bugzilla addin for instance)
                       | element bold { Note-Content }?
                       | element italic { Note-Content }?
                       | element strikethrough { Note-Content }?
