@@ -1,0 +1,32 @@
+# 
+# Tomboy Notes Xml Schema
+# Targeted at XML notes version 0.3
+# The master file is using RELAX NG compact syntax
+# 
+# Version: 0.1
+# Author: Olivier Bilodeau <oliver@bottomlesspit.org>
+# 
+# Based on http://live.gnome.org/Tomboy/NoteXmlFormat
+# 
+# TODO: narrow datatype information
+# TODO: Find out if the ordering of elements is relevant to Tomboy, if not, replace commas by &
+# 
+element note {
+  element title { text },
+  element text {
+  # TODO: add version attribute to it (attribute version { text })
+  # TODO: be more precise about what is allowed inside it
+    element note-content { text }
+  },
+  element tags { text }?,
+  # use xsd:dateTime for type?
+  element last-note-change { text },
+  element last-metadata-change { text }?,
+  element create-date { text },
+  element cursor-position { text }?,
+  element width { text }?,
+  element height { text }?,
+  element x { text }?,
+  element y { text }?,
+  element open-on-startup { text }
+}

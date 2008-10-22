@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  
+  Tomboy Notes Xml Schema
+  Targeted at XML notes version 0.3
+  The master file is using RELAX NG compact syntax
+  
+  Version: 0.1
+  Author: Olivier Bilodeau <oliver@bottomlesspit.org>
+  
+  Based on http://live.gnome.org/Tomboy/NoteXmlFormat
+  
+  TODO: narrow datatype information
+  TODO: Find out if the ordering of elements is relevant to Tomboy, if not, replace commas by &
+  
+-->
+<element name="note" xmlns="http://relaxng.org/ns/structure/1.0">
+  <element name="title">
+    <text/>
+  </element>
+  <element name="text">
+    <!--
+      TODO: add version attribute to it (attribute version { text })
+      TODO: be more precise about what is allowed inside it
+    -->
+    <element name="note-content">
+      <text/>
+    </element>
+  </element>
+  <optional>
+    <element name="tags">
+      <text/>
+    </element>
+  </optional>
+  <!-- use xsd:dateTime for type? -->
+  <element name="last-note-change">
+    <text/>
+  </element>
+  <optional>
+    <element name="last-metadata-change">
+      <text/>
+    </element>
+  </optional>
+  <element name="create-date">
+    <text/>
+  </element>
+  <optional>
+    <element name="cursor-position">
+      <text/>
+    </element>
+  </optional>
+  <optional>
+    <element name="width">
+      <text/>
+    </element>
+  </optional>
+  <optional>
+    <element name="height">
+      <text/>
+    </element>
+  </optional>
+  <optional>
+    <element name="x">
+      <text/>
+    </element>
+  </optional>
+  <optional>
+    <element name="y">
+      <text/>
+    </element>
+  </optional>
+  <element name="open-on-startup">
+    <text/>
+  </element>
+</element>

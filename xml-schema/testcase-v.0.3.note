@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<note version="0.3" xmlns:link="http://beatniksoftware.com/tomboy/link" xmlns:size="http://beatniksoftware.com/tomboy/size" xmlns="http://beatniksoftware.com/tomboy">
+  <title>Tomboy Example Note</title>
+  <text xml:space="preserve"><note-content version="0.1">Tomboy Example Note
+
+This is where some text would go.
+
+More text.
+</note-content></text>
+  <last-change-date>2008-09-02T11:55:24.9952430-07:00</last-change-date>
+  <last-metadata-change-date>2008-09-02T11:55:24.9952430-07:00</last-metadata-change-date>
+  <create-date>2008-08-28T17:18:04.4700640-07:00</create-date>
+  <cursor-position>27</cursor-position>
+  <width>450</width>
+  <height>360</height>
+  <x>0</x>
+  <y>0</y>
+  <open-on-startup>False</open-on-startup>
+</note>
