@@ -31,7 +31,7 @@ Bullets
 
 Nested bullets
 <list><list-item dir="ltr">I am a bullet
-<list><list-item dir="ltr">I am a nested bullet
+<list><list-item dir="ltr">I am a <bold>bold nested bullet</bold>
 </list-item></list></list-item><list-item dir="ltr">Back to normal
 <list><list-item dir="ltr">Not so quickly
 <list><list-item dir="ltr">Grand children</list-item></list></list-item></list></list-item></list>
