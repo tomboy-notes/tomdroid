@@ -23,7 +23,7 @@
 # Based from documentation found at http://live.gnome.org/Tomboy/NoteXmlFormat
 # 
 # TODO: narrow datatype information using W3C's XML Schema datatypes
-# TODO: Find out if the ordering of elements is relevant to Tomboy, if not, replace commas by &
+# TODO: Find out if the ordering of elements is relevant to Tomboy (would it crash?), if not, replace commas by & at the top level
 # 
 default namespace = "http://beatniksoftware.com/tomboy"
 namespace link = "http://beatniksoftware.com/tomboy/link"
@@ -35,10 +35,33 @@ element note {
   element title { text },
   element text {
     attribute xml:space { "default" | "preserve" }?,
-  # TODO: be more precise about what is allowed inside it
     element note-content { 
       attribute version { text }?,
-      text
+      # I'm not quite sure I nailed that grammar thing right..
+      grammar {
+      start = Note-Content
+      Note-Content = (text
+                      # I think I'm missing fontsize here but I never saw it activated
+                      | element bold { Note-Content }?
+                      | element italic { Note-Content }?
+                      | element strikethrough { Note-Content }?
+                      | element highlight { Note-Content }?
+                      | element monospace { Note-Content }?
+                      | element size:small { Note-Content }?
+                      | element size:large { Note-Content }?
+                      | element size:huge { Note-Content }?
+                      | element link:internal { Note-Content }?
+                      | element link:broken { Note-Content }?
+                      | element list { List }?
+                      | element list-item { List }?
+                     )*
+      List = (text
+              | element list { Note-Content }?
+              | element list-item { 
+                  attribute dir { text }?, 
+                  Note-Content? }
+             )*
+      }
     }
   },
   element tags { text }?,
@@ -51,5 +74,8 @@ element note {
   element height { text }?,
   element x { text }?,
   element y { text }?,
+  element tags {
+    element tag { text }+
+  }?,
   element open-on-startup { text }?
 }

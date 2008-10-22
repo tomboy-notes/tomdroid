@@ -1,20 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   
-  Tomboy Notes Xml Schema
+  Tomboy Notes XML schema
   Targeted at XML notes version 0.3
   The master file is using RELAX NG compact syntax
   
   Version: 0.1
-  Author: Olivier Bilodeau <oliver@bottomlesspit.org>
+  Copyright 2008 Olivier Bilodeau <olivier@bottomlesspit.org>
+  Created as part of Tomdroid, http://launchpad.net/tomdroid
   
-  Based on http://live.gnome.org/Tomboy/NoteXmlFormat
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Lesser General Public License as published by
+  the Free Software Foundation, either version 2.1 of the License, or
+  (at your option) any later version.
   
-  TODO: narrow datatype information
-  TODO: Find out if the ordering of elements is relevant to Tomboy, if not, replace commas by &
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU Lesser General Public License for more details.
+  
+  You should have received a copy of the GNU Lesser General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  
+  Based from documentation found at http://live.gnome.org/Tomboy/NoteXmlFormat
+  
+  TODO: narrow datatype information using W3C's XML Schema datatypes
+  TODO: Find out if the ordering of elements is relevant to Tomboy (would it crash?), if not, replace commas by & at the top level
   
 -->
-<element name="note" ns="http://beatniksoftware.com/tomboy" xmlns="http://relaxng.org/ns/structure/1.0">
+<element name="note" ns="http://beatniksoftware.com/tomboy" xmlns:link="http://beatniksoftware.com/tomboy/link" xmlns:size="http://beatniksoftware.com/tomboy/size" xmlns="http://relaxng.org/ns/structure/1.0">
   <!-- Since we aim at validating for 0.3 notes format maybe we should force it here -->
   <attribute name="version"/>
   <element name="title">
@@ -29,12 +43,104 @@
         </choice>
       </attribute>
     </optional>
-    <!-- TODO: be more precise about what is allowed inside it -->
     <element name="note-content">
       <optional>
         <attribute name="version"/>
       </optional>
-      <text/>
+      <!-- I'm not quite sure I nailed that grammar right.. -->
+      <grammar>
+        <start>
+          <ref name="Note-Content"/>
+        </start>
+        <define name="Note-Content">
+          <zeroOrMore>
+            <choice>
+              <text/>
+              <optional>
+                <!-- I think I'm missing fontsize here but I never saw it activated -->
+                <element name="bold">
+                  <ref name="Note-Content"/>
+                </element>
+              </optional>
+              <optional>
+                <element name="italic">
+                  <ref name="Note-Content"/>
+                </element>
+              </optional>
+              <optional>
+                <element name="strikethrough">
+                  <ref name="Note-Content"/>
+                </element>
+              </optional>
+              <optional>
+                <element name="highlight">
+                  <ref name="Note-Content"/>
+                </element>
+              </optional>
+              <optional>
+                <element name="monospace">
+                  <ref name="Note-Content"/>
+                </element>
+              </optional>
+              <optional>
+                <element name="size:small">
+                  <ref name="Note-Content"/>
+                </element>
+              </optional>
+              <optional>
+                <element name="size:large">
+                  <ref name="Note-Content"/>
+                </element>
+              </optional>
+              <optional>
+                <element name="size:huge">
+                  <ref name="Note-Content"/>
+                </element>
+              </optional>
+              <optional>
+                <element name="link:internal">
+                  <ref name="Note-Content"/>
+                </element>
+              </optional>
+              <optional>
+                <element name="link:broken">
+                  <ref name="Note-Content"/>
+                </element>
+              </optional>
+              <optional>
+                <element name="list">
+                  <ref name="List"/>
+                </element>
+              </optional>
+              <optional>
+                <element name="list-item">
+                  <ref name="List"/>
+                </element>
+              </optional>
+            </choice>
+          </zeroOrMore>
+        </define>
+        <define name="List">
+          <zeroOrMore>
+            <choice>
+              <text/>
+              <optional>
+                <element name="list">
+                  <ref name="Note-Content"/>
+                </element>
+              </optional>
+              <element name="list-item">
+                <optional>
+                  <attribute name="dir"/>
+                </optional>
+                <optional>
+                  <ref name="Note-Content"/>
+                </optional>
+              </element>
+            </choice>
+          </zeroOrMore>
+        </define>
+      </grammar>
     </element>
   </element>
   <optional>
@@ -77,6 +183,15 @@
   <optional>
     <element name="y">
       <text/>
+    </element>
+  </optional>
+  <optional>
+    <element name="tags">
+      <oneOrMore>
+        <element name="tag">
+          <text/>
+        </element>
+      </oneOrMore>
     </element>
   </optional>
   <optional>
