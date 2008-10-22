@@ -1,14 +1,28 @@
 # 
-# Tomboy Notes Xml Schema
+# Tomboy Notes XML schema
 # Targeted at XML notes version 0.3
 # The master file is using RELAX NG compact syntax
 # 
 # Version: 0.1
-# Author: Olivier Bilodeau <oliver@bottomlesspit.org>
+# Copyright 2008 Olivier Bilodeau <olivier@bottomlesspit.org>
+# Created as part of Tomdroid, http://launchpad.net/tomdroid
 # 
-# Based on http://live.gnome.org/Tomboy/NoteXmlFormat
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as published by
+# the Free Software Foundation, either version 2.1 of the License, or
+# (at your option) any later version.
 # 
-# TODO: narrow datatype information
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Lesser General Public License for more details.
+# 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# 
+# Based from documentation found at http://live.gnome.org/Tomboy/NoteXmlFormat
+# 
+# TODO: narrow datatype information using W3C's XML Schema datatypes
 # TODO: Find out if the ordering of elements is relevant to Tomboy, if not, replace commas by &
 # 
 default namespace = "http://beatniksoftware.com/tomboy"
