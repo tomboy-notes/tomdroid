@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, tomdroid</string>
     <string name="app_name">Tomdroid</string>
+    <string name="strURL">URL:</string>
+    <string name="btnURL">Load Web Note</string>
 </resources>
