@@ -1,11 +1,7 @@
 package org.tomdroid;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
+import org.tomdroid.dao.NotesDAO;
+import org.tomdroid.dao.mock.NotesDAOMock;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -20,6 +16,8 @@ public class NoteView extends Activity {
 	// UI elements
 	private TextView content;
 	
+	// Data Access Objects
+	private NotesDAO notesDAO;
 	
 
 	@Override
@@ -39,17 +37,8 @@ public class NoteView extends Activity {
 		}
 		
 		if (url != null) {
-			try {
-				
-				content.setText(fetch(url).toString());
-				
-			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			notesDAO = new NotesDAOMock(url);
+			content.setText(notesDAO.getContent());
 		}
 	}
 	
@@ -64,31 +53,5 @@ public class NoteView extends Activity {
 	}
 
 
-	/**
-	 * Grab the content at the target address and convert it to a string.
-	 * @param address
-	 * @return
-	 * @throws MalformedURLException
-	 * @throws IOException
-	 */
-	private Object fetch(String address) throws MalformedURLException, IOException {
-		
-		//grab URL
-		URL url = new URL(address);
-		InputStream is = (InputStream) url.getContent();
-		
-		//Init BufferedReader and StringBuilder
-		BufferedReader br = new BufferedReader(new InputStreamReader(is));
-		StringBuilder sb = new StringBuilder();
 
-		//Convert from InputStream to String using StringBuilder
-		String line = null;
-		while ((line = br.readLine()) != null) {
-			sb.append(line + "\n");
-		}
-		br.close();
-
-		//Return the string
-		return sb.toString();
-	}
 }
