@@ -34,9 +34,8 @@ public class NotesDAOImpl implements NotesDAO {
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} finally {
-				return null;
 			}
+			return null;
 		}
 	}
 	
