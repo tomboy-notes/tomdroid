@@ -22,8 +22,10 @@
  */
 package org.tomdroid.dao;
 
-public interface NotesDAO {
+public interface NotesDAO extends Runnable {
+	
+	public static final String NOTE = "note";
 
-	public abstract String getContent();
+	public abstract void getContent();
 
 }

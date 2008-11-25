@@ -26,6 +26,11 @@ public final class R {
     public static final class string {
         public static final int app_name=0x7f040000;
         public static final int btnURL=0x7f040002;
+        /**  main.xml 
+         */
         public static final int strURL=0x7f040001;
+        /**  note-view.xml 
+         */
+        public static final int strWait=0x7f040003;
     }
 }

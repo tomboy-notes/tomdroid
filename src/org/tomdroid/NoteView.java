@@ -23,10 +23,13 @@
 package org.tomdroid;
 
 import org.tomdroid.dao.NotesDAO;
+import org.tomdroid.dao.NotesDAOImpl;
 import org.tomdroid.dao.mock.NotesDAOMock;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.TextView;
@@ -59,8 +62,10 @@ public class NoteView extends Activity {
 		}
 		
 		if (url != null) {
-			notesDAO = new NotesDAOMock(url);
-			content.setText(notesDAO.getContent());
+			notesDAO = new NotesDAOImpl(handler, url);
+
+			// asynchronous call to get the note's content
+			notesDAO.getContent();
 		}
 	}
 	
@@ -74,6 +79,13 @@ public class NoteView extends Activity {
 		return true;
 	}
 
-
+    private Handler handler = new Handler() {
+    	
+        @Override
+        public void handleMessage(Message msg) {
+        	// thread is done and msg contains note 
+			content.setText(msg.getData().getString(NotesDAO.NOTE));
+		}
+    };
 
 }

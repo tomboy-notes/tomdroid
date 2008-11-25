@@ -23,6 +23,11 @@
 -->
 <resources>
     <string name="app_name">Tomdroid</string>
+
+	<!-- main.xml -->
     <string name="strURL">URL:</string>
     <string name="btnURL">Load Web Note</string>
+
+	<!-- note-view.xml -->
+    <string name="strWait">Please wait while note loads...</string>
 </resources>

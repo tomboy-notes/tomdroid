@@ -29,37 +29,56 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+
 public class NotesDAOImpl implements NotesDAO {
-	//TODO implement runnable and launch a thread from UI to fetch Notes
 	
 	private String noteURL;
 	private String noteContent;
 	
-	public NotesDAOImpl (String url) {
+	// thread related
+	private Thread runner;
+	private Handler parentHandler;
+	
+	
+	public NotesDAOImpl (Handler handler, String url) {
+		parentHandler = handler;
 		this.noteURL = url;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.tomdroid.dao.NotesDAO#getContent()
-	 */
-	public String getContent() {
-		
-		if (noteContent != null) {
-			return noteContent;
-		} else {
-			try {
-				noteContent = fetch(noteURL);
-				return noteContent;
-			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return null;
-		}
+	
+	@Override
+	public void getContent() {
+		runner = new Thread(this);
+		runner.start();
 	}
+	
+	@Override
+	public void run() {
+		Message msg = Message.obtain();
+		
+		// Grab the note
+		// TODO handle exceptions properly
+		try {
+			noteContent = fetch(noteURL);
+		} catch (MalformedURLException e) {
+			// TODO handle exceptions properly
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO handle exceptions properly
+			e.printStackTrace();
+		} 
+		
+		// Load the message object with the note
+		Bundle bundle = new Bundle();
+		bundle.putString(NotesDAO.NOTE, noteContent);
+		msg.setData(bundle);
+		
+		// notify UI that we are done here and send result 
+		parentHandler.sendMessage(msg);
+	}	
 	
 	/**
 	 * Grab the content at the target address and convert it to a string.

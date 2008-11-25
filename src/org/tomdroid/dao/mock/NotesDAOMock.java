@@ -24,14 +24,47 @@ package org.tomdroid.dao.mock;
 
 import org.tomdroid.dao.NotesDAO;
 
+import android.os.Bundle;
+import android.os.Message;
+import android.os.Handler;
+
 public class NotesDAOMock implements NotesDAO {
 	
-	public NotesDAOMock(String url){
-
+	// thread related
+	private Thread runner;
+	private Handler parentHandler;
+	
+	public NotesDAOMock (Handler handler, String url) {
+		parentHandler = handler;
 	}
-
+	
 	@Override
-	public String getContent() {
+	public void getContent() {
+		runner = new Thread(this);
+		runner.start();
+	}
+	
+	@Override
+	public void run() {
+		Message msg = Message.obtain();
+		
+		// Load the message object with the note
+		Bundle bundle = new Bundle();
+		bundle.putString(NotesDAO.NOTE, fetchContent());
+		msg.setData(bundle);
+		
+		// notify UI that we are done here and send result 
+		parentHandler.sendMessage(msg);
+	}
+	
+	private String fetchContent() {
+		try {
+			// simulate delay
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "<note-content version=\"0.1\">Test Case" + "\n" +
 		"This is a test case trying to make Tomboy write to a note most of its XML note format attributes/element." + "\n" +
 		"This is <bold><link:broken>bold</link:broken></bold>." + "\n" +
@@ -47,6 +80,7 @@ public class NotesDAOMock implements NotesDAO {
 		"Bullets" + "\n" +
 		"<list><list-item>I am a bullet" + "\n" +
 		"</list-item><list-item>Me too</list-item></list>";
+
 	}
 
 }
