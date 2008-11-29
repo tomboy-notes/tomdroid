@@ -15,8 +15,9 @@ public final class R {
     }
     public static final class id {
         public static final int btnURL=0x7f050002;
-        public static final int content=0x7f050003;
+        public static final int content=0x7f050004;
         public static final int strURL=0x7f050000;
+        public static final int textScroller=0x7f050003;
         public static final int txtURL=0x7f050001;
     }
     public static final class layout {
