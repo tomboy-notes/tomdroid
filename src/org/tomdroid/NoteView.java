@@ -41,8 +41,8 @@ public class NoteView extends Activity {
 	// UI elements
 	private TextView content;
 	
-	// Data Access Objects
-	private NotesDAO notesDAO;
+	// Model objects
+	private Note note;
 	
 
 	@Override
@@ -62,10 +62,10 @@ public class NoteView extends Activity {
 		}
 		
 		if (url != null) {
-			notesDAO = new NotesDAOImpl(handler, url);
-
-			// asynchronous call to get the note's content
-			notesDAO.getContent();
+			note = new Note(handler, url);
+			
+			// asynchronous call to fetch the note, the callback with come from the handler
+			note.fetchNoteAsync();
 		}
 	}
 	
@@ -84,7 +84,7 @@ public class NoteView extends Activity {
         @Override
         public void handleMessage(Message msg) {
         	// thread is done and msg contains note 
-			content.setText(msg.getData().getString(NotesDAO.NOTE));
+			content.setText(msg.getData().getString(Note.NOTE_CONTENT));
 		}
     };
 
