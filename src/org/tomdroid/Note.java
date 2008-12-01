@@ -30,7 +30,7 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import org.tomdroid.dao.NotesDAO;
-import org.tomdroid.dao.NotesDAOImpl;
+import org.tomdroid.dao.mock.NotesDAOMock;
 import org.tomdroid.util.xml.NoteHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -66,8 +66,8 @@ public class Note {
 	public void fetchNoteAsync() {
 		
 		//  TODO my naive way of using mock objects
-		NotesDAOImpl notesDAO = new NotesDAOImpl(handler, noteURL);
-		//NotesDAOMock notesDAO = new NotesDAOMock(handler, noteURL);
+		//NotesDAOImpl notesDAO = new NotesDAOImpl(handler, noteURL);
+		NotesDAOMock notesDAO = new NotesDAOMock(handler, noteURL);
 
 		// asynchronous call to get the note's content
 		notesDAO.getContent();
@@ -140,10 +140,6 @@ public class Note {
         
         // Parse the xml-data from the note String and it will take care of loading the note
         xr.parse(new InputSource(new StringReader(noteStream)));
-
-        //FIXME for refactoring compliance we will equal note to noteContent but in the near future this won't be the same
-    	noteContent = note;
-    	
     }
     
     private void warnHandler() {

@@ -66,7 +66,7 @@ public class NotesDAOMock implements NotesDAO {
 			e.printStackTrace();
 		}
 		// this is a full faked note from xml-schema/complete-testcase/1331e52c-0a35-4c89-90c7-507bc9.note
-		return "﻿<?xml version=\"1.0\" encoding=\"utf-8\"?>" + "\n" +
+		return "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + "\n" +
 				"<note version=\"0.3\" xmlns:link=\"http://beatniksoftware.com/tomboy/link\" xmlns:size=\"http://beatniksoftware.com/tomboy/size\" xmlns=\"http://beatniksoftware.com/tomboy\">" + "\n" +
 				"<title>Test Case</title>" + "\n" +
 				"<text xml:space=\"preserve\"><note-content version=\"0.1\">Test Case" + "\n" +

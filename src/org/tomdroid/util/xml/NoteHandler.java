@@ -27,6 +27,8 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import android.util.Log;
+
 /*
  * I don't know if I'm doing the right thing but I think that giving this class
  * the responsibility of filling the note is something quite cohesive and hope 
@@ -40,6 +42,12 @@ public class NoteHandler extends DefaultHandler {
 	private boolean inTextTag = false;
 	private boolean inNoteContentTag = false;
 	
+	// tag names
+	private final static String NOTE_CONTENT = "note-content";
+	
+	// accumulate notecontent is this var since it spans multiple xml tags
+	private StringBuilder sb;
+	
 	// link to model 
 	private Note note;
 	
@@ -49,20 +57,44 @@ public class NoteHandler extends DefaultHandler {
 	
 	@Override
 	public void startElement(String uri, String localName, String name,	Attributes attributes) throws SAXException {
+		
+		Log.i(this.toString(), "startElement: uri: " + uri + " local: " + localName + " name: " + name);
+		if (localName.equals(NOTE_CONTENT)) {
+
+			// we are under the note-content tag
+			// we will append all its nested tags so I create a string builder to do that
+			inNoteContentTag = true;
+			sb = new StringBuilder();
+		}
 	}
 
 	@Override
 	public void endElement(String uri, String localName, String name)
 			throws SAXException {
-		// TODO Auto-generated method stub
-		super.endElement(uri, localName, name);
+
+		Log.i(this.toString(), "endElement: uri: " + uri + " local: " + localName + " name: " + name);
+		
+		if (localName.equals(NOTE_CONTENT)) {
+			
+			// note-content is over, we can set the builded note to Note's noteContent
+			inNoteContentTag = false;
+			note.setNoteContent(sb.toString());
+			
+			// no need of the builder anymore
+			sb = null;
+		}
 	}
 
 	@Override
 	public void characters(char[] ch, int start, int length)
 			throws SAXException {
-		// TODO Auto-generated method stub
-		super.characters(ch, start, length);
+		Log.i(this.toString(), "char string: " + new String(ch, start, length));
+
+		if (inNoteContentTag) {
+			
+			// while we are in note-content, append
+			sb.append(ch, start, length);
+		}
 	}
 
 }
