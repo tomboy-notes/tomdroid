@@ -22,8 +22,19 @@
  */
 package org.tomdroid;
 
+import java.io.IOException;
+import java.io.StringReader;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
 import org.tomdroid.dao.NotesDAO;
 import org.tomdroid.dao.NotesDAOImpl;
+import org.tomdroid.util.xml.NoteHandler;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+import org.xml.sax.XMLReader;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -54,7 +65,9 @@ public class Note {
 	 */
 	public void fetchNoteAsync() {
 		
+		//  TODO my naive way of using mock objects
 		NotesDAOImpl notesDAO = new NotesDAOImpl(handler, noteURL);
+		//NotesDAOMock notesDAO = new NotesDAOMock(handler, noteURL);
 
 		// asynchronous call to get the note's content
 		notesDAO.getContent();
@@ -90,18 +103,47 @@ public class Note {
         	String noteStr = msg.getData().getString(NotesDAO.NOTE);
         	Log.i(this.toString(), "Note handler triggered. Content:" + noteStr);
         	
-        	buildNote(noteStr);
+        	// TODO eeuuhhhh, see buildNote()'s TODO regarding exceptions..
+        	try {
+				buildNote(noteStr);
+			} catch (ParserConfigurationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SAXException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         	
         	warnHandler();
 		}
     };
     
-    private void buildNote(String noteStream) {
+    // TODO I should not throw but handle or wrap exceptions here, I am being lazy I guess
+    private void buildNote(String noteStream) throws ParserConfigurationException, SAXException, IOException {
     	//TODO this will have to properly build the note, splitting metadata and content et al.
     	note = noteStream;
     	
-    	//FIXME for refactoring compliance we will equal note to noteContent but in the near future this won't be the same
+    	// XML 
+    	// Get a SAXParser from the SAXPArserFactory
+        SAXParserFactory spf = SAXParserFactory.newInstance();
+        SAXParser sp = spf.newSAXParser();
+
+        // Get the XMLReader of the SAXParser we created
+        XMLReader xr = sp.getXMLReader();
+        
+        // Create a new ContentHandler, send it this note to fill and apply it to the XML-Reader
+        NoteHandler xmlHandler = new NoteHandler(this);
+        xr.setContentHandler(xmlHandler);
+        
+        // Parse the xml-data from the note String and it will take care of loading the note
+        xr.parse(new InputSource(new StringReader(noteStream)));
+
+        //FIXME for refactoring compliance we will equal note to noteContent but in the near future this won't be the same
     	noteContent = note;
+    	
     }
     
     private void warnHandler() {
