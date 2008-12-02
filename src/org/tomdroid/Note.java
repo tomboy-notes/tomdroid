@@ -48,9 +48,9 @@ public class Note {
 	public static final String NOTE_CONTENT = "note-content";
 	
 	// Members
-	public String noteContent;
-	public String note;
-	public String noteURL;
+	private String noteContent;
+	private String note;
+	private String noteURL;
 	
 	// Handles async state
 	private Handler parentHandler;
