@@ -22,10 +22,6 @@
  */
 package org.tomdroid;
 
-import org.tomdroid.dao.NotesDAO;
-import org.tomdroid.dao.NotesDAOImpl;
-import org.tomdroid.dao.mock.NotesDAOMock;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
