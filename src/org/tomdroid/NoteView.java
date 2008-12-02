@@ -83,9 +83,15 @@ public class NoteView extends Activity {
     	
         @Override
         public void handleMessage(Message msg) {
-        	// thread is done and msg contains note (spannable makes the TextView able to output styled text)
-			content.setText(msg.getData().getString(Note.NOTE_CONTENT), TextView.BufferType.SPANNABLE);
+        	
+        	// thread is done fetching note and parsing went well 
+        	if (msg.what == Note.NOTE_RECEIVED_AND_VALID) {
+	        	// show the note (spannable makes the TextView able to output styled text)
+				content.setText(note.getNoteContent(), TextView.BufferType.SPANNABLE);
+        	}
 		}
+        
+        
     };
 
 }

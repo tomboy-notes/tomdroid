@@ -46,6 +46,7 @@ public class Note {
 	// Static references to fields (used in Bundles)
 	public static final String URL = "url";
 	public static final String NOTE_CONTENT = "note-content";
+	public static final int NOTE_RECEIVED_AND_VALID = 1;
 	
 	// Members
 	private String noteContent;
@@ -145,15 +146,11 @@ public class Note {
     private void warnHandler() {
 		Message msg = Message.obtain();
 		
-		Log.i(this.toString(), "warnHandler: sending to handler: " + noteContent);
+		Log.i(this.toString(), "warnHandler: sending ok to NoteView");
 
-		// Load the message object with the note
-		Bundle bundle = new Bundle();
-		bundle.putString(Note.NOTE_CONTENT, noteContent);
-		msg.setData(bundle);
 		
-		// notify UI that we are done here and send result 
-		parentHandler.sendMessage(msg);
+		// notify UI that we are done here and sending an ok 
+		parentHandler.sendEmptyMessage(NOTE_RECEIVED_AND_VALID);
 
     }
 	
