@@ -38,6 +38,9 @@ import org.xml.sax.XMLReader;
 
 import android.os.Handler;
 import android.os.Message;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.StyleSpan;
 import android.util.Log;
 
 public class Note {
@@ -47,8 +50,12 @@ public class Note {
 	public static final String NOTE_CONTENT = "note-content";
 	public static final int NOTE_RECEIVED_AND_VALID = 1;
 	
+	// Notes constants
+	public static final int NOTE_HIGHLIGHT_COLOR = 0xFFFFFF00;
+	public static final String NOTE_MONOSPACE_TYPEFACE = "monospace";
+	
 	// Members
-	private String noteContent;
+	private SpannableStringBuilder noteContent = new SpannableStringBuilder();
 	private String note;
 	private String noteURL;
 	
@@ -77,11 +84,11 @@ public class Note {
 		return note;
 	}
 
-	public String getNoteContent() {
+	public SpannableStringBuilder getNoteContent() {
 		return noteContent;
 	}
 
-	public void setNoteContent(String noteContent) {
+	public void setNoteContent(SpannableStringBuilder noteContent) {
 		this.noteContent = noteContent;
 	}
 
@@ -91,6 +98,13 @@ public class Note {
 
 	public void setNote(String note) {
 		this.note = note;
+	}
+	
+	public SpannableStringBuilder getDisplayableNoteContent() {
+		SpannableStringBuilder sNoteContent = new SpannableStringBuilder(getNoteContent());
+		
+		sNoteContent.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 17, 35, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+		return sNoteContent;
 	}
 	
 	// TODO I don't know if this double handler thingy is efficient but it was (for me) the more maintainable 

@@ -86,8 +86,6 @@ public class NoteView extends Activity {
 				content.setText(note.getNoteContent(), TextView.BufferType.SPANNABLE);
         	}
 		}
-        
-        
     };
 
 }

@@ -27,6 +27,12 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.BackgroundColorSpan;
+import android.text.style.StrikethroughSpan;
+import android.text.style.StyleSpan;
+import android.text.style.TypefaceSpan;
 import android.util.Log;
 
 /*
@@ -41,18 +47,36 @@ public class NoteHandler extends DefaultHandler {
 	private boolean inNoteTag = false;
 	private boolean inTextTag = false;
 	private boolean inNoteContentTag = false;
+	private boolean inBoldTag = false;
+	private boolean inItalicTag = false;
+	private boolean inStrikeTag = false;
+	private boolean inHighlighTag = false;
+	private boolean inMonospaceTag = false;
 	
 	// tag names
 	private final static String NOTE_CONTENT = "note-content";
+	private final static String BOLD = "bold";
+	private final static String ITALIC = "italic";
+	private final static String STRIKETHROUGH = "strikethrough";
+	private final static String HIGHLIGHT = "highlight";
+	private final static String MONOSPACE = "monospace";
+	// TODO do these with RelativeSizeSpan maybe?
+	private final static String SMALL = "small";
+	private final static String LARGE = "large";
+	private final static String HUGE = "huge";
+	
 	
 	// accumulate notecontent is this var since it spans multiple xml tags
-	private StringBuilder sb;
+	private SpannableStringBuilder ssb;
 	
 	// link to model 
 	private Note note;
 	
 	public NoteHandler(Note note) {
 		this.note = note;
+		
+		// we will use the SpannableStringBuilder from the note
+		this.ssb = note.getNoteContent();
 	}
 	
 	@Override
@@ -64,8 +88,23 @@ public class NoteHandler extends DefaultHandler {
 			// we are under the note-content tag
 			// we will append all its nested tags so I create a string builder to do that
 			inNoteContentTag = true;
-			sb = new StringBuilder();
 		}
+
+		// if we are in note-content, keep and convert formatting tags
+		if (inNoteContentTag) {
+			if (localName.equals(BOLD)) {
+				inBoldTag = true;
+			} else if (localName.equals(ITALIC)) {
+				inItalicTag = true;
+			} else if (localName.equals(STRIKETHROUGH)) {
+				inStrikeTag = true;
+			} else if (localName.equals(HIGHLIGHT)) {
+				inHighlighTag = true;
+			} else if (localName.equals(MONOSPACE)) {
+				inMonospaceTag = true;
+			}
+		}
+
 	}
 
 	@Override
@@ -78,22 +117,54 @@ public class NoteHandler extends DefaultHandler {
 			
 			// note-content is over, we can set the builded note to Note's noteContent
 			inNoteContentTag = false;
-			note.setNoteContent(sb.toString());
-			
-			// no need of the builder anymore
-			sb = null;
 		}
+		
+		// if we are in note-content, keep and convert formatting tags
+		if (inNoteContentTag) {
+			if (localName.equals(BOLD)) {
+				inBoldTag = false;
+			} else if (localName.equals(ITALIC)) {
+				inItalicTag = false;
+			} else if (localName.equals(STRIKETHROUGH)) {
+				inStrikeTag = false;
+			} else if (localName.equals(HIGHLIGHT)) {
+				inHighlighTag = false;
+			} else if (localName.equals(MONOSPACE)) {
+				inMonospaceTag = false;
+			}
+		}
+
 	}
 
 	@Override
 	public void characters(char[] ch, int start, int length)
 			throws SAXException {
+		
+		// TODO remove this call to avoid creating unused strings
 		Log.i(this.toString(), "char string: " + new String(ch, start, length));
 
 		if (inNoteContentTag) {
 			
 			// while we are in note-content, append
-			sb.append(ch, start, length);
+			ssb.append(new String(ch), start, length);
+			
+			// apply style if required
+			// TODO I haven't tested nested tags yet
+			if (inBoldTag) {
+				ssb.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), ssb.length()-length, ssb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			}
+			if (inItalicTag) {
+				ssb.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), ssb.length()-length, ssb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			}
+			if (inStrikeTag) {
+				ssb.setSpan(new StrikethroughSpan(), ssb.length()-length, ssb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			}
+			if (inHighlighTag) {
+				ssb.setSpan(new BackgroundColorSpan(Note.NOTE_HIGHLIGHT_COLOR), ssb.length()-length, ssb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			}
+			if (inMonospaceTag) {
+				ssb.setSpan(new TypefaceSpan(Note.NOTE_MONOSPACE_TYPEFACE), ssb.length()-length, ssb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			}
 		}
 	}
 
