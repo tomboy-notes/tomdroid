@@ -31,7 +31,7 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.tomdroid.dao.NotesDAO;
 import org.tomdroid.dao.NotesDAOImpl;
-import org.tomdroid.util.xml.NoteHandler;
+import org.tomdroid.xml.NoteHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
