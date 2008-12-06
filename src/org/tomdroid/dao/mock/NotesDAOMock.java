@@ -69,19 +69,19 @@ public class NotesDAOMock implements NotesDAO {
 		return "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + "\n" +
 				"<note version=\"0.3\" xmlns:link=\"http://beatniksoftware.com/tomboy/link\" xmlns:size=\"http://beatniksoftware.com/tomboy/size\" xmlns=\"http://beatniksoftware.com/tomboy\">" + "\n" +
 				"<title>Test Case</title>" + "\n" +
-				"<text xml:space=\"preserve\"><note-content version=\"0.1\">Test Case" + "\n" +
-				"This is a test case trying to make Tomboy write to a note most of its XML note format attributes/element." + "\n" +
-				"This is <bold><link:broken>bold</link:broken></bold>." + "\n" +
-				"This is <italic>italic</italic>." + "\n" +
-				"This is <strikethrough>striked</strikethrough>." + "\n" +
-				"This is <highlight>highlighted</highlight>." + "\n" +
-				"<monospace>This has fixed width.</monospace>" + "\n" +
-				"What about fontsize?" + "\n" +
-				"<size:small>This is small</size:small>" + "\n" +
-				"This is Normal" + "\n" +
-				"<size:large>This is Large</size:large>" + "\n" +
-				"<size:huge>This is Huge</size:huge>" + "\n" +
-				"Bullets" + "\n" +
+				"<text xml:space=\"preserve\"><note-content version=\"0.1\">Test Case" + "\n\n" +
+				"This is a test case trying to make Tomboy write to a note most of its XML note format attributes/element." + "\n\n" +
+				"This is <bold><link:broken>bold</link:broken></bold>." + "\n\n" +
+				"This is <italic>italic</italic>." + "\n\n" +
+				"This is <strikethrough>striked</strikethrough>." + "\n\n" +
+				"This is <highlight>highlighted</highlight>." + "\n\n" +
+				"<monospace>This has fixed width.</monospace>" + "\n\n" +
+				"What about fontsize?" + "\n\n" +
+				"<size:small>This is small</size:small>" + "\n\n" +
+				"This is Normal" + "\n\n" +
+				"<size:large>This is Large</size:large>" + "\n\n" +
+				"<size:huge>This is Huge</size:huge>" + "\n\n" +
+				"Bullets" + "\n\n" +
 				"<list><list-item>I am a bullet" + "\n" +
 				"</list-item><list-item>Me too</list-item></list>" + "\n" +
 				"</note-content></text>" + "\n" +
