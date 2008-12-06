@@ -26,6 +26,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.TextView;
@@ -84,6 +85,10 @@ public class NoteView extends Activity {
         	if (msg.what == Note.NOTE_RECEIVED_AND_VALID) {
 	        	// show the note (spannable makes the TextView able to output styled text)
 				content.setText(note.getNoteContent(), TextView.BufferType.SPANNABLE);
+				
+				// add links to stuff that is understood by Android
+				// TODO this is SLOWWWW!!!!
+				Linkify.addLinks(content, Linkify.ALL);
         	}
 		}
     };
