@@ -121,7 +121,7 @@ public class Note {
         	String noteStr = msg.getData().getString(NotesDAO.NOTE);
         	Log.i(this.toString(), "Note handler triggered. Content:" + noteStr);
         	
-        	// TODO eeuuhhhh, see buildNote()'s TODO regarding exceptions..
+        	// TODO eeuuhhhh, see buildNote()'s todo regarding exceptions..
         	try {
 				buildNote(noteStr);
 			} catch (ParserConfigurationException e) {

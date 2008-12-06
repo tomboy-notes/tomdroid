@@ -30,6 +30,7 @@ import org.xml.sax.helpers.DefaultHandler;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.BackgroundColorSpan;
+import android.text.style.BulletSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StrikethroughSpan;
 import android.text.style.StyleSpan;
@@ -41,7 +42,6 @@ import android.util.Log;
  * the responsibility of filling the note is something quite cohesive and hope 
  * the coupling involved won't do much damage. I guess time will tell.
  */
-// FIXME This class needs love right now
 public class NoteHandler extends DefaultHandler {
 	
 	// position keepers
@@ -56,19 +56,27 @@ public class NoteHandler extends DefaultHandler {
 	private boolean inSizeSmallTag = false;
 	private boolean inSizeLargeTag = false;
 	private boolean inSizeHugeTag = false;
+	private boolean inList = false;
+	private boolean inListItem = false;
 	
-	// tag names
+	// -- Tomboy's notes XML tags names --
+	// Style related
 	private final static String NOTE_CONTENT = "note-content";
 	private final static String BOLD = "bold";
 	private final static String ITALIC = "italic";
 	private final static String STRIKETHROUGH = "strikethrough";
 	private final static String HIGHLIGHT = "highlight";
 	private final static String MONOSPACE = "monospace";
-	// Sizes are using a namespace identifier like <size:small></size:small>
+	// Sizes are using a namespace identifier size. Ex: <size:small></size:small>
 	private final static String NS_SIZE = "http://beatniksoftware.com/tomboy/size";
 	private final static String SMALL = "small";
 	private final static String LARGE = "large";
 	private final static String HUGE = "huge";
+	// List-related
+	// TODO nested lists are not supported
+	// I think that using a list integer instead of a boolean and incrementing or decrementing it depending on state would do it
+	private final static String LIST = "list";
+	private final static String LIST_ITEM = "list-item";
 	
 	// accumulate notecontent is this var since it spans multiple xml tags
 	private SpannableStringBuilder ssb;
@@ -95,7 +103,7 @@ public class NoteHandler extends DefaultHandler {
 		}
 
 		// if we are in note-content, keep and convert formatting tags
-		// TODO is XML CaSe SeNsItIve? if not change equals to equalsIgnoreCase
+		// TODO is XML CaSe SeNsItIve? if not change equals to equalsIgnoreCase and apply to endElement()
 		if (inNoteContentTag) {
 			if (localName.equals(BOLD)) {
 				inBoldTag = true;
@@ -116,6 +124,10 @@ public class NoteHandler extends DefaultHandler {
 				} else if (localName.equals(HUGE)) {
 					inSizeHugeTag = true;
 				}
+			} else if (localName.equals(LIST)) {
+				inList = true;
+			} else if (localName.equals(LIST_ITEM)) {
+				inListItem = true;
 			}
 		}
 
@@ -153,7 +165,11 @@ public class NoteHandler extends DefaultHandler {
 					inSizeLargeTag = false;
 				} else if (localName.equals(HUGE)) {
 					inSizeHugeTag = false;
-				}
+				} 
+			} else if (localName.equals(LIST)) {
+				inList = false;
+			} else if (localName.equals(LIST_ITEM)) {
+				inListItem = false;
 			}
 		}
 	}
@@ -173,7 +189,7 @@ public class NoteHandler extends DefaultHandler {
 			
 			// apply style if required
 			// TODO I haven't tested nested tags yet
-			// TODO BulletSpan?
+			// TODO I've read somewhere in the SDK that instead of reusing members I should store it in a localized variable.. if performance becomes an issue here, think about that!
 			if (inBoldTag) {
 				ssb.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), ssb.length()-length, ssb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
@@ -198,7 +214,9 @@ public class NoteHandler extends DefaultHandler {
 			if (inSizeHugeTag) {
 				ssb.setSpan(new RelativeSizeSpan(Note.NOTE_SIZE_HUGE_FACTOR), ssb.length()-length, ssb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
+			if (inList && inListItem) {
+				ssb.setSpan(new BulletSpan(), ssb.length()-length, ssb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			}
 		}
 	}
-
 }
