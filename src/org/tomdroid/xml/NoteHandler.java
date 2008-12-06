@@ -158,6 +158,7 @@ public class NoteHandler extends DefaultHandler {
 		}
 	}
 
+	// FIXME we'll have to think about how we handle the title soon.. IMHO there's a problem with duplicating the data from the <title> tag and also putting it straight into the note.. this will have to be reported to tomboy 
 	@Override
 	public void characters(char[] ch, int start, int length)
 			throws SAXException {
