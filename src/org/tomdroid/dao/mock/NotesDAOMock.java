@@ -75,6 +75,9 @@ public class NotesDAOMock implements NotesDAO {
 				"This is <italic>italic</italic>." + "\n\n" +
 				"This is <strikethrough>striked</strikethrough>." + "\n\n" +
 				"This is <highlight>highlighted</highlight>." + "\n\n" +
+				"This is an <link:url>http://weblink.com</link:url>" + "\n\n" +
+				"This is an <link:url>email@address.com</link:url>" + "\n\n" +
+				"This is a phone number: 514-555-1337" + "\n\n" +
 				"<monospace>This has fixed width.</monospace>" + "\n\n" +
 				"What about fontsize?" + "\n\n" +
 				"<size:small>This is small</size:small>" + "\n\n" +
