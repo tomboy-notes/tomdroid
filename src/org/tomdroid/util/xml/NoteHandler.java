@@ -172,7 +172,6 @@ public class NoteHandler extends DefaultHandler {
 			
 			// apply style if required
 			// TODO I haven't tested nested tags yet
-			// TODO RelativeSpan
 			// TODO BulletSpan?
 			if (inBoldTag) {
 				ssb.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), ssb.length()-length, ssb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);

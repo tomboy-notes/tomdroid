@@ -30,7 +30,7 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import org.tomdroid.dao.NotesDAO;
-import org.tomdroid.dao.mock.NotesDAOMock;
+import org.tomdroid.dao.NotesDAOImpl;
 import org.tomdroid.util.xml.NoteHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -51,7 +51,8 @@ public class Note {
 	public static final int NOTE_RECEIVED_AND_VALID = 1;
 	
 	// Notes constants
-	public static final int NOTE_HIGHLIGHT_COLOR = 0xFFFFFF00;
+	// TODO this is a weird yellow that was usable for the android emulator, I must confirm this for real usage
+	public static final int NOTE_HIGHLIGHT_COLOR = 0xFFFFFF77;
 	public static final String NOTE_MONOSPACE_TYPEFACE = "monospace";
 	public static final float NOTE_SIZE_SMALL_FACTOR = 0.8f;
 	public static final float NOTE_SIZE_LARGE_FACTOR = 1.3f;
@@ -77,7 +78,7 @@ public class Note {
 		
 		//  TODO my naive way of using mock objects
 		//NotesDAOImpl notesDAO = new NotesDAOImpl(handler, noteURL);
-		NotesDAOMock notesDAO = new NotesDAOMock(handler, noteURL);
+		NotesDAOImpl notesDAO = new NotesDAOImpl(handler, noteURL);
 
 		// asynchronous call to get the note's content
 		notesDAO.getContent();
