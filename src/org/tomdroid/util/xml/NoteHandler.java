@@ -30,6 +30,7 @@ import org.xml.sax.helpers.DefaultHandler;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.BackgroundColorSpan;
+import android.text.style.RelativeSizeSpan;
 import android.text.style.StrikethroughSpan;
 import android.text.style.StyleSpan;
 import android.text.style.TypefaceSpan;
@@ -52,6 +53,9 @@ public class NoteHandler extends DefaultHandler {
 	private boolean inStrikeTag = false;
 	private boolean inHighlighTag = false;
 	private boolean inMonospaceTag = false;
+	private boolean inSizeSmallTag = false;
+	private boolean inSizeLargeTag = false;
+	private boolean inSizeHugeTag = false;
 	
 	// tag names
 	private final static String NOTE_CONTENT = "note-content";
@@ -60,11 +64,11 @@ public class NoteHandler extends DefaultHandler {
 	private final static String STRIKETHROUGH = "strikethrough";
 	private final static String HIGHLIGHT = "highlight";
 	private final static String MONOSPACE = "monospace";
-	// TODO do these with RelativeSizeSpan maybe?
+	// Sizes are using a namespace identifier like <size:small></size:small>
+	private final static String NS_SIZE = "http://beatniksoftware.com/tomboy/size";
 	private final static String SMALL = "small";
 	private final static String LARGE = "large";
 	private final static String HUGE = "huge";
-	
 	
 	// accumulate notecontent is this var since it spans multiple xml tags
 	private SpannableStringBuilder ssb;
@@ -91,6 +95,7 @@ public class NoteHandler extends DefaultHandler {
 		}
 
 		// if we are in note-content, keep and convert formatting tags
+		// TODO is XML CaSe SeNsItIve? if not change equals to equalsIgnoreCase
 		if (inNoteContentTag) {
 			if (localName.equals(BOLD)) {
 				inBoldTag = true;
@@ -102,6 +107,15 @@ public class NoteHandler extends DefaultHandler {
 				inHighlighTag = true;
 			} else if (localName.equals(MONOSPACE)) {
 				inMonospaceTag = true;
+			} else if (uri.equals(NS_SIZE)) {
+				// now check for the different possible sizes
+				if (localName.equals(SMALL)) {
+					inSizeSmallTag = true;
+				} else if (localName.equals(LARGE)) {
+					inSizeLargeTag = true;
+				} else if (localName.equals(HUGE)) {
+					inSizeHugeTag = true;
+				}
 			}
 		}
 
@@ -131,9 +145,17 @@ public class NoteHandler extends DefaultHandler {
 				inHighlighTag = false;
 			} else if (localName.equals(MONOSPACE)) {
 				inMonospaceTag = false;
+			} else if (uri.equals(NS_SIZE)) {
+				// now check for the different possible sizes
+				if (localName.equals(SMALL)) {
+					inSizeSmallTag = false;
+				} else if (localName.equals(LARGE)) {
+					inSizeLargeTag = false;
+				} else if (localName.equals(HUGE)) {
+					inSizeHugeTag = false;
+				}
 			}
 		}
-
 	}
 
 	@Override
@@ -150,6 +172,8 @@ public class NoteHandler extends DefaultHandler {
 			
 			// apply style if required
 			// TODO I haven't tested nested tags yet
+			// TODO RelativeSpan
+			// TODO BulletSpan?
 			if (inBoldTag) {
 				ssb.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), ssb.length()-length, ssb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
@@ -164,6 +188,15 @@ public class NoteHandler extends DefaultHandler {
 			}
 			if (inMonospaceTag) {
 				ssb.setSpan(new TypefaceSpan(Note.NOTE_MONOSPACE_TYPEFACE), ssb.length()-length, ssb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			}
+			if (inSizeSmallTag) {
+				ssb.setSpan(new RelativeSizeSpan(Note.NOTE_SIZE_SMALL_FACTOR), ssb.length()-length, ssb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			}
+			if (inSizeLargeTag) {
+				ssb.setSpan(new RelativeSizeSpan(Note.NOTE_SIZE_LARGE_FACTOR), ssb.length()-length, ssb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			}
+			if (inSizeHugeTag) {
+				ssb.setSpan(new RelativeSizeSpan(Note.NOTE_SIZE_HUGE_FACTOR), ssb.length()-length, ssb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
 		}
 	}

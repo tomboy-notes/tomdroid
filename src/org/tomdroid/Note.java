@@ -53,6 +53,9 @@ public class Note {
 	// Notes constants
 	public static final int NOTE_HIGHLIGHT_COLOR = 0xFFFFFF00;
 	public static final String NOTE_MONOSPACE_TYPEFACE = "monospace";
+	public static final float NOTE_SIZE_SMALL_FACTOR = 0.8f;
+	public static final float NOTE_SIZE_LARGE_FACTOR = 1.3f;
+	public static final float NOTE_SIZE_HUGE_FACTOR = 1.6f;
 	
 	// Members
 	private SpannableStringBuilder noteContent = new SpannableStringBuilder();
