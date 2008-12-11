@@ -20,21 +20,21 @@
  * You should have received a copy of the GNU General Public License
  * along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.tomdroid.dao.mock;
+package org.tomdroid.dao.net.mock;
 
-import org.tomdroid.dao.NotesDAO;
+import org.tomdroid.dao.net.NoteDAO;
 
 import android.os.Bundle;
 import android.os.Message;
 import android.os.Handler;
 
-public class NotesDAOMock implements NotesDAO {
+public class NoteDAOMock implements NoteDAO {
 	
 	// thread related
 	private Thread runner;
 	private Handler parentHandler;
 	
-	public NotesDAOMock (Handler handler, String url) {
+	public NoteDAOMock (Handler handler, String url) {
 		parentHandler = handler;
 	}
 	
@@ -50,7 +50,7 @@ public class NotesDAOMock implements NotesDAO {
 		
 		// Load the message object with the note
 		Bundle bundle = new Bundle();
-		bundle.putString(NotesDAO.NOTE, fetchContent());
+		bundle.putString(NoteDAO.NOTE, fetchContent());
 		msg.setData(bundle);
 		
 		// notify UI that we are done here and send result 

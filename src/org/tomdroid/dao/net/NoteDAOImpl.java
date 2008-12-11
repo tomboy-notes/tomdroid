@@ -20,7 +20,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.tomdroid.dao;
+package org.tomdroid.dao.net;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -33,7 +33,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
-public class NotesDAOImpl implements NotesDAO {
+public class NoteDAOImpl implements NoteDAO {
 	
 	private String noteURL;
 	private String noteContent;
@@ -43,7 +43,7 @@ public class NotesDAOImpl implements NotesDAO {
 	private Handler parentHandler;
 	
 	
-	public NotesDAOImpl (Handler handler, String url) {
+	public NoteDAOImpl (Handler handler, String url) {
 		parentHandler = handler;
 		this.noteURL = url;
 	}
@@ -73,7 +73,7 @@ public class NotesDAOImpl implements NotesDAO {
 		
 		// Load the message object with the note
 		Bundle bundle = new Bundle();
-		bundle.putString(NotesDAO.NOTE, noteContent);
+		bundle.putString(NoteDAO.NOTE, noteContent);
 		msg.setData(bundle);
 		
 		// notify UI that we are done here and send result 

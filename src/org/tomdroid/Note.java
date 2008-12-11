@@ -29,8 +29,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import org.tomdroid.dao.NotesDAO;
-import org.tomdroid.dao.NotesDAOImpl;
+import org.tomdroid.dao.net.NoteDAO;
+import org.tomdroid.dao.net.NoteDAOImpl;
 import org.tomdroid.xml.NoteHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -78,7 +78,7 @@ public class Note {
 		
 		//  TODO my naive way of using mock objects
 		//NotesDAOImpl notesDAO = new NotesDAOImpl(handler, noteURL);
-		NotesDAOImpl notesDAO = new NotesDAOImpl(handler, noteURL);
+		NoteDAOImpl notesDAO = new NoteDAOImpl(handler, noteURL);
 
 		// asynchronous call to get the note's content
 		notesDAO.getContent();
@@ -118,7 +118,7 @@ public class Note {
         @Override
         public void handleMessage(Message msg) {
         	
-        	String noteStr = msg.getData().getString(NotesDAO.NOTE);
+        	String noteStr = msg.getData().getString(NoteDAO.NOTE);
         	Log.i(this.toString(), "Note handler triggered. Content:" + noteStr);
         	
         	// TODO eeuuhhhh, see buildNote()'s todo regarding exceptions..

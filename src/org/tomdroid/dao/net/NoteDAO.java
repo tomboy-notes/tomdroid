@@ -20,9 +20,9 @@
  * You should have received a copy of the GNU General Public License
  * along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.tomdroid.dao;
+package org.tomdroid.dao.net;
 
-public interface NotesDAO extends Runnable {
+public interface NoteDAO extends Runnable {
 	
 	public static final String NOTE = "note";
 
