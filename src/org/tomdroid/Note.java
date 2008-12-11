@@ -52,6 +52,7 @@ public class Note {
 
 	// Static references to fields (used in Bundles)
 	public static final String URL = "url";
+	public static final String FILE = "file";
 	public static final String NOTE_CONTENT = "note-content";
 	public static final int NOTE_RECEIVED_AND_VALID = 1;
 	

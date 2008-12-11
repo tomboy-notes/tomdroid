@@ -29,12 +29,18 @@ import java.util.Iterator;
 import java.util.List;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 public class NoteList extends ListActivity {
+	
+	private static final int ACTIVITY_VIEW=0;
 	
 	// TODO hardcoded for now
 	private static final String NOTES_PATH = "/sdcard/tomdroid/";
@@ -84,8 +90,6 @@ public class NoteList extends ListActivity {
 		// listAdapter
 		ArrayAdapter<String> notesListAdapter = new ArrayAdapter<String>(this, R.layout.note_list_item, notesNamesList);
         setListAdapter(notesListAdapter);
-
-
 	}
 	
     private Handler handler = new Handler() {
@@ -109,5 +113,16 @@ public class NoteList extends ListActivity {
 		public boolean accept(File dir, String name) {
 			return (name.endsWith(".note"));
 		}
+	}
+
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		Log.i(this.toString(),"Position: " + position + " id:" + id + " Note file:" + notes.get(position).getFileName());
+		
+		
+		Intent i = new Intent(NoteList.this, NoteView.class);
+		i.putExtra(Note.FILE, NOTES_PATH+notes.get(position).getFileName());
+		startActivityForResult(i, ACTIVITY_VIEW);
+
 	}
 }

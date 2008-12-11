@@ -33,9 +33,11 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.TextView;
 
+// TODO this class is starting to smell
 public class NoteView extends Activity {
 	
-	private String url; 
+	private String url;
+	private String file;
 	
 	// UI elements
 	private TextView content;
@@ -52,19 +54,25 @@ public class NoteView extends Activity {
 		
 		content = (TextView) findViewById(R.id.content);
 		
-		// get url to fetch from Intent
+		// get url or file to fetch from Intent
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			url = extras.getString(Note.URL);
+			file = extras.getString(Note.FILE);
 		} else {
 			Log.i(this.toString(), "info: Bundle was empty.");
 		}
 		
+		// Based on what is sent in the bundle, we either load from file or url
 		if (url != null) {
 			note = new Note(handler, url);
 			
 			// asynchronous call to fetch the note, the callback with come from the handler
 			note.getNoteFromWebAsync();
+		} else if (file != null) {
+			note = new Note(handler, new File(file));
+			
+			note.getNoteFromFileSystemAsync();
 		}
 	}
 	
