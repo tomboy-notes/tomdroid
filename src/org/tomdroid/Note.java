@@ -22,9 +22,9 @@
  */
 package org.tomdroid;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
-import java.util.Date;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -34,6 +34,7 @@ import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
 import org.tomdroid.dao.NoteDAO;
+import org.tomdroid.dao.NoteFileSystemDAOImpl;
 import org.tomdroid.dao.NoteNetworkDAOImpl;
 import org.tomdroid.xml.NoteHandler;
 import org.xml.sax.InputSource;
@@ -65,20 +66,24 @@ public class Note {
 	// Members
 	private SpannableStringBuilder noteContent = new SpannableStringBuilder();
 	private String url;
+	private String fileName;
+	private File file;
 	private String title;
 	private DateTime lastChangeDate;
 	
 	// Handles async state
 	private Handler parentHandler;
 	
-	public Note(Handler hdl) {
-		this.parentHandler = hdl;
-	}
-	
 	// TODO is this still useful as of iteration3?
 	public Note(Handler hdl, String url) {
 		this.parentHandler = hdl;
 		this.url = url;
+	}
+	
+	public Note(Handler hdl, File file) {
+		this.parentHandler = hdl;
+		this.file = file;
+		this.fileName = file.getName();
 	}
 	
 	public String getUrl() {
@@ -87,6 +92,14 @@ public class Note {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 
 	public String getTitle() {
@@ -113,6 +126,17 @@ public class Note {
 		//  TODO my naive way of using mock objects
 		//NotesDAOImpl notesDAO = new NotesDAOImpl(handler, noteURL);
 		NoteNetworkDAOImpl notesDAO = new NoteNetworkDAOImpl(handler, url);
+
+		// asynchronous call to get the note's content
+		notesDAO.getContent();
+	}
+	
+	/**
+	 * Asynchronously get the note from file system
+	 */
+	public void getNoteFromFileSystemAsync() {
+		
+		NoteFileSystemDAOImpl notesDAO = new NoteFileSystemDAOImpl(handler, file);
 
 		// asynchronous call to get the note's content
 		notesDAO.getContent();
