@@ -27,7 +27,11 @@
 	<!-- main.xml -->
     <string name="strURL">URL:</string>
     <string name="btnURL">Load Web Note</string>
+    <string name="btnList">Load local notes list</string>
 
 	<!-- note-view.xml -->
     <string name="strWait">Please wait while note loads...</string>
+    
+    <!-- note_list.xml -->
+    <string name="strListEmpty">Please wait while the notes loads..</string>
 </resources>

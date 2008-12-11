@@ -47,10 +47,10 @@ public class tomdroid extends Activity {
         // Connect UI elements to variables
         txtURL = (EditText) findViewById(R.id.txtURL);
         txtURL.setText("http://www.bottomlesspit.org/files/note.xml");
-        Button button = (Button)findViewById(R.id.btnURL);
+        Button webBtn = (Button)findViewById(R.id.btnURL);
         
         // Annon inner-class for button listener 
-        button.setOnClickListener(new OnClickListener() {
+        webBtn.setOnClickListener(new OnClickListener() {
         	
             public void onClick(View v)
             {
@@ -61,7 +61,19 @@ public class tomdroid extends Activity {
                 startActivityForResult(i, ACTIVITY_VIEW);
             }
         });
+        
+        Button localBtn = (Button)findViewById(R.id.btnList);
+        
+        // Annon inner-class for button listener 
+        localBtn.setOnClickListener(new OnClickListener() {
+        	
+            public void onClick(View v)
+            {
+                Log.i(tomdroid.this.toString(), "info: Button clicked. Loading local notes");
+            	
+            	Intent i = new Intent(tomdroid.this, NoteList.class);
+                startActivityForResult(i, ACTIVITY_VIEW);
+            }
+        });        
     }
-    
-
 }

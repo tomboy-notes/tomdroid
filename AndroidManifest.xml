@@ -13,6 +13,8 @@
     
 
 <activity android:name=".NoteView"></activity>
+<activity android:name=".NoteList"></activity>
+
 </application>
 	<uses-permission android:name="android.permission.INTERNET" />
 </manifest> 
