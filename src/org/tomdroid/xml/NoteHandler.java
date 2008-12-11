@@ -102,7 +102,7 @@ public class NoteHandler extends DefaultHandler {
 	@Override
 	public void startElement(String uri, String localName, String name,	Attributes attributes) throws SAXException {
 		
-		Log.i(this.toString(), "startElement: uri: " + uri + " local: " + localName + " name: " + name);
+		// Log.i(this.toString(), "startElement: uri: " + uri + " local: " + localName + " name: " + name);
 		if (localName.equals(NOTE_CONTENT)) {
 
 			// we are under the note-content tag
@@ -149,7 +149,7 @@ public class NoteHandler extends DefaultHandler {
 	public void endElement(String uri, String localName, String name)
 			throws SAXException {
 
-		Log.i(this.toString(), "endElement: uri: " + uri + " local: " + localName + " name: " + name);
+		// Log.i(this.toString(), "endElement: uri: " + uri + " local: " + localName + " name: " + name);
 		
 		if (localName.equals(NOTE_CONTENT)) {
 			
@@ -198,7 +198,7 @@ public class NoteHandler extends DefaultHandler {
 		String currentString = new String(ch, start, length);
 		
 		// TODO remove this call when we will be done
-		Log.i(this.toString(), "char string: " + currentString);
+		// Log.i(this.toString(), "char string: " + currentString);
 		
 		if (inTitleTag) {
 			note.setTitle(currentString);

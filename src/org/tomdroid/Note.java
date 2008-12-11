@@ -165,7 +165,7 @@ public class Note {
         public void handleMessage(Message msg) {
         	
         	String noteStr = msg.getData().getString(NoteDAO.NOTE);
-        	Log.i(this.toString(), "Note handler triggered. Content:" + noteStr);
+        	Log.i(this.toString(), "Note handler triggered.");
         	
         	// TODO eeuuhhhh, see buildNote()'s todo regarding exceptions..
         	try {
