@@ -24,6 +24,7 @@ package org.tomdroid;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.Date;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -60,17 +61,47 @@ public class Note {
 	
 	// Members
 	private SpannableStringBuilder noteContent = new SpannableStringBuilder();
-	private String note;
-	private String noteURL;
+	private String url;
+	private String title;
+	private Date lastChangeDate;
 	
 	// Handles async state
 	private Handler parentHandler;
 	
-	public Note(Handler hdl, String url) {
+	public Note(Handler hdl) {
 		this.parentHandler = hdl;
-		this.noteURL = url;
 	}
 	
+	// TODO is this still useful as of iteration3?
+	public Note(Handler hdl, String url) {
+		this.parentHandler = hdl;
+		this.url = url;
+	}
+	
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public Date getLastChangeDate() {
+		return lastChangeDate;
+	}
+
+	public void setLastChangeDate(Date lastChangeDate) {
+		this.lastChangeDate = lastChangeDate;
+	}
+
 	/**
 	 * Asynchronously get the note from URL
 	 */
@@ -78,16 +109,12 @@ public class Note {
 		
 		//  TODO my naive way of using mock objects
 		//NotesDAOImpl notesDAO = new NotesDAOImpl(handler, noteURL);
-		NoteDAOImpl notesDAO = new NoteDAOImpl(handler, noteURL);
+		NoteDAOImpl notesDAO = new NoteDAOImpl(handler, url);
 
 		// asynchronous call to get the note's content
 		notesDAO.getContent();
 	}
 	
-	public String getAndroidCompatibleNoteContent() {
-		return note;
-	}
-
 	public SpannableStringBuilder getNoteContent() {
 		return noteContent;
 	}
@@ -96,14 +123,6 @@ public class Note {
 		this.noteContent = noteContent;
 	}
 
-	public String getNote() {
-		return note;
-	}
-
-	public void setNote(String note) {
-		this.note = note;
-	}
-	
 	public SpannableStringBuilder getDisplayableNoteContent() {
 		SpannableStringBuilder sNoteContent = new SpannableStringBuilder(getNoteContent());
 		
@@ -142,7 +161,7 @@ public class Note {
     // TODO I should not throw but handle or wrap exceptions here, I am being lazy I guess
     private void buildNote(String noteStream) throws ParserConfigurationException, SAXException, IOException {
     	//TODO this will have to properly build the note, splitting metadata and content et al.
-    	note = noteStream;
+    	String note = noteStream;
     	
     	// XML 
     	// Get a SAXParser from the SAXPArserFactory
@@ -164,7 +183,6 @@ public class Note {
 		Message msg = Message.obtain();
 		
 		Log.i(this.toString(), "warnHandler: sending ok to NoteView");
-
 		
 		// notify UI that we are done here and sending an ok 
 		parentHandler.sendEmptyMessage(NOTE_RECEIVED_AND_VALID);
