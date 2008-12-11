@@ -30,6 +30,9 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
 import org.tomdroid.dao.net.NoteDAO;
 import org.tomdroid.dao.net.NoteDAOImpl;
 import org.tomdroid.xml.NoteHandler;
@@ -63,7 +66,7 @@ public class Note {
 	private SpannableStringBuilder noteContent = new SpannableStringBuilder();
 	private String url;
 	private String title;
-	private Date lastChangeDate;
+	private DateTime lastChangeDate;
 	
 	// Handles async state
 	private Handler parentHandler;
@@ -94,11 +97,11 @@ public class Note {
 		this.title = title;
 	}
 
-	public Date getLastChangeDate() {
+	public DateTime getLastChangeDate() {
 		return lastChangeDate;
 	}
 
-	public void setLastChangeDate(Date lastChangeDate) {
+	public void setLastChangeDate(DateTime lastChangeDate) {
 		this.lastChangeDate = lastChangeDate;
 	}
 
@@ -188,5 +191,12 @@ public class Note {
 		parentHandler.sendEmptyMessage(NOTE_RECEIVED_AND_VALID);
 
     }
+
+	@Override
+	public String toString() {
+		// format date time according to XML standard
+		DateTimeFormatter fmt = ISODateTimeFormat.dateTime();
+		return new String("Note: "+ getTitle() + " (" + fmt.print(getLastChangeDate()) + ")");
+	}
 	
 }

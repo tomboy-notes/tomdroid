@@ -22,6 +22,8 @@
  */
 package org.tomdroid.xml;
 
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
 import org.tomdroid.Note;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -45,6 +47,8 @@ import android.util.Log;
 public class NoteHandler extends DefaultHandler {
 	
 	// position keepers
+	private boolean inTitleTag = false;
+	private boolean inLastChangeDateTag = false;
 	private boolean inNoteTag = false;
 	private boolean inTextTag = false;
 	private boolean inNoteContentTag = false;
@@ -61,6 +65,9 @@ public class NoteHandler extends DefaultHandler {
 	private boolean inListItem = false;
 	
 	// -- Tomboy's notes XML tags names --
+	// Metadata related
+	private final static String TITLE = "title";
+	private final static String LAST_CHANGE_DATE = "last-change-date"; 
 	// Style related
 	private final static String NOTE_CONTENT = "note-content";
 	private final static String BOLD = "bold";
@@ -101,6 +108,10 @@ public class NoteHandler extends DefaultHandler {
 			// we are under the note-content tag
 			// we will append all its nested tags so I create a string builder to do that
 			inNoteContentTag = true;
+		} else if (localName.equals(TITLE)) {
+			inTitleTag = true;
+		} else if (localName.equals(LAST_CHANGE_DATE)) {
+			inLastChangeDateTag = true;
 		}
 
 		// if we are in note-content, keep and convert formatting tags
@@ -144,6 +155,10 @@ public class NoteHandler extends DefaultHandler {
 			
 			// note-content is over, we can set the builded note to Note's noteContent
 			inNoteContentTag = false;
+		} else if (localName.equals(TITLE)) {
+			inTitleTag = false;
+		} else if (localName.equals(LAST_CHANGE_DATE)) {
+			inLastChangeDateTag = false;
 		}
 		
 		// if we are in note-content, keep and convert formatting tags
@@ -184,6 +199,14 @@ public class NoteHandler extends DefaultHandler {
 		
 		// TODO remove this call when we will be done
 		Log.i(this.toString(), "char string: " + currentString);
+		
+		if (inTitleTag) {
+			note.setTitle(currentString);
+		} else if (inLastChangeDateTag) {
+			//TODO there is probably a parsing error here we should trap 
+			DateTimeFormatter fmt = ISODateTimeFormat.dateTime();
+			note.setLastChangeDate(fmt.parseDateTime(currentString));
+		}
 
 		if (inNoteContentTag) {
 			// while we are in note-content, append
