@@ -33,8 +33,8 @@ import javax.xml.parsers.SAXParserFactory;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
-import org.tomdroid.dao.net.NoteDAO;
-import org.tomdroid.dao.net.NoteDAOImpl;
+import org.tomdroid.dao.NoteDAO;
+import org.tomdroid.dao.NoteNetworkDAOImpl;
 import org.tomdroid.xml.NoteHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -108,11 +108,11 @@ public class Note {
 	/**
 	 * Asynchronously get the note from URL
 	 */
-	public void fetchNoteAsync() {
+	public void getNoteFromWebAsync() {
 		
 		//  TODO my naive way of using mock objects
 		//NotesDAOImpl notesDAO = new NotesDAOImpl(handler, noteURL);
-		NoteDAOImpl notesDAO = new NoteDAOImpl(handler, url);
+		NoteNetworkDAOImpl notesDAO = new NoteNetworkDAOImpl(handler, url);
 
 		// asynchronous call to get the note's content
 		notesDAO.getContent();

@@ -62,7 +62,7 @@ public class NoteView extends Activity {
 			note = new Note(handler, url);
 			
 			// asynchronous call to fetch the note, the callback with come from the handler
-			note.fetchNoteAsync();
+			note.getNoteFromWebAsync();
 		}
 	}
 	
