@@ -56,7 +56,7 @@ public class NoteHandler extends DefaultHandler {
 	private boolean inSizeSmallTag = false;
 	private boolean inSizeLargeTag = false;
 	private boolean inSizeHugeTag = false;
-	private boolean inList = false;
+	private int inListLevel = 0;
 	private boolean inListItem = false;
 	
 	// -- Tomboy's notes XML tags names --
@@ -125,7 +125,7 @@ public class NoteHandler extends DefaultHandler {
 					inSizeHugeTag = true;
 				}
 			} else if (localName.equals(LIST)) {
-				inList = true;
+				inListLevel++;
 			} else if (localName.equals(LIST_ITEM)) {
 				inListItem = true;
 			}
@@ -167,7 +167,7 @@ public class NoteHandler extends DefaultHandler {
 					inSizeHugeTag = false;
 				} 
 			} else if (localName.equals(LIST)) {
-				inList = false;
+				inListLevel--;
 			} else if (localName.equals(LIST_ITEM)) {
 				inListItem = false;
 			}
@@ -214,8 +214,10 @@ public class NoteHandler extends DefaultHandler {
 			if (inSizeHugeTag) {
 				ssb.setSpan(new RelativeSizeSpan(Note.NOTE_SIZE_HUGE_FACTOR), ssb.length()-length, ssb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
-			if (inList && inListItem) {
-				ssb.setSpan(new BulletSpan(), ssb.length()-length, ssb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			if (inListItem) {
+				//TODO based on inListItemLevel, change the bullet
+				//TODO for now lets just add a leading margin span
+				ssb.setSpan(new BulletSpan(20), ssb.length()-length, ssb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
 		}
 	}
