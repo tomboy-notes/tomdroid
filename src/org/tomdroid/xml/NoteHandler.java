@@ -22,6 +22,8 @@
  */
 package org.tomdroid.xml;
 
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
 import org.tomdroid.Note;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -45,9 +47,12 @@ import android.util.Log;
 public class NoteHandler extends DefaultHandler {
 	
 	// position keepers
+	private boolean inTitleTag = false;
+	private boolean inLastChangeDateTag = false;
 	private boolean inNoteTag = false;
 	private boolean inTextTag = false;
 	private boolean inNoteContentTag = false;
+	private boolean inNoteContentTagMustGrabTitle = true; // hack to grab title and make it big
 	private boolean inBoldTag = false;
 	private boolean inItalicTag = false;
 	private boolean inStrikeTag = false;
@@ -60,6 +65,9 @@ public class NoteHandler extends DefaultHandler {
 	private boolean inListItem = false;
 	
 	// -- Tomboy's notes XML tags names --
+	// Metadata related
+	private final static String TITLE = "title";
+	private final static String LAST_CHANGE_DATE = "last-change-date"; 
 	// Style related
 	private final static String NOTE_CONTENT = "note-content";
 	private final static String BOLD = "bold";
@@ -94,12 +102,16 @@ public class NoteHandler extends DefaultHandler {
 	@Override
 	public void startElement(String uri, String localName, String name,	Attributes attributes) throws SAXException {
 		
-		Log.i(this.toString(), "startElement: uri: " + uri + " local: " + localName + " name: " + name);
+		// Log.i(this.toString(), "startElement: uri: " + uri + " local: " + localName + " name: " + name);
 		if (localName.equals(NOTE_CONTENT)) {
 
 			// we are under the note-content tag
 			// we will append all its nested tags so I create a string builder to do that
 			inNoteContentTag = true;
+		} else if (localName.equals(TITLE)) {
+			inTitleTag = true;
+		} else if (localName.equals(LAST_CHANGE_DATE)) {
+			inLastChangeDateTag = true;
 		}
 
 		// if we are in note-content, keep and convert formatting tags
@@ -137,12 +149,16 @@ public class NoteHandler extends DefaultHandler {
 	public void endElement(String uri, String localName, String name)
 			throws SAXException {
 
-		Log.i(this.toString(), "endElement: uri: " + uri + " local: " + localName + " name: " + name);
+		// Log.i(this.toString(), "endElement: uri: " + uri + " local: " + localName + " name: " + name);
 		
 		if (localName.equals(NOTE_CONTENT)) {
 			
 			// note-content is over, we can set the builded note to Note's noteContent
 			inNoteContentTag = false;
+		} else if (localName.equals(TITLE)) {
+			inTitleTag = false;
+		} else if (localName.equals(LAST_CHANGE_DATE)) {
+			inLastChangeDateTag = false;
 		}
 		
 		// if we are in note-content, keep and convert formatting tags
@@ -179,45 +195,62 @@ public class NoteHandler extends DefaultHandler {
 	public void characters(char[] ch, int start, int length)
 			throws SAXException {
 		
-		// TODO remove this call to avoid creating unused strings
-		Log.i(this.toString(), "char string: " + new String(ch, start, length));
+		String currentString = new String(ch, start, length);
+		
+		// TODO remove this call when we will be done
+		// Log.i(this.toString(), "char string: " + currentString);
+		
+		if (inTitleTag) {
+			note.setTitle(currentString);
+		} else if (inLastChangeDateTag) {
+			//TODO there is probably a parsing error here we should trap 
+			DateTimeFormatter fmt = ISODateTimeFormat.dateTime();
+			note.setLastChangeDate(fmt.parseDateTime(currentString));
+		}
 
 		if (inNoteContentTag) {
-			
 			// while we are in note-content, append
-			ssb.append(new String(ch), start, length);
+			ssb.append(currentString, start, length);
+			int strLenStart = ssb.length()-length;
+			int strLenEnd = ssb.length();
+			
+			// the first line of the note-content tag is the note's title. It must be big like in tomboy.
+			// TODO tomboy's fileformat suggestion: title should not be repeated in the note-content. This is ugly IMHO
+			if (inNoteContentTagMustGrabTitle) {
+				ssb.setSpan(new RelativeSizeSpan(Note.NOTE_SIZE_HUGE_FACTOR), strLenStart, strLenEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+				inNoteContentTagMustGrabTitle = false;
+			}
 			
 			// apply style if required
 			// TODO I haven't tested nested tags yet
-			// TODO I've read somewhere in the SDK that instead of reusing members I should store it in a localized variable.. if performance becomes an issue here, think about that!
 			if (inBoldTag) {
-				ssb.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), ssb.length()-length, ssb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+				ssb.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), strLenStart, strLenEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
 			if (inItalicTag) {
-				ssb.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), ssb.length()-length, ssb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+				ssb.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), strLenStart, strLenEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
 			if (inStrikeTag) {
-				ssb.setSpan(new StrikethroughSpan(), ssb.length()-length, ssb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+				ssb.setSpan(new StrikethroughSpan(), strLenStart, ssb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
 			if (inHighlighTag) {
-				ssb.setSpan(new BackgroundColorSpan(Note.NOTE_HIGHLIGHT_COLOR), ssb.length()-length, ssb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+				ssb.setSpan(new BackgroundColorSpan(Note.NOTE_HIGHLIGHT_COLOR), strLenStart, strLenEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
 			if (inMonospaceTag) {
-				ssb.setSpan(new TypefaceSpan(Note.NOTE_MONOSPACE_TYPEFACE), ssb.length()-length, ssb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+				ssb.setSpan(new TypefaceSpan(Note.NOTE_MONOSPACE_TYPEFACE), strLenStart, strLenEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
 			if (inSizeSmallTag) {
-				ssb.setSpan(new RelativeSizeSpan(Note.NOTE_SIZE_SMALL_FACTOR), ssb.length()-length, ssb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+				ssb.setSpan(new RelativeSizeSpan(Note.NOTE_SIZE_SMALL_FACTOR), strLenStart, strLenEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
 			if (inSizeLargeTag) {
-				ssb.setSpan(new RelativeSizeSpan(Note.NOTE_SIZE_LARGE_FACTOR), ssb.length()-length, ssb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+				ssb.setSpan(new RelativeSizeSpan(Note.NOTE_SIZE_LARGE_FACTOR), strLenStart, strLenEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
 			if (inSizeHugeTag) {
-				ssb.setSpan(new RelativeSizeSpan(Note.NOTE_SIZE_HUGE_FACTOR), ssb.length()-length, ssb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+				ssb.setSpan(new RelativeSizeSpan(Note.NOTE_SIZE_HUGE_FACTOR), strLenStart, strLenEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
 			if (inListItem) {
 				//TODO based on inListItemLevel, change the bullet
 				//TODO for now lets just add a leading margin span
-				ssb.setSpan(new BulletSpan(20), ssb.length()-length, ssb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+				ssb.setSpan(new BulletSpan(), ssb.length()-length, ssb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
 		}
 	}

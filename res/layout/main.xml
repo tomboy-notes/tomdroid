@@ -21,23 +21,33 @@
  You should have received a copy of the GNU General Public License
  along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
 -->
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+    android:orientation="vertical"
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content">
-		
-	<TextView android:id="@+id/strURL" 
-			  android:layout_width="wrap_content" 
-			  android:layout_height="wrap_content" 
-			  android:text="@string/strURL" />
-	<EditText android:id="@+id/txtURL" 
-			  android:layout_width="wrap_content"
-		      android:layout_height="wrap_content" 
-		      android:layout_weight="1" />
-    <Button android:id="@+id/btnURL" 
+
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:orientation="horizontal"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+			
+		<TextView android:id="@+id/strURL" 
+				  android:layout_width="wrap_content" 
+				  android:layout_height="wrap_content" 
+				  android:text="@string/strURL" />
+		<EditText android:id="@+id/txtURL" 
+				  android:layout_width="wrap_content"
+			      android:layout_height="wrap_content" 
+			      android:layout_weight="1" />
+	    <Button android:id="@+id/btnURL" 
+	            android:layout_width="wrap_content" 
+	            android:layout_height="wrap_content" 
+	            android:text="@string/btnURL" />
+	
+	</LinearLayout>
+	
+    <Button android:id="@+id/btnList" 
             android:layout_width="wrap_content" 
             android:layout_height="wrap_content" 
-            android:text="@string/btnURL" />
-
+            android:text="@string/btnList" />
 </LinearLayout>

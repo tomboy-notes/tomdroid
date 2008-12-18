@@ -22,6 +22,7 @@
  */
 package org.tomdroid;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 
@@ -29,8 +30,12 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import org.tomdroid.dao.NotesDAO;
-import org.tomdroid.dao.NotesDAOImpl;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
+import org.tomdroid.dao.NoteDAO;
+import org.tomdroid.dao.NoteFileSystemDAOImpl;
+import org.tomdroid.dao.NoteNetworkDAOImpl;
 import org.tomdroid.xml.NoteHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -47,6 +52,7 @@ public class Note {
 
 	// Static references to fields (used in Bundles)
 	public static final String URL = "url";
+	public static final String FILE = "file";
 	public static final String NOTE_CONTENT = "note-content";
 	public static final int NOTE_RECEIVED_AND_VALID = 1;
 	
@@ -60,34 +66,83 @@ public class Note {
 	
 	// Members
 	private SpannableStringBuilder noteContent = new SpannableStringBuilder();
-	private String note;
-	private String noteURL;
+	private String url;
+	private String fileName;
+	private File file;
+	private String title;
+	private DateTime lastChangeDate;
 	
 	// Handles async state
 	private Handler parentHandler;
 	
+	// TODO is this still useful as of iteration3?
 	public Note(Handler hdl, String url) {
 		this.parentHandler = hdl;
-		this.noteURL = url;
+		this.url = url;
 	}
 	
+	public Note(Handler hdl, File file) {
+		this.parentHandler = hdl;
+		this.file = file;
+		this.fileName = file.getName();
+	}
+	
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public DateTime getLastChangeDate() {
+		return lastChangeDate;
+	}
+
+	public void setLastChangeDate(DateTime lastChangeDate) {
+		this.lastChangeDate = lastChangeDate;
+	}
+
 	/**
 	 * Asynchronously get the note from URL
 	 */
-	public void fetchNoteAsync() {
+	public void getNoteFromWebAsync() {
 		
 		//  TODO my naive way of using mock objects
 		//NotesDAOImpl notesDAO = new NotesDAOImpl(handler, noteURL);
-		NotesDAOImpl notesDAO = new NotesDAOImpl(handler, noteURL);
+		NoteNetworkDAOImpl notesDAO = new NoteNetworkDAOImpl(handler, url);
 
 		// asynchronous call to get the note's content
 		notesDAO.getContent();
 	}
 	
-	public String getAndroidCompatibleNoteContent() {
-		return note;
-	}
+	/**
+	 * Asynchronously get the note from file system
+	 */
+	public void getNoteFromFileSystemAsync() {
+		
+		NoteFileSystemDAOImpl notesDAO = new NoteFileSystemDAOImpl(handler, file);
 
+		// asynchronous call to get the note's content
+		notesDAO.getContent();
+	}
+	
 	public SpannableStringBuilder getNoteContent() {
 		return noteContent;
 	}
@@ -96,14 +151,6 @@ public class Note {
 		this.noteContent = noteContent;
 	}
 
-	public String getNote() {
-		return note;
-	}
-
-	public void setNote(String note) {
-		this.note = note;
-	}
-	
 	public SpannableStringBuilder getDisplayableNoteContent() {
 		SpannableStringBuilder sNoteContent = new SpannableStringBuilder(getNoteContent());
 		
@@ -118,8 +165,8 @@ public class Note {
         @Override
         public void handleMessage(Message msg) {
         	
-        	String noteStr = msg.getData().getString(NotesDAO.NOTE);
-        	Log.i(this.toString(), "Note handler triggered. Content:" + noteStr);
+        	String noteStr = msg.getData().getString(NoteDAO.NOTE);
+        	Log.i(this.toString(), "Note handler triggered.");
         	
         	// TODO eeuuhhhh, see buildNote()'s todo regarding exceptions..
         	try {
@@ -142,7 +189,7 @@ public class Note {
     // TODO I should not throw but handle or wrap exceptions here, I am being lazy I guess
     private void buildNote(String noteStream) throws ParserConfigurationException, SAXException, IOException {
     	//TODO this will have to properly build the note, splitting metadata and content et al.
-    	note = noteStream;
+    	String note = noteStream;
     	
     	// XML 
     	// Get a SAXParser from the SAXPArserFactory
@@ -164,11 +211,17 @@ public class Note {
 		Message msg = Message.obtain();
 		
 		Log.i(this.toString(), "warnHandler: sending ok to NoteView");
-
 		
 		// notify UI that we are done here and sending an ok 
 		parentHandler.sendEmptyMessage(NOTE_RECEIVED_AND_VALID);
 
     }
+
+	@Override
+	public String toString() {
+		// format date time according to XML standard
+		DateTimeFormatter fmt = ISODateTimeFormat.dateTime();
+		return new String("Note: "+ getTitle() + " (" + fmt.print(getLastChangeDate()) + ")");
+	}
 	
 }
