@@ -64,6 +64,7 @@ public class NoteList extends ListActivity {
 	}
 	
 	public void loadNotes() {
+		// TODO crash more cleanly if sdcard is not loaded or there is no files in tomdroid/
 		File notesRoot = new File(NOTES_PATH);
 		for (File file : notesRoot.listFiles(new NotesFilter())) {
 

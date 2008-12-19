@@ -203,8 +203,10 @@ public class Note {
         NoteHandler xmlHandler = new NoteHandler(this);
         xr.setContentHandler(xmlHandler);
         
+        Log.d(this.toString(), "about to parse a note");
         // Parse the xml-data from the note String and it will take care of loading the note
         xr.parse(new InputSource(new StringReader(noteStream)));
+        Log.d(this.toString(), "note parsed");
     }
     
     private void warnHandler() {

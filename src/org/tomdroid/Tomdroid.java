@@ -31,7 +31,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class tomdroid extends Activity {
+public class Tomdroid extends Activity {
 	private static final int ACTIVITY_VIEW=0;
 	
 	// UI elements
@@ -54,9 +54,9 @@ public class tomdroid extends Activity {
         	
             public void onClick(View v)
             {
-                Log.i(tomdroid.this.toString(), "info: Button clicked. URL requested: "+txtURL.getText().toString());
+                Log.i(Tomdroid.this.toString(), "info: Button clicked. URL requested: "+txtURL.getText().toString());
             	
-            	Intent i = new Intent(tomdroid.this, NoteView.class);
+            	Intent i = new Intent(Tomdroid.this, NoteView.class);
                 i.putExtra(Note.URL, txtURL.getText().toString());
                 startActivityForResult(i, ACTIVITY_VIEW);
             }
@@ -69,9 +69,9 @@ public class tomdroid extends Activity {
         	
             public void onClick(View v)
             {
-                Log.i(tomdroid.this.toString(), "info: Button clicked. Loading local notes");
+                Log.i(Tomdroid.this.toString(), "info: Button clicked. Loading local notes");
             	
-            	Intent i = new Intent(tomdroid.this, NoteList.class);
+            	Intent i = new Intent(Tomdroid.this, NoteList.class);
                 startActivityForResult(i, ACTIVITY_VIEW);
             }
         });        

@@ -37,7 +37,6 @@ import android.text.style.RelativeSizeSpan;
 import android.text.style.StrikethroughSpan;
 import android.text.style.StyleSpan;
 import android.text.style.TypefaceSpan;
-import android.util.Log;
 
 /*
  * I don't know if I'm doing the right thing but I think that giving this class
@@ -102,7 +101,6 @@ public class NoteHandler extends DefaultHandler {
 	@Override
 	public void startElement(String uri, String localName, String name,	Attributes attributes) throws SAXException {
 		
-		// Log.i(this.toString(), "startElement: uri: " + uri + " local: " + localName + " name: " + name);
 		if (localName.equals(NOTE_CONTENT)) {
 
 			// we are under the note-content tag
