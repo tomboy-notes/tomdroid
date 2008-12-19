@@ -188,8 +188,6 @@ public class Note {
     
     // TODO I should not throw but handle or wrap exceptions here, I am being lazy I guess
     private void buildNote(String noteStream) throws ParserConfigurationException, SAXException, IOException {
-    	//TODO this will have to properly build the note, splitting metadata and content et al.
-    	String note = noteStream;
     	
     	// XML 
     	// Get a SAXParser from the SAXPArserFactory
@@ -210,7 +208,6 @@ public class Note {
     }
     
     private void warnHandler() {
-		Message msg = Message.obtain();
 		
 		Log.i(this.toString(), "warnHandler: sending ok to NoteView");
 		
