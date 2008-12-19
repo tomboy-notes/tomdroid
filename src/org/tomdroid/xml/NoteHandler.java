@@ -33,6 +33,7 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.BulletSpan;
+import android.text.style.LeadingMarginSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StrikethroughSpan;
 import android.text.style.StyleSpan;
@@ -246,9 +247,10 @@ public class NoteHandler extends DefaultHandler {
 				ssb.setSpan(new RelativeSizeSpan(Note.NOTE_SIZE_HUGE_FACTOR), strLenStart, strLenEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
 			if (inListItem) {
-				//TODO based on inListItemLevel, change the bullet
-				//TODO for now lets just add a leading margin span
-				ssb.setSpan(new BulletSpan(), ssb.length()-length, ssb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+				// TODO new sexier bullets?
+				// Show a leading margin that is as wide as the nested level we are in
+				ssb.setSpan(new LeadingMarginSpan.Standard(10*inListLevel), strLenStart, strLenEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+				ssb.setSpan(new BulletSpan(), strLenStart, strLenEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
 		}
 	}
