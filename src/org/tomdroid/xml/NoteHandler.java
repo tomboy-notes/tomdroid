@@ -33,11 +33,11 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.BulletSpan;
+import android.text.style.LeadingMarginSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StrikethroughSpan;
 import android.text.style.StyleSpan;
 import android.text.style.TypefaceSpan;
-import android.util.Log;
 
 /*
  * I don't know if I'm doing the right thing but I think that giving this class
@@ -61,7 +61,7 @@ public class NoteHandler extends DefaultHandler {
 	private boolean inSizeSmallTag = false;
 	private boolean inSizeLargeTag = false;
 	private boolean inSizeHugeTag = false;
-	private boolean inList = false;
+	private int inListLevel = 0;
 	private boolean inListItem = false;
 	
 	// -- Tomboy's notes XML tags names --
@@ -102,7 +102,8 @@ public class NoteHandler extends DefaultHandler {
 	@Override
 	public void startElement(String uri, String localName, String name,	Attributes attributes) throws SAXException {
 		
-		// Log.i(this.toString(), "startElement: uri: " + uri + " local: " + localName + " name: " + name);
+		// TODO validate top-level tag for tomboy notes and throw exception if its the wrong version number (maybe offer to parse also?)
+		
 		if (localName.equals(NOTE_CONTENT)) {
 
 			// we are under the note-content tag
@@ -137,7 +138,7 @@ public class NoteHandler extends DefaultHandler {
 					inSizeHugeTag = true;
 				}
 			} else if (localName.equals(LIST)) {
-				inList = true;
+				inListLevel++;
 			} else if (localName.equals(LIST_ITEM)) {
 				inListItem = true;
 			}
@@ -183,7 +184,7 @@ public class NoteHandler extends DefaultHandler {
 					inSizeHugeTag = false;
 				} 
 			} else if (localName.equals(LIST)) {
-				inList = false;
+				inListLevel--;
 			} else if (localName.equals(LIST_ITEM)) {
 				inListItem = false;
 			}
@@ -247,7 +248,10 @@ public class NoteHandler extends DefaultHandler {
 			if (inSizeHugeTag) {
 				ssb.setSpan(new RelativeSizeSpan(Note.NOTE_SIZE_HUGE_FACTOR), strLenStart, strLenEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
-			if (inList && inListItem) {
+			if (inListItem) {
+				// TODO new sexier bullets?
+				// Show a leading margin that is as wide as the nested level we are in
+				ssb.setSpan(new LeadingMarginSpan.Standard(10*inListLevel), strLenStart, strLenEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 				ssb.setSpan(new BulletSpan(), strLenStart, strLenEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
 		}
