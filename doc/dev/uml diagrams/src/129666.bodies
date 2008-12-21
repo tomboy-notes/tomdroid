@@ -1,0 +1,37 @@
+class tomdroid
+!!!131202.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+        
+        setContentView(R.layout.main);
+        
+        // Connect UI elements to variables
+        txtURL = (EditText) findViewById(R.id.txtURL);
+        txtURL.setText("http://www.bottomlesspit.org/files/note.xml");
+        Button webBtn = (Button)findViewById(R.id.btnURL);
+        
+        // Annon inner-class for button listener 
+        webBtn.setOnClickListener(new OnClickListener() {
+        	
+            public void onClick(View v)
+            {
+                Log.i(tomdroid.this.toString(), "info: Button clicked. URL requested: "+txtURL.getText().toString());
+            	
+            	Intent i = new Intent(tomdroid.this, NoteView.class);
+                i.putExtra(Note.URL, txtURL.getText().toString());
+                startActivityForResult(i, ACTIVITY_VIEW);
+            }
+        });
+        
+        Button localBtn = (Button)findViewById(R.id.btnList);
+        
+        // Annon inner-class for button listener 
+        localBtn.setOnClickListener(new OnClickListener() {
+        	
+            public void onClick(View v)
+            {
+                Log.i(tomdroid.this.toString(), "info: Button clicked. Loading local notes");
+            	
+            	Intent i = new Intent(tomdroid.this, NoteList.class);
+                startActivityForResult(i, ACTIVITY_VIEW);
+            }
+        });        

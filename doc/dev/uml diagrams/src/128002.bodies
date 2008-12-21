@@ -1,0 +1,77 @@
+class Note
+!!!128002.java!!!	Note(inout hdl : Handler, in url : String)
+		this.parentHandler = hdl;
+		this.url = url;
+!!!128130.java!!!	Note(inout hdl : Handler, inout file : File)
+		this.parentHandler = hdl;
+		this.file = file;
+		this.fileName = file.getName();
+!!!128258.java!!!	getUrl() : String
+		return url;
+!!!128386.java!!!	setUrl(in url : String) : void
+		this.url = url;
+!!!128514.java!!!	getFileName() : String
+		return fileName;
+!!!128642.java!!!	setFileName(in fileName : String) : void
+		this.fileName = fileName;
+!!!128770.java!!!	getTitle() : String
+		return title;
+!!!128898.java!!!	setTitle(in title : String) : void
+		this.title = title;
+!!!129026.java!!!	getLastChangeDate() : DateTime
+		return lastChangeDate;
+!!!129154.java!!!	setLastChangeDate(inout lastChangeDate : DateTime) : void
+		this.lastChangeDate = lastChangeDate;
+!!!129282.java!!!	getNoteFromWebAsync() : void
+		
+		//  TODO my naive way of using mock objects
+		//NotesDAOImpl notesDAO = new NotesDAOImpl(handler, noteURL);
+		NoteNetworkDAOImpl notesDAO = new NoteNetworkDAOImpl(handler, url);
+
+		// asynchronous call to get the note's content
+		notesDAO.getContent();
+!!!129410.java!!!	getNoteFromFileSystemAsync() : void
+		
+		NoteFileSystemDAOImpl notesDAO = new NoteFileSystemDAOImpl(handler, file);
+
+		// asynchronous call to get the note's content
+		notesDAO.getContent();
+!!!129538.java!!!	getNoteContent() : SpannableStringBuilder
+		return noteContent;
+!!!129666.java!!!	setNoteContent(inout noteContent : SpannableStringBuilder) : void
+		this.noteContent = noteContent;
+!!!129794.java!!!	getDisplayableNoteContent() : SpannableStringBuilder
+		SpannableStringBuilder sNoteContent = new SpannableStringBuilder(getNoteContent());
+		
+		sNoteContent.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 17, 35, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+		return sNoteContent;
+!!!129922.java!!!	buildNote(in noteStream : String) : void
+    	//TODO this will have to properly build the note, splitting metadata and content et al.
+    	String note = noteStream;
+    	
+    	// XML 
+    	// Get a SAXParser from the SAXPArserFactory
+        SAXParserFactory spf = SAXParserFactory.newInstance();
+        SAXParser sp = spf.newSAXParser();
+
+        // Get the XMLReader of the SAXParser we created
+        XMLReader xr = sp.getXMLReader();
+        
+        // Create a new ContentHandler, send it this note to fill and apply it to the XML-Reader
+        NoteHandler xmlHandler = new NoteHandler(this);
+        xr.setContentHandler(xmlHandler);
+        
+        // Parse the xml-data from the note String and it will take care of loading the note
+        xr.parse(new InputSource(new StringReader(noteStream)));
+!!!130050.java!!!	warnHandler() : void
+		Message msg = Message.obtain();
+		
+		Log.i(this.toString(), "warnHandler: sending ok to NoteView");
+		
+		// notify UI that we are done here and sending an ok 
+		parentHandler.sendEmptyMessage(NOTE_RECEIVED_AND_VALID);
+
+!!!130178.java!!!	toString() : String
+		// format date time according to XML standard
+		DateTimeFormatter fmt = ISODateTimeFormat.dateTime();
+		return new String("Note: "+ getTitle() + " (" + fmt.print(getLastChangeDate()) + ")");

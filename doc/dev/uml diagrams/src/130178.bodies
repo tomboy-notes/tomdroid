@@ -1,0 +1,52 @@
+class NoteNetworkDAOImpl
+!!!131970.java!!!	NoteNetworkDAOImpl(inout handler : Handler, in url : String)
+
+		parentHandler = handler;
+		this.noteURL = url;
+!!!132098.java!!!	getContent() : void
+
+		runner = new Thread(this);
+		runner.start();
+!!!132226.java!!!	run() : void
+
+		Message msg = Message.obtain();
+		
+		// Grab the note
+		// TODO handle exceptions properly
+		try {
+			noteContent = fetch(noteURL);
+		} catch (MalformedURLException e) {
+			// TODO handle exceptions properly
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO handle exceptions properly
+			e.printStackTrace();
+		} 
+		
+		// Load the message object with the note
+		Bundle bundle = new Bundle();
+		bundle.putString(NoteDAO.NOTE, noteContent);
+		msg.setData(bundle);
+		
+		// notify UI that we are done here and send result 
+		parentHandler.sendMessage(msg);
+!!!132354.java!!!	fetch(in address : String) : String
+
+		
+		//grab URL
+		URL url = new URL(address);
+		InputStream is = (InputStream) url.getContent();
+		
+		//Init BufferedReader and StringBuilder
+		BufferedReader br = new BufferedReader(new InputStreamReader(is));
+		StringBuilder sb = new StringBuilder();
+
+		//Convert from InputStream to String using StringBuilder
+		String line = null;
+		while ((line = br.readLine()) != null) {
+			sb.append(line + "\n");
+		}
+		br.close();
+
+		//Return the string
+		return sb.toString();

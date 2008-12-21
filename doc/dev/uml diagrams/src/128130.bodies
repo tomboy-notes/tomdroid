@@ -1,0 +1,42 @@
+class NoteList
+!!!130306.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+		super.onCreate(savedInstanceState);
+		
+		// load UI
+		setContentView(R.layout.note_list);
+
+        // start loading local notes
+		loadNotes();
+!!!130434.java!!!	loadNotes() : void
+		File notesRoot = new File(NOTES_PATH);
+		for (File file : notesRoot.listFiles(new NotesFilter())) {
+
+			Note note = new Note(handler, file);
+			// FIXME this is not a good name since its confusing between getter / setters
+			note.getNoteFromFileSystemAsync();
+			notes.add(note);
+        }
+		
+!!!130562.java!!!	updateNoteList() : void
+		notesNamesList.clear();
+		
+		// TODO this is not efficient but I have to make it work now..
+		Iterator<Note> i = notes.iterator();
+		while(i.hasNext()) {
+			Note curNote = i.next();
+			if (curNote.getTitle() != null) {
+				notesNamesList.add(curNote.getTitle());
+			}
+		}
+		
+		// listAdapter
+		ArrayAdapter<String> notesListAdapter = new ArrayAdapter<String>(this, R.layout.note_list_item, notesNamesList);
+        setListAdapter(notesListAdapter);
+!!!130818.java!!!	onListItemClick(inout l : ListView, inout v : View, in position : int, in id : long) : void
+		Log.i(this.toString(),"Position: " + position + " id:" + id + " Note file:" + notes.get(position).getFileName());
+		
+		
+		Intent i = new Intent(NoteList.this, NoteView.class);
+		i.putExtra(Note.FILE, NOTES_PATH+notes.get(position).getFileName());
+		startActivityForResult(i, ACTIVITY_VIEW);
+

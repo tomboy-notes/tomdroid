@@ -1,0 +1,278 @@
+format 58
+
+classinstance 128002 class_ref 131074 // user
+  name ""   xyz 25 4 2000 life_line_z 2000
+classinstance 128258 class_ref 128130 // NoteList
+  name ""   xyz 146 4 2000 life_line_z 2010
+fragment 129026 "loop"
+  xyzwh 95 105 2000 634 150
+end
+note 129154 "pour chaque fichier se terminant par .note sur la carte sd (dans /sdcard/tomdroid/)"
+  xyzwh 420 31 2000 206 67
+classinstance 129282 class_ref 128002 // Note
+  name ""   xyz 370 4 2000 life_line_z 2025
+classinstance 130434 class_ref 130050 // NoteFileSystemDAOImpl
+  name ""   xyz 565 5 2000 life_line_z 2000
+note 133122 "Interprétation XML se fait ici par NoteHandler."
+  xyzwh 203 318 2005 164 53
+fragment 134658 "each time a thread fetches a file"
+  xyzwh 77 281 2000 668 242
+end
+classinstance 135682 class_ref 128642 // NoteView
+  name ""   xyz 828 4 2000 life_line_z 2000
+note 136066 "Le nom de fichier a charger est passé dans un Bundle."
+  xyzwh 654 531 2000 181 55
+note 137730 "C'est le getContent asynchrone standard expliqué plus haut. Pour des fins de simplification il ne sera pas refait au complet."
+  xyzwh 666 664 2000 181 105
+durationcanvas 128386 classinstance_ref 128002 // :user
+  xyzwh 34 62 2010 11 40
+end
+durationcanvas 128514 classinstance_ref 128258 // :NoteList
+  xyzwh 170 62 2015 11 220
+  overlappingdurationcanvas 128770
+    xyzwh 176 89 2020 11 185
+  end
+end
+durationcanvas 129410 classinstance_ref 129282 // :Note
+  xyzwh 389 123 2010 11 25
+end
+durationcanvas 129666 classinstance_ref 129282 // :Note
+  xyzwh 389 117 2035 11 39
+end
+durationcanvas 130178 classinstance_ref 129282 // :Note
+  xyzwh 389 122 2035 11 152
+end
+durationcanvas 130562 classinstance_ref 130434 // :NoteFileSystemDAOImpl
+  xyzwh 634 184 2010 11 35
+end
+durationcanvas 130946 classinstance_ref 130434 // :NoteFileSystemDAOImpl
+  xyzwh 634 227 2010 11 285
+  overlappingdurationcanvas 131714
+    xyzwh 640 283 2020 11 25
+  end
+end
+durationcanvas 132098 classinstance_ref 128002 // :user
+  xyzwh 34 271 2010 11 25
+end
+durationcanvas 132610 classinstance_ref 129282 // :Note
+  xyzwh 389 316 2035 11 191
+  overlappingdurationcanvas 132866
+    xyzwh 395 344 2045 11 25
+  end
+  overlappingdurationcanvas 133890
+    xyzwh 395 388 2045 11 38
+  end
+end
+durationcanvas 134146 classinstance_ref 128258 // :NoteList
+  xyzwh 170 401 2020 11 106
+  overlappingdurationcanvas 134402
+    xyzwh 176 438 2030 11 37
+  end
+end
+durationcanvas 134786 classinstance_ref 128002 // :user
+  xyzwh 34 464 2010 11 25
+end
+durationcanvas 135298 classinstance_ref 128002 // :user
+  xyzwh 34 584 2010 11 231
+end
+durationcanvas 135426 classinstance_ref 128258 // :NoteList
+  xyzwh 170 584 2020 11 36
+end
+durationcanvas 135810 classinstance_ref 135682 // :NoteView
+  xyzwh 856 588 2010 11 227
+end
+durationcanvas 136322 classinstance_ref 129282 // :Note
+  xyzwh 389 629 2035 11 153
+end
+durationcanvas 136706 classinstance_ref 130434 // :NoteFileSystemDAOImpl
+  xyzwh 634 671 2010 11 39
+end
+durationcanvas 137090 classinstance_ref 130434 // :NoteFileSystemDAOImpl
+  xyzwh 634 718 2010 11 32
+end
+msg 128642 synchronous
+  from durationcanvas_ref 128386
+  to durationcanvas_ref 128514
+  yz 62 2010 msg operation_ref 130306 // "onCreate(inout savedInstanceState : Bundle) : void"
+  show_full_operations_definition default drawing_language default
+  label_xy 78 46
+reflexivemsg 128898 synchronous
+  to durationcanvas_ref 128770
+  yz 89 2025 msg operation_ref 130434 // "loadNotes() : void"
+  show_full_operations_definition default drawing_language default
+  label_xy 194 74
+msg 129538 synchronous
+  from durationcanvas_ref 128770
+  to durationcanvas_ref 129410
+  yz 123 2030 msg operation_ref 128130 // "Note(inout hdl : Handler, inout file : File)"
+  show_full_operations_definition default drawing_language default
+  args "handler, file"
+  label_xy 215 108
+msg 129794 return
+  from durationcanvas_ref 129666
+  to durationcanvas_ref 128770
+  yz 139 2040 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 130306 synchronous
+  from durationcanvas_ref 128770
+  to durationcanvas_ref 130178
+  yz 172 2040 msg operation_ref 129410 // "getNoteFromFileSystemAsync() : void"
+  show_full_operations_definition default drawing_language default
+  label_xy 205 158
+msg 130690 synchronous
+  from durationcanvas_ref 130178
+  to durationcanvas_ref 130562
+  yz 184 2040 msg operation_ref 131458 // "NoteFileSystemDAOImpl(inout handler : Handler, inout file : File)"
+  show_full_operations_definition default drawing_language default
+  args "handler, file"
+  label_xy 415 168
+msg 130818 return
+  from durationcanvas_ref 130562
+  to durationcanvas_ref 130178
+  yz 198 2045 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 131074 synchronous
+  from durationcanvas_ref 130178
+  to durationcanvas_ref 130946
+  yz 227 2050 msg operation_ref 131586 // "getContent() : void"
+  show_full_operations_definition default drawing_language default
+  label_xy 484 213
+reflexivemsg 131202 asynchronous
+  to durationcanvas_ref 130946
+  yz 240 2015 msg operation_ref 131714 // "run() : void"
+  show_full_operations_definition default drawing_language default
+  label_xy 652 225
+msg 131586 return
+  from durationcanvas_ref 130946
+  to durationcanvas_ref 130178
+  yz 242 2040 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+reflexivemsg 131842 synchronous
+  to durationcanvas_ref 131714
+  yz 283 3005 msg operation_ref 131842 // "fetch(inout file : File) : String"
+  show_full_operations_definition default drawing_language default
+  args "file"
+  label_xy 675 282
+msg 131970 return
+  from durationcanvas_ref 130178
+  to durationcanvas_ref 128770
+  yz 261 2045 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 132226 return
+  from durationcanvas_ref 128514
+  to durationcanvas_ref 132098
+  yz 271 2020 explicitmsg "contrôle du UI revient"
+  show_full_operations_definition default drawing_language default
+  label_xy 49 255
+msg 132738 synchronous
+  from durationcanvas_ref 130946
+  to durationcanvas_ref 132610
+  yz 324 2040 explicitmsg "sendMessage(noteString)"
+  show_full_operations_definition default drawing_language default
+  label_xy 448 310
+reflexivemsg 132994 synchronous
+  to durationcanvas_ref 132866
+  yz 344 2050 msg operation_ref 129922 // "buildNote(in noteStream : String) : void"
+  show_full_operations_definition default drawing_language default
+  args "noteString"
+  label_xy 430 339
+reflexivemsg 134018 synchronous
+  to durationcanvas_ref 133890
+  yz 388 2050 msg operation_ref 130050 // "warnHandler() : void"
+  show_full_operations_definition default drawing_language default
+  label_xy 435 387
+msg 134274 synchronous
+  from durationcanvas_ref 133890
+  to durationcanvas_ref 134146
+  yz 415 2050 explicitmsg "sendMessage(valid)"
+  show_full_operations_definition default drawing_language default
+  label_xy 231 399
+reflexivemsg 134530 synchronous
+  to durationcanvas_ref 134402
+  yz 438 2055 msg operation_ref 130562 // "updateNoteList() : void"
+  show_full_operations_definition default drawing_language default
+  label_xy 216 436
+msg 134914 synchronous
+  from durationcanvas_ref 134402
+  to durationcanvas_ref 134786
+  yz 464 2060 explicitmsg "met a jour liste des notes"
+  show_full_operations_definition default drawing_language default
+  label_xy 35 451
+msg 135042 return
+  from durationcanvas_ref 134146
+  to durationcanvas_ref 132610
+  yz 477 2065 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 135170 return
+  from durationcanvas_ref 132610
+  to durationcanvas_ref 130946
+  yz 496 2070 explicitmsg "exécution du fil terminé"
+  show_full_operations_definition default drawing_language default
+  label_xy 455 480
+msg 135554 synchronous
+  from durationcanvas_ref 135298
+  to durationcanvas_ref 135426
+  yz 584 2025 explicitmsg "clique sur une note"
+  show_full_operations_definition default drawing_language default
+  label_xy 55 568
+msg 135938 synchronous
+  from durationcanvas_ref 135426
+  to durationcanvas_ref 135810
+  yz 598 2030 msg operation_ref 130946 // "onCreate(inout savedInstanceState : Bundle) : void"
+  show_full_operations_definition default drawing_language default
+  label_xy 488 582
+msg 136450 synchronous
+  from durationcanvas_ref 135810
+  to durationcanvas_ref 136322
+  yz 629 2040 msg operation_ref 128130 // "Note(inout hdl : Handler, inout file : File)"
+  show_full_operations_definition default drawing_language default
+  args "handler, file"
+  label_xy 580 613
+msg 136578 return
+  from durationcanvas_ref 136322
+  to durationcanvas_ref 135810
+  yz 649 2040 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 136834 synchronous
+  from durationcanvas_ref 136322
+  to durationcanvas_ref 136706
+  yz 676 2045 msg operation_ref 131458 // "NoteFileSystemDAOImpl(inout handler : Handler, inout file : File)"
+  show_full_operations_definition default drawing_language default
+  args "handler, file"
+  label_xy 414 660
+msg 136962 return
+  from durationcanvas_ref 136706
+  to durationcanvas_ref 136322
+  yz 695 2040 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 137218 synchronous
+  from durationcanvas_ref 136322
+  to durationcanvas_ref 137090
+  yz 719 2040 msg operation_ref 131586 // "getContent() : void"
+  show_full_operations_definition default drawing_language default
+  label_xy 484 703
+msg 137346 return
+  from durationcanvas_ref 137090
+  to durationcanvas_ref 136322
+  yz 739 2040 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 137986 return
+  from durationcanvas_ref 136322
+  to durationcanvas_ref 135810
+  yz 771 2040 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 138114 return
+  from durationcanvas_ref 135810
+  to durationcanvas_ref 135298
+  yz 799 2045 explicitmsg "l'usager peut maintenant interagir avec la note"
+  show_full_operations_definition default drawing_language default
+  label_xy 326 786
+line 132354 -_-_
+  from ref 129154 z 1999 to ref 129026
+line 133762 -_-_
+  from ref 133122 z 2004 to ref 132866
+line 136194 -_-_
+  from ref 136066 z 1999 to ref 135938
+line 137858 -_-_
+  from ref 137730 z 1999 to ref 137090
+end

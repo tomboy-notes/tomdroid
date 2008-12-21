@@ -1,0 +1,148 @@
+class NoteHandler
+!!!132994.java!!!	NoteHandler(inout note : Note)
+		this.note = note;
+		
+		// we will use the SpannableStringBuilder from the note
+		this.ssb = note.getNoteContent();
+!!!133122.java!!!	startElement(in uri : String, in localName : String, in name : String, inout attributes : Attributes) : void
+		
+		// Log.i(this.toString(), "startElement: uri: " + uri + " local: " + localName + " name: " + name);
+		if (localName.equals(NOTE_CONTENT)) {
+
+			// we are under the note-content tag
+			// we will append all its nested tags so I create a string builder to do that
+			inNoteContentTag = true;
+		} else if (localName.equals(TITLE)) {
+			inTitleTag = true;
+		} else if (localName.equals(LAST_CHANGE_DATE)) {
+			inLastChangeDateTag = true;
+		}
+
+		// if we are in note-content, keep and convert formatting tags
+		// TODO is XML CaSe SeNsItIve? if not change equals to equalsIgnoreCase and apply to endElement()
+		if (inNoteContentTag) {
+			if (localName.equals(BOLD)) {
+				inBoldTag = true;
+			} else if (localName.equals(ITALIC)) {
+				inItalicTag = true;
+			} else if (localName.equals(STRIKETHROUGH)) {
+				inStrikeTag = true;
+			} else if (localName.equals(HIGHLIGHT)) {
+				inHighlighTag = true;
+			} else if (localName.equals(MONOSPACE)) {
+				inMonospaceTag = true;
+			} else if (uri.equals(NS_SIZE)) {
+				// now check for the different possible sizes
+				if (localName.equals(SMALL)) {
+					inSizeSmallTag = true;
+				} else if (localName.equals(LARGE)) {
+					inSizeLargeTag = true;
+				} else if (localName.equals(HUGE)) {
+					inSizeHugeTag = true;
+				}
+			} else if (localName.equals(LIST)) {
+				inList = true;
+			} else if (localName.equals(LIST_ITEM)) {
+				inListItem = true;
+			}
+		}
+
+!!!133250.java!!!	endElement(in uri : String, in localName : String, in name : String) : void
+
+		// Log.i(this.toString(), "endElement: uri: " + uri + " local: " + localName + " name: " + name);
+		
+		if (localName.equals(NOTE_CONTENT)) {
+			
+			// note-content is over, we can set the builded note to Note's noteContent
+			inNoteContentTag = false;
+		} else if (localName.equals(TITLE)) {
+			inTitleTag = false;
+		} else if (localName.equals(LAST_CHANGE_DATE)) {
+			inLastChangeDateTag = false;
+		}
+		
+		// if we are in note-content, keep and convert formatting tags
+		if (inNoteContentTag) {
+			if (localName.equals(BOLD)) {
+				inBoldTag = false;
+			} else if (localName.equals(ITALIC)) {
+				inItalicTag = false;
+			} else if (localName.equals(STRIKETHROUGH)) {
+				inStrikeTag = false;
+			} else if (localName.equals(HIGHLIGHT)) {
+				inHighlighTag = false;
+			} else if (localName.equals(MONOSPACE)) {
+				inMonospaceTag = false;
+			} else if (uri.equals(NS_SIZE)) {
+				// now check for the different possible sizes
+				if (localName.equals(SMALL)) {
+					inSizeSmallTag = false;
+				} else if (localName.equals(LARGE)) {
+					inSizeLargeTag = false;
+				} else if (localName.equals(HUGE)) {
+					inSizeHugeTag = false;
+				} 
+			} else if (localName.equals(LIST)) {
+				inList = false;
+			} else if (localName.equals(LIST_ITEM)) {
+				inListItem = false;
+			}
+		}
+!!!133378.java!!!	characters(in ch : char, in start : int, in length : int) : void
+		
+		String currentString = new String(ch, start, length);
+		
+		// TODO remove this call when we will be done
+		// Log.i(this.toString(), "char string: " + currentString);
+		
+		if (inTitleTag) {
+			note.setTitle(currentString);
+		} else if (inLastChangeDateTag) {
+			//TODO there is probably a parsing error here we should trap 
+			DateTimeFormatter fmt = ISODateTimeFormat.dateTime();
+			note.setLastChangeDate(fmt.parseDateTime(currentString));
+		}
+
+		if (inNoteContentTag) {
+			// while we are in note-content, append
+			ssb.append(currentString, start, length);
+			int strLenStart = ssb.length()-length;
+			int strLenEnd = ssb.length();
+			
+			// the first line of the note-content tag is the note's title. It must be big like in tomboy.
+			// TODO tomboy's fileformat suggestion: title should not be repeated in the note-content. This is ugly IMHO
+			if (inNoteContentTagMustGrabTitle) {
+				ssb.setSpan(new RelativeSizeSpan(Note.NOTE_SIZE_HUGE_FACTOR), strLenStart, strLenEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+				inNoteContentTagMustGrabTitle = false;
+			}
+			
+			// apply style if required
+			// TODO I haven't tested nested tags yet
+			if (inBoldTag) {
+				ssb.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), strLenStart, strLenEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			}
+			if (inItalicTag) {
+				ssb.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), strLenStart, strLenEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			}
+			if (inStrikeTag) {
+				ssb.setSpan(new StrikethroughSpan(), strLenStart, ssb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			}
+			if (inHighlighTag) {
+				ssb.setSpan(new BackgroundColorSpan(Note.NOTE_HIGHLIGHT_COLOR), strLenStart, strLenEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			}
+			if (inMonospaceTag) {
+				ssb.setSpan(new TypefaceSpan(Note.NOTE_MONOSPACE_TYPEFACE), strLenStart, strLenEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			}
+			if (inSizeSmallTag) {
+				ssb.setSpan(new RelativeSizeSpan(Note.NOTE_SIZE_SMALL_FACTOR), strLenStart, strLenEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			}
+			if (inSizeLargeTag) {
+				ssb.setSpan(new RelativeSizeSpan(Note.NOTE_SIZE_LARGE_FACTOR), strLenStart, strLenEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			}
+			if (inSizeHugeTag) {
+				ssb.setSpan(new RelativeSizeSpan(Note.NOTE_SIZE_HUGE_FACTOR), strLenStart, strLenEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			}
+			if (inList && inListItem) {
+				ssb.setSpan(new BulletSpan(), strLenStart, strLenEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			}
+		}

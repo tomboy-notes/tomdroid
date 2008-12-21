@@ -1,0 +1,50 @@
+class NoteFileSystemDAOImpl
+!!!131458.java!!!	NoteFileSystemDAOImpl(inout handler : Handler, inout file : File)
+
+		parentHandler = handler;
+		this.file = file;
+!!!131586.java!!!	getContent() : void
+
+		runner = new Thread(this);
+		runner.start();
+!!!131714.java!!!	run() : void
+
+		Message msg = Message.obtain();
+		
+		// Grab the note
+		// TODO handle exceptions properly
+		try {
+			noteContent = fetch(file);
+		} catch (FileNotFoundException e) {
+			// TODO handle exceptions properly
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO handle exceptions properly
+			e.printStackTrace();
+		} 
+		
+		// Load the message object with the note
+		Bundle bundle = new Bundle();
+		bundle.putString(NoteDAO.NOTE, noteContent);
+		msg.setData(bundle);
+		
+		// notify UI that we are done here and send result 
+		parentHandler.sendMessage(msg);
+!!!131842.java!!!	fetch(inout file : File) : String
+
+		
+		
+		//Init BufferedReader and StringBuilder
+		FileInputStream fin = new FileInputStream(file);
+		BufferedReader in = new BufferedReader(new InputStreamReader(fin));
+		StringBuilder sb = new StringBuilder();
+
+		//Convert from InputStream to String using StringBuilder
+		String line = null;
+		while ((line = in.readLine()) != null) {
+			sb.append(line + "\n");
+		}
+		in.close();
+
+		//Return the string
+		return sb.toString();

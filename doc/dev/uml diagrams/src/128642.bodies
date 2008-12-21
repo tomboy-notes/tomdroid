@@ -1,0 +1,35 @@
+class NoteView
+!!!130946.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+		super.onCreate(savedInstanceState);
+		
+		setContentView(R.layout.note_view);
+		
+		content = (TextView) findViewById(R.id.content);
+		
+		// get url or file to fetch from Intent
+		Bundle extras = getIntent().getExtras();
+		if (extras != null) {
+			url = extras.getString(Note.URL);
+			file = extras.getString(Note.FILE);
+		} else {
+			Log.i(this.toString(), "info: Bundle was empty.");
+		}
+		
+		// Based on what is sent in the bundle, we either load from file or url
+		if (url != null) {
+			note = new Note(handler, url);
+			
+			// asynchronous call to fetch the note, the callback with come from the handler
+			note.getNoteFromWebAsync();
+		} else if (file != null) {
+			note = new Note(handler, new File(file));
+			
+			note.getNoteFromFileSystemAsync();
+		}
+!!!131074.java!!!	onKeyDown(in keyCode : int, inout event : KeyEvent) : boolean
+		// TODO Auto-generated method stub
+		super.onKeyDown(keyCode, event);
+		
+		finish();
+		
+		return true;

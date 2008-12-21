@@ -1,0 +1,226 @@
+format 58
+
+packagecanvas 128002 
+  package_ref 128258 // ui
+    xyzwh 7 7 0 822 367
+end
+classcanvas 128130 class_ref 129666 // tomdroid
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+  hidden_attributes
+    attribute_ref 133506 // ACTIVITY_VIEW
+  xyz 276 40 2005
+end
+classcanvas 128258 class_ref 128002 // Note
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+  hidden_attributes
+    attribute_ref 128002 // URL
+    attribute_ref 128130 // FILE
+    attribute_ref 128258 // NOTE_CONTENT
+    attribute_ref 128386 // NOTE_RECEIVED_AND_VALID
+    attribute_ref 128514 // NOTE_HIGHLIGHT_COLOR
+    attribute_ref 128642 // NOTE_MONOSPACE_TYPEFACE
+    attribute_ref 128770 // NOTE_SIZE_SMALL_FACTOR
+    attribute_ref 128898 // NOTE_SIZE_LARGE_FACTOR
+    attribute_ref 129026 // NOTE_SIZE_HUGE_FACTOR
+    attribute_ref 129922 // parentHandler
+    attribute_ref 130050 // handler
+  hidden_operations
+    operation_ref 128386 // setUrl
+    operation_ref 128514 // getFileName
+    operation_ref 128642 // setFileName
+    operation_ref 128898 // setTitle
+    operation_ref 129026 // getLastChangeDate
+    operation_ref 129154 // setLastChangeDate
+    operation_ref 129538 // getNoteContent
+    operation_ref 129666 // setNoteContent
+    operation_ref 129794 // getDisplayableNoteContent
+  xyz 19 401 2000
+end
+classcanvas 128386 class_ref 130690 // Handler
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+  xyz 265 647 2004
+end
+classcanvas 128642 class_ref 128130 // NoteList
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+  hidden_attributes
+    attribute_ref 130178 // ACTIVITY_VIEW
+    attribute_ref 130306 // NOTES_PATH
+    attribute_ref 130434 // notesNamesList
+    attribute_ref 130562 // handler
+  xyz 511 148 2005
+end
+classcanvas 128898 class_ref 128642 // NoteView
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+  hidden_attributes
+    attribute_ref 130690 // url
+    attribute_ref 130818 // file
+    attribute_ref 131074 // handler
+  xyz 15 149 2004
+end
+classcanvas 129154 class_ref 130818 // Handler
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+  xyz 429 304 2004
+end
+classcanvas 129410 class_ref 130946 // Handler
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+  xyz 174 274 2004
+end
+packagecanvas 129666 
+  package_ref 128386 // dao
+    xyzwh 17 754 0 806 348
+end
+classcanvas 129794 class_ref 129794 // NoteDAO
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+  xyz 29 804 2005
+end
+classcanvas 129922 class_ref 130050 // NoteFileSystemDAOImpl
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+  hidden_attributes
+    attribute_ref 133890 // noteContent
+    attribute_ref 134018 // file
+    attribute_ref 134274 // parentHandler
+  xyz 164 787 2005
+end
+classcanvas 130178 class_ref 130178 // NoteNetworkDAOImpl
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+  hidden_attributes
+    attribute_ref 134402 // noteURL
+    attribute_ref 134530 // noteContent
+    attribute_ref 134786 // parentHandler
+  xyz 497 788 2005
+end
+classcanvas 130434 class_ref 130306 // NoteNetworkDAOMock
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+  xyz 29 948 2005
+end
+packagecanvas 130690 
+  package_ref 128642 // xml
+    xyzwh 519 487 2000 311 168
+end
+classcanvas 130818 class_ref 130434 // NoteHandler
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+  hidden_attributes
+    attribute_ref 135170 // inTitleTag
+    attribute_ref 135298 // inLastChangeDateTag
+    attribute_ref 135426 // inNoteTag
+    attribute_ref 135554 // inTextTag
+    attribute_ref 135682 // inNoteContentTag
+    attribute_ref 135810 // inNoteContentTagMustGrabTitle
+    attribute_ref 135938 // inBoldTag
+    attribute_ref 136066 // inItalicTag
+    attribute_ref 136194 // inStrikeTag
+    attribute_ref 136322 // inHighlighTag
+    attribute_ref 136450 // inMonospaceTag
+    attribute_ref 136578 // inSizeSmallTag
+    attribute_ref 136706 // inSizeLargeTag
+    attribute_ref 136834 // inSizeHugeTag
+    attribute_ref 136962 // inList
+    attribute_ref 137090 // inListItem
+    attribute_ref 137218 // TITLE
+    attribute_ref 137346 // LAST_CHANGE_DATE
+    attribute_ref 137474 // NOTE_CONTENT
+    attribute_ref 137602 // BOLD
+    attribute_ref 137730 // ITALIC
+    attribute_ref 137858 // STRIKETHROUGH
+    attribute_ref 137986 // HIGHLIGHT
+    attribute_ref 138114 // MONOSPACE
+    attribute_ref 138242 // NS_SIZE
+    attribute_ref 138370 // SMALL
+    attribute_ref 138498 // LARGE
+    attribute_ref 138626 // HUGE
+    attribute_ref 138754 // LIST
+    attribute_ref 138882 // LIST_ITEM
+  xyz 536 520 2010
+end
+line 128514 ---+
+  from ref 128386 z 1999 to ref 128258
+relationcanvas 128770 relation_ref 128130 // <unidirectional association>
+  from ref 128642 z 1999 to point 706 384
+  line 133506 z 1999 stereotype "<<List>>" xyz 509 389 3000 to point 341 384
+  line 133634 z 1999 to ref 128258
+  role_a_pos 255 431 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 129026 relation_ref 128514 // <unidirectional association>
+  from ref 128898 z 1999 to ref 128258
+  role_a_pos 155 379 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+line 129282 ---+
+  from ref 129154 z 1999 to ref 128642
+line 129538 ---+
+  from ref 129410 z 1999 to ref 128898
+relationcanvas 130050 relation_ref 128898 // <realization>
+  from ref 129922 z 1999 to ref 129794
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130306 relation_ref 129026 // <realization>
+  from ref 130178 z 1999 to point 443 930
+  line 131970 z 1999 to point 163 930
+  line 131842 z 1999 to ref 129794
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130562 relation_ref 129154 // <realization>
+  from ref 130434 z 1999 to point 80 941
+  line 132098 z 1999 to ref 129794
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130946 relation_ref 129410 // <unidirectional association>
+  from ref 130818 z 1999 to point 674 454
+  line 131458 z 1999 to point 354 460
+  line 133762 z 1999 to ref 128258
+  role_a_pos 255 480 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 131074 relation_ref 129538 // <dependency>
+  from ref 128130 z 2003 to ref 128898
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 131202 relation_ref 129666 // <dependency>
+  from ref 128130 z 2004 to ref 128642
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 131330 relation_ref 129794 // <dependency>
+  from ref 128258 z 1999 to ref 130818
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 132226 relation_ref 129922 // <unidirectional association>
+  from ref 128258 z 1999 to ref 129794
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 132482 relation_ref 130178 // <unidirectional association>
+  from ref 129922 z 2003 to ref 128386
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 132610 relation_ref 130306 // <unidirectional association>
+  from ref 130178 z 2003 to ref 128386
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 132738 relation_ref 130434 // <unidirectional association>
+  from ref 130434 z 2003 to point 813 949
+  line 132994 z 2003 to point 813 736
+  line 132866 z 2003 to ref 128386
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 133890 relation_ref 130818 // <unidirectional association>
+  from ref 128258 z 1999 to ref 129410
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 134018 relation_ref 130946 // <unidirectional association>
+  from ref 128258 z 1999 to point 319 357
+  line 134146 z 1999 to ref 129154
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+end

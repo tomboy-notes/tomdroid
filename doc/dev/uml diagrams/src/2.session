@@ -1,0 +1,18 @@
+window_sizes 1564 964 195 1363 765 120
+diagrams
+  classdiagram_ref 128002 // class diagram
+    1090 746 100 4 0 0
+  active  sequencediagram_ref 128130 // list notes
+    1063 626 100 15 261 0
+end
+show_stereotypes
+selected class_ref 128642 // NoteView
+open
+  classview_ref 128002 // tomdroid
+  classview_ref 128258 // dao
+  classview_ref 128514 // xml
+  classview_ref 128130 // unknown
+  classview_ref 128642 // iteration3
+  usecaseview_ref 128002 // use case
+end
+end
