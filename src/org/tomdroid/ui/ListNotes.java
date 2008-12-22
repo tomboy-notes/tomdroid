@@ -20,13 +20,16 @@
  * You should have received a copy of the GNU General Public License
  * along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.tomdroid;
+package org.tomdroid.ui;
 
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import org.tomdroid.Note;
+import org.tomdroid.R;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -38,7 +41,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class NoteList extends ListActivity {
+public class ListNotes extends ListActivity {
 	
 	private static final int ACTIVITY_VIEW=0;
 	
@@ -121,7 +124,7 @@ public class NoteList extends ListActivity {
 		Log.i(this.toString(),"Position: " + position + " id:" + id + " Note file:" + notes.get(position).getFileName());
 		
 		
-		Intent i = new Intent(NoteList.this, NoteView.class);
+		Intent i = new Intent(ListNotes.this, ViewNote.class);
 		i.putExtra(Note.FILE, NOTES_PATH+notes.get(position).getFileName());
 		startActivityForResult(i, ACTIVITY_VIEW);
 

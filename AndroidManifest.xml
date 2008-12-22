@@ -3,7 +3,7 @@
       package="org.tomdroid"
       android:versionCode="1" android:versionName="0.1.0">
 	<application android:icon="@drawable/icon" android:label="@string/app_name">
-        <activity android:label="@string/app_name" android:name=".Tomdroid">
+        <activity android:label="@string/app_name" android:name=".ui.Tomdroid">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -11,8 +11,8 @@
         </activity>
     
 
-<activity android:name=".NoteView"></activity>
-<activity android:name=".NoteList"></activity>
+<activity android:name=".ui.ViewNote"></activity>
+<activity android:name=".ui.ListNotes"></activity>
 
 </application>
 	<uses-permission android:name="android.permission.INTERNET" />

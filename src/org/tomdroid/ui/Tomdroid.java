@@ -20,7 +20,10 @@
  * You should have received a copy of the GNU General Public License
  * along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.tomdroid;
+package org.tomdroid.ui;
+
+import org.tomdroid.Note;
+import org.tomdroid.R;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -56,7 +59,7 @@ public class Tomdroid extends Activity {
             {
                 Log.i(Tomdroid.this.toString(), "info: Button clicked. URL requested: "+txtURL.getText().toString());
             	
-            	Intent i = new Intent(Tomdroid.this, NoteView.class);
+            	Intent i = new Intent(Tomdroid.this, ViewNote.class);
                 i.putExtra(Note.URL, txtURL.getText().toString());
                 startActivityForResult(i, ACTIVITY_VIEW);
             }
@@ -71,7 +74,7 @@ public class Tomdroid extends Activity {
             {
                 Log.i(Tomdroid.this.toString(), "info: Button clicked. Loading local notes");
             	
-            	Intent i = new Intent(Tomdroid.this, NoteList.class);
+            	Intent i = new Intent(Tomdroid.this, ListNotes.class);
                 startActivityForResult(i, ACTIVITY_VIEW);
             }
         });        
