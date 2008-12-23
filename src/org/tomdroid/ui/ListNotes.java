@@ -22,13 +22,12 @@
  */
 package org.tomdroid.ui;
 
-import java.io.File;
-import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import org.tomdroid.Note;
+import org.tomdroid.NoteCollection;
 import org.tomdroid.R;
 
 import android.app.ListActivity;
@@ -45,12 +44,7 @@ public class ListNotes extends ListActivity {
 	
 	private static final int ACTIVITY_VIEW=0;
 	
-	// TODO hardcoded for now
-	private static final String NOTES_PATH = "/sdcard/tomdroid/";
-	
-	// TODO This is not efficient, I maintain two list, one for the UI and the other for the actual data 
-	// the collection of notes
-	private List<Note> notes = new ArrayList<Note>();
+	NoteCollection localNotes;
 	
 	// Notes names for list in UI
 	List<String> notesNamesList = new ArrayList<String>();
@@ -63,27 +57,17 @@ public class ListNotes extends ListActivity {
 		setContentView(R.layout.note_list);
 
         // start loading local notes
-		loadNotes();
+		localNotes = new NoteCollection();
+		localNotes.loadNotes(handler);
 	}
 	
-	public void loadNotes() {
-		// TODO crash more cleanly if sdcard is not loaded or there is no files in tomdroid/
-		File notesRoot = new File(NOTES_PATH);
-		for (File file : notesRoot.listFiles(new NotesFilter())) {
 
-			Note note = new Note(handler, file);
-			// FIXME this is not a good name since its confusing between getter / setters
-			note.getNoteFromFileSystemAsync();
-			notes.add(note);
-        }
-		
-	}
 	
 	private void updateNoteList() {
 		notesNamesList.clear();
 		
 		// TODO this is not efficient but I have to make it work now..
-		Iterator<Note> i = notes.iterator();
+		Iterator<Note> i = localNotes.getNotes().iterator();
 		while(i.hasNext()) {
 			Note curNote = i.next();
 			if (curNote.getTitle() != null) {
@@ -110,22 +94,15 @@ public class ListNotes extends ListActivity {
 
     };
 	
-	/**
-	 * Simple filename filter that grabs files ending with .note  
-	 */
-	class NotesFilter implements FilenameFilter {
-		public boolean accept(File dir, String name) {
-			return (name.endsWith(".note"));
-		}
-	}
+
 
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
-		Log.i(this.toString(),"Position: " + position + " id:" + id + " Note file:" + notes.get(position).getFileName());
+		Log.i(this.toString(),"Position: " + position + " id:" + id + " Note file:" + localNotes.getNotes().get(position).getFileName());
 		
 		
 		Intent i = new Intent(ListNotes.this, ViewNote.class);
-		i.putExtra(Note.FILE, NOTES_PATH+notes.get(position).getFileName());
+		i.putExtra(Note.FILE, Tomdroid.NOTES_PATH+localNotes.getNotes().get(position).getFileName());
 		startActivityForResult(i, ACTIVITY_VIEW);
 
 	}

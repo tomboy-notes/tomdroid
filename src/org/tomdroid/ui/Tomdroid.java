@@ -35,6 +35,11 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class Tomdroid extends Activity {
+
+	// config parameters
+	// TODO hardcoded for now
+	public static final String NOTES_PATH = "/sdcard/tomdroid/";
+
 	private static final int ACTIVITY_VIEW=0;
 	
 	// UI elements
