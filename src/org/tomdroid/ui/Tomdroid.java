@@ -41,9 +41,15 @@ public class Tomdroid extends Activity {
 	// config parameters
 	// TODO hardcoded for now
 	public static final String NOTES_PATH = "/sdcard/tomdroid/";
+	
+	// data keys
+	public static final String RESULT_URL_TO_LOAD = "urlToLoad"; 
 
 	// UI elements
 	private EditText txtURL;
+	
+	// Activity result resources
+	private static final int ACTIVITY_GET_URL=0;
 	
 	private final static int MENU_FROMWEB = Menu.FIRST;
 	
@@ -111,6 +117,25 @@ public class Tomdroid extends Activity {
 		
 		Log.i(Tomdroid.this.toString(), "info: Menu item chosen -  Loading load web note dialog");
     	Intent i = new Intent(Tomdroid.this, LoadWebNoteDialog.class);
-    	startActivity(i);
+    	startActivityForResult(i, ACTIVITY_GET_URL);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		switch(requestCode) {
+			case ACTIVITY_GET_URL:
+				String url = data.getExtras().getString(RESULT_URL_TO_LOAD);
+				loadNoteFromURL(url);
+
+		}
+	}
+	
+	private void loadNoteFromURL(String url) {
+		
+    	Intent i = new Intent(Tomdroid.this, ViewNote.class);
+        i.putExtra(Note.URL, url);
+        startActivity(i);
 	}
 }
