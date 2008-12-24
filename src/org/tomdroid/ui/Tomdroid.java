@@ -42,8 +42,6 @@ public class Tomdroid extends Activity {
 	// TODO hardcoded for now
 	public static final String NOTES_PATH = "/sdcard/tomdroid/";
 
-	private static final int ACTIVITY_VIEW=0;
-	
 	// UI elements
 	private EditText txtURL;
 	
@@ -70,7 +68,7 @@ public class Tomdroid extends Activity {
             	
             	Intent i = new Intent(Tomdroid.this, ViewNote.class);
                 i.putExtra(Note.URL, txtURL.getText().toString());
-                startActivityForResult(i, ACTIVITY_VIEW);
+                startActivity(i);
             }
         });
         
@@ -84,7 +82,7 @@ public class Tomdroid extends Activity {
                 Log.i(Tomdroid.this.toString(), "info: Button clicked. Loading local notes");
             	
             	Intent i = new Intent(Tomdroid.this, ListNotes.class);
-                startActivityForResult(i, ACTIVITY_VIEW);
+                startActivity(i);
             }
         });        
     }
