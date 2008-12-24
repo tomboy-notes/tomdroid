@@ -54,7 +54,6 @@ public class NoteCollection {
 //	
 //	}
 	
-	// TODO I'm here
 	public void loadNotes(Handler hndl) {
 		// TODO crash more cleanly if sdcard is not loaded or there is no files in tomdroid/
 		File notesRoot = new File(Tomdroid.NOTES_PATH);
