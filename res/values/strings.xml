@@ -22,12 +22,19 @@
  along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
-    <string name="app_name">Tomdroid</string>
+    <string name="app_name">Tomdroid - Tomboy note viewer</string>
+    <string name="app_desc">Tomdroid - A Tomboy compatible note viewer for now but aiming for more..</string>
 
 	<!-- main.xml -->
-    <string name="strURL">URL:</string>
-    <string name="btnURL">Load Web Note</string>
+    <string name="menuLoadWebNote">Load a note from the Web</string>
     <string name="btnList">Load local notes list</string>
+    <string name="btnURL">Go fetch</string>
+
+	<!-- load_web_note_dialog.xml -->
+    <string name="strURL">Enter the Note's URL:</string>
+    <!-- TODO are these really needed!? -->
+    <string name="btnOk">Ok</string>
+    <string name="btnCancel">Cancel</string>
 
 	<!-- note-view.xml -->
     <string name="strWait">Please wait while note loads...</string>

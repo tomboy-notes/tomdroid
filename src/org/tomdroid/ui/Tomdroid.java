@@ -29,6 +29,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -44,6 +46,8 @@ public class Tomdroid extends Activity {
 	
 	// UI elements
 	private EditText txtURL;
+	
+	private final static int MENU_FROMWEB = Menu.FIRST;
 	
     /** Called when the activity is created. */
     @Override
@@ -84,4 +88,31 @@ public class Tomdroid extends Activity {
             }
         });        
     }
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		boolean result = super.onCreateOptionsMenu(menu);
+		
+		menu.add(0, MENU_FROMWEB, 0, R.string.menuLoadWebNote);
+		
+		return result;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case MENU_FROMWEB:
+            createLoadWebNoteDialog();
+            return true;
+        }
+        
+        return super.onOptionsItemSelected(item);
+	}
+
+	private void createLoadWebNoteDialog() {
+		
+		Log.i(Tomdroid.this.toString(), "info: Menu item chosen -  Loading load web note dialog");
+    	Intent i = new Intent(Tomdroid.this, LoadWebNoteDialog.class);
+    	startActivity(i);
+	}
 }
