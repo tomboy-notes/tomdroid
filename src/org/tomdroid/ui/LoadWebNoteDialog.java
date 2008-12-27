@@ -20,7 +20,9 @@
  * You should have received a copy of the GNU General Public License
  * along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.tomdroid;
+package org.tomdroid.ui;
+
+import org.tomdroid.R;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -31,49 +33,64 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class Tomdroid extends Activity {
-	private static final int ACTIVITY_VIEW=0;
+/**
+ * This class is in charge of returning only the string of the URL to fetch from.
+ */
+public class LoadWebNoteDialog extends Activity {
 	
 	// UI elements
 	private EditText txtURL;
-	
-    /** Called when the activity is created. */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        setContentView(R.layout.main);
+        setContentView(R.layout.load_web_note_dialog);
         
         // Connect UI elements to variables
         txtURL = (EditText) findViewById(R.id.txtURL);
         txtURL.setText("http://www.bottomlesspit.org/files/note.xml");
-        Button webBtn = (Button)findViewById(R.id.btnURL);
+        Button btnOk = (Button)findViewById(R.id.btnOk);
+        Button btnCancel = (Button)findViewById(R.id.btnCancel);
         
         // Annon inner-class for button listener 
-        webBtn.setOnClickListener(new OnClickListener() {
+        btnOk.setOnClickListener(new OnClickListener() {
         	
             public void onClick(View v)
             {
-                Log.i(Tomdroid.this.toString(), "info: Button clicked. URL requested: "+txtURL.getText().toString());
-            	
-            	Intent i = new Intent(Tomdroid.this, NoteView.class);
-                i.putExtra(Note.URL, txtURL.getText().toString());
-                startActivityForResult(i, ACTIVITY_VIEW);
+                Log.d(LoadWebNoteDialog.this.toString(), "info: Button Ok clicked. URL requested: "+txtURL.getText().toString());
+                okClicked(txtURL.getText().toString());
             }
         });
-        
-        Button localBtn = (Button)findViewById(R.id.btnList);
-        
+
         // Annon inner-class for button listener 
-        localBtn.setOnClickListener(new OnClickListener() {
+        btnCancel.setOnClickListener(new OnClickListener() {
         	
             public void onClick(View v)
             {
-                Log.i(Tomdroid.this.toString(), "info: Button clicked. Loading local notes");
-            	
-            	Intent i = new Intent(Tomdroid.this, NoteList.class);
-                startActivityForResult(i, ACTIVITY_VIEW);
+                Log.d(LoadWebNoteDialog.this.toString(), "info: Button cancel clicked.");
+                cancelClicked();
             }
-        });        
-    }
+        });
+
+        
+	}
+	
+	private void okClicked(String url) {
+		
+		Bundle bundle = new Bundle();
+		bundle.putString(Tomdroid.RESULT_URL_TO_LOAD, url);
+		
+		Intent i = new Intent();
+		i.putExtras(bundle);
+		setResult(RESULT_OK, i);
+		finish();		
+	}
+
+	private void cancelClicked() {
+
+		setResult(RESULT_CANCELED);
+		finish();
+	}
+	
 }

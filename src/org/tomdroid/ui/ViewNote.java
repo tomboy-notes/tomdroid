@@ -20,9 +20,12 @@
  * You should have received a copy of the GNU General Public License
  * along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.tomdroid;
+package org.tomdroid.ui;
 
 import java.io.File;
+
+import org.tomdroid.Note;
+import org.tomdroid.R;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -34,7 +37,7 @@ import android.view.KeyEvent;
 import android.widget.TextView;
 
 // TODO this class is starting to smell
-public class NoteView extends Activity {
+public class ViewNote extends Activity {
 	
 	private String url;
 	private String file;
