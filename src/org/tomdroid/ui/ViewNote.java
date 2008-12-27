@@ -22,9 +22,8 @@
  */
 package org.tomdroid.ui;
 
-import java.io.File;
-
 import org.tomdroid.Note;
+import org.tomdroid.NoteCollection;
 import org.tomdroid.R;
 
 import android.app.Activity;
@@ -66,7 +65,6 @@ public class ViewNote extends Activity {
 			Log.i(this.toString(), "info: Bundle was empty.");
 		}
 		
-		// FIXME: refer to NoteCollection instead of reloading the note
 		// Based on what is sent in the bundle, we either load from file or url
 		if (url != null) {
 			note = new Note(handler, url);
@@ -74,11 +72,14 @@ public class ViewNote extends Activity {
 			// asynchronous call to fetch the note, the callback with come from the handler
 			note.fetchNoteFromWebAsync();
 		} else if (file != null) {
-			note = new Note(handler, new File(file));
-			
-			note.fetchNoteFromFileSystemAsync();
+
+			note = NoteCollection.getInstance().findNoteFromFilename(file);
+			showNote();
 		}
 	}
+	
+	// TODO add a menu that switches the view to an EditText instead of TextView
+	// this will need some other quit mechanism as onKeyDown though.. (but the back key might do it)
 	
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -90,19 +91,23 @@ public class ViewNote extends Activity {
 		return true;
 	}
 
-    private Handler handler = new Handler() {
+    private void showNote() {
+		// show the note (spannable makes the TextView able to output styled text)
+		content.setText(note.getNoteContent(), TextView.BufferType.SPANNABLE);
+		
+		// add links to stuff that is understood by Android
+		// TODO this is SLOWWWW!!!!
+		Linkify.addLinks(content, Linkify.ALL);
+	}
+
+	private Handler handler = new Handler() {
     	
         @Override
         public void handleMessage(Message msg) {
         	
         	// thread is done fetching note and parsing went well 
         	if (msg.what == Note.NOTE_RECEIVED_AND_VALID) {
-	        	// show the note (spannable makes the TextView able to output styled text)
-				content.setText(note.getNoteContent(), TextView.BufferType.SPANNABLE);
-				
-				// add links to stuff that is understood by Android
-				// TODO this is SLOWWWW!!!!
-				Linkify.addLinks(content, Linkify.ALL);
+	        	showNote();
         	}
 		}
     };

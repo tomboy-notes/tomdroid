@@ -25,11 +25,13 @@ package org.tomdroid;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.tomdroid.ui.Tomdroid;
 
 import android.os.Handler;
+import android.util.Log;
 
 public class NoteCollection {
 
@@ -53,6 +55,19 @@ public class NoteCollection {
 //	public Note getNoteFromTitle(String title) {
 //	
 //	}
+	
+	// TODO there is most likely a better way to do this
+	public Note findNoteFromFilename(String filename) {
+		Log.i(this.toString(),"searching for note file "+filename);
+		Iterator<Note> i = notes.iterator();
+		while(i.hasNext()) {
+			Note curNote = i.next();
+			if (curNote.getFileName().equals(filename)) {
+				return curNote;
+			}
+		}
+		return null;
+	}
 	
 	public void loadNotes(Handler hndl) {
 		// TODO crash more cleanly if sdcard is not loaded or there is no files in tomdroid/
