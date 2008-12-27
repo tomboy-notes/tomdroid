@@ -61,8 +61,7 @@ public class NoteCollection {
 
 			Note note = new Note(hndl, file);
 			
-			// FIXME this is not a good name since its confusing between getter / setters
-			note.getNoteFromFileSystemAsync();
+			note.fetchNoteFromFileSystemAsync();
 			notes.add(note);
         }
 	}

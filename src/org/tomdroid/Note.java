@@ -122,7 +122,7 @@ public class Note {
 	/**
 	 * Asynchronously get the note from URL
 	 */
-	public void getNoteFromWebAsync() {
+	public void fetchNoteFromWebAsync() {
 		
 		//  TODO my naive way of using mock objects
 		//NotesDAOImpl notesDAO = new NotesDAOImpl(handler, noteURL);
@@ -135,7 +135,7 @@ public class Note {
 	/**
 	 * Asynchronously get the note from file system
 	 */
-	public void getNoteFromFileSystemAsync() {
+	public void fetchNoteFromFileSystemAsync() {
 		
 		NoteFileSystemDAOImpl notesDAO = new NoteFileSystemDAOImpl(handler, file);
 

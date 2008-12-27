@@ -66,16 +66,17 @@ public class ViewNote extends Activity {
 			Log.i(this.toString(), "info: Bundle was empty.");
 		}
 		
+		// FIXME: refer to NoteCollection instead of reloading the note
 		// Based on what is sent in the bundle, we either load from file or url
 		if (url != null) {
 			note = new Note(handler, url);
 			
 			// asynchronous call to fetch the note, the callback with come from the handler
-			note.getNoteFromWebAsync();
+			note.fetchNoteFromWebAsync();
 		} else if (file != null) {
 			note = new Note(handler, new File(file));
 			
-			note.getNoteFromFileSystemAsync();
+			note.fetchNoteFromFileSystemAsync();
 		}
 	}
 	
