@@ -132,7 +132,7 @@ public class Tomdroid extends ListActivity {
 		
 		
 		Intent i = new Intent(Tomdroid.this, ViewNote.class);
-		i.putExtra(Note.FILE, Tomdroid.NOTES_PATH+localNotes.getNotes().get(position).getFileName());
+		i.putExtra(Note.FILE, localNotes.getNotes().get(position).getFileName());
 		startActivityForResult(i, ACTIVITY_VIEW);
 
 	}

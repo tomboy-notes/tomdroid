@@ -84,7 +84,7 @@ public class Note {
 	public Note(Handler hdl, File file) {
 		this.parentHandler = hdl;
 		this.file = file;
-		this.fileName = file.getName();
+		this.fileName = file.getAbsolutePath();
 	}
 	
 	public String getUrl() {
