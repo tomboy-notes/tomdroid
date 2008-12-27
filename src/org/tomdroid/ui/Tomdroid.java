@@ -73,7 +73,7 @@ public class Tomdroid extends ListActivity {
         
         // start loading local notes
         Log.i(Tomdroid.this.toString(), "Loading local notes");
-		localNotes = new NoteCollection();
+		localNotes = NoteCollection.getInstance();
 		localNotes.loadNotes(handler);
      
     }

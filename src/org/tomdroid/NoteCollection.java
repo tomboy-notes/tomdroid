@@ -36,7 +36,7 @@ public class NoteCollection {
 	// TODO This is not efficient, I maintain two list, one for the UI and the other for the actual data 
 	// the collection of notes
 	private List<Note> notes = new ArrayList<Note>();
-
+	
 	public List<Note> getNotes() {
 		return notes;
 	}
@@ -75,4 +75,17 @@ public class NoteCollection {
 			return (name.endsWith(".note"));
 		}
 	}
+
+	// singleton pattern
+	// TODO verify this singleton, I have no net access and I'm not quite sure I nailed it
+	private static NoteCollection nc;
+	
+	public static NoteCollection getInstance() {
+		if (nc == null) {
+			nc = new NoteCollection();
+		}
+		return nc;
+	}
+
+
 }
