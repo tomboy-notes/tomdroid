@@ -82,6 +82,7 @@ public class Tomdroid extends ListActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		boolean result = super.onCreateOptionsMenu(menu);
 		
+		// TODO this is ugly, fix it!
 		menu.add(0, MENU_FROMWEB, 0, R.string.menuLoadWebNote);
 		
 		return result;
@@ -104,9 +105,10 @@ public class Tomdroid extends ListActivity {
 		
 		switch(requestCode) {
 			case ACTIVITY_GET_URL:
-				String url = data.getExtras().getString(RESULT_URL_TO_LOAD);
-				loadNoteFromURL(url);
-
+				if (resultCode == RESULT_OK) {
+					String url = data.getExtras().getString(RESULT_URL_TO_LOAD);
+					loadNoteFromURL(url);
+				}
 		}
 	}
 	
