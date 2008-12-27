@@ -22,21 +22,27 @@
  */
 package org.tomdroid.ui;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import org.tomdroid.Note;
+import org.tomdroid.NoteCollection;
 import org.tomdroid.R;
 
-import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-public class Tomdroid extends Activity {
+public class Tomdroid extends ListActivity {
 
 	// config parameters
 	// TODO hardcoded for now
@@ -45,13 +51,18 @@ public class Tomdroid extends Activity {
 	// data keys
 	public static final String RESULT_URL_TO_LOAD = "urlToLoad"; 
 
-	// UI elements
-	private EditText txtURL;
-	
 	// Activity result resources
 	private static final int ACTIVITY_GET_URL=0;
+	private static final int ACTIVITY_VIEW=1;
 	
 	private final static int MENU_FROMWEB = Menu.FIRST;
+	
+	// domain elements
+	private NoteCollection localNotes;
+	
+	// Notes names for list in UI
+	private List<String> notesNamesList = new ArrayList<String>();
+
 	
     /** Called when the activity is created. */
     @Override
@@ -60,37 +71,11 @@ public class Tomdroid extends Activity {
         
         setContentView(R.layout.main);
         
-        // Connect UI elements to variables
-        txtURL = (EditText) findViewById(R.id.txtURL);
-        txtURL.setText("http://www.bottomlesspit.org/files/note.xml");
-        Button webBtn = (Button)findViewById(R.id.btnURL);
-        
-        // Annon inner-class for button listener 
-        webBtn.setOnClickListener(new OnClickListener() {
-        	
-            public void onClick(View v)
-            {
-                Log.i(Tomdroid.this.toString(), "info: Button clicked. URL requested: "+txtURL.getText().toString());
-            	
-            	Intent i = new Intent(Tomdroid.this, ViewNote.class);
-                i.putExtra(Note.URL, txtURL.getText().toString());
-                startActivity(i);
-            }
-        });
-        
-        Button localBtn = (Button)findViewById(R.id.btnList);
-        
-        // Annon inner-class for button listener 
-        localBtn.setOnClickListener(new OnClickListener() {
-        	
-            public void onClick(View v)
-            {
-                Log.i(Tomdroid.this.toString(), "info: Button clicked. Loading local notes");
-            	
-            	Intent i = new Intent(Tomdroid.this, ListNotes.class);
-                startActivity(i);
-            }
-        });        
+        // start loading local notes
+        Log.i(Tomdroid.this.toString(), "Loading local notes");
+		localNotes = new NoteCollection();
+		localNotes.loadNotes(handler);
+     
     }
 
 	@Override
@@ -113,13 +98,6 @@ public class Tomdroid extends Activity {
         return super.onOptionsItemSelected(item);
 	}
 
-	private void createLoadWebNoteDialog() {
-		
-		Log.i(Tomdroid.this.toString(), "info: Menu item chosen -  Loading load web note dialog");
-    	Intent i = new Intent(Tomdroid.this, LoadWebNoteDialog.class);
-    	startActivityForResult(i, ACTIVITY_GET_URL);
-	}
-
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
@@ -132,10 +110,59 @@ public class Tomdroid extends Activity {
 		}
 	}
 	
+    private Handler handler = new Handler() {
+    	
+        @Override
+        public void handleMessage(Message msg) {
+        	
+        	// thread is done fetching a note and parsing went well 
+        	if (msg.what == Note.NOTE_RECEIVED_AND_VALID) {
+        		
+        		updateNoteList();
+        	}
+		}
+
+    };
+
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		Log.i(this.toString(),"Position: " + position + " id:" + id + " Note file:" + localNotes.getNotes().get(position).getFileName());
+		
+		
+		Intent i = new Intent(Tomdroid.this, ViewNote.class);
+		i.putExtra(Note.FILE, Tomdroid.NOTES_PATH+localNotes.getNotes().get(position).getFileName());
+		startActivityForResult(i, ACTIVITY_VIEW);
+
+	}
+	
+	private void createLoadWebNoteDialog() {
+		
+		Log.i(Tomdroid.this.toString(), "info: Menu item chosen -  Loading load web note dialog");
+    	Intent i = new Intent(Tomdroid.this, LoadWebNoteDialog.class);
+    	startActivityForResult(i, ACTIVITY_GET_URL);
+	}
+
 	private void loadNoteFromURL(String url) {
 		
     	Intent i = new Intent(Tomdroid.this, ViewNote.class);
         i.putExtra(Note.URL, url);
         startActivity(i);
+	}
+	
+	private void updateNoteList() {
+		notesNamesList.clear();
+		
+		// TODO this is not efficient but I have to make it work now..
+		Iterator<Note> i = localNotes.getNotes().iterator();
+		while(i.hasNext()) {
+			Note curNote = i.next();
+			if (curNote.getTitle() != null) {
+				notesNamesList.add(curNote.getTitle());
+			}
+		}
+		
+		// listAdapter
+		ArrayAdapter<String> notesListAdapter = new ArrayAdapter<String>(this, R.layout.main_list_item, notesNamesList);
+        setListAdapter(notesListAdapter);
 	}
 }

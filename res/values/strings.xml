@@ -26,9 +26,8 @@
     <string name="app_desc">Tomdroid - A Tomboy compatible note viewer for now but aiming for more..</string>
 
 	<!-- main.xml -->
+    <string name="strListEmpty">Please wait while the notes loads..</string>
     <string name="menuLoadWebNote">Load a note from the Web</string>
-    <string name="btnList">Load local notes list</string>
-    <string name="btnURL">Go fetch</string>
 
 	<!-- load_web_note_dialog.xml -->
     <string name="strURL">Enter the Note's URL:</string>
@@ -39,6 +38,4 @@
 	<!-- note-view.xml -->
     <string name="strWait">Please wait while note loads...</string>
     
-    <!-- note_list.xml -->
-    <string name="strListEmpty">Please wait while the notes loads..</string>
 </resources>

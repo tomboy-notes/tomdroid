@@ -12,7 +12,7 @@
     
 
 <activity android:name=".ui.ViewNote"></activity>
-<activity android:name=".ui.ListNotes"></activity>
+
 
 <activity android:name=".ui.LoadWebNoteDialog" android:theme="@android:style/Theme.Dialog"></activity>
 </application>

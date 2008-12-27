@@ -15,42 +15,35 @@ public final class R {
     }
     public static final class id {
         public static final int btnCancel=0x7f050003;
-        public static final int btnList=0x7f050005;
         public static final int btnOk=0x7f050002;
-        public static final int btnURL=0x7f050004;
-        public static final int content=0x7f050008;
+        public static final int content=0x7f050006;
         public static final int strURL=0x7f050000;
-        public static final int text1=0x7f050006;
-        public static final int textScroller=0x7f050007;
+        public static final int text1=0x7f050004;
+        public static final int textScroller=0x7f050005;
         public static final int txtURL=0x7f050001;
     }
     public static final class layout {
         public static final int load_web_note_dialog=0x7f030000;
         public static final int main=0x7f030001;
-        public static final int note_list=0x7f030002;
-        public static final int note_list_item=0x7f030003;
-        public static final int note_view=0x7f030004;
+        public static final int main_list_item=0x7f030002;
+        public static final int note_view=0x7f030003;
     }
     public static final class string {
         public static final int app_desc=0x7f040001;
         public static final int app_name=0x7f040000;
-        public static final int btnCancel=0x7f040007;
-        public static final int btnList=0x7f040003;
+        public static final int btnCancel=0x7f040006;
         /**  TODO are these really needed!? 
          */
-        public static final int btnOk=0x7f040006;
-        public static final int btnURL=0x7f040004;
+        public static final int btnOk=0x7f040005;
+        public static final int menuLoadWebNote=0x7f040003;
         /**  main.xml 
          */
-        public static final int menuLoadWebNote=0x7f040002;
-        /**  note_list.xml 
-         */
-        public static final int strListEmpty=0x7f040009;
+        public static final int strListEmpty=0x7f040002;
         /**  load_web_note_dialog.xml 
          */
-        public static final int strURL=0x7f040005;
+        public static final int strURL=0x7f040004;
         /**  note-view.xml 
          */
-        public static final int strWait=0x7f040008;
+        public static final int strWait=0x7f040007;
     }
 }
