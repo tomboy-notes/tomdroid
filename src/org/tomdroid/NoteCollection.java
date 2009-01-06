@@ -33,6 +33,8 @@ import org.tomdroid.ui.Tomdroid;
 import android.os.Handler;
 import android.util.Log;
 
+// TODO Transform the NoteCollection into a Provider (see .../android-sdk-linux_x86-1.0_r1/docs/devel/data/contentproviders.html#creatingacontentprovider)
+// this would be more android-like
 public class NoteCollection {
 
 	// TODO This is not efficient, I maintain two list, one for the UI and the other for the actual data 
@@ -51,10 +53,19 @@ public class NoteCollection {
 		notes.add(note);
 	}
 	
-	// TODO implement
-//	public Note getNoteFromTitle(String title) {
-//	
-//	}
+	// TODO there is most likely a better way to do this
+	// TODO how does Tomboy deals with notes with duplicate titles? I have to check that out
+	public Note findNoteFromTitle(String title) {
+		Log.i(this.toString(),"searching for note title "+title);
+		Iterator<Note> i = notes.iterator();
+		while(i.hasNext()) {
+			Note curNote = i.next();
+			if (curNote.getTitle().equalsIgnoreCase(title)) {
+				return curNote;
+			}
+		}
+		return null;
+	}
 	
 	// TODO there is most likely a better way to do this
 	public Note findNoteFromFilename(String filename) {
@@ -95,6 +106,9 @@ public class NoteCollection {
 	// TODO verify this singleton, I have no net access and I'm not quite sure I nailed it
 	private static NoteCollection nc;
 	
+	// FIXME the contract provided by this singleton is not correct. 
+	// If we instantiate this singleton, we expect it to be able to search through notes, which would not be the case
+	// since the loadNotes is called by Tomdroid and not the constructor or something else.
 	public static NoteCollection getInstance() {
 		if (nc == null) {
 			nc = new NoteCollection();
