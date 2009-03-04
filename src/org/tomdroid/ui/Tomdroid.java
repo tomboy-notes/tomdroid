@@ -30,7 +30,9 @@ import org.tomdroid.NoteCollection;
 import org.tomdroid.R;
 
 import android.app.ListActivity;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -165,6 +167,50 @@ public class Tomdroid extends ListActivity {
 		
 		// add note to the note list
 		notesNamesList.add(noteTitle);
+
+		// get the note instance we will work with that instead  from now on
+		Note note = localNotes.findNoteFromTitle(noteTitle);
+		
+		// verify if the note is already in the content provider
+		String[] projection = new String[] {
+			    Note.ID,
+			    Note.TITLE,
+			};
+
+		// TODO I could see a problem where someone delete a note and recreate one with the same title.
+		// It would been seen as not new although it is (it will have a new filename)
+		Uri notes = Tomdroid.CONTENT_URI;
+		Cursor managedCursor = managedQuery( notes,
+                projection,  
+                Note.TITLE + "='" + noteTitle + "'",       // TODO build proper where clause
+                null,
+                Note.TITLE + " ASC");
+		if (managedCursor.getCount() == 0) {
+			
+			// This note is not in the database yet we need to insert it
+			Log.i(this.toString(),"A new note has been detected (not yet in db)");
+
+			// This add the note to the content Provider
+			// TODO PoC code that should be removed in next iteration's refactoring (no notecollection, everything should come from the provider I guess?)
+    		ContentValues values = new ContentValues();
+    		values.put(Note.TITLE, note.getTitle());
+    		values.put(Note.FILE, note.getFileName());
+    		Uri uri = getContentResolver().insert(CONTENT_URI, values);
+    		// now that we inserted the note put its ID in the note itself
+    		note.setDbId(Integer.parseInt(uri.getLastPathSegment()));
+
+    		Log.i(this.toString(),"Note inserted in content provider. ID: "+uri+" TITLE:"+noteTitle+" ID:"+note.getDbId());
+		} else {
+			
+			// find out the note's id and put it in the note
+		    if (managedCursor.moveToFirst()) {
+		        int idColumn = managedCursor.getColumnIndex(Note.ID);
+	            note.setDbId(managedCursor.getInt(idColumn));
+		    }
+		    
+			// note already in database
+			Log.i(this.toString(),"Note '" + noteTitle + "' was already in the database. Id:" + note.getDbId());
+		}
 
 	    // listAdapter that binds the UI to the data in notesNameList 
 		ArrayAdapter<String> notesListAdapter = new ArrayAdapter<String>(this, R.layout.main_list_item, notesNamesList);
