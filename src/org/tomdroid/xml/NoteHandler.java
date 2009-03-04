@@ -80,9 +80,7 @@ public class NoteHandler extends DefaultHandler {
 	private final static String SMALL = "small";
 	private final static String LARGE = "large";
 	private final static String HUGE = "huge";
-	// List-related
-	// TODO nested lists are not supported
-	// I think that using a list integer instead of a boolean and incrementing or decrementing it depending on state would do it
+	// Bullet list-related
 	private final static String LIST = "list";
 	private final static String LIST_ITEM = "list-item";
 	
