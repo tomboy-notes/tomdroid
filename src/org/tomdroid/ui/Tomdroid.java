@@ -31,6 +31,7 @@ import org.tomdroid.R;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -43,6 +44,12 @@ import android.widget.ListView;
 
 public class Tomdroid extends ListActivity {
 
+	// Global definition for Tomdroid
+	public static final String AUTHORITY = "org.tomdroid.notes";
+	public static final Uri	CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/notes");
+    public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.tomdroid.note";
+    public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.tomdroid.note";
+	
 	// config parameters
 	// TODO hardcoded for now
 	public static final String NOTES_PATH = "/sdcard/tomdroid/";

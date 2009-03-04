@@ -51,13 +51,15 @@ import android.util.Log;
 
 public class Note {
 
-	// Static references to fields (used in Bundles)
+	// Static references to fields (used in Bundles, ContentResolvers, etc.)
+	public static final String ID = "_id";
 	public static final String TITLE = "title";
 	public static final String MODIFIED_DATE = "modified_date";
 	public static final String URL = "url";
 	public static final String FILE = "file";
 	public static final String NOTE_CONTENT = "note-content";
 	public static final int NOTE_RECEIVED_AND_VALID = 1;
+	public static final String[] PROJECTION = { Note.ID, Note.TITLE, Note.FILE, Note.MODIFIED_DATE };
 	
 	// Notes constants
 	// TODO this is a weird yellow that was usable for the android emulator, I must confirm this for real usage
@@ -74,6 +76,7 @@ public class Note {
 	private File file;
 	private String title;
 	private DateTime lastChangeDate;
+	private int dbId;
 	
 	// Handles async state
 	private Handler parentHandler;
@@ -120,6 +123,14 @@ public class Note {
 
 	public void setLastChangeDate(DateTime lastChangeDate) {
 		this.lastChangeDate = lastChangeDate;
+	}
+
+	public int getDbId() {
+		return dbId;
+	}
+
+	public void setDbId(int id) {
+		this.dbId = id;
 	}
 
 	/**
