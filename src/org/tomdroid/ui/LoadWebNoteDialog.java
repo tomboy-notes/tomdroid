@@ -36,6 +36,7 @@ import android.widget.EditText;
 /**
  * This class is in charge of returning only the string of the URL to fetch from.
  */
+// TODO change superclass to a dialog (see .../docs/kb/commontasks.html#implementcallbacks)
 public class LoadWebNoteDialog extends Activity {
 	
 	// UI elements
