@@ -3,7 +3,7 @@
  * Tomboy on Android
  * http://www.launchpad.net/tomdroid
  * 
- * Copyright 2008 Olivier Bilodeau <olivier@bottomlesspit.org>
+ * Copyright 2008, 2009 Olivier Bilodeau <olivier@bottomlesspit.org>
  * 
  * This file is part of Tomdroid.
  * 
@@ -23,7 +23,6 @@
 package org.tomdroid.ui;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.tomdroid.Note;
@@ -119,8 +118,9 @@ public class Tomdroid extends ListActivity {
         	
         	// thread is done fetching a note and parsing went well 
         	if (msg.what == Note.NOTE_RECEIVED_AND_VALID) {
-        		
-        		updateNoteList();
+
+        		// update the note list with this newly parsed note
+        		updateNoteListWith(msg.getData().getString(Note.TITLE));
         	}
 		}
 
@@ -128,11 +128,14 @@ public class Tomdroid extends ListActivity {
 
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
-		Log.i(this.toString(),"Position: " + position + " id:" + id + " Note file:" + localNotes.getNotes().get(position).getFileName());
+
+		// get the clicked note
+		Note n =  localNotes.findNoteFromTitle(notesNamesList.get(position));
 		
+		Log.d(this.toString(),"Menu clicked. Position: " + position + " id:" + id + " note:" + n.getTitle());
 		
 		Intent i = new Intent(Tomdroid.this, ViewNote.class);
-		i.putExtra(Note.FILE, localNotes.getNotes().get(position).getFileName());
+		i.putExtra(Note.FILE, n.getFileName());
 		startActivityForResult(i, ACTIVITY_VIEW);
 
 	}
@@ -151,19 +154,12 @@ public class Tomdroid extends ListActivity {
         startActivity(i);
 	}
 	
-	private void updateNoteList() {
-		notesNamesList.clear();
+	private void updateNoteListWith(String noteTitle) {
 		
-		// TODO this is not efficient but I have to make it work now..
-		Iterator<Note> i = localNotes.getNotes().iterator();
-		while(i.hasNext()) {
-			Note curNote = i.next();
-			if (curNote.getTitle() != null) {
-				notesNamesList.add(curNote.getTitle());
-			}
-		}
-		
-		// listAdapter
+		// add note to the note list
+		notesNamesList.add(noteTitle);
+
+	    // listAdapter that binds the UI to the data in notesNameList 
 		ArrayAdapter<String> notesListAdapter = new ArrayAdapter<String>(this, R.layout.main_list_item, notesNamesList);
         setListAdapter(notesListAdapter);
 	}

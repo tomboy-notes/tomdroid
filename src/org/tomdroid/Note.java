@@ -41,6 +41,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Spannable;
@@ -51,6 +52,8 @@ import android.util.Log;
 public class Note {
 
 	// Static references to fields (used in Bundles)
+	public static final String TITLE = "title";
+	public static final String MODIFIED_DATE = "modified_date";
 	public static final String URL = "url";
 	public static final String FILE = "file";
 	public static final String NOTE_CONTENT = "note-content";
@@ -211,9 +214,14 @@ public class Note {
 		
 		Log.i(this.toString(), "warnHandler: sending ok to NoteView");
 		
-		// notify UI that we are done here and sending an ok 
-		parentHandler.sendEmptyMessage(NOTE_RECEIVED_AND_VALID);
-
+		// notify the main UI that we are done here (sending an ok along with the note's title)
+		Message msg = Message.obtain();
+		Bundle bundle = new Bundle();
+		bundle.putString(Note.TITLE, getTitle());
+		msg.setData(bundle);
+		msg.what = NOTE_RECEIVED_AND_VALID;
+		
+		parentHandler.sendMessage(msg);
     }
 
 	@Override
