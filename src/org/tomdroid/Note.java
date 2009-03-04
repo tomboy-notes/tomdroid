@@ -3,7 +3,7 @@
  * Tomboy on Android
  * http://www.launchpad.net/tomdroid
  * 
- * Copyright 2008 Olivier Bilodeau <olivier@bottomlesspit.org>
+ * Copyright 2008, 2009 Olivier Bilodeau <olivier@bottomlesspit.org>
  * 
  * This file is part of Tomdroid.
  * 
@@ -133,9 +133,9 @@ public class Note {
 	}
 	
 	/**
-	 * Asynchronously get the note from file system
+	 * Asynchronously get the note from file system and parse it
 	 */
-	public void fetchNoteFromFileSystemAsync() {
+	public void fetchAndParseNoteFromFileSystemAsync() {
 		
 		NoteFileSystemDAOImpl notesDAO = new NoteFileSystemDAOImpl(handler, file);
 

@@ -87,7 +87,7 @@ public class NoteCollection {
 
 			Note note = new Note(hndl, file);
 			
-			note.fetchNoteFromFileSystemAsync();
+			note.fetchAndParseNoteFromFileSystemAsync();
 			notes.add(note);
         }
 	}
