@@ -11,8 +11,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-		<activity android:name=".ui.ViewNote"></activity>
+    
+		<activity android:name=".ui.ViewNote">
+		    <intent-filter>
+			    <action android:name="android.intent.action.VIEW" />
+			    <category android:name="android.intent.category.DEFAULT" />
+			    <category android:name="android.intent.category.BROWSABLE" />
+			    <data android:mimeType="vnd.android.cursor.item/vnd.tomdroid.note" />
+			</intent-filter>
+		</activity>
 
 		<activity android:name=".ui.LoadWebNoteDialog" android:theme="@android:style/Theme.Dialog"></activity>
 		

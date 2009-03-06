@@ -27,6 +27,7 @@ import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.tomdroid.ui.Tomdroid;
 
@@ -90,6 +91,32 @@ public class NoteCollection {
 			note.fetchAndParseNoteFromFileSystemAsync();
 			notes.add(note);
         }
+	}
+	
+	/**
+	 * Builds a regular expression pattern that will match any of the note title currently in the collection.
+	 * Useful for the Linkify to create the links to the notes.
+	 * @return regexp pattern
+	 */
+	public Pattern buildNoteLinkifyPattern()  {
+		
+		StringBuilder sb = new StringBuilder();
+		
+		// for each note 
+		//sb.append("("+note.getT..+")");
+		
+		// TODO I will need to espace every regexp special char in note titles here
+		// check for Pattern.quote
+		for (Note n : notes) {
+			// Pattern.quote() here make sure that special characters in the note's title are properly escaped 
+			sb.append("("+Pattern.quote(n.getTitle())+")|");
+		}
+		
+		// get rid of the last | that is not needed
+		String pt = sb.substring(0, sb.length()-1);
+
+		// return a compiled match pattern
+		return Pattern.compile(pt);
 	}
 	
 	/**
