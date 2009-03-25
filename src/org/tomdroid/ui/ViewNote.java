@@ -3,7 +3,7 @@
  * Tomboy on Android
  * http://www.launchpad.net/tomdroid
  * 
- * Copyright 2008 Olivier Bilodeau <olivier@bottomlesspit.org>
+ * Copyright 2008, 2009 Olivier Bilodeau <olivier@bottomlesspit.org>
  * 
  * This file is part of Tomdroid.
  * 
@@ -22,15 +22,21 @@
  */
 package org.tomdroid.ui;
 
+import java.util.regex.Matcher;
+
 import org.tomdroid.Note;
 import org.tomdroid.NoteCollection;
 import org.tomdroid.R;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.util.Linkify;
+import android.text.util.Linkify.TransformFilter;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.TextView;
@@ -47,7 +53,7 @@ public class ViewNote extends Activity {
 	// Model objects
 	private Note note;
 	
-
+	// TODO extract methods in here
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -56,25 +62,66 @@ public class ViewNote extends Activity {
 		
 		content = (TextView) findViewById(R.id.content);
 		
-		// get url or file to fetch from Intent
-		Bundle extras = getIntent().getExtras();
-		if (extras != null) {
-			url = extras.getString(Note.URL);
-			file = extras.getString(Note.FILE);
-		} else {
-			Log.i(this.toString(), "info: Bundle was empty.");
-		}
+		final Intent intent = getIntent();
 		
-		// Based on what is sent in the bundle, we either load from file or url
-		if (url != null) {
-			note = new Note(handler, url);
+		Uri uri = intent.getData();
+		if (uri == null) {
 			
-			// asynchronous call to fetch the note, the callback with come from the handler
-			note.fetchNoteFromWebAsync();
-		} else if (file != null) {
+			// we were not fired by an Intent-filter so two choice here:
+			// get external web url or filename
+			Bundle extras = intent.getExtras();
+			if (extras != null) {
 
-			note = NoteCollection.getInstance().findNoteFromFilename(file);
-			showNote();
+				// lets grab both variables and test against null later
+				url = extras.getString(Note.URL);
+				file = extras.getString(Note.FILE);
+				
+				// Based on what was sent in the bundle, we either load from file or url
+				if (url != null) {
+
+					Log.i(this.toString(),"Loading note from Web URL.");
+					
+					// a Web note means a new note that we download
+					note = new Note(handler, url);
+					
+					// asynchronous call to fetch the note, the callback will come from the handler
+					note.fetchNoteFromWebAsync();
+
+				} else if (file != null) {
+
+					Log.i(this.toString(),"Loading note based on a filename.");
+					note = NoteCollection.getInstance().findNoteFromFilename(file);
+					showNote();
+				} else {
+					
+					Log.i(this.toString(),"Bundle's content was not helpful to find which note to load.");
+				}
+			} else {
+				Log.i(this.toString(),"No extra information in the bundle, we don't know what to load");
+			}
+		} else {
+			
+			// We were triggered by an Intent URI 
+			Log.d(this.toString(), "Intent-filter triggered. URI: "+uri);
+
+			// TODO validate the good action?
+			// intent.getAction()
+			
+			// can we find a matching note?
+			Cursor cursor = managedQuery(uri, Note.PROJECTION, null, null, null);
+			// cursor must not be null and must return more than 0 entry 
+			if (!(cursor == null || cursor.getCount() == 0)) {
+				
+				cursor.moveToFirst();
+				String noteFilename = cursor.getString(cursor.getColumnIndexOrThrow(Note.FILE));
+				note = NoteCollection.getInstance().findNoteFromFilename(noteFilename);
+				showNote();
+				
+			} else {
+				
+				// TODO send an error to the  user
+				Log.d(this.toString(), "Cursor returned null or 0 notes");
+			}
 		}
 	}
 	
@@ -98,6 +145,34 @@ public class ViewNote extends Activity {
 		// add links to stuff that is understood by Android
 		// TODO this is SLOWWWW!!!!
 		Linkify.addLinks(content, Linkify.ALL);
+		
+		// This will create a link every time a note title is found in the text.
+		// The pattern is built by NoteCollection and contains a very dumb (title1)|(title2) escaped correctly
+		// Then we tranform the url from the note name to the note id to avoid characters that mess up with the URI (ex: ?)
+		Linkify.addLinks(content, 
+						 NoteCollection.getInstance().buildNoteLinkifyPattern(),
+						 Tomdroid.CONTENT_URI+"/",
+						 null,
+						 
+						 // custom transform filter that takes the note's title part of the URI and translate it into the note id
+						 // this was done to avoid problems with invalid characters in URI (ex: ? is the query separator but could be in a note title)
+						 new TransformFilter() {
+
+							@Override
+							public String transformUrl(Matcher m, String str) {
+
+								// FIXME if this activity is called from another app and Tomdroid was never launched, getting here will probably make it crash
+								int id = 0;
+								try {
+									id = NoteCollection.getInstance().findNoteFromTitle(str).getDbId();
+								} catch (Exception e) {
+									Log.e(this.toString(), "NoteCollection accessed but it was not ready for it..");
+								}
+								
+								// return something like content://org.tomdroid.notes/notes/3
+								return Tomdroid.CONTENT_URI.toString()+"/"+id;
+							}  
+						});
 	}
 
 	private Handler handler = new Handler() {
@@ -111,5 +186,4 @@ public class ViewNote extends Activity {
         	}
 		}
     };
-
 }

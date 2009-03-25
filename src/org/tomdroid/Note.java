@@ -3,7 +3,7 @@
  * Tomboy on Android
  * http://www.launchpad.net/tomdroid
  * 
- * Copyright 2008 Olivier Bilodeau <olivier@bottomlesspit.org>
+ * Copyright 2008, 2009 Olivier Bilodeau <olivier@bottomlesspit.org>
  * 
  * This file is part of Tomdroid.
  * 
@@ -41,6 +41,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Spannable;
@@ -50,11 +51,15 @@ import android.util.Log;
 
 public class Note {
 
-	// Static references to fields (used in Bundles)
+	// Static references to fields (used in Bundles, ContentResolvers, etc.)
+	public static final String ID = "_id";
+	public static final String TITLE = "title";
+	public static final String MODIFIED_DATE = "modified_date";
 	public static final String URL = "url";
 	public static final String FILE = "file";
 	public static final String NOTE_CONTENT = "note-content";
 	public static final int NOTE_RECEIVED_AND_VALID = 1;
+	public static final String[] PROJECTION = { Note.ID, Note.TITLE, Note.FILE, Note.MODIFIED_DATE };
 	
 	// Notes constants
 	// TODO this is a weird yellow that was usable for the android emulator, I must confirm this for real usage
@@ -71,6 +76,7 @@ public class Note {
 	private File file;
 	private String title;
 	private DateTime lastChangeDate;
+	private int dbId;
 	
 	// Handles async state
 	private Handler parentHandler;
@@ -119,6 +125,14 @@ public class Note {
 		this.lastChangeDate = lastChangeDate;
 	}
 
+	public int getDbId() {
+		return dbId;
+	}
+
+	public void setDbId(int id) {
+		this.dbId = id;
+	}
+
 	/**
 	 * Asynchronously get the note from URL
 	 */
@@ -133,9 +147,9 @@ public class Note {
 	}
 	
 	/**
-	 * Asynchronously get the note from file system
+	 * Asynchronously get the note from file system and parse it
 	 */
-	public void fetchNoteFromFileSystemAsync() {
+	public void fetchAndParseNoteFromFileSystemAsync() {
 		
 		NoteFileSystemDAOImpl notesDAO = new NoteFileSystemDAOImpl(handler, file);
 
@@ -211,9 +225,14 @@ public class Note {
 		
 		Log.i(this.toString(), "warnHandler: sending ok to NoteView");
 		
-		// notify UI that we are done here and sending an ok 
-		parentHandler.sendEmptyMessage(NOTE_RECEIVED_AND_VALID);
-
+		// notify the main UI that we are done here (sending an ok along with the note's title)
+		Message msg = Message.obtain();
+		Bundle bundle = new Bundle();
+		bundle.putString(Note.TITLE, getTitle());
+		msg.setData(bundle);
+		msg.what = NOTE_RECEIVED_AND_VALID;
+		
+		parentHandler.sendMessage(msg);
     }
 
 	@Override
