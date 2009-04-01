@@ -23,6 +23,7 @@
 package org.tomdroid;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -81,9 +82,13 @@ public class NoteCollection {
 		return null;
 	}
 	
-	public void loadNotes(Handler hndl) {
-		// TODO crash more cleanly if sdcard is not loaded or there is no files in tomdroid/
+	public void loadNotes(Handler hndl) throws FileNotFoundException {
 		File notesRoot = new File(Tomdroid.NOTES_PATH);
+		
+		if (!notesRoot.exists()) {
+			throw new FileNotFoundException("Tomdroid notes folder doesn't exist. It is configured to be at: "+Tomdroid.NOTES_PATH);
+		}
+		
 		for (File file : notesRoot.listFiles(new NotesFilter())) {
 
 			Note note = new Note(hndl, file);

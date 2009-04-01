@@ -22,6 +22,7 @@
  */
 package org.tomdroid.ui;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,9 +30,12 @@ import org.tomdroid.Note;
 import org.tomdroid.NoteCollection;
 import org.tomdroid.R;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.DialogInterface.OnClickListener;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -79,10 +83,31 @@ public class Tomdroid extends ListActivity {
         
         setContentView(R.layout.main);
         
+        
         // start loading local notes
         Log.i(Tomdroid.this.toString(), "Loading local notes");
 		localNotes = NoteCollection.getInstance();
-		localNotes.loadNotes(handler);
+		try {
+			localNotes.loadNotes(handler);
+		} catch (FileNotFoundException e) {
+			//TODO put strings in ressource
+			new AlertDialog.Builder(this).setMessage(e.getMessage())
+										 .setTitle("Error")
+										 .setNeutralButton("Ok", new OnClickListener() {
+
+											@Override
+											public void onClick(
+													DialogInterface dialog,
+													int which) {
+												dialog.dismiss();
+												
+											}})
+										 .show();
+			// TODO change the default string to say there are no notes 
+			//TextView tx = (TextView) findViewById(R.id.text1);
+			//tx.setText(R.string.strNoNotes);
+			e.printStackTrace();
+		}
      
     }
 
