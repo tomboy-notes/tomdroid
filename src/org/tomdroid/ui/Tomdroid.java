@@ -23,8 +23,6 @@
 package org.tomdroid.ui;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.tomdroid.Note;
 import org.tomdroid.NoteCollection;
@@ -72,8 +70,8 @@ public class Tomdroid extends ListActivity {
 	// domain elements
 	private NoteCollection localNotes;
 	
-	// Notes names for list in UI
-	private List<String> notesNamesList = new ArrayList<String>();
+	// UI to data model glue
+	private ArrayAdapter<String> notesListAdapter;
 
 	
     /** Called when the activity is created. */
@@ -83,6 +81,9 @@ public class Tomdroid extends ListActivity {
         
         setContentView(R.layout.main);
         
+	    // listAdapter that binds the UI to the notes names
+		notesListAdapter = new ArrayAdapter<String>(this, R.layout.main_list_item);
+        setListAdapter(notesListAdapter);
         
         // start loading local notes
         Log.i(Tomdroid.this.toString(), "Loading local notes");
@@ -164,7 +165,7 @@ public class Tomdroid extends ListActivity {
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 
 		// get the clicked note
-		Note n =  localNotes.findNoteFromTitle(notesNamesList.get(position));
+		Note n =  localNotes.findNoteFromTitle(notesListAdapter.getItem(position));
 		
 		Log.d(this.toString(),"Menu clicked. Position: " + position + " id:" + id + " note:" + n.getTitle());
 		
@@ -191,7 +192,7 @@ public class Tomdroid extends ListActivity {
 	private void updateNoteListWith(String noteTitle) {
 		
 		// add note to the note list
-		notesNamesList.add(noteTitle);
+		notesListAdapter.add(noteTitle);
 
 		// get the note instance we will work with that instead  from now on
 		Note note = localNotes.findNoteFromTitle(noteTitle);
@@ -236,9 +237,5 @@ public class Tomdroid extends ListActivity {
 			// note already in database
 			Log.i(this.toString(),"Note '" + noteTitle + "' was already in the database. Id:" + note.getDbId());
 		}
-
-	    // listAdapter that binds the UI to the data in notesNameList 
-		ArrayAdapter<String> notesListAdapter = new ArrayAdapter<String>(this, R.layout.main_list_item, notesNamesList);
-        setListAdapter(notesListAdapter);
 	}
 }
