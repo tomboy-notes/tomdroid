@@ -45,6 +45,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class Tomdroid extends ListActivity {
 
@@ -72,6 +73,7 @@ public class Tomdroid extends ListActivity {
 	
 	// UI to data model glue
 	private ArrayAdapter<String> notesListAdapter;
+	private TextView listEmptyView;
 
 	
     /** Called when the activity is created. */
@@ -84,6 +86,10 @@ public class Tomdroid extends ListActivity {
 	    // listAdapter that binds the UI to the notes names
 		notesListAdapter = new ArrayAdapter<String>(this, R.layout.main_list_item);
         setListAdapter(notesListAdapter);
+
+        // set the view shown when the list is empty
+        listEmptyView = (TextView)findViewById(R.id.list_empty);
+        getListView().setEmptyView(listEmptyView);
         
         // start loading local notes
         Log.i(Tomdroid.this.toString(), "Loading local notes");
@@ -92,6 +98,7 @@ public class Tomdroid extends ListActivity {
 			localNotes.loadNotes(handler);
 		} catch (FileNotFoundException e) {
 			//TODO put strings in ressource
+			listEmptyView.setText(R.string.strListEmptyNoNotes);
 			new AlertDialog.Builder(this).setMessage(e.getMessage())
 										 .setTitle("Error")
 										 .setNeutralButton("Ok", new OnClickListener() {
@@ -104,9 +111,6 @@ public class Tomdroid extends ListActivity {
 												
 											}})
 										 .show();
-			// TODO change the default string to say there are no notes 
-			//TextView tx = (TextView) findViewById(R.id.text1);
-			//tx.setText(R.string.strNoNotes);
 			e.printStackTrace();
 		}
      

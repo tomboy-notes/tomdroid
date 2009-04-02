@@ -16,10 +16,11 @@ public final class R {
     public static final class id {
         public static final int btnCancel=0x7f050003;
         public static final int btnOk=0x7f050002;
-        public static final int content=0x7f050006;
-        public static final int note_title=0x7f050004;
+        public static final int content=0x7f050007;
+        public static final int list_empty=0x7f050004;
+        public static final int note_title=0x7f050005;
         public static final int strURL=0x7f050000;
-        public static final int textScroller=0x7f050005;
+        public static final int textScroller=0x7f050006;
         public static final int txtURL=0x7f050001;
     }
     public static final class layout {
@@ -36,10 +37,10 @@ public final class R {
          */
         public static final int btnOk=0x7f040006;
         public static final int menuLoadWebNote=0x7f040004;
+        public static final int strListEmptyNoNotes=0x7f040003;
         /**  main.xml 
          */
-        public static final int strListEmpty=0x7f040002;
-        public static final int strNoNotes=0x7f040003;
+        public static final int strListEmptyWaiting=0x7f040002;
         /**  load_web_note_dialog.xml 
          */
         public static final int strURL=0x7f040005;
