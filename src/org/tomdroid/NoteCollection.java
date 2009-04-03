@@ -55,6 +55,10 @@ public class NoteCollection {
 		notes.add(note);
 	}
 	
+	public boolean isEmpty() {
+		return notes.isEmpty();
+	}
+	
 	// TODO there is most likely a better way to do this
 	// TODO how does Tomboy deals with notes with duplicate titles? I have to check that out
 	public Note findNoteFromTitle(String title) {
