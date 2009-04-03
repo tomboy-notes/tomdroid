@@ -102,18 +102,19 @@ public class Tomdroid extends ListActivity {
 			new AlertDialog.Builder(this).setMessage(e.getMessage())
 										 .setTitle("Error")
 										 .setNeutralButton("Ok", new OnClickListener() {
-
 											@Override
-											public void onClick(
-													DialogInterface dialog,
-													int which) {
+											public void onClick(DialogInterface dialog,
+																int which) {
 												dialog.dismiss();
-												
 											}})
 										 .show();
 			e.printStackTrace();
 		}
      
+		// if there are no notes, say so in the list_empty message
+		if (localNotes.isEmpty()) {
+			listEmptyView.setText(R.string.strListEmptyNoNotes);
+		}
     }
 
 	@Override

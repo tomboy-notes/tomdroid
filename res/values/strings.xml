@@ -27,11 +27,14 @@
 
 	<!-- main.xml -->
     <string name="strListEmptyWaiting">Please wait while the notes loads..</string>
-    <string name="strListEmptyNoNotes">There are no notes in Tomdroid's note folder.</string>
+    <string name="strListEmptyNoNotes">
+    	There are no notes in Tomdroid\'s note folder. Make sure you copy Tomboy\'s notes files (*.note) in
+    	the tomdroid directory on your sdcard.
+    </string>
     <string name="menuLoadWebNote">Load a note from the Web</string>
 
 	<!-- load_web_note_dialog.xml -->
-    <string name="strURL">Enter the Note's URL:</string>
+    <string name="strURL">Enter the Note\'s URL:</string>
     <!-- TODO are these really needed!? -->
     <string name="btnOk">Ok</string>
     <string name="btnCancel">Cancel</string>
