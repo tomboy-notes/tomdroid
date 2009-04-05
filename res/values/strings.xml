@@ -33,6 +33,15 @@
     </string>
     <string name="menuLoadWebNote">Note from the Web</string>
     <string name="menuClose">Close</string>
+    <string name="strWelcome">
+    	Welcome to Tomdroid.\n
+    	Please note that this is beta quality software and that it contains known problems.\n
+    	Android\'s application lifecycle was not considered for this release. This means that you should Close
+    	the application as soon as you are not using it. Not doing so will result in the app crashing and reduced
+    	battery life.\n
+    	I am well aware of these issues and intend to work on them quickly but I also wanted to get something
+    	out and tested as quickly as possible.\n
+    </string>
 
 	<!-- load_web_note_dialog.xml -->
     <string name="strURL">Enter the Note\'s URL:</string>
