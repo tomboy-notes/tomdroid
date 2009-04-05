@@ -31,7 +31,8 @@
     	There are no notes in Tomdroid\'s note folder. Make sure you copy Tomboy\'s notes files (*.note) in
     	the tomdroid directory on your sdcard.
     </string>
-    <string name="menuLoadWebNote">Load a note from the Web</string>
+    <string name="menuLoadWebNote">Note from the Web</string>
+    <string name="menuClose">Close</string>
 
 	<!-- load_web_note_dialog.xml -->
     <string name="strURL">Enter the Note\'s URL:</string>

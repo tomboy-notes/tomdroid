@@ -41,6 +41,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -67,6 +68,7 @@ public class Tomdroid extends ListActivity {
 	private static final int ACTIVITY_VIEW=1;
 	
 	private final static int MENU_FROMWEB = Menu.FIRST;
+	private final static int MENU_CLOSE = Menu.FIRST + 1;
 	
 	// domain elements
 	private NoteCollection localNotes;
@@ -119,20 +121,25 @@ public class Tomdroid extends ListActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		boolean result = super.onCreateOptionsMenu(menu);
-		
-		// TODO this is ugly, fix it!
-		menu.add(0, MENU_FROMWEB, 0, R.string.menuLoadWebNote);
-		
-		return result;
+
+		// Create the menu based on what is defined in res/menu/main.xml
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.main, menu);
+	    return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-        case MENU_FROMWEB:
-            createLoadWebNoteDialog();
-            return true;
+	        case R.id.menuLoadWebNote:
+	            createLoadWebNoteDialog();
+	            return true;
+        
+	        case R.id.menuClose:
+	        	// closing everything then closing itself
+	        	finishActivity(ACTIVITY_VIEW);
+	        	finish();
+	        	return true;
         }
         
         return super.onOptionsItemSelected(item);
