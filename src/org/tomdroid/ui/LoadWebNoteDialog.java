@@ -50,7 +50,7 @@ public class LoadWebNoteDialog extends Activity {
         
         // Connect UI elements to variables
         txtURL = (EditText) findViewById(R.id.txtURL);
-        txtURL.setText("http://www.bottomlesspit.org/files/note.xml");
+        // txtURL.setText("http://www.bottomlesspit.org/files/note.xml");
         Button btnOk = (Button)findViewById(R.id.btnOk);
         Button btnCancel = (Button)findViewById(R.id.btnCancel);
         
