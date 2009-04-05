@@ -67,9 +67,6 @@ public class Tomdroid extends ListActivity {
 	private static final int ACTIVITY_GET_URL=0;
 	private static final int ACTIVITY_VIEW=1;
 	
-	private final static int MENU_FROMWEB = Menu.FIRST;
-	private final static int MENU_CLOSE = Menu.FIRST + 1;
-	
 	// domain elements
 	private NoteCollection localNotes;
 	
