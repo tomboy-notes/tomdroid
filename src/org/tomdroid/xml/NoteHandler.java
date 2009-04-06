@@ -148,8 +148,6 @@ public class NoteHandler extends DefaultHandler {
 	public void endElement(String uri, String localName, String name)
 			throws SAXException {
 
-		// Log.i(this.toString(), "endElement: uri: " + uri + " local: " + localName + " name: " + name);
-		
 		if (localName.equals(NOTE_CONTENT)) {
 			
 			// note-content is over, we can set the builded note to Note's noteContent
@@ -195,9 +193,6 @@ public class NoteHandler extends DefaultHandler {
 			throws SAXException {
 		
 		String currentString = new String(ch, start, length);
-		
-		// TODO remove this call when we will be done
-		// Log.i(this.toString(), "char string: " + currentString);
 		
 		if (inTitleTag) {
 			note.setTitle(currentString);

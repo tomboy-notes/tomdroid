@@ -27,7 +27,6 @@ import org.tomdroid.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -60,7 +59,6 @@ public class LoadWebNoteDialog extends Activity {
         	
             public void onClick(View v)
             {
-                Log.d(LoadWebNoteDialog.this.toString(), "info: Button Ok clicked. URL requested: "+txtURL.getText().toString());
                 okClicked(txtURL.getText().toString());
             }
         });
@@ -70,7 +68,6 @@ public class LoadWebNoteDialog extends Activity {
         	
             public void onClick(View v)
             {
-                Log.d(LoadWebNoteDialog.this.toString(), "info: Button cancel clicked.");
                 cancelClicked();
             }
         });
