@@ -61,6 +61,10 @@ public class Tomdroid extends ListActivity {
 	// config parameters
 	// TODO hardcoded for now
 	public static final String NOTES_PATH = "/sdcard/tomdroid/";
+	public static final boolean LOGGING_ENABLED = true;
+
+	// Logging info
+	private static final String TAG = "Tomdroid";
 	
 	// data keys
 	public static final String RESULT_URL_TO_LOAD = "urlToLoad"; 
@@ -105,7 +109,8 @@ public class Tomdroid extends ListActivity {
         getListView().setEmptyView(listEmptyView);
         
         // start loading local notes
-        Log.i(Tomdroid.this.toString(), "Loading local notes");
+        if (LOGGING_ENABLED) Log.v(TAG, "Loading local notes");
+        
 		localNotes = NoteCollection.getInstance();
 		try {
 			localNotes.loadNotes(handler);
@@ -233,8 +238,6 @@ public class Tomdroid extends ListActivity {
 		// get the clicked note
 		Note n =  localNotes.findNoteFromTitle(notesListAdapter.getItem(position));
 		
-		Log.d(this.toString(),"Menu clicked. Position: " + position + " id:" + id + " note:" + n.getTitle());
-		
 		Intent i = new Intent(Tomdroid.this, ViewNote.class);
 		i.putExtra(Note.FILE, n.getFileName());
 		startActivityForResult(i, ACTIVITY_VIEW);
@@ -243,7 +246,6 @@ public class Tomdroid extends ListActivity {
 	
 	private void showLoadWebNoteDialog() {
 		
-		Log.i(Tomdroid.this.toString(), "info: Menu item chosen -  Loading load web note dialog");
     	Intent i = new Intent(Tomdroid.this, LoadWebNoteDialog.class);
     	startActivityForResult(i, ACTIVITY_GET_URL);
 	}
@@ -283,7 +285,7 @@ public class Tomdroid extends ListActivity {
 		if (managedCursor.getCount() == 0) {
 			
 			// This note is not in the database yet we need to insert it
-			Log.i(this.toString(),"A new note has been detected (not yet in db)");
+			if (LOGGING_ENABLED) Log.v(TAG,"A new note has been detected (not yet in db)");
 
 			// This add the note to the content Provider
 			// TODO PoC code that should be removed in next iteration's refactoring (no notecollection, everything should come from the provider I guess?)
@@ -294,7 +296,7 @@ public class Tomdroid extends ListActivity {
     		// now that we inserted the note put its ID in the note itself
     		note.setDbId(Integer.parseInt(uri.getLastPathSegment()));
 
-    		Log.i(this.toString(),"Note inserted in content provider. ID: "+uri+" TITLE:"+noteTitle+" ID:"+note.getDbId());
+    		if (LOGGING_ENABLED) Log.v(TAG,"Note inserted in content provider. ID: "+uri+" TITLE:"+noteTitle+" ID:"+note.getDbId());
 		} else {
 			
 			// find out the note's id and put it in the note
@@ -302,9 +304,6 @@ public class Tomdroid extends ListActivity {
 		        int idColumn = managedCursor.getColumnIndex(Note.ID);
 	            note.setDbId(managedCursor.getInt(idColumn));
 		    }
-		    
-			// note already in database
-			Log.i(this.toString(),"Note '" + noteTitle + "' was already in the database. Id:" + note.getDbId());
 		}
 	}
 }

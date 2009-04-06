@@ -36,6 +36,7 @@ import org.joda.time.format.ISODateTimeFormat;
 import org.tomdroid.dao.NoteDAO;
 import org.tomdroid.dao.NoteFileSystemDAOImpl;
 import org.tomdroid.dao.NoteNetworkDAOImpl;
+import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.xml.NoteHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -60,6 +61,9 @@ public class Note {
 	public static final String NOTE_CONTENT = "note-content";
 	public static final int NOTE_RECEIVED_AND_VALID = 1;
 	public static final String[] PROJECTION = { Note.ID, Note.TITLE, Note.FILE, Note.MODIFIED_DATE };
+	
+	// Logging info
+	private static final String TAG = "Note";
 	
 	// Notes constants
 	// TODO this is a weird yellow that was usable for the android emulator, I must confirm this for real usage
@@ -180,7 +184,7 @@ public class Note {
         public void handleMessage(Message msg) {
         	
         	String noteStr = msg.getData().getString(NoteDAO.NOTE);
-        	Log.i(this.toString(), "Note handler triggered.");
+        	if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "Note handler triggered.");
         	
         	// TODO eeuuhhhh, see buildNote()'s todo regarding exceptions..
         	try {
@@ -215,15 +219,12 @@ public class Note {
         NoteHandler xmlHandler = new NoteHandler(this);
         xr.setContentHandler(xmlHandler);
         
-        Log.d(this.toString(), "about to parse a note");
+        if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "parsing note");
         // Parse the xml-data from the note String and it will take care of loading the note
         xr.parse(new InputSource(new StringReader(noteStream)));
-        Log.d(this.toString(), "note parsed");
     }
     
     private void warnHandler() {
-		
-		Log.i(this.toString(), "warnHandler: sending ok to NoteView");
 		
 		// notify the main UI that we are done here (sending an ok along with the note's title)
 		Message msg = Message.obtain();

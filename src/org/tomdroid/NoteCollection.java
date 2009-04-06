@@ -42,6 +42,9 @@ public class NoteCollection {
 	// TODO This is not efficient, I maintain two list, one for the UI and the other for the actual data 
 	// the collection of notes
 	private List<Note> notes = new ArrayList<Note>();
+
+	// Logging info
+	private static final String TAG = "NoteCollection";
 	
 	public List<Note> getNotes() {
 		return notes;
@@ -62,7 +65,7 @@ public class NoteCollection {
 	// TODO there is most likely a better way to do this
 	// TODO how does Tomboy deals with notes with duplicate titles? I have to check that out
 	public Note findNoteFromTitle(String title) {
-		Log.i(this.toString(),"searching for note title "+title);
+		if (Tomdroid.LOGGING_ENABLED) Log.d(TAG,"searching for note with title: "+title);
 		Iterator<Note> i = notes.iterator();
 		while(i.hasNext()) {
 			Note curNote = i.next();
@@ -75,7 +78,7 @@ public class NoteCollection {
 	
 	// TODO there is most likely a better way to do this
 	public Note findNoteFromFilename(String filename) {
-		Log.i(this.toString(),"searching for note file "+filename);
+		if (Tomdroid.LOGGING_ENABLED) Log.d(TAG,"searching for note with filename: "+filename);
 		Iterator<Note> i = notes.iterator();
 		while(i.hasNext()) {
 			Note curNote = i.next();

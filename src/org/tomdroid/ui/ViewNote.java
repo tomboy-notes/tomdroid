@@ -53,6 +53,9 @@ public class ViewNote extends Activity {
 	// Model objects
 	private Note note;
 	
+	// Logging info
+	private static final String TAG = "ViewNote";
+	
 	// TODO extract methods in here
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +82,7 @@ public class ViewNote extends Activity {
 				// Based on what was sent in the bundle, we either load from file or url
 				if (url != null) {
 
-					Log.i(this.toString(),"Loading note from Web URL.");
+					if (Tomdroid.LOGGING_ENABLED) Log.v(TAG,"ViewNote started: Loading a note from Web URL.");
 					
 					// a Web note means a new note that we download
 					note = new Note(handler, url);
@@ -89,20 +92,20 @@ public class ViewNote extends Activity {
 
 				} else if (file != null) {
 
-					Log.i(this.toString(),"Loading note based on a filename.");
+					if (Tomdroid.LOGGING_ENABLED) Log.v(TAG,"ViewNote started: Loading a note based on a filename.");
 					note = NoteCollection.getInstance().findNoteFromFilename(file);
 					showNote();
 				} else {
 					
-					Log.i(this.toString(),"Bundle's content was not helpful to find which note to load.");
+					if (Tomdroid.LOGGING_ENABLED) Log.d(TAG,"ViewNote started: Bundle's content was not helpful to find which note to load..");
 				}
 			} else {
-				Log.i(this.toString(),"No extra information in the bundle, we don't know what to load");
+				if (Tomdroid.LOGGING_ENABLED) Log.d(TAG,"ViewNote started: No extra information in the bundle, we don't know what to load");
 			}
 		} else {
 			
 			// We were triggered by an Intent URI 
-			Log.d(this.toString(), "Intent-filter triggered. URI: "+uri);
+			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "ViewNote started: Intent-filter triggered.");
 
 			// TODO validate the good action?
 			// intent.getAction()
@@ -119,8 +122,8 @@ public class ViewNote extends Activity {
 				
 			} else {
 				
-				// TODO send an error to the  user
-				Log.d(this.toString(), "Cursor returned null or 0 notes");
+				// TODO send an error to the user
+				if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "Cursor returned null or 0 notes");
 			}
 		}
 	}
@@ -166,7 +169,7 @@ public class ViewNote extends Activity {
 								try {
 									id = NoteCollection.getInstance().findNoteFromTitle(str).getDbId();
 								} catch (Exception e) {
-									Log.e(this.toString(), "NoteCollection accessed but it was not ready for it..");
+									if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "NoteCollection accessed but it was not ready for it..");
 								}
 								
 								// return something like content://org.tomdroid.notes/notes/3
