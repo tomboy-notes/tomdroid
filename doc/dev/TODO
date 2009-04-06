@@ -3,4 +3,5 @@ TODO tasks
 - Fix the TODO and FIXME statements all over in the code
 - The android logo should have a white border around it, fix that then regen the logo
 - internationalize strings with techniques like: http://developer.android.com/guide/topics/resources/available-resources.html#stringresources
+- implement application upgrade mechanism as suggested in http://developer.android.com/guide/publishing/publishing.html#marketupgrade 
 ...
