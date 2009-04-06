@@ -1,0 +1,5 @@
+Tomdroid
+TBD
+
+TIPS:
+To push your own notes into the emulator for testing, use util/sync-tomboy-tomdroid.sh while you have the emulator running.
