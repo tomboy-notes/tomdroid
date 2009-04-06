@@ -47,6 +47,7 @@ public class LoadWebNoteDialog extends Activity {
         super.onCreate(savedInstanceState);
         
         setContentView(R.layout.load_web_note_dialog);
+        setTitle(R.string.strLoadFromWebTitle);
         
         // Connect UI elements to variables
         txtURL = (EditText) findViewById(R.id.txtURL);

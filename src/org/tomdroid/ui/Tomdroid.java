@@ -34,6 +34,7 @@ import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -55,6 +56,7 @@ public class Tomdroid extends ListActivity {
 	public static final Uri	CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/notes");
     public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.tomdroid.note";
     public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.tomdroid.note";
+    public static final String PROJECT_HOMEPAGE = "http://www.launchpad.net/tomdroid/";
 	
 	// config parameters
 	// TODO hardcoded for now
@@ -141,7 +143,7 @@ public class Tomdroid extends ListActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
 	        case R.id.menuLoadWebNote:
-	            createLoadWebNoteDialog();
+	            showLoadWebNoteDialog();
 	            return true;
         
 	        case R.id.menuClose:
@@ -149,9 +151,52 @@ public class Tomdroid extends ListActivity {
 	        	finishActivity(ACTIVITY_VIEW);
 	        	finish();
 	        	return true;
+	        
+	        case R.id.menuAbout:
+				showAboutDialog();
+	        	return true;
         }
         
         return super.onOptionsItemSelected(item);
+	}
+
+	private void showAboutDialog() {
+		
+		// grab version info
+		String ver;
+		try {
+			ver = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+		} catch (NameNotFoundException e) {
+			e.printStackTrace();
+			ver = "Not found!";
+		}
+		
+		// format the string
+		String aboutDialogFormat = getString(R.string.strAbout);
+		String aboutDialogStr = String.format(aboutDialogFormat, 
+				getString(R.string.app_desc), 	// App description
+				getString(R.string.author), 	// Author name
+				ver							// Version
+				);
+		
+		// build and show the dialog
+		new AlertDialog.Builder(this).setMessage(aboutDialogStr)
+		 							 .setTitle("About Tomdroid")
+		 							 .setIcon(R.drawable.icon)
+		 							 .setNegativeButton("Project page", new OnClickListener() {
+		 								 @Override
+		 								 public void onClick(DialogInterface dialog,
+		 										 int which) {
+		 									 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Tomdroid.PROJECT_HOMEPAGE)));
+		 									 dialog.dismiss();
+		 								 }})
+		 							 .setPositiveButton("Ok", new OnClickListener() {
+		 								 @Override
+		 								 public void onClick(DialogInterface dialog,
+		 										 int which) {
+		 									 dialog.dismiss();
+		 								 }})
+		 							 .show();
 	}
 
 	@Override
@@ -196,7 +241,7 @@ public class Tomdroid extends ListActivity {
 
 	}
 	
-	private void createLoadWebNoteDialog() {
+	private void showLoadWebNoteDialog() {
 		
 		Log.i(Tomdroid.this.toString(), "info: Menu item chosen -  Loading load web note dialog");
     	Intent i = new Intent(Tomdroid.this, LoadWebNoteDialog.class);

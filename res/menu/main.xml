@@ -33,4 +33,9 @@
 			android:title="@string/menuClose"
 			android:id="@+id/menuClose"
 			/>
+	<item 
+			android:icon="@drawable/icon_about"
+			android:title="@string/menuAbout"
+			android:id="@+id/menuAbout"
+			/>
 </menu>
