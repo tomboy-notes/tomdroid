@@ -271,11 +271,14 @@ public class Tomdroid extends ListActivity {
 
 		// TODO I could see a problem where someone delete a note and recreate one with the same title.
 		// It would been seen as not new although it is (it will have a new filename)
+		// TODO make the query prettier (use querybuilder)
 		Uri notes = Tomdroid.CONTENT_URI;
+		String[] whereArgs = new String[1];
+		whereArgs[0] = noteTitle;
 		Cursor managedCursor = managedQuery( notes,
                 projection,  
-                Note.TITLE + "='" + noteTitle + "'",       // TODO build proper where clause
-                null,
+                Note.TITLE + "= ?",
+                whereArgs,
                 Note.TITLE + " ASC");
 		if (managedCursor.getCount() == 0) {
 			
