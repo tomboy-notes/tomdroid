@@ -23,10 +23,10 @@ to go through a few steps:
    # adb devices
 
 5- If the device is detected then install tomdroid:
-   # adb -e install tomdroid-<version>.apk
+   # adb -d install tomdroid-<version>.apk
 
    To reinstall/upgrade:
-   # adb -e -r install tomdroid-<version>.apk
+   # adb -d -r install tomdroid-<version>.apk
 
 Usage
 =====
