@@ -1,0 +1,51 @@
+Tomdroid v.0.1.0
+Tomboy on Android
+Copyright 2008, 2009 Olivier Bilodeau <olivier@bottomlesspit.org>
+
+http://www.launchpad.net/tomdroid/
+
+How to Install
+==============
+Tomdroid is not on the Android Marketplace yet. In order to install you need 
+to go through a few steps:
+
+1- Download the Android SDK
+   http://developer.android.com/sdk/1.1_r1/index.html
+   
+2- Install the Android SDK
+   http://developer.android.com/sdk/1.1_r1/installing.html
+   Make sure you follow the instructions on setting up your PATH.
+
+3- Perform Step 3 of the "Setting up a Device for Development" instructions.
+   http://developer.android.com/guide/developing/device.html#setting-up
+
+4- Plug in your device, verify if its detected by running:
+   # adb devices
+
+5- If the device is detected then install tomdroid:
+   # adb -e install tomdroid-<version>.apk
+
+   To reinstall/upgrade:
+   # adb -e -r install tomdroid-<version>.apk
+
+Usage
+=====
+Copy your tomboy notes in a tomdroid/ directory inside your sdcard.
+
+You can either:
+* Plug in your sdcard and copy the notes to it:
+  # mkdir /media/sdcard/tomdroid/; cp ~/.tomboy/*.note /media/sdcard/tomdroid/
+
+* Use adb to push the notes while your phone is plugged in by USB:
+  1- Make sure /sdcard/tomdroid/ exists
+     # adb shell
+     > mkdir /sdcard/tomdroid
+     > exit
+  2- Pushing the individual note files:
+     # adb push <note file> /sdcard/tomdroid/
+  3- Repeat step 2 as needed.
+
+Uninstall
+=========
+I will assume you went through the install steps.
+
