@@ -48,4 +48,6 @@ You can either:
 Uninstall
 =========
 I will assume you went through the install steps.
-
+1- Plug in your device
+2- Run:
+   # adb uninstall org.tomdroid
