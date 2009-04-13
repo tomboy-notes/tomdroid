@@ -1,0 +1,627 @@
+2009-04-13  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* ChangeLog: Created a ChangeLog file
+
+=== 0.1.0 ===
+2009-04-07  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* doc/user/README: documentation update
+
+2009-04-06  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* doc/user/README: End user doc started
+
+2009-04-06  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/Note.java,
+	* src/org/tomdroid/NoteCollection.java,
+	* src/org/tomdroid/NoteProvider.java,
+	* src/org/tomdroid/ui/Tomdroid.java,
+	* src/org/tomdroid/ui/ViewNote.java: [82] All logging calls (log.i,
+	log.d, log.v, etc.) are now wrapped by if (Tomdroid.LOGGING_ENABLED)
+	so we can put the software in "release mode" where logging calls will
+	be disabled.
+
+	Some less useful logging calls were removed entirely.
+
+	* src/org/tomdroid/ui/LoadWebNoteDialog.java,
+	* src/org/tomdroid/xml/NoteHandler.java: [81] Removed calls to log.x()
+	that were not useful.
+
+2009-04-05  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/ui/Tomdroid.java: [79] Bugfix: Using whereArgs 
+	instead of directly specifying the where argument.
+
+2009-04-05  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* res/values/strings.xml,
+	* src/org/tomdroid/ui/LoadWebNoteDialog.java,
+	Added a title to the LoadWebNote dialog
+
+	* src/org/tomdroid/ui/Tomdroid.java: Renamed createLoadWebNoteDialog() 
+	to showLoadWebNoteDialog()
+
+	* data/icon-src/dialog-information.svg,
+	* res/drawable/icon_about.png,
+	* res/menu/main.xml,
+	* res/values/strings.xml,
+	* src/org/tomdroid/ui/Tomdroid.java: Added an about dialog.
+
+2009-04-05  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* res/values/strings.xml,
+	* src/org/tomdroid/ui/Tomdroid.java: [72] Added a warning dialog on
+	application launch
+
+	* src/org/tomdroid/ui/LoadWebNoteDialog.java: [71] Removed private
+	testing link
+
+	* src/org/tomdroid/ui/Tomdroid.java: [70] Removed dead code
+
+2009-04-05  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* doc/dev/TODO: [69] Added a TODO list
+
+2009-04-05  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* data/icon-src,
+	* data/icon-src/close.svg,
+	* data/icon-src/load-from-web.svg,
+	* res/drawable/icon_close.png,
+	* res/drawable/icon_load_from_web.png: Added icons to the menu items
+
+	* res/values/strings.xml,
+	* res/menu,
+	* res/menu/main.xml: The menu is now defined in xml (simpler) and has 
+	associated icons
+
+	* res/values/strings.xml,
+	* src/org/tomdroid/ui/Tomdroid.java: Added a Close menu which finishes 
+	all the activites under tomdroid's note list.
+	
+2009-04-05  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/R.java,
+	* .bzrignore: [67] Removed R.java from repo and added to the ignored 
+	files
+
+2009-04-02  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* res/values/strings.xml,
+	* src/org/tomdroid/R.java: [65] Changed app name to be shorter
+
+2009-04-02  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* data,
+	* data/android.svg,
+	* data/tomboy.svg,
+	* data/tomdroid-1.svg,
+	* data/tomdroid-2.svg,
+	* data/tomdroid-3.svg,
+	* data/tomdroid.svg: [64] New icons for Tomdroid
+	* res/drawable/icon.png: Updated app's icon.
+
+2009-04-02  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* res/values/strings.xml,
+	* src/org/tomdroid/ui/Tomdroid.java: [63] Relevant message displayed
+	when there are no notes in the sdcard/tomdroid folder.
+
+	* src/org/tomdroid/NoteCollection.java: [62] Implemented isEmpty()
+
+	* res/layout/main.xml,
+	* res/values/strings.xml,
+	* src/org/tomdroid/R.java,
+	* src/org/tomdroid/ui/Tomdroid.java: [61] Now able to change the 
+	empty message in the Tomdroid activity.
+
+	* src/org/tomdroid/ui/Tomdroid.java: [60] Avoided note title list 
+	duplication
+
+2009-04-01  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* res/layout/main_list_item.xml,
+	* res/values/strings.xml,
+	* src/org/tomdroid/NoteCollection.java,
+	* src/org/tomdroid/R.java,
+	* src/org/tomdroid/ui/Tomdroid.java: [59] Exception thrown and 
+	presented to the user when the notes directory doesn't exist.
+
+2009-03-25  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	Merged change from lp:~olivier-bottomlesspit/tomdroid/feature-link-
+	between-notes branch:
+
+	2009-03-06  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+		* AndroidManifest.xml,
+		* src/org/tomdroid/ui/ViewNote.java: The ViewNote activity
+		is catching Tomdroid's Intent.
+
+		* src/org/tomdroid/NoteCollection.java:	new 
+		buildNoteLinkifyPattern() method
+
+		Links between notes are now fully functionnal.
+
+	2009-03-04  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+		* src/org/tomdroid/ui/Tomdroid.java: Notes are inserted in the
+		ContentProvider if they don't exist. If they do then the Note 
+		class is given its database ID.
+
+	2009-03-04  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+		* src/org/tomdroid/NoteProvider.java,
+		* AndroidManifest.xml,
+		* src/org/tomdroid/Note.java,
+		* src/org/tomdroid/ui/Tomdroid.java: Implemented a 
+		ContentProvider to be able to use Linkify to link to notes in a
+		TextView using standard android mechanisms.
+
+	2009-03-04  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+		* src/org/tomdroid/Note.java,
+		* src/org/tomdroid/ui/Tomdroid.java: The note class now sends 
+		back its name to the handler.
+
+		* src/org/tomdroid/Note.java,
+		* src/org/tomdroid/NoteCollection.java,
+		* src/org/tomdroid/R.java: Code refactoring
+
+2009-01-05  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/NoteCollection.java: [55] Added some TODO and FIXME
+	tasks. Added a findNoteFromTitle(String title) method to retrieve a 
+	note from its title.
+
+2008-12-27  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/NoteCollection.java,
+	* src/org/tomdroid/ui/ViewNote.java: [54] ViewNote is now accessing
+	the NoteCollection directly instead of loading the note again through 
+	the DAO.
+
+	* src/org/tomdroid/Note.java,
+	* src/org/tomdroid/ui/Tomdroid.java: [53] Changed the filename member
+	of a Note from only to filename to the absolute filename with path.
+
+	* src/org/tomdroid/NoteCollection.java,
+	* src/org/tomdroid/ui/Tomdroid.java: [52] Transformed NoteCollection
+	into a singleton.
+
+	* src/org/tomdroid/Note.java,
+	* src/org/tomdroid/NoteCollection.java,
+	* src/org/tomdroid/ui/ViewNote.java: [51] Changed some method names 
+	for more clarity
+
+	* src/org/tomdroid/ui/Tomdroid.java: [50] Bugfix: If we cancel the
+	LoadWebNoteDialog tomdroid no longer crashes.
+
+2008-12-27  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* res/layout/note_list.xml,
+	* src/org/tomdroid/ui/ListNotes.java: Removed.
+
+	* AndroidManifest.xml,
+	* res/layout/main.xml,
+	* res/values/strings.xml,
+	* src/org/tomdroid/R.java,
+	* src/org/tomdroid/ui/Tomdroid.java: Modified.
+
+	* res/layout/note_list_item.xml: Renamed to
+	  res/layout/main_list_item.xml.
+
+	[49] Tomdroid's main UI is now the ListNotes view so code between the
+	two was	merged.
+
+2008-12-27  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/NoteList.java,
+	* src/org/tomdroid/NoteView.java,
+	* src/org/tomdroid/Tomdroid.java,
+	* src/org/tomdroid/NoteCollection.java: List of note is now handled by
+	NoteCollection
+
+	* AndroidManifest.xml,
+	* res/values/strings.xml,
+	* src/org/tomdroid/R.java,
+	* res/layout/load_web_note_dialog.xml,
+	* src/org/tomdroid/ui/LoadWebNoteDialog.java: New dialog asking for a 
+	Note URL.
+
+	* src/org/tomdroid/ui: Added
+	* src/org/tomdroid/NoteList.java: Renamed to
+	  src/org/tomdroid/ui/ListNotes.java.
+	* src/org/tomdroid/NoteView.java: Renamed to
+	  src/org/tomdroid/ui/ViewNote.java.
+	* src/org/tomdroid/Tomdroid.java: Renamed to
+	  src/org/tomdroid/ui/Tomdroid.java.
+
+	Code refactoring (new ui package with UI code and main activity)
+
+2008-12-21  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* doc,
+	* doc/dev,
+	* doc/dev/uml diagrams,
+	* doc/dev/uml diagrams/README,
+	* doc/dev/uml diagrams/class diagram.png,
+	* doc/dev/uml diagrams/sequence diagram.png,
+	* doc/dev/uml diagrams/src,
+	* doc/dev/uml diagrams/src/128002,
+	* doc/dev/uml diagrams/src/128002.bodies,
+	* doc/dev/uml diagrams/src/128002.diagram,
+	* doc/dev/uml diagrams/src/128130,
+	* doc/dev/uml diagrams/src/128130.bodies,
+	* doc/dev/uml diagrams/src/128130.diagram,
+	* doc/dev/uml diagrams/src/128258,
+	* doc/dev/uml diagrams/src/128386,
+	* doc/dev/uml diagrams/src/128386.bodies,
+	* doc/dev/uml diagrams/src/128514,
+	* doc/dev/uml diagrams/src/128642,
+	* doc/dev/uml diagrams/src/128642.bodies,
+	* doc/dev/uml diagrams/src/129666.bodies,
+	* doc/dev/uml diagrams/src/130050.bodies,
+	* doc/dev/uml diagrams/src/130178.bodies,
+	* doc/dev/uml diagrams/src/130306.bodies,
+	* doc/dev/uml diagrams/src/130434.bodies,
+	* doc/dev/uml diagrams/src/2.session,
+	* doc/dev/uml diagrams/src/cpp_includes,
+	* doc/dev/uml diagrams/src/generation_settings,
+	* doc/dev/uml diagrams/src/idl_includes,
+	* doc/dev/uml diagrams/src/iteration3.prj,
+	* doc/dev/uml diagrams/src/java_imports,
+	* doc/dev/uml diagrams/src/python_imports,
+	* doc/dev/uml diagrams/src/stereotypes,
+	* doc/dev/uml diagrams/src/tools,
+	* doc/user: [47] Added some basic uml diagrams (class and sequence)
+
+2008-12-21  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* AndroidManifest.xml,
+	* sdcard.img,
+	* src/org/tomdroid/Note.java,
+	* src/org/tomdroid/NoteList.java,
+	* src/org/tomdroid/dao/NoteFileSystemDAOImpl.java,
+	* src/org/tomdroid/xml/NoteHandler.java: [46] Nested bullets support 
+	and warning fixes.
+
+	* src/org/tomdroid/tomdroid.java: Renamed to
+	  src/org/tomdroid/Tomdroid.java.
+
+2008-12-21  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* util,
+	* util/sync-tomboy-tomdroid.sh: [45] Very rough and early transfer 
+	to emulator sdcard script
+
+=== iteration-3 ===
+2008-12-11  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/Note.java,
+	* src/org/tomdroid/NoteList.java,
+	* src/org/tomdroid/NoteView.java: [44] New static string reference for
+	bundles in Note: File
+
+	NoteList will now call the NoteView activity if you click on a note
+	NoteView now accepts a File path or an URL from bundles when its
+	started	and will fetch the note accordingly
+
+	* src/org/tomdroid/Note.java,
+	* src/org/tomdroid/xml/NoteHandler.java: [43] Removing some debugging
+	to hopefully make the thing faster.
+
+2008-12-11  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* res/layout/note_list.xml,
+	* res/layout/note_list_item.xml,
+	* src/org/tomdroid/NoteList.java: Added.
+
+	* AndroidManifest.xml,
+	* res/layout/main.xml,
+	* res/values/strings.xml,
+	* sdcard.img,
+	* src/org/tomdroid/R.java,
+	* src/org/tomdroid/tomdroid.java: Modified.
+
+	[42] New NoteList activity that lists all the notes on the sdcard in
+	/sdcard/tomdroid/. Added a button on the main screen to load that 
+	activity.
+
+2008-12-11  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* res/layout/note_view.xml: [41] Fixed a regression! The loading
+	message was not shown since quite a while.
+
+2008-12-11  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* sdcard.img,
+	* src/org/tomdroid/dao/NoteFileSystemDAOImpl.java: Added.
+
+	* src/org/tomdroid/Note.java,
+	* src/org/tomdroid/NoteView.java: Modified.
+
+	[40] FileSystem DAO abstraction. I tested it using the normal test-
+	case by	hacking NoteView into using it instead of the network one and 
+	it worked!!
+	Added the sdcard image that contains notes.
+
+2008-12-11  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* xml-schema/complete-testcase/1331e52c-0a35-4c89-90c7-507bc9a2f61a.note:
+	[39] Added web, email and phone links in test case since its the notes
+	I'll use from the sdcard reader.
+
+2008-12-11  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/dao/mock: Added.
+
+	* src/org/tomdroid/dao/net,
+	* src/org/tomdroid/dao/net/mock: Removed.
+
+	* src/org/tomdroid/Note.java,
+	* src/org/tomdroid/NoteView.java: Modified.
+
+	* src/org/tomdroid/dao/net/NoteDAO.java: Renamed to
+	  src/org/tomdroid/dao/NoteDAO.java and modified.
+	* src/org/tomdroid/dao/net/NoteDAOImpl.java: Renamed to
+	  src/org/tomdroid/dao/NoteNetworkDAOImpl.java and modified.
+	* src/org/tomdroid/dao/net/mock/NoteDAOMock.java: Renamed to
+	  src/org/tomdroid/dao/mock/NoteNetworkDAOMock.java and modified.
+
+	[38] Code refactoring
+
+2008-12-11  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* lib,
+	* lib/joda-time,
+	* lib/joda-time/LICENSE.txt,
+	* lib/joda-time/NOTICE.txt,
+	* lib/joda-time/joda-time-1.6.jar: Added.
+
+	* .classpath,
+	* src/org/tomdroid/Note.java,
+	* src/org/tomdroid/xml/NoteHandler.java: Modified.
+
+	[37] Parsing title and last-change-date tags in Note XML and setting
+	them in Note object. last-change-date is parsed using joda-time lib 
+	(jar added to lib/)
+
+2008-12-10  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/Note.java: [36] Members are now stuff I'll actually
+	need. Regenerated getters/setters.
+
+	* src/org/tomdroid/xml/NoteHandler.java: [35] Now styling the note's
+	title properly
+
+2008-12-10  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/dao/net: Added.
+
+	* src/org/tomdroid/Note.java: Modified.
+
+	* src/org/tomdroid/dao/NotesDAO.java: Renamed to
+	  src/org/tomdroid/dao/net/NoteDAO.java and modified.
+	* src/org/tomdroid/dao/NotesDAOImpl.java: Renamed to
+	  src/org/tomdroid/dao/net/NoteDAOImpl.java and modified.
+	* src/org/tomdroid/dao/mock: Renamed to src/org/tomdroid/dao/net/mock.
+	* src/org/tomdroid/dao/mock/NotesDAOMock.java: Renamed to
+	  src/org/tomdroid/dao/net/mock/NoteDAOMock.java and modified.
+
+	[34] Code refactoring
+
+=== iteration-2 ===
+2008-12-06  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/NoteView.java: [33] Added linkify that will create
+	links to stuff understood by android
+
+	* src/org/tomdroid/dao/mock/NotesDAOMock.java: [32] Added standard
+	links to the mock note (web, email and phone)
+
+	* src/org/tomdroid/Note.java,
+	* src/org/tomdroid/xml/NoteHandler.java: [31] Basic implementation of
+	bullets, no nested bullets yet
+
+	* src/org/tomdroid/xml/NoteHandler.java: [30] Some important task I
+	will forget if I don't write it down.
+
+2008-12-06  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/util: Removed.
+
+	* src/org/tomdroid/Note.java,
+	* src/org/tomdroid/xml/NoteHandler.java: Modified.
+
+	* src/org/tomdroid/util/xml: Renamed to src/org/tomdroid/xml.
+
+	[29] NoteHandler is not really an utility class, it has a lifespan
+	pretty much like the Note object and should be part of a layer.
+
+2008-12-06  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/Note.java,
+	* src/org/tomdroid/util/xml/NoteHandler.java: [28] Suitable yellow for
+	highlight
+
+2008-12-05  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/Note.java,
+	* src/org/tomdroid/util/xml/NoteHandler.java: [27] Now parsing and
+	showing in UI size tags: <size:small> <size:large> and <size:huge>
+
+	* src/org/tomdroid/dao/mock/NotesDAOMock.java: [26] Added line breaks
+	to put some whitespace into this mock note.
+
+2008-12-01  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/Note.java,
+	* src/org/tomdroid/NoteView.java,
+	* src/org/tomdroid/util/xml/NoteHandler.java: [25] Now parsing and
+	showing *bold*, _italic_, -striked-, =highlighted= and monospace in
+	notes!
+
+	* src/org/tomdroid/Note.java,
+	* src/org/tomdroid/NoteView.java: [24] Quick import cleanups.
+
+	* src/org/tomdroid/Note.java,
+	* src/org/tomdroid/NoteView.java: [23] Message passing between Note
+	and NoteView for the async call is now only sending a "I'm done"
+	message.
+
+	* src/org/tomdroid/NoteView.java: [22] NoteView's TextView is now of
+	Spannable type which will allow it to display styled text.
+
+	* src/org/tomdroid/Note.java: [21] Members now private.
+
+	* src/org/tomdroid/Note.java,
+	* src/org/tomdroid/R.java,
+	* src/org/tomdroid/dao/mock/NotesDAOMock.java,
+	* src/org/tomdroid/util/xml/NoteHandler.java: [20] NoteHandler now
+	parses the note-content tag and accumulate all substrings
+
+2008-12-01  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/util,
+	* src/org/tomdroid/util/xml,
+	* src/org/tomdroid/util/xml/NoteHandler.java: Added.
+
+	* src/org/tomdroid/Note.java: Modified.
+
+	[19] Ground work for XML parsing.
+
+2008-12-01  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/dao/mock/NotesDAOMock.java: [18] Better mock object.
+
+2008-11-29  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* res/layout/note_view.xml,
+	* src/org/tomdroid/R.java: [17] Added a scrollview
+
+2008-11-28  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/Note.java,
+	* src/org/tomdroid/NoteView.java: Code refactoring
+
+=== iteration-1 ===
+2008-11-25  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* res/layout/note_view.xml,
+	* res/values/strings.xml,
+	* src/org/tomdroid/NoteView.java,
+	* src/org/tomdroid/R.java,
+	* src/org/tomdroid/dao/NotesDAO.java,
+	* src/org/tomdroid/dao/NotesDAOImpl.java,
+	* src/org/tomdroid/dao/mock/NotesDAOMock.java: NotesDAO (Mock and Impl)
+	are now using threads to avoid freezing the UI.
+
+2008-11-24  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* res/layout/main.xml,
+	* res/layout/note_view.xml,
+	* res/values/strings.xml,
+	* src/org/tomdroid/Note.java,
+	* src/org/tomdroid/NoteView.java,
+	* src/org/tomdroid/dao/NotesDAO.java,
+	* src/org/tomdroid/dao/NotesDAOImpl.java,
+	* src/org/tomdroid/dao/mock/NotesDAOMock.java,
+	* src/org/tomdroid/tomdroid.java: Adding license information (GPLv3) 
+	to all files in tomdroid.
+
+	* src/org/tomdroid/dao/NotesDAOImpl.java: Warning fix, unreachable code
+	now reachable.
+
+2008-11-24  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/dao,
+	* src/org/tomdroid/dao/NotesDAO.java,
+	* src/org/tomdroid/dao/NotesDAOImpl.java,
+	* src/org/tomdroid/dao/mock,
+	* src/org/tomdroid/dao/mock/NotesDAOMock.java: Added.
+
+	* src/org/tomdroid/NoteView.java,
+	* src/org/tomdroid/R.java: Modified.
+
+	[12] Added a DAO layer to access network data.
+
+2008-11-22  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* res/layout/note_view.xml,
+	* src/org/tomdroid/Note.java,
+	* src/org/tomdroid/NoteView.java: Added.
+
+	* AndroidManifest.xml,
+	* res/layout/main.xml,
+	* res/values/strings.xml,
+	* src/org/tomdroid/R.java,
+	* src/org/tomdroid/tomdroid.java: Modified.
+
+	Tomdroid now fetches a webpage from URL and shows its raw content in a 
+	NoteView activity. Clicking a button will return to the main Activity.
+
+2008-11-19  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* .bzrignore,
+	* .classpath,
+	* .project,
+	* AndroidManifest.xml,
+	* assets,
+	* res,
+	* res/drawable,
+	* res/drawable/icon.png,
+	* res/layout,
+	* res/layout/main.xml,
+	* res/values,
+	* res/values/strings.xml,
+	* src,
+	* src/org,
+	* src/org/tomdroid,
+	* src/org/tomdroid/R.java,
+	* src/org/tomdroid/tomdroid.java: A string and a button! Yay!
+
+2008-10-21  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* xml-schema/tomboy-notes-0.3.rnc,
+	* xml-schema/tomboy-notes-0.3.rng: [8] Modified the RELAX-NG Compact
+	(.rnc) so it validates the "complex" test. Generated the .rng 
+	(RELAX-NG XML) with trang.
+
+	* xml-schema/complete-testcase/1331e52c-0a35-4c89-90c7-507bc9a2f61a.note:
+	Complexified tests by adding bold in a nested list
+
+	* xml-schema/README: Updated README to explain how to test for
+	simple and complete testcases
+
+2008-10-21  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* xml-schema/tomboy-notes-0.3.rnc,
+	* COPYING,
+	* COPYING.LESSER: Added licensing information and copyrights (LGPL v2.1
+	 for the xml-schema part)
+
+	* xml-schema/README.TXT: Renamed to xml-schema/README and modified.
+	* xml-schema/testcase-v.0.3.note: Renamed to xml-schema/simple-
+	  testcase-v.0.3.note.
+
+
+2008-10-21  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* xml-schema/complete-testcase,
+	* xml-schema/complete-testcase/1331e52c-0a35-4c89-90c7-507bc9a2f61a.note,
+	* xml-schema/complete-testcase/c50ed79b-5ce9-4beb-ba43-a512f756737f.note,
+	* xml-schema/complete-testcase/c9ba327b-8f5d-44fa-9866-e56b5b1e308b.note,
+	* xml-schema/complete-testcase/f2ed651f-c545-444d-a827-ce21e5d3894e.note: 
+	Generated new (more complex) notes xml using latest tomboy
+
+2008-10-21  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* xml-schema,
+	* xml-schema/README.TXT,
+	* xml-schema/testcase-v.0.3.note,
+	* xml-schema/tomboy-notes-0.3.rnc,
+	* xml-schema/tomboy-notes-0.3.rng: First draft of an XML schema for 
+	tomboy notes.
+
