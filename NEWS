@@ -1,0 +1,17 @@
+﻿Tomdroid NEWS
+
+Copyright 2008, 2009 Olivier Bilodeau <olivier@bottomlesspit.org>
+
+Project hosting: https://launchpad.net/tomdroid/
+
+Please report bugs to: https://bugs.launchpad.net/tomdroid
+
+Mailing list: tomdroid-dev@lists.launchpad.net
+
+Version 0.1.0 - the baby eating release
+* Show the list of all notes in the tomdroid directory on the sdcard
+* View individual Tomboy notes. 
+  All formatting tags should be supported.
+  Notebooks, tags and addins will not be understood.
+* You can load a note from a Web URL.
+  In that case, links to other notes won't work.
