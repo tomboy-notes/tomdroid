@@ -1,9 +1,9 @@
+=== 0.1.0 ===
 2009-04-13  Olivier Bilodeau <olivier@bottomlesspit.org>
 
 	* ChangeLog: Created a ChangeLog file
 	* NEWS: Created a NEWS file
 
-=== 0.1.0 ===
 2009-04-07  Olivier Bilodeau <olivier@bottomlesspit.org>
 
 	* doc/user/README: documentation update
