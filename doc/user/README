@@ -6,27 +6,36 @@ http://www.launchpad.net/tomdroid/
 
 How to Install
 ==============
-Tomdroid is not on the Android Marketplace yet. In order to install you need 
-to go through a few steps:
+Tomdroid is not on the Android Marketplace yet. In order to install you have 
+two options:
+- Directly from the phone using the browser
+- Using the Android SDK with the phone connected through USB
 
-1- Download the Android SDK
-   http://developer.android.com/sdk/1.1_r1/index.html
+- Directly from the phone using the browser
+  On your phone:
+  1- Go under Settings -> Application Settings and enable "Unknown sources"
+  2- Go to http://launchpad.net/tomdroid with your browser
+  3- Select "downloads" and click to download the tomdroid-<version>.apk
+  
+- Using the Android SDK with the phone connected through USB
+  1- Download the Android SDK
+     http://developer.android.com/sdk/1.1_r1/index.html
    
-2- Install the Android SDK
-   http://developer.android.com/sdk/1.1_r1/installing.html
-   Make sure you follow the instructions on setting up your PATH.
+  2- Install the Android SDK
+     http://developer.android.com/sdk/1.1_r1/installing.html
+     Make sure you follow the instructions on setting up your PATH.
 
-3- Perform Step 3 of the "Setting up a Device for Development" instructions.
-   http://developer.android.com/guide/developing/device.html#setting-up
+  3- Perform Step 3 of the "Setting up a Device for Development" instructions.
+     http://developer.android.com/guide/developing/device.html#setting-up
 
-4- Plug in your device, verify if its detected by running:
-   # adb devices
+  4- Plug in your device, verify if its detected by running:
+     # adb devices
 
-5- If the device is detected then install tomdroid:
-   # adb -d install tomdroid-<version>.apk
+  5- If the device is detected then install tomdroid:
+     # adb -d install tomdroid-<version>.apk
 
-   To reinstall/upgrade:
-   # adb -d -r install tomdroid-<version>.apk
+     To reinstall/upgrade:
+     # adb -d -r install tomdroid-<version>.apk
 
 Usage
 =====
@@ -47,7 +56,7 @@ You can either:
 
 Uninstall
 =========
-I will assume you went through the install steps.
+If you have the SDK installed
 1- Plug in your device
 2- Run:
-   # adb uninstall org.tomdroid
+   # adb -d uninstall org.tomdroid
