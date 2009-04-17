@@ -96,6 +96,10 @@ public class NoteCollection {
 			throw new FileNotFoundException("Tomdroid notes folder doesn't exist. It is configured to be at: "+Tomdroid.NOTES_PATH);
 		}
 		
+//		AsyncNoteLoaderAndParser fetch = new AsyncNoteLoaderAndParser(notesRoot);
+//		// give a filename in the run() portion
+//		fetch.run();
+		
 		for (File file : notesRoot.listFiles(new NotesFilter())) {
 
 			Note note = new Note(hndl, file);
@@ -105,6 +109,16 @@ public class NoteCollection {
         }
 	}
 	
+	/** FIXME once loadNotes uses AsyncNoteLoader... get rid of this subclass
+	 * Simple filename filter that grabs files ending with .note
+	 * TODO move into its own static class in a util package
+	 */
+	class NotesFilter implements FilenameFilter {
+		public boolean accept(File dir, String name) {
+			return (name.endsWith(".note"));
+		}
+	}
+		
 	/**
 	 * Builds a regular expression pattern that will match any of the note title currently in the collection.
 	 * Useful for the Linkify to create the links to the notes.
@@ -124,16 +138,6 @@ public class NoteCollection {
 
 		// return a compiled match pattern
 		return Pattern.compile(pt);
-	}
-	
-	/**
-	 * Simple filename filter that grabs files ending with .note
-	 * TODO move into its own static class in a util package
-	 */
-	class NotesFilter implements FilenameFilter {
-		public boolean accept(File dir, String name) {
-			return (name.endsWith(".note"));
-		}
 	}
 
 	// singleton pattern
