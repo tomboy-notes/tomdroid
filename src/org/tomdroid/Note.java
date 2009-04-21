@@ -155,7 +155,7 @@ public class Note {
 	 */
 	public void fetchAndParseNoteFromFileSystemAsync() {
 		
-		NoteFileSystemDAOImpl notesDAO = new NoteFileSystemDAOImpl(handler, file);
+		NoteFileSystemDAOImpl notesDAO = new NoteFileSystemDAOImpl(handler, file, this);
 
 		// asynchronous call to get the note's content
 		notesDAO.getContent();
@@ -183,46 +183,11 @@ public class Note {
         @Override
         public void handleMessage(Message msg) {
         	
-        	String noteStr = msg.getData().getString(NoteDAO.NOTE);
         	if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "Note handler triggered.");
-        	
-        	// TODO eeuuhhhh, see buildNote()'s todo regarding exceptions..
-        	try {
-				buildNote(noteStr);
-			} catch (ParserConfigurationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SAXException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        	
+                	
         	warnHandler();
 		}
     };
-    
-    // TODO I should not throw but handle or wrap exceptions here, I am being lazy I guess
-    private void buildNote(String noteStream) throws ParserConfigurationException, SAXException, IOException {
-    	
-    	// XML 
-    	// Get a SAXParser from the SAXPArserFactory
-        SAXParserFactory spf = SAXParserFactory.newInstance();
-        SAXParser sp = spf.newSAXParser();
-
-        // Get the XMLReader of the SAXParser we created
-        XMLReader xr = sp.getXMLReader();
-        
-        // Create a new ContentHandler, send it this note to fill and apply it to the XML-Reader
-        NoteHandler xmlHandler = new NoteHandler(this);
-        xr.setContentHandler(xmlHandler);
-        
-        if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "parsing note");
-        // Parse the xml-data from the note String and it will take care of loading the note
-        xr.parse(new InputSource(new StringReader(noteStream)));
-    }
     
     private void warnHandler() {
 		

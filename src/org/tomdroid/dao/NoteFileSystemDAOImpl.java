@@ -28,24 +28,41 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.StringReader;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import org.tomdroid.Note;
+import org.tomdroid.ui.Tomdroid;
+import org.tomdroid.xml.NoteHandler;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+import org.xml.sax.XMLReader;
 
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 public class NoteFileSystemDAOImpl implements NoteDAO {
 	
 	private String noteContent;
 	private File file;
+	private Note note;
+	
+	private final String TAG = "NoteFileSystemDAO";
 	
 	// thread related
 	private Thread runner;
 	private Handler parentHandler;
 	
 	
-	public NoteFileSystemDAOImpl (Handler handler, File file) {
+	public NoteFileSystemDAOImpl (Handler handler, File file, Note note) {
 		parentHandler = handler;
 		this.file = file;
+		this.note = note;
 	}
 	
 	
@@ -71,13 +88,36 @@ public class NoteFileSystemDAOImpl implements NoteDAO {
 			e.printStackTrace();
 		} 
 		
-		// Load the message object with the note
-		Bundle bundle = new Bundle();
-		bundle.putString(NoteDAO.NOTE, noteContent);
-		msg.setData(bundle);
+		try {
+			// Parsing
+	    	// XML 
+	    	// Get a SAXParser from the SAXPArserFactory
+	        SAXParserFactory spf = SAXParserFactory.newInstance();
+	        SAXParser sp = spf.newSAXParser();
+	
+	        // Get the XMLReader of the SAXParser we created
+	        XMLReader xr = sp.getXMLReader();
+	        
+	        // Create a new ContentHandler, send it this note to fill and apply it to the XML-Reader
+	        NoteHandler xmlHandler = new NoteHandler(note);
+	        xr.setContentHandler(xmlHandler);
+	        
+	        if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "parsing note");
+	        // Parse the xml-data from the note String and it will take care of loading the note
+	        xr.parse(new InputSource(new StringReader(noteContent)));
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		// notify UI that we are done here and send result 
-		parentHandler.sendMessage(msg);
+		parentHandler.sendEmptyMessage(Note.NOTE_RECEIVED_AND_VALID);
 	}	
 	
 	/**
