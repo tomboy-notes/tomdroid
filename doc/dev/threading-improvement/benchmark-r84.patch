@@ -1,0 +1,36 @@
+=== modified file 'src/org/tomdroid/ui/Tomdroid.java'
+--- src/org/tomdroid/ui/Tomdroid.java	2009-04-07 01:51:53 +0000
++++ src/org/tomdroid/ui/Tomdroid.java	2009-04-20 22:16:47 +0000
+@@ -80,7 +80,11 @@
+ 	// UI to data model glue
+ 	private ArrayAdapter<String> notesListAdapter;
+ 	private TextView listEmptyView;
+-
++	
++	// benchmark related
++	long startTime;
++	long stopTime;
++	int numNote = 0;
+ 	
+     /** Called when the activity is created. */
+     @Override
+@@ -114,6 +118,7 @@
+         
+ 		localNotes = NoteCollection.getInstance();
+ 		try {
++			startTime = System.currentTimeMillis();
+ 			localNotes.loadNotes(handler);
+ 		} catch (FileNotFoundException e) {
+ 			//TODO put strings in ressource
+@@ -306,5 +311,10 @@
+ 	            note.setDbId(managedCursor.getInt(idColumn));
+ 		    }
+ 		}
++		
++		numNote++;
++		stopTime = System.currentTimeMillis(); 
++		long runTime = stopTime - startTime; 
++		Log.v(TAG,"Parsed: " + numNote + " notes. Run time: " + runTime);
+ 	}
+ }
+

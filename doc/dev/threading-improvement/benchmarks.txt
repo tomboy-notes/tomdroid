@@ -1,0 +1,7 @@
+Benchmarks
+
+@ revno 84 of branch threading-improvements
+applying patch benchmark-r84.patch
+4 demo notes
+cold average: 4150ms
+hot average:  800ms
