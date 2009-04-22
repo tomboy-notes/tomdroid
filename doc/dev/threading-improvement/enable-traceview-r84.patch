@@ -1,0 +1,36 @@
+=== modified file 'src/org/tomdroid/ui/Tomdroid.java'
+--- src/org/tomdroid/ui/Tomdroid.java	2009-04-07 01:51:53 +0000
++++ src/org/tomdroid/ui/Tomdroid.java	2009-04-21 21:51:44 +0000
+@@ -38,6 +38,7 @@
+ import android.database.Cursor;
+ import android.net.Uri;
+ import android.os.Bundle;
++import android.os.Debug;
+ import android.os.Handler;
+ import android.os.Message;
+ import android.util.Log;
+@@ -87,6 +88,8 @@
+     public void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         
++        Debug.startMethodTracing("tomdroid");
++        
+         setContentView(R.layout.main);
+         
+         // Warn that this is a "will eat your babies" release 
+@@ -137,6 +140,14 @@
+     }
+ 
+ 	@Override
++	protected void onDestroy() {
++
++		Debug.stopMethodTracing();
++
++		super.onDestroy();
++	}
++
++	@Override
+ 	public boolean onCreateOptionsMenu(Menu menu) {
+ 
+ 		// Create the menu based on what is defined in res/menu/main.xml
+
