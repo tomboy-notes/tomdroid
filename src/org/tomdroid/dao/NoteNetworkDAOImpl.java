@@ -49,13 +49,11 @@ public class NoteNetworkDAOImpl implements NoteDAO {
 	}
 	
 	
-	@Override
 	public void getContent() {
 		runner = new Thread(this);
 		runner.start();
 	}
 	
-	@Override
 	public void run() {
 		Message msg = Message.obtain();
 		

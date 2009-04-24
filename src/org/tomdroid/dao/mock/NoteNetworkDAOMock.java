@@ -38,13 +38,11 @@ public class NoteNetworkDAOMock implements NoteDAO {
 		parentHandler = handler;
 	}
 	
-	@Override
 	public void getContent() {
 		runner = new Thread(this);
 		runner.start();
 	}
 	
-	@Override
 	public void run() {
 		Message msg = Message.obtain();
 		

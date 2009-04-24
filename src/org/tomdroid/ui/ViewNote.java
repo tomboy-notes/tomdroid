@@ -161,7 +161,6 @@ public class ViewNote extends Activity {
 						 // this was done to avoid problems with invalid characters in URI (ex: ? is the query separator but could be in a note title)
 						 new TransformFilter() {
 
-							@Override
 							public String transformUrl(Matcher m, String str) {
 
 								// FIXME if this activity is called from another app and Tomdroid was never launched, getting here will probably make it crash

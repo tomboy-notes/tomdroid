@@ -93,7 +93,6 @@ public class Tomdroid extends ListActivity {
 		new AlertDialog.Builder(this).setMessage(getString(R.string.strWelcome))
 		 .setTitle("Warning")
 		 .setNeutralButton("Ok", new OnClickListener() {
-			@Override
 			public void onClick(DialogInterface dialog,
 								int which) {
 				dialog.dismiss();
@@ -121,7 +120,6 @@ public class Tomdroid extends ListActivity {
 			new AlertDialog.Builder(this).setMessage(e.getMessage())
 										 .setTitle("Error")
 										 .setNeutralButton("Ok", new OnClickListener() {
-											@Override
 											public void onClick(DialogInterface dialog,
 																int which) {
 												dialog.dismiss();
@@ -190,14 +188,12 @@ public class Tomdroid extends ListActivity {
 		 							 .setTitle("About Tomdroid")
 		 							 .setIcon(R.drawable.icon)
 		 							 .setNegativeButton("Project page", new OnClickListener() {
-		 								 @Override
 		 								 public void onClick(DialogInterface dialog,
 		 										 int which) {
 		 									 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Tomdroid.PROJECT_HOMEPAGE)));
 		 									 dialog.dismiss();
 		 								 }})
 		 							 .setPositiveButton("Ok", new OnClickListener() {
-		 								 @Override
 		 								 public void onClick(DialogInterface dialog,
 		 										 int which) {
 		 									 dialog.dismiss();
