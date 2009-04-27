@@ -78,15 +78,15 @@ public class NoteFileSystemDAOImpl implements NoteDAO {
 		
 		// Grab the note
 		// TODO handle exceptions properly
-		try {
-			noteContent = fetch(file);
-		} catch (FileNotFoundException e) {
+		//try {
+			//noteContent = fetch(file);
+		//} catch (FileNotFoundException e) {
 			// TODO handle exceptions properly
-			e.printStackTrace();
-		} catch (IOException e) {
+		//	e.printStackTrace();
+		//} catch (IOException e) {
 			// TODO handle exceptions properly
-			e.printStackTrace();
-		} 
+		//	e.printStackTrace();
+		//} 
 		
 		try {
 			// Parsing
@@ -104,7 +104,9 @@ public class NoteFileSystemDAOImpl implements NoteDAO {
 	        
 	        if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "parsing note");
 	        // Parse the xml-data from the note String and it will take care of loading the note
-	        xr.parse(new InputSource(new StringReader(noteContent)));
+			FileInputStream fin = new FileInputStream(file);
+			BufferedReader in = new BufferedReader(new InputStreamReader(fin));
+	        xr.parse(new InputSource(in));
 		} catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
