@@ -1,7 +1,42 @@
 Benchmarks
 
+As of 0.1.0 release
+===================
 @ revno 84 of branch threading-improvements
 applying patch benchmark-r84.patch
-4 demo notes
+
+4 demo notes (emulator on Windows)
 cold average: 4150ms
 hot average:  800ms
+
+50 demo notes (emulator on Windows)
+cold average: 10880ms
+hot average:  6800ms
+
+
+IO and parsing done in one thread per file
+==========================================
+@ revno 86 of branch threading-improvements
+applying patch benchmark-r84.patch
+
+4 demo notes (emulator on Windows)
+cold average: 3541ms
+hot average:  700ms
+
+50 demo notes (emulator on Windows)
+cold average: 10093ms
+hot average:  6320ms
+
+
+No temporary string, read file from XML parser
+==============================================
+@ revno 88 of branch threading-improvements
+applying patch benchmark-r84.patch
+
+4 demo notes (emulator on Windows)
+cold average: 3936ms
+hot average:  800ms
+
+50 demo notes (emulator on Windows)
+cold average: 9300ms
+hot average:  6400ms
