@@ -23,24 +23,12 @@
 package org.tomdroid;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.StringReader;
-
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
-import org.tomdroid.dao.NoteDAO;
-import org.tomdroid.dao.NoteFileSystemDAOImpl;
 import org.tomdroid.dao.NoteNetworkDAOImpl;
 import org.tomdroid.ui.Tomdroid;
-import org.tomdroid.xml.NoteHandler;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-import org.xml.sax.XMLReader;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -85,12 +73,15 @@ public class Note {
 	// Handles async state
 	private Handler parentHandler;
 	
-	// TODO is this still useful as of iteration3?
+	public Note() {}
+	
+	// TODO is this still useful for loadWebNote as of iteration3?
 	public Note(Handler hdl, String url) {
 		this.parentHandler = hdl;
 		this.url = url;
 	}
 	
+	// TODO consider deprecating (still used?)
 	public Note(Handler hdl, File file) {
 		this.parentHandler = hdl;
 		this.file = file;
@@ -150,17 +141,6 @@ public class Note {
 		notesDAO.getContent();
 	}
 	
-	/**
-	 * Asynchronously get the note from file system and parse it
-	 */
-	public void fetchAndParseNoteFromFileSystemAsync() {
-		
-		NoteFileSystemDAOImpl notesDAO = new NoteFileSystemDAOImpl(handler, file, this);
-
-		// asynchronous call to get the note's content
-		notesDAO.getContent();
-	}
-	
 	public SpannableStringBuilder getNoteContent() {
 		return noteContent;
 	}
@@ -178,6 +158,8 @@ public class Note {
 	
 	// TODO I don't know if this double handler thingy is efficient but it was (for me) the more maintainable 
 	// way of doing this. When I'll know more about Android, I should come back to this
+	
+	// FIXME remove this
     private Handler handler = new Handler() {
     	
         @Override
@@ -189,6 +171,7 @@ public class Note {
 		}
     };
     
+    //FIXME get rid of me once refactoring is complete
     private void warnHandler() {
 		
 		// notify the main UI that we are done here (sending an ok along with the note's title)

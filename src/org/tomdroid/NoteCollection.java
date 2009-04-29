@@ -31,6 +31,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import org.tomdroid.ui.Tomdroid;
+import org.tomdroid.util.NoteBuilder;
 
 import android.os.Handler;
 import android.util.Log;
@@ -102,9 +103,9 @@ public class NoteCollection {
 		
 		for (File file : notesRoot.listFiles(new NotesFilter())) {
 
-			Note note = new Note(hndl, file);
+			Note note = new NoteBuilder().setCaller(hndl).setNoteFilename(file).build();
 			
-			note.fetchAndParseNoteFromFileSystemAsync();
+			// note.fetchAndParseNoteFromFileSystemAsync();
 			notes.add(note);
         }
 	}

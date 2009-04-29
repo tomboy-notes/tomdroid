@@ -20,7 +20,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.tomdroid.dao;
+package org.tomdroid.util;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -39,36 +39,49 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
+import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 
-public class NoteFileSystemDAOImpl implements NoteDAO {
+public class NoteBuilder implements Runnable {
 	
 	private File file;
-	private Note note;
+	// the object being built
+	private Note note = new Note();
 	
-	private final String TAG = "NoteFileSystemDAO";
+	private final String TAG = "NoteBuilder";
 	
 	// thread related
 	private Thread runner;
 	private Handler parentHandler;
 	
+	public NoteBuilder () {}
 	
-	public NoteFileSystemDAOImpl (Handler handler, File file, Note note) {
-		parentHandler = handler;
-		this.file = file;
-		this.note = note;
+	public NoteBuilder setCaller(Handler parent) {
+		
+		parentHandler = parent;
+		return this;
 	}
 	
+	public NoteBuilder setNoteFilename(File f) {
+		
+		file = f;
+		// I believe this is the only thing that the XML parser doesn't handle
+		note.setFileName(file.getAbsolutePath());
+		return this;
+	}
 	
-	@Override
-	public void getContent() {
+	public Note build() {
+		
 		runner = new Thread(this);
-		runner.start();
+		runner.start();		
+		return note;
 	}
 	
 	@Override
 	public void run() {
+		
 		
 		try {
 			// Parsing
@@ -101,7 +114,19 @@ public class NoteFileSystemDAOImpl implements NoteDAO {
 		}
 		
 		// notify UI that we are done here and send result 
-		parentHandler.sendEmptyMessage(Note.NOTE_RECEIVED_AND_VALID);
-	}	
+		warnHandler();
+	}
+	
+    private void warnHandler() {
+		
+		// notify the main UI that we are done here (sending an ok along with the note's title)
+		Message msg = Message.obtain();
+		Bundle bundle = new Bundle();
+		bundle.putString(Note.TITLE, note.getTitle());
+		msg.setData(bundle);
+		msg.what = Note.NOTE_RECEIVED_AND_VALID;
+		
+		parentHandler.sendMessage(msg);
+    }
 	
 }
