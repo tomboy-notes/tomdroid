@@ -22,21 +22,13 @@
  */
 package org.tomdroid;
 
-import java.io.File;
-
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
-import org.tomdroid.dao.NoteNetworkDAOImpl;
-import org.tomdroid.ui.Tomdroid;
 
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.StyleSpan;
-import android.util.Log;
 
 public class Note {
 
@@ -65,28 +57,11 @@ public class Note {
 	private SpannableStringBuilder noteContent = new SpannableStringBuilder();
 	private String url;
 	private String fileName;
-	private File file;
 	private String title;
 	private DateTime lastChangeDate;
 	private int dbId;
 	
-	// Handles async state
-	private Handler parentHandler;
-	
 	public Note() {}
-	
-	// TODO is this still useful for loadWebNote as of iteration3?
-	public Note(Handler hdl, String url) {
-		this.parentHandler = hdl;
-		this.url = url;
-	}
-	
-	// TODO consider deprecating (still used?)
-	public Note(Handler hdl, File file) {
-		this.parentHandler = hdl;
-		this.file = file;
-		this.fileName = file.getAbsolutePath();
-	}
 	
 	public String getUrl() {
 		return url;
@@ -127,19 +102,6 @@ public class Note {
 	public void setDbId(int id) {
 		this.dbId = id;
 	}
-
-	/**
-	 * Asynchronously get the note from URL
-	 */
-	public void fetchNoteFromWebAsync() {
-		
-		//  TODO my naive way of using mock objects
-		//NotesDAOImpl notesDAO = new NotesDAOImpl(handler, noteURL);
-		NoteNetworkDAOImpl notesDAO = new NoteNetworkDAOImpl(handler, url);
-
-		// asynchronous call to get the note's content
-		notesDAO.getContent();
-	}
 	
 	public SpannableStringBuilder getNoteContent() {
 		return noteContent;
@@ -155,34 +117,6 @@ public class Note {
 		sNoteContent.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 17, 35, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 		return sNoteContent;
 	}
-	
-	// TODO I don't know if this double handler thingy is efficient but it was (for me) the more maintainable 
-	// way of doing this. When I'll know more about Android, I should come back to this
-	
-	// FIXME remove this
-    private Handler handler = new Handler() {
-    	
-        @Override
-        public void handleMessage(Message msg) {
-        	
-        	if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "Note handler triggered.");
-                	
-        	warnHandler();
-		}
-    };
-    
-    //FIXME get rid of me once refactoring is complete
-    private void warnHandler() {
-		
-		// notify the main UI that we are done here (sending an ok along with the note's title)
-		Message msg = Message.obtain();
-		Bundle bundle = new Bundle();
-		bundle.putString(Note.TITLE, getTitle());
-		msg.setData(bundle);
-		msg.what = NOTE_RECEIVED_AND_VALID;
-		
-		parentHandler.sendMessage(msg);
-    }
 
 	@Override
 	public String toString() {
