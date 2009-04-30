@@ -103,7 +103,7 @@ public class NoteCollection {
 		
 		for (File file : notesRoot.listFiles(new NotesFilter())) {
 
-			Note note = new NoteBuilder().setCaller(hndl).setNoteFilename(file).build();
+			Note note = new NoteBuilder().setCaller(hndl).setInputSource(file).build();
 			
 			// note.fetchAndParseNoteFromFileSystemAsync();
 			notes.add(note);

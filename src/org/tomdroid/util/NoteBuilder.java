@@ -26,7 +26,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URL;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -46,7 +48,12 @@ import android.util.Log;
 
 public class NoteBuilder implements Runnable {
 	
+	// Metadata for the Note that will be built
 	private File file;
+	private URL url;
+	// true means local note and false means Web note
+	private Boolean noteTypeLocal; // using the Object only to be able to test against null
+	
 	// the object being built
 	private Note note = new Note();
 	
@@ -64,11 +71,18 @@ public class NoteBuilder implements Runnable {
 		return this;
 	}
 	
-	public NoteBuilder setNoteFilename(File f) {
+	public NoteBuilder setInputSource(File f) {
 		
 		file = f;
-		// I believe this is the only thing that the XML parser doesn't handle
 		note.setFileName(file.getAbsolutePath());
+		noteTypeLocal = new Boolean(true);
+		return this;
+	}
+	
+	public NoteBuilder setInputSource(URL u) {
+		
+		url = u;
+		noteTypeLocal = new Boolean(false);
 		return this;
 	}
 	
@@ -97,11 +111,24 @@ public class NoteBuilder implements Runnable {
 	        NoteHandler xmlHandler = new NoteHandler(note);
 	        xr.setContentHandler(xmlHandler);
 	        
-	        if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "parsing note");
-	        // Parse the xml-data from the note String and it will take care of loading the note
-			FileInputStream fin = new FileInputStream(file);
-			BufferedReader in = new BufferedReader(new InputStreamReader(fin));
-	        xr.parse(new InputSource(in));
+	        if (noteTypeLocal == null) {
+	        	// TODO find the proper exception to throw here.
+	        	throw new IllegalArgumentException("You are not respecting NoteBuilder's contract.");
+	        }
+	        
+	        // Create the proper input source based on if its a local note or a web note
+	        InputSource is;
+	        if (noteTypeLocal) {
+
+	        	FileInputStream fin = new FileInputStream(file);
+				BufferedReader in = new BufferedReader(new InputStreamReader(fin));
+				is = new InputSource(in);
+	        } else {
+	        	is = (InputSource) url.getContent();
+	        }
+	        
+			if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "parsing note");
+			xr.parse(is);
 		} catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
