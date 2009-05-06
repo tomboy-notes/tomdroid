@@ -22,44 +22,64 @@
  */
 package org.tomdroid.util;
 
+import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileInputStream;
 import java.io.FilenameFilter;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
 import org.tomdroid.Note;
+import org.tomdroid.NoteCollection;
+import org.tomdroid.ui.Tomdroid;
+import org.tomdroid.xml.NoteHandler;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+import org.xml.sax.XMLReader;
+
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 
 public class AsyncNoteLoaderAndParser implements Runnable {
 	private final ExecutorService pool;
-	private final static int poolSize = 5;
+	private final static int poolSize = 3;
 	private File path;
+	private NoteCollection noteCollection;
+	private Handler parentHandler;
 	
-	public AsyncNoteLoaderAndParser(File path) {
+	// logging related
+	private final static String TAG = "AsyncNoteLoaderAndParser";
+	
+	public AsyncNoteLoaderAndParser(File path, NoteCollection nc, Handler hndl) {
 		this.path = path;
 		pool = Executors.newFixedThreadPool(poolSize);
+		noteCollection = nc;
+		parentHandler = hndl;
 	}
 
 	@Override
 	public void run() {
-				
-		for (File file : path.listFiles(new NotesFilter())) {
-
-//			Note note = new Note(hndl, file);
-//			
-//			note.fetchAndParseNoteFromFileSystemAsync();
-//			notes.add(note);
-        }
+		File[] fileList = path.listFiles(new NotesFilter());
 		
-		// give a filename to a thread and ask to parse it when nothing's left to do its over
-		pool.execute(new Handler());
-	}
+		// If there are no notes, warn the UI through an exception
+		// FIXME how can run() throw an exception?
+		if (fileList.length == 0) {
+			throw new RuntimeException("No notes files found.");
+		}
+		
+		for (File file : fileList) {
 
-
-	 class Handler implements Runnable {
-		 public void run() {
-			 // do the heavy lifting here
-		 }
+			// give a filename to a thread and ask to parse it when nothing's left to do its over
+			pool.execute(new Worker(file));
+        }
 	}
 	
 	/**
@@ -70,5 +90,77 @@ public class AsyncNoteLoaderAndParser implements Runnable {
 		public boolean accept(File dir, String name) {
 			return (name.endsWith(".note"));
 		}
+	}
+	
+	/**
+	 * The worker spawns a new note, parse the file its being given by the executor and add it to the NoteCollection
+	 */
+	class Worker implements Runnable {
+		
+		// the note to be loaded and parsed
+		private Note note = new Note();
+		private File file;
+		
+		public Worker(File f) {
+			file = f;
+		}
+
+		@Override
+		public void run() {
+			
+			note.setFileName(file.getAbsolutePath());
+			
+			try {
+				// Parsing
+		    	// XML 
+		    	// Get a SAXParser from the SAXPArserFactory
+		        SAXParserFactory spf = SAXParserFactory.newInstance();
+		        SAXParser sp = spf.newSAXParser();
+		
+		        // Get the XMLReader of the SAXParser we created
+		        XMLReader xr = sp.getXMLReader();
+		        
+		        // Create a new ContentHandler, send it this note to fill and apply it to the XML-Reader
+		        NoteHandler xmlHandler = new NoteHandler(note);
+		        xr.setContentHandler(xmlHandler);
+
+		        
+		        // Create the proper input source based on if its a local note or a web note
+	        	FileInputStream fin = new FileInputStream(file);
+				BufferedReader in = new BufferedReader(new InputStreamReader(fin));
+				InputSource is = new InputSource(in);
+		        
+				if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "parsing note");
+				xr.parse(is);
+			
+			// TODO wrap and throw a new exception here
+			} catch (ParserConfigurationException e) {
+				e.printStackTrace();
+			} catch (SAXException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			synchronized (noteCollection) {
+				noteCollection.addNote(note);
+			}
+			
+			// notify UI that we are done here and send result 
+			warnHandler();
+		}
+		
+	    private void warnHandler() {
+			
+			// notify the main UI that we are done here (sending an ok along with the note's title)
+			Message msg = Message.obtain();
+			Bundle bundle = new Bundle();
+			bundle.putString(Note.TITLE, note.getTitle());
+			msg.setData(bundle);
+			msg.what = Note.NOTE_RECEIVED_AND_VALID;
+			
+			parentHandler.sendMessage(msg);
+	    }
+		
 	}
 }

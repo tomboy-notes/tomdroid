@@ -24,14 +24,13 @@ package org.tomdroid;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
 
 import org.tomdroid.ui.Tomdroid;
-import org.tomdroid.util.NoteBuilder;
+import org.tomdroid.util.AsyncNoteLoaderAndParser;
 
 import android.os.Handler;
 import android.util.Log;
@@ -90,6 +89,7 @@ public class NoteCollection {
 		return null;
 	}
 	
+	// TODO also throw a empty exception that we will catch in tomdroid and display the empty notelist msg
 	public void loadNotes(Handler hndl) throws FileNotFoundException {
 		File notesRoot = new File(Tomdroid.NOTES_PATH);
 		
@@ -97,27 +97,8 @@ public class NoteCollection {
 			throw new FileNotFoundException("Tomdroid notes folder doesn't exist. It is configured to be at: "+Tomdroid.NOTES_PATH);
 		}
 		
-//		AsyncNoteLoaderAndParser fetch = new AsyncNoteLoaderAndParser(notesRoot);
-//		// give a filename in the run() portion
-//		fetch.run();
-		
-		for (File file : notesRoot.listFiles(new NotesFilter())) {
-
-			Note note = new NoteBuilder().setCaller(hndl).setInputSource(file).build();
-			
-			// note.fetchAndParseNoteFromFileSystemAsync();
-			notes.add(note);
-        }
-	}
-	
-	/** FIXME once loadNotes uses AsyncNoteLoader... get rid of this subclass
-	 * Simple filename filter that grabs files ending with .note
-	 * TODO move into its own static class in a util package
-	 */
-	class NotesFilter implements FilenameFilter {
-		public boolean accept(File dir, String name) {
-			return (name.endsWith(".note"));
-		}
+		Thread runner = new Thread(new AsyncNoteLoaderAndParser(notesRoot, this, hndl));
+		runner.start();
 	}
 		
 	/**

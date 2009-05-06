@@ -26,7 +26,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 
@@ -46,6 +45,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
+/*
+ * TODO remove duplication between here and AsyncNoteLoaderAndParser
+ * 
+ */
 public class NoteBuilder implements Runnable {
 	
 	// Metadata for the Note that will be built
