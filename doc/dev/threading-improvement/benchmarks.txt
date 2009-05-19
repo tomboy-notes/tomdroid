@@ -7,11 +7,11 @@ applying patch benchmark-r84.patch
 
 4 demo notes (emulator on Windows)
 cold average: 4150ms
-hot average:  800ms
+hot average:   800ms
 
 50 demo notes (emulator on Windows)
 cold average: 10880ms
-hot average:  6800ms
+hot average:   6800ms
 
 
 IO and parsing done in one thread per file
@@ -21,11 +21,11 @@ applying patch benchmark-r84.patch
 
 4 demo notes (emulator on Windows)
 cold average: 3541ms
-hot average:  700ms
+hot average:   700ms
 
 50 demo notes (emulator on Windows)
 cold average: 10093ms
-hot average:  6320ms
+hot average:   6320ms
 
 
 No temporary string, read file from XML parser
@@ -35,8 +35,58 @@ applying patch benchmark-r84.patch
 
 4 demo notes (emulator on Windows)
 cold average: 3936ms
-hot average:  800ms
+hot average:   800ms
 
 50 demo notes (emulator on Windows)
 cold average: 9300ms
 hot average:  6400ms
+
+
+Runnable NoteBuilder instead of a DAO
+=====================================
+@ revno 91 of branch threading-improvements
+applying patch benchmark-r84.patch
+
+4 demo notes (emulator on Windows)
+cold average: 3400ms
+hot average:   550ms
+
+50 demo notes (emulator on Windows)
+cold average: 13000ms
+hot average:   6800ms
+
+Executor service launching worker threads (AsyncNoteLoaderAndParser)
+====================================================================
+@ revno 95 of branch threading-improvements
+applying patch benchmark-r84.patch
+
+Fixed Thread Pool (pool size 3)
+4 demo notes (emulator on Windows)
+cold average: 4400ms
+hot average:   750ms
+
+50 demo notes (emulator on Windows)
+cold average: 9000ms
+hot average:  6400ms
+
+Fixed Thread Pool (pool size 5)
+4 demo notes (emulator on Windows)
+cold average: 3500ms
+hot average:   600ms
+
+50 demo notes (emulator on Windows)
+cold average: 10000ms
+hot average:   6400ms
+
+Cached Thread Pool (reusable threads)
+4 demo notes (emulator on Windows)
+cold average: 4200ms
+hot average:   600ms
+
+50 demo notes (emulator on Windows)
+cold average: 10048ms
+hot average:   6300ms
+
+
+Looking at the traceview traces, the usage pattern of the fixed thread is 
+better than the cached thread pool (which spawns almost 50 threads anyways)  
