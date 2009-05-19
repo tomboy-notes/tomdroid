@@ -97,8 +97,8 @@ public class NoteCollection {
 			throw new FileNotFoundException("Tomdroid notes folder doesn't exist. It is configured to be at: "+Tomdroid.NOTES_PATH);
 		}
 		
-		Thread runner = new Thread(new AsyncNoteLoaderAndParser(notesRoot, this, hndl));
-		runner.start();
+		AsyncNoteLoaderAndParser asyncLoader = new AsyncNoteLoaderAndParser(notesRoot, this, hndl);
+		asyncLoader.readAndParseNotes();
 	}
 		
 	/**

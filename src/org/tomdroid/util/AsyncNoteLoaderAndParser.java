@@ -48,7 +48,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
-public class AsyncNoteLoaderAndParser implements Runnable {
+public class AsyncNoteLoaderAndParser {
 	private final ExecutorService pool;
 	private final static int poolSize = 3;
 	private File path;
@@ -65,14 +65,12 @@ public class AsyncNoteLoaderAndParser implements Runnable {
 		parentHandler = hndl;
 	}
 
-	@Override
-	public void run() {
+	public void readAndParseNotes() {
 		File[] fileList = path.listFiles(new NotesFilter());
 		
-		// If there are no notes, warn the UI through an exception
-		// FIXME how can run() throw an exception?
+		// If there are no notes, warn the UI through an empty message
 		if (fileList.length == 0) {
-			throw new RuntimeException("No notes files found.");
+			parentHandler.sendEmptyMessage(Note.NO_NOTES);
 		}
 		
 		for (File file : fileList) {

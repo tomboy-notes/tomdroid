@@ -130,10 +130,6 @@ public class Tomdroid extends ListActivity {
 			e.printStackTrace();
 		}
      
-		// if there are no notes, say so in the list_empty message
-		if (localNotes.isEmpty()) {
-			listEmptyView.setText(R.string.strListEmptyNoNotes);
-		}
     }
 
 	@Override
@@ -228,9 +224,13 @@ public class Tomdroid extends ListActivity {
 
         		// update the note list with this newly parsed note
         		updateNoteListWith(msg.getData().getString(Note.TITLE));
+        		
+        	} else if (msg.what == Note.NO_NOTES) {
+
+        		// if there are no notes, say so in the list_empty message
+    			listEmptyView.setText(R.string.strListEmptyNoNotes);
         	}
 		}
-
     };
 
 	@Override
