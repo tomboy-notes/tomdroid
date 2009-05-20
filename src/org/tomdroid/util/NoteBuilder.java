@@ -22,10 +22,12 @@
  */
 package org.tomdroid.util;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 
@@ -46,6 +48,7 @@ import android.os.Message;
 import android.util.Log;
 
 /*
+ * For now, you should only use this class for a Note fetched through the network
  * TODO remove duplication between here and AsyncNoteLoaderAndParser
  * 
  */
@@ -127,7 +130,7 @@ public class NoteBuilder implements Runnable {
 				BufferedReader in = new BufferedReader(new InputStreamReader(fin));
 				is = new InputSource(in);
 	        } else {
-	        	is = (InputSource) url.getContent();
+	        	is = new InputSource(new BufferedInputStream((InputStream) url.getContent()));
 	        }
 	        
 			if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "parsing note");

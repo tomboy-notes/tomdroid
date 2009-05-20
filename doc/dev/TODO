@@ -13,6 +13,5 @@ TODO tasks
 ...
 
 branch specific tasks
-- Port networkDAO to do the good stuff with Note (a la NoteBuilder)
 - Avoid code duplication between NoteBuilder and AsyncNoteLoaderAndParser
 

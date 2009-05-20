@@ -87,8 +87,8 @@ public class ViewNote extends Activity {
 
 					if (Tomdroid.LOGGING_ENABLED) Log.v(TAG,"ViewNote started: Loading a note from Web URL.");
 					
-					// FIXME test this! I should be bypassing all DAOs and Note's msg handling now
 					try {
+
 						note = new NoteBuilder().setCaller(handler).setInputSource(new URL(url)).build();
 					} catch (MalformedURLException e) {
 						// TODO catch correctly
