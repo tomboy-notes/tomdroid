@@ -60,6 +60,8 @@ Executor service launching worker threads (AsyncNoteLoaderAndParser)
 @ revno 95 of branch threading-improvements
 applying patch benchmark-r84.patch
 
+== SDK 1.0r1 ==
+
 Fixed Thread Pool (pool size 3)
 4 demo notes (emulator on Windows)
 cold average: 4400ms
@@ -87,6 +89,19 @@ hot average:   600ms
 cold average: 10048ms
 hot average:   6300ms
 
-
 Looking at the traceview traces, the usage pattern of the fixed thread is 
 better than the cached thread pool (which spawns almost 50 threads anyways)  
+
+== SDK 1.1r1 ==
+
+Fixed Thread Pool (pool size 1)
+real device ADP1 ~52 notes
+cold average: 16000ms
+hot average:   8150ms
+responsiveness: ui refreshes but scrolling / opening notes is too slow
+
+Fixed Thread Pool (pool size 2)
+real device ADP1 ~52 notes
+cold average: 13000ms
+hot average:   7250ms
+responsiveness: ui refreshes but scrolling / opening notes is too slow 
