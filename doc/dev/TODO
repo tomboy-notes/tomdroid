@@ -5,3 +5,6 @@ TODO tasks
 - internationalize strings with techniques like: http://developer.android.com/guide/topics/resources/available-resources.html#stringresources
 - implement application upgrade mechanism as suggested in http://developer.android.com/guide/publishing/publishing.html#marketupgrade 
 ...
+
+0.2.0 release
+- performance: don't parse datetime in xml this will improve performance and note ordering is not a target for 0.2.0 (we'll have to find something for later though)
