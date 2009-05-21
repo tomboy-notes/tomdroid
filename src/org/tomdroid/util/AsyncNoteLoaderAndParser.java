@@ -50,7 +50,7 @@ import android.util.Log;
 
 public class AsyncNoteLoaderAndParser {
 	private final ExecutorService pool;
-	private final static int poolSize = 3;
+	private final static int poolSize = 1;
 	private File path;
 	private NoteCollection noteCollection;
 	private Handler parentHandler;
