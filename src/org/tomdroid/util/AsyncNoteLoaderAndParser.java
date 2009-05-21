@@ -103,7 +103,6 @@ public class AsyncNoteLoaderAndParser {
 			file = f;
 		}
 
-		@Override
 		public void run() {
 			
 			note.setFileName(file.getAbsolutePath());
