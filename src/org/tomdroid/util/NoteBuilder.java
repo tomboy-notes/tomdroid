@@ -99,7 +99,6 @@ public class NoteBuilder implements Runnable {
 		return note;
 	}
 	
-	@Override
 	public void run() {
 		
 		

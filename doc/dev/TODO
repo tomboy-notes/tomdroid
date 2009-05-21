@@ -10,8 +10,5 @@ TODO tasks
 - Performance: joda time takes up 30% of the xml parsing time!!
 - Replace NoteCollection's structure to a hashmap or hashtable
 - Evaluate the proper number of threads to spawn for note parsing
-...
-
-branch specific tasks
 - Avoid code duplication between NoteBuilder and AsyncNoteLoaderAndParser
-
+...
