@@ -1,10 +1,15 @@
 TODO tasks
 ==========
+Unclassified:
 - Fix the TODO and FIXME statements all over in the code
 - The android logo should have a white border around it, fix that then regen the logo
 - internationalize strings with techniques like: http://developer.android.com/guide/topics/resources/available-resources.html#stringresources
-- implement application upgrade mechanism as suggested in http://developer.android.com/guide/publishing/publishing.html#marketupgrade 
-...
 
-0.2.0 release
+0.2.0 release:
+- 0.2.0 launchpad blueprints
 - performance: don't parse datetime in xml this will improve performance and note ordering is not a target for 0.2.0 (we'll have to find something for later though)
+- Verify 1.5 compliance, http://android-developers.blogspot.com/2009/04/future-proofing-your-apps.html
+
+Market release:
+- implement application upgrade mechanism as suggested in http://developer.android.com/guide/publishing/publishing.html#marketupgrade
+- read / edit notes
