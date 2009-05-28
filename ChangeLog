@@ -1,3 +1,24 @@
+2009-05-21  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* doc/dev/TODO: Added 0.2.0 goals and longer term elements in TODO.
+	Reorganized a bit too.
+
+2009-04-24  Michael Fletcher <m.fletcher@theplanet.ca>
+
+	* .settings,
+	* .settings/org.eclipse.jdt.core.prefs,
+	* .settings/org.eclipse.jdt.ui.prefs: Added.
+
+	* src/org/tomdroid/dao/NoteFileSystemDAOImpl.java,
+	* src/org/tomdroid/dao/NoteNetworkDAOImpl.java,
+	* src/org/tomdroid/dao/mock/NoteNetworkDAOMock.java,
+	* src/org/tomdroid/ui/Tomdroid.java,
+	* src/org/tomdroid/ui/ViewNote.java: Modified.
+
+	Default eclipse compiler settings set at Java 5. Removed @override on
+	interface methods implementation (Java 6 vs Java 5 @override behavior).
+	Fixes #364770; https://launchpad.net/bugs/364770 fixed
+
 === 0.1.0 ===
 2009-04-13  Olivier Bilodeau <olivier@bottomlesspit.org>
 
