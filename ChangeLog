@@ -1,3 +1,147 @@
+2009-05-21  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/util/AsyncNoteLoaderAndParser.java: For now,	I think
+	that what makes most sense is to run the pool at one thread to keep the
+	UI as responsive as possible. I might come back to this value in the
+	future though.
+
+	* doc/dev/threading-improvement/benchmarks.txt: Added new tests results
+
+	* src/org/tomdroid/util/AsyncNoteLoaderAndParser.java: oops.. left
+	behind a @Override statement that should not be there when using Java 5
+	(vs java 6) build specs: removed (mistake when I updated from trunk)
+
+2009-05-20  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* doc/dev/TODO,
+	* src/org/tomdroid/ui/ViewNote.java,
+	* src/org/tomdroid/util/NoteBuilder.java: Viewing a note from the Web
+	works again.
+
+	Proper wrapping in NoteBuilder to convert url.getContent to a proper
+	InputSource object to be consumed by the xml parsing.
+	Removed related (obsoleted) TODO task
+	Removed FIXME comment in ViewNote
+
+2009-05-19  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/Note.java,
+	* src/org/tomdroid/NoteCollection.java,
+	* src/org/tomdroid/ui/Tomdroid.java,
+	* src/org/tomdroid/util/AsyncNoteLoaderAndParser.java: 
+	AsyncNoteLoaderAndParser now notifies main UI if there are no notes to
+	be parsed.
+
+	Transformed AsyncNoteLoaderAndParser from a runnable to a normal class
+	(listing files is not time consuming enough for the added complexity).
+	It now sends an empty message to ui.Tomdroid if no notes are in the
+	tomdroid/ folder.
+	Added NO_NOTES msg type (int constant) to Note
+	NoteCollection uses modified AsyncNoteLoaderAndParser
+
+	* doc/dev/TODO: Updated developer TODO tasks
+
+	* doc/dev/threading-improvement/benchmarks.txt: Updated benchmark
+	results with other test I've made
+
+2009-05-06  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/NoteCollection.java,
+	* src/org/tomdroid/util/AsyncNoteLoaderAndParser.java,
+	* src/org/tomdroid/util/NoteBuilder.java: NoteCollection is now	using
+	AsyncNoteLoaderAndParser instead of looping on NoteBuilder. Removed the
+	deprecated NoteFilter.
+
+	AsyncNoteLoaderAndParser fully implemented: it loops through the files
+	and launch worker threads using a thread pool who does the loading and
+	parsing of a note.
+	Added a comment to NoteBuilder fix code duplication some day.
+
+2009-04-30  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/dao,
+	* src/org/tomdroid/dao/NoteDAO.java,
+	* src/org/tomdroid/dao/NoteNetworkDAOImpl.java,
+	* src/org/tomdroid/dao/mock,
+	* src/org/tomdroid/dao/mock/NoteNetworkDAOMock.java: Removed.
+
+	No longer used.
+
+2009-04-30  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/Note.java: Simplified the Note class since we no
+	longer uses fetchNoteFromWebAsync() and its handling mechanism.
+
+	* src/org/tomdroid/NoteCollection.java,
+	* src/org/tomdroid/ui/ViewNote.java,
+	* src/org/tomdroid/util/NoteBuilder.java: Web notes are now loaded
+	through NoteBuilder instead of using a DAO
+
+	NoteBuilder no longer supports setNoteFilename() but you should use
+	setInputSource() instead. This is a more generic abstraction to allow
+	loading from the web or locally. Modified build() accordingly and
+	callers.
+	Ported ViewNote to using NoteBuilder instead of the DAO
+
+2009-04-29  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/Note.java,
+	* src/org/tomdroid/NoteCollection.java: Modified.
+
+	* src/org/tomdroid/dao/NoteFileSystemDAOImpl.java: Renamed to
+	  src/org/tomdroid/util/NoteBuilder.java and modified.
+
+	Moved over the parsing / file loading responsability into NoteBuilder
+	(was NoteFileSystemDAOImpl). We bypass the double message sent from the
+	DAO to the Note to Tomdroid and use instead: NoteBuilder send a message
+	straight to Tomdroid
+	Details:
+	- Note can now be instanciated with no parameters
+	- Import cleaned in Note
+	- Removed the fetchAndParseNoteFromFileSystemAsync() method of Note
+	- NoteCollection now uses NoteBuilder to create a Note instead of
+	instanciating a note and asking it to fetch itself
+	- Complete refactoring of NoteFileSystemDAOImpl into NoteBuilder
+
+2009-04-28  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/dao/NoteFileSystemDAOImpl.java: Clean dead code and
+	organized imports. Pre-refactoring steps.
+
+	Updating copyrights
+
+2009-04-27  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* doc/dev/threading-improvement/benchmarks.txt: Added some benchmark
+	information gathered.
+
+	* src/org/tomdroid/dao/NoteFileSystemDAOImpl.java: No more temporary
+	string in NoteFileSystemDAOImpl. The InputSource is going straight into
+	the xml parsing.
+
+2009-04-22  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* doc/dev/threading-improvement/enable-traceview-r84.patch: Added.
+
+	Added a patch that add calls to generate Traceview dump file
+	(applies cleanly on r84 of threading-improvements branch)
+
+2009-04-21  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/Note.java,
+	* src/org/tomdroid/dao/NoteFileSystemDAOImpl.java: Moved xml parsing
+	code out from the Note into the NoteDAO to see if it could be improved
+	by threading code (warning: ugly)
+
+2009-04-21  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* doc/dev/threading-improvement,
+	* doc/dev/threading-improvement/benchmark-r84.patch,
+	* doc/dev/threading-improvement/benchmarks.txt: Added.
+
+	Started to do some benchmarks of the current code. Then I will apply
+	changes and compare if performance is better or worse.
+
 === 0.1.0 ===
 2009-04-13  Olivier Bilodeau <olivier@bottomlesspit.org>
 
