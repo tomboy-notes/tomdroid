@@ -22,33 +22,13 @@
  */
 package org.tomdroid;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.StringReader;
-
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
-import org.tomdroid.dao.NoteDAO;
-import org.tomdroid.dao.NoteFileSystemDAOImpl;
-import org.tomdroid.dao.NoteNetworkDAOImpl;
-import org.tomdroid.ui.Tomdroid;
-import org.tomdroid.xml.NoteHandler;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-import org.xml.sax.XMLReader;
 
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.StyleSpan;
-import android.util.Log;
 
 public class Note {
 
@@ -60,6 +40,7 @@ public class Note {
 	public static final String FILE = "file";
 	public static final String NOTE_CONTENT = "note-content";
 	public static final int NOTE_RECEIVED_AND_VALID = 1;
+	public static final int NO_NOTES = 2;
 	public static final String[] PROJECTION = { Note.ID, Note.TITLE, Note.FILE, Note.MODIFIED_DATE };
 	
 	// Logging info
@@ -77,25 +58,11 @@ public class Note {
 	private SpannableStringBuilder noteContent = new SpannableStringBuilder();
 	private String url;
 	private String fileName;
-	private File file;
 	private String title;
 	private DateTime lastChangeDate;
 	private int dbId;
 	
-	// Handles async state
-	private Handler parentHandler;
-	
-	// TODO is this still useful as of iteration3?
-	public Note(Handler hdl, String url) {
-		this.parentHandler = hdl;
-		this.url = url;
-	}
-	
-	public Note(Handler hdl, File file) {
-		this.parentHandler = hdl;
-		this.file = file;
-		this.fileName = file.getAbsolutePath();
-	}
+	public Note() {}
 	
 	public String getUrl() {
 		return url;
@@ -136,30 +103,6 @@ public class Note {
 	public void setDbId(int id) {
 		this.dbId = id;
 	}
-
-	/**
-	 * Asynchronously get the note from URL
-	 */
-	public void fetchNoteFromWebAsync() {
-		
-		//  TODO my naive way of using mock objects
-		//NotesDAOImpl notesDAO = new NotesDAOImpl(handler, noteURL);
-		NoteNetworkDAOImpl notesDAO = new NoteNetworkDAOImpl(handler, url);
-
-		// asynchronous call to get the note's content
-		notesDAO.getContent();
-	}
-	
-	/**
-	 * Asynchronously get the note from file system and parse it
-	 */
-	public void fetchAndParseNoteFromFileSystemAsync() {
-		
-		NoteFileSystemDAOImpl notesDAO = new NoteFileSystemDAOImpl(handler, file);
-
-		// asynchronous call to get the note's content
-		notesDAO.getContent();
-	}
 	
 	public SpannableStringBuilder getNoteContent() {
 		return noteContent;
@@ -175,66 +118,6 @@ public class Note {
 		sNoteContent.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 17, 35, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 		return sNoteContent;
 	}
-	
-	// TODO I don't know if this double handler thingy is efficient but it was (for me) the more maintainable 
-	// way of doing this. When I'll know more about Android, I should come back to this
-    private Handler handler = new Handler() {
-    	
-        @Override
-        public void handleMessage(Message msg) {
-        	
-        	String noteStr = msg.getData().getString(NoteDAO.NOTE);
-        	if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "Note handler triggered.");
-        	
-        	// TODO eeuuhhhh, see buildNote()'s todo regarding exceptions..
-        	try {
-				buildNote(noteStr);
-			} catch (ParserConfigurationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SAXException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        	
-        	warnHandler();
-		}
-    };
-    
-    // TODO I should not throw but handle or wrap exceptions here, I am being lazy I guess
-    private void buildNote(String noteStream) throws ParserConfigurationException, SAXException, IOException {
-    	
-    	// XML 
-    	// Get a SAXParser from the SAXPArserFactory
-        SAXParserFactory spf = SAXParserFactory.newInstance();
-        SAXParser sp = spf.newSAXParser();
-
-        // Get the XMLReader of the SAXParser we created
-        XMLReader xr = sp.getXMLReader();
-        
-        // Create a new ContentHandler, send it this note to fill and apply it to the XML-Reader
-        NoteHandler xmlHandler = new NoteHandler(this);
-        xr.setContentHandler(xmlHandler);
-        
-        if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "parsing note");
-        // Parse the xml-data from the note String and it will take care of loading the note
-        xr.parse(new InputSource(new StringReader(noteStream)));
-    }
-    
-    private void warnHandler() {
-		
-		// notify the main UI that we are done here (sending an ok along with the note's title)
-		Message msg = Message.obtain();
-		Bundle bundle = new Bundle();
-		bundle.putString(Note.TITLE, getTitle());
-		msg.setData(bundle);
-		msg.what = NOTE_RECEIVED_AND_VALID;
-		
-		parentHandler.sendMessage(msg);
-    }
 
 	@Override
 	public String toString() {

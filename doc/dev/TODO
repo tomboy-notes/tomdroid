@@ -4,6 +4,12 @@ Unclassified:
 - Fix the TODO and FIXME statements all over in the code
 - The android logo should have a white border around it, fix that then regen the logo
 - internationalize strings with techniques like: http://developer.android.com/guide/topics/resources/available-resources.html#stringresources
+- jodatime XML time parsing complains on note loading:
+  D/dalvikvm(  194): Ignoring not-yet-ready Lorg/joda/time/DateTime;, using slow path
+  I don't want slow path!
+- Performance: joda time takes up 30% of the xml parsing time!!
+- Replace NoteCollection's structure to a hashmap or hashtable
+- Avoid code duplication between NoteBuilder and AsyncNoteLoaderAndParser
 
 0.2.0 release:
 - 0.2.0 launchpad blueprints

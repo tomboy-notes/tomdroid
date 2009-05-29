@@ -22,11 +22,14 @@
  */
 package org.tomdroid.ui;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.regex.Matcher;
 
 import org.tomdroid.Note;
 import org.tomdroid.NoteCollection;
 import org.tomdroid.R;
+import org.tomdroid.util.NoteBuilder;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -84,11 +87,13 @@ public class ViewNote extends Activity {
 
 					if (Tomdroid.LOGGING_ENABLED) Log.v(TAG,"ViewNote started: Loading a note from Web URL.");
 					
-					// a Web note means a new note that we download
-					note = new Note(handler, url);
-					
-					// asynchronous call to fetch the note, the callback will come from the handler
-					note.fetchNoteFromWebAsync();
+					try {
+
+						note = new NoteBuilder().setCaller(handler).setInputSource(new URL(url)).build();
+					} catch (MalformedURLException e) {
+						// TODO catch correctly
+						e.printStackTrace();
+					}
 
 				} else if (file != null) {
 

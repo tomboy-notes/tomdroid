@@ -24,13 +24,13 @@ package org.tomdroid;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
 
 import org.tomdroid.ui.Tomdroid;
+import org.tomdroid.util.AsyncNoteLoaderAndParser;
 
 import android.os.Handler;
 import android.util.Log;
@@ -89,6 +89,7 @@ public class NoteCollection {
 		return null;
 	}
 	
+	// TODO also throw a empty exception that we will catch in tomdroid and display the empty notelist msg
 	public void loadNotes(Handler hndl) throws FileNotFoundException {
 		File notesRoot = new File(Tomdroid.NOTES_PATH);
 		
@@ -96,15 +97,10 @@ public class NoteCollection {
 			throw new FileNotFoundException("Tomdroid notes folder doesn't exist. It is configured to be at: "+Tomdroid.NOTES_PATH);
 		}
 		
-		for (File file : notesRoot.listFiles(new NotesFilter())) {
-
-			Note note = new Note(hndl, file);
-			
-			note.fetchAndParseNoteFromFileSystemAsync();
-			notes.add(note);
-        }
+		AsyncNoteLoaderAndParser asyncLoader = new AsyncNoteLoaderAndParser(notesRoot, this, hndl);
+		asyncLoader.readAndParseNotes();
 	}
-	
+		
 	/**
 	 * Builds a regular expression pattern that will match any of the note title currently in the collection.
 	 * Useful for the Linkify to create the links to the notes.
@@ -124,16 +120,6 @@ public class NoteCollection {
 
 		// return a compiled match pattern
 		return Pattern.compile(pt);
-	}
-	
-	/**
-	 * Simple filename filter that grabs files ending with .note
-	 * TODO move into its own static class in a util package
-	 */
-	class NotesFilter implements FilenameFilter {
-		public boolean accept(File dir, String name) {
-			return (name.endsWith(".note"));
-		}
 	}
 
 	// singleton pattern
