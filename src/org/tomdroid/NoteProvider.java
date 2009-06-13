@@ -58,6 +58,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
+import android.provider.LiveFolders;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -72,10 +73,12 @@ public class NoteProvider extends ContentProvider {
 	private static final String DEFAULT_SORT_ORDER = Note.ID;
 	
     private static HashMap<String, String> notesProjectionMap;
-
+    private static HashMap<String, String> liveFolderProjectionMap;
+    
     private static final int NOTES = 1;
     private static final int NOTE_ID = 2;
     private static final int NOTE_TITLE = 3;
+    private static final int LIVE_FOLDER_NOTES = 4;
 
     private static final UriMatcher uriMatcher;
     
@@ -142,6 +145,13 @@ public class NoteProvider extends ContentProvider {
         	qb.setProjectionMap(notesProjectionMap);
         	// TODO appendWhere + whereArgs instead (new String[] whereArgs = uri.getLas..)?
         	qb.appendWhere(Note.TITLE + " LIKE '" + uri.getLastPathSegment()+"'");
+        	break;
+        
+        case LIVE_FOLDER_NOTES:
+        	qb.setTables(DB_TABLE_NOTES);
+        	qb.setProjectionMap(liveFolderProjectionMap);
+        	// sort by last modified date, newest first
+        	sortOrder = Note.MODIFIED_DATE + " DESC";
         	break;
 
         default:
@@ -277,11 +287,24 @@ public class NoteProvider extends ContentProvider {
         uriMatcher.addURI(Tomdroid.AUTHORITY, "notes", NOTES);
         uriMatcher.addURI(Tomdroid.AUTHORITY, "notes/#", NOTE_ID);
         uriMatcher.addURI(Tomdroid.AUTHORITY, "notes/*", NOTE_TITLE);
+        uriMatcher.addURI(Tomdroid.AUTHORITY, "live_folder/notes", LIVE_FOLDER_NOTES);
 
         notesProjectionMap = new HashMap<String, String>();
         notesProjectionMap.put(Note.ID, Note.ID);
         notesProjectionMap.put(Note.TITLE, Note.TITLE);
         notesProjectionMap.put(Note.FILE, Note.FILE);
         notesProjectionMap.put(Note.MODIFIED_DATE, Note.MODIFIED_DATE);
+        
+        liveFolderProjectionMap = new HashMap<String, String>();
+        liveFolderProjectionMap.put(LiveFolders._ID, Note.ID + " AS " + LiveFolders._ID);
+        liveFolderProjectionMap.put(LiveFolders.NAME, Note.TITLE + " AS " + LiveFolders.NAME);
+        
+        // this projection creates a new column for
+        // the intent to be used when an item is clicked
+        // looks like : "content://org.tomdroid.notes/notes/id"
+        // "||" is the concatenation operator in sqlite
+        liveFolderProjectionMap.put(LiveFolders.INTENT,
+        		"'content://" + Tomdroid.AUTHORITY + "/notes/'" + " || " + Note.ID
+        		+ " AS " + LiveFolders.INTENT);
     }
 }

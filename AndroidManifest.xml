@@ -29,6 +29,10 @@
 		<provider android:name="NoteProvider"
             android:authorities="org.tomdroid.notes"
         />
+<activity android:name=".data.NotesLiveFolder" android:label="Notes"><intent-filter><action android:name="android.intent.action.CREATE_LIVE_FOLDER"></action>
+<category android:name="android.intent.category.DEFAULT"></category>
+</intent-filter>
+</activity>
 </application>
 	<uses-permission android:name="android.permission.INTERNET" />
 </manifest> 
