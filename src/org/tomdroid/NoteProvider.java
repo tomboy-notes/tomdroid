@@ -295,13 +295,17 @@ public class NoteProvider extends ContentProvider {
         notesProjectionMap.put(Note.FILE, Note.FILE);
         notesProjectionMap.put(Note.MODIFIED_DATE, Note.MODIFIED_DATE);
         
+        // Projection map for the live folders
+        // The columns provided to the live folders are id, name and intent.
+        // The description column could have been used but I don't know
+        // what to put inside.
         liveFolderProjectionMap = new HashMap<String, String>();
         liveFolderProjectionMap.put(LiveFolders._ID, Note.ID + " AS " + LiveFolders._ID);
         liveFolderProjectionMap.put(LiveFolders.NAME, Note.TITLE + " AS " + LiveFolders.NAME);
         
-        // this projection creates a new column for
+        // This projection creates a new column for
         // the intent to be used when an item is clicked
-        // looks like : "content://org.tomdroid.notes/notes/id"
+        // Looks like : "content://org.tomdroid.notes/notes/id"
         // "||" is the concatenation operator in sqlite
         liveFolderProjectionMap.put(LiveFolders.INTENT,
         		"'content://" + Tomdroid.AUTHORITY + "/notes/'" + " || " + Note.ID
