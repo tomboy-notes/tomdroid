@@ -34,7 +34,8 @@
 			  android:layout_width="wrap_content" 
 			  android:layout_height="wrap_content"
 			  android:singleLine="false"
-			  android:text="@string/strWait" 
+			  android:text="@string/strWait"
+			  android:padding="10dip"
 			  />
 			  
 </ScrollView>
