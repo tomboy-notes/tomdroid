@@ -12,9 +12,6 @@ Unclassified:
 - Avoid code duplication between NoteBuilder and AsyncNoteLoaderAndParser
 - Follow UI design guidelines (http://developer.android.com/guide/practices/ui_guidelines/activity_task_design.html)
 
-Implement lifecycle elements:
-- test with "Immediately destroy activities" debug setting to handle onSaveInstanceState(bundle) / onCreate(bundle)
-
 Port threading to Android's mechanism (maybe wait to check for 1.5's new API):
 - Check Handler / Looper / AsyncQueryHandler classes
 
