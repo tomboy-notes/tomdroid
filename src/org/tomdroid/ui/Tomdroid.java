@@ -80,6 +80,12 @@ public class Tomdroid extends ListActivity {
 	// UI to data model glue
 	private ArrayAdapter<String> notesListAdapter;
 	private TextView listEmptyView;
+	
+	// Bundle keys for saving state
+	private static final String WARNING_SHOWN = "w";
+	
+	// State variables
+	private boolean warningShown = false;
 
 	
     /** Called when the activity is created. */
@@ -89,16 +95,21 @@ public class Tomdroid extends ListActivity {
         
         setContentView(R.layout.main);
         
-        // Warn that this is a "will eat your babies" release 
-		new AlertDialog.Builder(this).setMessage(getString(R.string.strWelcome))
-		 .setTitle("Warning")
-		 .setNeutralButton("Ok", new OnClickListener() {
-			public void onClick(DialogInterface dialog,
-								int which) {
-				dialog.dismiss();
-			}})
-		 .setIcon(R.drawable.icon)
-		 .show();
+        // did we already show the warning and got destroyed by android's activity killer?
+        if (savedInstanceState == null || !savedInstanceState.getBoolean(WARNING_SHOWN)) {
+
+        	// Warn that this is a "will eat your babies" release 
+    		new AlertDialog.Builder(this).setMessage(getString(R.string.strWelcome))
+    		 .setTitle("Warning")
+    		 .setNeutralButton("Ok", new OnClickListener() {
+    			public void onClick(DialogInterface dialog,
+    								int which) {
+    				warningShown = true;
+    				dialog.dismiss();
+    			}})
+    		 .setIcon(R.drawable.icon)
+    		 .show();
+        }
         
 	    // listAdapter that binds the UI to the notes names
 		notesListAdapter = new ArrayAdapter<String>(this, R.layout.main_list_item);
@@ -158,6 +169,16 @@ public class Tomdroid extends ListActivity {
         }
         
         return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		
+		// saving the state of the warning dialog
+		if (warningShown) {
+			outState.putBoolean(WARNING_SHOWN, true);
+		}
 	}
 
 	private void showAboutDialog() {
