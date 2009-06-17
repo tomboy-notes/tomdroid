@@ -4,7 +4,7 @@
  Tomboy on Android
  http://www.launchpad.net/tomdroid
 
- Copyright 2008 Olivier Bilodeau <olivier@bottomlesspit.org>
+ Copyright 2008, 2009 Olivier Bilodeau <olivier@bottomlesspit.org>
  
  This file is part of Tomdroid.
  
@@ -36,6 +36,7 @@
 			  android:singleLine="false"
 			  android:text="@string/strWait"
 			  android:padding="10dip"
+			  android:textColor="#ffb8bcb8"
 			  />
 			  
 </ScrollView>

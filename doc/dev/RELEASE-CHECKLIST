@@ -1,0 +1,5 @@
+Make sure to do this before every release:
+
+- Test with "Immediately destroy activities" debug setting
+- Remove logging (set Tomdroid.LOGGING_ENABLED to false)
+- Follow Android's doc on publishing apps to the marketplace
