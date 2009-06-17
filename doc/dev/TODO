@@ -2,7 +2,7 @@ TODO tasks
 ==========
 Unclassified:
 - Fix the TODO and FIXME statements all over in the code
-- The android logo should have a white border around it, fix that then regen the logo
+- The android logo should have a white border around it, fix that then regen the logo (http://android-developers.blogspot.com/2009/05/android-icon-guidelines.html)
 - internationalize strings with techniques like: http://developer.android.com/guide/topics/resources/available-resources.html#stringresources
 - jodatime XML time parsing complains on note loading:
   D/dalvikvm(  194): Ignoring not-yet-ready Lorg/joda/time/DateTime;, using slow path
@@ -10,9 +10,7 @@ Unclassified:
 - Performance: joda time takes up 30% of the xml parsing time!!
 - Replace NoteCollection's structure to a hashmap or hashtable
 - Avoid code duplication between NoteBuilder and AsyncNoteLoaderAndParser
-
-Implement lifecycle elements:
-- test with "Immediately destroy activities" debug setting to handle onSaveInstanceState(bundle) / onCreate(bundle)
+- Follow UI design guidelines (http://developer.android.com/guide/practices/ui_guidelines/activity_task_design.html)
 
 Port threading to Android's mechanism (maybe wait to check for 1.5's new API):
 - Check Handler / Looper / AsyncQueryHandler classes
@@ -22,7 +20,6 @@ File format: (to be in sync with Tomdroid's)
 - check everrnote dtd for inspiration: http://www.evernote.com/about/developer/
 
 0.2.0 release:
-- 0.2.0 launchpad blueprints
 - performance: don't parse datetime in xml this will improve performance and note ordering is not a target for 0.2.0 (we'll have to find something for later though)
 - Verify 1.5 compliance, http://android-developers.blogspot.com/2009/04/future-proofing-your-apps.html
 
