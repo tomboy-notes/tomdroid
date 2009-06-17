@@ -20,7 +20,6 @@ File format: (to be in sync with Tomdroid's)
 - check everrnote dtd for inspiration: http://www.evernote.com/about/developer/
 
 0.2.0 release:
-- 0.2.0 launchpad blueprints
 - performance: don't parse datetime in xml this will improve performance and note ordering is not a target for 0.2.0 (we'll have to find something for later though)
 - Verify 1.5 compliance, http://android-developers.blogspot.com/2009/04/future-proofing-your-apps.html
 
