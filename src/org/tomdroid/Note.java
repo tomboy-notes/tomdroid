@@ -64,6 +64,7 @@ public class Note {
 	private DateTime lastChangeDate;
 	private int dbId;
 	private ArrayList<String> tags;
+	private boolean isNoteBookTemplate = false;
 	
 	public Note() {}
 	
@@ -117,14 +118,21 @@ public class Note {
 		}
 		
 		tags.add(tag);
+		
+		if (tag.equals("system:template")) isNoteBookTemplate = true;
 	}
 	
 	public boolean removeTag(String tag) {
 		if (tags != null) {
+			if (tag.equals("system:template")) isNoteBookTemplate = false;
 			return tags.remove(tag);
 		}
 		
 		return false;
+	}
+	
+	public boolean isNotebookTemplate() {
+		return isNoteBookTemplate;
 	}
 	
 	public SpannableStringBuilder getNoteContent() {

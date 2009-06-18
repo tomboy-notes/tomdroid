@@ -139,12 +139,17 @@ public class AsyncNoteLoaderAndParser {
 				e.printStackTrace();
 			}
 			
-			synchronized (noteCollection) {
-				noteCollection.addNote(note);
+			// we don't care for notebook templates at the moment.
+			// and when we do, is it a good idea to put them alongside the rest of the notes? 
+			if (!note.isNotebookTemplate()) {
+				
+				synchronized (noteCollection) {
+					noteCollection.addNote(note);
+				}
+				
+				// notify UI that we are done here and send result 
+				warnHandler();
 			}
-			
-			// notify UI that we are done here and send result 
-			warnHandler();
 		}
 		
 	    private void warnHandler() {
