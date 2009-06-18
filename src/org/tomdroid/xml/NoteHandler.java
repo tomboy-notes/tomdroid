@@ -83,6 +83,8 @@ public class NoteHandler extends DefaultHandler {
 	// Bullet list-related
 	private final static String LIST = "list";
 	private final static String LIST_ITEM = "list-item";
+	// Tags related
+	private static final String NOTE_TAG = "tag"; 
 	
 	// accumulate notecontent is this var since it spans multiple xml tags
 	private SpannableStringBuilder ssb;
@@ -111,6 +113,8 @@ public class NoteHandler extends DefaultHandler {
 			inTitleTag = true;
 		} else if (localName.equals(LAST_CHANGE_DATE)) {
 			inLastChangeDateTag = true;
+		} else if (localName.equals(NOTE_TAG)) {
+			inNoteTag = true;
 		}
 
 		// if we are in note-content, keep and convert formatting tags
@@ -156,6 +160,8 @@ public class NoteHandler extends DefaultHandler {
 			inTitleTag = false;
 		} else if (localName.equals(LAST_CHANGE_DATE)) {
 			inLastChangeDateTag = false;
+		} else if (localName.equals(NOTE_TAG)) {
+			inNoteTag = false;
 		}
 		
 		// if we are in note-content, keep and convert formatting tags
@@ -187,7 +193,8 @@ public class NoteHandler extends DefaultHandler {
 		}
 	}
 
-	// FIXME we'll have to think about how we handle the title soon.. IMHO there's a problem with duplicating the data from the <title> tag and also putting it straight into the note.. this will have to be reported to tomboy 
+	// FIXME we'll have to think about how we handle the title soon.. IMHO there's a problem with duplicating the data from the <title> tag and also putting it straight into the note.. this will have to be reported to tomboy
+	// FIXME this method can give us the contents across multiple strings. the title, last change date and note tag are handled wrongly.
 	@Override
 	public void characters(char[] ch, int start, int length)
 			throws SAXException {
@@ -200,6 +207,8 @@ public class NoteHandler extends DefaultHandler {
 			//TODO there is probably a parsing error here we should trap 
 			DateTimeFormatter fmt = ISODateTimeFormat.dateTime();
 			note.setLastChangeDate(fmt.parseDateTime(currentString));
+		} else if (inNoteTag) {
+			note.addTag(currentString);
 		}
 
 		if (inNoteContentTag) {

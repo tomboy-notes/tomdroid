@@ -22,6 +22,8 @@
  */
 package org.tomdroid;
 
+import java.util.ArrayList;
+
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
@@ -61,6 +63,7 @@ public class Note {
 	private String title;
 	private DateTime lastChangeDate;
 	private int dbId;
+	private ArrayList<String> tags;
 	
 	public Note() {}
 	
@@ -102,6 +105,26 @@ public class Note {
 
 	public void setDbId(int id) {
 		this.dbId = id;
+	}
+	
+	public ArrayList<String> getTags() {
+		return tags;
+	}
+	
+	public void addTag(String tag) {
+		if (tags == null) {
+			tags = new ArrayList<String>();
+		}
+		
+		tags.add(tag);
+	}
+	
+	public boolean removeTag(String tag) {
+		if (tags != null) {
+			return tags.remove(tag);
+		}
+		
+		return false;
 	}
 	
 	public SpannableStringBuilder getNoteContent() {
