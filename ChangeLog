@@ -1,18 +1,28 @@
-2009-05-21  Olivier Bilodeau <olivier@bottomlesspit.org>
+2009-06-17  Olivier Bilodeau <olivier@bottomlesspit.org>
 
-	* doc/dev/TODO: Added 0.2.0 goals and longer term elements in TODO.
-	Reorganized a bit too.
+	* res/layout/note_view.xml: Hardcoded textcolor in note-view activity.
+	Fixes bug #364425: Text color becomes grey when dragging;
+	https://launchpad.net/bugs/364425 fixed
 
-	* src/org/tomdroid/util/AsyncNoteLoaderAndParser.java: For now,	I think
-	that what makes most sense is to run the pool at one thread to keep the
-	UI as responsive as possible. I might come back to this value in the
-	future though.
+2009-06-17  Olivier Bilodeau <olivier@bottomlesspit.org>
 
-	* doc/dev/threading-improvement/benchmarks.txt: Added new tests results
+	* src/org/tomdroid/ui/Tomdroid.java: Saving warning dialog state (shown
+	or not).
 
-	* src/org/tomdroid/util/AsyncNoteLoaderAndParser.java: oops.. left
-	behind a @Override statement that should not be there when using Java 5
-	(vs java 6) build specs: removed (mistake when I updated from trunk)
+	Implemented proper lifecycle mechanism to save dialog state: override
+	onSaveInstanceState(bundle) and onCreate(bundle) for the Tomdroid
+	activity.
+
+	* .bzrignore: sdcard.img.private is now ignored from bzr. Feel free to
+	have your own when developping.
+
+2009-06-02  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* AndroidManifest.xml: app lifecycle fix
+
+	ui.Tomdroid (note list) is now in singleTop mode meaning that it
+	should always be at the top of a task stack. It think this reflects
+	the usage pattern the best. Updated TODO accordingly
 
 2009-05-21  Olivier Bilodeau <olivier@bottomlesspit.org>
 
