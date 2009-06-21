@@ -37,12 +37,14 @@
     <string name="menuAbout">About</string>
     <string name="strWelcome">
     	Welcome to Tomdroid.
-    	\nPlease note that this is beta quality software and that it contains known problems.
-    	\n\nAndroid\'s application lifecycle was not considered for this release. This means that you should close
-    	the application as soon as you are not using it. Not doing so might result in the app crashing or reduced
-    	battery life.
-    	\n\nI am well aware of these issues and intend to work on them quickly but I also wanted to get something
-    	out and tested as quickly as possible.\n
+    	\n\nPlease note that this is beta quality software and that it contains known problems. 
+    	Like its inability to edit notes and its slow startup.
+
+    	\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something
+    	out and tested as quickly as possible.
+    	
+    	\n\nIf you would like to contribute, help at all levels would be appreciated. 
+    	Hop on board on launchpad.net/tomdroid and contact us!\n
     </string>
     <string name="strAbout">
     	%1$s
