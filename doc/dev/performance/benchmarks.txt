@@ -17,7 +17,7 @@ cold average: 12800ms
 hot average:   8200ms
 
 Fixed Thread Pool (pool size 1)
-emulator 1.1 on linux 55 demo notes
+emulator 1.5 on linux 55 demo notes
 cold average: 14000ms
 hot average:   9500ms
 
