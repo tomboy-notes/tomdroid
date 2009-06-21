@@ -25,6 +25,7 @@
     android:orientation="vertical"
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content"
+	android:padding="10dip"
 	>
 
 	<TextView android:id="@+id/strURL" 
@@ -33,7 +34,9 @@
 			  android:text="@string/strURL" 
 			  />
 			  
-	<EditText android:id="@+id/txtURL" 
+	<EditText android:id="@+id/txtURL"
+		      android:singleLine="true"
+		      android:nextFocusDown="@+id/btnOk"
 			  android:layout_width="fill_parent"
 		      android:layout_height="wrap_content"
 		      android:layout_below="@+id/strURL"
