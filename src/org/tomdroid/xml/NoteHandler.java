@@ -196,10 +196,11 @@ public class NoteHandler extends DefaultHandler {
 		
 		if (inTitleTag) {
 			note.setTitle(currentString);
-		} else if (inLastChangeDateTag) {
-			//TODO there is probably a parsing error here we should trap 
-			DateTimeFormatter fmt = ISODateTimeFormat.dateTime();
-			note.setLastChangeDate(fmt.parseDateTime(currentString));
+// commented out Date parsing for 0.2.0 since I don't plan to sort notes based on that yet and it is a big performance regression
+//		} else if (inLastChangeDateTag) {
+//			//TODO there is probably a parsing error here we should trap 
+//			DateTimeFormatter fmt = ISODateTimeFormat.dateTime();
+//			note.setLastChangeDate(fmt.parseDateTime(currentString));
 		}
 
 		if (inNoteContentTag) {
