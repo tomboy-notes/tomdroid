@@ -1,5 +1,23 @@
 Benchmarks
 
+Disabled date parsing on last-change-date (joda time xml timeformat)
+====================================================================
+@ revno 117 of branch trunk/
+
+Real device ADP1 on Android 1.1 ~55 notes
+cold average: 5100ms
+hot average:  4600ms
+responsiveness: ui refreshes but scrolling / opening notes is slow until parsing is over
+
+Emulator 1.1 on linux 55 demo notes
+cold average: 8100ms
+hot average:  8000ms
+
+Emulator 1.5 on linux 55 demo notes
+cold average: 9100ms
+hot average:  8700ms
+
+
 Hard-coded 8k buffer in AsyncNoteLoaderAndParser's BufferedReader
 =================================================================
 @ revno 114 of branch trunk/
