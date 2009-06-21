@@ -105,3 +105,13 @@ real device ADP1 ~52 notes
 cold average: 13000ms
 hot average:   7250ms
 responsiveness: ui refreshes but scrolling / opening notes is too slow 
+
+== SDK 1.5r2 ==
+@ revno 107 of branch trunk/
+applying patch benchmark-r101.patch
+
+Fixed Thread Pool (pool size 1)
+real device ADP1 on Android 1.1 ~52 notes
+cold average: 13000ms
+hot average:   8000ms
+responsiveness: ui refreshes but scrolling / opening notes is slow
