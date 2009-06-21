@@ -99,16 +99,16 @@ public class Tomdroid extends ListActivity {
         if (savedInstanceState == null || !savedInstanceState.getBoolean(WARNING_SHOWN)) {
 
         	// Warn that this is a "will eat your babies" release 
-    		new AlertDialog.Builder(this).setMessage(getString(R.string.strWelcome))
-    		 .setTitle("Warning")
-    		 .setNeutralButton("Ok", new OnClickListener() {
-    			public void onClick(DialogInterface dialog,
-    								int which) {
-    				warningShown = true;
-    				dialog.dismiss();
-    			}})
-    		 .setIcon(R.drawable.icon)
-    		 .show();
+			new AlertDialog.Builder(this)
+				.setMessage(getString(R.string.strWelcome))
+				.setTitle("Warning")
+				.setNeutralButton("Ok", new OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						warningShown = true;
+						dialog.dismiss();
+					}})
+				.setIcon(R.drawable.icon)
+				.show();
         }
         
 	    // listAdapter that binds the UI to the notes names
@@ -128,14 +128,14 @@ public class Tomdroid extends ListActivity {
 		} catch (FileNotFoundException e) {
 			//TODO put strings in ressource
 			listEmptyView.setText(R.string.strListEmptyNoNotes);
-			new AlertDialog.Builder(this).setMessage(e.getMessage())
-										 .setTitle("Error")
-										 .setNeutralButton("Ok", new OnClickListener() {
-											public void onClick(DialogInterface dialog,
-																int which) {
-												dialog.dismiss();
-											}})
-										 .show();
+			new AlertDialog.Builder(this)
+				.setMessage(e.getMessage())
+				.setTitle("Error")
+				.setNeutralButton("Ok", new OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+					}})
+				.show();
 			e.printStackTrace();
 		}
      
@@ -201,21 +201,20 @@ public class Tomdroid extends ListActivity {
 				);
 		
 		// build and show the dialog
-		new AlertDialog.Builder(this).setMessage(aboutDialogStr)
-		 							 .setTitle("About Tomdroid")
-		 							 .setIcon(R.drawable.icon)
-		 							 .setNegativeButton("Project page", new OnClickListener() {
-		 								 public void onClick(DialogInterface dialog,
-		 										 int which) {
-		 									 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Tomdroid.PROJECT_HOMEPAGE)));
-		 									 dialog.dismiss();
-		 								 }})
-		 							 .setPositiveButton("Ok", new OnClickListener() {
-		 								 public void onClick(DialogInterface dialog,
-		 										 int which) {
-		 									 dialog.dismiss();
-		 								 }})
-		 							 .show();
+		new AlertDialog.Builder(this)
+			.setMessage(aboutDialogStr)
+			.setTitle("About Tomdroid")
+			.setIcon(R.drawable.icon)
+			.setNegativeButton("Project page", new OnClickListener() {
+				public void onClick(DialogInterface dialog,	int which) {
+					startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Tomdroid.PROJECT_HOMEPAGE)));
+					dialog.dismiss();
+				}})
+			.setPositiveButton("Ok", new OnClickListener() {
+				public void onClick(DialogInterface dialog,	int which) {
+					dialog.dismiss();
+				}})
+			.show();
 	}
 
 	@Override
