@@ -1,5 +1,23 @@
 Benchmarks
 
+Applied concurrency fixes
+=========================
+@ revno 120 of branch trunk/
+
+Real device ADP1 on Android 1.1 ~55 notes
+cold average: 5300ms
+hot average:  4545ms
+responsiveness: ui refreshes but scrolling / opening notes is slow until parsing is over
+
+Emulator 1.1 on linux 55 demo notes
+cold average: 7600ms
+hot average:  7700ms
+
+Emulator 1.5 on linux 55 demo notes
+cold average: 9150ms
+hot average:  8900ms
+
+
 Disabled date parsing on last-change-date (joda time xml timeformat)
 ====================================================================
 @ revno 117 of branch trunk/
