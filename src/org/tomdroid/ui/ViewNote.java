@@ -32,7 +32,10 @@ import org.tomdroid.R;
 import org.tomdroid.util.NoteBuilder;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.DialogInterface.OnClickListener;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -93,6 +96,17 @@ public class ViewNote extends Activity {
 					} catch (MalformedURLException e) {
 						// TODO catch correctly
 						e.printStackTrace();
+
+						// TODO put error string in a translatable resource
+						new AlertDialog.Builder(this)
+							.setMessage("Invalid URL")
+							.setTitle("Error")
+							.setNeutralButton("Ok", new OnClickListener() {
+								public void onClick(DialogInterface dialog, int which) {
+									dialog.dismiss();
+									finish();
+								}})
+							.show();
 					}
 
 				} else if (file != null) {
