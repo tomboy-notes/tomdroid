@@ -1,3 +1,26 @@
+2009-06-21  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/Note.java,
+	* src/org/tomdroid/ui/ViewNote.java,
+	* src/org/tomdroid/util/NoteBuilder.java: Better error reporting to the
+	user when loading a note from the web.
+
+	* res/layout/load_web_note_dialog.xml: [111] Pre-fill
+	LoadWebNoteDialog's text input dialog with http:// since you always
+	have to retype it anyways.
+
+	* res/layout/load_web_note_dialog.xml: [110] LoadWebNoteDialog text
+	input is now a one liner input. Pressing enter in it gives focus to
+	the Ok button.
+
+2009-06-21  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* default.properties: Added.
+	* .bzrignore,
+	* .classpath: Modified.
+
+	[107] Updated project metadata for Android SDK 1.5
+
 2009-06-17  Olivier Bilodeau <olivier@bottomlesspit.org>
 
 	* res/layout/note_view.xml: Hardcoded textcolor in note-view activity.
