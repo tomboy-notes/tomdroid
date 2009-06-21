@@ -35,6 +35,7 @@
 			  />
 			  
 	<EditText android:id="@+id/txtURL"
+		      android:text="http://"
 		      android:singleLine="true"
 		      android:nextFocusDown="@+id/btnOk"
 			  android:layout_width="fill_parent"
