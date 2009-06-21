@@ -64,7 +64,7 @@ public class NoteCollection {
 	
 	// TODO there is most likely a better way to do this
 	// TODO how does Tomboy deals with notes with duplicate titles? I have to check that out
-	public Note findNoteFromTitle(String title) {
+	public synchronized Note findNoteFromTitle(String title) {
 		if (Tomdroid.LOGGING_ENABLED) Log.d(TAG,"searching for note with title: "+title);
 		Iterator<Note> i = notes.iterator();
 		while(i.hasNext()) {
@@ -106,7 +106,7 @@ public class NoteCollection {
 	 * Useful for the Linkify to create the links to the notes.
 	 * @return regexp pattern
 	 */
-	public Pattern buildNoteLinkifyPattern()  {
+	public synchronized Pattern buildNoteLinkifyPattern()  {
 		
 		StringBuilder sb = new StringBuilder();
 		
