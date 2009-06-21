@@ -124,7 +124,7 @@ public class AsyncNoteLoaderAndParser {
 		        
 		        // Create the proper input source based on if its a local note or a web note
 	        	FileInputStream fin = new FileInputStream(file);
-				BufferedReader in = new BufferedReader(new InputStreamReader(fin));
+				BufferedReader in = new BufferedReader(new InputStreamReader(fin), 8192);
 				InputSource is = new InputSource(in);
 		        
 				if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "parsing note");
