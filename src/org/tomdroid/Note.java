@@ -41,6 +41,7 @@ public class Note {
 	public static final String NOTE_CONTENT = "note-content";
 	public static final int NOTE_RECEIVED_AND_VALID = 1;
 	public static final int NO_NOTES = 2;
+	public static final int NOTE_BADURL_OR_PARSING_ERROR = 3;
 	public static final String[] PROJECTION = { Note.ID, Note.TITLE, Note.FILE, Note.MODIFIED_DATE };
 	
 	// Logging info

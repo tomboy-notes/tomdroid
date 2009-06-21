@@ -26,12 +26,10 @@ import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
@@ -39,7 +37,6 @@ import org.tomdroid.Note;
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.xml.NoteHandler;
 import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
 import android.os.Bundle;
@@ -101,7 +98,6 @@ public class NoteBuilder implements Runnable {
 	
 	public void run() {
 		
-		
 		try {
 			// Parsing
 	    	// XML 
@@ -134,31 +130,30 @@ public class NoteBuilder implements Runnable {
 	        
 			if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "parsing note");
 			xr.parse(is);
-		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SAXException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO handle error in a more granular way
+			warnHandler(false);
 		}
 		
 		// notify UI that we are done here and send result 
-		warnHandler();
+		warnHandler(true);
 	}
 	
-    private void warnHandler() {
+    private void warnHandler(boolean successfull) {
 		
 		// notify the main UI that we are done here (sending an ok along with the note's title)
 		Message msg = Message.obtain();
-		Bundle bundle = new Bundle();
-		bundle.putString(Note.TITLE, note.getTitle());
-		msg.setData(bundle);
-		msg.what = Note.NOTE_RECEIVED_AND_VALID;
+		if (successfull) {
+			Bundle bundle = new Bundle();
+			bundle.putString(Note.TITLE, note.getTitle());
+			msg.setData(bundle);
+			msg.what = Note.NOTE_RECEIVED_AND_VALID;
+		} else {
+			
+			msg.what = Note.NOTE_BADURL_OR_PARSING_ERROR;
+		}
 		
 		parentHandler.sendMessage(msg);
     }
-	
+
 }

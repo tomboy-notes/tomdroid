@@ -204,6 +204,18 @@ public class ViewNote extends Activity {
         	// thread is done fetching note and parsing went well 
         	if (msg.what == Note.NOTE_RECEIVED_AND_VALID) {
 	        	showNote();
+        	} else if (msg.what == Note.NOTE_BADURL_OR_PARSING_ERROR) {
+        		
+        		// TODO put this String in a translatable resource
+				new AlertDialog.Builder(ViewNote.this)
+					.setMessage("Error loading note from the Web due to a network error or a parsing error.")
+					.setTitle("Error")
+					.setNeutralButton("Ok", new OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+							finish();
+						}})
+					.show();
         	}
 		}
     };
