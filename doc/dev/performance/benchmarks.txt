@@ -4,6 +4,11 @@ Applied concurrency fixes
 =========================
 @ revno 120 of branch trunk/
 
+Real device ADP1 on Android 1.5 ~55 notes
+cold average: 5050ms
+hot average:  5350ms
+responsiveness: ui refreshes but scrolling / opening notes is slow until parsing is over
+
 Real device ADP1 on Android 1.1 ~55 notes
 cold average: 5300ms
 hot average:  4545ms
