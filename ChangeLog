@@ -1,5 +1,41 @@
 2009-06-21  Olivier Bilodeau <olivier@bottomlesspit.org>
 
+	* res/values/strings.xml: [123] Updated opening warning Dialog's text.
+
+	Removed lifecycle problems paragraph, added inability to edit notes
+	and slow startup. Also asked for help.
+
+	* src/org/tomdroid/NoteCollection.java: [120] NoteCollection's
+	findNoteFromTitle(...) and buildNoteLinkifyPattern(...) are now
+	synchronized methods. Fixes bug #389437: Concurrency crash;
+	https://launchpad.net/bugs/389437 fixed
+
+	* src/org/tomdroid/xml/NoteHandler.java: [117] No last-change-date
+	parsing.
+
+	Provides performance improvement and we were not using it yet. Will be
+	reactivated in the future.
+
+2009-06-21  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* doc/dev/performance/benchmarks.txt: Modified.
+	* doc/dev/threading-improvement: Renamed to doc/dev/performance.
+	[116] Moved threading-improvement dev notes to performance.
+
+	Since the threading-improvement branch as been merged and I now track
+	general performance/responsiveness in these files along with helper
+	patches. I also reversed the order of the benchmarks.txt file (newer
+	on top) this explains the big diff.
+
+2009-06-21  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/util/AsyncNoteLoaderAndParser.java: [115] Hardcoded
+	8K buffer in AsyncNoteLoaderAndParser's BufferedReader because of all
+	the logcat output recommending it. The performance improvement is most
+	likely only related to the diminution of console ouptut.
+
+2009-06-21  Olivier Bilodeau <olivier@bottomlesspit.org>
+
 	* src/org/tomdroid/Note.java,
 	* src/org/tomdroid/ui/ViewNote.java,
 	* src/org/tomdroid/util/NoteBuilder.java: Better error reporting to the
