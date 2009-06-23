@@ -4,7 +4,7 @@
  Tomboy on Android
  http://www.launchpad.net/tomdroid
 
- Copyright 2008 Olivier Bilodeau <olivier@bottomlesspit.org>
+ Copyright 2008, 2009 Olivier Bilodeau <olivier@bottomlesspit.org>
  
  This file is part of Tomdroid.
  
@@ -22,7 +22,8 @@
  along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <TextView android:id="@+id/note_title" xmlns:android="http://schemas.android.com/apk/res/android"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
 		android:textSize="24dp"
+		android:padding="10dip"
 		/>
