@@ -6,8 +6,25 @@ Project hosting: https://launchpad.net/tomdroid/
 
 Please report bugs to: https://bugs.launchpad.net/tomdroid
 
-Mailing list: tomdroid-dev@lists.launchpad.net
+Mailing list: tomdroid-dev@lists.launchpad.net 
+Join it at: https://launchpad.net/~tomdroid-dev
 
+For more details and developer visible changes see the ChangeLog
+
+Version 0.2.0 - this is all wrong
+Development is done using SDK 1.5 but the application is compatible with 1.x
+* Performance improvements (on my ADP1 ~50 notes loads twice as fast)
+* Responsiveness improvements: you can now see the screen updating the note 
+  list when it's parsing notes and interact with it
+* Usability/UI improvements (#364851, Benoît Garret)
+* Text no longer changes color when scrolling (#364425)
+* Fixed concurrency crashes (#389437)
+* Messages are now clearer when there are no notes in the tomdroid/ folder vs 
+  when the folder doesn't exist
+* Improved usability of the URL input dialog to load a Web note
+* Better error reporting to user when loading a note from the Web
+* Better Android lifecycle management
+* Developer related fixes (#364770)
 Version 0.1.0 - the baby eating release
 * Show the list of all notes in the tomdroid directory on the sdcard
 * View individual Tomboy notes. 
@@ -15,3 +32,4 @@ Version 0.1.0 - the baby eating release
   Notebooks, tags and addins will not be understood.
 * You can load a note from a Web URL.
   In that case, links to other notes won't work.
+
