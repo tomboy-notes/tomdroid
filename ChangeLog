@@ -1,3 +1,10 @@
+=== 0.2.0 ===
+2009-06-24  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* NEWS: [134] Updated NEWS
+
+	* doc/user/README: Updated README for 0.2.0 and fixed a small error
+
 2009-06-22  Olivier Bilodeau <olivier@bottomlesspit.org>
 
 	* res/layout/main.xml,
