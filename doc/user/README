@@ -35,7 +35,7 @@ two options:
      # adb -d install tomdroid-<version>.apk
 
      To reinstall/upgrade:
-     # adb -d -r install tomdroid-<version>.apk
+     # adb -d install -r tomdroid-<version>.apk
 
 Usage
 =====
