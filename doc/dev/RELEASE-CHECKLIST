@@ -1,7 +1,32 @@
 Make sure to do this before every release:
 
-- Test with "Immediately destroy activities" debug setting
-- Increment version number in AndroidManifest.xml (android:versionCode and android:versionName)
-- Disable logging (set Tomdroid.LOGGING_ENABLED to false)
-- Follow Android's doc on publishing apps to the marketplace
+Testing
 - Test all functionality on emulator 1.1 and 1.5
+- Test with "Immediately destroy activities" debug setting
+- Test all text inputs with virtual keyboard
+
+Preparing the release
+- Increment version number in AndroidManifest.xml (android:versionCode and android:versionName)
+- Make sure the ChangeLog / TODO is up-to-date
+- Update the NEWS file
+- Make sure doc/user/README is accurate
+- Follow Android's doc on publishing apps to the marketplace
+
+Releasing
+- Disable logging (set Tomdroid.LOGGING_ENABLED to false)
+- Export an unsigned apk
+- Sign the apk
+- Test the signed apk 
+- Test the upgrade from the previous signed release to the next one
+- bzr tag the release / Update ChangeLog / Commit
+- Produce the package tarball and zip files (include user README)
+- Produce the source release tarball (bzr export in .tar.gz) 
+- Mark the milestone as released on launchpad
+- Put the files on launchpad
+- Announce on launchpad
+
+Spread the word
+- Email to Tomdroid's mailing list (Tomboy/Snowy too if its an important milestone)
+- Dent about it
+- Blog post about it including NEWS but also what I see for +1
+
