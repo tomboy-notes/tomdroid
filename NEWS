@@ -24,7 +24,7 @@ Development is done using SDK 1.5 but the application is compatible with 1.x
 * Improved usability of the URL input dialog to load a Web note
 * Better error reporting to user when loading a note from the Web
 * Better Android lifecycle management
-* Developer related fixes (#364770)
+* Developer related fixes (#364770, Michael Fletcher)
 
 Version 0.1.0 - the baby eating release
 * Show the list of all notes in the tomdroid directory on the sdcard
