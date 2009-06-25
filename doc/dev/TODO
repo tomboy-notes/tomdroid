@@ -11,6 +11,7 @@ Unclassified:
 - Replace NoteCollection's structure to a hashmap or hashtable
 - Avoid code duplication between NoteBuilder and AsyncNoteLoaderAndParser
 - Follow UI design guidelines (http://developer.android.com/guide/practices/ui_guidelines/activity_task_design.html)
+- Write a README and INSTALL manual to generate package from source, etc. To be put in project's root
 
 Port threading to Android's mechanism (maybe wait to check for 1.5's new API):
 - Check Handler / Looper / AsyncQueryHandler classes
