@@ -20,9 +20,6 @@ File format: (to be in sync with Tomdroid's)
 - Why is title repeated in note text?
 - check everrnote dtd for inspiration: http://www.evernote.com/about/developer/
 
-0.2.0 release:
-- Verify 1.5 compliance, http://android-developers.blogspot.com/2009/04/future-proofing-your-apps.html
-
 Market release:
 - implement application upgrade mechanism as suggested in http://developer.android.com/guide/publishing/publishing.html#marketupgrade
 - read / edit notes
