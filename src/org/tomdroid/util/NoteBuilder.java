@@ -60,7 +60,7 @@ public class NoteBuilder implements Runnable {
 	// the object being built
 	private Note note = new Note();
 	
-	private final String TAG = "NoteBuilder";
+	private final String TAG = Tomdroid.TAG;//"NoteBuilder";
 	
 	// thread related
 	private Thread runner;

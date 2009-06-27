@@ -60,7 +60,7 @@ public class ViewNote extends Activity {
 	private Note note;
 	
 	// Logging info
-	private static final String TAG = "ViewNote";
+	private static final String TAG = Tomdroid.TAG;//"ViewNote";
 	
 	// TODO extract methods in here
 	@Override

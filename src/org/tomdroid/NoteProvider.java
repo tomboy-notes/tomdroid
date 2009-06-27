@@ -67,20 +67,25 @@ public class NoteProvider extends ContentProvider {
 	// --	
 	private static final String DATABASE_NAME = "tomdroid-notes.db";
 	private static final String DB_TABLE_NOTES = "notes";
-	private static final int DB_VERSION = 1;
+	private static final int DB_VERSION = 2;
 	// TODO once properly implemented, sort by: KEY_MODIFIED_DATE + " DESC"
-	private static final String DEFAULT_SORT_ORDER = Note.ID;
+	public static final String DEFAULT_SORT_ORDER = Note.ID;
 	
     private static HashMap<String, String> notesProjectionMap;
 
     private static final int NOTES = 1;
     private static final int NOTE_ID = 2;
     private static final int NOTE_TITLE = 3;
+    
+    public static final String[] PROJECTION = new String[] {
+		    Note.ID,
+		    Note.TITLE,
+		};
 
     private static final UriMatcher uriMatcher;
     
     // Logging info
-    private static final String TAG = "NoteProvider";
+    private static final String TAG = Tomdroid.TAG;//"NoteProvider";
 
     /**
      * This class helps open, create, and upgrade the database file.

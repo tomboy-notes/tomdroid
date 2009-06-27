@@ -22,17 +22,13 @@
  */
 package org.tomdroid;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
 
 import org.tomdroid.ui.Tomdroid;
-import org.tomdroid.util.AsyncNoteLoaderAndParser;
 
-import android.os.Handler;
 import android.util.Log;
 
 // TODO Transform the NoteCollection into a Provider (see .../android-sdk-linux_x86-1.0_r1/docs/devel/data/contentproviders.html#creatingacontentprovider)
@@ -44,7 +40,7 @@ public class NoteCollection {
 	private List<Note> notes = new ArrayList<Note>();
 
 	// Logging info
-	private static final String TAG = "NoteCollection";
+	private static final String TAG = Tomdroid.TAG;//"NoteCollection";
 	
 	public List<Note> getNotes() {
 		return notes;
@@ -76,6 +72,18 @@ public class NoteCollection {
 		return null;
 	}
 	
+	public synchronized Note findNoteFromDbId(long id) {
+		if (Tomdroid.LOGGING_ENABLED) Log.d(TAG,"searching for note with db id: "+id);
+		Iterator<Note> i = notes.iterator();
+		while(i.hasNext()) {
+			Note curNote = i.next();
+			if (curNote.getDbId()==id) {
+				return curNote;
+			}
+		}
+		return null;
+	}
+	
 	// TODO there is most likely a better way to do this
 	public Note findNoteFromFilename(String filename) {
 		if (Tomdroid.LOGGING_ENABLED) Log.d(TAG,"searching for note with filename: "+filename);
@@ -87,18 +95,6 @@ public class NoteCollection {
 			}
 		}
 		return null;
-	}
-	
-	// TODO also throw a empty exception that we will catch in tomdroid and display the empty notelist msg
-	public void loadNotes(Handler hndl) throws FileNotFoundException {
-		File notesRoot = new File(Tomdroid.NOTES_PATH);
-		
-		if (!notesRoot.exists()) {
-			throw new FileNotFoundException("Tomdroid notes folder doesn't exist. It is configured to be at: "+Tomdroid.NOTES_PATH);
-		}
-		
-		AsyncNoteLoaderAndParser asyncLoader = new AsyncNoteLoaderAndParser(notesRoot, this, hndl);
-		asyncLoader.readAndParseNotes();
 	}
 		
 	/**

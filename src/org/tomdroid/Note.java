@@ -25,6 +25,7 @@ package org.tomdroid;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
+import org.tomdroid.ui.Tomdroid;
 
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -45,7 +46,7 @@ public class Note {
 	public static final String[] PROJECTION = { Note.ID, Note.TITLE, Note.FILE, Note.MODIFIED_DATE };
 	
 	// Logging info
-	private static final String TAG = "Note";
+	private static final String TAG = Tomdroid.TAG;//"Note";
 	
 	// Notes constants
 	// TODO this is a weird yellow that was usable for the android emulator, I must confirm this for real usage

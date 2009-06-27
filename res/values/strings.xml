@@ -23,9 +23,7 @@
 -->
 <resources>
     <string name="app_name">Tomdroid</string>
-    <string name="app_desc">Tomboy compatible wikiwiki note-taking application that can\'t take notes yet.</string>
-    <string name="author">Olivier Bilodeau</string>
-
+    
 	<!-- main.xml -->
     <string name="strListEmptyWaiting">Please wait while the notes load..</string>
     <string name="strListEmptyNoNotes">
@@ -46,12 +44,20 @@
     	\n\nIf you would like to contribute, help at all levels would be appreciated. 
     	Hop on board on launchpad.net/tomdroid and contact us!\n
     </string>
-    <string name="strAbout">
-    	%1$s
-    	\n\nAuthor: %2$s
-    	\nVersion: %3$s
-    	\nLicensed under the GPLv3
-    </string>
+    	
+	<!-- About -->
+	
+	<string name="about_comments">Tomboy compatible wikiwiki note-taking application that can\'t take notes yet.</string>  
+	<string name="about_copyright">Copyright © 2009 Olivier Bilodeau</string><!-- Add your name here, separated with comma's, if you helped out --> 
+	<string name="about_website_label">Project page</string> 
+	<string name="about_website_url">http://www.launchpad.net/tomdroid/</string>
+	<string name="about_email">olivier@bottomlesspit.org</string>
+	<string name="about_feedback">tomdroid-dev@lists.launchpad.net</string>
+	<string name="about_translators">translator-credits</string>
+	<string name="about_backup">To view information about this app you need to install OI About. See http://www.openintents.org/ or the Market.</string>
+	<string name="link_about_dialog">market://search?q=pname:org.openintents.about</string>
+	<string name="market_backup">You do not seem to have the Android Market app installed. Ignoring.</string>
+	
 
 	<!-- load_web_note_dialog.xml -->
 	<string name="strLoadFromWebTitle">Note from the Web</string>
