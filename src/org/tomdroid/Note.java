@@ -22,13 +22,26 @@
  */
 package org.tomdroid;
 
+import java.io.IOException;
+import java.io.StringReader;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
+import org.tomdroid.ui.Tomdroid;
+import org.tomdroid.xml.NoteContentHandler;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+import org.xml.sax.XMLReader;
 
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.StyleSpan;
+import android.util.Log;
 
 public class Note {
 
@@ -42,7 +55,7 @@ public class Note {
 	public static final int NOTE_RECEIVED_AND_VALID = 1;
 	public static final int NO_NOTES = 2;
 	public static final int NOTE_BADURL_OR_PARSING_ERROR = 3;
-	public static final String[] PROJECTION = { Note.ID, Note.TITLE, Note.FILE, Note.MODIFIED_DATE };
+	public static final String[] PROJECTION = { Note.ID, Note.TITLE, Note.FILE, Note.NOTE_CONTENT, Note.MODIFIED_DATE };
 	
 	// Logging info
 	private static final String TAG = "Note";
@@ -57,6 +70,8 @@ public class Note {
 	
 	// Members
 	private SpannableStringBuilder noteContent = new SpannableStringBuilder();
+	private String xmlContent;
+	private boolean xmlChanged;
 	private String url;
 	private String fileName;
 	private String title;
@@ -106,11 +121,62 @@ public class Note {
 	}
 	
 	public SpannableStringBuilder getNoteContent() {
+		
+		// TODO: might want to do this in another thread
+		// TODO: for now, regenerate the content every time for debugging purposes
+		// will need to set xmlChanged to false later
+		if (xmlChanged)
+			updateContent();
+		
 		return noteContent;
 	}
-
-	public void setNoteContent(SpannableStringBuilder noteContent) {
-		this.noteContent = noteContent;
+	
+	private void updateContent() {
+		
+		try {
+			// Parsing
+	    	// XML 
+	    	// Get a SAXParser from the SAXPArserFactory
+	        SAXParserFactory spf = SAXParserFactory.newInstance();
+	        SAXParser sp = spf.newSAXParser();
+	
+	        // Get the XMLReader of the SAXParser we created
+	        XMLReader xr = sp.getXMLReader();
+	        
+	        // Create a new ContentHandler, send it this note to fill and apply it to the XML-Reader
+	        NoteContentHandler xmlHandler = new NoteContentHandler(noteContent);
+	        xr.setContentHandler(xmlHandler);
+	        
+	        // Create a valid xml document
+	        String xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
+	        xml += "<note-content xmlns:link=\"http://beatniksoftware.com/tomboy/link\" xmlns:size=\"http://beatniksoftware.com/tomboy/size\" xmlns=\"http://beatniksoftware.com/tomboy\">";
+	        xml += xmlContent;
+	        xml += "</note-content>";
+	        
+	        // Create the proper input source based on if its a local note or a web note
+        	StringReader str = new StringReader(xml);
+			InputSource is = new InputSource(str);
+	        
+			if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "Parsing note content.");
+			xr.parse(is);
+		
+		// TODO wrap and throw a new exception here
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public String getXmlContent() {
+		return xmlContent;
+	}
+	
+	public void setXmlContent(String xmlContent) {
+		this.xmlContent = xmlContent;
+		xmlChanged = true;
 	}
 
 	public SpannableStringBuilder getDisplayableNoteContent() {
