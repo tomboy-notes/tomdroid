@@ -45,8 +45,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 public class Tomdroid extends ListActivity {
@@ -78,7 +78,7 @@ public class Tomdroid extends ListActivity {
 	private NoteCollection localNotes;
 	
 	// UI to data model glue
-	private ArrayAdapter<String> notesListAdapter;
+	private Cursor notesCursor;
 	private TextView listEmptyView;
 	
 	// Bundle keys for saving state
@@ -112,8 +112,19 @@ public class Tomdroid extends ListActivity {
         }
         
 	    // listAdapter that binds the UI to the notes names
-		notesListAdapter = new ArrayAdapter<String>(this, R.layout.main_list_item);
-        setListAdapter(notesListAdapter);
+		
+		// get a cursor representing all notes from NoteProvider
+		String[] projection = new String[] { Note.ID, Note.TITLE };
+		Uri notes = CONTENT_URI;
+		notesCursor = managedQuery(notes, projection, null, null, null);
+		
+		// set up an adapter binding the TITLE field of the cursor to the list item
+		String[] from = new String[] { Note.TITLE };
+		int[] to = new int[] { R.id.note_title };
+		SimpleCursorAdapter adapter =
+			new SimpleCursorAdapter(this, R.layout.main_list_item, notesCursor, from, to);
+        
+		setListAdapter(adapter);
 
         // set the view shown when the list is empty
         listEmptyView = (TextView)findViewById(R.id.list_empty);
@@ -251,7 +262,10 @@ public class Tomdroid extends ListActivity {
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 
 		// get the clicked note
-		Note n =  localNotes.findNoteFromTitle(notesListAdapter.getItem(position));
+		notesCursor.moveToPosition(position);
+		Note n =  localNotes.findNoteFromTitle(
+				notesCursor.getString(
+						notesCursor.getColumnIndexOrThrow(Note.TITLE)));
 		
 		Intent i = new Intent(Tomdroid.this, ViewNote.class);
 		i.putExtra(Note.FILE, n.getFileName());
@@ -274,9 +288,6 @@ public class Tomdroid extends ListActivity {
 	
 	private void updateNoteListWith(String noteTitle) {
 		
-		// add note to the note list
-		notesListAdapter.add(noteTitle);
-
 		// get the note instance we will work with that instead  from now on
 		Note note = localNotes.findNoteFromTitle(noteTitle);
 		
