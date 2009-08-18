@@ -123,22 +123,6 @@ public class Tomdroid extends ListActivity {
         if (LOGGING_ENABLED) Log.v(TAG, "Loading local notes");
         
 		localNotes = NoteCollection.getInstance();
-		try {
-			localNotes.loadNotes(handler);
-		} catch (FileNotFoundException e) {
-			//TODO put strings in ressource
-			listEmptyView.setText(R.string.strListEmptyNoNotes);
-			new AlertDialog.Builder(this)
-				.setMessage(e.getMessage())
-				.setTitle("Error")
-				.setNeutralButton("Ok", new OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.dismiss();
-					}})
-				.show();
-			e.printStackTrace();
-		}
-     
     }
 
 	@Override
@@ -156,6 +140,26 @@ public class Tomdroid extends ListActivity {
 	        case R.id.menuLoadWebNote:
 	            showLoadWebNoteDialog();
 	            return true;
+	            
+	        case R.id.menuSyncWithSD:
+	        	
+	        	try {
+	    			localNotes.loadNotes(handler);
+	    		} catch (FileNotFoundException e) {
+	    			//TODO put strings in ressource
+	    			listEmptyView.setText(R.string.strListEmptyNoNotes);
+	    			new AlertDialog.Builder(this)
+	    				.setMessage(e.getMessage())
+	    				.setTitle("Error")
+	    				.setNeutralButton("Ok", new OnClickListener() {
+	    					public void onClick(DialogInterface dialog, int which) {
+	    						dialog.dismiss();
+	    					}})
+	    				.show();
+	    			e.printStackTrace();
+	    		}
+	        	
+	        	return true;
 	        
 	        case R.id.menuAbout:
 				showAboutDialog();

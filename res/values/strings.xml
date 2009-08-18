@@ -63,4 +63,5 @@
 	<!-- note-view.xml -->
     <string name="strWait">Please wait while note loads...</string>
     
+<string name="menuSyncWithSD">Sync with SD Card</string>
 </resources>
