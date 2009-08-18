@@ -28,11 +28,7 @@
 			android:title="@string/menuLoadWebNote"
 			android:id="@+id/menuLoadWebNote"
 			/>
-	<item 
-			android:icon="@drawable/icon_close"
-			android:title="@string/menuClose"
-			android:id="@+id/menuClose"
-			/>
+	
 	<item 
 			android:icon="@drawable/icon_about"
 			android:title="@string/menuAbout"
