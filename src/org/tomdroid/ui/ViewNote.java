@@ -25,9 +25,9 @@ package org.tomdroid.ui;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.tomdroid.Note;
-import org.tomdroid.NoteCollection;
 import org.tomdroid.R;
 import org.tomdroid.util.NoteBuilder;
 
@@ -51,7 +51,6 @@ import android.widget.TextView;
 public class ViewNote extends Activity {
 	
 	private String url;
-	private String file;
 	
 	// UI elements
 	private TextView content;
@@ -80,12 +79,10 @@ public class ViewNote extends Activity {
 			// get external web url or filename
 			Bundle extras = intent.getExtras();
 			if (extras != null) {
-
-				// lets grab both variables and test against null later
-				url = extras.getString(Note.URL);
-				file = extras.getString(Note.FILE);
 				
-				// Based on what was sent in the bundle, we either load from file or url
+				url = extras.getString(Note.URL);
+				
+				// Based on what was sent in the bundle, load from url
 				if (url != null) {
 
 					if (Tomdroid.LOGGING_ENABLED) Log.v(TAG,"ViewNote started: Loading a note from Web URL.");
@@ -109,11 +106,6 @@ public class ViewNote extends Activity {
 							.show();
 					}
 
-				} else if (file != null) {
-
-					if (Tomdroid.LOGGING_ENABLED) Log.v(TAG,"ViewNote started: Loading a note based on a filename.");
-					note = NoteCollection.getInstance().findNoteFromFilename(file);
-					showNote();
 				} else {
 					
 					if (Tomdroid.LOGGING_ENABLED) Log.d(TAG,"ViewNote started: Bundle's content was not helpful to find which note to load..");
@@ -135,9 +127,14 @@ public class ViewNote extends Activity {
 			if (!(cursor == null || cursor.getCount() == 0)) {
 				
 				cursor.moveToFirst();
-				String noteFilename = cursor.getString(cursor.getColumnIndexOrThrow(Note.FILE));
-				note = NoteCollection.getInstance().findNoteFromFilename(noteFilename);
-				showNote();
+				String noteContent = cursor.getString(cursor.getColumnIndexOrThrow(Note.NOTE_CONTENT));
+				String noteTitle = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
+				
+				Note note = new Note();
+				note.setXmlContent(noteContent);
+				note.setTitle(noteTitle);
+				
+				showNote(note);
 				
 			} else {
 				
@@ -160,9 +157,10 @@ public class ViewNote extends Activity {
 		return true;
 	}
 
-    private void showNote() {
+	private void showNote(Note note) {
 		// show the note (spannable makes the TextView able to output styled text)
 		content.setText(note.getNoteContent(), TextView.BufferType.SPANNABLE);
+		setTitle(note.getTitle());
 		
 		// add links to stuff that is understood by Android
 		// TODO this is SLOWWWW!!!!
@@ -172,29 +170,83 @@ public class ViewNote extends Activity {
 		// The pattern is built by NoteCollection and contains a very dumb (title1)|(title2) escaped correctly
 		// Then we tranform the url from the note name to the note id to avoid characters that mess up with the URI (ex: ?)
 		Linkify.addLinks(content, 
-						 NoteCollection.getInstance().buildNoteLinkifyPattern(),
+						 buildNoteLinkifyPattern(),
 						 Tomdroid.CONTENT_URI+"/",
 						 null,
-						 
-						 // custom transform filter that takes the note's title part of the URI and translate it into the note id
-						 // this was done to avoid problems with invalid characters in URI (ex: ? is the query separator but could be in a note title)
-						 new TransformFilter() {
-
-							public String transformUrl(Matcher m, String str) {
-
-								// FIXME if this activity is called from another app and Tomdroid was never launched, getting here will probably make it crash
-								int id = 0;
-								try {
-									id = NoteCollection.getInstance().findNoteFromTitle(str).getDbId();
-								} catch (Exception e) {
-									if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "NoteCollection accessed but it was not ready for it..");
-								}
-								
-								// return something like content://org.tomdroid.notes/notes/3
-								return Tomdroid.CONTENT_URI.toString()+"/"+id;
-							}  
-						});
+						 noteTitleTransformFilter);
 	}
+	
+	/**
+	 * Builds a regular expression pattern that will match any of the note title currently in the collection.
+	 * Useful for the Linkify to create the links to the notes.
+	 * @return regexp pattern
+	 */
+	public Pattern buildNoteLinkifyPattern()  {
+		
+		StringBuilder sb = new StringBuilder();
+		
+		// can we find a matching note?
+		String[] projection = { Note.TITLE };
+		Cursor cursor = managedQuery(Tomdroid.CONTENT_URI, projection, null, null, null);
+		// cursor must not be null and must return more than 0 entry 
+		if (!(cursor == null || cursor.getCount() == 0)) {
+			
+			String title;
+			
+			cursor.moveToFirst();
+			
+			do {
+				title = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
+				
+				// Pattern.quote() here make sure that special characters in the note's title are properly escaped 
+				sb.append("("+Pattern.quote(title)+")|");
+				
+			} while (cursor.moveToNext());
+			
+			// get rid of the last | that is not needed (I know, its ugly.. better idea?)
+			String pt = sb.substring(0, sb.length()-1);
+
+			// return a compiled match pattern
+			return Pattern.compile(pt);
+			
+		} else {
+			
+			// TODO send an error to the user
+			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "Cursor returned null or 0 notes");
+		}
+		
+		return null;
+	}
+	
+	// custom transform filter that takes the note's title part of the URI and translate it into the note id
+	// this was done to avoid problems with invalid characters in URI (ex: ? is the query separator but could be in a note title)
+	TransformFilter noteTitleTransformFilter = new TransformFilter() {
+
+		public String transformUrl(Matcher m, String str) {
+
+			// FIXME if this activity is called from another app and Tomdroid was never launched, getting here will probably make it crash
+			int id = 0;
+			
+			// can we find a matching note?
+			String[] projection = { Note.ID };
+			String[] whereArgs = { str };
+			Cursor cursor = managedQuery(Tomdroid.CONTENT_URI, projection, Note.TITLE+"=?", whereArgs, null);
+			// cursor must not be null and must return more than 0 entry 
+			if (!(cursor == null || cursor.getCount() == 0)) {
+				
+				cursor.moveToFirst();
+				id = cursor.getInt(cursor.getColumnIndexOrThrow(Note.ID));
+				
+			} else {
+				
+				// TODO send an error to the user
+				if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "Cursor returned null or 0 notes");
+			}
+			
+			// return something like content://org.tomdroid.notes/notes/3
+			return Tomdroid.CONTENT_URI.toString()+"/"+id;
+		}  
+	};
 
 	private Handler handler = new Handler() {
     	
@@ -203,7 +255,7 @@ public class ViewNote extends Activity {
         	
         	// thread is done fetching note and parsing went well 
         	if (msg.what == Note.NOTE_RECEIVED_AND_VALID) {
-	        	showNote();
+	        	showNote(note);
         	} else if (msg.what == Note.NOTE_BADURL_OR_PARSING_ERROR) {
         		
         		// TODO put this String in a translatable resource
