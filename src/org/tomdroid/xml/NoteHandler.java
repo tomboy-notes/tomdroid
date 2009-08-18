@@ -139,7 +139,7 @@ public class NoteHandler extends DefaultHandler {
 	public void characters(char[] ch, int start, int length)
 			throws SAXException {
 		
-		String currentString = new String(ch);
+		String currentString = new String(ch, start, length);
 		
 		if (inTitleTag) {
 			note.setTitle(currentString);
