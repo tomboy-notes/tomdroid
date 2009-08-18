@@ -243,11 +243,11 @@ public class Tomdroid extends ListActivity {
 
 		// get the clicked note
 		notesCursor.moveToPosition(position);
-		String fileName = notesCursor.getString(
-						notesCursor.getColumnIndexOrThrow(Note.FILE));
+		int noteId = notesCursor.getInt(
+						notesCursor.getColumnIndexOrThrow(Note.ID));
 		
-		Intent i = new Intent(Tomdroid.this, ViewNote.class);
-		i.putExtra(Note.FILE, fileName);
+		Uri intentUri = Uri.parse(Tomdroid.CONTENT_URI+"/"+noteId);
+		Intent i = new Intent(Intent.ACTION_VIEW, intentUri, this, ViewNote.class);
 		startActivityForResult(i, ACTIVITY_VIEW);
 	}
 	
