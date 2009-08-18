@@ -88,18 +88,6 @@ public class NoteCollection {
 		}
 		return null;
 	}
-	
-	// TODO also throw a empty exception that we will catch in tomdroid and display the empty notelist msg
-	public void loadNotes(Handler hndl) throws FileNotFoundException {
-		File notesRoot = new File(Tomdroid.NOTES_PATH);
-		
-		if (!notesRoot.exists()) {
-			throw new FileNotFoundException("Tomdroid notes folder doesn't exist. It is configured to be at: "+Tomdroid.NOTES_PATH);
-		}
-		
-		AsyncNoteLoaderAndParser asyncLoader = new AsyncNoteLoaderAndParser(notesRoot, this, hndl);
-		asyncLoader.readAndParseNotes();
-	}
 		
 	/**
 	 * Builds a regular expression pattern that will match any of the note title currently in the collection.
