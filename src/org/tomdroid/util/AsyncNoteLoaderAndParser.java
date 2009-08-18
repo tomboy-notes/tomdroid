@@ -36,42 +36,36 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import org.tomdroid.Note;
-import org.tomdroid.NoteCollection;
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.xml.NoteHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
+import android.app.Activity;
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.net.Uri;
 import android.util.Log;
 
 public class AsyncNoteLoaderAndParser {
 	private final ExecutorService pool;
 	private final static int poolSize = 1;
 	private File path;
-	private NoteCollection noteCollection;
-	private Handler parentHandler;
+	private Activity activity;
 	
 	// logging related
 	private final static String TAG = "AsyncNoteLoaderAndParser";
 	
-	public AsyncNoteLoaderAndParser(File path, NoteCollection nc, Handler hndl) {
+	public AsyncNoteLoaderAndParser(File path, Activity activity) {
 		this.path = path;
 		pool = Executors.newFixedThreadPool(poolSize);
-		noteCollection = nc;
-		parentHandler = hndl;
+		this.activity = activity;
 	}
 
 	public void readAndParseNotes() {
 		File[] fileList = path.listFiles(new NotesFilter());
-		
-		// If there are no notes, warn the UI through an empty message
-		if (fileList.length == 0) {
-			parentHandler.sendEmptyMessage(Note.NO_NOTES);
-		}
 		
 		for (File file : fileList) {
 
@@ -91,7 +85,7 @@ public class AsyncNoteLoaderAndParser {
 	}
 	
 	/**
-	 * The worker spawns a new note, parse the file its being given by the executor and add it to the NoteCollection
+	 * The worker spawns a new note, parse the file its being given by the executor.
 	 */
 	class Worker implements Runnable {
 		
@@ -139,25 +133,56 @@ public class AsyncNoteLoaderAndParser {
 				e.printStackTrace();
 			}
 			
-			synchronized (noteCollection) {
-				noteCollection.addNote(note);
-			}
-			
-			// notify UI that we are done here and send result 
-			warnHandler();
+			insertNote(note);
 		}
+	}
+	
+	private void insertNote(Note note) {
 		
-	    private void warnHandler() {
-			
-			// notify the main UI that we are done here (sending an ok along with the note's title)
-			Message msg = Message.obtain();
-			Bundle bundle = new Bundle();
-			bundle.putString(Note.TITLE, note.getTitle());
-			msg.setData(bundle);
-			msg.what = Note.NOTE_RECEIVED_AND_VALID;
-			
-			parentHandler.sendMessage(msg);
-	    }
+		// verify if the note is already in the content provider
+		String[] projection = new String[] {
+			    Note.ID,
+			    Note.TITLE,
+			};
+
+		// TODO I could see a problem where someone delete a note and recreate one with the same title.
+		// It would been seen as not new although it is (it will have a new filename)
+		// TODO make the query prettier (use querybuilder)
+		Uri notes = Tomdroid.CONTENT_URI;
+		String[] whereArgs = new String[1];
+		whereArgs[0] = note.getTitle();
 		
+		ContentResolver cr = activity.getContentResolver();
+		Cursor managedCursor = cr.query(notes,
+                projection,  
+                Note.TITLE + "= ?",
+                whereArgs,
+                Note.TITLE + " ASC");
+		activity.startManagingCursor(managedCursor);
+		
+		if (managedCursor.getCount() == 0) {
+			
+			// This note is not in the database yet we need to insert it
+			if (Tomdroid.LOGGING_ENABLED) Log.v(TAG,"A new note has been detected (not yet in db)");
+			
+			// This add the note to the content Provider
+			// TODO PoC code that should be removed in next iteration's refactoring (no notecollection, everything should come from the provider I guess?)
+    		ContentValues values = new ContentValues();
+    		values.put(Note.TITLE, note.getTitle());
+    		values.put(Note.FILE, note.getFileName());
+    		values.put(Note.NOTE_CONTENT, note.getXmlContent());
+    		Uri uri = cr.insert(Tomdroid.CONTENT_URI, values);
+    		// now that we inserted the note put its ID in the note itself
+    		note.setDbId(Integer.parseInt(uri.getLastPathSegment()));
+
+    		if (Tomdroid.LOGGING_ENABLED) Log.v(TAG,"Note inserted in content provider. ID: "+uri+" TITLE:"+note.getTitle()+" ID:"+note.getDbId());
+		} else {
+			
+			// find out the note's id and put it in the note
+		    if (managedCursor.moveToFirst()) {
+		        int idColumn = managedCursor.getColumnIndex(Note.ID);
+	            note.setDbId(managedCursor.getInt(idColumn));
+		    }
+		}
 	}
 }
