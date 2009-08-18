@@ -38,7 +38,7 @@ public class Note {
 	public static final String MODIFIED_DATE = "modified_date";
 	public static final String URL = "url";
 	public static final String FILE = "file";
-	public static final String NOTE_CONTENT = "note-content";
+	public static final String NOTE_CONTENT = "content";
 	public static final int NOTE_RECEIVED_AND_VALID = 1;
 	public static final int NO_NOTES = 2;
 	public static final int NOTE_BADURL_OR_PARSING_ERROR = 3;
