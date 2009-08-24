@@ -24,6 +24,7 @@ package org.tomdroid;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.UUID;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -47,6 +48,7 @@ public class Note {
 
 	// Static references to fields (used in Bundles, ContentResolvers, etc.)
 	public static final String ID = "_id";
+	public static final String GUID = "guid";
 	public static final String TITLE = "title";
 	public static final String MODIFIED_DATE = "modified_date";
 	public static final String URL = "url";
@@ -77,6 +79,7 @@ public class Note {
 	private String title;
 	private DateTime lastChangeDate;
 	private int dbId;
+	private UUID guid;
 	
 	public Note() {}
 	
@@ -118,6 +121,14 @@ public class Note {
 
 	public void setDbId(int id) {
 		this.dbId = id;
+	}
+	
+	public UUID getGuid() {
+		return guid;
+	}
+	
+	public void setGuid(String guid) {
+		this.guid = UUID.fromString(guid);
 	}
 	
 	public SpannableStringBuilder getNoteContent() {

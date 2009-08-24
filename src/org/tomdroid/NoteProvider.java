@@ -43,6 +43,7 @@
 package org.tomdroid;
 
 import java.util.HashMap;
+import java.util.UUID;
 
 import org.tomdroid.ui.Tomdroid;
 
@@ -95,6 +96,7 @@ public class NoteProvider extends ContentProvider {
         public void onCreate(SQLiteDatabase db) {
             db.execSQL("CREATE TABLE " + DB_TABLE_NOTES	 + " ("
                     + Note.ID + " INTEGER PRIMARY KEY,"
+                    + Note.GUID + " TEXT,"
                     + Note.TITLE + " TEXT,"
                     + Note.FILE + " TEXT,"
                     + Note.NOTE_CONTENT + " TEXT,"
@@ -205,6 +207,10 @@ public class NoteProvider extends ContentProvider {
         if (values.containsKey(Note.MODIFIED_DATE) == false) {
             values.put(Note.MODIFIED_DATE, now);
         }
+        
+        if (values.containsKey(Note.GUID) == false) {
+        	values.put(Note.GUID, UUID.randomUUID().toString());
+        }
 
         // TODO does this make sense?
         if (values.containsKey(Note.TITLE) == false) {
@@ -285,6 +291,7 @@ public class NoteProvider extends ContentProvider {
 
         notesProjectionMap = new HashMap<String, String>();
         notesProjectionMap.put(Note.ID, Note.ID);
+        notesProjectionMap.put(Note.GUID, Note.GUID);
         notesProjectionMap.put(Note.TITLE, Note.TITLE);
         notesProjectionMap.put(Note.FILE, Note.FILE);
         notesProjectionMap.put(Note.NOTE_CONTENT, Note.NOTE_CONTENT);
