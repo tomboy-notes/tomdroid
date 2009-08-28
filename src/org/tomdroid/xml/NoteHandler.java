@@ -23,6 +23,7 @@
 package org.tomdroid.xml;
 
 import org.tomdroid.Note;
+import org.tomdroid.util.XmlUtils;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -152,7 +153,7 @@ public class NoteHandler extends DefaultHandler {
 
 		if (inNoteContentTag) {
 			// while we are in note-content, append
-			xmlContent.append(currentString);
+			xmlContent.append(XmlUtils.escape(currentString));
 		}
 	}
 }
