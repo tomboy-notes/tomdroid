@@ -80,7 +80,8 @@ public class NoteHandler extends DefaultHandler {
 
 		// if we are in note-content, keep and convert formatting tags
 		// TODO is XML CaSe SeNsItIve? if not change equals to equalsIgnoreCase and apply to endElement()
-		if (inNoteContentTag) {
+		// We're not adding the note-content tags to the xml content
+		if (inNoteContentTag && !localName.equals(NOTE_CONTENT)) {
 			
 			String tag = "<";
 			
