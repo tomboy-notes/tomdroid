@@ -154,7 +154,7 @@ public class Note {
 	        // Get the XMLReader of the SAXParser we created
 	        XMLReader xr = sp.getXMLReader();
 	        
-	        // Create a new ContentHandler, send it this note to fill and apply it to the XML-Reader
+	        // Create a new ContentHandler, send it the SpannableStringBuilder to fill and apply it to the XML-Reader
 	        NoteContentHandler xmlHandler = new NoteContentHandler(noteContent);
 	        xr.setContentHandler(xmlHandler);
 	        
@@ -164,7 +164,7 @@ public class Note {
 	        xml += xmlContent;
 	        xml += "</note-content>";
 	        
-	        // Create the proper input source based on if its a local note or a web note
+	        // Create the proper input source
         	StringReader str = new StringReader(xml);
 			InputSource is = new InputSource(str);
 	        

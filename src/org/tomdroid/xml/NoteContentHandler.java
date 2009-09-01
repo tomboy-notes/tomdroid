@@ -38,9 +38,8 @@ import android.text.style.StyleSpan;
 import android.text.style.TypefaceSpan;
 
 /*
- * I don't know if I'm doing the right thing but I think that giving this class
- * the responsibility of filling the note is something quite cohesive and hope 
- * the coupling involved won't do much damage. I guess time will tell.
+ * This class is responsible for parsing the xml note content
+ * and formatting the contents in a SpannableStringBuilder
  */
 public class NoteContentHandler extends DefaultHandler {
 	
@@ -79,14 +78,11 @@ public class NoteContentHandler extends DefaultHandler {
 	
 	public NoteContentHandler(SpannableStringBuilder noteContent) {
 		
-		// we will use the SpannableStringBuilder from the note
 		this.ssb = noteContent;
 	}
 	
 	@Override
 	public void startElement(String uri, String localName, String name,	Attributes attributes) throws SAXException {
-		
-		// TODO validate top-level tag for tomboy notes and throw exception if its the wrong version number (maybe offer to parse also?)
 		
 		if (localName.equals(NOTE_CONTENT)) {
 
@@ -131,8 +127,6 @@ public class NoteContentHandler extends DefaultHandler {
 			throws SAXException {
 
 		if (localName.equals(NOTE_CONTENT)) {
-			
-			// note-content is over, we can set the builded note to Note's noteContent
 			inNoteContentTag = false;
 		}
 		
@@ -165,7 +159,6 @@ public class NoteContentHandler extends DefaultHandler {
 		}
 	}
 
-	// FIXME we'll have to think about how we handle the title soon.. IMHO there's a problem with duplicating the data from the <title> tag and also putting it straight into the note.. this will have to be reported to tomboy 
 	@Override
 	public void characters(char[] ch, int start, int length)
 			throws SAXException {

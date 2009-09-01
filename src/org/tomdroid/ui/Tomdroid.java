@@ -106,7 +106,7 @@ public class Tomdroid extends ListActivity {
 				.show();
         }
         
-		// get a cursor representing all notes from NoteProvider
+		// get a cursor representing all notes from the NoteProvider
 		String[] projection = new String[] { Note.ID, Note.TITLE };
 		Uri notes = CONTENT_URI;
 		notesCursor = managedQuery(notes, projection, null, null, null);
@@ -241,7 +241,7 @@ public class Tomdroid extends ListActivity {
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 
-		// get the clicked note
+		// get the clicked note id
 		notesCursor.moveToPosition(position);
 		int noteId = notesCursor.getInt(
 						notesCursor.getColumnIndexOrThrow(Note.ID));

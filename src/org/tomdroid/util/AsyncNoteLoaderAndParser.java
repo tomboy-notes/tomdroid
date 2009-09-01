@@ -152,6 +152,7 @@ public class AsyncNoteLoaderAndParser {
 		String[] whereArgs = new String[1];
 		whereArgs[0] = note.getGuid().toString();
 		
+		// The note identifier is the guid
 		ContentResolver cr = activity.getContentResolver();
 		Cursor managedCursor = cr.query(notes,
                 projection,  
@@ -162,7 +163,6 @@ public class AsyncNoteLoaderAndParser {
 		
 		// Preparing the values to be either inserted or updated
 		// depending on the result of the previous query
-		// TODO PoC code that should be removed in next iteration's refactoring (no notecollection, everything should come from the provider I guess?)
 		ContentValues values = new ContentValues();
 		values.put(Note.TITLE, note.getTitle());
 		values.put(Note.FILE, note.getFileName());

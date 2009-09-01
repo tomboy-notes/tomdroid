@@ -78,9 +78,8 @@ public class NoteHandler extends DefaultHandler {
 			inLastChangeDateTag = true;
 		}
 
-		// if we are in note-content, keep and convert formatting tags
-		// TODO is XML CaSe SeNsItIve? if not change equals to equalsIgnoreCase and apply to endElement()
-		// We're not adding the note-content tags to the xml content
+		// if we are in note-content, recreate the xml
+		// we're not adding the note-content tags to the xml content
 		if (inNoteContentTag && !localName.equals(NOTE_CONTENT)) {
 			
 			String tag = "<";
@@ -103,8 +102,6 @@ public class NoteHandler extends DefaultHandler {
 			throws SAXException {
 
 		if (localName.equals(NOTE_CONTENT)) {
-			
-			// note-content is over, we can set the builded note to Note's noteContent
 			inNoteContentTag = false;
 		} else if (localName.equals(TITLE)) {
 			inTitleTag = false;
@@ -112,7 +109,7 @@ public class NoteHandler extends DefaultHandler {
 			inLastChangeDateTag = false;
 		}
 		
-		// if we are in note-content, keep and convert formatting tags
+		// if we are in note-content, recreate the xml
 		if (inNoteContentTag) {
 			
 			String tag = "</";

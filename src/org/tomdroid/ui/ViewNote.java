@@ -75,8 +75,7 @@ public class ViewNote extends Activity {
 		Uri uri = intent.getData();
 		if (uri == null) {
 			
-			// we were not fired by an Intent-filter so two choice here:
-			// get external web url or filename
+			// we were not fired by an Intent-filter so we're loading a web note
 			Bundle extras = intent.getExtras();
 			if (extras != null) {
 				
@@ -126,6 +125,7 @@ public class ViewNote extends Activity {
 			// cursor must not be null and must return more than 0 entry 
 			if (!(cursor == null || cursor.getCount() == 0)) {
 				
+				// create the note from the cursor
 				cursor.moveToFirst();
 				String noteContent = cursor.getString(cursor.getColumnIndexOrThrow(Note.NOTE_CONTENT));
 				String noteTitle = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
@@ -167,8 +167,8 @@ public class ViewNote extends Activity {
 		Linkify.addLinks(content, Linkify.ALL);
 		
 		// This will create a link every time a note title is found in the text.
-		// The pattern is built by NoteCollection and contains a very dumb (title1)|(title2) escaped correctly
-		// Then we tranform the url from the note name to the note id to avoid characters that mess up with the URI (ex: ?)
+		// The pattern contains a very dumb (title1)|(title2) escaped correctly
+		// Then we transform the url from the note name to the note id to avoid characters that mess up with the URI (ex: ?)
 		Linkify.addLinks(content, 
 						 buildNoteLinkifyPattern(),
 						 Tomdroid.CONTENT_URI+"/",
@@ -185,7 +185,7 @@ public class ViewNote extends Activity {
 		
 		StringBuilder sb = new StringBuilder();
 		
-		// can we find a matching note?
+		// get a cursor containing the notes titles
 		String[] projection = { Note.TITLE };
 		Cursor cursor = managedQuery(Tomdroid.CONTENT_URI, projection, null, null, null);
 		// cursor must not be null and must return more than 0 entry 
@@ -227,7 +227,7 @@ public class ViewNote extends Activity {
 			// FIXME if this activity is called from another app and Tomdroid was never launched, getting here will probably make it crash
 			int id = 0;
 			
-			// can we find a matching note?
+			// get the notes ids
 			String[] projection = { Note.ID };
 			String[] whereArgs = { str };
 			Cursor cursor = managedQuery(Tomdroid.CONTENT_URI, projection, Note.TITLE+"=?", whereArgs, null);

@@ -208,6 +208,7 @@ public class NoteProvider extends ContentProvider {
             values.put(Note.MODIFIED_DATE, now);
         }
         
+        // The guid is the unique identifier for a note so it has to be set.
         if (values.containsKey(Note.GUID) == false) {
         	values.put(Note.GUID, UUID.randomUUID().toString());
         }
