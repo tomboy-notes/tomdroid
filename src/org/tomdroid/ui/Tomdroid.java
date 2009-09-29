@@ -119,9 +119,6 @@ public class Tomdroid extends ListActivity {
         listEmptyView = (TextView)findViewById(R.id.list_empty);
         getListView().setEmptyView(listEmptyView);
         
-        // start loading local notes
-        if (LOGGING_ENABLED) Log.v(TAG, "Loading local notes");
-        
 		localNotes = NoteCollection.getInstance();
     }
 
@@ -142,7 +139,10 @@ public class Tomdroid extends ListActivity {
 	            return true;
 	            
 	        case R.id.menuSyncWithSD:
-	        	
+	            
+	            // start loading local notes
+	            if (LOGGING_ENABLED) Log.v(TAG, "Loading local notes");
+	            
 	        	try {
 	    			localNotes.loadNotes(handler);
 	    		} catch (FileNotFoundException e) {
