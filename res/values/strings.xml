@@ -33,7 +33,7 @@
     	the tomdroid directory on your sdcard.
     </string>
     <string name="menuLoadWebNote">Note from the Web</string>
-    
+    <string name="menuSyncWithSD">Sync with SD Card</string>
     <string name="menuAbout">About</string>
     <string name="strWelcome">
     	Welcome to Tomdroid.
@@ -63,5 +63,4 @@
 	<!-- note-view.xml -->
     <string name="strWait">Please wait while note loads...</string>
     
-<string name="menuSyncWithSD">Sync with SD Card</string>
 </resources>

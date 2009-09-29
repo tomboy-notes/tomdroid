@@ -34,5 +34,11 @@
 			android:title="@string/menuAbout"
 			android:id="@+id/menuAbout"
 			/>
-<item android:title="@string/menuSyncWithSD" android:id="@+id/menuSyncWithSD" android:icon="@drawable/icon_refresh"></item>
+
+	<item
+			android:icon="@drawable/icon_refresh"
+			android:title="@string/menuSyncWithSD"
+			android:id="@+id/menuSyncWithSD"
+			/>
+			
 </menu>
