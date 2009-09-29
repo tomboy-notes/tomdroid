@@ -1,3 +1,10 @@
+2009-09-28  Benoit Garret <benoit.garret_launchpad@gadz.org>
+
+	* res/menu/main.xml, 
+	* res/values/strings.xml, 
+	* src/org/tomdroid/ui/Tomdroid.java: Remove the "close" menu item.
+
+
 === 0.2.0 ===
 2009-06-24  Olivier Bilodeau <olivier@bottomlesspit.org>
 

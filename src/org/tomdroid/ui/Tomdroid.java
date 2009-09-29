@@ -156,12 +156,6 @@ public class Tomdroid extends ListActivity {
 	        case R.id.menuLoadWebNote:
 	            showLoadWebNoteDialog();
 	            return true;
-        
-	        case R.id.menuClose:
-	        	// closing everything then closing itself
-	        	finishActivity(ACTIVITY_VIEW);
-	        	finish();
-	        	return true;
 	        
 	        case R.id.menuAbout:
 				showAboutDialog();

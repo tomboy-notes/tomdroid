@@ -33,7 +33,7 @@
     	the tomdroid directory on your sdcard.
     </string>
     <string name="menuLoadWebNote">Note from the Web</string>
-    <string name="menuClose">Close</string>
+    
     <string name="menuAbout">About</string>
     <string name="strWelcome">
     	Welcome to Tomdroid.
