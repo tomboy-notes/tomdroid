@@ -36,7 +36,7 @@
 			/>
 
 	<item
-			android:icon="@drawable/icon_refresh"
+			android:icon="@drawable/icon_sync"
 			android:title="@string/menuSyncWithSD"
 			android:id="@+id/menuSyncWithSD"
 			/>
