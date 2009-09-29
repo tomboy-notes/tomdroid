@@ -146,7 +146,7 @@ public class Tomdroid extends ListActivity {
 	        	try {
 	    			localNotes.loadNotes(handler);
 	    		} catch (FileNotFoundException e) {
-	    			//TODO put strings in ressource
+	    			//TODO put strings in an external resource
 	    			listEmptyView.setText(R.string.strListEmptyNoNotes);
 	    			new AlertDialog.Builder(this)
 	    				.setMessage(e.getMessage())
