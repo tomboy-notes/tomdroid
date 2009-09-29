@@ -67,7 +67,7 @@ public class NoteProvider extends ContentProvider {
 	// --	
 	private static final String DATABASE_NAME = "tomdroid-notes.db";
 	private static final String DB_TABLE_NOTES = "notes";
-	private static final int DB_VERSION = 2;
+	private static final int DB_VERSION = 1;
 	// TODO once properly implemented, sort by: KEY_MODIFIED_DATE + " DESC"
 	private static final String DEFAULT_SORT_ORDER = Note.ID;
 	
@@ -97,7 +97,6 @@ public class NoteProvider extends ContentProvider {
                     + Note.ID + " INTEGER PRIMARY KEY,"
                     + Note.TITLE + " TEXT,"
                     + Note.FILE + " TEXT,"
-                    + Note.NOTE_CONTENT + " TEXT,"
                     + Note.MODIFIED_DATE + " INTEGER"
                     + ");");
         }
@@ -215,10 +214,6 @@ public class NoteProvider extends ContentProvider {
         if (values.containsKey(Note.FILE) == false) {
             values.put(Note.FILE, "");
         }
-        
-        if (values.containsKey(Note.NOTE_CONTENT) == false) {
-            values.put(Note.NOTE_CONTENT, "");
-        }
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         long rowId = db.insert(DB_TABLE_NOTES, Note.FILE, values); // not so sure I did the right thing here
@@ -287,7 +282,6 @@ public class NoteProvider extends ContentProvider {
         notesProjectionMap.put(Note.ID, Note.ID);
         notesProjectionMap.put(Note.TITLE, Note.TITLE);
         notesProjectionMap.put(Note.FILE, Note.FILE);
-        notesProjectionMap.put(Note.NOTE_CONTENT, Note.NOTE_CONTENT);
         notesProjectionMap.put(Note.MODIFIED_DATE, Note.MODIFIED_DATE);
     }
 }
