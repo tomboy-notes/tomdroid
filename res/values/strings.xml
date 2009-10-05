@@ -29,11 +29,11 @@
 	<!-- main.xml -->
     <string name="strListEmptyWaiting">Please wait while the notes load..</string>
     <string name="strListEmptyNoNotes">
-    	There are no notes in Tomdroid\'s note folder. Make sure you copy Tomboy\'s notes files (*.note) in
-    	the tomdroid directory on your sdcard.
+    	There are no notes in Tomdroid\'s database. Make sure you copied Tomboy\'s note files (*.note) in
+    	the tomdroid/ directory on your sdcard then press \"Menu\" and \"Sync with SD Card\".
     </string>
     <string name="menuLoadWebNote">Note from the Web</string>
-    
+    <string name="menuSyncWithSD">Sync with SD Card</string>
     <string name="menuAbout">About</string>
     <string name="strWelcome">
     	Welcome to Tomdroid.

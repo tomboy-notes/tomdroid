@@ -119,26 +119,7 @@ public class Tomdroid extends ListActivity {
         listEmptyView = (TextView)findViewById(R.id.list_empty);
         getListView().setEmptyView(listEmptyView);
         
-        // start loading local notes
-        if (LOGGING_ENABLED) Log.v(TAG, "Loading local notes");
-        
 		localNotes = NoteCollection.getInstance();
-		try {
-			localNotes.loadNotes(handler);
-		} catch (FileNotFoundException e) {
-			//TODO put strings in ressource
-			listEmptyView.setText(R.string.strListEmptyNoNotes);
-			new AlertDialog.Builder(this)
-				.setMessage(e.getMessage())
-				.setTitle("Error")
-				.setNeutralButton("Ok", new OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.dismiss();
-					}})
-				.show();
-			e.printStackTrace();
-		}
-     
     }
 
 	@Override
@@ -156,6 +137,29 @@ public class Tomdroid extends ListActivity {
 	        case R.id.menuLoadWebNote:
 	            showLoadWebNoteDialog();
 	            return true;
+	            
+	        case R.id.menuSyncWithSD:
+	            
+	            // start loading local notes
+	            if (LOGGING_ENABLED) Log.v(TAG, "Loading local notes");
+	            
+	        	try {
+	    			localNotes.loadNotes(handler);
+	    		} catch (FileNotFoundException e) {
+	    			//TODO put strings in an external resource
+	    			listEmptyView.setText(R.string.strListEmptyNoNotes);
+	    			new AlertDialog.Builder(this)
+	    				.setMessage(e.getMessage())
+	    				.setTitle("Error")
+	    				.setNeutralButton("Ok", new OnClickListener() {
+	    					public void onClick(DialogInterface dialog, int which) {
+	    						dialog.dismiss();
+	    					}})
+	    				.show();
+	    			e.printStackTrace();
+	    		}
+	        	
+	        	return true;
 	        
 	        case R.id.menuAbout:
 				showAboutDialog();
