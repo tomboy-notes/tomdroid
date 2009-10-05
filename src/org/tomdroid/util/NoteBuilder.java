@@ -23,11 +23,8 @@
 package org.tomdroid.util;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.net.URL;
 
 import javax.xml.parsers.SAXParser;
@@ -35,7 +32,7 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.tomdroid.Note;
 import org.tomdroid.ui.Tomdroid;
-import org.tomdroid.xml.NoteHandler;
+import org.tomdroid.xml.NoteContentHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 
@@ -52,7 +49,7 @@ import android.util.Log;
 public class NoteBuilder implements Runnable {
 	
 	// Metadata for the Note that will be built
-	private File file;
+	private InputSource noteContentIs;
 	private URL url;
 	// true means local note and false means Web note
 	private Boolean noteTypeLocal; // using the Object only to be able to test against null
@@ -74,10 +71,16 @@ public class NoteBuilder implements Runnable {
 		return this;
 	}
 	
-	public NoteBuilder setInputSource(File f) {
+	public NoteBuilder setInputSource(String nc) {
 		
-		file = f;
-		note.setFileName(file.getAbsolutePath());
+		//FIXME: I would pay a beer to get rid of that ugliness; I can't believe we cannot parse a partial XML tree using SAX
+		// Create a valid xml document
+		String xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
+		xml += "<note-content xmlns:link=\"http://beatniksoftware.com/tomboy/link\" xmlns:size=\"http://beatniksoftware.com/tomboy/size\" xmlns=\"http://beatniksoftware.com/tomboy\">";
+		xml += nc;
+		xml += "</note-content>";
+
+		noteContentIs = new InputSource(new StringReader(xml));
 		noteTypeLocal = new Boolean(true);
 		return this;
 	}
@@ -109,7 +112,7 @@ public class NoteBuilder implements Runnable {
 	        XMLReader xr = sp.getXMLReader();
 	        
 	        // Create a new ContentHandler, send it this note to fill and apply it to the XML-Reader
-	        NoteHandler xmlHandler = new NoteHandler(note);
+	        NoteContentHandler xmlHandler = new NoteContentHandler(note.getNoteContent());
 	        xr.setContentHandler(xmlHandler);
 	        
 	        if (noteTypeLocal == null) {
@@ -121,9 +124,7 @@ public class NoteBuilder implements Runnable {
 	        InputSource is;
 	        if (noteTypeLocal) {
 
-	        	FileInputStream fin = new FileInputStream(file);
-				BufferedReader in = new BufferedReader(new InputStreamReader(fin));
-				is = new InputSource(in);
+				is = noteContentIs;
 	        } else {
 	        	is = new InputSource(new BufferedInputStream((InputStream) url.getContent()));
 	        }
@@ -131,6 +132,7 @@ public class NoteBuilder implements Runnable {
 			if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "parsing note");
 			xr.parse(is);
 		} catch (Exception e) {
+			e.printStackTrace();
 			// TODO handle error in a more granular way
 			warnHandler(false);
 		}

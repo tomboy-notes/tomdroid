@@ -130,11 +130,8 @@ public class ViewNote extends Activity {
 				String noteContent = cursor.getString(cursor.getColumnIndexOrThrow(Note.NOTE_CONTENT));
 				String noteTitle = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
 				
-				Note note = new Note();
-				note.setXmlContent(noteContent);
+				note = new NoteBuilder().setCaller(handler).setInputSource(noteContent).build();
 				note.setTitle(noteTitle);
-				
-				showNote(note);
 				
 			} else {
 				
@@ -157,7 +154,7 @@ public class ViewNote extends Activity {
 		return true;
 	}
 
-	private void showNote(Note note) {
+	private void showNote() {
 		// show the note (spannable makes the TextView able to output styled text)
 		content.setText(note.getNoteContent(), TextView.BufferType.SPANNABLE);
 		setTitle(note.getTitle());
@@ -255,7 +252,7 @@ public class ViewNote extends Activity {
         	
         	// thread is done fetching note and parsing went well 
         	if (msg.what == Note.NOTE_RECEIVED_AND_VALID) {
-	        	showNote(note);
+	        	showNote();
         	} else if (msg.what == Note.NOTE_BADURL_OR_PARSING_ERROR) {
         		
         		// TODO put this String in a translatable resource
