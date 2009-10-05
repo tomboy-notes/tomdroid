@@ -1,3 +1,9 @@
+2009-10-05  Olivier Bilodeau <olivier@bottomlesspit.org>
+	* AndroidManifest.xml: Modified.
+
+	Eliminate a warning by changing minimum SDK version from 1 to 2.
+	It seems that Android SDK 1.5 can't build to 1.0 anymore..
+
 2009-10-04  Olivier Bilodeau <olivier@bottomlesspit.org>
 
 	* data/icon-src/view-refresh.svg,
