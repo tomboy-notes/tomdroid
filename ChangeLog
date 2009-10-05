@@ -1,3 +1,79 @@
+2009-10-04  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* data/icon-src/view-refresh.svg,
+	* res/drawable/icon_sync.png: Added.
+
+	* res/layout/main.xml,
+	* res/menu/main.xml,
+	* res/values/strings.xml,
+	* src/org/tomdroid/ui/Tomdroid.java: Modified.
+
+	Notes don't load automatically on startup now. Added a "Sync from SD 
+	card" menu item. A merge of branch lp:~plaxx/tomdroid/load-from-sdcard
+	which is itself a branch diverted from 
+	lp:~benoit.garret/tomdroid/storage-redesign.
+
+	2009-10-03  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+		* data/icon-src/view-refresh.svg: Added.
+
+		* res/drawable/icon_sync.png: Modified.
+
+		Changed the sync icon to a grayscaled version of tango's 
+		actions/view-refresh. It's more consistent.
+
+	2009-09-29  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+		* res/layout/main.xml,
+		* res/values/strings.xml: Improved the "there are no notes"
+		message so it tells the user what to do (sync with SD Card)
+
+		Even though this will all change ;)
+
+		* src/org/tomdroid/ui/Tomdroid.java: Put logging information at
+		the relevant place.
+
+		* src/org/tomdroid/ui/Tomdroid.java: Fixed a typo and took the
+		opportunity to clarify comment
+
+		* src/org/tomdroid/NoteProvider.java: Reverted earlier change
+		not related to this branch's goal.
+
+	2009-09-28  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+		* res/menu/main.xml: Modified.
+
+		* res/drawable/icon_refresh.png: Renamed to
+		  res/drawable/icon_sync.png.
+
+		Renamed icon icon_refresh.png to icon_sync.png and its
+		reference.
+
+	2009-09-28  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+		* res/menu/main.xml,
+		* res/values/strings.xml: Prettier XML
+
+	2009-08-18  Benoit Garret <benoit.garret_launchpad@gadz.org>
+
+		* res/drawable/icon_refresh.png: Added.
+
+		* res/menu/main.xml,
+		* res/values/strings.xml,
+		* src/org/tomdroid/ui/Tomdroid.java: Modified.
+
+		Move note loading to a menu item.
+
+	2009-08-18  Benoit Garret <benoit.garret_launchpad@gadz.org>
+
+		* res/menu/main.xml,
+		* res/values/strings.xml,
+		* src/org/tomdroid/ui/Tomdroid.java: Remove the "close" menu
+		item.
+
+		* src/org/tomdroid/NoteProvider.java: Add a database field to
+		store the note content.
+
 2009-09-28  Benoit Garret <benoit.garret_launchpad@gadz.org>
 
 	* res/menu/main.xml, 
