@@ -60,7 +60,7 @@ public class Tomdroid extends ListActivity {
 	// TODO hardcoded for now
 	public static final String NOTES_PATH = "/sdcard/tomdroid/";
 	// Logging should be disabled for release builds
-	public static final boolean LOGGING_ENABLED = false;
+	public static final boolean LOGGING_ENABLED = true;
 
 	// Logging info
 	private static final String TAG = "Tomdroid";
