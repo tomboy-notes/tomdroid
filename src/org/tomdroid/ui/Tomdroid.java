@@ -141,10 +141,10 @@ public class Tomdroid extends ListActivity {
 	            return true;
 	            
 	        case R.id.menuSyncWithSD:
-	        	
-	        	// start loading local notes
-                if (LOGGING_ENABLED) Log.v(TAG, "Loading local notes");
-	        	
+	            
+	            // start loading local notes
+	            if (LOGGING_ENABLED) Log.v(TAG, "Loading local notes");
+	            
 	        	try {
 	        		File notesRoot = new File(Tomdroid.NOTES_PATH);
 	        		
@@ -156,7 +156,7 @@ public class Tomdroid extends ListActivity {
 	        		asyncLoader.readAndParseNotes();
 	        		
 	    		} catch (FileNotFoundException e) {
-	    			//TODO put strings in ressource
+	    			//TODO put strings in an external resource
 	    			listEmptyView.setText(R.string.strListEmptyNoNotes);
 	    			new AlertDialog.Builder(this)
 	    				.setMessage(e.getMessage())
