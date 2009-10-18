@@ -16,6 +16,9 @@ Unclassified:
 Port threading to Android's mechanism (maybe wait to check for 1.5's new API):
 - Check Handler / Looper / AsyncQueryHandler classes
 
+SD card sync:
+- Syncing from SD card only adds notes from the SD card and overwrite on identical guid. At some point, we'll have to consider deletions.
+
 File format: (to be in sync with Tomdroid's)
 - Why is title repeated in note text?
 - check everrnote dtd for inspiration: http://www.evernote.com/about/developer/
