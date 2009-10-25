@@ -22,25 +22,17 @@
  */
 package org.tomdroid.ui;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.tomdroid.Note;
 import org.tomdroid.R;
-import org.tomdroid.util.NoteBuilder;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.DialogInterface.OnClickListener;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.text.util.Linkify;
 import android.text.util.Linkify.TransformFilter;
 import android.util.Log;
@@ -49,8 +41,6 @@ import android.widget.TextView;
 
 // TODO this class is starting to smell
 public class ViewNote extends Activity {
-	
-	private String url;
 	
 	// UI elements
 	private TextView content;
@@ -67,52 +57,11 @@ public class ViewNote extends Activity {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.note_view);
-		
 		content = (TextView) findViewById(R.id.content);
-		
 		final Intent intent = getIntent();
-		
 		Uri uri = intent.getData();
-		if (uri == null) {
-			
-			// we were not fired by an Intent-filter so we're loading a web note
-			Bundle extras = intent.getExtras();
-			if (extras != null) {
-				
-				url = extras.getString(Note.URL);
-				
-				// Based on what was sent in the bundle, load from url
-				if (url != null) {
-
-					if (Tomdroid.LOGGING_ENABLED) Log.v(TAG,"ViewNote started: Loading a note from Web URL.");
-					
-					try {
-
-						note = new NoteBuilder().setCaller(handler).setInputSource(new URL(url)).build();
-					} catch (MalformedURLException e) {
-						// TODO catch correctly
-						e.printStackTrace();
-
-						// TODO put error string in a translatable resource
-						new AlertDialog.Builder(this)
-							.setMessage("Invalid URL")
-							.setTitle("Error")
-							.setNeutralButton("Ok", new OnClickListener() {
-								public void onClick(DialogInterface dialog, int which) {
-									dialog.dismiss();
-									finish();
-								}})
-							.show();
-					}
-
-				} else {
-					
-					if (Tomdroid.LOGGING_ENABLED) Log.d(TAG,"ViewNote started: Bundle's content was not helpful to find which note to load..");
-				}
-			} else {
-				if (Tomdroid.LOGGING_ENABLED) Log.d(TAG,"ViewNote started: No extra information in the bundle, we don't know what to load");
-			}
-		} else {
+		
+		if (uri != null) {
 			
 			// We were triggered by an Intent URI 
 			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "ViewNote started: Intent-filter triggered.");
@@ -247,28 +196,4 @@ public class ViewNote extends Activity {
 			return Tomdroid.CONTENT_URI.toString()+"/"+id;
 		}  
 	};
-
-	private Handler handler = new Handler() {
-    	
-        @Override
-        public void handleMessage(Message msg) {
-        	
-        	// thread is done fetching note and parsing went well 
-        	if (msg.what == Note.NOTE_RECEIVED_AND_VALID) {
-	        	showNote(note);
-        	} else if (msg.what == Note.NOTE_BADURL_OR_PARSING_ERROR) {
-        		
-        		// TODO put this String in a translatable resource
-				new AlertDialog.Builder(ViewNote.this)
-					.setMessage("Error loading note from the Web due to a network error or a parsing error.")
-					.setTitle("Error")
-					.setNeutralButton("Ok", new OnClickListener() {
-						public void onClick(DialogInterface dialog, int which) {
-							dialog.dismiss();
-							finish();
-						}})
-					.show();
-        	}
-		}
-    };
 }

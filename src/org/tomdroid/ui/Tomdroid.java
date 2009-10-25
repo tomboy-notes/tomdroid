@@ -65,13 +65,6 @@ public class Tomdroid extends ListActivity {
 	// Logging info
 	private static final String TAG = "Tomdroid";
 	
-	// data keys
-	public static final String RESULT_URL_TO_LOAD = "urlToLoad"; 
-
-	// Activity result resources
-	private static final int ACTIVITY_GET_URL=0;
-	private static final int ACTIVITY_VIEW=1;
-	
 	// UI to data model glue
 	private Cursor notesCursor;
 	private TextView listEmptyView;
@@ -136,10 +129,6 @@ public class Tomdroid extends ListActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-	        case R.id.menuLoadWebNote:
-	            showLoadWebNoteDialog();
-	            return true;
-	            
 	        case R.id.menuSyncWithSD:
 	            
 	            // start loading local notes
@@ -226,19 +215,6 @@ public class Tomdroid extends ListActivity {
 	}
 
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		
-		switch(requestCode) {
-			case ACTIVITY_GET_URL:
-				if (resultCode == RESULT_OK) {
-					String url = data.getExtras().getString(RESULT_URL_TO_LOAD);
-					loadNoteFromURL(url);
-				}
-		}
-	}
-
-	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 
 		// get the clicked note id
@@ -248,19 +224,6 @@ public class Tomdroid extends ListActivity {
 		
 		Uri intentUri = Uri.parse(Tomdroid.CONTENT_URI+"/"+noteId);
 		Intent i = new Intent(Intent.ACTION_VIEW, intentUri, this, ViewNote.class);
-		startActivityForResult(i, ACTIVITY_VIEW);
-	}
-	
-	private void showLoadWebNoteDialog() {
-		
-    	Intent i = new Intent(Tomdroid.this, LoadWebNoteDialog.class);
-    	startActivityForResult(i, ACTIVITY_GET_URL);
-	}
-
-	private void loadNoteFromURL(String url) {
-		
-    	Intent i = new Intent(Tomdroid.this, ViewNote.class);
-        i.putExtra(Note.URL, url);
-        startActivity(i);
+		startActivity(i);
 	}
 }

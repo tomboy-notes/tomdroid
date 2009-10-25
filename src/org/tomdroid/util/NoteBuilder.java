@@ -39,9 +39,6 @@ import org.tomdroid.xml.NoteHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 
 /*
@@ -64,15 +61,8 @@ public class NoteBuilder implements Runnable {
 	
 	// thread related
 	private Thread runner;
-	private Handler parentHandler;
 	
 	public NoteBuilder () {}
-	
-	public NoteBuilder setCaller(Handler parent) {
-		
-		parentHandler = parent;
-		return this;
-	}
 	
 	public NoteBuilder setInputSource(File f) {
 		
@@ -132,28 +122,7 @@ public class NoteBuilder implements Runnable {
 			xr.parse(is);
 		} catch (Exception e) {
 			// TODO handle error in a more granular way
-			warnHandler(false);
+			Log.e(TAG, "There was an error parsing the note.");
 		}
-		
-		// notify UI that we are done here and send result 
-		warnHandler(true);
 	}
-	
-    private void warnHandler(boolean successfull) {
-		
-		// notify the main UI that we are done here (sending an ok along with the note's title)
-		Message msg = Message.obtain();
-		if (successfull) {
-			Bundle bundle = new Bundle();
-			bundle.putString(Note.TITLE, note.getTitle());
-			msg.setData(bundle);
-			msg.what = Note.NOTE_RECEIVED_AND_VALID;
-		} else {
-			
-			msg.what = Note.NOTE_BADURL_OR_PARSING_ERROR;
-		}
-		
-		parentHandler.sendMessage(msg);
-    }
-
 }
