@@ -26,6 +26,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.tomdroid.Note;
+import org.tomdroid.NoteManager;
 import org.tomdroid.R;
 
 import android.app.Activity;
@@ -69,26 +70,16 @@ public class ViewNote extends Activity {
 			// TODO validate the good action?
 			// intent.getAction()
 			
-			// can we find a matching note?
-			Cursor cursor = managedQuery(uri, Note.PROJECTION, null, null, null);
-			// cursor must not be null and must return more than 0 entry 
-			if (!(cursor == null || cursor.getCount() == 0)) {
-				
-				// create the note from the cursor
-				cursor.moveToFirst();
-				String noteContent = cursor.getString(cursor.getColumnIndexOrThrow(Note.NOTE_CONTENT));
-				String noteTitle = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
-				
-				Note note = new Note();
-				note.setXmlContent(noteContent);
-				note.setTitle(noteTitle);
+			note = NoteManager.getInstance().getNote(uri);
+			
+			if(note != null) {
 				
 				showNote(note);
 				
 			} else {
 				
 				// TODO send an error to the user
-				if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "Cursor returned null or 0 notes");
+				if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "The note "+uri+" doesn't exist");
 			}
 		}
 	}
@@ -133,15 +124,12 @@ public class ViewNote extends Activity {
 	public Pattern buildNoteLinkifyPattern()  {
 		
 		StringBuilder sb = new StringBuilder();
+		Cursor cursor = NoteManager.getInstance().getTitles();
 		
-		// get a cursor containing the notes titles
-		String[] projection = { Note.TITLE };
-		Cursor cursor = managedQuery(Tomdroid.CONTENT_URI, projection, null, null, null);
 		// cursor must not be null and must return more than 0 entry 
 		if (!(cursor == null || cursor.getCount() == 0)) {
 			
 			String title;
-			
 			cursor.moveToFirst();
 			
 			do {
@@ -174,23 +162,7 @@ public class ViewNote extends Activity {
 		public String transformUrl(Matcher m, String str) {
 
 			// FIXME if this activity is called from another app and Tomdroid was never launched, getting here will probably make it crash
-			int id = 0;
-			
-			// get the notes ids
-			String[] projection = { Note.ID };
-			String[] whereArgs = { str };
-			Cursor cursor = managedQuery(Tomdroid.CONTENT_URI, projection, Note.TITLE+"=?", whereArgs, null);
-			// cursor must not be null and must return more than 0 entry 
-			if (!(cursor == null || cursor.getCount() == 0)) {
-				
-				cursor.moveToFirst();
-				id = cursor.getInt(cursor.getColumnIndexOrThrow(Note.ID));
-				
-			} else {
-				
-				// TODO send an error to the user
-				if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "Cursor returned null or 0 notes");
-			}
+			int id = NoteManager.getInstance().getNoteId(str);
 			
 			// return something like content://org.tomdroid.notes/notes/3
 			return Tomdroid.CONTENT_URI.toString()+"/"+id;

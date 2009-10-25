@@ -54,7 +54,6 @@ public class Note {
 	public static final String URL = "url";
 	public static final String FILE = "file";
 	public static final String NOTE_CONTENT = "content";
-	public static final String[] PROJECTION = { Note.ID, Note.TITLE, Note.FILE, Note.NOTE_CONTENT, Note.MODIFIED_DATE };
 	
 	// Logging info
 	private static final String TAG = "Note";
