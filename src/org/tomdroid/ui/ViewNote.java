@@ -28,12 +28,16 @@ import java.util.regex.Pattern;
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
+import org.tomdroid.util.NoteBuilder;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.text.SpannableStringBuilder;
 import android.text.util.Linkify;
 import android.text.util.Linkify.TransformFilter;
 import android.util.Log;
@@ -48,6 +52,7 @@ public class ViewNote extends Activity {
 	
 	// Model objects
 	private Note note;
+	private SpannableStringBuilder noteContent;
 	
 	// Logging info
 	private static final String TAG = "ViewNote";
@@ -74,7 +79,7 @@ public class ViewNote extends Activity {
 			
 			if(note != null) {
 				
-				showNote(note);
+				noteContent = note.getNoteContent(handler);
 				
 			} else {
 				
@@ -97,9 +102,9 @@ public class ViewNote extends Activity {
 		return true;
 	}
 
-	private void showNote(Note note) {
+	private void showNote() {
 		// show the note (spannable makes the TextView able to output styled text)
-		content.setText(note.getNoteContent(), TextView.BufferType.SPANNABLE);
+		content.setText(noteContent, TextView.BufferType.SPANNABLE);
 		setTitle(note.getTitle());
 		
 		// add links to stuff that is understood by Android
@@ -115,6 +120,16 @@ public class ViewNote extends Activity {
 						 null,
 						 noteTitleTransformFilter);
 	}
+	
+	public Handler handler = new Handler() {
+
+		@Override
+		public void handleMessage(Message msg) {
+			
+			if(msg.what == NoteBuilder.PARSE_OK)
+				showNote();
+		}
+	};
 	
 	/**
 	 * Builds a regular expression pattern that will match any of the note title currently in the collection.
