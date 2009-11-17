@@ -89,7 +89,34 @@ public class ViewNote extends Activity {
 				
 				// TODO send an error to the user
 				if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "The note "+uri+" doesn't exist");
+				
+				// TODO put error string in a translatable resource
+				new AlertDialog.Builder(this)
+					.setMessage("The requested note could not be found. If you see this error by " +
+							    "mistake and you are able to replicate it, please file a bug!")
+					.setTitle("Error")
+					.setNeutralButton("Ok", new OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+							finish();
+						}})
+					.show();
 			}
+		} else {
+			
+			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "The Intent's data was null.");
+			
+			// TODO put error string in a translatable resource
+			new AlertDialog.Builder(this)
+			.setMessage("The requested note could not be found. If you see this error by " +
+					    "mistake and you are able to replicate it, please file a bug!")
+			.setTitle("Error")
+			.setNeutralButton("Ok", new OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.dismiss();
+					finish();
+				}})
+			.show();
 		}
 	}
 	
