@@ -26,6 +26,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 import org.tomdroid.Note;
+import org.tomdroid.NoteManager;
 import org.tomdroid.R;
 import org.tomdroid.util.AsyncNoteLoaderAndParser;
 
@@ -43,8 +44,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 public class Tomdroid extends ListActivity {
@@ -65,16 +66,9 @@ public class Tomdroid extends ListActivity {
 	// Logging info
 	private static final String TAG = "Tomdroid";
 	
-	// data keys
-	public static final String RESULT_URL_TO_LOAD = "urlToLoad"; 
-
-	// Activity result resources
-	private static final int ACTIVITY_GET_URL=0;
-	private static final int ACTIVITY_VIEW=1;
-	
 	// UI to data model glue
-	private Cursor notesCursor;
 	private TextView listEmptyView;
+	private ListAdapter adapter;
 	
 	// Bundle keys for saving state
 	private static final String WARNING_SHOWN = "w";
@@ -88,6 +82,7 @@ public class Tomdroid extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
+        NoteManager.init(this);
         setContentView(R.layout.main);
         
         // did we already show the warning and got destroyed by android's activity killer?
@@ -106,17 +101,7 @@ public class Tomdroid extends ListActivity {
 				.show();
         }
         
-		// get a cursor representing all notes from the NoteProvider
-		String[] projection = new String[] { Note.ID, Note.TITLE };
-		Uri notes = CONTENT_URI;
-		notesCursor = managedQuery(notes, projection, null, null, null);
-		
-		// set up an adapter binding the TITLE field of the cursor to the list item
-		String[] from = new String[] { Note.TITLE };
-		int[] to = new int[] { R.id.note_title };
-		SimpleCursorAdapter adapter =
-			new SimpleCursorAdapter(this, R.layout.main_list_item, notesCursor, from, to);
-        
+        adapter = NoteManager.getInstance().getListAdapter();
 		setListAdapter(adapter);
 
         // set the view shown when the list is empty
@@ -136,24 +121,21 @@ public class Tomdroid extends ListActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-	        case R.id.menuLoadWebNote:
-	            showLoadWebNoteDialog();
-	            return true;
-	            
 	        case R.id.menuSyncWithSD:
 
 	        	// start loading local notes
                 if (LOGGING_ENABLED) Log.v(TAG, "Loading local notes");
-	        	try {
-	        		File notesRoot = new File(Tomdroid.NOTES_PATH);
-	        		
-	        		if (!notesRoot.exists()) {
-	        			throw new FileNotFoundException("Tomdroid notes folder doesn't exist. It is configured to be at: "+Tomdroid.NOTES_PATH);
-	        		}
-	        		
-	        		AsyncNoteLoaderAndParser asyncLoader = new AsyncNoteLoaderAndParser(notesRoot, this);
+
+            	try {
+            		File notesRoot = new File(Tomdroid.NOTES_PATH);
+        		
+            		if (!notesRoot.exists()) {
+        			throw new FileNotFoundException("Tomdroid notes folder doesn't exist. It is configured to be at: "+Tomdroid.NOTES_PATH);
+            		}
+        		
+	        		AsyncNoteLoaderAndParser asyncLoader = new AsyncNoteLoaderAndParser(notesRoot);
 	        		asyncLoader.readAndParseNotes();
-	        		
+        		
 	    		} catch (FileNotFoundException e) {
 	    			//TODO put strings in an external resource
 	    			listEmptyView.setText(R.string.strListEmptyNoNotes);
@@ -167,8 +149,8 @@ public class Tomdroid extends ListActivity {
 	    				.show();
 	    			e.printStackTrace();
 	    		}
-	        	
-	        	return true;
+        	
+	    		return true;
 	        
 	        case R.id.menuAbout:
 				showAboutDialog();
@@ -225,41 +207,14 @@ public class Tomdroid extends ListActivity {
 	}
 
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		
-		switch(requestCode) {
-			case ACTIVITY_GET_URL:
-				if (resultCode == RESULT_OK) {
-					String url = data.getExtras().getString(RESULT_URL_TO_LOAD);
-					loadNoteFromURL(url);
-				}
-		}
-	}
-
-	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
-
-		// get the clicked note id
-		notesCursor.moveToPosition(position);
-		int noteId = notesCursor.getInt(
-						notesCursor.getColumnIndexOrThrow(Note.ID));
+		
+		Cursor item = (Cursor)adapter.getItem(position);
+		int noteId = item.getInt(
+						item.getColumnIndexOrThrow(Note.ID));
 		
 		Uri intentUri = Uri.parse(Tomdroid.CONTENT_URI+"/"+noteId);
 		Intent i = new Intent(Intent.ACTION_VIEW, intentUri, this, ViewNote.class);
-		startActivityForResult(i, ACTIVITY_VIEW);
-	}
-	
-	private void showLoadWebNoteDialog() {
-		
-    	Intent i = new Intent(Tomdroid.this, LoadWebNoteDialog.class);
-    	startActivityForResult(i, ACTIVITY_GET_URL);
-	}
-
-	private void loadNoteFromURL(String url) {
-		
-    	Intent i = new Intent(Tomdroid.this, ViewNote.class);
-        i.putExtra(Note.URL, url);
-        startActivity(i);
+		startActivity(i);
 	}
 }

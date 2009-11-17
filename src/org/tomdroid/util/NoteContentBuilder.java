@@ -22,40 +22,31 @@
  */
 package org.tomdroid.util;
 
-import java.io.BufferedInputStream;
-import java.io.InputStream;
 import java.io.StringReader;
-import java.net.URL;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import org.tomdroid.Note;
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.xml.NoteContentHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.SpannableStringBuilder;
 import android.util.Log;
 
-/*
- * For now, you should only use this class for a Note fetched through the network
- * TODO remove duplication between here and AsyncNoteLoaderAndParser
- * 
- */
-public class NoteBuilder implements Runnable {
+public class NoteContentBuilder implements Runnable {
+	
+	public static final int PARSE_OK = 0;
+	public static final int PARSE_ERROR = 1;
 	
 	// Metadata for the Note that will be built
 	private InputSource noteContentIs;
-	private URL url;
-	// true means local note and false means Web note
-	private Boolean noteTypeLocal; // using the Object only to be able to test against null
 	
 	// the object being built
-	private Note note = new Note();
+	private SpannableStringBuilder noteContent = new SpannableStringBuilder();
 	
 	private final String TAG = "NoteBuilder";
 	
@@ -63,15 +54,15 @@ public class NoteBuilder implements Runnable {
 	private Thread runner;
 	private Handler parentHandler;
 	
-	public NoteBuilder () {}
+	public NoteContentBuilder () {}
 	
-	public NoteBuilder setCaller(Handler parent) {
+	public NoteContentBuilder setCaller(Handler parent) {
 		
 		parentHandler = parent;
 		return this;
 	}
 	
-	public NoteBuilder setInputSource(String nc) {
+	public NoteContentBuilder setInputSource(String nc) {
 		
 		//FIXME: I would pay a beer to get rid of that ugliness; I can't believe we cannot parse a partial XML tree using SAX
 		// Create a valid xml document
@@ -81,25 +72,19 @@ public class NoteBuilder implements Runnable {
 		xml += "</note-content>";
 
 		noteContentIs = new InputSource(new StringReader(xml));
-		noteTypeLocal = new Boolean(true);
 		return this;
 	}
 	
-	public NoteBuilder setInputSource(URL u) {
-		
-		url = u;
-		noteTypeLocal = new Boolean(false);
-		return this;
-	}
-	
-	public Note build() {
+	public SpannableStringBuilder build() {
 		
 		runner = new Thread(this);
 		runner.start();		
-		return note;
+		return noteContent;
 	}
 	
 	public void run() {
+		
+		boolean successful = true;
 		
 		try {
 			// Parsing
@@ -112,50 +97,32 @@ public class NoteBuilder implements Runnable {
 	        XMLReader xr = sp.getXMLReader();
 	        
 	        // Create a new ContentHandler, send it this note to fill and apply it to the XML-Reader
-	        NoteContentHandler xmlHandler = new NoteContentHandler(note.getNoteContent());
+	        NoteContentHandler xmlHandler = new NoteContentHandler(noteContent);
 	        xr.setContentHandler(xmlHandler);
 	        
-	        if (noteTypeLocal == null) {
-	        	// TODO find the proper exception to throw here.
-	        	throw new IllegalArgumentException("You are not respecting NoteBuilder's contract.");
-	        }
-	        
-	        // Create the proper input source based on if its a local note or a web note
-	        InputSource is;
-	        if (noteTypeLocal) {
-
-				is = noteContentIs;
-	        } else {
-	        	is = new InputSource(new BufferedInputStream((InputStream) url.getContent()));
-	        }
-	        
 			if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "parsing note");
-			xr.parse(is);
+			xr.parse(noteContentIs);
 		} catch (Exception e) {
 			e.printStackTrace();
 			// TODO handle error in a more granular way
-			warnHandler(false);
+			Log.e(TAG, "There was an error parsing the note.");
+			successful = false;
 		}
 		
-		// notify UI that we are done here and send result 
-		warnHandler(true);
+		warnHandler(successful);
 	}
 	
-    private void warnHandler(boolean successfull) {
+    private void warnHandler(boolean successful) {
 		
 		// notify the main UI that we are done here (sending an ok along with the note's title)
 		Message msg = Message.obtain();
-		if (successfull) {
-			Bundle bundle = new Bundle();
-			bundle.putString(Note.TITLE, note.getTitle());
-			msg.setData(bundle);
-			msg.what = Note.NOTE_RECEIVED_AND_VALID;
+		if (successful) {
+			msg.what = PARSE_OK;
 		} else {
 			
-			msg.what = Note.NOTE_BADURL_OR_PARSING_ERROR;
+			msg.what = PARSE_ERROR;
 		}
 		
 		parentHandler.sendMessage(msg);
     }
-
 }

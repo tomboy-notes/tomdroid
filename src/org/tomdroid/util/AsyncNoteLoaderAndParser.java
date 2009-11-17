@@ -36,32 +36,26 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import org.tomdroid.Note;
+import org.tomdroid.NoteManager;
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.xml.NoteHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
-import android.app.Activity;
-import android.content.ContentResolver;
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.net.Uri;
 import android.util.Log;
 
 public class AsyncNoteLoaderAndParser {
 	private final ExecutorService pool;
 	private final static int poolSize = 1;
 	private File path;
-	private Activity activity;
 	
 	// logging related
 	private final static String TAG = "AsyncNoteLoaderAndParser";
 	
-	public AsyncNoteLoaderAndParser(File path, Activity activity) {
+	public AsyncNoteLoaderAndParser(File path) {
 		this.path = path;
 		pool = Executors.newFixedThreadPool(poolSize);
-		this.activity = activity;
 	}
 
 	public void readAndParseNotes() {
@@ -135,54 +129,7 @@ public class AsyncNoteLoaderAndParser {
 				e.printStackTrace();
 			}
 			
-			insertNote(note);
-		}
-	}
-	
-	private void insertNote(Note note) {
-		
-		// verify if the note is already in the content provider
-		String[] projection = new String[] {
-			    Note.ID,
-			    Note.TITLE,
-			};
-		
-		// TODO make the query prettier (use querybuilder)
-		Uri notes = Tomdroid.CONTENT_URI;
-		String[] whereArgs = new String[1];
-		whereArgs[0] = note.getGuid().toString();
-		
-		// The note identifier is the guid
-		ContentResolver cr = activity.getContentResolver();
-		Cursor managedCursor = cr.query(notes,
-                projection,  
-                Note.GUID + "= ?",
-                whereArgs,
-                null);
-		activity.startManagingCursor(managedCursor);
-		
-		// Preparing the values to be either inserted or updated
-		// depending on the result of the previous query
-		ContentValues values = new ContentValues();
-		values.put(Note.TITLE, note.getTitle());
-		values.put(Note.FILE, note.getFileName());
-		values.put(Note.GUID, note.getGuid().toString());
-		values.put(Note.NOTE_CONTENT, note.getXmlContent());
-		
-		if (managedCursor.getCount() == 0) {
-			
-			// This note is not in the database yet we need to insert it
-			if (Tomdroid.LOGGING_ENABLED) Log.v(TAG,"A new note has been detected (not yet in db)");
-			
-    		Uri uri = cr.insert(Tomdroid.CONTENT_URI, values);
-
-    		if (Tomdroid.LOGGING_ENABLED) Log.v(TAG,"Note inserted in content provider. ID: "+uri+" TITLE:"+note.getTitle()+" GUID:"+note.getGuid());
-		} else {
-			
-			// Overwrite the previous note if it exists
-			cr.update(Tomdroid.CONTENT_URI, values, Note.GUID+" = ?", whereArgs);
-			
-			if (Tomdroid.LOGGING_ENABLED) Log.v(TAG,"Note updated in content provider. TITLE:"+note.getTitle()+" GUID:"+note.getGuid());
+			NoteManager.getInstance().putNote(note);
 		}
 	}
 }

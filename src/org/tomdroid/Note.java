@@ -27,10 +27,10 @@ import java.util.UUID;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
+import org.tomdroid.util.NoteContentBuilder;
 
-import android.text.Spannable;
+import android.os.Handler;
 import android.text.SpannableStringBuilder;
-import android.text.style.StyleSpan;
 
 public class Note {
 
@@ -42,10 +42,6 @@ public class Note {
 	public static final String URL = "url";
 	public static final String FILE = "file";
 	public static final String NOTE_CONTENT = "content";
-	public static final int NOTE_RECEIVED_AND_VALID = 1;
-	public static final int NO_NOTES = 2;
-	public static final int NOTE_BADURL_OR_PARSING_ERROR = 3;
-	public static final String[] PROJECTION = { Note.ID, Note.TITLE, Note.FILE, Note.NOTE_CONTENT, Note.MODIFIED_DATE };
 	
 	// Logging info
 	private static final String TAG = "Note";
@@ -59,7 +55,7 @@ public class Note {
 	public static final float NOTE_SIZE_HUGE_FACTOR = 1.6f;
 	
 	// Members
-	private SpannableStringBuilder noteContent = new SpannableStringBuilder();
+	private SpannableStringBuilder noteContent;
 	private String xmlContent;
 	private String url;
 	private String fileName;
@@ -118,14 +114,11 @@ public class Note {
 		this.guid = UUID.fromString(guid);
 	}
 	
-	public SpannableStringBuilder getNoteContent() {
+	public SpannableStringBuilder getNoteContent(Handler handler) {
 		
+		// TODO not sure this is the right place to do this
+		noteContent = new NoteContentBuilder().setCaller(handler).setInputSource(xmlContent).build();
 		return noteContent;
-	}
-	
-	public void setNoteContent(SpannableStringBuilder nc) {
-
-		noteContent = nc;
 	}
 	
 	public String getXmlContent() {
@@ -134,13 +127,6 @@ public class Note {
 	
 	public void setXmlContent(String xmlContent) {
 		this.xmlContent = xmlContent;
-	}
-
-	public SpannableStringBuilder getDisplayableNoteContent() {
-		SpannableStringBuilder sNoteContent = new SpannableStringBuilder(getNoteContent());
-		
-		sNoteContent.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 17, 35, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-		return sNoteContent;
 	}
 
 	@Override

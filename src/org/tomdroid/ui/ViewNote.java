@@ -22,14 +22,13 @@
  */
 package org.tomdroid.ui;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.tomdroid.Note;
+import org.tomdroid.NoteManager;
 import org.tomdroid.R;
-import org.tomdroid.util.NoteBuilder;
+import org.tomdroid.util.NoteContentBuilder;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -41,6 +40,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.SpannableStringBuilder;
 import android.text.util.Linkify;
 import android.text.util.Linkify.TransformFilter;
 import android.util.Log;
@@ -50,13 +50,12 @@ import android.widget.TextView;
 // TODO this class is starting to smell
 public class ViewNote extends Activity {
 	
-	private String url;
-	
 	// UI elements
 	private TextView content;
 	
 	// Model objects
 	private Note note;
+	private SpannableStringBuilder noteContent;
 	
 	// Logging info
 	private static final String TAG = "ViewNote";
@@ -67,52 +66,11 @@ public class ViewNote extends Activity {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.note_view);
-		
 		content = (TextView) findViewById(R.id.content);
-		
 		final Intent intent = getIntent();
-		
 		Uri uri = intent.getData();
-		if (uri == null) {
-			
-			// we were not fired by an Intent-filter so we're loading a web note
-			Bundle extras = intent.getExtras();
-			if (extras != null) {
-				
-				url = extras.getString(Note.URL);
-				
-				// Based on what was sent in the bundle, load from url
-				if (url != null) {
-
-					if (Tomdroid.LOGGING_ENABLED) Log.v(TAG,"ViewNote started: Loading a note from Web URL.");
-					
-					try {
-
-						note = new NoteBuilder().setCaller(handler).setInputSource(new URL(url)).build();
-					} catch (MalformedURLException e) {
-						// TODO catch correctly
-						e.printStackTrace();
-
-						// TODO put error string in a translatable resource
-						new AlertDialog.Builder(this)
-							.setMessage("Invalid URL")
-							.setTitle("Error")
-							.setNeutralButton("Ok", new OnClickListener() {
-								public void onClick(DialogInterface dialog, int which) {
-									dialog.dismiss();
-									finish();
-								}})
-							.show();
-					}
-
-				} else {
-					
-					if (Tomdroid.LOGGING_ENABLED) Log.d(TAG,"ViewNote started: Bundle's content was not helpful to find which note to load..");
-				}
-			} else {
-				if (Tomdroid.LOGGING_ENABLED) Log.d(TAG,"ViewNote started: No extra information in the bundle, we don't know what to load");
-			}
-		} else {
+		
+		if (uri != null) {
 			
 			// We were triggered by an Intent URI 
 			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "ViewNote started: Intent-filter triggered.");
@@ -120,23 +78,17 @@ public class ViewNote extends Activity {
 			// TODO validate the good action?
 			// intent.getAction()
 			
-			// can we find a matching note?
-			Cursor cursor = managedQuery(uri, Note.PROJECTION, null, null, null);
-			// cursor must not be null and must return more than 0 entry 
-			if (!(cursor == null || cursor.getCount() == 0)) {
+			// TODO verify that getNote is doing the proper validation
+			note = NoteManager.getInstance().getNote(uri);
+			
+			if(note != null) {
 				
-				// create the note from the cursor
-				cursor.moveToFirst();
-				String noteContent = cursor.getString(cursor.getColumnIndexOrThrow(Note.NOTE_CONTENT));
-				String noteTitle = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
-				
-				note = new NoteBuilder().setCaller(handler).setInputSource(noteContent).build();
-				note.setTitle(noteTitle);
+				noteContent = note.getNoteContent(handler);
 				
 			} else {
 				
 				// TODO send an error to the user
-				if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "Cursor returned null or 0 notes");
+				if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "The note "+uri+" doesn't exist");
 			}
 		}
 	}
@@ -156,7 +108,7 @@ public class ViewNote extends Activity {
 
 	private void showNote() {
 		// show the note (spannable makes the TextView able to output styled text)
-		content.setText(note.getNoteContent(), TextView.BufferType.SPANNABLE);
+		content.setText(noteContent, TextView.BufferType.SPANNABLE);
 		setTitle(note.getTitle());
 		
 		// add links to stuff that is understood by Android
@@ -173,6 +125,32 @@ public class ViewNote extends Activity {
 						 noteTitleTransformFilter);
 	}
 	
+	public Handler handler = new Handler() {
+
+		@Override
+		public void handleMessage(Message msg) {
+			
+			//parsed ok - show
+			if(msg.what == NoteContentBuilder.PARSE_OK) {
+				showNote();
+
+			//parsed not ok - error
+			} else if(msg.what == NoteContentBuilder.PARSE_ERROR) {
+				
+				// TODO put this String in a translatable resource
+				new AlertDialog.Builder(ViewNote.this)
+					.setMessage("Error loading note from the Web due to a network error or a parsing error.")
+					.setTitle("Error")
+					.setNeutralButton("Ok", new OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+							finish();
+						}})
+					.show();
+        	}
+		}
+	};
+	
 	/**
 	 * Builds a regular expression pattern that will match any of the note title currently in the collection.
 	 * Useful for the Linkify to create the links to the notes.
@@ -181,10 +159,8 @@ public class ViewNote extends Activity {
 	public Pattern buildNoteLinkifyPattern()  {
 		
 		StringBuilder sb = new StringBuilder();
+		Cursor cursor = NoteManager.getInstance().getTitles();
 		
-		// get a cursor containing the notes titles
-		String[] projection = { Note.TITLE };
-		Cursor cursor = managedQuery(Tomdroid.CONTENT_URI, projection, null, null, null);
 		// cursor must not be null and must return more than 0 entry 
 		if (!(cursor == null || cursor.getCount() == 0)) {
 			
@@ -222,50 +198,10 @@ public class ViewNote extends Activity {
 		public String transformUrl(Matcher m, String str) {
 
 			// FIXME if this activity is called from another app and Tomdroid was never launched, getting here will probably make it crash
-			int id = 0;
-			
-			// get the notes ids
-			String[] projection = { Note.ID };
-			String[] whereArgs = { str };
-			Cursor cursor = managedQuery(Tomdroid.CONTENT_URI, projection, Note.TITLE+"=?", whereArgs, null);
-			// cursor must not be null and must return more than 0 entry 
-			if (!(cursor == null || cursor.getCount() == 0)) {
-				
-				cursor.moveToFirst();
-				id = cursor.getInt(cursor.getColumnIndexOrThrow(Note.ID));
-				
-			} else {
-				
-				// TODO send an error to the user
-				if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "Cursor returned null or 0 notes");
-			}
+			int id = NoteManager.getInstance().getNoteId(str);
 			
 			// return something like content://org.tomdroid.notes/notes/3
 			return Tomdroid.CONTENT_URI.toString()+"/"+id;
 		}  
 	};
-
-	private Handler handler = new Handler() {
-    	
-        @Override
-        public void handleMessage(Message msg) {
-        	
-        	// thread is done fetching note and parsing went well 
-        	if (msg.what == Note.NOTE_RECEIVED_AND_VALID) {
-	        	showNote();
-        	} else if (msg.what == Note.NOTE_BADURL_OR_PARSING_ERROR) {
-        		
-        		// TODO put this String in a translatable resource
-				new AlertDialog.Builder(ViewNote.this)
-					.setMessage("Error loading note from the Web due to a network error or a parsing error.")
-					.setTitle("Error")
-					.setNeutralButton("Ok", new OnClickListener() {
-						public void onClick(DialogInterface dialog, int which) {
-							dialog.dismiss();
-							finish();
-						}})
-					.show();
-        	}
-		}
-    };
 }
