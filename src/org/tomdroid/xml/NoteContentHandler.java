@@ -64,11 +64,9 @@ public class NoteContentHandler extends DefaultHandler {
 	private final static String STRIKETHROUGH = "strikethrough";
 	private final static String HIGHLIGHT = "highlight";
 	private final static String MONOSPACE = "monospace";
-	// Sizes are using a namespace identifier size. Ex: <size:small></size:small>
-	private final static String NS_SIZE = "http://beatniksoftware.com/tomboy/size";
-	private final static String SMALL = "small";
-	private final static String LARGE = "large";
-	private final static String HUGE = "huge";
+	private final static String SMALL = "size:small";
+	private final static String LARGE = "size:large";
+	private final static String HUGE = "size:huge";
 	// Bullet list-related
 	private final static String LIST = "list";
 	private final static String LIST_ITEM = "list-item";
@@ -84,7 +82,7 @@ public class NoteContentHandler extends DefaultHandler {
 	@Override
 	public void startElement(String uri, String localName, String name,	Attributes attributes) throws SAXException {
 		
-		if (localName.equals(NOTE_CONTENT)) {
+		if (name.equals(NOTE_CONTENT)) {
 
 			// we are under the note-content tag
 			// we will append all its nested tags so I create a string builder to do that
@@ -94,28 +92,25 @@ public class NoteContentHandler extends DefaultHandler {
 		// if we are in note-content, keep and convert formatting tags
 		// TODO is XML CaSe SeNsItIve? if not change equals to equalsIgnoreCase and apply to endElement()
 		if (inNoteContentTag) {
-			if (localName.equals(BOLD)) {
+			if (name.equals(BOLD)) {
 				inBoldTag = true;
-			} else if (localName.equals(ITALIC)) {
+			} else if (name.equals(ITALIC)) {
 				inItalicTag = true;
-			} else if (localName.equals(STRIKETHROUGH)) {
+			} else if (name.equals(STRIKETHROUGH)) {
 				inStrikeTag = true;
-			} else if (localName.equals(HIGHLIGHT)) {
+			} else if (name.equals(HIGHLIGHT)) {
 				inHighlighTag = true;
-			} else if (localName.equals(MONOSPACE)) {
+			} else if (name.equals(MONOSPACE)) {
 				inMonospaceTag = true;
-			} else if (uri.equals(NS_SIZE)) {
-				// now check for the different possible sizes
-				if (localName.equals(SMALL)) {
-					inSizeSmallTag = true;
-				} else if (localName.equals(LARGE)) {
-					inSizeLargeTag = true;
-				} else if (localName.equals(HUGE)) {
-					inSizeHugeTag = true;
-				}
-			} else if (localName.equals(LIST)) {
+			} else if (name.equals(SMALL)) {
+				inSizeSmallTag = true;
+			} else if (name.equals(LARGE)) {
+				inSizeLargeTag = true;
+			} else if (name.equals(HUGE)) {
+				inSizeHugeTag = true;
+			} else if (name.equals(LIST)) {
 				inListLevel++;
-			} else if (localName.equals(LIST_ITEM)) {
+			} else if (name.equals(LIST_ITEM)) {
 				inListItem = true;
 			}
 		}
@@ -126,34 +121,31 @@ public class NoteContentHandler extends DefaultHandler {
 	public void endElement(String uri, String localName, String name)
 			throws SAXException {
 
-		if (localName.equals(NOTE_CONTENT)) {
+		if (name.equals(NOTE_CONTENT)) {
 			inNoteContentTag = false;
 		}
 		
 		// if we are in note-content, keep and convert formatting tags
 		if (inNoteContentTag) {
-			if (localName.equals(BOLD)) {
+			if (name.equals(BOLD)) {
 				inBoldTag = false;
-			} else if (localName.equals(ITALIC)) {
+			} else if (name.equals(ITALIC)) {
 				inItalicTag = false;
-			} else if (localName.equals(STRIKETHROUGH)) {
+			} else if (name.equals(STRIKETHROUGH)) {
 				inStrikeTag = false;
-			} else if (localName.equals(HIGHLIGHT)) {
+			} else if (name.equals(HIGHLIGHT)) {
 				inHighlighTag = false;
-			} else if (localName.equals(MONOSPACE)) {
+			} else if (name.equals(MONOSPACE)) {
 				inMonospaceTag = false;
-			} else if (uri.equals(NS_SIZE)) {
-				// now check for the different possible sizes
-				if (localName.equals(SMALL)) {
-					inSizeSmallTag = false;
-				} else if (localName.equals(LARGE)) {
-					inSizeLargeTag = false;
-				} else if (localName.equals(HUGE)) {
-					inSizeHugeTag = false;
-				} 
-			} else if (localName.equals(LIST)) {
+			} else if (name.equals(SMALL)) {
+				inSizeSmallTag = false;
+			} else if (name.equals(LARGE)) {
+				inSizeLargeTag = false;
+			} else if (name.equals(HUGE)) {
+				inSizeHugeTag = false;
+			} else if (name.equals(LIST)) {
 				inListLevel--;
-			} else if (localName.equals(LIST_ITEM)) {
+			} else if (name.equals(LIST_ITEM)) {
 				inListItem = false;
 			}
 		}
