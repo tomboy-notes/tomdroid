@@ -3,7 +3,7 @@
  * Tomboy on Android
  * http://www.launchpad.net/tomdroid
  * 
- * Copyright 2008 Olivier Bilodeau <olivier@bottomlesspit.org>
+ * Copyright 2008, 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>
  * 
  * This file is part of Tomdroid.
  * 

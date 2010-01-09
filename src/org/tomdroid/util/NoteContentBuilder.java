@@ -3,7 +3,7 @@
  * Tomboy on Android
  * http://www.launchpad.net/tomdroid
  * 
- * Copyright 2008, 2009 Olivier Bilodeau <olivier@bottomlesspit.org>
+ * Copyright 2008, 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>
  * 
  * This file is part of Tomdroid.
  * 
@@ -30,7 +30,6 @@ import javax.xml.parsers.SAXParserFactory;
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.xml.NoteContentHandler;
 import org.xml.sax.InputSource;
-import org.xml.sax.XMLReader;
 
 import android.os.Handler;
 import android.os.Message;
@@ -64,13 +63,7 @@ public class NoteContentBuilder implements Runnable {
 	
 	public NoteContentBuilder setInputSource(String nc) {
 		
-		// I did step one of the "xml header appending hack" removal
-		// since namespace is no longer relevant inside note-content
-		String xml = "<note-content version=\"0.1\">";
-		xml += nc;
-		xml += "</note-content>";
-
-		noteContentIs = new InputSource(new StringReader(xml));
+		noteContentIs = new InputSource(new StringReader(nc));
 		return this;
 	}
 	
