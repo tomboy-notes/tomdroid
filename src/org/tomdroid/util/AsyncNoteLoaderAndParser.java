@@ -105,23 +105,6 @@ public class AsyncNoteLoaderAndParser {
 			note.setFileName(file.getAbsolutePath());
 			// the note guid is not stored in the xml but in the filename
 			note.setGuid(file.getName().replace(".note", ""));
-			
-	        // Reading local note file
-			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "reading local file");
-        	FileInputStream fin;
-        	BufferedReader in;
-        	InputSource is;
-			try {
-				fin = new FileInputStream(file);
-				in = new BufferedReader(new InputStreamReader(fin), 8192);
-				is = new InputSource(in);
-
-				// TODO do the right thing plus wrap and throw a new exception here
-			} catch (FileNotFoundException e1) {
-				e1.printStackTrace();
-				if (Tomdroid.LOGGING_ENABLED) Log.w(TAG, "Something went wrong trying to read the note file, I quit!");
-				return;
-			}
 
 			try {
 				// Parsing
@@ -137,6 +120,11 @@ public class AsyncNoteLoaderAndParser {
 		        NoteHandler xmlHandler = new NoteHandler(note);
 		        xr.setContentHandler(xmlHandler);
 
+		        // Create the proper input source
+		        FileInputStream fin = new FileInputStream(file);
+		        BufferedReader in = new BufferedReader(new InputStreamReader(fin), 8192);
+		        InputSource is = new InputSource(in);
+		        
 				if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "parsing note");
 				xr.parse(is);
 			

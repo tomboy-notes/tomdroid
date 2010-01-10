@@ -91,7 +91,6 @@ public class NoteContentBuilder implements Runnable {
 
 			if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "parsing note");
 	        sp.parse(noteContentIs, new NoteContentHandler(noteContent));
-			//xr.parse(noteContentIs);
 		} catch (Exception e) {
 			e.printStackTrace();
 			// TODO handle error in a more granular way
