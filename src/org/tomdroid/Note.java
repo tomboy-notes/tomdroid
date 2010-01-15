@@ -114,6 +114,7 @@ public class Note {
 		this.guid = UUID.fromString(guid);
 	}
 	
+	// TODO: should this handler passed around evolve into an observer pattern?
 	public SpannableStringBuilder getNoteContent(Handler handler) {
 		
 		// TODO not sure this is the right place to do this

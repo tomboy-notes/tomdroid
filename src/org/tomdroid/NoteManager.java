@@ -47,7 +47,12 @@ public class NoteManager {
 	private static NoteManager instance = null;
 	// the main activity this manager is linked to
 	private static Activity activity = null;
+
+	// instance properties
+	private Cursor notesCursor;
 	
+	// singleton pattern
+	// TODO verify this singleton with current java best practices
 	public static NoteManager getInstance()
 	{
 		if(instance == null) {
@@ -61,18 +66,15 @@ public class NoteManager {
 		return instance;
 	}
 	
-	// instance properties
-	private Cursor notesCursor;
-	
-	public NoteManager() throws Exception
-	{
-		if(activity == null)
-			throw new Exception("init() has not been called.");
-	}
-	
 	public static void init(Activity a)
 	{
 		activity = a;
+	}
+	
+	private NoteManager() throws Exception
+	{
+		if(activity == null)
+			throw new Exception("init() has not been called.");
 	}
 	
 	// gets a note from the content provider
