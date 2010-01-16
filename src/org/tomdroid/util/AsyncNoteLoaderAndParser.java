@@ -48,11 +48,13 @@ import org.tomdroid.NoteManager;
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.xml.NoteHandler;
 
+import android.app.Activity;
 import android.util.Log;
 
 public class AsyncNoteLoaderAndParser {
 	private final ExecutorService pool;
 	private final static int poolSize = 1;
+	private Activity activity;
 	private File path;
 	
 	// regexp for <note-content..>...</note-content>
@@ -61,8 +63,10 @@ public class AsyncNoteLoaderAndParser {
 	// logging related
 	private final static String TAG = "AsyncNoteLoaderAndParser";
 	
-	public AsyncNoteLoaderAndParser(File path) {
+	public AsyncNoteLoaderAndParser(Activity a, File path) {
+		this.activity = a;
 		this.path = path;
+		
 		pool = Executors.newFixedThreadPool(poolSize);
 	}
 
@@ -167,7 +171,7 @@ public class AsyncNoteLoaderAndParser {
 				if (Tomdroid.LOGGING_ENABLED) Log.w(TAG, "Something went wrong trying to read the note");
 			}
 			
-			NoteManager.getInstance().putNote(note);
+			NoteManager.getInstance().putNote(AsyncNoteLoaderAndParser.this.activity, note);
 		}
 	}
 }

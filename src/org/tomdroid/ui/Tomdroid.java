@@ -3,7 +3,7 @@
  * Tomboy on Android
  * http://www.launchpad.net/tomdroid
  * 
- * Copyright 2008, 2009 Olivier Bilodeau <olivier@bottomlesspit.org>
+ * Copyright 2008, 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>
  * 
  * This file is part of Tomdroid.
  * 
@@ -82,7 +82,6 @@ public class Tomdroid extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        NoteManager.init(this);
         setContentView(R.layout.main);
         
         // did we already show the warning and got destroyed by android's activity killer?
@@ -101,7 +100,7 @@ public class Tomdroid extends ListActivity {
 				.show();
         }
         
-        adapter = NoteManager.getInstance().getListAdapter();
+        adapter = NoteManager.getInstance().getListAdapter(this);
 		setListAdapter(adapter);
 
         // set the view shown when the list is empty
@@ -133,7 +132,7 @@ public class Tomdroid extends ListActivity {
         			throw new FileNotFoundException("Tomdroid notes folder doesn't exist. It is configured to be at: "+Tomdroid.NOTES_PATH);
             		}
         		
-	        		AsyncNoteLoaderAndParser asyncLoader = new AsyncNoteLoaderAndParser(notesRoot);
+	        		AsyncNoteLoaderAndParser asyncLoader = new AsyncNoteLoaderAndParser(this, notesRoot);
 	        		asyncLoader.readAndParseNotes();
         		
 	    		} catch (FileNotFoundException e) {

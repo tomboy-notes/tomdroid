@@ -3,7 +3,7 @@
  * Tomboy on Android
  * http://www.launchpad.net/tomdroid
  * 
- * Copyright 2009 Olivier Bilodeau <olivier@bottomlesspit.org>
+ * Copyright 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>
  * 
  * This file is part of Tomdroid.
  * 
@@ -45,8 +45,6 @@ public class NoteManager {
 	private static final String TAG = "NoteManager";
 	
 	private static NoteManager instance = null;
-	// the main activity this manager is linked to
-	private static Activity activity = null;
 
 	// instance properties
 	private Cursor notesCursor;
@@ -66,19 +64,10 @@ public class NoteManager {
 		return instance;
 	}
 	
-	public static void init(Activity a)
-	{
-		activity = a;
-	}
-	
-	private NoteManager() throws Exception
-	{
-		if(activity == null)
-			throw new Exception("init() has not been called.");
-	}
+	private NoteManager() {}
 	
 	// gets a note from the content provider
-	public Note getNote(Uri uri) {
+	public Note getNote(Activity activity, Uri uri) {
 		
 		Note note = null;
 		
@@ -101,7 +90,7 @@ public class NoteManager {
 	}
 	
 	// puts a note in the content provider
-	public void putNote(Note note) {
+	public void putNote(Activity activity, Note note) {
 		
 		// verify if the note is already in the content provider
 		
@@ -144,7 +133,7 @@ public class NoteManager {
 		}
 	}
 	
-	public ListAdapter getListAdapter() {
+	public ListAdapter getListAdapter(Activity activity) {
 		
 		// get a cursor representing all notes from the NoteProvider
 		Uri notes = Tomdroid.CONTENT_URI;
@@ -157,13 +146,13 @@ public class NoteManager {
 	}
 	
 	// gets the titles of the notes present in the db, used in ViewNote.buildLinkifyPattern()
-	public Cursor getTitles() {
+	public Cursor getTitles(Activity activity) {
 		
 		// get a cursor containing the notes titles
 		return activity.managedQuery(Tomdroid.CONTENT_URI, TITLE_PROJECTION, null, null, null);
 	}
 	
-	public int getNoteId(String title) {
+	public int getNoteId(Activity activity, String title) {
 		
 		int id = 0;
 		
