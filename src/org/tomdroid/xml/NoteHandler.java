@@ -27,11 +27,6 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-/*
- * I don't know if I'm doing the right thing but I think that giving this class
- * the responsibility of filling the note is something quite cohesive and hope 
- * the coupling involved won't do much damage. I guess time will tell.
- */
 public class NoteHandler extends DefaultHandler {
 	
 	// position keepers
@@ -72,11 +67,6 @@ public class NoteHandler extends DefaultHandler {
 		} else if (localName.equals(LAST_CHANGE_DATE)) {
 			inLastChangeDateTag = false;
 		}
-	}
-
-	@Override
-	public void endDocument() throws SAXException {
-		super.endDocument();
 	}
 
 	// FIXME we'll have to think about how we handle the title soon.. IMHO there's a problem with duplicating the data from the <title> tag and also putting it straight into the note.. this will have to be reported to tomboy 

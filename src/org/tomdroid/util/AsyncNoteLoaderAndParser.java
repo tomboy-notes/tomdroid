@@ -25,7 +25,6 @@ package org.tomdroid.util;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -39,14 +38,13 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-import org.xml.sax.XMLReader;
-
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.xml.NoteHandler;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+import org.xml.sax.XMLReader;
 
 import android.app.Activity;
 import android.util.Log;
@@ -149,7 +147,7 @@ public class AsyncNoteLoaderAndParser {
 			try {
 				int read;
 				Reader reader = new InputStreamReader(new FileInputStream(file), "UTF-8");
-				//Reader reader = new InputStreamReader(fin, "UTF-8");
+				
 				do {
 				  read = reader.read(buffer, 0, buffer.length);
 				  if (read>0) {
