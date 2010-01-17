@@ -3,7 +3,7 @@
  * Tomboy on Android
  * http://www.launchpad.net/tomdroid
  * 
- * Copyright 2008, 2009 Olivier Bilodeau <olivier@bottomlesspit.org>
+ * Copyright 2008, 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>
  * 
  * This file is part of Tomdroid.
  * 
@@ -28,10 +28,13 @@ import java.util.regex.Pattern;
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
-import org.tomdroid.util.NoteBuilder;
+import org.tomdroid.util.NoteContentBuilder;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.DialogInterface.OnClickListener;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -75,7 +78,8 @@ public class ViewNote extends Activity {
 			// TODO validate the good action?
 			// intent.getAction()
 			
-			note = NoteManager.getInstance().getNote(uri);
+			// TODO verify that getNote is doing the proper validation
+			note = NoteManager.getInstance().getNote(this, uri);
 			
 			if(note != null) {
 				
@@ -85,7 +89,34 @@ public class ViewNote extends Activity {
 				
 				// TODO send an error to the user
 				if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "The note "+uri+" doesn't exist");
+				
+				// TODO put error string in a translatable resource
+				new AlertDialog.Builder(this)
+					.setMessage("The requested note could not be found. If you see this error by " +
+							    "mistake and you are able to replicate it, please file a bug!")
+					.setTitle("Error")
+					.setNeutralButton("Ok", new OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+							finish();
+						}})
+					.show();
 			}
+		} else {
+			
+			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "The Intent's data was null.");
+			
+			// TODO put error string in a translatable resource
+			new AlertDialog.Builder(this)
+			.setMessage("The requested note could not be found. If you see this error by " +
+					    "mistake and you are able to replicate it, please file a bug!")
+			.setTitle("Error")
+			.setNeutralButton("Ok", new OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.dismiss();
+					finish();
+				}})
+			.show();
 		}
 	}
 	
@@ -126,8 +157,25 @@ public class ViewNote extends Activity {
 		@Override
 		public void handleMessage(Message msg) {
 			
-			if(msg.what == NoteBuilder.PARSE_OK)
+			//parsed ok - show
+			if(msg.what == NoteContentBuilder.PARSE_OK) {
 				showNote();
+
+			//parsed not ok - error
+			} else if(msg.what == NoteContentBuilder.PARSE_ERROR) {
+				
+				// TODO put this String in a translatable resource
+				new AlertDialog.Builder(ViewNote.this)
+					.setMessage("The requested note could not be parsed. If you see this error by " +
+								"mistake and you are able to replicate it, please file a bug!")
+					.setTitle("Error")
+					.setNeutralButton("Ok", new OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+							finish();
+						}})
+					.show();
+        	}
 		}
 	};
 	
@@ -139,12 +187,13 @@ public class ViewNote extends Activity {
 	public Pattern buildNoteLinkifyPattern()  {
 		
 		StringBuilder sb = new StringBuilder();
-		Cursor cursor = NoteManager.getInstance().getTitles();
+		Cursor cursor = NoteManager.getInstance().getTitles(this);
 		
 		// cursor must not be null and must return more than 0 entry 
 		if (!(cursor == null || cursor.getCount() == 0)) {
 			
 			String title;
+			
 			cursor.moveToFirst();
 			
 			do {
@@ -176,8 +225,7 @@ public class ViewNote extends Activity {
 
 		public String transformUrl(Matcher m, String str) {
 
-			// FIXME if this activity is called from another app and Tomdroid was never launched, getting here will probably make it crash
-			int id = NoteManager.getInstance().getNoteId(str);
+			int id = NoteManager.getInstance().getNoteId(ViewNote.this, str);
 			
 			// return something like content://org.tomdroid.notes/notes/3
 			return Tomdroid.CONTENT_URI.toString()+"/"+id;

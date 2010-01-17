@@ -3,7 +3,7 @@
  * Tomboy on Android
  * http://www.launchpad.net/tomdroid
  * 
- * Copyright 2008, 2009 Olivier Bilodeau <olivier@bottomlesspit.org>
+ * Copyright 2008, 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>
  * 
  * This file is part of Tomdroid.
  * 
@@ -30,14 +30,13 @@ import javax.xml.parsers.SAXParserFactory;
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.xml.NoteContentHandler;
 import org.xml.sax.InputSource;
-import org.xml.sax.XMLReader;
 
 import android.os.Handler;
 import android.os.Message;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
 
-public class NoteBuilder implements Runnable {
+public class NoteContentBuilder implements Runnable {
 	
 	public static final int PARSE_OK = 0;
 	public static final int PARSE_ERROR = 1;
@@ -54,24 +53,17 @@ public class NoteBuilder implements Runnable {
 	private Thread runner;
 	private Handler parentHandler;
 	
-	public NoteBuilder () {}
+	public NoteContentBuilder () {}
 	
-	public NoteBuilder setCaller(Handler parent) {
+	public NoteContentBuilder setCaller(Handler parent) {
 		
 		parentHandler = parent;
 		return this;
 	}
 	
-	public NoteBuilder setInputSource(String nc) {
+	public NoteContentBuilder setInputSource(String nc) {
 		
-		//FIXME: I would pay a beer to get rid of that ugliness; I can't believe we cannot parse a partial XML tree using SAX
-		// Create a valid xml document
-		String xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
-		xml += "<note-content xmlns:link=\"http://beatniksoftware.com/tomboy/link\" xmlns:size=\"http://beatniksoftware.com/tomboy/size\" xmlns=\"http://beatniksoftware.com/tomboy\">";
-		xml += nc;
-		xml += "</note-content>";
-
-		noteContentIs = new InputSource(new StringReader(xml));
+		noteContentIs = new InputSource(new StringReader(nc));
 		return this;
 	}
 	
@@ -91,17 +83,14 @@ public class NoteBuilder implements Runnable {
 	    	// XML 
 	    	// Get a SAXParser from the SAXPArserFactory
 	        SAXParserFactory spf = SAXParserFactory.newInstance();
+
+	        // trashing the namespaces but keep prefixes (since we don't have the xml header)
+	        spf.setFeature("http://xml.org/sax/features/namespaces", false);
+	        spf.setFeature("http://xml.org/sax/features/namespace-prefixes", true);
 	        SAXParser sp = spf.newSAXParser();
-	
-	        // Get the XMLReader of the SAXParser we created
-	        XMLReader xr = sp.getXMLReader();
-	        
-	        // Create a new ContentHandler, send it this note to fill and apply it to the XML-Reader
-	        NoteContentHandler xmlHandler = new NoteContentHandler(noteContent);
-	        xr.setContentHandler(xmlHandler);
-	        
+
 			if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "parsing note");
-			xr.parse(noteContentIs);
+	        sp.parse(noteContentIs, new NoteContentHandler(noteContent));
 		} catch (Exception e) {
 			e.printStackTrace();
 			// TODO handle error in a more granular way

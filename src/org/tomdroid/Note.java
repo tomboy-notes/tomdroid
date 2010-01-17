@@ -27,7 +27,7 @@ import java.util.UUID;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
-import org.tomdroid.util.NoteBuilder;
+import org.tomdroid.util.NoteContentBuilder;
 
 import android.os.Handler;
 import android.text.SpannableStringBuilder;
@@ -114,8 +114,11 @@ public class Note {
 		this.guid = UUID.fromString(guid);
 	}
 	
+	// TODO: should this handler passed around evolve into an observer pattern?
 	public SpannableStringBuilder getNoteContent(Handler handler) {
-		noteContent = new NoteBuilder().setCaller(handler).setInputSource(xmlContent).build();
+		
+		// TODO not sure this is the right place to do this
+		noteContent = new NoteContentBuilder().setCaller(handler).setInputSource(xmlContent).build();
 		return noteContent;
 	}
 	
@@ -126,7 +129,7 @@ public class Note {
 	public void setXmlContent(String xmlContent) {
 		this.xmlContent = xmlContent;
 	}
-	
+
 	@Override
 	public String toString() {
 		// format date time according to XML standard

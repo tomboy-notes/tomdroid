@@ -1,3 +1,25 @@
+/*
+ * Tomdroid
+ * Tomboy on Android
+ * http://www.launchpad.net/tomdroid
+ * 
+ * Copyright 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>
+ * 
+ * This file is part of Tomdroid.
+ * 
+ * Tomdroid is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * Tomdroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.tomdroid;
 
 import org.tomdroid.ui.Tomdroid;
@@ -23,9 +45,12 @@ public class NoteManager {
 	private static final String TAG = "NoteManager";
 	
 	private static NoteManager instance = null;
-	// the main activity this manager is linked to
-	private static Activity activity = null;
+
+	// instance properties
+	private Cursor notesCursor;
 	
+	// singleton pattern
+	// TODO verify this singleton with current java best practices
 	public static NoteManager getInstance()
 	{
 		if(instance == null) {
@@ -39,22 +64,10 @@ public class NoteManager {
 		return instance;
 	}
 	
-	// instance properties
-	private Cursor notesCursor;
-	
-	public NoteManager() throws Exception
-	{
-		if(activity == null)
-			throw new Exception("init() has not been called.");
-	}
-	
-	public static void init(Activity a)
-	{
-		activity = a;
-	}
+	private NoteManager() {}
 	
 	// gets a note from the content provider
-	public Note getNote(Uri uri) {
+	public Note getNote(Activity activity, Uri uri) {
 		
 		Note note = null;
 		
@@ -77,7 +90,7 @@ public class NoteManager {
 	}
 	
 	// puts a note in the content provider
-	public void putNote(Note note) {
+	public void putNote(Activity activity, Note note) {
 		
 		// verify if the note is already in the content provider
 		
@@ -120,7 +133,7 @@ public class NoteManager {
 		}
 	}
 	
-	public ListAdapter getListAdapter() {
+	public ListAdapter getListAdapter(Activity activity) {
 		
 		// get a cursor representing all notes from the NoteProvider
 		Uri notes = Tomdroid.CONTENT_URI;
@@ -133,13 +146,13 @@ public class NoteManager {
 	}
 	
 	// gets the titles of the notes present in the db, used in ViewNote.buildLinkifyPattern()
-	public Cursor getTitles() {
+	public Cursor getTitles(Activity activity) {
 		
 		// get a cursor containing the notes titles
 		return activity.managedQuery(Tomdroid.CONTENT_URI, TITLE_PROJECTION, null, null, null);
 	}
 	
-	public int getNoteId(String title) {
+	public int getNoteId(Activity activity, String title) {
 		
 		int id = 0;
 		
