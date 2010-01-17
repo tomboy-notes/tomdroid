@@ -100,7 +100,7 @@ public class Tomdroid extends ListActivity {
 				.show();
         }
         
-        adapter = NoteManager.getInstance().getListAdapter(this);
+        adapter = NoteManager.getListAdapter(this);
 		setListAdapter(adapter);
 
         // set the view shown when the list is empty

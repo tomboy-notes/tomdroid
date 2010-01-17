@@ -169,7 +169,7 @@ public class AsyncNoteLoaderAndParser {
 				if (Tomdroid.LOGGING_ENABLED) Log.w(TAG, "Something went wrong trying to read the note");
 			}
 			
-			NoteManager.getInstance().putNote(AsyncNoteLoaderAndParser.this.activity, note);
+			NoteManager.putNote(AsyncNoteLoaderAndParser.this.activity, note);
 		}
 	}
 }

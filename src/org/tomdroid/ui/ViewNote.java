@@ -79,7 +79,7 @@ public class ViewNote extends Activity {
 			// intent.getAction()
 			
 			// TODO verify that getNote is doing the proper validation
-			note = NoteManager.getInstance().getNote(this, uri);
+			note = NoteManager.getNote(this, uri);
 			
 			if(note != null) {
 				
@@ -187,7 +187,7 @@ public class ViewNote extends Activity {
 	public Pattern buildNoteLinkifyPattern()  {
 		
 		StringBuilder sb = new StringBuilder();
-		Cursor cursor = NoteManager.getInstance().getTitles(this);
+		Cursor cursor = NoteManager.getTitles(this);
 		
 		// cursor must not be null and must return more than 0 entry 
 		if (!(cursor == null || cursor.getCount() == 0)) {
@@ -225,7 +225,7 @@ public class ViewNote extends Activity {
 
 		public String transformUrl(Matcher m, String str) {
 
-			int id = NoteManager.getInstance().getNoteId(ViewNote.this, str);
+			int id = NoteManager.getNoteId(ViewNote.this, str);
 			
 			// return something like content://org.tomdroid.notes/notes/3
 			return Tomdroid.CONTENT_URI.toString()+"/"+id;

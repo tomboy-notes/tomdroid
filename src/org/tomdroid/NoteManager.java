@@ -44,30 +44,8 @@ public class NoteManager {
 	// static properties
 	private static final String TAG = "NoteManager";
 	
-	private static NoteManager instance = null;
-
-	// instance properties
-	private Cursor notesCursor;
-	
-	// singleton pattern
-	// TODO verify this singleton with current java best practices
-	public static NoteManager getInstance()
-	{
-		if(instance == null) {
-			try {
-				instance = new NoteManager();
-			} catch (Exception e) {
-				if(Tomdroid.LOGGING_ENABLED) Log.e(TAG, e.getMessage());
-			}
-		}
-		
-		return instance;
-	}
-	
-	private NoteManager() {}
-	
 	// gets a note from the content provider
-	public Note getNote(Activity activity, Uri uri) {
+	public static Note getNote(Activity activity, Uri uri) {
 		
 		Note note = null;
 		
@@ -90,7 +68,7 @@ public class NoteManager {
 	}
 	
 	// puts a note in the content provider
-	public void putNote(Activity activity, Note note) {
+	public static void putNote(Activity activity, Note note) {
 		
 		// verify if the note is already in the content provider
 		
@@ -133,11 +111,11 @@ public class NoteManager {
 		}
 	}
 	
-	public ListAdapter getListAdapter(Activity activity) {
+	public static ListAdapter getListAdapter(Activity activity) {
 		
 		// get a cursor representing all notes from the NoteProvider
 		Uri notes = Tomdroid.CONTENT_URI;
-		notesCursor = activity.managedQuery(notes, LIST_PROJECTION, null, null, null);
+		Cursor notesCursor = activity.managedQuery(notes, LIST_PROJECTION, null, null, null);
 		
 		// set up an adapter binding the TITLE field of the cursor to the list item
 		String[] from = new String[] { Note.TITLE };
@@ -146,13 +124,13 @@ public class NoteManager {
 	}
 	
 	// gets the titles of the notes present in the db, used in ViewNote.buildLinkifyPattern()
-	public Cursor getTitles(Activity activity) {
+	public static Cursor getTitles(Activity activity) {
 		
 		// get a cursor containing the notes titles
 		return activity.managedQuery(Tomdroid.CONTENT_URI, TITLE_PROJECTION, null, null, null);
 	}
 	
-	public int getNoteId(Activity activity, String title) {
+	public static int getNoteId(Activity activity, String title) {
 		
 		int id = 0;
 		
