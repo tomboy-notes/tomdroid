@@ -26,7 +26,7 @@
 			</intent-filter>
 		</activity>
 
-		<activity android:name=".ui.LoadWebNoteDialog" android:theme="@android:style/Theme.Dialog"></activity>
+		
 		
 		<provider android:name="NoteProvider"
             android:authorities="org.tomdroid.notes"

@@ -3,7 +3,7 @@
  * Tomboy on Android
  * http://www.launchpad.net/tomdroid
  * 
- * Copyright 2008, 2009 Olivier Bilodeau <olivier@bottomlesspit.org>
+ * Copyright 2008, 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>
  * 
  * This file is part of Tomdroid.
  * 
@@ -22,15 +22,16 @@
  */
 package org.tomdroid.ui;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 
 import org.tomdroid.Note;
-import org.tomdroid.NoteCollection;
+import org.tomdroid.NoteManager;
 import org.tomdroid.R;
+import org.tomdroid.util.AsyncNoteLoaderAndParser;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
-import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
@@ -38,14 +39,12 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -62,24 +61,14 @@ public class Tomdroid extends ListActivity {
 	// TODO hardcoded for now
 	public static final String NOTES_PATH = "/sdcard/tomdroid/";
 	// Logging should be disabled for release builds
-	public static final boolean LOGGING_ENABLED = false;
+	public static final boolean LOGGING_ENABLED = true;
 
 	// Logging info
 	private static final String TAG = "Tomdroid";
 	
-	// data keys
-	public static final String RESULT_URL_TO_LOAD = "urlToLoad"; 
-
-	// Activity result resources
-	private static final int ACTIVITY_GET_URL=0;
-	private static final int ACTIVITY_VIEW=1;
-	
-	// domain elements
-	private NoteCollection localNotes;
-	
 	// UI to data model glue
-	private ArrayAdapter<String> notesListAdapter;
 	private TextView listEmptyView;
+	private ListAdapter adapter;
 	
 	// Bundle keys for saving state
 	private static final String WARNING_SHOWN = "w";
@@ -111,15 +100,14 @@ public class Tomdroid extends ListActivity {
 				.show();
         }
         
-	    // listAdapter that binds the UI to the notes names
-		notesListAdapter = new ArrayAdapter<String>(this, R.layout.main_list_item);
-        setListAdapter(notesListAdapter);
+        // adapter that binds the ListView UI to the notes in the note manager
+        adapter = NoteManager.getListAdapter(this);
+		setListAdapter(adapter);
 
         // set the view shown when the list is empty
+		// TODO default empty-list text is butt-ugly!
         listEmptyView = (TextView)findViewById(R.id.list_empty);
         getListView().setEmptyView(listEmptyView);
-        
-		localNotes = NoteCollection.getInstance();
     }
 
 	@Override
@@ -134,17 +122,21 @@ public class Tomdroid extends ListActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-	        case R.id.menuLoadWebNote:
-	            showLoadWebNoteDialog();
-	            return true;
-	            
 	        case R.id.menuSyncWithSD:
-	            
-	            // start loading local notes
-	            if (LOGGING_ENABLED) Log.v(TAG, "Loading local notes");
-	            
-	        	try {
-	    			localNotes.loadNotes(handler);
+
+	        	// start loading local notes
+                if (LOGGING_ENABLED) Log.v(TAG, "Loading local notes");
+
+            	try {
+            		File notesRoot = new File(Tomdroid.NOTES_PATH);
+        		
+            		if (!notesRoot.exists()) {
+        			throw new FileNotFoundException("Tomdroid notes folder doesn't exist. It is configured to be at: "+Tomdroid.NOTES_PATH);
+            		}
+        		
+	        		AsyncNoteLoaderAndParser asyncLoader = new AsyncNoteLoaderAndParser(this, notesRoot);
+	        		asyncLoader.readAndParseNotes();
+        		
 	    		} catch (FileNotFoundException e) {
 	    			//TODO put strings in an external resource
 	    			listEmptyView.setText(R.string.strListEmptyNoNotes);
@@ -158,8 +150,8 @@ public class Tomdroid extends ListActivity {
 	    				.show();
 	    			e.printStackTrace();
 	    		}
-	        	
-	        	return true;
+        	
+	    		return true;
 	        
 	        case R.id.menuAbout:
 				showAboutDialog();
@@ -216,109 +208,13 @@ public class Tomdroid extends ListActivity {
 	}
 
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		
-		switch(requestCode) {
-			case ACTIVITY_GET_URL:
-				if (resultCode == RESULT_OK) {
-					String url = data.getExtras().getString(RESULT_URL_TO_LOAD);
-					loadNoteFromURL(url);
-				}
-		}
-	}
-	
-    private Handler handler = new Handler() {
-    	
-        @Override
-        public void handleMessage(Message msg) {
-        	
-        	// thread is done fetching a note and parsing went well 
-        	if (msg.what == Note.NOTE_RECEIVED_AND_VALID) {
-
-        		// update the note list with this newly parsed note
-        		updateNoteListWith(msg.getData().getString(Note.TITLE));
-        		
-        	} else if (msg.what == Note.NO_NOTES) {
-
-        		// if there are no notes, say so in the list_empty message
-    			listEmptyView.setText(R.string.strListEmptyNoNotes);
-        	}
-		}
-    };
-
-	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
-
-		// get the clicked note
-		Note n =  localNotes.findNoteFromTitle(notesListAdapter.getItem(position));
 		
-		Intent i = new Intent(Tomdroid.this, ViewNote.class);
-		i.putExtra(Note.FILE, n.getFileName());
-		startActivityForResult(i, ACTIVITY_VIEW);
-
-	}
-	
-	private void showLoadWebNoteDialog() {
+		Cursor item = (Cursor)adapter.getItem(position);
+		int noteId = item.getInt(item.getColumnIndexOrThrow(Note.ID));
 		
-    	Intent i = new Intent(Tomdroid.this, LoadWebNoteDialog.class);
-    	startActivityForResult(i, ACTIVITY_GET_URL);
-	}
-
-	private void loadNoteFromURL(String url) {
-		
-    	Intent i = new Intent(Tomdroid.this, ViewNote.class);
-        i.putExtra(Note.URL, url);
-        startActivity(i);
-	}
-	
-	private void updateNoteListWith(String noteTitle) {
-		
-		// add note to the note list
-		notesListAdapter.add(noteTitle);
-
-		// get the note instance we will work with that instead  from now on
-		Note note = localNotes.findNoteFromTitle(noteTitle);
-		
-		// verify if the note is already in the content provider
-		String[] projection = new String[] {
-			    Note.ID,
-			    Note.TITLE,
-			};
-
-		// TODO I could see a problem where someone delete a note and recreate one with the same title.
-		// It would been seen as not new although it is (it will have a new filename)
-		// TODO make the query prettier (use querybuilder)
-		Uri notes = Tomdroid.CONTENT_URI;
-		String[] whereArgs = new String[1];
-		whereArgs[0] = noteTitle;
-		Cursor managedCursor = managedQuery( notes,
-                projection,  
-                Note.TITLE + "= ?",
-                whereArgs,
-                Note.TITLE + " ASC");
-		if (managedCursor.getCount() == 0) {
-			
-			// This note is not in the database yet we need to insert it
-			if (LOGGING_ENABLED) Log.v(TAG,"A new note has been detected (not yet in db)");
-
-			// This add the note to the content Provider
-			// TODO PoC code that should be removed in next iteration's refactoring (no notecollection, everything should come from the provider I guess?)
-    		ContentValues values = new ContentValues();
-    		values.put(Note.TITLE, note.getTitle());
-    		values.put(Note.FILE, note.getFileName());
-    		Uri uri = getContentResolver().insert(CONTENT_URI, values);
-    		// now that we inserted the note put its ID in the note itself
-    		note.setDbId(Integer.parseInt(uri.getLastPathSegment()));
-
-    		if (LOGGING_ENABLED) Log.v(TAG,"Note inserted in content provider. ID: "+uri+" TITLE:"+noteTitle+" ID:"+note.getDbId());
-		} else {
-			
-			// find out the note's id and put it in the note
-		    if (managedCursor.moveToFirst()) {
-		        int idColumn = managedCursor.getColumnIndex(Note.ID);
-	            note.setDbId(managedCursor.getInt(idColumn));
-		    }
-		}
+		Uri intentUri = Uri.parse(Tomdroid.CONTENT_URI+"/"+noteId);
+		Intent i = new Intent(Intent.ACTION_VIEW, intentUri, this, ViewNote.class);
+		startActivity(i);
 	}
 }

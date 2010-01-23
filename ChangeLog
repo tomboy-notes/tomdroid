@@ -1,3 +1,14 @@
+2010-01-22  Olivier Bilodeau <olivier@bottomlesspit.org>
+	Merged Benoit Garret's storage-redesign branch 
+	(lp:~benoit.garret/tomdroid/storage-redesign) after some cleaning by 
+	myself in lp:~plaxx/tomdroid/storage-redesign. Wow that took a while..
+	See bzr log -n 0 for full history.
+	Within the merge, I also added on top:
+	- added a toaster dialog to say that /sdcard/tomdroid/ is empty if you
+	  do an sdcard sync with nothing in that folder
+	- added/removed comments
+	- ViewNote's inner classes now private (instead of public and package)
+ 
 2009-10-05  Olivier Bilodeau <olivier@bottomlesspit.org>
 	* AndroidManifest.xml: Modified.
 

@@ -1,5 +1,12 @@
 TODO tasks
 ==========
+0.3
+- sort notes based on last modified date
+
+0.4
+- web-sync (if mergeable w/o too much review)
+- basic note editing
+
 Unclassified:
 - Fix the TODO and FIXME statements all over in the code
 - The android logo should have a white border around it, fix that then regen the logo (http://android-developers.blogspot.com/2009/05/android-icon-guidelines.html)
@@ -15,6 +22,9 @@ Unclassified:
 
 Port threading to Android's mechanism (maybe wait to check for 1.5's new API):
 - Check Handler / Looper / AsyncQueryHandler classes
+
+SD card sync:
+- Syncing from SD card only adds notes from the SD card and overwrite on identical guid. At some point, we'll have to consider deletions.
 
 File format: (to be in sync with Tomdroid's)
 - Why is title repeated in note text?

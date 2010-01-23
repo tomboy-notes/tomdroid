@@ -43,6 +43,7 @@
 package org.tomdroid;
 
 import java.util.HashMap;
+import java.util.UUID;
 
 import org.tomdroid.ui.Tomdroid;
 
@@ -67,7 +68,7 @@ public class NoteProvider extends ContentProvider {
 	// --	
 	private static final String DATABASE_NAME = "tomdroid-notes.db";
 	private static final String DB_TABLE_NOTES = "notes";
-	private static final int DB_VERSION = 1;
+	private static final int DB_VERSION = 2;
 	// TODO once properly implemented, sort by: KEY_MODIFIED_DATE + " DESC"
 	private static final String DEFAULT_SORT_ORDER = Note.ID;
 	
@@ -95,8 +96,10 @@ public class NoteProvider extends ContentProvider {
         public void onCreate(SQLiteDatabase db) {
             db.execSQL("CREATE TABLE " + DB_TABLE_NOTES	 + " ("
                     + Note.ID + " INTEGER PRIMARY KEY,"
+                    + Note.GUID + " TEXT,"
                     + Note.TITLE + " TEXT,"
                     + Note.FILE + " TEXT,"
+                    + Note.NOTE_CONTENT + " TEXT,"
                     + Note.MODIFIED_DATE + " INTEGER"
                     + ");");
         }
@@ -204,6 +207,11 @@ public class NoteProvider extends ContentProvider {
         if (values.containsKey(Note.MODIFIED_DATE) == false) {
             values.put(Note.MODIFIED_DATE, now);
         }
+        
+        // The guid is the unique identifier for a note so it has to be set.
+        if (values.containsKey(Note.GUID) == false) {
+        	values.put(Note.GUID, UUID.randomUUID().toString());
+        }
 
         // TODO does this make sense?
         if (values.containsKey(Note.TITLE) == false) {
@@ -213,6 +221,10 @@ public class NoteProvider extends ContentProvider {
 
         if (values.containsKey(Note.FILE) == false) {
             values.put(Note.FILE, "");
+        }
+        
+        if (values.containsKey(Note.NOTE_CONTENT) == false) {
+            values.put(Note.NOTE_CONTENT, "");
         }
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -280,8 +292,10 @@ public class NoteProvider extends ContentProvider {
 
         notesProjectionMap = new HashMap<String, String>();
         notesProjectionMap.put(Note.ID, Note.ID);
+        notesProjectionMap.put(Note.GUID, Note.GUID);
         notesProjectionMap.put(Note.TITLE, Note.TITLE);
         notesProjectionMap.put(Note.FILE, Note.FILE);
+        notesProjectionMap.put(Note.NOTE_CONTENT, Note.NOTE_CONTENT);
         notesProjectionMap.put(Note.MODIFIED_DATE, Note.MODIFIED_DATE);
     }
 }

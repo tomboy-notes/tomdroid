@@ -23,11 +23,7 @@
 -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-	<item 
-			android:icon="@drawable/icon_load_from_web"
-			android:title="@string/menuLoadWebNote"
-			android:id="@+id/menuLoadWebNote"
-			/>
+	
 	
 	<item 
 			android:icon="@drawable/icon_about"

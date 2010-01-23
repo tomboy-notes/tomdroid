@@ -11,6 +11,8 @@ Join it at: https://launchpad.net/~tomdroid-dev
 
 For more details and developer visible changes see the ChangeLog
 
+Version <version> - what's wrong with me? it was long and I didn't even do anything
+
 Version 0.2.0 - this is all wrong
 Development is done using SDK 1.5 but the application is compatible with 1.x
 * Performance improvements (on my ADP1 ~50 notes loads twice as fast)

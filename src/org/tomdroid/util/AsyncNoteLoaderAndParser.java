@@ -3,7 +3,7 @@
  * Tomboy on Android
  * http://www.launchpad.net/tomdroid
  * 
- * Copyright 2009 Olivier Bilodeau <olivier@bottomlesspit.org>
+ * Copyright 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>
  * 
  * This file is part of Tomdroid.
  * 
@@ -28,41 +28,45 @@ import java.io.FileInputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import org.tomdroid.Note;
-import org.tomdroid.NoteCollection;
+import org.tomdroid.NoteManager;
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.xml.NoteHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
+import android.app.Activity;
 import android.util.Log;
+import android.widget.Toast;
 
 public class AsyncNoteLoaderAndParser {
 	private final ExecutorService pool;
 	private final static int poolSize = 1;
+	private Activity activity;
 	private File path;
-	private NoteCollection noteCollection;
-	private Handler parentHandler;
+	
+	// regexp for <note-content..>...</note-content>
+	private static Pattern note_content = Pattern.compile(".*(<note-content.*>.*<\\/note-content>).*", Pattern.CASE_INSENSITIVE+Pattern.DOTALL);
 	
 	// logging related
 	private final static String TAG = "AsyncNoteLoaderAndParser";
 	
-	public AsyncNoteLoaderAndParser(File path, NoteCollection nc, Handler hndl) {
+	public AsyncNoteLoaderAndParser(Activity a, File path) {
+		this.activity = a;
 		this.path = path;
+		
 		pool = Executors.newFixedThreadPool(poolSize);
-		noteCollection = nc;
-		parentHandler = hndl;
 	}
 
 	public void readAndParseNotes() {
@@ -70,7 +74,7 @@ public class AsyncNoteLoaderAndParser {
 		
 		// If there are no notes, warn the UI through an empty message
 		if (fileList.length == 0) {
-			parentHandler.sendEmptyMessage(Note.NO_NOTES);
+			Toast.makeText(activity.getApplicationContext(), "There are no files in tomdroid/ on the sdcard.", Toast.LENGTH_SHORT).show();
 		}
 		
 		for (File file : fileList) {
@@ -91,13 +95,14 @@ public class AsyncNoteLoaderAndParser {
 	}
 	
 	/**
-	 * The worker spawns a new note, parse the file its being given by the executor and add it to the NoteCollection
+	 * The worker spawns a new note, parse the file its being given by the executor.
 	 */
 	class Worker implements Runnable {
 		
 		// the note to be loaded and parsed
 		private Note note = new Note();
 		private File file;
+		final char[] buffer = new char[0x10000];
 		
 		public Worker(File f) {
 			file = f;
@@ -106,7 +111,9 @@ public class AsyncNoteLoaderAndParser {
 		public void run() {
 			
 			note.setFileName(file.getAbsolutePath());
-			
+			// the note guid is not stored in the xml but in the filename
+			note.setGuid(file.getName().replace(".note", ""));
+
 			try {
 				// Parsing
 		    	// XML 
@@ -121,13 +128,12 @@ public class AsyncNoteLoaderAndParser {
 		        NoteHandler xmlHandler = new NoteHandler(note);
 		        xr.setContentHandler(xmlHandler);
 
+		        // Create the proper input source
+		        FileInputStream fin = new FileInputStream(file);
+		        BufferedReader in = new BufferedReader(new InputStreamReader(fin), 8192);
+		        InputSource is = new InputSource(in);
 		        
-		        // Create the proper input source based on if its a local note or a web note
-	        	FileInputStream fin = new FileInputStream(file);
-				BufferedReader in = new BufferedReader(new InputStreamReader(fin), 8192);
-				InputSource is = new InputSource(in);
-		        
-				if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "parsing note");
+				if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "parsing note");
 				xr.parse(is);
 			
 			// TODO wrap and throw a new exception here
@@ -138,26 +144,38 @@ public class AsyncNoteLoaderAndParser {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+
+			// extract the <note-content..>...</note-content>
+			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "retrieving what is inside of note-content");
 			
-			synchronized (noteCollection) {
-				noteCollection.addNote(note);
+			// FIXME here we are re-reading the whole note just to grab note-content out, there is probably a best way to do this (I'm talking to you xmlpull.org!)
+			StringBuilder out = new StringBuilder();
+			try {
+				int read;
+				Reader reader = new InputStreamReader(new FileInputStream(file), "UTF-8");
+				
+				do {
+				  read = reader.read(buffer, 0, buffer.length);
+				  if (read>0) {
+				    out.append(buffer, 0, read);
+				  }
+				}
+				while (read>=0);
+				
+				Matcher m = note_content.matcher(out.toString());
+				if (m.find()) {
+					note.setXmlContent(m.group());
+				} else {
+					if (Tomdroid.LOGGING_ENABLED) Log.w(TAG, "Something went wrong trying to grab the note-content out of a note");
+				}
+
+			} catch (IOException e) {
+				// TODO handle properly
+				e.printStackTrace();
+				if (Tomdroid.LOGGING_ENABLED) Log.w(TAG, "Something went wrong trying to read the note");
 			}
 			
-			// notify UI that we are done here and send result 
-			warnHandler();
+			NoteManager.putNote(AsyncNoteLoaderAndParser.this.activity, note);
 		}
-		
-	    private void warnHandler() {
-			
-			// notify the main UI that we are done here (sending an ok along with the note's title)
-			Message msg = Message.obtain();
-			Bundle bundle = new Bundle();
-			bundle.putString(Note.TITLE, note.getTitle());
-			msg.setData(bundle);
-			msg.what = Note.NOTE_RECEIVED_AND_VALID;
-			
-			parentHandler.sendMessage(msg);
-	    }
-		
 	}
 }

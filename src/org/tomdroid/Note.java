@@ -22,27 +22,26 @@
  */
 package org.tomdroid;
 
+import java.util.UUID;
+
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
+import org.tomdroid.util.NoteContentBuilder;
 
-import android.text.Spannable;
+import android.os.Handler;
 import android.text.SpannableStringBuilder;
-import android.text.style.StyleSpan;
 
 public class Note {
 
 	// Static references to fields (used in Bundles, ContentResolvers, etc.)
 	public static final String ID = "_id";
+	public static final String GUID = "guid";
 	public static final String TITLE = "title";
 	public static final String MODIFIED_DATE = "modified_date";
 	public static final String URL = "url";
 	public static final String FILE = "file";
-	public static final String NOTE_CONTENT = "note-content";
-	public static final int NOTE_RECEIVED_AND_VALID = 1;
-	public static final int NO_NOTES = 2;
-	public static final int NOTE_BADURL_OR_PARSING_ERROR = 3;
-	public static final String[] PROJECTION = { Note.ID, Note.TITLE, Note.FILE, Note.MODIFIED_DATE };
+	public static final String NOTE_CONTENT = "content";
 	
 	// Logging info
 	private static final String TAG = "Note";
@@ -56,12 +55,14 @@ public class Note {
 	public static final float NOTE_SIZE_HUGE_FACTOR = 1.6f;
 	
 	// Members
-	private SpannableStringBuilder noteContent = new SpannableStringBuilder();
+	private SpannableStringBuilder noteContent;
+	private String xmlContent;
 	private String url;
 	private String fileName;
 	private String title;
 	private DateTime lastChangeDate;
 	private int dbId;
+	private UUID guid;
 	
 	public Note() {}
 	
@@ -105,19 +106,28 @@ public class Note {
 		this.dbId = id;
 	}
 	
-	public SpannableStringBuilder getNoteContent() {
+	public UUID getGuid() {
+		return guid;
+	}
+	
+	public void setGuid(String guid) {
+		this.guid = UUID.fromString(guid);
+	}
+	
+	// TODO: should this handler passed around evolve into an observer pattern?
+	public SpannableStringBuilder getNoteContent(Handler handler) {
+		
+		// TODO not sure this is the right place to do this
+		noteContent = new NoteContentBuilder().setCaller(handler).setInputSource(xmlContent).build();
 		return noteContent;
 	}
-
-	public void setNoteContent(SpannableStringBuilder noteContent) {
-		this.noteContent = noteContent;
+	
+	public String getXmlContent() {
+		return xmlContent;
 	}
-
-	public SpannableStringBuilder getDisplayableNoteContent() {
-		SpannableStringBuilder sNoteContent = new SpannableStringBuilder(getNoteContent());
-		
-		sNoteContent.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 17, 35, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-		return sNoteContent;
+	
+	public void setXmlContent(String xmlContent) {
+		this.xmlContent = xmlContent;
 	}
 
 	@Override
