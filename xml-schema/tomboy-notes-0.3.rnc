@@ -25,6 +25,7 @@
 # TODO: narrow datatype information using W3C's XML Schema datatypes
 # TODO: Find out if the ordering of elements is relevant to Tomboy (would it crash?), if not, replace commas by & at the top level
 # TODO: addins can only add tags into the note-content element, not the note element, this needs to be documented somewhere
+# TODO: dates are all in RFC 3339 format (in tomboy)
 # 
 default namespace = "http://beatniksoftware.com/tomboy"
 namespace link = "http://beatniksoftware.com/tomboy/link"
