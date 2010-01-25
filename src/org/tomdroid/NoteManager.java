@@ -92,6 +92,8 @@ public class NoteManager {
 		values.put(Note.TITLE, note.getTitle());
 		values.put(Note.FILE, note.getFileName());
 		values.put(Note.GUID, note.getGuid().toString());
+		// Notice that we store the date in UTC because sqlite doesn't handle RFC3339 timezone information
+		values.put(Note.MODIFIED_DATE, note.getLastChangeDate().format3339(false));
 		values.put(Note.NOTE_CONTENT, note.getXmlContent());
 		
 		if (managedCursor.getCount() == 0) {

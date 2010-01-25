@@ -23,14 +23,16 @@
 package org.tomdroid;
 
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormatter;
-import org.joda.time.format.ISODateTimeFormat;
 import org.tomdroid.util.NoteContentBuilder;
 
 import android.os.Handler;
 import android.text.SpannableStringBuilder;
+import android.text.format.Time;
+import android.util.Log;
+import android.util.TimeFormatException;
 
 public class Note {
 
@@ -60,9 +62,13 @@ public class Note {
 	private String url;
 	private String fileName;
 	private String title;
-	private DateTime lastChangeDate;
+	private Time lastChangeDate;
 	private int dbId;
 	private UUID guid;
+	
+	// Date converter pattern (remove extra sub milliseconds from datetime string)
+	// ex: will strip 3020 in 2010-01-23T12:07:38.7743020-05:00
+	private static final Pattern dateCleaner = Pattern.compile("(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}).+(-\\d{2}:\\d{2})");
 	
 	public Note() {}
 	
@@ -90,13 +96,29 @@ public class Note {
 		this.title = title;
 	}
 
-	public DateTime getLastChangeDate() {
+	public Time getLastChangeDate() {
 		return lastChangeDate;
 	}
 
-	public void setLastChangeDate(DateTime lastChangeDate) {
+	public void setLastChangeDate(Time lastChangeDate) {
 		this.lastChangeDate = lastChangeDate;
 	}
+	
+	public void setLastChangeDate(String lastChangeDateStr) throws TimeFormatException {
+		
+		// regexp out the sub-milliseconds from tomboy's datetime format
+		// Normal RFC 3339 format: 2008-10-13T16:00:00.000-07:00
+		// Tomboy's (C# library) format: 2010-01-23T12:07:38.7743020-05:00
+		Matcher m = dateCleaner.matcher(lastChangeDateStr);
+		if (m.find()) {
+			Log.d(TAG, "I had to clean out extra sub-milliseconds from the date");
+			lastChangeDateStr = m.group(1)+m.group(2);
+			Log.v(TAG, "new date: "+lastChangeDateStr);
+		}
+		
+		lastChangeDate = new Time();
+		lastChangeDate.parse3339(lastChangeDateStr);
+	}	
 
 	public int getDbId() {
 		return dbId;
@@ -132,9 +154,8 @@ public class Note {
 
 	@Override
 	public String toString() {
-		// format date time according to XML standard
-		DateTimeFormatter fmt = ISODateTimeFormat.dateTime();
-		return new String("Note: "+ getTitle() + " (" + fmt.print(getLastChangeDate()) + ")");
+
+		return new String("Note: "+ getTitle() + " (" + getLastChangeDate() + ")");
 	}
 	
 }

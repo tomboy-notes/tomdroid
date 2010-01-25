@@ -1,3 +1,29 @@
+2010-01-24  Olivier Bilodeau <olivier@bottomlesspit.org>
+	* .classpath,
+	* AndroidManifest.xml,
+	* default.properties,
+	* src/org/tomdroid/Note.java,
+	* src/org/tomdroid/NoteManager.java,
+	* src/org/tomdroid/NoteProvider.java,
+	* src/org/tomdroid/xml/NoteHandler.java: Modified.
+
+	* lib/,
+	* lib/joda-time/,
+	* lib/joda-time/LICENSE.txt,
+	* lib/joda-time/NOTICE.txt,
+	* lib/joda-time/joda-time-1.6.jar: Removed.
+
+	Sorting notes based on last modified time
+	Here's the breakdown to get there:
+	- Changed the underlying type from jodatime to android Time object. 
+	This new type required us to bump API from 2 to 3 (Android 1.5). With
+	that we can remove jodatime dependency and it's welcomed! App size 
+	dropped from around 380Kb to 33Kb.
+	- Strip sub-millisecond precision from Tomboy's notes datetime format
+	to accomodate Android lib (and RFC3339)
+	- Changed sqlite modified_date entry from numeric to text
+	- Pushing datetime in UTC in sqlite to accomodate with sqlite's sorting
+
 2010-01-22  Olivier Bilodeau <olivier@bottomlesspit.org>
 	Merged Benoit Garret's storage-redesign branch 
 	(lp:~benoit.garret/tomdroid/storage-redesign) after some cleaning by 
@@ -8,7 +34,7 @@
 	  do an sdcard sync with nothing in that folder
 	- added/removed comments
 	- ViewNote's inner classes now private (instead of public and package)
- 
+
 2009-10-05  Olivier Bilodeau <olivier@bottomlesspit.org>
 	* AndroidManifest.xml: Modified.
 

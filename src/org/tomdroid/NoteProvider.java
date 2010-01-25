@@ -69,8 +69,7 @@ public class NoteProvider extends ContentProvider {
 	private static final String DATABASE_NAME = "tomdroid-notes.db";
 	private static final String DB_TABLE_NOTES = "notes";
 	private static final int DB_VERSION = 2;
-	// TODO once properly implemented, sort by: KEY_MODIFIED_DATE + " DESC"
-	private static final String DEFAULT_SORT_ORDER = Note.ID;
+	private static final String DEFAULT_SORT_ORDER = Note.MODIFIED_DATE + " DESC";
 	
     private static HashMap<String, String> notesProjectionMap;
 
@@ -100,7 +99,7 @@ public class NoteProvider extends ContentProvider {
                     + Note.TITLE + " TEXT,"
                     + Note.FILE + " TEXT,"
                     + Note.NOTE_CONTENT + " TEXT,"
-                    + Note.MODIFIED_DATE + " INTEGER"
+                    + Note.MODIFIED_DATE + " STRING"
                     + ");");
         }
 
@@ -186,6 +185,7 @@ public class NoteProvider extends ContentProvider {
         }
     }
 
+    // TODO the following method is probably never called and probably wouldn't work
     @Override
     public Uri insert(Uri uri, ContentValues initialValues) {
         // Validate the requested uri
