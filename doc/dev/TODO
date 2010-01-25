@@ -1,7 +1,10 @@
 TODO tasks
 ==========
 0.3
-- sort notes based on last modified date
+- remove doubled title
+- toaster on end of asyncparser work
+- get rid of slow startup in welcome text
+- make sure I can browse a big note like my TODO without hangs
 
 0.4
 - web-sync (if mergeable w/o too much review)
