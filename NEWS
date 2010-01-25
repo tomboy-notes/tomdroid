@@ -15,7 +15,7 @@ Version <version> - what's wrong with me? it was long and I didn't even do anyth
 * Instant startup (using a database back-end instead of files directly)
 * New "Sync from SD Card" menu item that will populate the notes database with
   the notes in tomdroid/ on the SD card
-* Significantly smaller App (went from ~330Kb to ~35Kb)
+* Significantly smaller App (went from ~380Kb to ~35Kb)
 * Note list is now sorted showing last modified notes first
 * Better help messages
 * Better error reporting to the user
