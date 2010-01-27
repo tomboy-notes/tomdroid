@@ -39,6 +39,8 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -47,6 +49,7 @@ import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Tomdroid extends ListActivity {
 
@@ -135,7 +138,7 @@ public class Tomdroid extends ListActivity {
             		}
         		
 	        		AsyncNoteLoaderAndParser asyncLoader = new AsyncNoteLoaderAndParser(this, notesRoot);
-	        		asyncLoader.readAndParseNotes();
+	        		asyncLoader.readAndParseNotes(handler);
         		
 	    		} catch (FileNotFoundException e) {
 	    			//TODO put strings in an external resource
@@ -217,4 +220,47 @@ public class Tomdroid extends ListActivity {
 		Intent i = new Intent(Intent.ACTION_VIEW, intentUri, this, ViewNote.class);
 		startActivity(i);
 	}
+	
+    private Handler handler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+
+        	switch(msg.what) {
+        	case AsyncNoteLoaderAndParser.PARSING_COMPLETE:
+        		// TODO put string in a translatable bundle
+        		Toast.makeText(getApplicationContext(),
+        				"Synchronization with SD Card is complete.",
+        				Toast.LENGTH_SHORT)
+        				.show();
+        		break;
+        		
+        	case AsyncNoteLoaderAndParser.PARSING_NO_NOTES:
+    			// TODO put string in a translatable bundle
+    			Toast.makeText(getApplicationContext(),
+    					"There are no files in tomdroid/ on the sdcard.",
+    					Toast.LENGTH_SHORT)
+    					.show();
+    			break;
+
+        	case AsyncNoteLoaderAndParser.PARSING_FAILED:
+				// TODO put error string in a translatable resource
+				new AlertDialog.Builder(Tomdroid.this)
+					.setMessage("There was an error trying to parse your note collection. If " +
+							    "you are able to replicate the problem, please contact us!")
+					.setTitle("Error")
+					.setNeutralButton("Ok", new OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+							finish();
+						}})
+					.show();
+        		
+        	default:
+        		if (Tomdroid.LOGGING_ENABLED) Log.i(TAG,"handler called with an unknown message");
+        		break;
+        	
+        	}
+        }
+    };
 }

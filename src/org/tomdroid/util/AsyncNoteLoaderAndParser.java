@@ -47,14 +47,24 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
 import android.app.Activity;
+import android.os.Handler;
 import android.util.Log;
-import android.widget.Toast;
 
 public class AsyncNoteLoaderAndParser {
+	
+	// thread pool info
 	private final ExecutorService pool;
 	private final static int poolSize = 1;
+	
+	// members
 	private Activity activity;
 	private File path;
+	private Handler handler;
+	
+	// handler messages
+	public final static int PARSING_COMPLETE = 1;
+	public final static int PARSING_FAILED = 2;
+	public final static int PARSING_NO_NOTES = 3;
 	
 	// regexp for <note-content..>...</note-content>
 	private static Pattern note_content = Pattern.compile(".*(<note-content.*>.*<\\/note-content>).*", Pattern.CASE_INSENSITIVE+Pattern.DOTALL);
@@ -69,19 +79,26 @@ public class AsyncNoteLoaderAndParser {
 		pool = Executors.newFixedThreadPool(poolSize);
 	}
 
-	public void readAndParseNotes() {
+	public void readAndParseNotes(Handler hndl) {
+		handler = hndl;
 		File[] fileList = path.listFiles(new NotesFilter());
 		
 		// If there are no notes, warn the UI through an empty message
 		if (fileList.length == 0) {
-			Toast.makeText(activity.getApplicationContext(), "There are no files in tomdroid/ on the sdcard.", Toast.LENGTH_SHORT).show();
+			if (Tomdroid.LOGGING_ENABLED) Log.i(TAG, "There are no notes in "+path);
+			handler.sendEmptyMessage(PARSING_NO_NOTES);
+			return;
 		}
 		
-		for (File file : fileList) {
-
-			// give a filename to a thread and ask to parse it when nothing's left to do its over
-			pool.execute(new Worker(file));
+		// every but the last note
+		for(int i = 0; i < fileList.length-1; i++) {
+			
+			// give a filename to a thread and ask to parse it
+			pool.execute(new Worker(fileList[i], false));
         }
+		
+		// last task, warn it so it'll warn UI when done
+		pool.execute(new Worker(fileList[fileList.length-1], true));
 	}
 	
 	/**
@@ -97,15 +114,19 @@ public class AsyncNoteLoaderAndParser {
 	/**
 	 * The worker spawns a new note, parse the file its being given by the executor.
 	 */
+	// TODO change type to callable to be able to throw exceptions? (if you throw make sure to display an alert only once)
+	// http://java.sun.com/j2se/1.5.0/docs/api/java/util/concurrent/Callable.html
 	class Worker implements Runnable {
 		
 		// the note to be loaded and parsed
 		private Note note = new Note();
 		private File file;
+		private boolean isLast;
 		final char[] buffer = new char[0x10000];
 		
-		public Worker(File f) {
+		public Worker(File f, boolean isLast) {
 			file = f;
+			this.isLast = isLast;
 		}
 
 		public void run() {
@@ -176,6 +197,11 @@ public class AsyncNoteLoaderAndParser {
 			}
 			
 			NoteManager.putNote(AsyncNoteLoaderAndParser.this.activity, note);
+			
+			// if last note warn in UI that we are done
+			if (isLast) {
+				handler.sendEmptyMessage(PARSING_COMPLETE);
+			}
 		}
 	}
 }
