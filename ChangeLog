@@ -1,3 +1,19 @@
+2010-01-27  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/util/AsyncNoteLoaderAndParser.java: [155] Small
+	inner class visibility fixes
+
+2010-01-26  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/ui/Tomdroid.java,
+	* src/org/tomdroid/util/AsyncNoteLoaderAndParser.java: [154] Added
+	notification on "Sync from SD Card" completion or on error.
+	To do so:
+	- Created a handler that handles all possible events in
+	  AsyncNoteLoaderAndParser (no notes, error, ok)
+	- Worker as a new isLast constructor parameter and if it's true it 
+	  will send an message to the handler when done
+
 2010-01-24  Olivier Bilodeau <olivier@bottomlesspit.org>
 	* .classpath,
 	* AndroidManifest.xml,
