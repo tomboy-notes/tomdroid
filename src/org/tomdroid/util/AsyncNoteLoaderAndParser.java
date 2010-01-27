@@ -105,7 +105,7 @@ public class AsyncNoteLoaderAndParser {
 	 * Simple filename filter that grabs files ending with .note
 	 * TODO move into its own static class in a util package
 	 */
-	class NotesFilter implements FilenameFilter {
+	private class NotesFilter implements FilenameFilter {
 		public boolean accept(File dir, String name) {
 			return (name.endsWith(".note"));
 		}
@@ -116,7 +116,7 @@ public class AsyncNoteLoaderAndParser {
 	 */
 	// TODO change type to callable to be able to throw exceptions? (if you throw make sure to display an alert only once)
 	// http://java.sun.com/j2se/1.5.0/docs/api/java/util/concurrent/Callable.html
-	class Worker implements Runnable {
+	private class Worker implements Runnable {
 		
 		// the note to be loaded and parsed
 		private Note note = new Note();
