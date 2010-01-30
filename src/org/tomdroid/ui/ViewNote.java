@@ -133,9 +133,19 @@ public class ViewNote extends Activity {
 	}
 
 	private void showNote() {
+		setTitle(note.getTitle());
+
+		// get rid of the title that is doubled in the note's content
+		// using quote to escape potential regexp chars in pattern
+		Pattern removeTitle = Pattern.compile("^\\s*"+Pattern.quote(note.getTitle())+"\\n\\n"); 
+		Matcher m = removeTitle.matcher(noteContent);
+		if (m.find()) {
+			noteContent = noteContent.replace(0, m.end(), "");
+			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "stripped the title from note-content");
+		}
+		
 		// show the note (spannable makes the TextView able to output styled text)
 		content.setText(noteContent, TextView.BufferType.SPANNABLE);
-		setTitle(note.getTitle());
 		
 		// add links to stuff that is understood by Android
 		// TODO this is SLOWWWW!!!!
