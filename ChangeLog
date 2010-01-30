@@ -1,3 +1,9 @@
+2010-01-30  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* doc/dev/TODO,
+	* src/org/tomdroid/ui/ViewNote.java: [158] Removing the second title
+	inside note-content with a regexp just before showing the note
+
 2010-01-27  Olivier Bilodeau <olivier@bottomlesspit.org>
 
 	* src/org/tomdroid/util/AsyncNoteLoaderAndParser.java: [155] Small
