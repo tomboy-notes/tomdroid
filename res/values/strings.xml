@@ -37,8 +37,8 @@
     <string name="menuAbout">About</string>
     <string name="strWelcome">
     	Welcome to Tomdroid.
-    	\n\nPlease note that this is beta quality software and that it contains known problems. 
-    	Like its inability to edit notes and its slow startup.
+    	\n\nPlease note that this is beta quality software and that it contains known problems,
+    	like its inability to edit notes.
 
     	\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something
     	out and tested as quickly as possible.

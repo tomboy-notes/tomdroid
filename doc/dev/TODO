@@ -1,7 +1,6 @@
 TODO tasks
 ==========
 0.3
-- get rid of slow startup in welcome text
 - make sure I can browse a big note like my TODO without hangs
 - merge Benoit's parse-tags branch revision 107 (would fix notebook bug #360732)
 
