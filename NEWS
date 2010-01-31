@@ -18,6 +18,7 @@ Version <version> - what's wrong with me? it was long and I didn't even do anyth
 * Significantly smaller App (went from ~380Kb to ~35Kb)
 * Note list is now sorted showing last modified notes first
 * Notification when "Sync from SD Card" is complete
+* Note title no longer shown in the note text
 * Better help messages
 * Better error reporting to the user
 * Removed the "Load from Web" not-so-useful feature
