@@ -1,3 +1,45 @@
+2010-02-01  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* xml-schema/complete-testcase/682a1597-34da-42e6-94db-c6916e95d325.note,
+	* xml-schema/complete-testcase/b3af2a14-dfda-4ba6-a86c-41bb670e160e.note: Added.
+
+	[165] Added note bug cases to main test case.
+
+	Hey let's avoid regressions right?
+
+	* xml-schema/complete-testcase/bug483101,
+	* xml-schema/complete-testcase/bug483101/b3af2a14-dfda-4ba6-a86c-41bb670e160e.note: Added.
+
+	* src/org/tomdroid/xml/NoteContentHandler.java: Modified.
+
+	[164] Fixed parsing issues related to a misuse of the XML parser;
+	https://launchpad.net/bugs/483101 fixed
+
+	It closes bug #483101 and is kinda related to #364850 which I just
+	fixed a few hours ago. To be honest, I feel like I probably introduced
+	a bunch of other bugs with people doing weird nesting but heck I'll
+	fix them as they show up ;)
+
+2010-01-31  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* xml-schema/complete-testcase/bug364850,
+	* xml-schema/complete-testcase/bug364850/682a1597-34da-42e6-94db-c6916e95d325.note: Added.
+
+	* src/org/tomdroid/xml/NoteHandler.java: Modified.
+
+	[163] Fixed an issue with xml-escaped characters in a note title (bug
+	#364850); https://launchpad.net/bugs/364850 fixed
+
+	To be specific: the SAX characters() method contract was not respected
+	by our NoteHandler. We were only keeping the portion provided by the
+	last characters() call.
+
+	* res/menu/main.xml: [161] Switched About and "Sync from SD card" menu
+	position. Makes more sense for about to be further on the right.
+
+	* res/values/strings.xml: [160] got rid of slow startup in welcome
+	text
+
 2010-01-30  Olivier Bilodeau <olivier@bottomlesspit.org>
 
 	* doc/dev/TODO,
