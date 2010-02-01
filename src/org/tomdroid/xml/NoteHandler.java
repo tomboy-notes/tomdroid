@@ -36,7 +36,11 @@ public class NoteHandler extends DefaultHandler {
 	// -- Tomboy's notes XML tags names --
 	// Metadata related
 	private final static String TITLE = "title";
-	private final static String LAST_CHANGE_DATE = "last-change-date"; 
+	private final static String LAST_CHANGE_DATE = "last-change-date";
+	
+	// Buffers for parsed elements
+	private StringBuilder title = new StringBuilder();
+	private StringBuilder lastChangeDate = new StringBuilder();
 	
 	// link to model 
 	private Note note;
@@ -64,8 +68,10 @@ public class NoteHandler extends DefaultHandler {
 
 		if (localName.equals(TITLE)) {
 			inTitleTag = false;
+			note.setTitle(title.toString());
 		} else if (localName.equals(LAST_CHANGE_DATE)) {
 			inLastChangeDateTag = false;
+			note.setLastChangeDate(lastChangeDate.toString());
 		}
 	}
 
@@ -74,12 +80,10 @@ public class NoteHandler extends DefaultHandler {
 	public void characters(char[] ch, int start, int length)
 			throws SAXException {
 		
-		String currentString = new String(ch, start, length);
-		
 		if (inTitleTag) {
-			note.setTitle(currentString);
+			title.append(ch, start, length);
 		} else if (inLastChangeDateTag) {
-			note.setLastChangeDate(currentString);
+			lastChangeDate.append(ch, start, length);
 		}
 	}
 }
