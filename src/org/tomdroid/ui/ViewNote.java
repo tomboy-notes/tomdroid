@@ -28,6 +28,7 @@ import java.util.regex.Pattern;
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
+import org.tomdroid.util.LinkifyPhone;
 import org.tomdroid.util.NoteContentBuilder;
 
 import android.app.Activity;
@@ -147,9 +148,12 @@ public class ViewNote extends Activity {
 		// show the note (spannable makes the TextView able to output styled text)
 		content.setText(noteContent, TextView.BufferType.SPANNABLE);
 		
-		// add links to stuff that is understood by Android
+		// add links to stuff that is understood by Android except phone numbers because it's too aggressive
 		// TODO this is SLOWWWW!!!!
-		Linkify.addLinks(content, Linkify.ALL);
+		Linkify.addLinks(content, Linkify.EMAIL_ADDRESSES|Linkify.WEB_URLS|Linkify.MAP_ADDRESSES);
+		
+		// Custom phone number linkifier (fixes lp:512204)
+		Linkify.addLinks(content, LinkifyPhone.PHONE_PATTERN, "tel:", LinkifyPhone.sPhoneNumberMatchFilter, Linkify.sPhoneNumberTransformFilter);
 		
 		// This will create a link every time a note title is found in the text.
 		// The pattern contains a very dumb (title1)|(title2) escaped correctly
