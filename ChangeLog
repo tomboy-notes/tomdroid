@@ -1,5 +1,14 @@
 2010-02-10  Olivier Bilodeau <olivier@bottomlesspit.org>
 
+	* AndroidManifest.xml,
+	* ChangeLog,
+	* NEWS,
+	* doc/dev/RELEASE-CHECKLIST,
+	* doc/dev/TODO,
+	* doc/user/README,
+	* src/org/tomdroid/ui/Tomdroid.java: [169] Prepping for 0.3.0 release
+	and metadata update
+
 	* src/org/tomdroid/util/LinkifyPhone.java: [168] Trap
 	IndexOutOfBoundsException! Thanks to pjv for pointing that out.
 
