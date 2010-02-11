@@ -13,10 +13,17 @@ Preparing the release
 - Follow Android's doc on publishing apps to the marketplace
 
 Releasing
+- android:debuggable="false" in AndroidManifest.xml
 - Disable logging (set Tomdroid.LOGGING_ENABLED to false)
 - Export an unsigned apk
 - Sign the apk
-- Test the signed apk 
+-- if I don't remember my alias again!: keytool -keystore <keystore> -list -v
+-- jarsigner -verbose -keystore <keystore> <apk> <alias>
+-- verify: jarsigner -verify -verbose -certs <apk>
+- Align the apk
+-- zipalign -f -v 4 <old apk> <new apk>
+-- verify: zipalign -c -v 4 <new apk>
+- Test the signed apk
 - Test the upgrade from the previous signed release to the next one
 - bzr tag the release / Update ChangeLog / Commit
 - Produce the package tarball and zip files (include user README)
@@ -30,3 +37,9 @@ Spread the word
 - Dent about it
 - Blog post about it including NEWS but also what I see for +1
 
+Next
+- Create the next milestone on launchpad
+- Mark bugs as fix released
+- Increment version number and append "ev" to android:versionCode in AndroidManifest.xml
+- android:debuggable="true" in AndroidManifest.xml
+ 

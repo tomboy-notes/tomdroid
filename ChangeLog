@@ -1,3 +1,24 @@
+2010-02-10  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/util/LinkifyPhone.java: [168] Trap
+	IndexOutOfBoundsException! Thanks to pjv for pointing that out.
+
+2010-02-06  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/util/LinkifyPhone.java,
+	* xml-schema/complete-testcase/bug512204,
+	* xml-schema/complete-testcase/bug512204/0b234c28-d12b-47fd-9ebe-1681e7cc152a.note,
+	* xml-schema/complete-testcase/bug512204/1f4f4b14-ed19-42d6-9fd5-e29f23381468.note,
+	* xml-schema/complete-testcase/bug512204/2b38427e-7883-455c-919d-0e99106fdfb2.note: Added.
+
+	* src/org/tomdroid/ui/ViewNote.java: Modified.
+
+	[167] Create my own matchFilter for phone numbers that is less
+	agressive than android's one. Fixes lp:512204;
+	https://launchpad.net/bugs/512204 fixed
+
+	Added test case notes
+
 2010-02-01  Olivier Bilodeau <olivier@bottomlesspit.org>
 
 	* xml-schema/complete-testcase/682a1597-34da-42e6-94db-c6916e95d325.note,

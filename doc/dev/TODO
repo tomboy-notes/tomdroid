@@ -1,10 +1,9 @@
 TODO tasks
 ==========
 0.3
-- make sure I can browse a big note like my TODO without hangs
-- merge Benoit's parse-tags branch revision 107 (would fix notebook bug #360732)
 
 0.4
+- merge Benoit's parse-tags branch revision 107 (would fix notebook bug #360732)
 - improve responsiveness when loading notes from sdcard
 -- benchmark what's going on
 -- confirm: the listview observer over list adapter is eating lots of resources?
@@ -13,12 +12,9 @@ TODO tasks
 
 Unclassified:
 - Fix the TODO and FIXME statements all over in the code
+- Long-press options on links. How-to: http://groups.google.com/group/android-developers/browse_thread/thread/acdd8777763b6028
 - The android logo should have a white border around it, fix that then regen the logo (http://android-developers.blogspot.com/2009/05/android-icon-guidelines.html)
 - internationalize strings with techniques like: http://developer.android.com/guide/topics/resources/available-resources.html#stringresources
-- jodatime XML time parsing complains on note loading:
-  D/dalvikvm(  194): Ignoring not-yet-ready Lorg/joda/time/DateTime;, using slow path
-  I don't want slow path!
-- Performance: joda time takes up 30% of the xml parsing time!!
 - Replace NoteCollection's structure to a hashmap or hashtable
 - Avoid code duplication between NoteBuilder and AsyncNoteLoaderAndParser
 - Follow UI design guidelines (http://developer.android.com/guide/practices/ui_guidelines/activity_task_design.html)
