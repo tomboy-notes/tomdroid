@@ -71,8 +71,12 @@ public class LinkifyPhone {
 		public final boolean acceptMatch(CharSequence s, int start, int end) {
 
 			// make sure there was a whitespace before pattern
-			if (!Character.isWhitespace(s.charAt(start - 1))) {
-				return false;
+			try {
+				if (!Character.isWhitespace(s.charAt(start - 1))) {
+					return false;
+				}
+			} catch (IndexOutOfBoundsException e) {
+				//Do nothing
 			}
 
 			// minimum length
