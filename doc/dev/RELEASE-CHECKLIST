@@ -4,6 +4,7 @@ Testing
 - Test all functionality on emulator 1.1 and 1.5
 - Test with "Immediately destroy activities" debug setting
 - Test all text inputs with virtual keyboard
+- Test with public sdcard image all the bug notes to spot regressions
 
 Preparing the release
 - Increment version number in AndroidManifest.xml (android:versionCode and android:versionName)
@@ -25,17 +26,16 @@ Releasing
 -- verify: zipalign -c -v 4 <new apk>
 - Test the signed apk
 - Test the upgrade from the previous signed release to the next one
-- bzr tag the release / Update ChangeLog / Commit
-- Produce the package tarball and zip files (include user README)
+- bzr tag the release / Update ChangeLog (w/ new TAG) / Commit / push
 - Produce the source release tarball (bzr export in .tar.gz) 
 - Mark the milestone as released on launchpad
-- Put the files on launchpad
+- Put the files on launchpad (SRC, README, APK)
 - Announce on launchpad
 
 Spread the word
-- Email to Tomdroid's mailing list (Tomboy/Snowy too if its an important milestone)
+- Email to Tomdroid's mailing list (Tomboy/Snowy too if it's an important milestone)
 - Dent about it
-- Blog post about it including NEWS but also what I see for +1
+- Blog post about it including NEWS but also what I see for +1 (link the launchpad's announce to it and post blog link on mailing lists) 
 
 Next
 - Create the next milestone on launchpad
