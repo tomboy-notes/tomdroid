@@ -60,4 +60,5 @@
 	<!-- note-view.xml -->
     <string name="strWait">Please wait while note loads...</string>
     
+<string name="search">Search</string>
 </resources>

@@ -21,10 +21,60 @@
  You should have received a copy of the GNU General Public License
  along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-    	>
+<LinearLayout 
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:orientation="vertical"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+    	
+   	<TableLayout 
+	   		xmlns:android="http://schemas.android.com/apk/res/android"
+			android:id="@+id/searchBar"
+		    android:layout_width="fill_parent"
+		    android:stretchColumns="0" 
+		    android:layout_height="40px"
+		    android:visibility="gone"
+		    android:persistentDrawingCache="animation|scrolling">
+		    
+    	<TableRow>
+    	
+	        <EditText 	 
+					android:id="@+id/txtKeywords" 
+					android:imeOptions="actionSearch" 
+					android:nextFocusDown="@+id/bntSearch" 
+					android:selectAllOnFocus="true" 
+					android:inputType="text|textNoSuggestions" 
+					android:hint="@string/search"
+					android:layout_width="fill_parent"			
+					android:layout_height="fill_parent" />
+					
+	       <LinearLayout
+	    	
+					android:orientation="horizontal"
+					android:gravity="right"
+					android:layout_height="wrap_content">
+			
+				<Button 
+			    		android:text="@string/search" 
+			    		android:id="@+id/bntSearch" 
+			    		android:layout_width="wrap_content" 
+			    		android:minWidth="50px" 
+			    		android:minHeight="45px" 
+			    		android:onClick="search" 
+			    		android:layout_height="fill_parent"/>
+				
+			    <ImageButton 
+			    		android:src="@drawable/edit_clear" 
+			    		android:id="@+id/edit_clear" 
+			    		android:layout_width="wrap_content" 
+			    		android:onClick="hideSearchBar" 
+			    		android:layout_height="fill_parent"/>
+    		
+    		</LinearLayout>
+    		
+    	</TableRow>
+
+	</TableLayout>
     
     <ListView android:id="@+id/android:list"
               android:layout_width="fill_parent"

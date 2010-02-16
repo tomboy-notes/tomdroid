@@ -35,5 +35,9 @@
 			android:title="@string/menuAbout"
 			android:id="@+id/menuAbout"
 			/>
-
+			
+	<item 
+			android:id="@+id/menuSearch" 
+			android:title="@string/search" 
+			android:icon="@drawable/icon_find"/>
 </menu>

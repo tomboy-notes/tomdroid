@@ -32,6 +32,7 @@ import org.tomdroid.util.AsyncNoteLoaderAndParser;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
@@ -42,16 +43,24 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnKeyListener;
+import android.view.animation.TranslateAnimation;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AbsListView;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AbsListView.OnScrollListener;
 
-public class Tomdroid extends ListActivity {
+public class Tomdroid extends ListActivity implements OnScrollListener, OnKeyListener {
 
 	// Global definition for Tomdroid
 	public static final String AUTHORITY = "org.tomdroid.notes";
@@ -72,6 +81,9 @@ public class Tomdroid extends ListActivity {
 	// UI to data model glue
 	private TextView listEmptyView;
 	private ListAdapter adapter;
+	private EditText searchEditText;
+	private InputMethodManager mgr;
+	private TableLayout searchBar;
 	
 	// Bundle keys for saving state
 	private static final String WARNING_SHOWN = "w";
@@ -112,6 +124,12 @@ public class Tomdroid extends ListActivity {
 		// TODO default empty-list text is butt-ugly!
         listEmptyView = (TextView)findViewById(R.id.list_empty);
         getListView().setEmptyView(listEmptyView);
+        getListView().setOnScrollListener(this);
+        searchBar = (TableLayout) findViewById(R.id.searchBar);
+        mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        searchEditText= (EditText) findViewById(R.id.txtKeywords);
+        searchEditText.setOnKeyListener(this);
+        
     }
 
 	@Override
@@ -162,6 +180,10 @@ public class Tomdroid extends ListActivity {
 	        case R.id.menuAbout:
 				showAboutDialog();
 	        	return true;
+	        	
+	        case R.id.menuSearch:
+				showSearchBar(true);
+				return true;
         }
         
         return super.onOptionsItemSelected(item);
@@ -273,4 +295,87 @@ public class Tomdroid extends ListActivity {
         	}
         }
     };
+    
+    // method to use in layout
+    public void  search(View target) {
+		search(searchEditText.getText().toString());
+	}
+    
+    private void search(String keywords){
+    	
+    	setListAdapter(NoteManager.getListAdapter(this, keywords));
+    }
+ 
+	private void showSearchBar(Boolean animation) {
+		
+		if (searchBar.getVisibility() != View.VISIBLE) {
+			// display the search bar
+			searchBar.setVisibility(View.VISIBLE);
+			if (animation) {
+				TranslateAnimation trans = new TranslateAnimation(0, 0, -80, 0);
+				trans.setDuration(100);
+				trans.setFillAfter(false);
+				searchBar.setAnimation(trans);
+			}
+			searchEditText.requestFocus();
+			// display the virtual keyboard
+			mgr.toggleSoftInputFromWindow(searchEditText.getWindowToken(), 0, 0);
+		}
+	}
+	
+	// method to use in layout
+	public void hideSearchBar(View target) {
+		
+		hideSearchBar(false);
+	}
+	
+	private void hideSearchBar(Boolean animation) {
+		
+		searchEditText.setText("");
+		
+		if (searchBar.getVisibility() == View.VISIBLE) {
+
+			// I can't use an animation to hide the search bar because 'setVisibility' acts before
+			if (animation) {
+				TranslateAnimation trans = new TranslateAnimation(0, 0, 0, -100);
+				trans.setDuration(150);
+				trans.setFillAfter(true);
+				searchBar.setAnimation(trans);
+			}
+			// hide the search bar
+			searchBar.setVisibility(View.GONE);
+			mgr.hideSoftInputFromWindow(searchEditText.getWindowToken(), 0);
+			setListAdapter(NoteManager.getListAdapter(this));
+		}
+	}
+
+	// to show search bar when we scroll to the top of the list
+	Boolean isScrolled=true;
+
+	public void onScroll(AbsListView view, int firstVisibleItem,
+			int visibleItemCount, int totalItemCount) {
+		isScrolled = true;
+	}
+	public void onScrollStateChanged(AbsListView view, int scrollState) {
+		
+		if (scrollState == OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) 
+			isScrolled=false;
+		
+		if (scrollState == OnScrollListener.SCROLL_STATE_IDLE) {
+			if (!isScrolled) {
+				showSearchBar(true);
+			}
+		}
+	}
+	
+	// action on click on the search button on the virtual keyboard
+	public boolean onKey(View v, int keyCode, KeyEvent event) {
+		if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+			//to hide the keyboard
+			mgr.hideSoftInputFromWindow(searchEditText.getWindowToken(), 0);
+			search(searchEditText.getText().toString());
+			return true;
+		}
+		return false;
+	}
 }
