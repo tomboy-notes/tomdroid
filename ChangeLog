@@ -1,3 +1,42 @@
+2010-02-16  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/ui/Tomdroid.java,
+	* src/org/tomdroid/util/AsyncNoteLoaderAndParser.java,
+	* src/org/tomdroid/xml/NoteHandler.java: [176] Proper reporting and
+	handling of TimeFormatException
+
+	Will only show one parsing error dialog per sdcard-sync Ok button on
+	the parsing error doesn't close Tomdroid
+
+	* sdcard.img: [175] Added all .note in xml-schema/complete-testcase/
+	to the image
+
+	* doc/dev/RELEASE-CHECKLIST: [174] Added a reminder to test release
+	against public sdcard with all bug testcases.
+
+	Also included are minor corrections to release checklist.
+
+	* xml-schema/complete-testcase/9b9ee8aa-f59f-415e-98b2-704ea9612b11.note,
+	* xml-schema/complete-testcase/bug520543,
+	* xml-schema/complete-testcase/bug520543/9b9ee8aa-f59f-415e-98b2-704ea9612b11.note: Added.
+
+	[173] Added testcase notes for bug lp:520543 : not correctly parses
+	timezone info with a +
+
+2010-02-15  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* xml-schema/complete-testcase/0b234c28-d12b-47fd-9ebe-1681e7cc152a.note,
+	* xml-schema/complete-testcase/1f4f4b14-ed19-42d6-9fd5-e29f23381468.note,
+	* xml-schema/complete-testcase/2b38427e-7883-455c-919d-0e99106fdfb2.note: Added.
+
+	* xml-schema/complete-testcase/1331e52c-0a35-4c89-90c7-507bc9a2f61a.note,
+	* xml-schema/complete-testcase/c50ed79b-5ce9-4beb-ba43-a512f756737f.note,
+	* xml-schema/complete-testcase/c9ba327b-8f5d-44fa-9866-e56b5b1e308b.note,
+	* xml-schema/complete-testcase/f2ed651f-c545-444d-a827-ce21e5d3894e.note: Modified.
+
+	[172] Added bug #512204 notes into the complete-testcase suite.
+	Removed the execution bit from some notes.
+
 === 0.3.0 ===
 2010-02-10  Olivier Bilodeau <olivier@bottomlesspit.org>
 
