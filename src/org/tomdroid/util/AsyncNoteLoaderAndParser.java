@@ -49,6 +49,7 @@ import org.xml.sax.XMLReader;
 import android.app.Activity;
 import android.os.Handler;
 import android.util.Log;
+import android.util.TimeFormatException;
 
 public class AsyncNoteLoaderAndParser {
 	
@@ -164,6 +165,11 @@ public class AsyncNoteLoaderAndParser {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
+			} catch (TimeFormatException e) {
+				e.printStackTrace();
+				if (Tomdroid.LOGGING_ENABLED) Log.e(TAG, "Problem parsing the note's date and time");
+				handler.sendEmptyMessage(PARSING_FAILED);
+				return;
 			}
 
 			// extract the <note-content..>...</note-content>

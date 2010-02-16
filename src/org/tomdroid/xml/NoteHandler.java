@@ -27,6 +27,8 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import android.util.TimeFormatException;
+
 public class NoteHandler extends DefaultHandler {
 	
 	// position keepers
@@ -64,7 +66,7 @@ public class NoteHandler extends DefaultHandler {
 
 	@Override
 	public void endElement(String uri, String localName, String name)
-			throws SAXException {
+			throws SAXException, TimeFormatException {
 
 		if (localName.equals(TITLE)) {
 			inTitleTag = false;

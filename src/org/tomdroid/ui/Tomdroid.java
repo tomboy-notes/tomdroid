@@ -78,6 +78,7 @@ public class Tomdroid extends ListActivity {
 	
 	// State variables
 	private boolean warningShown = false;
+	private boolean parsingErrorShown = false;
 
 	
     /** Called when the activity is created. */
@@ -129,6 +130,8 @@ public class Tomdroid extends ListActivity {
 
 	        	// start loading local notes
                 if (LOGGING_ENABLED) Log.v(TAG, "Loading local notes");
+        		// reset parsing error flag
+        		parsingErrorShown = false;
 
             	try {
             		File notesRoot = new File(Tomdroid.NOTES_PATH);
@@ -244,17 +247,24 @@ public class Tomdroid extends ListActivity {
     			break;
 
         	case AsyncNoteLoaderAndParser.PARSING_FAILED:
-				// TODO put error string in a translatable resource
-				new AlertDialog.Builder(Tomdroid.this)
-					.setMessage("There was an error trying to parse your note collection. If " +
-							    "you are able to replicate the problem, please contact us!")
-					.setTitle("Error")
-					.setNeutralButton("Ok", new OnClickListener() {
-						public void onClick(DialogInterface dialog, int which) {
-							dialog.dismiss();
-							finish();
-						}})
-					.show();
+        		if (Tomdroid.LOGGING_ENABLED) Log.w(TAG,"handler called with a parsing failed message");
+        		
+        		// if we already shown a parsing error in this pass, we won't show it again
+        		if (!parsingErrorShown) {
+	        		parsingErrorShown = true;
+
+	        		// TODO put error string in a translatable resource
+					new AlertDialog.Builder(Tomdroid.this)
+						.setMessage("There was an error trying to parse your note collection. If " +
+								    "you are able to replicate the problem, please contact us!")
+						.setTitle("Error")
+						.setNeutralButton("Ok", new OnClickListener() {
+							public void onClick(DialogInterface dialog, int which) {
+								dialog.dismiss();
+							}})
+						.show();
+        		}
+        		break;
         		
         	default:
         		if (Tomdroid.LOGGING_ENABLED) Log.i(TAG,"handler called with an unknown message");
