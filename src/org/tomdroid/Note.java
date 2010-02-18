@@ -68,7 +68,10 @@ public class Note {
 	
 	// Date converter pattern (remove extra sub milliseconds from datetime string)
 	// ex: will strip 3020 in 2010-01-23T12:07:38.7743020-05:00
-	private static final Pattern dateCleaner = Pattern.compile("(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}).+(-\\d{2}:\\d{2})");
+	private static final Pattern dateCleaner = Pattern.compile(
+			"(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3})" +	// matches: 2010-01-23T12:07:38.774
+			".+" + 														// matches what we are getting rid of
+			"([-\\+]\\d{2}:\\d{2})");									// matches timezone (-xx:xx or +xx:xx)
 	
 	public Note() {}
 	
