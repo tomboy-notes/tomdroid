@@ -1,3 +1,4 @@
+=== 0.3.1 ===
 2010-02-17  Olivier Bilodeau <olivier@bottomlesspit.org>
 
 	* src/org/tomdroid/Note.java: [178] Date cleaner regular expression
