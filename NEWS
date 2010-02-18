@@ -11,6 +11,11 @@ Join it at: https://launchpad.net/~tomdroid-dev
 
 For more details and developer visible changes see the ChangeLog
 
+Version 0.3.1 - fundationem (fixed with a tie wrap)
+* Fixed important parsing issue with notes in +xx:xx timezones (#520543)
+* Fixed error-reporting of date parsing errors
+* Only one error displayed per synchronization attempts instead of one per note
+
 Version 0.3.0 - fundationem
 Android 1.5 or later required
 * Instant startup -- database back-end instead of files (Benoît Garret)
