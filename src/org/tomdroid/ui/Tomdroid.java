@@ -52,7 +52,9 @@ import android.view.View.OnKeyListener;
 import android.view.animation.TranslateAnimation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TableLayout;
@@ -60,7 +62,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AbsListView.OnScrollListener;
 
-public class Tomdroid extends ListActivity implements OnScrollListener, OnKeyListener {
+public class Tomdroid extends ListActivity implements OnScrollListener, OnKeyListener, android.view.View.OnClickListener {
 
 	// Global definition for Tomdroid
 	public static final String AUTHORITY = "org.tomdroid.notes";
@@ -81,9 +83,12 @@ public class Tomdroid extends ListActivity implements OnScrollListener, OnKeyLis
 	// UI to data model glue
 	private TextView listEmptyView;
 	private ListAdapter adapter;
-	private EditText searchEditText;
 	private InputMethodManager mgr;
+	//Search bar
+	private EditText searchEditText;
 	private TableLayout searchBar;
+	private Button searchButton;
+	private ImageButton searchClear;
 	
 	// Bundle keys for saving state
 	private static final String WARNING_SHOWN = "w";
@@ -126,10 +131,14 @@ public class Tomdroid extends ListActivity implements OnScrollListener, OnKeyLis
         getListView().setEmptyView(listEmptyView);
         getListView().setOnScrollListener(this);
         searchBar = (TableLayout) findViewById(R.id.searchBar);
-        mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         searchEditText= (EditText) findViewById(R.id.txtKeywords);
-        searchEditText.setOnKeyListener(this);
+        searchButton = (Button) findViewById(R.id.btnSearch);
+        searchClear =(ImageButton) findViewById(R.id.btnClear);
         
+        searchEditText.setOnKeyListener(this);
+        searchButton.setOnClickListener(this);
+        searchClear.setOnClickListener(this);
+        mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
     }
 
 	@Override
@@ -295,12 +304,7 @@ public class Tomdroid extends ListActivity implements OnScrollListener, OnKeyLis
         	}
         }
     };
-    
-    // method to use in layout
-    public void  search(View target) {
-		search(searchEditText.getText().toString());
-	}
-    
+        
     private void search(String keywords){
     	
     	setListAdapter(NoteManager.getListAdapter(this, keywords));
@@ -321,12 +325,6 @@ public class Tomdroid extends ListActivity implements OnScrollListener, OnKeyLis
 			// display the virtual keyboard
 			mgr.toggleSoftInputFromWindow(searchEditText.getWindowToken(), 0, 0);
 		}
-	}
-	
-	// method to use in layout
-	public void hideSearchBar(View target) {
-		
-		hideSearchBar(false);
 	}
 	
 	private void hideSearchBar(Boolean animation) {
@@ -377,5 +375,18 @@ public class Tomdroid extends ListActivity implements OnScrollListener, OnKeyLis
 			return true;
 		}
 		return false;
+	}
+
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.btnSearch:
+			search(searchEditText.getText().toString());
+			break;
+
+		case R.id.btnClear:
+			hideSearchBar(false);
+			break;
+		}
+		
 	}
 }

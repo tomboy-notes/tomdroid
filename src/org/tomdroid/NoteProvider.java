@@ -81,6 +81,8 @@ public class NoteProvider extends ContentProvider {
     
     // Logging info
     private static final String TAG = "NoteProvider";
+    
+
 
     /**
      * This class helps open, create, and upgrade the database file.
@@ -282,6 +284,24 @@ public class NoteProvider extends ContentProvider {
 
         getContext().getContentResolver().notifyChange(uri, null);
         return count;
+    }
+    
+    public Cursor search(Uri uri, String keywords) {
+    	String where;
+		if (keywords==null) {
+			where=null;
+		} else {
+			// sql statements to search notes
+			String[] keyword = keywords.split(" ");
+			where="";
+			int count=0;
+			for (String string : keyword) {
+				if (count>0) where = where + " OR ";
+				where = where + Note.TITLE+" LIKE '%"+string+"%' OR "+Note.NOTE_CONTENT+" LIKE '%"+string+"%'";
+				count++;
+			}	
+		}
+		return query(uri, NoteManager.LIST_PROJECTION, where, null, null);
     }
 
     static {

@@ -33,6 +33,7 @@ import android.util.Log;
 import android.widget.ListAdapter;
 import android.widget.SimpleCursorAdapter;
 
+
 public class NoteManager {
 	
 	public static final String[] FULL_PROJECTION = { Note.ID, Note.TITLE, Note.FILE, Note.NOTE_CONTENT, Note.MODIFIED_DATE };
@@ -133,7 +134,7 @@ public class NoteManager {
 		// get a cursor representing all notes from the NoteProvider
 		Uri notes = Tomdroid.CONTENT_URI;
 		Cursor notesCursor = activity.managedQuery(notes, LIST_PROJECTION, where, null, null);
-				
+		
 		// set up an adapter binding the TITLE field of the cursor to the list item
 		String[] from = new String[] { Note.TITLE };
 		int[] to = new int[] { R.id.note_title };
