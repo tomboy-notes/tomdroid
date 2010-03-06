@@ -22,13 +22,13 @@
  */
 package org.tomdroid.ui;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
-import org.tomdroid.util.AsyncNoteLoaderAndParser;
+import org.tomdroid.sync.ServiceAuth;
+import org.tomdroid.sync.SyncManager;
+import org.tomdroid.sync.SyncService;
+import org.tomdroid.util.Preferences;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
@@ -65,6 +65,8 @@ public class Tomdroid extends ListActivity {
 	public static final String NOTES_PATH = "/sdcard/tomdroid/";
 	// Logging should be disabled for release builds
 	public static final boolean LOGGING_ENABLED = false;
+	// Set this to false for release builds, the reason should be obvious
+	public static final boolean CLEAR_PREFERENCES = false;
 
 	// Logging info
 	private static final String TAG = "Tomdroid";
@@ -87,6 +89,9 @@ public class Tomdroid extends ListActivity {
         super.onCreate(savedInstanceState);
         
         setContentView(R.layout.main);
+        Preferences.init(this, CLEAR_PREFERENCES);
+        SyncManager.setActivity(this);
+        SyncManager.setHandler(this.handler);
         
         // did we already show the warning and got destroyed by android's activity killer?
         if (savedInstanceState == null || !savedInstanceState.getBoolean(WARNING_SHOWN)) {
@@ -124,43 +129,34 @@ public class Tomdroid extends ListActivity {
 	}
 
 	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		// Check if the syncing setup has been done. If not, hide the menu item.
+		// It would probably be better to disable it, but I did not find a way to do it.
+		MenuItem syncItem = menu.findItem(R.id.menuSync);
+		SyncService currentService = SyncManager.getInstance().getCurrentService();
+		
+		if (currentService.needsAuth()
+				&& !((ServiceAuth)currentService).isConfigured())
+			syncItem.setVisible(false).setEnabled(false);
+		else
+			syncItem.setVisible(true).setEnabled(true);
+		
+		return super.onPrepareOptionsMenu(menu);
+	}
+
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-	        case R.id.menuSyncWithSD:
-
-	        	// start loading local notes
-                if (LOGGING_ENABLED) Log.v(TAG, "Loading local notes");
-        		// reset parsing error flag
-        		parsingErrorShown = false;
-
-            	try {
-            		File notesRoot = new File(Tomdroid.NOTES_PATH);
-        		
-            		if (!notesRoot.exists()) {
-        			throw new FileNotFoundException("Tomdroid notes folder doesn't exist. It is configured to be at: "+Tomdroid.NOTES_PATH);
-            		}
-        		
-	        		AsyncNoteLoaderAndParser asyncLoader = new AsyncNoteLoaderAndParser(this, notesRoot);
-	        		asyncLoader.readAndParseNotes(handler);
-        		
-	    		} catch (FileNotFoundException e) {
-	    			//TODO put strings in an external resource
-	    			listEmptyView.setText(R.string.strListEmptyNoNotes);
-	    			new AlertDialog.Builder(this)
-	    				.setMessage(e.getMessage())
-	    				.setTitle("Error")
-	    				.setNeutralButton("Ok", new OnClickListener() {
-	    					public void onClick(DialogInterface dialog, int which) {
-	    						dialog.dismiss();
-	    					}})
-	    				.show();
-	    			e.printStackTrace();
-	    		}
-        	
-	    		return true;
+	        case R.id.menuSync:
+	        	SyncManager.getInstance().sync();
+	        	return true;
 	        
 	        case R.id.menuAbout:
 				showAboutDialog();
+	        	return true;
+	        	
+	        case R.id.menuPrefs:
+	        	startActivity(new Intent(this, PreferencesActivity.class));
 	        	return true;
         }
         
@@ -176,6 +172,25 @@ public class Tomdroid extends ListActivity {
 			outState.putBoolean(WARNING_SHOWN, true);
 		}
 	}
+	
+	public void onResume() {
+		super.onResume();
+    	Intent intent = this.getIntent();
+    	
+    	if (intent != null) {
+    		Uri uri = intent.getData();
+    		
+    		if (uri != null && uri.getScheme().equals("tomdroid")) {
+    			Log.i(TAG, "Got url : "+uri.toString());
+    			SyncService currentService = SyncManager.getInstance().getCurrentService();
+    			
+    			if (currentService.needsAuth()) {
+    				// the user has completed the remote auth, do the third part
+    				((ServiceAuth)currentService).remoteAuthComplete(uri);
+    			}
+    		}
+    	}
+    }
 
 	private void showAboutDialog() {
 		
@@ -230,7 +245,7 @@ public class Tomdroid extends ListActivity {
         public void handleMessage(Message msg) {
 
         	switch(msg.what) {
-        	case AsyncNoteLoaderAndParser.PARSING_COMPLETE:
+        	case SyncService.PARSING_COMPLETE:
         		// TODO put string in a translatable bundle
         		Toast.makeText(getApplicationContext(),
         				"Synchronization with SD Card is complete.",
@@ -238,7 +253,7 @@ public class Tomdroid extends ListActivity {
         				.show();
         		break;
         		
-        	case AsyncNoteLoaderAndParser.PARSING_NO_NOTES:
+        	case SyncService.PARSING_NO_NOTES:
     			// TODO put string in a translatable bundle
     			Toast.makeText(getApplicationContext(),
     					"There are no files in tomdroid/ on the sdcard.",
@@ -246,7 +261,7 @@ public class Tomdroid extends ListActivity {
     					.show();
     			break;
 
-        	case AsyncNoteLoaderAndParser.PARSING_FAILED:
+        	case SyncService.PARSING_FAILED:
         		if (Tomdroid.LOGGING_ENABLED) Log.w(TAG,"handler called with a parsing failed message");
         		
         		// if we already shown a parsing error in this pass, we won't show it again
