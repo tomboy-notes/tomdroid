@@ -1,0 +1,27 @@
+-classpath
+'C:/svn/CODEC-1.4-RC4/target/classes'
+-encoding
+'iso-8859-1'
+-protected
+-source
+'1.4'
+-sourcepath
+'C:/svn/CODEC-1.4-RC4/src/java'
+-author
+-bottom
+'Copyright &#169; 2002-2009 <a href="http://www.apache.org/">The Apache Software Foundation</a>. All Rights Reserved.'
+-charset
+'UTF-8'
+-d
+'C:/svn/CODEC-1.4-RC4/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'Commons Codec 1.4 API'
+-link
+'http://java.sun.com/j2se/1.4.2/docs/api'
+-linksource
+-use
+-version
+-windowtitle
+'Commons Codec 1.4 API'

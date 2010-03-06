@@ -1,0 +1,1121 @@
+<HTML>
+<BODY BGCOLOR="white">
+<PRE>
+<FONT color="green">001</FONT>    /*<a name="line.1"></a>
+<FONT color="green">002</FONT>     * Licensed to the Apache Software Foundation (ASF) under one or more<a name="line.2"></a>
+<FONT color="green">003</FONT>     * contributor license agreements.  See the NOTICE file distributed with<a name="line.3"></a>
+<FONT color="green">004</FONT>     * this work for additional information regarding copyright ownership.<a name="line.4"></a>
+<FONT color="green">005</FONT>     * The ASF licenses this file to You under the Apache License, Version 2.0<a name="line.5"></a>
+<FONT color="green">006</FONT>     * (the "License"); you may not use this file except in compliance with<a name="line.6"></a>
+<FONT color="green">007</FONT>     * the License.  You may obtain a copy of the License at<a name="line.7"></a>
+<FONT color="green">008</FONT>     * <a name="line.8"></a>
+<FONT color="green">009</FONT>     *      http://www.apache.org/licenses/LICENSE-2.0<a name="line.9"></a>
+<FONT color="green">010</FONT>     * <a name="line.10"></a>
+<FONT color="green">011</FONT>     * Unless required by applicable law or agreed to in writing, software<a name="line.11"></a>
+<FONT color="green">012</FONT>     * distributed under the License is distributed on an "AS IS" BASIS,<a name="line.12"></a>
+<FONT color="green">013</FONT>     * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.<a name="line.13"></a>
+<FONT color="green">014</FONT>     * See the License for the specific language governing permissions and<a name="line.14"></a>
+<FONT color="green">015</FONT>     * limitations under the License.<a name="line.15"></a>
+<FONT color="green">016</FONT>     */<a name="line.16"></a>
+<FONT color="green">017</FONT>    <a name="line.17"></a>
+<FONT color="green">018</FONT>    package org.apache.commons.codec.binary;<a name="line.18"></a>
+<FONT color="green">019</FONT>    <a name="line.19"></a>
+<FONT color="green">020</FONT>    import java.math.BigInteger;<a name="line.20"></a>
+<FONT color="green">021</FONT>    <a name="line.21"></a>
+<FONT color="green">022</FONT>    import org.apache.commons.codec.BinaryDecoder;<a name="line.22"></a>
+<FONT color="green">023</FONT>    import org.apache.commons.codec.BinaryEncoder;<a name="line.23"></a>
+<FONT color="green">024</FONT>    import org.apache.commons.codec.DecoderException;<a name="line.24"></a>
+<FONT color="green">025</FONT>    import org.apache.commons.codec.EncoderException;<a name="line.25"></a>
+<FONT color="green">026</FONT>    <a name="line.26"></a>
+<FONT color="green">027</FONT>    /**<a name="line.27"></a>
+<FONT color="green">028</FONT>     * Provides Base64 encoding and decoding as defined by RFC 2045.<a name="line.28"></a>
+<FONT color="green">029</FONT>     * <a name="line.29"></a>
+<FONT color="green">030</FONT>     * &lt;p&gt;<a name="line.30"></a>
+<FONT color="green">031</FONT>     * This class implements section &lt;cite&gt;6.8. Base64 Content-Transfer-Encoding&lt;/cite&gt; from RFC 2045 &lt;cite&gt;Multipurpose<a name="line.31"></a>
+<FONT color="green">032</FONT>     * Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies&lt;/cite&gt; by Freed and Borenstein.<a name="line.32"></a>
+<FONT color="green">033</FONT>     * &lt;/p&gt;<a name="line.33"></a>
+<FONT color="green">034</FONT>     * &lt;p&gt;<a name="line.34"></a>
+<FONT color="green">035</FONT>     * The class can be parameterized in the following manner with various constructors:<a name="line.35"></a>
+<FONT color="green">036</FONT>     * &lt;ul&gt;<a name="line.36"></a>
+<FONT color="green">037</FONT>     * &lt;li&gt;URL-safe mode: Default off.&lt;/li&gt;<a name="line.37"></a>
+<FONT color="green">038</FONT>     * &lt;li&gt;Line length: Default 76. Line length that aren't multiples of 4 will still essentially end up being multiples of<a name="line.38"></a>
+<FONT color="green">039</FONT>     * 4 in the encoded data.<a name="line.39"></a>
+<FONT color="green">040</FONT>     * &lt;li&gt;Line separator: Default is CRLF ("\r\n")&lt;/li&gt;<a name="line.40"></a>
+<FONT color="green">041</FONT>     * &lt;/ul&gt;<a name="line.41"></a>
+<FONT color="green">042</FONT>     * &lt;/p&gt;<a name="line.42"></a>
+<FONT color="green">043</FONT>     * &lt;p&gt;<a name="line.43"></a>
+<FONT color="green">044</FONT>     * Since this class operates directly on byte streams, and not character streams, it is hard-coded to only encode/decode<a name="line.44"></a>
+<FONT color="green">045</FONT>     * character encodings which are compatible with the lower 127 ASCII chart (ISO-8859-1, Windows-1252, UTF-8, etc).<a name="line.45"></a>
+<FONT color="green">046</FONT>     * &lt;/p&gt;<a name="line.46"></a>
+<FONT color="green">047</FONT>     * <a name="line.47"></a>
+<FONT color="green">048</FONT>     * @see &lt;a href="http://www.ietf.org/rfc/rfc2045.txt"&gt;RFC 2045&lt;/a&gt;<a name="line.48"></a>
+<FONT color="green">049</FONT>     * @author Apache Software Foundation<a name="line.49"></a>
+<FONT color="green">050</FONT>     * @since 1.0<a name="line.50"></a>
+<FONT color="green">051</FONT>     * @version $Id: Base64.java 801706 2009-08-06 16:27:06Z niallp $<a name="line.51"></a>
+<FONT color="green">052</FONT>     */<a name="line.52"></a>
+<FONT color="green">053</FONT>    public class Base64 implements BinaryEncoder, BinaryDecoder {<a name="line.53"></a>
+<FONT color="green">054</FONT>        private static final int DEFAULT_BUFFER_RESIZE_FACTOR = 2;<a name="line.54"></a>
+<FONT color="green">055</FONT>    <a name="line.55"></a>
+<FONT color="green">056</FONT>        private static final int DEFAULT_BUFFER_SIZE = 8192;<a name="line.56"></a>
+<FONT color="green">057</FONT>    <a name="line.57"></a>
+<FONT color="green">058</FONT>        /**<a name="line.58"></a>
+<FONT color="green">059</FONT>         * Chunk size per RFC 2045 section 6.8.<a name="line.59"></a>
+<FONT color="green">060</FONT>         * <a name="line.60"></a>
+<FONT color="green">061</FONT>         * &lt;p&gt;<a name="line.61"></a>
+<FONT color="green">062</FONT>         * The {@value} character limit does not count the trailing CRLF, but counts all other characters, including any<a name="line.62"></a>
+<FONT color="green">063</FONT>         * equal signs.<a name="line.63"></a>
+<FONT color="green">064</FONT>         * &lt;/p&gt;<a name="line.64"></a>
+<FONT color="green">065</FONT>         * <a name="line.65"></a>
+<FONT color="green">066</FONT>         * @see &lt;a href="http://www.ietf.org/rfc/rfc2045.txt"&gt;RFC 2045 section 6.8&lt;/a&gt;<a name="line.66"></a>
+<FONT color="green">067</FONT>         */<a name="line.67"></a>
+<FONT color="green">068</FONT>        static final int CHUNK_SIZE = 76;<a name="line.68"></a>
+<FONT color="green">069</FONT>    <a name="line.69"></a>
+<FONT color="green">070</FONT>        /**<a name="line.70"></a>
+<FONT color="green">071</FONT>         * Chunk separator per RFC 2045 section 2.1.<a name="line.71"></a>
+<FONT color="green">072</FONT>         *<a name="line.72"></a>
+<FONT color="green">073</FONT>         * &lt;p&gt;<a name="line.73"></a>
+<FONT color="green">074</FONT>         * N.B. The next major release may break compatibility and make this field private.<a name="line.74"></a>
+<FONT color="green">075</FONT>         * &lt;/p&gt;<a name="line.75"></a>
+<FONT color="green">076</FONT>         * <a name="line.76"></a>
+<FONT color="green">077</FONT>         * @see &lt;a href="http://www.ietf.org/rfc/rfc2045.txt"&gt;RFC 2045 section 2.1&lt;/a&gt;<a name="line.77"></a>
+<FONT color="green">078</FONT>         */<a name="line.78"></a>
+<FONT color="green">079</FONT>        static final byte[] CHUNK_SEPARATOR = {'\r', '\n'};<a name="line.79"></a>
+<FONT color="green">080</FONT>    <a name="line.80"></a>
+<FONT color="green">081</FONT>        /**<a name="line.81"></a>
+<FONT color="green">082</FONT>         * This array is a lookup table that translates 6-bit positive integer index values into their "Base64 Alphabet"<a name="line.82"></a>
+<FONT color="green">083</FONT>         * equivalents as specified in Table 1 of RFC 2045.<a name="line.83"></a>
+<FONT color="green">084</FONT>         * <a name="line.84"></a>
+<FONT color="green">085</FONT>         * Thanks to "commons" project in ws.apache.org for this code.<a name="line.85"></a>
+<FONT color="green">086</FONT>         * http://svn.apache.org/repos/asf/webservices/commons/trunk/modules/util/<a name="line.86"></a>
+<FONT color="green">087</FONT>         */<a name="line.87"></a>
+<FONT color="green">088</FONT>        private static final byte[] STANDARD_ENCODE_TABLE = {<a name="line.88"></a>
+<FONT color="green">089</FONT>                'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',<a name="line.89"></a>
+<FONT color="green">090</FONT>                'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',<a name="line.90"></a>
+<FONT color="green">091</FONT>                'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',<a name="line.91"></a>
+<FONT color="green">092</FONT>                'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',<a name="line.92"></a>
+<FONT color="green">093</FONT>                '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '/'<a name="line.93"></a>
+<FONT color="green">094</FONT>        };<a name="line.94"></a>
+<FONT color="green">095</FONT>    <a name="line.95"></a>
+<FONT color="green">096</FONT>        /**<a name="line.96"></a>
+<FONT color="green">097</FONT>         * This is a copy of the STANDARD_ENCODE_TABLE above, but with + and /<a name="line.97"></a>
+<FONT color="green">098</FONT>         * changed to - and _ to make the encoded Base64 results more URL-SAFE.<a name="line.98"></a>
+<FONT color="green">099</FONT>         * This table is only used when the Base64's mode is set to URL-SAFE.<a name="line.99"></a>
+<FONT color="green">100</FONT>         */    <a name="line.100"></a>
+<FONT color="green">101</FONT>        private static final byte[] URL_SAFE_ENCODE_TABLE = {<a name="line.101"></a>
+<FONT color="green">102</FONT>                'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',<a name="line.102"></a>
+<FONT color="green">103</FONT>                'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',<a name="line.103"></a>
+<FONT color="green">104</FONT>                'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',<a name="line.104"></a>
+<FONT color="green">105</FONT>                'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',<a name="line.105"></a>
+<FONT color="green">106</FONT>                '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', '_'<a name="line.106"></a>
+<FONT color="green">107</FONT>        };<a name="line.107"></a>
+<FONT color="green">108</FONT>    <a name="line.108"></a>
+<FONT color="green">109</FONT>        /**<a name="line.109"></a>
+<FONT color="green">110</FONT>         * Byte used to pad output.<a name="line.110"></a>
+<FONT color="green">111</FONT>         */<a name="line.111"></a>
+<FONT color="green">112</FONT>        private static final byte PAD = '=';<a name="line.112"></a>
+<FONT color="green">113</FONT>    <a name="line.113"></a>
+<FONT color="green">114</FONT>        /**<a name="line.114"></a>
+<FONT color="green">115</FONT>         * This array is a lookup table that translates Unicode characters drawn from the "Base64 Alphabet" (as specified in<a name="line.115"></a>
+<FONT color="green">116</FONT>         * Table 1 of RFC 2045) into their 6-bit positive integer equivalents. Characters that are not in the Base64<a name="line.116"></a>
+<FONT color="green">117</FONT>         * alphabet but fall within the bounds of the array are translated to -1.<a name="line.117"></a>
+<FONT color="green">118</FONT>         * <a name="line.118"></a>
+<FONT color="green">119</FONT>         * Note: '+' and '-' both decode to 62. '/' and '_' both decode to 63. This means decoder seamlessly handles both<a name="line.119"></a>
+<FONT color="green">120</FONT>         * URL_SAFE and STANDARD base64. (The encoder, on the other hand, needs to know ahead of time what to emit).<a name="line.120"></a>
+<FONT color="green">121</FONT>         * <a name="line.121"></a>
+<FONT color="green">122</FONT>         * Thanks to "commons" project in ws.apache.org for this code.<a name="line.122"></a>
+<FONT color="green">123</FONT>         * http://svn.apache.org/repos/asf/webservices/commons/trunk/modules/util/<a name="line.123"></a>
+<FONT color="green">124</FONT>         */<a name="line.124"></a>
+<FONT color="green">125</FONT>        private static final byte[] DECODE_TABLE = {<a name="line.125"></a>
+<FONT color="green">126</FONT>                -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,<a name="line.126"></a>
+<FONT color="green">127</FONT>                -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,<a name="line.127"></a>
+<FONT color="green">128</FONT>                -1, -1, -1, -1, -1, -1, -1, -1, -1, 62, -1, 62, -1, 63, 52, 53, 54,<a name="line.128"></a>
+<FONT color="green">129</FONT>                55, 56, 57, 58, 59, 60, 61, -1, -1, -1, -1, -1, -1, -1, 0, 1, 2, 3, 4,<a name="line.129"></a>
+<FONT color="green">130</FONT>                5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,<a name="line.130"></a>
+<FONT color="green">131</FONT>                24, 25, -1, -1, -1, -1, 63, -1, 26, 27, 28, 29, 30, 31, 32, 33, 34,<a name="line.131"></a>
+<FONT color="green">132</FONT>                35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51<a name="line.132"></a>
+<FONT color="green">133</FONT>        };<a name="line.133"></a>
+<FONT color="green">134</FONT>    <a name="line.134"></a>
+<FONT color="green">135</FONT>        /** Mask used to extract 6 bits, used when encoding */<a name="line.135"></a>
+<FONT color="green">136</FONT>        private static final int MASK_6BITS = 0x3f;<a name="line.136"></a>
+<FONT color="green">137</FONT>    <a name="line.137"></a>
+<FONT color="green">138</FONT>        /** Mask used to extract 8 bits, used in decoding base64 bytes */<a name="line.138"></a>
+<FONT color="green">139</FONT>        private static final int MASK_8BITS = 0xff;<a name="line.139"></a>
+<FONT color="green">140</FONT>    <a name="line.140"></a>
+<FONT color="green">141</FONT>        // The static final fields above are used for the original static byte[] methods on Base64.<a name="line.141"></a>
+<FONT color="green">142</FONT>        // The private member fields below are used with the new streaming approach, which requires<a name="line.142"></a>
+<FONT color="green">143</FONT>        // some state be preserved between calls of encode() and decode().<a name="line.143"></a>
+<FONT color="green">144</FONT>    <a name="line.144"></a>
+<FONT color="green">145</FONT>        /**<a name="line.145"></a>
+<FONT color="green">146</FONT>         * Encode table to use: either STANDARD or URL_SAFE. Note: the DECODE_TABLE above remains static because it is able<a name="line.146"></a>
+<FONT color="green">147</FONT>         * to decode both STANDARD and URL_SAFE streams, but the encodeTable must be a member variable so we can switch<a name="line.147"></a>
+<FONT color="green">148</FONT>         * between the two modes.<a name="line.148"></a>
+<FONT color="green">149</FONT>         */<a name="line.149"></a>
+<FONT color="green">150</FONT>        private final byte[] encodeTable;<a name="line.150"></a>
+<FONT color="green">151</FONT>    <a name="line.151"></a>
+<FONT color="green">152</FONT>        /**<a name="line.152"></a>
+<FONT color="green">153</FONT>         * Line length for encoding. Not used when decoding. A value of zero or less implies no chunking of the base64<a name="line.153"></a>
+<FONT color="green">154</FONT>         * encoded data.<a name="line.154"></a>
+<FONT color="green">155</FONT>         */<a name="line.155"></a>
+<FONT color="green">156</FONT>        private final int lineLength;<a name="line.156"></a>
+<FONT color="green">157</FONT>    <a name="line.157"></a>
+<FONT color="green">158</FONT>        /**<a name="line.158"></a>
+<FONT color="green">159</FONT>         * Line separator for encoding. Not used when decoding. Only used if lineLength &gt; 0.<a name="line.159"></a>
+<FONT color="green">160</FONT>         */<a name="line.160"></a>
+<FONT color="green">161</FONT>        private final byte[] lineSeparator;<a name="line.161"></a>
+<FONT color="green">162</FONT>    <a name="line.162"></a>
+<FONT color="green">163</FONT>        /**<a name="line.163"></a>
+<FONT color="green">164</FONT>         * Convenience variable to help us determine when our buffer is going to run out of room and needs resizing.<a name="line.164"></a>
+<FONT color="green">165</FONT>         * &lt;code&gt;decodeSize = 3 + lineSeparator.length;&lt;/code&gt;<a name="line.165"></a>
+<FONT color="green">166</FONT>         */<a name="line.166"></a>
+<FONT color="green">167</FONT>        private final int decodeSize;<a name="line.167"></a>
+<FONT color="green">168</FONT>    <a name="line.168"></a>
+<FONT color="green">169</FONT>        /**<a name="line.169"></a>
+<FONT color="green">170</FONT>         * Convenience variable to help us determine when our buffer is going to run out of room and needs resizing.<a name="line.170"></a>
+<FONT color="green">171</FONT>         * &lt;code&gt;encodeSize = 4 + lineSeparator.length;&lt;/code&gt;<a name="line.171"></a>
+<FONT color="green">172</FONT>         */<a name="line.172"></a>
+<FONT color="green">173</FONT>        private final int encodeSize;<a name="line.173"></a>
+<FONT color="green">174</FONT>    <a name="line.174"></a>
+<FONT color="green">175</FONT>        /**<a name="line.175"></a>
+<FONT color="green">176</FONT>         * Buffer for streaming.<a name="line.176"></a>
+<FONT color="green">177</FONT>         */<a name="line.177"></a>
+<FONT color="green">178</FONT>        private byte[] buffer;<a name="line.178"></a>
+<FONT color="green">179</FONT>    <a name="line.179"></a>
+<FONT color="green">180</FONT>        /**<a name="line.180"></a>
+<FONT color="green">181</FONT>         * Position where next character should be written in the buffer.<a name="line.181"></a>
+<FONT color="green">182</FONT>         */<a name="line.182"></a>
+<FONT color="green">183</FONT>        private int pos;<a name="line.183"></a>
+<FONT color="green">184</FONT>    <a name="line.184"></a>
+<FONT color="green">185</FONT>        /**<a name="line.185"></a>
+<FONT color="green">186</FONT>         * Position where next character should be read from the buffer.<a name="line.186"></a>
+<FONT color="green">187</FONT>         */<a name="line.187"></a>
+<FONT color="green">188</FONT>        private int readPos;<a name="line.188"></a>
+<FONT color="green">189</FONT>    <a name="line.189"></a>
+<FONT color="green">190</FONT>        /**<a name="line.190"></a>
+<FONT color="green">191</FONT>         * Variable tracks how many characters have been written to the current line. Only used when encoding. We use it to<a name="line.191"></a>
+<FONT color="green">192</FONT>         * make sure each encoded line never goes beyond lineLength (if lineLength &gt; 0).<a name="line.192"></a>
+<FONT color="green">193</FONT>         */<a name="line.193"></a>
+<FONT color="green">194</FONT>        private int currentLinePos;<a name="line.194"></a>
+<FONT color="green">195</FONT>    <a name="line.195"></a>
+<FONT color="green">196</FONT>        /**<a name="line.196"></a>
+<FONT color="green">197</FONT>         * Writes to the buffer only occur after every 3 reads when encoding, an every 4 reads when decoding. This variable<a name="line.197"></a>
+<FONT color="green">198</FONT>         * helps track that.<a name="line.198"></a>
+<FONT color="green">199</FONT>         */<a name="line.199"></a>
+<FONT color="green">200</FONT>        private int modulus;<a name="line.200"></a>
+<FONT color="green">201</FONT>    <a name="line.201"></a>
+<FONT color="green">202</FONT>        /**<a name="line.202"></a>
+<FONT color="green">203</FONT>         * Boolean flag to indicate the EOF has been reached. Once EOF has been reached, this Base64 object becomes useless,<a name="line.203"></a>
+<FONT color="green">204</FONT>         * and must be thrown away.<a name="line.204"></a>
+<FONT color="green">205</FONT>         */<a name="line.205"></a>
+<FONT color="green">206</FONT>        private boolean eof;<a name="line.206"></a>
+<FONT color="green">207</FONT>    <a name="line.207"></a>
+<FONT color="green">208</FONT>        /**<a name="line.208"></a>
+<FONT color="green">209</FONT>         * Place holder for the 3 bytes we're dealing with for our base64 logic. Bitwise operations store and extract the<a name="line.209"></a>
+<FONT color="green">210</FONT>         * base64 encoding or decoding from this variable.<a name="line.210"></a>
+<FONT color="green">211</FONT>         */<a name="line.211"></a>
+<FONT color="green">212</FONT>        private int x;<a name="line.212"></a>
+<FONT color="green">213</FONT>    <a name="line.213"></a>
+<FONT color="green">214</FONT>        /**<a name="line.214"></a>
+<FONT color="green">215</FONT>         * Creates a Base64 codec used for decoding (all modes) and encoding in URL-unsafe mode.<a name="line.215"></a>
+<FONT color="green">216</FONT>         * &lt;p&gt;<a name="line.216"></a>
+<FONT color="green">217</FONT>         * When encoding the line length is 76, the line separator is CRLF, and the encoding table is STANDARD_ENCODE_TABLE.<a name="line.217"></a>
+<FONT color="green">218</FONT>         * &lt;/p&gt;<a name="line.218"></a>
+<FONT color="green">219</FONT>         * <a name="line.219"></a>
+<FONT color="green">220</FONT>         * &lt;p&gt;<a name="line.220"></a>
+<FONT color="green">221</FONT>         * When decoding all variants are supported.<a name="line.221"></a>
+<FONT color="green">222</FONT>         * &lt;/p&gt;<a name="line.222"></a>
+<FONT color="green">223</FONT>         */<a name="line.223"></a>
+<FONT color="green">224</FONT>        public Base64() {<a name="line.224"></a>
+<FONT color="green">225</FONT>            this(false);<a name="line.225"></a>
+<FONT color="green">226</FONT>        }<a name="line.226"></a>
+<FONT color="green">227</FONT>    <a name="line.227"></a>
+<FONT color="green">228</FONT>        /**<a name="line.228"></a>
+<FONT color="green">229</FONT>         * Creates a Base64 codec used for decoding (all modes) and encoding in the given URL-safe mode.<a name="line.229"></a>
+<FONT color="green">230</FONT>         * &lt;p&gt;<a name="line.230"></a>
+<FONT color="green">231</FONT>         * When encoding the line length is 76, the line separator is CRLF, and the encoding table is STANDARD_ENCODE_TABLE.<a name="line.231"></a>
+<FONT color="green">232</FONT>         * &lt;/p&gt;<a name="line.232"></a>
+<FONT color="green">233</FONT>         * <a name="line.233"></a>
+<FONT color="green">234</FONT>         * &lt;p&gt;<a name="line.234"></a>
+<FONT color="green">235</FONT>         * When decoding all variants are supported.<a name="line.235"></a>
+<FONT color="green">236</FONT>         * &lt;/p&gt;<a name="line.236"></a>
+<FONT color="green">237</FONT>         * <a name="line.237"></a>
+<FONT color="green">238</FONT>         * @param urlSafe<a name="line.238"></a>
+<FONT color="green">239</FONT>         *            if &lt;code&gt;true&lt;/code&gt;, URL-safe encoding is used. In most cases this should be set to<a name="line.239"></a>
+<FONT color="green">240</FONT>         *            &lt;code&gt;false&lt;/code&gt;.<a name="line.240"></a>
+<FONT color="green">241</FONT>         * @since 1.4<a name="line.241"></a>
+<FONT color="green">242</FONT>         */<a name="line.242"></a>
+<FONT color="green">243</FONT>        public Base64(boolean urlSafe) {<a name="line.243"></a>
+<FONT color="green">244</FONT>            this(CHUNK_SIZE, CHUNK_SEPARATOR, urlSafe);<a name="line.244"></a>
+<FONT color="green">245</FONT>        }<a name="line.245"></a>
+<FONT color="green">246</FONT>    <a name="line.246"></a>
+<FONT color="green">247</FONT>        /**<a name="line.247"></a>
+<FONT color="green">248</FONT>         * Creates a Base64 codec used for decoding (all modes) and encoding in URL-unsafe mode.<a name="line.248"></a>
+<FONT color="green">249</FONT>         * &lt;p&gt;<a name="line.249"></a>
+<FONT color="green">250</FONT>         * When encoding the line length is given in the constructor, the line separator is CRLF, and the encoding table is<a name="line.250"></a>
+<FONT color="green">251</FONT>         * STANDARD_ENCODE_TABLE.<a name="line.251"></a>
+<FONT color="green">252</FONT>         * &lt;/p&gt;<a name="line.252"></a>
+<FONT color="green">253</FONT>         * &lt;p&gt;<a name="line.253"></a>
+<FONT color="green">254</FONT>         * Line lengths that aren't multiples of 4 will still essentially end up being multiples of 4 in the encoded data.<a name="line.254"></a>
+<FONT color="green">255</FONT>         * &lt;/p&gt;<a name="line.255"></a>
+<FONT color="green">256</FONT>         * &lt;p&gt;<a name="line.256"></a>
+<FONT color="green">257</FONT>         * When decoding all variants are supported.<a name="line.257"></a>
+<FONT color="green">258</FONT>         * &lt;/p&gt;<a name="line.258"></a>
+<FONT color="green">259</FONT>         * <a name="line.259"></a>
+<FONT color="green">260</FONT>         * @param lineLength<a name="line.260"></a>
+<FONT color="green">261</FONT>         *            Each line of encoded data will be at most of the given length (rounded down to nearest multiple of 4).<a name="line.261"></a>
+<FONT color="green">262</FONT>         *            If lineLength &lt;= 0, then the output will not be divided into lines (chunks). Ignored when decoding.<a name="line.262"></a>
+<FONT color="green">263</FONT>         * @since 1.4<a name="line.263"></a>
+<FONT color="green">264</FONT>         */<a name="line.264"></a>
+<FONT color="green">265</FONT>        public Base64(int lineLength) {<a name="line.265"></a>
+<FONT color="green">266</FONT>            this(lineLength, CHUNK_SEPARATOR);<a name="line.266"></a>
+<FONT color="green">267</FONT>        }<a name="line.267"></a>
+<FONT color="green">268</FONT>    <a name="line.268"></a>
+<FONT color="green">269</FONT>        /**<a name="line.269"></a>
+<FONT color="green">270</FONT>         * Creates a Base64 codec used for decoding (all modes) and encoding in URL-unsafe mode.<a name="line.270"></a>
+<FONT color="green">271</FONT>         * &lt;p&gt;<a name="line.271"></a>
+<FONT color="green">272</FONT>         * When encoding the line length and line separator are given in the constructor, and the encoding table is<a name="line.272"></a>
+<FONT color="green">273</FONT>         * STANDARD_ENCODE_TABLE.<a name="line.273"></a>
+<FONT color="green">274</FONT>         * &lt;/p&gt;<a name="line.274"></a>
+<FONT color="green">275</FONT>         * &lt;p&gt;<a name="line.275"></a>
+<FONT color="green">276</FONT>         * Line lengths that aren't multiples of 4 will still essentially end up being multiples of 4 in the encoded data.<a name="line.276"></a>
+<FONT color="green">277</FONT>         * &lt;/p&gt;<a name="line.277"></a>
+<FONT color="green">278</FONT>         * &lt;p&gt;<a name="line.278"></a>
+<FONT color="green">279</FONT>         * When decoding all variants are supported.<a name="line.279"></a>
+<FONT color="green">280</FONT>         * &lt;/p&gt;<a name="line.280"></a>
+<FONT color="green">281</FONT>         * <a name="line.281"></a>
+<FONT color="green">282</FONT>         * @param lineLength<a name="line.282"></a>
+<FONT color="green">283</FONT>         *            Each line of encoded data will be at most of the given length (rounded down to nearest multiple of 4).<a name="line.283"></a>
+<FONT color="green">284</FONT>         *            If lineLength &lt;= 0, then the output will not be divided into lines (chunks). Ignored when decoding.<a name="line.284"></a>
+<FONT color="green">285</FONT>         * @param lineSeparator<a name="line.285"></a>
+<FONT color="green">286</FONT>         *            Each line of encoded data will end with this sequence of bytes.<a name="line.286"></a>
+<FONT color="green">287</FONT>         * @throws IllegalArgumentException<a name="line.287"></a>
+<FONT color="green">288</FONT>         *             Thrown when the provided lineSeparator included some base64 characters.<a name="line.288"></a>
+<FONT color="green">289</FONT>         * @since 1.4<a name="line.289"></a>
+<FONT color="green">290</FONT>         */<a name="line.290"></a>
+<FONT color="green">291</FONT>        public Base64(int lineLength, byte[] lineSeparator) {<a name="line.291"></a>
+<FONT color="green">292</FONT>            this(lineLength, lineSeparator, false);<a name="line.292"></a>
+<FONT color="green">293</FONT>        }<a name="line.293"></a>
+<FONT color="green">294</FONT>    <a name="line.294"></a>
+<FONT color="green">295</FONT>        /**<a name="line.295"></a>
+<FONT color="green">296</FONT>         * Creates a Base64 codec used for decoding (all modes) and encoding in URL-unsafe mode.<a name="line.296"></a>
+<FONT color="green">297</FONT>         * &lt;p&gt;<a name="line.297"></a>
+<FONT color="green">298</FONT>         * When encoding the line length and line separator are given in the constructor, and the encoding table is<a name="line.298"></a>
+<FONT color="green">299</FONT>         * STANDARD_ENCODE_TABLE.<a name="line.299"></a>
+<FONT color="green">300</FONT>         * &lt;/p&gt;<a name="line.300"></a>
+<FONT color="green">301</FONT>         * &lt;p&gt;<a name="line.301"></a>
+<FONT color="green">302</FONT>         * Line lengths that aren't multiples of 4 will still essentially end up being multiples of 4 in the encoded data.<a name="line.302"></a>
+<FONT color="green">303</FONT>         * &lt;/p&gt;<a name="line.303"></a>
+<FONT color="green">304</FONT>         * &lt;p&gt;<a name="line.304"></a>
+<FONT color="green">305</FONT>         * When decoding all variants are supported.<a name="line.305"></a>
+<FONT color="green">306</FONT>         * &lt;/p&gt;<a name="line.306"></a>
+<FONT color="green">307</FONT>         * <a name="line.307"></a>
+<FONT color="green">308</FONT>         * @param lineLength<a name="line.308"></a>
+<FONT color="green">309</FONT>         *            Each line of encoded data will be at most of the given length (rounded down to nearest multiple of 4).<a name="line.309"></a>
+<FONT color="green">310</FONT>         *            If lineLength &lt;= 0, then the output will not be divided into lines (chunks). Ignored when decoding.<a name="line.310"></a>
+<FONT color="green">311</FONT>         * @param lineSeparator<a name="line.311"></a>
+<FONT color="green">312</FONT>         *            Each line of encoded data will end with this sequence of bytes.<a name="line.312"></a>
+<FONT color="green">313</FONT>         * @param urlSafe<a name="line.313"></a>
+<FONT color="green">314</FONT>         *            Instead of emitting '+' and '/' we emit '-' and '_' respectively. urlSafe is only applied to encode<a name="line.314"></a>
+<FONT color="green">315</FONT>         *            operations. Decoding seamlessly handles both modes.<a name="line.315"></a>
+<FONT color="green">316</FONT>         * @throws IllegalArgumentException<a name="line.316"></a>
+<FONT color="green">317</FONT>         *             The provided lineSeparator included some base64 characters. That's not going to work!<a name="line.317"></a>
+<FONT color="green">318</FONT>         * @since 1.4<a name="line.318"></a>
+<FONT color="green">319</FONT>         */<a name="line.319"></a>
+<FONT color="green">320</FONT>        public Base64(int lineLength, byte[] lineSeparator, boolean urlSafe) {<a name="line.320"></a>
+<FONT color="green">321</FONT>            if (lineSeparator == null) {<a name="line.321"></a>
+<FONT color="green">322</FONT>                lineLength = 0;  // disable chunk-separating<a name="line.322"></a>
+<FONT color="green">323</FONT>                lineSeparator = CHUNK_SEPARATOR;  // this just gets ignored<a name="line.323"></a>
+<FONT color="green">324</FONT>            }<a name="line.324"></a>
+<FONT color="green">325</FONT>            this.lineLength = lineLength &gt; 0 ? (lineLength / 4) * 4 : 0;<a name="line.325"></a>
+<FONT color="green">326</FONT>            this.lineSeparator = new byte[lineSeparator.length];<a name="line.326"></a>
+<FONT color="green">327</FONT>            System.arraycopy(lineSeparator, 0, this.lineSeparator, 0, lineSeparator.length);<a name="line.327"></a>
+<FONT color="green">328</FONT>            if (lineLength &gt; 0) {<a name="line.328"></a>
+<FONT color="green">329</FONT>                this.encodeSize = 4 + lineSeparator.length;<a name="line.329"></a>
+<FONT color="green">330</FONT>            } else {<a name="line.330"></a>
+<FONT color="green">331</FONT>                this.encodeSize = 4;<a name="line.331"></a>
+<FONT color="green">332</FONT>            }<a name="line.332"></a>
+<FONT color="green">333</FONT>            this.decodeSize = this.encodeSize - 1;<a name="line.333"></a>
+<FONT color="green">334</FONT>            if (containsBase64Byte(lineSeparator)) {<a name="line.334"></a>
+<FONT color="green">335</FONT>                String sep = StringUtils.newStringUtf8(lineSeparator);<a name="line.335"></a>
+<FONT color="green">336</FONT>                throw new IllegalArgumentException("lineSeperator must not contain base64 characters: [" + sep + "]");<a name="line.336"></a>
+<FONT color="green">337</FONT>            }<a name="line.337"></a>
+<FONT color="green">338</FONT>            this.encodeTable = urlSafe ? URL_SAFE_ENCODE_TABLE : STANDARD_ENCODE_TABLE;<a name="line.338"></a>
+<FONT color="green">339</FONT>        }<a name="line.339"></a>
+<FONT color="green">340</FONT>    <a name="line.340"></a>
+<FONT color="green">341</FONT>        /**<a name="line.341"></a>
+<FONT color="green">342</FONT>         * Returns our current encode mode. True if we're URL-SAFE, false otherwise.<a name="line.342"></a>
+<FONT color="green">343</FONT>         * <a name="line.343"></a>
+<FONT color="green">344</FONT>         * @return true if we're in URL-SAFE mode, false otherwise.<a name="line.344"></a>
+<FONT color="green">345</FONT>         * @since 1.4<a name="line.345"></a>
+<FONT color="green">346</FONT>         */<a name="line.346"></a>
+<FONT color="green">347</FONT>        public boolean isUrlSafe() {<a name="line.347"></a>
+<FONT color="green">348</FONT>            return this.encodeTable == URL_SAFE_ENCODE_TABLE;<a name="line.348"></a>
+<FONT color="green">349</FONT>        }<a name="line.349"></a>
+<FONT color="green">350</FONT>    <a name="line.350"></a>
+<FONT color="green">351</FONT>        /**<a name="line.351"></a>
+<FONT color="green">352</FONT>         * Returns true if this Base64 object has buffered data for reading.<a name="line.352"></a>
+<FONT color="green">353</FONT>         * <a name="line.353"></a>
+<FONT color="green">354</FONT>         * @return true if there is Base64 object still available for reading.<a name="line.354"></a>
+<FONT color="green">355</FONT>         */<a name="line.355"></a>
+<FONT color="green">356</FONT>        boolean hasData() {<a name="line.356"></a>
+<FONT color="green">357</FONT>            return this.buffer != null;<a name="line.357"></a>
+<FONT color="green">358</FONT>        }<a name="line.358"></a>
+<FONT color="green">359</FONT>    <a name="line.359"></a>
+<FONT color="green">360</FONT>        /**<a name="line.360"></a>
+<FONT color="green">361</FONT>         * Returns the amount of buffered data available for reading.<a name="line.361"></a>
+<FONT color="green">362</FONT>         * <a name="line.362"></a>
+<FONT color="green">363</FONT>         * @return The amount of buffered data available for reading.<a name="line.363"></a>
+<FONT color="green">364</FONT>         */<a name="line.364"></a>
+<FONT color="green">365</FONT>        int avail() {<a name="line.365"></a>
+<FONT color="green">366</FONT>            return buffer != null ? pos - readPos : 0;<a name="line.366"></a>
+<FONT color="green">367</FONT>        }<a name="line.367"></a>
+<FONT color="green">368</FONT>    <a name="line.368"></a>
+<FONT color="green">369</FONT>        /** Doubles our buffer. */<a name="line.369"></a>
+<FONT color="green">370</FONT>        private void resizeBuffer() {<a name="line.370"></a>
+<FONT color="green">371</FONT>            if (buffer == null) {<a name="line.371"></a>
+<FONT color="green">372</FONT>                buffer = new byte[DEFAULT_BUFFER_SIZE];<a name="line.372"></a>
+<FONT color="green">373</FONT>                pos = 0;<a name="line.373"></a>
+<FONT color="green">374</FONT>                readPos = 0;<a name="line.374"></a>
+<FONT color="green">375</FONT>            } else {<a name="line.375"></a>
+<FONT color="green">376</FONT>                byte[] b = new byte[buffer.length * DEFAULT_BUFFER_RESIZE_FACTOR];<a name="line.376"></a>
+<FONT color="green">377</FONT>                System.arraycopy(buffer, 0, b, 0, buffer.length);<a name="line.377"></a>
+<FONT color="green">378</FONT>                buffer = b;<a name="line.378"></a>
+<FONT color="green">379</FONT>            }<a name="line.379"></a>
+<FONT color="green">380</FONT>        }<a name="line.380"></a>
+<FONT color="green">381</FONT>    <a name="line.381"></a>
+<FONT color="green">382</FONT>        /**<a name="line.382"></a>
+<FONT color="green">383</FONT>         * Extracts buffered data into the provided byte[] array, starting at position bPos, up to a maximum of bAvail<a name="line.383"></a>
+<FONT color="green">384</FONT>         * bytes. Returns how many bytes were actually extracted.<a name="line.384"></a>
+<FONT color="green">385</FONT>         * <a name="line.385"></a>
+<FONT color="green">386</FONT>         * @param b<a name="line.386"></a>
+<FONT color="green">387</FONT>         *            byte[] array to extract the buffered data into.<a name="line.387"></a>
+<FONT color="green">388</FONT>         * @param bPos<a name="line.388"></a>
+<FONT color="green">389</FONT>         *            position in byte[] array to start extraction at.<a name="line.389"></a>
+<FONT color="green">390</FONT>         * @param bAvail<a name="line.390"></a>
+<FONT color="green">391</FONT>         *            amount of bytes we're allowed to extract. We may extract fewer (if fewer are available).<a name="line.391"></a>
+<FONT color="green">392</FONT>         * @return The number of bytes successfully extracted into the provided byte[] array.<a name="line.392"></a>
+<FONT color="green">393</FONT>         */<a name="line.393"></a>
+<FONT color="green">394</FONT>        int readResults(byte[] b, int bPos, int bAvail) {<a name="line.394"></a>
+<FONT color="green">395</FONT>            if (buffer != null) {<a name="line.395"></a>
+<FONT color="green">396</FONT>                int len = Math.min(avail(), bAvail);<a name="line.396"></a>
+<FONT color="green">397</FONT>                if (buffer != b) {<a name="line.397"></a>
+<FONT color="green">398</FONT>                    System.arraycopy(buffer, readPos, b, bPos, len);<a name="line.398"></a>
+<FONT color="green">399</FONT>                    readPos += len;<a name="line.399"></a>
+<FONT color="green">400</FONT>                    if (readPos &gt;= pos) {<a name="line.400"></a>
+<FONT color="green">401</FONT>                        buffer = null;<a name="line.401"></a>
+<FONT color="green">402</FONT>                    }<a name="line.402"></a>
+<FONT color="green">403</FONT>                } else {<a name="line.403"></a>
+<FONT color="green">404</FONT>                    // Re-using the original consumer's output array is only<a name="line.404"></a>
+<FONT color="green">405</FONT>                    // allowed for one round.<a name="line.405"></a>
+<FONT color="green">406</FONT>                    buffer = null;<a name="line.406"></a>
+<FONT color="green">407</FONT>                }<a name="line.407"></a>
+<FONT color="green">408</FONT>                return len;<a name="line.408"></a>
+<FONT color="green">409</FONT>            }<a name="line.409"></a>
+<FONT color="green">410</FONT>            return eof ? -1 : 0;<a name="line.410"></a>
+<FONT color="green">411</FONT>        }<a name="line.411"></a>
+<FONT color="green">412</FONT>    <a name="line.412"></a>
+<FONT color="green">413</FONT>        /**<a name="line.413"></a>
+<FONT color="green">414</FONT>         * Sets the streaming buffer. This is a small optimization where we try to buffer directly to the consumer's output<a name="line.414"></a>
+<FONT color="green">415</FONT>         * array for one round (if the consumer calls this method first) instead of starting our own buffer.<a name="line.415"></a>
+<FONT color="green">416</FONT>         * <a name="line.416"></a>
+<FONT color="green">417</FONT>         * @param out<a name="line.417"></a>
+<FONT color="green">418</FONT>         *            byte[] array to buffer directly to.<a name="line.418"></a>
+<FONT color="green">419</FONT>         * @param outPos<a name="line.419"></a>
+<FONT color="green">420</FONT>         *            Position to start buffering into.<a name="line.420"></a>
+<FONT color="green">421</FONT>         * @param outAvail<a name="line.421"></a>
+<FONT color="green">422</FONT>         *            Amount of bytes available for direct buffering.<a name="line.422"></a>
+<FONT color="green">423</FONT>         */<a name="line.423"></a>
+<FONT color="green">424</FONT>        void setInitialBuffer(byte[] out, int outPos, int outAvail) {<a name="line.424"></a>
+<FONT color="green">425</FONT>            // We can re-use consumer's original output array under<a name="line.425"></a>
+<FONT color="green">426</FONT>            // special circumstances, saving on some System.arraycopy().<a name="line.426"></a>
+<FONT color="green">427</FONT>            if (out != null &amp;&amp; out.length == outAvail) {<a name="line.427"></a>
+<FONT color="green">428</FONT>                buffer = out;<a name="line.428"></a>
+<FONT color="green">429</FONT>                pos = outPos;<a name="line.429"></a>
+<FONT color="green">430</FONT>                readPos = outPos;<a name="line.430"></a>
+<FONT color="green">431</FONT>            }<a name="line.431"></a>
+<FONT color="green">432</FONT>        }<a name="line.432"></a>
+<FONT color="green">433</FONT>    <a name="line.433"></a>
+<FONT color="green">434</FONT>        /**<a name="line.434"></a>
+<FONT color="green">435</FONT>         * &lt;p&gt;<a name="line.435"></a>
+<FONT color="green">436</FONT>         * Encodes all of the provided data, starting at inPos, for inAvail bytes. Must be called at least twice: once with<a name="line.436"></a>
+<FONT color="green">437</FONT>         * the data to encode, and once with inAvail set to "-1" to alert encoder that EOF has been reached, so flush last<a name="line.437"></a>
+<FONT color="green">438</FONT>         * remaining bytes (if not multiple of 3).<a name="line.438"></a>
+<FONT color="green">439</FONT>         * &lt;/p&gt;<a name="line.439"></a>
+<FONT color="green">440</FONT>         * &lt;p&gt;<a name="line.440"></a>
+<FONT color="green">441</FONT>         * Thanks to "commons" project in ws.apache.org for the bitwise operations, and general approach.<a name="line.441"></a>
+<FONT color="green">442</FONT>         * http://svn.apache.org/repos/asf/webservices/commons/trunk/modules/util/<a name="line.442"></a>
+<FONT color="green">443</FONT>         * &lt;/p&gt;<a name="line.443"></a>
+<FONT color="green">444</FONT>         * <a name="line.444"></a>
+<FONT color="green">445</FONT>         * @param in<a name="line.445"></a>
+<FONT color="green">446</FONT>         *            byte[] array of binary data to base64 encode.<a name="line.446"></a>
+<FONT color="green">447</FONT>         * @param inPos<a name="line.447"></a>
+<FONT color="green">448</FONT>         *            Position to start reading data from.<a name="line.448"></a>
+<FONT color="green">449</FONT>         * @param inAvail<a name="line.449"></a>
+<FONT color="green">450</FONT>         *            Amount of bytes available from input for encoding.<a name="line.450"></a>
+<FONT color="green">451</FONT>         */<a name="line.451"></a>
+<FONT color="green">452</FONT>        void encode(byte[] in, int inPos, int inAvail) {<a name="line.452"></a>
+<FONT color="green">453</FONT>            if (eof) {<a name="line.453"></a>
+<FONT color="green">454</FONT>                return;<a name="line.454"></a>
+<FONT color="green">455</FONT>            }<a name="line.455"></a>
+<FONT color="green">456</FONT>            // inAvail &lt; 0 is how we're informed of EOF in the underlying data we're<a name="line.456"></a>
+<FONT color="green">457</FONT>            // encoding.<a name="line.457"></a>
+<FONT color="green">458</FONT>            if (inAvail &lt; 0) {<a name="line.458"></a>
+<FONT color="green">459</FONT>                eof = true;<a name="line.459"></a>
+<FONT color="green">460</FONT>                if (buffer == null || buffer.length - pos &lt; encodeSize) {<a name="line.460"></a>
+<FONT color="green">461</FONT>                    resizeBuffer();<a name="line.461"></a>
+<FONT color="green">462</FONT>                }<a name="line.462"></a>
+<FONT color="green">463</FONT>                switch (modulus) {<a name="line.463"></a>
+<FONT color="green">464</FONT>                    case 1 :<a name="line.464"></a>
+<FONT color="green">465</FONT>                        buffer[pos++] = encodeTable[(x &gt;&gt; 2) &amp; MASK_6BITS];<a name="line.465"></a>
+<FONT color="green">466</FONT>                        buffer[pos++] = encodeTable[(x &lt;&lt; 4) &amp; MASK_6BITS];<a name="line.466"></a>
+<FONT color="green">467</FONT>                        // URL-SAFE skips the padding to further reduce size.<a name="line.467"></a>
+<FONT color="green">468</FONT>                        if (encodeTable == STANDARD_ENCODE_TABLE) {<a name="line.468"></a>
+<FONT color="green">469</FONT>                            buffer[pos++] = PAD;<a name="line.469"></a>
+<FONT color="green">470</FONT>                            buffer[pos++] = PAD;<a name="line.470"></a>
+<FONT color="green">471</FONT>                        }<a name="line.471"></a>
+<FONT color="green">472</FONT>                        break;<a name="line.472"></a>
+<FONT color="green">473</FONT>    <a name="line.473"></a>
+<FONT color="green">474</FONT>                    case 2 :<a name="line.474"></a>
+<FONT color="green">475</FONT>                        buffer[pos++] = encodeTable[(x &gt;&gt; 10) &amp; MASK_6BITS];<a name="line.475"></a>
+<FONT color="green">476</FONT>                        buffer[pos++] = encodeTable[(x &gt;&gt; 4) &amp; MASK_6BITS];<a name="line.476"></a>
+<FONT color="green">477</FONT>                        buffer[pos++] = encodeTable[(x &lt;&lt; 2) &amp; MASK_6BITS];<a name="line.477"></a>
+<FONT color="green">478</FONT>                        // URL-SAFE skips the padding to further reduce size.<a name="line.478"></a>
+<FONT color="green">479</FONT>                        if (encodeTable == STANDARD_ENCODE_TABLE) {<a name="line.479"></a>
+<FONT color="green">480</FONT>                            buffer[pos++] = PAD;<a name="line.480"></a>
+<FONT color="green">481</FONT>                        }<a name="line.481"></a>
+<FONT color="green">482</FONT>                        break;<a name="line.482"></a>
+<FONT color="green">483</FONT>                }<a name="line.483"></a>
+<FONT color="green">484</FONT>                if (lineLength &gt; 0 &amp;&amp; pos &gt; 0) {<a name="line.484"></a>
+<FONT color="green">485</FONT>                    System.arraycopy(lineSeparator, 0, buffer, pos, lineSeparator.length);<a name="line.485"></a>
+<FONT color="green">486</FONT>                    pos += lineSeparator.length;<a name="line.486"></a>
+<FONT color="green">487</FONT>                }<a name="line.487"></a>
+<FONT color="green">488</FONT>            } else {<a name="line.488"></a>
+<FONT color="green">489</FONT>                for (int i = 0; i &lt; inAvail; i++) {<a name="line.489"></a>
+<FONT color="green">490</FONT>                    if (buffer == null || buffer.length - pos &lt; encodeSize) {<a name="line.490"></a>
+<FONT color="green">491</FONT>                        resizeBuffer();<a name="line.491"></a>
+<FONT color="green">492</FONT>                    }<a name="line.492"></a>
+<FONT color="green">493</FONT>                    modulus = (++modulus) % 3;<a name="line.493"></a>
+<FONT color="green">494</FONT>                    int b = in[inPos++];<a name="line.494"></a>
+<FONT color="green">495</FONT>                    if (b &lt; 0) {<a name="line.495"></a>
+<FONT color="green">496</FONT>                        b += 256;<a name="line.496"></a>
+<FONT color="green">497</FONT>                    }<a name="line.497"></a>
+<FONT color="green">498</FONT>                    x = (x &lt;&lt; 8) + b;<a name="line.498"></a>
+<FONT color="green">499</FONT>                    if (0 == modulus) {<a name="line.499"></a>
+<FONT color="green">500</FONT>                        buffer[pos++] = encodeTable[(x &gt;&gt; 18) &amp; MASK_6BITS];<a name="line.500"></a>
+<FONT color="green">501</FONT>                        buffer[pos++] = encodeTable[(x &gt;&gt; 12) &amp; MASK_6BITS];<a name="line.501"></a>
+<FONT color="green">502</FONT>                        buffer[pos++] = encodeTable[(x &gt;&gt; 6) &amp; MASK_6BITS];<a name="line.502"></a>
+<FONT color="green">503</FONT>                        buffer[pos++] = encodeTable[x &amp; MASK_6BITS];<a name="line.503"></a>
+<FONT color="green">504</FONT>                        currentLinePos += 4;<a name="line.504"></a>
+<FONT color="green">505</FONT>                        if (lineLength &gt; 0 &amp;&amp; lineLength &lt;= currentLinePos) {<a name="line.505"></a>
+<FONT color="green">506</FONT>                            System.arraycopy(lineSeparator, 0, buffer, pos, lineSeparator.length);<a name="line.506"></a>
+<FONT color="green">507</FONT>                            pos += lineSeparator.length;<a name="line.507"></a>
+<FONT color="green">508</FONT>                            currentLinePos = 0;<a name="line.508"></a>
+<FONT color="green">509</FONT>                        }<a name="line.509"></a>
+<FONT color="green">510</FONT>                    }<a name="line.510"></a>
+<FONT color="green">511</FONT>                }<a name="line.511"></a>
+<FONT color="green">512</FONT>            }<a name="line.512"></a>
+<FONT color="green">513</FONT>        }<a name="line.513"></a>
+<FONT color="green">514</FONT>    <a name="line.514"></a>
+<FONT color="green">515</FONT>        /**<a name="line.515"></a>
+<FONT color="green">516</FONT>         * &lt;p&gt;<a name="line.516"></a>
+<FONT color="green">517</FONT>         * Decodes all of the provided data, starting at inPos, for inAvail bytes. Should be called at least twice: once<a name="line.517"></a>
+<FONT color="green">518</FONT>         * with the data to decode, and once with inAvail set to "-1" to alert decoder that EOF has been reached. The "-1"<a name="line.518"></a>
+<FONT color="green">519</FONT>         * call is not necessary when decoding, but it doesn't hurt, either.<a name="line.519"></a>
+<FONT color="green">520</FONT>         * &lt;/p&gt;<a name="line.520"></a>
+<FONT color="green">521</FONT>         * &lt;p&gt;<a name="line.521"></a>
+<FONT color="green">522</FONT>         * Ignores all non-base64 characters. This is how chunked (e.g. 76 character) data is handled, since CR and LF are<a name="line.522"></a>
+<FONT color="green">523</FONT>         * silently ignored, but has implications for other bytes, too. This method subscribes to the garbage-in,<a name="line.523"></a>
+<FONT color="green">524</FONT>         * garbage-out philosophy: it will not check the provided data for validity.<a name="line.524"></a>
+<FONT color="green">525</FONT>         * &lt;/p&gt;<a name="line.525"></a>
+<FONT color="green">526</FONT>         * &lt;p&gt;<a name="line.526"></a>
+<FONT color="green">527</FONT>         * Thanks to "commons" project in ws.apache.org for the bitwise operations, and general approach.<a name="line.527"></a>
+<FONT color="green">528</FONT>         * http://svn.apache.org/repos/asf/webservices/commons/trunk/modules/util/<a name="line.528"></a>
+<FONT color="green">529</FONT>         * &lt;/p&gt;<a name="line.529"></a>
+<FONT color="green">530</FONT>         * <a name="line.530"></a>
+<FONT color="green">531</FONT>         * @param in<a name="line.531"></a>
+<FONT color="green">532</FONT>         *            byte[] array of ascii data to base64 decode.<a name="line.532"></a>
+<FONT color="green">533</FONT>         * @param inPos<a name="line.533"></a>
+<FONT color="green">534</FONT>         *            Position to start reading data from.<a name="line.534"></a>
+<FONT color="green">535</FONT>         * @param inAvail<a name="line.535"></a>
+<FONT color="green">536</FONT>         *            Amount of bytes available from input for encoding.<a name="line.536"></a>
+<FONT color="green">537</FONT>         */<a name="line.537"></a>
+<FONT color="green">538</FONT>        void decode(byte[] in, int inPos, int inAvail) {<a name="line.538"></a>
+<FONT color="green">539</FONT>            if (eof) {<a name="line.539"></a>
+<FONT color="green">540</FONT>                return;<a name="line.540"></a>
+<FONT color="green">541</FONT>            }<a name="line.541"></a>
+<FONT color="green">542</FONT>            if (inAvail &lt; 0) {<a name="line.542"></a>
+<FONT color="green">543</FONT>                eof = true;<a name="line.543"></a>
+<FONT color="green">544</FONT>            }<a name="line.544"></a>
+<FONT color="green">545</FONT>            for (int i = 0; i &lt; inAvail; i++) {<a name="line.545"></a>
+<FONT color="green">546</FONT>                if (buffer == null || buffer.length - pos &lt; decodeSize) {<a name="line.546"></a>
+<FONT color="green">547</FONT>                    resizeBuffer();<a name="line.547"></a>
+<FONT color="green">548</FONT>                }<a name="line.548"></a>
+<FONT color="green">549</FONT>                byte b = in[inPos++];<a name="line.549"></a>
+<FONT color="green">550</FONT>                if (b == PAD) {<a name="line.550"></a>
+<FONT color="green">551</FONT>                    // We're done.<a name="line.551"></a>
+<FONT color="green">552</FONT>                    eof = true;<a name="line.552"></a>
+<FONT color="green">553</FONT>                    break;<a name="line.553"></a>
+<FONT color="green">554</FONT>                } else {<a name="line.554"></a>
+<FONT color="green">555</FONT>                    if (b &gt;= 0 &amp;&amp; b &lt; DECODE_TABLE.length) {<a name="line.555"></a>
+<FONT color="green">556</FONT>                        int result = DECODE_TABLE[b];<a name="line.556"></a>
+<FONT color="green">557</FONT>                        if (result &gt;= 0) {<a name="line.557"></a>
+<FONT color="green">558</FONT>                            modulus = (++modulus) % 4;<a name="line.558"></a>
+<FONT color="green">559</FONT>                            x = (x &lt;&lt; 6) + result;<a name="line.559"></a>
+<FONT color="green">560</FONT>                            if (modulus == 0) {<a name="line.560"></a>
+<FONT color="green">561</FONT>                                buffer[pos++] = (byte) ((x &gt;&gt; 16) &amp; MASK_8BITS);<a name="line.561"></a>
+<FONT color="green">562</FONT>                                buffer[pos++] = (byte) ((x &gt;&gt; 8) &amp; MASK_8BITS);<a name="line.562"></a>
+<FONT color="green">563</FONT>                                buffer[pos++] = (byte) (x &amp; MASK_8BITS);<a name="line.563"></a>
+<FONT color="green">564</FONT>                            }<a name="line.564"></a>
+<FONT color="green">565</FONT>                        }<a name="line.565"></a>
+<FONT color="green">566</FONT>                    }<a name="line.566"></a>
+<FONT color="green">567</FONT>                }<a name="line.567"></a>
+<FONT color="green">568</FONT>            }<a name="line.568"></a>
+<FONT color="green">569</FONT>    <a name="line.569"></a>
+<FONT color="green">570</FONT>            // Two forms of EOF as far as base64 decoder is concerned: actual<a name="line.570"></a>
+<FONT color="green">571</FONT>            // EOF (-1) and first time '=' character is encountered in stream.<a name="line.571"></a>
+<FONT color="green">572</FONT>            // This approach makes the '=' padding characters completely optional.<a name="line.572"></a>
+<FONT color="green">573</FONT>            if (eof &amp;&amp; modulus != 0) {<a name="line.573"></a>
+<FONT color="green">574</FONT>                x = x &lt;&lt; 6;<a name="line.574"></a>
+<FONT color="green">575</FONT>                switch (modulus) {<a name="line.575"></a>
+<FONT color="green">576</FONT>                    case 2 :<a name="line.576"></a>
+<FONT color="green">577</FONT>                        x = x &lt;&lt; 6;<a name="line.577"></a>
+<FONT color="green">578</FONT>                        buffer[pos++] = (byte) ((x &gt;&gt; 16) &amp; MASK_8BITS);<a name="line.578"></a>
+<FONT color="green">579</FONT>                        break;<a name="line.579"></a>
+<FONT color="green">580</FONT>                    case 3 :<a name="line.580"></a>
+<FONT color="green">581</FONT>                        buffer[pos++] = (byte) ((x &gt;&gt; 16) &amp; MASK_8BITS);<a name="line.581"></a>
+<FONT color="green">582</FONT>                        buffer[pos++] = (byte) ((x &gt;&gt; 8) &amp; MASK_8BITS);<a name="line.582"></a>
+<FONT color="green">583</FONT>                        break;<a name="line.583"></a>
+<FONT color="green">584</FONT>                }<a name="line.584"></a>
+<FONT color="green">585</FONT>            }<a name="line.585"></a>
+<FONT color="green">586</FONT>        }<a name="line.586"></a>
+<FONT color="green">587</FONT>    <a name="line.587"></a>
+<FONT color="green">588</FONT>        /**<a name="line.588"></a>
+<FONT color="green">589</FONT>         * Returns whether or not the &lt;code&gt;octet&lt;/code&gt; is in the base 64 alphabet.<a name="line.589"></a>
+<FONT color="green">590</FONT>         * <a name="line.590"></a>
+<FONT color="green">591</FONT>         * @param octet<a name="line.591"></a>
+<FONT color="green">592</FONT>         *            The value to test<a name="line.592"></a>
+<FONT color="green">593</FONT>         * @return &lt;code&gt;true&lt;/code&gt; if the value is defined in the the base 64 alphabet, &lt;code&gt;false&lt;/code&gt; otherwise.<a name="line.593"></a>
+<FONT color="green">594</FONT>         * @since 1.4<a name="line.594"></a>
+<FONT color="green">595</FONT>         */<a name="line.595"></a>
+<FONT color="green">596</FONT>        public static boolean isBase64(byte octet) {<a name="line.596"></a>
+<FONT color="green">597</FONT>            return octet == PAD || (octet &gt;= 0 &amp;&amp; octet &lt; DECODE_TABLE.length &amp;&amp; DECODE_TABLE[octet] != -1);<a name="line.597"></a>
+<FONT color="green">598</FONT>        }<a name="line.598"></a>
+<FONT color="green">599</FONT>    <a name="line.599"></a>
+<FONT color="green">600</FONT>        /**<a name="line.600"></a>
+<FONT color="green">601</FONT>         * Tests a given byte array to see if it contains only valid characters within the Base64 alphabet. Currently the<a name="line.601"></a>
+<FONT color="green">602</FONT>         * method treats whitespace as valid.<a name="line.602"></a>
+<FONT color="green">603</FONT>         * <a name="line.603"></a>
+<FONT color="green">604</FONT>         * @param arrayOctet<a name="line.604"></a>
+<FONT color="green">605</FONT>         *            byte array to test<a name="line.605"></a>
+<FONT color="green">606</FONT>         * @return &lt;code&gt;true&lt;/code&gt; if all bytes are valid characters in the Base64 alphabet or if the byte array is empty;<a name="line.606"></a>
+<FONT color="green">607</FONT>         *         false, otherwise<a name="line.607"></a>
+<FONT color="green">608</FONT>         */<a name="line.608"></a>
+<FONT color="green">609</FONT>        public static boolean isArrayByteBase64(byte[] arrayOctet) {<a name="line.609"></a>
+<FONT color="green">610</FONT>            for (int i = 0; i &lt; arrayOctet.length; i++) {<a name="line.610"></a>
+<FONT color="green">611</FONT>                if (!isBase64(arrayOctet[i]) &amp;&amp; !isWhiteSpace(arrayOctet[i])) {<a name="line.611"></a>
+<FONT color="green">612</FONT>                    return false;<a name="line.612"></a>
+<FONT color="green">613</FONT>                }<a name="line.613"></a>
+<FONT color="green">614</FONT>            }<a name="line.614"></a>
+<FONT color="green">615</FONT>            return true;<a name="line.615"></a>
+<FONT color="green">616</FONT>        }<a name="line.616"></a>
+<FONT color="green">617</FONT>    <a name="line.617"></a>
+<FONT color="green">618</FONT>        /**<a name="line.618"></a>
+<FONT color="green">619</FONT>         * Tests a given byte array to see if it contains only valid characters within the Base64 alphabet.<a name="line.619"></a>
+<FONT color="green">620</FONT>         * <a name="line.620"></a>
+<FONT color="green">621</FONT>         * @param arrayOctet<a name="line.621"></a>
+<FONT color="green">622</FONT>         *            byte array to test<a name="line.622"></a>
+<FONT color="green">623</FONT>         * @return &lt;code&gt;true&lt;/code&gt; if any byte is a valid character in the Base64 alphabet; false herwise<a name="line.623"></a>
+<FONT color="green">624</FONT>         */<a name="line.624"></a>
+<FONT color="green">625</FONT>        private static boolean containsBase64Byte(byte[] arrayOctet) {<a name="line.625"></a>
+<FONT color="green">626</FONT>            for (int i = 0; i &lt; arrayOctet.length; i++) {<a name="line.626"></a>
+<FONT color="green">627</FONT>                if (isBase64(arrayOctet[i])) {<a name="line.627"></a>
+<FONT color="green">628</FONT>                    return true;<a name="line.628"></a>
+<FONT color="green">629</FONT>                }<a name="line.629"></a>
+<FONT color="green">630</FONT>            }<a name="line.630"></a>
+<FONT color="green">631</FONT>            return false;<a name="line.631"></a>
+<FONT color="green">632</FONT>        }<a name="line.632"></a>
+<FONT color="green">633</FONT>    <a name="line.633"></a>
+<FONT color="green">634</FONT>        /**<a name="line.634"></a>
+<FONT color="green">635</FONT>         * Encodes binary data using the base64 algorithm but does not chunk the output.<a name="line.635"></a>
+<FONT color="green">636</FONT>         * <a name="line.636"></a>
+<FONT color="green">637</FONT>         * @param binaryData<a name="line.637"></a>
+<FONT color="green">638</FONT>         *            binary data to encode<a name="line.638"></a>
+<FONT color="green">639</FONT>         * @return byte[] containing Base64 characters in their UTF-8 representation.<a name="line.639"></a>
+<FONT color="green">640</FONT>         */<a name="line.640"></a>
+<FONT color="green">641</FONT>        public static byte[] encodeBase64(byte[] binaryData) {<a name="line.641"></a>
+<FONT color="green">642</FONT>            return encodeBase64(binaryData, false);<a name="line.642"></a>
+<FONT color="green">643</FONT>        }<a name="line.643"></a>
+<FONT color="green">644</FONT>    <a name="line.644"></a>
+<FONT color="green">645</FONT>        /**<a name="line.645"></a>
+<FONT color="green">646</FONT>         * Encodes binary data using the base64 algorithm into 76 character blocks separated by CRLF.<a name="line.646"></a>
+<FONT color="green">647</FONT>         *<a name="line.647"></a>
+<FONT color="green">648</FONT>         * @param binaryData<a name="line.648"></a>
+<FONT color="green">649</FONT>         *            binary data to encode<a name="line.649"></a>
+<FONT color="green">650</FONT>         * @return String containing Base64 characters.<a name="line.650"></a>
+<FONT color="green">651</FONT>         * @since 1.4<a name="line.651"></a>
+<FONT color="green">652</FONT>         */    <a name="line.652"></a>
+<FONT color="green">653</FONT>        public static String encodeBase64String(byte[] binaryData) {<a name="line.653"></a>
+<FONT color="green">654</FONT>            return StringUtils.newStringUtf8(encodeBase64(binaryData, true));<a name="line.654"></a>
+<FONT color="green">655</FONT>        }<a name="line.655"></a>
+<FONT color="green">656</FONT>        <a name="line.656"></a>
+<FONT color="green">657</FONT>        /**<a name="line.657"></a>
+<FONT color="green">658</FONT>         * Encodes binary data using a URL-safe variation of the base64 algorithm but does not chunk the output. The<a name="line.658"></a>
+<FONT color="green">659</FONT>         * url-safe variation emits - and _ instead of + and / characters.<a name="line.659"></a>
+<FONT color="green">660</FONT>         * <a name="line.660"></a>
+<FONT color="green">661</FONT>         * @param binaryData<a name="line.661"></a>
+<FONT color="green">662</FONT>         *            binary data to encode<a name="line.662"></a>
+<FONT color="green">663</FONT>         * @return byte[] containing Base64 characters in their UTF-8 representation.<a name="line.663"></a>
+<FONT color="green">664</FONT>         * @since 1.4<a name="line.664"></a>
+<FONT color="green">665</FONT>         */<a name="line.665"></a>
+<FONT color="green">666</FONT>        public static byte[] encodeBase64URLSafe(byte[] binaryData) {<a name="line.666"></a>
+<FONT color="green">667</FONT>            return encodeBase64(binaryData, false, true);<a name="line.667"></a>
+<FONT color="green">668</FONT>        }<a name="line.668"></a>
+<FONT color="green">669</FONT>    <a name="line.669"></a>
+<FONT color="green">670</FONT>        /**<a name="line.670"></a>
+<FONT color="green">671</FONT>         * Encodes binary data using a URL-safe variation of the base64 algorithm but does not chunk the output. The<a name="line.671"></a>
+<FONT color="green">672</FONT>         * url-safe variation emits - and _ instead of + and / characters.<a name="line.672"></a>
+<FONT color="green">673</FONT>         *<a name="line.673"></a>
+<FONT color="green">674</FONT>         * @param binaryData<a name="line.674"></a>
+<FONT color="green">675</FONT>         *            binary data to encode<a name="line.675"></a>
+<FONT color="green">676</FONT>         * @return String containing Base64 characters<a name="line.676"></a>
+<FONT color="green">677</FONT>         * @since 1.4<a name="line.677"></a>
+<FONT color="green">678</FONT>         */    <a name="line.678"></a>
+<FONT color="green">679</FONT>        public static String encodeBase64URLSafeString(byte[] binaryData) {<a name="line.679"></a>
+<FONT color="green">680</FONT>            return StringUtils.newStringUtf8(encodeBase64(binaryData, false, true));<a name="line.680"></a>
+<FONT color="green">681</FONT>        }    <a name="line.681"></a>
+<FONT color="green">682</FONT>    <a name="line.682"></a>
+<FONT color="green">683</FONT>        /**<a name="line.683"></a>
+<FONT color="green">684</FONT>         * Encodes binary data using the base64 algorithm and chunks the encoded output into 76 character blocks<a name="line.684"></a>
+<FONT color="green">685</FONT>         * <a name="line.685"></a>
+<FONT color="green">686</FONT>         * @param binaryData<a name="line.686"></a>
+<FONT color="green">687</FONT>         *            binary data to encode<a name="line.687"></a>
+<FONT color="green">688</FONT>         * @return Base64 characters chunked in 76 character blocks<a name="line.688"></a>
+<FONT color="green">689</FONT>         */<a name="line.689"></a>
+<FONT color="green">690</FONT>        public static byte[] encodeBase64Chunked(byte[] binaryData) {<a name="line.690"></a>
+<FONT color="green">691</FONT>            return encodeBase64(binaryData, true);<a name="line.691"></a>
+<FONT color="green">692</FONT>        }<a name="line.692"></a>
+<FONT color="green">693</FONT>    <a name="line.693"></a>
+<FONT color="green">694</FONT>        /**<a name="line.694"></a>
+<FONT color="green">695</FONT>         * Decodes an Object using the base64 algorithm. This method is provided in order to satisfy the requirements of the<a name="line.695"></a>
+<FONT color="green">696</FONT>         * Decoder interface, and will throw a DecoderException if the supplied object is not of type byte[] or String.<a name="line.696"></a>
+<FONT color="green">697</FONT>         * <a name="line.697"></a>
+<FONT color="green">698</FONT>         * @param pObject<a name="line.698"></a>
+<FONT color="green">699</FONT>         *            Object to decode<a name="line.699"></a>
+<FONT color="green">700</FONT>         * @return An object (of type byte[]) containing the binary data which corresponds to the byte[] or String supplied.<a name="line.700"></a>
+<FONT color="green">701</FONT>         * @throws DecoderException<a name="line.701"></a>
+<FONT color="green">702</FONT>         *             if the parameter supplied is not of type byte[]<a name="line.702"></a>
+<FONT color="green">703</FONT>         */<a name="line.703"></a>
+<FONT color="green">704</FONT>        public Object decode(Object pObject) throws DecoderException {        <a name="line.704"></a>
+<FONT color="green">705</FONT>            if (pObject instanceof byte[]) {<a name="line.705"></a>
+<FONT color="green">706</FONT>                return decode((byte[]) pObject);<a name="line.706"></a>
+<FONT color="green">707</FONT>            } else if (pObject instanceof String) {<a name="line.707"></a>
+<FONT color="green">708</FONT>                return decode((String) pObject);<a name="line.708"></a>
+<FONT color="green">709</FONT>            } else {<a name="line.709"></a>
+<FONT color="green">710</FONT>                throw new DecoderException("Parameter supplied to Base64 decode is not a byte[] or a String");<a name="line.710"></a>
+<FONT color="green">711</FONT>            }<a name="line.711"></a>
+<FONT color="green">712</FONT>        }<a name="line.712"></a>
+<FONT color="green">713</FONT>    <a name="line.713"></a>
+<FONT color="green">714</FONT>        /**<a name="line.714"></a>
+<FONT color="green">715</FONT>         * Decodes a String containing containing characters in the Base64 alphabet.<a name="line.715"></a>
+<FONT color="green">716</FONT>         *<a name="line.716"></a>
+<FONT color="green">717</FONT>         * @param pArray<a name="line.717"></a>
+<FONT color="green">718</FONT>         *            A String containing Base64 character data<a name="line.718"></a>
+<FONT color="green">719</FONT>         * @return a byte array containing binary data<a name="line.719"></a>
+<FONT color="green">720</FONT>         * @since 1.4<a name="line.720"></a>
+<FONT color="green">721</FONT>         */<a name="line.721"></a>
+<FONT color="green">722</FONT>        public byte[] decode(String pArray) {<a name="line.722"></a>
+<FONT color="green">723</FONT>            return decode(StringUtils.getBytesUtf8(pArray));<a name="line.723"></a>
+<FONT color="green">724</FONT>        }<a name="line.724"></a>
+<FONT color="green">725</FONT>    <a name="line.725"></a>
+<FONT color="green">726</FONT>        /**<a name="line.726"></a>
+<FONT color="green">727</FONT>         * Decodes a byte[] containing containing characters in the Base64 alphabet.<a name="line.727"></a>
+<FONT color="green">728</FONT>         * <a name="line.728"></a>
+<FONT color="green">729</FONT>         * @param pArray<a name="line.729"></a>
+<FONT color="green">730</FONT>         *            A byte array containing Base64 character data<a name="line.730"></a>
+<FONT color="green">731</FONT>         * @return a byte array containing binary data<a name="line.731"></a>
+<FONT color="green">732</FONT>         */<a name="line.732"></a>
+<FONT color="green">733</FONT>        public byte[] decode(byte[] pArray) {<a name="line.733"></a>
+<FONT color="green">734</FONT>            reset();<a name="line.734"></a>
+<FONT color="green">735</FONT>            if (pArray == null || pArray.length == 0) {<a name="line.735"></a>
+<FONT color="green">736</FONT>                return pArray;<a name="line.736"></a>
+<FONT color="green">737</FONT>            }<a name="line.737"></a>
+<FONT color="green">738</FONT>            long len = (pArray.length * 3) / 4;<a name="line.738"></a>
+<FONT color="green">739</FONT>            byte[] buf = new byte[(int) len];<a name="line.739"></a>
+<FONT color="green">740</FONT>            setInitialBuffer(buf, 0, buf.length);<a name="line.740"></a>
+<FONT color="green">741</FONT>            decode(pArray, 0, pArray.length);<a name="line.741"></a>
+<FONT color="green">742</FONT>            decode(pArray, 0, -1); // Notify decoder of EOF.<a name="line.742"></a>
+<FONT color="green">743</FONT>    <a name="line.743"></a>
+<FONT color="green">744</FONT>            // Would be nice to just return buf (like we sometimes do in the encode<a name="line.744"></a>
+<FONT color="green">745</FONT>            // logic), but we have no idea what the line-length was (could even be<a name="line.745"></a>
+<FONT color="green">746</FONT>            // variable).  So we cannot determine ahead of time exactly how big an<a name="line.746"></a>
+<FONT color="green">747</FONT>            // array is necessary.  Hence the need to construct a 2nd byte array to<a name="line.747"></a>
+<FONT color="green">748</FONT>            // hold the final result:<a name="line.748"></a>
+<FONT color="green">749</FONT>    <a name="line.749"></a>
+<FONT color="green">750</FONT>            byte[] result = new byte[pos];<a name="line.750"></a>
+<FONT color="green">751</FONT>            readResults(result, 0, result.length);<a name="line.751"></a>
+<FONT color="green">752</FONT>            return result;<a name="line.752"></a>
+<FONT color="green">753</FONT>        }<a name="line.753"></a>
+<FONT color="green">754</FONT>    <a name="line.754"></a>
+<FONT color="green">755</FONT>        /**<a name="line.755"></a>
+<FONT color="green">756</FONT>         * Encodes binary data using the base64 algorithm, optionally chunking the output into 76 character blocks.<a name="line.756"></a>
+<FONT color="green">757</FONT>         * <a name="line.757"></a>
+<FONT color="green">758</FONT>         * @param binaryData<a name="line.758"></a>
+<FONT color="green">759</FONT>         *            Array containing binary data to encode.<a name="line.759"></a>
+<FONT color="green">760</FONT>         * @param isChunked<a name="line.760"></a>
+<FONT color="green">761</FONT>         *            if &lt;code&gt;true&lt;/code&gt; this encoder will chunk the base64 output into 76 character blocks<a name="line.761"></a>
+<FONT color="green">762</FONT>         * @return Base64-encoded data.<a name="line.762"></a>
+<FONT color="green">763</FONT>         * @throws IllegalArgumentException<a name="line.763"></a>
+<FONT color="green">764</FONT>         *             Thrown when the input array needs an output array bigger than {@link Integer#MAX_VALUE}<a name="line.764"></a>
+<FONT color="green">765</FONT>         */<a name="line.765"></a>
+<FONT color="green">766</FONT>        public static byte[] encodeBase64(byte[] binaryData, boolean isChunked) {<a name="line.766"></a>
+<FONT color="green">767</FONT>            return encodeBase64(binaryData, isChunked, false);<a name="line.767"></a>
+<FONT color="green">768</FONT>        }<a name="line.768"></a>
+<FONT color="green">769</FONT>    <a name="line.769"></a>
+<FONT color="green">770</FONT>        /**<a name="line.770"></a>
+<FONT color="green">771</FONT>         * Encodes binary data using the base64 algorithm, optionally chunking the output into 76 character blocks.<a name="line.771"></a>
+<FONT color="green">772</FONT>         * <a name="line.772"></a>
+<FONT color="green">773</FONT>         * @param binaryData<a name="line.773"></a>
+<FONT color="green">774</FONT>         *            Array containing binary data to encode.<a name="line.774"></a>
+<FONT color="green">775</FONT>         * @param isChunked<a name="line.775"></a>
+<FONT color="green">776</FONT>         *            if &lt;code&gt;true&lt;/code&gt; this encoder will chunk the base64 output into 76 character blocks<a name="line.776"></a>
+<FONT color="green">777</FONT>         * @param urlSafe<a name="line.777"></a>
+<FONT color="green">778</FONT>         *            if &lt;code&gt;true&lt;/code&gt; this encoder will emit - and _ instead of the usual + and / characters.<a name="line.778"></a>
+<FONT color="green">779</FONT>         * @return Base64-encoded data.<a name="line.779"></a>
+<FONT color="green">780</FONT>         * @throws IllegalArgumentException<a name="line.780"></a>
+<FONT color="green">781</FONT>         *             Thrown when the input array needs an output array bigger than {@link Integer#MAX_VALUE}<a name="line.781"></a>
+<FONT color="green">782</FONT>         * @since 1.4<a name="line.782"></a>
+<FONT color="green">783</FONT>         */<a name="line.783"></a>
+<FONT color="green">784</FONT>        public static byte[] encodeBase64(byte[] binaryData, boolean isChunked, boolean urlSafe) {<a name="line.784"></a>
+<FONT color="green">785</FONT>            return encodeBase64(binaryData, isChunked, urlSafe, Integer.MAX_VALUE);<a name="line.785"></a>
+<FONT color="green">786</FONT>        }<a name="line.786"></a>
+<FONT color="green">787</FONT>    <a name="line.787"></a>
+<FONT color="green">788</FONT>        /**<a name="line.788"></a>
+<FONT color="green">789</FONT>         * Encodes binary data using the base64 algorithm, optionally chunking the output into 76 character blocks.<a name="line.789"></a>
+<FONT color="green">790</FONT>         * <a name="line.790"></a>
+<FONT color="green">791</FONT>         * @param binaryData<a name="line.791"></a>
+<FONT color="green">792</FONT>         *            Array containing binary data to encode.<a name="line.792"></a>
+<FONT color="green">793</FONT>         * @param isChunked<a name="line.793"></a>
+<FONT color="green">794</FONT>         *            if &lt;code&gt;true&lt;/code&gt; this encoder will chunk the base64 output into 76 character blocks<a name="line.794"></a>
+<FONT color="green">795</FONT>         * @param urlSafe<a name="line.795"></a>
+<FONT color="green">796</FONT>         *            if &lt;code&gt;true&lt;/code&gt; this encoder will emit - and _ instead of the usual + and / characters.<a name="line.796"></a>
+<FONT color="green">797</FONT>         * @param maxResultSize<a name="line.797"></a>
+<FONT color="green">798</FONT>         *            The maximum result size to accept.<a name="line.798"></a>
+<FONT color="green">799</FONT>         * @return Base64-encoded data.<a name="line.799"></a>
+<FONT color="green">800</FONT>         * @throws IllegalArgumentException<a name="line.800"></a>
+<FONT color="green">801</FONT>         *             Thrown when the input array needs an output array bigger than maxResultSize<a name="line.801"></a>
+<FONT color="green">802</FONT>         * @since 1.4<a name="line.802"></a>
+<FONT color="green">803</FONT>         */<a name="line.803"></a>
+<FONT color="green">804</FONT>        public static byte[] encodeBase64(byte[] binaryData, boolean isChunked, boolean urlSafe, int maxResultSize) {<a name="line.804"></a>
+<FONT color="green">805</FONT>            if (binaryData == null || binaryData.length == 0) {<a name="line.805"></a>
+<FONT color="green">806</FONT>                return binaryData;<a name="line.806"></a>
+<FONT color="green">807</FONT>            }<a name="line.807"></a>
+<FONT color="green">808</FONT>    <a name="line.808"></a>
+<FONT color="green">809</FONT>            long len = getEncodeLength(binaryData, CHUNK_SIZE, CHUNK_SEPARATOR);<a name="line.809"></a>
+<FONT color="green">810</FONT>            if (len &gt; maxResultSize) {<a name="line.810"></a>
+<FONT color="green">811</FONT>                throw new IllegalArgumentException("Input array too big, the output array would be bigger (" +<a name="line.811"></a>
+<FONT color="green">812</FONT>                    len +<a name="line.812"></a>
+<FONT color="green">813</FONT>                    ") than the specified maxium size of " +<a name="line.813"></a>
+<FONT color="green">814</FONT>                    maxResultSize);<a name="line.814"></a>
+<FONT color="green">815</FONT>            }<a name="line.815"></a>
+<FONT color="green">816</FONT>                    <a name="line.816"></a>
+<FONT color="green">817</FONT>            Base64 b64 = isChunked ? new Base64(urlSafe) : new Base64(0, CHUNK_SEPARATOR, urlSafe);<a name="line.817"></a>
+<FONT color="green">818</FONT>            return b64.encode(binaryData);<a name="line.818"></a>
+<FONT color="green">819</FONT>        }<a name="line.819"></a>
+<FONT color="green">820</FONT>    <a name="line.820"></a>
+<FONT color="green">821</FONT>        /**<a name="line.821"></a>
+<FONT color="green">822</FONT>         * Decodes a Base64 String into octets<a name="line.822"></a>
+<FONT color="green">823</FONT>         *<a name="line.823"></a>
+<FONT color="green">824</FONT>         * @param base64String<a name="line.824"></a>
+<FONT color="green">825</FONT>         *            String containing Base64 data<a name="line.825"></a>
+<FONT color="green">826</FONT>         * @return Array containing decoded data.<a name="line.826"></a>
+<FONT color="green">827</FONT>         * @since 1.4<a name="line.827"></a>
+<FONT color="green">828</FONT>         */<a name="line.828"></a>
+<FONT color="green">829</FONT>        public static byte[] decodeBase64(String base64String) {<a name="line.829"></a>
+<FONT color="green">830</FONT>            return new Base64().decode(base64String);<a name="line.830"></a>
+<FONT color="green">831</FONT>        }<a name="line.831"></a>
+<FONT color="green">832</FONT>    <a name="line.832"></a>
+<FONT color="green">833</FONT>        /**<a name="line.833"></a>
+<FONT color="green">834</FONT>         * Decodes Base64 data into octets<a name="line.834"></a>
+<FONT color="green">835</FONT>         * <a name="line.835"></a>
+<FONT color="green">836</FONT>         * @param base64Data<a name="line.836"></a>
+<FONT color="green">837</FONT>         *            Byte array containing Base64 data<a name="line.837"></a>
+<FONT color="green">838</FONT>         * @return Array containing decoded data.<a name="line.838"></a>
+<FONT color="green">839</FONT>         */<a name="line.839"></a>
+<FONT color="green">840</FONT>        public static byte[] decodeBase64(byte[] base64Data) {<a name="line.840"></a>
+<FONT color="green">841</FONT>            return new Base64().decode(base64Data);<a name="line.841"></a>
+<FONT color="green">842</FONT>        }<a name="line.842"></a>
+<FONT color="green">843</FONT>    <a name="line.843"></a>
+<FONT color="green">844</FONT>        /**<a name="line.844"></a>
+<FONT color="green">845</FONT>         * Discards any whitespace from a base-64 encoded block.<a name="line.845"></a>
+<FONT color="green">846</FONT>         * <a name="line.846"></a>
+<FONT color="green">847</FONT>         * @param data<a name="line.847"></a>
+<FONT color="green">848</FONT>         *            The base-64 encoded data to discard the whitespace from.<a name="line.848"></a>
+<FONT color="green">849</FONT>         * @return The data, less whitespace (see RFC 2045).<a name="line.849"></a>
+<FONT color="green">850</FONT>         * @deprecated This method is no longer needed<a name="line.850"></a>
+<FONT color="green">851</FONT>         */<a name="line.851"></a>
+<FONT color="green">852</FONT>        static byte[] discardWhitespace(byte[] data) {<a name="line.852"></a>
+<FONT color="green">853</FONT>            byte groomedData[] = new byte[data.length];<a name="line.853"></a>
+<FONT color="green">854</FONT>            int bytesCopied = 0;<a name="line.854"></a>
+<FONT color="green">855</FONT>            for (int i = 0; i &lt; data.length; i++) {<a name="line.855"></a>
+<FONT color="green">856</FONT>                switch (data[i]) {<a name="line.856"></a>
+<FONT color="green">857</FONT>                    case ' ' :<a name="line.857"></a>
+<FONT color="green">858</FONT>                    case '\n' :<a name="line.858"></a>
+<FONT color="green">859</FONT>                    case '\r' :<a name="line.859"></a>
+<FONT color="green">860</FONT>                    case '\t' :<a name="line.860"></a>
+<FONT color="green">861</FONT>                        break;<a name="line.861"></a>
+<FONT color="green">862</FONT>                    default :<a name="line.862"></a>
+<FONT color="green">863</FONT>                        groomedData[bytesCopied++] = data[i];<a name="line.863"></a>
+<FONT color="green">864</FONT>                }<a name="line.864"></a>
+<FONT color="green">865</FONT>            }<a name="line.865"></a>
+<FONT color="green">866</FONT>            byte packedData[] = new byte[bytesCopied];<a name="line.866"></a>
+<FONT color="green">867</FONT>            System.arraycopy(groomedData, 0, packedData, 0, bytesCopied);<a name="line.867"></a>
+<FONT color="green">868</FONT>            return packedData;<a name="line.868"></a>
+<FONT color="green">869</FONT>        }<a name="line.869"></a>
+<FONT color="green">870</FONT>    <a name="line.870"></a>
+<FONT color="green">871</FONT>        /**<a name="line.871"></a>
+<FONT color="green">872</FONT>         * Checks if a byte value is whitespace or not.<a name="line.872"></a>
+<FONT color="green">873</FONT>         * <a name="line.873"></a>
+<FONT color="green">874</FONT>         * @param byteToCheck<a name="line.874"></a>
+<FONT color="green">875</FONT>         *            the byte to check<a name="line.875"></a>
+<FONT color="green">876</FONT>         * @return true if byte is whitespace, false otherwise<a name="line.876"></a>
+<FONT color="green">877</FONT>         */<a name="line.877"></a>
+<FONT color="green">878</FONT>        private static boolean isWhiteSpace(byte byteToCheck) {<a name="line.878"></a>
+<FONT color="green">879</FONT>            switch (byteToCheck) {<a name="line.879"></a>
+<FONT color="green">880</FONT>                case ' ' :<a name="line.880"></a>
+<FONT color="green">881</FONT>                case '\n' :<a name="line.881"></a>
+<FONT color="green">882</FONT>                case '\r' :<a name="line.882"></a>
+<FONT color="green">883</FONT>                case '\t' :<a name="line.883"></a>
+<FONT color="green">884</FONT>                    return true;<a name="line.884"></a>
+<FONT color="green">885</FONT>                default :<a name="line.885"></a>
+<FONT color="green">886</FONT>                    return false;<a name="line.886"></a>
+<FONT color="green">887</FONT>            }<a name="line.887"></a>
+<FONT color="green">888</FONT>        }<a name="line.888"></a>
+<FONT color="green">889</FONT>    <a name="line.889"></a>
+<FONT color="green">890</FONT>        // Implementation of the Encoder Interface<a name="line.890"></a>
+<FONT color="green">891</FONT>    <a name="line.891"></a>
+<FONT color="green">892</FONT>        /**<a name="line.892"></a>
+<FONT color="green">893</FONT>         * Encodes an Object using the base64 algorithm. This method is provided in order to satisfy the requirements of the<a name="line.893"></a>
+<FONT color="green">894</FONT>         * Encoder interface, and will throw an EncoderException if the supplied object is not of type byte[].<a name="line.894"></a>
+<FONT color="green">895</FONT>         * <a name="line.895"></a>
+<FONT color="green">896</FONT>         * @param pObject<a name="line.896"></a>
+<FONT color="green">897</FONT>         *            Object to encode<a name="line.897"></a>
+<FONT color="green">898</FONT>         * @return An object (of type byte[]) containing the base64 encoded data which corresponds to the byte[] supplied.<a name="line.898"></a>
+<FONT color="green">899</FONT>         * @throws EncoderException<a name="line.899"></a>
+<FONT color="green">900</FONT>         *             if the parameter supplied is not of type byte[]<a name="line.900"></a>
+<FONT color="green">901</FONT>         */<a name="line.901"></a>
+<FONT color="green">902</FONT>        public Object encode(Object pObject) throws EncoderException {<a name="line.902"></a>
+<FONT color="green">903</FONT>            if (!(pObject instanceof byte[])) {<a name="line.903"></a>
+<FONT color="green">904</FONT>                throw new EncoderException("Parameter supplied to Base64 encode is not a byte[]");<a name="line.904"></a>
+<FONT color="green">905</FONT>            }<a name="line.905"></a>
+<FONT color="green">906</FONT>            return encode((byte[]) pObject);<a name="line.906"></a>
+<FONT color="green">907</FONT>        }<a name="line.907"></a>
+<FONT color="green">908</FONT>    <a name="line.908"></a>
+<FONT color="green">909</FONT>        /**<a name="line.909"></a>
+<FONT color="green">910</FONT>         * Encodes a byte[] containing binary data, into a String containing characters in the Base64 alphabet.<a name="line.910"></a>
+<FONT color="green">911</FONT>         *<a name="line.911"></a>
+<FONT color="green">912</FONT>         * @param pArray<a name="line.912"></a>
+<FONT color="green">913</FONT>         *            a byte array containing binary data<a name="line.913"></a>
+<FONT color="green">914</FONT>         * @return A String containing only Base64 character data<a name="line.914"></a>
+<FONT color="green">915</FONT>         * @since 1.4<a name="line.915"></a>
+<FONT color="green">916</FONT>         */    <a name="line.916"></a>
+<FONT color="green">917</FONT>        public String encodeToString(byte[] pArray) {<a name="line.917"></a>
+<FONT color="green">918</FONT>            return StringUtils.newStringUtf8(encode(pArray));<a name="line.918"></a>
+<FONT color="green">919</FONT>        }<a name="line.919"></a>
+<FONT color="green">920</FONT>    <a name="line.920"></a>
+<FONT color="green">921</FONT>        /**<a name="line.921"></a>
+<FONT color="green">922</FONT>         * Encodes a byte[] containing binary data, into a byte[] containing characters in the Base64 alphabet.<a name="line.922"></a>
+<FONT color="green">923</FONT>         * <a name="line.923"></a>
+<FONT color="green">924</FONT>         * @param pArray<a name="line.924"></a>
+<FONT color="green">925</FONT>         *            a byte array containing binary data<a name="line.925"></a>
+<FONT color="green">926</FONT>         * @return A byte array containing only Base64 character data<a name="line.926"></a>
+<FONT color="green">927</FONT>         */<a name="line.927"></a>
+<FONT color="green">928</FONT>        public byte[] encode(byte[] pArray) {<a name="line.928"></a>
+<FONT color="green">929</FONT>            reset();        <a name="line.929"></a>
+<FONT color="green">930</FONT>            if (pArray == null || pArray.length == 0) {<a name="line.930"></a>
+<FONT color="green">931</FONT>                return pArray;<a name="line.931"></a>
+<FONT color="green">932</FONT>            }<a name="line.932"></a>
+<FONT color="green">933</FONT>            long len = getEncodeLength(pArray, lineLength, lineSeparator);<a name="line.933"></a>
+<FONT color="green">934</FONT>            byte[] buf = new byte[(int) len];<a name="line.934"></a>
+<FONT color="green">935</FONT>            setInitialBuffer(buf, 0, buf.length);<a name="line.935"></a>
+<FONT color="green">936</FONT>            encode(pArray, 0, pArray.length);<a name="line.936"></a>
+<FONT color="green">937</FONT>            encode(pArray, 0, -1); // Notify encoder of EOF.<a name="line.937"></a>
+<FONT color="green">938</FONT>            // Encoder might have resized, even though it was unnecessary.<a name="line.938"></a>
+<FONT color="green">939</FONT>            if (buffer != buf) {<a name="line.939"></a>
+<FONT color="green">940</FONT>                readResults(buf, 0, buf.length);<a name="line.940"></a>
+<FONT color="green">941</FONT>            }<a name="line.941"></a>
+<FONT color="green">942</FONT>            // In URL-SAFE mode we skip the padding characters, so sometimes our<a name="line.942"></a>
+<FONT color="green">943</FONT>            // final length is a bit smaller.<a name="line.943"></a>
+<FONT color="green">944</FONT>            if (isUrlSafe() &amp;&amp; pos &lt; buf.length) {<a name="line.944"></a>
+<FONT color="green">945</FONT>                byte[] smallerBuf = new byte[pos];<a name="line.945"></a>
+<FONT color="green">946</FONT>                System.arraycopy(buf, 0, smallerBuf, 0, pos);<a name="line.946"></a>
+<FONT color="green">947</FONT>                buf = smallerBuf;<a name="line.947"></a>
+<FONT color="green">948</FONT>            }<a name="line.948"></a>
+<FONT color="green">949</FONT>            return buf;        <a name="line.949"></a>
+<FONT color="green">950</FONT>        }<a name="line.950"></a>
+<FONT color="green">951</FONT>    <a name="line.951"></a>
+<FONT color="green">952</FONT>        /**<a name="line.952"></a>
+<FONT color="green">953</FONT>         * Pre-calculates the amount of space needed to base64-encode the supplied array.<a name="line.953"></a>
+<FONT color="green">954</FONT>         *<a name="line.954"></a>
+<FONT color="green">955</FONT>         * @param pArray byte[] array which will later be encoded<a name="line.955"></a>
+<FONT color="green">956</FONT>         * @param chunkSize line-length of the output (&lt;= 0 means no chunking) between each<a name="line.956"></a>
+<FONT color="green">957</FONT>         *        chunkSeparator (e.g. CRLF).<a name="line.957"></a>
+<FONT color="green">958</FONT>         * @param chunkSeparator the sequence of bytes used to separate chunks of output (e.g. CRLF).<a name="line.958"></a>
+<FONT color="green">959</FONT>         *<a name="line.959"></a>
+<FONT color="green">960</FONT>         * @return amount of space needed to encoded the supplied array.  Returns<a name="line.960"></a>
+<FONT color="green">961</FONT>         *         a long since a max-len array will require Integer.MAX_VALUE + 33%.<a name="line.961"></a>
+<FONT color="green">962</FONT>         */<a name="line.962"></a>
+<FONT color="green">963</FONT>        private static long getEncodeLength(byte[] pArray, int chunkSize, byte[] chunkSeparator) {<a name="line.963"></a>
+<FONT color="green">964</FONT>            // base64 always encodes to multiples of 4.<a name="line.964"></a>
+<FONT color="green">965</FONT>            chunkSize = (chunkSize / 4) * 4;<a name="line.965"></a>
+<FONT color="green">966</FONT>    <a name="line.966"></a>
+<FONT color="green">967</FONT>            long len = (pArray.length * 4) / 3;<a name="line.967"></a>
+<FONT color="green">968</FONT>            long mod = len % 4;<a name="line.968"></a>
+<FONT color="green">969</FONT>            if (mod != 0) {<a name="line.969"></a>
+<FONT color="green">970</FONT>                len += 4 - mod;<a name="line.970"></a>
+<FONT color="green">971</FONT>            }<a name="line.971"></a>
+<FONT color="green">972</FONT>            if (chunkSize &gt; 0) {<a name="line.972"></a>
+<FONT color="green">973</FONT>                boolean lenChunksPerfectly = len % chunkSize == 0;<a name="line.973"></a>
+<FONT color="green">974</FONT>                len += (len / chunkSize) * chunkSeparator.length;<a name="line.974"></a>
+<FONT color="green">975</FONT>                if (!lenChunksPerfectly) {<a name="line.975"></a>
+<FONT color="green">976</FONT>                    len += chunkSeparator.length;<a name="line.976"></a>
+<FONT color="green">977</FONT>                }<a name="line.977"></a>
+<FONT color="green">978</FONT>            }<a name="line.978"></a>
+<FONT color="green">979</FONT>            return len;<a name="line.979"></a>
+<FONT color="green">980</FONT>        }<a name="line.980"></a>
+<FONT color="green">981</FONT>    <a name="line.981"></a>
+<FONT color="green">982</FONT>        // Implementation of integer encoding used for crypto<a name="line.982"></a>
+<FONT color="green">983</FONT>        /**<a name="line.983"></a>
+<FONT color="green">984</FONT>         * Decodes a byte64-encoded integer according to crypto standards such as W3C's XML-Signature<a name="line.984"></a>
+<FONT color="green">985</FONT>         * <a name="line.985"></a>
+<FONT color="green">986</FONT>         * @param pArray<a name="line.986"></a>
+<FONT color="green">987</FONT>         *            a byte array containing base64 character data<a name="line.987"></a>
+<FONT color="green">988</FONT>         * @return A BigInteger<a name="line.988"></a>
+<FONT color="green">989</FONT>         * @since 1.4<a name="line.989"></a>
+<FONT color="green">990</FONT>         */<a name="line.990"></a>
+<FONT color="green">991</FONT>        public static BigInteger decodeInteger(byte[] pArray) {<a name="line.991"></a>
+<FONT color="green">992</FONT>            return new BigInteger(1, decodeBase64(pArray));<a name="line.992"></a>
+<FONT color="green">993</FONT>        }<a name="line.993"></a>
+<FONT color="green">994</FONT>    <a name="line.994"></a>
+<FONT color="green">995</FONT>        /**<a name="line.995"></a>
+<FONT color="green">996</FONT>         * Encodes to a byte64-encoded integer according to crypto standards such as W3C's XML-Signature<a name="line.996"></a>
+<FONT color="green">997</FONT>         * <a name="line.997"></a>
+<FONT color="green">998</FONT>         * @param bigInt<a name="line.998"></a>
+<FONT color="green">999</FONT>         *            a BigInteger<a name="line.999"></a>
+<FONT color="green">1000</FONT>         * @return A byte array containing base64 character data<a name="line.1000"></a>
+<FONT color="green">1001</FONT>         * @throws NullPointerException<a name="line.1001"></a>
+<FONT color="green">1002</FONT>         *             if null is passed in<a name="line.1002"></a>
+<FONT color="green">1003</FONT>         * @since 1.4<a name="line.1003"></a>
+<FONT color="green">1004</FONT>         */<a name="line.1004"></a>
+<FONT color="green">1005</FONT>        public static byte[] encodeInteger(BigInteger bigInt) {<a name="line.1005"></a>
+<FONT color="green">1006</FONT>            if (bigInt == null) {<a name="line.1006"></a>
+<FONT color="green">1007</FONT>                throw new NullPointerException("encodeInteger called with null parameter");<a name="line.1007"></a>
+<FONT color="green">1008</FONT>            }<a name="line.1008"></a>
+<FONT color="green">1009</FONT>            return encodeBase64(toIntegerBytes(bigInt), false);<a name="line.1009"></a>
+<FONT color="green">1010</FONT>        }<a name="line.1010"></a>
+<FONT color="green">1011</FONT>    <a name="line.1011"></a>
+<FONT color="green">1012</FONT>        /**<a name="line.1012"></a>
+<FONT color="green">1013</FONT>         * Returns a byte-array representation of a &lt;code&gt;BigInteger&lt;/code&gt; without sign bit.<a name="line.1013"></a>
+<FONT color="green">1014</FONT>         * <a name="line.1014"></a>
+<FONT color="green">1015</FONT>         * @param bigInt<a name="line.1015"></a>
+<FONT color="green">1016</FONT>         *            &lt;code&gt;BigInteger&lt;/code&gt; to be converted<a name="line.1016"></a>
+<FONT color="green">1017</FONT>         * @return a byte array representation of the BigInteger parameter<a name="line.1017"></a>
+<FONT color="green">1018</FONT>         */<a name="line.1018"></a>
+<FONT color="green">1019</FONT>        static byte[] toIntegerBytes(BigInteger bigInt) {<a name="line.1019"></a>
+<FONT color="green">1020</FONT>            int bitlen = bigInt.bitLength();<a name="line.1020"></a>
+<FONT color="green">1021</FONT>            // round bitlen<a name="line.1021"></a>
+<FONT color="green">1022</FONT>            bitlen = ((bitlen + 7) &gt;&gt; 3) &lt;&lt; 3;<a name="line.1022"></a>
+<FONT color="green">1023</FONT>            byte[] bigBytes = bigInt.toByteArray();<a name="line.1023"></a>
+<FONT color="green">1024</FONT>    <a name="line.1024"></a>
+<FONT color="green">1025</FONT>            if (((bigInt.bitLength() % 8) != 0) &amp;&amp; (((bigInt.bitLength() / 8) + 1) == (bitlen / 8))) {<a name="line.1025"></a>
+<FONT color="green">1026</FONT>                return bigBytes;<a name="line.1026"></a>
+<FONT color="green">1027</FONT>            }<a name="line.1027"></a>
+<FONT color="green">1028</FONT>            // set up params for copying everything but sign bit<a name="line.1028"></a>
+<FONT color="green">1029</FONT>            int startSrc = 0;<a name="line.1029"></a>
+<FONT color="green">1030</FONT>            int len = bigBytes.length;<a name="line.1030"></a>
+<FONT color="green">1031</FONT>    <a name="line.1031"></a>
+<FONT color="green">1032</FONT>            // if bigInt is exactly byte-aligned, just skip signbit in copy<a name="line.1032"></a>
+<FONT color="green">1033</FONT>            if ((bigInt.bitLength() % 8) == 0) {<a name="line.1033"></a>
+<FONT color="green">1034</FONT>                startSrc = 1;<a name="line.1034"></a>
+<FONT color="green">1035</FONT>                len--;<a name="line.1035"></a>
+<FONT color="green">1036</FONT>            }<a name="line.1036"></a>
+<FONT color="green">1037</FONT>            int startDst = bitlen / 8 - len; // to pad w/ nulls as per spec<a name="line.1037"></a>
+<FONT color="green">1038</FONT>            byte[] resizedBytes = new byte[bitlen / 8];<a name="line.1038"></a>
+<FONT color="green">1039</FONT>            System.arraycopy(bigBytes, startSrc, resizedBytes, startDst, len);<a name="line.1039"></a>
+<FONT color="green">1040</FONT>            return resizedBytes;<a name="line.1040"></a>
+<FONT color="green">1041</FONT>        }<a name="line.1041"></a>
+<FONT color="green">1042</FONT>    <a name="line.1042"></a>
+<FONT color="green">1043</FONT>        /**<a name="line.1043"></a>
+<FONT color="green">1044</FONT>         * Resets this Base64 object to its initial newly constructed state.<a name="line.1044"></a>
+<FONT color="green">1045</FONT>         */<a name="line.1045"></a>
+<FONT color="green">1046</FONT>        private void reset() {<a name="line.1046"></a>
+<FONT color="green">1047</FONT>            buffer = null;<a name="line.1047"></a>
+<FONT color="green">1048</FONT>            pos = 0;<a name="line.1048"></a>
+<FONT color="green">1049</FONT>            readPos = 0;<a name="line.1049"></a>
+<FONT color="green">1050</FONT>            currentLinePos = 0;<a name="line.1050"></a>
+<FONT color="green">1051</FONT>            modulus = 0;<a name="line.1051"></a>
+<FONT color="green">1052</FONT>            eof = false;<a name="line.1052"></a>
+<FONT color="green">1053</FONT>        }<a name="line.1053"></a>
+<FONT color="green">1054</FONT>    <a name="line.1054"></a>
+<FONT color="green">1055</FONT>    }<a name="line.1055"></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</PRE>
+</BODY>
+</HTML>
