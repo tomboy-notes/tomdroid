@@ -4,14 +4,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import org.tomdroid.Note;
-import org.tomdroid.ui.Tomdroid;
+import org.tomdroid.NoteManager;
 
 import android.app.Activity;
-import android.content.ContentResolver;
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.net.Uri;
-import android.util.Log;
+import android.os.Handler;
 
 public abstract class SyncService {
 	
@@ -21,9 +17,17 @@ public abstract class SyncService {
 	private final ExecutorService pool;
 	private final static int poolSize = 1;
 	
-	public SyncService(Activity activity) {
+	private Handler handler;
+	
+	// handler messages
+	public final static int PARSING_COMPLETE = 1;
+	public final static int PARSING_FAILED = 2;
+	public final static int PARSING_NO_NOTES = 3;
+	
+	public SyncService(Activity activity, Handler handler) {
 		
 		this.activity = activity;
+		this.handler = handler;
 		pool = Executors.newFixedThreadPool(poolSize);
 	}
 	
@@ -61,50 +65,24 @@ public abstract class SyncService {
 	 * @param note The note to insert.
 	 */
 	
-	protected void insertNote(Note note) {
+	protected void insertNote(Note note, boolean syncFinished) {
 		
-		// verify if the note is already in the content provider
-		String[] projection = new String[] {
-			    Note.ID,
-			    Note.TITLE,
-			};
+		NoteManager.putNote(this.activity, note);
 		
-		// TODO make the query prettier (use querybuilder)
-		Uri notes = Tomdroid.CONTENT_URI;
-		String[] whereArgs = new String[1];
-		whereArgs[0] = note.getGuid().toString();
-		
-		// The note identifier is the guid
-		ContentResolver cr = activity.getContentResolver();
-		Cursor managedCursor = cr.query(notes,
-                projection,  
-                Note.GUID + "= ?",
-                whereArgs,
-                null);
-		activity.startManagingCursor(managedCursor);
-		
-		// Preparing the values to be either inserted or updated
-		// depending on the result of the previous query
-		ContentValues values = new ContentValues();
-		values.put(Note.TITLE, note.getTitle());
-		values.put(Note.FILE, note.getFileName());
-		values.put(Note.GUID, note.getGuid().toString());
-		values.put(Note.NOTE_CONTENT, note.getXmlContent());
-		
-		if (managedCursor.getCount() == 0) {
-			
-			// This note is not in the database yet we need to insert it
-			if (Tomdroid.LOGGING_ENABLED) Log.v(TAG,"A new note has been detected (not yet in db)");
-			
-    		Uri uri = cr.insert(Tomdroid.CONTENT_URI, values);
-
-    		if (Tomdroid.LOGGING_ENABLED) Log.v(TAG,"Note inserted in content provider. ID: "+uri+" TITLE:"+note.getTitle()+" GUID:"+note.getGuid());
-		} else {
-			
-			// Overwrite the previous note if it exists
-			cr.update(Tomdroid.CONTENT_URI, values, Note.GUID+" = ?", whereArgs);
-			
-			if (Tomdroid.LOGGING_ENABLED) Log.v(TAG,"Note updated in content provider. TITLE:"+note.getTitle()+" GUID:"+note.getGuid());
+		// if last note warn in UI that we are done
+		if (syncFinished) {
+			handler.sendEmptyMessage(PARSING_COMPLETE);
 		}
+	}
+	
+	/**
+	 * Send a message to the main UI.
+	 * 
+	 * @param message The message id to send, the PARSING_* attributes can be used.
+	 */
+	
+	protected void sendMessage(int message) {
+		
+		handler.sendEmptyMessage(message);
 	}
 }

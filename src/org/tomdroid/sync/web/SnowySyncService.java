@@ -11,14 +11,15 @@ import org.tomdroid.util.Preferences;
 
 import android.app.Activity;
 import android.net.Uri;
+import android.os.Handler;
 import android.util.Log;
 
 public class SnowySyncService extends SyncService implements ServiceAuth {
 	
 	private static final String TAG = "SnowySyncService";
 	
-	public SnowySyncService(Activity activity) {
-		super(activity);
+	public SnowySyncService(Activity activity, Handler handler) {
+		super(activity, handler);
 	}
 	
 	@Override
@@ -97,14 +98,19 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 					response = new JSONObject(auth.get(notesUrl));
 					JSONArray notes = response.getJSONArray("notes");
 					
-					for (int i = 0; i < notes.length(); i++) {
+					for (int i = 0; i < notes.length()-1; i++) {
 						
 						JSONObject jsonNote = notes.getJSONObject(i);
-						insertNote(new Note(jsonNote));
+						insertNote(new Note(jsonNote), false);
 					}
+					
+					JSONObject jsonNote = notes.getJSONObject(notes.length()-1);
+					insertNote(new Note(jsonNote), true);
 					
 				} catch (JSONException e1) {
 					e1.printStackTrace();
+					if (Tomdroid.LOGGING_ENABLED) Log.e(TAG, "Problem parsing the server response");
+					sendMessage(PARSING_FAILED);
 					return;
 				}
 			}

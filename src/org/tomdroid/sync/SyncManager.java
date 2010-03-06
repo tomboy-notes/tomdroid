@@ -8,6 +8,7 @@ import org.tomdroid.sync.web.SnowySyncService;
 import org.tomdroid.util.Preferences;
 
 import android.app.Activity;
+import android.os.Handler;
 
 public class SyncManager {
 	
@@ -16,10 +17,10 @@ public class SyncManager {
 	private ArrayList<SyncService> services = new ArrayList<SyncService>();
 	
 	public SyncManager() {
-		services.add(new SnowySyncService(activity));
+		services.add(new SnowySyncService(activity, handler));
 		
 		try {
-			services.add(new SdCardSyncService(activity));
+			services.add(new SdCardSyncService(activity, handler));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -55,6 +56,7 @@ public class SyncManager {
 	
 	private static SyncManager instance = null;
 	private static Activity activity;
+	private static Handler handler;
 	
 	public static SyncManager getInstance() {
 		
@@ -66,5 +68,9 @@ public class SyncManager {
 	
 	public static void setActivity(Activity a) {
 		activity = a;
+	}
+	
+	public static void setHandler(Handler h) {
+		handler = h;
 	}
 }
