@@ -26,7 +26,9 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.json.JSONObject;
 import org.tomdroid.util.NoteContentBuilder;
+import org.tomdroid.util.XmlUtils;
 
 import android.os.Handler;
 import android.text.SpannableStringBuilder;
@@ -74,6 +76,15 @@ public class Note {
 			"([-\\+]\\d{2}:\\d{2})");									// matches timezone (-xx:xx or +xx:xx)
 	
 	public Note() {}
+	
+	public Note(JSONObject json) {
+		
+		// These methods return an empty string if the key is not found
+		setTitle(XmlUtils.unescape(json.optString("title")));
+		setGuid(json.optString("guid"));
+		setLastChangeDate(json.optString("last-change-date"));
+		setXmlContent(json.optString("note-content"));
+	}
 	
 	public String getUrl() {
 		return url;
