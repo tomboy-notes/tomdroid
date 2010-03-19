@@ -75,11 +75,7 @@ public class Tomdroid extends ListActivity {
 	private TextView listEmptyView;
 	private ListAdapter adapter;
 	
-	// Bundle keys for saving state
-	private static final String WARNING_SHOWN = "w";
-	
 	// State variables
-	private boolean warningShown = false;
 	private boolean parsingErrorShown = false;
 
 	
@@ -94,7 +90,7 @@ public class Tomdroid extends ListActivity {
         SyncManager.setHandler(this.handler);
         
         // did we already show the warning and got destroyed by android's activity killer?
-        if (savedInstanceState == null || !savedInstanceState.getBoolean(WARNING_SHOWN)) {
+        if (Preferences.getBoolean(Preferences.Key.FIRST_RUN)) {
 
         	// Warn that this is a "will eat your babies" release 
 			new AlertDialog.Builder(this)
@@ -102,7 +98,7 @@ public class Tomdroid extends ListActivity {
 				.setTitle("Warning")
 				.setNeutralButton("Ok", new OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
-						warningShown = true;
+						Preferences.putBoolean(Preferences.Key.FIRST_RUN, false);
 						dialog.dismiss();
 					}})
 				.setIcon(R.drawable.icon)
@@ -161,16 +157,6 @@ public class Tomdroid extends ListActivity {
         }
         
         return super.onOptionsItemSelected(item);
-	}
-
-	@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-		
-		// saving the state of the warning dialog
-		if (warningShown) {
-			outState.putBoolean(WARNING_SHOWN, true);
-		}
 	}
 	
 	public void onResume() {

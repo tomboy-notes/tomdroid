@@ -18,7 +18,8 @@ public class Preferences {
 		OAUTH_10A ("oauth_10a", false),
 		AUTHORIZE_URL ("authorize_url", ""),
 		ACCESS_TOKEN_URL ("access_token_url", ""),
-		REQUEST_TOKEN_URL ("request_token_url", "");
+		REQUEST_TOKEN_URL ("request_token_url", ""),
+		FIRST_RUN ("first_run", true);
 		
 		private String name = "";
 		private Object defaultValue = "";
