@@ -9,7 +9,6 @@
 						
 		<EditTextPreference android:key="sync_server"
 							android:title="@string/prefSyncServer"
-							android:defaultValue="http://"
 							android:positiveButtonText="@string/prefAuthenticate"
 							android:shouldDisableView="true"/>
 	</PreferenceCategory>

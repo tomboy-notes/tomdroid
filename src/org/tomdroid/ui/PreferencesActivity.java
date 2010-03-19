@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
@@ -24,6 +25,8 @@ public class PreferencesActivity extends PreferenceActivity {
 	private static final String TAG = "PreferencesActivity";
 	
 	// TODO: put the various preferences in fields and figure out what to do on activity suspend/resume
+	private EditTextPreference syncServer = null;
+	private ListPreference syncService = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +34,29 @@ public class PreferencesActivity extends PreferenceActivity {
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.preferences);
 		
-		Preference syncServer = findPreference(Preferences.Key.SYNC_SERVER.getName());
+		// Fill the Preferences fields
+		syncServer = (EditTextPreference)findPreference(Preferences.Key.SYNC_SERVER.getName());
+		syncService = (ListPreference)findPreference(Preferences.Key.SYNC_SERVICE.getName());
+		
+		// Set the default values if nothing exists
+		this.setDefaults();
+		
+		// Fill the services combo list
+		this.fillServices();
+		
+		// Enable or disable the server field depending on the selected sync service
+		setServer(syncService.getValue());
+		
+		syncService.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+			
+			public boolean onPreferenceChange(Preference preference, Object newValue) {
+				
+				setServer((String)newValue);
+				return true;
+			}
+		});
+		
+		// Re-authenticate if the sync server changes
 		syncServer.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 
 			public boolean onPreferenceChange(Preference preference,
@@ -66,9 +91,10 @@ public class PreferencesActivity extends PreferenceActivity {
 			}
 			
 		});
-		
-		ListPreference syncService = (ListPreference)findPreference(Preferences.Key.SYNC_SERVICE.getName());
-		
+	}
+	
+	private void fillServices()
+	{
 		ArrayList<SyncService> availableServices = SyncManager.getInstance().getServices();
 		CharSequence[] entries = new CharSequence[availableServices.size()];
 		CharSequence[] entryValues = new CharSequence[availableServices.size()];
@@ -80,26 +106,22 @@ public class PreferencesActivity extends PreferenceActivity {
 		
 		syncService.setEntries(entries);
 		syncService.setEntryValues(entryValues);
+	}
+	
+	private void setDefaults()
+	{
+		String defaultServer = (String)Preferences.Key.SYNC_SERVER.getDefault();
+		syncServer.setDefaultValue(defaultServer);
+		if(syncServer.getText() == null)
+			syncServer.setText(defaultServer);
 		
-		if (syncService.getValue() == null)
-			syncService.setValue((String)Preferences.Key.SYNC_SERVICE.getDefault());
-		
-		setServer(syncService.getValue());
-		
-		syncService.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
-			
-			public boolean onPreferenceChange(Preference preference, Object newValue) {
-				
-				setServer((String)newValue);
-				return true;
-			}
-		});
+		String defaultService = (String)Preferences.Key.SYNC_SERVICE.getDefault();
+		syncService.setDefaultValue(defaultService);
+		if(syncService.getValue() == null)
+			syncService.setValue(defaultService);
 	}
 	
 	private void setServer(String syncServiceKey) {
-		
-		Preference syncServer = findPreference(Preferences.Key.SYNC_SERVER.getName());
-		Preference syncService = findPreference(Preferences.Key.SYNC_SERVICE.getName());
 		
 		SyncService service = SyncManager.getInstance().getService(syncServiceKey);
 		
