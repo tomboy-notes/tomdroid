@@ -7,7 +7,7 @@ import android.preference.PreferenceManager;
 public class Preferences {
 	
 	public enum Key {
-		SYNC_SERVICE ("sync_service", "snowy"),
+		SYNC_SERVICE ("sync_service", "sdcard"),
 		SYNC_SERVER_ROOT_API ("sync_server_root_api", ""),
 		SYNC_SERVER_USER_API ("sync_server_user_api", ""),
 		SYNC_SERVER ("sync_server", "https://one.ubuntu.com/notes"),
@@ -19,6 +19,7 @@ public class Preferences {
 		AUTHORIZE_URL ("authorize_url", ""),
 		ACCESS_TOKEN_URL ("access_token_url", ""),
 		REQUEST_TOKEN_URL ("request_token_url", ""),
+		LATEST_SYNC_REVISION ("latest_sync_revision", 0L),
 		FIRST_RUN ("first_run", true);
 		
 		private String name = "";
@@ -61,6 +62,17 @@ public class Preferences {
 			editor.putString(key.getName(), (String)key.getDefault());
 		else
 			editor.putString(key.getName(), value);
+		editor.commit();
+	}
+	
+	public static long getLong(Key key) {
+		
+		return client.getLong(key.getName(), (Long)key.getDefault());
+	}
+	
+	public static void putLong(Key key, long value) {
+		
+		editor.putLong(key.getName(), value);
 		editor.commit();
 	}
 	
