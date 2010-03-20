@@ -24,12 +24,12 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 	
 	@Override
 	public String getDescription() {
-		return "Snowy";
+		return "Tomboy Web";
 	}
 
 	@Override
 	public String getName() {
-		return "snowy";
+		return "tomboy-web";
 	}
 	
 	public boolean isConfigured() {
