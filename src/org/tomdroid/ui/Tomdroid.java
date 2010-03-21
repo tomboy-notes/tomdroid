@@ -234,7 +234,7 @@ public class Tomdroid extends ListActivity {
         	case SyncService.PARSING_COMPLETE:
         		// TODO put string in a translatable bundle
         		Toast.makeText(getApplicationContext(),
-        				"Synchronization with SD Card is complete.",
+        				"Synchronization with "+SyncManager.getInstance().getCurrentService().getDescription()+" is complete.",
         				Toast.LENGTH_SHORT)
         				.show();
         		break;
@@ -242,7 +242,7 @@ public class Tomdroid extends ListActivity {
         	case SyncService.PARSING_NO_NOTES:
     			// TODO put string in a translatable bundle
     			Toast.makeText(getApplicationContext(),
-    					"There are no files in tomdroid/ on the sdcard.",
+    					"No notes found on "+SyncManager.getInstance().getCurrentService().getDescription()+".",
     					Toast.LENGTH_SHORT)
     					.show();
     			break;
