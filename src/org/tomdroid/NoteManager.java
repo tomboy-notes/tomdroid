@@ -113,6 +113,19 @@ public class NoteManager {
 		}
 	}
 	
+	public static boolean deleteNote(Activity activity, int id)
+	{
+		Uri uri = Uri.parse(Tomdroid.CONTENT_URI+"/"+id);
+		
+		ContentResolver cr = activity.getContentResolver();
+		int result = cr.delete(uri, null, null);
+		
+		if(result > 0)
+			return true;
+		else
+			return false;
+	}
+	
 	public static ListAdapter getListAdapter(Activity activity) {
 		
 		// get a cursor representing all notes from the NoteProvider
