@@ -38,6 +38,7 @@ public class NoteManager {
 	public static final String[] FULL_PROJECTION = { Note.ID, Note.TITLE, Note.FILE, Note.NOTE_CONTENT, Note.MODIFIED_DATE };
 	public static final String[] LIST_PROJECTION = { Note.ID, Note.TITLE };
 	public static final String[] TITLE_PROJECTION = { Note.TITLE };
+	public static final String[] GUID_PROJECTION = { Note.ID, Note.GUID };
 	public static final String[] ID_PROJECTION = { Note.ID };
 	public static final String[] EMPTY_PROJECTION = {};
 	
@@ -143,6 +144,13 @@ public class NoteManager {
 		
 		// get a cursor containing the notes titles
 		return activity.managedQuery(Tomdroid.CONTENT_URI, TITLE_PROJECTION, null, null, null);
+	}
+	
+	// gets the ids of the notes present in the db, used in SyncService.deleteNotes()
+	public static Cursor getGuids(Activity activity) {
+		
+		// get a cursor containing the notes titles
+		return activity.managedQuery(Tomdroid.CONTENT_URI, GUID_PROJECTION, null, null, null);
 	}
 	
 	public static int getNoteId(Activity activity, String title) {

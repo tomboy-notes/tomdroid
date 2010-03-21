@@ -1,5 +1,7 @@
 package org.tomdroid.sync.web;
 
+import java.util.ArrayList;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -93,23 +95,44 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 				
 				try {
 					JSONObject response = new JSONObject(auth.get(userRef));
-					String notesUrl = response.getJSONObject("notes-ref").getString("api-ref")+"?include_notes=true";
+					String notesUrl = response.getJSONObject("notes-ref").getString("api-ref");
 					
 					response = new JSONObject(auth.get(notesUrl));
-					JSONArray notes = response.getJSONArray("notes");
 					
-					for (int i = 0; i < notes.length()-1; i++) {
+					long latestSyncRevision = (Long)Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION);
+					
+					if(response.getLong("latest-sync-revision") > latestSyncRevision)
+					{
+						response = new JSONObject(auth.get(notesUrl+"?include_notes=true"));
+						JSONArray notes = response.getJSONArray("notes");
 						
-						JSONObject jsonNote = notes.getJSONObject(i);
-						insertNote(new Note(jsonNote), false);
+						// Delete the notes that are not in the database
+						ArrayList<String> remoteGuids = new ArrayList<String>();
+						
+						for(int i = 0; i < notes.length(); i++) {
+							remoteGuids.add(notes.getJSONObject(i).getString("guid"));
+						}
+						
+						deleteNotes(remoteGuids);
+						
+						// Insert or update the rest of the notes
+						for (int i = 0; i < notes.length()-1; i++) {
+							
+							JSONObject jsonNote = notes.getJSONObject(i);
+							insertNote(new Note(jsonNote), false);
+						}
+						
+						JSONObject jsonNote = notes.getJSONObject(notes.length()-1);
+						insertNote(new Note(jsonNote), true);
+						
+						Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, response.getLong("latest-sync-revision"));
+					}
+					else {
+						sendMessage(PARSING_COMPLETE);
 					}
 					
-					JSONObject jsonNote = notes.getJSONObject(notes.length()-1);
-					insertNote(new Note(jsonNote), true);
-					
 				} catch (JSONException e1) {
-					e1.printStackTrace();
-					if (Tomdroid.LOGGING_ENABLED) Log.e(TAG, "Problem parsing the server response");
+					if (Tomdroid.LOGGING_ENABLED) Log.e(TAG, "Problem parsing the server response", e1);
 					sendMessage(PARSING_FAILED);
 					return;
 				}
