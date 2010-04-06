@@ -22,6 +22,7 @@
  */
 package org.tomdroid.ui;
 
+import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,6 +31,7 @@ import org.tomdroid.NoteManager;
 import org.tomdroid.R;
 import org.tomdroid.util.LinkifyPhone;
 import org.tomdroid.util.NoteContentBuilder;
+import org.tomdroid.util.VoicePlayer;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -45,32 +47,85 @@ import android.text.SpannableStringBuilder;
 import android.text.util.Linkify;
 import android.text.util.Linkify.TransformFilter;
 import android.util.Log;
-import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 
 // TODO this class is starting to smell
-public class ViewNote extends Activity {
+public class ViewNote extends Activity implements android.view.View.OnClickListener {
 	
 	// UI elements
-	private TextView content;
+	private TextView 	content;
+	private ImageButton	btnPlay;
+	private ImageButton	btnStop;
+	private SeekBar		seekbar;
+	private Menu		menu;
+	
+	// Voiceplayer elements
+	int mProgressStatus = 1;
+	private Handler mHandler = new Handler();
+	private boolean stopThread = false;
+	private boolean threadExist = false;
+	private static final int RECORD_RESULT = 1111;
 	
 	// Model objects
 	private Note note;
 	private SpannableStringBuilder noteContent;
-	
+	private File voiceNote;
+	private VoicePlayer player;
+
 	// Logging info
 	private static final String TAG = "ViewNote";
 	
+	private Uri uri;
 	// TODO extract methods in here
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		setContentView(R.layout.note_view);
-		content = (TextView) findViewById(R.id.content);
-		final Intent intent = getIntent();
-		Uri uri = intent.getData();
+		content = (TextView) 	findViewById(R.id.content);
+		btnPlay = (ImageButton)	findViewById(R.id.PlayImageButton);
+		btnStop = (ImageButton)	findViewById(R.id.StopImageButton);
+		seekbar	= (SeekBar)		findViewById(R.id.SeekBar);
 		
+		btnPlay.setOnClickListener(this);
+		btnStop.setOnClickListener(this);
+		seekbar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+			
+			public void onStopTrackingTouch(SeekBar seekBar) {
+				
+			}
+			
+			public void onStartTrackingTouch(SeekBar seekBar) {
+				
+			}
+			
+			public void onProgressChanged(SeekBar seekBar, int progress,
+					boolean fromUser) {
+				if (fromUser) {
+					// start the voice note if isn't started
+					if (!player.isPlaying()) {
+						player.beginPlayback();
+						startRefresh();
+					}
+					// get progression in msec
+					int msec=Math.round(((float)progress/(float)100)*(float)player.getDuration());
+
+					player.goTo(msec);
+					btnPlay.setImageResource(R.drawable.playback_pause);
+				}				
+			}
+		});
+		
+		final Intent intent = getIntent();
+		uri = intent.getData();
+
 		if (uri != null) {
 			
 			// We were triggered by an Intent URI 
@@ -84,6 +139,7 @@ public class ViewNote extends Activity {
 			
 			if(note != null) {
 				
+				playerBarInit();
 				noteContent = note.getNoteContent(handler);
 				
 			} else {
@@ -120,17 +176,29 @@ public class ViewNote extends Activity {
 		}
 	}
 	
-	// TODO add a menu that switches the view to an EditText instead of TextView
-	// this will need some other quit mechanism as onKeyDown though.. (but the back key might do it)
-	
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
-		super.onKeyDown(keyCode, event);
-		
-		finish();
-		
-		return true;
+	public boolean onCreateOptionsMenu(Menu menu) {
+
+		// Create the menu based on what is defined in res/menu/note.xml
+		this.menu = menu;
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.note, menu);
+	    if (player!=null) {
+	    	menu.findItem(R.id.menuDeleteVoice).setVisible(true);
+	    }
+	    return true;
+	}
+
+
+	public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        	case R.id.menuRecord:
+        		Intent intent = new Intent(Intent.ACTION_VIEW, uri, this, RecorderDialog.class);
+        		startActivityForResult(intent, RECORD_RESULT);
+        		return true;
+        	case R.id.menuDeleteVoice:
+        		removeVoiceNote();
+        }
+        return super.onOptionsItemSelected(item);
 	}
 
 	private void showNote() {
@@ -165,6 +233,28 @@ public class ViewNote extends Activity {
 						 noteTitleTransformFilter);
 	}
 	
+	@Override
+	protected void onResume() {
+		playerBarInit();
+		super.onResume();
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		switch (requestCode) {
+		case RECORD_RESULT:
+			if (resultCode==RESULT_OK) {
+				menu.findItem(R.id.menuDeleteVoice).setVisible(true);
+			}
+			break;
+
+		default:
+			break;
+		}
+		
+	}
 	private Handler handler = new Handler() {
 
 		@Override
@@ -188,6 +278,10 @@ public class ViewNote extends Activity {
 							finish();
 						}})
 					.show();
+        	} else if (msg.what == VoicePlayer.COMPLETION_OK) {
+        		Log.i("tomBOY","completion OK");
+        		seekbar.setProgress(0);
+        		btnPlay.setImageResource(R.drawable.playback_start);
         	}
 		}
 	};
@@ -244,4 +338,97 @@ public class ViewNote extends Activity {
 			return Tomdroid.CONTENT_URI.toString()+"/"+id;
 		}  
 	};
+	
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.PlayImageButton:
+			if (player.isPlaying()){
+				Log.i("tomboy", "en lecture");
+				if (player.isPaused()) {
+					//resume
+					player.resumePLayback();
+					startRefresh();
+					btnPlay.setImageResource(R.drawable.playback_pause);
+				} else {
+					//pause
+					stopRefresh();
+					player.pausePlayback();
+					btnPlay.setImageResource(R.drawable.playback_start);
+				}
+			} else {
+				// play
+				player.beginPlayback();
+				startRefresh();
+				btnPlay.setImageResource(R.drawable.playback_pause);
+			}
+
+			
+			break;
+			
+		case R.id.StopImageButton:
+			//stop
+			stopRefresh();
+			seekbar.setProgress(0);
+			player.endPlayback();
+			break;
+
+		default:
+			break;
+		}
+	}
+	
+	private void removeVoiceNote() {
+		if (voiceNote.delete()){
+			playerBarInit();
+			menu.findItem(R.id.menuDeleteVoice).setVisible(false);
+		}
+	}
+	
+	private void playerBarInit(){
+		voiceNote = new File(this.getFilesDir(),note.getGuid()+".note.amr");
+		View playerView = findViewById(R.id.player);
+		if (voiceNote.exists()) {
+			playerView.setVisibility(View.VISIBLE);
+			player = new VoicePlayer(voiceNote, handler);
+		} else {
+			playerView.setVisibility(View.GONE);
+			player = null;
+		}
+	}
+
+	public synchronized void stopRefresh() {
+        this.stopThread = true;
+	}
+	
+	public void startRefresh() {
+        this.stopThread = false;
+     // Start lengthy operation in a background thread
+        if (!threadExist){
+			new Thread(new Runnable() {
+				public void run() {
+					threadExist=true;
+					mProgressStatus = player.getProgress();
+					while ((mProgressStatus < 100)&&(!stopThread)) {
+						try {
+							mProgressStatus = player.getProgress();
+							// Update the progress bar
+							mHandler.post(new Runnable() {
+								public void run() {
+									seekbar.setProgress(mProgressStatus);
+								}
+							});
+							Thread.sleep(300);
+							
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
+					threadExist=false;
+					Log.i("Thread", "stop");
+					
+	
+				}
+			}).start();
+		}
+	}
 }

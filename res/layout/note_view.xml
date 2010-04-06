@@ -22,21 +22,73 @@
  along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-			android:id="@+id/textScroller"
-			android:layout_width="fill_parent"
-			android:layout_height="fill_parent"
-			>
+<LinearLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:orientation="vertical"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
 
-	<TextView 
-			  xmlns:android="http://schemas.android.com/apk/res/android"
-			  android:id="@+id/content"
-			  android:layout_width="wrap_content" 
-			  android:layout_height="wrap_content"
-			  android:singleLine="false"
-			  android:text="@string/strWait"
-			  android:padding="10dip"
-			  android:textColor="#ffb8bcb8"
-			  />
-			  
-</ScrollView>
+	<LinearLayout 
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content" 
+			android:orientation="vertical" 
+			android:id="@+id/player" 
+			android:background="#828282" 
+			android:paddingTop="10px" 
+			android:paddingLeft="10px" 
+			android:visibility="gone">
+			
+		<TableLayout 
+				android:id="@+id/voiceBar" 
+				android:layout_width="fill_parent" 
+				android:stretchColumns="2" 
+				android:layout_height="40px" 
+				android:visibility="visible" 
+				android:persistentDrawingCache="animation|scrolling">	
+			    	
+			<TableRow>
+
+				<ImageButton 
+						android:layout_width="wrap_content" 
+						android:layout_height="wrap_content" 
+						android:src="@drawable/playback_start" 
+						android:id="@+id/PlayImageButton"/>
+
+				<ImageButton 
+						android:id="@+id/StopImageButton" 
+						android:layout_width="wrap_content" 
+						android:layout_height="wrap_content" 
+						android:src="@drawable/playback_stop"/>
+						
+				<SeekBar 
+						android:layout_height="wrap_content" 
+						android:layout_width="fill_parent" 
+						android:layout_gravity="center_vertical" 
+						android:layout_margin="4px" 
+						android:paddingRight="20px" 
+						android:id="@+id/SeekBar" 
+						android:paddingBottom="4px"/>
+
+			</TableRow>
+	
+		</TableLayout>
+		
+	</LinearLayout>
+	
+	<ScrollView	android:id="@+id/textScroller"
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent">
+				
+		<TextView 
+				  android:id="@+id/content"
+				  android:layout_width="wrap_content" 
+				  android:layout_height="wrap_content"
+				  android:singleLine="false"
+				  android:text="@string/strWait"
+				  android:padding="10dip"
+				  android:textColor="#ffb8bcb8"
+				  />
+				  
+	</ScrollView>
+
+</LinearLayout>

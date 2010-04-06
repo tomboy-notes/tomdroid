@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:title="@string/menuRecord" android:id="@+id/menuRecord" android:icon="@android:drawable/ic_btn_speak_now"></item>
+<item android:id="@+id/menuDeleteVoice" android:title="@string/menuDeleteVoice" android:icon="@android:drawable/ic_delete" android:visible="false"></item>
+</menu>

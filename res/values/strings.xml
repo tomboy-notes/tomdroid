@@ -22,6 +22,8 @@
  along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
+    <string name="menuDeleteVoice">Delete voice</string>
+    <string name="menuRecord">Record</string>
     <string name="app_name">Tomdroid</string>
     <string name="app_desc">Tomboy compatible wikiwiki note-taking application that can\'t take notes yet.</string>
     <string name="author">Olivier Bilodeau</string>
@@ -60,4 +62,5 @@
 	<!-- note-view.xml -->
     <string name="strWait">Please wait while note loads...</string>
     
+<string name="titleRecorderDialog">Recorder</string>
 </resources>

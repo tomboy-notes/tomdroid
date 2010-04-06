@@ -77,8 +77,8 @@ public class Tomdroid extends ListActivity {
 	private static final String WARNING_SHOWN = "w";
 	
 	// State variables
-	private boolean warningShown = false;
-	private boolean parsingErrorShown = false;
+	private static boolean warningShown = false;
+	private static boolean parsingErrorShown = false;
 
 	
     /** Called when the activity is created. */

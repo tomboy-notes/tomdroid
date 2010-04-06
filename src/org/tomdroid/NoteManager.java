@@ -35,7 +35,7 @@ import android.widget.SimpleCursorAdapter;
 
 public class NoteManager {
 	
-	public static final String[] FULL_PROJECTION = { Note.ID, Note.TITLE, Note.FILE, Note.NOTE_CONTENT, Note.MODIFIED_DATE };
+	public static final String[] FULL_PROJECTION = { Note.ID, Note.GUID, Note.TITLE, Note.FILE, Note.NOTE_CONTENT, Note.MODIFIED_DATE };
 	public static final String[] LIST_PROJECTION = { Note.ID, Note.TITLE };
 	public static final String[] TITLE_PROJECTION = { Note.TITLE };
 	public static final String[] ID_PROJECTION = { Note.ID };
@@ -58,10 +58,12 @@ public class NoteManager {
 			cursor.moveToFirst();
 			String noteContent = cursor.getString(cursor.getColumnIndexOrThrow(Note.NOTE_CONTENT));
 			String noteTitle = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
+			String noteGuid = cursor.getString(cursor.getColumnIndexOrThrow(Note.GUID));
 			
 			note = new Note();
 			note.setXmlContent(noteContent);
 			note.setTitle(noteTitle);
+			note.setGuid(noteGuid);
 		}
 		
 		return note;
