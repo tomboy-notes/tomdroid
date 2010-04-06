@@ -1,3 +1,12 @@
+=== 0.3.1 ===
+2010-02-17  Olivier Bilodeau <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/Note.java: [178] Date cleaner regular expression
+	allows for + in timezone. Fixes #520543;
+	https://launchpad.net/bugs/520543 fixed
+
+	Also took the opportunity to document the pattern better.
+
 2010-02-16  Olivier Bilodeau <olivier@bottomlesspit.org>
 
 	* src/org/tomdroid/ui/Tomdroid.java,
