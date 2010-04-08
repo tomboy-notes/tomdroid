@@ -125,8 +125,8 @@ public class NoteManager {
 			where="";
 			int count=0;
 			for (String string : keyword) {
-				if (count>0) where = where + " OR ";
-				where = where + Note.TITLE+" LIKE '%"+string+"%' OR "+Note.NOTE_CONTENT+" LIKE '%"+string+"%'";
+				if (count>0) where = where + " AND ";
+				where = where + "("+Note.TITLE+" LIKE '%"+string+"%' OR "+Note.NOTE_CONTENT+" LIKE '%"+string+"%')";
 				count++;
 			}	
 		}

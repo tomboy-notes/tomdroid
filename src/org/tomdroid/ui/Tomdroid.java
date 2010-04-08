@@ -306,8 +306,8 @@ public class Tomdroid extends ListActivity implements OnScrollListener, OnKeyLis
     };
         
     private void search(String keywords){
-    	
-    	setListAdapter(NoteManager.getListAdapter(this, keywords));
+    	adapter = NoteManager.getListAdapter(this, keywords);
+    	setListAdapter(adapter);
     }
  
 	private void showSearchBar(Boolean animation) {
@@ -343,7 +343,8 @@ public class Tomdroid extends ListActivity implements OnScrollListener, OnKeyLis
 			// hide the search bar
 			searchBar.setVisibility(View.GONE);
 			mgr.hideSoftInputFromWindow(searchEditText.getWindowToken(), 0);
-			setListAdapter(NoteManager.getListAdapter(this));
+			adapter=NoteManager.getListAdapter(this);
+			setListAdapter(adapter);
 		}
 	}
 
