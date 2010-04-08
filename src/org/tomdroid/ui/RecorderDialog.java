@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -47,7 +46,6 @@ public class RecorderDialog extends Activity implements OnClickListener, OnChron
 		setContentView(R.layout.recorder);
 		
 		setTitle(R.string.titleRecorderDialog);
-		if (isPlaying) Log.i("TOMBOY", "is playing");
 		btnRec = (ToggleButton) findViewById(R.id.voiceRec);
 		btnPlay = (Button) findViewById(R.id.voicePlay);
 		btnSave = (Button) findViewById(R.id.voiceSave);
@@ -88,7 +86,6 @@ public class RecorderDialog extends Activity implements OnClickListener, OnChron
 			
 			//parsed ok - show
 			if(msg.what == VoicePlayer.COMPLETION_OK) {
-				Log.i("tomboy","ouuuuais");
 				endPlayback();
 			}
 		}

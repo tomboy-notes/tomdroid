@@ -279,7 +279,6 @@ public class ViewNote extends Activity implements android.view.View.OnClickListe
 						}})
 					.show();
         	} else if (msg.what == VoicePlayer.COMPLETION_OK) {
-        		Log.i("tomBOY","completion OK");
         		seekbar.setProgress(0);
         		btnPlay.setImageResource(R.drawable.playback_start);
         	}
@@ -343,7 +342,6 @@ public class ViewNote extends Activity implements android.view.View.OnClickListe
 		switch (v.getId()) {
 		case R.id.PlayImageButton:
 			if (player.isPlaying()){
-				Log.i("tomboy", "en lecture");
 				if (player.isPaused()) {
 					//resume
 					player.resumePLayback();
