@@ -107,6 +107,7 @@ public class Tomdroid extends ListActivity {
         // adapter that binds the ListView UI to the notes in the note manager
         adapter = NoteManager.getListAdapter(this);
 		setListAdapter(adapter);
+//        setListAdapter(new NoteListAdapter(adapter, this));
 
         // set the view shown when the list is empty
 		// TODO default empty-list text is butt-ugly!

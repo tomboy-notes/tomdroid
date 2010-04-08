@@ -21,9 +21,27 @@
  You should have received a copy of the GNU General Public License
  along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<TextView android:id="@+id/note_title" xmlns:android="http://schemas.android.com/apk/res/android"
-		android:layout_width="fill_parent"
-		android:layout_height="fill_parent"
-		android:textSize="24dp"
-		android:padding="10dip"
-		/>
+<TableLayout	xmlns:android="http://schemas.android.com/apk/res/android"
+				android:layout_width="fill_parent" 
+				android:stretchColumns="0" 
+				android:layout_height="fill_parent"
+				android:shrinkColumns="0">
+			    	
+	<TableRow>
+
+		<TextView android:id="@+id/note_title" 
+			android:layout_width="wrap_content"
+			android:layout_height="fill_parent"
+			android:textSize="24dp"
+			android:padding="10dip"
+			android:ellipsize="end"/>
+			
+		<ImageView 
+				android:id="@+id/voice_indicator" 
+				android:layout_width="wrap_content" 
+				android:layout_height="fill_parent"
+				android:layout_marginRight="10px"/>
+
+	</TableRow>
+	
+</TableLayout>

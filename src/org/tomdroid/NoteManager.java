@@ -22,6 +22,7 @@
  */
 package org.tomdroid;
 
+import org.tomdroid.ui.NoteListAdapter;
 import org.tomdroid.ui.Tomdroid;
 
 import android.app.Activity;
@@ -31,12 +32,11 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.ListAdapter;
-import android.widget.SimpleCursorAdapter;
 
 public class NoteManager {
 	
 	public static final String[] FULL_PROJECTION = { Note.ID, Note.GUID, Note.TITLE, Note.FILE, Note.NOTE_CONTENT, Note.MODIFIED_DATE };
-	public static final String[] LIST_PROJECTION = { Note.ID, Note.TITLE };
+	public static final String[] LIST_PROJECTION = { Note.ID, Note.TITLE, Note.GUID};
 	public static final String[] TITLE_PROJECTION = { Note.TITLE };
 	public static final String[] ID_PROJECTION = { Note.ID };
 	public static final String[] EMPTY_PROJECTION = {};
@@ -124,7 +124,7 @@ public class NoteManager {
 		// set up an adapter binding the TITLE field of the cursor to the list item
 		String[] from = new String[] { Note.TITLE };
 		int[] to = new int[] { R.id.note_title };
-		return new SimpleCursorAdapter(activity, R.layout.main_list_item, notesCursor, from, to);
+		return new NoteListAdapter(activity, R.layout.main_list_item, notesCursor, from, to);
 	}
 	
 	// gets the titles of the notes present in the db, used in ViewNote.buildLinkifyPattern()
