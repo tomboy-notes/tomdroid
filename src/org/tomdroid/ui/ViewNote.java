@@ -368,6 +368,7 @@ public class ViewNote extends Activity implements android.view.View.OnClickListe
 			stopRefresh();
 			seekbar.setProgress(0);
 			player.endPlayback();
+			btnPlay.setImageResource(R.drawable.playback_start);
 			break;
 
 		default:

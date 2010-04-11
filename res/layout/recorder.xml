@@ -4,41 +4,53 @@
 <LinearLayout
 		android:orientation="vertical"
 		xmlns:android="http://schemas.android.com/apk/res/android"
-		android:layout_height="wrap_content" android:layout_width="wrap_content">
+		android:layout_height="wrap_content" android:layout_width="350px" android:layout_gravity="center_horizontal">
 		
 	
-				
-	<RelativeLayout
+	<Chronometer android:layout_width="fill_parent" 
 			android:layout_height="wrap_content" 
-			android:layout_centerHorizontal="true" 
-			android:layout_width="fill_parent" android:paddingLeft="30px" android:paddingRight="30px" android:layout_marginTop="10px">
+			android:id="@+id/chrono" 
+			android:textSize="40dip" android:gravity="center_horizontal" android:paddingTop="10px" android:paddingBottom="10px"/>
+			
+			
+	<LinearLayout
+			android:orientation="horizontal"
+			android:layout_height="wrap_content" 
+			android:layout_width="fill_parent" 
+			android:background="#717171" android:gravity="center_horizontal" android:paddingBottom="5px" android:paddingTop="5px">
+
+
+		<!--<ToggleButton android:textOff="rec" 
+		android:textOn="..." 
+		android:drawableLeft="@android:drawable/ic_btn_speak_now" android:id="@+id/voiceRec" android:layout_height="wrap_content" android:layout_width="wrap_content"></ToggleButton>-->
+		
+
+		<ImageButton android:id="@+id/voiceRec" 
+				android:layout_height="wrap_content" 
+				android:layout_width="wrap_content" 
+				android:src="@drawable/playback_rec"/>
+				
+		<ImageButton android:id="@+id/voicePlay" 
+				android:layout_height="wrap_content" 
+				android:layout_width="wrap_content" 
+				android:src="@drawable/playback_start" android:layout_marginLeft="10px" android:layout_marginRight="10px"/>
+				
+		<ImageButton android:id="@+id/voiceStop" 
+				android:layout_height="wrap_content" 
+				android:layout_width="wrap_content" 
+				android:src="@drawable/playback_stop"/>
 
 		
-				
-		<ToggleButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textOff="rec" android:textOn="..." android:drawableLeft="@android:drawable/ic_btn_speak_now" android:id="@+id/voiceRec"></ToggleButton><Chronometer 
-				android:layout_width="wrap_content"
-		        android:layout_height="wrap_content" 
-				android:textSize="20dip"
-		        android:id="@+id/chrono" 
-		        android:layout_centerHorizontal="true" 
-		        android:layout_marginTop="10px"/>
-			
-		<Button 
-				android:layout_width="wrap_content" 
-				android:layout_height="wrap_content" 
-				android:text="play" 
-				android:layout_alignParentRight="true" 
-				android:id="@+id/voicePlay" android:drawableRight="@drawable/playback_start"/>
-		
 	
-</RelativeLayout>
+
+	</LinearLayout>
 			
 	<RelativeLayout
 			android:layout_height="wrap_content" 
 			android:layout_centerHorizontal="true" 
 			android:layout_width="fill_parent" 
 			android:paddingLeft="30px" 
-			android:paddingRight="30px" android:layout_marginTop="30px">
+			android:paddingRight="30px" android:layout_marginTop="20px">
 			
 			
 		<Button android:layout_height="wrap_content" 

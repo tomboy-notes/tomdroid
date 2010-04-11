@@ -21,8 +21,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.ImageButton;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 import android.widget.Chronometer.OnChronometerTickListener;
 
 public class RecorderDialog extends Activity implements OnClickListener, OnChronometerTickListener {
@@ -35,8 +35,9 @@ public class RecorderDialog extends Activity implements OnClickListener, OnChron
 	static boolean		isPlaying   = false;
 	static boolean		isRecording = false;
 
-	ToggleButton btnRec;
-	Button btnPlay;
+	ImageButton btnRec;
+	ImageButton btnPlay;
+	ImageButton btnStop;
 	Button btnCancel;
 	Button btnSave;
 	Chronometer chronometre;
@@ -51,8 +52,9 @@ public class RecorderDialog extends Activity implements OnClickListener, OnChron
 		setContentView(R.layout.recorder);
 		
 		setTitle(R.string.titleRecorderDialog);
-		btnRec = (ToggleButton) findViewById(R.id.voiceRec);
-		btnPlay = (Button) findViewById(R.id.voicePlay);
+		btnRec = (ImageButton) findViewById(R.id.voiceRec);
+		btnPlay = (ImageButton) findViewById(R.id.voicePlay);
+		btnStop = (ImageButton) findViewById(R.id.voiceStop);
 		btnSave = (Button) findViewById(R.id.voiceSave);
 		btnCancel = (Button) findViewById(R.id.VoiceCancel);
 		chronometre = (Chronometer) findViewById(R.id.chrono);
@@ -60,6 +62,7 @@ public class RecorderDialog extends Activity implements OnClickListener, OnChron
 		
 		btnRec.setOnClickListener(this);
 		btnPlay.setOnClickListener(this);
+		btnStop.setOnClickListener(this);
 		btnCancel.setOnClickListener(this);
 		btnSave.setOnClickListener(this);
 		chronometre.setOnChronometerTickListener(this);
@@ -67,6 +70,7 @@ public class RecorderDialog extends Activity implements OnClickListener, OnChron
 		if (savedInstanceState==null) {
 			btnPlay.setEnabled(false);
 			btnSave.setEnabled(false);
+			btnStop.setEnabled(false);
 		}
 	
 		noteGuid=NoteManager.getNote(this, getIntent().getData()).getGuid().toString();
@@ -74,13 +78,18 @@ public class RecorderDialog extends Activity implements OnClickListener, OnChron
 	@Override
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
 		btnPlay.setEnabled(savedInstanceState.getBoolean("play"));
+		btnStop.setEnabled(savedInstanceState.getBoolean("stop"));
+		btnRec.setEnabled(savedInstanceState.getBoolean("rec"));
 		btnSave.setEnabled(savedInstanceState.getBoolean("ok"));
 		super.onRestoreInstanceState(savedInstanceState);
 	}
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		outState.putBoolean("play", btnPlay.isEnabled());
+		outState.putBoolean("stop", btnStop.isEnabled());
+		outState.putBoolean("rec", btnRec.isEnabled());
 		outState.putBoolean("ok", btnSave.isEnabled());
+		
 
 		super.onSaveInstanceState(outState);
 	}
@@ -101,21 +110,16 @@ public class RecorderDialog extends Activity implements OnClickListener, OnChron
 		switch (v.getId()) {
 
 		case R.id.voiceRec:
-			if (isPlaying) endPlayback();
-			if (isRecording) {
-				endRecord();
-			} else {
-				beginRecord();
-			}
+			if (!isRecording) beginRecord();
 			break;
 
 		case R.id.voicePlay:
-			if (isRecording) endRecord();
-			if (isPlaying) {
-				endPlayback();
-			} else {
-				beginPlayback();
-			}
+			if (!isPlaying) beginPlayback();
+			break;
+			
+		case R.id.voiceStop:
+			if (isRecording)	endRecord();
+			if (isPlaying) 		endPlayback();
 			break;
 		
 		case R.id.voiceSave:
@@ -140,9 +144,14 @@ public class RecorderDialog extends Activity implements OnClickListener, OnChron
 		chronometre.stop();
 		voicePlayer.endPlayback();
 		voicePlayer.releasePlackback();
+		
+		isPlaying=false;
 
-        isPlaying=false;
-		btnPlay.setCompoundDrawablesWithIntrinsicBounds(0, 0, android.R.drawable.ic_media_play, 0);
+		btnRec.setEnabled(true);
+		btnStop.setEnabled(false);
+		btnPlay.setEnabled(true);
+		btnSave.setEnabled(true);
+
  	}
 	
 	public void beginPlayback(){
@@ -153,7 +162,11 @@ public class RecorderDialog extends Activity implements OnClickListener, OnChron
 			chronometre.start();
 
 			isPlaying=true;
-			btnPlay.setCompoundDrawablesWithIntrinsicBounds(0, 0, android.R.drawable.ic_media_pause, 0);
+			
+			btnRec.setEnabled(false);
+			btnStop.setEnabled(true);
+			btnPlay.setEnabled(false);
+			btnSave.setEnabled(true);
 			
 		} catch (Exception e) {
 			e.printStackTrace();			
@@ -169,7 +182,9 @@ public class RecorderDialog extends Activity implements OnClickListener, OnChron
         	voiceRecorder.beginRecord();
 
 			isRecording=true;
-
+			
+			btnRec.setEnabled(false);
+			btnStop.setEnabled(true);
 			btnPlay.setEnabled(false);
 			btnSave.setEnabled(false);
 		} catch (Exception e) {
@@ -185,7 +200,8 @@ public class RecorderDialog extends Activity implements OnClickListener, OnChron
 
         isRecording=false;
 
-        btnRec.setPressed(false);
+        btnRec.setEnabled(true);
+        btnStop.setEnabled(false);
 		btnPlay.setEnabled(true);
 		btnSave.setEnabled(true);
  	}
