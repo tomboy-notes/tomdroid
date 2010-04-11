@@ -60,11 +60,11 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 public class ViewNote extends Activity implements android.view.View.OnClickListener {
 	
 	// UI elements
-	private TextView 	content;
-	private ImageButton	btnPlay;
-	private ImageButton	btnStop;
-	private SeekBar		seekbar;
-	private Menu		menu;
+	private static TextView 	content;
+	private static ImageButton	btnPlay;
+	private static ImageButton	btnStop;
+	private static SeekBar		seekbar;
+	private static Menu		menu;
 	
 	// Voiceplayer elements
 	int mProgressStatus = 1;
@@ -176,10 +176,10 @@ public class ViewNote extends Activity implements android.view.View.OnClickListe
 		}
 	}
 	
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public boolean onCreateOptionsMenu(Menu m) {
 
 		// Create the menu based on what is defined in res/menu/note.xml
-		this.menu = menu;
+		menu = m;
 	    MenuInflater inflater = getMenuInflater();
 	    inflater.inflate(R.menu.note, menu);
 	    if (player!=null) {

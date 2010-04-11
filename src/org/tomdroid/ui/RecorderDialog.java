@@ -29,20 +29,21 @@ public class RecorderDialog extends Activity implements OnClickListener, OnChron
 	
 	public static final String FILE_NAME_TEMP = "rec.tmp";
 	File tempFile;
-	VoiceRecorder voiceRecorder;
-	VoicePlayer voicePlayer;
+	static VoiceRecorder voiceRecorder;
+	static VoicePlayer voicePlayer;
 	
 	static boolean		isPlaying   = false;
 	static boolean		isRecording = false;
-
-	ImageButton btnRec;
-	ImageButton btnPlay;
-	ImageButton btnStop;
-	Button btnCancel;
-	Button btnSave;
-	Chronometer chronometre;
+	static long 		base=0;
 	
-	String noteGuid;
+	static ImageButton btnRec;
+	static ImageButton btnPlay;
+	static ImageButton btnStop;
+	static Button btnCancel;
+	static Button btnSave;
+	static Chronometer chronometre;
+	
+	static String noteGuid;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -66,11 +67,17 @@ public class RecorderDialog extends Activity implements OnClickListener, OnChron
 		btnCancel.setOnClickListener(this);
 		btnSave.setOnClickListener(this);
 		chronometre.setOnChronometerTickListener(this);
-		
+
 		if (savedInstanceState==null) {
 			btnPlay.setEnabled(false);
 			btnSave.setEnabled(false);
 			btnStop.setEnabled(false);
+		}
+		
+		// launch the chronometer after a rotation
+		if ((isPlaying)||(isRecording)) {
+			chronometre.setBase(base);
+			chronometre.start();
 		}
 	
 		noteGuid=NoteManager.getNote(this, getIntent().getData()).getGuid().toString();
@@ -89,8 +96,6 @@ public class RecorderDialog extends Activity implements OnClickListener, OnChron
 		outState.putBoolean("stop", btnStop.isEnabled());
 		outState.putBoolean("rec", btnRec.isEnabled());
 		outState.putBoolean("ok", btnSave.isEnabled());
-		
-
 		super.onSaveInstanceState(outState);
 	}
 	
@@ -141,6 +146,7 @@ public class RecorderDialog extends Activity implements OnClickListener, OnChron
 	}
 
 	public void endPlayback(){
+		
 		chronometre.stop();
 		voicePlayer.endPlayback();
 		voicePlayer.releasePlackback();
@@ -158,8 +164,9 @@ public class RecorderDialog extends Activity implements OnClickListener, OnChron
 		try {
 			voicePlayer = new VoicePlayer(tempFile, handler);
 			voicePlayer.beginPlayback();
-			chronometre.setBase(SystemClock.elapsedRealtime());
-			chronometre.start();
+			base = SystemClock.elapsedRealtime();
+        	chronometre.setBase(base);
+        	chronometre.start();
 
 			isPlaying=true;
 			
@@ -175,7 +182,8 @@ public class RecorderDialog extends Activity implements OnClickListener, OnChron
 		
 	public void beginRecord(){	
         try {
-        	chronometre.setBase(SystemClock.elapsedRealtime());
+        	base = SystemClock.elapsedRealtime();
+        	chronometre.setBase(base);
 			chronometre.start();
 			voiceRecorder=new VoiceRecorder(tempFile);
 			voiceRecorder.initRecord();
@@ -207,14 +215,13 @@ public class RecorderDialog extends Activity implements OnClickListener, OnChron
  	}
 	
 	public void onChronometerTick(Chronometer chronometer) {
-		long elapsedTime = SystemClock.elapsedRealtime() - chronometer.getBase();
+		long elapsedTime = SystemClock.elapsedRealtime() - base;
 		int min = (int) (elapsedTime / 60000);
 		int sec = (int) ((elapsedTime / 1000) % 60);
 		String time = min < 10 ? "0" + min : String.valueOf(min);
 		time += ":";
 		time += sec < 10 ? "0" + sec : String.valueOf(sec);
-		((Chronometer) findViewById(R.id.chrono)).setText(time);
-		if ((isPlaying)&&(!voicePlayer.isPlaying())) endPlayback();
+		chronometer.setText(time);
 
 	}
 
