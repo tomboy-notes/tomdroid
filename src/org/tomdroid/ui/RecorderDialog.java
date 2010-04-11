@@ -1,6 +1,11 @@
 package org.tomdroid.ui;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
@@ -23,7 +28,7 @@ import android.widget.Chronometer.OnChronometerTickListener;
 public class RecorderDialog extends Activity implements OnClickListener, OnChronometerTickListener {
 	
 	public static final String FILE_NAME_TEMP = "rec.tmp";
-	
+	File tempFile;
 	VoiceRecorder voiceRecorder;
 	VoicePlayer voicePlayer;
 	
@@ -51,6 +56,7 @@ public class RecorderDialog extends Activity implements OnClickListener, OnChron
 		btnSave = (Button) findViewById(R.id.voiceSave);
 		btnCancel = (Button) findViewById(R.id.VoiceCancel);
 		chronometre = (Chronometer) findViewById(R.id.chrono);
+		tempFile = new File(this.getFilesDir(), "rec.tmp");
 		
 		btnRec.setOnClickListener(this);
 		btnPlay.setOnClickListener(this);
@@ -141,7 +147,7 @@ public class RecorderDialog extends Activity implements OnClickListener, OnChron
 	
 	public void beginPlayback(){
 		try {
-			voicePlayer = new VoicePlayer(new File(getFilesDir(), FILE_NAME_TEMP), handler);
+			voicePlayer = new VoicePlayer(tempFile, handler);
 			voicePlayer.beginPlayback();
 			chronometre.setBase(SystemClock.elapsedRealtime());
 			chronometre.start();
@@ -158,7 +164,7 @@ public class RecorderDialog extends Activity implements OnClickListener, OnChron
         try {
         	chronometre.setBase(SystemClock.elapsedRealtime());
 			chronometre.start();
-			voiceRecorder=new VoiceRecorder(new File(getFilesDir(), FILE_NAME_TEMP));
+			voiceRecorder=new VoiceRecorder(tempFile);
 			voiceRecorder.initRecord();
         	voiceRecorder.beginRecord();
 
@@ -197,19 +203,42 @@ public class RecorderDialog extends Activity implements OnClickListener, OnChron
 	}
 
 	public void save() {
-		// 'renameTo' rename de temp file with the note's name.
-		File tempfile = this.getFileStreamPath(FILE_NAME_TEMP);
-		File voiceNote = new File(this.getFilesDir(), noteGuid + ".note.amr");
-		if (!tempfile.renameTo(voiceNote)) {
+		// put voicenote in the tomdroid's directory
+		File voiceNote = new File(Tomdroid.NOTES_PATH, noteGuid + ".note.amr");
+		
+		try {
+		FileInputStream fis = new FileInputStream(tempFile);
+		FileOutputStream fos = new FileOutputStream(voiceNote);
+		BufferedInputStream buf = new BufferedInputStream(fis);
+		
+		byte buffer[] = new byte[1024*4];
+		
+
+        while ((buf.read(buffer)) != -1) {
+
+            fos.write(buffer);
+        }
+        
+        fos.flush();
+        fos.close();
+        fis.close();
+		tempFile.delete();
+        setResult(RESULT_OK);
+		Toast.makeText(this, "Voice note saved.", Toast.LENGTH_SHORT).show();
+		
+		} catch (FileNotFoundException e) {
 			Toast.makeText(this, "Error while saving the file. Please report the bug.", Toast.LENGTH_LONG).show();
-		} else {
-			setResult(RESULT_OK);
-			Toast.makeText(this, "Voice note saved.", Toast.LENGTH_SHORT).show();
+			e.printStackTrace();
+		} catch (IOException e) {
+			Toast.makeText(this, "Error while saving the file. Please report the bug.", Toast.LENGTH_LONG).show();
+			e.printStackTrace();
 		}
+
 		finish();
 	}
 
 	public void cancel() {
+		tempFile.delete();
 		finish();
 	}
 

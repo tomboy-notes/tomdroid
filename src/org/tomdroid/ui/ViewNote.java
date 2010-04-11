@@ -383,7 +383,7 @@ public class ViewNote extends Activity implements android.view.View.OnClickListe
 	}
 	
 	private void playerBarInit(){
-		voiceNote = new File(this.getFilesDir(),note.getGuid()+".note.amr");
+		voiceNote = new File(Tomdroid.NOTES_PATH,note.getGuid()+".note.amr");
 		View playerView = findViewById(R.id.player);
 		if (voiceNote.exists()) {
 			playerView.setVisibility(View.VISIBLE);

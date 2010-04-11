@@ -26,7 +26,7 @@ public class NoteListAdapter extends SimpleCursorAdapter{
 	
 	@Override
 	public void bindView(View view, Context context, Cursor cursor) {
-		File voiceNote = new File(context.getFilesDir(),cursor.getString(cursor.getColumnIndex(Note.GUID))+".note.amr");
+		File voiceNote = new File(Tomdroid.NOTES_PATH,cursor.getString(cursor.getColumnIndex(Note.GUID))+".note.amr");
 		ImageView iv = (ImageView)view.findViewById(R.id.voice_indicator);
 		iv.setImageBitmap(null);
 	if (voiceNote.exists()) {
