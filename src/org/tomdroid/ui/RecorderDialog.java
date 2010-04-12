@@ -106,7 +106,13 @@ public class RecorderDialog extends Activity implements OnClickListener, OnChron
 			
 			//parsed ok - show
 			if(msg.what == VoicePlayer.COMPLETION_OK) {
-				endPlayback();
+				chronometre.stop();
+				voicePlayer.releasePlayback();
+				isPlaying=false;
+				btnRec.setEnabled(true);
+				btnStop.setEnabled(false);
+				btnPlay.setEnabled(true);
+				btnSave.setEnabled(true);
 			}
 		}
 	};
@@ -149,7 +155,7 @@ public class RecorderDialog extends Activity implements OnClickListener, OnChron
 		
 		chronometre.stop();
 		voicePlayer.endPlayback();
-		voicePlayer.releasePlackback();
+		voicePlayer.releasePlayback();
 		
 		isPlaying=false;
 

@@ -43,6 +43,7 @@ public class VoicePlayer implements OnCompletionListener {
 	}
 
 	public void endPlayback() {
+		paused = false;
 		player.stop();
 		player.reset();
 	}
@@ -61,11 +62,12 @@ public class VoicePlayer implements OnCompletionListener {
 		player.seekTo(msec);
 	}
 	
-	public void releasePlackback() {
+	public void releasePlayback() {
 		player.release();
 	}
 
 	public void onCompletion(MediaPlayer arg0) {
+		player.reset();
 		// notify the main UI that we are done here
 		Message msg = Message.obtain();
 		msg.what = COMPLETION_OK;

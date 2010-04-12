@@ -67,17 +67,17 @@ public class ViewNote extends Activity implements android.view.View.OnClickListe
 	private static Menu		menu;
 	
 	// Voiceplayer elements
-	int mProgressStatus = 1;
+	static int mProgressStatus = 1;
 	private Handler mHandler = new Handler();
-	private boolean stopThread = false;
+	private static boolean stopThread = false;
 	private boolean threadExist = false;
 	private static final int RECORD_RESULT = 1111;
 	
 	// Model objects
 	private Note note;
 	private SpannableStringBuilder noteContent;
-	private File voiceNote;
-	private VoicePlayer player;
+	private static File voiceNote;
+	private static VoicePlayer player;
 
 	// Logging info
 	private static final String TAG = "ViewNote";
@@ -139,7 +139,10 @@ public class ViewNote extends Activity implements android.view.View.OnClickListe
 			
 			if(note != null) {
 				
-				playerBarInit();
+				if (savedInstanceState==null) {
+					Log.i("ViewNote", "initialisation");
+					playerBarInit();
+				}
 				noteContent = note.getNoteContent(handler);
 				
 			} else {
@@ -174,6 +177,31 @@ public class ViewNote extends Activity implements android.view.View.OnClickListe
 				}})
 			.show();
 		}
+	}
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+		if (voiceNote!=null) {
+			View playerView = findViewById(R.id.player);
+			playerView.setVisibility(View.VISIBLE);
+			
+			// show the correct drawable on the play button
+
+			if (player.isPlaying()) btnPlay.setImageResource(R.drawable.playback_pause);
+			else btnPlay.setImageResource(R.drawable.playback_start);
+			
+			btnStop.setEnabled(savedInstanceState.getBoolean("stop", true));
+		}
+		super.onRestoreInstanceState(savedInstanceState);
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+
+		
+		if (player!=null) {
+			outState.putBoolean("stop", btnStop.isEnabled());
+		}
+		super.onSaveInstanceState(outState);
 	}
 	
 	public boolean onCreateOptionsMenu(Menu m) {
@@ -234,12 +262,6 @@ public class ViewNote extends Activity implements android.view.View.OnClickListe
 	}
 	
 	@Override
-	protected void onResume() {
-		playerBarInit();
-		super.onResume();
-	}
-	
-	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 
@@ -247,6 +269,8 @@ public class ViewNote extends Activity implements android.view.View.OnClickListe
 		case RECORD_RESULT:
 			if (resultCode==RESULT_OK) {
 				menu.findItem(R.id.menuDeleteVoice).setVisible(true);
+				playerBarInit();
+				
 			}
 			break;
 
@@ -279,7 +303,9 @@ public class ViewNote extends Activity implements android.view.View.OnClickListe
 						}})
 					.show();
         	} else if (msg.what == VoicePlayer.COMPLETION_OK) {
+        		stopRefresh();
         		seekbar.setProgress(0);
+        		btnStop.setEnabled(false);
         		btnPlay.setImageResource(R.drawable.playback_start);
         	}
 		}
@@ -341,26 +367,26 @@ public class ViewNote extends Activity implements android.view.View.OnClickListe
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.PlayImageButton:
-			if (player.isPlaying()){
-				if (player.isPaused()) {
-					//resume
-					player.resumePLayback();
-					startRefresh();
-					btnPlay.setImageResource(R.drawable.playback_pause);
-				} else {
+			if (player.isPaused()) {
+				//resume
+				player.resumePLayback();
+				startRefresh();
+				btnPlay.setImageResource(R.drawable.playback_pause);
+			} else {
+				if (player.isPlaying()) {
 					//pause
 					stopRefresh();
 					player.pausePlayback();
+					
 					btnPlay.setImageResource(R.drawable.playback_start);
+				} else {
+					// play
+					player.beginPlayback();
+					startRefresh();
+					btnStop.setEnabled(true);
+					btnPlay.setImageResource(R.drawable.playback_pause);
 				}
-			} else {
-				// play
-				player.beginPlayback();
-				startRefresh();
-				btnPlay.setImageResource(R.drawable.playback_pause);
 			}
-
-			
 			break;
 			
 		case R.id.StopImageButton:
@@ -368,6 +394,7 @@ public class ViewNote extends Activity implements android.view.View.OnClickListe
 			stopRefresh();
 			seekbar.setProgress(0);
 			player.endPlayback();
+			btnStop.setEnabled(false);
 			btnPlay.setImageResource(R.drawable.playback_start);
 			break;
 
@@ -377,8 +404,17 @@ public class ViewNote extends Activity implements android.view.View.OnClickListe
 	}
 	
 	private void removeVoiceNote() {
+		if (player!=null) {
+			if (player.isPlaying()) {
+				player.endPlayback();
+				
+			}
+			player.releasePlayback();
+		}
 		if (voiceNote.delete()){
 			playerBarInit();
+			player=null;
+			voiceNote=null;
 			menu.findItem(R.id.menuDeleteVoice).setVisible(false);
 		}
 	}
@@ -388,6 +424,7 @@ public class ViewNote extends Activity implements android.view.View.OnClickListe
 		View playerView = findViewById(R.id.player);
 		if (voiceNote.exists()) {
 			playerView.setVisibility(View.VISIBLE);
+			btnStop.setEnabled(false);
 			player = new VoicePlayer(voiceNote, handler);
 		} else {
 			playerView.setVisibility(View.GONE);
@@ -396,11 +433,11 @@ public class ViewNote extends Activity implements android.view.View.OnClickListe
 	}
 
 	public synchronized void stopRefresh() {
-        this.stopThread = true;
+        stopThread = true;
 	}
 	
 	public void startRefresh() {
-        this.stopThread = false;
+        stopThread = false;
      // Start lengthy operation in a background thread
         if (!threadExist){
 			new Thread(new Runnable() {
