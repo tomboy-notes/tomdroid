@@ -72,7 +72,7 @@ public class Tomdroid extends ListActivity {
 	// UI to data model glue
 	private TextView listEmptyView;
 	private ListAdapter adapter;
-	
+	private AlertDialog alertDialog;
 	// Bundle keys for saving state
 	private static final String WARNING_SHOWN = "w";
 	
@@ -89,10 +89,10 @@ public class Tomdroid extends ListActivity {
         setContentView(R.layout.main);
         
         // did we already show the warning and got destroyed by android's activity killer?
-        if (savedInstanceState == null || !savedInstanceState.getBoolean(WARNING_SHOWN)) {
-
+        if (savedInstanceState == null || !savedInstanceState.getBoolean(WARNING_SHOWN, false)) {
+        	
         	// Warn that this is a "will eat your babies" release 
-			new AlertDialog.Builder(this)
+			alertDialog = new AlertDialog.Builder(this)
 				.setMessage(getString(R.string.strWelcome))
 				.setTitle("Warning")
 				.setNeutralButton("Ok", new OnClickListener() {
@@ -177,7 +177,13 @@ public class Tomdroid extends ListActivity {
 			outState.putBoolean(WARNING_SHOWN, true);
 		}
 	}
-
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		if (alertDialog!=null)	alertDialog.dismiss();
+	}
+	
 	private void showAboutDialog() {
 		
 		// grab version info
@@ -198,7 +204,7 @@ public class Tomdroid extends ListActivity {
 				);
 		
 		// build and show the dialog
-		new AlertDialog.Builder(this)
+		alertDialog = new AlertDialog.Builder(this)
 			.setMessage(aboutDialogStr)
 			.setTitle("About Tomdroid")
 			.setIcon(R.drawable.icon)
