@@ -76,7 +76,7 @@ public class ViewNote extends Activity implements android.view.View.OnClickListe
 	// Model objects
 	private Note note;
 	private SpannableStringBuilder noteContent;
-	private static File voiceNote;
+	private static File voiceNote=null;
 	private static VoicePlayer player;
 
 	// Logging info
@@ -119,6 +119,7 @@ public class ViewNote extends Activity implements android.view.View.OnClickListe
 
 					player.goTo(msec);
 					btnPlay.setImageResource(R.drawable.playback_pause);
+					btnStop.setEnabled(true);
 				}				
 			}
 		});
@@ -180,13 +181,14 @@ public class ViewNote extends Activity implements android.view.View.OnClickListe
 	}
 	@Override
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
-		if (voiceNote!=null) {
+		if (voiceNote.exists()) {
 			View playerView = findViewById(R.id.player);
 			playerView.setVisibility(View.VISIBLE);
 			
 			// show the correct drawable on the play button
-
-			if (player.isPlaying()) btnPlay.setImageResource(R.drawable.playback_pause);
+			if (player!=null) {
+				if (player.isPlaying()) btnPlay.setImageResource(R.drawable.playback_pause);
+			}
 			else btnPlay.setImageResource(R.drawable.playback_start);
 			
 			btnStop.setEnabled(savedInstanceState.getBoolean("stop", true));
