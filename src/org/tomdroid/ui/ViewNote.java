@@ -179,6 +179,20 @@ public class ViewNote extends Activity implements android.view.View.OnClickListe
 			.show();
 		}
 	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		if (voiceNote.exists()) {
+			if (player.isPlaying()) {
+				stopRefresh();
+				player.endPlayback();
+			}
+			player.releasePlayback();
+			
+		}
+	}
+	
 	@Override
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
 		if (voiceNote.exists()) {
@@ -455,8 +469,8 @@ public class ViewNote extends Activity implements android.view.View.OnClickListe
 									seekbar.setProgress(mProgressStatus);
 								}
 							});
-							Thread.sleep(300);
-							
+							Thread.sleep(500);
+	
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
