@@ -69,7 +69,12 @@ public class NoteContentBuilder implements Runnable {
 	public SpannableStringBuilder build() {
 		
 		runner = new Thread(this);
-		runner.start();		
+		runner.start();
+		try {
+			runner.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		return noteContent;
 	}
 	

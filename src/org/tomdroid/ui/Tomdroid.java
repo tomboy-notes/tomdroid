@@ -29,6 +29,7 @@ import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
 import org.tomdroid.util.AsyncNoteLoaderAndParser;
+import org.tomdroid.util.Send;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
@@ -42,14 +43,17 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 
 public class Tomdroid extends ListActivity {
 
@@ -73,6 +77,9 @@ public class Tomdroid extends ListActivity {
 	private TextView listEmptyView;
 	private ListAdapter adapter;
 	private AlertDialog alertDialog;
+	private ListView listView;
+	
+
 	// Bundle keys for saving state
 	private static final String WARNING_SHOWN = "w";
 	
@@ -113,6 +120,8 @@ public class Tomdroid extends ListActivity {
 		// TODO default empty-list text is butt-ugly!
         listEmptyView = (TextView)findViewById(R.id.list_empty);
         getListView().setEmptyView(listEmptyView);
+        listView = (ListView)findViewById(android.R.id.list);
+        registerForContextMenu(listView);
     }
 
 	@Override
@@ -166,6 +175,40 @@ public class Tomdroid extends ListActivity {
         }
         
         return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+		MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.main_longclick, menu);
+		super.onCreateContextMenu(menu, v, menuInfo);
+	}
+
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+		long noteId=info.id;
+		Uri intentUri = Uri.parse(Tomdroid.CONTENT_URI+"/"+noteId);
+		
+		switch (item.getItemId()) {
+		case R.id.menu_send:
+			Send.sendNote(intentUri, handler, this);
+			break;
+			
+		case R.id.menu_delete:
+			Note note = NoteManager.getNote(this, intentUri);
+			File voiceNote = new File(Tomdroid.NOTES_PATH,note.getGuid()+".note.amr");
+			if (voiceNote.exists()){
+				voiceNote.delete();
+			}
+			getContentResolver().delete(Tomdroid.CONTENT_URI, Note.ID+"="+noteId, null);
+			break;
+			
+		default:
+			break;
+		}
+		return super.onContextItemSelected(item);
 	}
 
 	@Override
@@ -231,7 +274,7 @@ public class Tomdroid extends ListActivity {
 		startActivity(i);
 	}
 	
-    private Handler handler = new Handler() {
+	private Handler handler = new Handler() {
 
         @Override
         public void handleMessage(Message msg) {
