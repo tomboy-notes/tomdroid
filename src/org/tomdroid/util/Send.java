@@ -18,7 +18,7 @@ public class Send {
 		Note note = NoteManager.getNote(activity, intentUri);
 		SpannableStringBuilder content = null;
 		String body="";
-		File voiceNote = new File(Tomdroid.NOTES_PATH,note.getGuid()+".note.amr");
+		File voiceNote = new File(Tomdroid.NOTES_PATH,note.getGuid()+".note.voice");
 
 		
 		if (note!=null) {

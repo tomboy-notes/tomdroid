@@ -233,7 +233,7 @@ public class RecorderDialog extends Activity implements OnClickListener, OnChron
 
 	public void save() {
 		// put voicenote in the tomdroid's directory
-		File voiceNote = new File(Tomdroid.NOTES_PATH, noteGuid + ".note.amr");
+		File voiceNote = new File(Tomdroid.NOTES_PATH, noteGuid + ".note.voice");
 		
 		try {
 		FileInputStream fis = new FileInputStream(tempFile);

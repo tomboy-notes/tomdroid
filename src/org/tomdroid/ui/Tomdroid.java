@@ -198,7 +198,7 @@ public class Tomdroid extends ListActivity {
 			
 		case R.id.menu_delete:
 			Note note = NoteManager.getNote(this, intentUri);
-			File voiceNote = new File(Tomdroid.NOTES_PATH,note.getGuid()+".note.amr");
+			File voiceNote = new File(Tomdroid.NOTES_PATH,note.getGuid()+".note.voice");
 			if (voiceNote.exists()){
 				voiceNote.delete();
 			}
