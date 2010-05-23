@@ -165,6 +165,13 @@ public class ViewNote extends Activity {
 						 noteTitleTransformFilter);
 	}
 	
+	public void setTitle(CharSequence title){
+		super.setTitle(title);
+		// temporary setting title of actionbar until we have a better idea
+		TextView titleView = (TextView) findViewById(R.id.title);
+		titleView.setText(title);
+	}
+	
 	private Handler handler = new Handler() {
 
 		@Override
