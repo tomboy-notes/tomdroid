@@ -19,6 +19,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.Preference.OnPreferenceChangeListener;
+import android.widget.Toast;
 
 public class PreferencesActivity extends PreferenceActivity {
 	
@@ -62,6 +63,13 @@ public class PreferencesActivity extends PreferenceActivity {
 			public boolean onPreferenceChange(Preference preference,
 					Object newValue) {
 				
+				if (newValue == null) {
+					Toast.makeText(PreferencesActivity.this,
+							"sync server uri changed but the new value is null",
+							Toast.LENGTH_SHORT).show();
+					return false;
+				}
+			    
 				// update the value before doing anything
 				String server = (String)newValue;
 				Preferences.putString(Preferences.Key.SYNC_SERVER, server);
