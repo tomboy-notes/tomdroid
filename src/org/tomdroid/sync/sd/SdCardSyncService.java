@@ -65,7 +65,7 @@ public class SdCardSyncService extends SyncService {
 		path = new File(Tomdroid.NOTES_PATH);
 		
 		if (!path.exists())
-			throw new FileNotFoundException("Tomdroid notes folder doesn't exist. It is configured to be at: "+Tomdroid.NOTES_PATH);
+		    path.mkdir();
 	}
 	
 	@Override
