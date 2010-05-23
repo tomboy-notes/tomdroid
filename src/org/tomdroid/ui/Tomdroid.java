@@ -39,6 +39,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -62,7 +63,7 @@ public class Tomdroid extends ListActivity {
 	
 	// config parameters
 	// TODO hardcoded for now
-	public static final String NOTES_PATH = "/sdcard/tomdroid/";
+	public static final String NOTES_PATH = Environment.getExternalStorageDirectory() + "/tomdroid/";
 	// Logging should be disabled for release builds
 	public static final boolean LOGGING_ENABLED = false;
 	// Set this to false for release builds, the reason should be obvious
