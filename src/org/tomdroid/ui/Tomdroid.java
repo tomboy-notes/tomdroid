@@ -114,6 +114,18 @@ public class Tomdroid extends ListActivity {
 		// TODO default empty-list text is butt-ugly!
         listEmptyView = (TextView)findViewById(R.id.list_empty);
         getListView().setEmptyView(listEmptyView);
+        
+        initActionbar();
+    }
+    
+    public void initActionbar(){
+    	View syncButton = findViewById(R.id.sync);
+    	syncButton.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+		    	SyncManager.getInstance().sync();
+			}
+		});
     }
 
 	@Override
@@ -131,7 +143,6 @@ public class Tomdroid extends ListActivity {
 		// It would probably be better to disable it, but I did not find a way to do it.
 		MenuItem syncItem = menu.findItem(R.id.menuSync);
 		SyncService currentService = SyncManager.getInstance().getCurrentService();
-		
 		if (currentService.needsAuth()
 				&& !((ServiceAuth)currentService).isConfigured())
 			syncItem.setVisible(false).setEnabled(false);

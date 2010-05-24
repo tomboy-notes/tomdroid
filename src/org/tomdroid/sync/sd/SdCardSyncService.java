@@ -97,7 +97,7 @@ public class SdCardSyncService extends SyncService {
 		File[] fileList = path.listFiles(new NotesFilter());
 		
 		// If there are no notes, warn the UI through an empty message
-		if (fileList.length == 0) {
+		if (fileList == null || fileList.length == 0) {
 			if (Tomdroid.LOGGING_ENABLED) Log.i(TAG, "There are no notes in "+path);
 			sendMessage(PARSING_NO_NOTES);
 			return;
