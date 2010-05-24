@@ -1,6 +1,7 @@
 package org.tomdroid.sync.web;
 
 import java.io.UnsupportedEncodingException;
+import java.net.UnknownHostException;
 
 import oauth.signpost.OAuthConsumer;
 import oauth.signpost.OAuthProvider;
@@ -88,7 +89,7 @@ public class OAuthConnection extends WebConnection {
 		}
 	}
 	
-	public Uri getAuthorizationUrl(String server) {
+	public Uri getAuthorizationUrl(String server) throws UnknownHostException {
 		
 		String url = "";
 		
@@ -147,7 +148,7 @@ public class OAuthConnection extends WebConnection {
 		return Uri.parse(url);
 	}
 	
-	public boolean getAccess(String verifier) {
+	public boolean getAccess(String verifier) throws UnknownHostException {
 		
 		Log.i(TAG, "Verifier: "+verifier);
 		
@@ -205,7 +206,7 @@ public class OAuthConnection extends WebConnection {
 	}
 	
 	@Override
-	public String get(String uri) {
+	public String get(String uri) throws java.net.UnknownHostException {
 		
 		// Prepare a request object
 		HttpGet httpGet = new HttpGet(uri);
@@ -215,7 +216,7 @@ public class OAuthConnection extends WebConnection {
 	}
 	
 	@Override
-	public String put(String uri, String data) {
+	public String put(String uri, String data) throws UnknownHostException {
 		
 		// Prepare a request object
 		HttpPut httpPut = new HttpPut(uri);

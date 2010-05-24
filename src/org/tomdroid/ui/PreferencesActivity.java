@@ -1,5 +1,6 @@
 package org.tomdroid.ui;
 
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 import org.tomdroid.R;
@@ -80,7 +81,14 @@ public class PreferencesActivity extends PreferenceActivity {
 				// check if the service needs authentication
 				if (currentService.needsAuth()) {
 					
-					Uri authorizationUri = ((ServiceAuth)currentService).getAuthUri(server);
+					Uri authorizationUri;
+					try {
+						authorizationUri = ((ServiceAuth)currentService).getAuthUri(server);
+					} catch (UnknownHostException e) {
+						connectionFailed();
+						// Auth failed, don't update the value
+						return false;
+					}
 					
 					if (authorizationUri != null) {
 						

@@ -1,5 +1,6 @@
 package org.tomdroid.sync.web;
 
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -15,6 +16,7 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.Toast;
 
 public class SnowySyncService extends SyncService implements ServiceAuth {
 	
@@ -49,7 +51,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 		return true;
 	}
 	
-	public Uri getAuthUri(String server) {
+	public Uri getAuthUri(String server)  throws UnknownHostException {
 		
 		// Reset the authentication credentials
 		OAuthConnection auth = new OAuthConnection();
@@ -61,19 +63,25 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 		execInThread(new Runnable() {
 			
 			public void run() {
-				
-				// TODO: might be intelligent to show something like a progress dialog
-				// else the user might try to sync before the authorization process
-				// is complete
-				OAuthConnection auth = getAuthConnection();
-				boolean result = auth.getAccess(uri.getQueryParameter("oauth_verifier"));
-				
-				if (Tomdroid.LOGGING_ENABLED) {
-					if (result) {
-						Log.i(TAG, "The authorization process is complete.");
+
+				try {
+					// TODO: might be intelligent to show something like a progress dialog
+					// else the user might try to sync before the authorization process
+					// is complete
+					OAuthConnection auth = getAuthConnection();
+					boolean result = auth.getAccess(uri.getQueryParameter("oauth_verifier"));
+
+					if (Tomdroid.LOGGING_ENABLED) {
+						if (result) {
+							Log.i(TAG, "The authorization process is complete.");
+						} else
+							Log.e(TAG, "Something went wrong during the authorization process.");
 					}
-					else
-						Log.e(TAG, "Something went wrong during the authorization process.");
+				} catch (UnknownHostException e) {
+					if (Tomdroid.LOGGING_ENABLED)
+						Log.e(TAG, "Internet connection not available");
+					sendMessage(NO_INTERNET);
+					return;
 				}
 			}
 		});
@@ -94,7 +102,8 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 				OAuthConnection auth = getAuthConnection();
 				
 				try {
-					JSONObject response = new JSONObject(auth.get(userRef));
+					String rawResponse = auth.get(userRef);
+					JSONObject response = new JSONObject(rawResponse);
 					String notesUrl = response.getJSONObject("notes-ref").getString("api-ref");
 					
 					response = new JSONObject(auth.get(notesUrl));
@@ -135,7 +144,12 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 					if (Tomdroid.LOGGING_ENABLED) Log.e(TAG, "Problem parsing the server response", e1);
 					sendMessage(PARSING_FAILED);
 					return;
+				} catch (java.net.UnknownHostException e) {
+					if (Tomdroid.LOGGING_ENABLED) Log.e(TAG, "Internet connection not available");
+					sendMessage(NO_INTERNET);
+					return;
 				}
+				
 			}
 		});
 	}

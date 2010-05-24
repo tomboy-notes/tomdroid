@@ -1,6 +1,7 @@
 package org.tomdroid.sync.web;
 
 import java.io.UnsupportedEncodingException;
+import java.net.UnknownHostException;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -10,7 +11,7 @@ import org.apache.http.entity.StringEntity;
 public class AnonymousConnection extends WebConnection {
 
 	@Override
-	public String get(String uri)
+	public String get(String uri) throws UnknownHostException
 	{
 		// Prepare a request object
 		HttpGet httpGet = new HttpGet(uri);
@@ -19,7 +20,7 @@ public class AnonymousConnection extends WebConnection {
 	}
 	
 	@Override
-	public String put(String uri, String data) {
+	public String put(String uri, String data) throws UnknownHostException {
 		
 		// Prepare a request object
 		HttpPut httpPut = new HttpPut(uri);

@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.UnknownHostException;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -18,8 +19,8 @@ public abstract class WebConnection {
 	
 	private static final String TAG = "WebConnection";
 	
-	public abstract String get(String uri);
-	public abstract String put(String uri, String data);
+	public abstract String get(String uri) throws UnknownHostException;
+	public abstract String put(String uri, String data) throws UnknownHostException;
 	
 	private static String convertStreamToString(InputStream is) {
 		/*
@@ -90,7 +91,7 @@ public abstract class WebConnection {
 		return result;
 	}
 	
-	protected HttpResponse execute(HttpUriRequest request) {
+	protected HttpResponse execute(HttpUriRequest request) throws UnknownHostException {
 		
 		DefaultHttpClient httpclient = new DefaultHttpClient();
 		
@@ -99,6 +100,8 @@ public abstract class WebConnection {
 			HttpResponse response = httpclient.execute(request);
 			return response;
 			
+		}catch (UnknownHostException e){
+			throw e;
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

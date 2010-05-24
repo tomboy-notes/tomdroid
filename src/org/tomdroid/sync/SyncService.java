@@ -27,6 +27,7 @@ public abstract class SyncService {
 	public final static int PARSING_COMPLETE = 1;
 	public final static int PARSING_FAILED = 2;
 	public final static int PARSING_NO_NOTES = 3;
+	public final static int NO_INTERNET = 4;
 	
 	public SyncService(Activity activity, Handler handler) {
 		

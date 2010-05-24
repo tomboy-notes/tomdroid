@@ -65,7 +65,7 @@ public class Tomdroid extends ListActivity {
 	// TODO hardcoded for now
 	public static final String NOTES_PATH = Environment.getExternalStorageDirectory() + "/tomdroid/";
 	// Logging should be disabled for release builds
-	public static final boolean LOGGING_ENABLED = false;
+	public static final boolean LOGGING_ENABLED = true;
 	// Set this to false for release builds, the reason should be obvious
 	public static final boolean CLEAR_PREFERENCES = false;
 
@@ -279,6 +279,14 @@ public class Tomdroid extends ListActivity {
         		}
         		break;
         		
+        	case SyncService.NO_INTERNET:
+    			// TODO put string in a translatable bundle
+    			Toast.makeText(getApplicationContext(),
+    					"You are not connected to the internet.",
+    					Toast.LENGTH_SHORT)
+    					.show();
+    			break;
+
         	default:
         		if (Tomdroid.LOGGING_ENABLED) Log.i(TAG,"handler called with an unknown message");
         		break;
