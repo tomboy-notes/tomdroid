@@ -2,15 +2,23 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/dhistory_row" 
         android:layout_width="fill_parent" 
-        android:layout_height="wrap_content"
+        android:layout_height="40dip"
         android:background="#ddd"
+        android:padding="4dip"
         android:gravity="center_vertical"
-        android:orientation="vertical">
+        android:orientation="horizontal">
         <TextView 
-                        android:id="@+id/title"
-                        android:text="Tomdroid"
-                        android:layout_width="fill_parent"
-                        android:layout_height="30dip"
-                        android:layout_margin="5dip"
-                        android:textSize="22dip"/>
+             android:id="@+id/title"
+             android:text="Tomdroid"
+             android:layout_marginLeft="5dip"
+             android:layout_height="wrap_content"
+             android:layout_width="wrap_content"
+             android:textSize="25dip"/>
+        <ImageView
+             android:id="@+id/sync"
+             android:src="@drawable/icon_actionbar_sync"
+        android:gravity="center_vertical"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             />
 </LinearLayout>
