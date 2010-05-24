@@ -70,7 +70,7 @@ public class Tomdroid extends ListActivity {
 	private ListAdapter			adapter;
 
 	// UI feedback handler
-	private Handler	handler	= new SyncMessageHandler(this);
+	private Handler	syncMessageHandler	= new SyncMessageHandler(this);
 	
 	/** Called when the activity is created. */
 	@Override
@@ -79,8 +79,6 @@ public class Tomdroid extends ListActivity {
 
 		setContentView(R.layout.main);
 		Preferences.init(this, CLEAR_PREFERENCES);
-		SyncManager.setActivity(this);
-		SyncManager.setHandler(this.handler);
 
 		// did we already show the warning and got destroyed by android's activity killer?
 		if (Preferences.getBoolean(Preferences.Key.FIRST_RUN)) {
@@ -103,6 +101,13 @@ public class Tomdroid extends ListActivity {
 		// TODO default empty-list text is butt-ugly!
 		listEmptyView = (TextView) findViewById(R.id.list_empty);
 		getListView().setEmptyView(listEmptyView);
+	}
+
+	@Override
+	public void onStart(){
+		super.onStart();
+		SyncManager.setActivity(this);
+		SyncManager.setHandler(this.syncMessageHandler);
 	}
 
 	@Override

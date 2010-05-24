@@ -103,7 +103,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 				
 				try {
 					String rawResponse = auth.get(userRef);
-					setSyncProgress(20);
+					setSyncProgress(30);
 					JSONObject response = new JSONObject(rawResponse);
 					String notesUrl = response.getJSONObject("notes-ref").getString("api-ref");
 					

@@ -28,6 +28,7 @@ import java.util.regex.Pattern;
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
+import org.tomdroid.sync.SyncManager;
 import org.tomdroid.util.LinkifyPhone;
 import org.tomdroid.util.NoteContentBuilder;
 
@@ -61,6 +62,9 @@ public class ViewNote extends Activity {
 	// Logging info
 	private static final String TAG = "ViewNote";
 	
+	// UI feedback handler
+	private Handler	syncMessageHandler	= new SyncMessageHandler(this);
+
 	// TODO extract methods in here
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +88,7 @@ public class ViewNote extends Activity {
 			
 			if(note != null) {
 				
-				noteContent = note.getNoteContent(handler);
+				noteContent = note.getNoteContent(NoteContentHandler);
 				
 			} else {
 				
@@ -120,6 +124,13 @@ public class ViewNote extends Activity {
 		}
 	}
 	
+	@Override
+	public void onStart(){
+		super.onStart();
+		SyncManager.setActivity(this);
+		SyncManager.setHandler(this.syncMessageHandler);
+	}
+
 	// TODO add a menu that switches the view to an EditText instead of TextView
 	// this will need some other quit mechanism as onKeyDown though.. (but the back key might do it)
 	
@@ -132,7 +143,7 @@ public class ViewNote extends Activity {
 		
 		return true;
 	}
-
+	
 	private void showNote() {
 		setTitle(note.getTitle());
 
@@ -172,7 +183,7 @@ public class ViewNote extends Activity {
 		titleView.setText(title);
 	}
 	
-	private Handler handler = new Handler() {
+	private Handler NoteContentHandler = new Handler() {
 
 		@Override
 		public void handleMessage(Message msg) {
