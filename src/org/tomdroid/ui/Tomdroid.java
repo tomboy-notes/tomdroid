@@ -287,6 +287,10 @@ public class Tomdroid extends ListActivity {
     					.show();
     			break;
 
+        	case SyncService.SYNC_PROGRESS:
+    			Log.v(TAG, "progress: " + msg.arg1);
+        		break;	
+    			
         	default:
         		if (Tomdroid.LOGGING_ENABLED) Log.i(TAG,"handler called with an unknown message");
         		break;

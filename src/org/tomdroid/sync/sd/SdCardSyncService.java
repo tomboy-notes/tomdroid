@@ -90,7 +90,9 @@ public class SdCardSyncService extends SyncService {
 
 	@Override
 	public void sync() {
-		
+
+		setProgress(0);
+
 		// start loading local notes
         if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "Loading local notes");
 		
@@ -100,18 +102,22 @@ public class SdCardSyncService extends SyncService {
 		if (fileList == null || fileList.length == 0) {
 			if (Tomdroid.LOGGING_ENABLED) Log.i(TAG, "There are no notes in "+path);
 			sendMessage(PARSING_NO_NOTES);
+			setProgress(100);
 			return;
 		}
 		
 		// every but the last note
 		for(int i = 0; i < fileList.length-1; i++) {
+			// TODO better progress reporting from within the workers
 			
 			// give a filename to a thread and ask to parse it
 			execInThread(new Worker(fileList[i], false));
         }
+		setProgress(80);
 		
 		// last task, warn it so it'll warn UI when done
 		execInThread(new Worker(fileList[fileList.length-1], true));
+		setProgress(100);
 	}
 	
 	/**
@@ -143,7 +149,6 @@ public class SdCardSyncService extends SyncService {
 		}
 
 		public void run() {
-			
 			note.setFileName(file.getAbsolutePath());
 			// the note guid is not stored in the xml but in the filename
 			note.setGuid(file.getName().replace(".note", ""));
@@ -157,7 +162,7 @@ public class SdCardSyncService extends SyncService {
 		
 		        // Get the XMLReader of the SAXParser we created
 		        XMLReader xr = sp.getXMLReader();
-		        
+    
 		        // Create a new ContentHandler, send it this note to fill and apply it to the XML-Reader
 		        NoteHandler xmlHandler = new NoteHandler(note);
 		        xr.setContentHandler(xmlHandler);
@@ -169,7 +174,7 @@ public class SdCardSyncService extends SyncService {
 		        
 				if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "parsing note");
 				xr.parse(is);
-			
+
 			// TODO wrap and throw a new exception here
 			} catch (ParserConfigurationException e) {
 				e.printStackTrace();
@@ -181,6 +186,7 @@ public class SdCardSyncService extends SyncService {
 				e.printStackTrace();
 				if (Tomdroid.LOGGING_ENABLED) Log.e(TAG, "Problem parsing the note's date and time");
 				sendMessage(PARSING_FAILED);
+				setProgress(100);
 				return;
 			}
 

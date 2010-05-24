@@ -11,6 +11,7 @@ import org.tomdroid.ui.Tomdroid;
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 
 public abstract class SyncService {
@@ -28,6 +29,7 @@ public abstract class SyncService {
 	public final static int PARSING_FAILED = 2;
 	public final static int PARSING_NO_NOTES = 3;
 	public final static int NO_INTERNET = 4;
+	public final static int SYNC_PROGRESS = 5;
 	
 	public SyncService(Activity activity, Handler handler) {
 		
@@ -118,11 +120,24 @@ public abstract class SyncService {
 	/**
 	 * Send a message to the main UI.
 	 * 
-	 * @param message The message id to send, the PARSING_* attributes can be used.
+	 * @param message The message id to send, the PARSING_* or NO_INTERNET attributes can be used.
 	 */
 	
 	protected void sendMessage(int message) {
 		
 		handler.sendEmptyMessage(message);
+	}
+	
+	/**
+	 * Update the synchronization progress
+	 * 
+	 * @param progress 
+	 */
+	
+	protected void setProgress(int progress) {
+		Message progressMessage = new Message();
+		progressMessage.what = SYNC_PROGRESS;
+		progressMessage.arg1 = progress;
+		handler.sendMessage(progressMessage);
 	}
 }
