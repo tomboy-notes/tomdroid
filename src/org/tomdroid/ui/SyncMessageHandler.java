@@ -14,6 +14,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
 import android.widget.Toast;
 
@@ -93,18 +94,12 @@ public class SyncMessageHandler extends Handler {
 	private void handleSyncProgress(Message msg) {
 		View syncButton = ((Activity) activity).findViewById(R.id.sync);
 
-		if (msg.arg1 < 20)
-			msg.arg1 = 20;
-
-		if (msg.arg2 < 20)
-			msg.arg2 = 20;
-
-		ScaleAnimation scaling = new ScaleAnimation(msg.arg2 / 100f, msg.arg1 / 100f,
-				msg.arg2 / 100f, msg.arg1 / 100f, Animation.RELATIVE_TO_SELF, 0.5f,
+		RotateAnimation rotation = new RotateAnimation(180 * msg.arg2 / 100f,
+				180 * msg.arg1 / 100f, Animation.RELATIVE_TO_SELF, 0.5f,
 				Animation.RELATIVE_TO_SELF, 0.5f);
-		scaling.setDuration(300);
-		scaling.setFillAfter(true);
-		syncButton.startAnimation(scaling);
+		rotation.setDuration(700);
+		rotation.setFillAfter(true);
+		syncButton.startAnimation(rotation);
 		if (Tomdroid.LOGGING_ENABLED)
 			Log.v(TAG, "progress: " + msg.arg1 + " old " + msg.arg2);
 
