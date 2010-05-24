@@ -91,7 +91,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 	public void sync() {
 		
 		// start loading snowy notes
-		setProgress(0);
+		setSyncProgress(0);
 		if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "Loading Snowy notes");
 		
 		final String userRef = Preferences.getString(Preferences.Key.SYNC_SERVER_USER_API);
@@ -99,29 +99,27 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 		execInThread(new Runnable() {
 			
 			public void run() {
-				setProgress(0);
 				OAuthConnection auth = getAuthConnection();
-				setProgress(5);
 				
 				try {
 					String rawResponse = auth.get(userRef);
-					setProgress(10);
+					setSyncProgress(20);
 					JSONObject response = new JSONObject(rawResponse);
 					String notesUrl = response.getJSONObject("notes-ref").getString("api-ref");
 					
 					response = new JSONObject(auth.get(notesUrl));
 					
 					long latestSyncRevision = (Long)Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION);
-					setProgress(15);
+					setSyncProgress(35);
 					
 					if (response.getLong("latest-sync-revision") < latestSyncRevision) {
-						setProgress(100);
+						setSyncProgress(100);
 						return;
 					}
 					
 					response = new JSONObject(auth.get(notesUrl + "?include_notes=true"));
 					JSONArray notes = response.getJSONArray("notes");
-					setProgress(20);
+					setSyncProgress(60);
 					
 					// Delete the notes that are not in the database
 					ArrayList<String> remoteGuids = new ArrayList<String>();
@@ -131,7 +129,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 					}
 
 					deleteNotes(remoteGuids);
-					setProgress(50);
+					setSyncProgress(70);
 					
 					// Insert or update the rest of the notes
 					for (int i = 0; i < notes.length() - 1; i++) {
@@ -139,22 +137,24 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						JSONObject jsonNote = notes.getJSONObject(i);
 						insertNote(new Note(jsonNote), false);
 					}
-					setProgress(90);
+					setSyncProgress(90);
 					
 					JSONObject jsonNote = notes.getJSONObject(notes.length() - 1);
 					insertNote(new Note(jsonNote), true);
 
 					Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, response
 							.getLong("latest-sync-revision"));
-					setProgress(100);
+					setSyncProgress(100);
 					
 				} catch (JSONException e1) {
 					if (Tomdroid.LOGGING_ENABLED) Log.e(TAG, "Problem parsing the server response", e1);
 					sendMessage(PARSING_FAILED);
+					setSyncProgress(100);
 					return;
 				} catch (java.net.UnknownHostException e) {
 					if (Tomdroid.LOGGING_ENABLED) Log.e(TAG, "Internet connection not available");
 					sendMessage(NO_INTERNET);
+					setSyncProgress(100);
 					return;
 				}
 			}

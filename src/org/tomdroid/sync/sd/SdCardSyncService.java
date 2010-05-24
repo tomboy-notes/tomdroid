@@ -91,7 +91,7 @@ public class SdCardSyncService extends SyncService {
 	@Override
 	public void sync() {
 
-		setProgress(0);
+		setSyncProgress(0);
 
 		// start loading local notes
         if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "Loading local notes");
@@ -102,7 +102,7 @@ public class SdCardSyncService extends SyncService {
 		if (fileList == null || fileList.length == 0) {
 			if (Tomdroid.LOGGING_ENABLED) Log.i(TAG, "There are no notes in "+path);
 			sendMessage(PARSING_NO_NOTES);
-			setProgress(100);
+			setSyncProgress(100);
 			return;
 		}
 		
@@ -113,11 +113,11 @@ public class SdCardSyncService extends SyncService {
 			// give a filename to a thread and ask to parse it
 			execInThread(new Worker(fileList[i], false));
         }
-		setProgress(80);
+		setSyncProgress(80);
 		
 		// last task, warn it so it'll warn UI when done
 		execInThread(new Worker(fileList[fileList.length-1], true));
-		setProgress(100);
+		setSyncProgress(100);
 	}
 	
 	/**
@@ -186,7 +186,7 @@ public class SdCardSyncService extends SyncService {
 				e.printStackTrace();
 				if (Tomdroid.LOGGING_ENABLED) Log.e(TAG, "Problem parsing the note's date and time");
 				sendMessage(PARSING_FAILED);
-				setProgress(100);
+				setSyncProgress(100);
 				return;
 			}
 
