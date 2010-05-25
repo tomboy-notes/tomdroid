@@ -13,9 +13,12 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class SyncMessageHandler extends Handler {
@@ -92,7 +95,7 @@ public class SyncMessageHandler extends Handler {
 	}
 
 	private void handleSyncProgress(Message msg) {
-		View syncButton = ((Activity) activity).findViewById(R.id.sync);
+		ImageView syncButton = (ImageView) activity.findViewById(R.id.sync);
 
 		RotateAnimation rotation = new RotateAnimation(180 * msg.arg2 / 100f,
 				180 * msg.arg1 / 100f, Animation.RELATIVE_TO_SELF, 0.5f,
@@ -100,13 +103,15 @@ public class SyncMessageHandler extends Handler {
 		rotation.setDuration(700);
 		rotation.setFillAfter(true);
 		syncButton.startAnimation(rotation);
-		if (Tomdroid.LOGGING_ENABLED)
-			Log.v(TAG, "progress: " + msg.arg1 + " old " + msg.arg2);
 
-		if (msg.arg1 != 100)
+		if (msg.arg1 != 100) {
 			syncButton.setClickable(false);
-		else
+			syncButton.getDrawable().setAlpha(40);
+		}
+		if (msg.arg1 == 100) {
 			syncButton.setClickable(true);
+			syncButton.getDrawable().setAlpha(Actionbar.DEFAULT_ICON_ALPHA);
+		}
 	}
 
 }

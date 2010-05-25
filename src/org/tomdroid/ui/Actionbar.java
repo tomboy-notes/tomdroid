@@ -6,9 +6,12 @@ import org.tomdroid.sync.SyncManager;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 public class Actionbar extends RelativeLayout {
+
+	public static final int	DEFAULT_ICON_ALPHA	=200;
 
 	public Actionbar(Context context
 			, AttributeSet attrs) {
@@ -30,7 +33,8 @@ public class Actionbar extends RelativeLayout {
 	}
 	
 	private void setupSyncButton(){
-		final View syncButton = findViewById(R.id.sync);
+		final ImageView syncButton = (ImageView) findViewById(R.id.sync);
+		syncButton.getDrawable().setAlpha(Actionbar.DEFAULT_ICON_ALPHA);
 		syncButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
