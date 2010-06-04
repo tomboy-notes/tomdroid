@@ -16,6 +16,18 @@
              android:textSize="25dip"
              />
         <ImageView
+             android:id="@+id/sync_dot"
+             android:src="@drawable/icon_actionbar_dot"
+             android:layout_alignParentRight="true"
+             android:gravity="center_horizontal"
+             android:layout_centerVertical="true"
+             android:paddingTop="3dip"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:visibility="invisible"
+             android:clickable="true"
+             />
+        <ImageView
              android:id="@+id/sync"
              android:src="@drawable/icon_actionbar_sync"
              android:layout_alignParentRight="true"

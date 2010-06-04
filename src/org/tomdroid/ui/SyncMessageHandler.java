@@ -6,18 +6,15 @@ import org.tomdroid.sync.SyncService;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
 import android.view.animation.RotateAnimation;
-import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -29,8 +26,8 @@ public class SyncMessageHandler extends Handler {
 	// State variables
 	private boolean				parsingErrorShown	= false;
 	
-	public SyncMessageHandler(Activity context) {
-		this.activity = context;
+	public SyncMessageHandler(Activity activity) {
+		this.activity = activity;
 	}
 
 	@Override
@@ -104,13 +101,22 @@ public class SyncMessageHandler extends Handler {
 		rotation.setFillAfter(true);
 		syncButton.startAnimation(rotation);
 
-		if (msg.arg1 != 100) {
+		if (msg.arg1 == 0) {
 			syncButton.setClickable(false);
 			syncButton.getDrawable().setAlpha(40);
+			
+			Animation pulse = AnimationUtils.loadAnimation(activity, R.anim.pulse);
+			View dot = activity.findViewById(R.id.sync_dot);
+			dot.setVisibility(View.VISIBLE);
+			dot.startAnimation(pulse);
 		}
 		if (msg.arg1 == 100) {
 			syncButton.setClickable(true);
 			syncButton.getDrawable().setAlpha(Actionbar.DEFAULT_ICON_ALPHA);
+
+			View dot = activity.findViewById(R.id.sync_dot);
+			dot.setVisibility(View.INVISIBLE);
+			dot.getAnimation().setRepeatCount(0);
 		}
 	}
 
