@@ -52,6 +52,7 @@ import android.util.TimeFormatException;
 public class SdCardSyncService extends SyncService {
 	
 	private File path;
+	private int	numberOfFilesToSync = 0;
 	
 	// regexp for <note-content..>...</note-content>
 	private static Pattern note_content = Pattern.compile("<note-content.*>(.*)<\\/note-content>", Pattern.CASE_INSENSITIVE+Pattern.DOTALL);
@@ -97,6 +98,7 @@ public class SdCardSyncService extends SyncService {
         if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "Loading local notes");
 		
 		File[] fileList = path.listFiles(new NotesFilter());
+		numberOfFilesToSync  = fileList.length;
 		
 		// If there are no notes, warn the UI through an empty message
 		if (fileList == null || fileList.length == 0) {
@@ -113,11 +115,9 @@ public class SdCardSyncService extends SyncService {
 			// give a filename to a thread and ask to parse it
 			execInThread(new Worker(fileList[i], false));
         }
-		setSyncProgress(80);
 		
 		// last task, warn it so it'll warn UI when done
 		execInThread(new Worker(fileList[fileList.length-1], true));
-		setSyncProgress(100);
 	}
 	
 	/**
@@ -186,7 +186,7 @@ public class SdCardSyncService extends SyncService {
 				e.printStackTrace();
 				if (Tomdroid.LOGGING_ENABLED) Log.e(TAG, "Problem parsing the note's date and time");
 				sendMessage(PARSING_FAILED);
-				setSyncProgress(100);
+				onWorkDone();
 				return;
 			}
 
@@ -221,6 +221,13 @@ public class SdCardSyncService extends SyncService {
 			}
 			
 			insertNote(note, isLast);
+			onWorkDone();
+		}
+		
+		private void onWorkDone(){
+			if (isLast) setSyncProgress(100);
+			else
+				setSyncProgress((int) (getSyncProgress() + 100.0 / numberOfFilesToSync));			
 		}
 	}
 }

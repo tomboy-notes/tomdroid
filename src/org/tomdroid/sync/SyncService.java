@@ -23,7 +23,7 @@ public abstract class SyncService {
 	private final static int poolSize = 1;
 	
 	private Handler handler;
-	private int mSyncProgress = 100;
+	private int syncProgress = 100;
 	
 	// handler messages
 	public final static int PARSING_COMPLETE = 1;
@@ -136,12 +136,21 @@ public abstract class SyncService {
 	 */
 	
 	protected void setSyncProgress(int progress) {
-		Message progressMessage = new Message();
-		progressMessage.what = SYNC_PROGRESS;
-		progressMessage.arg1 = progress;
-		progressMessage.arg2 = mSyncProgress;
-		
-		handler.sendMessage(progressMessage);
-		mSyncProgress = progress;
+		synchronized (TAG) {
+			Log.v(TAG, "sync progress: " + progress);
+			Message progressMessage = new Message();
+			progressMessage.what = SYNC_PROGRESS;
+			progressMessage.arg1 = progress;
+			progressMessage.arg2 = syncProgress;
+
+			handler.sendMessage(progressMessage);
+			syncProgress = progress;
+		}
+	}
+	
+	protected int getSyncProgress(){
+		synchronized (TAG) {
+			return syncProgress;
+		}
 	}
 }
