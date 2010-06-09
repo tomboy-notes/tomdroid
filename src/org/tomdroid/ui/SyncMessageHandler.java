@@ -102,22 +102,33 @@ public class SyncMessageHandler extends Handler {
 		syncButton.startAnimation(rotation);
 
 		if (msg.arg1 == 0) {
-			syncButton.setClickable(false);
-			syncButton.getDrawable().setAlpha(40);
-			
-			Animation pulse = AnimationUtils.loadAnimation(activity, R.anim.pulse);
-			View dot = activity.findViewById(R.id.sync_dot);
-			dot.setVisibility(View.VISIBLE);
-			dot.startAnimation(pulse);
+			onSynchronizationStarted();
+		} else if (msg.arg1 == 100) {
+			onSynchronizationDone();
 		}
-		if (msg.arg1 == 100) {
-			syncButton.setClickable(true);
-			syncButton.getDrawable().setAlpha(Actionbar.DEFAULT_ICON_ALPHA);
+	}
 
-			View dot = activity.findViewById(R.id.sync_dot);
-			dot.setVisibility(View.INVISIBLE);
-			dot.getAnimation().setRepeatCount(0);
-		}
+	private void onSynchronizationDone() {
+		ImageView syncButton = (ImageView) activity.findViewById(R.id.sync);
+
+		syncButton.setClickable(true);
+		syncButton.getDrawable().setAlpha(Actionbar.DEFAULT_ICON_ALPHA);
+
+		View dot = activity.findViewById(R.id.sync_dot);
+		dot.setVisibility(View.INVISIBLE);
+		dot.getAnimation().setRepeatCount(0);
+	}
+
+	private void onSynchronizationStarted() {
+		ImageView syncButton = (ImageView) activity.findViewById(R.id.sync);
+
+		syncButton.setClickable(false);
+		syncButton.getDrawable().setAlpha(40);
+		
+		Animation pulse = AnimationUtils.loadAnimation(activity, R.anim.pulse);
+		View dot = activity.findViewById(R.id.sync_dot);
+		dot.setVisibility(View.VISIBLE);
+		dot.startAnimation(pulse);
 	}
 
 }
