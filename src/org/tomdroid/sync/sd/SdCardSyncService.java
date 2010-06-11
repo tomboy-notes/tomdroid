@@ -90,7 +90,7 @@ public class SdCardSyncService extends SyncService {
 	}
 
 	@Override
-	public void sync() {
+	protected void sync() {
 
 		setSyncProgress(0);
 

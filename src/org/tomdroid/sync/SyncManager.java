@@ -35,10 +35,10 @@ public class SyncManager {
 		return null;
 	}
 	
-	public void sync() {
+	public void startSynchronization() {
 		
 		SyncService service = getCurrentService();
-		service.sync();
+		service.startSynchronization();
 	}
 	
 	public SyncService getCurrentService() {

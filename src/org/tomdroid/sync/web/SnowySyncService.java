@@ -88,7 +88,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 	}
 
 	@Override
-	public void sync() {
+	protected void sync() {
 		
 		// start loading snowy notes
 		setSyncProgress(0);

@@ -29,18 +29,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.ScaleAnimation;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class Tomdroid extends ListActivity {
 
@@ -130,7 +126,7 @@ public class Tomdroid extends ListActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.menuSync:
-				SyncManager.getInstance().sync();
+				SyncManager.getInstance().startSynchronization();
 				return true;
 
 			case R.id.menuAbout:

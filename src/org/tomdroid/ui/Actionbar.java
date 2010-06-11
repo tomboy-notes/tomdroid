@@ -38,7 +38,7 @@ public class Actionbar extends RelativeLayout {
 		syncButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
-				SyncManager.getInstance().sync();
+				SyncManager.getInstance().startSynchronization();
 			}
 		});
 	}

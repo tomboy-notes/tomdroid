@@ -1,6 +1,7 @@
 package org.tomdroid.sync;
 
 import java.util.ArrayList;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -13,6 +14,7 @@ import android.database.Cursor;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.widget.Toast;
 
 public abstract class SyncService {
 	
@@ -38,8 +40,17 @@ public abstract class SyncService {
 		this.handler = handler;
 		pool = Executors.newFixedThreadPool(poolSize);
 	}
+
+	 public void startSynchronization(){
+			if (syncProgress != 100){
+				Toast.makeText(activity, "Sync already in prgress", Toast.LENGTH_SHORT).show();
+				return;
+			}
+			
+			sync();
+		}
 	
-	public abstract void sync();
+	protected abstract void sync();
 	public abstract boolean needsServer();
 	public abstract boolean needsAuth();
 	
