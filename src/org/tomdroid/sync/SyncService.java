@@ -164,4 +164,8 @@ public abstract class SyncService {
 			return syncProgress;
 		}
 	}
+
+	public boolean isSyncable() {
+		return getSyncProgress() == 100;
+	}
 }

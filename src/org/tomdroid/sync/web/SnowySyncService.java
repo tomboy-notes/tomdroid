@@ -86,6 +86,12 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 			}
 		});
 	}
+	
+	@Override
+	public boolean isSyncable(){
+		 return super.isSyncable() && isConfigured();
+	}
+	
 
 	@Override
 	protected void sync() {

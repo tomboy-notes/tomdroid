@@ -114,10 +114,10 @@ public class Tomdroid extends ListActivity {
 		// It would probably be better to disable it, but I did not find a way to do it.
 		MenuItem syncItem = menu.findItem(R.id.menuSync);
 		SyncService currentService = SyncManager.getInstance().getCurrentService();
-		if (currentService.needsAuth() && !((ServiceAuth) currentService).isConfigured())
-			syncItem.setVisible(false).setEnabled(false);
+		if (currentService.isSyncable())
+			syncItem.setEnabled(true);
 		else
-			syncItem.setVisible(true).setEnabled(true);
+			syncItem.setEnabled(false);
 
 		return super.onPrepareOptionsMenu(menu);
 	}
