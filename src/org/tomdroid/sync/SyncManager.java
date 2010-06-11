@@ -17,16 +17,9 @@ public class SyncManager {
 	private ArrayList<SyncService> services = new ArrayList<SyncService>();
 	
 	public SyncManager() {
-		services.add(new SnowySyncService(activity, handler));
-		
-		try {
-			services.add(new SdCardSyncService(activity, handler));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		createServices();
 	}
-	
+
 	public ArrayList<SyncService> getServices() {
 		return services;
 	}
@@ -68,9 +61,24 @@ public class SyncManager {
 	
 	public static void setActivity(Activity a) {
 		activity = a;
+		getInstance().createServices();
 	}
 	
 	public static void setHandler(Handler h) {
 		handler = h;
+		getInstance().createServices();
+	}
+
+	private void createServices() {
+		services.clear();
+		
+		services.add(new SnowySyncService(activity, handler));
+		
+		try {
+			services.add(new SdCardSyncService(activity, handler));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

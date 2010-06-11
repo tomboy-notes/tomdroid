@@ -32,6 +32,7 @@ public class SyncMessageHandler extends Handler {
 
 	@Override
 	public void handleMessage(Message msg) {
+		if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "handling message for " + activity.getClass().getCanonicalName());
 
 		switch (msg.what) {
 			case SyncService.PARSING_COMPLETE:

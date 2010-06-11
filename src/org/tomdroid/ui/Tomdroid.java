@@ -104,13 +104,6 @@ public class Tomdroid extends ListActivity {
 	}
 
 	@Override
-	public void onStart(){
-		super.onStart();
-		SyncManager.setActivity(this);
-		SyncManager.setHandler(this.syncMessageHandler);
-	}
-
-	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
 		// Create the menu based on what is defined in res/menu/main.xml
@@ -169,6 +162,9 @@ public class Tomdroid extends ListActivity {
 				}
 			}
 		}
+		
+		SyncManager.setActivity(this);
+		SyncManager.setHandler(this.syncMessageHandler);
 	}
 
 	private void showAboutDialog() {
