@@ -54,7 +54,7 @@ public class Tomdroid extends ListActivity {
 	public static final String	NOTES_PATH			= Environment.getExternalStorageDirectory()
 															+ "/tomdroid/";
 	// Logging should be disabled for release builds
-	public static final boolean	LOGGING_ENABLED		= true;
+	public static final boolean	LOGGING_ENABLED		= false;
 	// Set this to false for release builds, the reason should be obvious
 	public static final boolean	CLEAR_PREFERENCES	= false;
 
