@@ -109,26 +109,8 @@ public class Tomdroid extends ListActivity {
 	}
 
 	@Override
-	public boolean onPrepareOptionsMenu(Menu menu) {
-		// Check if the syncing setup has been done. If not, hide the menu item.
-		// It would probably be better to disable it, but I did not find a way to do it.
-		MenuItem syncItem = menu.findItem(R.id.menuSync);
-		SyncService currentService = SyncManager.getInstance().getCurrentService();
-		if (currentService.isSyncable())
-			syncItem.setEnabled(true);
-		else
-			syncItem.setEnabled(false);
-
-		return super.onPrepareOptionsMenu(menu);
-	}
-
-	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-			case R.id.menuSync:
-				SyncManager.getInstance().startSynchronization();
-				return true;
-
 			case R.id.menuAbout:
 				showAboutDialog();
 				return true;

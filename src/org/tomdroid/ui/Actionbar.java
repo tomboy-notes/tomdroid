@@ -41,6 +41,16 @@ public class Actionbar extends RelativeLayout {
 				SyncManager.getInstance().startSynchronization();
 			}
 		});
+		syncButton.setOnFocusChangeListener(new OnFocusChangeListener() {
+			
+			public void onFocusChange(View v, boolean hasFocus) {
+				if (hasFocus)
+					findViewById(R.id.sync_dot).setVisibility(VISIBLE);
+				else 
+					findViewById(R.id.sync_dot).setVisibility(INVISIBLE);
+				 
+			}
+		});
 	}
 	
 }
