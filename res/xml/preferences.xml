@@ -3,12 +3,12 @@
 	
 	<PreferenceCategory android:title="@string/prefSync">
 		
-		<ListPreference android:title="@string/prefSyncService"
-						android:dialogTitle="Choose the sync service to use"
-						android:key="sync_service"/>
+		<ListPreference android:title="@string/prefSyncMethod"
+						android:dialogTitle="Choose the sync method to use"
+						android:key="sync_method"/>
 						
-		<EditTextPreference android:key="sync_server"
-							android:title="@string/prefSyncServer"
+		<EditTextPreference android:key="sync_server_uri"
+							android:title="@string/prefSyncServerUri"
 							android:positiveButtonText="@string/prefAuthenticate"
 							android:shouldDisableView="true"/>
 	</PreferenceCategory>

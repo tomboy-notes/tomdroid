@@ -43,7 +43,7 @@ public class SyncManager {
 	
 	public SyncService getCurrentService() {
 		
-		String serviceName = Preferences.getString(Preferences.Key.SYNC_SERVICE);
+		String serviceName = Preferences.getString(Preferences.Key.SYNC_METHOD);
 		return getService(serviceName);
 	}
 	

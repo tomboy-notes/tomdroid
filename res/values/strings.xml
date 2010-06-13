@@ -63,8 +63,8 @@
 
 	<string name="prefSync">Synchronization</string>
 
-	<string name="prefSyncService">Service</string>
-	<string name="prefSyncServer">Server</string>
+	<string name="prefSyncMethod">Sync Method</string>
+	<string name="prefSyncServerUri">Sync Server Server</string>
 	<string name="prefAuthenticate">Authenticate</string>
 
 	<string name="prefSyncConnectionFailed">The connection to the server has failed, please check that the address you entered is correct.</string>

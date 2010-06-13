@@ -37,8 +37,8 @@ public class PreferencesActivity extends PreferenceActivity {
 		addPreferencesFromResource(R.xml.preferences);
 		
 		// Fill the Preferences fields
-		syncServer = (EditTextPreference)findPreference(Preferences.Key.SYNC_SERVER.getName());
-		syncService = (ListPreference)findPreference(Preferences.Key.SYNC_SERVICE.getName());
+		syncServer = (EditTextPreference)findPreference(Preferences.Key.SYNC_SERVER_URI.getName());
+		syncService = (ListPreference)findPreference(Preferences.Key.SYNC_METHOD.getName());
 		
 		// Set the default values if nothing exists
 		this.setDefaults();
@@ -73,7 +73,7 @@ public class PreferencesActivity extends PreferenceActivity {
 			    
 				// update the value before doing anything
 				String server = (String)newValue;
-				Preferences.putString(Preferences.Key.SYNC_SERVER, server);
+				Preferences.putString(Preferences.Key.SYNC_SERVER_URI, server);
 				
 				// get the current service
 				SyncService currentService = SyncManager.getInstance().getCurrentService();
@@ -126,12 +126,12 @@ public class PreferencesActivity extends PreferenceActivity {
 	
 	private void setDefaults()
 	{
-		String defaultServer = (String)Preferences.Key.SYNC_SERVER.getDefault();
+		String defaultServer = (String)Preferences.Key.SYNC_SERVER_URI.getDefault();
 		syncServer.setDefaultValue(defaultServer);
 		if(syncServer.getText() == null)
 			syncServer.setText(defaultServer);
 		
-		String defaultService = (String)Preferences.Key.SYNC_SERVICE.getDefault();
+		String defaultService = (String)Preferences.Key.SYNC_METHOD.getDefault();
 		syncService.setDefaultValue(defaultService);
 		if(syncService.getValue() == null)
 			syncService.setValue(defaultService);
