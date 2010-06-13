@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import org.tomdroid.sync.sd.SdCardSyncService;
-import org.tomdroid.sync.web.SnowySyncService;
+import org.tomdroid.sync.web.SnowySyncMethod;
 import org.tomdroid.util.Preferences;
 
 import android.app.Activity;
@@ -14,22 +14,22 @@ public class SyncManager {
 	
 	private static final String TAG = "SyncManager";
 	
-	private ArrayList<SyncService> services = new ArrayList<SyncService>();
+	private ArrayList<SyncMethod> syncMethods = new ArrayList<SyncMethod>();
 	
 	public SyncManager() {
-		createServices();
+		createSyncMethods();
 	}
 
-	public ArrayList<SyncService> getServices() {
-		return services;
+	public ArrayList<SyncMethod> getSyncMethods() {
+		return syncMethods;
 	}
 	
-	public SyncService getService(String name) {
+	public SyncMethod getSyncMethod(String name) {
 		
-		for (int i = 0; i < services.size(); i++) {
-			SyncService service = services.get(i);
-			if (name.equals(service.getName()))
-				return service;
+		for (int i = 0; i < syncMethods.size(); i++) {
+			SyncMethod method = syncMethods.get(i);
+			if (name.equals(method.getName()))
+				return method;
 		}
 		
 		return null;
@@ -37,14 +37,14 @@ public class SyncManager {
 	
 	public void startSynchronization() {
 		
-		SyncService service = getCurrentService();
-		service.startSynchronization();
+		SyncMethod method = getCurrentSyncMethod();
+		method.startSynchronization();
 	}
 	
-	public SyncService getCurrentService() {
+	public SyncMethod getCurrentSyncMethod() {
 		
-		String serviceName = Preferences.getString(Preferences.Key.SYNC_METHOD);
-		return getService(serviceName);
+		String syncMethodName = Preferences.getString(Preferences.Key.SYNC_METHOD);
+		return getSyncMethod(syncMethodName);
 	}
 	
 	private static SyncManager instance = null;
@@ -61,21 +61,21 @@ public class SyncManager {
 	
 	public static void setActivity(Activity a) {
 		activity = a;
-		getInstance().createServices();
+		getInstance().createSyncMethods();
 	}
 	
 	public static void setHandler(Handler h) {
 		handler = h;
-		getInstance().createServices();
+		getInstance().createSyncMethods();
 	}
 
-	private void createServices() {
-		services.clear();
+	private void createSyncMethods() {
+		syncMethods.clear();
 		
-		services.add(new SnowySyncService(activity, handler));
+		syncMethods.add(new SnowySyncMethod(activity, handler));
 		
 		try {
-			services.add(new SdCardSyncService(activity, handler));
+			syncMethods.add(new SdCardSyncService(activity, handler));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

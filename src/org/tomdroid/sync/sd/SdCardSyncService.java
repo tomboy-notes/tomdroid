@@ -38,7 +38,7 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import org.tomdroid.Note;
-import org.tomdroid.sync.SyncService;
+import org.tomdroid.sync.SyncMethod;
 import org.tomdroid.ui.Tomdroid;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -49,7 +49,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.util.TimeFormatException;
 
-public class SdCardSyncService extends SyncService {
+public class SdCardSyncService extends SyncMethod {
 	
 	private File path;
 	private int	numberOfFilesToSync = 0;

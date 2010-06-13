@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import org.tomdroid.R;
 import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncManager;
-import org.tomdroid.sync.SyncService;
+import org.tomdroid.sync.SyncMethod;
 import org.tomdroid.util.Preferences;
 
 import android.app.AlertDialog;
@@ -27,8 +27,8 @@ public class PreferencesActivity extends PreferenceActivity {
 	private static final String TAG = "PreferencesActivity";
 	
 	// TODO: put the various preferences in fields and figure out what to do on activity suspend/resume
-	private EditTextPreference syncServer = null;
-	private ListPreference syncService = null;
+	private EditTextPreference syncServerUriPreference = null;
+	private ListPreference syncMethodPreference = null;	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +37,8 @@ public class PreferencesActivity extends PreferenceActivity {
 		addPreferencesFromResource(R.xml.preferences);
 		
 		// Fill the Preferences fields
-		syncServer = (EditTextPreference)findPreference(Preferences.Key.SYNC_SERVER_URI.getName());
-		syncService = (ListPreference)findPreference(Preferences.Key.SYNC_METHOD.getName());
+		syncServerUriPreference = (EditTextPreference)findPreference(Preferences.Key.SYNC_SERVER_URI.getName());
+		syncMethodPreference = (ListPreference)findPreference(Preferences.Key.SYNC_METHOD.getName());
 		
 		// Set the default values if nothing exists
 		this.setDefaults();
@@ -47,9 +47,9 @@ public class PreferencesActivity extends PreferenceActivity {
 		this.fillServices();
 		
 		// Enable or disable the server field depending on the selected sync service
-		setServer(syncService.getValue());
+		setServer(syncMethodPreference.getValue());
 		
-		syncService.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+		syncMethodPreference.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 			
 			public boolean onPreferenceChange(Preference preference, Object newValue) {
 				
@@ -59,7 +59,7 @@ public class PreferencesActivity extends PreferenceActivity {
 		});
 		
 		// Re-authenticate if the sync server changes
-		syncServer.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+		syncServerUriPreference.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 
 			public boolean onPreferenceChange(Preference preference,
 					Object newValue) {
@@ -76,7 +76,7 @@ public class PreferencesActivity extends PreferenceActivity {
 				Preferences.putString(Preferences.Key.SYNC_SERVER_URI, server);
 				
 				// get the current service
-				SyncService currentService = SyncManager.getInstance().getCurrentService();
+				SyncMethod currentService = SyncManager.getInstance().getCurrentSyncMethod();
 				
 				// check if the service needs authentication
 				if (currentService.needsAuth()) {
@@ -111,7 +111,7 @@ public class PreferencesActivity extends PreferenceActivity {
 	
 	private void fillServices()
 	{
-		ArrayList<SyncService> availableServices = SyncManager.getInstance().getServices();
+		ArrayList<SyncMethod> availableServices = SyncManager.getInstance().getSyncMethods();
 		CharSequence[] entries = new CharSequence[availableServices.size()];
 		CharSequence[] entryValues = new CharSequence[availableServices.size()];
 		
@@ -120,30 +120,30 @@ public class PreferencesActivity extends PreferenceActivity {
 			entryValues[i] = availableServices.get(i).getName();
 		}
 		
-		syncService.setEntries(entries);
-		syncService.setEntryValues(entryValues);
+		syncMethodPreference.setEntries(entries);
+		syncMethodPreference.setEntryValues(entryValues);
 	}
 	
 	private void setDefaults()
 	{
 		String defaultServer = (String)Preferences.Key.SYNC_SERVER_URI.getDefault();
-		syncServer.setDefaultValue(defaultServer);
-		if(syncServer.getText() == null)
-			syncServer.setText(defaultServer);
+		syncServerUriPreference.setDefaultValue(defaultServer);
+		if(syncServerUriPreference.getText() == null)
+			syncServerUriPreference.setText(defaultServer);
 		
 		String defaultService = (String)Preferences.Key.SYNC_METHOD.getDefault();
-		syncService.setDefaultValue(defaultService);
-		if(syncService.getValue() == null)
-			syncService.setValue(defaultService);
+		syncMethodPreference.setDefaultValue(defaultService);
+		if(syncMethodPreference.getValue() == null)
+			syncMethodPreference.setValue(defaultService);
 	}
 	
-	private void setServer(String syncServiceKey) {
+	private void setServer(String syncMethodName) {
 		
-		SyncService service = SyncManager.getInstance().getService(syncServiceKey);
+		SyncMethod syncMethod = SyncManager.getInstance().getSyncMethod(syncMethodName);
 		
-		if (service != null) {
-			syncServer.setEnabled(service.needsServer());
-			syncService.setSummary(service.getDescription());
+		if (syncMethod != null) {
+			syncServerUriPreference.setEnabled(syncMethod.needsServer());
+			syncMethodPreference.setSummary(syncMethod.getDescription());
 		}
 	}
 	

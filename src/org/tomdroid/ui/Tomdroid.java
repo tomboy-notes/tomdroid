@@ -15,7 +15,7 @@ import org.tomdroid.NoteManager;
 import org.tomdroid.R;
 import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncManager;
-import org.tomdroid.sync.SyncService;
+import org.tomdroid.sync.SyncMethod;
 import org.tomdroid.util.Preferences;
 
 import android.app.AlertDialog;
@@ -132,7 +132,7 @@ public class Tomdroid extends ListActivity {
 
 			if (uri != null && uri.getScheme().equals("tomdroid")) {
 				Log.i(TAG, "Got url : " + uri.toString());
-				SyncService currentService = SyncManager.getInstance().getCurrentService();
+				SyncMethod currentService = SyncManager.getInstance().getCurrentSyncMethod();
 
 				if (currentService.needsAuth()) {
 					// the user has completed the remote auth, do the third part

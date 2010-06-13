@@ -8,7 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.tomdroid.Note;
 import org.tomdroid.sync.ServiceAuth;
-import org.tomdroid.sync.SyncService;
+import org.tomdroid.sync.SyncMethod;
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.Preferences;
 
@@ -18,11 +18,11 @@ import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
-public class SnowySyncService extends SyncService implements ServiceAuth {
+public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
 	
-	private static final String TAG = "SnowySyncService";
+	private static final String TAG = "SnowySyncMethod";
 	
-	public SnowySyncService(Activity activity, Handler handler) {
+	public SnowySyncMethod(Activity activity, Handler handler) {
 		super(activity, handler);
 	}
 	

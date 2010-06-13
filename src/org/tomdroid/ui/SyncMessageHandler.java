@@ -2,7 +2,7 @@ package org.tomdroid.ui;
 
 import org.tomdroid.R;
 import org.tomdroid.sync.SyncManager;
-import org.tomdroid.sync.SyncService;
+import org.tomdroid.sync.SyncMethod;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -34,25 +34,25 @@ public class SyncMessageHandler extends Handler {
 	public void handleMessage(Message msg) {
 
 		switch (msg.what) {
-			case SyncService.PARSING_COMPLETE:
+			case SyncMethod.PARSING_COMPLETE:
 				// TODO put string in a translatable bundle
 				Toast.makeText(
 						activity,
 						"Synchronization with "
-								+ SyncManager.getInstance().getCurrentService().getDescription()
+								+ SyncManager.getInstance().getCurrentSyncMethod().getDescription()
 								+ " is complete.", Toast.LENGTH_SHORT).show();
 				break;
 
-			case SyncService.PARSING_NO_NOTES:
+			case SyncMethod.PARSING_NO_NOTES:
 				// TODO put string in a translatable bundle
 				Toast.makeText(
 						activity,
 						"No notes found on "
-								+ SyncManager.getInstance().getCurrentService().getDescription()
+								+ SyncManager.getInstance().getCurrentSyncMethod().getDescription()
 								+ ".", Toast.LENGTH_SHORT).show();
 				break;
 
-			case SyncService.PARSING_FAILED:
+			case SyncMethod.PARSING_FAILED:
 				if (Tomdroid.LOGGING_ENABLED)
 					Log.w(TAG, "handler called with a parsing failed message");
 
@@ -73,13 +73,13 @@ public class SyncMessageHandler extends Handler {
 				}
 				break;
 
-			case SyncService.NO_INTERNET:
+			case SyncMethod.NO_INTERNET:
 				// TODO put string in a translatable bundle
 				Toast.makeText(activity, "You are not connected to the internet.",
 						Toast.LENGTH_SHORT).show();
 				break;
 
-			case SyncService.SYNC_PROGRESS:
+			case SyncMethod.SYNC_PROGRESS:
 				handleSyncProgress(msg);
 				break;
 

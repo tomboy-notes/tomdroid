@@ -16,9 +16,9 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
 
-public abstract class SyncService {
+public abstract class SyncMethod {
 	
-	private static final String TAG = "SyncService";
+	private static final String TAG = "SyncMethod";
 	
 	private Activity activity;
 	private final ExecutorService pool;
@@ -34,7 +34,7 @@ public abstract class SyncService {
 	public final static int NO_INTERNET = 4;
 	public final static int SYNC_PROGRESS = 5;
 	
-	public SyncService(Activity activity, Handler handler) {
+	public SyncMethod(Activity activity, Handler handler) {
 		
 		this.activity = activity;
 		this.handler = handler;
@@ -61,7 +61,7 @@ public abstract class SyncService {
 	public abstract String getName();
 	
 	/**
-	 * @return An human readable name, used in the preferences to distinguish the different sync services.
+	 * @return An human readable name, used in the preferences to distinguish the different sync methods.
 	 */
 	
 	public abstract String getDescription();
