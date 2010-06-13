@@ -43,17 +43,16 @@ public class PreferencesActivity extends PreferenceActivity {
 		// Set the default values if nothing exists
 		this.setDefaults();
 		
-		// Fill the services combo list
-		this.fillServices();
+		fillSyncServicesList();
 		
 		// Enable or disable the server field depending on the selected sync service
-		setServer(syncMethodPreference.getValue());
+		updatePreferencesTo(syncMethodPreference.getValue());
 		
 		syncMethodPreference.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 			
 			public boolean onPreferenceChange(Preference preference, Object newValue) {
 				
-				setServer((String)newValue);
+				updatePreferencesTo((String)newValue);
 				return true;
 			}
 		});
@@ -72,18 +71,17 @@ public class PreferencesActivity extends PreferenceActivity {
 				}
 			    
 				// update the value before doing anything
-				String server = (String)newValue;
-				Preferences.putString(Preferences.Key.SYNC_SERVER_URI, server);
+				String serverUri = (String) newValue;
+				Preferences.putString(Preferences.Key.SYNC_SERVER_URI, serverUri);
 				
-				// get the current service
-				SyncMethod currentService = SyncManager.getInstance().getCurrentSyncMethod();
+				SyncMethod currentSyncMethod = SyncManager.getInstance().getCurrentSyncMethod();
 				
 				// check if the service needs authentication
-				if (currentService.needsAuth()) {
+				if (currentSyncMethod.needsAuth()) {
 					
 					Uri authorizationUri;
 					try {
-						authorizationUri = ((ServiceAuth)currentService).getAuthUri(server);
+						authorizationUri = ((ServiceAuth) currentSyncMethod).getAuthUri(serverUri);
 					} catch (UnknownHostException e) {
 						connectionFailed();
 						// Auth failed, don't update the value
@@ -109,7 +107,7 @@ public class PreferencesActivity extends PreferenceActivity {
 		});
 	}
 	
-	private void fillServices()
+	private void fillSyncServicesList()
 	{
 		ArrayList<SyncMethod> availableServices = SyncManager.getInstance().getSyncMethods();
 		CharSequence[] entries = new CharSequence[availableServices.size()];
@@ -137,7 +135,7 @@ public class PreferencesActivity extends PreferenceActivity {
 			syncMethodPreference.setValue(defaultService);
 	}
 	
-	private void setServer(String syncMethodName) {
+	private void updatePreferencesTo(String syncMethodName) {
 		
 		SyncMethod syncMethod = SyncManager.getInstance().getSyncMethod(syncMethodName);
 		
