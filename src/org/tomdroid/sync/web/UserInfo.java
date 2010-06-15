@@ -10,18 +10,35 @@ import android.util.Log;
 
 public class UserInfo {
 
-	final String	TAG		= "UserInfo";
+	final String	TAG				= "UserInfo";
 	final String	userReference	= Preferences.getString(Preferences.Key.SYNC_SERVER_USER_API);
-	String			notesUrl;
-	
+	String			notesApiReference;
+	private String	userName;
+	private String	firstName;
+	private String	lastName;
+	private Long	syncVersionOnServer;
+	private Long	currentSyncGuid;
+
 	public UserInfo(OAuthConnection auth) throws UnknownHostException, JSONException {
 		String rawResponse = auth.get(userReference);
 		JSONObject response = new JSONObject(rawResponse);
 		Log.v(TAG, "userRef response: " + response.toString());
-		notesUrl = response.getJSONObject("notes-ref").getString("api-ref");
+		notesApiReference = response.getJSONObject("notes-ref").getString("api-ref");
+		
+		userName = response.getString("user-name");
+		firstName = response.getString("first-name");
+		lastName = response.getString("last-name");
+		
+		syncVersionOnServer = response.getLong("latest-sync-revision");
+		currentSyncGuid = response.getLong("current-sync-guid");
 	}
 
-	public String getNotesUrl() {
-		return notesUrl;
+	public String getNotesUri() {
+		return notesApiReference;
+	}
+	
+	public boolean isUpToDate(){
+		long syncVersionOnClient = (Long)Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION);
+		return syncVersionOnClient < syncVersionOnServer;	
 	}
 }
