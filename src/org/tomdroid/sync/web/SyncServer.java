@@ -8,18 +8,18 @@ import org.tomdroid.util.Preferences;
 
 import android.util.Log;
 
-public class UserInfo {
+public class SyncServer {
 
 	final String	TAG				= "UserInfo";
 	final String	userReference	= Preferences.getString(Preferences.Key.SYNC_SERVER_USER_API);
-	String			notesApiReference;
+	private String	notesApiReference;
 	private String	userName;
 	private String	firstName;
 	private String	lastName;
 	private Long	syncVersionOnServer;
 	private Long	currentSyncGuid;
 
-	public UserInfo(OAuthConnection auth) throws UnknownHostException, JSONException {
+	public SyncServer(OAuthConnection auth) throws UnknownHostException, JSONException {
 		String rawResponse = auth.get(userReference);
 		JSONObject response = new JSONObject(rawResponse);
 		Log.v(TAG, "userRef response: " + response.toString());

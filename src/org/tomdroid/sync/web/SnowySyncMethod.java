@@ -106,18 +106,16 @@ public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
 				OAuthConnection auth = getAuthConnection();
 				
 				try {
-					UserInfo userInfo = new UserInfo(auth);
+					SyncServer server = new SyncServer(auth);
 					setSyncProgress(30);
-					
-					JSONObject response = new JSONObject(auth.get(userInfo.getNotesUri()));
-					setSyncProgress(35);
-					
-					if (userInfo.isUpToDate()) {
+
+					if (server.isUpToDate()) {
 						setSyncProgress(100);
 						return;
 					}
-					
-					response = new JSONObject(auth.get(userInfo.notesApiReference + "?include_notes=true"));
+
+					JSONObject response = new JSONObject(auth.get(server.getNotesUri()
+							+ "?include_notes=true"));
 					JSONArray notes = response.getJSONArray("notes");
 					setSyncProgress(60);
 					
