@@ -51,11 +51,11 @@ public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
 		return true;
 	}
 	
-	public Uri getAuthUri(String server)  throws UnknownHostException {
+	public Uri getAuthUri(String serverUri)  throws UnknownHostException {
 		
 		// Reset the authentication credentials
 		OAuthConnection auth = new OAuthConnection();
-		return auth.getAuthorizationUrl(server);
+		return auth.getAuthorizationUrl(serverUri);
 	}
 	
 	public void remoteAuthComplete(final Uri uri) {
@@ -100,20 +100,16 @@ public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
 		setSyncProgress(0);
 		if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "Loading Snowy notes");
 		
-		final String userRef = Preferences.getString(Preferences.Key.SYNC_SERVER_USER_API);
-		
 		execInThread(new Runnable() {
 			
 			public void run() {
 				OAuthConnection auth = getAuthConnection();
 				
 				try {
-					String rawResponse = auth.get(userRef);
-					setSyncProgress(30);
-					JSONObject response = new JSONObject(rawResponse);
-					String notesUrl = response.getJSONObject("notes-ref").getString("api-ref");
+					UserInfo userInfo = new UserInfo(auth);
 					
-					response = new JSONObject(auth.get(notesUrl));
+					setSyncProgress(30);
+					JSONObject response = new JSONObject(auth.get(userInfo.getNotesUrl()));
 					
 					long latestSyncRevision = (Long)Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION);
 					setSyncProgress(35);
@@ -123,7 +119,7 @@ public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
 						return;
 					}
 					
-					response = new JSONObject(auth.get(notesUrl + "?include_notes=true"));
+					response = new JSONObject(auth.get(userInfo.notesUrl + "?include_notes=true"));
 					JSONArray notes = response.getJSONArray("notes");
 					setSyncProgress(60);
 					

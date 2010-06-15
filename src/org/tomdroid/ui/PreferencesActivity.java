@@ -20,6 +20,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.Preference.OnPreferenceChangeListener;
+import android.util.Log;
 import android.widget.Toast;
 
 public class PreferencesActivity extends PreferenceActivity {
@@ -93,7 +94,6 @@ public class PreferencesActivity extends PreferenceActivity {
 						Intent i = new Intent(Intent.ACTION_VIEW, authorizationUri);
 						startActivity(i);
 						return true;
-						
 					} else {
 						connectionFailed();
 						// Auth failed, don't update the value
