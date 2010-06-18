@@ -132,11 +132,11 @@ public class Tomdroid extends ListActivity {
 
 			if (uri != null && uri.getScheme().equals("tomdroid")) {
 				Log.i(TAG, "Got url : " + uri.toString());
-				SyncMethod currentService = SyncManager.getInstance().getCurrentSyncMethod();
+				SyncMethod currentSyncMethod = SyncManager.getInstance().getCurrentSyncMethod();
 
-				if (currentService.needsAuth()) {
+				if (currentSyncMethod.needsAuth()) {
 					// the user has completed the remote auth, do the third part
-					((ServiceAuth) currentService).remoteAuthComplete(uri);
+					((ServiceAuth) currentSyncMethod).remoteAuthComplete(uri);
 				}
 			}
 		}

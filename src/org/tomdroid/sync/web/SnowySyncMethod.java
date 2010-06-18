@@ -37,7 +37,7 @@ public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
 	}
 	
 	public boolean isConfigured() {
-		OAuthConnection auth = getAuthConnection();
+		OAuthConnection auth = SyncServer.getAuthConnection();
 		return auth.isAuthenticated();
 	}
 
@@ -68,7 +68,7 @@ public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
 					// TODO: might be intelligent to show something like a progress dialog
 					// else the user might try to sync before the authorization process
 					// is complete
-					OAuthConnection auth = getAuthConnection();
+					OAuthConnection auth = SyncServer.getAuthConnection();
 					boolean result = auth.getAccess(uri.getQueryParameter("oauth_verifier"));
 
 					if (Tomdroid.LOGGING_ENABLED) {
@@ -103,20 +103,17 @@ public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
 		execInThread(new Runnable() {
 			
 			public void run() {
-				OAuthConnection auth = getAuthConnection();
 				
 				try {
-					SyncServer server = new SyncServer(auth);
+					SyncServer server = new SyncServer();
 					setSyncProgress(30);
 
-					if (server.isUpToDate()) {
+					if (server.isInSync()) {
 						setSyncProgress(100);
 						return;
 					}
 
-					JSONObject response = new JSONObject(auth.get(server.getNotesUri()
-							+ "?include_notes=true"));
-					JSONArray notes = response.getJSONArray("notes");
+					JSONArray notes = server.getNotes(); 
 					setSyncProgress(60);
 					
 					// Delete the notes that are not in the database
@@ -140,8 +137,7 @@ public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
 					JSONObject jsonNote = notes.getJSONObject(notes.length() - 1);
 					insertNote(new Note(jsonNote), true);
 
-					Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, response
-							.getLong("latest-sync-revision"));
+					server.onSyncDone();
 					setSyncProgress(100);
 					
 				} catch (JSONException e1) {
@@ -159,21 +155,4 @@ public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
 		});
 	}
 	
-	private OAuthConnection getAuthConnection() {
-		
-		OAuthConnection auth = new OAuthConnection();
-		
-		auth.accessToken = Preferences.getString(Preferences.Key.ACCESS_TOKEN);
-		auth.accessTokenSecret = Preferences.getString(Preferences.Key.ACCESS_TOKEN_SECRET);
-		auth.requestToken = Preferences.getString(Preferences.Key.REQUEST_TOKEN);
-		auth.requestTokenSecret = Preferences.getString(Preferences.Key.REQUEST_TOKEN_SECRET);
-		auth.oauth10a = Preferences.getBoolean(Preferences.Key.OAUTH_10A);
-		auth.authorizeUrl = Preferences.getString(Preferences.Key.AUTHORIZE_URL);
-		auth.accessTokenUrl = Preferences.getString(Preferences.Key.ACCESS_TOKEN_URL);
-		auth.requestTokenUrl = Preferences.getString(Preferences.Key.REQUEST_TOKEN_URL);
-		auth.rootApi = Preferences.getString(Preferences.Key.SYNC_SERVER_ROOT_API);
-		auth.userApi = Preferences.getString(Preferences.Key.SYNC_SERVER_USER_API);
-		
-		return auth;
-	}
 }
