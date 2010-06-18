@@ -83,15 +83,41 @@ public abstract class SyncMethod {
 	 * 
 	 * @param note The note to insert.
 	 */
-	
 	protected void insertNote(Note note, boolean syncFinished) {
 		
 		NoteManager.putNote(this.activity, note);
 		
-		// if last note warn in UI that we are done
+		// if last note notify UI that we are done
 		if (syncFinished) {
 			handler.sendEmptyMessage(PARSING_COMPLETE);
 		}
+	}
+	
+	protected ArrayList<String> getLocalNoteIds() {
+		ArrayList<String> idList = new ArrayList<String>();
+		
+		Cursor idCursor = NoteManager.getGuids(this.activity);
+
+		// cursor must not be null and must return more than 0 entry
+		if (!(idCursor == null || idCursor.getCount() == 0)) {
+
+			String guid;
+			idCursor.moveToFirst();
+
+			do {
+				guid = idCursor.getString(idCursor.getColumnIndexOrThrow(Note.GUID));
+				idList.add(guid);
+
+			} while (idCursor.moveToNext());
+
+		} else {
+
+			// TODO send an error to the user
+			if (Tomdroid.LOGGING_ENABLED)
+				Log.d(TAG, "Cursor returned null or 0 notes");
+		}
+		
+		return idList;
 	}
 	
 	/**
@@ -100,7 +126,6 @@ public abstract class SyncMethod {
 	 * 
 	 * @param remoteGuids The notes NOT to delete.
 	 */
-	
 	protected void deleteNotes(ArrayList<String> remoteGuids) {
 		
 		Cursor localGuids = NoteManager.getGuids(this.activity);
