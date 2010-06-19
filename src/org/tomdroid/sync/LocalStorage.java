@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.ui.Tomdroid;
+import org.tomdroid.util.Preferences;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.database.Cursor;
 import android.util.Log;
 
@@ -17,10 +19,10 @@ import android.util.Log;
 public class LocalStorage {
 
 	private static final String	TAG	= "LocalStorage";
-	
+
 	// TODO This data base accessor should not need a reference to an Activity. Currently the
 	// NoteManager unfortunately uses managed queries (which is dispensable).
-	private Activity	activity;
+	private Activity			activity;
 
 	public LocalStorage(Activity activity) {
 		this.activity = activity;
@@ -98,5 +100,17 @@ public class LocalStorage {
 			if (Tomdroid.LOGGING_ENABLED)
 				Log.d(TAG, "Cursor returned null or 0 notes");
 		}
+	}
+
+	/**
+	 * Empties the complete database. Used to get a fresh start.
+	 */
+	public void reset() {
+		activity.getContentResolver().delete(Tomdroid.CONTENT_URI, null, null);
+		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, 0);
+	}
+	
+	public long getLatestSyncVersion() {
+		return (Long) Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION);
 	}
 }

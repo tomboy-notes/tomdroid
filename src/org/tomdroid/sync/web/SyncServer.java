@@ -26,9 +26,13 @@ public class SyncServer {
 	public SyncServer() throws UnknownHostException, JSONException {
 		authConnection = getAuthConnection();
 
+		readMetaData(getMetadata());
+	}
+
+	protected JSONObject getMetadata() throws UnknownHostException, JSONException {
 		String rawResponse = authConnection.get(userReference);
 		JSONObject response = new JSONObject(rawResponse);
-		readMetaData(response);
+		return response;
 	}
 
 	protected void readMetaData(JSONObject response) throws JSONException {
