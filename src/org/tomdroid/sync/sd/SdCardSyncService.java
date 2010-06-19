@@ -220,7 +220,7 @@ public class SdCardSyncService extends SyncMethod {
 				if (Tomdroid.LOGGING_ENABLED) Log.w(TAG, "Something went wrong trying to read the note");
 			}
 			
-			insertNote(note, isLast);
+			getLocalStorage().insertNote(note, isLast);
 			onWorkDone();
 		}
 		

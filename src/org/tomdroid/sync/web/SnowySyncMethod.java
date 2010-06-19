@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.tomdroid.Note;
+import org.tomdroid.sync.LocalStorage;
 import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncMethod;
 import org.tomdroid.ui.Tomdroid;
@@ -21,7 +22,7 @@ import android.widget.Toast;
 public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
 
 	private static final String	TAG	= "SnowySyncMethod";
-
+	
 	public SnowySyncMethod(Activity activity, Handler handler) {
 		super(activity, handler);
 	}
@@ -142,12 +143,12 @@ public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
 				setSyncProgress(70);
 				
 				ArrayList<String> noteIdsOnServer = server.getNoteIds();
-				deleteNotes(noteIdsOnServer);
+				getLocalStorage().deleteNotes(noteIdsOnServer);
 				
 				server.upload(getNewAndUpdatedNotes());
 				setSyncProgress(90);
 				
-				server.delete(getLocalNoteIds().removeAll(noteIdsOnServer));
+				server.delete(getLocalStorage().getLocalNoteIds().removeAll(noteIdsOnServer));
 				
 				server.onSyncDone();
 				setSyncProgress(100);
