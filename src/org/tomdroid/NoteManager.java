@@ -27,6 +27,7 @@ import org.tomdroid.ui.Tomdroid;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.util.Log;
@@ -146,7 +147,7 @@ public class NoteManager {
 		return activity.managedQuery(Tomdroid.CONTENT_URI, TITLE_PROJECTION, null, null, null);
 	}
 	
-	// gets the ids of the notes present in the db, used in SyncService.deleteNotes()
+	// gets the ids of the notes present in the db
 	public static Cursor getGuids(Activity activity) {
 		
 		// get a cursor containing the notes titles

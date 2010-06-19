@@ -16,11 +16,11 @@ public class SyncServer {
 	final String			userReference	= Preferences
 													.getString(Preferences.Key.SYNC_SERVER_USER_API);
 	private String			notesApiReference;
-	private String			userName;
-	private String			firstName;
-	private String			lastName;
-	private Long			syncVersionOnServer;
-	private Long			currentSyncGuid;
+	String					userName;
+	String					firstName;
+	String					lastName;
+	Long					syncVersionOnServer;
+	Long					currentSyncGuid;
 	private OAuthConnection	authConnection;
 
 	public SyncServer() throws UnknownHostException, JSONException {
@@ -28,6 +28,10 @@ public class SyncServer {
 
 		String rawResponse = authConnection.get(userReference);
 		JSONObject response = new JSONObject(rawResponse);
+		readMetaData(response);
+	}
+
+	protected void readMetaData(JSONObject response) throws JSONException {
 		Log.v(TAG, "userRef response: " + response.toString());
 		notesApiReference = response.getJSONObject("notes-ref").getString("api-ref");
 

@@ -108,31 +108,7 @@ public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
 					SyncServer server = new SyncServer();
 					setSyncProgress(30);
 
-					if (server.isInSync()) {
-						setSyncProgress(100);
-						return;
-					}
-
-					ensureServerGuidIsAsExpected();
-					
-					ArrayList<NoteUpdate> updatesFromServer = server.getNoteUpdates();
-					setSyncProgress(50);
-					
-					fixTitleConflicts(updatesFromServer);
-					
-					mergeWithLocalNotes(updatesFromServer);
-					setSyncProgress(70);
-					
-					ArrayList<String> noteIdsOnServer = server.getNoteIds();
-					deleteNotes(noteIdsOnServer);
-					
-					server.upload(getNewAndUpdatedNotes());
-					setSyncProgress(90);
-					
-					server.delete(getLocalNoteIds().removeAll(noteIdsOnServer));
-					
-					server.onSyncDone();
-					setSyncProgress(100);
+					syncWith(server);
 
 				} catch (JSONException e1) {
 					if (Tomdroid.LOGGING_ENABLED)
@@ -149,11 +125,39 @@ public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
 				}
 			}
 
+			private void syncWith(SyncServer server) throws UnknownHostException, JSONException {
+				if (server.isInSync()) {
+					setSyncProgress(100);
+					return;
+				}
+
+				ensureServerIdIsAsExpected();
+				
+				ArrayList<NoteUpdate> updatesFromServer = server.getNoteUpdates();
+				setSyncProgress(50);
+				
+				fixTitleConflicts(updatesFromServer);
+				
+				mergeWithLocalNotes(updatesFromServer);
+				setSyncProgress(70);
+				
+				ArrayList<String> noteIdsOnServer = server.getNoteIds();
+				deleteNotes(noteIdsOnServer);
+				
+				server.upload(getNewAndUpdatedNotes());
+				setSyncProgress(90);
+				
+				server.delete(getLocalNoteIds().removeAll(noteIdsOnServer));
+				
+				server.onSyncDone();
+				setSyncProgress(100);
+			}
+
 			private ArrayList<NoteUpdate> getNewAndUpdatedNotes() {
 				return new ArrayList<NoteUpdate>();
 			}
 
-			private void ensureServerGuidIsAsExpected() {
+			private void ensureServerIdIsAsExpected() {
 				// TODO check if the server's guid is as expected to prevent deleting local
 				// notes, etc when the server has been wiped or reinitialized by another client
 

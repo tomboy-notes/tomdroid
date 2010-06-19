@@ -48,7 +48,9 @@
 
     	</activity>
 
+        <uses-library android:name="android.test.runner" />
     </application>
     
-	 <uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.INTERNET" />
+    <instrumentation android:name="android.test.InstrumentationTestRunner" android:targetPackage="org.tomdroid"></instrumentation>
 </manifest> 

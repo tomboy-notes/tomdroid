@@ -3,6 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="lib/signpost/signpost-core/src/main/java"/>
 	<classpathentry kind="src" path="lib/signpost/signpost-commonshttp4/src/main/java"/>
+	<classpathentry kind="src" path="tests"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="lib" path="lib/commons-codec-1.4/commons-codec-1.4.jar"/>
