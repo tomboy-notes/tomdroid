@@ -87,9 +87,8 @@ public class SyncServer {
 	public ArrayList<NoteUpdate> getNoteUpdates() throws UnknownHostException, JSONException {
 		ArrayList<NoteUpdate> updates = new ArrayList<NoteUpdate>();
 
-		JSONObject response = new JSONObject(authConnection.get(getNotesUri()
-				+ "?include_notes=true&since="
-				+ Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION)));
+		long since = Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION);
+		JSONObject response = getNoteUpdatesSince(since);
 	
 		JSONArray jsonNotes = response.getJSONArray("notes");
 		for (int i = 0; i < jsonNotes.length(); i++){
@@ -99,10 +98,17 @@ public class SyncServer {
 		return updates;
 	}
 
+	protected JSONObject getNoteUpdatesSince(long since) throws JSONException, UnknownHostException {
+		JSONObject response = new JSONObject(authConnection.get(getNotesUri()
+				+ "?include_notes=true&since="
+				+ since));
+		return response;
+	}
+
 	public ArrayList<String> getNoteIds() throws UnknownHostException, JSONException {
 		ArrayList<String> guids = new ArrayList<String>();
 
-		JSONObject response = new JSONObject(authConnection.get(getNotesUri()));
+		JSONObject response = getAllNotesWithoutContent();
 	
 		JSONArray jsonNotes = response.getJSONArray("notes");
 		for (int i = 0; i < jsonNotes.length(); i++){
@@ -110,6 +116,11 @@ public class SyncServer {
 		}
 
 		return guids;
+	}
+
+	protected JSONObject getAllNotesWithoutContent() throws JSONException, UnknownHostException {
+		JSONObject response = new JSONObject(authConnection.get(getNotesUri()));
+		return response;
 	}
 
 	public void upload(ArrayList<NoteUpdate> newAndUpdatedNotes) {

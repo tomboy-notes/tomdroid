@@ -26,6 +26,7 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.tomdroid.util.NoteContentBuilder;
 import org.tomdroid.util.XmlUtils;
@@ -164,6 +165,10 @@ public class Note {
 	
 	public void setXmlContent(String xmlContent) {
 		this.xmlContent = xmlContent;
+	}
+	
+	public JSONObject toJsonWithoutContent() throws JSONException {
+		return new JSONObject("{'guid':'" + guid + "', 'title':'" + title + "'}");
 	}
 
 	@Override

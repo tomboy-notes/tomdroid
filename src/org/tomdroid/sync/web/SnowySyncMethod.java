@@ -22,7 +22,7 @@ import android.widget.Toast;
 public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
 
 	private static final String	TAG	= "SnowySyncMethod";
-	
+
 	public SnowySyncMethod(Activity activity, Handler handler) {
 		super(activity, handler);
 	}
@@ -125,89 +125,75 @@ public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
 					return;
 				}
 			}
-
-			private void syncWith(SyncServer server) throws UnknownHostException, JSONException {
-				if (server.isInSync()) {
-					setSyncProgress(100);
-					return;
-				}
-
-				ensureServerIdIsAsExpected();
-				
-				ArrayList<NoteUpdate> updatesFromServer = server.getNoteUpdates();
-				setSyncProgress(50);
-				
-				fixTitleConflicts(updatesFromServer);
-				
-				mergeWithLocalNotes(updatesFromServer);
-				setSyncProgress(70);
-				
-				ArrayList<String> noteIdsOnServer = server.getNoteIds();
-				getLocalStorage().deleteNotes(noteIdsOnServer);
-				
-				server.upload(getNewAndUpdatedNotes());
-				setSyncProgress(90);
-				
-				server.delete(getLocalStorage().getLocalNoteIds().removeAll(noteIdsOnServer));
-				
-				server.onSyncDone();
-				setSyncProgress(100);
-			}
-
-			private ArrayList<NoteUpdate> getNewAndUpdatedNotes() {
-				return new ArrayList<NoteUpdate>();
-			}
-
-			private void ensureServerIdIsAsExpected() {
-				// TODO check if the server's guid is as expected to prevent deleting local
-				// notes, etc when the server has been wiped or reinitialized by another client
-
-				/*
-				// If the server has been wiped or reinitialized by another client
-				// for some reason, our local manifest is inaccurate and could misguide
-				// sync into erroneously deleting local notes, etc.  We reset the client
-				// to prevent this situation.
-				string serverId = server.Id;
-				if (client.AssociatedServerId != serverId) {
-					client.Reset ();
-					client.AssociatedServerId = serverId;
-				}
-				*/
-			}
-
-			private void mergeWithLocalNotes(ArrayList<NoteUpdate> serverUpdates) {
-				// TODO Auto-generated method stub
-			}
-
-			private void fixTitleConflicts(ArrayList<NoteUpdate> noteUpdates) {
-
-				// TODO implement in a similar way as Tomboy (see code below)
-
-				/*
-				// First, check for new local notes that might have title conflicts
-				// with the updates coming from the server.  Prompt the user if necessary.
-				// TODO: Lots of searching here and in the next foreach...
-				//       Want this stuff to happen all at once first, but
-				//       maybe there's a way to store this info and pass it on?
-				foreach (NoteUpdate noteUpdate in noteUpdates.Values)
-				{
-					if (FindNoteByUUID (noteUpdate.UUID) == null) {
-						Note existingNote = NoteMgr.Find (noteUpdate.Title);
-						if (existingNote != null && !noteUpdate.BasicallyEqualTo (existingNote)) {
-//							Logger.Debug ("Sync: Early conflict detection for '{0}'", noteUpdate.Title);
-							if (syncUI != null) {
-								syncUI.NoteConflictDetected (NoteMgr, existingNote, noteUpdate, noteUpdateTitles);
-
-								// Suspend this thread while the GUI is presented to
-								// the user.
-								syncThread.Suspend ();
-							}
-						}
-					}
-				}
-				*/
-			}
 		});
 	}
 
+	void syncWith(SyncServer server) throws UnknownHostException, JSONException {
+	
+		if (server.isInSync()) {
+			setSyncProgress(100);
+			return;
+		}
+
+		ensureServerIdIsAsExpected();
+
+		ArrayList<NoteUpdate> updatesFromServer = server.getNoteUpdates();
+		setSyncProgress(50);
+
+		fixTitleConflicts(updatesFromServer);
+
+		mergeWithLocalNotes(updatesFromServer);
+		setSyncProgress(70);
+
+		ArrayList<String> noteIdsOnServer = server.getNoteIds();
+		getLocalStorage().deleteNotes(noteIdsOnServer);
+
+		server.upload(getNewAndUpdatedNotes());
+		setSyncProgress(90);
+
+		server.delete(getLocalStorage().getLocalNoteIds().removeAll(noteIdsOnServer));
+
+		server.onSyncDone();
+		setSyncProgress(100);
+	}
+
+	private ArrayList<NoteUpdate> getNewAndUpdatedNotes() {
+		return new ArrayList<NoteUpdate>();
+	}
+
+	private void ensureServerIdIsAsExpected() {
+		// TODO check if the server's guid is as expected to prevent deleting local
+		// notes, etc when the server has been wiped or reinitialized by another client
+
+		/*
+		 * // If the server has been wiped or reinitialized by another client // for some
+		 * reason, our local manifest is inaccurate and could misguide // sync into
+		 * erroneously deleting local notes, etc. We reset the client // to prevent this
+		 * situation. string serverId = server.Id; if (client.AssociatedServerId !=
+		 * serverId) { client.Reset (); client.AssociatedServerId = serverId; }
+		 */
+	}
+
+	private void mergeWithLocalNotes(ArrayList<NoteUpdate> serverUpdates) {
+		// TODO Auto-generated method stub
+	}
+
+	private void fixTitleConflicts(ArrayList<NoteUpdate> noteUpdates) {
+
+		// TODO implement in a similar way as Tomboy (see code below)
+
+		/*
+		 * // First, check for new local notes that might have title conflicts // with the
+		 * updates coming from the server. Prompt the user if necessary. // TODO: Lots of
+		 * searching here and in the next foreach... // Want this stuff to happen all at
+		 * once first, but // maybe there's a way to store this info and pass it on? foreach
+		 * (NoteUpdate noteUpdate in noteUpdates.Values) { if (FindNoteByUUID
+		 * (noteUpdate.UUID) == null) { Note existingNote = NoteMgr.Find (noteUpdate.Title);
+		 * if (existingNote != null && !noteUpdate.BasicallyEqualTo (existingNote)) { //
+		 * Logger.Debug ("Sync: Early conflict detection for '{0}'", noteUpdate.Title); if
+		 * (syncUI != null) { syncUI.NoteConflictDetected (NoteMgr, existingNote,
+		 * noteUpdate, noteUpdateTitles); // Suspend this thread while the GUI is presented
+		 * to // the user. syncThread.Suspend (); } } } }
+		 */
+	}
 }
