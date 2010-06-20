@@ -55,8 +55,8 @@ public class TestTwoWaySynchronization extends ActivityUnitTestCase<Tomdroid> {
 		assertFalse("should be out of sync", server.isInSync());
 
 		syncMethod.syncWith(server);
-		assertTrue("should be in sync", server.isInSync());
+		assertTrue("should be in sync again", server.isInSync());
 
-		assertEquals("note ids should be the same", localStorage.getLocalNoteIds(), server.getNoteIds());
+		assertEquals("note ids should be the same", server.getNoteIds(), localStorage.getLocalNoteIds());
 	}
 }

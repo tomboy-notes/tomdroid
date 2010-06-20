@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tomdroid.Note;
 import org.tomdroid.util.Preferences;
 
 import android.util.Log;
@@ -84,15 +85,15 @@ public class SyncServer {
 		return auth;
 	}
 
-	public ArrayList<NoteUpdate> getNoteUpdates() throws UnknownHostException, JSONException {
-		ArrayList<NoteUpdate> updates = new ArrayList<NoteUpdate>();
+	public ArrayList<Note> getNoteUpdates() throws UnknownHostException, JSONException {
+		ArrayList<Note> updates = new ArrayList<Note>();
 
 		long since = Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION);
 		JSONObject response = getNoteUpdatesSince(since);
 	
 		JSONArray jsonNotes = response.getJSONArray("notes");
 		for (int i = 0; i < jsonNotes.length(); i++){
-			updates.add(new NoteUpdate(jsonNotes.getJSONObject(i)));
+			updates.add(new Note(jsonNotes.getJSONObject(i)));
 		}
 
 		return updates;
@@ -123,7 +124,7 @@ public class SyncServer {
 		return response;
 	}
 
-	public void upload(ArrayList<NoteUpdate> newAndUpdatedNotes) {
+	public void upload(ArrayList<Note> newAndUpdatedNotes) {
 		// TODO Auto-generated method stub
 	}
 

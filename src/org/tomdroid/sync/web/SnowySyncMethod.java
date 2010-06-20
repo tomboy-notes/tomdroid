@@ -3,21 +3,16 @@ package org.tomdroid.sync.web;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.tomdroid.Note;
-import org.tomdroid.sync.LocalStorage;
 import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncMethod;
 import org.tomdroid.ui.Tomdroid;
-import org.tomdroid.util.Preferences;
 
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Handler;
 import android.util.Log;
-import android.widget.Toast;
 
 public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
 
@@ -137,12 +132,12 @@ public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
 
 		ensureServerIdIsAsExpected();
 
-		ArrayList<NoteUpdate> updatesFromServer = server.getNoteUpdates();
+		ArrayList<Note> updatesFromServer = server.getNoteUpdates();
 		setSyncProgress(50);
 
 		fixTitleConflicts(updatesFromServer);
 
-		mergeWithLocalNotes(updatesFromServer);
+		insertAndUpdateLocalNotes(updatesFromServer);
 		setSyncProgress(70);
 
 		ArrayList<String> noteIdsOnServer = server.getNoteIds();
@@ -157,8 +152,8 @@ public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
 		setSyncProgress(100);
 	}
 
-	private ArrayList<NoteUpdate> getNewAndUpdatedNotes() {
-		return new ArrayList<NoteUpdate>();
+	private ArrayList<Note> getNewAndUpdatedNotes() {
+		return new ArrayList<Note>();
 	}
 
 	private void ensureServerIdIsAsExpected() {
@@ -174,11 +169,13 @@ public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
 		 */
 	}
 
-	private void mergeWithLocalNotes(ArrayList<NoteUpdate> serverUpdates) {
-		// TODO Auto-generated method stub
+	private void insertAndUpdateLocalNotes(ArrayList<Note> serverUpdates) {
+		for (Note noteUpdate : serverUpdates) {
+			getLocalStorage().insertNote(noteUpdate, false);
+		}
 	}
 
-	private void fixTitleConflicts(ArrayList<NoteUpdate> noteUpdates) {
+	private void fixTitleConflicts(ArrayList<Note> noteUpdates) {
 
 		// TODO implement in a similar way as Tomboy (see code below)
 

@@ -168,13 +168,20 @@ public class Note {
 	}
 	
 	public JSONObject toJsonWithoutContent() throws JSONException {
-		return new JSONObject("{'guid':'" + guid + "', 'title':'" + title + "'}");
+		JSONObject json = toJson();
+		json.remove("note-content");
+		return json;
 	}
 
+	public JSONObject toJson() throws JSONException {
+		return new JSONObject("{'guid':'" + getGuid() + "', 'title':'" + getTitle() + "', 'note-content':'"
+				+ getXmlContent() + "', 'last-change-date':'"+ getLastChangeDate().format3339(false) +"'}");
+	}
+	
 	@Override
 	public String toString() {
 
 		return new String("Note: "+ getTitle() + " (" + getLastChangeDate() + ")");
 	}
-	
+
 }
