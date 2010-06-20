@@ -36,7 +36,7 @@ public class LocalStorage {
 	 * @param note
 	 *            The note to insert.
 	 */
-	public void insertNote(Note note, boolean syncFinished) {
+	public void insertNote(Note note) {
 
 		NoteManager.putNote(this.activity, note);
 	}

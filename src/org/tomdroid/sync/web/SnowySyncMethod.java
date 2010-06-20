@@ -171,7 +171,7 @@ public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
 
 	private void insertAndUpdateLocalNotes(ArrayList<Note> serverUpdates) {
 		for (Note noteUpdate : serverUpdates) {
-			getLocalStorage().insertNote(noteUpdate, false);
+			getLocalStorage().insertNote(noteUpdate);
 		}
 	}
 
