@@ -96,7 +96,7 @@ public class TestTwoWaySynchronization extends ActivityUnitTestCase<Tomdroid> {
 		syncMethod.syncWith(server);
 		assertTrue("should be in sync again", server.isInSync());
 
-		assertEquals(1, localStorage.getNoteGuids().size());
+		assertEquals("note count", 1, localStorage.getNoteGuids().size());
 		assertEquals("note ids should be the same", server.getNoteIds(), localStorage.getNoteGuids());
 		
 		Note localNote = localStorage.getNote(remoteNote.getGuid());

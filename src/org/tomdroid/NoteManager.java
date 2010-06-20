@@ -123,8 +123,8 @@ public class NoteManager {
 		}
 	}
 
-	public static boolean deleteNote(Activity activity, int id) {
-		Uri uri = Uri.parse(Tomdroid.CONTENT_URI + "/" + id);
+	public static boolean deleteNote(Activity activity, int databaseId) {
+		Uri uri = Uri.parse(Tomdroid.CONTENT_URI + "/" + databaseId);
 
 		ContentResolver cr = activity.getContentResolver();
 		int result = cr.delete(uri, null, null);
@@ -133,6 +133,11 @@ public class NoteManager {
 			return true;
 		else
 			return false;
+	}
+
+	public static void deleteNote(Context context, UUID guid) {
+		String[] whereArgs = { guid.toString() };
+		context.getContentResolver().delete(Tomdroid.CONTENT_URI, Note.GUID + "=?", whereArgs);
 	}
 
 	public static ListAdapter getListAdapter(Activity activity) {

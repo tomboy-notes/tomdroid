@@ -68,39 +68,10 @@ public class LocalStorage {
 		return idList;
 	}
 
-	/**
-	 * Delete notes in the content provider. The guids passed identify the notes existing on the
-	 * remote end (ie. that shouldn't be deleted).
-	 * 
-	 * @param remoteGuids
-	 *            The notes NOT to delete.
-	 */
-	public void deleteNotes(ArrayList<String> remoteGuids) {
+	public void deleteNotes(ArrayList<String> guids) {
 
-		Cursor localGuids = NoteManager.getGuids(this.activity);
-
-		// cursor must not be null and must return more than 0 entry
-		if (!(localGuids == null || localGuids.getCount() == 0)) {
-
-			String localGuid;
-
-			localGuids.moveToFirst();
-
-			do {
-				localGuid = localGuids.getString(localGuids.getColumnIndexOrThrow(Note.GUID));
-
-				if (!remoteGuids.contains(localGuid)) {
-					int id = localGuids.getInt(localGuids.getColumnIndexOrThrow(Note.ID));
-					NoteManager.deleteNote(this.activity, id);
-				}
-
-			} while (localGuids.moveToNext());
-
-		} else {
-
-			// TODO send an error to the user
-			if (Tomdroid.LOGGING_ENABLED)
-				Log.d(TAG, "Cursor returned null or 0 notes");
+		for (String guid : guids) {
+			NoteManager.deleteNote(activity, UUID.fromString(guid));
 		}
 	}
 

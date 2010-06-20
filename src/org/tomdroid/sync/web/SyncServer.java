@@ -128,7 +128,7 @@ public class SyncServer {
 		// TODO Auto-generated method stub
 	}
 
-	public void delete(boolean removeAll) {
+	public void delete(ArrayList<String> disposedNoteIds) {
 		// TODO Auto-generated method stub
 	}
 
