@@ -146,7 +146,7 @@ public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
 		server.upload(getNewAndUpdatedNotes());
 		setSyncProgress(90);
 
-		server.delete(getLocalStorage().getLocalNoteIds().removeAll(noteIdsOnServer));
+		server.delete(getLocalStorage().getNoteGuids().removeAll(noteIdsOnServer));
 
 		server.onSyncDone();
 		setSyncProgress(100);

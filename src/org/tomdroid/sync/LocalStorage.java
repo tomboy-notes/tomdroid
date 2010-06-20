@@ -41,7 +41,7 @@ public class LocalStorage {
 		NoteManager.putNote(this.activity, note);
 	}
 
-	public ArrayList<String> getLocalNoteIds() {
+	public ArrayList<String> getNoteGuids() {
 		ArrayList<String> idList = new ArrayList<String>();
 
 		Cursor idCursor = NoteManager.getGuids(this.activity);
@@ -107,7 +107,7 @@ public class LocalStorage {
 	/**
 	 * Empties the complete database. Used to get a fresh start.
 	 */
-	public void reset() {
+	public void resetDatabase() {
 		activity.getContentResolver().delete(Tomdroid.CONTENT_URI, null, null);
 		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, 0);
 	}

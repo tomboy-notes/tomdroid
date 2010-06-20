@@ -38,7 +38,7 @@ import android.text.format.Time;
 import android.util.Log;
 import android.util.TimeFormatException;
 
-public class Note {
+public class Note implements Cloneable {
 
 	// Static references to fields (used in Bundles, ContentResolvers, etc.)
 	public static final String ID = "_id";
@@ -200,4 +200,22 @@ public class Note {
 
 		return new String("Note: "+ getTitle() + " (" + getLastChangeDate() + ")");
 	}
+
+	public Note clone() {
+
+		Note clone = new Note();
+
+		clone.noteContent = noteContent;
+		clone.xmlContent = xmlContent;
+		clone.url = url;
+		clone.fileName = fileName;
+		clone.title = title;
+		clone.lastChangeDate = lastChangeDate;
+		clone.dbId = dbId;
+		clone.guid = guid;
+
+		return clone;
+
+	}
+	
 }

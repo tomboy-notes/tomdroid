@@ -64,12 +64,28 @@ public class MockSyncServer extends SyncServer {
 		note.setXmlContent("plain note content.");
 
 		storedNotes.add(note);
-		noteUpdates.add(note);
+		noteUpdates.add(note.clone());
 		onStoredDataChanged();
 		return note;
 	}
 
 	private void onStoredDataChanged() {
 		syncVersionOnServer++;
+	}
+
+	public Note setTitleOfNewestNote(String title) {
+		Note note = storedNotes.get(storedNotes.size() - 1);
+		note.setTitle(title);
+		noteUpdates.add(note.clone());
+		onStoredDataChanged();
+		return note;
+	}
+
+	public Note setContentOfNewestNote(String content) {
+		Note note = storedNotes.get(storedNotes.size() - 1);
+		note.setXmlContent(content);
+		noteUpdates.add(note.clone());
+		onStoredDataChanged();
+		return note;
 	}
 }
