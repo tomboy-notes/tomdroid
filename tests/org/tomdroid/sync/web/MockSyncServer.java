@@ -16,6 +16,8 @@ public class MockSyncServer extends SyncServer {
 	ArrayList<Note>			storedNotes	= new ArrayList<Note>();
 	private ArrayList<Note>	noteUpdates	= new ArrayList<Note>();
 
+	TestDataManipulator testDataManipulator = new TestDataManipulator();
+	
 	public MockSyncServer() throws UnknownHostException, JSONException {
 		super();
 	}
@@ -54,38 +56,51 @@ public class MockSyncServer extends SyncServer {
 		return data;
 	}
 
-	public Note createNewNote() {
-		Note note = new Note();
-		note.setTitle("A Title");
-		note.setGuid(UUID.randomUUID().toString());
-		Time time = new Time();
-		time.setToNow();
-		note.setLastChangeDate(time);
-		note.setXmlContent("plain note content.");
+	class TestDataManipulator {
 
-		storedNotes.add(note);
-		noteUpdates.add(note.clone());
-		onStoredDataChanged();
-		return note;
-	}
+		private void onStoredDataChanged() {
+			syncVersionOnServer++;
+		}
 
-	private void onStoredDataChanged() {
-		syncVersionOnServer++;
-	}
+		public Note createNewNote() {
+			Note note = new Note();
+			note.setTitle("A Title");
+			note.setGuid(UUID.randomUUID().toString());
+			Time time = new Time();
+			time.setToNow();
+			note.setLastChangeDate(time);
+			note.setXmlContent("plain note content.");
 
-	public Note setTitleOfNewestNote(String title) {
-		Note note = storedNotes.get(storedNotes.size() - 1);
-		note.setTitle(title);
-		noteUpdates.add(note.clone());
-		onStoredDataChanged();
-		return note;
-	}
+			storedNotes.add(note);
+			noteUpdates.add(note.clone());
+			onStoredDataChanged();
+			return note;
+		}
 
-	public Note setContentOfNewestNote(String content) {
-		Note note = storedNotes.get(storedNotes.size() - 1);
-		note.setXmlContent(content);
-		noteUpdates.add(note.clone());
-		onStoredDataChanged();
-		return note;
+		public Note setTitleOfNewestNote(String title) {
+			Note note = storedNotes.get(storedNotes.size() - 1);
+			note.setTitle(title);
+			noteUpdates.add(note.clone());
+			onStoredDataChanged();
+			return note;
+		}
+
+		public Note setContentOfNewestNote(String content) {
+			Note note = storedNotes.get(storedNotes.size() - 1);
+			note.setXmlContent(content);
+			noteUpdates.add(note.clone());
+			onStoredDataChanged();
+			return note;
+		}
+
+		public void deleteNote(UUID guid) {
+			for (Note note : storedNotes) {
+				if (note.getGuid().equals(guid)) {
+					storedNotes.remove(note);
+					onStoredDataChanged();
+					return;
+				}
+			}
+		}
 	}
 }
