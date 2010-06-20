@@ -32,6 +32,7 @@ import org.tomdroid.util.NoteContentBuilder;
 import org.tomdroid.util.XmlUtils;
 
 import android.os.Handler;
+import android.test.IsolatedContext;
 import android.text.SpannableStringBuilder;
 import android.text.format.Time;
 import android.util.Log;
@@ -117,6 +118,7 @@ public class Note {
 
 	public void setLastChangeDate(Time lastChangeDate) {
 		this.lastChangeDate = lastChangeDate;
+		lastChangeDate.switchTimezone(Time.TIMEZONE_UTC);
 	}
 	
 	public void setLastChangeDate(String lastChangeDateStr) throws TimeFormatException {
@@ -133,6 +135,7 @@ public class Note {
 		
 		lastChangeDate = new Time();
 		lastChangeDate.parse3339(lastChangeDateStr);
+		lastChangeDate.switchTimezone(Time.TIMEZONE_UTC);
 	}	
 
 	public int getDbId() {
@@ -149,6 +152,10 @@ public class Note {
 	
 	public void setGuid(String guid) {
 		this.guid = UUID.fromString(guid);
+	}
+
+	public void setGuid(UUID guid) {
+		this.guid = guid;
 	}
 	
 	// TODO: should this handler passed around evolve into an observer pattern?
@@ -173,6 +180,16 @@ public class Note {
 		return json;
 	}
 
+	@Override
+	public boolean equals(Object obj){
+		if (! (obj instanceof Note)) return false;
+		
+		Note note = (Note) obj;
+		if (note.getGuid().equals(getGuid()) && note.getLastChangeDate().equals(getLastChangeDate()) && note.getTitle().equals(getTitle())) return true;
+		
+		return false;
+	}
+	
 	public JSONObject toJson() throws JSONException {
 		return new JSONObject("{'guid':'" + getGuid() + "', 'title':'" + getTitle() + "', 'note-content':'"
 				+ getXmlContent() + "', 'last-change-date':'"+ getLastChangeDate().format3339(false) +"'}");
@@ -183,5 +200,4 @@ public class Note {
 
 		return new String("Note: "+ getTitle() + " (" + getLastChangeDate() + ")");
 	}
-
 }

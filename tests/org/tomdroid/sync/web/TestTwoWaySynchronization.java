@@ -27,7 +27,8 @@ public class TestTwoWaySynchronization extends ActivityUnitTestCase<Tomdroid> {
 		Preferences.init(getInstrumentation().getContext(), false);
 
 		startActivity(new Intent(), null, null);
-		syncMethod = new SnowySyncMethod(getActivity(), new Handler() {});
+		syncMethod = new SnowySyncMethod(getActivity(), new Handler() {
+		});
 
 		localStorage = new LocalStorage(getActivity());
 		localStorage.reset();
@@ -57,6 +58,10 @@ public class TestTwoWaySynchronization extends ActivityUnitTestCase<Tomdroid> {
 		syncMethod.syncWith(server);
 		assertTrue("should be in sync again", server.isInSync());
 
-		assertEquals("note ids should be the same", server.getNoteIds(), localStorage.getLocalNoteIds());
+		assertEquals("note ids should be the same", server.getNoteIds(), localStorage
+				.getLocalNoteIds());
+		Note localNote = localStorage.getNote(noteAsItIsStoredOnTheServer.getGuid());
+		assertEquals("notes should be the same", noteAsItIsStoredOnTheServer
+				.toJson().toString(), localNote.toJson().toString());
 	}
 }

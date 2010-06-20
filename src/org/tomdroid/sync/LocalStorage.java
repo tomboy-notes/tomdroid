@@ -1,6 +1,7 @@
 package org.tomdroid.sync;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
@@ -10,6 +11,7 @@ import org.tomdroid.util.Preferences;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.database.Cursor;
+import android.net.Uri;
 import android.util.Log;
 
 /**
@@ -112,5 +114,9 @@ public class LocalStorage {
 	
 	public long getLatestSyncVersion() {
 		return (Long) Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION);
+	}
+
+	public Note getNote(UUID guid) {
+		return NoteManager.getNote(activity, guid);
 	}
 }

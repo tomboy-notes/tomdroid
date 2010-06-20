@@ -22,6 +22,8 @@
  */
 package org.tomdroid;
 
+import java.util.UUID;
+
 import org.tomdroid.ui.Tomdroid;
 
 import android.app.Activity;
@@ -46,7 +48,6 @@ public class NoteManager {
 	// static properties
 	private static final String TAG = "NoteManager";
 	
-	// gets a note from the content provider
 	public static Note getNote(Activity activity, Uri uri) {
 		
 		Note note = null;
@@ -68,6 +69,34 @@ public class NoteManager {
 		
 		return note;
 	}
+
+	public static Note getNote(Context context, UUID guid) {
+
+
+		String[] whereArgs = { guid.toString() };
+		Cursor cursor = context.getContentResolver().query(Tomdroid.CONTENT_URI, FULL_PROJECTION, Note.GUID
+				+ "=?", whereArgs, null);
+
+		Note note = null;
+		if (!(cursor == null || cursor.getCount() == 0)) {
+
+			// create the note from the cursor
+			cursor.moveToFirst();
+			String content = cursor.getString(cursor.getColumnIndexOrThrow(Note.NOTE_CONTENT));
+			String title = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
+			String lastChangeDate = cursor.getString(cursor.getColumnIndexOrThrow(Note.MODIFIED_DATE));
+
+			note = new Note();
+			note.setXmlContent(content);
+			note.setTitle(title);
+			note.setLastChangeDate(lastChangeDate);
+			note.setGuid(guid);
+		}
+		cursor.close();
+
+		return note;
+	}
+
 	
 	// puts a note in the content provider
 	public static void putNote(Activity activity, Note note) {
@@ -105,7 +134,9 @@ public class NoteManager {
 			
     		Uri uri = cr.insert(Tomdroid.CONTENT_URI, values);
 
-    		if (Tomdroid.LOGGING_ENABLED) Log.v(TAG,"Note inserted in content provider. ID: "+uri+" TITLE:"+note.getTitle()+" GUID:"+note.getGuid());
+			if (Tomdroid.LOGGING_ENABLED)
+				Log.v(TAG, "Note inserted in content provider. ID: '" + uri + "', TITLE: '"
+						+ note.getTitle() + "', GUID: '" + note.getGuid() + "',URI: " + uri);
 		} else {
 			
 			// Overwrite the previous note if it exists
