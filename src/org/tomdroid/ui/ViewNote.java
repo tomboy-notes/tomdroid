@@ -42,11 +42,15 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Layout;
+import android.text.Spannable;
 import android.text.SpannableStringBuilder;
+import android.text.method.ArrowKeyMovementMethod;
+import android.text.style.ClickableSpan;
 import android.text.util.Linkify;
 import android.text.util.Linkify.TransformFilter;
 import android.util.Log;
-import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.widget.TextView;
 
 // TODO this class is starting to smell
@@ -72,9 +76,12 @@ public class ViewNote extends Activity {
 		
 		setContentView(R.layout.note_view);
 		content = (TextView) findViewById(R.id.content);
-		final Intent intent = getIntent();
-		Uri uri = intent.getData();
 		
+		final Intent intent = getIntent();
+		handleUri(intent.getData());
+	}
+
+	private void handleUri(Uri uri) {
 		if (uri != null) {
 			
 			// We were triggered by an Intent URI 
@@ -131,19 +138,6 @@ public class ViewNote extends Activity {
 		SyncManager.setHandler(this.syncMessageHandler);
 	}
 
-	// TODO add a menu that switches the view to an EditText instead of TextView
-	// this will need some other quit mechanism as onKeyDown though.. (but the back key might do it)
-	
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
-		super.onKeyDown(keyCode, event);
-		
-		finish();
-		
-		return true;
-	}
-	
 	private void showNote() {
 		setTitle(note.getTitle());
 
@@ -156,17 +150,17 @@ public class ViewNote extends Activity {
 			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "stripped the title from note-content");
 		}
 		
+		
 		// show the note (spannable makes the TextView able to output styled text)
 		content.setText(noteContent, TextView.BufferType.SPANNABLE);
-		
 		// add links to stuff that is understood by Android except phone numbers because it's too aggressive
 		// TODO this is SLOWWWW!!!!
 		Linkify.addLinks(content, Linkify.EMAIL_ADDRESSES|Linkify.WEB_URLS|Linkify.MAP_ADDRESSES);
 		
 		// Custom phone number linkifier (fixes lp:512204)
 		Linkify.addLinks(content, LinkifyPhone.PHONE_PATTERN, "tel:", LinkifyPhone.sPhoneNumberMatchFilter, Linkify.sPhoneNumberTransformFilter);
-		
-		// This will create a link every time a note title is found in the text.
+
+	    // This will create a link every time a note title is found in the text.
 		// The pattern contains a very dumb (title1)|(title2) escaped correctly
 		// Then we transform the url from the note name to the note id to avoid characters that mess up with the URI (ex: ?)
 		Linkify.addLinks(content, 

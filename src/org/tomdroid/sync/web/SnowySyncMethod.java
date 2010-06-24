@@ -169,9 +169,11 @@ public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
 		return new ArrayList<Note>();
 	}
 
+	/**
+	 * Check if the server's guid is as expected to prevent deleting local notes, etc when the
+	 * server has been wiped or reinitialized by another client.
+	 */
 	private void ensureServerIdIsAsExpected() {
-		// TODO check if the server's guid is as expected to prevent deleting local
-		// notes, etc when the server has been wiped or reinitialized by another client
 
 		/*
 		 * // If the server has been wiped or reinitialized by another client // for some reason,
