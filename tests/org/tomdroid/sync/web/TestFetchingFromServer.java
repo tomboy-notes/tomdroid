@@ -1,0 +1,96 @@
+package org.tomdroid.sync.web;
+
+import java.util.UUID;
+
+import org.tomdroid.Note;
+
+public class TestFetchingFromServer extends MockedSyncServerTestCase {
+
+	private static final String	TAG	= "TestFetchingFromServer";
+
+	public void testInitialization() throws Exception {
+		assertEquals("Max", getServer().firstName);
+		assertEquals("Mustermann", getServer().lastName);
+
+		assertTrue("should be in sync", getServer().isInSync());
+
+		getSyncMethod().syncWith(getServer());
+		assertTrue("should be in sync", getServer().isInSync());
+	}
+
+	public void testLoadingNewNoteFromServer() throws Exception {
+		Note remoteNote = getServer().testDataManipulator.createNewNote();
+		assertFalse("should be out of sync", getServer().isInSync());
+
+		getSyncMethod().syncWith(getServer());
+		assertTrue("should be in sync again", getServer().isInSync());
+
+		assertEquals("note ids should be the same", getServer().getNoteIds(), getLocalStorage()
+				.getNoteGuids());
+		Note localNote = getLocalStorage().getNote(remoteNote.getGuid());
+		assertEquals(remoteNote, localNote);
+	}
+
+	public void testChangingNoteTitleOnServer() throws Exception {
+		Note remoteNote = getServer().testDataManipulator.createNewNote();
+		getSyncMethod().syncWith(getServer());
+
+		remoteNote = getServer().testDataManipulator.setTitleOfNewestNote("Another Title");
+		assertEquals("server should still have one note", 1, getServer().storedNotes.size());
+		assertFalse("should be out of sync", getServer().isInSync());
+
+		getSyncMethod().syncWith(getServer());
+		assertTrue("should be in sync again", getServer().isInSync());
+
+		assertEquals(1, getLocalStorage().getNoteGuids().size());
+		assertEquals("note ids should be the same", getServer().getNoteIds(), getLocalStorage()
+				.getNoteGuids());
+
+		Note localNote = getLocalStorage().getNote(remoteNote.getGuid());
+		assertEquals(remoteNote, localNote);
+		assertEquals("local title should have changed", "Another Title", localNote.getTitle());
+	}
+
+	public void testChangingNoteContentOnServer() throws Exception {
+		Note remoteNote = getServer().testDataManipulator.createNewNote();
+		getSyncMethod().syncWith(getServer());
+
+		remoteNote = getServer().testDataManipulator
+				.setContentOfNewestNote("some other note content");
+		assertEquals("server should still have one note", 1, getServer().storedNotes.size());
+		assertFalse("should be out of sync", getServer().isInSync());
+
+		getSyncMethod().syncWith(getServer());
+		assertTrue("should be in sync again", getServer().isInSync());
+
+		assertEquals("note count", 1, getLocalStorage().getNoteGuids().size());
+		assertEquals("note ids should be the same", getServer().getNoteIds(), getLocalStorage()
+				.getNoteGuids());
+
+		Note localNote = getLocalStorage().getNote(remoteNote.getGuid());
+		assertEquals(remoteNote, localNote);
+		assertEquals("local content should have changed", "some other note content", localNote
+				.getXmlContent());
+	}
+
+	public void testDeletingNoteOnServer() throws Exception {
+		getServer().testDataManipulator.createNewNote();
+		UUID deletedNoteGuid = getServer().testDataManipulator.createNewNote().getGuid();
+		getServer().testDataManipulator.createNewNote();
+		getSyncMethod().syncWith(getServer());
+		assertEquals(3, getLocalStorage().getNoteGuids().size());
+
+		getServer().testDataManipulator.deleteNote(deletedNoteGuid);
+		assertEquals("server should have two notes", 2, getServer().storedNotes.size());
+		assertFalse("should be out of sync", getServer().isInSync());
+
+		getSyncMethod().syncWith(getServer());
+		assertTrue("should be in sync again", getServer().isInSync());
+
+		assertEquals(2, getLocalStorage().getNoteGuids().size());
+		assertEquals("note ids should be the same", getServer().getNoteIds(), getLocalStorage()
+				.getNoteGuids());
+
+		assertNull("guid should be in use", getLocalStorage().getNote(deletedNoteGuid));
+	}
+}
