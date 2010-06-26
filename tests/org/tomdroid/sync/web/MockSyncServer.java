@@ -86,7 +86,7 @@ public class MockSyncServer extends SyncServer {
 
 		public Note setContentOfNewestNote(String content) {
 			Note note = storedNotes.get(storedNotes.size() - 1);
-			note.setXmlContent(content);
+			note.changeXmlContent(content);
 			noteUpdates.add(note.clone());
 			onStoredDataChanged();
 			return note;

@@ -19,18 +19,19 @@ public class TestUpdatingTheServer extends MockedSyncServerTestCase {
 				remoteNote.getLastChangeDate());
 	}
 
-	private Note modifyLocalNote(UUID guid) {
+	private Note modifyLocalNote(UUID guid) throws Exception {
 		Note note = getLocalStorage().getNote(guid);
 		long creationTime = note.getLastChangeDate().toMillis(false);
+		Thread.sleep(200);
 		String newContent = note.getXmlContent() + "\nNew text for our test note!";
 		note.changeXmlContent(newContent);
+		
 		long modificationTime = note.getLastChangeDate().toMillis(false);
 		assertTrue("timestamp should have changed", creationTime < modificationTime);
+
 		getLocalStorage().insertNote(note);
 		note = getLocalStorage().getNote(guid);
-		modificationTime = note.getLastChangeDate().toMillis(false);
-		assertTrue("timestamp should have changed", creationTime < modificationTime);
-
+		assertEquals("timestamp should have been updated", modificationTime, note.getLastChangeDate().toMillis(false));
 		assertEquals("local note should have been updated", newContent, note.getXmlContent());
 		return note;
 	}

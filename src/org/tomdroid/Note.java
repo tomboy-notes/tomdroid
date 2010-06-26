@@ -202,7 +202,6 @@ public class Note implements Cloneable {
 	public JSONObject toJsonWithoutContent() throws JSONException {
 		JSONObject json = toJson();
 		json.remove("note-content");
-		json.remove("last-sync-revision");
 		return json;
 	}
 
@@ -211,16 +210,18 @@ public class Note implements Cloneable {
 		if (! (obj instanceof Note)) return false;
 		
 		Note note = (Note) obj;
-		if (note.getGuid().equals(getGuid()) && note.getLastChangeDate().equals(getLastChangeDate()) && note.getTitle().equals(getTitle())) return true;
-		
+		if (note.getGuid().equals(getGuid())
+				&& note.getLastChangeDate().equals(getLastChangeDate())
+				&& note.getTitle().equals(getTitle()))
+			return true;
+
 		return false;
 	}
 	
 	public JSONObject toJson() throws JSONException {
 		return new JSONObject("{'guid':'" + getGuid() + "', 'title':'" + getTitle()
 				+ "', 'note-content':'" + getXmlContent() + "', 'last-change-date':'"
-				+ getLastChangeDate().format3339(false) + "', 'last-sync-revision':"
-				+ lastSyncRevision + "}");
+				+ getLastChangeDate().format3339(false) + "'}");
 	}
 	
 	@Override
