@@ -45,6 +45,7 @@ public class Note implements Cloneable {
 	public static final String GUID = "guid";
 	public static final String TITLE = "title";
 	public static final String MODIFIED_DATE = "modified_date";
+	public static final String	LAST_SYNC_REVISION	= "last-sync-revision";
 	public static final String URL = "url";
 	public static final String FILE = "file";
 	public static final String NOTE_CONTENT = "content";
@@ -69,6 +70,7 @@ public class Note implements Cloneable {
 	private Time lastChangeDate;
 	private int dbId;
 	private UUID guid;
+	private int	lastSyncRevision;
 	
 	// Date converter pattern (remove extra sub milliseconds from datetime string)
 	// ex: will strip 3020 in 2010-01-23T12:07:38.7743020-05:00
@@ -85,6 +87,7 @@ public class Note implements Cloneable {
 		setTitle(XmlUtils.unescape(json.optString("title")));
 		setGuid(json.optString("guid"));
 		setLastChangeDate(json.optString("last-change-date"));
+		lastSyncRevision = json.optInt("last-sync-revision", -1);
 		setXmlContent(json.optString("note-content"));
 	}
 	
@@ -112,11 +115,19 @@ public class Note implements Cloneable {
 		this.title = title;
 	}
 
+	public void setLastSyncRevision(int revision) {
+		lastSyncRevision = revision;
+	}
+
+	public int getLastSyncRevision() {
+		return lastSyncRevision;
+	}
+
 	public Time getLastChangeDate() {
 		return lastChangeDate;
 	}
 
-	public void setLastChangeDate(Time lastChangeDate) {
+		public void setLastChangeDate(Time lastChangeDate) {
 		this.lastChangeDate = lastChangeDate;
 		lastChangeDate.switchTimezone(Time.TIMEZONE_UTC);
 	}
@@ -170,13 +181,28 @@ public class Note implements Cloneable {
 		return xmlContent;
 	}
 	
+	/**
+	 * Change the content while leaving last-change-date untouched.
+	 */
 	public void setXmlContent(String xmlContent) {
 		this.xmlContent = xmlContent;
 	}
+
+	/**
+	 * Updates the content and sets last-change-date to now.
+	 */
+	public void changeXmlContent(String xmlContent) {
+		this.xmlContent = xmlContent;
+		Time time = new Time();
+		time.setToNow();
+		setLastChangeDate(time);
+	}
+
 	
 	public JSONObject toJsonWithoutContent() throws JSONException {
 		JSONObject json = toJson();
 		json.remove("note-content");
+		json.remove("last-sync-revision");
 		return json;
 	}
 
@@ -191,8 +217,10 @@ public class Note implements Cloneable {
 	}
 	
 	public JSONObject toJson() throws JSONException {
-		return new JSONObject("{'guid':'" + getGuid() + "', 'title':'" + getTitle() + "', 'note-content':'"
-				+ getXmlContent() + "', 'last-change-date':'"+ getLastChangeDate().format3339(false) +"'}");
+		return new JSONObject("{'guid':'" + getGuid() + "', 'title':'" + getTitle()
+				+ "', 'note-content':'" + getXmlContent() + "', 'last-change-date':'"
+				+ getLastChangeDate().format3339(false) + "', 'last-sync-revision':"
+				+ lastSyncRevision + "}");
 	}
 	
 	@Override

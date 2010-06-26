@@ -2,6 +2,7 @@ package org.tomdroid.sync.web;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.UUID;
 
 import org.json.JSONArray;
@@ -65,11 +66,9 @@ public class MockSyncServer extends SyncServer {
 		public Note createNewNote() {
 			Note note = new Note();
 			note.setTitle("A Title");
-			note.setGuid(UUID.randomUUID().toString());
-			Time time = new Time();
-			time.setToNow();
-			note.setLastChangeDate(time);
-			note.setXmlContent("plain note content.");
+			note.setGuid(UUID.randomUUID());
+			note.setLastSyncRevision((int) (Math.random() * 10));
+			note.changeXmlContent("plain note content.");
 
 			storedNotes.add(note);
 			noteUpdates.add(note.clone());
@@ -101,6 +100,15 @@ public class MockSyncServer extends SyncServer {
 					return;
 				}
 			}
+		}
+		
+		public Note getNote(UUID guid) {
+			for (Note note : storedNotes) {
+				if (note.getGuid().equals(guid)) {
+					return note;
+				}
+			}
+			throw new NoSuchElementException();
 		}
 	}
 }
