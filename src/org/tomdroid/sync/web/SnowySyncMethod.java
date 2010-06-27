@@ -2,12 +2,14 @@ package org.tomdroid.sync.web;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Set;
 
 import org.json.JSONException;
 import org.tomdroid.Note;
 import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncMethod;
 import org.tomdroid.ui.Tomdroid;
+import org.tomdroid.util.Preferences;
 
 import android.app.Activity;
 import android.net.Uri;
@@ -147,20 +149,20 @@ public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
 
 		deleteNotesNotFoundOnClient(server);
 
-		server.onSyncDone();
+		getLocalStorage().onSynced(server.getSyncRevision());
 		setSyncProgress(100);
 	}
-
+	
 	private void deleteNotesNotFoundOnServer(SyncServer server) throws UnknownHostException,
 			JSONException {
-		ArrayList<String> remotelyRemovedNoteIds = getLocalStorage().getNoteGuids();
+		Set<String> remotelyRemovedNoteIds = getLocalStorage().getNoteGuids();
 		remotelyRemovedNoteIds.removeAll(server.getNoteIds());
 		getLocalStorage().deleteNotes(remotelyRemovedNoteIds);
 	}
 
 	private void deleteNotesNotFoundOnClient(SyncServer server) throws UnknownHostException,
 			JSONException {
-		ArrayList<String> locallyRemovedNoteIds = server.getNoteIds();
+		Set<String> locallyRemovedNoteIds = server.getNoteIds();
 		locallyRemovedNoteIds.removeAll(getLocalStorage().getNoteGuids());
 		server.delete(locallyRemovedNoteIds);
 	}

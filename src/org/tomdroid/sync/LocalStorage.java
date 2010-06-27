@@ -1,6 +1,8 @@
 package org.tomdroid.sync;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 import org.tomdroid.Note;
@@ -9,7 +11,6 @@ import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.Preferences;
 
 import android.app.Activity;
-import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
 
@@ -36,8 +37,8 @@ public class LocalStorage {
 		NoteManager.putNote(this.activity, note);
 	}
 
-	public ArrayList<String> getNoteGuids() {
-		ArrayList<String> idList = new ArrayList<String>();
+	public Set<String> getNoteGuids() {
+		Set<String> idList = new HashSet<String>();
 
 		Cursor idCursor = NoteManager.getGuids(this.activity);
 
@@ -63,7 +64,7 @@ public class LocalStorage {
 		return idList;
 	}
 
-	public void deleteNotes(ArrayList<String> guids) {
+	public void deleteNotes(Set<String> guids) {
 
 		for (String guid : guids) {
 			NoteManager.deleteNote(activity, UUID.fromString(guid));
@@ -104,5 +105,14 @@ public class LocalStorage {
 		} while (cursor.moveToNext());
 
 		return notes;
+	}
+
+	public void onSynced(Long syncRevisionOfServer) {
+		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, syncRevisionOfServer);
+		ArrayList<Note> syncedNotes = getNewAndUpdatedNotes();
+		for (Note note : syncedNotes) {
+			note.isSynced(true);
+			NoteManager.putNote(activity, note);
+		}
 	}
 }

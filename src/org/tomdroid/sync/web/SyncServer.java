@@ -2,6 +2,8 @@ package org.tomdroid.sync.web;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -57,15 +59,15 @@ public class SyncServer {
 		return localStorage.getLatestSyncVersion() == syncVersionOnServer
 				&& localStorage.getNewAndUpdatedNotes().isEmpty();
 	}
+	
+	public Long getSyncRevision() {
+		return syncVersionOnServer;
+	}
 
 	public JSONArray getNotes() throws UnknownHostException, JSONException {
 		JSONObject response = new JSONObject(authConnection.get(getNotesUri()
 				+ "?include_notes=true"));
 		return response.getJSONArray("notes");
-	}
-
-	public void onSyncDone() {
-		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, syncVersionOnServer);
 	}
 
 	public static OAuthConnection getAuthConnection() {
@@ -107,8 +109,8 @@ public class SyncServer {
 		return response;
 	}
 
-	public ArrayList<String> getNoteIds() throws UnknownHostException, JSONException {
-		ArrayList<String> guids = new ArrayList<String>();
+	public Set<String> getNoteIds() throws UnknownHostException, JSONException {
+		Set<String> guids = new HashSet<String>();
 
 		JSONObject response = getAllNotesWithoutContent();
 	
@@ -129,7 +131,7 @@ public class SyncServer {
 		// TODO Auto-generated method stub
 	}
 
-	public void delete(ArrayList<String> disposedNoteIds) {
+	public void delete(Set<String> disposedNoteIds) {
 		// TODO Auto-generated method stub
 	}
 

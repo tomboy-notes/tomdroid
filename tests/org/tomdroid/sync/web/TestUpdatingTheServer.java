@@ -21,19 +21,33 @@ public class TestUpdatingTheServer extends MockedSyncServerTestCase {
 				.getNewAndUpdatedNotes().get(0).getXmlContent());
 		assertFalse("should be out of sync", getServer().isInSync(getLocalStorage()));
 
-		
 		getSyncMethod().syncWith(getServer());
+		assertEquals("should have no changed notes anymore", 0, getLocalStorage()
+				.getNewAndUpdatedNotes().size());
+
 		Note remoteNote = getServer().testDataManipulator.getNote(guid);
-		assertEquals("remote note should have correct timestamp", localNote.getLastChangeDate().format3339(false),
-				remoteNote.getLastChangeDate().format3339(false));
+		assertEquals("remote note should have correct timestamp", localNote.getLastChangeDate()
+				.format3339(false), remoteNote.getLastChangeDate().format3339(false));
 		assertEquals("remote note should have been updated", localNote.getXmlContent(), remoteNote
 				.getXmlContent());
+	}
+
+	public void testChangingDifferentNotesOnClientAndServer() throws Exception {
+		UUID guid = getServer().testDataManipulator.createNewNote().getGuid();
+		getSyncMethod().syncWith(getServer());
+
+		modifyLocalNote(guid);
+		getServer().testDataManipulator.createNewNote();
+		getSyncMethod().syncWith(getServer());
+
+		assertEquals(2, getLocalStorage().getNoteGuids().size());
+		assertEquals(2, getServer().getNoteIds().size());
 	}
 
 	private Note modifyLocalNote(UUID guid) throws Exception {
 		Note note = getLocalStorage().getNote(guid);
 		long creationTime = note.getLastChangeDate().toMillis(false);
-		Thread.sleep(1500);
+		Thread.sleep(1100);
 		String newContent = note.getXmlContent() + "Appended text for our test note!";
 		note.changeXmlContent(newContent);
 
