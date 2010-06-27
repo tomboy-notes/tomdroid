@@ -99,7 +99,8 @@ public class NoteProvider extends ContentProvider {
                     + Note.TITLE + " TEXT,"
                     + Note.FILE + " TEXT,"
                     + Note.NOTE_CONTENT + " TEXT,"
-                    + Note.MODIFIED_DATE + " STRING"
+                    + Note.MODIFIED_DATE + " STRING,"
+                    + Note.IS_SYNCED + " INTEGER"
                     + ");");
         }
 
@@ -158,7 +159,6 @@ public class NoteProvider extends ContentProvider {
             orderBy = sortOrder;
         }
         
-
         // Get the database and run the query
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor c = qb.query(db, projection, selection, selectionArgs, null, null, orderBy);
@@ -297,5 +297,6 @@ public class NoteProvider extends ContentProvider {
         notesProjectionMap.put(Note.FILE, Note.FILE);
         notesProjectionMap.put(Note.NOTE_CONTENT, Note.NOTE_CONTENT);
         notesProjectionMap.put(Note.MODIFIED_DATE, Note.MODIFIED_DATE);
+        notesProjectionMap.put(Note.IS_SYNCED, Note.IS_SYNCED);
     }
 }

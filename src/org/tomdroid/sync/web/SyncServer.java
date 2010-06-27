@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.tomdroid.Note;
+import org.tomdroid.sync.LocalStorage;
 import org.tomdroid.util.Preferences;
 
 import android.util.Log;
@@ -52,9 +53,9 @@ public class SyncServer {
 		return notesApiReference;
 	}
 
-	public boolean isInSync() {
-		long syncVersionOnClient = (Long) Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION);
-		return syncVersionOnClient == syncVersionOnServer;
+	public boolean isInSync(LocalStorage localStorage) {
+		return localStorage.getLatestSyncVersion() == syncVersionOnServer
+				&& localStorage.getNewAndUpdatedNotes().isEmpty();
 	}
 
 	public JSONArray getNotes() throws UnknownHostException, JSONException {

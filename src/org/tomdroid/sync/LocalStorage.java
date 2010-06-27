@@ -9,9 +9,8 @@ import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.Preferences;
 
 import android.app.Activity;
-import android.content.ContentResolver;
+import android.content.Context;
 import android.database.Cursor;
-import android.net.Uri;
 import android.util.Log;
 
 /**
@@ -32,12 +31,8 @@ public class LocalStorage {
 
 	/**
 	 * Insert a note in the content provider. The identifier for the notes is the guid.
-	 * 
-	 * @param note
-	 *            The note to insert.
 	 */
 	public void insertNote(Note note) {
-
 		NoteManager.putNote(this.activity, note);
 	}
 
@@ -82,12 +77,32 @@ public class LocalStorage {
 		activity.getContentResolver().delete(Tomdroid.CONTENT_URI, null, null);
 		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, 0);
 	}
-	
+
 	public long getLatestSyncVersion() {
 		return (Long) Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION);
 	}
 
 	public Note getNote(UUID guid) {
 		return NoteManager.getNote(activity, guid);
+	}
+
+	public ArrayList<Note> getNewAndUpdatedNotes() {
+		ArrayList<Note> notes = new ArrayList<Note>();
+
+		String[] whereArgs = { "0" };
+		Cursor cursor = activity.getContentResolver().query(Tomdroid.CONTENT_URI,
+				NoteManager.FULL_PROJECTION, Note.IS_SYNCED + "=?", whereArgs, null);
+
+		if (cursor == null || cursor.getCount() == 0) {
+			return notes;
+		}
+
+		cursor.moveToFirst();
+
+		do {
+			notes.add(new Note(cursor));
+		} while (cursor.moveToNext());
+
+		return notes;
 	}
 }

@@ -125,7 +125,7 @@ public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
 
 	void syncWith(SyncServer server) throws UnknownHostException, JSONException {
 
-		if (server.isInSync()) {
+		if (server.isInSync(getLocalStorage())) {
 			setSyncProgress(100);
 			return;
 		}
@@ -142,7 +142,7 @@ public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
 
 		deleteNotesNotFoundOnServer(server);
 
-		server.upload(getNewAndUpdatedNotes());
+		server.upload(getLocalStorage().getNewAndUpdatedNotes());
 		setSyncProgress(90);
 
 		deleteNotesNotFoundOnClient(server);
@@ -163,10 +163,6 @@ public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
 		ArrayList<String> locallyRemovedNoteIds = server.getNoteIds();
 		locallyRemovedNoteIds.removeAll(getLocalStorage().getNoteGuids());
 		server.delete(locallyRemovedNoteIds);
-	}
-
-	private ArrayList<Note> getNewAndUpdatedNotes() {
-		return new ArrayList<Note>();
 	}
 
 	/**

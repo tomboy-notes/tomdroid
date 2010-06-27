@@ -12,18 +12,18 @@ public class TestFetchingFromServer extends MockedSyncServerTestCase {
 		assertEquals("Max", getServer().firstName);
 		assertEquals("Mustermann", getServer().lastName);
 
-		assertTrue("should be in sync", getServer().isInSync());
+		assertTrue("should be in sync", getServer().isInSync(getLocalStorage()));
 
 		getSyncMethod().syncWith(getServer());
-		assertTrue("should be in sync", getServer().isInSync());
+		assertTrue("should be in sync", getServer().isInSync(getLocalStorage()));
 	}
 
 	public void testLoadingNewNoteFromServer() throws Exception {
 		Note remoteNote = getServer().testDataManipulator.createNewNote();
-		assertFalse("should be out of sync", getServer().isInSync());
+		assertFalse("should be out of sync", getServer().isInSync(getLocalStorage()));
 
 		getSyncMethod().syncWith(getServer());
-		assertTrue("should be in sync again", getServer().isInSync());
+		assertTrue("should be in sync again", getServer().isInSync(getLocalStorage()));
 
 		assertEquals("note ids should be the same", getServer().getNoteIds(), getLocalStorage()
 				.getNoteGuids());
@@ -37,10 +37,10 @@ public class TestFetchingFromServer extends MockedSyncServerTestCase {
 
 		remoteNote = getServer().testDataManipulator.setTitleOfNewestNote("Another Title");
 		assertEquals("server should still have one note", 1, getServer().storedNotes.size());
-		assertFalse("should be out of sync", getServer().isInSync());
+		assertFalse("should be out of sync", getServer().isInSync(getLocalStorage()));
 
 		getSyncMethod().syncWith(getServer());
-		assertTrue("should be in sync again", getServer().isInSync());
+		assertTrue("should be in sync again", getServer().isInSync(getLocalStorage()));
 
 		assertEquals(1, getLocalStorage().getNoteGuids().size());
 		assertEquals("note ids should be the same", getServer().getNoteIds(), getLocalStorage()
@@ -58,10 +58,10 @@ public class TestFetchingFromServer extends MockedSyncServerTestCase {
 		remoteNote = getServer().testDataManipulator
 				.setContentOfNewestNote("some other note content");
 		assertEquals("server should still have one note", 1, getServer().storedNotes.size());
-		assertFalse("should be out of sync", getServer().isInSync());
+		assertFalse("should be out of sync", getServer().isInSync(getLocalStorage()));
 
 		getSyncMethod().syncWith(getServer());
-		assertTrue("should be in sync again", getServer().isInSync());
+		assertTrue("should be in sync again", getServer().isInSync(getLocalStorage()));
 
 		assertEquals("note count", 1, getLocalStorage().getNoteGuids().size());
 		assertEquals("note ids should be the same", getServer().getNoteIds(), getLocalStorage()
@@ -82,10 +82,10 @@ public class TestFetchingFromServer extends MockedSyncServerTestCase {
 
 		getServer().testDataManipulator.deleteNote(deletedNoteGuid);
 		assertEquals("server should have two notes", 2, getServer().storedNotes.size());
-		assertFalse("should be out of sync", getServer().isInSync());
+		assertFalse("should be out of sync", getServer().isInSync(getLocalStorage()));
 
 		getSyncMethod().syncWith(getServer());
-		assertTrue("should be in sync again", getServer().isInSync());
+		assertTrue("should be in sync again", getServer().isInSync(getLocalStorage()));
 
 		assertEquals(2, getLocalStorage().getNoteGuids().size());
 		assertEquals("note ids should be the same", getServer().getNoteIds(), getLocalStorage()

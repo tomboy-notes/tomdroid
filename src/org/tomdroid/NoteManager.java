@@ -28,7 +28,7 @@ import android.widget.SimpleCursorAdapter;
 public class NoteManager {
 
 	public static final String[]	FULL_PROJECTION		= { Note.ID, Note.TITLE, Note.FILE,
-			Note.NOTE_CONTENT, Note.MODIFIED_DATE, Note.GUID };
+			Note.NOTE_CONTENT, Note.MODIFIED_DATE, Note.GUID, Note.IS_SYNCED };
 	public static final String[]	LIST_PROJECTION		= { Note.ID, Note.TITLE };
 	public static final String[]	TITLE_PROJECTION	= { Note.TITLE };
 	public static final String[]	GUID_PROJECTION		= { Note.ID, Note.GUID };
@@ -54,22 +54,13 @@ public class NoteManager {
 	/**
 	 * Creates a Note which is described at the cursor position.
 	 */
-	private static Note getNote(Cursor cursor) {
+	public static Note getNote(Cursor cursor) {
 		Note note = null;
 		if (!(cursor == null || cursor.getCount() == 0)) {
 
 			// create the note from the cursor
 			cursor.moveToFirst();
-			String content = cursor.getString(cursor.getColumnIndexOrThrow(Note.NOTE_CONTENT));
-			String title = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
-			String lastChangeDate = cursor.getString(cursor
-					.getColumnIndexOrThrow(Note.MODIFIED_DATE));
-
-			note = new Note();
-			note.setXmlContent(content);
-			note.setTitle(title);
-			note.setLastChangeDate(lastChangeDate);
-			note.setGuid(cursor.getString(cursor.getColumnIndexOrThrow(Note.GUID)));
+			note = new Note(cursor);
 		}
 		cursor.close();
 		return note;
@@ -96,6 +87,7 @@ public class NoteManager {
 		values.put(Note.TITLE, note.getTitle());
 		values.put(Note.FILE, note.getFileName());
 		values.put(Note.GUID, note.getGuid().toString());
+		values.put(Note.IS_SYNCED, note.isSynced() ? 1 : 0);
 		// Notice that we store the date in UTC because sqlite doesn't handle RFC3339 timezone
 		// information
 		values.put(Note.MODIFIED_DATE, note.getLastChangeDate().format3339(false));
