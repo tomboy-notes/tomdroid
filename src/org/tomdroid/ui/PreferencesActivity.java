@@ -66,7 +66,7 @@ public class PreferencesActivity extends PreferenceActivity {
 				
 				if (newValue == null) {
 					Toast.makeText(PreferencesActivity.this,
-							"sync server uri changed but the new value is null",
+							getString(R.string.prefServerEmpty),
 							Toast.LENGTH_SHORT).show();
 					return false;
 				}
