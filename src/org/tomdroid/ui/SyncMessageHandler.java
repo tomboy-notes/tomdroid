@@ -92,14 +92,14 @@ public class SyncMessageHandler extends Handler {
 	}
 
 	private void handleSyncProgress(Message msg) {
-		ImageView syncButton = (ImageView) activity.findViewById(R.id.sync);
+		ImageView syncIcon = (ImageView) activity.findViewById(R.id.syncIcon);
 
 		RotateAnimation rotation = new RotateAnimation(180 * msg.arg2 / 100f,
 				180 * msg.arg1 / 100f, Animation.RELATIVE_TO_SELF, 0.5f,
 				Animation.RELATIVE_TO_SELF, 0.5f);
 		rotation.setDuration(700);
 		rotation.setFillAfter(true);
-		syncButton.startAnimation(rotation);
+		syncIcon.startAnimation(rotation);
 
 		if (msg.arg1 == 0) {
 			onSynchronizationStarted();
@@ -110,9 +110,10 @@ public class SyncMessageHandler extends Handler {
 
 	private void onSynchronizationDone() {
 		ImageView syncButton = (ImageView) activity.findViewById(R.id.sync);
+		ImageView syncIcon = (ImageView) activity.findViewById(R.id.syncIcon);
 
 		syncButton.setClickable(true);
-		syncButton.getDrawable().setAlpha(Actionbar.DEFAULT_ICON_ALPHA);
+		syncIcon.getDrawable().setAlpha(Actionbar.DEFAULT_ICON_ALPHA);
 
 		View dot = activity.findViewById(R.id.sync_dot);
 		dot.setVisibility(View.INVISIBLE);
@@ -121,9 +122,10 @@ public class SyncMessageHandler extends Handler {
 
 	private void onSynchronizationStarted() {
 		ImageView syncButton = (ImageView) activity.findViewById(R.id.sync);
+		ImageView syncIcon = (ImageView) activity.findViewById(R.id.syncIcon);
 
 		syncButton.setClickable(false);
-		syncButton.getDrawable().setAlpha(40);
+		syncIcon.getDrawable().setAlpha(40);
 		
 		Animation pulse = AnimationUtils.loadAnimation(activity, R.anim.pulse);
 		View dot = activity.findViewById(R.id.sync_dot);

@@ -32,22 +32,14 @@ public class Actionbar extends RelativeLayout {
 	}
 	
 	private void setupSyncButton(){
+		
 		final ImageView syncButton = (ImageView) findViewById(R.id.sync);
-		syncButton.getDrawable().setAlpha(Actionbar.DEFAULT_ICON_ALPHA);
+		final ImageView syncIcon = (ImageView) findViewById(R.id.syncIcon);
+		syncIcon.getDrawable().setAlpha(Actionbar.DEFAULT_ICON_ALPHA);
 		syncButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
 				SyncManager.getInstance().startSynchronization();
-			}
-		});
-		syncButton.setOnFocusChangeListener(new OnFocusChangeListener() {
-			
-			public void onFocusChange(View v, boolean hasFocus) {
-				if (hasFocus)
-					findViewById(R.id.sync_dot).setVisibility(VISIBLE);
-				else 
-					findViewById(R.id.sync_dot).setVisibility(INVISIBLE);
-				 
 			}
 		});
 	}
