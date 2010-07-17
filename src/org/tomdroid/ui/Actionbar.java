@@ -11,10 +11,9 @@ import android.widget.RelativeLayout;
 
 public class Actionbar extends RelativeLayout {
 
-	public static final int	DEFAULT_ICON_ALPHA	=200;
+	public static final int DEFAULT_ICON_ALPHA = 200;
 
-	public Actionbar(Context context
-			, AttributeSet attrs) {
+	public Actionbar(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
 

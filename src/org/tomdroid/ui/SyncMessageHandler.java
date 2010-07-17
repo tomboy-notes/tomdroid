@@ -20,11 +20,11 @@ import android.widget.Toast;
 
 public class SyncMessageHandler extends Handler {
 
-	private static String	TAG	= "SycMessageHandler";
+	private static String TAG = "SycnMessageHandler";
 	private Activity activity;
 
 	// State variables
-	private boolean				parsingErrorShown	= false;
+	private boolean parsingErrorShown = false;
 	
 	public SyncMessageHandler(Activity activity) {
 		this.activity = activity;

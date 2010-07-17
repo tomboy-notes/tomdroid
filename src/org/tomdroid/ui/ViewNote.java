@@ -88,7 +88,7 @@ public class ViewNote extends Activity {
 			
 			if(note != null) {
 				
-				noteContent = note.getNoteContent(NoteContentHandler);
+				noteContent = note.getNoteContent(noteContentHandler);
 				
 			} else {
 				
@@ -183,7 +183,7 @@ public class ViewNote extends Activity {
 		titleView.setText(title);
 	}
 	
-	private Handler NoteContentHandler = new Handler() {
+	private Handler noteContentHandler = new Handler() {
 
 		@Override
 		public void handleMessage(Message msg) {

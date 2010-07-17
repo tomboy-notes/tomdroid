@@ -41,14 +41,15 @@ public abstract class SyncService {
 		pool = Executors.newFixedThreadPool(poolSize);
 	}
 
-	 public void startSynchronization(){
-			if (syncProgress != 100){
-				Toast.makeText(activity, "Sync already in prgress", Toast.LENGTH_SHORT).show();
-				return;
-			}
-			
-			sync();
+	public void startSynchronization() {
+		
+		if (syncProgress != 100){
+			Toast.makeText(activity, "Sync already in prgress", Toast.LENGTH_SHORT).show();
+			return;
 		}
+		
+		sync();
+	}
 	
 	protected abstract void sync();
 	public abstract boolean needsServer();

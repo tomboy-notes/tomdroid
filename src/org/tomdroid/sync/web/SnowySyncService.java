@@ -105,6 +105,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 		execInThread(new Runnable() {
 			
 			public void run() {
+				
 				OAuthConnection auth = getAuthConnection();
 				
 				try {

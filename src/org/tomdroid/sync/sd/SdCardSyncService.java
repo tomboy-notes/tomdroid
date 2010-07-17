@@ -52,7 +52,7 @@ import android.util.TimeFormatException;
 public class SdCardSyncService extends SyncService {
 	
 	private File path;
-	private int	numberOfFilesToSync = 0;
+	private int numberOfFilesToSync = 0;
 	
 	// regexp for <note-content..>...</note-content>
 	private static Pattern note_content = Pattern.compile("<note-content.*>(.*)<\\/note-content>", Pattern.CASE_INSENSITIVE+Pattern.DOTALL);
@@ -66,7 +66,7 @@ public class SdCardSyncService extends SyncService {
 		path = new File(Tomdroid.NOTES_PATH);
 		
 		if (!path.exists())
-		    path.mkdir();
+			path.mkdir();
 	}
 	
 	@Override
@@ -95,7 +95,7 @@ public class SdCardSyncService extends SyncService {
 		setSyncProgress(0);
 
 		// start loading local notes
-        if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "Loading local notes");
+		if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "Loading local notes");
 		
 		File[] fileList = path.listFiles(new NotesFilter());
 		numberOfFilesToSync  = fileList.length;
@@ -149,6 +149,7 @@ public class SdCardSyncService extends SyncService {
 		}
 
 		public void run() {
+			
 			note.setFileName(file.getAbsolutePath());
 			// the note guid is not stored in the xml but in the filename
 			note.setGuid(file.getName().replace(".note", ""));
@@ -162,7 +163,7 @@ public class SdCardSyncService extends SyncService {
 		
 		        // Get the XMLReader of the SAXParser we created
 		        XMLReader xr = sp.getXMLReader();
-    
+
 		        // Create a new ContentHandler, send it this note to fill and apply it to the XML-Reader
 		        NoteHandler xmlHandler = new NoteHandler(note);
 		        xr.setContentHandler(xmlHandler);
