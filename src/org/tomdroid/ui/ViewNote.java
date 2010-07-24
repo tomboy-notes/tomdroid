@@ -37,6 +37,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -52,6 +53,7 @@ import android.widget.TextView;
 public class ViewNote extends Activity {
 	
 	// UI elements
+	private TextView title;
 	private TextView content;
 	
 	// Model objects
@@ -68,6 +70,14 @@ public class ViewNote extends Activity {
 		
 		setContentView(R.layout.note_view);
 		content = (TextView) findViewById(R.id.content);
+		content.setBackgroundColor(0xffefefef);
+		content.setTextColor(Color.DKGRAY);
+		content.setTextSize(18.0f);
+		title = (TextView) findViewById(R.id.title);
+		title.setBackgroundColor(0xffdddddd);
+		title.setTextColor(Color.DKGRAY);
+		title.setTextSize(18.0f);
+		
 		final Intent intent = getIntent();
 		Uri uri = intent.getData();
 		
@@ -85,6 +95,8 @@ public class ViewNote extends Activity {
 			if(note != null) {
 				
 				noteContent = note.getNoteContent(handler);
+				
+				//Log.i(TAG, "THE NOTE IS: " + note.getXmlContent().toString());
 				
 			} else {
 				
@@ -134,7 +146,7 @@ public class ViewNote extends Activity {
 	}
 
 	private void showNote() {
-		setTitle(note.getTitle());
+		//setTitle(note.getTitle());
 
 		// get rid of the title that is doubled in the note's content
 		// using quote to escape potential regexp chars in pattern
@@ -147,6 +159,7 @@ public class ViewNote extends Activity {
 		
 		// show the note (spannable makes the TextView able to output styled text)
 		content.setText(noteContent, TextView.BufferType.SPANNABLE);
+		title.setText((CharSequence) note.getTitle());
 		
 		// add links to stuff that is understood by Android except phone numbers because it's too aggressive
 		// TODO this is SLOWWWW!!!!

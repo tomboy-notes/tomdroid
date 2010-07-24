@@ -9,6 +9,7 @@ import org.tomdroid.util.Preferences;
 
 import android.app.Activity;
 import android.os.Handler;
+import android.util.Log;
 
 public class SyncManager {
 	
@@ -34,7 +35,7 @@ public class SyncManager {
 	public SyncService getService(String name) {
 		
 		for (int i = 0; i < services.size(); i++) {
-			SyncService service = services.get(i);
+			SyncService service = services.get(i);			
 			if (name.equals(service.getName()))
 				return service;
 		}
@@ -49,7 +50,6 @@ public class SyncManager {
 	}
 	
 	public SyncService getCurrentService() {
-		
 		String serviceName = Preferences.getString(Preferences.Key.SYNC_SERVICE);
 		return getService(serviceName);
 	}

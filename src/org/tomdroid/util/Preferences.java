@@ -20,6 +20,7 @@ public class Preferences {
 		ACCESS_TOKEN_URL ("access_token_url", ""),
 		REQUEST_TOKEN_URL ("request_token_url", ""),
 		LATEST_SYNC_REVISION ("latest_sync_revision", 0L),
+		SORT_ORDER ("sort_order", "sort_date"),
 		FIRST_RUN ("first_run", true);
 		
 		private String name = "";

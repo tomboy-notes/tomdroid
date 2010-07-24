@@ -129,13 +129,20 @@ public class Tomdroid extends ListActivity {
 		// Check if the syncing setup has been done. If not, hide the menu item.
 		// It would probably be better to disable it, but I did not find a way to do it.
 		MenuItem syncItem = menu.findItem(R.id.menuSync);
-		SyncService currentService = SyncManager.getInstance().getCurrentService();
-		
-		if (currentService.needsAuth()
-				&& !((ServiceAuth)currentService).isConfigured())
+
+		try {
+			SyncService currentService = SyncManager.getInstance().getCurrentService();
+			
+			if (currentService.needsAuth()
+					&& !((ServiceAuth)currentService).isConfigured())
+				syncItem.setVisible(false).setEnabled(false);
+			else
+				syncItem.setVisible(true).setEnabled(true);
+			
+		} catch (Exception e){
 			syncItem.setVisible(false).setEnabled(false);
-		else
-			syncItem.setVisible(true).setEnabled(true);
+		}
+		
 		
 		return super.onPrepareOptionsMenu(menu);
 	}
@@ -158,9 +165,14 @@ public class Tomdroid extends ListActivity {
         
         return super.onOptionsItemSelected(item);
 	}
-	
+		
 	public void onResume() {
 		super.onResume();
+
+		// How do I refresh the ListView when the sort order preference has been changed?
+    	//adapter = NoteManager.getListAdapter(this);
+		//setListAdapter(adapter);
+		
     	Intent intent = this.getIntent();
     	
     	if (intent != null) {
