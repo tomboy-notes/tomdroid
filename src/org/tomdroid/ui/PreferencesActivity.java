@@ -1,6 +1,5 @@
 package org.tomdroid.ui;
 
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 import org.tomdroid.R;
@@ -10,16 +9,20 @@ import org.tomdroid.sync.SyncService;
 import org.tomdroid.util.Preferences;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.Preference.OnPreferenceChangeListener;
+import android.util.Log;
 import android.widget.Toast;
 
 public class PreferencesActivity extends PreferenceActivity {
@@ -75,38 +78,55 @@ public class PreferencesActivity extends PreferenceActivity {
 				String server = (String)newValue;
 				Preferences.putString(Preferences.Key.SYNC_SERVER, server);
 				
-				// get the current service
-				SyncService currentService = SyncManager.getInstance().getCurrentService();
-				
-				// check if the service needs authentication
-				if (currentService.needsAuth()) {
-					
-					Uri authorizationUri;
-					try {
-						authorizationUri = ((ServiceAuth)currentService).getAuthUri(server);
-					} catch (UnknownHostException e) {
-						connectionFailed();
-						// Auth failed, don't update the value
-						return false;
-					}
-					
-					if (authorizationUri != null) {
-						
-						Intent i = new Intent(Intent.ACTION_VIEW, authorizationUri);
-						startActivity(i);
-						return true;
-						
-					} else {
-						connectionFailed();
-						// Auth failed, don't update the value
-						return false;
-					}
-				}
-				
+				PreferencesActivity.this.auth(server);
 				return true;
 			}
 			
 		});
+	}
+	
+	private void auth(String server) {
+		
+		// get the current service
+		SyncService currentService = SyncManager.getInstance().getCurrentService();
+		
+		// check if the service needs authentication
+		if (currentService.needsAuth()) {
+			
+			Log.i(TAG, "Creating dialog");
+			
+			final ProgressDialog authProgress = ProgressDialog.show(this, "", 
+				"Authenticating. Please wait...", true, false);
+			
+			Handler handler = new Handler() {
+				
+				@Override
+				public void handleMessage(Message msg) {
+					
+					boolean result = false;
+					Uri authorizationUri = (Uri)msg.obj;
+					if (authorizationUri != null) {
+						
+						Intent i = new Intent(Intent.ACTION_VIEW, authorizationUri);
+						startActivity(i);
+						result = true;
+						
+					} else {
+						// Auth failed, don't update the value
+						result = false;
+					}
+					
+					if(authProgress != null)
+						authProgress.dismiss();
+					
+					if(!result)
+						connectionFailed();
+				}
+				
+			};
+			
+			((ServiceAuth)currentService).getAuthUri(server, handler);
+		}
 	}
 	
 	private void fillServices()

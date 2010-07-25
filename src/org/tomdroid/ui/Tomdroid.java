@@ -32,6 +32,7 @@ import org.tomdroid.util.Preferences;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
@@ -41,6 +42,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -144,11 +146,25 @@ public class Tomdroid extends ListActivity {
 
 			if (uri != null && uri.getScheme().equals("tomdroid")) {
 				Log.i(TAG, "Got url : " + uri.toString());
+				
+				final ProgressDialog dialog = ProgressDialog.show(this, "", 
+                        "Completing authentication. Please wait...", true, false);
+				
 				SyncService currentService = SyncManager.getInstance().getCurrentService();
 
 				if (currentService.needsAuth()) {
 					// the user has completed the remote auth, do the third part
-					((ServiceAuth) currentService).remoteAuthComplete(uri);
+					
+					Handler handler = new Handler() {
+						
+						@Override
+						public void handleMessage(Message msg) {
+							dialog.dismiss();
+						}
+						
+					};
+					
+					((ServiceAuth) currentService).remoteAuthComplete(uri, handler);
 				}
 			}
 		}

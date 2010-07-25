@@ -15,8 +15,8 @@ import org.tomdroid.util.Preferences;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
-import android.widget.Toast;
 
 public class SnowySyncService extends SyncService implements ServiceAuth {
 	
@@ -51,14 +51,34 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 		return true;
 	}
 	
-	public Uri getAuthUri(String server)  throws UnknownHostException {
+	public void getAuthUri(final String server, final Handler handler) {
 		
-		// Reset the authentication credentials
-		OAuthConnection auth = new OAuthConnection();
-		return auth.getAuthorizationUrl(server);
+		execInThread(new Runnable() {
+			
+			public void run() {
+				
+				// Reset the authentication credentials
+				OAuthConnection auth = new OAuthConnection();
+				Uri authUri = null;
+				
+				try {
+					authUri = auth.getAuthorizationUrl(server);
+					
+				} catch (UnknownHostException e) {
+					if (Tomdroid.LOGGING_ENABLED)
+						Log.e(TAG, "Internet connection not available");
+					sendMessage(NO_INTERNET);
+				}
+				
+				Message message = new Message();
+				message.obj = authUri;
+				handler.sendMessage(message);
+			}
+			
+		});
 	}
 	
-	public void remoteAuthComplete(final Uri uri) {
+	public void remoteAuthComplete(final Uri uri, final Handler handler) {
 		
 		execInThread(new Runnable() {
 			
@@ -81,8 +101,10 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 					if (Tomdroid.LOGGING_ENABLED)
 						Log.e(TAG, "Internet connection not available");
 					sendMessage(NO_INTERNET);
-					return;
 				}
+				
+				// We don't care what we send, just remove the dialog
+				handler.sendEmptyMessage(0);
 			}
 		});
 	}
