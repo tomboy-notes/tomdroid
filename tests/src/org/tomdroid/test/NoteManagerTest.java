@@ -58,10 +58,10 @@ public class NoteManagerTest extends
 		// automatically the next time it's needed.
 		Activity activity = getActivity();
 		Cursor cursor = NoteManager.getIDs(activity);
-		cursor.moveToFirst();
-		do {
-			NoteManager.deleteNote(activity, cursor.getInt(0));
-			cursor.moveToNext();
-		} while (!cursor.isLast());
+		if (cursor.moveToFirst()) {
+			do {
+				NoteManager.deleteNote(activity, cursor.getInt(0));
+			} while (cursor.moveToNext());
+		}
 	}
 }
