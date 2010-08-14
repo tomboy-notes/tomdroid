@@ -23,16 +23,17 @@
 package org.tomdroid;
 
 import java.util.UUID;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.tomdroid.util.NoteContentBuilder;
 import org.tomdroid.util.XmlUtils;
 
 import android.os.Handler;
-import android.test.IsolatedContext;
 import android.text.SpannableStringBuilder;
 import android.text.format.Time;
 import android.util.Log;
@@ -48,6 +49,7 @@ public class Note implements Cloneable {
 	public static final String URL = "url";
 	public static final String FILE = "file";
 	public static final String NOTE_CONTENT = "content";
+	public static final String IS_NOTEBOOK_TEMPLATE = "isNotebookTemplate";
 	
 	// Logging info
 	private static final String TAG = "Note";
@@ -69,6 +71,8 @@ public class Note implements Cloneable {
 	private Time lastChangeDate;
 	private int dbId;
 	private UUID guid;
+	private ArrayList<String> tags;
+	private boolean isNotebookTemplate = false;
 	
 	// Date converter pattern (remove extra sub milliseconds from datetime string)
 	// ex: will strip 3020 in 2010-01-23T12:07:38.7743020-05:00
@@ -86,6 +90,19 @@ public class Note implements Cloneable {
 		setGuid(json.optString("guid"));
 		setLastChangeDate(json.optString("last-change-date"));
 		setXmlContent(json.optString("note-content"));
+		JSONArray jtags = json.optJSONArray("tags");
+		String tag;
+		for (int i = 0; i < jtags.length(); i++ ) {
+			tag = jtags.optString(i);
+			if (tag.equals("system:template")) {
+				isNotebookTemplate = true;
+			}
+			addTag(tag);
+		}
+	}
+
+	public boolean isNotebookTemplate() {
+		return isNotebookTemplate;
 	}
 	
 	public String getUrl() {
@@ -158,6 +175,24 @@ public class Note implements Cloneable {
 		this.guid = guid;
 	}
 	
+ 	public ArrayList<String> getTags() {
+ 		return tags;
+ 	}
+ 
+ 	public void addTag(String tag) {
+ 		if (tags == null) {
+ 			tags = new ArrayList<String>();
+ 		}
+ 		tags.add(tag);
+ 	}
+ 
+ 	public boolean removeTag(String tag) {
+ 		if (tags != null) {
+ 			return tags.remove(tag);
+ 		} 		
+ 		return false;
+ 	}
+
 	// TODO: should this handler passed around evolve into an observer pattern?
 	public SpannableStringBuilder getNoteContent(Handler handler) {
 		

@@ -68,7 +68,7 @@ public class NoteProvider extends ContentProvider {
 	// --	
 	private static final String DATABASE_NAME = "tomdroid-notes.db";
 	private static final String DB_TABLE_NOTES = "notes";
-	private static final int DB_VERSION = 2;
+	private static final int DB_VERSION = 3;
 	private static final String DEFAULT_SORT_ORDER = Note.MODIFIED_DATE + " DESC";
 	
     private static HashMap<String, String> notesProjectionMap;
@@ -99,7 +99,8 @@ public class NoteProvider extends ContentProvider {
                     + Note.TITLE + " TEXT,"
                     + Note.FILE + " TEXT,"
                     + Note.NOTE_CONTENT + " TEXT,"
-                    + Note.MODIFIED_DATE + " STRING"
+                    + Note.MODIFIED_DATE + " STRING,"
+                    + Note.IS_NOTEBOOK_TEMPLATE + " INTEGER"
                     + ");");
         }
 
@@ -297,5 +298,6 @@ public class NoteProvider extends ContentProvider {
         notesProjectionMap.put(Note.FILE, Note.FILE);
         notesProjectionMap.put(Note.NOTE_CONTENT, Note.NOTE_CONTENT);
         notesProjectionMap.put(Note.MODIFIED_DATE, Note.MODIFIED_DATE);
+        notesProjectionMap.put(Note.IS_NOTEBOOK_TEMPLATE, Note.IS_NOTEBOOK_TEMPLATE);
     }
 }
