@@ -91,12 +91,14 @@ public class Note {
 		setXmlContent(json.optString("note-content"));
 		JSONArray jtags = json.optJSONArray("tags");
 		String tag;
-		for (int i = 0; i < jtags.length(); i++ ) {
-			tag = jtags.optString(i);
-			if (tag.equals("system:template")) {
-				isNotebookTemplate = true;
+		if (jtags != null) {
+			for (int i = 0; i < jtags.length(); i++ ) {
+				tag = jtags.optString(i);
+				if (tag.equals("system:template")) {
+					isNotebookTemplate = true;
+				}
+				addTag(tag);
 			}
-			addTag(tag);
 		}
 	}
 	

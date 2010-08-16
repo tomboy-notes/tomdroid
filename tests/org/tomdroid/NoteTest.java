@@ -23,6 +23,15 @@ public class NoteTest extends TestCase {
 		Assert.assertEquals("[tag1, tag2]", n.getTags().toString());
 		Assert.assertEquals(false, n.isNotebookTemplate());
 	}
+
+	public void testNoTags() throws JSONException {
+		JSONObject json = new JSONObject(
+				"{'title': 'foo', 'note-content': 'bar', " +
+				"'guid': '002e91a2-2e34-4e2d-bf88-21def49a7705', " +
+				"'last-change-date': '2009-04-19T21:29:23.2197340-07:00'}");
+		Note n = new Note(json);
+		Assert.assertEquals("foo", n.getTitle());
+	}
 	
 	public void testIsNotebookTemplate() throws JSONException {
 		JSONObject json = new JSONObject(
