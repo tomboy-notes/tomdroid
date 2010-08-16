@@ -1,4 +1,4 @@
-package org.tomdroid.test;
+package org.tomdroid;
 
 import org.json.JSONObject;
 import org.tomdroid.Note;

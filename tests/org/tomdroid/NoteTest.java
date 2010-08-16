@@ -1,4 +1,4 @@
-package org.tomdroid.test;
+package org.tomdroid;
 
 import junit.framework.Assert;
 import junit.framework.TestCase;
