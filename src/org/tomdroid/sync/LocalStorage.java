@@ -106,10 +106,12 @@ public class LocalStorage {
 		Cursor cursor = activity.getContentResolver().query(Tomdroid.CONTENT_URI,
 				NoteManager.FULL_PROJECTION, Note.IS_SYNCED + "=?", whereArgs, null);
 
-		if (cursor == null || cursor.getCount() == 0) {
+		if (cursor == null)	return notes;
+		if (cursor.getCount() == 0) {
+			cursor.close();
 			return notes;
 		}
-
+		
 		cursor.moveToFirst();
 
 		do {

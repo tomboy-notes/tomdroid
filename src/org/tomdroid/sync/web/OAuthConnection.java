@@ -208,6 +208,7 @@ public class OAuthConnection extends WebConnection {
 	@Override
 	public String get(String uri) throws java.net.UnknownHostException {
 		
+		if (Tomdroid.LOGGING_ENABLED) Log.i(TAG, "GET " + uri);
 		// Prepare a request object
 		HttpGet httpGet = new HttpGet(uri);
 		sign(httpGet);

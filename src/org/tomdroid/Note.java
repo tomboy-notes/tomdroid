@@ -147,6 +147,10 @@ public class Note implements Cloneable {
 		return lastChangeDate;
 	}
 
+	public long getLastSyncRevision() {
+		return lastSyncRevision;
+	}
+
 	public void setLastChangeDate(Time lastChangeDate) {
 		this.lastChangeDate = lastChangeDate;
 		lastChangeDate.switchTimezone(Time.TIMEZONE_UTC);
