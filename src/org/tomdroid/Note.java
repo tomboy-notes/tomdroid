@@ -243,7 +243,7 @@ public class Note implements Cloneable {
 	public JSONObject toJson() throws JSONException {
 		return new JSONObject("{'guid':'" + getGuid() + "', 'title':'" + getTitle()
 				+ "', 'note-content':'" + getXmlContent() + "', 'last-change-date':'"
-				+ getLastChangeDate().format3339(false) + "'}");
+				+ getLastChangeDate().format3339(false) + "', 'note-content-version':0.1}");
 	}
 
 	@Override

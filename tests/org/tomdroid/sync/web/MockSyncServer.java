@@ -58,7 +58,7 @@ public class MockSyncServer extends SyncServer {
 	}
 
 	@Override
-	public boolean upload(ArrayList<Note> newAndUpdatedNotes) {
+	public boolean createNewRevisionWith(ArrayList<Note> newAndUpdatedNotes) {
 		if (isStoringLocked) return false;
 
 		for (Note note : newAndUpdatedNotes) {

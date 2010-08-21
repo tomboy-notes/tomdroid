@@ -10,6 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.tomdroid.Note;
 import org.tomdroid.sync.LocalStorage;
+import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.Preferences;
 
 import android.util.Log;
@@ -130,16 +131,43 @@ public class SyncServer {
 	/**
 	 * @return true if successful
 	 */
-	public boolean upload(ArrayList<Note> newAndUpdatedNotes) throws JSONException {
+	public boolean createNewRevisionWith(ArrayList<Note> newAndUpdatedNotes) throws JSONException {
 		JSONArray jsonNotes = new JSONArray();
 		for (Note note : newAndUpdatedNotes) {
 			jsonNotes.put(note.toJson());
 		}
 
-		Log.v(TAG, jsonNotes.toString());
+		JSONObject updates = new JSONObject();
+		updates.put("latest-sync-revision", getSyncRevision() + 1);
+		updates.put("note-changes", jsonNotes);
+		
+		long newRevision = upload(updates);
+
+		if (newRevision == getSyncRevision() + 1) {
+			syncVersionOnServer = newRevision;
+			return true;
+		}
 		return false;
 	}
 
+	/**
+	 * @return new revision if successful, -1 if not
+	 */
+	protected int upload(JSONObject data){
+		int revision = -1;
+		try {
+			JSONObject response = new JSONObject(authConnection.put(getNotesUri(), data.toString()));
+			revision = response.getInt("latest-sync-revision");
+		} catch (UnknownHostException e) {
+			if (Tomdroid.LOGGING_ENABLED) Log.e(TAG, e.toString());
+		} catch (JSONException e) {
+			if (Tomdroid.LOGGING_ENABLED) Log.e(TAG, e.toString());
+		}
+
+		return revision;
+	}
+
+	
 	public void delete(Set<String> disposedNoteIds) {
 		// TODO Auto-generated method stub
 	}

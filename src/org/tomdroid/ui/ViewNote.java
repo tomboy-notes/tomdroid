@@ -97,7 +97,7 @@ public class ViewNote extends Activity {
 			if(note != null) {
 				
 				noteContent = note.getNoteContent(NoteContentHandler);
-				
+				Log.v(TAG, "note content: " + note.getXmlContent());
 			} else {
 				
 				if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "The note "+uri+" doesn't exist");

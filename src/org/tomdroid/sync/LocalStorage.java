@@ -44,7 +44,7 @@ public class LocalStorage {
 		// TODO implement a better merge algorithm then "append"
 		Note storedNote = getNote(note.getGuid());
 		if (storedNote != null && !storedNote.isSynced()){
-			note.changeXmlContent(note.getXmlContent() + "<br>-----8<----<br>" + storedNote.getXmlContent());
+			note.changeXmlContent(note.getXmlContent() + " --merged-- " + storedNote.getXmlContent());
 		}
 		NoteManager.putNote(this.activity, note);
 	}

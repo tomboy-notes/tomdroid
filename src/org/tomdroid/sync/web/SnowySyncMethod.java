@@ -144,7 +144,7 @@ public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
 
 		deleteNotesNotFoundOnServer(server);
 
-		if (!server.upload(getLocalStorage().getNewAndUpdatedNotes())){
+		if (!server.createNewRevisionWith(getLocalStorage().getNewAndUpdatedNotes())){
 			setSyncProgress(100);
 			return;
 	    }

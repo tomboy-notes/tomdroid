@@ -72,7 +72,7 @@ public class TestUpdatingTheServer extends MockedSyncServerTestCase {
 		assertEquals(1, getServer().getNoteIds().size());
 
 		assertTrue("should be in sync", getServer().isInSync(getLocalStorage()));
-		assertEquals("content should be merged", "server modification<br>-----8<----<br>Note content. Appended text for our test note!", getLocalStorage().getNote(guid)
+		assertEquals("content should be merged", "server modification --merged-- Note content. Appended text for our test note!", getLocalStorage().getNote(guid)
 				.getXmlContent());
 		assertEquals("content should be equal on client and server", getLocalStorage()
 				.getNote(guid).getXmlContent(), getServer().testDataManipulator.getNewestNote()
