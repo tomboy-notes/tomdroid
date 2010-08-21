@@ -17,7 +17,7 @@ public class MockSyncServer extends SyncServer {
 	private ArrayList<Note>	noteUpdates			= new ArrayList<Note>();
 
 	TestDataManipulator		testDataManipulator	= new TestDataManipulator();
-	private boolean	isStoringLocked;
+	private boolean			isStoringLocked;
 
 	public MockSyncServer() throws UnknownHostException, JSONException {
 		super();
@@ -28,7 +28,7 @@ public class MockSyncServer extends SyncServer {
 		JSONObject mockedResponse = new JSONObject(
 				"{'user-name':'<in reality this is a http address>',"
 						+ "'notes-ref':{'api-ref':'https://one.ubuntu.com/notes/api/1.0/op/',"
-						+ "'href':'https://one.ubuntu.com/notes/'}," + "'current-sync-guid':'-1',"
+						+ "'href':'https://one.ubuntu.com/notes/'}," + "'current-sync-guid':'0',"
 						+ "'last-name':'Mustermann','first-name':'Max','latest-sync-revision':0}");
 		return mockedResponse;
 	}
@@ -59,7 +59,8 @@ public class MockSyncServer extends SyncServer {
 
 	@Override
 	public boolean createNewRevisionWith(ArrayList<Note> newAndUpdatedNotes) {
-		if (isStoringLocked) return false;
+		if (isStoringLocked)
+			return false;
 
 		for (Note note : newAndUpdatedNotes) {
 			storedNotes.put(note.getGuid(), note);
@@ -68,11 +69,11 @@ public class MockSyncServer extends SyncServer {
 		return true;
 	}
 
-	public void lockStoring(){
+	public void lockStoring() {
 		isStoringLocked = true;
 	}
 
-	public void unlockStoring(){
+	public void unlockStoring() {
 		isStoringLocked = false;
 	}
 
@@ -83,14 +84,15 @@ public class MockSyncServer extends SyncServer {
 		}
 
 		public Note createNewNote() {
+			onStoredDataChanged();
 			Note note = new Note();
 			note.setTitle("A Title");
 			note.setGuid(UUID.randomUUID());
 			note.changeXmlContent("Note content.");
+			note.setLastSyncRevision(syncVersionOnServer);
 
 			storedNotes.put(note.getGuid(), note);
 			noteUpdates.add(note.clone());
-			onStoredDataChanged();
 			return note;
 		}
 
@@ -109,18 +111,22 @@ public class MockSyncServer extends SyncServer {
 		}
 
 		public Note setTitleOfNewestNote(String title) {
+			onStoredDataChanged();
+
 			Note note = getNewestNote();
 			note.setTitle(title);
+			note.setLastSyncRevision(syncVersionOnServer);
+
 			noteUpdates.add(note.clone());
-			onStoredDataChanged();
 			return note;
 		}
 
 		public Note setContentOfNewestNote(String content) {
+			onStoredDataChanged();
 			Note note = getNewestNote();
+			note.setLastSyncRevision(syncVersionOnServer);
 			note.changeXmlContent(content);
 			noteUpdates.add(note.clone());
-			onStoredDataChanged();
 			return note;
 		}
 

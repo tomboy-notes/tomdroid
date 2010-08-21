@@ -59,7 +59,7 @@ public class Note implements Cloneable {
 	private Time					lastChangeDate;
 	private int						dbId;
 	private UUID					guid;
-	private int						lastSyncRevision;
+	private long					lastSyncRevision;
 	private boolean					isSynced				= true;
 
 	// Date converter pattern (remove extra sub milliseconds from datetime string)
@@ -149,6 +149,10 @@ public class Note implements Cloneable {
 
 	public long getLastSyncRevision() {
 		return lastSyncRevision;
+	}
+
+	public void setLastSyncRevision(long revision) {
+		 lastSyncRevision = revision;
 	}
 
 	public void setLastChangeDate(Time lastChangeDate) {
@@ -266,6 +270,7 @@ public class Note implements Cloneable {
 		clone.fileName = fileName;
 		clone.title = title;
 		clone.lastChangeDate = lastChangeDate;
+		clone.lastSyncRevision = lastSyncRevision;
 		clone.dbId = dbId;
 		clone.guid = guid;
 

@@ -31,6 +31,9 @@ public class TestUpdatingTheServer extends MockedSyncServerTestCase {
 				.format3339(false), remoteNote.getLastChangeDate().format3339(false));
 		assertEquals("remote note should have been updated", localNote.getXmlContent(), remoteNote
 				.getXmlContent());
+		assertEquals("locally stored note should bee the same as remote", getLocalStorage()
+				.getNote(guid).getXmlContent(), remoteNote.getXmlContent());
+
 	}
 
 	public void testChangingDifferentNotesOnClientAndServer() throws Exception {

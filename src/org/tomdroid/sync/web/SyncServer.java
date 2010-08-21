@@ -98,14 +98,7 @@ public class SyncServer {
 		JSONArray jsonNotes = response.getJSONArray("notes");
 		for (int i = 0; i < jsonNotes.length(); i++){
 			Note note = new Note(jsonNotes.getJSONObject(i));
-
-			if (note.getLastSyncRevision() < since) {
-				if (Tomdroid.LOGGING_ENABLED)
-					Log.e(TAG, "note '" + note.getTitle() + "' was not modified since "
-							+ note.getLastSyncRevision()
-							+ " but non the less included in response from server");
-				continue;
-			}
+			
 			updates.add(note);
 		}
 
