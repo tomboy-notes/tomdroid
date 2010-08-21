@@ -70,6 +70,8 @@ public class ViewNote extends Activity {
 	// UI feedback handler
 	private Handler	syncMessageHandler	= new SyncMessageHandler(this);
 
+	private LocalStorage	localStorage;
+
 	// TODO extract methods in here
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +82,8 @@ public class ViewNote extends Activity {
 		
 		final Intent intent = getIntent();
 		handleUri(intent.getData());
+		
+		localStorage = new LocalStorage(this);
 	}
 
 	private void handleUri(Uri uri) {
@@ -97,7 +101,6 @@ public class ViewNote extends Activity {
 			if(note != null) {
 				
 				noteContent = note.getNoteContent(NoteContentHandler);
-				Log.v(TAG, "note content: " + note.getXmlContent());
 			} else {
 				
 				if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "The note "+uri+" doesn't exist");
@@ -143,8 +146,7 @@ public class ViewNote extends Activity {
 	public void onPause() {
 		if (!content.getText().toString().equals(note.getXmlContent())) {
 			note.changeXmlContent(content.getText().toString());
-			LocalStorage storage = new LocalStorage(this);
-			storage.insertNote(note);
+			 localStorage.insertNote(note);
 		}
 
 		super.onPause();
@@ -180,6 +182,13 @@ public class ViewNote extends Activity {
 						 Tomdroid.CONTENT_URI+"/",
 						 null,
 						 noteTitleTransformFilter);
+		
+		if (Tomdroid.LOGGING_ENABLED){
+			Log.i(TAG, "items that needs pushed to the server:");
+			for (Note n : localStorage.getNewAndUpdatedNotes()){
+			Log.i(TAG, "   " + n.getTitle());
+			}
+		}
 	}
 	
 	public void setTitle(CharSequence title){

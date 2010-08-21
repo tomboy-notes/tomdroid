@@ -13,6 +13,7 @@ package org.tomdroid;
 
 import java.util.UUID;
 
+import org.tomdroid.ui.NoteItemViewBinder;
 import org.tomdroid.ui.Tomdroid;
 
 import android.app.Activity;
@@ -29,7 +30,7 @@ public class NoteManager {
 
 	public static final String[]	FULL_PROJECTION		= { Note.ID, Note.TITLE, Note.FILE,
 			Note.NOTE_CONTENT, Note.MODIFIED_DATE, Note.GUID, Note.IS_SYNCED };
-	public static final String[]	LIST_PROJECTION		= { Note.ID, Note.TITLE };
+	public static final String[]	LIST_PROJECTION		= { Note.ID, Note.TITLE, Note.IS_SYNCED };
 	public static final String[]	TITLE_PROJECTION	= { Note.TITLE };
 	public static final String[]	GUID_PROJECTION		= { Note.ID, Note.GUID };
 	public static final String[]	ID_PROJECTION		= { Note.ID };
@@ -139,9 +140,12 @@ public class NoteManager {
 		Cursor notesCursor = activity.managedQuery(notes, LIST_PROJECTION, null, null, null);
 
 		// set up an adapter binding the TITLE field of the cursor to the list item
-		String[] from = new String[] { Note.TITLE };
+		String[] from = new String[] { Note.TITLE, Note.IS_SYNCED };
 		int[] to = new int[] { R.id.note_title };
-		return new SimpleCursorAdapter(activity, R.layout.main_list_item, notesCursor, from, to);
+		SimpleCursorAdapter adapter = new SimpleCursorAdapter(activity, R.layout.main_list_item,
+				notesCursor, from, to);
+		adapter.setViewBinder(new NoteItemViewBinder());
+		return adapter;
 	}
 
 	// gets the titles of the notes present in the db, used in ViewNote.buildLinkifyPattern()
