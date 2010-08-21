@@ -140,14 +140,15 @@ public class ViewNote extends Activity {
 	}
 
 	@Override
-	public void onPause(){
-		note.changeXmlContent(content.getText().toString());
-		LocalStorage storage = new LocalStorage(this);
-		storage.insertNote(note);
-		
+	public void onPause() {
+		if (!content.getText().toString().equals(note.getXmlContent())) {
+			note.changeXmlContent(content.getText().toString());
+			LocalStorage storage = new LocalStorage(this);
+			storage.insertNote(note);
+		}
+
 		super.onPause();
 	}
-
 	
 	private void showNote() {
 		setTitle(note.getTitle());
