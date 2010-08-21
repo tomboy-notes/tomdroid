@@ -16,7 +16,7 @@ import android.util.Log;
 
 public class SyncServer {
 
-	final String			TAG				= "UserInfo";
+	final String			TAG				= "SyncServer";
 	final String			userReference	= Preferences
 													.getString(Preferences.Key.SYNC_SERVER_USER_API);
 	private String			notesApiReference;
@@ -127,8 +127,13 @@ public class SyncServer {
 		return response;
 	}
 
-	public void upload(ArrayList<Note> newAndUpdatedNotes) {
-		// TODO Auto-generated method stub
+	public void upload(ArrayList<Note> newAndUpdatedNotes) throws JSONException {
+		JSONArray jsonNotes = new JSONArray();
+		for (Note note : newAndUpdatedNotes) {
+			jsonNotes.put(note.toJson());
+		}
+
+		Log.v(TAG, jsonNotes.toString());
 	}
 
 	public void delete(Set<String> disposedNoteIds) {

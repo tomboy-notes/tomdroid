@@ -187,7 +187,7 @@ public class Note implements Cloneable {
 	public SpannableStringBuilder getNoteContent(Handler handler) {
 
 		// TODO not sure this is the right place to do this
-		noteContent = new NoteContentBuilder().setCaller(handler).setInputSource(xmlContent)
+		noteContent = new NoteContentBuilder().setCaller(handler).setInputSource(getXmlContent())
 				.build();
 		return noteContent;
 	}

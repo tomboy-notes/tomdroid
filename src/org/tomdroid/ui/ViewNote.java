@@ -28,6 +28,7 @@ import java.util.regex.Pattern;
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
+import org.tomdroid.sync.LocalStorage;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.util.LinkifyPhone;
 import org.tomdroid.util.NoteContentBuilder;
@@ -138,6 +139,16 @@ public class ViewNote extends Activity {
 		SyncManager.setHandler(this.syncMessageHandler);
 	}
 
+	@Override
+	public void onPause(){
+		note.changeXmlContent(content.getText().toString());
+		LocalStorage storage = new LocalStorage(this);
+		storage.insertNote(note);
+		
+		super.onPause();
+	}
+
+	
 	private void showNote() {
 		setTitle(note.getTitle());
 
