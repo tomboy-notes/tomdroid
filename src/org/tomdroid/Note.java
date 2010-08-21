@@ -79,6 +79,10 @@ public class Note implements Cloneable {
 																										// +xx:xx)
 
 	public Note() {
+		setTitle("no tilte");
+		setGuid(UUID.randomUUID());
+		lastSyncRevision = -1;
+		changeXmlContent("no content");
 	}
 
 	public Note(JSONObject json) {
@@ -100,6 +104,8 @@ public class Note implements Cloneable {
 		setTitle(title);
 		setLastChangeDate(lastChangeDate);
 		setGuid(cursor.getString(cursor.getColumnIndexOrThrow(Note.GUID)));
+		int synced = cursor.getInt(cursor.getColumnIndexOrThrow(Note.IS_SYNCED));
+		isSynced(synced == 1 ? true : false);
 	}
 
 	/**

@@ -16,6 +16,10 @@ public class MockedSyncServerTestCase  extends ActivityUnitTestCase<Tomdroid> {
 	private MockSyncServer		server;
 	private SnowySyncMethod		syncMethod;
 
+	public MockedSyncServerTestCase() {
+		super(Tomdroid.class);
+	}	
+
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();
@@ -36,10 +40,6 @@ public class MockedSyncServerTestCase  extends ActivityUnitTestCase<Tomdroid> {
 		localStorage.resetDatabase();
 	}
 
-	public MockedSyncServerTestCase() {
-		super(Tomdroid.class);
-	}
-	
 	protected MockSyncServer getServer(){
 		return server;
 	}

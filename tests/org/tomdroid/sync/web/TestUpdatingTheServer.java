@@ -43,6 +43,7 @@ public class TestUpdatingTheServer extends MockedSyncServerTestCase {
 
 		assertEquals(2, getLocalStorage().getNoteGuids().size());
 		assertEquals(2, getServer().getNoteIds().size());
+		assertTrue("should be in sync", getServer().isInSync(getLocalStorage()));
 	}
 
 	public void testServerNotStoringLocalModificationWhileSyncing() throws Exception {
@@ -59,11 +60,31 @@ public class TestUpdatingTheServer extends MockedSyncServerTestCase {
 		assertFalse("should be out of sync", getServer().isInSync(getLocalStorage()));
 	}
 
+	public void testMergingLocalModificationWithModificationOnServer() throws Exception {
+		UUID guid = getServer().testDataManipulator.createNewNote().getGuid();
+		getSyncMethod().syncWith(getServer());
+
+		modifyLocalNote(guid);
+		getServer().testDataManipulator.setContentOfNewestNote("server modification");
+		getSyncMethod().syncWith(getServer());
+
+		assertEquals(1, getLocalStorage().getNoteGuids().size());
+		assertEquals(1, getServer().getNoteIds().size());
+
+		assertTrue("should be in sync", getServer().isInSync(getLocalStorage()));
+		assertEquals("content should be merged", "server modification<br>-----8<----<br>Note content. Appended text for our test note!", getLocalStorage().getNote(guid)
+				.getXmlContent());
+		assertEquals("content should be equal on client and server", getLocalStorage()
+				.getNote(guid).getXmlContent(), getServer().testDataManipulator.getNewestNote()
+				.getXmlContent());
+	}
+
+	
 	private Note modifyLocalNote(UUID guid) throws Exception {
 		Note note = getLocalStorage().getNote(guid);
 		long creationTime = note.getLastChangeDate().toMillis(false);
 		Thread.sleep(1100);
-		String newContent = note.getXmlContent() + "Appended text for our test note!";
+		String newContent = note.getXmlContent() + " Appended text for our test note!";
 		note.changeXmlContent(newContent);
 
 		long modificationTime = note.getLastChangeDate().toMillis(false);
@@ -74,6 +95,7 @@ public class TestUpdatingTheServer extends MockedSyncServerTestCase {
 		assertEquals("timestamp should have been updated", modificationTime, note
 				.getLastChangeDate().toMillis(false));
 		assertEquals("local note should have been updated", newContent, note.getXmlContent());
+		assertFalse("locally stored note should be marked as 'out of sync with server'", note.isSynced());
 		return note;
 	}
 }

@@ -37,6 +37,18 @@ public class LocalStorage {
 		NoteManager.putNote(this.activity, note);
 	}
 
+	/**
+	 * merges content into the existing note. The identifier for the note is the guid.
+	 */
+	public void mergeNote(Note note) {
+		// TODO implement a better merge algorithm then "append"
+		Note storedNote = getNote(note.getGuid());
+		if (storedNote != null && !storedNote.isSynced()){
+			note.changeXmlContent(note.getXmlContent() + "<br>-----8<----<br>" + storedNote.getXmlContent());
+		}
+		NoteManager.putNote(this.activity, note);
+	}
+
 	public Set<String> getNoteGuids() {
 		Set<String> idList = new HashSet<String>();
 
