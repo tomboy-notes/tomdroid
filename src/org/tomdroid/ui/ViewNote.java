@@ -43,6 +43,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.InputType;
 import android.text.Layout;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -52,6 +53,8 @@ import android.text.util.Linkify;
 import android.text.util.Linkify.TransformFilter;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnLongClickListener;
 import android.widget.TextView;
 
 // TODO this class is starting to smell
@@ -152,6 +155,7 @@ public class ViewNote extends Activity {
 		super.onPause();
 	}
 	
+	
 	private void showNote() {
 		setTitle(note.getTitle());
 
@@ -164,6 +168,20 @@ public class ViewNote extends Activity {
 			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "stripped the title from note-content");
 		}
 		
+		content.setOnLongClickListener(new OnLongClickListener() {
+
+			public boolean onLongClick(View v) {
+
+				content.setLinksClickable(false);
+				content.setInputType(InputType.TYPE_CLASS_TEXT
+						| InputType.TYPE_TEXT_FLAG_MULTI_LINE
+						| InputType.TYPE_TEXT_VARIATION_LONG_MESSAGE);
+				content.setLinksClickable(false);
+				content.setText(noteContent);
+				content.setLinksClickable(false);
+						return true;
+			}
+		});
 		
 		// show the note (spannable makes the TextView able to output styled text)
 		content.setText(noteContent, TextView.BufferType.SPANNABLE);

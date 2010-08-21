@@ -81,7 +81,7 @@ public class Note implements Cloneable {
 	public Note() {
 		setTitle("no tilte");
 		setGuid(UUID.randomUUID());
-		lastSyncRevision = -1;
+		lastSyncRevision = 0;
 		changeXmlContent("no content");
 	}
 
@@ -250,8 +250,18 @@ public class Note implements Cloneable {
 
 	public JSONObject toJson() throws JSONException {
 		return new JSONObject("{'guid':'" + getGuid() + "', 'title':'" + getTitle()
-				+ "', 'note-content':'" + getXmlContent() + "', 'last-change-date':'"
+				+ "', 'note-content':'" + getJsonPreparedXmlContent() + "', 'last-change-date':'"
 				+ getLastChangeDate().format3339(false) + "', 'note-content-version':0.1}");
+	}
+
+	private String getJsonPreparedXmlContent() {
+		return getXmlContent().replace("\n", "\\n")
+				              .replace("\"", "\\\"")
+				              .replace("\b", "\\b")
+				              .replace("\f", "\\f")
+				              .replace("\n", "\\n")
+				              .replace("\r", "\\r")
+				              .replace("\t", "\\t");
 	}
 
 	@Override

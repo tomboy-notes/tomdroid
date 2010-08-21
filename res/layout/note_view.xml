@@ -37,9 +37,8 @@
               android:scrollbars="vertical"
               android:fadingEdge="vertical"
               android:linksClickable="true"
-              android:inputType="textLongMessage|textMultiLine"
-			  android:text="@string/strWait"
-			  android:padding="10dip"
+              android:inputType="none"
+              android:padding="10dip"
 			  android:textSize="20dip"
 			  />
 </LinearLayout>
