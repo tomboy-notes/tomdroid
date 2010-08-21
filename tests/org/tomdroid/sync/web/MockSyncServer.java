@@ -17,6 +17,7 @@ public class MockSyncServer extends SyncServer {
 	private ArrayList<Note>	noteUpdates			= new ArrayList<Note>();
 
 	TestDataManipulator		testDataManipulator	= new TestDataManipulator();
+	private boolean	isStoringLocked;
 
 	public MockSyncServer() throws UnknownHostException, JSONException {
 		super();
@@ -57,11 +58,22 @@ public class MockSyncServer extends SyncServer {
 	}
 
 	@Override
-	public void upload(ArrayList<Note> newAndUpdatedNotes) {
+	public boolean upload(ArrayList<Note> newAndUpdatedNotes) {
+		if (isStoringLocked) return false;
+
 		for (Note note : newAndUpdatedNotes) {
 			storedNotes.put(note.getGuid(), note);
 			noteUpdates.add(note.clone());
 		}
+		return true;
+	}
+
+	public void lockStoring(){
+		isStoringLocked = true;
+	}
+
+	public void unlockStoring(){
+		isStoringLocked = false;
 	}
 
 	class TestDataManipulator {

@@ -127,13 +127,17 @@ public class SyncServer {
 		return response;
 	}
 
-	public void upload(ArrayList<Note> newAndUpdatedNotes) throws JSONException {
+	/**
+	 * @return true if successful
+	 */
+	public boolean upload(ArrayList<Note> newAndUpdatedNotes) throws JSONException {
 		JSONArray jsonNotes = new JSONArray();
 		for (Note note : newAndUpdatedNotes) {
 			jsonNotes.put(note.toJson());
 		}
 
 		Log.v(TAG, jsonNotes.toString());
+		return false;
 	}
 
 	public void delete(Set<String> disposedNoteIds) {

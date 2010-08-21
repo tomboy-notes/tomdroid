@@ -103,7 +103,9 @@ public class LocalStorage {
 		do {
 			notes.add(new Note(cursor));
 		} while (cursor.moveToNext());
-
+		
+		cursor.close();
+		
 		return notes;
 	}
 

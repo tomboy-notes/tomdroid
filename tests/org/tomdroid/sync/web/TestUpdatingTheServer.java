@@ -24,6 +24,7 @@ public class TestUpdatingTheServer extends MockedSyncServerTestCase {
 		getSyncMethod().syncWith(getServer());
 		assertEquals("should have no changed notes anymore", 0, getLocalStorage()
 				.getNewAndUpdatedNotes().size());
+		assertTrue("should be in sync", getServer().isInSync(getLocalStorage()));
 
 		Note remoteNote = getServer().testDataManipulator.getNote(guid);
 		assertEquals("remote note should have correct timestamp", localNote.getLastChangeDate()
@@ -42,6 +43,20 @@ public class TestUpdatingTheServer extends MockedSyncServerTestCase {
 
 		assertEquals(2, getLocalStorage().getNoteGuids().size());
 		assertEquals(2, getServer().getNoteIds().size());
+	}
+
+	public void testServerNotStoringLocalModificationWhileSyncing() throws Exception {
+		UUID guid = getServer().testDataManipulator.createNewNote().getGuid();
+		getSyncMethod().syncWith(getServer());
+
+		modifyLocalNote(guid);
+		getServer().lockStoring();
+		getSyncMethod().syncWith(getServer());
+		getServer().unlockStoring();
+		
+		assertEquals("should still have the changed note", 1, getLocalStorage()
+				.getNewAndUpdatedNotes().size());
+		assertFalse("should be out of sync", getServer().isInSync(getLocalStorage()));
 	}
 
 	private Note modifyLocalNote(UUID guid) throws Exception {
