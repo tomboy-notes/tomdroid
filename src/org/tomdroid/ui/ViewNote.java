@@ -58,7 +58,7 @@ public class ViewNote extends Activity {
 	private Handler					syncMessageHandler	= new SyncMessageHandler(this);
 
 	private LocalStorage			localStorage;
-	private Transition3d			modeToggle;
+	private ViewSwitcher			viewSwitcher;
 
 	// TODO extract methods in here
 	@Override
@@ -72,12 +72,13 @@ public class ViewNote extends Activity {
 		handleUri(intent.getData());
 
 		localStorage = new LocalStorage(this);
-		modeToggle = new Transition3d(container);
+		viewSwitcher = new ViewSwitcher(container);
 
 		findViewById(R.id.viewContent).setOnLongClickListener(new OnLongClickListener() {
 
 			public boolean onLongClick(View v) {
-				modeToggle.switchView();
+				editNote();
+				viewSwitcher.swap();
 				return true;
 			}
 		});
@@ -85,7 +86,8 @@ public class ViewNote extends Activity {
 		findViewById(R.id.editContent).setOnLongClickListener(new OnLongClickListener() {
 
 			public boolean onLongClick(View v) {
-				modeToggle.switchView();
+				showNote();
+				viewSwitcher.swap();
 				saveEditedContent();
 				return true;
 			}
@@ -220,8 +222,7 @@ public class ViewNote extends Activity {
 												// parsed ok - show
 												if (msg.what == NoteContentBuilder.PARSE_OK) {
 													showNote();
-													editNote();
-
+													
 													// parsed not ok - error
 												} else if (msg.what == NoteContentBuilder.PARSE_ERROR) {
 

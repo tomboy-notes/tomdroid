@@ -14,8 +14,8 @@ import android.widget.TextView;
  * Y axis and the second half rotates the picture by 90 degrees on the Y axis. When the first half
  * finishes, the list is made invisible and the picture is set visible.
  */
-public class Transition3d {
-	private static final String	TAG					= "Transition3d";
+public class ViewSwitcher  {
+	private static final String	TAG					= "ViewSwitcher";
 	private ViewGroup			mContainer;
 	private View				mFrondside;
 	private View				mBackside;
@@ -23,7 +23,7 @@ public class Transition3d {
 	private long				mDuration			= 300;
 	private float				mDepthOfRotation	= 300f;
 
-	public Transition3d(ViewGroup container) {
+	public ViewSwitcher(ViewGroup container) {
 
 		mContainer = container;
 		mFrondside = container.getChildAt(0);
@@ -65,7 +65,7 @@ public class Transition3d {
 		mContainer.startAnimation(rotation);
 	}
 	
-	public void switchView() {
+	public void swap() {
 		if (isFrontsideVisible()) {
 			Log.v(TAG, "turning to backside!");
 			turnAround(0, 90);
