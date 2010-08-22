@@ -23,6 +23,7 @@ import org.tomdroid.util.NoteContentBuilder;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
@@ -31,7 +32,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.InputType;
 import android.text.SpannableStringBuilder;
 import android.text.util.Linkify;
 import android.text.util.Linkify.TransformFilter;
@@ -39,6 +39,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnLongClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 // TODO this class is starting to smell
@@ -89,6 +90,9 @@ public class ViewNote extends Activity {
 				showNote();
 				viewSwitcher.swap();
 				saveEditedContent();
+				InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+				inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+						InputMethodManager.HIDE_NOT_ALWAYS);
 				return true;
 			}
 		});
@@ -153,6 +157,7 @@ public class ViewNote extends Activity {
 
 	@Override
 	public void onPause() {
+		saveEditedContent();
 		super.onPause();
 	}
 
@@ -222,7 +227,7 @@ public class ViewNote extends Activity {
 												// parsed ok - show
 												if (msg.what == NoteContentBuilder.PARSE_OK) {
 													showNote();
-													
+
 													// parsed not ok - error
 												} else if (msg.what == NoteContentBuilder.PARSE_ERROR) {
 
