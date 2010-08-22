@@ -160,7 +160,7 @@ public class ViewNote extends Activity {
 		TextView textView = (TextView) findViewById(R.id.editContent);
 		if (!textView.getText().toString().equals(note.getXmlContent())) {
 			note.changeXmlContent(textView.getText().toString());
-			// localStorage.insertNote(note);
+			localStorage.insertNote(note);
 		}
 	}
 

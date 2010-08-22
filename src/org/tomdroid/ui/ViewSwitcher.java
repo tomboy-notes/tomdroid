@@ -1,5 +1,6 @@
 package org.tomdroid.ui;
 
+import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,7 @@ import android.widget.TextView;
  * Y axis and the second half rotates the picture by 90 degrees on the Y axis. When the first half
  * finishes, the list is made invisible and the picture is set visible.
  */
-public class ViewSwitcher  {
+public class ViewSwitcher {
 	private static final String	TAG					= "ViewSwitcher";
 	private ViewGroup			mContainer;
 	private View				mFrondside;
@@ -32,31 +33,28 @@ public class ViewSwitcher  {
 		// Since we are caching large views, we want to keep their cache
 		// between each animation
 		mContainer.setPersistentDrawingCache(ViewGroup.PERSISTENT_ANIMATION_CACHE);
+
 	}
 
 	public void setDuration(long duration) {
 		mDuration = duration;
 	}
 
-	/**
-	 * Setup a new 3D rotation on the container view.
-	 * 
-	 * @param position
-	 *            the item that was clicked to show a picture, or -1 to show the list
-	 * @param start
-	 *            the start angle at which the rotation must begin
-	 * @param end
-	 *            the end angle of the rotation
-	 */
-	private void turnAround(float start, float end) {
-		// Find the center of the container
-		final float centerX = mContainer.getWidth() / 2.0f;
-		final float centerY = mContainer.getHeight() / 2.0f;
+	public void swap() {
+		float start, end;
 
-		// Create a new 3D rotation with the supplied parameter
-		// The animation listener is used to trigger the next animation
-		final Rotate3dAnimation rotation = new Rotate3dAnimation(start, end, centerX, centerY,
-				mDepthOfRotation, true);
+		if (isFrontsideVisible()) {
+			Log.v(TAG, "turning to the backside!");
+			start = 0;
+			end = 90;
+		} else {
+			Log.v(TAG, "turning to the frontside!");
+			start = 180;
+			end = 90;
+		}
+
+		Rotate3dAnimation rotation = new Rotate3dAnimation(start, end,
+				mContainer.getWidth() / 2.0f, mContainer.getHeight() / 2.0f, mDepthOfRotation, true);
 		rotation.setDuration(mDuration / 2);
 		rotation.setFillAfter(true);
 		rotation.setInterpolator(new AccelerateInterpolator());
@@ -64,28 +62,18 @@ public class ViewSwitcher  {
 
 		mContainer.startAnimation(rotation);
 	}
-	
-	public void swap() {
-		if (isFrontsideVisible()) {
-			Log.v(TAG, "turning to backside!");
-			turnAround(0, 90);
-		} else {
-			Log.v(TAG, "turning to frontside!");
-			turnAround(180, 90);
-		}
-	}
 
-	public boolean isFrontsideVisible(){
+	public boolean isFrontsideVisible() {
 		return mFrondside.getVisibility() == View.VISIBLE;
 	}
 
-	public boolean isBacksideVisible(){
+	public boolean isBacksideVisible() {
 		return mBackside.getVisibility() == View.VISIBLE;
 	}
-	
+
 	/**
-	 * This class listens for the end of the first half of the animation. It then posts a new action
-	 * that effectively swaps the views when the container is rotated 90 degrees and thus invisible.
+	 * Listen for the end of the first half of the animation. Then post a new action that
+	 * effectively swaps the views when the container is rotated 90 degrees and thus invisible.
 	 */
 	private final class TurnAroundListener implements Animation.AnimationListener {
 
@@ -101,7 +89,7 @@ public class ViewSwitcher  {
 	}
 
 	/**
-	 * This class is responsible for swapping the views and start the second half of the animation.
+	 * Swapping the views and start the second half of the animation.
 	 */
 	private final class SwapViews implements Runnable {
 
@@ -113,14 +101,16 @@ public class ViewSwitcher  {
 			if (isFrontsideVisible()) {
 				mFrondside.setVisibility(View.GONE);
 				mBackside.setVisibility(View.VISIBLE);
+				unmirrorTheBackside();
 				mBackside.requestFocus();
-				
+
 				rotation = new Rotate3dAnimation(90, 180, centerX, centerY, mDepthOfRotation, false);
 			} else {
 				mBackside.setVisibility(View.GONE);
+				mBackside.clearAnimation(); // remove the mirroring
 				mFrondside.setVisibility(View.VISIBLE);
 				mFrondside.requestFocus();
-				
+
 				rotation = new Rotate3dAnimation(90, 0, centerX, centerY, mDepthOfRotation, false);
 			}
 
@@ -132,4 +122,11 @@ public class ViewSwitcher  {
 		}
 	}
 
+	private void unmirrorTheBackside() {
+		Rotate3dAnimation rotation = new Rotate3dAnimation(0, 180, mContainer.getWidth() / 2.0f,
+				mContainer.getHeight() / 2.0f, mDepthOfRotation, false);
+		rotation.setDuration(0);
+		rotation.setFillAfter(true);
+		mBackside.startAnimation(rotation);
+	}
 }
