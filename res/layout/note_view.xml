@@ -21,16 +21,24 @@
  You should have received a copy of the GNU General Public License
  along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
 -->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"
 		android:orientation="vertical"
     	>
-<include android:id="@+id/actionbar" layout="@layout/actionbar" />
-	<EditText 
-			  xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <include android:id="@+id/actionbar" layout="@layout/actionbar" />
+	
+	<FrameLayout
+    android:id="@+id/container"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+
+     	<TextView 
 			  android:background="@android:color/transparent"
-              android:id="@+id/content"
+              android:id="@+id/viewContent"
 			  android:layout_width="fill_parent" 
 			  android:layout_height="fill_parent"
 			  android:gravity="top"
@@ -38,7 +46,28 @@
               android:fadingEdge="vertical"
               android:linksClickable="true"
               android:inputType="none"
-              android:padding="10dip"
+			  android:text="@string/strWait"
+			  android:padding="10dip"
 			  android:textSize="20dip"
 			  />
+    
+    	<EditText 
+			  android:background="@android:color/transparent"
+              android:id="@+id/editContent"
+			  android:layout_width="fill_parent" 
+			  android:layout_height="fill_parent"
+			  android:gravity="top"
+              android:scrollbars="vertical"
+              android:fadingEdge="vertical"
+              android:linksClickable="false"
+              android:inputType="textLongMessage|textMultiLine|textAutoComplete"
+			  android:text="@string/strWait"
+			  android:padding="10dip"
+			  android:textSize="20dip"
+			  android:visibility="gone"
+			  />
+
+    </FrameLayout>
+	
+
 </LinearLayout>
