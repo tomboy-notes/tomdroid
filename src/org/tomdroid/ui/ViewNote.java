@@ -77,8 +77,7 @@ public class ViewNote extends Activity {
 		findViewById(R.id.viewContent).setOnLongClickListener(new OnLongClickListener() {
 
 			public boolean onLongClick(View v) {
-				modeToggle.swap();
-				editNote();
+				modeToggle.switchView();
 				return true;
 			}
 		});
@@ -86,9 +85,8 @@ public class ViewNote extends Activity {
 		findViewById(R.id.editContent).setOnLongClickListener(new OnLongClickListener() {
 
 			public boolean onLongClick(View v) {
-				modeToggle.swap();
+				modeToggle.switchView();
 				saveEditedContent();
-				showNote();
 				return true;
 			}
 		});
@@ -222,6 +220,7 @@ public class ViewNote extends Activity {
 												// parsed ok - show
 												if (msg.what == NoteContentBuilder.PARSE_OK) {
 													showNote();
+													editNote();
 
 													// parsed not ok - error
 												} else if (msg.what == NoteContentBuilder.PARSE_ERROR) {

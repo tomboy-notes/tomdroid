@@ -1,17 +1,12 @@
 package org.tomdroid.ui;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.widget.ListView;
-import android.widget.ArrayAdapter;
-import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.view.animation.AccelerateInterpolator;
+import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.TextView;
 
 /**
  * This code was extracted from the Transition3D sample activity found in the Android ApiDemos. The
@@ -20,20 +15,27 @@ import android.view.animation.DecelerateInterpolator;
  * finishes, the list is made invisible and the picture is set visible.
  */
 public class Transition3d {
-	private static final String	TAG	= "Transition3d";
-	private ViewGroup	mContainer;
-	private View		mViewA;
-	private View		mViewB;
+	private static final String	TAG					= "Transition3d";
+	private ViewGroup			mContainer;
+	private View				mFrondside;
+	private View				mBackside;
+
+	private long				mDuration			= 300;
+	private float				mDepthOfRotation	= 300f;
 
 	public Transition3d(ViewGroup container) {
 
 		mContainer = container;
-		mViewA = container.getChildAt(0);
-		mViewB = container.getChildAt(1);
+		mFrondside = container.getChildAt(0);
+		mBackside = container.getChildAt(1);
 
 		// Since we are caching large views, we want to keep their cache
 		// between each animation
 		mContainer.setPersistentDrawingCache(ViewGroup.PERSISTENT_ANIMATION_CACHE);
+	}
+
+	public void setDuration(long duration) {
+		mDuration = duration;
 	}
 
 	/**
@@ -46,7 +48,7 @@ public class Transition3d {
 	 * @param end
 	 *            the end angle of the rotation
 	 */
-	private void applyRotation(int position, float start, float end) {
+	private void turnAround(float start, float end) {
 		// Find the center of the container
 		final float centerX = mContainer.getWidth() / 2.0f;
 		final float centerY = mContainer.getHeight() / 2.0f;
@@ -54,41 +56,44 @@ public class Transition3d {
 		// Create a new 3D rotation with the supplied parameter
 		// The animation listener is used to trigger the next animation
 		final Rotate3dAnimation rotation = new Rotate3dAnimation(start, end, centerX, centerY,
-				310.0f, true);
-		rotation.setDuration(500);
+				mDepthOfRotation, true);
+		rotation.setDuration(mDuration / 2);
 		rotation.setFillAfter(true);
 		rotation.setInterpolator(new AccelerateInterpolator());
-		rotation.setAnimationListener(new DisplayNextView(position));
+		rotation.setAnimationListener(new TurnAroundListener());
 
 		mContainer.startAnimation(rotation);
 	}
-
-	public void swap() {
-		if (mViewA.getVisibility() == View.GONE) {
-			Log.v(TAG, "swap to A!");
-			applyRotation(1, 180, 90);
+	
+	public void switchView() {
+		if (isFrontsideVisible()) {
+			Log.v(TAG, "turning to backside!");
+			turnAround(0, 90);
 		} else {
-			Log.v(TAG, "swap to B!");
-			applyRotation(2, 180, 90);
+			Log.v(TAG, "turning to frontside!");
+			turnAround(180, 90);
 		}
 	}
 
+	public boolean isFrontsideVisible(){
+		return mFrondside.getVisibility() == View.VISIBLE;
+	}
+
+	public boolean isBacksideVisible(){
+		return mBackside.getVisibility() == View.VISIBLE;
+	}
+	
 	/**
 	 * This class listens for the end of the first half of the animation. It then posts a new action
 	 * that effectively swaps the views when the container is rotated 90 degrees and thus invisible.
 	 */
-	private final class DisplayNextView implements Animation.AnimationListener {
-		private final int	mPosition;
-
-		private DisplayNextView(int position) {
-			mPosition = position;
-		}
+	private final class TurnAroundListener implements Animation.AnimationListener {
 
 		public void onAnimationStart(Animation animation) {
 		}
 
 		public void onAnimationEnd(Animation animation) {
-			mContainer.post(new SwapViews(mPosition));
+			mContainer.post(new SwapViews());
 		}
 
 		public void onAnimationRepeat(Animation animation) {
@@ -99,32 +104,27 @@ public class Transition3d {
 	 * This class is responsible for swapping the views and start the second half of the animation.
 	 */
 	private final class SwapViews implements Runnable {
-		private final int	mPosition;
-
-		public SwapViews(int position) {
-			mPosition = position;
-		}
 
 		public void run() {
 			final float centerX = mContainer.getWidth() / 2.0f;
 			final float centerY = mContainer.getHeight() / 2.0f;
 			Rotate3dAnimation rotation;
 
-			if (mPosition == 1) {
-				mViewB.setVisibility(View.GONE);
-				mViewA.setVisibility(View.VISIBLE);
-				mViewA.requestFocus();
-
-				rotation = new Rotate3dAnimation(90, 180, centerX, centerY, 310.0f, false);
+			if (isFrontsideVisible()) {
+				mFrondside.setVisibility(View.GONE);
+				mBackside.setVisibility(View.VISIBLE);
+				mBackside.requestFocus();
+				
+				rotation = new Rotate3dAnimation(90, 180, centerX, centerY, mDepthOfRotation, false);
 			} else {
-				mViewA.setVisibility(View.GONE);
-				mViewB.setVisibility(View.VISIBLE);
-				mViewB.requestFocus();
-
-				rotation = new Rotate3dAnimation(90, 0, centerX, centerY, 310.0f, false);
+				mBackside.setVisibility(View.GONE);
+				mFrondside.setVisibility(View.VISIBLE);
+				mFrondside.requestFocus();
+				
+				rotation = new Rotate3dAnimation(90, 0, centerX, centerY, mDepthOfRotation, false);
 			}
 
-			rotation.setDuration(500);
+			rotation.setDuration(mDuration / 2);
 			rotation.setFillAfter(true);
 			rotation.setInterpolator(new DecelerateInterpolator());
 
