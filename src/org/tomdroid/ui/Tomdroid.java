@@ -4,6 +4,7 @@
  * http://www.launchpad.net/tomdroid
  * 
  * Copyright 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>
+ * Copyright 2010, Rodja Trappe <mail@rodja.net>
  * 
  * This file is part of Tomdroid.
  * 
