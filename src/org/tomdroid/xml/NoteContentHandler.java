@@ -4,6 +4,7 @@
  * http://www.launchpad.net/tomdroid
  * 
  * Copyright 2008, 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>
+ * Copyright 2009, Benoit Garret <benoit.garret_launchpad@gadz.org>
  * 
  * This file is part of Tomdroid.
  * 
