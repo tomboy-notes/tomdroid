@@ -4,22 +4,33 @@ import org.json.JSONObject;
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.ui.Tomdroid;
+import org.tomdroid.util.Preferences;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
-import android.test.ActivityInstrumentationTestCase2;
+import android.test.ActivityUnitTestCase;
 
-public class NoteManagerTest extends
-		ActivityInstrumentationTestCase2<Tomdroid> {
-
-	public NoteManagerTest() {
-		super("org.tomdroid", Tomdroid.class);
-	}
+public class NoteManagerTest extends ActivityUnitTestCase<Tomdroid> {
 	
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
-		Activity activity = this.getActivity();
+	public NoteManagerTest() {
+		super(Tomdroid.class);
+	}
+
+	public void testGetAllNotes() throws Exception {
+		Activity activity = getActivity();
+		putNotes(activity);
+		Cursor cursor;
+		// Get all notes excluding the notebook template ones.
+		cursor = NoteManager.getAllNotes(activity, false);
+		assertEquals(1, cursor.getCount());
+		
+		// Get all notes, including notebook templates this time.
+		cursor = NoteManager.getAllNotes(activity, true);
+		assertEquals(2, cursor.getCount());
+	}
+
+	private void putNotes(Activity a) throws Exception {
 		// Add a regular note to the content manager.
 		JSONObject note = new JSONObject(
 				"{'title': 'foo', 'note-content': 'bar', " +
@@ -27,7 +38,7 @@ public class NoteManagerTest extends
 				"'last-change-date': '2009-04-19T21:29:23.2197340-07:00', " +
 				"'tags': ['tag1', 'tag2']}");
 		Note n = new Note(note);
-		NoteManager.putNote(activity, n);
+		NoteManager.putNote(a, n);
 		
 		// Add a notebook template to the content manager.
 		JSONObject template = new JSONObject(
@@ -36,32 +47,23 @@ public class NoteManagerTest extends
 				"'last-change-date': '2009-04-19T21:29:23.2197340-07:00', " +
 				"'tags': ['system:template', 'tag2']}");
 		Note t = new Note(template);
-		NoteManager.putNote(activity, t);
+		NoteManager.putNote(a, t);
 	}
-	
-	public void testGetAllNotes() throws Exception {
-		Cursor cursor;
-		// Get all notes excluding the notebook template ones.
-		cursor = NoteManager.getAllNotes(this.getActivity(), false);
-		assertEquals(1, cursor.getCount());
 		
-		// Get all notes, including notebook templates this time.
-		cursor = NoteManager.getAllNotes(this.getActivity(), true);
-		assertEquals(2, cursor.getCount());
+	@Override
+	public void setUp() throws Exception {
+		super.setUp();
+		startActivity(new Intent(), null, null);
+		// XXX: Soon we'll be able to replace the two lines below with LocalStorage.resetDatabase().
+		getActivity().getContentResolver().delete(Tomdroid.CONTENT_URI, null, null);
+		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, 0);
 	}
 	
 	@Override
 	public void tearDown() throws Exception {
+		// XXX: Soon we'll be able to replace the two lines below with LocalStorage.resetDatabase().
+		getActivity().getContentResolver().delete(Tomdroid.CONTENT_URI, null, null);
+		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, 0);
 		super.tearDown();
-		// This is a hack to clear the DB after we're finished. What we
-		// should really do is drop the whole table and let it be recreated
-		// automatically the next time it's needed.
-		Activity activity = getActivity();
-		Cursor cursor = NoteManager.getIDs(activity);
-		if (cursor.moveToFirst()) {
-			do {
-				NoteManager.deleteNote(activity, cursor.getInt(0));
-			} while (cursor.moveToNext());
-		}
 	}
 }
