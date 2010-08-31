@@ -1,3 +1,25 @@
+/*
+ * Tomdroid
+ * Tomboy on Android
+ * http://www.launchpad.net/tomdroid
+ * 
+ * Copyright 2009, Benoit Garret <benoit.garret_launchpad@gadz.org>
+ * 
+ * This file is part of Tomdroid.
+ * 
+ * Tomdroid is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * Tomdroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.tomdroid.sync.web;
 
 import java.io.UnsupportedEncodingException;
@@ -5,13 +27,12 @@ import java.net.UnknownHostException;
 
 import oauth.signpost.OAuthConsumer;
 import oauth.signpost.OAuthProvider;
-import oauth.signpost.basic.DefaultOAuthProvider;
 import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
+import oauth.signpost.commonshttp.CommonsHttpOAuthProvider;
 import oauth.signpost.exception.OAuthCommunicationException;
 import oauth.signpost.exception.OAuthExpectationFailedException;
 import oauth.signpost.exception.OAuthMessageSignerException;
 import oauth.signpost.exception.OAuthNotAuthorizedException;
-import oauth.signpost.signature.SignatureMethod;
 
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
@@ -49,8 +70,7 @@ public class OAuthConnection extends WebConnection {
 		
 		consumer = new CommonsHttpOAuthConsumer(
 				CONSUMER_KEY,
-				CONSUMER_SECRET,
-				SignatureMethod.HMAC_SHA1);
+				CONSUMER_SECRET);
 	}
 
 	public boolean isAuthenticated() {
@@ -63,7 +83,9 @@ public class OAuthConnection extends WebConnection {
 	
 	private OAuthProvider getProvider() {
 		
-		OAuthProvider provider = new DefaultOAuthProvider(consumer,
+		// Use the provider bundled with signpost, the android libs are buggy
+		// See: http://code.google.com/p/oauth-signpost/issues/detail?id=20
+		OAuthProvider provider = new CommonsHttpOAuthProvider(
 				requestTokenUrl,
 				accessTokenUrl,
 				authorizeUrl);
@@ -86,6 +108,9 @@ public class OAuthConnection extends WebConnection {
 			e1.printStackTrace();
 		} catch (OAuthExpectationFailedException e1) {
 			e1.printStackTrace();
+		} catch (OAuthCommunicationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
@@ -120,7 +145,7 @@ public class OAuthConnection extends WebConnection {
 		
 		try {
 			// the argument is the callback used when the remote authorization is complete
-			url = provider.retrieveRequestToken("tomdroid://sync");
+			url = provider.retrieveRequestToken(consumer, "tomdroid://sync");
 			
 			requestToken = consumer.getToken();
 			requestTokenSecret = consumer.getTokenSecret();
@@ -168,7 +193,7 @@ public class OAuthConnection extends WebConnection {
 		OAuthProvider provider = getProvider();
 		
 		try {
-			provider.retrieveAccessToken(verifier);
+			provider.retrieveAccessToken(consumer, verifier);
 		} catch (OAuthMessageSignerException e1) {
 			e1.printStackTrace();
 			return false;
