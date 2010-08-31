@@ -27,13 +27,12 @@ import java.net.UnknownHostException;
 
 import oauth.signpost.OAuthConsumer;
 import oauth.signpost.OAuthProvider;
-import oauth.signpost.basic.DefaultOAuthProvider;
 import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
+import oauth.signpost.commonshttp.CommonsHttpOAuthProvider;
 import oauth.signpost.exception.OAuthCommunicationException;
 import oauth.signpost.exception.OAuthExpectationFailedException;
 import oauth.signpost.exception.OAuthMessageSignerException;
 import oauth.signpost.exception.OAuthNotAuthorizedException;
-import oauth.signpost.signature.SignatureMethod;
 
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
@@ -71,8 +70,7 @@ public class OAuthConnection extends WebConnection {
 		
 		consumer = new CommonsHttpOAuthConsumer(
 				CONSUMER_KEY,
-				CONSUMER_SECRET,
-				SignatureMethod.HMAC_SHA1);
+				CONSUMER_SECRET);
 	}
 
 	public boolean isAuthenticated() {
@@ -85,7 +83,9 @@ public class OAuthConnection extends WebConnection {
 	
 	private OAuthProvider getProvider() {
 		
-		OAuthProvider provider = new DefaultOAuthProvider(consumer,
+		// Use the provider bundled with signpost, the android libs are buggy
+		// See: http://code.google.com/p/oauth-signpost/issues/detail?id=20
+		OAuthProvider provider = new CommonsHttpOAuthProvider(
 				requestTokenUrl,
 				accessTokenUrl,
 				authorizeUrl);
@@ -108,6 +108,9 @@ public class OAuthConnection extends WebConnection {
 			e1.printStackTrace();
 		} catch (OAuthExpectationFailedException e1) {
 			e1.printStackTrace();
+		} catch (OAuthCommunicationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
@@ -142,7 +145,7 @@ public class OAuthConnection extends WebConnection {
 		
 		try {
 			// the argument is the callback used when the remote authorization is complete
-			url = provider.retrieveRequestToken("tomdroid://sync");
+			url = provider.retrieveRequestToken(consumer, "tomdroid://sync");
 			
 			requestToken = consumer.getToken();
 			requestTokenSecret = consumer.getTokenSecret();
@@ -190,7 +193,7 @@ public class OAuthConnection extends WebConnection {
 		OAuthProvider provider = getProvider();
 		
 		try {
-			provider.retrieveAccessToken(verifier);
+			provider.retrieveAccessToken(consumer, verifier);
 		} catch (OAuthMessageSignerException e1) {
 			e1.printStackTrace();
 			return false;
