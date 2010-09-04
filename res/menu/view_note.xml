@@ -42,12 +42,6 @@
 			/>
 
 	<item 
-			android:icon="@android:drawable/ic_menu_revert"
-			android:title="@string/menuRevert"
-			android:id="@+id/menuRevert"
-			/>
-	
-	<item 
 			android:icon="@android:drawable/ic_menu_preferences"
 			android:title="@string/menuPrefs"
 			android:id="@+id/menuPrefs"/>

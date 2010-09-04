@@ -13,6 +13,7 @@ package org.tomdroid.ui;
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
+import org.tomdroid.sync.LocalStorage;
 import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.sync.SyncMethod;
@@ -37,6 +38,7 @@ import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Tomdroid extends ListActivity {
 
@@ -66,8 +68,8 @@ public class Tomdroid extends ListActivity {
 	private ListAdapter			adapter;
 
 	// UI feedback handler
-	private Handler	syncMessageHandler	= new SyncMessageHandler(this);
-	
+	private Handler				syncMessageHandler	= new SyncMessageHandler(this);
+
 	/** Called when the activity is created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -115,6 +117,11 @@ public class Tomdroid extends ListActivity {
 				showAboutDialog();
 				return true;
 
+			case R.id.menuRevert:
+				LocalStorage localStorage = new LocalStorage(this);
+				localStorage.resetDatabase();
+				return true;
+
 			case R.id.menuPrefs:
 				startActivity(new Intent(this, PreferencesActivity.class));
 				return true;
@@ -140,7 +147,7 @@ public class Tomdroid extends ListActivity {
 				}
 			}
 		}
-		
+
 		SyncManager.setActivity(this);
 		SyncManager.setHandler(this.syncMessageHandler);
 	}
@@ -159,7 +166,7 @@ public class Tomdroid extends ListActivity {
 		// format the string
 		String aboutDialogFormat = getString(R.string.strAbout);
 		String aboutDialogStr = String.format(aboutDialogFormat, getString(R.string.app_desc), // App
-																								// description
+				// description
 				getString(R.string.author), // Author name
 				ver // Version
 				);

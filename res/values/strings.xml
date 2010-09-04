@@ -38,7 +38,7 @@
     <string name="menuDelete">Delete</string>
     <string name="menuEdit">Edit</string>
     <string name="menuView">View</string>
-    <string name="menuRevert">Revert</string>
+    <string name="menuRevert">Reset DB</string>
     <string name="strWelcome">
     	Welcome to Tomdroid.
     	\n\nPlease note that this is beta quality software and that it contains known problems,

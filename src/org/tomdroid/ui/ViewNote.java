@@ -209,10 +209,6 @@ public class ViewNote extends Activity {
 			case R.id.menuEdit:
 				switchToEditMode();
 				return true;
-			case R.id.menuRevert:
-				Toast.makeText(this, "reverting notes is not jet ipmlemented", Toast.LENGTH_SHORT)
-						.show();
-				return true;
 			case R.id.menuPrefs:
 				startActivity(new Intent(this, PreferencesActivity.class));
 				return true;
