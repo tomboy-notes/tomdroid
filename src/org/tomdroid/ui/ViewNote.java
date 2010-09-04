@@ -36,11 +36,15 @@ import android.text.SpannableStringBuilder;
 import android.text.util.Linkify;
 import android.text.util.Linkify.TransformFilter;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnLongClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 // TODO this class is starting to smell
 public class ViewNote extends Activity {
@@ -61,6 +65,8 @@ public class ViewNote extends Activity {
 	private LocalStorage			localStorage;
 	private ViewSwitcher			viewSwitcher;
 
+	private boolean	isInEditMode = false;
+
 	// TODO extract methods in here
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -75,24 +81,20 @@ public class ViewNote extends Activity {
 		localStorage = new LocalStorage(this);
 		viewSwitcher = new ViewSwitcher(container);
 
+		// TODO used double tap instead of long click
 		findViewById(R.id.viewContent).setOnLongClickListener(new OnLongClickListener() {
 
 			public boolean onLongClick(View v) {
-				editNote();
-				viewSwitcher.swap();
+				switchToEditMode();
 				return true;
 			}
 		});
 
+		// TODO used double tap instead of long click
 		findViewById(R.id.editContent).setOnLongClickListener(new OnLongClickListener() {
 
 			public boolean onLongClick(View v) {
-				showNote();
-				viewSwitcher.swap();
-				saveEditedContent();
-				InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-				inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
-						InputMethodManager.HIDE_NOT_ALWAYS);
+				switchToViewMode();
 				return true;
 			}
 		});
@@ -157,9 +159,41 @@ public class ViewNote extends Activity {
 
 	@Override
 	public void onPause() {
-		saveEditedContent();
 		super.onPause();
 	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+
+		// Create the menu based on what is defined in res/menu/main.xml
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.view_note, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.menuDelete:
+				Toast.makeText(this, "deleting notes is not jet ipmlemented", Toast.LENGTH_SHORT).show();
+				return true;
+			case R.id.menuView:
+				switchToViewMode();
+				return true;
+			case R.id.menuEdit:
+				switchToEditMode();
+				return true;
+			case R.id.menuRevert:
+				Toast.makeText(this, "reverting notes is not jet ipmlemented", Toast.LENGTH_SHORT).show();
+				return true;
+			case R.id.menuPrefs:
+				startActivity(new Intent(this, PreferencesActivity.class));
+				return true;
+		}
+
+		return super.onOptionsItemSelected(item);
+	}
+
 
 	private void saveEditedContent() {
 		TextView textView = (TextView) findViewById(R.id.editContent);
@@ -169,7 +203,31 @@ public class ViewNote extends Activity {
 		}
 	}
 
-	private void showNote() {
+	private void switchToEditMode(){
+		if (isInEditMode ){
+			return;
+		}
+		isInEditMode = true;
+		viewSwitcher.swap();
+		
+		editNote();
+	}
+	
+	private void switchToViewMode(){
+		if (!isInEditMode){
+			return;
+		}
+		isInEditMode = false;
+		saveEditedContent();
+		viewSwitcher.swap();
+		InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+		inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+				InputMethodManager.HIDE_NOT_ALWAYS);
+		viewNote();
+	}
+
+	private void viewNote() {
+		
 		setTitle(note.getTitle());
 
 		// get rid of the title that is doubled in the note's content
@@ -209,7 +267,7 @@ public class ViewNote extends Activity {
 
 		TextView textView = (TextView) findViewById(R.id.editContent);
 
-		textView.setText(noteContent);
+		textView.setText(note.getXmlContent());
 	}
 
 	public void setTitle(CharSequence title) {
@@ -226,7 +284,7 @@ public class ViewNote extends Activity {
 
 												// parsed ok - show
 												if (msg.what == NoteContentBuilder.PARSE_OK) {
-													showNote();
+													viewNote();
 
 													// parsed not ok - error
 												} else if (msg.what == NoteContentBuilder.PARSE_ERROR) {
@@ -250,6 +308,8 @@ public class ViewNote extends Activity {
 											}
 										};
 
+										
+										
 	/**
 	 * Builds a regular expression pattern that will match any of the note title currently in the
 	 * collection. Useful for the Linkify to create the links to the notes.

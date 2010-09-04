@@ -36,6 +36,10 @@
     <string name="menuSync">Sync</string>
 	<string name="menuPrefs">Settings</string>
     <string name="menuAbout">About</string>
+    <string name="menuDelete">Delete</string>
+    <string name="menuEdit">Edit</string>
+    <string name="menuView">View</string>
+    <string name="menuRevert">Revert</string>
     <string name="strWelcome">
     	Welcome to Tomdroid.
     	\n\nPlease note that this is beta quality software and that it contains known problems,
