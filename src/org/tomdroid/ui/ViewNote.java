@@ -65,7 +65,7 @@ public class ViewNote extends Activity {
 	private LocalStorage			localStorage;
 	private ViewSwitcher			viewSwitcher;
 
-	private boolean	isInEditMode = false;
+	private boolean					isInEditMode		= false;
 
 	// TODO extract methods in here
 	@Override
@@ -161,21 +161,35 @@ public class ViewNote extends Activity {
 	public void onPause() {
 		super.onPause();
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
-		// Create the menu based on what is defined in res/menu/main.xml
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.view_note, menu);
+		menu.findItem(R.id.menuView).setVisible(false);
 		return true;
 	}
+
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		if (isInEditMode) {
+			menu.findItem(R.id.menuEdit).setVisible(false);
+			menu.findItem(R.id.menuView).setVisible(true);
+		} else {
+			menu.findItem(R.id.menuEdit).setVisible(true);
+			menu.findItem(R.id.menuView).setVisible(false);
+		}
+		return true;
+	}
+
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.menuDelete:
-				Toast.makeText(this, "deleting notes is not jet ipmlemented", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "deleting notes is not jet ipmlemented", Toast.LENGTH_SHORT)
+						.show();
 				return true;
 			case R.id.menuView:
 				switchToViewMode();
@@ -184,7 +198,8 @@ public class ViewNote extends Activity {
 				switchToEditMode();
 				return true;
 			case R.id.menuRevert:
-				Toast.makeText(this, "reverting notes is not jet ipmlemented", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "reverting notes is not jet ipmlemented", Toast.LENGTH_SHORT)
+						.show();
 				return true;
 			case R.id.menuPrefs:
 				startActivity(new Intent(this, PreferencesActivity.class));
@@ -194,7 +209,6 @@ public class ViewNote extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
-
 	private void saveEditedContent() {
 		TextView textView = (TextView) findViewById(R.id.editContent);
 		if (!textView.getText().toString().equals(note.getXmlContent())) {
@@ -203,18 +217,18 @@ public class ViewNote extends Activity {
 		}
 	}
 
-	private void switchToEditMode(){
-		if (isInEditMode ){
+	private void switchToEditMode() {
+		if (isInEditMode) {
 			return;
 		}
 		isInEditMode = true;
 		viewSwitcher.swap();
-		
+
 		editNote();
 	}
-	
-	private void switchToViewMode(){
-		if (!isInEditMode){
+
+	private void switchToViewMode() {
+		if (!isInEditMode) {
 			return;
 		}
 		isInEditMode = false;
@@ -227,7 +241,7 @@ public class ViewNote extends Activity {
 	}
 
 	private void viewNote() {
-		
+
 		setTitle(note.getTitle());
 
 		// get rid of the title that is doubled in the note's content
@@ -308,8 +322,6 @@ public class ViewNote extends Activity {
 											}
 										};
 
-										
-										
 	/**
 	 * Builds a regular expression pattern that will match any of the note title currently in the
 	 * collection. Useful for the Linkify to create the links to the notes.
