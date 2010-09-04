@@ -46,7 +46,6 @@
               android:fadingEdge="vertical"
               android:linksClickable="true"
               android:inputType="none"
-			  android:text="@string/strWait"
 			  android:padding="10dip"
 			  android:textSize="20dip"
 			  />
@@ -61,7 +60,6 @@
               android:fadingEdge="vertical"
               android:linksClickable="false"
               android:inputType="textLongMessage|textMultiLine|textAutoComplete"
-			  android:text="@string/strWait"
 			  android:padding="10dip"
 			  android:textSize="20dip"
 			  android:visibility="gone"
