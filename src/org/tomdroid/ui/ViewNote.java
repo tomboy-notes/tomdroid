@@ -1,12 +1,25 @@
 /*
- * Tomdroid Tomboy on Android http://www.launchpad.net/tomdroid Copyright 2008, 2009, 2010 Olivier
- * Bilodeau <olivier@bottomlesspit.org> This file is part of Tomdroid. Tomdroid is free software:
- * you can redistribute it and/or modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the License, or (at your option)
- * any later version. Tomdroid is distributed in the hope that it will be useful, but WITHOUT ANY
- * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
- * PURPOSE. See the GNU General Public License for more details. You should have received a copy of
- * the GNU General Public License along with Tomdroid. If not, see <http://www.gnu.org/licenses/>.
+ * Tomdroid 
+ * Tomboy on Android 
+ * http://www.launchpad.net/tomdroid 
+ * 
+ * Copyright 2008, 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org> 
+ * Copyright 2010 Rodja Trappe <mail@rodja.net> 
+ * 
+ * This file is part of Tomdroid. 
+ * 
+ * Tomdroid is free software: you can redistribute it and/or modify 
+ * it under the terms of the GNU General Public License as published by 
+ * the Free Software Foundation, either version 3 of the License, or 
+ * (at your option) any later version. 
+ * 
+ * Tomdroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of 
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
+ * GNU General Public License for more details. 
+ * 
+ * You should have received a copy of the GNU General Public License 
+ * along with Tomdroid. If not, see <http://www.gnu.org/licenses/>.
  */
 package org.tomdroid.ui;
 
@@ -98,6 +111,8 @@ public class ViewNote extends Activity {
 				return true;
 			}
 		});
+		
+		viewNote();
 	}
 
 	private void handleUri(Uri uri) {
@@ -113,10 +128,7 @@ public class ViewNote extends Activity {
 			// TODO verify that getNote is doing the proper validation
 			note = NoteManager.getNote(this, uri);
 
-			if (note != null) {
-
-				noteContent = note.getNoteContent(NoteContentHandler);
-			} else {
+			if (note == null) {
 
 				if (Tomdroid.LOGGING_ENABLED)
 					Log.d(TAG, "The note " + uri + " doesn't exist");
@@ -132,6 +144,7 @@ public class ViewNote extends Activity {
 							}
 						}).show();
 			}
+
 		} else {
 
 			if (Tomdroid.LOGGING_ENABLED)
@@ -182,7 +195,6 @@ public class ViewNote extends Activity {
 		}
 		return true;
 	}
-
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -244,6 +256,10 @@ public class ViewNote extends Activity {
 
 		setTitle(note.getTitle());
 
+		noteContent = note.getNoteContent(NoteContentHandler);
+	}
+
+	private void onContentBuilded() {
 		// get rid of the title that is doubled in the note's content
 		// using quote to escape potential regexp chars in pattern
 		Pattern removeTitle = Pattern.compile("^\\s*" + Pattern.quote(note.getTitle()) + "\\n\\n");
@@ -298,7 +314,7 @@ public class ViewNote extends Activity {
 
 												// parsed ok - show
 												if (msg.what == NoteContentBuilder.PARSE_OK) {
-													viewNote();
+													onContentBuilded();
 
 													// parsed not ok - error
 												} else if (msg.what == NoteContentBuilder.PARSE_ERROR) {
