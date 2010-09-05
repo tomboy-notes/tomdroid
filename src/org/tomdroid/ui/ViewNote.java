@@ -78,8 +78,6 @@ public class ViewNote extends Activity {
 	private LocalStorage			localStorage;
 	private ViewSwitcher			viewSwitcher;
 
-	private boolean					isInEditMode		= false;
-
 	// TODO extract methods in here
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -186,7 +184,7 @@ public class ViewNote extends Activity {
 
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
-		if (isInEditMode) {
+		if (isInEditMode()) {
 			menu.findItem(R.id.menuEdit).setVisible(false);
 			menu.findItem(R.id.menuView).setVisible(true);
 		} else {
@@ -222,24 +220,33 @@ public class ViewNote extends Activity {
 		if (!textView.getText().toString().equals(note.getXmlContent())) {
 			note.changeXmlContent(textView.getText().toString());
 			localStorage.insertNote(note);
+			if (Tomdroid.LOGGING_ENABLED)
+				Log.v(TAG, textView.getText().toString() + "\n----\n" + note.getXmlContent());
+
 		}
 	}
 
+	private boolean isInEditMode(){
+		return viewSwitcher.isBacksideVisible();
+	}
+	
+	private boolean isInViewMode(){
+		return viewSwitcher.isFrontsideVisible();
+	}
+	
 	private void switchToEditMode() {
-		if (isInEditMode) {
+		if (isInEditMode()) {
 			return;
 		}
-		isInEditMode = true;
 		viewSwitcher.swap();
 
 		editNote();
 	}
 
 	private void switchToViewMode() {
-		if (!isInEditMode) {
+		if (isInViewMode()) {
 			return;
 		}
-		isInEditMode = false;
 		saveEditedContent();
 		viewSwitcher.swap();
 		InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
