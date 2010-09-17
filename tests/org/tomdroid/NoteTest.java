@@ -10,7 +10,7 @@ import org.json.JSONObject;
 
 public class NoteTest extends TestCase {
 
-	public void testConstructor() throws JSONException {
+	public void testConstructorForNoteWithTags() throws JSONException {
 		JSONObject json = new JSONObject(
 				"{'title': 'foo', 'note-content': 'bar', " +
 				"'guid': '002e91a2-2e34-4e2d-bf88-21def49a7705', " +
@@ -20,26 +20,16 @@ public class NoteTest extends TestCase {
 		Assert.assertEquals("foo", n.getTitle());	
 		Assert.assertEquals("002e91a2-2e34-4e2d-bf88-21def49a7705", n.getGuid().toString());
 		Assert.assertEquals("bar", n.getXmlContent());	
-		Assert.assertEquals("[tag1, tag2]", n.getTags().toString());
-		Assert.assertEquals(false, n.isNotebookTemplate());
+		Assert.assertEquals("tag1,tag2,", n.getTags());
 	}
 
-	public void testNoTags() throws JSONException {
+	public void testConstructorForNoteWithNoTags() throws JSONException {
 		JSONObject json = new JSONObject(
 				"{'title': 'foo', 'note-content': 'bar', " +
 				"'guid': '002e91a2-2e34-4e2d-bf88-21def49a7705', " +
 				"'last-change-date': '2009-04-19T21:29:23.2197340-07:00'}");
 		Note n = new Note(json);
 		Assert.assertEquals("foo", n.getTitle());
-	}
-	
-	public void testIsNotebookTemplate() throws JSONException {
-		JSONObject json = new JSONObject(
-				"{'title': 'foo', 'note-content': 'bar', " +
-				"'guid': '002e91a2-2e34-4e2d-bf88-21def49a7705', " +
-				"'last-change-date': '2009-04-19T21:29:23.2197340-07:00', " +
-				"'tags': ['system:template', 'tag2']}");
-		Note n = new Note(json);
-		Assert.assertEquals(true, n.isNotebookTemplate());
+		Assert.assertEquals("", n.getTags());
 	}
 }

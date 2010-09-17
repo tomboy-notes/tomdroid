@@ -96,7 +96,7 @@ public class NoteManager {
 		// Notice that we store the date in UTC because sqlite doesn't handle RFC3339 timezone information
 		values.put(Note.MODIFIED_DATE, note.getLastChangeDate().format3339(false));
 		values.put(Note.NOTE_CONTENT, note.getXmlContent());
-		values.put(Note.IS_NOTEBOOK_TEMPLATE, note.isNotebookTemplate());
+		values.put(Note.TAGS, note.getTags());
 		
 		if (managedCursor.getCount() == 0) {
 			
@@ -133,7 +133,7 @@ public class NoteManager {
 		Uri notes = Tomdroid.CONTENT_URI;
 		String where = null;
 		if (!includeNotebookTemplates) {
-			where = Note.IS_NOTEBOOK_TEMPLATE + "=0";
+			where = Note.TAGS + " NOT LIKE '%" + "system:template" + "%'";
 		}
 		return activity.managedQuery(notes, LIST_PROJECTION, where, null, null);		
 	}
@@ -147,11 +147,7 @@ public class NoteManager {
 		int[] to = new int[] { R.id.note_title };
 		return new SimpleCursorAdapter(activity, R.layout.main_list_item, notesCursor, from, to);
 	}
-	
-	public static Cursor getIDs(Activity activity) {
-		return activity.managedQuery(Tomdroid.CONTENT_URI, ID_PROJECTION, null, null, null);
-	}
-		
+
 	// gets the titles of the notes present in the db, used in ViewNote.buildLinkifyPattern()
 	public static Cursor getTitles(Activity activity) {
 		

@@ -101,7 +101,7 @@ public class NoteProvider extends ContentProvider {
                     + Note.FILE + " TEXT,"
                     + Note.NOTE_CONTENT + " TEXT,"
                     + Note.MODIFIED_DATE + " STRING,"
-                    + Note.IS_NOTEBOOK_TEMPLATE + " INTEGER"
+                    + Note.TAGS + " STRING"
                     + ");");
         }
 
@@ -298,7 +298,7 @@ public class NoteProvider extends ContentProvider {
         notesProjectionMap.put(Note.TITLE, Note.TITLE);
         notesProjectionMap.put(Note.FILE, Note.FILE);
         notesProjectionMap.put(Note.NOTE_CONTENT, Note.NOTE_CONTENT);
-        notesProjectionMap.put(Note.IS_NOTEBOOK_TEMPLATE, Note.IS_NOTEBOOK_TEMPLATE);
+        notesProjectionMap.put(Note.TAGS, Note.TAGS);
         notesProjectionMap.put(Note.MODIFIED_DATE, Note.MODIFIED_DATE);
     }
 }
