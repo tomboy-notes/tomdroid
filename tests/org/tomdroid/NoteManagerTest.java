@@ -53,6 +53,11 @@ public class NoteManagerTest extends ActivityUnitTestCase<Tomdroid> {
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();
+		// XXX: For some reason this will raise an 
+		// "Unable to add window -- token null is not for an application"
+		// error when you run the test after wiping user data from the emulator.
+		// The error is actually raised when we try to display the AlertDialog that
+		// is shown the first time the user runs tomdroid.
 		startActivity(new Intent(), null, null);
 		// XXX: Soon we'll be able to replace the two lines below with LocalStorage.resetDatabase().
 		getActivity().getContentResolver().delete(Tomdroid.CONTENT_URI, null, null);
