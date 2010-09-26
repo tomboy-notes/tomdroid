@@ -4,6 +4,8 @@
  * http://www.launchpad.net/tomdroid
  * 
  * Copyright 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>
+ * Copyright 2009, Benoit Garret <benoit.garret_launchpad@gadz.org>
+ * Copyright 2010, Rodja Trappe <mail@rodja.net>
  * 
  * This file is part of Tomdroid.
  * 
@@ -52,6 +54,7 @@ import android.util.TimeFormatException;
 public class SdCardSyncService extends SyncService {
 	
 	private File path;
+	private int numberOfFilesToSync = 0;
 	
 	// regexp for <note-content..>...</note-content>
 	private static Pattern note_content = Pattern.compile("<note-content.*>(.*)<\\/note-content>", Pattern.CASE_INSENSITIVE+Pattern.DOTALL);
@@ -65,7 +68,7 @@ public class SdCardSyncService extends SyncService {
 		path = new File(Tomdroid.NOTES_PATH);
 		
 		if (!path.exists())
-			throw new FileNotFoundException("Tomdroid notes folder doesn't exist. It is configured to be at: "+Tomdroid.NOTES_PATH);
+			path.mkdir();
 	}
 	
 	@Override
@@ -89,22 +92,27 @@ public class SdCardSyncService extends SyncService {
 	}
 
 	@Override
-	public void sync() {
-		
+	protected void sync() {
+
+		setSyncProgress(0);
+
 		// start loading local notes
-        if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "Loading local notes");
+		if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "Loading local notes");
 		
 		File[] fileList = path.listFiles(new NotesFilter());
+		numberOfFilesToSync  = fileList.length;
 		
 		// If there are no notes, warn the UI through an empty message
-		if (fileList.length == 0) {
+		if (fileList == null || fileList.length == 0) {
 			if (Tomdroid.LOGGING_ENABLED) Log.i(TAG, "There are no notes in "+path);
 			sendMessage(PARSING_NO_NOTES);
+			setSyncProgress(100);
 			return;
 		}
 		
 		// every but the last note
 		for(int i = 0; i < fileList.length-1; i++) {
+			// TODO better progress reporting from within the workers
 			
 			// give a filename to a thread and ask to parse it
 			execInThread(new Worker(fileList[i], false));
@@ -157,7 +165,7 @@ public class SdCardSyncService extends SyncService {
 		
 		        // Get the XMLReader of the SAXParser we created
 		        XMLReader xr = sp.getXMLReader();
-		        
+
 		        // Create a new ContentHandler, send it this note to fill and apply it to the XML-Reader
 		        NoteHandler xmlHandler = new NoteHandler(note);
 		        xr.setContentHandler(xmlHandler);
@@ -169,7 +177,7 @@ public class SdCardSyncService extends SyncService {
 		        
 				if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "parsing note");
 				xr.parse(is);
-			
+
 			// TODO wrap and throw a new exception here
 			} catch (ParserConfigurationException e) {
 				e.printStackTrace();
@@ -181,6 +189,7 @@ public class SdCardSyncService extends SyncService {
 				e.printStackTrace();
 				if (Tomdroid.LOGGING_ENABLED) Log.e(TAG, "Problem parsing the note's date and time");
 				sendMessage(PARSING_FAILED);
+				onWorkDone();
 				return;
 			}
 
@@ -215,6 +224,14 @@ public class SdCardSyncService extends SyncService {
 			}
 			
 			insertNote(note, isLast);
+			onWorkDone();
+		}
+		
+		private void onWorkDone(){
+			if (isLast) 
+				setSyncProgress(100);
+			else
+				setSyncProgress((int) (getSyncProgress() + 100.0 / numberOfFilesToSync));			
 		}
 	}
 }

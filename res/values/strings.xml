@@ -68,5 +68,7 @@
 	<string name="prefAuthenticate">Authenticate</string>
 
 	<string name="prefSyncConnectionFailed">The connection to the server has failed, please check that the address you entered is correct.</string>
+	<string name="prefServerEmpty">The server address changed but the new value is empty</string>
+
 
 </resources>

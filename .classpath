@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="lib/signpost/signpost-core/src/main/java"/>
-	<classpathentry kind="src" path="lib/signpost/signpost-commonshttp4/src/main/java"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="src" path="gen"/>
-	<classpathentry kind="lib" path="lib/commons-codec-1.4/commons-codec-1.4.jar"/>
+	<classpathentry kind="lib" path="lib/signpost-core-1.2.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/signpost-commonshttp4-1.2.1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
+  <classpathentry kind="src" path="tests"/>
 </classpath>
