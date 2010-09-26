@@ -27,7 +27,6 @@ public class PreferencesActivity extends PreferenceActivity {
 	// TODO: put the various preferences in fields and figure out what to do on activity suspend/resume
 	private EditTextPreference syncServer = null;
 	private ListPreference syncService = null;
-	private ListPreference sortOrder = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +37,6 @@ public class PreferencesActivity extends PreferenceActivity {
 		// Fill the Preferences fields
 		syncServer = (EditTextPreference)findPreference(Preferences.Key.SYNC_SERVER.getName());
 		syncService = (ListPreference)findPreference(Preferences.Key.SYNC_SERVICE.getName());
-		sortOrder = (ListPreference)findPreference(Preferences.Key.SORT_ORDER.getName());
 		
 		// Set the default values if nothing exists
 		this.setDefaults();
@@ -94,15 +92,6 @@ public class PreferencesActivity extends PreferenceActivity {
 			
 		});
 		
-
-		sortOrder.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
-			
-			public boolean onPreferenceChange(Preference preference, Object newValue) {	
-				
-				setSortOrder((String)newValue);
-				return true;
-			}
-		});
 	}
 	
 	private void fillServices()
@@ -131,11 +120,7 @@ public class PreferencesActivity extends PreferenceActivity {
 		syncService.setDefaultValue(defaultService);
 		if(syncService.getValue() == null)
 			syncService.setValue(defaultService);
-
-		String defaultSortOrder = (String)Preferences.Key.SORT_ORDER.getDefault();
-		sortOrder.setDefaultValue(defaultSortOrder);
-		if(sortOrder.getValue() == null)
-			sortOrder.setValue(defaultSortOrder);		
+	
 	}
 
 	private void setServer(String syncServiceKey) {
@@ -147,11 +132,7 @@ public class PreferencesActivity extends PreferenceActivity {
 			syncService.setSummary(service.getDescription());
 		}
 	}
-	
-	private void setSortOrder(String sortOrderKey) {
-		//TODO Does anything need to happen here? Refresh ListView perhaps?
-	}
-	
+		
 	private void connectionFailed() {
 		new AlertDialog.Builder(this)
 			.setMessage(getString(R.string.prefSyncConnectionFailed))

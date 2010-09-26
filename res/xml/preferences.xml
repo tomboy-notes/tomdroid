@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-	
-	<ListPreference android:key="sort_order" 
-					android:title="@string/prefListSortOrder"
-					android:summary="@string/prefListSortOrderDesc"
-					android:defaultValue="sort_date"
-					android:entries="@array/sortOrderValues"
-					android:entryValues="@array/sortOrderArray" />
-                        
+	                        
 	<PreferenceCategory android:title="@string/prefSync">
 		
 		<ListPreference android:title="@string/prefSyncService"

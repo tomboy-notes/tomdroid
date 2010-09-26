@@ -135,12 +135,9 @@ public class NoteManager {
 		// get a cursor representing all notes from the NoteProvider
 		Uri notes = Tomdroid.CONTENT_URI;
 		String orderBy;
-		Log.i(TAG, "Sort set to: " + Preferences.getString(Preferences.Key.SORT_ORDER));
-		if (Preferences.getString(Preferences.Key.SORT_ORDER) == "sort_title"){
-			orderBy = Note.TITLE + " ASC";
-		} else {
-			orderBy = Note.MODIFIED_DATE + " DESC";
-		}
+		//orderBy = Note.TITLE + " ASC";
+		orderBy = Note.MODIFIED_DATE + " DESC";
+		
 		Cursor notesCursor = activity.managedQuery(notes, LIST_PROJECTION, null, null, orderBy);
 		
 		// set up an adapter binding the TITLE field of the cursor to the list item

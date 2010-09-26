@@ -169,10 +169,6 @@ public class Tomdroid extends ListActivity {
 	public void onResume() {
 		super.onResume();
 
-		// How do I refresh the ListView when the sort order preference has been changed?
-    	//adapter = NoteManager.getListAdapter(this);
-		//setListAdapter(adapter);
-		
     	Intent intent = this.getIntent();
     	
     	if (intent != null) {
