@@ -96,59 +96,60 @@ public class PreferencesActivity extends PreferenceActivity {
 					return false;
 				}
 			    
-				// update the value before doing anything
-				String server = (String)newValue;
-				Preferences.putString(Preferences.Key.SYNC_SERVER, server);
-				
-				PreferencesActivity.this.auth(server);
+				switchTo((String) newValue);
 				return true;
 			}
 			
 		});
 	}
 	
-	private void auth(String server) {
-		
-		// get the current service
+	private void switchTo(String server) {
+
+		// update the value before doing anything
+		Preferences.putString(Preferences.Key.SYNC_SERVER, server);
+
 		SyncService currentService = SyncManager.getInstance().getCurrentService();
-		
-		// check if the service needs authentication
-		if (currentService.needsAuth()) {
-			
-			Log.i(TAG, "Creating dialog");
-			
-			final ProgressDialog authProgress = ProgressDialog.show(this, "", 
-				"Authenticating. Please wait...", true, false);
-			
-			Handler handler = new Handler() {
-				
-				@Override
-				public void handleMessage(Message msg) {
-					
-					boolean result = false;
-					Uri authorizationUri = (Uri)msg.obj;
-					if (authorizationUri != null) {
-						
-						Intent i = new Intent(Intent.ACTION_VIEW, authorizationUri);
-						startActivity(i);
-						result = true;
-						
-					} else {
-						// Auth failed, don't update the value
-						result = false;
-					}
-					
-					if(authProgress != null)
-						authProgress.dismiss();
-					
-					if(!result)
-						connectionFailed();
-				}
-				
-			};
-			
-			((ServiceAuth)currentService).getAuthUri(server, handler);
+
+		if (!currentService.needsAuth()) {
+			resetLocalDatabase();
 		}
+
+		// service needs authentication
+		Log.i(TAG, "Creating dialog");
+
+		final ProgressDialog authProgress = ProgressDialog.show(this, "",
+				"Authenticating. Please wait...", true, false);
+
+		Handler handler = new Handler() {
+
+			@Override
+			public void handleMessage(Message msg) {
+
+				boolean wasSuccsessful = false;
+				Uri authorizationUri = (Uri) msg.obj;
+				if (authorizationUri != null) {
+
+					Intent i = new Intent(Intent.ACTION_VIEW, authorizationUri);
+					startActivity(i);
+					wasSuccsessful = true;
+
+				} else {
+					// Auth failed, don't update the value
+					wasSuccsessful = false;
+				}
+
+				if (authProgress != null)
+					authProgress.dismiss();
+
+				if (wasSuccsessful) {
+					resetLocalDatabase();
+				} else {
+					connectionFailed();
+				}
+			}
+		};
+
+		((ServiceAuth) currentService).getAuthUri(server, handler);
 	}
 	
 	private void fillServices()
@@ -198,4 +199,11 @@ public class PreferencesActivity extends PreferenceActivity {
 				}})
 			.show();
 	}
+
+	//TODO use LocalStorage wrapper from two-way-sync branch when it get's merged
+	private void resetLocalDatabase() {
+		getContentResolver().delete(Tomdroid.CONTENT_URI, null, null);
+		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, 0);
+	}
+
 }
