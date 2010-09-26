@@ -68,6 +68,5 @@
 	<string name="prefAuthenticate">Authenticate</string>
 
 	<string name="prefSyncConnectionFailed">The connection to the server has failed, please check that the address you entered is correct.</string>
-<string name="prefListSortOrder">Note List Sort Order</string>
-<string name="prefListSortOrderDesc">Notes can be sorted by date or by title</string>
+
 </resources>
