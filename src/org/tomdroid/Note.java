@@ -28,6 +28,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.json.JSONObject;
+import org.json.JSONArray;
 import org.tomdroid.util.NoteContentBuilder;
 import org.tomdroid.util.XmlUtils;
 
@@ -46,6 +47,7 @@ public class Note {
 	public static final String MODIFIED_DATE = "modified_date";
 	public static final String URL = "url";
 	public static final String FILE = "file";
+	public static final String TAGS = "tags";
 	public static final String NOTE_CONTENT = "content";
 	
 	// Logging info
@@ -65,6 +67,7 @@ public class Note {
 	private String url;
 	private String fileName;
 	private String title;
+	private String tags;
 	private Time lastChangeDate;
 	private int dbId;
 	private UUID guid;
@@ -85,8 +88,21 @@ public class Note {
 		setGuid(json.optString("guid"));
 		setLastChangeDate(json.optString("last-change-date"));
 		setXmlContent(json.optString("note-content"));
+		JSONArray jtags = json.optJSONArray("tags");
+		String tag;
+		tags = new String();
+		if (jtags != null) {
+			for (int i = 0; i < jtags.length(); i++ ) {
+				tag = jtags.optString(i);
+				tags += tag + ",";
+			}
+		}
 	}
 	
+	public String getTags() {
+		return tags;
+	}
+
 	public String getUrl() {
 		return url;
 	}
@@ -150,7 +166,7 @@ public class Note {
 	public void setGuid(String guid) {
 		this.guid = UUID.fromString(guid);
 	}
-	
+
 	// TODO: should this handler passed around evolve into an observer pattern?
 	public SpannableStringBuilder getNoteContent(Handler handler) {
 		
