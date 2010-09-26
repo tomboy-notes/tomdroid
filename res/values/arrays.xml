@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<array name="sortOrderArray">
+	<item>sort_date</item>
+	<item>sort_title</item>
+</array>
+<array name="sortOrderValues">
+	<item>Date Modified</item>
+	<item>Note Title</item>
+</array>
+</resources>
