@@ -126,10 +126,12 @@ public class SyncServer {
 	}
 
 	protected JSONObject getAllNotesWithoutContent() throws JSONException, UnknownHostException {
-		JSONObject response = new JSONObject(authConnection.get(getNotesUri()));
+		String rawResponse = authConnection.get(getNotesUri());
+		JSONObject response = new JSONObject(rawResponse);
 		return response;
 	}
 
+	
 	/**
 	 * @return true if successful
 	 */

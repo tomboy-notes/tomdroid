@@ -270,6 +270,7 @@ public class Note implements Cloneable {
 	private String getJsonPreparedXmlContent() {
 		return getXmlContent().replace("\n", "\\n")
 				              .replace("\"", "\\\"")
+				              .replace("'", "\\'")
 				              .replace("\b", "\\b")
 				              .replace("\f", "\\f")
 				              .replace("\n", "\\n")

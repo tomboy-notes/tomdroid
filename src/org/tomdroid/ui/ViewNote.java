@@ -1,25 +1,13 @@
 /*
- * Tomdroid 
- * Tomboy on Android 
- * http://www.launchpad.net/tomdroid 
- * 
- * Copyright 2008, 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org> 
- * Copyright 2010 Rodja Trappe <mail@rodja.net> 
- * 
- * This file is part of Tomdroid. 
- * 
- * Tomdroid is free software: you can redistribute it and/or modify 
- * it under the terms of the GNU General Public License as published by 
- * the Free Software Foundation, either version 3 of the License, or 
- * (at your option) any later version. 
- * 
- * Tomdroid is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of 
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
- * GNU General Public License for more details. 
- * 
- * You should have received a copy of the GNU General Public License 
- * along with Tomdroid. If not, see <http://www.gnu.org/licenses/>.
+ * Tomdroid Tomboy on Android http://www.launchpad.net/tomdroid Copyright 2008, 2009, 2010 Olivier
+ * Bilodeau <olivier@bottomlesspit.org> Copyright 2010 Rodja Trappe <mail@rodja.net> This file is
+ * part of Tomdroid. Tomdroid is free software: you can redistribute it and/or modify it under the
+ * terms of the GNU General Public License as published by the Free Software Foundation, either
+ * version 3 of the License, or (at your option) any later version. Tomdroid is distributed in the
+ * hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details. You should have received a copy of the GNU General Public License along with Tomdroid.
+ * If not, see <http://www.gnu.org/licenses/>.
  */
 package org.tomdroid.ui;
 
@@ -49,9 +37,11 @@ import android.text.SpannableStringBuilder;
 import android.text.util.Linkify;
 import android.text.util.Linkify.TransformFilter;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnLongClickListener;
@@ -63,20 +53,21 @@ import android.widget.Toast;
 public class ViewNote extends Activity {
 
 	// UI elements
-	private ViewGroup				container;
+	private ViewGroup container;
 
 	// Model objects
-	private Note					note;
-	private SpannableStringBuilder	noteContent;
+	private Note note;
+	private SpannableStringBuilder noteContent;
 
 	// Logging info
-	private static final String		TAG					= "ViewNote";
+	private static final String TAG = "ViewNote";
 
 	// UI feedback handler
-	private Handler					syncMessageHandler	= new SyncMessageHandler(this);
+	private Handler syncMessageHandler = new SyncMessageHandler(this);
 
-	private LocalStorage			localStorage;
-	private ViewSwitcher			viewSwitcher;
+	private LocalStorage localStorage;
+	private ViewSwitcher viewSwitcher;
+	private GestureDetector gestureDetector;
 
 	// TODO extract methods in here
 	@Override
@@ -92,25 +83,25 @@ public class ViewNote extends Activity {
 		localStorage = new LocalStorage(this);
 		viewSwitcher = new ViewSwitcher(container);
 
-		// TODO used double tap instead of long click
-		findViewById(R.id.viewContent).setOnLongClickListener(new OnLongClickListener() {
+		gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
 
-			public boolean onLongClick(View v) {
-				switchToEditMode();
+			public boolean onDoubleTap(MotionEvent e) {
+				if (isInViewMode())
+					switchToEditMode();
+				else
+					switchToViewMode();
 				return true;
 			}
 		});
 
-		// TODO used double tap instead of long click
-		findViewById(R.id.editContent).setOnLongClickListener(new OnLongClickListener() {
-
-			public boolean onLongClick(View v) {
-				switchToViewMode();
-				return true;
-			}
-		});
-		
 		viewNote();
+	}
+
+	@Override
+	public boolean dispatchTouchEvent(MotionEvent event) {
+		if (gestureDetector.onTouchEvent(event))
+			return true;
+		return super.dispatchTouchEvent(event);
 	}
 
 	private void handleUri(Uri uri) {
@@ -226,14 +217,14 @@ public class ViewNote extends Activity {
 		}
 	}
 
-	private boolean isInEditMode(){
+	private boolean isInEditMode() {
 		return viewSwitcher.isBacksideVisible();
 	}
-	
-	private boolean isInViewMode(){
+
+	private boolean isInViewMode() {
 		return viewSwitcher.isFrontsideVisible();
 	}
-	
+
 	private void switchToEditMode() {
 		if (isInEditMode()) {
 			return;
@@ -310,36 +301,32 @@ public class ViewNote extends Activity {
 		titleView.setText(title);
 	}
 
-	private Handler	NoteContentHandler	= new Handler() {
+	private Handler NoteContentHandler = new Handler() {
 
-											@Override
-											public void handleMessage(Message msg) {
+		@Override
+		public void handleMessage(Message msg) {
 
-												// parsed ok - show
-												if (msg.what == NoteContentBuilder.PARSE_OK) {
-													onContentBuilded();
+			// parsed ok - show
+			if (msg.what == NoteContentBuilder.PARSE_OK) {
+				onContentBuilded();
 
-													// parsed not ok - error
-												} else if (msg.what == NoteContentBuilder.PARSE_ERROR) {
+				// parsed not ok - error
+			} else if (msg.what == NoteContentBuilder.PARSE_ERROR) {
 
-													// TODO put this String in a translatable
-													// resource
-													new AlertDialog.Builder(ViewNote.this)
-															.setMessage(
-																	"The requested note could not be parsed. If you see this error by "
-																			+ "mistake and you are able to replicate it, please file a bug!")
-															.setTitle("Error").setNeutralButton(
-																	"Ok", new OnClickListener() {
-																		public void onClick(
-																				DialogInterface dialog,
-																				int which) {
-																			dialog.dismiss();
-																			finish();
-																		}
-																	}).show();
-												}
-											}
-										};
+				// TODO put this String in a translatable
+				// resource
+				new AlertDialog.Builder(ViewNote.this).setMessage(
+						"The requested note could not be parsed. If you see this error by "
+								+ "mistake and you are able to replicate it, please file a bug!")
+						.setTitle("Error").setNeutralButton("Ok", new OnClickListener() {
+							public void onClick(DialogInterface dialog, int which) {
+								dialog.dismiss();
+								finish();
+							}
+						}).show();
+			}
+		}
+	};
 
 	/**
 	 * Builds a regular expression pattern that will match any of the note title currently in the
@@ -388,19 +375,16 @@ public class ViewNote extends Activity {
 	// note id
 	// this was done to avoid problems with invalid characters in URI (ex: ? is the query separator
 	// but could be in a note title)
-	private TransformFilter	noteTitleTransformFilter	= new TransformFilter() {
+	private TransformFilter noteTitleTransformFilter = new TransformFilter() {
 
-															public String transformUrl(Matcher m,
-																	String str) {
+		public String transformUrl(Matcher m, String str) {
 
-																int id = NoteManager.getNoteId(
-																		ViewNote.this, str);
+			int id = NoteManager.getNoteId(ViewNote.this, str);
 
-																// return something like
-																// content://org.tomdroid.notes/notes/3
-																return Tomdroid.CONTENT_URI
-																		.toString()
-																		+ "/" + id;
-															}
-														};
+			// return something
+			// like
+			// content://org.tomdroid.notes/notes/3
+			return Tomdroid.CONTENT_URI.toString() + "/" + id;
+		}
+	};
 }
