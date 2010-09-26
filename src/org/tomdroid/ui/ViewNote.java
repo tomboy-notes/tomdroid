@@ -70,7 +70,7 @@ public class ViewNote extends Activity {
 		
 		setContentView(R.layout.note_view);
 		content = (TextView) findViewById(R.id.content);
-		content.setBackgroundColor(0xffefefef);
+		content.setBackgroundColor(0xffffffff);
 		content.setTextColor(Color.DKGRAY);
 		content.setTextSize(18.0f);
 		title = (TextView) findViewById(R.id.title);
