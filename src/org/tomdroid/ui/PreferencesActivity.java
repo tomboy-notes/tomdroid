@@ -87,31 +87,31 @@ public class PreferencesActivity extends PreferenceActivity {
 		syncServer.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 
 			public boolean onPreferenceChange(Preference preference,
-					Object newValue) {
+					Object serverUri) {
 				
-				if (newValue == null) {
+				if (serverUri == null) {
 					Toast.makeText(PreferencesActivity.this,
 							getString(R.string.prefServerEmpty),
 							Toast.LENGTH_SHORT).show();
 					return false;
 				}
 			    
-				switchTo((String) newValue);
+				authenticate((String) serverUri);
 				return true;
 			}
 			
 		});
 	}
 	
-	private void switchTo(String server) {
+	private void authenticate(String serverUri) {
 
 		// update the value before doing anything
-		Preferences.putString(Preferences.Key.SYNC_SERVER, server);
+		Preferences.putString(Preferences.Key.SYNC_SERVER, serverUri);
 
 		SyncService currentService = SyncManager.getInstance().getCurrentService();
 
 		if (!currentService.needsAuth()) {
-			resetLocalDatabase();
+			return;
 		}
 
 		// service needs authentication
@@ -149,7 +149,7 @@ public class PreferencesActivity extends PreferenceActivity {
 			}
 		};
 
-		((ServiceAuth) currentService).getAuthUri(server, handler);
+		((ServiceAuth) currentService).getAuthUri(serverUri, handler);
 	}
 	
 	private void fillServices()
@@ -181,13 +181,19 @@ public class PreferencesActivity extends PreferenceActivity {
 	}
 	
 	private void setServer(String syncServiceKey) {
-		
+
 		SyncService service = SyncManager.getInstance().getService(syncServiceKey);
-		
-		if (service != null) {
-			syncServer.setEnabled(service.needsServer());
-			syncService.setSummary(service.getDescription());
+
+		if (service == null)
+			return;
+
+		if (!service.needsAuth()){
+			resetLocalDatabase();
 		}
+		
+		syncServer.setEnabled(service.needsServer());
+		syncService.setSummary(service.getDescription());
+
 	}
 	
 	private void connectionFailed() {

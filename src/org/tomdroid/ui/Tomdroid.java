@@ -143,31 +143,27 @@ public class Tomdroid extends ListActivity {
 		super.onResume();
 		Intent intent = this.getIntent();
 
-		if (intent != null) {
+		SyncService currentService = SyncManager.getInstance().getCurrentService();
+		
+		if (currentService.needsAuth() && intent != null) {
 			Uri uri = intent.getData();
 
 			if (uri != null && uri.getScheme().equals("tomdroid")) {
 				Log.i(TAG, "Got url : " + uri.toString());
-				
-				final ProgressDialog dialog = ProgressDialog.show(this, "", 
-                        "Completing authentication. Please wait...", true, false);
-				
-				SyncService currentService = SyncManager.getInstance().getCurrentService();
 
-				if (currentService.needsAuth()) {
-					// the user has completed the remote auth, do the third part
-					
-					Handler handler = new Handler() {
-						
-						@Override
-						public void handleMessage(Message msg) {
-							dialog.dismiss();
-						}
-						
-					};
-					
-					((ServiceAuth) currentService).remoteAuthComplete(uri, handler);
-				}
+				final ProgressDialog dialog = ProgressDialog.show(this, "",
+						"Completing authentication. Please wait...", true, false);
+
+				Handler handler = new Handler() {
+
+					@Override
+					public void handleMessage(Message msg) {
+						dialog.dismiss();
+					}
+
+				};
+
+				((ServiceAuth) currentService).remoteAuthComplete(uri, handler);
 			}
 		}
 		
