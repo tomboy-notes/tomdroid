@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-	
+	                        
 	<PreferenceCategory android:title="@string/prefSync">
 		
 		<ListPreference android:title="@string/prefSyncService"
 						android:dialogTitle="Choose the sync service to use"
-						android:key="sync_service"/>
+						android:key="sync_service" 
+						android:defaultValue="tomboy-web"/>
 						
 		<EditTextPreference android:key="sync_server"
 							android:title="@string/prefSyncServer"
 							android:positiveButtonText="@string/prefAuthenticate"
 							android:shouldDisableView="true"/>
+							
 	</PreferenceCategory>
+	
 </PreferenceScreen>

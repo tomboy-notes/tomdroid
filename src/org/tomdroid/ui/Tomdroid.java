@@ -122,6 +122,7 @@ public class Tomdroid extends ListActivity {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.main, menu);
 		return true;
+
 	}
 
 	@Override

@@ -23,12 +23,15 @@
 package org.tomdroid;
 
 import org.tomdroid.ui.Tomdroid;
+import org.tomdroid.util.NoteListCursorAdapter;
+import org.tomdroid.util.Preferences;
 
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
+import android.preference.ListPreference;
 import android.util.Log;
 import android.widget.ListAdapter;
 import android.widget.SimpleCursorAdapter;
@@ -36,7 +39,7 @@ import android.widget.SimpleCursorAdapter;
 public class NoteManager {
 	
 	public static final String[] FULL_PROJECTION = { Note.ID, Note.TITLE, Note.FILE, Note.NOTE_CONTENT, Note.MODIFIED_DATE };
-	public static final String[] LIST_PROJECTION = { Note.ID, Note.TITLE };
+	public static final String[] LIST_PROJECTION = { Note.ID, Note.TITLE, Note.MODIFIED_DATE };
 	public static final String[] TITLE_PROJECTION = { Note.TITLE };
 	public static final String[] GUID_PROJECTION = { Note.ID, Note.GUID };
 	public static final String[] ID_PROJECTION = { Note.ID };
@@ -132,20 +135,23 @@ public class NoteManager {
 		// get a cursor representing all notes from the NoteProvider
 		Uri notes = Tomdroid.CONTENT_URI;
 		String where = null;
+		String orderBy;
 		if (!includeNotebookTemplates) {
 			where = Note.TAGS + " NOT LIKE '%" + "system:template" + "%'";
 		}
-		return activity.managedQuery(notes, LIST_PROJECTION, where, null, null);		
+		orderBy = Note.MODIFIED_DATE + " DESC";
+		return activity.managedQuery(notes, LIST_PROJECTION, where, null, orderBy);		
 	}
 	
 
 	public static ListAdapter getListAdapter(Activity activity) {
+
 		Cursor notesCursor = getAllNotes(activity, false);
 		
 		// set up an adapter binding the TITLE field of the cursor to the list item
-		String[] from = new String[] { Note.TITLE };
-		int[] to = new int[] { R.id.note_title };
-		return new SimpleCursorAdapter(activity, R.layout.main_list_item, notesCursor, from, to);
+		String[] from = new String[] { Note.TITLE, Note.MODIFIED_DATE };
+		int[] to = new int[] { R.id.note_title, R.id.note_date };
+		return new NoteListCursorAdapter(activity, R.layout.main_list_item, notesCursor, from, to);
 	}
 
 	// gets the titles of the notes present in the db, used in ViewNote.buildLinkifyPattern()

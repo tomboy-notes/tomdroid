@@ -101,6 +101,7 @@ public class PreferencesActivity extends PreferenceActivity {
 			}
 			
 		});
+		
 	}
 	
 	private void authenticate(String serverUri) {
@@ -173,13 +174,14 @@ public class PreferencesActivity extends PreferenceActivity {
 		syncServer.setDefaultValue(defaultServer);
 		if(syncServer.getText() == null)
 			syncServer.setText(defaultServer);
-		
+
 		String defaultService = (String)Preferences.Key.SYNC_SERVICE.getDefault();
 		syncService.setDefaultValue(defaultService);
 		if(syncService.getValue() == null)
 			syncService.setValue(defaultService);
-	}
 	
+	}
+
 	private void setServer(String syncServiceKey) {
 
 		SyncService service = SyncManager.getInstance().getService(syncServiceKey);
@@ -195,7 +197,7 @@ public class PreferencesActivity extends PreferenceActivity {
 		syncService.setSummary(service.getDescription());
 
 	}
-	
+		
 	private void connectionFailed() {
 		new AlertDialog.Builder(this)
 			.setMessage(getString(R.string.prefSyncConnectionFailed))
