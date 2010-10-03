@@ -1,12 +1,26 @@
 /*
- * Tomdroid Tomboy on Android http://www.launchpad.net/tomdroid Copyright 2009, 2010 Olivier
- * Bilodeau <olivier@bottomlesspit.org> This file is part of Tomdroid. Tomdroid is free software:
- * you can redistribute it and/or modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the License, or (at your option)
- * any later version. Tomdroid is distributed in the hope that it will be useful, but WITHOUT ANY
- * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
- * PURPOSE. See the GNU General Public License for more details. You should have received a copy of
- * the GNU General Public License along with Tomdroid. If not, see <http://www.gnu.org/licenses/>.
+ * Tomdroid
+ * Tomboy on Android
+ * http://www.launchpad.net/tomdroid
+ * 
+ * Copyright 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>
+ * Copyright 2009, Benoit Garret <benoit.garret_launchpad@gadz.org>
+ * Copyright 2010, Rodja Trappe <mail@rodja.net>
+ * 
+ * This file is part of Tomdroid.
+ * 
+ * Tomdroid is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * Tomdroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
  */
 package org.tomdroid.sync.sd;
 
@@ -88,9 +102,8 @@ public class SdCardSyncService extends SyncMethod {
 		setSyncProgress(0);
 
 		// start loading local notes
-		if (Tomdroid.LOGGING_ENABLED)
-			Log.v(TAG, "Loading local notes");
-
+		if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "Loading local notes");
+		
 		File[] fileList = path.listFiles(new NotesFilter());
 		numberOfFilesToSync = fileList.length;
 
@@ -138,32 +151,31 @@ public class SdCardSyncService extends SyncMethod {
 		}
 
 		public void run() {
+			
 			note.setFileName(file.getAbsolutePath());
 			// the note guid is not stored in the xml but in the filename
 			note.setGuid(file.getName().replace(".note", ""));
 
 			try {
 				// Parsing
-				// XML
-				// Get a SAXParser from the SAXPArserFactory
-				SAXParserFactory spf = SAXParserFactory.newInstance();
-				SAXParser sp = spf.newSAXParser();
+		    	// XML 
+		    	// Get a SAXParser from the SAXPArserFactory
+		        SAXParserFactory spf = SAXParserFactory.newInstance();
+		        SAXParser sp = spf.newSAXParser();
+		
+		        // Get the XMLReader of the SAXParser we created
+		        XMLReader xr = sp.getXMLReader();
 
-				// Get the XMLReader of the SAXParser we created
-				XMLReader xr = sp.getXMLReader();
+		        // Create a new ContentHandler, send it this note to fill and apply it to the XML-Reader
+		        NoteHandler xmlHandler = new NoteHandler(note);
+		        xr.setContentHandler(xmlHandler);
 
-				// Create a new ContentHandler, send it this note to fill and apply it to the
-				// XML-Reader
-				NoteHandler xmlHandler = new NoteHandler(note);
-				xr.setContentHandler(xmlHandler);
-
-				// Create the proper input source
-				FileInputStream fin = new FileInputStream(file);
-				BufferedReader in = new BufferedReader(new InputStreamReader(fin), 8192);
-				InputSource is = new InputSource(in);
-
-				if (Tomdroid.LOGGING_ENABLED)
-					Log.d(TAG, "parsing note");
+		        // Create the proper input source
+		        FileInputStream fin = new FileInputStream(file);
+		        BufferedReader in = new BufferedReader(new InputStreamReader(fin), 8192);
+		        InputSource is = new InputSource(in);
+		        
+				if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "parsing note");
 				xr.parse(is);
 
 				// TODO wrap and throw a new exception here

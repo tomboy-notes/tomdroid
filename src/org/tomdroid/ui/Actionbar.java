@@ -1,3 +1,25 @@
+/*
+ * Tomdroid
+ * Tomboy on Android
+ * http://www.launchpad.net/tomdroid
+ * 
+ * Copyright 2010, Rodja Trappe <mail@rodja.net>
+ * 
+ * This file is part of Tomdroid.
+ * 
+ * Tomdroid is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * Tomdroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.tomdroid.ui;
 
 import org.tomdroid.R;
@@ -11,10 +33,9 @@ import android.widget.RelativeLayout;
 
 public class Actionbar extends RelativeLayout {
 
-	public static final int	DEFAULT_ICON_ALPHA	=200;
+	public static final int DEFAULT_ICON_ALPHA = 200;
 
-	public Actionbar(Context context
-			, AttributeSet attrs) {
+	public Actionbar(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
 
@@ -33,22 +54,14 @@ public class Actionbar extends RelativeLayout {
 	}
 	
 	private void setupSyncButton(){
+		
 		final ImageView syncButton = (ImageView) findViewById(R.id.sync);
-		syncButton.getDrawable().setAlpha(Actionbar.DEFAULT_ICON_ALPHA);
+		final ImageView syncIcon = (ImageView) findViewById(R.id.syncIcon);
+		syncIcon.getDrawable().setAlpha(Actionbar.DEFAULT_ICON_ALPHA);
 		syncButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
 				SyncManager.getInstance().startSynchronization();
-			}
-		});
-		syncButton.setOnFocusChangeListener(new OnFocusChangeListener() {
-			
-			public void onFocusChange(View v, boolean hasFocus) {
-				if (hasFocus)
-					findViewById(R.id.sync_dot).setVisibility(VISIBLE);
-				else 
-					findViewById(R.id.sync_dot).setVisibility(INVISIBLE);
-				 
 			}
 		});
 	}

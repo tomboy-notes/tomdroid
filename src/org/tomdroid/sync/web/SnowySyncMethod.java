@@ -1,3 +1,26 @@
+/*
+ * Tomdroid
+ * Tomboy on Android
+ * http://www.launchpad.net/tomdroid
+ * 
+ * Copyright 2009, Benoit Garret <benoit.garret_launchpad@gadz.org>
+ * Copyright 2010, Rodja Trappe <mail@rodja.net>
+ * 
+ * This file is part of Tomdroid.
+ * 
+ * Tomdroid is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * Tomdroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.tomdroid.sync.web;
 
 import java.net.UnknownHostException;
@@ -14,6 +37,7 @@ import org.tomdroid.util.Preferences;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 
 public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
@@ -49,17 +73,37 @@ public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
 		return true;
 	}
 
-	public Uri getAuthUri(String serverUri) throws UnknownHostException {
-
-		// Reset the authentication credentials
-		OAuthConnection auth = new OAuthConnection();
-		return auth.getAuthorizationUrl(serverUri);
-	}
-
-	public void remoteAuthComplete(final Uri uri) {
-
+	public void getAuthUri(final String server, final Handler handler) {
+		
 		execInThread(new Runnable() {
-
+			
+			public void run() {
+				
+				// Reset the authentication credentials
+				OAuthConnection auth = new OAuthConnection();
+				Uri authUri = null;
+				
+				try {
+					authUri = auth.getAuthorizationUrl(server);
+					
+				} catch (UnknownHostException e) {
+					if (Tomdroid.LOGGING_ENABLED)
+						Log.e(TAG, "Internet connection not available");
+					sendMessage(NO_INTERNET);
+				}
+				
+				Message message = new Message();
+				message.obj = authUri;
+				handler.sendMessage(message);
+			}
+			
+		});
+	}
+	
+	public void remoteAuthComplete(final Uri uri, final Handler handler) {
+		
+		execInThread(new Runnable() {
+			
 			public void run() {
 
 				try {
@@ -79,8 +123,10 @@ public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
 					if (Tomdroid.LOGGING_ENABLED)
 						Log.e(TAG, "Internet connection not available");
 					sendMessage(NO_INTERNET);
-					return;
 				}
+				
+				// We don't care what we send, just remove the dialog
+				handler.sendEmptyMessage(0);
 			}
 		});
 	}
@@ -101,7 +147,6 @@ public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
 		execInThread(new Runnable() {
 
 			public void run() {
-
 				try {
 					SyncServer server = new SyncServer();
 					setSyncProgress(30);
@@ -208,4 +253,6 @@ public class SnowySyncMethod extends SyncMethod implements ServiceAuth {
 		 * presented to // the user. syncThread.Suspend (); } } } }
 		 */
 	}
+	
+	
 }

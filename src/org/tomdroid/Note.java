@@ -4,6 +4,7 @@
  * http://www.launchpad.net/tomdroid 
  * 
  * Copyright 2008, 2009 Olivier Bilodeau <olivier@bottomlesspit.org> 
+ * Copyright 2009, Benoit Garret <benoit.garret_launchpad@gadz.org>
  * Copyright 2010 Rodja Trappe <mail@rodja.net> 
  * 
  * This file is part of Tomdroid. 
@@ -29,6 +30,7 @@ import java.util.regex.Pattern;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONArray;
 import org.tomdroid.util.NoteContentBuilder;
 import org.tomdroid.util.XmlUtils;
 
@@ -42,60 +44,53 @@ import android.util.TimeFormatException;
 public class Note implements Cloneable {
 
 	// Static references to fields (used in Bundles, ContentResolvers, etc.)
-	public static final String		ID						= "_id";
-	public static final String		GUID					= "guid";
-	public static final String		TITLE					= "title";
-	public static final String		MODIFIED_DATE			= "modified_date";
-	public static final String		IS_SYNCED				= "is_synced";
-	public static final String		URL						= "url";
-	public static final String		FILE					= "file";
-	public static final String		NOTE_CONTENT			= "content";
+	public static final String ID = "_id";
+	public static final String GUID = "guid";
+	public static final String TITLE = "title";
+	public static final String MODIFIED_DATE = "modified_date";
+	public static final String IS_SYNCED = "is_synced";
+	public static final String URL = "url";
+	public static final String FILE = "file";
+	public static final String TAGS = "tags";
+	public static final String NOTE_CONTENT = "content";
 
 	// Logging info
 	private static final String		TAG						= "Note";
 
 	// Notes constants
-	// TODO this is a weird yellow that was usable for the android emulator, I must confirm this for
-	// real usage
-	public static final int			NOTE_HIGHLIGHT_COLOR	= 0xFFFFFF77;
-	public static final String		NOTE_MONOSPACE_TYPEFACE	= "monospace";
-	public static final float		NOTE_SIZE_SMALL_FACTOR	= 0.8f;
-	public static final float		NOTE_SIZE_LARGE_FACTOR	= 1.3f;
-	public static final float		NOTE_SIZE_HUGE_FACTOR	= 1.6f;
-
+	// TODO this is a weird yellow that was usable for the android emulator, I must confirm this for real usage
+	public static final int NOTE_HIGHLIGHT_COLOR = 0xFFFFFF77;
+	public static final String NOTE_MONOSPACE_TYPEFACE = "monospace";
+	public static final float NOTE_SIZE_SMALL_FACTOR = 1.0f;
+	public static final float NOTE_SIZE_LARGE_FACTOR = 1.5f;
+	public static final float NOTE_SIZE_HUGE_FACTOR = 1.8f;
+	
 	// Members
-	private SpannableStringBuilder	noteContent;
-	private String					xmlContent;
-	private String					url;
-	private String					fileName;
-	private String					title;
-	private Time					lastChangeDate;
-	private int						dbId;
-	private UUID					guid;
-	private long					lastSyncRevision;
-	private boolean					isSynced				= true;
-
+	private SpannableStringBuilder noteContent;
+	private String xmlContent;
+	private String url;
+	private String fileName;
+	private String title;
+	private String tags;
+	private Time lastChangeDate;
+	private int dbId;
+	private UUID guid;
+	private long lastSyncRevision;
+	private boolean isSynced = true;
+	
 	// Date converter pattern (remove extra sub milliseconds from datetime string)
 	// ex: will strip 3020 in 2010-01-23T12:07:38.7743020-05:00
-	private static final Pattern	dateCleaner				= Pattern
-																	.compile("(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3})"
-																			+ // matches:
-																				// 2010-01-23T12:07:38.774
-																			".+" + // matches what
-																					// we are
-																					// getting rid
-																					// of
-																			"([-\\+]\\d{2}:\\d{2})");	// matches
-																										// timezone
-																										// (-xx:xx
-																										// or
-																										// +xx:xx)
-
+	private static final Pattern dateCleaner = Pattern.compile(
+			"(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3})" +	// matches: 2010-01-23T12:07:38.774
+			".+" + 														// matches what we are getting rid of
+			"([-\\+]\\d{2}:\\d{2})");									// matches timezone (-xx:xx or +xx:xx)
+	
 	public Note() {
 		setTitle("no tilte");
 		setGuid(UUID.randomUUID());
 		lastSyncRevision = 0;
 		changeXmlContent("no content");
+		tags = new String();
 	}
 
 	public Note(JSONObject json) {
@@ -106,6 +101,15 @@ public class Note implements Cloneable {
 		setLastChangeDate(json.optString("last-change-date"));
 		lastSyncRevision = json.optInt("last-sync-revision", -1);
 		setXmlContent(json.optString("note-content"));
+		JSONArray jtags = json.optJSONArray("tags");
+		String tag;
+		tags = new String();
+		if (jtags != null) {
+			for (int i = 0; i < jtags.length(); i++ ) {
+				tag = jtags.optString(i);
+				tags += tag + ",";
+			}
+		}
 	}
 
 	public Note(Cursor cursor) {
@@ -130,6 +134,10 @@ public class Note implements Cloneable {
 
 	public void isSynced(boolean flag) {
 		isSynced = flag;
+	}
+	
+	public String getTags() {
+		return tags;
 	}
 
 	public String getUrl() {

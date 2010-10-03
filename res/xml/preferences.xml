@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-	
+	                        
 	<PreferenceCategory android:title="@string/prefSync">
 		
 		<ListPreference android:title="@string/prefSyncMethod"
@@ -11,5 +11,7 @@
 							android:title="@string/prefSyncServerUri"
 							android:positiveButtonText="@string/prefAuthenticate"
 							android:shouldDisableView="true"/>
+							
 	</PreferenceCategory>
+	
 </PreferenceScreen>

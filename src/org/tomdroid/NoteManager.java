@@ -1,13 +1,26 @@
 /*
- * Tomdroid Tomboy on Android http://www.launchpad.net/tomdroid Copyright 2009, 2010 Benoit Garret
- * <benoit.garret_launchpad@gadz.org>, Olivier Bilodeau <olivier@bottomlesspit.org> This file is
- * part of Tomdroid. Tomdroid is free software: you can redistribute it and/or modify it under the
- * terms of the GNU General Public License as published by the Free Software Foundation, either
- * version 3 of the License, or (at your option) any later version. Tomdroid is distributed in the
- * hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
- * details. You should have received a copy of the GNU General Public License along with Tomdroid.
- * If not, see <http://www.gnu.org/licenses/>.
+ * Tomdroid 
+ * Tomboy on Android 
+ * http://www.launchpad.net/tomdroid 
+ * 
+ * Copyright 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>, 
+ *                      Benoit Garret <benoit.garret_launchpad@gadz.org>
+ * Copyright 2010       Rodja Trappe <mail@rodja.net> 
+ * 
+ * This file is part of Tomdroid. 
+ * 
+ * Tomdroid is free software: you can redistribute it and/or modify 
+ * it under the terms of the GNU General Public License as published by 
+ * the Free Software Foundation, either version 3 of the License, or 
+ * (at your option) any later version. 
+ * 
+ * Tomdroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of 
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
+ * GNU General Public License for more details. 
+ * 
+ * You should have received a copy of the GNU General Public License 
+ * along with Tomdroid. If not, see <http://www.gnu.org/licenses/>.
  */
 package org.tomdroid;
 
@@ -15,6 +28,8 @@ import java.util.UUID;
 
 import org.tomdroid.ui.NoteItemViewBinder;
 import org.tomdroid.ui.Tomdroid;
+import org.tomdroid.util.NoteListCursorAdapter;
+import org.tomdroid.util.Preferences;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -22,15 +37,15 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.preference.ListPreference;
 import android.util.Log;
 import android.widget.ListAdapter;
 import android.widget.SimpleCursorAdapter;
 
 public class NoteManager {
-
 	public static final String[]	FULL_PROJECTION		= { Note.ID, Note.TITLE, Note.FILE,
 			Note.NOTE_CONTENT, Note.MODIFIED_DATE, Note.GUID, Note.IS_SYNCED };
-	public static final String[]	LIST_PROJECTION		= { Note.ID, Note.TITLE, Note.IS_SYNCED };
+	public static final String[]	LIST_PROJECTION		= { Note.ID, Note.TITLE, Note.MODIFIED_DATE, Note.IS_SYNCED };
 	public static final String[]	TITLE_PROJECTION	= { Note.TITLE };
 	public static final String[]	GUID_PROJECTION		= { Note.ID, Note.GUID };
 	public static final String[]	ID_PROJECTION		= { Note.ID };
@@ -93,6 +108,7 @@ public class NoteManager {
 		// information
 		values.put(Note.MODIFIED_DATE, note.getLastChangeDate().format3339(false));
 		values.put(Note.NOTE_CONTENT, note.getXmlContent());
+		values.put(Note.TAGS, note.getTags());
 
 		if (managedCursor.getCount() == 0) {
 
@@ -132,20 +148,29 @@ public class NoteManager {
 		String[] whereArgs = { guid.toString() };
 		context.getContentResolver().delete(Tomdroid.CONTENT_URI, Note.GUID + "=?", whereArgs);
 	}
+	
+	public static Cursor getAllNotes(Activity activity, Boolean includeNotebookTemplates) {
+		// get a cursor representing all notes from the NoteProvider
+		Uri notes = Tomdroid.CONTENT_URI;
+		String where = null;
+		String orderBy;
+		if (!includeNotebookTemplates) {
+			where = Note.TAGS + " NOT LIKE '%" + "system:template" + "%'";
+		}
+		orderBy = Note.MODIFIED_DATE + " DESC";
+		return activity.managedQuery(notes, LIST_PROJECTION, where, null, orderBy);		
+	}
 
 	public static ListAdapter getListAdapter(Activity activity) {
 
 		// get a cursor representing all notes from the NoteProvider
 		Uri notes = Tomdroid.CONTENT_URI;
-		Cursor notesCursor = activity.managedQuery(notes, LIST_PROJECTION, null, null, null);
-
+		Cursor notesCursor = getAllNotes(activity, false);
+		
 		// set up an adapter binding the TITLE field of the cursor to the list item
-		String[] from = new String[] { Note.TITLE, Note.IS_SYNCED };
-		int[] to = new int[] { R.id.note_title };
-		SimpleCursorAdapter adapter = new SimpleCursorAdapter(activity, R.layout.main_list_item,
-				notesCursor, from, to);
-		adapter.setViewBinder(new NoteItemViewBinder());
-		return adapter;
+		String[] from = new String[] { Note.TITLE, Note.IS_SYNCED, Note.MODIFIED_DATE };
+		int[] to = new int[] { R.id.note_title, R.id.note_date };
+		return new NoteListCursorAdapter(activity, R.layout.main_list_item, notesCursor, from, to);
 	}
 
 	// gets the titles of the notes present in the db, used in ViewNote.buildLinkifyPattern()
@@ -157,8 +182,7 @@ public class NoteManager {
 
 	// gets the ids of the notes present in the db
 	public static Cursor getGuids(Activity activity) {
-
-		// get a cursor containing the notes titles
+		// get a cursor containing the notes guids
 		return activity.managedQuery(Tomdroid.CONTENT_URI, GUID_PROJECTION, null, null, null);
 	}
 

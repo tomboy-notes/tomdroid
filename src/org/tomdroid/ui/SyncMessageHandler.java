@@ -1,3 +1,25 @@
+/*
+ * Tomdroid
+ * Tomboy on Android
+ * http://www.launchpad.net/tomdroid
+ * 
+ * Copyright 2010, Rodja Trappe <mail@rodja.net>
+ * 
+ * This file is part of Tomdroid.
+ * 
+ * Tomdroid is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * Tomdroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.tomdroid.ui;
 
 import org.tomdroid.R;
@@ -20,11 +42,11 @@ import android.widget.Toast;
 
 public class SyncMessageHandler extends Handler {
 
-	private static String	TAG	= "SycMessageHandler";
+	private static String TAG = "SycnMessageHandler";
 	private Activity activity;
 
 	// State variables
-	private boolean				parsingErrorShown	= false;
+	private boolean parsingErrorShown = false;
 	
 	public SyncMessageHandler(Activity activity) {
 		this.activity = activity;
@@ -92,14 +114,14 @@ public class SyncMessageHandler extends Handler {
 	}
 
 	private void handleSyncProgress(Message msg) {
-		ImageView syncButton = (ImageView) activity.findViewById(R.id.sync);
+		ImageView syncIcon = (ImageView) activity.findViewById(R.id.syncIcon);
 
 		RotateAnimation rotation = new RotateAnimation(180 * msg.arg2 / 100f,
 				180 * msg.arg1 / 100f, Animation.RELATIVE_TO_SELF, 0.5f,
 				Animation.RELATIVE_TO_SELF, 0.5f);
 		rotation.setDuration(700);
 		rotation.setFillAfter(true);
-		syncButton.startAnimation(rotation);
+		syncIcon.startAnimation(rotation);
 
 		if (msg.arg1 == 0) {
 			onSynchronizationStarted();
@@ -110,9 +132,10 @@ public class SyncMessageHandler extends Handler {
 
 	private void onSynchronizationDone() {
 		ImageView syncButton = (ImageView) activity.findViewById(R.id.sync);
+		ImageView syncIcon = (ImageView) activity.findViewById(R.id.syncIcon);
 
 		syncButton.setClickable(true);
-		syncButton.getDrawable().setAlpha(Actionbar.DEFAULT_ICON_ALPHA);
+		syncIcon.getDrawable().setAlpha(Actionbar.DEFAULT_ICON_ALPHA);
 
 		View dot = activity.findViewById(R.id.sync_dot);
 		dot.setVisibility(View.INVISIBLE);
@@ -121,9 +144,10 @@ public class SyncMessageHandler extends Handler {
 
 	private void onSynchronizationStarted() {
 		ImageView syncButton = (ImageView) activity.findViewById(R.id.sync);
+		ImageView syncIcon = (ImageView) activity.findViewById(R.id.syncIcon);
 
 		syncButton.setClickable(false);
-		syncButton.getDrawable().setAlpha(40);
+		syncIcon.getDrawable().setAlpha(40);
 		
 		Animation pulse = AnimationUtils.loadAnimation(activity, R.anim.pulse);
 		View dot = activity.findViewById(R.id.sync_dot);
