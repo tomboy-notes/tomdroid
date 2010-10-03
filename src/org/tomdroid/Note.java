@@ -79,7 +79,9 @@ public class Note {
 			".+" + 														// matches what we are getting rid of
 			"([-\\+]\\d{2}:\\d{2})");									// matches timezone (-xx:xx or +xx:xx)
 	
-	public Note() {}
+	public Note() {
+		tags = new String();
+	}
 	
 	public Note(JSONObject json) {
 		
