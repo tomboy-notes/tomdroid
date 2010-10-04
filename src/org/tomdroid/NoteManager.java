@@ -28,7 +28,6 @@ import java.util.UUID;
 
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.NoteListCursorAdapter;
-import org.tomdroid.util.Preferences;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -36,10 +35,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import android.preference.ListPreference;
 import android.util.Log;
 import android.widget.ListAdapter;
-import android.widget.SimpleCursorAdapter;
 
 public class NoteManager {
 	public static final String[]	FULL_PROJECTION		= { Note.ID, Note.TITLE, Note.FILE,
@@ -163,7 +160,6 @@ public class NoteManager {
 	public static ListAdapter getListAdapter(Activity activity) {
 
 		// get a cursor representing all notes from the NoteProvider
-		Uri notes = Tomdroid.CONTENT_URI;
 		Cursor notesCursor = getAllNotes(activity, false);
 		
 		// set up an adapter binding the TITLE field of the cursor to the list item

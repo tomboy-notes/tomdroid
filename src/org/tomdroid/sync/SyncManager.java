@@ -4,6 +4,7 @@
  * http://www.launchpad.net/tomdroid
  * 
  * Copyright 2009, Benoit Garret <benoit.garret_launchpad@gadz.org>
+ * Copyright 2010, Rodja Trappe <mail@rodja.net>
  * 
  * This file is part of Tomdroid.
  * 
@@ -31,10 +32,10 @@ import org.tomdroid.util.Preferences;
 
 import android.app.Activity;
 import android.os.Handler;
-import android.util.Log;
 
 public class SyncManager {
 	
+	@SuppressWarnings("unused")
 	private static final String TAG = "SyncManager";
 	
 	private ArrayList<SyncMethod> syncMethods = new ArrayList<SyncMethod>();

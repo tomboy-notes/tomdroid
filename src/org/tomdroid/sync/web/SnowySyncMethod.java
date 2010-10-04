@@ -32,7 +32,6 @@ import org.tomdroid.Note;
 import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncMethod;
 import org.tomdroid.ui.Tomdroid;
-import org.tomdroid.util.Preferences;
 
 import android.app.Activity;
 import android.net.Uri;

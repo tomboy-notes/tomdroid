@@ -99,8 +99,6 @@ public class PreferencesActivity extends PreferenceActivity {
 				// update the value before doing anything
 				Preferences.putString(Preferences.Key.SYNC_SERVER_URI, (String) serverUri);
 				
-				SyncMethod currentSyncMethod = SyncManager.getInstance().getCurrentSyncMethod();
-				
 				authenticate((String) serverUri);
 				return true;
 			}

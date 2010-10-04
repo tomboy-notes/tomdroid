@@ -24,18 +24,11 @@
  */
 package org.tomdroid.sync;
 
-import java.util.ArrayList;
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import org.tomdroid.Note;
-import org.tomdroid.NoteManager;
-import org.tomdroid.ui.Tomdroid;
-
 import android.app.Activity;
 import android.content.Context;
-import android.database.Cursor;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
