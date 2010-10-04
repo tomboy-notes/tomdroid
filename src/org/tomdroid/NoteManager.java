@@ -26,7 +26,6 @@ package org.tomdroid;
 
 import java.util.UUID;
 
-import org.tomdroid.ui.NoteItemViewBinder;
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.NoteListCursorAdapter;
 import org.tomdroid.util.Preferences;
@@ -44,7 +43,7 @@ import android.widget.SimpleCursorAdapter;
 
 public class NoteManager {
 	public static final String[]	FULL_PROJECTION		= { Note.ID, Note.TITLE, Note.FILE,
-			Note.NOTE_CONTENT, Note.MODIFIED_DATE, Note.GUID, Note.IS_SYNCED };
+			Note.NOTE_CONTENT, Note.MODIFIED_DATE, Note.GUID, Note.IS_SYNCED, Note.TAGS };
 	public static final String[]	LIST_PROJECTION		= { Note.ID, Note.TITLE, Note.MODIFIED_DATE, Note.IS_SYNCED };
 	public static final String[]	TITLE_PROJECTION	= { Note.TITLE };
 	public static final String[]	GUID_PROJECTION		= { Note.ID, Note.GUID };

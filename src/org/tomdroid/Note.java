@@ -90,7 +90,7 @@ public class Note implements Cloneable {
 		setGuid(UUID.randomUUID());
 		lastSyncRevision = 0;
 		changeXmlContent("no content");
-		tags = new String();
+		setTags("");
 	}
 
 	public Note(JSONObject json) {
@@ -114,13 +114,18 @@ public class Note implements Cloneable {
 
 	public Note(Cursor cursor) {
 		String content = cursor.getString(cursor.getColumnIndexOrThrow(Note.NOTE_CONTENT));
-		String title = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
-		String lastChangeDate = cursor.getString(cursor.getColumnIndexOrThrow(Note.MODIFIED_DATE));
-
 		setXmlContent(content);
+
+		String title = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
 		setTitle(title);
+
+		String lastChangeDate = cursor.getString(cursor.getColumnIndexOrThrow(Note.MODIFIED_DATE));
 		setLastChangeDate(lastChangeDate);
+
 		setGuid(cursor.getString(cursor.getColumnIndexOrThrow(Note.GUID)));
+
+		setTags(cursor.getString(cursor.getColumnIndexOrThrow(Note.TAGS)));
+
 		int synced = cursor.getInt(cursor.getColumnIndexOrThrow(Note.IS_SYNCED));
 		isSynced(synced == 1 ? true : false);
 	}
@@ -136,10 +141,6 @@ public class Note implements Cloneable {
 		isSynced = flag;
 	}
 	
-	public String getTags() {
-		return tags;
-	}
-
 	public String getUrl() {
 		return url;
 	}
@@ -162,6 +163,14 @@ public class Note implements Cloneable {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public String getTags() {
+		return tags;
+	}
+
+	public void setTags(String tags) {
+		this.tags= tags;
 	}
 
 	public Time getLastChangeDate() {
@@ -305,6 +314,7 @@ public class Note implements Cloneable {
 		clone.lastSyncRevision = lastSyncRevision;
 		clone.dbId = dbId;
 		clone.guid = guid;
+		clone.tags = tags;
 
 		return clone;
 

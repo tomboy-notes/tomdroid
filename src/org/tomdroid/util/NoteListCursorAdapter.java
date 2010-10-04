@@ -82,7 +82,8 @@ public class NoteListCursorAdapter extends SimpleCursorAdapter {
         Long lastModifiedMillis = lastModified.toMillis(false);
         Date lastModifiedDate = new Date(lastModifiedMillis);
         
-        String strModified = "Modified: ";
+        boolean isSynced = c.getInt(c.getColumnIndex(Note.IS_SYNCED)) != 0;
+        String strModified = (isSynced ? "" : "Locally ") + "Modified: ";
         //TODO this is very inefficient
         if (DateUtils.isToday(lastModifiedMillis)){
         	strModified += "Today, " + localeTimeFormat.format(lastModifiedDate);
