@@ -1,13 +1,13 @@
 Make sure to do this before every release:
 
 Testing
-- Test all functionality on emulator 1.1 and 1.5
+- Test all functionality on emulator 1.5 (base) and 2.1 (latest)
 - Test with "Immediately destroy activities" debug setting
 - Test all text inputs with virtual keyboard
 - Test with public sdcard image all the bug notes to spot regressions
 
 Preparing the release
-- Increment version number in AndroidManifest.xml (android:versionCode and android:versionName)
+- Increment version number in AndroidManifest.xml (android:versionCode and android:versionName), doc/user/README
 - Make sure the ChangeLog / TODO is up-to-date
 - Update the NEWS file
 - Make sure doc/user/README is accurate
