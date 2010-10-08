@@ -1,14 +1,16 @@
 TODO tasks
 ==========
 0.4
-- merge Benoit's parse-tags branch revision 107 (would fix notebook bug #360732)
+- reproduce and fix 541793
+- drop changelog or have it completely automated (way too much work for the benefit)
+- start an author or maintainer file to give credits (see what the gnome folks do?)
+
+Unclassified:
+- find a sample use of the ContentProvider regarding Edouard's branch: searchbar-on-0.3/ and tell him
+- basic note editing
 - improve responsiveness when loading notes from sdcard
 -- benchmark what's going on
 -- confirm: the listview observer over list adapter is eating lots of resources?
-- web-sync (if mergeable w/o too much review)
-- basic note editing
-
-Unclassified:
 - Fix the TODO and FIXME statements all over in the code
 - Long-press options on links. How-to: http://groups.google.com/group/android-developers/browse_thread/thread/acdd8777763b6028
 - The android logo should have a white border around it, fix that then regen the logo (http://android-developers.blogspot.com/2009/05/android-icon-guidelines.html)
@@ -17,6 +19,7 @@ Unclassified:
 - Avoid code duplication between NoteBuilder and AsyncNoteLoaderAndParser
 - Follow UI design guidelines (http://developer.android.com/guide/practices/ui_guidelines/activity_task_design.html)
 - Write a README and INSTALL manual to generate package from source, etc. To be put in project's root
+- use @author tag in class comments to identify a piece of code maintainer (java code convention, used by apache)
 
 Port threading to Android's mechanism (maybe wait to check for 1.5's new API):
 - Check Handler / Looper / AsyncQueryHandler classes
@@ -26,7 +29,10 @@ SD card sync:
 
 File format: (to be in sync with Tomdroid's)
 - Why is title repeated in note text?
+- Add a metadata version to the "Sync with local folder" manifest
+- Build a validator for the "Sync with local folder" Manifest
 - check everrnote dtd for inspiration: http://www.evernote.com/about/developer/
+- integrate upstream work in relax-ng and validate with latest jing-trang (http://code.google.com/p/jing-trang/)
 
 Market release:
 - implement application upgrade mechanism as suggested in http://developer.android.com/guide/publishing/publishing.html#marketupgrade
