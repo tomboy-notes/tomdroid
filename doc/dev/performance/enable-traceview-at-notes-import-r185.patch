@@ -1,0 +1,31 @@
+=== modified file 'src/org/tomdroid/ui/Tomdroid.java'
+--- src/org/tomdroid/ui/Tomdroid.java	2010-02-16 05:18:09 +0000
++++ src/org/tomdroid/ui/Tomdroid.java	2010-04-22 01:04:31 +0000
+@@ -39,6 +39,7 @@
+ import android.database.Cursor;
+ import android.net.Uri;
+ import android.os.Bundle;
++import android.os.Debug;
+ import android.os.Handler;
+ import android.os.Message;
+ import android.util.Log;
+@@ -128,6 +129,8 @@
+         switch (item.getItemId()) {
+ 	        case R.id.menuSyncWithSD:
+ 
++	        	Debug.startMethodTracing("tomdroid");
++	        	
+ 	        	// start loading local notes
+                 if (LOGGING_ENABLED) Log.v(TAG, "Loading local notes");
+         		// reset parsing error flag
+@@ -231,6 +234,9 @@
+ 
+         	switch(msg.what) {
+         	case AsyncNoteLoaderAndParser.PARSING_COMPLETE:
++        		
++        		Debug.stopMethodTracing();
++        		
+         		// TODO put string in a translatable bundle
+         		Toast.makeText(getApplicationContext(),
+         				"Synchronization with SD Card is complete.",
+
