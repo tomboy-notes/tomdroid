@@ -4,6 +4,7 @@
  * http://www.launchpad.net/tomdroid
  * 
  * Copyright 2008, 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>
+ * Copyright 2009, Benoit Garret <benoit.garret_launchpad@gadz.org>
  * 
  * This file is part of Tomdroid.
  * 
@@ -20,7 +21,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.tomdroid.xml;
+package org.tomdroid.sync.sd;
 
 import org.tomdroid.Note;
 import org.xml.sax.Attributes;

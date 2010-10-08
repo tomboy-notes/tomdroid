@@ -62,7 +62,8 @@ public class NoteContentBuilder implements Runnable {
 	
 	public NoteContentBuilder setInputSource(String nc) {
 		
-		noteContentIs = new InputSource(new StringReader(nc));
+		String noteContent = "<note-content>"+nc+"</note-content>";
+		noteContentIs = new InputSource(new StringReader(noteContent));
 		return this;
 	}
 	

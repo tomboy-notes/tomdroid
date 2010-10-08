@@ -4,6 +4,7 @@
  * http://www.launchpad.net/tomdroid
  * 
  * Copyright 2008, 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>
+ * Copyright 2009, Benoit Garret <benoit.garret_launchpad@gadz.org>
  * 
  * This file is part of Tomdroid.
  * 
@@ -28,6 +29,7 @@ import java.util.regex.Pattern;
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
+import org.tomdroid.sync.SyncManager;
 import org.tomdroid.util.LinkifyPhone;
 import org.tomdroid.util.NoteContentBuilder;
 
@@ -37,6 +39,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -52,6 +55,7 @@ import android.widget.TextView;
 public class ViewNote extends Activity {
 	
 	// UI elements
+	private TextView title;
 	private TextView content;
 	
 	// Model objects
@@ -61,6 +65,9 @@ public class ViewNote extends Activity {
 	// Logging info
 	private static final String TAG = "ViewNote";
 	
+	// UI feedback handler
+	private Handler	syncMessageHandler	= new SyncMessageHandler(this);
+
 	// TODO extract methods in here
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +75,14 @@ public class ViewNote extends Activity {
 		
 		setContentView(R.layout.note_view);
 		content = (TextView) findViewById(R.id.content);
+		content.setBackgroundColor(0xffffffff);
+		content.setTextColor(Color.DKGRAY);
+		content.setTextSize(18.0f);
+		title = (TextView) findViewById(R.id.title);
+		title.setBackgroundColor(0xffdddddd);
+		title.setTextColor(Color.DKGRAY);
+		title.setTextSize(18.0f);
+		
 		final Intent intent = getIntent();
 		Uri uri = intent.getData();
 		
@@ -84,7 +99,9 @@ public class ViewNote extends Activity {
 			
 			if(note != null) {
 				
-				noteContent = note.getNoteContent(handler);
+				noteContent = note.getNoteContent(noteContentHandler);
+				
+				//Log.i(TAG, "THE NOTE IS: " + note.getXmlContent().toString());
 				
 			} else {
 				
@@ -120,6 +137,13 @@ public class ViewNote extends Activity {
 		}
 	}
 	
+	@Override
+	public void onResume(){
+		super.onResume();
+		SyncManager.setActivity(this);
+		SyncManager.setHandler(this.syncMessageHandler);
+	}
+
 	// TODO add a menu that switches the view to an EditText instead of TextView
 	// this will need some other quit mechanism as onKeyDown though.. (but the back key might do it)
 	
@@ -132,9 +156,9 @@ public class ViewNote extends Activity {
 		
 		return true;
 	}
-
+	
 	private void showNote() {
-		setTitle(note.getTitle());
+		//setTitle(note.getTitle());
 
 		// get rid of the title that is doubled in the note's content
 		// using quote to escape potential regexp chars in pattern
@@ -147,6 +171,7 @@ public class ViewNote extends Activity {
 		
 		// show the note (spannable makes the TextView able to output styled text)
 		content.setText(noteContent, TextView.BufferType.SPANNABLE);
+		title.setText((CharSequence) note.getTitle());
 		
 		// add links to stuff that is understood by Android except phone numbers because it's too aggressive
 		// TODO this is SLOWWWW!!!!
@@ -165,7 +190,14 @@ public class ViewNote extends Activity {
 						 noteTitleTransformFilter);
 	}
 	
-	private Handler handler = new Handler() {
+	public void setTitle(CharSequence title){
+		super.setTitle(title);
+		// temporary setting title of actionbar until we have a better idea
+		TextView titleView = (TextView) findViewById(R.id.title);
+		titleView.setText(title);
+	}
+	
+	private Handler noteContentHandler = new Handler() {
 
 		@Override
 		public void handleMessage(Message msg) {

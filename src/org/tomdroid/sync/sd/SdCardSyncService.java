@@ -4,6 +4,8 @@
  * http://www.launchpad.net/tomdroid
  * 
  * Copyright 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>
+ * Copyright 2009, Benoit Garret <benoit.garret_launchpad@gadz.org>
+ * Copyright 2010, Rodja Trappe <mail@rodja.net>
  * 
  * This file is part of Tomdroid.
  * 
@@ -20,17 +22,16 @@
  * You should have received a copy of the GNU General Public License
  * along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.tomdroid.util;
+package org.tomdroid.sync.sd;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -39,9 +40,8 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import org.tomdroid.Note;
-import org.tomdroid.NoteManager;
+import org.tomdroid.sync.SyncService;
 import org.tomdroid.ui.Tomdroid;
-import org.tomdroid.xml.NoteHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
@@ -51,55 +51,75 @@ import android.os.Handler;
 import android.util.Log;
 import android.util.TimeFormatException;
 
-public class AsyncNoteLoaderAndParser {
+public class SdCardSyncService extends SyncService {
 	
-	// thread pool info
-	private final ExecutorService pool;
-	private final static int poolSize = 1;
-	
-	// members
-	private Activity activity;
 	private File path;
-	private Handler handler;
-	
-	// handler messages
-	public final static int PARSING_COMPLETE = 1;
-	public final static int PARSING_FAILED = 2;
-	public final static int PARSING_NO_NOTES = 3;
+	private int numberOfFilesToSync = 0;
 	
 	// regexp for <note-content..>...</note-content>
-	private static Pattern note_content = Pattern.compile(".*(<note-content.*>.*<\\/note-content>).*", Pattern.CASE_INSENSITIVE+Pattern.DOTALL);
+	private static Pattern note_content = Pattern.compile("<note-content.*>(.*)<\\/note-content>", Pattern.CASE_INSENSITIVE+Pattern.DOTALL);
 	
 	// logging related
-	private final static String TAG = "AsyncNoteLoaderAndParser";
+	private final static String TAG = "SdCardSyncService";
 	
-	public AsyncNoteLoaderAndParser(Activity a, File path) {
-		this.activity = a;
-		this.path = path;
+	public SdCardSyncService(Activity activity, Handler handler) throws FileNotFoundException {
+		super(activity, handler);
 		
-		pool = Executors.newFixedThreadPool(poolSize);
+		path = new File(Tomdroid.NOTES_PATH);
+		
+		if (!path.exists())
+			path.mkdir();
+	}
+	
+	@Override
+	public String getDescription() {
+		return "SD Card";
 	}
 
-	public void readAndParseNotes(Handler hndl) {
-		handler = hndl;
+	@Override
+	public String getName() {
+		return "sdcard";
+	}
+
+	@Override
+	public boolean needsServer() {
+		return false;
+	}
+	
+	@Override
+	public boolean needsAuth() {
+		return false;
+	}
+
+	@Override
+	protected void sync() {
+
+		setSyncProgress(0);
+
+		// start loading local notes
+		if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "Loading local notes");
+		
 		File[] fileList = path.listFiles(new NotesFilter());
+		numberOfFilesToSync  = fileList.length;
 		
 		// If there are no notes, warn the UI through an empty message
-		if (fileList.length == 0) {
+		if (fileList == null || fileList.length == 0) {
 			if (Tomdroid.LOGGING_ENABLED) Log.i(TAG, "There are no notes in "+path);
-			handler.sendEmptyMessage(PARSING_NO_NOTES);
+			sendMessage(PARSING_NO_NOTES);
+			setSyncProgress(100);
 			return;
 		}
 		
 		// every but the last note
 		for(int i = 0; i < fileList.length-1; i++) {
+			// TODO better progress reporting from within the workers
 			
 			// give a filename to a thread and ask to parse it
-			pool.execute(new Worker(fileList[i], false));
+			execInThread(new Worker(fileList[i], false));
         }
 		
 		// last task, warn it so it'll warn UI when done
-		pool.execute(new Worker(fileList[fileList.length-1], true));
+		execInThread(new Worker(fileList[fileList.length-1], true));
 	}
 	
 	/**
@@ -145,7 +165,7 @@ public class AsyncNoteLoaderAndParser {
 		
 		        // Get the XMLReader of the SAXParser we created
 		        XMLReader xr = sp.getXMLReader();
-		        
+
 		        // Create a new ContentHandler, send it this note to fill and apply it to the XML-Reader
 		        NoteHandler xmlHandler = new NoteHandler(note);
 		        xr.setContentHandler(xmlHandler);
@@ -157,7 +177,7 @@ public class AsyncNoteLoaderAndParser {
 		        
 				if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "parsing note");
 				xr.parse(is);
-			
+
 			// TODO wrap and throw a new exception here
 			} catch (ParserConfigurationException e) {
 				e.printStackTrace();
@@ -168,7 +188,8 @@ public class AsyncNoteLoaderAndParser {
 			} catch (TimeFormatException e) {
 				e.printStackTrace();
 				if (Tomdroid.LOGGING_ENABLED) Log.e(TAG, "Problem parsing the note's date and time");
-				handler.sendEmptyMessage(PARSING_FAILED);
+				sendMessage(PARSING_FAILED);
+				onWorkDone();
 				return;
 			}
 
@@ -202,12 +223,15 @@ public class AsyncNoteLoaderAndParser {
 				if (Tomdroid.LOGGING_ENABLED) Log.w(TAG, "Something went wrong trying to read the note");
 			}
 			
-			NoteManager.putNote(AsyncNoteLoaderAndParser.this.activity, note);
-			
-			// if last note warn in UI that we are done
-			if (isLast) {
-				handler.sendEmptyMessage(PARSING_COMPLETE);
-			}
+			insertNote(note, isLast);
+			onWorkDone();
+		}
+		
+		private void onWorkDone(){
+			if (isLast) 
+				setSyncProgress(100);
+			else
+				setSyncProgress((int) (getSyncProgress() + 100.0 / numberOfFilesToSync));			
 		}
 	}
 }

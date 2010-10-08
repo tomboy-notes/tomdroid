@@ -4,6 +4,7 @@
  * http://www.launchpad.net/tomdroid
  * 
  * Copyright 2008, 2009 Olivier Bilodeau <olivier@bottomlesspit.org>
+ * Copyright 2009, Benoit Garret <benoit.garret_launchpad@gadz.org>
  * 
  * This file is part of Tomdroid.
  * 
@@ -26,7 +27,10 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.json.JSONObject;
+import org.json.JSONArray;
 import org.tomdroid.util.NoteContentBuilder;
+import org.tomdroid.util.XmlUtils;
 
 import android.os.Handler;
 import android.text.SpannableStringBuilder;
@@ -43,6 +47,7 @@ public class Note {
 	public static final String MODIFIED_DATE = "modified_date";
 	public static final String URL = "url";
 	public static final String FILE = "file";
+	public static final String TAGS = "tags";
 	public static final String NOTE_CONTENT = "content";
 	
 	// Logging info
@@ -52,9 +57,9 @@ public class Note {
 	// TODO this is a weird yellow that was usable for the android emulator, I must confirm this for real usage
 	public static final int NOTE_HIGHLIGHT_COLOR = 0xFFFFFF77;
 	public static final String NOTE_MONOSPACE_TYPEFACE = "monospace";
-	public static final float NOTE_SIZE_SMALL_FACTOR = 0.8f;
-	public static final float NOTE_SIZE_LARGE_FACTOR = 1.3f;
-	public static final float NOTE_SIZE_HUGE_FACTOR = 1.6f;
+	public static final float NOTE_SIZE_SMALL_FACTOR = 1.0f;
+	public static final float NOTE_SIZE_LARGE_FACTOR = 1.5f;
+	public static final float NOTE_SIZE_HUGE_FACTOR = 1.8f;
 	
 	// Members
 	private SpannableStringBuilder noteContent;
@@ -62,6 +67,7 @@ public class Note {
 	private String url;
 	private String fileName;
 	private String title;
+	private String tags;
 	private Time lastChangeDate;
 	private int dbId;
 	private UUID guid;
@@ -73,8 +79,32 @@ public class Note {
 			".+" + 														// matches what we are getting rid of
 			"([-\\+]\\d{2}:\\d{2})");									// matches timezone (-xx:xx or +xx:xx)
 	
-	public Note() {}
+	public Note() {
+		tags = new String();
+	}
 	
+	public Note(JSONObject json) {
+		
+		// These methods return an empty string if the key is not found
+		setTitle(XmlUtils.unescape(json.optString("title")));
+		setGuid(json.optString("guid"));
+		setLastChangeDate(json.optString("last-change-date"));
+		setXmlContent(json.optString("note-content"));
+		JSONArray jtags = json.optJSONArray("tags");
+		String tag;
+		tags = new String();
+		if (jtags != null) {
+			for (int i = 0; i < jtags.length(); i++ ) {
+				tag = jtags.optString(i);
+				tags += tag + ",";
+			}
+		}
+	}
+	
+	public String getTags() {
+		return tags;
+	}
+
 	public String getUrl() {
 		return url;
 	}
@@ -138,7 +168,7 @@ public class Note {
 	public void setGuid(String guid) {
 		this.guid = UUID.fromString(guid);
 	}
-	
+
 	// TODO: should this handler passed around evolve into an observer pattern?
 	public SpannableStringBuilder getNoteContent(Handler handler) {
 		

@@ -23,17 +23,15 @@
 -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-	<item
-			android:icon="@drawable/icon_sync"
-			android:title="@string/menuSyncWithSD"
-			android:id="@+id/menuSyncWithSD"
-			/>
-				
-	
 	<item 
 			android:icon="@drawable/icon_about"
 			android:title="@string/menuAbout"
 			android:id="@+id/menuAbout"
 			/>
-
+	
+	
+	<item 
+			android:icon="@android:drawable/ic_menu_preferences"
+			android:title="@string/menuPrefs"
+			android:id="@+id/menuPrefs"/>
 </menu>
