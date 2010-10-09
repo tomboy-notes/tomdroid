@@ -1,29 +1,46 @@
+/*
+ * Tomdroid
+ * Tomboy on Android
+ * http://www.launchpad.net/tomdroid
+ * 
+ * Copyright 2010, Matthew Stevenson <saturnreturn@gmail.com>
+ * 
+ * This file is part of Tomdroid.
+ * 
+ * Tomdroid is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * Tomdroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.tomdroid.util;
 
 import java.text.DateFormat;
 import java.util.Date;
 
-import android.text.format.DateUtils;
-import android.text.format.Time;
 import org.tomdroid.Note;
 import org.tomdroid.R;
-import org.tomdroid.ui.Tomdroid;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.Color;
+import android.text.format.DateUtils;
+import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filterable;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 /* Provides a custom ListView layout for Note List */
 
 public class NoteListCursorAdapter extends SimpleCursorAdapter {
-
-    private Context context;
 
     private int layout;
     private int[] colors = new int[] { 0xFFFFFFFF, 0xFFEEEEEE };
@@ -33,7 +50,6 @@ public class NoteListCursorAdapter extends SimpleCursorAdapter {
 
     public NoteListCursorAdapter (Context context, int layout, Cursor c, String[] from, int[] to) {
         super(context, layout, c, from, to);
-        this.context = context;
         this.layout = layout;
         localeDateFormat = DateFormat.getDateInstance(DateFormat.SHORT);
         localeTimeFormat = DateFormat.getTimeInstance(DateFormat.SHORT);
