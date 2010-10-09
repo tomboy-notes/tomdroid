@@ -8,9 +8,10 @@ Testing
 
 Preparing the release
 - Increment version number in AndroidManifest.xml (android:versionCode and android:versionName), doc/user/README
-- Make sure the ChangeLog / TODO is up-to-date
+- Make sure TODO is up-to-date
+- Generate ChangeLog (bzr log -v -n0 --gnu-changelog > ChangeLog)
 - Update the NEWS file
-- Make sure doc/user/README is accurate
+- Make sure doc/user/README, AUTHORS is accurate
 - Follow Android's doc on publishing apps to the marketplace
 
 Releasing
