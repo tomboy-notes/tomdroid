@@ -109,8 +109,8 @@ public class ViewNote extends Activity {
 				
 				// TODO put error string in a translatable resource
 				new AlertDialog.Builder(this)
-					.setMessage("The requested note could not be found. If you see this error by " +
-							    "mistake and you are able to replicate it, please file a bug!")
+					.setMessage("The requested note could not be found. If you see this error " +
+							    "and you are able to replicate it, please file a bug!")
 					.setTitle("Error")
 					.setNeutralButton("Ok", new OnClickListener() {
 						public void onClick(DialogInterface dialog, int which) {
@@ -125,8 +125,8 @@ public class ViewNote extends Activity {
 			
 			// TODO put error string in a translatable resource
 			new AlertDialog.Builder(this)
-			.setMessage("The requested note could not be found. If you see this error by " +
-					    "mistake and you are able to replicate it, please file a bug!")
+			.setMessage("The requested note could not be found. If you see this error " +
+					    " and you are able to replicate it, please file a bug!")
 			.setTitle("Error")
 			.setNeutralButton("Ok", new OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
@@ -211,8 +211,8 @@ public class ViewNote extends Activity {
 				
 				// TODO put this String in a translatable resource
 				new AlertDialog.Builder(ViewNote.this)
-					.setMessage("The requested note could not be parsed. If you see this error by " +
-								"mistake and you are able to replicate it, please file a bug!")
+					.setMessage("The requested note could not be parsed. If you see this error " +
+								" and you are able to replicate it, please file a bug!")
 					.setTitle("Error")
 					.setNeutralButton("Ok", new OnClickListener() {
 						public void onClick(DialogInterface dialog, int which) {
