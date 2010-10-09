@@ -43,11 +43,12 @@ two options:
 
 Usage
 =====
-Copy your tomboy notes in a tomdroid/ directory inside your sdcard.
+NEW: Read "Tomdroid's first note" note, it will provide instructions on getting started.
 
+For SD Card sync, here are old instructions on how to copy your notes to the SD Card.
 You can either:
 * Plug in your sdcard and copy the notes to it:
-  # mkdir /media/sdcard/tomdroid/; cp ~/.tomboy/*.note /media/sdcard/tomdroid/
+  # mkdir /media/sdcard/tomdroid/; cp ~/.local/share/tomboy/*.note /media/sdcard/tomdroid/
 
 * Use adb to push the notes while your phone is plugged in by USB:
   1- Make sure /sdcard/tomdroid/ exists
