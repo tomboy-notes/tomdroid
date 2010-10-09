@@ -3,7 +3,8 @@
  * Tomboy on Android
  * http://www.launchpad.net/tomdroid
  * 
- * Copyright 2009, 2010 Benoit Garret <benoit.garret_launchpad@gadz.org>, Olivier Bilodeau <olivier@bottomlesspit.org>
+ * Copyright 2009, 2010 Benoit Garret <benoit.garret_launchpad@gadz.org>
+ * Copyright 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>
  * 
  * This file is part of Tomdroid.
  * 
@@ -24,17 +25,14 @@ package org.tomdroid;
 
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.NoteListCursorAdapter;
-import org.tomdroid.util.Preferences;
 
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
-import android.preference.ListPreference;
 import android.util.Log;
 import android.widget.ListAdapter;
-import android.widget.SimpleCursorAdapter;
 
 public class NoteManager {
 	
