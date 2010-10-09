@@ -1,10 +1,7 @@
 TODO tasks
 ==========
-0.4
-- #657178 db dropped
-- #588800: Create an info note on first run
-
 Unclassified:
+- check to merge https://code.launchpad.net/~tomdroid-dev/tomdroid/ContextMenu
 - find a sample use of the ContentProvider regarding Edouard's branch: searchbar-on-0.3/ and tell him
 - basic note editing
 - improve responsiveness when loading notes from sdcard

@@ -11,7 +11,9 @@
 	<application 
 		android:icon="@drawable/icon"
 		android:label="@string/app_name"
-		android:theme="@android:style/Theme.Light.NoTitleBar">
+		android:theme="@android:style/Theme.Light.NoTitleBar"
+		android:debuggable="false"
+	>
 
         <activity android:label="@string/app_name"
         		  android:name=".ui.Tomdroid"

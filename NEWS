@@ -11,7 +11,7 @@ Join it at: https://launchpad.net/~tomdroid-dev
 
 For more details and developer visible changes see the ChangeLog
 
-Version 0.4.0 - "I didn't do it!" released on 2010-10-xx
+Version 0.4.0 - "I didn't do it!" released on 2010-10-09
 * One-way Note Synchronization! Two providers for now: Tomboy Web and SD Card 
   (Benoit Garret, Rodja Trappe)
 * Vastly modernized and improved UI (Rodja Trappe, Guilherme Salgado, Matthew 

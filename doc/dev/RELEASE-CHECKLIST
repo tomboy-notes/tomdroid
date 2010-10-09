@@ -27,7 +27,7 @@ Releasing
 -- verify: zipalign -c -v 4 <new apk>
 - Test the signed apk
 - Test the upgrade from the previous signed release to the next one
-- bzr tag the release / Update ChangeLog (w/ new TAG) / Commit / push
+- bzr tag the release / Commit / push
 - Produce the source release tarball (bzr export in .tar.gz) 
 - Mark the milestone as released on launchpad
 - Put the files on launchpad (SRC, README, APK)
