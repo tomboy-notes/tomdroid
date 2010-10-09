@@ -18,6 +18,7 @@ Version 0.4.0 - "I didn't do it!" released on 2010-10-xx
   Stevenson, #549643)
 * Notebook templates are now hidden from note list (Benoit Garret, 
   Guilherme Salgado, #360732)
+* Fixed warning dialog reappearing after phone rotation (Benoit Garret, #541793)
 
 Version 0.3.1 - fundationem (fixed with a tie wrap)
 * Fixed important parsing issue with notes in +xx:xx timezones (#520543)
