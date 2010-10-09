@@ -25,10 +25,12 @@ package org.tomdroid.ui;
 
 import java.util.ArrayList;
 
+import org.tomdroid.NoteManager;
 import org.tomdroid.R;
 import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.sync.SyncService;
+import org.tomdroid.util.FirstNote;
 import org.tomdroid.util.Preferences;
 
 import android.app.AlertDialog;
@@ -214,6 +216,10 @@ public class PreferencesActivity extends PreferenceActivity {
 	private void resetLocalDatabase() {
 		getContentResolver().delete(Tomdroid.CONTENT_URI, null, null);
 		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, 0);
+		
+		// add a first explanatory note
+		// TODO this will be problematic with two-way sync
+		NoteManager.putNote(this, FirstNote.createFirstNote());
 	}
 	
 	/**

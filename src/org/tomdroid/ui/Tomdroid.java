@@ -30,6 +30,7 @@ import org.tomdroid.R;
 import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.sync.SyncService;
+import org.tomdroid.util.FirstNote;
 import org.tomdroid.util.Preferences;
 
 import android.app.AlertDialog;
@@ -94,7 +95,11 @@ public class Tomdroid extends ListActivity {
 
 		// did we already show the warning and got destroyed by android's activity killer?
 		if (Preferences.getBoolean(Preferences.Key.FIRST_RUN)) {
-
+			Log.i(TAG, "Tomdroid is first run.");
+			
+			// add a first explanatory note
+			NoteManager.putNote(this, FirstNote.createFirstNote());
+			
 			// Warn that this is a "will eat your babies" release
 			new AlertDialog.Builder(this).setMessage(getString(R.string.strWelcome)).setTitle(
 					"Warning").setNeutralButton("Ok", new OnClickListener() {

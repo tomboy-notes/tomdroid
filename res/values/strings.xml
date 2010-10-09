@@ -4,7 +4,7 @@
  Tomboy on Android
  http://www.launchpad.net/tomdroid
 
- Copyright 2008, 2009 Olivier Bilodeau <olivier@bottomlesspit.org>
+ Copyright 2008, 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>
  
  This file is part of Tomdroid.
  
@@ -29,8 +29,7 @@
 	<!-- main.xml -->
     <string name="strListEmptyWaiting">Please wait while the notes load..</string>
     <string name="strListEmptyNoNotes">
-    	There are no notes in Tomdroid\'s database. Make sure you copied Tomboy\'s note files (*.note) in
-    	the tomdroid/ directory on your sdcard then press \"Menu\" and \"Sync with SD Card\".
+    	There are no notes in Tomdroid\'s database.
     </string>
     
     <string name="menuSync">Sync</string>
