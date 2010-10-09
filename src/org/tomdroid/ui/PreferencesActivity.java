@@ -4,6 +4,7 @@
  * http://www.launchpad.net/tomdroid
  * 
  * Copyright 2009, Benoit Garret <benoit.garret_launchpad@gadz.org>
+ * Copyright 2010, Olivier Bilodeau <olivier@bottomlesspit.org>
  * 
  * This file is part of Tomdroid.
  * 
@@ -77,8 +78,14 @@ public class PreferencesActivity extends PreferenceActivity {
 		syncService.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 			
 			public boolean onPreferenceChange(Preference preference, Object newValue) {
+				String selectedSyncServiceKey = (String)newValue;
 				
-				setServer((String)newValue);
+				// did the selection change?
+				if (!syncService.getValue().contentEquals(selectedSyncServiceKey)) {
+					Log.d(TAG, "preference change triggered");
+					
+					syncServiceChanged(selectedSyncServiceKey);
+				}
 				return true;
 			}
 		});
@@ -191,7 +198,6 @@ public class PreferencesActivity extends PreferenceActivity {
 
 		syncServer.setEnabled(service.needsServer());
 		syncService.setSummary(service.getDescription());
-
 	}
 		
 	private void connectionFailed() {
@@ -208,6 +214,28 @@ public class PreferencesActivity extends PreferenceActivity {
 	private void resetLocalDatabase() {
 		getContentResolver().delete(Tomdroid.CONTENT_URI, null, null);
 		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, 0);
+	}
+	
+	/**
+	 * Housekeeping when a syncServer changes
+	 * @param syncServiceKey - key of the new sync service 
+	 */
+	private void syncServiceChanged(String syncServiceKey) {
+		
+		setServer(syncServiceKey);
+		
+		// TODO this should be refactored further, notice that setServer performs the same operations 
+		SyncService service = SyncManager.getInstance().getService(syncServiceKey);
+		
+		if (service == null)
+			return;
+
+		// reset if no-auth required
+		// I believe it's done this way because if needsAuth the database is reset when they successfully auth for the first time
+		// TODO we should graphically warn the user that his database is about to be dropped
+		if (!service.needsAuth()){
+		    resetLocalDatabase();
+		}
 	}
 
 }
