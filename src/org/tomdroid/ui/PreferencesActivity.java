@@ -189,10 +189,6 @@ public class PreferencesActivity extends PreferenceActivity {
 		if (service == null)
 			return;
 
-		if (!service.needsAuth()){
-			resetLocalDatabase();
-		}
-		
 		syncServer.setEnabled(service.needsServer());
 		syncService.setSummary(service.getDescription());
 
