@@ -1,10 +1,8 @@
 TODO tasks
 ==========
 0.4
+- #657178 db dropped
 - #588800: Create an info note on first run
-- reproduce and fix 541793
-- drop changelog or have it completely automated (way too much work for the benefit)
-- start an author or maintainer file to give credits (see what the gnome folks do?)
 
 Unclassified:
 - find a sample use of the ContentProvider regarding Edouard's branch: searchbar-on-0.3/ and tell him
