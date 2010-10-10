@@ -3,3 +3,14 @@ TBD
 
 TIPS:
 To push your own notes into the emulator for testing, use util/sync-tomboy-tomdroid.sh while you have the emulator running.
+
+BUILDING WITHOUT ECLIPSE
+In the branch root, do:
+$ android update project -p .
+This will create a build.xml and *.properties files. You can now build with:
+$ ant debug
+and install to a running emulator or a connected device with:
+$ ant install
+and remove from a running emulator or a connected device with:
+$ ant uninstall
+
