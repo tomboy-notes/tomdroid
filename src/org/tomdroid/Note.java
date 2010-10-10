@@ -70,7 +70,7 @@ public class Note {
 	private String tags;
 	private Time lastChangeDate;
 	private int dbId;
-	private UUID guid;
+	private String guid;
 	
 	// Date converter pattern (remove extra sub milliseconds from datetime string)
 	// ex: will strip 3020 in 2010-01-23T12:07:38.7743020-05:00
@@ -161,12 +161,12 @@ public class Note {
 		this.dbId = id;
 	}
 	
-	public UUID getGuid() {
+	public String getGuid() {
 		return guid;
 	}
 	
 	public void setGuid(String guid) {
-		this.guid = UUID.fromString(guid);
+		this.guid = guid;
 	}
 
 	// TODO: should this handler passed around evolve into an observer pattern?
