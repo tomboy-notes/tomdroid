@@ -5,6 +5,7 @@
  * 
  * Copyright 2009, Benoit Garret <benoit.garret_launchpad@gadz.org>
  * Copyright 2010, Rodja Trappe <mail@rodja.net>
+ * Copyright 2010, Olivier Bilodeau <olivier@bottomlesspit.org>
  * 
  * This file is part of Tomdroid.
  * 
@@ -25,10 +26,12 @@ package org.tomdroid.ui;
 
 import java.util.ArrayList;
 
+import org.tomdroid.NoteManager;
 import org.tomdroid.R;
 import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.sync.SyncMethod;
+import org.tomdroid.util.FirstNote;
 import org.tomdroid.util.Preferences;
 
 import android.app.AlertDialog;
@@ -77,8 +80,14 @@ public class PreferencesActivity extends PreferenceActivity {
 		syncMethodPreference.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 			
 			public boolean onPreferenceChange(Preference preference, Object newValue) {
+				String selectedSyncServiceKey = (String)newValue;
 				
-				updatePreferencesTo((String)newValue);
+				// did the selection change?
+				if (!syncMethodPreference.getValue().contentEquals(selectedSyncServiceKey)) {
+					Log.d(TAG, "preference change triggered");
+					
+					syncServiceChanged(selectedSyncServiceKey);
+				}
 				return true;
 			}
 		});
@@ -187,11 +196,12 @@ public class PreferencesActivity extends PreferenceActivity {
 	private void updatePreferencesTo(String syncMethodName) {
 		
 		SyncMethod syncMethod = SyncManager.getInstance().getSyncMethod(syncMethodName);
-		
-		if (syncMethod != null) {
-			syncServerUriPreference.setEnabled(syncMethod.needsServer());
-			syncMethodPreference.setSummary(syncMethod.getDescription());
-		}
+
+		if (syncMethod == null)
+			return;
+
+		syncServerUriPreference.setEnabled(syncMethod.needsServer());
+		syncMethodPreference.setSummary(syncMethod.getDescription());
 	}
 		
 	private void connectionFailed() {
@@ -208,6 +218,33 @@ public class PreferencesActivity extends PreferenceActivity {
 	private void resetLocalDatabase() {
 		getContentResolver().delete(Tomdroid.CONTENT_URI, null, null);
 		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, 0);
+		
+		// add a first explanatory note
+		// TODO this will be problematic with two-way sync
+		NoteManager.putNote(this, FirstNote.createFirstNote());
+	}
+	
+	/**
+	 * Housekeeping when a syncServer changes
+	 * @param syncMethodKey - key of the new sync service 
+	 */
+	private void syncServiceChanged(String syncMethodKey) {
+		
+		updatePreferencesTo(syncMethodKey);
+		
+		// TODO this should be refactored further, notice that setServer performs the same operations 
+		SyncMethod syncMethod = SyncManager.getInstance().getSyncMethod(
+				syncMethodKey);
+		
+		if (syncMethod == null)
+			return;
+
+		// reset if no-auth required
+		// I believe it's done this way because if needsAuth the database is reset when they successfully auth for the first time
+		// TODO we should graphically warn the user that his database is about to be dropped
+		if (!syncMethod.needsAuth()){
+		    resetLocalDatabase();
+		}
 	}
 
 }

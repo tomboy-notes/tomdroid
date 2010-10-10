@@ -1,16 +1,17 @@
 Make sure to do this before every release:
 
 Testing
-- Test all functionality on emulator 1.1 and 1.5
+- Test all functionality on emulator 1.5 (base) and 2.1 (latest)
 - Test with "Immediately destroy activities" debug setting
 - Test all text inputs with virtual keyboard
 - Test with public sdcard image all the bug notes to spot regressions
 
 Preparing the release
-- Increment version number in AndroidManifest.xml (android:versionCode and android:versionName)
-- Make sure the ChangeLog / TODO is up-to-date
+- Increment version number in AndroidManifest.xml (android:versionCode and android:versionName), doc/user/README
+- Make sure TODO is up-to-date
+- Generate ChangeLog (bzr log -v -n0 --gnu-changelog > ChangeLog)
 - Update the NEWS file
-- Make sure doc/user/README is accurate
+- Make sure doc/user/README, AUTHORS is accurate
 - Follow Android's doc on publishing apps to the marketplace
 
 Releasing
@@ -26,7 +27,7 @@ Releasing
 -- verify: zipalign -c -v 4 <new apk>
 - Test the signed apk
 - Test the upgrade from the previous signed release to the next one
-- bzr tag the release / Update ChangeLog (w/ new TAG) / Commit / push
+- bzr tag the release / Commit / push
 - Produce the source release tarball (bzr export in .tar.gz) 
 - Mark the milestone as released on launchpad
 - Put the files on launchpad (SRC, README, APK)

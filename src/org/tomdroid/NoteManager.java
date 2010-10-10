@@ -1,18 +1,18 @@
 /*
- * Tomdroid 
- * Tomboy on Android 
- * http://www.launchpad.net/tomdroid 
+ * Tomdroid
+ * Tomboy on Android
+ * http://www.launchpad.net/tomdroid
  * 
- * Copyright 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>, 
- *                      Benoit Garret <benoit.garret_launchpad@gadz.org>
+ * Copyright 2009, 2010 Benoit Garret <benoit.garret_launchpad@gadz.org>
+ * Copyright 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>
  * Copyright 2010       Rodja Trappe <mail@rodja.net> 
  * 
- * This file is part of Tomdroid. 
+ * This file is part of Tomdroid.
  * 
- * Tomdroid is free software: you can redistribute it and/or modify 
- * it under the terms of the GNU General Public License as published by 
- * the Free Software Foundation, either version 3 of the License, or 
- * (at your option) any later version. 
+ * Tomdroid is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  * 
  * Tomdroid is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of 

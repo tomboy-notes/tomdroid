@@ -3,6 +3,7 @@
  * Tomboy on Android
  * http://www.launchpad.net/tomdroid
  * 
+ * Copyright 2010, Matthew Stevenson <saturnreturn@gmail.com>
  * Copyright 2010, Rodja Trappe <mail@rodja.net>
  * 
  * This file is part of Tomdroid.
@@ -18,7 +19,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with Tomdroid. If not, see <http://www.gnu.org/licenses/>.
+ * along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
  */
 package org.tomdroid.util;
 
@@ -42,11 +43,11 @@ import android.widget.TextView;
 
 public class NoteListCursorAdapter extends SimpleCursorAdapter {
 
-    private int layout;
-    private int[] colors = new int[] { 0xFFFFFFFF, 0xFFEEEEEE };
+    private final int layout;
+    private final int[] colors = new int[] { 0xFFFFFFFF, 0xFFEEEEEE };
 
-    private DateFormat localeDateFormat;
-    private DateFormat localeTimeFormat;
+    private final DateFormat localeDateFormat;
+    private final DateFormat localeTimeFormat;
 
     public NoteListCursorAdapter (Context context, int layout, Cursor c, String[] from, int[] to) {
         super(context, layout, c, from, to);

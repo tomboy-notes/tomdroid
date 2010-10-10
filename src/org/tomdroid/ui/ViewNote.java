@@ -74,7 +74,7 @@ public class ViewNote extends Activity {
 	private static final String TAG = "ViewNote";
 
 	// UI feedback handler
-	private Handler syncMessageHandler = new SyncMessageHandler(this);
+	private final Handler syncMessageHandler = new SyncMessageHandler(this);
 
 	private LocalStorage localStorage;
 	private ViewSwitcher viewSwitcher;
@@ -96,6 +96,7 @@ public class ViewNote extends Activity {
 
 		gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
 
+			@Override
 			public boolean onDoubleTap(MotionEvent e) {
 				if (isInViewMode())
 					switchToEditMode();
@@ -134,15 +135,16 @@ public class ViewNote extends Activity {
 					Log.d(TAG, "The note " + uri + " doesn't exist");
 
 				// TODO put error string in a translatable resource
-				new AlertDialog.Builder(this).setMessage(
-						"The requested note could not be found. If you see this error by "
-								+ "mistake and you are able to replicate it, please file a bug!")
-						.setTitle("Error").setNeutralButton("Ok", new OnClickListener() {
-							public void onClick(DialogInterface dialog, int which) {
-								dialog.dismiss();
-								finish();
-							}
-						}).show();
+				new AlertDialog.Builder(this)
+					.setMessage("The requested note could not be found. If you see this error " +
+							    "and you are able to replicate it, please file a bug!")
+					.setTitle("Error")
+					.setNeutralButton("Ok", new OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+							finish();
+						}})
+					.show();
 			}
 		
 		} else {
@@ -151,15 +153,16 @@ public class ViewNote extends Activity {
 				Log.d(TAG, "The Intent's data was null.");
 
 			// TODO put error string in a translatable resource
-			new AlertDialog.Builder(this).setMessage(
-					"The requested note could not be found. If you see this error by "
-							+ "mistake and you are able to replicate it, please file a bug!")
-					.setTitle("Error").setNeutralButton("Ok", new OnClickListener() {
-						public void onClick(DialogInterface dialog, int which) {
-							dialog.dismiss();
-							finish();
-						}
-					}).show();
+			new AlertDialog.Builder(this)
+			.setMessage("The requested note could not be found. If you see this error " +
+					    " and you are able to replicate it, please file a bug!")
+			.setTitle("Error")
+			.setNeutralButton("Ok", new OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.dismiss();
+					finish();
+				}})
+			.show();
 		}
 	}
 
@@ -305,6 +308,7 @@ public class ViewNote extends Activity {
 		textView.setText(note.getXmlContent());
 	}
 
+	@Override
 	public void setTitle(CharSequence title) {
 		super.setTitle(title);
 		// temporary setting title of actionbar until we have a better idea
@@ -312,30 +316,29 @@ public class ViewNote extends Activity {
 		titleView.setText(title);
 	}
 
-	private Handler NoteContentHandler = new Handler() {
+	private final Handler NoteContentHandler = new Handler() {
 
 		@Override
 		public void handleMessage(Message msg) {
-
-			// parsed ok - show
-			if (msg.what == NoteContentBuilder.PARSE_OK) {
+			//parsed ok - show
+			if(msg.what == NoteContentBuilder.PARSE_OK) {
 				onContentBuilded();
 
-				// parsed not ok - error
-			} else if (msg.what == NoteContentBuilder.PARSE_ERROR) {
-
-				// TODO put this String in a translatable
-				// resource
-				new AlertDialog.Builder(ViewNote.this).setMessage(
-						"The requested note could not be parsed. If you see this error by "
-								+ "mistake and you are able to replicate it, please file a bug!")
-						.setTitle("Error").setNeutralButton("Ok", new OnClickListener() {
-							public void onClick(DialogInterface dialog, int which) {
-								dialog.dismiss();
-								finish();
-							}
-						}).show();
-			}
+			//parsed not ok - error
+			} else if(msg.what == NoteContentBuilder.PARSE_ERROR) {
+				
+				// TODO put this String in a translatable resource
+				new AlertDialog.Builder(ViewNote.this)
+					.setMessage("The requested note could not be parsed. If you see this error " +
+								" and you are able to replicate it, please file a bug!")
+					.setTitle("Error")
+					.setNeutralButton("Ok", new OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+							finish();
+						}})
+					.show();
+        	}
 		}
 	};
 
@@ -386,7 +389,7 @@ public class ViewNote extends Activity {
 	// note id
 	// this was done to avoid problems with invalid characters in URI (ex: ? is the query separator
 	// but could be in a note title)
-	private TransformFilter noteTitleTransformFilter = new TransformFilter() {
+	private final TransformFilter noteTitleTransformFilter = new TransformFilter() {
 
 		public String transformUrl(Matcher m, String str) {
 
