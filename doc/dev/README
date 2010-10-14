@@ -1,6 +1,6 @@
 Tomdroid
 
-Building with Eclipse
+BUILDING WITH ECLIPSE
 1. Install the Android SDK as described on developer.android.com
 2. fire up Eclipse, install and setup the ADT plugin
 3. Import the Tomdroid project
@@ -8,12 +8,19 @@ Building with Eclipse
 5. either grab the apk from the bin/ dir or use Eclipse to
   "Run As Android Application"
 
-Building without Eclipse
+BUILDING WITHOUT ECLIPSE
 1. Install the Android SDK as described on developer.android.com
 2. cd into the Tomdroid root (where src, libs, etc. is located)
-3. android update project -p .
-4. ant debug (or ant release)
-
+3. Create build.xml and *.properties:
+$ android update project -p .
+You can now build with:
+$ ant debug
+and install to a running emulator or a connected device with:
+$ ant install
+and remove from a running emulator or a connected device with:
+$ ant uninstall
 
 TIPS:
 To push your own notes into the emulator for testing, use util/sync-tomboy-tomdroid.sh while you have the emulator running.
+
+
