@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ Tomdroid
+ Tomboy on Android
+ http://www.launchpad.net/tomdroid
+
+ Copyright 2010 Olivier Bilodeau <olivier@bottomlesspit.org>
+ 
+ This file is part of Tomdroid.
+ 
+ Tomdroid is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Tomdroid is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+ 
+ @Author Benoît Soyeux <benoit.soyeux@starbusiness.fr>
+ @Author Olivier Bilodeau <olivier@bottomlesspit.org>
+-->
+<resources>
+    <string name="app_name">Tomdroid</string>
+    <string name="app_desc">Application compatible à Tomboy l\'outil de prise de note wikiwiki.</string>
+    <string name="author">Olivier Bilodeau</string>
+
+	<!-- main.xml -->
+    <string name="strListEmptyWaiting">Veuillez patienter pendant que les notes se chargent...</string>
+    <string name="strListEmptyNoNotes">
+    	Il n\'y a pas de note dans la base de données Tomdroid.
+    </string>
+    
+    <string name="menuSync">Sync</string>
+	<string name="menuPrefs">Préférences</string>
+    <string name="menuAbout">À propos</string>
+    <string name="strWelcome">
+    	Bienvenue sur Tomdroid.
+    	\n\nVeuillez noter que l\'application est en phase beta et qu\'elle contient des problèmes connus, 
+		comme l\'incapacité d\'éditer une note.
+
+    	\n\nNous somme bien au courant de ces problèmes et nous avont l\'intention de travailler la dessus rapidement
+		mais je veux aussi developper et tester l\'application aussi vite que possible.
+    	
+    	\n\nSi vous voulez contribuer, de l\'aide à tous les niveaux sera appréciée.
+		Allez sur launchpad.net/tomdroid et contactez nous!\n
+    </string>
+    <string name="strAbout">
+    	%1$s
+    	\n\nAuteur: %2$s
+    	\nVersion: %3$s
+    	\nLicense sous GPLv3
+    </string>
+
+    <!-- TODO are these really needed!? -->
+    <string name="btnOk">Ok</string>
+    <string name="btnCancel">Cancel</string>
+
+	<!-- note-view.xml -->
+    <string name="strWait">Veuillez patienter pendant que les notes se chargent...</string>
+
+	<string name="prefSync">Synchronisation</string>
+
+	<string name="prefSyncService">Service</string>
+	<string name="prefSyncServer">Serveur</string>
+	<string name="prefAuthenticate">S\'authentifier</string>
+
+	<string name="prefSyncConnectionFailed">La connexion au serveur a échoué, veuillez vérifier l\'adresse que vous avez entrée si elle est correcte.</string>
+	<string name="prefServerEmpty">L\'adresse du serveur a changé mais la nouvelle valeur est vide</string>
+
+
+</resources>
