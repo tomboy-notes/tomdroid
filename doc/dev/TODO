@@ -1,5 +1,9 @@
 TODO tasks
 ==========
+Problems with 0.4.1:
+- SDK 1.5 support was removed, how many devices are still on it? If more than 20%, I should try to get it to work on it again.
+file:///home/olivier/soft/android-sdk-linux_86/docs/guide/practices/screens_support.html#strategies
+
 Unclassified:
 - check to merge https://code.launchpad.net/~tomdroid-dev/tomdroid/ContextMenu
 - find a sample use of the ContentProvider regarding Edouard's branch: searchbar-on-0.3/ and tell him
