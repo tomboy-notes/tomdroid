@@ -187,7 +187,7 @@ public class SdCardSyncService extends SyncService {
 				e.printStackTrace();
 			} catch (TimeFormatException e) {
 				e.printStackTrace();
-				if (Tomdroid.LOGGING_ENABLED) Log.e(TAG, "Problem parsing the note's date and time");
+				Log.e(TAG, "Problem parsing the note's date and time");
 				sendMessage(PARSING_FAILED);
 				onWorkDone();
 				return;
