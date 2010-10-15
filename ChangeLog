@@ -1,3 +1,82 @@
+2010-10-14  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* doc/dev/TODO:
+
+	updated tasks
+
+2010-10-14  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* NEWS:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+
+	Error messages available in logs even in released builds. Fixes lp:657561.
+
+2010-10-14  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* res/values-fr:
+	* res/values-fr/arrays.xml:
+	* res/values-fr/strings.xml:
+	* NEWS:
+
+	French translation for some strings (the ones in resources) provided by Benoit Soyeux and reworked a little bit by myself
+
+2010-10-13  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* .classpath:
+	* doc/dev/README:
+	* src/org/tomdroid/Note.java:
+	* lib:
+	* libs:
+
+	Merging branch that fixes lp:657477 with little extra modifications:
+	- merged Stuart's build instructions with the ones I already made from his email
+	- fixed Eclipse's project classpath for new libs dir
+	- added a TODO task to think about validating the uniqueness of the guid
+
+2010-10-11  stuart.langridge@canonical.com
+
+	* doc/dev/README:
+
+	Add notes to dev README about how to build without Eclipse
+
+2010-10-11  stuart.langridge@canonical.com
+
+	* src/org/tomdroid/Note.java:
+	* lib:
+	* libs:
+
+	Make guid not require a UUID, since the spec doesn't require that and U1-created notes don't have it; move lib to libs so that the default ant setup can find the libraries without configuration
+
+2010-10-13  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* NEWS:
+
+	it would seem that SDK 1.6 is required (just learned that the hard way)
+
+2010-10-11  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* doc/dev/README:
+
+	build instructions for eclipse or ant (provided by Rodja and Stuart)
+
+2010-10-09  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* NEWS:
+
+	new NEWS entry, missed the tag and src tarball but not the announce so it's ok
+
+2010-10-09  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* AndroidManifest.xml:
+	* ChangeLog:
+	* NEWS:
+	* doc/dev/RELEASE-CHECKLIST:
+	* doc/dev/TODO:
+	* doc/user/README:
+
+	last bits for 0.4 source release
+
 2010-10-09  Olivier Bilodeau  <olivier@bottomlesspit.org>
 
 	* doc/user/README:
