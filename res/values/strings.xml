@@ -70,4 +70,5 @@
 	<string name="prefServerEmpty">The server address changed but the new value is empty</string>
 
 
+<string name="titleSyncService">Choose the sync service to use</string>
 </resources>

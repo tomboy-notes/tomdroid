@@ -73,4 +73,5 @@
 	<string name="prefServerEmpty">L\'adresse du serveur a changé mais la nouvelle valeur est vide</string>
 
 
+<string name="titleSyncService">service de synchronisation</string>
 </resources>

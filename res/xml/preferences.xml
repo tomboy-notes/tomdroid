@@ -4,7 +4,7 @@
 	<PreferenceCategory android:title="@string/prefSync">
 		
 		<ListPreference android:title="@string/prefSyncService"
-						android:dialogTitle="Choose the sync service to use"
+						android:dialogTitle="@string/titleSyncService"
 						android:key="sync_service" 
 						android:defaultValue="tomboy-web"/>
 						

@@ -157,8 +157,7 @@ public class Tomdroid extends ListActivity {
 			if (uri != null && uri.getScheme().equals("tomdroid")) {
 				Log.i(TAG, "Got url : " + uri.toString());
 
-				final ProgressDialog dialog = ProgressDialog.show(this, "",
-						"Completing authentication. Please wait...", true, false);
+				final ProgressDialog dialog = ProgressDialog.show(this, "",	"Completing authentication. Please wait...", true, false);
 
 				Handler handler = new Handler() {
 
