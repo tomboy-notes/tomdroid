@@ -74,4 +74,8 @@
 
 
 <string name="titleSyncService">service de synchronisation</string>
+<string name="messageSyncCompleteBegin">La synchronisation avec</string>
+<string name="messageSyncCompleteEnd">est terminée</string>
+<string name="messageSyncNoNote">Aucune note trouvée</string>
+<string name="messageSyncNoConnection">Aucune connection à Internet</string>
 </resources>

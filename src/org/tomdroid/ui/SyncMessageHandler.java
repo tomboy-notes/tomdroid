@@ -28,6 +28,7 @@ import org.tomdroid.sync.SyncService;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Handler;
@@ -55,21 +56,23 @@ public class SyncMessageHandler extends Handler {
 	@Override
 	public void handleMessage(Message msg) {
 
+		
 		switch (msg.what) {
 			case SyncService.PARSING_COMPLETE:
 				// TODO put string in a translatable bundle
+				
 				Toast.makeText(
 						activity,
-						"Synchronization with "
-								+ SyncManager.getInstance().getCurrentService().getDescription()
-								+ " is complete.", Toast.LENGTH_SHORT).show();
+						this.activity.getString(R.string.messageSyncCompleteBegin) + " "
+								+ SyncManager.getInstance().getCurrentService().getDescription() +" "
+								+ this.activity.getString(R.string.messageSyncCompleteEnd), Toast.LENGTH_SHORT).show();
 				break;
 
 			case SyncService.PARSING_NO_NOTES:
 				// TODO put string in a translatable bundle
 				Toast.makeText(
 						activity,
-						"No notes found on "
+						this.activity.getString(R.string.messageSyncNoNote)
 								+ SyncManager.getInstance().getCurrentService().getDescription()
 								+ ".", Toast.LENGTH_SHORT).show();
 				break;
@@ -97,7 +100,7 @@ public class SyncMessageHandler extends Handler {
 
 			case SyncService.NO_INTERNET:
 				// TODO put string in a translatable bundle
-				Toast.makeText(activity, "You are not connected to the internet.",
+				Toast.makeText(activity, this.activity.getString(R.string.messageSyncNoConnection),
 						Toast.LENGTH_SHORT).show();
 				break;
 

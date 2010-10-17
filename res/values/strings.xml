@@ -71,4 +71,8 @@
 
 
 <string name="titleSyncService">Choose the sync service to use</string>
+<string name="messageSyncCompleteBegin">Synchronization with</string>
+<string name="messageSyncCompleteEnd">is complete</string>
+<string name="messageSyncNoNote">No notes found on </string>
+<string name="messageSyncNoConnection">You are not connected to the internet.</string>
 </resources>
