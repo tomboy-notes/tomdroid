@@ -73,9 +73,15 @@
 	<string name="prefServerEmpty">L\'adresse du serveur a changé mais la nouvelle valeur est vide</string>
 
 
-<string name="titleSyncService">service de synchronisation</string>
-<string name="messageSyncCompleteBegin">La synchronisation avec</string>
-<string name="messageSyncCompleteEnd">est terminée</string>
-<string name="messageSyncNoNote">Aucune note trouvée</string>
-<string name="messageSyncNoConnection">Aucune connection à Internet</string>
+	<string name="titleSyncService">service de synchronisation</string>
+	<string name="messageSyncCompleteBegin">La synchronisation avec</string>
+	<string name="messageSyncCompleteEnd">est terminée</string>
+	<string name="messageSyncNoNote">Aucune note trouvée</string>
+	<string name="messageSyncNoConnection">Aucune connection à Internet</string>
+	<string name="messageSyncAlreadyInProgress">Synchronisation déjà en cours</string>
+	
+	<!-- NoteSorting -->
+    <string name="menuSort">Changer tri</string>
+	<string name="titleDefaultSorting">Choix du tri par défaut</string>
+	<string name="prefDefaultSorting">Tri par défaut</string>
 </resources>

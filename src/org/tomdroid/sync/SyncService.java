@@ -33,6 +33,7 @@ import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.ui.Tomdroid;
 
+import org.tomdroid.R;
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.Handler;
@@ -68,7 +69,7 @@ public abstract class SyncService {
 	public void startSynchronization() {
 		
 		if (syncProgress != 100){
-			Toast.makeText(activity, "Sync already in prgress", Toast.LENGTH_SHORT).show();
+			Toast.makeText(activity, activity.getString(R.string.messageSyncAlreadyInProgress), Toast.LENGTH_SHORT).show();
 			return;
 		}
 		
