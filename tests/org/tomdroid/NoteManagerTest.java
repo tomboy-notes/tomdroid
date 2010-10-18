@@ -22,11 +22,11 @@ public class NoteManagerTest extends ActivityUnitTestCase<Tomdroid> {
 		putNotes(activity);
 		Cursor cursor;
 		// Get all notes excluding the notebook template ones.
-		cursor = NoteManager.getAllNotes(activity, false);
+		cursor = NoteManager.getAllNotes(activity, false,NoteManager.SORT_BY_NAME);
 		assertEquals(1, cursor.getCount());
 		
 		// Get all notes, including notebook templates this time.
-		cursor = NoteManager.getAllNotes(activity, true);
+		cursor = NoteManager.getAllNotes(activity, true,NoteManager.SORT_BY_NAME);
 		assertEquals(2, cursor.getCount());
 	}
 

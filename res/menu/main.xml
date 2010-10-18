@@ -34,4 +34,5 @@
 			android:icon="@android:drawable/ic_menu_preferences"
 			android:title="@string/menuPrefs"
 			android:id="@+id/menuPrefs"/>
+<item android:id="@+id/menuSort" android:title="@string/menuSort"></item>
 </menu>

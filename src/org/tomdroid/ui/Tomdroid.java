@@ -81,6 +81,7 @@ public class Tomdroid extends ListActivity {
 	// UI to data model glue
 	private TextView			listEmptyView;
 	private ListAdapter			adapter;
+	private int					currentSort;
 
 	// UI feedback handler
 	private Handler	syncMessageHandler	= new SyncMessageHandler(this);
@@ -111,7 +112,8 @@ public class Tomdroid extends ListActivity {
 		}
 
 		// adapter that binds the ListView UI to the notes in the note manager
-		adapter = NoteManager.getListAdapter(this);
+		currentSort = NoteManager.SORT_BY_DATE;
+		adapter = NoteManager.getListAdapter(this,currentSort);
 		setListAdapter(adapter);
 
 		// set the view shown when the list is empty
@@ -139,6 +141,10 @@ public class Tomdroid extends ListActivity {
 
 			case R.id.menuPrefs:
 				startActivity(new Intent(this, PreferencesActivity.class));
+				return true;
+
+			case R.id.menuSort:
+				changeSort();
 				return true;
 		}
 
@@ -220,5 +226,21 @@ public class Tomdroid extends ListActivity {
 		Intent i = new Intent(Intent.ACTION_VIEW, intentUri, this, ViewNote.class);
 		startActivity(i);
 	}
+	
+	private void changeSort(){
+		if (currentSort==NoteManager.SORT_BY_DATE){
+			currentSort=NoteManager.SORT_BY_NAME;
+		} else {
+			currentSort=NoteManager.SORT_BY_DATE;
+		}
+		adapter = NoteManager.getListAdapter(this,currentSort);
+		setListAdapter(adapter);
+
+		// set the view shown when the list is empty
+		// TODO default empty-list text is butt-ugly!
+		listEmptyView = (TextView) findViewById(R.id.list_empty);
+		getListView().setEmptyView(listEmptyView);
+	}
+
 
 }

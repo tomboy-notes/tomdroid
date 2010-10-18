@@ -43,6 +43,9 @@ public class NoteManager {
 	public static final String[] ID_PROJECTION = { Note.ID };
 	public static final String[] EMPTY_PROJECTION = {};
 	
+	public static final int SORT_BY_DATE=1;
+	public static final int SORT_BY_NAME=2;
+	
 	// static properties
 	private static final String TAG = "NoteManager";
 	
@@ -129,7 +132,7 @@ public class NoteManager {
 			return false;
 	}
 	
-	public static Cursor getAllNotes(Activity activity, Boolean includeNotebookTemplates) {
+	public static Cursor getAllNotes(Activity activity, Boolean includeNotebookTemplates,int sort) {
 		// get a cursor representing all notes from the NoteProvider
 		Uri notes = Tomdroid.CONTENT_URI;
 		String where = null;
@@ -138,13 +141,21 @@ public class NoteManager {
 			where = Note.TAGS + " NOT LIKE '%" + "system:template" + "%'";
 		}
 		orderBy = Note.MODIFIED_DATE + " DESC";
+		if (sort==SORT_BY_DATE){
+			orderBy = Note.MODIFIED_DATE + " DESC";
+		}
+		
+		if (sort==SORT_BY_NAME){
+			orderBy = Note.TITLE;
+		}
+		
 		return activity.managedQuery(notes, LIST_PROJECTION, where, null, orderBy);		
 	}
 	
 
-	public static ListAdapter getListAdapter(Activity activity) {
+	public static ListAdapter getListAdapter(Activity activity,int sort) {
 
-		Cursor notesCursor = getAllNotes(activity, false);
+		Cursor notesCursor = getAllNotes(activity, false,sort);
 		
 		// set up an adapter binding the TITLE field of the cursor to the list item
 		String[] from = new String[] { Note.TITLE, Note.MODIFIED_DATE };
