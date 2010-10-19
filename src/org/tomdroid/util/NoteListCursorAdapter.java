@@ -44,6 +44,7 @@ public class NoteListCursorAdapter extends SimpleCursorAdapter {
 
     private int layout;
     private int[] colors = new int[] { 0xFFFFFFFF, 0xFFEEEEEE };
+    private Context context;
 
     private DateFormat localeDateFormat;
     private DateFormat localeTimeFormat;
@@ -51,6 +52,7 @@ public class NoteListCursorAdapter extends SimpleCursorAdapter {
     public NoteListCursorAdapter (Context context, int layout, Cursor c, String[] from, int[] to) {
         super(context, layout, c, from, to);
         this.layout = layout;
+        this.context = context;
         localeDateFormat = DateFormat.getDateInstance(DateFormat.SHORT);
         localeTimeFormat = DateFormat.getTimeInstance(DateFormat.SHORT);
     }
@@ -98,16 +100,16 @@ public class NoteListCursorAdapter extends SimpleCursorAdapter {
         Long lastModifiedMillis = lastModified.toMillis(false);
         Date lastModifiedDate = new Date(lastModifiedMillis);
         
-        String strModified = "Modified: ";
+        String strModified = this.context.getString(R.string.textModified)+" ";
         //TODO this is very inefficient
         if (DateUtils.isToday(lastModifiedMillis)){
-        	strModified += "Today, " + localeTimeFormat.format(lastModifiedDate);
+        	strModified += this.context.getString(R.string.textToday) +", " + localeTimeFormat.format(lastModifiedDate);
         } else {
         	// Add a day to the last modified date - if the date is now today, it means the note was edited yesterday
         	Time yesterdayTest = lastModified;
         	yesterdayTest.monthDay += 1;
         	if (DateUtils.isToday(yesterdayTest.toMillis(false))){
-        		strModified += "Yesterday, " + localeTimeFormat.format(lastModifiedDate);
+        		strModified += this.context.getString(R.string.textYexterday) +", " + localeTimeFormat.format(lastModifiedDate);
         	} else {
         		strModified += localeDateFormat.format(lastModifiedDate) + ", " + localeTimeFormat.format(lastModifiedDate);
         	}

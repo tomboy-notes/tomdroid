@@ -77,10 +77,13 @@
 	<string name="messageSyncNoConnection">You are not connected to the Internet.</string>
 	<string name="messageSyncAlreadyInProgress">Sync already in progress</string>
 	
-	
-
 	<!-- NoteSorting -->
     <string name="menuSort">change sort</string>
 	<string name="titleDefaultSorting">Choose the default sorting</string>
 	<string name="prefDefaultSorting">Default sort</string>
+	
+	<!-- Date -->
+    <string name="textModified">Modified: </string>
+    <string name="textToday">Today</string>
+    <string name="textYexterday">Yesterday</string>
 </resources>

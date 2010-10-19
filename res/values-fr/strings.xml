@@ -84,4 +84,9 @@
     <string name="menuSort">Changer tri</string>
 	<string name="titleDefaultSorting">Choix du tri par défaut</string>
 	<string name="prefDefaultSorting">Tri par défaut</string>
+	
+	<!-- Date -->
+    <string name="textModified">Mise à jour: </string>
+    <string name="textToday">Aujourd\'hui</string>
+    <string name="textYexterday">Hier</string>
 </resources>
