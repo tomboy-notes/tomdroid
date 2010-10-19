@@ -35,6 +35,7 @@
     <string name="menuSync">Sync</string>
 	<string name="menuPrefs">Settings</string>
     <string name="menuAbout">About</string>
+    <string name="titleWelcome">Warning</string>
     <string name="strWelcome">
     	Welcome to Tomdroid.
     	\n\nPlease note that this is beta quality software and that it contains known problems,

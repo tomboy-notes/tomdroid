@@ -102,7 +102,7 @@ public class Tomdroid extends ListActivity {
 			
 			// Warn that this is a "will eat your babies" release
 			new AlertDialog.Builder(this).setMessage(getString(R.string.strWelcome)).setTitle(
-					"Warning").setNeutralButton("Ok", new OnClickListener() {
+					getString(R.string.titleWelcome)).setNeutralButton("Ok", new OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
 					Preferences.putBoolean(Preferences.Key.FIRST_RUN, false);
 					dialog.dismiss();

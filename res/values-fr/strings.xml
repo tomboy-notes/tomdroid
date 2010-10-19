@@ -38,6 +38,7 @@
     <string name="menuSync">Sync</string>
 	<string name="menuPrefs">Préférences</string>
     <string name="menuAbout">À propos</string>
+    <string name="titleWelcome">Attention</string>
     <string name="strWelcome">
     	Bienvenue sur Tomdroid.
     	\n\nVeuillez noter que l\'application est en phase beta et qu\'elle contient des problèmes connus, 
