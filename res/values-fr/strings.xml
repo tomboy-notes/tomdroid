@@ -72,5 +72,24 @@
 	<string name="prefSyncConnectionFailed">La connexion au serveur a échoué, veuillez vérifier l\'adresse que vous avez entrée si elle est correcte.</string>
 	<string name="prefServerEmpty">L\'adresse du serveur a changé mais la nouvelle valeur est vide</string>
 
+	<!-- 
+		Information that goes into the Android Market Application Listing. 
+		I've put it in here so that it'll get translated by translators.
+	-->
+	<!-- 30 chars max -->
+	<string name="market_title">Notes Tomdroid</string>
+	<!-- 325 chars max -->
+	<string name="market_description">
+		Client Android pour Tomboy. Tomboy est un logiciel de prise de notes wikiwiki avec une interface usager simple.
 
+		NOTE: LECTURE SEULE pour l\'instant
+
+		* Format de note compatible avec Tomboy
+		* Synchronisation en ligne avec Snowy, Tomboy Online et Ubuntu One
+		* Importation de la carte SD
+		* Logiciel libre!
+	</string>
+	<!-- 80 chars max -->
+	<string name="market_promotext">Appli de prise de notes avec synchronisation en ligne compatible avec Tomboy</string>
+	
 </resources>
