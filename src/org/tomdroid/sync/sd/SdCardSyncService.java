@@ -24,7 +24,6 @@
  */
 package org.tomdroid.sync.sd;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -32,18 +31,18 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.io.StringReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import org.tomdroid.Note;
 import org.tomdroid.sync.SyncService;
 import org.tomdroid.ui.Tomdroid;
+import org.tomdroid.util.ErrorList;
 import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
 import android.app.Activity;
@@ -115,11 +114,11 @@ public class SdCardSyncService extends SyncService {
 			// TODO better progress reporting from within the workers
 			
 			// give a filename to a thread and ask to parse it
-			execInThread(new Worker(fileList[i], false));
+			syncInThread(new Worker(fileList[i], false));
         }
 		
 		// last task, warn it so it'll warn UI when done
-		execInThread(new Worker(fileList[fileList.length-1], true));
+		syncInThread(new Worker(fileList[fileList.length-1], true));
 	}
 	
 	/**
@@ -155,6 +154,18 @@ public class SdCardSyncService extends SyncService {
 			note.setFileName(file.getAbsolutePath());
 			// the note guid is not stored in the xml but in the filename
 			note.setGuid(file.getName().replace(".note", ""));
+			
+			// Try reading the file first
+			String contents = "";
+			try {
+				contents = readFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+				if (Tomdroid.LOGGING_ENABLED) Log.w(TAG, "Something went wrong trying to read the note");
+				sendMessage(PARSING_FAILED, ErrorList.createError(note, e));
+				onWorkDone();
+				return;
+			}
 
 			try {
 				// Parsing
@@ -171,24 +182,17 @@ public class SdCardSyncService extends SyncService {
 		        xr.setContentHandler(xmlHandler);
 
 		        // Create the proper input source
-		        FileInputStream fin = new FileInputStream(file);
-		        BufferedReader in = new BufferedReader(new InputStreamReader(fin), 8192);
-		        InputSource is = new InputSource(in);
+		        StringReader sr = new StringReader(contents);
+		        InputSource is = new InputSource(sr);
 		        
 				if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "parsing note");
 				xr.parse(is);
 
 			// TODO wrap and throw a new exception here
-			} catch (ParserConfigurationException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
-			} catch (SAXException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (TimeFormatException e) {
-				e.printStackTrace();
-				Log.e(TAG, "Problem parsing the note's date and time");
-				sendMessage(PARSING_FAILED);
+				if(e instanceof TimeFormatException) Log.e(TAG, "Problem parsing the note's date and time");
+				sendMessage(PARSING_FAILED, ErrorList.createErrorWithContents(note, e, contents));
 				onWorkDone();
 				return;
 			}
@@ -197,34 +201,35 @@ public class SdCardSyncService extends SyncService {
 			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "retrieving what is inside of note-content");
 			
 			// FIXME here we are re-reading the whole note just to grab note-content out, there is probably a best way to do this (I'm talking to you xmlpull.org!)
-			StringBuilder out = new StringBuilder();
-			try {
-				int read;
-				Reader reader = new InputStreamReader(new FileInputStream(file), "UTF-8");
-				
-				do {
-				  read = reader.read(buffer, 0, buffer.length);
-				  if (read>0) {
-				    out.append(buffer, 0, read);
-				  }
-				}
-				while (read>=0);
-				
-				Matcher m = note_content.matcher(out.toString());
-				if (m.find()) {
-					note.setXmlContent(m.group());
-				} else {
-					if (Tomdroid.LOGGING_ENABLED) Log.w(TAG, "Something went wrong trying to grab the note-content out of a note");
-				}
-
-			} catch (IOException e) {
-				// TODO handle properly
-				e.printStackTrace();
-				if (Tomdroid.LOGGING_ENABLED) Log.w(TAG, "Something went wrong trying to read the note");
+			Matcher m = note_content.matcher(contents);
+			if (m.find()) {
+				note.setXmlContent(m.group());
+			} else {
+				if (Tomdroid.LOGGING_ENABLED) Log.w(TAG, "Something went wrong trying to grab the note-content out of a note");
+				sendMessage(PARSING_FAILED, ErrorList.createErrorWithContents(note, "Something went wrong trying to grab the note-content out of a note", contents));
+				onWorkDone();
+				return;
 			}
 			
-			insertNote(note, isLast);
+			insertNote(note);
 			onWorkDone();
+		}
+		
+		private String readFile() throws IOException {
+			StringBuilder out = new StringBuilder();
+			
+			int read;
+			Reader reader = new InputStreamReader(new FileInputStream(file), "UTF-8");
+			
+			do {
+			  read = reader.read(buffer, 0, buffer.length);
+			  if (read > 0) {
+			    out.append(buffer, 0, read);
+			  }
+			}
+			while (read >= 0);
+			
+			return out.toString();
 		}
 		
 		private void onWorkDone(){

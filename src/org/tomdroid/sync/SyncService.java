@@ -25,13 +25,16 @@
 package org.tomdroid.sync;
 
 import java.util.ArrayList;
-
+import java.util.HashMap;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.ui.Tomdroid;
+import org.tomdroid.util.ErrorList;
 
 import android.app.Activity;
 import android.database.Cursor;
@@ -49,6 +52,12 @@ public abstract class SyncService {
 	private final static int poolSize = 1;
 	
 	private Handler handler;
+	
+	/**
+	 * Contains the synchronization errors. These are stored while synchronization occurs
+	 * and sent to the main UI along with the PARSING_COMPLETE message.
+	 */
+	private ErrorList syncErrors;
 	private int syncProgress = 100;
 	
 	// handler messages
@@ -72,6 +81,7 @@ public abstract class SyncService {
 			return;
 		}
 		
+		syncErrors = new ErrorList();
 		sync();
 	}
 	
@@ -103,20 +113,30 @@ public abstract class SyncService {
 		pool.execute(r);
 	}
 	
+	protected void syncInThread(Runnable r) {
+		Future<?> future = pool.submit(r);
+		try {
+			future.get();
+		} catch (ExecutionException e) {
+			Exception rootException = (Exception)e.getCause();
+			sendMessage(PARSING_FAILED, ErrorList.createError("System Error", "system", rootException));
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		sendMessage(PARSING_COMPLETE);
+	}
+	
 	/**
 	 * Insert a note in the content provider. The identifier for the notes is the guid.
 	 * 
 	 * @param note The note to insert.
 	 */
 	
-	protected void insertNote(Note note, boolean syncFinished) {
+	protected void insertNote(Note note) {
 		
 		NoteManager.putNote(this.activity, note);
-		
-		// if last note warn in UI that we are done
-		if (syncFinished) {
-			handler.sendEmptyMessage(PARSING_COMPLETE);
-		}
 	}
 	
 	/**
@@ -162,7 +182,26 @@ public abstract class SyncService {
 	
 	protected void sendMessage(int message) {
 		
-		handler.sendEmptyMessage(message);
+		sendMessage(message, null);
+	}
+	
+	protected void sendMessage(int message_id, HashMap<String, Object> payload) {
+		
+		switch(message_id) {
+		case PARSING_FAILED:
+			syncErrors.add(payload);
+			break;
+		case PARSING_COMPLETE:
+			Message message = handler.obtainMessage(PARSING_COMPLETE, syncErrors);
+			handler.sendMessage(message);
+			break;
+		case NO_INTERNET:
+			handler.sendEmptyMessage(NO_INTERNET);
+			break;
+		case PARSING_NO_NOTES:
+			handler.sendEmptyMessage(PARSING_NO_NOTES);
+			break;
+		}
 	}
 	
 	/**

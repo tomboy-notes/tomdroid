@@ -25,6 +25,7 @@ package org.tomdroid.ui;
 import org.tomdroid.R;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.sync.SyncService;
+import org.tomdroid.util.ErrorList;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -44,9 +45,6 @@ public class SyncMessageHandler extends Handler {
 
 	private static String TAG = "SycnMessageHandler";
 	private Activity activity;
-
-	// State variables
-	private boolean parsingErrorShown = false;
 	
 	public SyncMessageHandler(Activity activity) {
 		this.activity = activity;
@@ -57,12 +55,29 @@ public class SyncMessageHandler extends Handler {
 
 		switch (msg.what) {
 			case SyncService.PARSING_COMPLETE:
-				// TODO put string in a translatable bundle
-				Toast.makeText(
-						activity,
-						"Synchronization with "
-								+ SyncManager.getInstance().getCurrentService().getDescription()
-								+ " is complete.", Toast.LENGTH_SHORT).show();
+				final ErrorList errors = (ErrorList)msg.obj;
+				if(errors.isEmpty()) {
+					// TODO put string in a translatable bundle
+					Toast.makeText(
+							activity,
+							"Synchronization with "
+									+ SyncManager.getInstance().getCurrentService().getDescription()
+									+ " is complete.", Toast.LENGTH_SHORT).show();
+				} else {
+					// TODO put error string in a translatable resource
+					new AlertDialog.Builder(activity).setMessage(
+						"There was an error trying to parse your note collection. If "
+								+ "you are able to replicate the problem, please contact us!")
+						.setTitle("Error")
+						.setPositiveButton("View", new OnClickListener() {
+							public void onClick(DialogInterface dialog, int which) {
+								errors.show(activity);
+							}
+						})
+						.setNegativeButton("Close", new OnClickListener() {
+							public void onClick(DialogInterface dialog, int which) {}
+						}).show();
+				}
 				break;
 
 			case SyncService.PARSING_NO_NOTES:
@@ -73,28 +88,7 @@ public class SyncMessageHandler extends Handler {
 								+ SyncManager.getInstance().getCurrentService().getDescription()
 								+ ".", Toast.LENGTH_SHORT).show();
 				break;
-
-			case SyncService.PARSING_FAILED:
-				if (Tomdroid.LOGGING_ENABLED)
-					Log.w(TAG, "handler called with a parsing failed message");
-
-				// if we already shown a parsing error in this pass, we
-				// won't show it again
-				if (!parsingErrorShown) {
-					parsingErrorShown = true;
-
-					// TODO put error string in a translatable resource
-					new AlertDialog.Builder(activity).setMessage(
-							"There was an error trying to parse your note collection. If "
-									+ "you are able to replicate the problem, please contact us!")
-							.setTitle("Error").setNeutralButton("Ok", new OnClickListener() {
-								public void onClick(DialogInterface dialog, int which) {
-									dialog.dismiss();
-								}
-							}).show();
-				}
-				break;
-
+				
 			case SyncService.NO_INTERNET:
 				// TODO put string in a translatable bundle
 				Toast.makeText(activity, "You are not connected to the internet.",

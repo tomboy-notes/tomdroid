@@ -32,6 +32,7 @@ import org.tomdroid.Note;
 import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncService;
 import org.tomdroid.ui.Tomdroid;
+import org.tomdroid.util.ErrorList;
 import org.tomdroid.util.Preferences;
 
 import android.app.Activity;
@@ -143,7 +144,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 		
 		final String userRef = Preferences.getString(Preferences.Key.SYNC_SERVER_USER_API);
 		
-		execInThread(new Runnable() {
+		syncInThread(new Runnable() {
 			
 			public void run() {
 				
@@ -183,12 +184,12 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 					for (int i = 0; i < notes.length() - 1; i++) {
 
 						JSONObject jsonNote = notes.getJSONObject(i);
-						insertNote(new Note(jsonNote), false);
+						insertNote(new Note(jsonNote));
 					}
 					setSyncProgress(90);
 					
 					JSONObject jsonNote = notes.getJSONObject(notes.length() - 1);
-					insertNote(new Note(jsonNote), true);
+					insertNote(new Note(jsonNote));
 
 					Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, response
 							.getLong("latest-sync-revision"));
@@ -196,7 +197,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 					
 				} catch (JSONException e1) {
 					Log.e(TAG, "Problem parsing the server response", e1);
-					sendMessage(PARSING_FAILED);
+					sendMessage(PARSING_FAILED, ErrorList.createError("JSON parsing", "json", e1));
 					setSyncProgress(100);
 					return;
 				} catch (java.net.UnknownHostException e) {
