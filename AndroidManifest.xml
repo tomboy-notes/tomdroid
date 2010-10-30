@@ -27,7 +27,7 @@
         		<action android:name="android.intent.action.VIEW" />
         		<category android:name="android.intent.category.DEFAULT" />
         		<category android:name="android.intent.category.BROWSABLE" />
-        		<data android:scheme="tomdroid" />
+        		<data android:scheme="tomdroid" android:host="sync"/>
         	</intent-filter>
         </activity>
     
@@ -48,10 +48,18 @@
 
     	</activity>
 
+      <activity android:name=".ui.ErrorsActivity" android:label="@string/error_app_name" android:theme="@android:style/Theme.Light"><intent-filter>
+        		<action android:name="android.intent.action.VIEW" />
+        		<category android:name="android.intent.category.DEFAULT" />
+        		<category android:name="android.intent.category.BROWSABLE" />
+        		<data android:scheme="tomdroid" android:host="errors"/>
+        	</intent-filter></activity>
+      
       <uses-library android:name="android.test.runner" />
     </application>
     
 	 <uses-permission android:name="android.permission.INTERNET" />
 <instrumentation android:name="android.test.InstrumentationTestRunner" android:targetPackage="org.tomdroid"></instrumentation>
 
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
 </manifest> 
