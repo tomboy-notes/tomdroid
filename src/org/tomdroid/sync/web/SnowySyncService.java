@@ -153,59 +153,73 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 				try {
 					String rawResponse = auth.get(userRef);
 					setSyncProgress(30);
-					JSONObject response = new JSONObject(rawResponse);
-					String notesUrl = response.getJSONObject("notes-ref").getString("api-ref");
 					
-					response = new JSONObject(auth.get(notesUrl));
-					
-					long latestSyncRevision = (Long)Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION);
-					setSyncProgress(35);
-					
-					if (response.getLong("latest-sync-revision") < latestSyncRevision) {
+					try {
+						JSONObject response = new JSONObject(rawResponse);
+						String notesUrl = response.getJSONObject("notes-ref").getString("api-ref");
+						
+						response = new JSONObject(auth.get(notesUrl));
+						
+						long latestSyncRevision = (Long)Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION);
+						setSyncProgress(35);
+						
+						if (response.getLong("latest-sync-revision") < latestSyncRevision) {
+							setSyncProgress(100);
+							return;
+						}
+						
+						rawResponse = auth.get(notesUrl + "?include_notes=true");
+						
+						response = new JSONObject(rawResponse);
+						JSONArray notes = response.getJSONArray("notes");
+						setSyncProgress(60);
+						
+						// Delete the notes that are not in the database
+						ArrayList<String> remoteGuids = new ArrayList<String>();
+
+						for (int i = 0; i < notes.length(); i++) {
+							remoteGuids.add(notes.getJSONObject(i).getString("guid"));
+						}
+
+						deleteNotes(remoteGuids);
+						setSyncProgress(70);
+						
+						// Insert or update the rest of the notes
+						for (int i = 0; i < notes.length() - 1; i++) {
+							
+							try {
+								JSONObject jsonNote = notes.getJSONObject(i);
+								insertNote(new Note(jsonNote));
+							} catch (JSONException e) {
+								Log.e(TAG, "Problem parsing the server response", e);
+								sendMessage(PARSING_FAILED, ErrorList.createErrorWithContents("JSON parsing", "json", e, rawResponse));
+							}
+						}
+						setSyncProgress(90);
+						
+						JSONObject jsonNote = notes.getJSONObject(notes.length() - 1);
+						insertNote(new Note(jsonNote));
+
+						Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, response
+								.getLong("latest-sync-revision"));
+						
+					} catch (JSONException e) {
+						Log.e(TAG, "Problem parsing the server response", e);
+						sendMessage(PARSING_FAILED, ErrorList.createErrorWithContents("JSON parsing", "json", e, rawResponse));
 						setSyncProgress(100);
 						return;
 					}
 					
-					response = new JSONObject(auth.get(notesUrl + "?include_notes=true"));
-					JSONArray notes = response.getJSONArray("notes");
-					setSyncProgress(60);
-					
-					// Delete the notes that are not in the database
-					ArrayList<String> remoteGuids = new ArrayList<String>();
-
-					for (int i = 0; i < notes.length(); i++) {
-						remoteGuids.add(notes.getJSONObject(i).getString("guid"));
-					}
-
-					deleteNotes(remoteGuids);
-					setSyncProgress(70);
-					
-					// Insert or update the rest of the notes
-					for (int i = 0; i < notes.length() - 1; i++) {
-
-						JSONObject jsonNote = notes.getJSONObject(i);
-						insertNote(new Note(jsonNote));
-					}
-					setSyncProgress(90);
-					
-					JSONObject jsonNote = notes.getJSONObject(notes.length() - 1);
-					insertNote(new Note(jsonNote));
-
-					Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, response
-							.getLong("latest-sync-revision"));
 					setSyncProgress(100);
 					
-				} catch (JSONException e1) {
-					Log.e(TAG, "Problem parsing the server response", e1);
-					sendMessage(PARSING_FAILED, ErrorList.createError("JSON parsing", "json", e1));
-					setSyncProgress(100);
-					return;
 				} catch (java.net.UnknownHostException e) {
 					Log.e(TAG, "Internet connection not available");
 					sendMessage(NO_INTERNET);
 					setSyncProgress(100);
 					return;
 				}
+				
+				sendMessage(PARSING_COMPLETE);
 			}
 		});
 	}
