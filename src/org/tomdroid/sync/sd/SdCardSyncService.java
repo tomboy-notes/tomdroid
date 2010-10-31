@@ -233,8 +233,10 @@ public class SdCardSyncService extends SyncService {
 		}
 		
 		private void onWorkDone(){
-			if (isLast) 
+			if (isLast) {
 				setSyncProgress(100);
+				sendMessage(PARSING_COMPLETE);
+			}
 			else
 				setSyncProgress((int) (getSyncProgress() + 100.0 / numberOfFilesToSync));			
 		}
