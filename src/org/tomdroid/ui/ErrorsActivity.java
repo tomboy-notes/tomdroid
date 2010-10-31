@@ -50,7 +50,7 @@ public class ErrorsActivity extends ListActivity {
 	private static final String TAG = "ErrorsActivity";
 	
 	private ListAdapter adapter;
-	private String[] titles;
+	private String[] labels;
 	private String[] filenames;
 	private String[] contents;
 	private String[] errors;
@@ -73,13 +73,13 @@ public class ErrorsActivity extends ListActivity {
 				Log.i(TAG, "Got url : " + uri.toString());
 
 				Bundle bundle = intent.getBundleExtra("org.tomdroid.errors.ShowAll");
-				titles = bundle.getStringArray("titles");
+				labels = bundle.getStringArray("labels");
 				filenames = bundle.getStringArray("filenames");
 				contents = bundle.getStringArray("contents");
 				errors = bundle.getStringArray("errors");
 				
 				// adapter that binds the ListView UI to the notes in the note manager
-				adapter = new ArrayAdapter<String>(this, R.layout.error_item, titles);
+				adapter = new ArrayAdapter<String>(this, R.layout.error_item, labels);
 				setListAdapter(adapter);
 			}
 		}
