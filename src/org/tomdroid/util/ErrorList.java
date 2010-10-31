@@ -76,6 +76,14 @@ public class ErrorList extends LinkedList<HashMap<String, Object>> {
 			.addObject("note-content", noteContents);
 	}
 	
+	public static HashMap<String, Object> createErrorWithContents(String label, String filename, Exception e, String noteContents) {
+		return new Error()
+			.addObject("label", label)
+			.addObject("filename", filename)
+			.addError(e)
+			.addObject("note-content", noteContents);
+	}
+	
 	public void show(final Activity activity) {
 		Uri intentUri = Uri.parse("tomdroid://errors");
 		Intent intent = new Intent(Intent.ACTION_VIEW, intentUri);
