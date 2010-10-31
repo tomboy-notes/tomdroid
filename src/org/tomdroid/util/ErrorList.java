@@ -1,6 +1,9 @@
 package org.tomdroid.util;
 
 import java.io.File;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -12,7 +15,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 public class ErrorList extends LinkedList<HashMap<String, Object>> {
-
+	
 	// Eclipse wants this, let's grant his wish
 	private static final long serialVersionUID = 2442181279736146737L;
 	
@@ -22,7 +25,10 @@ public class ErrorList extends LinkedList<HashMap<String, Object>> {
 		private static final long serialVersionUID = -8279130686438869537L;
 
 		public Error addError(Exception e ) {
-			this.put("error", e.getStackTrace());
+			Writer result = new StringWriter();
+			PrintWriter printWriter = new PrintWriter(result);
+			e.printStackTrace(printWriter);
+			this.put("error", result.toString());
 			return this;
 		}
 		
