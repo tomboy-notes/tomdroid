@@ -1,6 +1,9 @@
 package org.tomdroid.util;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -8,11 +11,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 import org.tomdroid.Note;
-
-import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
+import org.tomdroid.ui.Tomdroid;
 
 public class ErrorList extends LinkedList<HashMap<String, Object>> {
 	
@@ -84,55 +83,38 @@ public class ErrorList extends LinkedList<HashMap<String, Object>> {
 			.addObject("note-content", noteContents);
 	}
 	
-	public void show(final Activity activity) {
-		Uri intentUri = Uri.parse("tomdroid://errors");
-		Intent intent = new Intent(Intent.ACTION_VIEW, intentUri);
-		Bundle bundle = new Bundle();
-		bundle.putStringArray("labels", getLabels());
-		bundle.putStringArray("filenames", getFilenames());
-		bundle.putStringArray("contents", getContents());
-		bundle.putStringArray("errors", getErrors());
-		intent.putExtra("org.tomdroid.errors.ShowAll", bundle);
-		activity.startActivity(intent);
-	}
-	
-	private String[] getLabels() {
-		String[] labels = new String[size()];
+	public void save() {
+		String path = Tomdroid.NOTES_PATH+"errors/";
 		
-		for(int i = 0; i < size(); i++) {
-			labels[i] = (String)get(i).get("label");
+		boolean exists = new File(path).exists();
+		if (!exists){new File(path).mkdirs();}
+		
+		for(int i = 0; i < this.size(); i++) {
+			HashMap<String, Object> error = this.get(i);
+			String filename = new File((String)error.get("filename")).getName();
+			
+			try {
+				FileWriter file;
+				String content = (String)error.get("note-content");
+				
+				if(content != null) {
+					file = new FileWriter(path+filename);
+					file.write(content);
+					file.flush();
+					file.close();
+				}
+				
+				file = new FileWriter(path+filename+".exception");
+				file.write((String)error.get("error"));
+				file.flush();
+				file.close();
+			} catch (FileNotFoundException e) {
+			 // TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+			 // TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		
-		return labels;
-	}
-	
-	private String[] getFilenames() {
-		String[] filenames = new String[size()];
-		
-		for(int i = 0; i < size(); i++) {
-			filenames[i] = (String)get(i).get("filename");
-		}
-		
-		return filenames;
-	}
-	
-	private String[] getErrors() {
-		String[] errors = new String[size()];
-		
-		for(int i = 0; i < size(); i++) {
-			errors[i] = (String)get(i).get("error");
-		}
-		
-		return errors;
-	}
-	
-	private String[] getContents() {
-		String[] contents = new String[size()];
-		
-		for(int i = 0; i < size(); i++) {
-			contents[i] = (String)get(i).get("note-content");
-		}
-		
-		return contents;
 	}
 }

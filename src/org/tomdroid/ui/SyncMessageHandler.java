@@ -69,9 +69,9 @@ public class SyncMessageHandler extends Handler {
 						"There was an error trying to parse your note collection. If "
 								+ "you are able to replicate the problem, please contact us!")
 						.setTitle("Error")
-						.setPositiveButton("View", new OnClickListener() {
+						.setPositiveButton("Save to sd card", new OnClickListener() {
 							public void onClick(DialogInterface dialog, int which) {
-								errors.show(activity);
+								errors.save();
 							}
 						})
 						.setNegativeButton("Close", new OnClickListener() {
