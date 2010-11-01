@@ -13,6 +13,7 @@
 							android:positiveButtonText="@string/prefAuthenticate"
 							android:shouldDisableView="true"/>
 							
-	</PreferenceCategory>
+	<ListPreference android:key="default_Sorting" android:entryValues="@array/sortOrderArray" android:entries="@array/sortOrderValues" android:title="@string/prefDefaultSorting" android:dialogTitle="@string/titleDefaultSorting"></ListPreference>
+</PreferenceCategory>
 	
 </PreferenceScreen>

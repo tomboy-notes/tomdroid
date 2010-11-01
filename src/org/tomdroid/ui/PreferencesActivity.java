@@ -57,6 +57,7 @@ public class PreferencesActivity extends PreferenceActivity {
 	// TODO: put the various preferences in fields and figure out what to do on activity suspend/resume
 	private EditTextPreference syncServer = null;
 	private ListPreference syncService = null;
+	private ListPreference defaultSorting = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +68,7 @@ public class PreferencesActivity extends PreferenceActivity {
 		// Fill the Preferences fields
 		syncServer = (EditTextPreference)findPreference(Preferences.Key.SYNC_SERVER.getName());
 		syncService = (ListPreference)findPreference(Preferences.Key.SYNC_SERVICE.getName());
+		//defaultSorting = (ListPreference)findPreference(Preferences.Key.SORT_ORDER.getName());
 		
 		// Set the default values if nothing exists
 		this.setDefaults();
@@ -188,6 +190,14 @@ public class PreferencesActivity extends PreferenceActivity {
 		syncService.setDefaultValue(defaultService);
 		if(syncService.getValue() == null)
 			syncService.setValue(defaultService);
+
+		/*
+		 * 
+		String defaultDefaultSorting = (String)Preferences.Key.SORT_ORDER.getDefault();
+		defaultSorting.setDefaultValue(defaultDefaultSorting);
+		if(defaultSorting.getValue() == null)
+			defaultSorting.setValue(defaultService);
+		 */
 	
 	}
 

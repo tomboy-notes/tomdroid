@@ -5,7 +5,7 @@
 	<item>sort_title</item>
 </array>
 <array name="sortOrderValues">
-	<item>Date Modified</item>
-	<item>Note Title</item>
+	<item>Date de modification</item>
+	<item>Titre de la note</item>
 </array>
 </resources>

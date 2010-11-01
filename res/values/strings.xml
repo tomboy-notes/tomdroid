@@ -22,7 +22,6 @@
  along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
-    <string name="menuSort">change sort</string>
     <string name="app_name">Tomdroid</string>
     <string name="app_desc">Tomboy compatible wikiwiki note-taking application that can\'t take notes yet.</string>
     <string name="author">Olivier Bilodeau</string>
@@ -70,5 +69,8 @@
 	<string name="prefSyncConnectionFailed">The connection to the server has failed, please check that the address you entered is correct.</string>
 	<string name="prefServerEmpty">The server address changed but the new value is empty</string>
 
-
+	<!-- NoteSorting -->
+    <string name="menuSort">change sort</string>
+	<string name="titleDefaultSorting">Choose the default sorting</string>
+	<string name="prefDefaultSorting">Default sort</string>
 </resources>
