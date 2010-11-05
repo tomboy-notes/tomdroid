@@ -187,12 +187,15 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						// Insert or update the rest of the notes
 						for (int i = 0; i < notes.length() - 1; i++) {
 							
+							JSONObject jsonNote = null;
+							
 							try {
-								JSONObject jsonNote = notes.getJSONObject(i);
+								jsonNote = notes.getJSONObject(i);
 								insertNote(new Note(jsonNote));
 							} catch (JSONException e) {
 								Log.e(TAG, "Problem parsing the server response", e);
-								sendMessage(PARSING_FAILED, ErrorList.createErrorWithContents("JSON parsing", "json", e, rawResponse));
+								String json = (jsonNote != null) ? jsonNote.toString(2) : rawResponse;
+								sendMessage(PARSING_FAILED, ErrorList.createErrorWithContents("JSON parsing", "json", e, json));
 							}
 						}
 						setSyncProgress(90);
