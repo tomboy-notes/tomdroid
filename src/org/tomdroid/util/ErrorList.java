@@ -13,6 +13,8 @@ import java.util.LinkedList;
 import org.tomdroid.Note;
 import org.tomdroid.ui.Tomdroid;
 
+import android.util.Log;
+
 public class ErrorList extends LinkedList<HashMap<String, Object>> {
 	
 	// Eclipse wants this, let's grant his wish
@@ -83,31 +85,34 @@ public class ErrorList extends LinkedList<HashMap<String, Object>> {
 			.addObject("note-content", noteContents);
 	}
 	
-	public void save() {
+	public boolean save() {
 		String path = Tomdroid.NOTES_PATH+"errors/";
 		
-		boolean exists = new File(path).exists();
-		if (!exists){new File(path).mkdirs();}
+		File fPath = new File(path);
+		if (!fPath.exists()){
+			fPath.mkdirs();
+			if(!fPath.exists()) return false;
+		}
 		
 		for(int i = 0; i < this.size(); i++) {
 			HashMap<String, Object> error = this.get(i);
-			String filename = new File((String)error.get("filename")).getName();
+			String filename = findFilename(path, (String)error.get("filename"), 0);
 			
 			try {
-				FileWriter file;
+				FileWriter fileWriter;
 				String content = (String)error.get("note-content");
 				
 				if(content != null) {
-					file = new FileWriter(path+filename);
-					file.write(content);
-					file.flush();
-					file.close();
+					fileWriter = new FileWriter(path+filename);
+					fileWriter.write(content);
+					fileWriter.flush();
+					fileWriter.close();
 				}
 				
-				file = new FileWriter(path+filename+".exception");
-				file.write((String)error.get("error"));
-				file.flush();
-				file.close();
+				fileWriter = new FileWriter(path+filename+".exception");
+				fileWriter.write((String)error.get("error"));
+				fileWriter.flush();
+				fileWriter.close();
 			} catch (FileNotFoundException e) {
 			 // TODO Auto-generated catch block
 				e.printStackTrace();
@@ -116,5 +121,18 @@ public class ErrorList extends LinkedList<HashMap<String, Object>> {
 				e.printStackTrace();
 			}
 		}
+		
+		return true;
+	}
+	
+	private String findFilename(String path, String baseName, int level) {
+		
+		if(level < 0) level = 0;
+		
+		String suffix = ""+(level == 0 ? "" : level);
+		String filePath = path+baseName+suffix;
+		File file = new File(filePath);
+		
+		return file.exists() ? findFilename(path, baseName, level + 1) : baseName+suffix;		
 	}
 }
