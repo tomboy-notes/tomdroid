@@ -237,6 +237,7 @@ public class SdCardSyncService extends SyncService {
 			}
 			while (read >= 0);
 			
+			reader.close();
 			return out.toString();
 		}
 		
