@@ -63,7 +63,8 @@ public abstract class SyncService {
 	public final static int PARSING_FAILED = 2;
 	public final static int PARSING_NO_NOTES = 3;
 	public final static int NO_INTERNET = 4;
-	public final static int SYNC_PROGRESS = 5;
+	public final static int NO_SD_CARD = 5;
+	public final static int SYNC_PROGRESS = 6;
 	
 	public SyncService(Activity activity, Handler handler) {
 		
@@ -179,26 +180,24 @@ public abstract class SyncService {
 	
 	protected void sendMessage(int message) {
 		
-		sendMessage(message, null);
+		if(!sendMessage(message, null)) {
+			handler.sendEmptyMessage(message);
+		}
 	}
 	
-	protected void sendMessage(int message_id, HashMap<String, Object> payload) {
+	protected boolean sendMessage(int message_id, HashMap<String, Object> payload) {
 		
 		switch(message_id) {
 		case PARSING_FAILED:
 			syncErrors.add(payload);
-			break;
+			return true;
 		case PARSING_COMPLETE:
 			Message message = handler.obtainMessage(PARSING_COMPLETE, syncErrors);
 			handler.sendMessage(message);
-			break;
-		case NO_INTERNET:
-			handler.sendEmptyMessage(NO_INTERNET);
-			break;
-		case PARSING_NO_NOTES:
-			handler.sendEmptyMessage(PARSING_NO_NOTES);
-			break;
+			return true;
 		}
+		
+		return false;
 	}
 	
 	/**

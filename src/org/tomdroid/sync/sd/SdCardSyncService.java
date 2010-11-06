@@ -26,7 +26,6 @@ package org.tomdroid.sync.sd;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -52,7 +51,6 @@ import android.util.TimeFormatException;
 
 public class SdCardSyncService extends SyncService {
 	
-	private File path;
 	private int numberOfFilesToSync = 0;
 	
 	// regexp for <note-content..>...</note-content>
@@ -61,13 +59,8 @@ public class SdCardSyncService extends SyncService {
 	// logging related
 	private final static String TAG = "SdCardSyncService";
 	
-	public SdCardSyncService(Activity activity, Handler handler) throws FileNotFoundException {
+	public SdCardSyncService(Activity activity, Handler handler) {
 		super(activity, handler);
-		
-		path = new File(Tomdroid.NOTES_PATH);
-		
-		if (!path.exists())
-			path.mkdir();
 	}
 	
 	@Override
@@ -97,6 +90,21 @@ public class SdCardSyncService extends SyncService {
 
 		// start loading local notes
 		if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "Loading local notes");
+		
+		File path = new File(Tomdroid.NOTES_PATH);
+		
+		if (!path.exists())
+			path.mkdir();
+		
+		Log.i(TAG, "Path "+path+" exists: "+path.exists());
+		
+		// Check a second time, if not the most likely cause is the volume doesn't exist
+		if(!path.exists()) {
+			if (Tomdroid.LOGGING_ENABLED) Log.w(TAG, "Couldn't create "+path);
+			sendMessage(NO_SD_CARD);
+			setSyncProgress(100);
+			return;
+		}
 		
 		File[] fileList = path.listFiles(new NotesFilter());
 		numberOfFilesToSync  = fileList.length;

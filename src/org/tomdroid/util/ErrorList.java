@@ -13,8 +13,6 @@ import java.util.LinkedList;
 import org.tomdroid.Note;
 import org.tomdroid.ui.Tomdroid;
 
-import android.util.Log;
-
 public class ErrorList extends LinkedList<HashMap<String, Object>> {
 	
 	// Eclipse wants this, let's grant his wish
@@ -89,8 +87,9 @@ public class ErrorList extends LinkedList<HashMap<String, Object>> {
 		String path = Tomdroid.NOTES_PATH+"errors/";
 		
 		File fPath = new File(path);
-		if (!fPath.exists()){
+		if (!fPath.exists()) {
 			fPath.mkdirs();
+			// Check a second time, if not the most likely cause is the volume doesn't exist
 			if(!fPath.exists()) return false;
 		}
 		

@@ -71,7 +71,10 @@ public class SyncMessageHandler extends Handler {
 						.setTitle("Error")
 						.setPositiveButton("Save to sd card", new OnClickListener() {
 							public void onClick(DialogInterface dialog, int which) {
-								errors.save();
+								if(!errors.save()) {
+									Toast.makeText(activity, "Could not save the errors, please check your SD card.",
+											Toast.LENGTH_SHORT).show();
+								}
 							}
 						})
 						.setNegativeButton("Close", new OnClickListener() {
@@ -92,6 +95,11 @@ public class SyncMessageHandler extends Handler {
 			case SyncService.NO_INTERNET:
 				// TODO put string in a translatable bundle
 				Toast.makeText(activity, "You are not connected to the internet.",
+						Toast.LENGTH_SHORT).show();
+				break;
+				
+			case SyncService.NO_SD_CARD:
+				Toast.makeText(activity, "SD card not found.",
 						Toast.LENGTH_SHORT).show();
 				break;
 

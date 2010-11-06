@@ -22,7 +22,6 @@
  */
 package org.tomdroid.sync;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import org.tomdroid.sync.sd.SdCardSyncService;
@@ -31,7 +30,6 @@ import org.tomdroid.util.Preferences;
 
 import android.app.Activity;
 import android.os.Handler;
-import android.util.Log;
 
 public class SyncManager {
 	
@@ -95,12 +93,6 @@ public class SyncManager {
 		services.clear();
 		
 		services.add(new SnowySyncService(activity, handler));
-		
-		try {
-			services.add(new SdCardSyncService(activity, handler));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		services.add(new SdCardSyncService(activity, handler));
 	}
 }
