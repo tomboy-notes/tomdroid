@@ -112,6 +112,11 @@ public abstract class SyncService {
 		pool.execute(r);
 	}
 	
+	/**
+	 * Execute code in a separate thread.
+	 * Any exception thrown by the thread will be added to the error list
+	 * @param r The runner subclass to execute
+	 */
 	protected void syncInThread(final Runnable r) {
 		Runnable task = new Runnable() {
 			public void run() {

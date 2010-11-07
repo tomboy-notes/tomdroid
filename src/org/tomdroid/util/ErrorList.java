@@ -83,6 +83,11 @@ public class ErrorList extends LinkedList<HashMap<String, Object>> {
 			.addObject("note-content", noteContents);
 	}
 	
+	/**
+	 * Saves the error list in an "errors" directory located in the notes directory.
+	 * Both the exception and the note content are saved.
+	 * @return true if the save was successful, false if it wasn't
+	 */
 	public boolean save() {
 		String path = Tomdroid.NOTES_PATH+"errors/";
 		
@@ -124,6 +129,13 @@ public class ErrorList extends LinkedList<HashMap<String, Object>> {
 		return true;
 	}
 	
+	/**
+	 * Finds a not existing filename to write the error.
+	 * @param path The directory in which to save the error
+	 * @param baseName The base filename of the error
+	 * @param level The number that get appended to the filename
+	 * @return A filename that doesn't exists in the path directory
+	 */
 	private String findFilename(String path, String baseName, int level) {
 		
 		if(level < 0) level = 0;

@@ -72,6 +72,7 @@ public class SyncMessageHandler extends Handler {
 						.setPositiveButton("Save to sd card", new OnClickListener() {
 							public void onClick(DialogInterface dialog, int which) {
 								if(!errors.save()) {
+									// TODO put string in a translatable bundle
 									Toast.makeText(activity, "Could not save the errors, please check your SD card.",
 											Toast.LENGTH_SHORT).show();
 								}
@@ -99,6 +100,7 @@ public class SyncMessageHandler extends Handler {
 				break;
 				
 			case SyncService.NO_SD_CARD:
+				// TODO put string in a translatable bundle
 				Toast.makeText(activity, "SD card not found.",
 						Toast.LENGTH_SHORT).show();
 				break;
