@@ -22,8 +22,6 @@
  */
 package org.tomdroid.sync.web;
 
-import java.util.UUID;
-
 import org.tomdroid.Note;
 
 public class TestFetchingFromServer extends MockedSyncServerTestCase {
@@ -98,7 +96,8 @@ public class TestFetchingFromServer extends MockedSyncServerTestCase {
 
 	public void testDeletingNoteOnServer() throws Exception {
 		getServer().testDataManipulator.createNewNote();
-		UUID deletedNoteGuid = getServer().testDataManipulator.createNewNote().getGuid();
+		String deletedNoteGuid = getServer().testDataManipulator
+				.createNewNote().getGuid();
 		getServer().testDataManipulator.createNewNote();
 		getSyncMethod().syncWith(getServer());
 		assertEquals(3, getLocalStorage().getNoteGuids().size());

@@ -1,9 +1,14 @@
 TODO tasks
 ==========
+0.5:
+- find a way to optionally present what's new to the users on upgrades. People tend to do that with description and I think it's bad.
+
 Unclassified:
+- QR Code in Tomdroid's launchpad page (or tomdroid.org?)
+- getting-started FAQ (java, android env, bzr, open source)
 - check to merge https://code.launchpad.net/~tomdroid-dev/tomdroid/ContextMenu
 - find a sample use of the ContentProvider regarding Edouard's branch: searchbar-on-0.3/ and tell him
-- basic note editing
+- basic note editing (snowy guys working on something with http://en.wikipedia.org/wiki/Markdown)
 - improve responsiveness when loading notes from sdcard
 -- benchmark what's going on
 -- confirm: the listview observer over list adapter is eating lots of resources?

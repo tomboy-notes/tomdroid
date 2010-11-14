@@ -46,7 +46,7 @@ public class LocalStorage {
 
 	// TODO This data base accessor should not need a reference to an Activity. Currently the
 	// NoteManager unfortunately uses managed queries (which is dispensable).
-	private Activity			activity;
+	private final Activity			activity;
 
 	public LocalStorage(Activity activity) {
 		this.activity = activity;
@@ -114,10 +114,10 @@ public class LocalStorage {
 	}
 
 	public long getLatestSyncVersion() {
-		return (Long) Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION);
+		return Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION);
 	}
 
-	public Note getNote(UUID guid) {
+	public Note getNote(String guid) {
 		return NoteManager.getNote(activity, guid);
 	}
 

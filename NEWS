@@ -11,6 +11,11 @@ Join it at: https://launchpad.net/~tomdroid-dev
 
 For more details and developer visible changes see the ChangeLog
 
+Version 0.4.1 - "I didn't do it!" (fixed with duct tape) released on 2010-10-15
+* Fixed sync issues related to note identifiers (Stuart Langridge, lp:657477)
+* Error messages available in logs even in released builds (lp:657561)
+* Some strings translated to French (Benoit Soyeux)
+
 Version 0.4.0 - "I didn't do it!" released on 2010-10-09
 * One-way Note Synchronization! Two providers for now: Tomboy Web and SD Card 
   (Benoit Garret, Rodja Trappe)

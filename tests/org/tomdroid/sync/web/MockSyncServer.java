@@ -35,8 +35,8 @@ import org.tomdroid.Note;
 
 public class MockSyncServer extends SyncServer {
 
-	HashMap<UUID, Note>		storedNotes			= new HashMap<UUID, Note>();
-	private ArrayList<Note>	noteUpdates			= new ArrayList<Note>();
+	HashMap<String, Note> storedNotes = new HashMap<String, Note>();
+	private final ArrayList<Note>	noteUpdates			= new ArrayList<Note>();
 
 	TestDataManipulator		testDataManipulator	= new TestDataManipulator();
 	private boolean			isStoringLocked;
@@ -109,7 +109,7 @@ public class MockSyncServer extends SyncServer {
 			onStoredDataChanged();
 			Note note = new Note();
 			note.setTitle("A Title");
-			note.setGuid(UUID.randomUUID());
+			note.setGuid(UUID.randomUUID().toString());
 			note.changeXmlContent("Note content.");
 			note.setLastSyncRevision(syncVersionOnServer);
 
@@ -152,12 +152,12 @@ public class MockSyncServer extends SyncServer {
 			return note;
 		}
 
-		public void deleteNote(UUID guid) {
+		public void deleteNote(String guid) {
 			storedNotes.remove(guid);
 			onStoredDataChanged();
 		}
 
-		public Note getNote(UUID guid) {
+		public Note getNote(String guid) {
 			if (!storedNotes.containsKey(guid))
 				throw new NoSuchElementException();
 

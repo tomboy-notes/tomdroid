@@ -55,7 +55,7 @@ public class NoteManager {
 		return getNote(cursor);
 	}
 
-	public static Note getNote(Context context, UUID guid) {
+	public static Note getNote(Context context, String guid) {
 		String[] whereArgs = { guid.toString() };
 		Cursor cursor = context.getContentResolver().query(Tomdroid.CONTENT_URI, FULL_PROJECTION,
 				Note.GUID + "=?", whereArgs, null);

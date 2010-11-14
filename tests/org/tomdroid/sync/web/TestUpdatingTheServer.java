@@ -22,14 +22,12 @@
  */
 package org.tomdroid.sync.web;
 
-import java.util.UUID;
-
 import org.tomdroid.Note;
 
 public class TestUpdatingTheServer extends MockedSyncServerTestCase {
 
 	public void testChangingNoteOnClient() throws Exception {
-		UUID guid = getServer().testDataManipulator.createNewNote().getGuid();
+		String guid = getServer().testDataManipulator.createNewNote().getGuid();
 		getSyncMethod().syncWith(getServer());
 
 		assertEquals("there should be no new/updated notes", 0, getLocalStorage()
@@ -59,7 +57,7 @@ public class TestUpdatingTheServer extends MockedSyncServerTestCase {
 	}
 
 	public void testChangingDifferentNotesOnClientAndServer() throws Exception {
-		UUID guid = getServer().testDataManipulator.createNewNote().getGuid();
+		String guid = getServer().testDataManipulator.createNewNote().getGuid();
 		getSyncMethod().syncWith(getServer());
 
 		modifyLocalNote(guid);
@@ -72,7 +70,7 @@ public class TestUpdatingTheServer extends MockedSyncServerTestCase {
 	}
 
 	public void testServerNotStoringLocalModificationWhileSyncing() throws Exception {
-		UUID guid = getServer().testDataManipulator.createNewNote().getGuid();
+		String guid = getServer().testDataManipulator.createNewNote().getGuid();
 		getSyncMethod().syncWith(getServer());
 
 		modifyLocalNote(guid);
@@ -86,7 +84,7 @@ public class TestUpdatingTheServer extends MockedSyncServerTestCase {
 	}
 
 	public void testMergingLocalModificationWithModificationOnServer() throws Exception {
-		UUID guid = getServer().testDataManipulator.createNewNote().getGuid();
+		String guid = getServer().testDataManipulator.createNewNote().getGuid();
 		getSyncMethod().syncWith(getServer());
 
 		modifyLocalNote(guid);
@@ -105,7 +103,7 @@ public class TestUpdatingTheServer extends MockedSyncServerTestCase {
 	}
 
 	
-	private Note modifyLocalNote(UUID guid) throws Exception {
+	private Note modifyLocalNote(String guid) throws Exception {
 		Note note = getLocalStorage().getNote(guid);
 		long creationTime = note.getLastChangeDate().toMillis(false);
 		Thread.sleep(1100);

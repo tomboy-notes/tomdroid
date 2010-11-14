@@ -53,7 +53,7 @@ import android.util.TimeFormatException;
 
 public class SdCardSyncService extends SyncMethod {
 
-	private File				path;
+	private final File				path;
 	private int					numberOfFilesToSync	= 0;
 	private int					filesSynced			= 0;
 
@@ -142,8 +142,8 @@ public class SdCardSyncService extends SyncMethod {
 	private class Worker implements Runnable {
 
 		// the note to be loaded and parsed
-		private Note	note	= new Note();
-		private File	file;
+		private final Note	note	= new Note();
+		private final File	file;
 		final char[]	buffer	= new char[0x10000];
 
 		public Worker(File f) {
@@ -187,8 +187,7 @@ public class SdCardSyncService extends SyncMethod {
 				e.printStackTrace();
 			} catch (TimeFormatException e) {
 				e.printStackTrace();
-				if (Tomdroid.LOGGING_ENABLED)
-					Log.e(TAG, "Problem parsing the note's date and time");
+				Log.e(TAG, "Problem parsing the note's date and time");
 				sendMessage(PARSING_FAILED);
 				onWorkDone();
 				return;

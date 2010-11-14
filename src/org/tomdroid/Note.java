@@ -28,9 +28,9 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONArray;
 import org.tomdroid.util.NoteContentBuilder;
 import org.tomdroid.util.XmlUtils;
 
@@ -74,7 +74,9 @@ public class Note implements Cloneable {
 	private String tags;
 	private Time lastChangeDate;
 	private int dbId;
-	private UUID guid;
+	// TODO before guid were of the UUID object type, now they are simple strings 
+	// but at some point we probably need to validate their uniqueness (per note collection or universe-wide?) 
+	private String guid;
 	private long lastSyncRevision;
 	private boolean isSynced = true;
 	
@@ -87,7 +89,7 @@ public class Note implements Cloneable {
 	
 	public Note() {
 		setTitle("no tilte");
-		setGuid(UUID.randomUUID());
+		setGuid(UUID.randomUUID().toString());
 		lastSyncRevision = 0;
 		changeXmlContent("no content");
 		setTags("");
@@ -214,16 +216,11 @@ public class Note implements Cloneable {
 	public void setDbId(int id) {
 		this.dbId = id;
 	}
-
-	public UUID getGuid() {
+	public String getGuid() {
 		return guid;
 	}
 
 	public void setGuid(String guid) {
-		this.guid = UUID.fromString(guid);
-	}
-
-	public void setGuid(UUID guid) {
 		this.guid = guid;
 	}
 
@@ -301,6 +298,7 @@ public class Note implements Cloneable {
 		return new String("Note: " + getTitle() + " (" + getLastChangeDate() + ")");
 	}
 
+	@Override
 	public Note clone() {
 
 		Note clone = new Note();
