@@ -146,6 +146,10 @@ public class Tomdroid extends ListActivity {
 			case R.id.menuSort:
 				changeSort();
 				return true;
+
+			case R.id.menuFilter:
+				startActivity(new Intent(this, Notebooks.class));
+				return true;
 		}
 
 		return super.onOptionsItemSelected(item);

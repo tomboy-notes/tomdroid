@@ -27,14 +27,15 @@
 			android:icon="@drawable/icon_about"
 			android:title="@string/menuAbout"
 			android:id="@+id/menuAbout"
-			/>
-	
-	
+			/>			
+	<item 
+			android:title="@string/menuFilter" 
+			android:id="@+id/menuFilter" 
+			android:icon="@drawable/icon_sort"/>	
 	<item 
 			android:icon="@android:drawable/ic_menu_preferences"
 			android:title="@string/menuPrefs"
-			android:id="@+id/menuPrefs"/>
-			
+			android:id="@+id/menuPrefs"/>			
 	<item 
 			android:icon="@drawable/icon_sort" 
 			android:id="@+id/menuSort" 

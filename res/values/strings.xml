@@ -73,4 +73,7 @@
     <string name="menuSort">change sort</string>
 	<string name="titleDefaultSorting">Choose the default sorting</string>
 	<string name="prefDefaultSorting">Default sort</string>
+	
+	<!-- NoteFiltering -->
+    <string name="menuFilter">Filter</string>
 </resources>

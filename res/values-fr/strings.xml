@@ -76,5 +76,8 @@
     <string name="menuSort">changer tri</string>
 	<string name="titleDefaultSorting">Choix du tri par défaut</string>
 	<string name="prefDefaultSorting">Tri par défaut</string>
+	
+	<!-- NoteFiltering -->
+    <string name="menuFilter">Filtrer</string>
 
 </resources>

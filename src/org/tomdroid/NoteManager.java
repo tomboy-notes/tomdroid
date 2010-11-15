@@ -30,9 +30,12 @@ import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.ListAdapter;
+import android.widget.SimpleCursorAdapter;
 
 public class NoteManager {
 	
@@ -42,6 +45,7 @@ public class NoteManager {
 	public static final String[] GUID_PROJECTION = { Note.ID, Note.GUID };
 	public static final String[] ID_PROJECTION = { Note.ID };
 	public static final String[] EMPTY_PROJECTION = {};
+	public static final String[] LIST_NOTEBOOK = {Note.ID, Note.TAGS };
 	
 	public static final int SORT_BY_DATE=1;
 	public static final int SORT_BY_NAME=2;
@@ -197,5 +201,61 @@ public class NoteManager {
 		}
 		
 		return id;
+	}
+	
+	public static Cursor getAllNotebooks(Activity activity, Boolean includeNotebookTemplates) {
+		// get a cursor representing all notes from the NoteProvider
+		Uri notes = Tomdroid.CONTENT_URI;
+		String where = null;
+		String orderBy;
+		if (!includeNotebookTemplates) {
+			where = Note.TAGS + " NOT LIKE '%" + "system:template" + "%'";
+		}
+		orderBy = Note.TAGS + " DESC";
+
+		SQLiteDatabase db = null;
+		Cursor notebooksCursor = null;
+		Log.i(TAG,"Avant ouverture de la base");
+		try{
+			db = SQLiteDatabase.openDatabase("/data/data/org.tomdroid/databases/tomdroid-notes.db",null,SQLiteDatabase.OPEN_READONLY);
+			if (!db.isOpen()){
+				Log.e(TAG,"Impossible d'ouvir la base");
+			}
+			Log.i(TAG,"Apres ouverture de la base");
+			//SQLiteOpenHelper mOpenHelper = new SQLiteOpenHelper(activity.getApplicationContext(), "notes", null, 1);
+			
+			SQLiteQueryBuilder qb = new SQLiteQueryBuilder ();
+			qb.setDistinct(true);
+			Log.i(TAG,"setDistinct OK");
+			qb.setTables("notes");
+			Log.i(TAG,"setTables OK");
+			try{
+				notebooksCursor = qb.query(db, LIST_NOTEBOOK, null, null, null, null, orderBy);
+				Log.i(TAG,"query OK");
+			} catch (Exception e) {
+				e.printStackTrace();
+				Log.e(TAG,"query KO");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return notebooksCursor;
+		//return activity.managedQuery(notes, LIST_NOTEBOOK, where, null, orderBy);		
+	}
+	
+
+	public static ListAdapter getListAdapterNotebook(Activity activity) {
+		Log.i(TAG,"fct getListAdapterNotebook()");
+		Cursor notebooksCursor = getAllNotebooks(activity, false);
+		Log.i(TAG,"notebooksCursor OK");
+		
+		// set up an adapter binding the TITLE field of the cursor to the list item
+		String[] from = new String[] { Note.TAGS };
+		Log.i(TAG,"from OK");
+		int[] to = new int[] { R.id.notebook };
+		Log.i(TAG,"to OK");
+		return new SimpleCursorAdapter(activity, R.layout.notebooks_list_item, notebooksCursor, from, to);
 	}
 }
