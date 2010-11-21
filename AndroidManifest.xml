@@ -49,6 +49,7 @@
     	</activity>
 
       <uses-library android:name="android.test.runner" />
+      <activity android:name=".ui.Notebooks" android:label="@string/app_name"></activity>
     </application>
     
 	 <uses-permission android:name="android.permission.INTERNET" />
