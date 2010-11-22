@@ -108,10 +108,9 @@ public class NoteProvider extends ContentProvider {
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         	if (Tomdroid.LOGGING_ENABLED) {
-        		Log.d(TAG, "Upgrading database from version " + oldVersion + " to "
-                    + newVersion + ", which will destroy all old data");
+        		Log.d(TAG, "Upgrading database from version " + oldVersion + " to " + newVersion + ", which will destroy all old data");
         	}
-            db.execSQL("DROP TABLE IF EXISTS notes");
+            db.execSQL("DROP TABLE IF EXISTS " + DB_TABLE_NOTES);
             onCreate(db);
         }
     }

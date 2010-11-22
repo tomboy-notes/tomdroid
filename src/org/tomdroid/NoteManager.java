@@ -45,7 +45,7 @@ public class NoteManager {
 	public static final String[] GUID_PROJECTION = { Note.ID, Note.GUID };
 	public static final String[] ID_PROJECTION = { Note.ID };
 	public static final String[] EMPTY_PROJECTION = {};
-	public static final String[] LIST_NOTEBOOK = {"_ID", "notebook" };
+	public static final String[] LIST_NOTEBOOK = {"_id", "notebook" };
 	
 	public static final int SORT_BY_DATE=1;
 	public static final int SORT_BY_NAME=2;
@@ -78,7 +78,7 @@ public class NoteManager {
 	
 	// puts a note in the content provider
 	public static void putNote(Activity activity, Note note) {
-		
+
 		// verify if the note is already in the content provider
 		
 		// TODO make the query prettier (use querybuilder)
@@ -121,8 +121,10 @@ public class NoteManager {
 			
 			if (Tomdroid.LOGGING_ENABLED) Log.v(TAG,"Note updated in content provider. TITLE:"+note.getTitle()+" GUID:"+note.getGuid());
 		}
+
 		// put TAGS in notebooks table
 		putNotebook(activity, note.getTags());
+		Log.i(TAG, "putNotebook OK");
 	}
 	
 	public static boolean deleteNote(Activity activity, int id)
@@ -208,8 +210,6 @@ public class NoteManager {
 	public static Cursor getAllNotebooks(Activity activity, Boolean includeNotebookTemplates) {
 		// get a cursor representing all notes from the NoteProvider
 		Uri notebooks = Tomdroid.CONTENT_URI_NOTEBOOK;
-		String where = null;
-		String orderBy = null;
 		return activity.managedQuery(notebooks, LIST_NOTEBOOK, null, null, null);		
 	}
 	
@@ -262,9 +262,9 @@ public class NoteManager {
 		Log.i(TAG,"notebooksCursor OK");
 		
 		// set up an adapter binding the TITLE field of the cursor to the list item
-		String[] from = new String[] { Note.TAGS };
+		String[] from = new String[] { "notebook" };
 		Log.i(TAG,"from OK");
-		int[] to = new int[] { R.id.notebook };
+		int[] to = new int[] { R.id.notebook_name };
 		Log.i(TAG,"to OK");
 		return new SimpleCursorAdapter(activity, R.layout.notebooks_list_item, notebooksCursor, from, to);
 	}
@@ -282,14 +282,11 @@ public class NoteManager {
 		String[] whereArgs = new String[1];
 		whereArgs[0] = notebook;
 		
+		
 		// The note identifier is the guid
 		ContentResolver cr = activity.getContentResolver();
 		Log.i(TAG,"ContentResolver : OK");
-		Cursor managedCursor = cr.query(notebooks,
-                EMPTY_PROJECTION,  
-                "notebook= ?",
-                whereArgs,
-                null);
+		Cursor managedCursor = cr.query(notebooks,EMPTY_PROJECTION,"notebook= ?",whereArgs, null);
 		Log.i(TAG,"managedCursor : OK");
 		activity.startManagingCursor(managedCursor);
 		Log.i(TAG,"activity.startManagingCursor : OK");
