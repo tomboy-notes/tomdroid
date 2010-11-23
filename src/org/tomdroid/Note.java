@@ -145,9 +145,9 @@ public class Note {
 		// Tomboy's (C# library) format: 2010-01-23T12:07:38.7743020-05:00
 		Matcher m = dateCleaner.matcher(lastChangeDateStr);
 		if (m.find()) {
-			Log.d(TAG, "I had to clean out extra sub-milliseconds from the date");
+			//Log.d(TAG, "I had to clean out extra sub-milliseconds from the date");
 			lastChangeDateStr = m.group(1)+m.group(2);
-			Log.v(TAG, "new date: "+lastChangeDateStr);
+			//Log.v(TAG, "new date: "+lastChangeDateStr);
 		}
 		
 		lastChangeDate = new Time();

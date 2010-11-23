@@ -25,7 +25,7 @@ public class NotebookProvider extends ContentProvider {
 	// --	
 	private static final String DATABASE_NAME = "tomdroid-notes.db";
 	private static final String DB_TABLE_NOTEBOOKS = "notebooks";
-	private static final int DB_VERSION = 4;
+	private static final int DB_VERSION = 5;
 	private static final String DEFAULT_SORT_ORDER = "notebook";
 	
     private static HashMap<String, String> notesProjectionMap;
@@ -50,7 +50,8 @@ public class NotebookProvider extends ContentProvider {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            db.execSQL("CREATE TABLE " + DB_TABLE_NOTEBOOKS	+ " (_ID INTEGER PRIMARY KEY, notebook STRING);");
+        	Log.i(TAG,"NotebookProvider->DatabaseHelper->onCreate");
+            db.execSQL("CREATE TABLE " + DB_TABLE_NOTEBOOKS	+ " (_id INTEGER PRIMARY KEY, notebook STRING);");
             Log.i(TAG,"Creation de la table notebook");
         }
 
@@ -70,33 +71,28 @@ public class NotebookProvider extends ContentProvider {
 
 	@Override
 	public boolean onCreate() {
-        Log.i(TAG,"onCreate notebookProvider");
+    	Log.i(TAG,"NotebookProvider->onCreate");
         dbHelper = new DatabaseHelper(getContext());
-        Log.i(TAG,"onCreate notebookProvider OK");
 		return false;
 	}
 	
 	@Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-		Log.i(TAG,"notebookProvider : query");
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
 
         switch (uriMatcher.match(uri)) {
         case NOTEBOOKS:
-        	Log.i(TAG,"notebookProvider : NOTEBOOKS");
             qb.setTables(DB_TABLE_NOTEBOOKS);
             qb.setProjectionMap(notesProjectionMap);
             break;
 
         case NOTEBOOK_ID:
-        	Log.i(TAG,"notebookProvider : NOTEBOOK_ID");
             qb.setTables(DB_TABLE_NOTEBOOKS);
             qb.setProjectionMap(notesProjectionMap);
             qb.appendWhere("_id=" + uri.getPathSegments().get(1));
             break;
             
         case NOTEBOOK_TITLE:
-        	Log.i(TAG,"notebookProvider : NOTEBOOK_TITLE");
         	qb.setTables(DB_TABLE_NOTEBOOKS);
         	qb.setProjectionMap(notesProjectionMap);
         	// TODO appendWhere + whereArgs instead (new String[] whereArgs = uri.getLas..)?
@@ -117,9 +113,7 @@ public class NotebookProvider extends ContentProvider {
 
         // Get the database and run the query
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-    	Log.i(TAG,"notebookProvider : db OK");
         Cursor c = qb.query(db, projection, selection, selectionArgs, null, null, orderBy);
-    	Log.i(TAG,"notebookProvider : cursor OK");
 
         // Tell the cursor what uri to watch, so it knows when its source data changes
         c.setNotificationUri(getContext().getContentResolver(), uri);
