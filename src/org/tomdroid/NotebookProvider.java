@@ -50,16 +50,14 @@ public class NotebookProvider extends ContentProvider {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-        	Log.i(TAG,"NotebookProvider->DatabaseHelper->onCreate");
-            db.execSQL("CREATE TABLE " + DB_TABLE_NOTEBOOKS	+ " (_id INTEGER PRIMARY KEY, notebook STRING);");
-            Log.i(TAG,"Creation de la table notebook");
+            db.execSQL("CREATE TABLE " + DB_TABLE_NOTEBOOKS	+ " (" + Notebook.ID + " INTEGER PRIMARY KEY, " + Notebook.NAME + " STRING);");
+    		if (Tomdroid.LOGGING_ENABLED) Log.v(TAG,"Table notebook has been created");
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         	if (Tomdroid.LOGGING_ENABLED) {
-        		Log.d(TAG, "Upgrading database from version " + oldVersion + " to "
-                    + newVersion + ", which will destroy all old data");
+        		Log.d(TAG, "Upgrading database from version " + oldVersion + " to " + newVersion + ", which will destroy all old data");
         	}
             db.execSQL("DROP TABLE IF EXISTS " + DB_TABLE_NOTEBOOKS);
             onCreate(db);
@@ -71,7 +69,6 @@ public class NotebookProvider extends ContentProvider {
 
 	@Override
 	public boolean onCreate() {
-    	Log.i(TAG,"NotebookProvider->onCreate");
         dbHelper = new DatabaseHelper(getContext());
 		return false;
 	}
@@ -89,14 +86,14 @@ public class NotebookProvider extends ContentProvider {
         case NOTEBOOK_ID:
             qb.setTables(DB_TABLE_NOTEBOOKS);
             qb.setProjectionMap(notesProjectionMap);
-            qb.appendWhere("_id=" + uri.getPathSegments().get(1));
+            qb.appendWhere(Notebook.ID + "=" + uri.getPathSegments().get(1));
             break;
             
         case NOTEBOOK_TITLE:
         	qb.setTables(DB_TABLE_NOTEBOOKS);
         	qb.setProjectionMap(notesProjectionMap);
         	// TODO appendWhere + whereArgs instead (new String[] whereArgs = uri.getLas..)?
-        	qb.appendWhere("notebook LIKE '" + uri.getLastPathSegment()+"'");
+        	qb.appendWhere(Notebook.NAME + " LIKE '" + uri.getLastPathSegment()+"'");
         	break;
 
         default:
@@ -156,13 +153,13 @@ public class NotebookProvider extends ContentProvider {
 	      
 
 	        // TODO does this make sense?
-	        if (values.containsKey("notebook") == false) {
+	        if (values.containsKey(Notebook.NAME) == false) {
 	            Resources r = Resources.getSystem();
-	            values.put("notebook", r.getString(android.R.string.untitled));
+	            values.put(Notebook.NAME, r.getString(android.R.string.untitled));
 	        }
 
 	        SQLiteDatabase db = dbHelper.getWritableDatabase();
-	        long rowId = db.insert(DB_TABLE_NOTEBOOKS, "notebook", values); // not so sure I did the right thing here
+	        long rowId = db.insert(DB_TABLE_NOTEBOOKS, Notebook.NAME, values); // not so sure I did the right thing here
 	        if (rowId > 0) {
 	            Uri notebookUri = ContentUris.withAppendedId(Tomdroid.CONTENT_URI_NOTEBOOK, rowId);
 	            getContext().getContentResolver().notifyChange(notebookUri, null);
@@ -183,7 +180,7 @@ public class NotebookProvider extends ContentProvider {
 
 	        case NOTEBOOK_ID:
 	            String notebookId = uri.getPathSegments().get(1);
-	            count = db.delete(DB_TABLE_NOTEBOOKS, "_id=" + notebookId + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
+	            count = db.delete(DB_TABLE_NOTEBOOKS, Notebook.ID + "=" + notebookId + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
 	            break;
 
 	        default:
@@ -205,7 +202,7 @@ public class NotebookProvider extends ContentProvider {
 
 	        case NOTEBOOK_ID:
 	            String noteId = uri.getPathSegments().get(1);
-	            count = db.update(DB_TABLE_NOTEBOOKS, values, "_id=" + noteId + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
+	            count = db.update(DB_TABLE_NOTEBOOKS, values, Notebook.ID + "=" + noteId + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
 	            break;
 
 	        default:
@@ -223,8 +220,8 @@ public class NotebookProvider extends ContentProvider {
 	        uriMatcher.addURI(Tomdroid.AUTHORITY_NOTEBOOK, "notebooks/*", NOTEBOOK_TITLE);
 
 	        notesProjectionMap = new HashMap<String, String>();
-	        notesProjectionMap.put("_id", "_id");
-	        notesProjectionMap.put("notebook", "notebook");
+	        notesProjectionMap.put(Notebook.ID, Notebook.ID);
+	        notesProjectionMap.put(Notebook.NAME, Notebook.NAME);
 	    }
 
 }

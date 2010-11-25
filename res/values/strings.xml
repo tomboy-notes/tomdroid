@@ -75,5 +75,5 @@
 	<string name="prefDefaultSorting">Default sort</string>
 	
 	<!-- NoteFiltering -->
-    <string name="menuFilter">Filter</string>
+    <string name="menuFilterNotebook">Filter</string>
 </resources>

@@ -78,6 +78,6 @@
 	<string name="prefDefaultSorting">Tri par défaut</string>
 	
 	<!-- NoteFiltering -->
-    <string name="menuFilter">Filtrer</string>
+    <string name="menuFilterNotebook">Filtrer</string>
 
 </resources>

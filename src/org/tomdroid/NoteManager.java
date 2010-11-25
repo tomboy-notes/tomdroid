@@ -46,8 +46,7 @@ public class NoteManager {
 	public static final String[] GUID_PROJECTION = { Note.ID, Note.GUID };
 	public static final String[] ID_PROJECTION = { Note.ID };
 	public static final String[] EMPTY_PROJECTION = {};
-	public static final String[] LIST_NOTEBOOK = {"_id", "notebook" };
-	public static final String NOTEBOOK_PATERN = "system:notebook:";
+	public static final String[] LIST_NOTEBOOK = {Notebook.ID, Notebook.NAME };
 	
 	public static final int SORT_BY_DATE=1;
 	public static final int SORT_BY_NAME=2;
@@ -141,7 +140,7 @@ public class NoteManager {
 			return false;
 	}
 	
-	public static Cursor getAllNotes(Activity activity, Boolean includeNotebookTemplates,int sort) {
+	public static Cursor getAllNotes(Activity activity, Boolean includeNotebookTemplates,int sort,String notebook) {
 		// get a cursor representing all notes from the NoteProvider
 		Uri notes = Tomdroid.CONTENT_URI;
 		String where = null;
@@ -149,6 +148,15 @@ public class NoteManager {
 		if (!includeNotebookTemplates) {
 			where = Note.TAGS + " NOT LIKE '%" + "system:template" + "%'";
 		}
+		
+		if (notebook!=null){
+			if (where!=null){
+				where += " AND ";
+			}
+			where = Note.TAGS + " LIKE '%" + notebook + "%'";
+			Log.i(TAG,"where : " + where);
+		}
+		
 		orderBy = Note.MODIFIED_DATE + " DESC";
 		if (sort==SORT_BY_DATE){
 			orderBy = Note.MODIFIED_DATE + " DESC";
@@ -162,9 +170,9 @@ public class NoteManager {
 	}
 	
 
-	public static ListAdapter getListAdapter(Activity activity,int sort) {
+	public static ListAdapter getListAdapter(Activity activity,int sort,String notebook) {
 
-		Cursor notesCursor = getAllNotes(activity, false,sort);
+		Cursor notesCursor = getAllNotes(activity, false,sort,notebook);
 		
 		// set up an adapter binding the TITLE field of the cursor to the list item
 		String[] from = new String[] { Note.TITLE, Note.MODIFIED_DATE };
@@ -211,7 +219,8 @@ public class NoteManager {
 	public static Cursor getAllNotebooks(Activity activity, Boolean includeNotebookTemplates) {
 		// get a cursor representing all notes from the NoteProvider
 		Uri notebooks = Tomdroid.CONTENT_URI_NOTEBOOK;
-		return activity.managedQuery(notebooks, LIST_NOTEBOOK, null, null, "notebook");		
+		String order = Notebook.NAME;
+		return activity.managedQuery(notebooks, LIST_NOTEBOOK, null, null, order);		
 	}
 	
 	public static Cursor getAllNotebooksOLD(Activity activity, Boolean includeNotebookTemplates) {
@@ -258,19 +267,14 @@ public class NoteManager {
 	
 
 	public static ListAdapter getListAdapterNotebook(Activity activity) {
-		Log.i(TAG,"fct getListAdapterNotebook()");
 		Cursor notebooksCursor = getAllNotebooks(activity, false);
-		Log.i(TAG,"notebooksCursor OK");
 		if (notebooksCursor==null){
 			Log.i(TAG,"cursor null");
 		}
-		Log.i(TAG,"nb res : " + notebooksCursor.getCount()); 
 		
 		// set up an adapter binding the TITLE field of the cursor to the list item
-		String[] from = new String[] { "notebook" };
-		Log.i(TAG,"from OK");
+		String[] from = new String[] { Notebook.NAME };
 		int[] to = new int[] { R.id.notebook_name };
-		Log.i(TAG,"to OK");
 		return new SimpleCursorAdapter(activity, R.layout.notebooks_list_item, notebooksCursor, from, to);
 	}
 	
@@ -282,9 +286,8 @@ public class NoteManager {
 			for (int i = 0; i < notebooks.length; i++) {
 				notebook = notebooks[i];
 				
-				if (notebook.startsWith(NOTEBOOK_PATERN)){
-					notebook = notebook.substring(NOTEBOOK_PATERN.length());
-					Log.i(TAG,"putNotebook[" + i + "] : "+notebook);
+				if (notebook.startsWith(Notebook.PATERN)){
+					notebook = notebook.substring(Notebook.PATERN.length());
 					// verify if the notebook is already in the content provider
 					
 					// TODO make the query prettier (use querybuilder)

@@ -82,6 +82,7 @@ public class Tomdroid extends ListActivity {
 	private TextView			listEmptyView;
 	private ListAdapter			adapter;
 	private int					currentSort;
+	private String				currentNotebook;
 
 	// UI feedback handler
 	private Handler	syncMessageHandler	= new SyncMessageHandler(this);
@@ -114,7 +115,21 @@ public class Tomdroid extends ListActivity {
 
 		// adapter that binds the ListView UI to the notes in the note manager
 		currentSort = NoteManager.SORT_BY_DATE;
-		adapter = NoteManager.getListAdapter(this,currentSort);
+		Log.i(TAG,"currentSort OK : " + currentSort);
+		Bundle bundle = this.getIntent().getExtras();
+		Log.i(TAG,"bundle OK");
+		try {
+			currentNotebook = bundle.getString("notebook");
+		} catch (Exception e) {
+			// TODO: handle exception
+			Log.i(TAG,"erreur dans bundle.getString(notebook)");
+			currentNotebook = null;
+		}
+		
+		//currentNotebook = savedInstanceState.getString("notebook");
+		Log.i(TAG,"currentNotebook OK : " + currentNotebook);
+		adapter = NoteManager.getListAdapter(this,currentSort,currentNotebook);
+		Log.i(TAG,"adapter OK");
 		setListAdapter(adapter);
 
 		// set the view shown when the list is empty
@@ -148,7 +163,7 @@ public class Tomdroid extends ListActivity {
 				changeSort();
 				return true;
 
-			case R.id.menuFilter:
+			case R.id.menuFilterNotebook:
 				startActivity(new Intent(this, Notebooks.class));
 				return true;
 		}
@@ -238,7 +253,7 @@ public class Tomdroid extends ListActivity {
 		} else {
 			currentSort=NoteManager.SORT_BY_DATE;
 		}
-		adapter = NoteManager.getListAdapter(this,currentSort);
+		adapter = NoteManager.getListAdapter(this,currentSort,currentNotebook);
 		setListAdapter(adapter);
 
 		// set the view shown when the list is empty
