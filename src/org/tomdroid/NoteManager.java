@@ -268,11 +268,6 @@ public class NoteManager {
 
 	public static ListAdapter getListAdapterNotebook(Activity activity) {
 		Cursor notebooksCursor = getAllNotebooks(activity, false);
-		if (notebooksCursor==null){
-			Log.i(TAG,"cursor null");
-		}
-		
-		// set up an adapter binding the TITLE field of the cursor to the list item
 		String[] from = new String[] { Notebook.NAME };
 		int[] to = new int[] { R.id.notebook_name };
 		return new SimpleCursorAdapter(activity, R.layout.notebooks_list_item, notebooksCursor, from, to);

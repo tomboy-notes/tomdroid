@@ -90,7 +90,6 @@ public class Tomdroid extends ListActivity {
 	/** Called when the activity is created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		Log.i(TAG, "onCreate Tomdroid");
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.main);

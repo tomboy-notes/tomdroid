@@ -79,5 +79,7 @@
 	
 	<!-- NoteFiltering -->
     <string name="menuFilterNotebook">Filtrer</string>
+    <string name="strListEmptyNoNotebooks">Il n\'y a aucun bloc-note dans la base de donnèes</string>
+    <string name="allNotebooksFilter">Tous les bloc-notes</string>
 
 </resources>

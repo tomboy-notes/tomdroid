@@ -4,6 +4,7 @@ import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.Notebook;
 import org.tomdroid.R;
+import org.tomdroid.sync.SyncManager;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
@@ -17,6 +18,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -39,12 +41,22 @@ public class Notebooks extends ListActivity {
 		
 		// adapter that binds the ListView UI to the notebooks in the note manager
 		adapter = NoteManager.getListAdapterNotebook(this);
-		setListAdapter(adapter);
+		setListAdapter(adapter);		
+		
+		// all notebooks
+		final TextView allNotebooks = (TextView) findViewById(R.id.allNotebooks);
+		allNotebooks.setOnClickListener(new View.OnClickListener() {
 
-		// set the view shown when the list is empty
-		// TODO default empty-list text is butt-ugly!
-		listEmptyView = (TextView) findViewById(R.id.list_empty);
-		getListView().setEmptyView(listEmptyView);
+			public void onClick(View v) {						
+				Bundle bundle = new Bundle();
+				bundle.putString("notebook", null);
+
+				Intent i = new Intent(v.getContext(), Tomdroid.class);
+				i.putExtras(bundle);
+				startActivity(i);
+			}
+		});
+			
 	}
 
 	@Override
@@ -64,6 +76,7 @@ public class Notebooks extends ListActivity {
 
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
+		Log.i(TAG,"onListItemClick");
 		
 		Cursor item = (Cursor) adapter.getItem(position);
 		String notebook = item.getString(item.getColumnIndexOrThrow(Notebook.NAME));

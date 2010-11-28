@@ -4,17 +4,33 @@
 		android:layout_height="fill_parent"
 		android:orientation="vertical"
     	>
+    	
+    <include android:id="@+id/actionbar" layout="@layout/actionbar" />
     
     <ListView android:id="@android:id/android:list"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
               android:divider="#00000000"
               android:dividerHeight="0px"
               android:cacheColorHint="#ffdddddd"
               />
-  	<TextView android:id="@+id/list_empty"
+              
+  	<TextView android:id="@android:id/android:empty"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:text="@string/strListEmptyNoNotes"
+              android:text="@string/strListEmptyNoNotebooks"
               />
+              
+    <TextView android:id="@+id/allNotebooks"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+			  android:textStyle="bold"
+			  android:textColor="#FF555555"
+			  android:textSize="18dp"
+			  android:paddingTop="5dip"
+			  android:paddingLeft="5dip"
+			  android:paddingRight="5dip"
+			  android:text="@string/allNotebooksFilter"
+			  android:clickable="true"
+    />
 </LinearLayout>

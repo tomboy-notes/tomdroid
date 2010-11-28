@@ -74,6 +74,8 @@
 	<string name="titleDefaultSorting">Choose the default sorting</string>
 	<string name="prefDefaultSorting">Default sort</string>
 	
-	<!-- NoteFiltering -->
+	<!-- NotebookFiltering -->
     <string name="menuFilterNotebook">Filter</string>
+    <string name="strListEmptyNoNotebooks">There are no notebooks in Tomdroid\'s database.</string>
+    <string name="allNotebooksFilter">All notebooks</string>
 </resources>
