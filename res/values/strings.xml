@@ -83,6 +83,11 @@
 	<string name="titleDefaultSorting">Choose the default sorting</string>
 	<string name="prefDefaultSorting">Default sort</string>
 	
+	<!-- NotebookFiltering -->
+    <string name="menuFilterNotebook">Filter</string>
+    <string name="strListEmptyNoNotebooks">There are no notebooks in the database.</string>
+    <string name="allNotebooksFilter">All notebooks</string>
+	
 	<!-- Date -->
     <string name="textModified">Modified: </string>
     <string name="textToday">Today</string>

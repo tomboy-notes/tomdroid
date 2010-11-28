@@ -86,6 +86,12 @@
 	<string name="titleDefaultSorting">Choix du tri par défaut</string>
 	<string name="prefDefaultSorting">Tri par défaut</string>
 	
+	<!-- NoteFiltering -->
+    <string name="menuFilterNotebook">Filtrer</string>
+    <string name="strListEmptyNoNotebooks">Il n\'y a aucun bloc-note dans la base de donnèes</string>
+    <string name="allNotebooksFilter">Tous les bloc-notes</string>
+	
+	
 	<!-- Date -->
     <string name="textModified">Mise à jour: </string>
     <string name="textToday">Aujourd\'hui</string>
