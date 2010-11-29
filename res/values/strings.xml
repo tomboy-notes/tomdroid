@@ -92,4 +92,23 @@
     <string name="textModified">Modified: </string>
     <string name="textToday">Today</string>
     <string name="textYexterday">Yesterday</string>
+    
+    <!-- 		Information that goes into the Android Market Application Listing. 
+				I've put it in here so that it'll get translated by translators.
+	-->
+	<!-- 30 chars max -->
+	<string name="market_title">Tomdroid notes</string>
+	<!-- 325 chars max -->
+	<string name="market_description">
+		A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.
+
+		NOTE: It is a READ-ONLY client for now.
+
+		* Note format compatibility with Tomboy
+		* Online note synchronization with Snowy, Tomboy Online or Ubuntu One
+		* SD Card importation
+		* Open source!
+	</string>
+	<!-- 80 chars max -->
+	<string name="market_promotext">Note-taking application with online synchronization compatible with Tomboy</string>
 </resources>
