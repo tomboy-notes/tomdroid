@@ -73,7 +73,6 @@
 	<string name="prefSyncConnectionFailed">La connexion au serveur a échoué, veuillez vérifier l\'adresse que vous avez entrée si elle est correcte.</string>
 	<string name="prefServerEmpty">L\'adresse du serveur a changé mais la nouvelle valeur est vide</string>
 
-
 	<string name="titleSyncService">service de synchronisation</string>
 	<string name="messageSyncCompleteBegin">La synchronisation avec</string>
 	<string name="messageSyncCompleteEnd">est terminée</string>
@@ -97,7 +96,7 @@
     <string name="textToday">Aujourd\'hui</string>
     <string name="textYexterday">Hier</string>
     
-    <!-- 
+	<!-- 
 		Information that goes into the Android Market Application Listing. 
 		I've put it in here so that it'll get translated by translators.
 	-->

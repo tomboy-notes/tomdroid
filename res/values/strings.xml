@@ -70,7 +70,6 @@
 	<string name="prefSyncConnectionFailed">The connection to the server has failed, please check that the address you entered is correct.</string>
 	<string name="prefServerEmpty">The server address changed but the new value is empty</string>
 
-
 	<string name="titleSyncService">Choose the sync service to use</string>
 	<string name="messageSyncCompleteBegin">Synchronization with</string>
 	<string name="messageSyncCompleteEnd">is complete</string>
@@ -93,8 +92,9 @@
     <string name="textToday">Today</string>
     <string name="textYexterday">Yesterday</string>
     
-    <!-- 		Information that goes into the Android Market Application Listing. 
-				I've put it in here so that it'll get translated by translators.
+	<!-- 
+		Information that goes into the Android Market Application Listing. 
+		I've put it in here so that it'll get translated by translators.
 	-->
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid notes</string>
@@ -111,4 +111,5 @@
 	</string>
 	<!-- 80 chars max -->
 	<string name="market_promotext">Note-taking application with online synchronization compatible with Tomboy</string>
+	
 </resources>

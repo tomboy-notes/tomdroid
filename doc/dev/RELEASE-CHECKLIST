@@ -14,7 +14,7 @@ Preparing the release
 - Follow Android's doc on publishing apps to the marketplace
 - Generate ChangeLog (bzr log -v -n0 --gnu-changelog > ChangeLog)
 
-Releasing
+Releasing on launchpad
 - android:debuggable="false" in AndroidManifest.xml
 - Disable logging (set Tomdroid.LOGGING_ENABLED to false)
 - Export an unsigned apk
@@ -32,6 +32,11 @@ Releasing
 - Mark the milestone as released on launchpad
 - Put the files on launchpad (SRC, README, APK)
 - Announce on launchpad
+
+Releasing on the market
+- Make sure description and all is still accurate. The strings are in res/values/strings.xml (and check for updated translations too)
+- Take screenshots and put them in data/market-screenshots/ and upload them to the market (if relevant)
+- Publish
 
 Spread the word
 - Email to Tomdroid's mailing list (Tomboy/Snowy too if it's an important milestone)

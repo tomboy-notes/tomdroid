@@ -1,4 +1,7 @@
 Tomdroid
+========
+
+You need at least SDK Tools r3 in order to build Tomdroid.
 
 BUILDING WITH ECLIPSE
 1. Install the Android SDK as described on developer.android.com
