@@ -56,25 +56,20 @@ public class SyncMessageHandler extends Handler {
 	@Override
 	public void handleMessage(Message msg) {
 
-		
+		String serviceDescription = SyncManager.getInstance().getCurrentService().getDescription();
+		String message = "";
+			
 		switch (msg.what) {
-			case SyncService.PARSING_COMPLETE:
-				// TODO put string in a translatable bundle
-				
-				Toast.makeText(
-						activity,
-						this.activity.getString(R.string.messageSyncCompleteBegin) + " "
-								+ SyncManager.getInstance().getCurrentService().getDescription() +" "
-								+ this.activity.getString(R.string.messageSyncCompleteEnd), Toast.LENGTH_SHORT).show();
+			case SyncService.PARSING_COMPLETE:				
+				message = this.activity.getString(R.string.messageSyncComplete);
+				message = String.format(message,serviceDescription);
+				Toast.makeText(	activity,message, Toast.LENGTH_SHORT).show();
 				break;
 
 			case SyncService.PARSING_NO_NOTES:
-				// TODO put string in a translatable bundle
-				Toast.makeText(
-						activity,
-						this.activity.getString(R.string.messageSyncNoNote)
-								+ SyncManager.getInstance().getCurrentService().getDescription()
-								+ ".", Toast.LENGTH_SHORT).show();
+				message = this.activity.getString(R.string.messageSyncNoNote);
+				message = String.format(message,serviceDescription);
+				Toast.makeText(activity,message, Toast.LENGTH_SHORT).show();
 				break;
 
 			case SyncService.PARSING_FAILED:
@@ -86,11 +81,9 @@ public class SyncMessageHandler extends Handler {
 				if (!parsingErrorShown) {
 					parsingErrorShown = true;
 
-					// TODO put error string in a translatable resource
-					new AlertDialog.Builder(activity).setMessage(
-							"There was an error trying to parse your note collection. If "
-									+ "you are able to replicate the problem, please contact us!")
-							.setTitle("Error").setNeutralButton("Ok", new OnClickListener() {
+					message = this.activity.getString(R.string.messageSyncError);
+					new AlertDialog.Builder(activity).setMessage(message)
+							.setTitle(this.activity.getString(R.string.error)).setNeutralButton("Ok", new OnClickListener() {
 								public void onClick(DialogInterface dialog, int which) {
 									dialog.dismiss();
 								}

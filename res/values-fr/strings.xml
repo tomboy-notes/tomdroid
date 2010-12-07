@@ -74,11 +74,12 @@
 	<string name="prefServerEmpty">L\'adresse du serveur a changé mais la nouvelle valeur est vide</string>
 
 	<string name="titleSyncService">service de synchronisation</string>
-	<string name="messageSyncCompleteBegin">La synchronisation avec</string>
-	<string name="messageSyncCompleteEnd">est terminée</string>
-	<string name="messageSyncNoNote">Aucune note trouvée</string>
+	<string name="messageSyncComplete">La synchronisation avec %1$s est terminée</string>
+	<string name="messageSyncNoNote">Aucune note trouvée sur %1$s .</string>
 	<string name="messageSyncNoConnection">Aucune connection à Internet</string>
 	<string name="messageSyncAlreadyInProgress">Synchronisation déjà en cours</string>
+	<string name="messageSyncError">Il y a une erreur lors de la syncrhonisation. Si vous pouvez reproduire le problème, contactez nous !</string>
+	<string name="error">erreur</string>
 	
 	<!-- NoteSorting -->
     <string name="menuSort">Changer tri</string>
