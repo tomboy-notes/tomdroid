@@ -35,6 +35,7 @@
     <string name="menuSync">Sync</string>
 	<string name="menuPrefs">Settings</string>
     <string name="menuAbout">About</string>
+    <string name="titleWelcome">Warning</string>
     <string name="strWelcome">
     	Welcome to Tomdroid.
     	\n\nPlease note that this is beta quality software and that it contains known problems,
@@ -69,6 +70,29 @@
 	<string name="prefSyncConnectionFailed">The connection to the server has failed, please check that the address you entered is correct.</string>
 	<string name="prefServerEmpty">The server address changed but the new value is empty</string>
 
+	<string name="titleSyncService">Choose the sync service to use</string>
+	<string name="messageSyncComplete">Synchronization with %1$s is complete</string>
+	<string name="messageSyncNoNote">No notes found on %1$s .</string>
+	<string name="messageSyncNoConnection">You are not connected to the Internet.</string>
+	<string name="messageSyncAlreadyInProgress">Sync already in progress</string>
+	<string name="messageSyncError">There was an error trying to parse your note collection. If you are able to replicate the problem, please contact us!</string>
+	<string name="error">error</string>
+	
+	<!-- NoteSorting -->
+    <string name="menuSort">change sort</string>
+	<string name="titleDefaultSorting">Choose the default sorting</string>
+	<string name="prefDefaultSorting">Default sort</string>
+	
+	<!-- NotebookFiltering -->
+    <string name="menuFilterNotebook">Filter</string>
+    <string name="strListEmptyNoNotebooks">There are no notebooks in the database.</string>
+    <string name="allNotebooksFilter">All notebooks</string>
+	
+	<!-- Date -->
+    <string name="textModified">Modified: </string>
+    <string name="textToday">Today</string>
+    <string name="textYexterday">Yesterday</string>
+    
 	<!-- 
 		Information that goes into the Android Market Application Listing. 
 		I've put it in here so that it'll get translated by translators.
