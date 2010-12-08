@@ -51,8 +51,8 @@ public class NoteListCursorAdapter extends SimpleCursorAdapter {
     public NoteListCursorAdapter (Context context, int layout, Cursor c, String[] from, int[] to) {
         super(context, layout, c, from, to);
         this.layout = layout;
-        localeDateFormat = DateFormat.getDateInstance(DateFormat.SHORT);
-        localeTimeFormat = DateFormat.getTimeInstance(DateFormat.SHORT);
+        localeDateFormat = android.text.format.DateFormat.getDateFormat(context);
+        localeTimeFormat = android.text.format.DateFormat.getTimeFormat(context);
     }
     
 
