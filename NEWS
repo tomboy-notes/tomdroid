@@ -11,6 +11,10 @@ Join it at: https://launchpad.net/~tomdroid-dev
 
 For more details and developer visible changes see the ChangeLog
 
+Version <release> - <codename> released on <releaseDate>
+* Date on the note list is now displayed according to the phone's locale
+  (Matthew Rasmus, lp:659743)
+
 Version 0.4.1 - "I didn't do it!" (fixed with duct tape) released on 2010-10-15
 * Fixed sync issues related to note identifiers (Stuart Langridge, lp:657477)
 * Error messages available in logs even in released builds (lp:657561)
