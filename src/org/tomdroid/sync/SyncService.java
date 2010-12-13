@@ -25,13 +25,14 @@
 package org.tomdroid.sync;
 
 import java.util.ArrayList;
-
+import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.ui.Tomdroid;
+import org.tomdroid.util.ErrorList;
 
 import org.tomdroid.R;
 import android.app.Activity;
@@ -50,6 +51,12 @@ public abstract class SyncService {
 	private final static int poolSize = 1;
 	
 	private Handler handler;
+	
+	/**
+	 * Contains the synchronization errors. These are stored while synchronization occurs
+	 * and sent to the main UI along with the PARSING_COMPLETE message.
+	 */
+	private ErrorList syncErrors;
 	private int syncProgress = 100;
 	
 	// handler messages
@@ -57,7 +64,8 @@ public abstract class SyncService {
 	public final static int PARSING_FAILED = 2;
 	public final static int PARSING_NO_NOTES = 3;
 	public final static int NO_INTERNET = 4;
-	public final static int SYNC_PROGRESS = 5;
+	public final static int NO_SD_CARD = 5;
+	public final static int SYNC_PROGRESS = 6;
 	
 	public SyncService(Activity activity, Handler handler) {
 		
@@ -73,6 +81,7 @@ public abstract class SyncService {
 			return;
 		}
 		
+		syncErrors = new ErrorList();
 		sync();
 	}
 	
@@ -105,19 +114,33 @@ public abstract class SyncService {
 	}
 	
 	/**
+	 * Execute code in a separate thread.
+	 * Any exception thrown by the thread will be added to the error list
+	 * @param r The runner subclass to execute
+	 */
+	protected void syncInThread(final Runnable r) {
+		Runnable task = new Runnable() {
+			public void run() {
+				try {
+					r.run();
+				} catch(Exception e) {
+					sendMessage(PARSING_FAILED, ErrorList.createError("System Error", "system", e));
+				}
+			}
+		};
+		
+		execInThread(task);
+	}
+	
+	/**
 	 * Insert a note in the content provider. The identifier for the notes is the guid.
 	 * 
 	 * @param note The note to insert.
 	 */
 	
-	protected void insertNote(Note note, boolean syncFinished) {
+	protected void insertNote(Note note) {
 		
 		NoteManager.putNote(this.activity, note);
-		
-		// if last note warn in UI that we are done
-		if (syncFinished) {
-			handler.sendEmptyMessage(PARSING_COMPLETE);
-		}
 	}
 	
 	/**
@@ -163,7 +186,24 @@ public abstract class SyncService {
 	
 	protected void sendMessage(int message) {
 		
-		handler.sendEmptyMessage(message);
+		if(!sendMessage(message, null)) {
+			handler.sendEmptyMessage(message);
+		}
+	}
+	
+	protected boolean sendMessage(int message_id, HashMap<String, Object> payload) {
+		
+		switch(message_id) {
+		case PARSING_FAILED:
+			syncErrors.add(payload);
+			return true;
+		case PARSING_COMPLETE:
+			Message message = handler.obtainMessage(PARSING_COMPLETE, syncErrors);
+			handler.sendMessage(message);
+			return true;
+		}
+		
+		return false;
 	}
 	
 	/**

@@ -4,6 +4,8 @@
  * http://www.launchpad.net/tomdroid
  * 
  * Copyright 2010, Rodja Trappe <mail@rodja.net>
+ * Copyright 2010, Benoit Garret <benoit.garret_launchpad@gadz.org>
+ * Copyright 2010, Olivier Bilodeau <olivier@bottomlesspit.org>
  * 
  * This file is part of Tomdroid.
  * 
@@ -25,10 +27,10 @@ package org.tomdroid.ui;
 import org.tomdroid.R;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.sync.SyncService;
+import org.tomdroid.util.ErrorList;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Handler;
@@ -45,9 +47,6 @@ public class SyncMessageHandler extends Handler {
 
 	private static String TAG = "SycnMessageHandler";
 	private Activity activity;
-
-	// State variables
-	private boolean parsingErrorShown = false;
 	
 	public SyncMessageHandler(Activity activity) {
 		this.activity = activity;
@@ -60,40 +59,48 @@ public class SyncMessageHandler extends Handler {
 		String message = "";
 			
 		switch (msg.what) {
-			case SyncService.PARSING_COMPLETE:				
-				message = this.activity.getString(R.string.messageSyncComplete);
-				message = String.format(message,serviceDescription);
-				Toast.makeText(	activity,message, Toast.LENGTH_SHORT).show();
+
+			case SyncService.PARSING_COMPLETE:
+				final ErrorList errors = (ErrorList)msg.obj;
+				if(errors.isEmpty()) {
+					message = this.activity.getString(R.string.messageSyncComplete);
+					message = String.format(message,serviceDescription);
+					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+				} else {
+
+					message = this.activity.getString(R.string.messageSyncError);
+					new AlertDialog.Builder(activity).setMessage(message)
+						.setTitle(this.activity.getString(R.string.error))
+						.setPositiveButton("Save to sd card", new OnClickListener() {
+							public void onClick(DialogInterface dialog, int which) {
+								if(!errors.save()) {
+									// TODO put string in a translatable bundle
+									Toast.makeText(activity, "Could not save the errors, please check your SD card.",
+											Toast.LENGTH_SHORT).show();
+								}
+							}
+						})
+						.setNegativeButton("Close", new OnClickListener() {
+							public void onClick(DialogInterface dialog, int which) {}
+						}).show();
+				}
 				break;
 
 			case SyncService.PARSING_NO_NOTES:
 				message = this.activity.getString(R.string.messageSyncNoNote);
 				message = String.format(message,serviceDescription);
-				Toast.makeText(activity,message, Toast.LENGTH_SHORT).show();
+				Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 				break;
-
-			case SyncService.PARSING_FAILED:
-				if (Tomdroid.LOGGING_ENABLED)
-					Log.w(TAG, "handler called with a parsing failed message");
-
-				// if we already shown a parsing error in this pass, we
-				// won't show it again
-				if (!parsingErrorShown) {
-					parsingErrorShown = true;
-
-					message = this.activity.getString(R.string.messageSyncError);
-					new AlertDialog.Builder(activity).setMessage(message)
-							.setTitle(this.activity.getString(R.string.error)).setNeutralButton("Ok", new OnClickListener() {
-								public void onClick(DialogInterface dialog, int which) {
-									dialog.dismiss();
-								}
-							}).show();
-				}
-				break;
-
+				
 			case SyncService.NO_INTERNET:
 				// TODO put string in a translatable bundle
 				Toast.makeText(activity, this.activity.getString(R.string.messageSyncNoConnection),
+						Toast.LENGTH_SHORT).show();
+				break;
+				
+			case SyncService.NO_SD_CARD:
+				// TODO put string in a translatable bundle
+				Toast.makeText(activity, "SD card not found.",
 						Toast.LENGTH_SHORT).show();
 				break;
 

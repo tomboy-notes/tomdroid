@@ -12,6 +12,7 @@ Join it at: https://launchpad.net/~tomdroid-dev
 For more details and developer visible changes see the ChangeLog
 
 Version <release> - <codename> released on <releaseDate>
+* Improved error handling and reporting (Benoit Garret, lp:660057, lp:689473)
 * Date on the note list is now displayed according to the phone's locale
   (Matthew Rasmus, lp:659743)
 * More content can be translated (Benoit Soyeux)
