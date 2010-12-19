@@ -59,9 +59,10 @@ public class Tomdroid extends ListActivity {
 
 	// Global definition for Tomdroid
 	public static final String	AUTHORITY			= "org.tomdroid.notes";
-	public static final Uri		CONTENT_URI			= Uri
-															.parse("content://" + AUTHORITY
-																	+ "/notes");
+	public static final String	AUTHORITY_NOTEBOOK	= "org.tomdroid.notebooks";
+	public static final Uri		CONTENT_URI			= Uri.parse("content://" + AUTHORITY + "/notes");
+	public static final Uri		CONTENT_URI_NOTEBOOK= Uri.parse("content://" + AUTHORITY_NOTEBOOK + "/notebooks");
+	
 	public static final String	CONTENT_TYPE		= "vnd.android.cursor.dir/vnd.tomdroid.note";
 	public static final String	CONTENT_ITEM_TYPE	= "vnd.android.cursor.item/vnd.tomdroid.note";
 	public static final String	PROJECT_HOMEPAGE	= "http://www.launchpad.net/tomdroid/";
@@ -81,6 +82,8 @@ public class Tomdroid extends ListActivity {
 	// UI to data model glue
 	private TextView			listEmptyView;
 	private ListAdapter			adapter;
+	private int					currentSort;
+	private String				currentNotebook;
 
 	// UI feedback handler
 	private Handler	syncMessageHandler	= new SyncMessageHandler(this);
@@ -109,9 +112,20 @@ public class Tomdroid extends ListActivity {
 				}
 			}).setIcon(R.drawable.icon).show();
 		}
+		
+		// adapter that binds the ListView UI to the notes in the note manager
+		currentSort = NoteManager.SORT_BY_DATE;
+		Bundle bundle = this.getIntent().getExtras();
+		try {
+			currentNotebook = bundle.getString("notebook");
+		} catch (Exception e) {
+			// TODO: handle exception
+			Log.i(TAG,"erreur dans bundle.getString(notebook)");
+			currentNotebook = null;
+		}
 
 		// adapter that binds the ListView UI to the notes in the note manager
-		adapter = NoteManager.getListAdapter(this);
+		adapter = NoteManager.getListAdapter(this,currentSort,currentNotebook);
 		setListAdapter(adapter);
 
 		// set the view shown when the list is empty
@@ -139,6 +153,14 @@ public class Tomdroid extends ListActivity {
 
 			case R.id.menuPrefs:
 				startActivity(new Intent(this, PreferencesActivity.class));
+				return true;
+
+			case R.id.menuSort:
+				changeSort();
+				return true;
+
+			case R.id.menuFilterNotebook:
+				startActivity(new Intent(this, Notebooks.class));
 				return true;
 		}
 
@@ -218,6 +240,21 @@ public class Tomdroid extends ListActivity {
 		Uri intentUri = Uri.parse(Tomdroid.CONTENT_URI + "/" + noteId);
 		Intent i = new Intent(Intent.ACTION_VIEW, intentUri, this, ViewNote.class);
 		startActivity(i);
+	}
+	
+	private void changeSort(){
+		if (currentSort==NoteManager.SORT_BY_DATE){
+			currentSort=NoteManager.SORT_BY_NAME;
+		} else {
+			currentSort=NoteManager.SORT_BY_DATE;
+		}
+		adapter = NoteManager.getListAdapter(this,currentSort,currentNotebook);
+		setListAdapter(adapter);
+
+		// set the view shown when the list is empty
+		// TODO default empty-list text is butt-ugly!
+		listEmptyView = (TextView) findViewById(R.id.list_empty);
+		getListView().setEmptyView(listEmptyView);
 	}
 
 }

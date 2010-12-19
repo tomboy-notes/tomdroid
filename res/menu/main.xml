@@ -24,14 +24,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<item 
-			android:icon="@drawable/icon_about"
-			android:title="@string/menuAbout"
-			android:id="@+id/menuAbout"
-			/>
-	
-	
+			android:icon="@drawable/icon_notebookfilter"	 
+			android:id="@+id/menuFilterNotebook" 
+			android:title="@string/menuFilterNotebook"
+			/>	
 	<item 
-			android:icon="@android:drawable/ic_menu_preferences"
+			android:icon="@drawable/icon_sort" 
+			android:id="@+id/menuSort" 
+			android:title="@string/menuSort"
+			/>
+	<item 
+			android:icon="@drawable/icon_about"
+			android:id="@+id/menuAbout"
+			android:title="@string/menuAbout"
+			/>			
+	<item 
+			android:icon="@drawable/icon_pref"
+			android:id="@+id/menuPrefs"
 			android:title="@string/menuPrefs"
-			android:id="@+id/menuPrefs"/>
+			/>	
 </menu>
