@@ -27,7 +27,6 @@ package org.tomdroid.ui;
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
-import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.sync.SyncService;
 import org.tomdroid.util.FirstNote;
@@ -35,7 +34,6 @@ import org.tomdroid.util.Preferences;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
@@ -45,7 +43,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -151,26 +148,27 @@ public class Tomdroid extends ListActivity {
 
 		SyncService currentService = SyncManager.getInstance().getCurrentService();
 		
-		if (currentService.needsAuth() && intent != null) {
-			Uri uri = intent.getData();
-
-			if (uri != null && uri.getScheme().equals("tomdroid")) {
-				Log.i(TAG, "Got url : " + uri.toString());
-
-				final ProgressDialog dialog = ProgressDialog.show(this, "",	"Completing authentication. Please wait...", true, false);
-
-				Handler handler = new Handler() {
-
-					@Override
-					public void handleMessage(Message msg) {
-						dialog.dismiss();
-					}
-
-				};
-
-				((ServiceAuth) currentService).remoteAuthComplete(uri, handler);
-			}
-		}
+		// TODO: Figure why we need this..
+//		if (currentService.needsAuth() && intent != null) {
+//			Uri uri = intent.getData();
+//
+//			if (uri != null && uri.getScheme().equals("tomdroid")) {
+//				Log.i(TAG, "Got url : " + uri.toString());
+//
+//				final ProgressDialog dialog = ProgressDialog.show(this, "",	"Completing authentication. Please wait...", true, false);
+//
+//				Handler handler = new Handler() {
+//
+//					@Override
+//					public void handleMessage(Message msg) {
+//						dialog.dismiss();
+//					}
+//
+//				};
+//
+//				((ServiceAuth) currentService).remoteAuthComplete(uri, handler);
+//			}
+//		}
 		
 		SyncManager.setActivity(this);
 		SyncManager.setHandler(this.syncMessageHandler);

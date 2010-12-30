@@ -8,11 +8,10 @@
 						android:key="sync_service" 
 						android:defaultValue="tomboy-web"/>
 						
-		<EditTextPreference android:key="sync_server"
-							android:title="@string/prefSyncServer"
-							android:positiveButtonText="@string/prefAuthenticate"
-							android:shouldDisableView="true"/>
+		
 							
-	</PreferenceCategory>
+	<PreferenceScreen android:key="sync_service_prefs" android:title="@string/prefSyncServicePrefs">
+</PreferenceScreen>
+</PreferenceCategory>
 	
 </PreferenceScreen>

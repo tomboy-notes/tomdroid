@@ -74,16 +74,6 @@ public class SdCardSyncService extends SyncService {
 	}
 
 	@Override
-	public boolean needsServer() {
-		return false;
-	}
-	
-	@Override
-	public boolean needsAuth() {
-		return false;
-	}
-
-	@Override
 	protected void sync() {
 
 		setSyncProgress(0);
@@ -128,7 +118,7 @@ public class SdCardSyncService extends SyncService {
 		// last task, warn it so it'll warn UI when done
 		syncInThread(new Worker(fileList[fileList.length-1], true));
 	}
-	
+
 	/**
 	 * Simple filename filter that grabs files ending with .note
 	 * TODO move into its own static class in a util package

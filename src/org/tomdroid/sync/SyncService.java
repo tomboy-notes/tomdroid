@@ -31,14 +31,15 @@ import java.util.concurrent.Executors;
 
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
+import org.tomdroid.R;
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.ErrorList;
 
-import org.tomdroid.R;
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceGroup;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -86,8 +87,6 @@ public abstract class SyncService {
 	}
 	
 	protected abstract void sync();
-	public abstract boolean needsServer();
-	public abstract boolean needsAuth();
 	
 	/**
 	 * @return An unique identifier, not visible to the user.
@@ -233,5 +232,10 @@ public abstract class SyncService {
 
 	public boolean isSyncable() {
 		return getSyncProgress() == 100;
+	}
+	
+	public void fillPreferences(PreferenceGroup group, Activity activity)
+	{
+		group.setEnabled(false);
 	}
 }

@@ -113,4 +113,5 @@
 	<!-- 80 chars max -->
 	<string name="market_promotext">Note-taking application with online synchronization compatible with Tomboy</string>
 	
+<string name="prefSyncServicePrefs">Service Preferences</string>
 </resources>

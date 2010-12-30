@@ -33,7 +33,7 @@ import android.os.Handler;
 
 public class SyncManager {
 	
-	private static final String TAG = "SyncManager";
+	//private static final String TAG = "SyncManager";
 	
 	private ArrayList<SyncService> services = new ArrayList<SyncService>();
 	
