@@ -233,9 +233,9 @@ public class SnowySyncService extends SyncService {
 	@Override
 	public void fillPreferences(PreferenceGroup group, final Activity activity) {
 		
-		PreferenceCategory pc = new PreferenceCategory(activity);
-		pc.setTitle("Web Preferences");
-		group.addPreference(pc);
+//		PreferenceCategory pc = new PreferenceCategory(activity);
+//		pc.setTitle("Web Preferences");
+//		group.addPreference(pc);
 		
 		EditTextPreference syncServer = new EditTextPreference(activity);
 		syncServer.setTitle(R.string.prefSyncServer);
@@ -246,7 +246,8 @@ public class SnowySyncService extends SyncService {
 		if(syncServer.getText() == null)
 			syncServer.setText(defaultServer);
 
-		pc.addPreference(syncServer);
+//		pc.addPreference(syncServer);
+		group.addPreference(syncServer);
 		
 		// Re-authenticate if the sync server changes
 		syncServer.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {

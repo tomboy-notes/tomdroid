@@ -10,8 +10,11 @@
 						
 		
 							
-	<PreferenceScreen android:key="sync_service_prefs" android:title="@string/prefSyncServicePrefs">
-</PreferenceScreen>
+	
+
+
+
 </PreferenceCategory>
 	
+<PreferenceCategory android:key="sync_service_prefs" android:title="@string/prefSyncServicePref"></PreferenceCategory>
 </PreferenceScreen>

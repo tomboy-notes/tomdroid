@@ -36,6 +36,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.Preference.OnPreferenceChangeListener;
+import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
 import android.util.Log;
 
@@ -125,11 +126,11 @@ public class PreferencesActivity extends PreferenceActivity {
 		
 		// Set service preference screen
 		// TODO: Store key as const somewhere
-		PreferenceScreen ps = (PreferenceScreen)findPreference("sync_service_prefs");
-		ps.removeAll();
-		ps.setEnabled(true);
+		PreferenceCategory pc = (PreferenceCategory)findPreference("sync_service_prefs");
+		pc.removeAll();
+		pc.setEnabled(true);
 	
-		service.fillPreferences(ps, this);
+		service.fillPreferences(pc, this);
 	}
 
 	/**
