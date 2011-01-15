@@ -32,6 +32,7 @@ import org.tomdroid.sync.SyncManager;
 import org.tomdroid.sync.SyncService;
 import org.tomdroid.util.FirstNote;
 import org.tomdroid.util.Preferences;
+import org.tomdroid.util.Send;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
@@ -47,13 +48,16 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 
 public class Tomdroid extends ListActivity {
 
@@ -118,6 +122,8 @@ public class Tomdroid extends ListActivity {
 		// TODO default empty-list text is butt-ugly!
 		listEmptyView = (TextView) findViewById(R.id.list_empty);
 		getListView().setEmptyView(listEmptyView);
+		
+		registerForContextMenu((ListView)findViewById(android.R.id.list));
 	}
 
 	@Override
@@ -143,6 +149,33 @@ public class Tomdroid extends ListActivity {
 		}
 
 		return super.onOptionsItemSelected(item);
+	}
+	
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+		MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.main_longclick, menu);
+		super.onCreateContextMenu(menu, v, menuInfo);
+	}
+
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo)item.getMenuInfo();
+		long noteId = info.id;
+		Uri intentUri = Uri.parse(Tomdroid.CONTENT_URI+"/"+noteId);
+		
+		switch (item.getItemId()) {
+			case R.id.menu_send:
+				Note note = NoteManager.getNote(this, intentUri);
+				(new Send(this, note)).send();
+				break;
+				
+			default:
+				break;
+		}
+		
+		return super.onContextItemSelected(item);
 	}
 
 	public void onResume() {
