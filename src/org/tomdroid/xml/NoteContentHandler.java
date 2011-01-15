@@ -213,7 +213,7 @@ public class NoteContentHandler extends DefaultHandler {
 				inListItem = false;
 				// TODO new sexier bullets?
 				// Show a leading margin that is as wide as the nested level we are in
-				ssb.setSpan(new LeadingMarginSpan.Standard(10*inListLevel), listItemStartPos.get(inListLevel-1), listItemEndPos.get(inListLevel-1), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+				ssb.setSpan(new LeadingMarginSpan.Standard(30*inListLevel), listItemStartPos.get(inListLevel-1), listItemEndPos.get(inListLevel-1), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 				ssb.setSpan(new BulletSpan(), listItemStartPos.get(inListLevel-1), listItemEndPos.get(inListLevel-1), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 				listItemStartPos.set(inListLevel-1, new Integer(0));
 				listItemEndPos.set(inListLevel-1, new Integer(0));
@@ -304,10 +304,12 @@ public class NoteContentHandler extends DefaultHandler {
 				// Book keeping of where the list-items started and where they end
 				// we need to do that because characters() can be called several times for the same tag
 				
-				// if listItem's position not already in tracking array, add it. Otherwise if it equals 0 then set
+				// if listItem's position not already in tracking array, add it.
+				// Otherwise if both the start and end positions equal 0 then set
+				//   (the check on EndPos prevents some issues if a listItem starts at position 0).
 				if (listItemStartPos.size() < inListLevel) {
 					listItemStartPos.add(new Integer(strLenStart));
-				} else if (listItemStartPos.get(inListLevel-1) == 0) {
+				} else if (listItemStartPos.get(inListLevel-1) == 0 && listItemEndPos.get(inListLevel-1) == 0) {
 					listItemStartPos.set(inListLevel-1, new Integer(strLenStart));					
 				}
 				// no matter what, we track the end (we add if array not big enough or set otherwise) 
