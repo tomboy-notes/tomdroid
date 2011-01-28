@@ -38,6 +38,7 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import org.tomdroid.Note;
+import org.tomdroid.R;
 import org.tomdroid.sync.SyncService;
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.ErrorList;
@@ -45,11 +46,21 @@ import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 
 import android.app.Activity;
+import android.graphics.Path;
 import android.os.Handler;
+import android.preference.ListPreference;
+import android.preference.Preference;
+import android.preference.PreferenceGroup;
+import android.preference.Preference.OnPreferenceChangeListener;
 import android.util.Log;
 import android.util.TimeFormatException;
 
 public class SdCardSyncService extends SyncService {
+	
+	private final String SYNC_TYPE_TOMDROID = "Tomdroid";
+	private final String SYNC_TYPE_TOMBOY = "Tomboy";
+	
+	private final String MANIFEST_FILE =  "manifest.xml";
 	
 	private int numberOfFilesToSync = 0;
 	
@@ -58,6 +69,9 @@ public class SdCardSyncService extends SyncService {
 	
 	// logging related
 	private final static String TAG = "SdCardSyncService";
+	
+	private ListPreference syncType;
+	private String currentSyncType;
 	
 	public SdCardSyncService(Activity activity, Handler handler) {
 		super(activity, handler);
@@ -78,6 +92,13 @@ public class SdCardSyncService extends SyncService {
 
 		setSyncProgress(0);
 
+		if(currentSyncType == SYNC_TYPE_TOMDROID)
+			syncTomdroid();
+		else
+			syncTomdboy();
+	}
+
+	private void syncTomdroid() {
 		// start loading local notes
 		if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "Loading local notes");
 		
@@ -113,10 +134,53 @@ public class SdCardSyncService extends SyncService {
 			
 			// give a filename to a thread and ask to parse it
 			syncInThread(new Worker(fileList[i], false));
-        }
+		}
 		
 		// last task, warn it so it'll warn UI when done
 		syncInThread(new Worker(fileList[fileList.length-1], true));
+	}
+	
+	private void syncTomdboy() {
+
+		// TODO 
+		
+	}
+
+
+	@Override
+	public void fillPreferences(PreferenceGroup group, final Activity activity) {
+
+		if(syncType == null) {
+			syncType = new ListPreference(activity);
+			syncType.setTitle(R.string.prefSDSyncType);
+			syncType.setPositiveButtonText(R.string.prefSDSyncType);
+
+			CharSequence[] entries = new CharSequence[2];
+			
+			entries[0] = SYNC_TYPE_TOMDROID;
+			entries[1] = SYNC_TYPE_TOMBOY;
+			
+			CharSequence[] entryValues = entries;
+			
+			syncType.setEntries(entries);
+			syncType.setEntryValues(entryValues);
+			
+			syncType.setDefaultValue(entries[0]);
+			syncType.setSummary(entries[0]);
+			
+			syncType.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+				
+				public boolean onPreferenceChange(Preference preference, Object newValue) {
+					currentSyncType = (String)newValue;
+					
+					return true;
+				}
+			});
+		}
+		
+		
+		group.addPreference(syncType);
+		
 	}
 
 	/**

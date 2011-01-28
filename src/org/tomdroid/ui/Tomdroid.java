@@ -67,6 +67,9 @@ public class Tomdroid extends ListActivity {
 	// TODO hardcoded for now
 	public static final String	NOTES_PATH			= Environment.getExternalStorageDirectory()
 															+ "/tomdroid/";
+	public static final String  NOTES_TOMBOY_PATH   =  Environment.getExternalStorageDirectory()
+															+ "/tomboy/";
+	
 	// Logging should be disabled for release builds
 	public static final boolean	LOGGING_ENABLED		= false;
 	// Set this to false for release builds, the reason should be obvious

@@ -49,7 +49,6 @@ import android.os.Message;
 import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
-import android.preference.PreferenceCategory;
 import android.preference.PreferenceGroup;
 import android.util.Log;
 import android.widget.Toast;
@@ -233,10 +232,6 @@ public class SnowySyncService extends SyncService {
 	@Override
 	public void fillPreferences(PreferenceGroup group, final Activity activity) {
 		
-//		PreferenceCategory pc = new PreferenceCategory(activity);
-//		pc.setTitle("Web Preferences");
-//		group.addPreference(pc);
-		
 		EditTextPreference syncServer = new EditTextPreference(activity);
 		syncServer.setTitle(R.string.prefSyncServer);
 		syncServer.setPositiveButtonText(R.string.prefAuthenticate);
@@ -246,7 +241,6 @@ public class SnowySyncService extends SyncService {
 		if(syncServer.getText() == null)
 			syncServer.setText(defaultServer);
 
-//		pc.addPreference(syncServer);
 		group.addPreference(syncServer);
 		
 		// Re-authenticate if the sync server changes
