@@ -30,6 +30,7 @@ public class Preferences {
 	
 	public enum Key {
 		SYNC_SERVICE ("sync_service", "sdcard"),
+		SD_SYNC_TYPE ("sd_sync_type", "Tomboy"),
 		SYNC_SERVER_ROOT_API ("sync_server_root_api", ""),
 		SYNC_SERVER_USER_API ("sync_server_user_api", ""),
 		SYNC_SERVER ("sync_server", "https://one.ubuntu.com/notes"),

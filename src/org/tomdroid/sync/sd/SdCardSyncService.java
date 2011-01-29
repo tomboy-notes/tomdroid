@@ -6,6 +6,7 @@
  * Copyright 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>
  * Copyright 2009, Benoit Garret <benoit.garret_launchpad@gadz.org>
  * Copyright 2010, Rodja Trappe <mail@rodja.net>
+ * Copyright 2011, Dor Shahaf <soapseller@gmail.com>
  * 
  * This file is part of Tomdroid.
  * 
@@ -31,9 +32,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
+import java.net.URI;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
@@ -42,41 +47,56 @@ import org.tomdroid.R;
 import org.tomdroid.sync.SyncService;
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.ErrorList;
+import org.tomdroid.util.Preferences;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
 import android.app.Activity;
 import android.graphics.Path;
+import android.net.Uri;
 import android.os.Handler;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceGroup;
 import android.preference.Preference.OnPreferenceChangeListener;
+import android.sax.Element;
 import android.util.Log;
 import android.util.TimeFormatException;
 
 public class SdCardSyncService extends SyncService {
-	
+
 	private final String SYNC_TYPE_TOMDROID = "Tomdroid";
 	private final String SYNC_TYPE_TOMBOY = "Tomboy";
+
+	private final String MANIFEST_FILE = "manifest.xml";
+	private final String NOTE_EXT = ".note";
 	
-	private final String MANIFEST_FILE =  "manifest.xml";
-	
+	private final String XML_NOTE_TAG = "note";
+	private final String XML_NOTE_ID = "id";
+	private final String XML_NOTE_REV = "rev";
+
 	private int numberOfFilesToSync = 0;
-	
+
 	// regexp for <note-content..>...</note-content>
-	private static Pattern note_content = Pattern.compile("<note-content.*>(.*)<\\/note-content>", Pattern.CASE_INSENSITIVE+Pattern.DOTALL);
-	
+	private static Pattern note_content = Pattern.compile(
+			"<note-content.*>(.*)<\\/note-content>", Pattern.CASE_INSENSITIVE
+					+ Pattern.DOTALL);
+
 	// logging related
 	private final static String TAG = "SdCardSyncService";
-	
+
 	private ListPreference syncType;
 	private String currentSyncType;
-	
+
 	public SdCardSyncService(Activity activity, Handler handler) {
 		super(activity, handler);
+		
+		currentSyncType = Preferences.getString(Preferences.Key.SD_SYNC_TYPE);
 	}
-	
+
 	@Override
 	public String getDescription() {
 		return "SD Card";
@@ -92,7 +112,7 @@ public class SdCardSyncService extends SyncService {
 
 		setSyncProgress(0);
 
-		if(currentSyncType == SYNC_TYPE_TOMDROID)
+		if (currentSyncType == SYNC_TYPE_TOMDROID)
 			syncTomdroid();
 		else
 			syncTomdboy();
@@ -100,130 +120,206 @@ public class SdCardSyncService extends SyncService {
 
 	private void syncTomdroid() {
 		// start loading local notes
-		if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "Loading local notes");
-		
+		if (Tomdroid.LOGGING_ENABLED)
+			Log.v(TAG, "Loading local notes");
+
 		File path = new File(Tomdroid.NOTES_PATH);
-		
+
 		if (!path.exists())
 			path.mkdir();
-		
-		Log.i(TAG, "Path "+path+" exists: "+path.exists());
-		
-		// Check a second time, if not the most likely cause is the volume doesn't exist
-		if(!path.exists()) {
-			if (Tomdroid.LOGGING_ENABLED) Log.w(TAG, "Couldn't create "+path);
+
+		Log.i(TAG, "Path " + path + " exists: " + path.exists());
+
+		// Check a second time, if not the most likely cause is the volume
+		// doesn't exist
+		if (!path.exists()) {
+			if (Tomdroid.LOGGING_ENABLED)
+				Log.w(TAG, "Couldn't create " + path);
 			sendMessage(NO_SD_CARD);
 			setSyncProgress(100);
 			return;
 		}
-		
+
 		File[] fileList = path.listFiles(new NotesFilter());
-		numberOfFilesToSync  = fileList.length;
-		
+		numberOfFilesToSync = fileList.length;
+
 		// If there are no notes, warn the UI through an empty message
 		if (fileList == null || fileList.length == 0) {
-			if (Tomdroid.LOGGING_ENABLED) Log.i(TAG, "There are no notes in "+path);
+			if (Tomdroid.LOGGING_ENABLED)
+				Log.i(TAG, "There are no notes in " + path);
 			sendMessage(PARSING_NO_NOTES);
 			setSyncProgress(100);
 			return;
 		}
-		
+
 		// every but the last note
-		for(int i = 0; i < fileList.length-1; i++) {
+		for (int i = 0; i < fileList.length - 1; i++) {
 			// TODO better progress reporting from within the workers
-			
+
 			// give a filename to a thread and ask to parse it
 			syncInThread(new Worker(fileList[i], false));
 		}
-		
+
 		// last task, warn it so it'll warn UI when done
-		syncInThread(new Worker(fileList[fileList.length-1], true));
+		syncInThread(new Worker(fileList[fileList.length - 1], true));
 	}
-	
+
 	private void syncTomdboy() {
 
-		// TODO 
+		// start loading local notes
+		if (Tomdroid.LOGGING_ENABLED)
+			Log.v(TAG, "Loading local notes");
+
+		File path = new File(Tomdroid.NOTES_TOMBOY_PATH);
+
+		if (!path.exists())
+			path.mkdir();
+
+		Log.i(TAG, "Path " + path + " exists: " + path.exists());
+
+		// Check a second time, if not the most likely cause is the volume
+		// doesn't exist
+		if (!path.exists()) {
+			if (Tomdroid.LOGGING_ENABLED)
+				Log.w(TAG, "Couldn't create " + path);
+			sendMessage(NO_SD_CARD);
+			setSyncProgress(100);
+			return;
+		}
+
+		if (!LockSync()) {
+			// TODO: Warn the user...
+
+			return;
+		}
+
+		String manifestURI = "file://" + Tomdroid.NOTES_TOMBOY_PATH + MANIFEST_FILE;
 		
+		try {
+			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+			docFactory.setNamespaceAware(true); 
+		
+			DocumentBuilder builder = docFactory.newDocumentBuilder();
+		
+			Document doc = builder.parse(manifestURI);
+			
+			org.w3c.dom.Element syncElem = doc.getDocumentElement();
+			syncElem.normalize();
+			 
+			NodeList notes = syncElem.getElementsByTagName(XML_NOTE_TAG);
+			for(int i = 0; i < notes.getLength(); ++i)
+			{
+				org.w3c.dom.Node node = notes.item(i);
+				org.w3c.dom.Element note = (org.w3c.dom.Element)node;
+				
+				int rev = Integer.parseInt(note.getAttribute(XML_NOTE_REV));
+				String noteId = note.getAttribute(XML_NOTE_ID);
+				
+				int topDir = rev / 100;
+				
+				File file = new File(Tomdroid.NOTES_TOMBOY_PATH +
+									 Integer.toString(topDir) + File.separator + 
+									 Integer.toString(rev) + File.separator +
+									 noteId + NOTE_EXT);
+				syncInThread(new Worker(file, i == notes.getLength()));
+			}
+			
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+			return;
+		}
+
 	}
 
+	private boolean LockSync() {
+		// TODO Auto-generated method stub
+		return true;
+	}
 
 	@Override
 	public void fillPreferences(PreferenceGroup group, final Activity activity) {
 
-		if(syncType == null) {
+		if (syncType == null) {
 			syncType = new ListPreference(activity);
 			syncType.setTitle(R.string.prefSDSyncType);
 			syncType.setPositiveButtonText(R.string.prefSDSyncType);
 
 			CharSequence[] entries = new CharSequence[2];
-			
+
 			entries[0] = SYNC_TYPE_TOMDROID;
 			entries[1] = SYNC_TYPE_TOMBOY;
-			
+
 			CharSequence[] entryValues = entries;
-			
+
 			syncType.setEntries(entries);
 			syncType.setEntryValues(entryValues);
-			
+
 			syncType.setDefaultValue(entries[0]);
-			syncType.setSummary(entries[0]);
-			
+			syncType.setValue(Preferences.getString(Preferences.Key.SD_SYNC_TYPE));
+			syncType.setSummary(syncType.getValue());
+
 			syncType.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
-				
-				public boolean onPreferenceChange(Preference preference, Object newValue) {
-					currentSyncType = (String)newValue;
-					
+
+				public boolean onPreferenceChange(Preference preference,
+						Object newValue) {
+					currentSyncType = (String) newValue;
+					syncType.setSummary(currentSyncType);
+					Preferences.putString(Preferences.Key.SD_SYNC_TYPE, currentSyncType);
+
 					return true;
 				}
 			});
 		}
-		
-		
+
 		group.addPreference(syncType);
-		
+
 	}
 
 	/**
-	 * Simple filename filter that grabs files ending with .note
-	 * TODO move into its own static class in a util package
+	 * Simple filename filter that grabs files ending with .note TODO move into
+	 * its own static class in a util package
 	 */
 	private class NotesFilter implements FilenameFilter {
 		public boolean accept(File dir, String name) {
 			return (name.endsWith(".note"));
 		}
 	}
-	
+
 	/**
-	 * The worker spawns a new note, parse the file its being given by the executor.
+	 * The worker spawns a new note, parse the file its being given by the
+	 * executor.
 	 */
-	// TODO change type to callable to be able to throw exceptions? (if you throw make sure to display an alert only once)
+	// TODO change type to callable to be able to throw exceptions? (if you
+	// throw make sure to display an alert only once)
 	// http://java.sun.com/j2se/1.5.0/docs/api/java/util/concurrent/Callable.html
 	private class Worker implements Runnable {
-		
+
 		// the note to be loaded and parsed
 		private Note note = new Note();
 		private File file;
 		private boolean isLast;
 		final char[] buffer = new char[0x10000];
-		
+
 		public Worker(File f, boolean isLast) {
 			file = f;
 			this.isLast = isLast;
 		}
 
 		public void run() {
-			
+
 			note.setFileName(file.getAbsolutePath());
 			// the note guid is not stored in the xml but in the filename
 			note.setGuid(file.getName().replace(".note", ""));
-			
+
 			// Try reading the file first
 			String contents = "";
 			try {
 				contents = readFile();
 			} catch (IOException e) {
 				e.printStackTrace();
-				if (Tomdroid.LOGGING_ENABLED) Log.w(TAG, "Something went wrong trying to read the note");
+				if (Tomdroid.LOGGING_ENABLED)
+					Log.w(TAG, "Something went wrong trying to read the note");
 				sendMessage(PARSING_FAILED, ErrorList.createError(note, e));
 				onWorkDone();
 				return;
@@ -231,77 +327,91 @@ public class SdCardSyncService extends SyncService {
 
 			try {
 				// Parsing
-		    	// XML 
-		    	// Get a SAXParser from the SAXPArserFactory
-		        SAXParserFactory spf = SAXParserFactory.newInstance();
-		        SAXParser sp = spf.newSAXParser();
-		
-		        // Get the XMLReader of the SAXParser we created
-		        XMLReader xr = sp.getXMLReader();
+				// XML
+				// Get a SAXParser from the SAXPArserFactory
+				SAXParserFactory spf = SAXParserFactory.newInstance();
+				SAXParser sp = spf.newSAXParser();
 
-		        // Create a new ContentHandler, send it this note to fill and apply it to the XML-Reader
-		        NoteHandler xmlHandler = new NoteHandler(note);
-		        xr.setContentHandler(xmlHandler);
+				// Get the XMLReader of the SAXParser we created
+				XMLReader xr = sp.getXMLReader();
 
-		        // Create the proper input source
-		        StringReader sr = new StringReader(contents);
-		        InputSource is = new InputSource(sr);
-		        
-				if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "parsing note");
+				// Create a new ContentHandler, send it this note to fill and
+				// apply it to the XML-Reader
+				NoteHandler xmlHandler = new NoteHandler(note);
+				xr.setContentHandler(xmlHandler);
+
+				// Create the proper input source
+				StringReader sr = new StringReader(contents);
+				InputSource is = new InputSource(sr);
+
+				if (Tomdroid.LOGGING_ENABLED)
+					Log.d(TAG, "parsing note");
 				xr.parse(is);
 
-			// TODO wrap and throw a new exception here
+				// TODO wrap and throw a new exception here
 			} catch (Exception e) {
 				e.printStackTrace();
-				if(e instanceof TimeFormatException) Log.e(TAG, "Problem parsing the note's date and time");
-				sendMessage(PARSING_FAILED, ErrorList.createErrorWithContents(note, e, contents));
+				if (e instanceof TimeFormatException)
+					Log.e(TAG, "Problem parsing the note's date and time");
+				sendMessage(PARSING_FAILED,
+						ErrorList.createErrorWithContents(note, e, contents));
 				onWorkDone();
 				return;
 			}
 
 			// extract the <note-content..>...</note-content>
-			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "retrieving what is inside of note-content");
-			
-			// FIXME here we are re-reading the whole note just to grab note-content out, there is probably a best way to do this (I'm talking to you xmlpull.org!)
+			if (Tomdroid.LOGGING_ENABLED)
+				Log.d(TAG, "retrieving what is inside of note-content");
+
+			// FIXME here we are re-reading the whole note just to grab
+			// note-content out, there is probably a best way to do this (I'm
+			// talking to you xmlpull.org!)
 			Matcher m = note_content.matcher(contents);
 			if (m.find()) {
 				note.setXmlContent(m.group());
 			} else {
-				if (Tomdroid.LOGGING_ENABLED) Log.w(TAG, "Something went wrong trying to grab the note-content out of a note");
-				sendMessage(PARSING_FAILED, ErrorList.createErrorWithContents(note, "Something went wrong trying to grab the note-content out of a note", contents));
+				if (Tomdroid.LOGGING_ENABLED)
+					Log.w(TAG,
+							"Something went wrong trying to grab the note-content out of a note");
+				sendMessage(
+						PARSING_FAILED,
+						ErrorList
+								.createErrorWithContents(
+										note,
+										"Something went wrong trying to grab the note-content out of a note",
+										contents));
 				onWorkDone();
 				return;
 			}
-			
+
 			insertNote(note);
 			onWorkDone();
 		}
-		
+
 		private String readFile() throws IOException {
 			StringBuilder out = new StringBuilder();
-			
+
 			int read;
-			Reader reader = new InputStreamReader(new FileInputStream(file), "UTF-8");
-			
+			Reader reader = new InputStreamReader(new FileInputStream(file),
+					"UTF-8");
+
 			do {
-			  read = reader.read(buffer, 0, buffer.length);
-			  if (read > 0) {
-			    out.append(buffer, 0, read);
-			  }
-			}
-			while (read >= 0);
-			
+				read = reader.read(buffer, 0, buffer.length);
+				if (read > 0) {
+					out.append(buffer, 0, read);
+				}
+			} while (read >= 0);
+
 			reader.close();
 			return out.toString();
 		}
-		
-		private void onWorkDone(){
+
+		private void onWorkDone() {
 			if (isLast) {
 				setSyncProgress(100);
 				sendMessage(PARSING_COMPLETE);
-			}
-			else
-				setSyncProgress((int) (getSyncProgress() + 100.0 / numberOfFilesToSync));			
+			} else
+				setSyncProgress((int) (getSyncProgress() + 100.0 / numberOfFilesToSync));
 		}
 	}
 }
