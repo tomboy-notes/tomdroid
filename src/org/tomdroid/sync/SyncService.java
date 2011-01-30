@@ -67,6 +67,7 @@ public abstract class SyncService {
 	public final static int NO_INTERNET = 4;
 	public final static int NO_SD_CARD = 5;
 	public final static int SYNC_PROGRESS = 6;
+	public final static int SYNC_FOLDER_LOCKED = 7;
 	
 	public SyncService(Activity activity, Handler handler) {
 		

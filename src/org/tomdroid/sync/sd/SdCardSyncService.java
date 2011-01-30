@@ -72,6 +72,7 @@ public class SdCardSyncService extends SyncService {
 	private final String SYNC_TYPE_TOMBOY = "Tomboy";
 
 	private final String MANIFEST_FILE = "manifest.xml";
+	private final String LOCK_FILE = "lock";
 	private final String NOTE_EXT = ".note";
 	
 	private final String XML_NOTE_TAG = "note";
@@ -157,11 +158,11 @@ public class SdCardSyncService extends SyncService {
 			// TODO better progress reporting from within the workers
 
 			// give a filename to a thread and ask to parse it
-			syncInThread(new Worker(fileList[i], false));
+			syncInThread(new Worker(fileList[i], false, false));
 		}
 
 		// last task, warn it so it'll warn UI when done
-		syncInThread(new Worker(fileList[fileList.length - 1], true));
+		syncInThread(new Worker(fileList[fileList.length - 1], true, false));
 	}
 
 	private void syncTomdboy() {
@@ -187,8 +188,11 @@ public class SdCardSyncService extends SyncService {
 			return;
 		}
 
-		if (!LockSync()) {
-			// TODO: Warn the user...
+		if (!lockSync()) {
+			if (Tomdroid.LOGGING_ENABLED)
+				Log.w(TAG, "Aborting folder sync - locked");
+			sendMessage(SYNC_FOLDER_LOCKED);
+			setSyncProgress(100);
 
 			return;
 		}
@@ -207,6 +211,16 @@ public class SdCardSyncService extends SyncService {
 			syncElem.normalize();
 			 
 			NodeList notes = syncElem.getElementsByTagName(XML_NOTE_TAG);
+			
+			// If there are no notes, warn the UI through an empty message
+			if (notes == null || notes.getLength() == 0) {
+				if (Tomdroid.LOGGING_ENABLED)
+					Log.i(TAG, "There are no notes in " + path);
+				sendMessage(PARSING_NO_NOTES);
+				setSyncProgress(100);
+				return;
+			}
+			
 			for(int i = 0; i < notes.getLength(); ++i)
 			{
 				org.w3c.dom.Node node = notes.item(i);
@@ -221,7 +235,7 @@ public class SdCardSyncService extends SyncService {
 									 Integer.toString(topDir) + File.separator + 
 									 Integer.toString(rev) + File.separator +
 									 noteId + NOTE_EXT);
-				syncInThread(new Worker(file, i == notes.getLength()));
+				syncInThread(new Worker(file, i == notes.getLength()-1, true));
 			}
 			
 		} catch (Exception e)
@@ -232,9 +246,24 @@ public class SdCardSyncService extends SyncService {
 
 	}
 
-	private boolean LockSync() {
-		// TODO Auto-generated method stub
+	private boolean lockSync() {
+		
+		File lockFile = new File(Tomdroid.NOTES_TOMBOY_PATH + LOCK_FILE);
+		
+		try {
+			if(!lockFile.createNewFile()) // Try Create and check if exist.
+				return false;
+		} catch (IOException e) {
+			return false;
+		}
+		
 		return true;
+	}
+	
+	private void unlockSync()
+	{
+		File lockFile = new File(Tomdroid.NOTES_TOMBOY_PATH + LOCK_FILE);
+		lockFile.delete();
 	}
 
 	@Override
@@ -299,11 +328,13 @@ public class SdCardSyncService extends SyncService {
 		private Note note = new Note();
 		private File file;
 		private boolean isLast;
+		private boolean isTomboySync;
 		final char[] buffer = new char[0x10000];
 
-		public Worker(File f, boolean isLast) {
+		public Worker(File f, boolean isLast, boolean isTomboySync) {
 			file = f;
 			this.isLast = isLast;
+			this.isTomboySync = isTomboySync;
 		}
 
 		public void run() {
@@ -410,8 +441,12 @@ public class SdCardSyncService extends SyncService {
 			if (isLast) {
 				setSyncProgress(100);
 				sendMessage(PARSING_COMPLETE);
+				
+				if(isTomboySync)
+					unlockSync();
 			} else
 				setSyncProgress((int) (getSyncProgress() + 100.0 / numberOfFilesToSync));
 		}
 	}
 }
+

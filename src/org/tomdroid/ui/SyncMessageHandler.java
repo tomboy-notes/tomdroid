@@ -103,6 +103,11 @@ public class SyncMessageHandler extends Handler {
 				Toast.makeText(activity, "SD card not found.",
 						Toast.LENGTH_SHORT).show();
 				break;
+				
+			case SyncService.SYNC_FOLDER_LOCKED:
+				// TODO put string in a translatable bundle
+				Toast.makeText(activity, "Local Folder synchronization is locked. Try again later.", Toast.LENGTH_SHORT).show();
+				break;
 
 			case SyncService.SYNC_PROGRESS:
 				handleSyncProgress(msg);
