@@ -140,7 +140,7 @@ public class NoteContentHandler extends DefaultHandler {
 //				}
 				if (listItemStartPos.size() < inListLevel) {
 					listItemStartPos.add(new Integer(ssb.length()));
-				} else if (listItemStartPos.get(inListLevel-1) == 0 && listItemEndPos.get(inListLevel-1) == 0) {
+				} else if (listItemStartPos.get(inListLevel-1) == 0) { // && listItemEndPos.get(inListLevel-1) == 0) {
 					listItemStartPos.set(inListLevel-1, new Integer(ssb.length()));					
 				}
 				// no matter what, we track the end (we add if array not big enough or set otherwise) 
@@ -381,11 +381,11 @@ public class NoteContentHandler extends DefaultHandler {
 //						listItemEndPos.set(i, strLenEnd);
 //					}
 //				}
-				if (listItemEndPos.size() < inListLevel) {
-					listItemEndPos.add(new Integer(strLenEnd));
-				} else {
-					listItemEndPos.set(inListLevel-1, strLenEnd);					
-				}				
+//				if (listItemEndPos.size() < inListLevel) {
+//					listItemEndPos.add(new Integer(strLenEnd));
+//				} else {
+				listItemEndPos.set(inListLevel-1, strLenEnd);					
+//				}				
 			}
 		}
 	}
