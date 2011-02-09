@@ -134,10 +134,10 @@ public class NoteContentHandler extends DefaultHandler {
 				inSizeHugeTag = true;
 			} else if (name.equals(LIST)) {
 				inListLevel++;
-			} else if (name.equals(LIST_ITEM)) {
-//				if (listItemIsEmpty.size() < inListLevel) {
-//					listItemIsEmpty.add(new Boolean(true));
-//				}
+			} else if (name.equals(LIST_ITEM)) {				
+				if (listItemIsEmpty.size() < inListLevel) {
+					listItemIsEmpty.add(new Boolean(true));
+				}
 				if (listItemStartPos.size() < inListLevel) {
 					listItemStartPos.add(new Integer(ssb.length()));
 				} else if (listItemStartPos.get(inListLevel-1) == 0) { // && listItemEndPos.get(inListLevel-1) == 0) {
@@ -149,7 +149,7 @@ public class NoteContentHandler extends DefaultHandler {
 				} else {
 					listItemEndPos.set(inListLevel-1, ssb.length());					
 				}
-				inListItem = true;				
+				inListItem = true;
 			}
 		}
 
@@ -224,7 +224,15 @@ public class NoteContentHandler extends DefaultHandler {
 			} else if (name.equals(LIST)) {
 				inListLevel--;
 			} else if (name.equals(LIST_ITEM)) {
-				inListItem = false;				
+				
+				if (!inListItem && listItemIsEmpty.get(inListLevel-1))
+				{
+					listItemStartPos.set(inListLevel-1, new Integer(0));
+					listItemEndPos.set(inListLevel-1, new Integer(0));
+					listItemIsEmpty.set(inListLevel-1, new Boolean(true));
+					
+					return;					
+				}
 				
 				// A list item without content will get skipped by characters(). If this list item is empty,
 				// we'd better take care of everything now.
@@ -266,7 +274,9 @@ public class NoteContentHandler extends DefaultHandler {
 				ssb.setSpan(new BulletSpan(), listItemStartPos.get(inListLevel-1), listItemEndPos.get(inListLevel-1), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 				listItemStartPos.set(inListLevel-1, new Integer(0));
 				listItemEndPos.set(inListLevel-1, new Integer(0));
-				//listItemIsEmpty.set(inListLevel-1, new Boolean(true));
+				listItemIsEmpty.set(inListLevel-1, new Boolean(true));
+				
+				inListItem = false;
 			}
 		}
 	}
@@ -350,7 +360,7 @@ public class NoteContentHandler extends DefaultHandler {
 				hugeEndPos = strLenEnd;
 			}
 			if (inListItem) {
-//				listItemIsEmpty.set(inListLevel-1, new Boolean(false));
+				listItemIsEmpty.set(inListLevel-1, new Boolean(false));
 //				
 //				// Book keeping of where the list-items started and where they end
 //				// we need to do that because characters() can be called several times for the same tag
