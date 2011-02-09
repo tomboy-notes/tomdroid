@@ -213,10 +213,20 @@ public class NoteContentHandler extends DefaultHandler {
 			} else if (name.equals(LIST)) {
 				inListLevel--;
 			} else if (name.equals(LIST_ITEM)) {
+				inListItem = false;				
 				
 				// A list item without content will get skipped by characters(). If this list item is empty,
 				// we'd better take care of everything now.
 				if (listItemIsEmpty.get(inListLevel-1)) {
+					
+					if (listItemStartPos.get(inListLevel-1) != 0)
+					{
+						listItemStartPos.set(inListLevel-1, new Integer(0));
+						listItemEndPos.set(inListLevel-1, new Integer(0));
+						listItemIsEmpty.set(inListLevel-1, new Boolean(true));
+						
+						return;
+					}
 					int strLenStart = ssb.length();
 					int strLenEnd = strLenStart + 1;
 					
@@ -239,7 +249,6 @@ public class NoteContentHandler extends DefaultHandler {
 					}
 				}
 				// here, we apply margin and create a bullet span. Plus, we need to reset position keepers.
-				inListItem = false;
 				// TODO new sexier bullets?
 				// Show a leading margin that is as wide as the nested level we are in
 				ssb.setSpan(new LeadingMarginSpan.Standard(30*inListLevel), listItemStartPos.get(inListLevel-1), listItemEndPos.get(inListLevel-1), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -331,23 +340,35 @@ public class NoteContentHandler extends DefaultHandler {
 			}
 			if (inListItem) {
 				listItemIsEmpty.set(inListLevel-1, new Boolean(false));
-
+				
 				// Book keeping of where the list-items started and where they end
 				// we need to do that because characters() can be called several times for the same tag
 				
 				// if listItem's position not already in tracking array, add it.
 				// Otherwise if both the start and end positions equal 0 then set
 				//   (the check on EndPos prevents some issues if a listItem starts at position 0).
-				if (listItemStartPos.size() < inListLevel) {
+				while (listItemStartPos.size() < inListLevel) {
 					listItemStartPos.add(new Integer(strLenStart));
-				} else if (listItemStartPos.get(inListLevel-1) == 0 && listItemEndPos.get(inListLevel-1) == 0) {
-					listItemStartPos.set(inListLevel-1, new Integer(strLenStart));					
+				} 
+				if (listItemStartPos.get(inListLevel-1) == 0 && !listItemEndPos.isEmpty()) {
+					if (listItemEndPos.get(inListLevel-1) == 0) {
+						listItemStartPos.set(inListLevel-1, new Integer(strLenStart));						
+					}
 				}
 				// no matter what, we track the end (we add if array not big enough or set otherwise) 
-				if (listItemEndPos.size() < inListLevel) {
+				if (listItemEndPos.size() >= inListLevel)
+				{
+					listItemEndPos.set(inListLevel-1, strLenEnd);				
+				}
+				while (listItemEndPos.size() < inListLevel) {
 					listItemEndPos.add(new Integer(strLenEnd));
-				} else {
-					listItemEndPos.set(inListLevel-1, strLenEnd);					
+				} 
+				
+				for (int i = 0; i < (inListLevel-1); i++) {
+					if (listItemIsEmpty.get(i) && listItemEndPos.get(i) == 0) {
+						listItemStartPos.set(i, strLenStart);
+						listItemEndPos.set(i, strLenEnd);
+					}
 				}
 			}
 		}
