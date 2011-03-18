@@ -107,7 +107,17 @@ public class SyncMessageHandler extends Handler {
 			case SyncService.SYNC_PROGRESS:
 				handleSyncProgress(msg);
 				break;
-
+			case SyncService.SSH_LOGIN_FAIL:
+				// TODO put string in a translatable bundle
+				Toast.makeText(activity, "ssh login failed. please check your credentials!",
+						Toast.LENGTH_SHORT).show();
+				break;
+				
+			case SyncService.SSH_CONNECT_FAIL:
+				// TODO put string in a translatable bundle
+				Toast.makeText(activity, "ssh connection could not be established.",
+						Toast.LENGTH_SHORT).show();
+				break;
 			default:
 				if (Tomdroid.LOGGING_ENABLED)
 					Log.i(TAG, "handler called with an unknown message");

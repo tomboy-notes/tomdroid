@@ -66,6 +66,8 @@ public abstract class SyncService {
 	public final static int NO_INTERNET = 4;
 	public final static int NO_SD_CARD = 5;
 	public final static int SYNC_PROGRESS = 6;
+	public final static int SSH_LOGIN_FAIL = 7;
+	public final static int SSH_CONNECT_FAIL = 8;
 	
 	public SyncService(Activity activity, Handler handler) {
 		

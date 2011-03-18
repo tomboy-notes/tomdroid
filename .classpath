@@ -6,5 +6,6 @@
 	<classpathentry kind="src" path="tests"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
+	<classpathentry kind="lib" path="libs/ganymed-ssh2-build251beta1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

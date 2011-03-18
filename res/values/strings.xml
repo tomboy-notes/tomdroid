@@ -115,4 +115,15 @@
 	<!-- 80 chars max -->
 	<string name="market_promotext">Note-taking application with online synchronization compatible with Tomboy</string>
 	
+	<string name="prefSyncSSHHostname">Hostname</string>
+	<string name="prefSSHOk">Ok</string>
+	<string name="prefSSHSync">SSH Sync Settings</string>
+	<string name="prefSyncSSHUsername">Username</string>
+	<string name="prefSyncSSHPassword">Password</string>
+	<string name="prefSyncSSHPort">Port</string>
+	<string name="prefSyncSSHFolder">Remote folder</string>
+	<string name="prefSyncSSHPrivateKey">Private Key</string>
+	<string name="prefSSHPasswordHint">Use the password property for set up the cert password if neccessary</string>
+	<string name="prefSSHKeyfileHint">Put your private keyfile into the tomdroid/ssh folder and only choose its filename here</string>
+	
 </resources>

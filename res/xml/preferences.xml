@@ -12,7 +12,36 @@
 							android:title="@string/prefSyncServer"
 							android:positiveButtonText="@string/prefAuthenticate"
 							android:shouldDisableView="true"/>
-							
+
 	</PreferenceCategory>
 	
+	<PreferenceCategory android:title="@string/prefSSHSync">
+		<EditTextPreference android:key="ssh_username"
+							android:title="@string/prefSyncSSHUsername"
+							android:positiveButtonText="@string/prefSSHOk"/>
+							
+		<EditTextPreference android:key="ssh_password"
+							android:password="true"
+							android:persistent="false"
+							android:title="@string/prefSyncSSHPassword"
+							android:positiveButtonText="@string/prefSSHOk"
+ 							android:shouldDisableView="true"/>
+ 							
+		<EditTextPreference android:key="ssh_hostname"
+							android:title="@string/prefSyncSSHHostname"
+							android:positiveButtonText="@string/prefSSHOk" />							
+							
+		<EditTextPreference android:key="ssh_port"
+							android:title="@string/prefSyncSSHPort"
+							android:positiveButtonText="@string/prefSSHOk" />
+							
+		<EditTextPreference android:key="ssh_folder"
+							android:title="@string/prefSyncSSHFolder"
+							android:positiveButtonText="@string/prefSSHOk" />
+							
+		<EditTextPreference android:key="ssh_private_key"
+							android:title="@string/prefSyncSSHPrivateKey"
+							android:positiveButtonText="@string/prefSSHOk" />
+ 	</PreferenceCategory>
+
 </PreferenceScreen>

@@ -30,6 +30,7 @@ import org.tomdroid.R;
 import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.sync.SyncService;
+import org.tomdroid.sync.ssh.CryptHelper;
 import org.tomdroid.util.FirstNote;
 import org.tomdroid.util.Preferences;
 
@@ -47,6 +48,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.Preference.OnPreferenceChangeListener;
+import android.preference.Preference.OnPreferenceClickListener;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -58,6 +60,11 @@ public class PreferencesActivity extends PreferenceActivity {
 	private EditTextPreference syncServer = null;
 	private ListPreference syncService = null;
 	
+	private EditTextPreference syncSSHPort = null;
+	private EditTextPreference syncSSHPassword = null;
+	private EditTextPreference syncSSHPrivateKey = null;
+
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
@@ -67,6 +74,21 @@ public class PreferencesActivity extends PreferenceActivity {
 		// Fill the Preferences fields
 		syncServer = (EditTextPreference)findPreference(Preferences.Key.SYNC_SERVER.getName());
 		syncService = (ListPreference)findPreference(Preferences.Key.SYNC_SERVICE.getName());
+		
+		syncSSHPort = (EditTextPreference) findPreference(Preferences.Key.SYNC_SERVER_SSH_PORT
+								.getName());
+		syncSSHPassword = (EditTextPreference) findPreference(Preferences.Key.SYNC_SERVER_SSH_PASSWORD
+								.getName());
+		syncSSHPrivateKey = (EditTextPreference) findPreference(Preferences.Key.SYNC_SERVER_SSH_PRIVATE_KEY
+								.getName());
+				
+		String pwEncrypted = Preferences.getString(Preferences.Key.SYNC_SERVER_SSH_PASSWORD);
+		if (pwEncrypted != null && pwEncrypted.length() > 0) {
+			String decodedPW = CryptHelper.decodePW((String) pwEncrypted);
+			Preferences.putString(Preferences.Key.SYNC_SERVER_SSH_PASSWORD,decodedPW);
+			syncSSHPassword.setText(decodedPW);
+		}
+
 		
 		// Set the default values if nothing exists
 		this.setDefaults();
@@ -110,7 +132,62 @@ public class PreferencesActivity extends PreferenceActivity {
 			}
 			
 		});
-		
+	
+		syncSSHPassword
+		.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+
+			public boolean onPreferenceChange(Preference arg0,
+					Object password) {
+				if (password == null
+						|| (password instanceof String && ((String) password)
+								.length() > 0)) {
+					String encryptPW = CryptHelper
+							.encodePW((String) password);
+					Preferences.putString(
+							Preferences.Key.SYNC_SERVER_SSH_PASSWORD,
+							encryptPW);
+					syncSSHPassword.setText(encryptPW);
+				}
+
+				return true;
+			}
+
+		});
+
+		syncSSHPrivateKey
+		.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+
+			public boolean onPreferenceChange(Preference arg0,
+					Object keyfile) {
+				if (keyfile != null
+						&& ((String) keyfile).length() > 0) {
+				Toast.makeText(PreferencesActivity.this,
+						getString(R.string.prefSSHPasswordHint),
+						Toast.LENGTH_LONG).show();
+				}
+				return true;
+			}
+
+		});
+
+		syncSSHPrivateKey
+		.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+			public boolean onPreferenceClick(Preference preference) {
+				String keyfile = Preferences
+						.getString(Preferences.Key.SYNC_SERVER_SSH_PRIVATE_KEY);
+				if (keyfile == null || (keyfile != null
+						&& keyfile.length() == 0)) {
+					new AlertDialog.Builder(PreferencesActivity.this)
+							.setMessage(
+									getString(R.string.prefSSHKeyfileHint))
+							.setNeutralButton(
+									getString(R.string.btnOk), null)
+							.show();
+				}
+				return true;
+			}
+		});
 	}
 	
 	private void authenticate(String serverUri) {
@@ -189,6 +266,11 @@ public class PreferencesActivity extends PreferenceActivity {
 		if(syncService.getValue() == null)
 			syncService.setValue(defaultService);
 	
+		String defaultSSHPort = (String) Preferences.Key.SYNC_SERVER_SSH_PORT.getDefault();
+		syncSSHPort.setDefaultValue(defaultSSHPort);
+		if (syncSSHPort.getText() == null) {
+			syncSSHPort.setText(defaultSSHPort);
+		}
 	}
 
 	private void setServer(String syncServiceKey) {
