@@ -4,6 +4,7 @@ TODO tasks
 - find a way to optionally present what's new to the users on upgrades. People tend to do that with description and I think it's bad.
 
 Unclassified:
+- improve the promotional graphic (used by default on android market now)
 - QR Code in Tomdroid's launchpad page (or tomdroid.org?)
 - getting-started FAQ (java, android env, bzr, open source)
 - find a sample use of the ContentProvider regarding Edouard's branch: searchbar-on-0.3/ and tell him
@@ -20,6 +21,7 @@ Unclassified:
 - Follow UI design guidelines (http://developer.android.com/guide/practices/ui_guidelines/activity_task_design.html)
 - Write a README and INSTALL manual to generate package from source, etc. To be put in project's root
 - use @author tag in class comments to identify a piece of code maintainer (java code convention, used by apache)
+- ssh sync back-end (see lp question #157254)
 
 Port threading to Android's mechanism (maybe wait to check for 1.5's new API):
 - Check Handler / Looper / AsyncQueryHandler classes
