@@ -39,6 +39,7 @@
 	<string name="menuPrefs">Préférences</string>
     <string name="menuAbout">À propos</string>
     <string name="titleWelcome">Attention</string>
+    <string name="titleAbout">À propos Tomdroid</string>
     <string name="strWelcome">
     	Bienvenue sur Tomdroid.
     	\n\nVeuillez noter que l\'application est en phase beta et qu\'elle contient des problèmes connus, 
@@ -58,8 +59,9 @@
     </string>
 
     <!-- TODO are these really needed!? -->
-    <string name="btnOk">Ok</string>
+    <string name="btnOk">OK</string>
     <string name="btnCancel">Cancel</string>
+    <string name="btnClose">Fermer</string>
 
 	<!-- note-view.xml -->
     <string name="strWait">Veuillez patienter pendant que les notes se chargent...</string>
@@ -68,8 +70,10 @@
 
 	<string name="prefSyncService">Service</string>
 	<string name="prefSyncServer">Serveur</string>
+	<string name="prefSDCard">carte SD</string>
 	<string name="prefAuthenticate">S\'authentifier</string>
 
+	<string name="prefSyncCompleteAuth">Completing authentication. Please wait...</string>
 	<string name="prefSyncConnectionFailed">La connexion au serveur a échoué, veuillez vérifier l\'adresse que vous avez entrée si elle est correcte.</string>
 	<string name="prefServerEmpty">L\'adresse du serveur a changé mais la nouvelle valeur est vide</string>
 

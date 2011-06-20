@@ -128,7 +128,7 @@ public class PreferencesActivity extends PreferenceActivity {
 		Log.i(TAG, "Creating dialog");
 
 		final ProgressDialog authProgress = ProgressDialog.show(this, "",
-				"Authenticating. Please wait...", true, false);
+				getString(R.string.prefSyncCompleteAuth), true, false);
 
 		Handler handler = new Handler() {
 
