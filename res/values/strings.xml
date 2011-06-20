@@ -77,7 +77,7 @@
 	<string name="prefServerEmpty">The server address changed but the new value is empty</string>
 
 	<string name="titleSyncService">Choose the sync service to use</string>
-	<string name="messageSyncComplete">Synchronization with %1$s is complete</string>
+	<string name="messageSyncComplete">Synchronization with %1$s is complete.</string>
 	<string name="messageSyncNoNote">No notes found on %1$s .</string>
 	<string name="messageSyncNoConnection">You are not connected to the Internet.</string>
 	<string name="messageSyncAlreadyInProgress">Sync already in progress</string>

@@ -72,7 +72,7 @@
 	<string name="prefSyncConnectionFailed">Die Verbindung zum Server ist fehlgeschlagen. Bitte überprüfe die angegebene Adresse.</string>
 	<string name="prefServerEmpty">Die Adresse des Servers wurde geändert, jedoch ist das Feld nun leer.</string>
 
-	<string name="titleSyncService">Bitte wähle den Synchronisations-Dienst aus.</string>
+	<string name="titleSyncService">Synchronisations-Dienst auswählen</string>
 	<string name="messageSyncComplete">Erfolgreich mit %1$s synchronisiert.</string>
 	<string name="messageSyncNoNote">Es wurden keine Notizen auf %1$s gefunden.</string>
 	<string name="messageSyncNoConnection">Es besteht keine Verbindung zum Internet.</string>
