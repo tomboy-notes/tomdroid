@@ -1,6 +1,6 @@
 ﻿Tomdroid NEWS
 
-Copyright 2008, 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>
+Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
 
 Project hosting: https://launchpad.net/tomdroid/
 
@@ -11,7 +11,9 @@ Join it at: https://launchpad.net/~tomdroid-dev
 
 For more details and developer visible changes see the ChangeLog
 
+-------------------------------------------------------------------------------
 Version <release> - <codename> released on <releaseDate>
+
 * Add a context menu with the ability to send a note (Edouard Richard)
 * List indentation increased + wrapping fix (Matthew Rasmus, lp:660116)
 * Improved error handling and reporting (Benoit Garret, lp:660057, lp:689473)
@@ -20,7 +22,9 @@ Version <release> - <codename> released on <releaseDate>
 * More content can be translated (Benoit Soyeux)
 * Updated french translation (Benoit Soyeux)
 
+-------------------------------------------------------------------------------
 Version 0.4.1 - "I didn't do it!" (fixed with duct tape) released on 2010-10-15
+
 * Fixed sync issues related to note identifiers (Stuart Langridge, lp:657477)
 * Error messages available in logs even in released builds (lp:657561)
 * Some strings translated to French (Benoit Soyeux)
