@@ -61,6 +61,7 @@
     <string name="btnOk">OK</string>
     <string name="btnCancel">Cancel</string>
     <string name="btnClose">Close</string>
+    <string name="btnProjectPage">Project page</string>
 
 	<!-- note-view.xml -->
     <string name="strWait">Please wait while note loads...</string>

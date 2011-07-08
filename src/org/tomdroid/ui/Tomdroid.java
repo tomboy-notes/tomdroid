@@ -229,7 +229,7 @@ public class Tomdroid extends ListActivity {
 
 		// build and show the dialog
 		new AlertDialog.Builder(this).setMessage(aboutDialogStr).setTitle(getString(R.string.titleAbout))
-				.setIcon(R.drawable.icon).setNegativeButton("Project page", new OnClickListener() {
+				.setIcon(R.drawable.icon).setNegativeButton(getString(R.string.btnProjectPage), new OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						startActivity(new Intent(Intent.ACTION_VIEW, Uri
 								.parse(Tomdroid.PROJECT_HOMEPAGE)));

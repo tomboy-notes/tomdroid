@@ -40,12 +40,12 @@
     <string name="titleAbout">Über Tomdroid</string>
     <string name="strWelcome">
     	Willkommen bei Tomdroid.
-    	\n\nBitte beachte, dass sich dieses Programm noch im Beta-Stadium befindet und Probleme bekannt sind, wie 		zum Beispiel das Fehlen der Bearbeitungsfunktion.
+    	\n\nBitte beachte, dass sich dieses Programm noch im Beta-Stadium befindet und Probleme bekannt sind, wie zum Beispiel das Fehlen der Bearbeitungsfunktion.
 
-    	\n\nWir sind uns diesen Mängeln bewusst und versuchen möglichst schnell die Funktionen zu erweitern und Fehler 		zu beheben.
+    	\n\nWir sind uns diesen Mängeln bewusst und versuchen möglichst schnell die Funktionen zu erweitern und Fehler zu beheben.
     	
     	\n\nFalls du die Entwicklung in irgendeiner Form unterstützen möchtest, würden wir uns sehr freuen.
-	Auf launchpad.net/tomdroid findest du die nötigen Informationen.\n
+		Auf launchpad.net/tomdroid findest du die nötigen Informationen.\n
     </string>
     <string name="strAbout">
     	%1$s
@@ -57,12 +57,13 @@
     <string name="btnOk">OK</string>
     <string name="btnCancel">Abbrechen</string>
     <string name="btnClose">Schließen</string>
+    <string name="btnProjectPage">Projektseite</string>
 
 	<!-- note-view.xml -->
     <string name="strWait">Die Notiz wird geladen. Bitte warten...</string>
 
 	<string name="prefSync">Synchronisation</string>
-	<string name="menuAbout">Über...</string>
+	<string name="menuAbout">Information</string>
 	<string name="prefSyncService">Service</string>
 	<string name="prefSyncServer">Server</string>
 	<string name="prefSDCard">SD-Karte</string>
@@ -70,9 +71,9 @@
 
 	<string name="prefSyncCompleteAuth">Authentifizierung läuft. Bitte warten...</string>
 	<string name="prefSyncConnectionFailed">Die Verbindung zum Server ist fehlgeschlagen. Bitte überprüfe die angegebene Adresse.</string>
-	<string name="prefServerEmpty">Die Adresse des Servers wurde geändert, jedoch ist das Feld nun leer.</string>
+	<string name="prefServerEmpty">Die Adresse des Servers wurde geändert. Es wurde keine Adresse angegeben!</string>
 
-	<string name="titleSyncService">Synchronisations-Dienst auswählen</string>
+	<string name="titleSyncService">Synchronisations-Dienst wählen</string>
 	<string name="messageSyncComplete">Erfolgreich mit %1$s synchronisiert.</string>
 	<string name="messageSyncNoNote">Es wurden keine Notizen auf %1$s gefunden.</string>
 	<string name="messageSyncNoConnection">Es besteht keine Verbindung zum Internet.</string>
