@@ -3,8 +3,8 @@
 # Targeted at XML notes version 0.3
 # The master file is using RELAX NG compact syntax
 # 
-# Version: 0.1
-# Copyright 2008 Olivier Bilodeau <olivier@bottomlesspit.org>
+# Version: 0.2
+# Copyright 2008, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
 # Created as part of Tomdroid, http://launchpad.net/tomdroid
 # 
 # This program is free software: you can redistribute it and/or modify
@@ -20,7 +20,7 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # 
-# Based from documentation found at http://live.gnome.org/Tomboy/NoteXmlFormat
+# Based on documentation found at http://live.gnome.org/Tomboy/NoteXmlFormat
 # 
 # TODO: narrow datatype information using W3C's XML Schema datatypes
 # TODO: Find out if the ordering of elements is relevant to Tomboy (would it crash?), if not, replace commas by & at the top level
@@ -53,10 +53,12 @@ element note {
                       | element size:small { Note-Content }?
                       | element size:large { Note-Content }?
                       | element size:huge { Note-Content }?
-                      | element link:internal { Note-Content }?
                       | element link:broken { Note-Content }?
+                      | element link:internal { Note-Content }?
+                      | element link:url { Note-Content }?
                       | element list { List }?
                       | element list-item { List }?
+                      | element note-title { Note-Content }?
                      )*
       List = (text
               | element list { Note-Content }?
