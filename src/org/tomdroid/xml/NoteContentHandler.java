@@ -93,6 +93,7 @@ public class NoteContentHandler extends DefaultHandler {
 	private int hugeEndPos;
 	private ArrayList<Integer> listItemStartPos = new ArrayList<Integer>(0);
 	private ArrayList<Integer> listItemEndPos = new ArrayList<Integer>(0);
+	private ArrayList<Boolean> listItemIsEmpty =  new ArrayList<Boolean>(0);
 	
 	// accumulate note-content in this var since it spans multiple xml tags
 	private SpannableStringBuilder ssb;
@@ -134,6 +135,27 @@ public class NoteContentHandler extends DefaultHandler {
 			} else if (name.equals(LIST)) {
 				inListLevel++;
 			} else if (name.equals(LIST_ITEM)) {
+				// Book keeping of where the list-items started and where they end.
+				// we need to do this here because a list-item must always have a start,
+				// but it doesn't always have any content--so we must assume that a list-item
+				// is empty until characters() gets called and proves otherwise.
+				
+				if (listItemIsEmpty.size() < inListLevel) {
+					listItemIsEmpty.add(new Boolean(true));
+				}
+				// if listItem's position not already in tracking array, add it.
+				// Otherwise if the start position equals 0 then set
+				if (listItemStartPos.size() < inListLevel) {
+					listItemStartPos.add(new Integer(ssb.length()));
+				} else if (listItemStartPos.get(inListLevel-1) == 0) { 
+					listItemStartPos.set(inListLevel-1, new Integer(ssb.length()));					
+				}
+				// no matter what, we track the end (we add if array not big enough or set otherwise) 
+				if (listItemEndPos.size() < inListLevel) {
+					listItemEndPos.add(new Integer(ssb.length()));
+				} else {
+					listItemEndPos.set(inListLevel-1, ssb.length());					
+				}
 				inListItem = true;
 			}
 		}
@@ -209,14 +231,26 @@ public class NoteContentHandler extends DefaultHandler {
 			} else if (name.equals(LIST)) {
 				inListLevel--;
 			} else if (name.equals(LIST_ITEM)) {
+				
+				// if this list item is "empty" then we don't need to try rendering anything.
+				if (!inListItem && listItemIsEmpty.get(inListLevel-1))
+				{
+					listItemStartPos.set(inListLevel-1, new Integer(0));
+					listItemEndPos.set(inListLevel-1, new Integer(0));
+					listItemIsEmpty.set(inListLevel-1, new Boolean(true));
+					
+					return;					
+				}
 				// here, we apply margin and create a bullet span. Plus, we need to reset position keepers.
-				inListItem = false;
 				// TODO new sexier bullets?
 				// Show a leading margin that is as wide as the nested level we are in
 				ssb.setSpan(new LeadingMarginSpan.Standard(30*inListLevel), listItemStartPos.get(inListLevel-1), listItemEndPos.get(inListLevel-1), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 				ssb.setSpan(new BulletSpan(), listItemStartPos.get(inListLevel-1), listItemEndPos.get(inListLevel-1), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 				listItemStartPos.set(inListLevel-1, new Integer(0));
 				listItemEndPos.set(inListLevel-1, new Integer(0));
+				listItemIsEmpty.set(inListLevel-1, new Boolean(true));
+				
+				inListItem = false;
 			}
 		}
 	}
@@ -300,24 +334,12 @@ public class NoteContentHandler extends DefaultHandler {
 				hugeEndPos = strLenEnd;
 			}
 			if (inListItem) {
-
-				// Book keeping of where the list-items started and where they end
-				// we need to do that because characters() can be called several times for the same tag
+				// this list item is not empty, so we mark it as such. We keep track of this to avoid any
+				// problems with list items nested like this: <item><item><item>Content!</item></item></item>
+				listItemIsEmpty.set(inListLevel-1, new Boolean(false));
 				
-				// if listItem's position not already in tracking array, add it.
-				// Otherwise if both the start and end positions equal 0 then set
-				//   (the check on EndPos prevents some issues if a listItem starts at position 0).
-				if (listItemStartPos.size() < inListLevel) {
-					listItemStartPos.add(new Integer(strLenStart));
-				} else if (listItemStartPos.get(inListLevel-1) == 0 && listItemEndPos.get(inListLevel-1) == 0) {
-					listItemStartPos.set(inListLevel-1, new Integer(strLenStart));					
-				}
-				// no matter what, we track the end (we add if array not big enough or set otherwise) 
-				if (listItemEndPos.size() < inListLevel) {
-					listItemEndPos.add(new Integer(strLenEnd));
-				} else {
-					listItemEndPos.set(inListLevel-1, strLenEnd);					
-				}
+				// no matter what, if we are still in the tag, end is now further
+				listItemEndPos.set(inListLevel-1, strLenEnd);					
 			}
 		}
 	}
