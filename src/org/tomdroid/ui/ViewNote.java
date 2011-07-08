@@ -79,7 +79,6 @@ public class ViewNote extends Activity {
 		content.setTextColor(Color.DKGRAY);
 		content.setTextSize(18.0f);
 		title = (TextView) findViewById(R.id.title);
-		title.setBackgroundColor(0xffdddddd);
 		title.setTextColor(Color.DKGRAY);
 		title.setTextSize(18.0f);
 		

@@ -43,7 +43,6 @@ import android.widget.TextView;
 public class NoteListCursorAdapter extends SimpleCursorAdapter {
 
     private int layout;
-    private int[] colors = new int[] { 0xFFFFFFFF, 0xFFEEEEEE };
     private Context context;
 
     private DateFormat localeDateFormat;
@@ -80,9 +79,6 @@ public class NoteListCursorAdapter extends SimpleCursorAdapter {
     @Override
 	public View getView(int position, View convertView, ViewGroup parent) {
     	View view = super.getView(position, convertView, parent);
-    	int colorPos = position % colors.length;
-    	view.setBackgroundColor(colors[colorPos]);
-    	//view.setTextColor(Color.DKGRAY);
     	return view;
 	}
     

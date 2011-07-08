@@ -24,10 +24,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<item 
-			android:icon="@drawable/icon_about"
 			android:title="@string/menuAbout"
 			android:id="@+id/menuAbout"
-			/>
+			android:icon="@android:drawable/ic_menu_info_details"/>
 	
 	
 	<item 

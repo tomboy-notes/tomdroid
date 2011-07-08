@@ -14,6 +14,10 @@ For more details and developer visible changes see the ChangeLog
 -------------------------------------------------------------------------------
 Version <release> - <codename> released on <releaseDate>
 
+* Higher quality icons including brand new Tomdroid icon (Stefan Hammer, 
+  lp:593351)
+* Added UI feedback for "selected" and "pressed" events (Stefan Hammer, 
+  lp:799327)
 * Add a context menu with the ability to send a note (Edouard Richard)
 * List indentation increased + wrapping fix (Matthew Rasmus, lp:660116)
 * Improved error handling and reporting (Benoit Garret, lp:660057, lp:689473)
