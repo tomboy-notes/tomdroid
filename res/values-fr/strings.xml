@@ -74,7 +74,7 @@
 	<string name="prefSDCard">carte SD</string>
 	<string name="prefAuthenticate">S\'authentifier</string>
 
-	<string name="prefSyncCompleteAuth">Completing authentication. Please wait...</string>
+	<string name="prefSyncCompleteAuth">Authentification réussie. Veuillez patienter ...</string>
 	<string name="prefSyncConnectionFailed">La connexion au serveur a échoué, veuillez vérifier l\'adresse que vous avez entrée si elle est correcte.</string>
 	<string name="prefServerEmpty">L\'adresse du serveur a changé mais la nouvelle valeur est vide</string>
 
