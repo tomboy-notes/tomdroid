@@ -39,7 +39,13 @@ public class Send {
 				
 				//remove title from content
 				if (noteContent.toString() != "") {
-					body = noteContent.toString().substring(note.getTitle().length()+2);
+					body = noteContent.toString();
+					// Test weather title is equal to the piece we want to cut (Bug #800176)
+					if (note.getTitle().length() <= noteContent.toString().length()) {
+						if (note.getTitle().equals(noteContent.toString().substring(0, note.getTitle().length()))) {
+							body = noteContent.toString().substring(note.getTitle().length()+2);
+						}
+					}
 				}
 
 			    // Create a new Intent to send messages
