@@ -80,6 +80,7 @@
 	<string name="messageSyncAlreadyInProgress">Synchronisation déjà en cours</string>
 	<string name="messageSyncError">Il y a une erreur lors de la syncrhonisation. Si vous pouvez reproduire le problème, contactez nous !</string>
 	<string name="error">erreur</string>
+	<string name="view_list">Montrer Liste</string>
 	
 	<!-- NoteSorting -->
     <string name="menuSort">Changer tri</string>

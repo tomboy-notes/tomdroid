@@ -79,6 +79,7 @@
 	<string name="messageSyncAlreadyInProgress">Sync already in progress</string>
 	<string name="messageSyncError">There was an error trying to parse your note collection. If you are able to replicate the problem, please contact us!</string>
 	<string name="error">error</string>
+	<string name="view_list">Show List</string>
 	
 	<!-- NoteSorting -->
     <string name="menuSort">change sort</string>
