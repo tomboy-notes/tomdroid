@@ -37,6 +37,7 @@ import org.tomdroid.util.Send;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
@@ -259,6 +260,14 @@ public class Tomdroid extends ListActivity {
 		Uri intentUri = Uri.parse(Tomdroid.CONTENT_URI + "/" + noteId);
 		Intent i = new Intent(Intent.ACTION_VIEW, intentUri, this, ViewNote.class);
 		startActivity(i);
+	}
+	
+	public static void ViewList(Context View) {
+		if ( ! ( View instanceof Tomdroid ) )
+	    {
+			View.startActivity(new Intent(View, Tomdroid.class)
+			.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+	    }
 	}
 
 }

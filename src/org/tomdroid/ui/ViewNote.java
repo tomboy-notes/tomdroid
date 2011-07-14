@@ -164,8 +164,7 @@ public class ViewNote extends Activity {
 				return true;
 				
 			case R.id.view_note_list:
-				startActivity(new Intent(this, Tomdroid.class)
-				 .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+				Tomdroid.ViewList(this);
 				return true;
 		}
 
