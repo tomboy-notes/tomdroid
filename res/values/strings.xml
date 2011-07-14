@@ -24,8 +24,6 @@
 <resources>
     
     <string name="send">Send</string>
-    <string name="view">View</string>
-    <string name="note_options">Note Options</string>
     <string name="app_name">Tomdroid</string>
     <string name="app_desc">Tomboy compatible wikiwiki note-taking application that can\'t take notes yet.</string>
     <string name="author">Olivier Bilodeau</string>
@@ -92,6 +90,10 @@
     <string name="menuFilterNotebook">Filter</string>
     <string name="strListEmptyNoNotebooks">There are no notebooks in the database.</string>
     <string name="allNotebooksFilter">All notebooks</string>
+    
+    <!-- List Longpress Menu -->
+    <string name="view">View</string>
+    <string name="note_options">Note Options</string>
 	
 	<!-- Date -->
     <string name="textModified">Modified: </string>
