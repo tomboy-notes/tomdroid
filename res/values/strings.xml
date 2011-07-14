@@ -24,6 +24,8 @@
 <resources>
     
     <string name="send">Send</string>
+    <string name="view">View</string>
+    <string name="note_options">Note Options</string>
     <string name="app_name">Tomdroid</string>
     <string name="app_desc">Tomboy compatible wikiwiki note-taking application that can\'t take notes yet.</string>
     <string name="author">Olivier Bilodeau</string>

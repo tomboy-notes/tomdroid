@@ -156,6 +156,7 @@ public class Tomdroid extends ListActivity {
 			ContextMenuInfo menuInfo) {
 		MenuInflater inflater = getMenuInflater();
 	    inflater.inflate(R.menu.main_longclick, menu);
+	    menu.setHeaderTitle(getString(R.string.note_options));
 		super.onCreateContextMenu(menu, v, menuInfo);
 	}
 
@@ -164,11 +165,14 @@ public class Tomdroid extends ListActivity {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo)item.getMenuInfo();
 		long noteId = info.id;
 		Uri intentUri = Uri.parse(Tomdroid.CONTENT_URI+"/"+noteId);
+		Note note = NoteManager.getNote(this, intentUri);
 		
 		switch (item.getItemId()) {
 			case R.id.menu_send:
-				Note note = NoteManager.getNote(this, intentUri);
 				(new Send(this, note)).send();
+				break;
+			case R.id.view:
+				this.ViewNote(noteId);
 				break;
 				
 			default:
@@ -246,8 +250,12 @@ public class Tomdroid extends ListActivity {
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 
 		Cursor item = (Cursor) adapter.getItem(position);
-		int noteId = item.getInt(item.getColumnIndexOrThrow(Note.ID));
-
+		long noteId = item.getInt(item.getColumnIndexOrThrow(Note.ID));
+			this.ViewNote(noteId);
+		
+	}
+	
+	public void ViewNote(long noteId) {
 		Uri intentUri = Uri.parse(Tomdroid.CONTENT_URI + "/" + noteId);
 		Intent i = new Intent(Intent.ACTION_VIEW, intentUri, this, ViewNote.class);
 		startActivity(i);
