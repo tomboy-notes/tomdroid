@@ -162,12 +162,7 @@ public class ViewNote extends Activity {
 			case R.id.view_note_send:
 				(new Send(this, note)).send();
 				return true;
-				
-			case R.id.view_note_list:
-				Tomdroid.ViewList(this);
-				return true;
 		}
-
 		return super.onOptionsItemSelected(item);
 	}
 	
