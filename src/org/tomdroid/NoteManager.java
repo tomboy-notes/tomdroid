@@ -142,14 +142,36 @@ public class NoteManager {
 	}
 	
 
-	public static ListAdapter getListAdapter(Activity activity) {
+	public static ListAdapter getListAdapter(Activity activity, String querys) {
+		
+		String where;
+		if (querys==null) {
+			where=null;
+		} else {
+			// sql statements to search notes
+			String[] query = querys.split(" ");
+			where="";
+			int count=0;
+			for (String string : query) {
+				if (count>0) where = where + " AND ";
+				where = where + "("+Note.TITLE+" LIKE '%"+string+"%' OR "+Note.NOTE_CONTENT+" LIKE '%"+string+"%')";
+				count++;
+			}	
+		}
 
-		Cursor notesCursor = getAllNotes(activity, false);
+		// get a cursor representing all notes from the NoteProvider
+		Uri notes = Tomdroid.CONTENT_URI;
+		Cursor notesCursor = activity.managedQuery(notes, LIST_PROJECTION, where, null, null);
 		
 		// set up an adapter binding the TITLE field of the cursor to the list item
-		String[] from = new String[] { Note.TITLE, Note.MODIFIED_DATE };
-		int[] to = new int[] { R.id.note_title, R.id.note_date };
+		String[] from = new String[] { Note.TITLE };
+		int[] to = new int[] { R.id.note_title };
 		return new NoteListCursorAdapter(activity, R.layout.main_list_item, notesCursor, from, to);
+	}
+	
+	public static ListAdapter getListAdapter(Activity activity) {
+		
+		return getListAdapter(activity, null);
 	}
 
 	// gets the titles of the notes present in the db, used in ViewNote.buildLinkifyPattern()

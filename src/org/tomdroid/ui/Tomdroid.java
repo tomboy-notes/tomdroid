@@ -146,6 +146,10 @@ public class Tomdroid extends ListActivity {
 			case R.id.menuPrefs:
 				startActivity(new Intent(this, PreferencesActivity.class));
 				return true;
+				
+			case R.id.menuSearch:
+				startSearch(null, false, null, false);
+				return true;
 		}
 
 		return super.onOptionsItemSelected(item);

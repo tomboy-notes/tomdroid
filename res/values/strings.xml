@@ -89,6 +89,13 @@
     <string name="menuFilterNotebook">Filter</string>
     <string name="strListEmptyNoNotebooks">There are no notebooks in the database.</string>
     <string name="allNotebooksFilter">All notebooks</string>
+    
+    <!--  Search -->
+    <string name="search_hint">Search notes</string>
+    <string name="strNoResults">No notes found for \"%s\"</string>
+    <string name="menuSearch">Search</string>
+    <string name="SearchResultTitle">Search Results:</string>
+    
 	
 	<!-- Date -->
     <string name="textModified">Modified: </string>
