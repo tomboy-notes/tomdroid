@@ -51,6 +51,9 @@
 			<meta-data	android:name="android.app.searchable"
 						android:resource="@xml/searchable"/>
 		</activity>
+		<provider	android:name=".util.SearchSuggestionProvider"
+					android:authorities="org.tomdroid.util.SearchSuggestionProvider"
+        />
 		
 		<provider android:name="NoteProvider"
             android:authorities="org.tomdroid.notes"

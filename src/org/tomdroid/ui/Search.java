@@ -4,6 +4,7 @@ import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
 import org.tomdroid.sync.SyncManager;
+import org.tomdroid.util.SearchSuggestionProvider;
 
 import android.app.ListActivity;
 import android.app.SearchManager;
@@ -13,6 +14,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.SearchRecentSuggestions;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListAdapter;
@@ -42,9 +44,8 @@ public class Search extends ListActivity {
 		title.setTextColor(Color.DKGRAY);
 		title.setTextSize(18.0f);
 		title.setText((CharSequence) getString(R.string.SearchResultTitle));
-	    
+	    	    
 	    handleIntent(getIntent());
-
 	}
 
 	@Override
@@ -60,6 +61,13 @@ public class Search extends ListActivity {
 	      showResults(query);
 	    }
 	    
+	    //adds query to search history suggestions
+	    if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+	        String query = intent.getStringExtra(SearchManager.QUERY);
+	        SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
+	                SearchSuggestionProvider.AUTHORITY, SearchSuggestionProvider.MODE);
+	        suggestions.saveRecentQuery(query, null);
+	    }
 	}
 
 	public void showResults(String query) {
