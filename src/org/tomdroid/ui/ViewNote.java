@@ -49,6 +49,7 @@ import android.text.util.Linkify;
 import android.text.util.Linkify.TransformFilter;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.widget.EditText;
 import android.widget.TextView;
 
 // TODO this class is starting to smell
@@ -56,7 +57,7 @@ public class ViewNote extends Activity {
 	
 	// UI elements
 	private TextView title;
-	private TextView content;
+	private EditText content;
 	
 	// Model objects
 	private Note note;
@@ -74,7 +75,7 @@ public class ViewNote extends Activity {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.note_view);
-		content = (TextView) findViewById(R.id.content);
+		content = (EditText) findViewById(R.id.content);
 		content.setBackgroundColor(0xffffffff);
 		content.setTextColor(Color.DKGRAY);
 		content.setTextSize(18.0f);
