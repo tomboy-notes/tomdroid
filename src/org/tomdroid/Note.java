@@ -172,7 +172,6 @@ public class Note {
 
 	// TODO: should this handler passed around evolve into an observer pattern?
 	public SpannableStringBuilder getNoteContent(Handler handler) {
-		
 		// TODO not sure this is the right place to do this
 		noteContent = new NoteContentBuilder().setCaller(handler).setInputSource(xmlContent).build();
 		return noteContent;

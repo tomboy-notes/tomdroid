@@ -3,6 +3,7 @@
   xmlns:android="http://schemas.android.com/apk/res/android">
 <item android:title="@string/send" android:id="@+id/menu_send">
 </item>
+<item android:id="@+id/delete_note" android:title="@string/delete"></item>
 
 
 </menu>

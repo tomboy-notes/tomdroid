@@ -114,5 +114,8 @@
 	</string>
 	<!-- 80 chars max -->
 	<string name="market_promotext">Note-taking application with online synchronization compatible with Tomboy</string>
+	<string name="newNote">New Note</string>
+	<string name="saveNote">Save Note</string>
+	<string name="delete">Delete</string>
 	
 </resources>

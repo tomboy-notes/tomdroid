@@ -31,6 +31,7 @@ import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.sync.SyncService;
 import org.tomdroid.util.FirstNote;
+import org.tomdroid.util.NewNote;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.Send;
 
@@ -146,6 +147,22 @@ public class Tomdroid extends ListActivity {
 			case R.id.menuPrefs:
 				startActivity(new Intent(this, PreferencesActivity.class));
 				return true;
+
+			case R.id.newNote:
+				for( int count=0, id=0; count==0 || id!=0; count++ )
+				{
+					String newTitle = getString(R.string.newNote);
+					if( count>0 ) 
+					{
+						newTitle += " "+new Integer(count).toString();
+					}
+					id = NoteManager.getNoteId( this, newTitle );
+					if( id==0 )
+					{
+						NoteManager.putNote( this, NewNote.createNewNote(newTitle) );
+						return true;
+					}
+				}
 		}
 
 		return super.onOptionsItemSelected(item);
@@ -169,6 +186,10 @@ public class Tomdroid extends ListActivity {
 			case R.id.menu_send:
 				Note note = NoteManager.getNote(this, intentUri);
 				(new Send(this, note)).send();
+				break;
+				
+			case R.id.delete_note:
+				NoteManager.deleteNote(this, (int) noteId);
 				break;
 				
 			default:

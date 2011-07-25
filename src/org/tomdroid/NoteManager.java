@@ -36,7 +36,8 @@ import android.widget.ListAdapter;
 
 public class NoteManager {
 	
-	public static final String[] FULL_PROJECTION = { Note.ID, Note.TITLE, Note.FILE, Note.NOTE_CONTENT, Note.MODIFIED_DATE };
+	public static final String[] FULL_PROJECTION = { Note.ID, Note.TITLE, Note.FILE, Note.NOTE_CONTENT, Note.MODIFIED_DATE,
+														Note.GUID, Note.TAGS };
 	public static final String[] LIST_PROJECTION = { Note.ID, Note.TITLE, Note.MODIFIED_DATE };
 	public static final String[] TITLE_PROJECTION = { Note.TITLE };
 	public static final String[] GUID_PROJECTION = { Note.ID, Note.GUID };
@@ -60,12 +61,14 @@ public class NoteManager {
 			cursor.moveToFirst();
 			String noteContent = cursor.getString(cursor.getColumnIndexOrThrow(Note.NOTE_CONTENT));
 			String noteTitle = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
+			String noteGuid = cursor.getString(cursor.getColumnIndexOrThrow(Note.GUID));
 			
 			note = new Note();
 			note.setXmlContent(noteContent);
 			note.setTitle(noteTitle);
+			note.setGuid(noteGuid);
 		}
-		
+		if( cursor != null ) cursor.close();
 		return note;
 	}
 	
@@ -91,13 +94,13 @@ public class NoteManager {
 		// Preparing the values to be either inserted or updated
 		// depending on the result of the previous query
 		ContentValues values = new ContentValues();
-		values.put(Note.TITLE, note.getTitle());
-		values.put(Note.FILE, note.getFileName());
+		if( note.getTitle()!=null ) values.put(Note.TITLE, note.getTitle());
+		if( note.getFileName()!=null ) values.put(Note.FILE, note.getFileName());
 		values.put(Note.GUID, note.getGuid().toString());
 		// Notice that we store the date in UTC because sqlite doesn't handle RFC3339 timezone information
-		values.put(Note.MODIFIED_DATE, note.getLastChangeDate().format3339(false));
-		values.put(Note.NOTE_CONTENT, note.getXmlContent());
-		values.put(Note.TAGS, note.getTags());
+		if( note.getLastChangeDate()!=null ) values.put(Note.MODIFIED_DATE, note.getLastChangeDate().format3339(false));
+		if( note.getXmlContent()!=null ) values.put(Note.NOTE_CONTENT, note.getXmlContent());
+		if( note.getTags()!= null ) values.put(Note.TAGS, note.getTags());
 		
 		if (managedCursor.getCount() == 0) {
 			

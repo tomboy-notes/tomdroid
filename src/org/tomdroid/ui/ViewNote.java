@@ -32,6 +32,7 @@ import org.tomdroid.R;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.util.LinkifyPhone;
 import org.tomdroid.util.NoteContentBuilder;
+import org.tomdroid.util.NoteXMLContentBuilder;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -49,6 +50,9 @@ import android.text.util.Linkify;
 import android.text.util.Linkify.TransformFilter;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -99,8 +103,7 @@ public class ViewNote extends Activity {
 			
 			if(note != null) {
 				
-				noteContent = note.getNoteContent(noteContentHandler);
-				
+				noteContent = note.getNoteContent(noteXMLParseHandler);
 				//Log.i(TAG, "THE NOTE IS: " + note.getXmlContent().toString());
 				
 			} else {
@@ -144,17 +147,44 @@ public class ViewNote extends Activity {
 		SyncManager.setHandler(this.syncMessageHandler);
 	}
 
-	// TODO add a menu that switches the view to an EditText instead of TextView
-	// this will need some other quit mechanism as onKeyDown though.. (but the back key might do it)
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+
+		// Create the menu based on what is defined in res/menu/main.xml
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.note, menu);
+		return true;
+
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.saveNote:
+				SpannableStringBuilder newNoteContent = (SpannableStringBuilder) this.content.getText();
+				// store changed note content
+				String newXmlContent = new NoteXMLContentBuilder().setCaller(noteXMLWriteHandler).setInputSource(newNoteContent).build();
+				note.setXmlContent(newXmlContent);
+				NoteManager.putNote( this, note );
+				noteContent = note.getNoteContent(noteXMLParseHandler);
+				return true;
+
+			case R.id.menuPrefs:
+				startActivity(new Intent(this, PreferencesActivity.class));
+				return true;
+		}
+
+		return super.onOptionsItemSelected(item);
+	}
 	
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
-		super.onKeyDown(keyCode, event);
-		
-		finish();
-		
-		return true;
+		// Write reverse compiled note XML back to note
+		if( keyCode==KeyEvent.KEYCODE_BACK )
+		{
+			finish();
+			return true;
+		} else return super.onKeyDown(keyCode, event);		
 	}
 	
 	private void showNote() {
@@ -197,7 +227,7 @@ public class ViewNote extends Activity {
 		titleView.setText(title);
 	}
 	
-	private Handler noteContentHandler = new Handler() {
+	private Handler noteXMLParseHandler = new Handler() {
 
 		@Override
 		public void handleMessage(Message msg) {
@@ -223,7 +253,32 @@ public class ViewNote extends Activity {
         	}
 		}
 	};
-	
+
+	private Handler noteXMLWriteHandler = new Handler() {
+
+		@Override
+		public void handleMessage(Message msg) {
+			
+			//parsed ok - do nothing
+			if(msg.what == NoteXMLContentBuilder.PARSE_OK) {
+			//parsed not ok - error
+			} else if(msg.what == NoteXMLContentBuilder.PARSE_ERROR) {
+				
+				// TODO put this String in a translatable resource
+				new AlertDialog.Builder(ViewNote.this)
+					.setMessage("The requested note could not be parsed. If you see this error " +
+								" and you are able to replicate it, please file a bug!")
+					.setTitle("Error")
+					.setNeutralButton("Ok", new OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+							finish();
+						}})
+					.show();
+        	}
+		}
+	};
+
 	/**
 	 * Builds a regular expression pattern that will match any of the note title currently in the collection.
 	 * Useful for the Linkify to create the links to the notes.
