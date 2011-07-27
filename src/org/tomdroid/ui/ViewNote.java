@@ -164,7 +164,7 @@ public class ViewNote extends Activity {
 				SpannableStringBuilder newNoteContent = (SpannableStringBuilder) this.content.getText();
 				// store changed note content
 				String newXmlContent = new NoteXMLContentBuilder().setCaller(noteXMLWriteHandler).setInputSource(newNoteContent).build();
-				note.setXmlContent(newXmlContent);
+				note.setXmlContent("<note-content version=\"0.1\">"+note.getTitle()+"\n\n"+newXmlContent+"</note-content>");
 				NoteManager.putNote( this, note );
 				noteContent = note.getNoteContent(noteXMLParseHandler);
 				return true;
