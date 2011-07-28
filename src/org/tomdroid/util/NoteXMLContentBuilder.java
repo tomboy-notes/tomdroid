@@ -196,11 +196,11 @@ public class NoteXMLContentBuilder implements Runnable {
 									if( nextMargins.length>1 ) throw new Exception("Multiple margins at "+new Integer(currPos+1).toString() );;
 									for( LeadingMarginSpan.Standard nextMargin: nextMargins )
 										nextListLevel = nextMargin.getLeadingMargin(true) / marginFactor;
-									// force writing of missing list end tag before non-list content:
-									if( nextMargins.length==0 ) listLevelDiff = -1;
+									// force writing of missing list end tags before non-list content:
+									if( nextMargins.length==0 ) listLevelDiff = -currentListLevel;
 								}
-								// force writing of missing list end tag at the end of the note:
-								else listLevelDiff = -1;
+								// force writing of missing list end tags at the end of the note:
+								else listLevelDiff = -currentListLevel;
 								// suppress list-item end tag, as it has to enclose the following list element:
 								// FIXME: what happens if abs(listLevelDiff)>1?
 								if( currentListLevel < nextListLevel ) elementName = "";
@@ -214,7 +214,8 @@ public class NoteXMLContentBuilder implements Runnable {
 									// assume a growing negative fake start offset to force list and list-item end tags to appear behind all other end tags at this position:
 									if( elemEndsByStart.get(-1-i*2) == null ) elemEndsByStart.put( -1-i*2, new LinkedList<String>() );
 									elemEndsByStart.get(-1-i*2).add( "list" );
-									if( nextListLevel>0 || prevListLevel>1 )
+									int levelCorrector = Math.abs(listLevelDiff)-i-1; 
+									if( nextListLevel+levelCorrector>0 || prevListLevel+levelCorrector>1 )
 									{
 										// explicitly add a previously suppressed list-items end tag after enclosed list element,
 										// but only if this was not the root list element of the list
