@@ -85,6 +85,15 @@ public class NoteXMLContentBuilder implements Runnable {
 		boolean successful = true;
 		
 		try {
+			// replace illegal XML characters with corresponding entities:
+			String plainText = noteContent.toString();
+			TreeMap<String,String> replacements = new TreeMap<String,String>();
+			replacements.put( "&", "&amp;" ); replacements.put( "<", "&lt;" ); replacements.put( ">", "&gt;" );
+			for( Map.Entry<String,String> entry: replacements.entrySet() )
+				for( int currPos=plainText.lastIndexOf(entry.getKey(), plainText.length()); currPos>0; currPos=plainText.lastIndexOf(entry.getKey(), currPos-1) )
+	 				noteContent.replace( currPos, currPos+entry.getKey().length(), entry.getValue() );
+			
+			// translate spans into XML elements:
 			for( int prevPos=0, currPos=0, maxPos=noteContent.length(); 
 					currPos!=-1 && currPos<=maxPos && prevPos<maxPos;
 					prevPos=currPos, currPos=noteContent.nextSpanTransition(currPos, maxPos, Object.class) )
@@ -160,15 +169,17 @@ public class NoteXMLContentBuilder implements Runnable {
 							bulletEnd = spanEnd;
 							int listLevelDiff = 0, marginFactor = 30;
 							int currentListLevel = currentMargin / marginFactor;
+							int prevListLevel = 0, nextListLevel = 0;
 							// compute indentation difference between current position and offset -1 for a starting transition
 							// or current position and offset +1 for an ending transition:
 							if( currPos==bulletStart )
 							{
 								elementName += " dir=\"ltr\""; // add unsupported (and unused by Tomboy?), fixed orientation attribute
-								int prevListLevel = 0;
+								prevListLevel = 0;
 								if( currPos > 0 )
 								{
-									LeadingMarginSpan.Standard[] prevMargins = noteContent.getSpans( currPos-1, currPos, LeadingMarginSpan.Standard.class );
+									LeadingMarginSpan.Standard[] prevMargins = noteContent.getSpans( currPos-1, currPos-1, LeadingMarginSpan.Standard.class );
+									if( prevMargins.length>1 ) throw new Exception("Multiple margins at "+new Integer(currPos-1).toString() );
 									for( LeadingMarginSpan.Standard prevMargin: prevMargins ) 
 										prevListLevel = prevMargin.getLeadingMargin(true) / marginFactor;
 								}
@@ -176,25 +187,23 @@ public class NoteXMLContentBuilder implements Runnable {
 							}
 							else if( currPos==bulletEnd )
 							{
-								int nextListLevel = 0;
+								// most needed list tags are triggered by bullet start transitions, but we have
+								// to trigger some list end tags on special bullet end transitions...
+								nextListLevel = 0;
 								if( currPos < noteContent.length() )
 								{
-									LeadingMarginSpan.Standard[] nextMargins = noteContent.getSpans( currPos, currPos+1, LeadingMarginSpan.Standard.class );
-									for( LeadingMarginSpan.Standard nextMargin: nextMargins ) 
+									LeadingMarginSpan.Standard[] nextMargins = noteContent.getSpans( currPos+1, currPos+1, LeadingMarginSpan.Standard.class );
+									if( nextMargins.length>1 ) throw new Exception("Multiple margins at "+new Integer(currPos+1).toString() );;
+									for( LeadingMarginSpan.Standard nextMargin: nextMargins )
 										nextListLevel = nextMargin.getLeadingMargin(true) / marginFactor;
+									// force writing of missing list end tag before non-list content:
+									if( nextMargins.length==0 ) listLevelDiff = -1;
 								}
-								else if( currPos == noteContent.length() )
-								{
-									// force writing of last list end tag of the note
-									// FIXME: this also has to be done before any non-list content following a list
-									listLevelDiff = -1;
-								}
-								if( currentListLevel < nextListLevel )
-								{
-									// suppress list-items end tag, as it has to enclose the following list element
-									// FIXME: what happens if abs(listLevelDiff)>1?
-									elementName = "";
-								}
+								// force writing of missing list end tag at the end of the note:
+								else listLevelDiff = -1;
+								// suppress list-item end tag, as it has to enclose the following list element:
+								// FIXME: what happens if abs(listLevelDiff)>1?
+								if( currentListLevel < nextListLevel ) elementName = "";
 							}
 							// add needed number of list start or list end and list-item end tags to represent the observed indentation 
 							// difference at this position:
@@ -205,11 +214,10 @@ public class NoteXMLContentBuilder implements Runnable {
 									// assume a growing negative fake start offset to force list and list-item end tags to appear behind all other end tags at this position:
 									if( elemEndsByStart.get(-1-i*2) == null ) elemEndsByStart.put( -1-i*2, new LinkedList<String>() );
 									elemEndsByStart.get(-1-i*2).add( "list" );
-									// suppress a closing list-item end tag at the end of input
-									// FIXME: must also be suppressed before non-list content following a list
-									if( currPos<maxPos )
+									if( nextListLevel>0 || prevListLevel>1 )
 									{
-										// explicitly add a previously suppressed list-items end tag after enclosed list element
+										// explicitly add a previously suppressed list-items end tag after enclosed list element,
+										// but only if this was not the root list element of the list
 										// (assume a fake start offset of -2 to force list-item end to appear behind list end)
 										if( elemEndsByStart.get(-2-i*2) == null ) elemEndsByStart.put( -2-i*2, new LinkedList<String>() );
 										elemEndsByStart.get(-2-i*2).add( "list-item" );
