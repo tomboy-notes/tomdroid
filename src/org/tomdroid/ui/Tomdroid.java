@@ -106,7 +106,7 @@ public class Tomdroid extends ListActivity {
 			
 			// Warn that this is a "will eat your babies" release
 			new AlertDialog.Builder(this).setMessage(getString(R.string.strWelcome)).setTitle(
-					getString(R.string.titleWelcome)).setNeutralButton("Ok", new OnClickListener() {
+					getString(R.string.titleWelcome)).setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
 					Preferences.putBoolean(Preferences.Key.FIRST_RUN, false);
 					dialog.dismiss();
@@ -190,7 +190,7 @@ public class Tomdroid extends ListActivity {
 			if (uri != null && uri.getScheme().equals("tomdroid")) {
 				Log.i(TAG, "Got url : " + uri.toString());
 
-				final ProgressDialog dialog = ProgressDialog.show(this, "",	"Completing authentication. Please wait...", true, false);
+				final ProgressDialog dialog = ProgressDialog.show(this, "",	getString(R.string.prefSyncCompleteAuth), true, false);
 
 				Handler handler = new Handler() {
 
@@ -228,14 +228,14 @@ public class Tomdroid extends ListActivity {
 				);
 
 		// build and show the dialog
-		new AlertDialog.Builder(this).setMessage(aboutDialogStr).setTitle("About Tomdroid")
-				.setIcon(R.drawable.icon).setNegativeButton("Project page", new OnClickListener() {
+		new AlertDialog.Builder(this).setMessage(aboutDialogStr).setTitle(getString(R.string.titleAbout))
+				.setIcon(R.drawable.icon).setNegativeButton(getString(R.string.btnProjectPage), new OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						startActivity(new Intent(Intent.ACTION_VIEW, Uri
 								.parse(Tomdroid.PROJECT_HOMEPAGE)));
 						dialog.dismiss();
 					}
-				}).setPositiveButton("Ok", new OnClickListener() {
+				}).setPositiveButton(getString(R.string.btnOk), new OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						dialog.dismiss();
 					}

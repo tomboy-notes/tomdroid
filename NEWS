@@ -27,6 +27,7 @@ Version <release> - <codename> released on <releaseDate>
 * Fixed SD card synchronization crashing on large note collections (Thomas 
   Frenzel, lp:534213)
 * More content can be translated (Benoit Soyeux)
+* New German translation (Stefan Hammer)
 * Updated French translation (Benoit Soyeux)
 
 -------------------------------------------------------------------------------
