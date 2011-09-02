@@ -24,7 +24,10 @@ Version <release> - <codename> released on <releaseDate>
 * Improved error handling and reporting (Benoit Garret, lp:660057, lp:689473)
 * Date on the note list is now displayed according to the phone's locale
   (Matthew Rasmus, lp:659743)
+* Fixed SD card synchronization crashing on large note collections (Thomas 
+  Frenzel, lp:534213)
 * More content can be translated (Benoit Soyeux)
+* New German translation (Stefan Hammer)
 * Updated French translation (Benoit Soyeux)
 
 -------------------------------------------------------------------------------

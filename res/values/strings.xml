@@ -38,6 +38,7 @@
 	<string name="menuPrefs">Settings</string>
     <string name="menuAbout">About</string>
     <string name="titleWelcome">Warning</string>
+    <string name="titleAbout">About Tomdroid</string>
     <string name="strWelcome">
     	Welcome to Tomdroid.
     	\n\nPlease note that this is beta quality software and that it contains known problems,
@@ -56,9 +57,11 @@
     	\nLicensed under the GPLv3
     </string>
 
-    <!-- TODO are these really needed!? -->
-    <string name="btnOk">Ok</string>
+    <!-- TODO aren't these available somewhere else? like in the SDK? //-->
+    <string name="btnOk">OK</string>
     <string name="btnCancel">Cancel</string>
+    <string name="btnClose">Close</string>
+    <string name="btnProjectPage">Project page</string>
 
 	<!-- note-view.xml -->
     <string name="strWait">Please wait while note loads...</string>
@@ -67,13 +70,15 @@
 
 	<string name="prefSyncService">Service</string>
 	<string name="prefSyncServer">Server</string>
+	<string name="prefSDCard">SD Card</string>
 	<string name="prefAuthenticate">Authenticate</string>
-
+	
+	<string name="prefSyncCompleteAuth">Completing authentication. Please wait...</string>
 	<string name="prefSyncConnectionFailed">The connection to the server has failed, please check that the address you entered is correct.</string>
 	<string name="prefServerEmpty">The server address changed but the new value is empty</string>
 
 	<string name="titleSyncService">Choose the sync service to use</string>
-	<string name="messageSyncComplete">Synchronization with %1$s is complete</string>
+	<string name="messageSyncComplete">Synchronization with %1$s is complete.</string>
 	<string name="messageSyncNoNote">No notes found on %1$s .</string>
 	<string name="messageSyncNoConnection">You are not connected to the Internet.</string>
 	<string name="messageSyncAlreadyInProgress">Sync already in progress</string>

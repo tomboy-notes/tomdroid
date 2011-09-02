@@ -130,8 +130,8 @@ public class ViewNote extends Activity {
 			new AlertDialog.Builder(this)
 			.setMessage("The requested note could not be found. If you see this error " +
 					    " and you are able to replicate it, please file a bug!")
-			.setTitle("Error")
-			.setNeutralButton("Ok", new OnClickListener() {
+			.setTitle(getString(R.string.error))
+			.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
 					dialog.dismiss();
 					finish();
