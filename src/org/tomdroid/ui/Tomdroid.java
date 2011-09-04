@@ -3,7 +3,7 @@
  * Tomboy on Android
  * http://www.launchpad.net/tomdroid
  * 
- * Copyright 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>
+ * Copyright 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
  * Copyright 2009, Benoit Garret <benoit.garret_launchpad@gadz.org>
  * Copyright 2010, Rodja Trappe <mail@rodja.net>
  * 
@@ -146,6 +146,10 @@ public class Tomdroid extends ListActivity {
 
 			case R.id.menuPrefs:
 				startActivity(new Intent(this, PreferencesActivity.class));
+				return true;
+				
+			case R.id.menuSearch:
+				startSearch(null, false, null, false);
 				return true;
 		}
 

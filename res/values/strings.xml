@@ -4,7 +4,7 @@
  Tomboy on Android
  http://www.launchpad.net/tomdroid
 
- Copyright 2008, 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>
+ Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
  
  This file is part of Tomdroid.
  
@@ -98,8 +98,18 @@
     <!-- List Longpress Menu -->
     <string name="view">View</string>
     <string name="noteOptions">Note Options</string>
-	
-	<!-- Date -->
+
+    <!--  Search -->
+    <string name="search_hint">Search notes</string>
+    <string name="search_description">Text in your notes</string>
+    <string name="strNoResults">No notes found for \"%s\"</string>
+    <string name="menuSearch">Search</string>
+    <string name="SearchResultTitle">Search Results:</string>
+    <string name="clearSearchHistoryTitle">Clear search history</string>
+    <string name="clearSearchHistory">Remove all the searches you have performed</string>
+    <string name="deletedSearchHistory">Search history has been cleared.</string>
+
+    <!-- Date -->
     <string name="textModified">Modified: </string>
     <string name="textToday">Today</string>
     <string name="textYexterday">Yesterday</string>
