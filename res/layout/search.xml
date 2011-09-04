@@ -4,7 +4,8 @@
  Tomboy on Android
  http://www.launchpad.net/tomdroid
 
- Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
+ Copyright 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
+ Copyright 2011 Stefan Hammer <j.4@gmx.at>
  
  This file is part of Tomdroid.
  
@@ -26,18 +27,18 @@
 		android:layout_height="fill_parent"
 		android:orientation="vertical"
     	>
-
-    <include android:id="@+id/actionbar" layout="@layout/actionbar" />
+    	
+	<include android:id="@+id/actionbar" layout="@layout/actionbar" />
     
     <ListView android:id="@android:id/android:list"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:divider="#FFCCCCCC"
-              android:dividerHeight="1px"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:divider="#FFCCCCCC"
+			android:dividerHeight="1px"
               />
               
-  	<TextView android:id="@+id/list_empty"
-			android:text="@string/strListEmptyNoNotes"
+  	<TextView android:id="@+id/no_results"
+			android:text="@string/strNoResults"
 			android:layout_width="fill_parent"
 			android:layout_height="fill_parent"
 			android:singleLine="false"

@@ -4,7 +4,7 @@
  Tomboy on Android
  http://www.launchpad.net/tomdroid
 
- Copyright 2008, 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>
+ Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
  
  This file is part of Tomdroid.
  
@@ -38,6 +38,7 @@
 	<string name="menuPrefs">Settings</string>
     <string name="menuAbout">About</string>
     <string name="titleWelcome">Warning</string>
+    <string name="titleAbout">About Tomdroid</string>
     <string name="strWelcome">
     	Welcome to Tomdroid.
     	\n\nPlease note that this is beta quality software and that it contains known problems,
@@ -56,9 +57,11 @@
     	\nLicensed under the GPLv3
     </string>
 
-    <!-- TODO are these really needed!? -->
-    <string name="btnOk">Ok</string>
+    <!-- TODO aren't these available somewhere else? like in the SDK? //-->
+    <string name="btnOk">OK</string>
     <string name="btnCancel">Cancel</string>
+    <string name="btnClose">Close</string>
+    <string name="btnProjectPage">Project page</string>
 
 	<!-- note-view.xml -->
     <string name="strWait">Please wait while note loads...</string>
@@ -67,13 +70,15 @@
 
 	<string name="prefSyncService">Service</string>
 	<string name="prefSyncServer">Server</string>
+	<string name="prefSDCard">SD Card</string>
 	<string name="prefAuthenticate">Authenticate</string>
-
+	
+	<string name="prefSyncCompleteAuth">Completing authentication. Please wait...</string>
 	<string name="prefSyncConnectionFailed">The connection to the server has failed, please check that the address you entered is correct.</string>
 	<string name="prefServerEmpty">The server address changed but the new value is empty</string>
 
 	<string name="titleSyncService">Choose the sync service to use</string>
-	<string name="messageSyncComplete">Synchronization with %1$s is complete</string>
+	<string name="messageSyncComplete">Synchronization with %1$s is complete.</string>
 	<string name="messageSyncNoNote">No notes found on %1$s .</string>
 	<string name="messageSyncNoConnection">You are not connected to the Internet.</string>
 	<string name="messageSyncAlreadyInProgress">Sync already in progress</string>
@@ -89,8 +94,22 @@
     <string name="menuFilterNotebook">Filter</string>
     <string name="strListEmptyNoNotebooks">There are no notebooks in the database.</string>
     <string name="allNotebooksFilter">All notebooks</string>
-	
-	<!-- Date -->
+    
+    <!-- List Longpress Menu -->
+    <string name="view">View</string>
+    <string name="noteOptions">Note Options</string>
+
+    <!--  Search -->
+    <string name="search_hint">Search notes</string>
+    <string name="search_description">Text in your notes</string>
+    <string name="strNoResults">No notes found for \"%s\"</string>
+    <string name="menuSearch">Search</string>
+    <string name="SearchResultTitle">Search Results:</string>
+    <string name="clearSearchHistoryTitle">Clear search history</string>
+    <string name="clearSearchHistory">Remove all the searches you have performed</string>
+    <string name="deletedSearchHistory">Search history has been cleared.</string>
+
+    <!-- Date -->
     <string name="textModified">Modified: </string>
     <string name="textToday">Today</string>
     <string name="textYexterday">Yesterday</string>

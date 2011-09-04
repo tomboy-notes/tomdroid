@@ -4,7 +4,7 @@
  Tomboy on Android
  http://www.launchpad.net/tomdroid
 
- Copyright 2009 Olivier Bilodeau <olivier@bottomlesspit.org>
+ Copyright 2011 Stefan Hammer <j.4@gmx.at>
  
  This file is part of Tomdroid.
  
@@ -21,20 +21,11 @@
  You should have received a copy of the GNU General Public License
  along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-
-	<item 
-			android:icon="@android:drawable/ic_menu_info_details"
-			android:title="@string/menuAbout"
-			android:id="@+id/menuAbout"/>
-			
-	<item 
-			android:icon="@android:drawable/ic_menu_preferences"
-			android:title="@string/menuPrefs"
-			android:id="@+id/menuPrefs"/>
-			
-	<item 
-			android:icon="@android:drawable/ic_menu_search"
-			android:title="@string/menuSearch"
-			android:id="@+id/menuSearch"/>
-</menu>
+ <selector xmlns:android="http://schemas.android.com/apk/res/android">
+ 
+     <item android:state_pressed="true"
+           android:drawable="@drawable/icon_focused" /> <!-- pressed -->
+     <item android:state_focused="true"
+           android:drawable="@drawable/icon_focused" /> <!-- focused -->
+     <item android:drawable="@drawable/icon" /> <!-- default -->
+ </selector>

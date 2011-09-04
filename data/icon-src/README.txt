@@ -3,6 +3,7 @@ List of used Stock-Android Icons:
 @android:drawable/menuitem_background
 @android:drawable/ic_menu_info_details
 @android:drawable/ic_menu_preferences
+@android:drawable/ic_menu_share
 
 
 ***IMPORTANT***

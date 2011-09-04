@@ -150,7 +150,7 @@ public class SdCardSyncService extends SyncService {
 		private Note note = new Note();
 		private File file;
 		private boolean isLast;
-		final char[] buffer = new char[0x10000];
+		final char[] buffer = new char[0x1000];
 		
 		public Worker(File f, boolean isLast) {
 			file = f;

@@ -3,7 +3,7 @@
  * Tomboy on Android
  * http://www.launchpad.net/tomdroid
  * 
- * Copyright 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>
+ * Copyright 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
  * Copyright 2009, Benoit Garret <benoit.garret_launchpad@gadz.org>
  * Copyright 2010, Rodja Trappe <mail@rodja.net>
  * 
@@ -37,6 +37,7 @@ import org.tomdroid.util.Send;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
@@ -106,7 +107,7 @@ public class Tomdroid extends ListActivity {
 			
 			// Warn that this is a "will eat your babies" release
 			new AlertDialog.Builder(this).setMessage(getString(R.string.strWelcome)).setTitle(
-					getString(R.string.titleWelcome)).setNeutralButton("Ok", new OnClickListener() {
+					getString(R.string.titleWelcome)).setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
 					Preferences.putBoolean(Preferences.Key.FIRST_RUN, false);
 					dialog.dismiss();
@@ -146,6 +147,10 @@ public class Tomdroid extends ListActivity {
 			case R.id.menuPrefs:
 				startActivity(new Intent(this, PreferencesActivity.class));
 				return true;
+				
+			case R.id.menuSearch:
+				startSearch(null, false, null, false);
+				return true;
 		}
 
 		return super.onOptionsItemSelected(item);
@@ -156,6 +161,7 @@ public class Tomdroid extends ListActivity {
 			ContextMenuInfo menuInfo) {
 		MenuInflater inflater = getMenuInflater();
 	    inflater.inflate(R.menu.main_longclick, menu);
+	    menu.setHeaderTitle(getString(R.string.noteOptions));
 		super.onCreateContextMenu(menu, v, menuInfo);
 	}
 
@@ -164,11 +170,14 @@ public class Tomdroid extends ListActivity {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo)item.getMenuInfo();
 		long noteId = info.id;
 		Uri intentUri = Uri.parse(Tomdroid.CONTENT_URI+"/"+noteId);
+		Note note = NoteManager.getNote(this, intentUri);
 		
 		switch (item.getItemId()) {
 			case R.id.menu_send:
-				Note note = NoteManager.getNote(this, intentUri);
 				(new Send(this, note)).send();
+				break;
+			case R.id.view:
+				this.ViewNote(noteId);
 				break;
 				
 			default:
@@ -190,7 +199,7 @@ public class Tomdroid extends ListActivity {
 			if (uri != null && uri.getScheme().equals("tomdroid")) {
 				Log.i(TAG, "Got url : " + uri.toString());
 
-				final ProgressDialog dialog = ProgressDialog.show(this, "",	"Completing authentication. Please wait...", true, false);
+				final ProgressDialog dialog = ProgressDialog.show(this, "",	getString(R.string.prefSyncCompleteAuth), true, false);
 
 				Handler handler = new Handler() {
 
@@ -228,14 +237,14 @@ public class Tomdroid extends ListActivity {
 				);
 
 		// build and show the dialog
-		new AlertDialog.Builder(this).setMessage(aboutDialogStr).setTitle("About Tomdroid")
-				.setIcon(R.drawable.icon).setNegativeButton("Project page", new OnClickListener() {
+		new AlertDialog.Builder(this).setMessage(aboutDialogStr).setTitle(getString(R.string.titleAbout))
+				.setIcon(R.drawable.icon).setNegativeButton(getString(R.string.btnProjectPage), new OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						startActivity(new Intent(Intent.ACTION_VIEW, Uri
 								.parse(Tomdroid.PROJECT_HOMEPAGE)));
 						dialog.dismiss();
 					}
-				}).setPositiveButton("Ok", new OnClickListener() {
+				}).setPositiveButton(getString(R.string.btnOk), new OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						dialog.dismiss();
 					}
@@ -246,11 +255,23 @@ public class Tomdroid extends ListActivity {
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 
 		Cursor item = (Cursor) adapter.getItem(position);
-		int noteId = item.getInt(item.getColumnIndexOrThrow(Note.ID));
-
+		long noteId = item.getInt(item.getColumnIndexOrThrow(Note.ID));
+			this.ViewNote(noteId);
+		
+	}
+	
+	public void ViewNote(long noteId) {
 		Uri intentUri = Uri.parse(Tomdroid.CONTENT_URI + "/" + noteId);
 		Intent i = new Intent(Intent.ACTION_VIEW, intentUri, this, ViewNote.class);
 		startActivity(i);
+	}
+	
+	public static void ViewList(Context View) {
+		if ( ! ( View instanceof Tomdroid ) )
+	    {
+			View.startActivity(new Intent(View, Tomdroid.class)
+			.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+	    }
 	}
 
 }

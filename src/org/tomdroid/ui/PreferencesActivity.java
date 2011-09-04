@@ -4,7 +4,7 @@
  * http://www.launchpad.net/tomdroid
  * 
  * Copyright 2009, Benoit Garret <benoit.garret_launchpad@gadz.org>
- * Copyright 2010, Olivier Bilodeau <olivier@bottomlesspit.org>
+ * Copyright 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
  * 
  * This file is part of Tomdroid.
  * 
@@ -32,6 +32,7 @@ import org.tomdroid.sync.SyncManager;
 import org.tomdroid.sync.SyncService;
 import org.tomdroid.util.FirstNote;
 import org.tomdroid.util.Preferences;
+import org.tomdroid.util.SearchSuggestionProvider;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -47,6 +48,8 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.Preference.OnPreferenceChangeListener;
+import android.preference.Preference.OnPreferenceClickListener;
+import android.provider.SearchRecentSuggestions;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -57,6 +60,7 @@ public class PreferencesActivity extends PreferenceActivity {
 	// TODO: put the various preferences in fields and figure out what to do on activity suspend/resume
 	private EditTextPreference syncServer = null;
 	private ListPreference syncService = null;
+	private Preference clearSearchHistory = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +71,7 @@ public class PreferencesActivity extends PreferenceActivity {
 		// Fill the Preferences fields
 		syncServer = (EditTextPreference)findPreference(Preferences.Key.SYNC_SERVER.getName());
 		syncService = (ListPreference)findPreference(Preferences.Key.SYNC_SERVICE.getName());
+		clearSearchHistory = (Preference)findPreference(Preferences.Key.CLEAR_SEARCH_HISTORY.getName());
 		
 		// Set the default values if nothing exists
 		this.setDefaults();
@@ -111,6 +116,21 @@ public class PreferencesActivity extends PreferenceActivity {
 			
 		});
 		
+		//delete Search History
+		clearSearchHistory.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+	        public boolean onPreferenceClick(Preference preference) {
+	            SearchRecentSuggestions suggestions = new SearchRecentSuggestions(PreferencesActivity.this,
+	                    SearchSuggestionProvider.AUTHORITY, SearchSuggestionProvider.MODE);
+	            suggestions.clearHistory();
+	            	
+	        	Toast.makeText(getBaseContext(),
+                        getString(R.string.deletedSearchHistory),
+                        Toast.LENGTH_LONG).show();
+	        	Log.d(TAG, "Deleted search history.");
+	        	
+	        	return true;
+	        }
+	    });
 	}
 	
 	private void authenticate(String serverUri) {
@@ -128,7 +148,7 @@ public class PreferencesActivity extends PreferenceActivity {
 		Log.i(TAG, "Creating dialog");
 
 		final ProgressDialog authProgress = ProgressDialog.show(this, "",
-				"Authenticating. Please wait...", true, false);
+				getString(R.string.prefSyncCompleteAuth), true, false);
 
 		Handler handler = new Handler() {
 
@@ -243,5 +263,4 @@ public class PreferencesActivity extends PreferenceActivity {
 		    resetLocalDatabase();
 		}
 	}
-
 }

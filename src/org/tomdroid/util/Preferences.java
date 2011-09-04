@@ -3,6 +3,7 @@
  * Tomboy on Android
  * http://www.launchpad.net/tomdroid
  * 
+ * Copyright 2011, Olivier Bilodeau <olivier@bottomlesspit.org>
  * Copyright 2009, Benoit Garret <benoit.garret_launchpad@gadz.org>
  * 
  * This file is part of Tomdroid.
@@ -33,6 +34,7 @@ public class Preferences {
 		SYNC_SERVER_ROOT_API ("sync_server_root_api", ""),
 		SYNC_SERVER_USER_API ("sync_server_user_api", ""),
 		SYNC_SERVER ("sync_server", "https://one.ubuntu.com/notes"),
+		CLEAR_SEARCH_HISTORY ("clearSearchHistory", ""),
 		ACCESS_TOKEN ("access_token", ""),
 		ACCESS_TOKEN_SECRET ("access_token_secret", ""),
 		REQUEST_TOKEN ("request_token", ""),
