@@ -3,6 +3,7 @@
  * Tomboy on Android
  * http://www.launchpad.net/tomdroid
  * 
+ * Copyright 2011 Stefan Hammer <j.4@gmx.at>
  * Copyright 2010, Rodja Trappe <mail@rodja.net>
  * 
  * This file is part of Tomdroid.
