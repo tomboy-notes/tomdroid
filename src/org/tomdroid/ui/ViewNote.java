@@ -32,6 +32,7 @@ import org.tomdroid.R;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.util.LinkifyPhone;
 import org.tomdroid.util.NoteContentBuilder;
+import org.tomdroid.util.Send;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -48,7 +49,9 @@ import android.text.SpannableStringBuilder;
 import android.text.util.Linkify;
 import android.text.util.Linkify.TransformFilter;
 import android.util.Log;
-import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 // TODO this class is starting to smell
@@ -142,18 +145,25 @@ public class ViewNote extends Activity {
 		SyncManager.setActivity(this);
 		SyncManager.setHandler(this.syncMessageHandler);
 	}
-
-	// TODO add a menu that switches the view to an EditText instead of TextView
-	// this will need some other quit mechanism as onKeyDown though.. (but the back key might do it)
 	
 	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
-		super.onKeyDown(keyCode, event);
-		
-		finish();
-		
+	public boolean onCreateOptionsMenu(Menu menu) {
+
+		// Create the menu based on what is defined in res/menu/noteview.xml
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.view_note, menu);
 		return true;
+
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.view_note_send:
+				(new Send(this, note)).send();
+				return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 	
 	private void showNote() {

@@ -95,7 +95,10 @@
     <string name="menuFilterNotebook">Filtrer</string>
     <string name="strListEmptyNoNotebooks">Il n\'y a aucun bloc-note dans la base de donnèes</string>
     <string name="allNotebooksFilter">Tous les bloc-notes</string>
-	
+    
+    <!-- List Longpress Menu -->
+    <string name="view">Voir</string>
+    <string name="noteOptions">Options de note</string>
 	
 	<!-- Date -->
     <string name="textModified">Mise à jour: </string>

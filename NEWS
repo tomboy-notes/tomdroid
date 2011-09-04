@@ -14,6 +14,7 @@ For more details and developer visible changes see the ChangeLog
 -------------------------------------------------------------------------------
 Version <release> - <codename> released on <releaseDate>
 
+* Several usability improvements (Stefan Hammer)
 * Higher quality icons including brand new Tomdroid icon (Stefan Hammer, 
   lp:593351)
 * Added UI feedback for "selected" and "pressed" events (Stefan Hammer, 

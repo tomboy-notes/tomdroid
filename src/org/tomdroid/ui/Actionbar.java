@@ -50,10 +50,10 @@ public class Actionbar extends RelativeLayout {
 	@Override
 	public void onFinishInflate(){
 		super.onFinishInflate();
-		setupSyncButton();
+		setupButtons();
 	}
 	
-	private void setupSyncButton(){
+	private void setupButtons(){
 		
 		final ImageView syncButton = (ImageView) findViewById(R.id.sync);
 		final ImageView syncIcon = (ImageView) findViewById(R.id.syncIcon);
@@ -62,6 +62,14 @@ public class Actionbar extends RelativeLayout {
 
 			public void onClick(View v) {
 				SyncManager.getInstance().startSynchronization();
+			}
+		});
+		
+		final ImageView TomdroidIcon = (ImageView) findViewById(R.id.action_icon);
+		TomdroidIcon.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				Tomdroid.ViewList(getContext());
 			}
 		});
 	}

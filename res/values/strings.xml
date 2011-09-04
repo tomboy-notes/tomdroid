@@ -94,6 +94,10 @@
     <string name="menuFilterNotebook">Filter</string>
     <string name="strListEmptyNoNotebooks">There are no notebooks in the database.</string>
     <string name="allNotebooksFilter">All notebooks</string>
+    
+    <!-- List Longpress Menu -->
+    <string name="view">View</string>
+    <string name="noteOptions">Note Options</string>
 	
 	<!-- Date -->
     <string name="textModified">Modified: </string>
