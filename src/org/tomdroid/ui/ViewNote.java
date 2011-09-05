@@ -33,6 +33,7 @@ import org.tomdroid.sync.SyncManager;
 import org.tomdroid.util.LinkifyPhone;
 import org.tomdroid.util.NoteContentBuilder;
 import org.tomdroid.util.NoteXMLContentBuilder;
+import org.tomdroid.util.Send;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -49,7 +50,6 @@ import android.text.SpannableStringBuilder;
 import android.text.util.Linkify;
 import android.text.util.Linkify.TransformFilter;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -146,6 +146,7 @@ public class ViewNote extends Activity {
 		SyncManager.setActivity(this);
 		SyncManager.setHandler(this.syncMessageHandler);
 	}
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -169,6 +170,10 @@ public class ViewNote extends Activity {
 				noteContent = note.getNoteContent(noteXMLParseHandler);
 				return true;
 
+			case R.id.view_note_send:
+				(new Send(this, note)).send();
+				return true;
+
 			case R.id.menuPrefs:
 				startActivity(new Intent(this, PreferencesActivity.class));
 				return true;
@@ -176,17 +181,7 @@ public class ViewNote extends Activity {
 
 		return super.onOptionsItemSelected(item);
 	}
-	
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// Write reverse compiled note XML back to note
-		if( keyCode==KeyEvent.KEYCODE_BACK )
-		{
-			finish();
-			return true;
-		} else return super.onKeyDown(keyCode, event);		
-	}
-	
+		
 	private void showNote() {
 		//setTitle(note.getTitle());
 

@@ -30,11 +30,12 @@
 		>
         <ImageView
             android:id="@+id/action_icon"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+            android:layout_width="40dip"
+            android:layout_height="fill_parent"
             android:scaleType="fitStart"
-            android:padding="1dip"
-            android:src="@drawable/ic_launcher"
+            android:padding="0dip"
+            android:src="@drawable/actionbar_icon"
+            android:clickable="true"
             />
         <TextView 
             android:id="@+id/title"
