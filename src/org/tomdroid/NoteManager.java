@@ -3,8 +3,8 @@
  * Tomboy on Android
  * http://www.launchpad.net/tomdroid
  * 
- * Copyright 2009, 2010 Benoit Garret <benoit.garret_launchpad@gadz.org>
  * Copyright 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
+ * Copyright 2009, 2010 Benoit Garret <benoit.garret_launchpad@gadz.org>
  * Copyright 2011 Stefan Hammer <j.4@gmx.at>
  * 
  * This file is part of Tomdroid.
@@ -24,8 +24,12 @@
  */
 package org.tomdroid;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.NoteListCursorAdapter;
+import org.tomdroid.util.XmlUtils;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -64,7 +68,7 @@ public class NoteManager {
 			
 			note = new Note();
 			note.setTitle(noteTitle);
-			note.setXmlContent(noteContent);
+			note.setXmlContent(stripTitleFromContent(noteContent, noteTitle));
 		}
 		
 		return note;
@@ -209,5 +213,25 @@ public class NoteManager {
 		}
 		
 		return id;
+	}
+	
+	/**
+	 * stripTitleFromContent
+	 * Because of an historic oddity in Tomboy's note format, a note's title is in a <title> tag but is also repeated
+	 * in the <note-content> tag. This method strips it from <note-content>.
+	 * @param noteContent
+	 */
+	private static String stripTitleFromContent(String xmlContent, String title) {
+		// get rid of the title that is doubled in the note's content
+		// using quote to escape potential regexp chars in pattern
+		
+		Pattern stripTitle = Pattern.compile("^\\s*"+Pattern.quote(XmlUtils.escape(title))+"\\n\\n"); 
+		Matcher m = stripTitle.matcher(xmlContent);
+		if (m.find()) {
+			xmlContent = xmlContent.substring(m.end(), xmlContent.length());
+			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "stripped the title from note-content");
+		}
+		
+		return xmlContent;
 	}
 }

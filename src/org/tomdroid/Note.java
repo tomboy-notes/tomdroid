@@ -3,7 +3,7 @@
  * Tomboy on Android
  * http://www.launchpad.net/tomdroid
  * 
- * Copyright 2008, 2009 Olivier Bilodeau <olivier@bottomlesspit.org>
+ * Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
  * Copyright 2009, Benoit Garret <benoit.garret_launchpad@gadz.org>
  * 
  * This file is part of Tomdroid.
@@ -28,7 +28,6 @@ import java.util.regex.Pattern;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.NoteContentBuilder;
 import org.tomdroid.util.XmlUtils;
 
@@ -185,7 +184,6 @@ public class Note {
 	
 	public void setXmlContent(String xmlContent) {
 		this.xmlContent = xmlContent;
-		stripTitleFromContent();
 	}
 
 	@Override
@@ -194,20 +192,4 @@ public class Note {
 		return new String("Note: "+ getTitle() + " (" + getLastChangeDate() + ")");
 	}
 	
-	/**
-	 * stripTitleFromContent
-	 * Because of an historic oddity in Tomboy's note format, a note's title is in a <title> tag but is also repeated
-	 * in the <note-content> tag. This method strips it from <note-content>.
-	 * @param noteContent
-	 */
-	private void stripTitleFromContent() {
-		// get rid of the title that is doubled in the note's content
-		// using quote to escape potential regexp chars in pattern
-		Pattern stripTitle = Pattern.compile("^\\s*"+Pattern.quote(getTitle())+"\\n\\n"); 
-		Matcher m = stripTitle.matcher(xmlContent);
-		if (m.find()) {
-			xmlContent = xmlContent.substring(m.end(), xmlContent.length());
-			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "stripped the title from note-content");
-		}
-	}
 }
