@@ -63,8 +63,8 @@ public class NoteManager {
 			String noteTitle = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
 			
 			note = new Note();
-			note.setXmlContent(noteContent);
 			note.setTitle(noteTitle);
+			note.setXmlContent(noteContent);
 		}
 		
 		return note;
