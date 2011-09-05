@@ -36,6 +36,7 @@
     
     <string name="menuSync">Synchronisieren</string>
 	<string name="menuPrefs">Einstellungen</string>
+	<string name="menuAbout">Information</string>
     <string name="titleWelcome">Warnung</string>
     <string name="titleAbout">Über Tomdroid</string>
     <string name="strWelcome">
@@ -63,7 +64,6 @@
     <string name="strWait">Die Notiz wird geladen. Bitte warten...</string>
 
 	<string name="prefSync">Synchronisation</string>
-	<string name="menuAbout">Information</string>
 	<string name="prefSyncService">Service</string>
 	<string name="prefSyncServer">Server</string>
 	<string name="prefSDCard">SD-Karte</string>
@@ -90,6 +90,21 @@
     <string name="menuFilterNotebook">Filter</string>
     <string name="strListEmptyNoNotebooks">Es befinden sich kein Notizen in der Datenbank.</string>
     <string name="allNotebooksFilter">Alle Notizbücher</string>
+    
+    <!-- List Longpress Menu -->
+    <string name="view">Anzeigen</string>
+    <string name="noteOptions">Notizoptionen</string>
+
+    <!--  Search -->
+    <string name="search_hint">Notizen durchsuchen</string>
+    <string name="search_description">Text in meinen Notizen</string>
+    <string name="strNoResults">Keine Notizen gefunden mit \"%s\"</string>
+    <string name="menuSearch">Suchen</string>
+    <string name="prefSearch">Suche</string>
+    <string name="SearchResultTitle">Suchergebnisse:</string>
+    <string name="clearSearchHistoryTitle">Suchverlauf löschen</string>
+    <string name="clearSearchHistory">Alle Suchvorgänge aus dem Verlauf entfernen</string>
+    <string name="deletedSearchHistory">Suchverlauf gelöscht.</string>
 	
 	<!-- Date -->
     <string name="textModified">Geändert: </string>

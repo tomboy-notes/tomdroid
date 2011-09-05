@@ -35,7 +35,7 @@
 							android:positiveButtonText="@string/prefAuthenticate"
 							android:shouldDisableView="true"/>
 	</PreferenceCategory>
-	<PreferenceCategory android:title="@string/menuSearch">
+	<PreferenceCategory android:title="@string/prefSearch">
 		<Preference
                 android:title="@string/clearSearchHistoryTitle"
                 android:summary="@string/clearSearchHistory"
