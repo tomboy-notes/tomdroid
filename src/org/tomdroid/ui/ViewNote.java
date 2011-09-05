@@ -216,7 +216,7 @@ public class ViewNote extends Activity {
 					.setMessage("The requested note could not be parsed. If you see this error " +
 								" and you are able to replicate it, please file a bug!")
 					.setTitle("Error")
-					.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
+					.setNeutralButton("Ok", new OnClickListener() {
 						public void onClick(DialogInterface dialog, int which) {
 							dialog.dismiss();
 							finish();
