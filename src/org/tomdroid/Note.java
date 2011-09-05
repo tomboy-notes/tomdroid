@@ -28,6 +28,7 @@ import java.util.regex.Pattern;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.NoteContentBuilder;
 import org.tomdroid.util.XmlUtils;
 
@@ -192,4 +193,14 @@ public class Note {
 		return new String("Note: "+ getTitle() + " (" + getLastChangeDate() + ")");
 	}
 	
+	public void removeTitle(SpannableStringBuilder noteContent) {
+		// get rid of the title that is doubled in the note's content
+		// using quote to escape potential regexp chars in pattern
+		Pattern removeTitle = Pattern.compile("^\\s*"+Pattern.quote(getTitle())+"\\n\\n"); 
+		Matcher m = removeTitle.matcher(noteContent);
+		if (m.find()) {
+			noteContent = noteContent.replace(0, m.end(), "");
+			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "stripped the title from note-content");
+		}
+	}
 }

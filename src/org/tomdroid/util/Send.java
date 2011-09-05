@@ -35,19 +35,11 @@ public class Send {
 			
 			//parsed ok - show
 			if(msg.what == NoteContentBuilder.PARSE_OK) {
-				String body = "";
 				
-				//remove title from content
-				if (noteContent.toString() != "") {
-					body = noteContent.toString();
-					// Test weather title is equal to the piece we want to cut (Bug #800176)
-					if (note.getTitle().length() <= noteContent.toString().length()) {
-						if (note.getTitle().equals(noteContent.toString().substring(0, note.getTitle().length()))) {
-							body = noteContent.toString().substring(note.getTitle().length()+2);
-						}
-					}
-				}
-
+				note.removeTitle(noteContent);
+				
+				String body = noteContent.toString();
+				
 			    // Create a new Intent to send messages
 			    Intent sendIntent = new Intent(Intent.ACTION_SEND);
 			    // Add attributes to the intent

@@ -169,14 +169,7 @@ public class ViewNote extends Activity {
 	private void showNote() {
 		//setTitle(note.getTitle());
 
-		// get rid of the title that is doubled in the note's content
-		// using quote to escape potential regexp chars in pattern
-		Pattern removeTitle = Pattern.compile("^\\s*"+Pattern.quote(note.getTitle())+"\\n\\n"); 
-		Matcher m = removeTitle.matcher(noteContent);
-		if (m.find()) {
-			noteContent = noteContent.replace(0, m.end(), "");
-			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "stripped the title from note-content");
-		}
+		note.removeTitle(noteContent);
 		
 		// show the note (spannable makes the TextView able to output styled text)
 		content.setText(noteContent, TextView.BufferType.SPANNABLE);
@@ -223,7 +216,7 @@ public class ViewNote extends Activity {
 					.setMessage("The requested note could not be parsed. If you see this error " +
 								" and you are able to replicate it, please file a bug!")
 					.setTitle("Error")
-					.setNeutralButton("Ok", new OnClickListener() {
+					.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
 						public void onClick(DialogInterface dialog, int which) {
 							dialog.dismiss();
 							finish();
