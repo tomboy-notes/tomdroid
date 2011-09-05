@@ -104,6 +104,7 @@
     <string name="search_description">Text in your notes</string>
     <string name="strNoResults">No notes found for \"%s\"</string>
     <string name="menuSearch">Search</string>
+    <string name="prefSearch">Search</string>
     <string name="SearchResultTitle">Search Results:</string>
     <string name="clearSearchHistoryTitle">Clear search history</string>
     <string name="clearSearchHistory">Remove all the searches you have performed</string>
