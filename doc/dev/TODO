@@ -1,7 +1,6 @@
 TODO tasks
 ==========
-0.5:
-- lp:660057 - Recover on parse errors
+0.6:
 - lp:766225 - Authenticating with U1 gives a "please check the address you entered" error on HTC Desire
 - lp:533933 - Sync folder does not remove messages from db
 - lp:724641 - Links break randomly
