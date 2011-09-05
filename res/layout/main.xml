@@ -43,7 +43,6 @@
 			android:singleLine="false"
             android:textSize="25dip"
             android:textStyle="bold"
-        	android:ellipsize="marquee"
 			android:padding="30dip"
             android:textColor="#FF555555"
               />
