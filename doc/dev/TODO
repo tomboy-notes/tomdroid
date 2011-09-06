@@ -1,6 +1,7 @@
 TODO tasks
 ==========
-0.6:
+0.5.1 or 0.6 we'll see:
+- note date adjustement loggers should be behind if (Tomdroid.debug == true) ...
 - lp:766225 - Authenticating with U1 gives a "please check the address you entered" error on HTC Desire
 - lp:533933 - Sync folder does not remove messages from db
 - lp:724641 - Links break randomly
