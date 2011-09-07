@@ -154,6 +154,10 @@ public class Tomdroid extends ListActivity {
 			case R.id.menuSearch:
 				startSearch(null, false, null, false);
 				return true;
+
+			case R.id.menuFilterNotebook:
+				startActivity(new Intent(this, Notebooks.class));
+				return true;
 		}
 
 		return super.onOptionsItemSelected(item);

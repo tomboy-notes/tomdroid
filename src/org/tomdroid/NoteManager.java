@@ -35,9 +35,12 @@ import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.ListAdapter;
+import android.widget.SimpleCursorAdapter;
 
 public class NoteManager {
 	
@@ -47,6 +50,7 @@ public class NoteManager {
 	public static final String[] GUID_PROJECTION = { Note.ID, Note.GUID };
 	public static final String[] ID_PROJECTION = { Note.ID };
 	public static final String[] EMPTY_PROJECTION = {};
+	public static final String[] LIST_NOTEBOOK = {Notebook.ID, Notebook.NAME };
 	
 	// static properties
 	private static final String TAG = "NoteManager";
@@ -119,6 +123,9 @@ public class NoteManager {
 			
 			if (Tomdroid.LOGGING_ENABLED) Log.v(TAG,"Note updated in content provider. TITLE:"+note.getTitle()+" GUID:"+note.getGuid());
 		}
+
+		// put TAGS in notebooks table
+		putNotebook(activity, note.getTags());
 	}
 	
 	public static boolean deleteNote(Activity activity, int id)
@@ -233,5 +240,65 @@ public class NoteManager {
 		}
 		
 		return xmlContent;
+	}
+	
+	// puts a note in the content provider
+	public static void putNotebook(Activity activity, String notebook) {
+		if (notebook.compareTo("")!=0){
+			//Log.i(TAG,"putNotebook : "+notebook);
+			String[] notebooks = notebook.split(",");
+			for (int i = 0; i < notebooks.length; i++) {
+				notebook = notebooks[i];
+				
+				if (notebook.startsWith(Notebook.PATERN)){
+					notebook = notebook.substring(Notebook.PATERN.length());
+					// verify if the notebook is already in the content provider
+					
+					// TODO make the query prettier (use querybuilder)
+					Uri uriNotebooks = Tomdroid.CONTENT_URI_NOTEBOOK;
+					String[] whereArgs = new String[1];
+					whereArgs[0] = notebook;
+					
+					
+					// The note identifier is the guid
+					ContentResolver cr = activity.getContentResolver();
+					Cursor managedCursor = cr.query(uriNotebooks,EMPTY_PROJECTION,"notebook= ?",whereArgs, null);
+					activity.startManagingCursor(managedCursor);
+					
+					// Preparing the values to be either inserted or updated
+					// depending on the result of the previous query
+					ContentValues values = new ContentValues();
+					values.put("notebook", notebook);
+					
+					if (managedCursor.getCount() == 0) {
+						
+						// This note is not in the database yet we need to insert it
+						if (Tomdroid.LOGGING_ENABLED) Log.v(TAG,"A new notebook has been detected (not yet in db)");
+			
+						Log.i(TAG,"putNotebook : ajout de "+notebook);
+			    		Uri uri = cr.insert(uriNotebooks, values);
+			
+			    		if (Tomdroid.LOGGING_ENABLED) Log.v(TAG,"notebook inserted in content provider. ID: "+uri+" notebook:"+notebook);
+					} 
+				}				
+			}
+			
+			
+		}
+	}
+	
+
+	public static ListAdapter getListAdapterNotebook(Activity activity) {
+		Cursor notebooksCursor = getAllNotebooks(activity, false);
+		String[] from = new String[] { Notebook.NAME };
+		int[] to = new int[] { R.id.notebook_name };
+		return new SimpleCursorAdapter(activity, R.layout.notebooks_list_item, notebooksCursor, from, to);
+	}
+	
+	public static Cursor getAllNotebooks(Activity activity, Boolean includeNotebookTemplates) {
+		// get a cursor representing all notes from the NoteProvider
+		Uri notebooks = Tomdroid.CONTENT_URI_NOTEBOOK;
+		String order = Notebook.NAME;
+		return activity.managedQuery(notebooks, LIST_NOTEBOOK, null, null, order);		
 	}
 }

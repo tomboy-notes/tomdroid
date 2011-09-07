@@ -28,6 +28,11 @@
 			android:title="@string/menuSearch"
 			android:id="@+id/menuSearch"/>
 
+    <item 
+            android:icon="@drawable/icon_notebookfilter"   
+            android:id="@+id/menuFilterNotebook" 
+            android:title="@string/menuFilterNotebook"/>  
+
 	<item 
 			android:icon="@android:drawable/ic_menu_info_details"
 			android:title="@string/menuAbout"
