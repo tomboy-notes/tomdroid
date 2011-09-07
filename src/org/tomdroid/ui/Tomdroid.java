@@ -89,6 +89,7 @@ public class Tomdroid extends ListActivity {
 	// UI to data model glue
 	private TextView			listEmptyView;
 	private ListAdapter			adapter;
+	private String				currentNotebook;
 
 	// UI feedback handler
 	private Handler	syncMessageHandler	= new SyncMessageHandler(this);
@@ -117,9 +118,19 @@ public class Tomdroid extends ListActivity {
 				}
 			}).setIcon(R.drawable.icon).show();
 		}
-
+		
+		// get the notebookFilter
+		Bundle bundle = this.getIntent().getExtras();
+		try {
+			currentNotebook = bundle.getString("notebook");
+		} catch (Exception e) {
+			// TODO: handle exception
+			Log.i(TAG,"erreur dans bundle.getString(notebook)");
+			currentNotebook = null;
+		}
+		
 		// adapter that binds the ListView UI to the notes in the note manager
-		adapter = NoteManager.getListAdapter(this);
+		adapter = NoteManager.getListAdapter(this,currentNotebook);
 		setListAdapter(adapter);
 
 		// set the view shown when the list is empty
