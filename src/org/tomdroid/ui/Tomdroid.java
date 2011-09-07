@@ -64,9 +64,12 @@ public class Tomdroid extends ListActivity {
 
 	// Global definition for Tomdroid
 	public static final String	AUTHORITY			= "org.tomdroid.notes";
+	public static final String	AUTHORITY_NOTEBOOK	= "org.tomdroid.notebooks";
 	public static final Uri		CONTENT_URI			= Uri
 															.parse("content://" + AUTHORITY
 																	+ "/notes");
+	public static final Uri		CONTENT_URI_NOTEBOOK= Uri.parse("content://" + AUTHORITY_NOTEBOOK + "/notebooks");
+	
 	public static final String	CONTENT_TYPE		= "vnd.android.cursor.dir/vnd.tomdroid.note";
 	public static final String	CONTENT_ITEM_TYPE	= "vnd.android.cursor.item/vnd.tomdroid.note";
 	public static final String	PROJECT_HOMEPAGE	= "http://www.launchpad.net/tomdroid/";
