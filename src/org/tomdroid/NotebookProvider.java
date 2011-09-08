@@ -25,7 +25,7 @@ public class NotebookProvider extends ContentProvider {
 	// --	
 	private static final String DATABASE_NAME = "tomdroid-notes.db";
 	private static final String DB_TABLE_NOTEBOOKS = "notebooks";
-	private static final int DB_VERSION = 5;
+	private static final int DB_VERSION = 3;
 	private static final String DEFAULT_SORT_ORDER = "notebook";
 	
     private static HashMap<String, String> notesProjectionMap;
