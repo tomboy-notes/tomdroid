@@ -21,11 +21,13 @@
  You should have received a copy of the GNU General Public License
  along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="horizontal"
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content" >
-	<TextView android:id="@+id/notebook_name" xmlns:android="http://schemas.android.com/apk/res/android"
+  
+	<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/notebook_name" 
 		android:layout_width="wrap_content"
 		android:layout_height="fill_parent"
 		android:textStyle="bold"
@@ -35,13 +37,17 @@
 		android:paddingLeft="5dip"
 		android:paddingRight="5dip"
 		/>
-    <CheckBox android:id="@+id/notebook_name" xmlns:android="http://schemas.android.com/apk/res/android"
+    <CheckBox xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/notebook_checkbox" 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:textSize="18dp"
         android:paddingTop="5dip"
         android:paddingLeft="5dip"
-        android:paddingRight="5dip"/>
+        android:paddingRight="5dip"
+        android:onClick="changeDisplay"
+        />
     
     
-</LinearLayout>
+</RelativeLayout>

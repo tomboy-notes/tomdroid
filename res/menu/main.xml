@@ -22,16 +22,16 @@
  along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item 
+            android:icon="@drawable/ic_menu_view"   
+            android:id="@+id/menuFilterNotebook" 
+            android:title="@string/menuFilterNotebook"/>  
 
 	<item 
 			android:icon="@android:drawable/ic_menu_search"
 			android:title="@string/menuSearch"
 			android:id="@+id/menuSearch"/>
 
-    <item 
-            android:icon="@drawable/ic_menu_view"   
-            android:id="@+id/menuFilterNotebook" 
-            android:title="@string/menuFilterNotebook"/>  
 
 	<item 
 			android:icon="@android:drawable/ic_menu_info_details"

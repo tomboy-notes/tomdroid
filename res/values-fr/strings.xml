@@ -91,8 +91,8 @@
 	<string name="titleDefaultSorting">Choix du tri par défaut</string>
 	<string name="prefDefaultSorting">Tri par défaut</string>
 	
-	<!-- NoteFiltering -->
-    <string name="menuFilterNotebook">Filtrer</string>
+	<!-- NotebookFiltering -->
+    <string name="menuFilterNotebook">Afficher</string>
     <string name="strListEmptyNoNotebooks">Il n\'y a aucun bloc-note dans la base de donnèes</string>
     <string name="allNotebooksFilter">Tous les bloc-notes</string>
     

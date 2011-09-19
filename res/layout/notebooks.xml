@@ -32,8 +32,8 @@
     <ListView android:id="@android:id/android:list"
               android:layout_width="fill_parent"
               android:layout_height="wrap_content"
-              android:divider="#00000000"
-              android:dividerHeight="0px"
+              android:divider="#FFCCCCCC"
+              android:dividerHeight="1px"
               android:cacheColorHint="#ffdddddd"
               />
               
@@ -43,16 +43,4 @@
               android:text="@string/strListEmptyNoNotebooks"
               />
               
-    <TextView android:id="@+id/allNotebooks"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-			  android:textStyle="bold"
-			  android:textColor="#FF555555"
-			  android:textSize="18dp"
-			  android:paddingTop="5dip"
-			  android:paddingLeft="5dip"
-			  android:paddingRight="5dip"
-			  android:text="@string/allNotebooksFilter"
-			  android:clickable="true"
-    />
 </LinearLayout>

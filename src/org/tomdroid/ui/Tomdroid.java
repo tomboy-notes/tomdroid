@@ -69,7 +69,7 @@ public class Tomdroid extends ListActivity {
 															.parse("content://" + AUTHORITY
 																	+ "/notes");
 	public static final Uri		CONTENT_URI_NOTEBOOK= Uri.parse("content://" + AUTHORITY_NOTEBOOK + "/notebooks");
-	
+
 	public static final String	CONTENT_TYPE		= "vnd.android.cursor.dir/vnd.tomdroid.note";
 	public static final String	CONTENT_ITEM_TYPE	= "vnd.android.cursor.item/vnd.tomdroid.note";
 	public static final String	PROJECT_HOMEPAGE	= "http://www.launchpad.net/tomdroid/";
@@ -79,7 +79,7 @@ public class Tomdroid extends ListActivity {
 	public static final String	NOTES_PATH			= Environment.getExternalStorageDirectory()
 															+ "/tomdroid/";
 	// Logging should be disabled for release builds
-	public static final boolean	LOGGING_ENABLED		= false;
+	public static final boolean	LOGGING_ENABLED		= true;
 	// Set this to false for release builds, the reason should be obvious
 	public static final boolean	CLEAR_PREFERENCES	= false;
 
@@ -89,7 +89,6 @@ public class Tomdroid extends ListActivity {
 	// UI to data model glue
 	private TextView			listEmptyView;
 	private ListAdapter			adapter;
-	private String				currentNotebook;
 
 	// UI feedback handler
 	private Handler	syncMessageHandler	= new SyncMessageHandler(this);
@@ -119,18 +118,10 @@ public class Tomdroid extends ListActivity {
 			}).setIcon(R.drawable.icon).show();
 		}
 		
-		// get the notebookFilter
-		Bundle bundle = this.getIntent().getExtras();
-		try {
-			currentNotebook = bundle.getString("notebook");
-		} catch (Exception e) {
-			// TODO: handle exception
-			Log.i(TAG,"erreur dans bundle.getString(notebook)");
-			currentNotebook = null;
-		}
+		
 		
 		// adapter that binds the ListView UI to the notes in the note manager
-		adapter = NoteManager.getListAdapter(this,currentNotebook);
+		adapter = NoteManager.getListAdapter(this);
 		setListAdapter(adapter);
 
 		// set the view shown when the list is empty
@@ -234,6 +225,9 @@ public class Tomdroid extends ListActivity {
 		
 		SyncManager.setActivity(this);
 		SyncManager.setHandler(this.syncMessageHandler);
+		
+		adapter = NoteManager.getListAdapter(this);
+		setListAdapter(adapter);
 	}
 
 	private void showAboutDialog() {

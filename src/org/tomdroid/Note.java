@@ -48,6 +48,7 @@ public class Note {
 	public static final String FILE = "file";
 	public static final String TAGS = "tags";
 	public static final String NOTE_CONTENT = "content";
+	public static final String DB_TABLE = "notes";
 	
 	// Logging info
 	private static final String TAG = "Note";
