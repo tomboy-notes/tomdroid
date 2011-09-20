@@ -3,20 +3,18 @@ package org.tomdroid.ui;
 import org.tomdroid.Notebook;
 import org.tomdroid.NotebookManager;
 import org.tomdroid.R;
+import org.tomdroid.util.NotebookListCursorAdapter;
 
 import android.app.ListActivity;
-import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -27,7 +25,7 @@ public class Notebooks extends ListActivity {
 	private static final String	TAG					= "Notebooks";
 	
 	// UI to data model glue
-	private ListAdapter			adapter;
+	private NotebookListCursorAdapter adapter;
 	
 	/** Called when the activity is created. */
 	@Override
@@ -37,26 +35,11 @@ public class Notebooks extends ListActivity {
 		Log.i(TAG, "setContentView OK");
 		
 		// adapter that binds the ListView UI to the notebooks in the note manager
-		//adapter = NoteManager.getListAdapterNotebook(this);
 		adapter = NotebookManager.getNotbookListAdapter(this);
 		setListAdapter(adapter);		
 		
-		/*
-		// all notebooks
-		final TextView allNotebooks = (TextView) findViewById(R.id.allNotebooks);
-		allNotebooks.setOnClickListener(new View.OnClickListener() {
-
-			public void onClick(View v) {						
-				Bundle bundle = new Bundle();
-				bundle.putString("notebook", null);
-
-				Intent i = new Intent(v.getContext(), Tomdroid.class);
-				i.putExtras(bundle);
-				startActivity(i);
-			}
-		});
-		*/
-			
+		TextView title = (TextView) findViewById(R.id.title);
+		title.setText(getString(R.string.notebookSelectTitle));
 	}
 
 	@Override
@@ -105,17 +88,26 @@ public class Notebooks extends ListActivity {
 		TextView name = (TextView) parent.getChildAt(0);
 		String notebook = (String) name.getText();
 		Log.i(TAG, "name:"+notebook);
-		
-		Uri uriNotebooks = Tomdroid.CONTENT_URI_NOTEBOOK;
-		String[] whereArgs = new String[1];
-		whereArgs[0] = notebook;
-		
-		ContentValues values = new ContentValues();
-		values.put(Notebook.DISPLAY, (checkBox.isChecked()) ? 1 : 0);
-		
-		ContentResolver cr = getContentResolver();		
-		cr.update(uriNotebooks, values, Notebook.NAME +" = ?", whereArgs);
-		
-		if (Tomdroid.LOGGING_ENABLED) Log.v(TAG,"Notebook updated in content provider. Name:"+notebook);
+
+		Button button = (Button) findViewById(R.id.buttonOk);
+		if (adapter.changeValue(notebook, (checkBox.isChecked()) ? 1 : 0)==0){
+			button.setEnabled(false);
+		} else {
+			button.setEnabled(true);
+		}
+	}
+
+	public void validate(View v){
+		Log.i(TAG, "validate");
+		if (adapter.getNbCheck()==0){
+			Log.i(TAG, "There is no notebook checked ! You must check one or more to continue");
+		} else {
+			adapter.updateChange(this);
+			this.startActivity(new Intent(this,Tomdroid.class));
+		}
+	}
+	
+	public void close(View v){
+		this.finish();
 	}
 }

@@ -9,14 +9,13 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 import android.util.Log;
-import android.widget.ListAdapter;
 
 public class NotebookManager {
 	private static String TAG = "NotebookManager";
 	public static final String[] FULL_PROJECTION = {Notebook.ID, Notebook.NAME,Notebook.DISPLAY};
 	public static final String[] NAME_PROJECTION = {Notebook.ID, Notebook.NAME};
 	
-	public static ListAdapter getNotbookListAdapter(Activity activity){
+	public static NotebookListCursorAdapter getNotbookListAdapter(Activity activity){
 		Log.i(TAG, "getNotbookListAdapter starting");
 		
 		// get a cursor representing all notes from the NoteProvider

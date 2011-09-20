@@ -95,6 +95,7 @@
     <string name="menuFilterNotebook">Afficher</string>
     <string name="strListEmptyNoNotebooks">Il n\'y a aucun bloc-note dans la base de donnèes</string>
     <string name="allNotebooksFilter">Tous les bloc-notes</string>
+    <string name="notebookSelectTitle">Bloc-notes à afficher</string>
     
     <!-- List Longpress Menu -->
     <string name="view">Voir</string>

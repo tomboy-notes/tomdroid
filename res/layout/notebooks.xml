@@ -43,4 +43,28 @@
               android:text="@string/strListEmptyNoNotebooks"
               />
               
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:gravity="bottom"
+              android:layout_weight="1"> 
+              
+              <Button android:id="@+id/buttonOk"
+                    android:text="@string/btnOk"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="validate"
+                     />    
+                    
+              <Button android:id="@+id/buttonCancel"
+                    android:text="@string/btnCancel"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="close" />      
+     
+  </LinearLayout>
+              
 </LinearLayout>
