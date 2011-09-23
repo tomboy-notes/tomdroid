@@ -11,7 +11,7 @@ public class DbManager extends SQLiteOpenHelper {
 	private String TAG = "dbManager";
 
 	private static final String DATABASE_NAME = "tomdroid-notes.db";
-	private static final int DB_VERSION = 3;
+	private static final int DB_VERSION = 4;
 
 	public DbManager(Context context) {
 		super(context, DATABASE_NAME, null, DB_VERSION);
