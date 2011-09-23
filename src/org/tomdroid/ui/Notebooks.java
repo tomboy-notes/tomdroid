@@ -103,7 +103,8 @@ public class Notebooks extends ListActivity {
 			Log.i(TAG, "There is no notebook checked ! You must check one or more to continue");
 		} else {
 			adapter.updateChange(this);
-			this.startActivity(new Intent(this,Tomdroid.class));
+			this.finish();
+			//this.startActivity(new Intent(this,Tomdroid.class));
 		}
 	}
 	

@@ -32,6 +32,7 @@ public class NotebookListCursorAdapter extends SimpleCursorAdapter {
 	public NotebookListCursorAdapter(Context context, int layout, Cursor c, String[] from, int[] to) {
 		super(context, layout, c, from, to);
 		nbNotebook = c.getCount();
+		nbCheck = 0;
 
 		if (c.moveToFirst()){
 			int colName = c.getColumnIndex(Notebook.NAME);
@@ -39,8 +40,12 @@ public class NotebookListCursorAdapter extends SimpleCursorAdapter {
 			
 			checkboxInit.put(c.getString(colName), c.getString(colDipslay));
 			notebookName.add(c.getString(colName));
+			if (c.getInt(colDipslay)==1){
+				nbCheck++;
+			}
 			
 			while (c.moveToNext()){
+
 				if (c.getInt(colDipslay)==1){
 					nbCheck++;
 				}
@@ -69,10 +74,8 @@ public class NotebookListCursorAdapter extends SimpleCursorAdapter {
 	}
 
 	public int changeValue(String notebook,int value){
-		Log.i(TAG, "changeValue");
 		checkbox.remove(notebook);
 		checkbox.put(notebook, ""+value);
-		Log.i(TAG, "changeValue notebook:"+checkbox.get(notebook));
 		
 		if (value==1){
 			nbCheck++;
