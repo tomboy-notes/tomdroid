@@ -156,9 +156,13 @@ public class NoteManager {
 	
 	public static ListAdapter getListAdapter(Activity activity, String querys) {
 		
-		String where;
+		String where = null;
+		String notebookFilter = NotebookManager.getNotebookDisplayed(activity);
+		
 		if (querys==null) {
-			where = NotebookManager.getNotebookDisplayed(activity);
+			if (notebookFilter.compareTo("")!=0){
+				where = notebookFilter;
+			}
 		} else {
 			// sql statements to search notes
 			String[] query = querys.split(" ");
@@ -169,7 +173,10 @@ public class NoteManager {
 				where = where + "("+Note.TITLE+" LIKE '%"+string+"%' OR "+Note.NOTE_CONTENT+" LIKE '%"+string+"%')";
 				count++;
 			}	
-			where += " AND " + NotebookManager.getNotebookDisplayed(activity);
+			
+			if (notebookFilter.compareTo("")!=0){
+				where +=" AND " + notebookFilter;
+			}
 		}
 		Log.i(TAG, "where:"+where);
 
