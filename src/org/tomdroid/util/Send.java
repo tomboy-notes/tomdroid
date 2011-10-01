@@ -35,13 +35,9 @@ public class Send {
 			
 			//parsed ok - show
 			if(msg.what == NoteContentBuilder.PARSE_OK) {
-				String body = "";
 				
-				//remove title from content
-				if (noteContent.toString() != "") {
-					body = noteContent.toString().substring(note.getTitle().length()+2);
-				}
-
+				String body = noteContent.toString();
+				
 			    // Create a new Intent to send messages
 			    Intent sendIntent = new Intent(Intent.ACTION_SEND);
 			    // Add attributes to the intent

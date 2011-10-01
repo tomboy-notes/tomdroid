@@ -1,6 +1,6 @@
-Tomdroid v.0.4.1
+Tomdroid v.0.5.0
 Tomboy on Android
-Copyright 2008, 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>
+Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
 
 http://www.launchpad.net/tomdroid/
 
@@ -10,8 +10,11 @@ Requirements
 
 How to Install
 ==============
-Tomdroid is not on the Android Marketplace yet. In order to install you have 
-two options:
+Stable Tomdroid releases are available from the Android Marketplace. 
+
+If you don't have access to the Android Marketplace or are willing to try
+slightly less proven Tomdroid releases you can try install from launchpad.net 
+using one of these two options:
 - Directly from the phone using the browser
 - Using the Android SDK with the phone connected through USB
 

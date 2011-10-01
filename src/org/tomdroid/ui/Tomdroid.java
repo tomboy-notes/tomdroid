@@ -148,6 +148,10 @@ public class Tomdroid extends ListActivity {
 			case R.id.menuPrefs:
 				startActivity(new Intent(this, PreferencesActivity.class));
 				return true;
+				
+			case R.id.menuSearch:
+				startSearch(null, false, null, false);
+				return true;
 
 			case R.id.newNote:
 				for( int count=0, id=0; count==0 || id!=0; count++ )
@@ -164,9 +168,6 @@ public class Tomdroid extends ListActivity {
 						return true;
 					}
 				}
-			case R.id.menuSearch:
-				startSearch(null, false, null, false);
-				return true;
 		}
 
 		return super.onOptionsItemSelected(item);
@@ -193,13 +194,14 @@ public class Tomdroid extends ListActivity {
 				(new Send(this, note)).send();
 				break;
 				
-			case R.id.delete_note:
-				NoteManager.deleteNote(this, (int) noteId);
-				break;
 			case R.id.view:
 				this.ViewNote(noteId);
 				break;
-				
+
+			case R.id.delete_note:
+				NoteManager.deleteNote(this, (int) noteId);
+				break;
+								
 			default:
 				break;
 		}

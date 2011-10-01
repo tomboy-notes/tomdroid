@@ -1,11 +1,13 @@
 TODO tasks
 ==========
-0.5:
-- find a way to optionally present what's new to the users on upgrades. People tend to do that with description and I think it's bad.
+0.5.1 or 0.6 we'll see:
+- note date adjustement loggers should be behind if (Tomdroid.debug == true) ...
+- lp:766225 - Authenticating with U1 gives a "please check the address you entered" error on HTC Desire
+- lp:533933 - Sync folder does not remove messages from db
+- lp:724641 - Links break randomly
+- lp:689443 - NullPointer in SD Card Sync
 
 Unclassified:
-- improve the promotional graphic (used by default on android market now)
-- QR Code in Tomdroid's launchpad page (or tomdroid.org?)
 - getting-started FAQ (java, android env, bzr, open source)
 - find a sample use of the ContentProvider regarding Edouard's branch: searchbar-on-0.3/ and tell him
 - basic note editing (snowy guys working on something with http://en.wikipedia.org/wiki/Markdown)
@@ -14,8 +16,7 @@ Unclassified:
 -- confirm: the listview observer over list adapter is eating lots of resources?
 - Fix the TODO and FIXME statements all over in the code
 - Long-press options on links. How-to: http://groups.google.com/group/android-developers/browse_thread/thread/acdd8777763b6028
-- The android logo should have a white border around it, fix that then regen the logo (http://android-developers.blogspot.com/2009/05/android-icon-guidelines.html)
-- internationalize strings with techniques like: http://developer.android.com/guide/topics/resources/available-resources.html#stringresources
+- internationalize more strings
 - Replace NoteCollection's structure to a hashmap or hashtable
 - Avoid code duplication between NoteBuilder and AsyncNoteLoaderAndParser
 - Follow UI design guidelines (http://developer.android.com/guide/practices/ui_guidelines/activity_task_design.html)
@@ -43,3 +44,8 @@ Market release:
 Future:
 - Check Conboy for UI inspiration (http://talk.maemo.org/showthread.php?t=28355)
   Now if only I could find a RichEditView for Android..
+
+Web site:
+- Very simple website pointing to android market and launchpad
+- QR Code
+- narrated Youtube video?

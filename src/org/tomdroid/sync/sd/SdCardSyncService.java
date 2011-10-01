@@ -3,7 +3,7 @@
  * Tomboy on Android
  * http://www.launchpad.net/tomdroid
  * 
- * Copyright 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>
+ * Copyright 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
  * Copyright 2009, Benoit Garret <benoit.garret_launchpad@gadz.org>
  * Copyright 2010, Rodja Trappe <mail@rodja.net>
  * 
@@ -54,7 +54,7 @@ public class SdCardSyncService extends SyncService {
 	private int numberOfFilesToSync = 0;
 	
 	// regexp for <note-content..>...</note-content>
-	private static Pattern note_content = Pattern.compile("<note-content.*>(.*)<\\/note-content>", Pattern.CASE_INSENSITIVE+Pattern.DOTALL);
+	private static Pattern note_content = Pattern.compile("<note-content[^>]+>(.*)<\\/note-content>", Pattern.CASE_INSENSITIVE+Pattern.DOTALL);
 	
 	// logging related
 	private final static String TAG = "SdCardSyncService";
@@ -211,7 +211,7 @@ public class SdCardSyncService extends SyncService {
 			// FIXME here we are re-reading the whole note just to grab note-content out, there is probably a best way to do this (I'm talking to you xmlpull.org!)
 			Matcher m = note_content.matcher(contents);
 			if (m.find()) {
-				note.setXmlContent(m.group());
+				note.setXmlContent(m.group(1));
 			} else {
 				if (Tomdroid.LOGGING_ENABLED) Log.w(TAG, "Something went wrong trying to grab the note-content out of a note");
 				sendMessage(PARSING_FAILED, ErrorList.createErrorWithContents(note, "Something went wrong trying to grab the note-content out of a note", contents));

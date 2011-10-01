@@ -12,7 +12,7 @@ Join it at: https://launchpad.net/~tomdroid-dev
 For more details and developer visible changes see the ChangeLog
 
 -------------------------------------------------------------------------------
-Version <release> - <codename> released on <releaseDate>
+Version 0.5.0 - "long delayed because of fatherhood release" released on 2011-09-05
 
 * Search within notes from Tomdroid and system integrated search (Stefan Hammer)
 * Add a context menu with the ability to send a note (Edouard Richard)
@@ -28,6 +28,7 @@ Version <release> - <codename> released on <releaseDate>
   (Matthew Rasmus, lp:659743)
 * Fixed SD card synchronization crashing on large note collections (Thomas 
   Frenzel, lp:534213)
+* Fixed a crasher when sending a short note (Stefan Hammer, lp:800176)
 * More content can be translated (Benoit Soyeux)
 * New German translation (Stefan Hammer)
 * Updated French translation (Benoit Soyeux)

@@ -42,11 +42,13 @@ Releasing on the market
 Spread the word
 - Email to Tomdroid's mailing list (Tomboy/Snowy too if it's an important milestone)
 - post to identi.ca / LinkedIn status / facebook
+- ohloh, freshmeat
 - Blog post about it including NEWS but also what I see for +1 (link the launchpad's announce to it and post blog link on mailing lists) 
 
 Next
 - Create the next milestone on launchpad
 - Mark bugs as fix released
-- Increment version number and append "ev" to android:versionCode in AndroidManifest.xml
+-- email interface edit@bugs.launchpad.net is useful for that. <space>bug $bugid\n<space>status fixreleased
+- Increment version number and append "dev" to android:versionCode in AndroidManifest.xml
 - android:debuggable="true" in AndroidManifest.xml
  
