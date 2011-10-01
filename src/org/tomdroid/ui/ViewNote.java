@@ -32,6 +32,7 @@ import org.tomdroid.R;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.util.LinkifyPhone;
 import org.tomdroid.util.NoteContentBuilder;
+import org.tomdroid.util.Send;
 import org.tomdroid.util.NoteXMLContentBuilder;
 
 import android.app.Activity;
@@ -49,7 +50,6 @@ import android.text.SpannableStringBuilder;
 import android.text.util.Linkify;
 import android.text.util.Linkify.TransformFilter;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -146,59 +146,39 @@ public class ViewNote extends Activity {
 		SyncManager.setActivity(this);
 		SyncManager.setHandler(this.syncMessageHandler);
 	}
-
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-
-		// Create the menu based on what is defined in res/menu/main.xml
+		// Create the menu based on what is defined in res/menu/noteview.xml
 		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.note, menu);
+		inflater.inflate(R.menu.view_note, menu);
 		return true;
-
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-			case R.id.saveNote:
+			case R.id.view_note_send:
+				(new Send(this, note)).send();
+				return true;
+				
+			case R.id.view_note_save:
 				SpannableStringBuilder newNoteContent = (SpannableStringBuilder) this.content.getText();
 				// store changed note content
 				String newXmlContent = new NoteXMLContentBuilder().setCaller(noteXMLWriteHandler).setInputSource(newNoteContent).build();
-				note.setXmlContent("<note-content version=\"0.1\">"+note.getTitle()+"\n\n"+newXmlContent+"</note-content>");
+				// Since 0.5 ViewNote expects the redundant title being removed from the note content, but we still may need this for debugging:
+				//note.setXmlContent("<note-content version=\"0.1\">"+note.getTitle()+"\n\n"+newXmlContent+"</note-content>");
+				note.setXmlContent("<note-content version=\"0.1\">"+newXmlContent+"</note-content>");
 				NoteManager.putNote( this, note );
 				noteContent = note.getNoteContent(noteXMLParseHandler);
 				return true;
-
-			case R.id.menuPrefs:
-				startActivity(new Intent(this, PreferencesActivity.class));
-				return true;
 		}
-
 		return super.onOptionsItemSelected(item);
 	}
 	
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// Write reverse compiled note XML back to note
-		if( keyCode==KeyEvent.KEYCODE_BACK )
-		{
-			finish();
-			return true;
-		} else return super.onKeyDown(keyCode, event);		
-	}
 	
 	private void showNote() {
-		//setTitle(note.getTitle());
 
-		// get rid of the title that is doubled in the note's content
-		// using quote to escape potential regexp chars in pattern
-		Pattern removeTitle = Pattern.compile("^\\s*"+Pattern.quote(note.getTitle())+"\\n\\n"); 
-		Matcher m = removeTitle.matcher(noteContent);
-		if (m.find()) {
-			noteContent = noteContent.replace(0, m.end(), "");
-			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "stripped the title from note-content");
-		}
-		
 		// show the note (spannable makes the TextView able to output styled text)
 		content.setText(noteContent, TextView.BufferType.SPANNABLE);
 		title.setText((CharSequence) note.getTitle());
@@ -218,13 +198,6 @@ public class ViewNote extends Activity {
 						 Tomdroid.CONTENT_URI+"/",
 						 null,
 						 noteTitleTransformFilter);
-	}
-	
-	public void setTitle(CharSequence title){
-		super.setTitle(title);
-		// temporary setting title of actionbar until we have a better idea
-		TextView titleView = (TextView) findViewById(R.id.title);
-		titleView.setText(title);
 	}
 	
 	private Handler noteXMLParseHandler = new Handler() {

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<note version="0.3" xmlns:link="http://beatniksoftware.com/tomboy/link" xmlns:size="http://beatniksoftware.com/tomboy/size" xmlns="http://beatniksoftware.com/tomboy">
+  <title>Test</title>
+  <text xml:space="preserve"><note-content version="0.1">Test
+for bug lp:697996
+<list><list-item dir="ltr"></list-item></list>
+</note-content></text>
+  <last-change-date>2011-01-17T12:28:39.6626900+02:00</last-change-date>
+  <last-metadata-change-date>2011-01-17T12:28:39.6626900+02:00</last-metadata-change-date>
+  <create-date>2011-01-17T12:26:54.4925090+02:00</create-date>
+  <cursor-position>5</cursor-position>
+  <width>450</width>
+  <height>360</height>
+  <x>1144</x>
+  <y>512</y>
+  <open-on-startup>False</open-on-startup>
+</note>

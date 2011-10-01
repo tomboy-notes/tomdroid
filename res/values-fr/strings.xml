@@ -95,9 +95,23 @@
     <string name="menuFilterNotebook">Filtrer</string>
     <string name="strListEmptyNoNotebooks">Il n\'y a aucun bloc-note dans la base de donnèes</string>
     <string name="allNotebooksFilter">Tous les bloc-notes</string>
-	
-	
-	<!-- Date -->
+    
+    <!-- List Longpress Menu -->
+    <string name="view">Voir</string>
+    <string name="noteOptions">Options de note</string>
+
+    <!--  Search -->
+    <string name="search_hint">Chercher une note</string>
+    <string name="search_description">Le texte dans vos notes</string>
+    <string name="strNoResults">Aucune note trouvé pour \"%s\"</string>
+    <string name="menuSearch">Rechercher</string>
+    <string name="prefSearch">Recherche</string>
+    <string name="SearchResultTitle">Résultats de recherche:</string>
+    <string name="clearSearchHistoryTitle">Nettoyer l\'historique de recherche</string>
+    <string name="clearSearchHistory">Détruire l\'historique de toutes les recherches effectuées</string>
+    <string name="deletedSearchHistory">L\'historique de recherche a été détruit.</string>
+
+    <!-- Date -->
     <string name="textModified">Mise à jour: </string>
     <string name="textToday">Aujourd\'hui</string>
     <string name="textYexterday">Hier</string>

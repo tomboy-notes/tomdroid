@@ -46,7 +46,7 @@ public class NoteContentBuilder implements Runnable {
 	// this is what we are building here
 	private SpannableStringBuilder noteContent = new SpannableStringBuilder();
 	
-	private final String TAG = "NoteBuilder";
+	private final String TAG = "NoteContentBuilder";
 	
 	// thread related
 	private Thread runner;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="org.tomdroid"
-      android:versionName="0.4.1" android:versionCode="6">
+      android:versionName="0.5.0" android:versionCode="7">
 
 	<uses-sdk android:minSdkVersion="3"
 	          android:targetSdkVersion="4" />
@@ -29,6 +29,9 @@
         		<category android:name="android.intent.category.BROWSABLE" />
         		<data android:scheme="tomdroid" android:host="sync"/>
         	</intent-filter>
+        	<!-- enable the search dialog to send searches to SearchableActivity -->
+        	<meta-data android:name="android.app.default_searchable"
+                   android:value=".ui.Search" />
         </activity>
     
 		<activity android:name=".ui.ViewNote">
@@ -39,6 +42,18 @@
 			    <data android:mimeType="vnd.android.cursor.item/vnd.tomdroid.note" />
 			</intent-filter>
 		</activity>
+		
+		<activity android:name=".ui.Search"
+		          android:launchMode="singleTop">
+			<intent-filter>
+				<action android:name="android.intent.action.SEARCH" />
+			</intent-filter>
+			<meta-data	android:name="android.app.searchable"
+						android:resource="@xml/searchable"/>
+		</activity>
+		<provider	android:name=".util.SearchSuggestionProvider"
+					android:authorities="org.tomdroid.util.SearchSuggestionProvider"
+        />
 		
 		<provider android:name="NoteProvider"
             android:authorities="org.tomdroid.notes"

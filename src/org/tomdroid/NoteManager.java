@@ -3,8 +3,9 @@
  * Tomboy on Android
  * http://www.launchpad.net/tomdroid
  * 
+ * Copyright 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
  * Copyright 2009, 2010 Benoit Garret <benoit.garret_launchpad@gadz.org>
- * Copyright 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>
+ * Copyright 2011 Stefan Hammer <j.4@gmx.at>
  * 
  * This file is part of Tomdroid.
  * 
@@ -23,8 +24,12 @@
  */
 package org.tomdroid;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.NoteListCursorAdapter;
+import org.tomdroid.util.XmlUtils;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -64,9 +69,9 @@ public class NoteManager {
 			String noteGuid = cursor.getString(cursor.getColumnIndexOrThrow(Note.GUID));
 			
 			note = new Note();
-			note.setXmlContent(noteContent);
 			note.setTitle(noteTitle);
 			note.setGuid(noteGuid);
+			note.setXmlContent(stripTitleFromContent(noteContent, noteTitle));
 		}
 		if( cursor != null ) cursor.close();
 		return note;
@@ -145,14 +150,36 @@ public class NoteManager {
 	}
 	
 
-	public static ListAdapter getListAdapter(Activity activity) {
+	public static ListAdapter getListAdapter(Activity activity, String querys) {
+		
+		String where;
+		if (querys==null) {
+			where=null;
+		} else {
+			// sql statements to search notes
+			String[] query = querys.split(" ");
+			where="";
+			int count=0;
+			for (String string : query) {
+				if (count>0) where = where + " AND ";
+				where = where + "("+Note.TITLE+" LIKE '%"+string+"%' OR "+Note.NOTE_CONTENT+" LIKE '%"+string+"%')";
+				count++;
+			}	
+		}
 
-		Cursor notesCursor = getAllNotes(activity, false);
+		// get a cursor representing all notes from the NoteProvider
+		Uri notes = Tomdroid.CONTENT_URI;
+		Cursor notesCursor = activity.managedQuery(notes, LIST_PROJECTION, where, null, null);
 		
 		// set up an adapter binding the TITLE field of the cursor to the list item
-		String[] from = new String[] { Note.TITLE, Note.MODIFIED_DATE };
-		int[] to = new int[] { R.id.note_title, R.id.note_date };
+		String[] from = new String[] { Note.TITLE };
+		int[] to = new int[] { R.id.note_title };
 		return new NoteListCursorAdapter(activity, R.layout.main_list_item, notesCursor, from, to);
+	}
+	
+	public static ListAdapter getListAdapter(Activity activity) {
+		
+		return getListAdapter(activity, null);
 	}
 
 	// gets the titles of the notes present in the db, used in ViewNote.buildLinkifyPattern()
@@ -189,5 +216,25 @@ public class NoteManager {
 		}
 		
 		return id;
+	}
+	
+	/**
+	 * stripTitleFromContent
+	 * Because of an historic oddity in Tomboy's note format, a note's title is in a <title> tag but is also repeated
+	 * in the <note-content> tag. This method strips it from <note-content>.
+	 * @param noteContent
+	 */
+	private static String stripTitleFromContent(String xmlContent, String title) {
+		// get rid of the title that is doubled in the note's content
+		// using quote to escape potential regexp chars in pattern
+		
+		Pattern stripTitle = Pattern.compile("^\\s*"+Pattern.quote(XmlUtils.escape(title))+"\\n\\n"); 
+		Matcher m = stripTitle.matcher(xmlContent);
+		if (m.find()) {
+			xmlContent = xmlContent.substring(m.end(), xmlContent.length());
+			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "stripped the title from note-content");
+		}
+		
+		return xmlContent;
 	}
 }

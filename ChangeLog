@@ -1,3 +1,1028 @@
+2011-09-05  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* AndroidManifest.xml:
+	* NEWS:
+	* doc/dev/TODO:
+	* doc/user/README:
+
+	version bump
+
+2011-09-05  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* xml-schema/complete-testcase/4dfce710-d1e6-4271-b404-a44b49686566.note:
+	* xml-schema/complete-testcase/5a3fb21e-2410-42da-95d3-4fb6d4187aca.note:
+	* xml-schema/complete-testcase/bug660057:
+	* xml-schema/complete-testcase/bug660057/4dfce710-d1e6-4271-b404-a44b49686566.note:
+	* xml-schema/complete-testcase/bug660057/5a3fb21e-2410-42da-95d3-4fb6d4187aca.note:
+	* sdcard.img:
+
+	Added test cases to reproduce parsing errors and test error reporting improvements introduced in lp:660057
+	
+	also added to sdcard test image
+
+2011-09-05  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* xml-schema/complete-testcase/005bfc5c-75a8-4b9a-920b-a05e88509d5e.note:
+	* xml-schema/complete-testcase/1c7e931e-c38c-44f1-bcba-59ca9283b805.note:
+	* xml-schema/complete-testcase/bug697996/1c7e931e-c38c-44f1-bcba-59ca9283b805.note:
+	* xml-schema/complete-testcase/bug697996/note-not-parsed-error-timestamp.note:
+	* xml-schema/complete-testcase/c79ecca8-be97-4523-863f-169441bc86a1.note:
+	* xml-schema/complete-testcase/note-not-parsed-error-timestamp.note:
+	* doc/dev/TODO:
+	* sdcard.img:
+	* xml-schema/complete-testcase/bug360732/005bfc5c-75a8-4b9a-920b-a05e88509d5e.xml:
+	* xml-schema/complete-testcase/bug360732/005bfc5c-75a8-4b9a-920b-a05e88509d5e.note:
+
+	Pushed a bunch of new error generating notes in tests and in sdcard image
+
+2011-09-05  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+
+	Improvements to title stripping code
+	
+	- Fixed problem in note-content removing regexp not doing it's job affecting notes imported from SD Card
+	- Stripping html escaped characters from title properly
+
+2011-09-05  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/util/NoteContentBuilder.java:
+
+	updated logger tag to reflect it's current class name
+
+2011-09-05  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* res/menu/main.xml:
+
+	pushed the search menu to the left, making it more consistent with other android apps
+
+2011-09-05  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* doc/dev/TODO:
+
+	removed a dupe bug from TODO
+
+2011-09-05  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* doc/dev/TODO:
+
+	updated developer TODO
+
+2011-09-05  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* res/layout/main.xml:
+
+	Removed some fancy property of the default textview in main
+	
+	It was preventing some error messages to be visible in whole. Ex: there are no notes in Tomdroid's data...
+
+2011-09-05  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* NEWS:
+	* data/Feature_Graphic.png:
+	* data/Feature_Graphic.xcf:
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/sync/sd/NoteHandler.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+	* src/org/tomdroid/util/Send.java:
+
+	A Note's content doesn't have it's title anymore
+	
+	- a bugfix branch merge with some rework
+	- It fixes a crasher when sending a short note (lp:800176)
+	- Also some unrelated changes went in (logo update)
+
+2011-09-05  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/ui/ViewNote.java:
+
+	removed unneccesary change.
+
+2011-09-05  Stefan Hammer  <j.4@gmx.at>
+
+	* data/Feature_Graphic.png:
+	* data/Feature_Graphic.xcf:
+
+	Also included the improved feature graphic to get it into the master.
+
+2011-09-05  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+	* src/org/tomdroid/util/Send.java:
+
+	Moved Title-remover in Note class and called it from Send and ViewNote
+
+2011-09-04  Stefan Hammer  <j.4@gmx.at>
+
+	* data/Feature_Graphic.png:
+	* data/Feature_Graphic.xcf:
+	* res/drawable/actionbar_icon.xml:
+	* res/drawable/icon_focused.png:
+	* res/layout/search.xml:
+	* res/menu/view_note.xml:
+	* res/values-de:
+	* res/values-de/arrays.xml:
+	* res/values-de/strings.xml:
+	* res/xml/searchable.xml:
+	* src/org/tomdroid/ui/Search.java:
+	* src/org/tomdroid/util/SearchSuggestionProvider.java:
+	* AUTHORS:
+	* AndroidManifest.xml:
+	* NEWS:
+	* data/icon-src/README.txt:
+	* res/drawable/icon.png:
+	* res/layout/actionbar.xml:
+	* res/layout/main.xml:
+	* res/menu/main.xml:
+	* res/menu/main_longclick.xml:
+	* res/values-fr/strings.xml:
+	* res/values/strings.xml:
+	* res/xml/preferences.xml:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/ui/Actionbar.java:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+	* src/org/tomdroid/util/Preferences.java:
+
+	Merged with lp:tomdroid
+
+2011-07-10  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/util/Send.java:
+
+	Fix Bug #800176: Longpress -> Send crashes with UbuntuOne sync for short notes. Note-Content doesn't get cropped either any more!
+
+2011-09-04  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* res/drawable/actionbar_icon.xml:
+	* res/menu/view_note.xml:
+	* src/org/tomdroid/ui/Actionbar.java:
+
+	updated some copyright information based on previous merges
+
+2011-09-04  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* res/layout/search.xml:
+	* res/xml/searchable.xml:
+	* src/org/tomdroid/ui/Search.java:
+	* src/org/tomdroid/util/SearchSuggestionProvider.java:
+	* AndroidManifest.xml:
+	* NEWS:
+	* res/layout/main.xml:
+	* res/menu/main.xml:
+	* res/values-fr/strings.xml:
+	* res/values/strings.xml:
+	* res/xml/preferences.xml:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/Preferences.java:
+
+	merged search feature branch with little additional work
+	
+	Added french strings
+	Enabled integration with system search
+	Added some copyright info
+
+2011-07-16  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/util/SearchSuggestionProvider.java:
+	* AndroidManifest.xml:
+	* res/values/strings.xml:
+	* res/xml/preferences.xml:
+	* res/xml/searchable.xml:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/Search.java:
+	* src/org/tomdroid/util/Preferences.java:
+
+	Added search history suggestions. Search history can be deleted in preferences.
+
+2011-07-15  Stefan Hammer  <j.4@gmx.at>
+
+	* res/layout/search.xml:
+	* res/xml/searchable.xml:
+	* src/org/tomdroid/ui/Search.java:
+	* AndroidManifest.xml:
+	* res/layout/main.xml:
+	* res/menu/main.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	Created a Searchable Activity using the standard Android Search Dialog. Added Menu Button: Search. After Searching, a Results-List is shown. Still Missing: Costum Suggestions which update while typing
+
+2011-09-04  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* res/drawable/actionbar_icon.xml:
+	* res/drawable/icon_focused.png:
+	* res/menu/view_note.xml:
+	* NEWS:
+	* data/icon-src/README.txt:
+	* res/drawable/icon.png:
+	* res/layout/actionbar.xml:
+	* res/menu/main_longclick.xml:
+	* res/values-fr/strings.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/Actionbar.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+
+	Merged usability improvements with minor changes
+	
+	- NEWS entry
+	- Removed unused strings
+	- Using CamelCase style names for new strings instead of under_score separated
+
+2011-07-15  Stefan Hammer  <j.4@gmx.at>
+
+	* data/icon-src/README.txt:
+	* res/menu/view_note.xml:
+	* src/org/tomdroid/ui/ViewNote.java:
+
+	Remove NoteView-'Show List' menu button again, because clicking on the tomdroid icon is much more convenient. It would be a duplication of funktionality.
+
+2011-07-14  Stefan Hammer  <j.4@gmx.at>
+
+	* res/drawable/actionbar_icon.xml:
+	* res/drawable/icon_focused.png:
+	* res/values/strings.xml:
+
+	Improved icon and sorted new strings
+
+2011-07-14  Stefan Hammer  <j.4@gmx.at>
+
+	* res/drawable/actionbar_icon.xml:
+	* res/drawable/icon_focused.png:
+	* res/drawable/icon.png:
+	* res/layout/actionbar.xml:
+	* src/org/tomdroid/ui/Actionbar.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+
+	Make actionbar-Tomdroid-icon clickable to go back to note list.
+
+2011-07-14  Stefan Hammer  <j.4@gmx.at>
+
+	* res/menu/main_longclick.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	Improved Longpress menu and added view button
+
+2011-07-11  Stefan Hammer  <j.4@gmx.at>
+
+	* res/menu/view_note.xml:
+	* res/values-fr/strings.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/ViewNote.java:
+
+	Added a 'Send-Button' and a 'View List-Button' as menuitems to the Note View.
+
+2011-09-01  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* AUTHORS:
+
+	Added previous contributor to AUTHORS file
+
+2011-09-01  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* res/values-de:
+	* res/values-de/arrays.xml:
+	* res/values-de/strings.xml:
+	* NEWS:
+	* res/values-fr/strings.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+
+	Merged German translation branch
+
+2011-07-08  Stefan Hammer  <j.4@gmx.at>
+
+	* sdcard.img:
+
+	resolved conflict because of new sdcard.img. replaced with main branche one.
+
+2011-07-08  Stefan Hammer  <j.4@gmx.at>
+
+	* res/values-fr/strings.xml:
+
+	Updated missing french string
+
+2011-07-08  Stefan Hammer  <j.4@gmx.at>
+
+	* res/values-de/strings.xml:
+	* res/values-fr/strings.xml:
+	* res/values/strings.xml:
+	* sdcard.img:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	Added one more string, and proofreaded everything. Also tested on all available resolutions for bugs caused by length of strings. Branch is ready for review now
+
+2011-07-08  Stefan Hammer  <j.4@gmx.at>
+
+	* data/icon-36.png:
+	* data/icon-48.png:
+	* data/icon-72.png:
+	* data/icon-src/README.txt:
+	* data/market-promo-graphic.xcf:
+	* data/tomdroid-5.svg:
+	* gen:
+	* res/drawable-hdpi/ic_launcher.png:
+	* res/drawable-ldpi:
+	* res/drawable-ldpi/ic_launcher.png:
+	* res/drawable-ldpi/icon_actionbar_dot.png:
+	* res/drawable-ldpi/icon_actionbar_sync.png:
+	* res/drawable-ldpi/icon_actionbar_sync_background.png:
+	* res/drawable-mdpi/ic_launcher.png:
+	* res/drawable/actionbar_background.png:
+	* res/drawable/icon_about.png:
+	* res/drawable/icon_actionbar_dot.png:
+	* res/drawable/icon_actionbar_sync.png:
+	* res/drawable/icon_actionbar_sync_background.png:
+	* res/drawable/icon_close.png:
+	* res/drawable/icon_load_from_web.png:
+	* res/drawable/syncbutton_background.xml:
+	* res/drawable/syncbutton_background_focus.xml:
+	* res/drawable/syncbutton_background_pressed.xml:
+	* .bzrignore:
+	* AUTHORS:
+	* AndroidManifest.xml:
+	* NEWS:
+	* data/icon-192.png:
+	* data/icon-512.png:
+	* data/icon-64.png:
+	* data/market-promo-graphic.png:
+	* res/drawable-hdpi/icon_actionbar_dot.png:
+	* res/drawable-hdpi/icon_actionbar_sync.png:
+	* res/drawable-hdpi/icon_actionbar_sync_background.png:
+	* res/drawable-mdpi/icon_actionbar_dot.png:
+	* res/drawable-mdpi/icon_actionbar_sync.png:
+	* res/drawable-mdpi/icon_actionbar_sync_background.png:
+	* res/drawable/icon.png:
+	* res/layout/actionbar.xml:
+	* res/layout/main.xml:
+	* res/layout/main_list_item.xml:
+	* res/layout/note_view.xml:
+	* res/menu/main.xml:
+	* sdcard.img:
+	* src/org/tomdroid/ui/ViewNote.java:
+	* src/org/tomdroid/util/NoteListCursorAdapter.java:
+	* xml-schema/README:
+	* xml-schema/tomboy-notes-0.3.rnc:
+	* xml-schema/tomboy-notes-0.3.rng:
+
+	Merged with lp:tomdoid to get newest version
+
+2011-06-20  Stefan Hammer  <j.4@gmx.at>
+
+	* res/values-de/strings.xml:
+	* res/values/strings.xml:
+
+	Change some stings.
+
+2011-06-20  Stefan Hammer  <j.4@gmx.at>
+
+	* res/values-de:
+	* res/values-de/arrays.xml:
+	* res/values-de/strings.xml:
+	* res/values-fr/strings.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+
+	Added German translation and removed some hardcoded strings. Wanted to remove hardcoded string 'SD Card', but failed.
+
+2011-09-01  Thomas Frenzel  <syslock@gmx.de>
+
+	* NEWS:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+
+	Fixed large note collection import from SD card crasher by reducing buffer size. Fixes lp:534213
+
+2011-07-10  Stefan Hammer  <j.4@gmx.at>
+
+	* data/Feature_Graphic.png:
+	* data/Feature_Graphic.xcf:
+
+	Added feature graphic
+
+2011-07-08  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* xml-schema/complete-testcase/bug697996:
+	* xml-schema/complete-testcase/bug697996/c79ecca8-be97-4523-863f-169441bc86a1.note:
+	* xml-schema/complete-testcase/e4583caa-e477-42d6-b8d1-06acbdec4bd3.note:
+	* NEWS:
+	* sdcard.img:
+	* src/org/tomdroid/xml/NoteContentHandler.java:
+
+	Merged parsing fixes to nested list
+	
+	Added test notes under xml-schema/complete-testcase/ and NEWS entry.
+
+2011-02-11  Matthew Rasmus  <tareth.ml@gmail.com>
+
+	* sdcard.img:
+	* src/org/tomdroid/xml/NoteContentHandler.java:
+
+	Cleaned up the mess I made, and added some comments. Also added a note to sdcard.img as a test case for the list-item issues that have been fixed here.
+
+2011-02-08  Matthew Rasmus  <tareth.ml@gmail.com>
+
+	* src/org/tomdroid/xml/NoteContentHandler.java:
+
+	Pretty happy with this. Now I just need to clean up!
+
+2011-02-08  Matthew Rasmus  <tareth.ml@gmail.com>
+
+	* src/org/tomdroid/xml/NoteContentHandler.java:
+
+	This seems to be working in a lot of cases... now to fix bullets that skip indentation levels.
+
+2011-02-08  Matthew Rasmus  <tareth.ml@gmail.com>
+
+	* src/org/tomdroid/xml/NoteContentHandler.java:
+
+	First let's make sure bullets with a 'normal' nesting layout work...
+
+2011-02-08  Matthew Rasmus  <tareth.ml@gmail.com>
+
+	* src/org/tomdroid/xml/NoteContentHandler.java:
+
+	Technically fixes the parsing erros reported so far, but I want to find a nicer way of doing this...
+
+2011-01-23  Matthew Rasmus  <tareth.ml@gmail.com>
+
+	* src/org/tomdroid/xml/NoteContentHandler.java:
+
+	Fixes some parsing issues that would happen if we ran into an empty list item.
+
+2011-07-07  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* data/icon-36.png:
+	* data/icon-48.png:
+	* data/icon-72.png:
+	* data/icon-src/README.txt:
+	* data/market-promo-graphic.xcf:
+	* data/tomdroid-5.svg:
+	* res/drawable-hdpi/ic_launcher.png:
+	* res/drawable-ldpi:
+	* res/drawable-ldpi/ic_launcher.png:
+	* res/drawable-ldpi/icon_actionbar_dot.png:
+	* res/drawable-ldpi/icon_actionbar_sync.png:
+	* res/drawable-ldpi/icon_actionbar_sync_background.png:
+	* res/drawable-mdpi/ic_launcher.png:
+	* res/drawable/actionbar_background.png:
+	* res/drawable/icon_about.png:
+	* res/drawable/icon_actionbar_dot.png:
+	* res/drawable/icon_actionbar_sync.png:
+	* res/drawable/icon_actionbar_sync_background.png:
+	* res/drawable/icon_close.png:
+	* res/drawable/icon_load_from_web.png:
+	* res/drawable/syncbutton_background.xml:
+	* res/drawable/syncbutton_background_focus.xml:
+	* res/drawable/syncbutton_background_pressed.xml:
+	* AUTHORS:
+	* AndroidManifest.xml:
+	* NEWS:
+	* data/icon-192.png:
+	* data/icon-512.png:
+	* data/icon-64.png:
+	* data/market-promo-graphic.png:
+	* res/drawable-hdpi/icon_actionbar_dot.png:
+	* res/drawable-hdpi/icon_actionbar_sync.png:
+	* res/drawable-hdpi/icon_actionbar_sync_background.png:
+	* res/drawable-mdpi/icon_actionbar_dot.png:
+	* res/drawable-mdpi/icon_actionbar_sync.png:
+	* res/drawable-mdpi/icon_actionbar_sync_background.png:
+	* res/drawable/icon.png:
+	* res/layout/actionbar.xml:
+	* res/layout/main.xml:
+	* res/layout/main_list_item.xml:
+	* res/layout/note_view.xml:
+	* res/menu/main.xml:
+	* sdcard.img:
+	* src/org/tomdroid/ui/ViewNote.java:
+	* src/org/tomdroid/util/NoteListCursorAdapter.java:
+
+	Merged Improved Tomdroid UI branch by Stefan. Added NEWS entries.
+
+2011-07-07  Stefan Hammer  <j.4@gmx.at>
+
+	* data/icon-src/README.txt:
+	* sdcard.img:
+
+	Added README for icons with list of used stock-icons and a reminder to use stock-icons cause of several advantages
+
+2011-06-21  Stefan Hammer  <j.4@gmx.at>
+
+	* res/layout/main_list_item.xml:
+
+	Oh no. Another bug, when Title is too long, the list height has to be larger
+
+2011-06-21  Stefan Hammer  <j.4@gmx.at>
+
+	* .classpath:
+	* AndroidManifest.xml:
+	* res/layout/actionbar.xml:
+
+	As a last action fixed some formatting issues to clean up the mess
+
+2011-06-21  Stefan Hammer  <j.4@gmx.at>
+
+	* res/drawable/icon_actionbar_dot.png:
+	* res/drawable/icon_actionbar_sync.png:
+	* res/drawable/icon_actionbar_sync_background.png:
+	* .classpath:
+	* res/drawable-hdpi/icon_actionbar_dot.png:
+	* res/drawable-hdpi/icon_actionbar_sync.png:
+	* res/layout/actionbar.xml:
+	* res/layout/main.xml:
+	* res/layout/main_list_item.xml:
+	* res/layout/note_view.xml:
+	* sdcard.img:
+	* src/org/tomdroid/util/NoteListCursorAdapter.java:
+
+	Fixed Bug, where sync icon highlighting was bigger than icon. Also made hdpi sync icon bigger, because it looked rather small. And included the fix for Bug #799327. I tried to keep the spriped list view, but it was not possible easily. Now List shows different kinds of highlighting and supports theming as told in the Android guidlines.
+
+2011-06-19  Stefan Hammer  <j.4@gmx.at>
+
+	* data/icon-36.png:
+	* data/icon-48.png:
+	* data/icon-72.png:
+	* data/market-promo-graphic.xcf:
+	* data/tomdroid-5.svg:
+	* res/drawable-hdpi/ic_launcher.png:
+	* res/drawable-ldpi:
+	* res/drawable-ldpi/ic_launcher.png:
+	* res/drawable-ldpi/icon_actionbar_dot.png:
+	* res/drawable-ldpi/icon_actionbar_sync.png:
+	* res/drawable-ldpi/icon_actionbar_sync_background.png:
+	* res/drawable-mdpi/ic_launcher.png:
+	* res/drawable/actionbar_background.png:
+
+	Haven't realised, that one has to add new files extra to bzr. Now added all new files\!
+
+2011-06-19  Stefan Hammer  <j.4@gmx.at>
+
+	* sdcard.img:
+
+	Made actionbar gradient less 'stripy' and more continuous.
+
+2011-06-19  Stefan Hammer  <j.4@gmx.at>
+
+	* AndroidManifest.xml:
+	* res/layout/actionbar.xml:
+	* sdcard.img:
+
+	App Icon still had the wrong resolution. Now everything should be complete.
+
+2011-06-18  Stefan Hammer  <j.4@gmx.at>
+
+	* data/icon-192.png:
+	* data/icon-512.png:
+	* data/market-promo-graphic.png:
+	* res/drawable-hdpi/icon_actionbar_dot.png:
+	* res/drawable-hdpi/icon_actionbar_sync.png:
+	* res/drawable-hdpi/icon_actionbar_sync_background.png:
+	* res/drawable-mdpi/icon_actionbar_dot.png:
+	* res/drawable-mdpi/icon_actionbar_sync_background.png:
+	* res/drawable/icon.png:
+	* res/drawable/icon_actionbar_dot.png:
+	* res/drawable/icon_actionbar_sync_background.png:
+	* res/layout/actionbar.xml:
+	* sdcard.img:
+	* src/org/tomdroid/ui/ViewNote.java:
+
+	Also changed actionbar-background to gradient, sync-icon to a intuitively understand button and made sync-icon more beautiful by changing background, dot and scaling.
+
+2011-06-18  Stefan Hammer  <j.4@gmx.at>
+
+	* res/drawable/icon_about.png:
+	* res/drawable/icon_close.png:
+	* res/drawable/icon_load_from_web.png:
+	* res/drawable/syncbutton_background.xml:
+	* res/drawable/syncbutton_background_focus.xml:
+	* res/drawable/syncbutton_background_pressed.xml:
+	* data/icon-192.png:
+	* data/icon-512.png:
+	* data/icon-64.png:
+	* data/market-promo-graphic.png:
+	* res/drawable-hdpi/icon_actionbar_dot.png:
+	* res/drawable-hdpi/icon_actionbar_sync.png:
+	* res/drawable-hdpi/icon_actionbar_sync_background.png:
+	* res/drawable-mdpi/icon_actionbar_dot.png:
+	* res/drawable-mdpi/icon_actionbar_sync.png:
+	* res/drawable-mdpi/icon_actionbar_sync_background.png:
+	* res/drawable/icon.png:
+	* res/drawable/icon_actionbar_dot.png:
+	* res/drawable/icon_actionbar_sync.png:
+	* res/drawable/icon_actionbar_sync_background.png:
+	* res/layout/actionbar.xml:
+	* res/menu/main.xml:
+	* sdcard.img:
+
+	Changed Menu About-Icon, made new Launcher Icon following completely the Android Guidlines, and created new Market-Promo-Graphic.
+
+2011-07-07  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* NEWS:
+
+	added a bit of whitespace and seperators to the NEWS file
+
+2011-07-06  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* gen:
+	* .bzrignore:
+
+	Unignoring gen/ folder and adding it to repo to avoid having to create it on every import
+
+2011-06-29  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* xml-schema/README:
+	* xml-schema/tomboy-notes-0.3.rnc:
+	* xml-schema/tomboy-notes-0.3.rng:
+
+	xml-schema update and doc update
+	
+	Integrated Sandy's suggestions in the relax-ng compact format
+	Regenerated the XML format from the compact one
+	Updated README 
+
+2011-05-12  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* doc/dev/TODO:
+
+	new tasks
+
+2011-01-15  Benoit Garret  <benoit.garret_launchpad@gadz.org>
+
+	* doc/dev/RELEASE-CHECKLIST:
+
+	Add a one-liner to quickly check the AUTHORS file.
+
+2011-01-15  Benoit Garret  <benoit.garret_launchpad@gadz.org>
+
+	* NEWS:
+	* doc/dev/TODO:
+
+	Update NEWS and doc/dev/TODO
+
+2011-01-15  Benoit Garret  <benoit.garret_launchpad@gadz.org>
+
+	* res/menu/main_longclick.xml:
+	* src/org/tomdroid/util/Send.java:
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	Add a context menu (long-press) with the ability to send the note.
+
+2010-04-15  Edouard Richard  <vied12@gmail.com>
+
+	* res/menu/main_longclick.xml:
+	* src/org/tomdroid/util/Send.java:
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/NoteContentBuilder.java:
+
+	contextMenu added with 'send' and 'delete' note
+
+2011-01-15  Benoit Garret  <benoit.garret_launchpad@gadz.org>
+
+	* res/layout/note_view.xml:
+	* src/org/tomdroid/xml/NoteContentHandler.java:
+
+	Merge lp:660116 fix.
+
+2010-12-10  Matthew Rasmus  <tareth.ml@gmail.com>
+
+	* res/layout/note_view.xml:
+	* src/org/tomdroid/xml/NoteContentHandler.java:
+
+	Increased the indentation on bullets (fix for lp:660116). Also fixed a couple of other bullet issues.
+
+2010-12-12  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/util/ErrorList.java:
+	* AndroidManifest.xml:
+	* NEWS:
+	* src/org/tomdroid/sync/SyncManager.java:
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/SyncMessageHandler.java:
+
+	Merged branch parsing-errors-reporting.
+	Added a NEWS entry and fixed a conflict with translatable strings work.
+
+2010-11-07  Benoit Garret  <benoit.garret_launchpad@gadz.org>
+
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/ui/SyncMessageHandler.java:
+	* src/org/tomdroid/util/ErrorList.java:
+
+	A bit of docs
+
+2010-11-07  Benoit Garret  <benoit.garret_launchpad@gadz.org>
+
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+
+	Close the file after reading it
+
+2010-11-07  Benoit Garret  <benoit.garret_launchpad@gadz.org>
+
+	* src/org/tomdroid/sync/SyncManager.java:
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/ui/SyncMessageHandler.java:
+	* src/org/tomdroid/util/ErrorList.java:
+
+	Error message when the SD card isn't found
+
+2010-11-06  Benoit Garret  <benoit.garret_launchpad@gadz.org>
+
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+
+	Save the individual note contents and not the whole response for web sync
+
+2010-11-06  Benoit Garret  <benoit.garret_launchpad@gadz.org>
+
+	* src/org/tomdroid/util/ErrorList.java:
+
+	Do not overwrite existing saved errors
+
+2010-11-01  Benoit Garret  <benoit.garret_launchpad@gadz.org>
+
+	* res/layout/error_item.xml:
+	* res/layout/errors_app.xml:
+	* res/layout/errors_app_show.xml:
+	* src/org/tomdroid/ui/ErrorsActivity.java:
+	* AndroidManifest.xml:
+	* res/values/strings.xml:
+
+	Remove error application, it's overkill for just saving errors
+
+2010-11-01  Benoit Garret  <benoit.garret_launchpad@gadz.org>
+
+	* src/org/tomdroid/ui/SyncMessageHandler.java:
+	* src/org/tomdroid/util/ErrorList.java:
+
+	Prepare error application removal
+
+2010-10-31  Benoit Garret  <benoit.garret_launchpad@gadz.org>
+
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+
+	Better error wrapping of the web sync service
+
+2010-10-31  Benoit Garret  <benoit.garret_launchpad@gadz.org>
+
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+
+	Send the PARSING_COMPLETE message when the last note is finished syncing
+
+2010-10-31  Benoit Garret  <benoit.garret_launchpad@gadz.org>
+
+	* src/org/tomdroid/sync/SyncService.java:
+
+	Wrap syncInThread to be able to get the thread exceptions
+
+2010-10-31  Benoit Garret  <benoit.garret_launchpad@gadz.org>
+
+	* src/org/tomdroid/util/ErrorList.java:
+
+	Add a method to create an error without a Note object
+
+2010-10-31  Benoit Garret  <benoit.garret_launchpad@gadz.org>
+
+	* src/org/tomdroid/util/ErrorList.java:
+
+	Print the stack traces correctly
+
+2010-10-31  Benoit Garret  <benoit.garret_launchpad@gadz.org>
+
+	* src/org/tomdroid/ui/ErrorsActivity.java:
+
+	Rename labels to titles in the errors activity
+
+2010-10-30  Benoit Garret  <benoit.garret_launchpad@gadz.org>
+
+	* data/market-promo-graphic.png:
+	* data/market-screenshots:
+	* data/market-screenshots/0.4.1 - note-list.png:
+	* data/market-screenshots/0.4.1 - note-view.png:
+	* AndroidManifest.xml:
+	* NEWS:
+	* doc/dev/README:
+	* doc/dev/RELEASE-CHECKLIST:
+	* doc/dev/TODO:
+	* res/values-fr/strings.xml:
+	* res/values/strings.xml:
+
+	Merge main
+
+2010-10-30  Benoit Garret  <benoit.garret_launchpad@gadz.org>
+
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/SyncMessageHandler.java:
+
+	Refactor the sync services to collect error messages and send them to the error viewer
+
+2010-10-30  Benoit Garret  <benoit.garret_launchpad@gadz.org>
+
+	* res/layout/error_item.xml:
+	* res/layout/errors_app.xml:
+	* res/layout/errors_app_show.xml:
+	* src/org/tomdroid/ui/ErrorsActivity.java:
+	* src/org/tomdroid/util/ErrorList.java:
+	* AndroidManifest.xml:
+	* res/values/strings.xml:
+
+	Add an activity to show and save exceptions
+
+2010-12-12  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* data/icon-512.png:
+	* data/icon-14.png:
+	* data/icon-192.png:
+	* data/icon-64.png:
+
+	Generated new icons based on the latest SVG (Android robot with white around it)
+	Added a new 512x512 icon because the Android Market now requires this size.
+
+2010-12-12  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* NEWS:
+
+	NEWS entry for merge done at revno 216. Benoit Soyeux's lp:~benoit.soyeux/tomdroid/translation
+
+2010-12-12  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* NEWS:
+
+	merged my previous NEWS entry changes that I pushed in the wrong branch earlier
+
+2010-12-07  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* NEWS:
+	* src/org/tomdroid/util/NoteListCursorAdapter.java:
+
+	Date on the note list is now displayed according to the phone's locale. Fixes lp:659743.
+
+2010-12-08  Benoit Garret  <benoit.garret_launchpad@gadz.org>
+
+	* src/org/tomdroid/util/NoteListCursorAdapter.java:
+
+	Merge lp:659743 fix.
+
+2010-12-06  Matthew Rasmus  <tareth.ml@gmail.com>
+
+	* src/org/tomdroid/util/NoteListCursorAdapter.java:
+
+	Modification date/time now adheres to the phones Date and Time settings.
+
+2010-12-08  Benoit Garret  <benoit.garret_launchpad@gadz.org>
+
+	* .classpath:
+	* res/values-fr/arrays.xml:
+	* res/values-fr/strings.xml:
+	* res/values/strings.xml:
+	* res/xml/preferences.xml:
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/ui/SyncMessageHandler.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/NoteListCursorAdapter.java:
+
+	Merge updated french translation
+
+2010-12-07  Benoit Soyeux  <benoit.soyeux@starbusiness.fr>
+
+	* res/values-fr/strings.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/SyncMessageHandler.java:
+
+	I add some translation with parameter as ask by Benoit Garet.
+
+2010-12-06  Benoit Soyeux  <benoit.soyeux@starbusiness.fr>
+
+	* data/market-promo-graphic.png:
+	* data/market-screenshots:
+	* data/market-screenshots/0.4.1 - note-list.png:
+	* data/market-screenshots/0.4.1 - note-view.png:
+	* AndroidManifest.xml:
+	* NEWS:
+	* doc/dev/README:
+	* doc/dev/RELEASE-CHECKLIST:
+	* doc/dev/TODO:
+	* res/values-fr/strings.xml:
+	* res/values/strings.xml:
+
+	I resolve conflict on res/values/string.xml files
+
+2010-11-29  Benoit Soyeux  <benoit.soyeux@starbusiness.fr>
+
+	* res/values-fr/strings.xml:
+	* res/values/strings.xml:
+
+	Add info from android market
+
+2010-11-28  Benoit Soyeux  <benoit.soyeux@starbusiness.fr>
+
+	* res/values-fr/strings.xml:
+	* res/values/strings.xml:
+
+	Add French translation for notebook filtering
+
+2010-10-19  Benoit Soyeux  <benoit.soyeux@starbusiness.fr>
+
+	* res/values-fr/strings.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	I translate the title of the welcome popup
+
+2010-10-19  Benoit Soyeux  <benoit.soyeux@starbusiness.fr>
+
+	* res/values-fr/strings.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/util/NoteListCursorAdapter.java:
+
+	I translate the modified date
+
+2010-10-18  Benoit Soyeux  <benoit.soyeux@starbusiness.fr>
+
+	* res/values-fr/arrays.xml:
+	* res/values-fr/strings.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/sync/SyncService.java:
+
+	Translation for note sorting and translation for one other message (sync already in progress)
+
+2010-10-17  Benoit Soyeux  <benoit.soyeux@starbusiness.fr>
+
+	* res/values-fr/strings.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/SyncMessageHandler.java:
+
+	Translation of message synchronization
+
+2010-10-17  Benoit Soyeux  <benoit.soyeux@starbusiness.fr>
+
+	* .classpath:
+	* res/values-fr/strings.xml:
+	* res/values/strings.xml:
+	* res/xml/preferences.xml:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	Translation of the title on window service preference
+
+2010-10-24  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* data/market-promo-graphic.png:
+	* data/market-screenshots:
+	* data/market-screenshots/0.4.1 - note-list.png:
+	* data/market-screenshots/0.4.1 - note-view.png:
+	* doc/dev/RELEASE-CHECKLIST:
+	* doc/dev/TODO:
+	* res/values-fr/strings.xml:
+	* res/values/strings.xml:
+
+	Added Android Market information
+
+2010-10-23  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* AndroidManifest.xml:
+	* NEWS:
+	* doc/dev/README:
+
+	Realized I bumped Android SDK requirements by mistake. We need SDK to build (understand new assets) but not to run the apk. Put back 1.5 compatibility.
+
+2010-10-14  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* NEWS:
+
+	release date included
+
+2010-10-14  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* AndroidManifest.xml:
+	* ChangeLog:
+	* NEWS:
+	* doc/dev/RELEASE-CHECKLIST:
+	* doc/user/README:
+
+	0.4.1 at the door
+
 2010-10-14  Olivier Bilodeau  <olivier@bottomlesspit.org>
 
 	* doc/dev/TODO:
@@ -2983,7 +4008,7 @@
 
 	Add a database field to store the note content.
 
-2009-09-28  Olivier Bilodeau  <olivier@bottomlesspit.org>
+2009-09-28  Benoit Garret  <benoit.garret_launchpad@gadz.org>
 
 	* ChangeLog:
 	* res/menu/main.xml:
@@ -3549,7 +4574,7 @@
 
 	TODO task I should do before the 0.2.0 release.
 
-2009-04-24  Olivier Bilodeau  <olivier@bottomlesspit.org>
+2009-04-24  Michael Fletcher  <m.fletcher@theplanet.ca>
 
 	* .settings:
 	* .settings/org.eclipse.jdt.core.prefs:
