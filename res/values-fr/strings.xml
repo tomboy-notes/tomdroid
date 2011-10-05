@@ -93,6 +93,7 @@
 	
 	<!-- NotebookFiltering -->
     <string name="menuFilterNotebook">Bloc-notes</string>
+    <string name="menuFilterNotebookv2">Bloc-notes (dialog)</string>
     <string name="strListEmptyNoNotebooks">Il n\'y a aucun bloc-note dans la base de donnèes</string>
     <string name="allNotebooksFilter">Tous les bloc-notes</string>
     <string name="notebookSelectTitle">Bloc-notes à afficher</string>

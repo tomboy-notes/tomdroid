@@ -92,6 +92,7 @@
 	
 	<!-- NotebookFiltering -->
     <string name="menuFilterNotebook">Notebooks</string>
+    <string name="menuFilterNotebookv2">Notebooks (dialog)</string>
     <string name="strListEmptyNoNotebooks">There are no notebook in the database.</string>
     <string name="allNotebooksFilter">All notebooks</string>
     <string name="notebookSelectTitle">Notebooks to display.</string>

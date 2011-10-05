@@ -25,7 +25,11 @@
     <item 
             android:icon="@drawable/ic_menu_view"   
             android:id="@+id/menuFilterNotebook" 
-            android:title="@string/menuFilterNotebook"/>  
+            android:title="@string/menuFilterNotebook"/> 
+    <item 
+            android:icon="@drawable/ic_menu_view"   
+            android:id="@+id/menuFilterNotebookv2" 
+            android:title="@string/menuFilterNotebookv2"/>  
 
 	<item 
 			android:icon="@android:drawable/ic_menu_search"

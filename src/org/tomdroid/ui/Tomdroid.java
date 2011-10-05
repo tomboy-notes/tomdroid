@@ -26,6 +26,8 @@ package org.tomdroid.ui;
 
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
+import org.tomdroid.Notebook;
+import org.tomdroid.NotebookManager;
 import org.tomdroid.R;
 import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncManager;
@@ -37,6 +39,9 @@ import org.tomdroid.util.Send;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.app.AlertDialog.Builder;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -58,6 +63,7 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 
 public class Tomdroid extends ListActivity {
@@ -159,6 +165,10 @@ public class Tomdroid extends ListActivity {
 
 			case R.id.menuFilterNotebook:
 				startActivity(new Intent(this, Notebooks.class));
+				return true;
+
+			case R.id.menuFilterNotebookv2:
+				selectNotebook();
 				return true;
 		}
 
@@ -285,5 +295,79 @@ public class Tomdroid extends ListActivity {
 			.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 	    }
 	}
+	
+	private int nbNotebook = 0;
+	private int nbCheck = 0;
+	private Cursor cur = null;
+
+	
+	private void selectNotebook(){
+		AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+		dialogBuilder.setTitle(R.string.notebookSelectTitle);
+//		dialogBuilder.setItems(items,  new DialogInterface.OnClickListener(){
+//
+//			public void onClick(DialogInterface dialog, int item) {
+//				 Toast.makeText(getApplicationContext(), items[item], Toast.LENGTH_SHORT).show();
+//				
+//			}
+//			
+//		});
+		cur = NotebookManager.getAllNotebooks(this, false);
+		nbNotebook = cur.getCount();
+		
+		dialogBuilder.setMultiChoiceItems(cur, Notebook.DISPLAY, Notebook.NAME, new DialogInterface.OnMultiChoiceClickListener() {
+			
+			public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+				// TODO Auto-generated method stub
+				cur.moveToFirst();
+				cur.move(which);
+				int id = cur.getInt(cur.getColumnIndex(Notebook.ID));
+				String notebook = cur.getString(cur.getColumnIndex(Notebook.NAME));
+				
+				Log.i(TAG, "which:"+which+" isChecked:"+isChecked+" nom:"+notebook);
+				((AlertDialog) dialog).getListView().setItemChecked(which, isChecked);
+				Log.i(TAG, ""+((AlertDialog) dialog).getListView().getItemIdAtPosition(which));
+				((AlertDialog) dialog).show();
+				String[] whereArgs = new String[1];
+				whereArgs[0] = notebook;
+				
+				ContentResolver cr = getContentResolver();	
+				ContentValues values = new ContentValues();
+				values.put(Notebook.DISPLAY, (isChecked) ? 1 : 0);	
+				cr.update(Tomdroid.CONTENT_URI_NOTEBOOK, values, Notebook.NAME +" = ?", whereArgs);
+				
+				cur.requery();
+				
+				
+			}
+		});
+		dialogBuilder.setPositiveButton(R.string.btnOk, new DialogInterface.OnClickListener() {
+			
+			public void onClick(DialogInterface dialog, int which) {
+				
+				dialog.cancel();
+				updateView();
+			}
+		});
+		dialogBuilder.setNegativeButton(R.string.btnCancel, new DialogInterface.OnClickListener(){
+
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.cancel();
+				
+			}
+			
+		});
+		
+		
+		
+		AlertDialog dialog  = dialogBuilder.create();
+		dialog.show();
+	}
+	
+	public void updateView(){
+		adapter = NoteManager.getListAdapter(this);
+		setListAdapter(adapter);
+	}
+	
 
 }
