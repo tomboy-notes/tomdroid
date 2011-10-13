@@ -5,7 +5,7 @@
 	<item>sort_title</item>
 </array>
 <array name="sortOrderValues">
-	<item>更新日時順</item>
+	<item>更新日時</item>
 	<item>ノートタイトル</item>
 </array>
 </resources>

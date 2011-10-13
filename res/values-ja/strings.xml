@@ -27,11 +27,11 @@
     
     <string name="send">送信</string>
     <string name="app_name">Tomdroid</string>
-    <string name="app_desc">Tomboy と互換性のある wikiwiki メモ帳アプリケーション。書き込みはまだできません。</string>
+    <string name="app_desc">Tomboyと互換性のあるwikiwiki形式のメモ帳アプリケーション。書き込みはまだできません。</string>
     <string name="author">Olivier Bilodeau</string>
 
 	<!-- main.xml -->
-    <string name="strListEmptyWaiting">メモを読み込んでいる間お待ちください...</string>
+    <string name="strListEmptyWaiting">メモを読み込んでいます。お待ちください...</string>
     <string name="strListEmptyNoNotes">
     	Tomdroidデータベースにメモはありません。
     </string>
@@ -40,7 +40,7 @@
 	<string name="menuPrefs">設定</string>
     <string name="menuAbout">情報</string>
     <string name="titleWelcome">注意</string>
-    <string name="titleAbout">Tomdroid について</string>
+    <string name="titleAbout">Tomdroidについて</string>
     <string name="strWelcome">
     	Tomdroid へようこそ。
     	\n\nこのソフトウェアはベータ段階であり、既知のバグがあることを覚えておいてください。例えばノートの編集は行えません。
@@ -122,16 +122,16 @@
 	<string name="market_title">Tomdroid メモ</string>
 	<!-- 325 chars max -->
 	<string name="market_description">
-		Android 向けの Tomboy クライアントです。Tomboy はデスクトップでメモを書くためのアプリで、wikiwiki形式でシンプルなユーザーインターフェイスを備えています。
+		Android向けのTomboyクライアントです。Tomboyはデスクトップでメモを書くためのアプリで、wikiwiki形式でシンプルなユーザーインターフェイスを備えています。
 
 		注意: これは現在、読み込み専用のクライアントです。
 
 		* Tomboyと互換性のあるメモ形式
-		* Snowy、Tomboy Online、Ubuntu One とのオンラインでもメモの同期
+		* Snowy、Tomboy Online、Ubuntu One とのオンラインでのメモの同期
 		* SDカードからの取り込み
 		* オープンソース！
 	</string>
 	<!-- 80 chars max -->
-	<string name="market_promotext">Tomboyと互換性のあるオンラインで同期するメモ帳アプリケーション</string>
+	<string name="market_promotext">Tomboyと互換性のある、オンラインで同期するメモ帳アプリケーション</string>
 	
 </resources>
