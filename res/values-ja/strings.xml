@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ Tomdroid
+ Tomboy on Android
+ http://www.launchpad.net/tomdroid
+
+ Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
+ 
+ This file is part of Tomdroid.
+ 
+ Tomdroid is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Tomdroid is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+ 
+ @Author Koichi Akabe <vbkaisetsu@gmail.com>
+-->
+<resources>
+    
+    <string name="send">送信</string>
+    <string name="app_name">Tomdroid</string>
+    <string name="app_desc">Tomboyと互換性のあるwikiwiki形式のメモ帳アプリケーション。書き込みはまだできません。</string>
+    <string name="author">Olivier Bilodeau</string>
+
+	<!-- main.xml -->
+    <string name="strListEmptyWaiting">メモを読み込んでいます。お待ちください...</string>
+    <string name="strListEmptyNoNotes">
+    	Tomdroidデータベースにメモはありません。
+    </string>
+    
+    <string name="menuSync">同期</string>
+	<string name="menuPrefs">設定</string>
+    <string name="menuAbout">情報</string>
+    <string name="titleWelcome">注意</string>
+    <string name="titleAbout">Tomdroidについて</string>
+    <string name="strWelcome">
+    	Tomdroid へようこそ。
+    	\n\nこのソフトウェアはベータ段階であり、既知のバグがあることを覚えておいてください。例えばノートの編集は行えません。
+
+    	\n\n私たちはこれらの問題があることをよく分かっており、迅速に取り掛かる予定ですが、早くテストをしてもらい、問題点を把握したいとも思っています。
+    	
+    	\n\nもし貢献してくれるのであれば、どのようなことであっても歓迎します。launchpad.net/tomdroid にアクセスし、私たちに連絡を入れてください！\n
+    </string>
+    <string name="strAbout">
+    	%1$s
+    	\n\n開発者: %2$s
+    	\nバージョン: %3$s
+    	\nライセンス: GPLv3
+    </string>
+
+    <!-- TODO aren't these available somewhere else? like in the SDK? //-->
+    <string name="btnOk">OK</string>
+    <string name="btnCancel">キャンセル</string>
+    <string name="btnClose">閉じる</string>
+    <string name="btnProjectPage">プロジェクトページ</string>
+
+	<!-- note-view.xml -->
+    <string name="strWait">メモが読み込まれるまでお待ちください...</string>
+
+	<string name="prefSync">同期</string>
+
+	<string name="prefSyncService">サービス</string>
+	<string name="prefSyncServer">サーバー</string>
+	<string name="prefSDCard">SDカード</string>
+	<string name="prefAuthenticate">認証</string>
+	
+	<string name="prefSyncCompleteAuth">認証処理中です。お待ちください...</string>
+	<string name="prefSyncConnectionFailed">サーバーへの接続に失敗しました。入力したアドレスが正しいかどうか確認してください。</string>
+	<string name="prefServerEmpty">サーバーのアドレスが変更されましたが、新しい値は空です。</string>
+
+	<string name="titleSyncService">同期サービスを選択してください</string>
+	<string name="messageSyncComplete">%1$s との同期が完了しました。</string>
+	<string name="messageSyncNoNote">%1$s にメモはありません。</string>
+	<string name="messageSyncNoConnection">インターネットに接続していません。</string>
+	<string name="messageSyncAlreadyInProgress">同期は既に進行しています</string>
+	<string name="messageSyncError">メモコレクションの変換中にエラーが発生しました。再現可能な場合は私たちに連絡してください！</string>
+	<string name="error">エラー</string>
+	
+	<!-- NoteSorting -->
+    <string name="menuSort">ソートの変更</string>
+	<string name="titleDefaultSorting">デフォルトのソートの選択</string>
+	<string name="prefDefaultSorting">デフォルトのソート</string>
+	
+	<!-- NotebookFiltering -->
+    <string name="menuFilterNotebook">フィルター</string>
+    <string name="strListEmptyNoNotebooks">データベースにメモ帳はありません。</string>
+    <string name="allNotebooksFilter">すべてのメモ帳</string>
+    
+    <!-- List Longpress Menu -->
+    <string name="view">表示</string>
+    <string name="noteOptions">メモのオプション</string>
+
+    <!--  Search -->
+    <string name="search_hint">メモを検索</string>
+    <string name="search_description">メモのテキスト</string>
+    <string name="strNoResults">\"%s\" に一致するメモは見つかりませんでした</string>
+    <string name="menuSearch">検索</string>
+    <string name="prefSearch">検索</string>
+    <string name="SearchResultTitle">検索結果:</string>
+    <string name="clearSearchHistoryTitle">検索履歴の消去</string>
+    <string name="clearSearchHistory">今までのすべての検索履歴を削除します</string>
+    <string name="deletedSearchHistory">検索履歴が消去されました。</string>
+
+    <!-- Date -->
+    <string name="textModified">更新日時: </string>
+    <string name="textToday">今日</string>
+    <string name="textYexterday">昨日</string>
+    
+	<!-- 
+		Information that goes into the Android Market Application Listing. 
+		I've put it in here so that it'll get translated by translators.
+	-->
+	<!-- 30 chars max -->
+	<string name="market_title">Tomdroid メモ</string>
+	<!-- 325 chars max -->
+	<string name="market_description">
+		Android向けのTomboyクライアントです。Tomboyはデスクトップでメモを書くためのアプリで、wikiwiki形式でシンプルなユーザーインターフェイスを備えています。
+
+		注意: これは現在、読み込み専用のクライアントです。
+
+		* Tomboyと互換性のあるメモ形式
+		* Snowy、Tomboy Online、Ubuntu One とのオンラインでのメモの同期
+		* SDカードからの取り込み
+		* オープンソース！
+	</string>
+	<!-- 80 chars max -->
+	<string name="market_promotext">Tomboyと互換性のある、オンラインで同期するメモ帳アプリケーション</string>
+	
+</resources>
