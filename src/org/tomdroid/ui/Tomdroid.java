@@ -36,6 +36,7 @@ import org.tomdroid.util.FirstNote;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.Send;
 
+import android.R.bool;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
@@ -62,6 +63,7 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 
 public class Tomdroid extends ListActivity {
@@ -295,6 +297,7 @@ public class Tomdroid extends ListActivity {
 	private String[] notebooks = null;
 	private boolean[] checks = null;
 	private boolean[] update = null;
+	private Context myContext = null;
 
 	
 	private void selectNotebook(){
@@ -306,6 +309,7 @@ public class Tomdroid extends ListActivity {
 		notebooks = new String[nbNotebook];
 		checks = new boolean[nbNotebook];
 		update = new boolean[nbNotebook];
+		myContext = this.getApplicationContext();
 		int i=0;
 		boolean ok = cur.moveToFirst();
 		while (ok){
@@ -316,14 +320,25 @@ public class Tomdroid extends ListActivity {
 			i++;
 		}
 		
-		
-		
 		dialogBuilder.setMultiChoiceItems(notebooks,checks, new DialogInterface.OnMultiChoiceClickListener(){
 
 			public void onClick(DialogInterface dialog, int which, boolean isChecked) {
 				checks[which] = isChecked;
 				update[which] = true;
-				Log.d(TAG, "which:"+which+" isChecked:"+isChecked+" notebook:"+notebooks[which]);
+				if (LOGGING_ENABLED) Log.d(TAG, "which:"+which+" isChecked:"+isChecked+" notebook:"+notebooks[which]);
+				
+				boolean allUncheck = true;
+				for (int i=0; i<nbNotebook;i++){
+					if (checks[i]){
+						allUncheck = false;
+					}
+				}
+				
+				if (allUncheck){
+					if (LOGGING_ENABLED) Log.d(TAG, "All checkbox are checked");
+					checks[which] = true;
+					Toast.makeText(myContext, myContext.getString(R.string.notebookMustSelectOne), Toast.LENGTH_SHORT).show();
+				}
 				
 			}
 			
@@ -342,8 +357,6 @@ public class Tomdroid extends ListActivity {
 						values.put(Notebook.DISPLAY, (checks[i]) ? 1 : 0);	
 						cr.update(Tomdroid.CONTENT_URI_NOTEBOOK, values, Notebook.NAME +" = ?", whereArgs);
 					}
-					
-					
 				}
 				
 				dialog.cancel();

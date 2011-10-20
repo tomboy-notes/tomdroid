@@ -96,6 +96,7 @@
     <string name="strListEmptyNoNotebooks">There are no notebook in the database.</string>
     <string name="allNotebooksFilter">All notebooks</string>
     <string name="notebookSelectTitle">Notebooks to display.</string>
+    <string name="notebookMustSelectOne">You must selection at least one notebook</string>
     
     <!-- List Longpress Menu -->
     <string name="view">View</string>
