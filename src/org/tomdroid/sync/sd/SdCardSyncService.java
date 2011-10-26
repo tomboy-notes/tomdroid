@@ -96,7 +96,7 @@ public class SdCardSyncService extends SyncService {
 		if (!path.exists())
 			path.mkdir();
 		
-		Log.i(TAG, "Path "+path+" exists: "+path.exists());
+		if (Tomdroid.LOGGING_ENABLED) Log.i(TAG, "Path "+path+" exists: "+path.exists());
 		
 		// Check a second time, if not the most likely cause is the volume doesn't exist
 		if(!path.exists()) {

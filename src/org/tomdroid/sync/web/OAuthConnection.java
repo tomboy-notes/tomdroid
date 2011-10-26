@@ -175,7 +175,7 @@ public class OAuthConnection extends WebConnection {
 	
 	public boolean getAccess(String verifier) throws UnknownHostException {
 		
-		Log.i(TAG, "Verifier: "+verifier);
+		if (Tomdroid.LOGGING_ENABLED) Log.i(TAG, "Verifier: "+verifier);
 		
 		// this method shouldn't have been called
 		if (isAuthenticated())

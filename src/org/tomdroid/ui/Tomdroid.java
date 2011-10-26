@@ -100,7 +100,7 @@ public class Tomdroid extends ListActivity {
 
 		// did we already show the warning and got destroyed by android's activity killer?
 		if (Preferences.getBoolean(Preferences.Key.FIRST_RUN)) {
-			Log.i(TAG, "Tomdroid is first run.");
+			if (Tomdroid.LOGGING_ENABLED) Log.i(TAG, "Tomdroid is first run.");
 			
 			// add a first explanatory note
 			NoteManager.putNote(this, FirstNote.createFirstNote());
@@ -197,7 +197,7 @@ public class Tomdroid extends ListActivity {
 			Uri uri = intent.getData();
 
 			if (uri != null && uri.getScheme().equals("tomdroid")) {
-				Log.i(TAG, "Got url : " + uri.toString());
+				if (Tomdroid.LOGGING_ENABLED) Log.i(TAG, "Got url : " + uri.toString());
 
 				final ProgressDialog dialog = ProgressDialog.show(this, "",	getString(R.string.prefSyncCompleteAuth), true, false);
 

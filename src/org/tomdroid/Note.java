@@ -28,6 +28,7 @@ import java.util.regex.Pattern;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.NoteContentBuilder;
 import org.tomdroid.util.XmlUtils;
 
@@ -145,9 +146,10 @@ public class Note {
 		// Tomboy's (C# library) format: 2010-01-23T12:07:38.7743020-05:00
 		Matcher m = dateCleaner.matcher(lastChangeDateStr);
 		if (m.find()) {
-			Log.d(TAG, "I had to clean out extra sub-milliseconds from the date");
+			if (Tomdroid.LOGGING_ENABLED)
+                Log.d(TAG, "I had to clean out extra sub-milliseconds from the date");
 			lastChangeDateStr = m.group(1)+m.group(2);
-			Log.v(TAG, "new date: "+lastChangeDateStr);
+			if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "new date: "+lastChangeDateStr);
 		}
 		
 		lastChangeDate = new Time();

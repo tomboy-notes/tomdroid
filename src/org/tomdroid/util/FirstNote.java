@@ -28,6 +28,7 @@ import java.util.ResourceBundle;
 import org.tomdroid.Note;
 
 import android.util.Log;
+import org.tomdroid.ui.Tomdroid;
 
 /**
  * Creates an introductory note object 
@@ -40,7 +41,7 @@ public class FirstNote {
 	private static final String	TAG = "FirstNote";
 	
 	public static Note createFirstNote() {
-		Log.v(TAG, "Creating first note");
+		if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "Creating first note");
 		
 		Note note = new Note();
 		

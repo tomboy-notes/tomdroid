@@ -214,7 +214,7 @@ public abstract class SyncService {
 	
 	protected void setSyncProgress(int progress) {
 		synchronized (TAG) {
-			Log.v(TAG, "sync progress: " + progress);
+			if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "sync progress: " + progress);
 			Message progressMessage = new Message();
 			progressMessage.what = SYNC_PROGRESS;
 			progressMessage.arg1 = progress;

@@ -126,7 +126,7 @@ public class PreferencesActivity extends PreferenceActivity {
 	        	Toast.makeText(getBaseContext(),
                         getString(R.string.deletedSearchHistory),
                         Toast.LENGTH_LONG).show();
-	        	Log.d(TAG, "Deleted search history.");
+	        	if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "Deleted search history.");
 	        	
 	        	return true;
 	        }
@@ -145,7 +145,7 @@ public class PreferencesActivity extends PreferenceActivity {
 		}
 
 		// service needs authentication
-		Log.i(TAG, "Creating dialog");
+		if (Tomdroid.LOGGING_ENABLED) Log.i(TAG, "Creating dialog");
 
 		final ProgressDialog authProgress = ProgressDialog.show(this, "",
 				getString(R.string.prefSyncCompleteAuth), true, false);
