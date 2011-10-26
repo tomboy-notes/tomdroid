@@ -117,6 +117,8 @@
 
     <!-- Shortcuts handling -->
     <string name="shortcuts_view_caption">Choose note</string>
+    <string name="shortcut_menu_item_caption">Tomdroid note</string>
+
     <!--
          Information that goes into the Android Market Application Listing.
          I've put it in here so that it'll get translated by translators.
@@ -136,5 +138,4 @@
     </string>
     <!-- 80 chars max -->
     <string name="market_promotext">Note-taking application with online synchronization compatible with Tomboy</string>
-
 </resources>

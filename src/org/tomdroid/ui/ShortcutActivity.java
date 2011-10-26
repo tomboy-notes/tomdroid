@@ -54,6 +54,12 @@ public class ShortcutActivity extends ListActivity {
         adapter = NoteManager.getListAdapter(this);
         setListAdapter(adapter);
         getListView().setEmptyView(findViewById(R.id.list_empty));
+
+        findViewById(R.id.action_icon).setOnClickListener(new View.OnClickListener() {
+            public void onClick(final View view) {
+                Tomdroid.ViewList(ShortcutActivity.this);
+            }
+        });
     }
 
     @Override
@@ -76,7 +82,8 @@ public class ShortcutActivity extends ListActivity {
         return item.getString(item.getColumnIndexOrThrow(Note.TITLE));
     }
 
-    private Intent createShortcutIntent(final ShortcutIconResource icon, final Intent launchIntent, final String name) {
+    private Intent createShortcutIntent(final ShortcutIconResource icon, final Intent launchIntent,
+                                        final String name) {
         Intent i = new Intent();
         i.putExtra(Intent.EXTRA_SHORTCUT_INTENT, launchIntent);
         i.putExtra(Intent.EXTRA_SHORTCUT_NAME, name);

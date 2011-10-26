@@ -128,7 +128,7 @@ public class Tomdroid extends ListActivity {
 		listEmptyView = (TextView) findViewById(R.id.list_empty);
 		getListView().setEmptyView(listEmptyView);
 		
-		registerForContextMenu((ListView)findViewById(android.R.id.list));
+		registerForContextMenu(findViewById(android.R.id.list));
 	}
 
 	@Override
