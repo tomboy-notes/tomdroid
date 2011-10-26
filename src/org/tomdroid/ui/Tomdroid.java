@@ -76,12 +76,16 @@ public class Tomdroid extends ListActivity {
 	public static final String	NOTES_PATH			= Environment.getExternalStorageDirectory()
 															+ "/tomdroid/";
 	// Logging should be disabled for release builds
-	public static final boolean	LOGGING_ENABLED		= false;
+	public static final boolean	LOGGING_ENABLED		= true;
 	// Set this to false for release builds, the reason should be obvious
 	public static final boolean	CLEAR_PREFERENCES	= false;
 
 	// Logging info
 	private static final String	TAG					= "Tomdroid";
+
+    public static Uri getNoteIntentUri(long noteId) {
+        return Uri.parse(CONTENT_URI + "/" + noteId);
+    }
 
 	// UI to data model glue
 	private TextView			listEmptyView;
@@ -261,7 +265,7 @@ public class Tomdroid extends ListActivity {
 	}
 	
 	public void ViewNote(long noteId) {
-		Uri intentUri = Uri.parse(Tomdroid.CONTENT_URI + "/" + noteId);
+		Uri intentUri = getNoteIntentUri(noteId);
 		Intent i = new Intent(Intent.ACTION_VIEW, intentUri, this, ViewNote.class);
 		startActivity(i);
 	}
