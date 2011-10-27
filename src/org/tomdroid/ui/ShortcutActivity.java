@@ -67,7 +67,7 @@ public class ShortcutActivity extends ListActivity {
         final Cursor item = (Cursor) adapter.getItem(position);
         Intent launchIntent = getNoteViewIntent(item);
         final String name = getNoteTitle(item);
-        final ShortcutIconResource icon = ShortcutIconResource.fromContext(this, R.drawable.shortcut_icon);
+        final ShortcutIconResource icon = ShortcutIconResource.fromContext(this, R.drawable.ic_shortcut);
         setResult(RESULT_OK, createShortcutIntent(icon, launchIntent, name));
         finish();
     }
