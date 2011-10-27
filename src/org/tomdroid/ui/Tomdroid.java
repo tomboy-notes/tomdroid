@@ -88,13 +88,6 @@ public class Tomdroid extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-        TLog.v(TAG, "v");
-        TLog.d(TAG, "d");
-        TLog.i(TAG, "i");
-        TLog.w(TAG, "w");
-        TLog.e(TAG, "e");
-        TLog.wtf(TAG, "wtf");
-
 		setContentView(R.layout.main);
 		Preferences.init(this, CLEAR_PREFERENCES);
 
