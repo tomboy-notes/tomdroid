@@ -116,7 +116,11 @@
     <string name="textToday">Dziś</string>
     <string name="textYexterday">Wczoraj</string>
     
-	<!-- 
+    <!-- Shortcuts handling -->
+    <string name="shortcuts_view_caption">Wybierz notatkę</string>
+    <string name="shortcut_menu_item_caption">Notatka Tomdroid</string>
+
+	<!--
 		Information that goes into the Android Market Application Listing. 
 		I've put it in here so that it'll get translated by translators.
 	-->
