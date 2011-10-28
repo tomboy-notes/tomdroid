@@ -41,6 +41,7 @@ import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.EditTextPreference;
@@ -60,6 +61,7 @@ public class PreferencesActivity extends PreferenceActivity {
 	// TODO: put the various preferences in fields and figure out what to do on activity suspend/resume
 	private EditTextPreference syncServer = null;
 	private ListPreference syncService = null;
+	private EditTextPreference sdLocation = null;
 	private Preference clearSearchHistory = null;
 	
 	@Override
@@ -71,6 +73,7 @@ public class PreferencesActivity extends PreferenceActivity {
 		// Fill the Preferences fields
 		syncServer = (EditTextPreference)findPreference(Preferences.Key.SYNC_SERVER.getName());
 		syncService = (ListPreference)findPreference(Preferences.Key.SYNC_SERVICE.getName());
+		sdLocation = (EditTextPreference)findPreference(Preferences.Key.SD_LOCATION.getName());
 		clearSearchHistory = (Preference)findPreference(Preferences.Key.CLEAR_SEARCH_HISTORY.getName());
 		
 		// Set the default values if nothing exists
@@ -114,6 +117,24 @@ public class PreferencesActivity extends PreferenceActivity {
 				return true;
 			}
 			
+		});
+		
+		// Change the Folder Location
+		sdLocation.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+
+			public boolean onPreferenceChange(Preference preference, Object locationUri) {
+
+				if (locationUri.equals(Preferences.getString(Preferences.Key.SD_LOCATION))) { return false; }
+
+				Preferences.putString(Preferences.Key.SD_LOCATION, locationUri.toString());
+				Log.d(TAG, "Changed Folder on SD-Card to: " + Preferences.getString(Preferences.Key.SD_LOCATION));
+
+				Tomdroid.NOTES_PATH = Environment.getExternalStorageDirectory()
+								+ Preferences.getString(Preferences.Key.SD_LOCATION);
+				
+				resetLocalDatabase();
+				return true;
+			}
 		});
 		
 		//delete Search History
@@ -208,6 +229,11 @@ public class PreferencesActivity extends PreferenceActivity {
 		syncService.setDefaultValue(defaultService);
 		if(syncService.getValue() == null)
 			syncService.setValue(defaultService);
+		
+		String defaultLocation = (String)Preferences.Key.SD_LOCATION.getDefault();
+		sdLocation.setDefaultValue(defaultLocation);
+		if(sdLocation.getText() == null)
+			sdLocation.setText(defaultLocation);
 	
 	}
 

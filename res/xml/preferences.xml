@@ -34,6 +34,11 @@
 							android:title="@string/prefSyncServer"
 							android:positiveButtonText="@string/prefAuthenticate"
 							android:shouldDisableView="true"/>
+		
+		<EditTextPreference android:key="sd_location"
+							android:title="Folder Location on SD Card"
+							android:positiveButtonText="@string/btnOk"
+							android:shouldDisableView="true"/>
 	</PreferenceCategory>
 	<PreferenceCategory android:title="@string/prefSearch">
 		<Preference
