@@ -87,6 +87,7 @@ public abstract class SyncService {
 	
 	protected abstract void sync();
 	public abstract boolean needsServer();
+	public abstract boolean needsLocation();
 	public abstract boolean needsAuth();
 	
 	/**

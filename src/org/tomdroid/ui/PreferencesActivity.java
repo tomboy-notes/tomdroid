@@ -119,6 +119,7 @@ public class PreferencesActivity extends PreferenceActivity {
 			
 		});
 		
+		
 		// Change the Folder Location
 		sdLocation.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 
@@ -127,10 +128,10 @@ public class PreferencesActivity extends PreferenceActivity {
 				if (locationUri.equals(Preferences.getString(Preferences.Key.SD_LOCATION))) { return false; }
 
 				Preferences.putString(Preferences.Key.SD_LOCATION, locationUri.toString());
-				Log.d(TAG, "Changed Folder on SD-Card to: " + Preferences.getString(Preferences.Key.SD_LOCATION));
+				Log.d(TAG, "Changed Folder to: sdcard/" + Preferences.getString(Preferences.Key.SD_LOCATION) + "/");
 
 				Tomdroid.NOTES_PATH = Environment.getExternalStorageDirectory()
-								+ Preferences.getString(Preferences.Key.SD_LOCATION);
+								+ "/" + Preferences.getString(Preferences.Key.SD_LOCATION) + "/";
 				
 				resetLocalDatabase();
 				return true;
@@ -246,6 +247,7 @@ public class PreferencesActivity extends PreferenceActivity {
 
 		syncServer.setEnabled(service.needsServer());
 		syncService.setSummary(service.getDescription());
+		sdLocation.setEnabled(service.needsLocation());
 	}
 		
 	private void connectionFailed() {

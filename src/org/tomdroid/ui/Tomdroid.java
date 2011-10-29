@@ -98,9 +98,12 @@ public class Tomdroid extends ListActivity {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.main);
+		
 		Preferences.init(this, CLEAR_PREFERENCES);
+		
+		// get the Path to the notes-folder from Preferences
 		NOTES_PATH = Environment.getExternalStorageDirectory()
-				+ Preferences.getString(Preferences.Key.SD_LOCATION);
+				+ "/" + Preferences.getString(Preferences.Key.SD_LOCATION) + "/";
 		
 		// did we already show the warning and got destroyed by android's activity killer?
 		if (Preferences.getBoolean(Preferences.Key.FIRST_RUN)) {
