@@ -22,52 +22,50 @@
  along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
-    
-    <string name="send">Send</string>
-    <string name="app_name">Tomdroid</string>
-    <string name="app_desc">Tomboy compatible wikiwiki note-taking application that can\'t take notes yet.</string>
-    <string name="author">Olivier Bilodeau</string>
+	
+	<string name="app_name">Tomdroid</string>
+	<string name="app_desc">Tomboy compatible wikiwiki note-taking application that can\'t take notes yet.</string>
+	<string name="author">Olivier Bilodeau</string>
 
 	<!-- main.xml -->
-    <string name="strListEmptyWaiting">Please wait while the notes load..</string>
-    <string name="strListEmptyNoNotes">
-    	There are no notes in Tomdroid\'s database.
-    </string>
-    
-    <string name="menuSync">Sync</string>
+	<string name="strListEmptyWaiting">Please wait while the notes load..</string>
+	<string name="strListEmptyNoNotes">
+		There are no notes in Tomdroid\'s database.
+	</string>
+	
+	<string name="menuSync">Sync</string>
 	<string name="menuPrefs">Settings</string>
-    <string name="menuAbout">About</string>
-    <string name="titleWelcome">Warning</string>
-    <string name="titleAbout">About Tomdroid</string>
-    <string name="strWelcome">
-    	Welcome to Tomdroid.
-    	\n\nPlease note that this is beta quality software and that it contains known problems,
-    	like its inability to edit notes.
+	<string name="menuAbout">About</string>
+	<string name="titleWelcome">Warning</string>
+	<string name="titleAbout">About Tomdroid</string>
+	<string name="strWelcome">
+		Welcome to Tomdroid.
+		\n\nPlease note that this is beta quality software and that it contains known problems,
+		like its inability to edit notes.
 
-    	\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something
-    	out and tested as quickly as possible.
-    	
-    	\n\nIf you would like to contribute, help at all levels would be appreciated. 
-    	Hop on board on launchpad.net/tomdroid and contact us!\n
-    </string>
-    <string name="strAbout">
-    	%1$s
-    	\n\nAuthor: %2$s
-    	\nVersion: %3$s
-    	\nLicensed under the GPLv3
-    </string>
+		\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something
+		out and tested as quickly as possible.
+		
+		\n\nIf you would like to contribute, help at all levels would be appreciated. 
+		Hop on board on launchpad.net/tomdroid and contact us!\n
+	</string>
+	<string name="strAbout">
+		%1$s
+		\n\nAuthor: %2$s
+		\nVersion: %3$s
+		\nLicensed under the GPLv3
+	</string>
 
-    <!-- TODO aren't these available somewhere else? like in the SDK? //-->
-    <string name="btnOk">OK</string>
-    <string name="btnCancel">Cancel</string>
-    <string name="btnClose">Close</string>
-    <string name="btnProjectPage">Project page</string>
+	<!-- TODO aren't these available somewhere else? like in the SDK? //-->
+	<string name="btnOk">OK</string>
+	<string name="btnCancel">Cancel</string>
+	<string name="btnClose">Close</string>
+	<string name="btnProjectPage">Project page</string>
 
 	<!-- note-view.xml -->
-    <string name="strWait">Please wait while note loads...</string>
+	<string name="strWait">Please wait while note loads...</string>
 
 	<string name="prefSync">Synchronization</string>
-
 	<string name="prefSyncService">Service</string>
 	<string name="prefSyncServer">Server</string>
 	<string name="prefSDCard">SD Card</string>
@@ -86,35 +84,36 @@
 	<string name="error">Error</string>
 	
 	<!-- NoteSorting -->
-    <string name="menuSort">change sort</string>
+	<string name="menuSort">change sort</string>
 	<string name="titleDefaultSorting">Choose the default sorting</string>
 	<string name="prefDefaultSorting">Default sort</string>
 	
 	<!-- NotebookFiltering -->
-    <string name="menuFilterNotebook">Filter</string>
-    <string name="strListEmptyNoNotebooks">There are no notebooks in the database.</string>
-    <string name="allNotebooksFilter">All notebooks</string>
-    
-    <!-- List Longpress Menu -->
-    <string name="view">View</string>
-    <string name="noteOptions">Note Options</string>
+	<string name="menuFilterNotebook">Filter</string>
+	<string name="strListEmptyNoNotebooks">There are no notebooks in the database.</string>
+	<string name="allNotebooksFilter">All notebooks</string>
+	
+	<!-- List Longpress Menu -->
+	<string name="view">View</string>
+	<string name="noteOptions">Note Options</string>
+	<string name="send">Send</string>
 
-    <!--  Search -->
-    <string name="search_hint">Search Notes</string>
-    <string name="search_description">Text in your notes</string>
-    <string name="strNoResults">No notes found for \"%s\"</string>
-    <string name="menuSearch">Search</string>
-    <string name="prefSearch">Search Options</string>
-    <string name="SearchResultTitle">Search Results:</string>
-    <string name="clearSearchHistoryTitle">Clear search history</string>
-    <string name="clearSearchHistory">Remove all the searches you have performed</string>
-    <string name="deletedSearchHistory">Search history has been cleared.</string>
+	<!--  Search -->
+	<string name="search_hint">Search Notes</string>
+	<string name="search_description">Text in your notes</string>
+	<string name="strNoResults">No notes found for \"%s\"</string>
+	<string name="menuSearch">Search</string>
+	<string name="prefSearch">Search Options</string>
+	<string name="SearchResultTitle">Search Results:</string>
+	<string name="clearSearchHistoryTitle">Clear search history</string>
+	<string name="clearSearchHistory">Remove all the searches you have performed</string>
+	<string name="deletedSearchHistory">Search history has been cleared.</string>
 
-    <!-- Date -->
-    <string name="textModified">Modified:</string>
-    <string name="textToday">Today</string>
-    <string name="textYexterday">Yesterday</string>
-    
+	<!-- Date -->
+	<string name="textModified">Modified:</string>
+	<string name="textToday">Today</string>
+	<string name="textYexterday">Yesterday</string>
+	
 	<!-- 
 		Information that goes into the Android Market Application Listing. 
 		I've put it in here so that it'll get translated by translators.
