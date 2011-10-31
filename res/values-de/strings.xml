@@ -4,7 +4,7 @@
  Tomboy on Android
  http://www.launchpad.net/tomdroid
 
- Copyright 2011 Stefan Hammer <j.4@gmx.at>
+ Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
  
  This file is part of Tomdroid.
  
@@ -30,31 +30,26 @@
 
 	<!-- main.xml -->
     <string name="strListEmptyWaiting">Die Notizen werden geladen. Bitte warten...</string>
-    <string name="strListEmptyNoNotes">
-    	Es sind keine Notizen in Tomdroids Datenbank vorhanden.
-    </string>
+    <string name="strListEmptyNoNotes">Es sind keine Notizen in Tomdroids Datenbank vorhanden.</string>
     
     <string name="menuSync">Synchronisieren</string>
 	<string name="menuPrefs">Einstellungen</string>
-	<string name="menuAbout">Information</string>
+    <string name="menuAbout">Information</string>
     <string name="titleWelcome">Warnung</string>
     <string name="titleAbout">Über Tomdroid</string>
-    <string name="strWelcome">
-    	Willkommen bei Tomdroid.
+    <string name="strWelcome">Willkommen bei Tomdroid.
     	\n\nBitte beachte, dass sich dieses Programm noch im Beta-Stadium befindet und Probleme bekannt sind, wie zum Beispiel das Fehlen der Bearbeitungsfunktion.
 
     	\n\nWir sind uns diesen Mängeln bewusst und versuchen möglichst schnell die Funktionen zu erweitern und Fehler zu beheben.
     	
     	\n\nFalls du die Entwicklung in irgendeiner Form unterstützen möchtest, würden wir uns sehr freuen.
-		Auf launchpad.net/tomdroid findest du die nötigen Informationen.\n
-    </string>
-    <string name="strAbout">
-    	%1$s
+		Auf launchpad.net/tomdroid findest du die nötigen Informationen.\n</string>
+    <string name="strAbout">%1$s
     	\n\nAutor: %2$s
     	\nVersion: %3$s
-    	\nLizensiert unter GPLv3
-    </string>
+    	\nLizensiert unter GPLv3</string>
 
+    <!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
     <string name="btnOk">OK</string>
     <string name="btnCancel">Abbrechen</string>
     <string name="btnClose">Schließen</string>
@@ -64,11 +59,12 @@
     <string name="strWait">Die Notiz wird geladen. Bitte warten...</string>
 
 	<string name="prefSync">Synchronisation</string>
+
 	<string name="prefSyncService">Service</string>
 	<string name="prefSyncServer">Server</string>
 	<string name="prefSDCard">SD-Karte</string>
 	<string name="prefAuthenticate">Authentifizieren</string>
-
+	
 	<string name="prefSyncCompleteAuth">Authentifizierung läuft. Bitte warten...</string>
 	<string name="prefSyncConnectionFailed">Die Verbindung zum Server ist fehlgeschlagen. Bitte überprüfe die angegebene Adresse.</string>
 	<string name="prefServerEmpty">Die Adresse des Servers wurde geändert. Es wurde keine Adresse angegeben!</string>
@@ -100,35 +96,38 @@
     <string name="search_description">Text in meinen Notizen</string>
     <string name="strNoResults">Keine Notizen gefunden mit \"%s\"</string>
     <string name="menuSearch">Suchen</string>
-    <string name="prefSearch">Suche</string>
+    <string name="prefSearch">Suchoptionen</string>
     <string name="SearchResultTitle">Suchergebnisse:</string>
     <string name="clearSearchHistoryTitle">Suchverlauf löschen</string>
     <string name="clearSearchHistory">Alle Suchvorgänge aus dem Verlauf entfernen</string>
     <string name="deletedSearchHistory">Suchverlauf gelöscht.</string>
-	
-	<!-- Date -->
-    <string name="textModified">Geändert: </string>
+
+    <!-- Date -->
+    <string name="textModified">Geändert:</string>
     <string name="textToday">Heute</string>
     <string name="textYexterday">Gestern</string>
     
 	<!-- 
 		Information that goes into the Android Market Application Listing. 
-		I've put it in here so that it'll get translated by translators.
+		I\'ve put it in here so that it\'ll get translated by translators.
 	-->
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid Notizen</string>
 	<!-- 325 chars max -->
-	<string name="market_description">
-		Ein Tomboy Notiz-Programm für Android. Tomboy ist ein Notiz-Programm, dass einen wikiwiki Aufbau benutzt und eine einfache Benutzeroberfläche.
+	<string name="market_description">Ein Tomboy Notiz-Programm für Android. Tomboy ist ein Notiz-Programm, dass einen wikiwiki Aufbau benutzt und eine einfache Benutzeroberfläche.
 
 		BEACHTE: Mit diesem Programm kann man momentan NUR LESEN.
 
 		* Notiz-Formatierung wie bei Tomboy.
 		* Online Notiz-Synchronisierung mit Snowy, Tomboy Online oder Ubuntu One.
 		* Importieren von der SD-Karte.
-		* Open source!
-	</string>
+		* Open source!</string>
 	<!-- 80 chars max -->
 	<string name="market_promotext">Notiz-Programm mit online Synchronisation zu Tomboy.</string>
-	
+
+
+<!-- Launchpad Translation String -->
+<string name="about_translators">Launchpad Contributions:
+  Stefan Hammer https://launchpad.net/~j-4</string>
+
 </resources>

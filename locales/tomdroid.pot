@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-10-31 18:19+0100\n"
+"POT-Creation-Date: 2011-10-31 19:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -141,7 +141,7 @@ msgid "There was an error trying to parse your note collection. If you are able 
 msgstr ""
 
 #: tmp_strings.xml:86(string)
-msgid "error"
+msgid "Error"
 msgstr ""
 
 #. NoteSorting
@@ -181,7 +181,7 @@ msgstr ""
 
 #. Search
 #: tmp_strings.xml:103(string)
-msgid "Search notes"
+msgid "Search Notes"
 msgstr ""
 
 #: tmp_strings.xml:104(string)
@@ -192,8 +192,12 @@ msgstr ""
 msgid "No notes found for \\\"%s\\\""
 msgstr ""
 
-#: tmp_strings.xml:106(string) tmp_strings.xml:107(string)
+#: tmp_strings.xml:106(string)
 msgid "Search"
+msgstr ""
+
+#: tmp_strings.xml:107(string)
+msgid "Search Options"
 msgstr ""
 
 #: tmp_strings.xml:108(string)
