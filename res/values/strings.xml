@@ -134,5 +134,13 @@
 	</string>
 	<!-- 80 chars max -->
 	<string name="market_promotext">Note-taking application with online synchronization compatible with Tomboy</string>
-	
+
+
+<!-- Launchpad Translation String -->
+<string name="about_translators">
+
+translator-credits
+
+</string>
+
 </resources>
