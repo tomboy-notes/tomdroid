@@ -12,7 +12,7 @@ Take the new /locales/export/tomdroid.pot file, compress it and upload it to Lau
 Import *.po files from Launchpad for creating new string.xml's
 
 Download *.po files and extract them to tomdroid/locales.
-Run following command:
+Go to the "res" folder and run following command:
 bash ../util/xml2po/androidxml2po.bash -lp ../locales/ -a ../ -n tomdroid -i
 
 
