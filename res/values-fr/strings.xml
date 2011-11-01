@@ -22,7 +22,6 @@
  along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
-<!-- IMPORTANT: Due to Launchpad translation are DOUBLE TABS converted into linebreaks with a tab! Do not use double tabs outside of tags, and only for linebreaks! -->
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
@@ -38,14 +37,8 @@
 	<string name="menuAbout">À propos</string>
 	<string name="titleWelcome">Attention</string>
 	<string name="titleAbout">À propos de Tomdroid</string>
-	<string name="strWelcome">Welcome to Tomdroid.
-		\n\nPlease note that this is beta quality software and that it contains known problems, like its inability to edit notes.
-		\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something out and tested as quickly as possible.
-		\n\nIf you would like to contribute, help at all levels would be appreciated. Hop on board on launchpad.net/tomdroid and contact us!\n</string>
-	<string name="strAbout">%1$s
-		\n\nAuthor: %2$s
-		\nVersion: %3$s
-		\nLicensed under the GPLv3</string>
+	<string name="strWelcome">Bienvenue sur Tomdroid.\n\nVeuillez noter que l\'application est en phase beta et qu\'elle contient des problèmes connus, comme l\'incapacité d\'éditer une note.\n\nNous somme bien au courant de ces problèmes et nous avont l\'intention de travailler la dessus rapidement mais je veux aussi developper et tester l\'application aussi vite que possible.\n\nSi vous voulez contribuer, de l\'aide à tous les niveaux sera appréciée. Allez sur launchpad.net/tomdroid et contactez nous!\n</string>
+	<string name="strAbout">%1$s\n\nAuteur: %2$s\nVersion: %3$s\nLicense sous GPLv3</string>
 	
 	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
 	<string name="btnOk">OK</string>
@@ -112,14 +105,7 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Notes Tomdroid</string>
 	<!-- 325 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.
-		
-		NOTE: It is a READ-ONLY client for now.
-		
-		* Note format compatibility with Tomboy
-		* Online note synchronization with Snowy, Tomboy Online or Ubuntu One
-		* SD Card importation
-		* Open source!</string>
+	<string name="market_description">Client Android pour Tomboy. Tomboy est un logiciel de prise de notes wikiwiki avec une interface usager simple.\n\nNOTE: LECTURE SEULE pour l\'instant\n\n* Format de note compatible avec Tomboy\n* Synchronisation en ligne avec Snowy, Tomboy Online et Ubuntu One\n* Importation de la carte SD\n* Logiciel libre!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Appli de prise de notes avec synchronisation en ligne compatible avec Tomboy</string>

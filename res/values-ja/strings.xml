@@ -22,7 +22,6 @@
  along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
-<!-- IMPORTANT: Due to Launchpad translation are DOUBLE TABS converted into linebreaks with a tab! Do not use double tabs outside of tags, and only for linebreaks! -->
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
@@ -38,14 +37,8 @@
 	<string name="menuAbout">情報</string>
 	<string name="titleWelcome">注意</string>
 	<string name="titleAbout">Tomdroidについて</string>
-	<string name="strWelcome">Welcome to Tomdroid.
-		\n\nPlease note that this is beta quality software and that it contains known problems, like its inability to edit notes.
-		\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something out and tested as quickly as possible.
-		\n\nIf you would like to contribute, help at all levels would be appreciated. Hop on board on launchpad.net/tomdroid and contact us!\n</string>
-	<string name="strAbout">%1$s
-		\n\nAuthor: %2$s
-		\nVersion: %3$s
-		\nLicensed under the GPLv3</string>
+	<string name="strWelcome">Tomdroid へようこそ。\n\nこのソフトウェアはベータ段階であり、既知のバグがあることを覚えておいてください。例えばノートの編集は行えません。\n\n私たちはこれらの問題があることをよく分かっており、迅速に取り掛かる予定ですが、早くテストをしてもらい、問題点を把握したいとも思っています。\n\nもし貢献してくれるのであれば、どのようなことであっても歓迎します。launchpad.net/tomdroid にアクセスし、私たちに連絡を入れてください！\n</string>
+	<string name="strAbout">%1$s\n\n開発者: %2$s\nバージョン: %3$s\nライセンス: GPLv3</string>
 	
 	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
 	<string name="btnOk">OK</string>
@@ -112,14 +105,7 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid メモ</string>
 	<!-- 325 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.
-		
-		NOTE: It is a READ-ONLY client for now.
-		
-		* Note format compatibility with Tomboy
-		* Online note synchronization with Snowy, Tomboy Online or Ubuntu One
-		* SD Card importation
-		* Open source!</string>
+	<string name="market_description">Android向けのTomboyクライアントです。Tomboyはデスクトップでメモを書くためのアプリで、wikiwiki形式でシンプルなユーザーインターフェイスを備えています。\n\n注意: これは現在、読み込み専用のクライアントです。\n\n* Tomboyと互換性のあるメモ形式\n* Snowy、Tomboy Online、Ubuntu One とのオンラインでのメモの同期\n* SDカードからの取り込み\n* オープンソース！</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Tomboyと互換性のある、オンラインで同期するメモ帳アプリケーション</string>
