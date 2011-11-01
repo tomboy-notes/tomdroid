@@ -31,9 +31,7 @@
 
 	<!-- main.xml -->
     <string name="strListEmptyWaiting">Proszę czekać na załadowanie notatek...</string>
-    <string name="strListEmptyNoNotes">
-    	Brak notatek w bazie danych Tomdroid.
-    </string>
+    <string name="strListEmptyNoNotes">Brak notatek w bazie danych Tomdroid.</string>
     
     <string name="menuSync">Synchronizacja</string>
 	<string name="menuPrefs">Ustawienia</string>
@@ -84,7 +82,7 @@
 	<string name="messageSyncNoConnection">Brak połączenia z siecią.</string>
 	<string name="messageSyncAlreadyInProgress">Synchronizacja w trakcie</string>
 	<string name="messageSyncError">Błąd wczytywania notatek. Jeśli problem się powtarza, proszę skontaktuj się z nami!</string>
-	<string name="error">błąd</string>
+	<string name="error">Błąd</string>
 	
 	<!-- NoteSorting -->
     <string name="menuSort">zmień sortowanie</string>

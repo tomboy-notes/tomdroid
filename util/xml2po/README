@@ -3,31 +3,29 @@ Tomdroid README:
 
 * Export tomdroid.pot file for Launchpad, after strings were updates:
 
-Run following command:
-bash androidxml2po.bash -e
-Take the new /locales/export/tomdroid.pot file and upload it to Launchpad (not necessary, as soon automatic import is on!).
-
+	Run following command:
+	bash androidxml2po.bash -e
+	Take the new /locales/export/tomdroid.pot file and upload it to Launchpad (not necessary, as soon automatic import is on!).
 
 * Import *.po files from Launchpad for creating new string.xml's
 
-Download *.po files and extract them to tomdroid/locales.
-Run following command:
-bash androidxml2po.bash -i
+	Download *.po files and extract them to tomdroid/locales.
+	Run following command:
+	bash androidxml2po.bash -i
 
 
 
 
 README derived from: http://code.google.com/p/openintents/wiki/Translations
+===========================================================================
 
 Translations
-============
 
 Please visit the OpenIntents translation project at Launchpad to help with translations.
 Information for developers
 Translated resources of the Android respository
 
 How to convert strings.xml to .po/.pot files
-============================================
 
 Weekly workflow
 

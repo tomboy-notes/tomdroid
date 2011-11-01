@@ -1,4 +1,4 @@
-# German translation for tomdroid
+# French translation for tomdroid
 # Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
 # This file is distributed under the same license as the tomdroid package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: tomdroid\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-11-01 13:11+0100\n"
-"PO-Revision-Date: 2011-11-01 12:50+0000\n"
+"PO-Revision-Date: 2011-11-01 13:57+0000\n"
 "Last-Translator: Stefan Hammer <Unknown>\n"
-"Language-Team: German <de@li.org>\n"
+"Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-11-01 13:52+0000\n"
+"X-Launchpad-Export-Date: 2011-11-01 14:16+0000\n"
 "X-Generator: Launchpad (build 14214)\n"
 
 #. application details
@@ -25,9 +25,7 @@ msgstr "Tomdroid"
 #: tmp_strings.xml:29(string)
 msgid ""
 "Tomboy compatible wikiwiki note-taking application that can't take notes yet."
-msgstr ""
-"Tomboy kompatibles Wiki Notiz-Programm, mit dem man noch keine Notizen "
-"erstellen kann."
+msgstr "Application compatible à Tomboy l\\'outil de prise de note wikiwiki."
 
 #: tmp_strings.xml:30(string)
 msgid "Olivier Bilodeau"
@@ -36,31 +34,31 @@ msgstr "Olivier Bilodeau"
 #. main.xml
 #: tmp_strings.xml:33(string)
 msgid "Please wait while the notes load.."
-msgstr "Die Notizen werden geladen. Bitte warten..."
+msgstr "Veuillez patienter pendant que les notes se chargent..."
 
 #: tmp_strings.xml:34(string)
 msgid "There are no notes in Tomdroid's database."
-msgstr "Es sind keine Notizen in Tomdroids Datenbank vorhanden."
+msgstr "Il n\\'y a pas de notes dans la base de données Tomdroid."
 
 #: tmp_strings.xml:36(string)
 msgid "Sync"
-msgstr "Synchronisieren"
+msgstr "Synchronisation"
 
 #: tmp_strings.xml:37(string)
 msgid "Settings"
-msgstr "Einstellungen"
+msgstr "Préférences"
 
 #: tmp_strings.xml:38(string)
 msgid "About"
-msgstr "Information"
+msgstr "À propos"
 
 #: tmp_strings.xml:39(string)
 msgid "Warning"
-msgstr "Warnung"
+msgstr "Attention"
 
 #: tmp_strings.xml:40(string)
 msgid "About Tomdroid"
-msgstr "Über Tomdroid"
+msgstr "À propos de Tomdroid"
 
 #: tmp_strings.xml:41(string)
 msgid ""
@@ -73,15 +71,14 @@ msgid ""
 "\t\\n\\nIf you would like to contribute, help at all levels would be "
 "appreciated. Hop on board on launchpad.net/tomdroid and contact us!\\n"
 msgstr ""
-"Willkommen bei Tomdroid. \r\n"
-"\t\\n\\nBitte beachte, dass sich dieses Programm noch im Beta-Stadium "
-"befindet und Probleme bekannt sind, wie zum Beispiel das Fehlen der "
-"Bearbeitungsfunktion. \r\n"
-"\t\\n\\nWir sind uns diesen Mängeln bewusst und versuchen möglichst schnell "
-"die Funktionen zu erweitern und Fehler zu beheben. \r\n"
-"\t\\n\\nFalls du die Entwicklung in irgendeiner Form unterstützen möchtest, "
-"würden wir uns sehr freuen. Auf launchpad.net/tomdroid findest du die "
-"nötigen Informationen.\\n"
+"Bienvenue sur Tomdroid. \r\n"
+"\t\\n\\nVeuillez noter que l\\'application est en phase beta et qu\\'elle "
+"contient des problèmes connus, comme l\\'incapacité d\\'éditer une note. \r\n"
+"\t\\n\\nNous somme bien au courant de ces problèmes et nous avont l\\"
+"'intention de travailler la dessus rapidement mais je veux aussi developper "
+"et tester l\\'application aussi vite que possible. \r\n"
+"\t\\n\\nSi vous voulez contribuer, de l\\'aide à tous les niveaux sera "
+"appréciée. Allez sur launchpad.net/tomdroid et contactez nous!\\n"
 
 #: tmp_strings.xml:46(string)
 msgid ""
@@ -91,9 +88,9 @@ msgid ""
 "\t\\nLicensed under the GPLv3"
 msgstr ""
 "%1$s \r\n"
-"\t\\n\\nAutor: %2$s \r\n"
+"\t\\n\\nAuteur: %2$s \r\n"
 "\t\\nVersion: %3$s \r\n"
-"\t\\nLizensiert unter GPLv3"
+"\t\\nLicense sous GPLv3"
 
 #. TODO aren't these available somewhere else? like in the SDK? //
 #: tmp_strings.xml:53(string)
@@ -102,20 +99,20 @@ msgstr "OK"
 
 #: tmp_strings.xml:54(string)
 msgid "Cancel"
-msgstr "Abbrechen"
+msgstr "Annuler"
 
 #: tmp_strings.xml:55(string)
 msgid "Close"
-msgstr "Schließen"
+msgstr "Fermer"
 
 #: tmp_strings.xml:56(string)
 msgid "Project page"
-msgstr "Projektseite"
+msgstr "Page du projet"
 
 #. note-view.xml
 #: tmp_strings.xml:59(string)
 msgid "Please wait while note loads..."
-msgstr "Die Notiz wird geladen. Bitte warten..."
+msgstr "Veuillez patienter pendant que les notes se chargent..."
 
 #: tmp_strings.xml:61(string)
 msgid "Synchronization"
@@ -127,158 +124,157 @@ msgstr "Service"
 
 #: tmp_strings.xml:63(string)
 msgid "Server"
-msgstr "Server"
+msgstr "Serveur"
 
 #: tmp_strings.xml:64(string)
 msgid "SD Card"
-msgstr "SD-Karte"
+msgstr "carte SD"
 
 #: tmp_strings.xml:65(string)
 msgid "Authenticate"
-msgstr "Authentifizieren"
+msgstr "Authentification"
 
 #: tmp_strings.xml:67(string)
 msgid "Completing authentication. Please wait..."
-msgstr "Authentifizierung läuft. Bitte warten..."
+msgstr "Authentification réussie. Veuillez patienter ..."
 
 #: tmp_strings.xml:68(string)
 msgid ""
 "The connection to the server has failed, please check that the address you "
 "entered is correct."
 msgstr ""
-"Die Verbindung zum Server ist fehlgeschlagen. Bitte überprüfe die angegebene "
-"Adresse."
+"La connexion au serveur a échoué, veuillez vérifier si l\\'adresse que vous "
+"avez entrée est correcte."
 
 #: tmp_strings.xml:69(string)
 msgid "The server address changed but the new value is empty"
-msgstr ""
-"Die Adresse des Servers wurde geändert. Es wurde keine Adresse angegeben!"
+msgstr "L\\'adresse du serveur a changé mais la nouvelle valeur est vide"
 
 #: tmp_strings.xml:71(string)
 msgid "Choose the sync service to use"
-msgstr "Synchronisations-Dienst wählen"
+msgstr "Choisissez un service de synchronisation"
 
 #: tmp_strings.xml:72(string)
 msgid "Synchronization with %1$s is complete."
-msgstr "Erfolgreich mit %1$s synchronisiert."
+msgstr "La synchronisation avec %1$s est terminée"
 
 #: tmp_strings.xml:73(string)
 msgid "No notes found on %1$s ."
-msgstr "Es wurden keine Notizen auf %1$s gefunden."
+msgstr "Aucune note trouvée sur %1$s."
 
 #: tmp_strings.xml:74(string)
 msgid "You are not connected to the Internet."
-msgstr "Es besteht keine Verbindung zum Internet."
+msgstr "Aucune connection à Internet"
 
 #: tmp_strings.xml:75(string)
 msgid "Sync already in progress"
-msgstr "Synchronisation wird bereits ausgeführt."
+msgstr "Synchronisation déjà en cours"
 
 #: tmp_strings.xml:76(string)
 msgid ""
 "There was an error trying to parse your note collection. If you are able to "
 "replicate the problem, please contact us!"
 msgstr ""
-"Es ist ein Fehler beim Analysieren deiner Notizen aufgetreten. Falls sich "
-"dieses Problem wiederholt, melde es bitte!"
+"Il y avait une erreur lors de la syncrhonisation. Si vous pouvez reproduire "
+"le problème, contactez-nous !"
 
 #: tmp_strings.xml:77(string)
 msgid "Error"
-msgstr "Fehler"
+msgstr "Erreur"
 
 #. NoteSorting
 #: tmp_strings.xml:80(string)
 msgid "change sort"
-msgstr "Reihenfolge ändern"
+msgstr "Changer tri"
 
 #: tmp_strings.xml:81(string)
 msgid "Choose the default sorting"
-msgstr "Wähle die Standard-Reihenfolge"
+msgstr "Choix du tri par défaut"
 
 #: tmp_strings.xml:82(string)
 msgid "Default sort"
-msgstr "Standard-Reihenfolge"
+msgstr "Tri par défaut"
 
 #. NotebookFiltering
 #: tmp_strings.xml:85(string)
 msgid "Filter"
-msgstr "Filter"
+msgstr "Filtre"
 
 #: tmp_strings.xml:86(string)
 msgid "There are no notebooks in the database."
-msgstr "Es befinden sich kein Notizen in der Datenbank."
+msgstr "Il n\\'y a aucun bloc-note dans la base de données"
 
 #: tmp_strings.xml:87(string)
 msgid "All notebooks"
-msgstr "Alle Notizbücher"
+msgstr "Tous les bloc-notes"
 
 #. List Longpress Menu
 #: tmp_strings.xml:90(string)
 msgid "View"
-msgstr "Anzeigen"
+msgstr "Voir"
 
 #: tmp_strings.xml:91(string)
 msgid "Note Options"
-msgstr "Notizoptionen"
+msgstr "Options de note"
 
 #: tmp_strings.xml:92(string)
 msgid "Send"
-msgstr "Senden"
+msgstr "Envoyer"
 
 #. Search
 #: tmp_strings.xml:95(string)
 msgid "Search Notes"
-msgstr "Notizen durchsuchen"
+msgstr "Chercher les notes"
 
 #: tmp_strings.xml:96(string)
 msgid "Text in your notes"
-msgstr "Text in meinen Notizen"
+msgstr "Le texte dans vos notes"
 
 #: tmp_strings.xml:97(string)
 msgid "No notes found for \\\"%s\\\""
-msgstr "Keine Notizen gefunden mit \\\"%s\\\""
+msgstr "Aucune note trouvé pour \\\"%s\\\""
 
 #: tmp_strings.xml:98(string)
 msgid "Search"
-msgstr "Suchen"
+msgstr "Rechercher"
 
 #: tmp_strings.xml:99(string)
 msgid "Search Options"
-msgstr "Suchoptionen"
+msgstr "Options de recherche"
 
 #: tmp_strings.xml:100(string)
 msgid "Search Results:"
-msgstr "Suchergebnisse:"
+msgstr "Résultats de recherche:"
 
 #: tmp_strings.xml:101(string)
 msgid "Clear search history"
-msgstr "Suchverlauf löschen"
+msgstr "Supprimer l\\'historique de recherche"
 
 #: tmp_strings.xml:102(string)
 msgid "Remove all the searches you have performed"
-msgstr "Alle Suchvorgänge aus dem Verlauf entfernen"
+msgstr "Supprimer l\\'historique de toutes les recherches effectuées"
 
 #: tmp_strings.xml:103(string)
 msgid "Search history has been cleared."
-msgstr "Suchverlauf gelöscht."
+msgstr "L\\'historique de recherche a été supprimée."
 
 #. Date
 #: tmp_strings.xml:106(string)
 msgid "Modified:"
-msgstr "Geändert:"
+msgstr "Mise à jour:"
 
 #: tmp_strings.xml:107(string)
 msgid "Today"
-msgstr "Heute"
+msgstr "Aujourd'hui"
 
 #: tmp_strings.xml:108(string)
 msgid "Yesterday"
-msgstr "Gestern"
+msgstr "Hier"
 
 #. 30 chars max
 #: tmp_strings.xml:115(string)
 msgid "Tomdroid notes"
-msgstr "Tomdroid Notizen"
+msgstr "Notes Tomdroid"
 
 #. 325 chars max
 #: tmp_strings.xml:117(string)
@@ -293,28 +289,29 @@ msgid ""
 "\t* SD Card importation \r\n"
 "\t* Open source!"
 msgstr ""
-"Ein Tomboy Notiz-Programm für Android. Tomboy ist ein Notiz-Programm, dass "
-"einen wikiwiki Aufbau benutzt und eine einfache Benutzeroberfläche. \r\n"
+"Client Android pour Tomboy. Tomboy est un logiciel de prise de notes "
+"wikiwiki avec une interface usager simple. \r\n"
 "\t \r\n"
-"\t BEACHTE: Mit diesem Programm kann man momentan NUR LESEN. \r\n"
+"\tNOTE: LECTURE SEULE pour l\\'instant\r\n"
 "\t \r\n"
-"\t * Notiz-Formatierung wie bei Tomboy. \r\n"
-"\t * Online Notiz-Synchronisierung mit Snowy, Tomboy Online oder Ubuntu One. "
-"\r\n"
-"\t * Importieren von der SD-Karte. \r\n"
-"\t * Open source!"
+"\t* Format de note compatible avec Tomboy \r\n"
+"\t* Synchronisation en ligne avec Snowy, Tomboy Online et Ubuntu One \r\n"
+"\t* Importation de la carte SD \r\n"
+"\t* Logiciel libre!"
 
 #. 80 chars max
 #: tmp_strings.xml:127(string)
 msgid ""
 "Note-taking application with online synchronization compatible with Tomboy"
-msgstr "Notiz-Programm mit online Synchronisation zu Tomboy."
+msgstr ""
+"Appli de prise de notes avec synchronisation en ligne compatible avec Tomboy"
 
 #. Launchpad Translation String
 #: tmp_strings.xml:131(string)
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
+"  Isabel Heger https://launchpad.net/~isabel-h1\n"
 "  Stefan Hammer https://launchpad.net/~j-4"
 
 #~ msgid ""
@@ -325,24 +322,26 @@ msgstr ""
 #~ "you would like to contribute, help at all levels would be appreciated. Hop "
 #~ "on board on launchpad.net/tomdroid and contact us!\\n"
 #~ msgstr ""
-#~ "Willkommen bei Tomdroid.\r\n"
-#~ "    \t\\n\\nBitte beachte, dass sich dieses Programm noch im Beta-Stadium "
-#~ "befindet und Probleme bekannt sind, wie zum Beispiel das Fehlen der "
-#~ "Bearbeitungsfunktion.\r\n"
+#~ "Bienvenue sur Tomdroid.\r\n"
+#~ "    \t\\n\\nVeuillez noter que l\\'application est en phase beta et qu\\"
+#~ "'elle contient des problèmes connus, \r\n"
+#~ "\t\tcomme l\\'incapacité d\\'éditer une note.\r\n"
 #~ "\r\n"
-#~ "    \t\\n\\nWir sind uns diesen Mängeln bewusst und versuchen möglichst "
-#~ "schnell die Funktionen zu erweitern und Fehler zu beheben.\r\n"
+#~ "    \t\\n\\nNous somme bien au courant de ces problèmes et nous avont l\\"
+#~ "'intention de travailler la dessus rapidement\r\n"
+#~ "\t\tmais je veux aussi developper et tester l\\'application aussi vite que "
+#~ "possible.\r\n"
 #~ "    \t\r\n"
-#~ "    \t\\n\\nFalls du die Entwicklung in irgendeiner Form unterstützen "
-#~ "möchtest, würden wir uns sehr freuen.\r\n"
-#~ "\t\tAuf launchpad.net/tomdroid findest du die nötigen Informationen.\\n"
+#~ "    \t\\n\\nSi vous voulez contribuer, de l\\'aide à tous les niveaux sera "
+#~ "appréciée.\r\n"
+#~ "\t\tAllez sur launchpad.net/tomdroid et contactez nous!\\n"
 
 #~ msgid "%1$s \\n\\nAuthor: %2$s \\nVersion: %3$s \\nLicensed under the GPLv3"
 #~ msgstr ""
 #~ "%1$s\r\n"
-#~ "    \t\\n\\nAutor: %2$s\r\n"
+#~ "    \t\\n\\nAuteur: %2$s\r\n"
 #~ "    \t\\nVersion: %3$s\r\n"
-#~ "    \t\\nLizensiert unter GPLv3"
+#~ "    \t\\nLicense sous GPLv3"
 
 #~ msgid ""
 #~ "A Tomboy client for Android. Tomboy is a desktop note-taking app using a "
@@ -351,13 +350,12 @@ msgstr ""
 #~ "synchronization with Snowy, Tomboy Online or Ubuntu One * SD Card "
 #~ "importation * Open source!"
 #~ msgstr ""
-#~ "Ein Tomboy Notiz-Programm für Android. Tomboy ist ein Notiz-Programm, dass "
-#~ "einen wikiwiki Aufbau benutzt und eine einfache Benutzeroberfläche.\r\n"
+#~ "Client Android pour Tomboy. Tomboy est un logiciel de prise de notes "
+#~ "wikiwiki avec une interface usager simple.\r\n"
 #~ "\r\n"
-#~ "\t\tBEACHTE: Mit diesem Programm kann man momentan NUR LESEN.\r\n"
+#~ "\t\tNOTE: LECTURE SEULE pour l\\'instant\r\n"
 #~ "\r\n"
-#~ "\t\t* Notiz-Formatierung wie bei Tomboy.\r\n"
-#~ "\t\t* Online Notiz-Synchronisierung mit Snowy, Tomboy Online oder Ubuntu "
-#~ "One.\r\n"
-#~ "\t\t* Importieren von der SD-Karte.\r\n"
-#~ "\t\t* Open source!"
+#~ "\t\t* Format de note compatible avec Tomboy\r\n"
+#~ "\t\t* Synchronisation en ligne avec Snowy, Tomboy Online et Ubuntu One\r\n"
+#~ "\t\t* Importation de la carte SD\r\n"
+#~ "\t\t* Logiciel libre!"
