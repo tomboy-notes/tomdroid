@@ -41,13 +41,11 @@
 	<string name="strWelcome">Welcome to Tomdroid.
 		\n\nPlease note that this is beta quality software and that it contains known problems, like its inability to edit notes.
 		\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something out and tested as quickly as possible.
-		\n\nIf you would like to contribute, help at all levels would be appreciated. Hop on board on launchpad.net/tomdroid and contact us!\n
-	</string>
+		\n\nIf you would like to contribute, help at all levels would be appreciated. Hop on board on launchpad.net/tomdroid and contact us!\n</string>
 	<string name="strAbout">%1$s
 		\n\nAuthor: %2$s
 		\nVersion: %3$s
-		\nLicensed under the GPLv3
-	</string>
+		\nLicensed under the GPLv3</string>
 	
 	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
 	<string name="btnOk">OK</string>
@@ -121,8 +119,8 @@
 		* Note format compatibility with Tomboy
 		* Online note synchronization with Snowy, Tomboy Online or Ubuntu One
 		* SD Card importation
-		* Open source!
-	</string>
+		* Open source!</string>
+	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Tomboyと互換性のある、オンラインで同期するメモ帳アプリケーション</string>
 	

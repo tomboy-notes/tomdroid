@@ -50,16 +50,6 @@ function undodelimitapostrophe
 	sed -i "s/$qot2/$qot/g" $1
 }
 
-function replacetab
-{
-	sed -i "s/\t\t/(replace_linebreak_tab)/g" $1
-}
-
-function restoretab
-{
-	sed -i "s/(replace_linebreak_tab)/\\\r\\\n\\\t/g" $1
-}
-
 # Set a list of all available language codes.
 # After this call, the list will be something like this:
 # languages=("de" "fr" "zh_CN")
@@ -129,7 +119,6 @@ setlanguagelist
 #create temporary copy of original language without delimiters:
 cp "${android_xml_files_res_dir}"/"${android_xml_filename}".xml tmp_strings.xml
 undodelimitapostrophe tmp_strings.xml
-replacetab tmp_strings.xml
 
 # Create clean export folder for exported .po files:
 #echo "Making export folder: ${export_po}"
@@ -142,7 +131,6 @@ rm "${export_pot}"/*.pot
 echo "Exporting .xml to .pot"
 ${xml2po} -a -o "${export_pot}"/"${launchpad_po_filename}".pot tmp_strings.xml
 undodelimitapostrophe "${export_pot}"/"${launchpad_po_filename}".pot
-restoretab "${export_pot}"/"${launchpad_po_filename}".pot
 
 if [ $option_no_timestamp -eq 1 ] ; then
 	removetimestamp "${export_pot}"/"${launchpad_po_filename}".pot
