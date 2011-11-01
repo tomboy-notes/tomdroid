@@ -6,7 +6,7 @@
 #Change the dirs where the files are located.
 descriptionfile="description.txt"
 xmlfile="strings.xml"
-xmltitle="application"
+xmltitle="tomdroid"
 
 rootpath=""
 descriptionpath=""

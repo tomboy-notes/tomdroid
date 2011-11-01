@@ -11,22 +11,22 @@
 # Feb 10, 2011: Peli: Add option --notimestamp.
 
 #Change the dirs where the files are located. Dirs cannot have leading "."'s or msgmerge will complain.
-launchpad_po_files_dir="."
-launchpad_pot_file_dir="."
-android_xml_files_res_dir="../res/values"
+launchpad_po_files_dir="../../locales"
+launchpad_pot_file_dir="../../locales"
+android_xml_files_res_dir="../../res/values"
 #Change the typical filenames.
-launchpad_po_filename="application_name"
+launchpad_po_filename="tomdroid"
 android_xml_filename="strings"
 #Export directory of merged .po files. MUST not start with ".", or msgmerge will complain.
-export_po="export_po"
-export_pot="export_pot"
+export_po="../../locales"
+export_pot="../../locales"
 #Location of xml2po
 xml2po="xml2po"
 
 # Languages will be determined automatically
 languages=()
 
-option_no_po=0
+option_no_po=1
 option_no_timestamp=0
 
 # Delimit apostrophes: "'" -> "\'"
@@ -48,6 +48,16 @@ function undodelimitapostrophe
 	qot2="\\\\'"
 	sed -i "s/$qot2/$qot/g" $1
 	sed -i "s/$qot2/$qot/g" $1
+}
+
+function replacetab
+{
+	sed -i "s/\t\t/(replace_linebreak_tab)/g" $1
+}
+
+function restoretab
+{
+	sed -i "s/(replace_linebreak_tab)/\\\r\\\n\\\t/g" $1
 }
 
 # Set a list of all available language codes.
@@ -119,6 +129,7 @@ setlanguagelist
 #create temporary copy of original language without delimiters:
 cp "${android_xml_files_res_dir}"/"${android_xml_filename}".xml tmp_strings.xml
 undodelimitapostrophe tmp_strings.xml
+replacetab tmp_strings.xml
 
 # Create clean export folder for exported .po files:
 #echo "Making export folder: ${export_po}"
@@ -131,9 +142,12 @@ rm "${export_pot}"/*.pot
 echo "Exporting .xml to .pot"
 ${xml2po} -a -o "${export_pot}"/"${launchpad_po_filename}".pot tmp_strings.xml
 undodelimitapostrophe "${export_pot}"/"${launchpad_po_filename}".pot
+restoretab "${export_pot}"/"${launchpad_po_filename}".pot
+
 if [ $option_no_timestamp -eq 1 ] ; then
 	removetimestamp "${export_pot}"/"${launchpad_po_filename}".pot
 fi
+
 
 if [ $option_no_po -eq 0 ] ; then
 	for language in ${languages[@]}
@@ -190,7 +204,7 @@ function usage
 while [ "$1" != "" ]; do
     case $1 in
         -i | --po2xml | --import )         	shift
-							import_po2xml
+						import_po2xml
         					exit
                                 		;;
         -e | --xml2po | --export )    		export_xml2po

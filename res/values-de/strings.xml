@@ -22,11 +22,13 @@
  along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
+<!-- IMPORTANT: Due to Launchpad translation are DOUBLE TABS converted into linebreaks with a tab! Do not use double tabs outside of tags, and only for linebreaks! -->
 	
+	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
 	<string name="app_desc">Tomboy kompatibles Wiki Notiz-Programm, mit dem man noch keine Notizen erstellen kann.</string>
 	<string name="author">Olivier Bilodeau</string>
-
+	
 	<!-- main.xml -->
 	<string name="strListEmptyWaiting">Die Notizen werden geladen. Bitte warten...</string>
 	<string name="strListEmptyNoNotes">Es sind keine Notizen in Tomdroids Datenbank vorhanden.</string>
@@ -36,27 +38,26 @@
 	<string name="menuAbout">Information</string>
 	<string name="titleWelcome">Warnung</string>
 	<string name="titleAbout">Über Tomdroid</string>
-	<string name="strWelcome">Willkommen bei Tomdroid.
-    	\n\nBitte beachte, dass sich dieses Programm noch im Beta-Stadium befindet und Probleme bekannt sind, wie zum Beispiel das Fehlen der Bearbeitungsfunktion.
-
-    	\n\nWir sind uns diesen Mängeln bewusst und versuchen möglichst schnell die Funktionen zu erweitern und Fehler zu beheben.
-    	
-    	\n\nFalls du die Entwicklung in irgendeiner Form unterstützen möchtest, würden wir uns sehr freuen.
-		Auf launchpad.net/tomdroid findest du die nötigen Informationen.\n</string>
+	<string name="strWelcome">Welcome to Tomdroid.
+		\n\nPlease note that this is beta quality software and that it contains known problems, like its inability to edit notes.
+		\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something out and tested as quickly as possible.
+		\n\nIf you would like to contribute, help at all levels would be appreciated. Hop on board on launchpad.net/tomdroid and contact us!\n
+	</string>
 	<string name="strAbout">%1$s
-    	\n\nAutor: %2$s
-    	\nVersion: %3$s
-    	\nLizensiert unter GPLv3</string>
-
+		\n\nAuthor: %2$s
+		\nVersion: %3$s
+		\nLicensed under the GPLv3
+	</string>
+	
 	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
 	<string name="btnOk">OK</string>
 	<string name="btnCancel">Abbrechen</string>
 	<string name="btnClose">Schließen</string>
 	<string name="btnProjectPage">Projektseite</string>
-
+	
 	<!-- note-view.xml -->
 	<string name="strWait">Die Notiz wird geladen. Bitte warten...</string>
-
+	
 	<string name="prefSync">Synchronisation</string>
 	<string name="prefSyncService">Service</string>
 	<string name="prefSyncServer">Server</string>
@@ -66,7 +67,7 @@
 	<string name="prefSyncCompleteAuth">Authentifizierung läuft. Bitte warten...</string>
 	<string name="prefSyncConnectionFailed">Die Verbindung zum Server ist fehlgeschlagen. Bitte überprüfe die angegebene Adresse.</string>
 	<string name="prefServerEmpty">Die Adresse des Servers wurde geändert. Es wurde keine Adresse angegeben!</string>
-
+	
 	<string name="titleSyncService">Synchronisations-Dienst wählen</string>
 	<string name="messageSyncComplete">Erfolgreich mit %1$s synchronisiert.</string>
 	<string name="messageSyncNoNote">Es wurden keine Notizen auf %1$s gefunden.</string>
@@ -89,7 +90,7 @@
 	<string name="view">Anzeigen</string>
 	<string name="noteOptions">Notizoptionen</string>
 	<string name="send">Senden</string>
-
+	
 	<!--  Search -->
 	<string name="search_hint">Notizen durchsuchen</string>
 	<string name="search_description">Text in meinen Notizen</string>
@@ -100,33 +101,34 @@
 	<string name="clearSearchHistoryTitle">Suchverlauf löschen</string>
 	<string name="clearSearchHistory">Alle Suchvorgänge aus dem Verlauf entfernen</string>
 	<string name="deletedSearchHistory">Suchverlauf gelöscht.</string>
-
+	
 	<!-- Date -->
 	<string name="textModified">Geändert:</string>
 	<string name="textToday">Heute</string>
 	<string name="textYexterday">Gestern</string>
 	
 	<!-- 
-		Information that goes into the Android Market Application Listing. 
-		I\'ve put it in here so that it\'ll get translated by translators.
+	Information that goes into the Android Market Application Listing. 
+	I\'ve put it in here so that it\'ll get translated by translators.
 	-->
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid Notizen</string>
 	<!-- 325 chars max -->
-	<string name="market_description">Ein Tomboy Notiz-Programm für Android. Tomboy ist ein Notiz-Programm, dass einen wikiwiki Aufbau benutzt und eine einfache Benutzeroberfläche.
-
-		BEACHTE: Mit diesem Programm kann man momentan NUR LESEN.
-
-		* Notiz-Formatierung wie bei Tomboy.
-		* Online Notiz-Synchronisierung mit Snowy, Tomboy Online oder Ubuntu One.
-		* Importieren von der SD-Karte.
-		* Open source!</string>
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.
+		
+		NOTE: It is a READ-ONLY client for now.
+		
+		* Note format compatibility with Tomboy
+		* Online note synchronization with Snowy, Tomboy Online or Ubuntu One
+		* SD Card importation
+		* Open source!
+	</string>
 	<!-- 80 chars max -->
 	<string name="market_promotext">Notiz-Programm mit online Synchronisation zu Tomboy.</string>
-
-
-<!-- Launchpad Translation String -->
-<string name="about_translators">Launchpad Contributions:
+	
+	
+	<!-- Launchpad Translation String -->
+	<string name="about_translators">Launchpad Contributions:
   Stefan Hammer https://launchpad.net/~j-4</string>
-
+	
 </resources>

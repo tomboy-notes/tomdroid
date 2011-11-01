@@ -1,19 +1,18 @@
 Tomdroid README:
 ================
 
-Export tomdroid.pot file for Launchpad, after strings were updates:
+* Export tomdroid.pot file for Launchpad, after strings were updates:
 
-Go to the "res" folder in the tomdroid sources (tomdroid/res).
 Run following command:
-bash ../util/xml2po/androidxml2po.bash -lp ../locales/ -a ../ -n tomdroid -ex ../locales --nopo -e
-Take the new /locales/export/tomdroid.pot file, compress it and upload it to Launchpad (not necessary, as soon automatic import is on!).
+bash androidxml2po.bash -e
+Take the new /locales/export/tomdroid.pot file and upload it to Launchpad (not necessary, as soon automatic import is on!).
 
 
-Import *.po files from Launchpad for creating new string.xml's
+* Import *.po files from Launchpad for creating new string.xml's
 
 Download *.po files and extract them to tomdroid/locales.
-Go to the "res" folder and run following command:
-bash ../util/xml2po/androidxml2po.bash -lp ../locales/ -a ../ -n tomdroid -i
+Run following command:
+bash androidxml2po.bash -i
 
 
 
