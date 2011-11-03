@@ -121,6 +121,7 @@
     <string name="shortcuts_view_caption">Choose Note</string>
     <string name="shortcut_menu_item_caption">Tomdroid Note</string>
     <string name="btnRemoveShortcut">Remove shortcut</string>
+    <string name="createShortcut">Create shortcut</string>
 
     <!--
          Information that goes into the Android Market Application Listing.

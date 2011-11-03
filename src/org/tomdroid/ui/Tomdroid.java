@@ -31,6 +31,7 @@ import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.sync.SyncService;
 import org.tomdroid.util.FirstNote;
+import org.tomdroid.util.NoteViewShortcutsHelper;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.Send;
 
@@ -174,17 +175,20 @@ public class Tomdroid extends ListActivity {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo)item.getMenuInfo();
 		long noteId = info.id;
 		Uri intentUri = Uri.parse(Tomdroid.CONTENT_URI+"/"+noteId);
-		Note note = NoteManager.getNote(this, intentUri);
-		
-		switch (item.getItemId()) {
-			case R.id.menu_send:
-				(new Send(this, note)).send();
+        Note note = NoteManager.getNote(this, intentUri);
+
+        switch (item.getItemId()) {
+            case R.id.menu_send:
+                (new Send(this, note)).send();
 				break;
 			case R.id.view:
 				this.ViewNote(noteId);
 				break;
-				
-			default:
+			case R.id.create_shortcut:
+                final NoteViewShortcutsHelper helper = new NoteViewShortcutsHelper(this);
+                sendBroadcast(helper.getBroadcastableCreateShortcutIntent(intentUri, note.getTitle()));
+                break;
+            default:
 				break;
 		}
 		
