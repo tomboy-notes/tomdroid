@@ -23,19 +23,15 @@
 package org.tomdroid.ui;
 
 import android.app.ListActivity;
-import android.content.Intent;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
-
-import static android.content.Intent.ShortcutIconResource;
+import org.tomdroid.util.NoteViewShortcutsHelper;
 
 /**
  * @author Piotr Adamski <mcveat@gmail.com>
@@ -65,29 +61,8 @@ public class ShortcutActivity extends ListActivity {
     @Override
     protected void onListItemClick(final ListView l, final View v, final int position, final long id) {
         final Cursor item = (Cursor) adapter.getItem(position);
-        Intent launchIntent = getNoteViewIntent(item);
-        final String name = getNoteTitle(item);
-        final ShortcutIconResource icon = ShortcutIconResource.fromContext(this, R.drawable.ic_shortcut);
-        setResult(RESULT_OK, createShortcutIntent(icon, launchIntent, name));
+        final NoteViewShortcutsHelper helper = new NoteViewShortcutsHelper(this);
+        setResult(RESULT_OK, helper.getCreateShortcutIntent(item));
         finish();
-    }
-
-    private Intent getNoteViewIntent(final Cursor item) {
-        final int noteId = item.getInt(item.getColumnIndexOrThrow(Note.ID));
-        final Uri intentUri = Tomdroid.getNoteIntentUri(noteId);
-        return new Intent(Intent.ACTION_VIEW, intentUri, this, ViewNote.class);
-    }
-
-    private String getNoteTitle(final Cursor item) {
-        return item.getString(item.getColumnIndexOrThrow(Note.TITLE));
-    }
-
-    private Intent createShortcutIntent(final ShortcutIconResource icon, final Intent launchIntent,
-                                        final String name) {
-        Intent i = new Intent();
-        i.putExtra(Intent.EXTRA_SHORTCUT_INTENT, launchIntent);
-        i.putExtra(Intent.EXTRA_SHORTCUT_NAME, name);
-        i.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, icon);
-        return i;
     }
 }
