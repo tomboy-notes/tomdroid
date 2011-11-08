@@ -112,10 +112,7 @@
 	
 	
 	<!-- Launchpad Translation String -->
-	<string name="about_translators">
-	
-	translator-credits
-	
-	</string>
+	<string name="about_translators">Launchpad Contributions:
+  Stefan Hammer https://launchpad.net/~j-4</string>
 	
 </resources>

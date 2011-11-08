@@ -1,0 +1,298 @@
+# Malay translation for tomdroid
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the tomdroid package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: tomdroid\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-11-01 20:25+0100\n"
+"PO-Revision-Date: 2011-11-08 12:18+0000\n"
+"Last-Translator: abuyop <Unknown>\n"
+"Language-Team: Malay <ms@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2011-11-08 16:20+0000\n"
+"X-Generator: Launchpad (build 14263)\n"
+
+#. application details
+#: tmp_strings.xml:27(string)
+msgid "Tomdroid"
+msgstr "Tomdroid"
+
+#: tmp_strings.xml:28(string)
+msgid ""
+"Tomboy compatible wikiwiki note-taking application that can't take notes yet."
+msgstr ""
+"Aplikasi pengambilan-nota wikiwiki serasi dengan Tomboy tetapi tidak boleh "
+"mengambil nota lagi."
+
+#: tmp_strings.xml:29(string)
+msgid "Olivier Bilodeau"
+msgstr "Olivier Bilodeau"
+
+#. main.xml
+#: tmp_strings.xml:32(string)
+msgid "Please wait while the notes load.."
+msgstr "Tunggu sebentar ketika nota dimuatkan.."
+
+#: tmp_strings.xml:33(string)
+msgid "There are no notes in Tomdroid's database."
+msgstr "Tiada nota didalam pengkalan data Tomdroid."
+
+#: tmp_strings.xml:35(string)
+msgid "Sync"
+msgstr "Segerak"
+
+#: tmp_strings.xml:36(string)
+msgid "Settings"
+msgstr "Tetapan"
+
+#: tmp_strings.xml:37(string)
+msgid "About"
+msgstr "Perihal"
+
+#: tmp_strings.xml:38(string)
+msgid "Warning"
+msgstr "Amaran"
+
+#: tmp_strings.xml:39(string)
+msgid "About Tomdroid"
+msgstr "Perihal Tomdroid"
+
+#: tmp_strings.xml:40(string)
+msgid ""
+"Welcome to Tomdroid.\\n\\nPlease note that this is beta quality software and "
+"that it contains known problems, like its inability to edit notes.\\n\\nWe "
+"are well aware of these issues and intend to work on them quickly but I also "
+"wanted to get something out and tested as quickly as possible.\\n\\nIf you "
+"would like to contribute, help at all levels would be appreciated. Hop on "
+"board on launchpad.net/tomdroid and contact us!\\n"
+msgstr ""
+"Selamat datang ke Tomdroid.\\n\\nPerhatian ini merupakan perisian berkualiti "
+"beta yang mungkin mengandungi masalah, seperti tidak boleh menyunting nota.\\"
+"n\\nKami mengetahui isu ini dan akan menyelesaikannya dengan segera tetapi "
+"saya juga mahu mengujinya secepat yang mungkin.\\n\\nJika anda hendak "
+"menyumbang pembangunannta, bantuan pada semua aspek sangat-sangat "
+"diharapkan. Layari launchpad.net/tomdroid dan hubungi kami!\\n"
+
+#: tmp_strings.xml:41(string)
+msgid "%1$s\\n\\nAuthor: %2$s\\nVersion: %3$s\\nLicensed under the GPLv3"
+msgstr "%1$s\\n\\Pengarang: %2$s\\nVersi: %3$s\\nDilesen dibawah GPLv3"
+
+#. TODO aren't these available somewhere else? like in the SDK? //
+#: tmp_strings.xml:44(string)
+msgid "OK"
+msgstr "OK"
+
+#: tmp_strings.xml:45(string)
+msgid "Cancel"
+msgstr "Batal"
+
+#: tmp_strings.xml:46(string)
+msgid "Close"
+msgstr "Tutup"
+
+#: tmp_strings.xml:47(string)
+msgid "Project page"
+msgstr "Halaman projek"
+
+#. note-view.xml
+#: tmp_strings.xml:50(string)
+msgid "Please wait while note loads..."
+msgstr "Sila tunggu ketika nota dimuatkan..."
+
+#: tmp_strings.xml:52(string)
+msgid "Synchronization"
+msgstr "Penyegerakan"
+
+#: tmp_strings.xml:53(string)
+msgid "Service"
+msgstr "Perkhidmatan"
+
+#: tmp_strings.xml:54(string)
+msgid "Server"
+msgstr "Pelayan"
+
+#: tmp_strings.xml:55(string)
+msgid "SD Card"
+msgstr "Kad SD"
+
+#: tmp_strings.xml:56(string)
+msgid "Authenticate"
+msgstr "Sahihkan"
+
+#: tmp_strings.xml:58(string)
+msgid "Completing authentication. Please wait..."
+msgstr "Menyelesaikan pengesahihan. Tunggu sebentar..."
+
+#: tmp_strings.xml:59(string)
+msgid ""
+"The connection to the server has failed, please check that the address you "
+"entered is correct."
+msgstr ""
+"Sambungan ke pelayan mengalami kegagalan, sila semak alamat yang anda "
+"masukkan adalah betul."
+
+#: tmp_strings.xml:60(string)
+msgid "The server address changed but the new value is empty"
+msgstr "Alamat pelayan berubah tetapi nilai barunya kosong"
+
+#: tmp_strings.xml:62(string)
+msgid "Choose the sync service to use"
+msgstr "Pilih perkhidmatan segerak yang hendak digunakan"
+
+#: tmp_strings.xml:63(string)
+msgid "Synchronization with %1$s is complete."
+msgstr "Penyegerakan dengan %1$s selesai."
+
+#: tmp_strings.xml:64(string)
+msgid "No notes found on %1$s ."
+msgstr "Tiada nota ditemui pada %1$s."
+
+#: tmp_strings.xml:65(string)
+msgid "You are not connected to the Internet."
+msgstr "Anda tidak bersambung dengan Internet."
+
+#: tmp_strings.xml:66(string)
+msgid "Sync already in progress"
+msgstr "Segerak didalam proses."
+
+#: tmp_strings.xml:67(string)
+msgid ""
+"There was an error trying to parse your note collection. If you are able to "
+"replicate the problem, please contact us!"
+msgstr ""
+"Terdapat ralat semasa cuba menghurai koleksi nota anda. Jika anda boleh "
+"replikakan masalah, sila hubungi kami!"
+
+#: tmp_strings.xml:68(string)
+msgid "Error"
+msgstr "Ralat"
+
+#. NoteSorting
+#: tmp_strings.xml:71(string)
+msgid "change sort"
+msgstr "ubah isihan"
+
+#: tmp_strings.xml:72(string)
+msgid "Choose the default sorting"
+msgstr "Pilihan pengisihan lalai"
+
+#: tmp_strings.xml:73(string)
+msgid "Default sort"
+msgstr "Isihan lalai"
+
+#. NotebookFiltering
+#: tmp_strings.xml:76(string)
+msgid "Filter"
+msgstr "Penapis"
+
+#: tmp_strings.xml:77(string)
+msgid "There are no notebooks in the database."
+msgstr "Tiada buku nota didalam pengkalan data."
+
+#: tmp_strings.xml:78(string)
+msgid "All notebooks"
+msgstr "Semua buku nota"
+
+#. List Longpress Menu
+#: tmp_strings.xml:81(string)
+msgid "View"
+msgstr "Papar"
+
+#: tmp_strings.xml:82(string)
+msgid "Note Options"
+msgstr "Pilihan Nota"
+
+#: tmp_strings.xml:83(string)
+msgid "Send"
+msgstr "Hantar"
+
+#. Search
+#: tmp_strings.xml:86(string)
+msgid "Search Notes"
+msgstr "Gelintar Nota"
+
+#: tmp_strings.xml:87(string)
+msgid "Text in your notes"
+msgstr "Teks dalam nota anda"
+
+#: tmp_strings.xml:88(string)
+msgid "No notes found for \\\"%s\\\""
+msgstr "Tiada nota ditemui untuk \\\"%s\\\""
+
+#: tmp_strings.xml:89(string)
+msgid "Search"
+msgstr "Gelintar"
+
+#: tmp_strings.xml:90(string)
+msgid "Search Options"
+msgstr "Pilihan Gelintar"
+
+#: tmp_strings.xml:91(string)
+msgid "Search Results:"
+msgstr "Keputusan Gelintar:"
+
+#: tmp_strings.xml:92(string)
+msgid "Clear search history"
+msgstr "Kosongkan sejarah gelintar"
+
+#: tmp_strings.xml:93(string)
+msgid "Remove all the searches you have performed"
+msgstr "Buang semua penggelintaran yang anda telah lakukan"
+
+#: tmp_strings.xml:94(string)
+msgid "Search history has been cleared."
+msgstr "Sejarah gelintar telah dikosongkan."
+
+#. Date
+#: tmp_strings.xml:97(string)
+msgid "Modified:"
+msgstr "Diubahsuai:"
+
+#: tmp_strings.xml:98(string)
+msgid "Today"
+msgstr "Hari Ini"
+
+#: tmp_strings.xml:99(string)
+msgid "Yesterday"
+msgstr "Semalam"
+
+#. 30 chars max
+#: tmp_strings.xml:106(string)
+msgid "Tomdroid notes"
+msgstr "Nota Tomdroid"
+
+#. 325 chars max
+#: tmp_strings.xml:108(string)
+msgid ""
+"A Tomboy client for Android. Tomboy is a desktop note-taking app using a "
+"wikiwiki approach and a simple user interface.\\n\\nNOTE: It is a READ-ONLY "
+"client for now.\\n\\n* Note format compatibility with Tomboy\\n* Online note "
+"synchronization with Snowy, Tomboy Online or Ubuntu One\\n* SD Card "
+"importation\\n* Open source!"
+msgstr ""
+"Klien Tomboy untuk Android. Tomboy merupakan aplikasi mengambil-nota "
+"menggunakan pendekatan wikiwiki dan antaramuka pengguna yang ringkas.\\n\\"
+"nPERHATIAN: Ia merupakan klien BACA-SAHAJA buat masa ini.\\n\\n* Format nota "
+"yang serasi dengan Tomboy\\n* Penyegerakan nota atas talian dengan Snowy, "
+"Tomboy Atas Talian atau Ubuntu One\\n* Pengimportan Kad SD\\n* Sumber "
+"terbuka!"
+
+#. 80 chars max
+#: tmp_strings.xml:111(string)
+msgid ""
+"Note-taking application with online synchronization compatible with Tomboy"
+msgstr ""
+"Aplikasi pengambilan-nota dengan penyegerakan atas talian yang serasi dengan "
+"Tomboy"
+
+#. Launchpad Translation String
+#: tmp_strings.xml:115(string)
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  abuyop https://launchpad.net/~abuyop"

@@ -1,0 +1,93 @@
+Tomdroid README:
+================
+
+* Export tomdroid.pot file for Launchpad, after strings were updates:
+
+	Run following command:
+	bash androidxml2po.bash -e
+	The new /locales/export/tomdroid.pot file will then be automatically detected by Launchpad Translatoins.
+
+* Import *.po files from Launchpad for creating new string.xml's
+
+	Download *.po files and extract them to tomdroid/locales.
+	https://translations.launchpad.net/tomdroid/1.0/+export
+
+	Run following command:
+	bash androidxml2po.bash -i
+	This will update the strings.xml files from all languages and will create new directories if necessary.
+
+
+
+
+README derived from: http://code.google.com/p/openintents/wiki/Translations
+===========================================================================
+
+Translations
+
+Please visit the OpenIntents translation project at Launchpad to help with translations.
+Information for developers
+Translated resources of the Android respository
+
+How to convert strings.xml to .po/.pot files
+
+Weekly workflow
+
+You have changed some code (including some strings):
+
+    Run "bash androidxml2po.bash -e". This updates the .pot and .po files.
+    Create a tgz containing the .pot and .po file(s) in "./translations_aboutapp" (I include this last relative path in the tarball but I have yet to find out if this is really necessary). It's important that the files retain their name ("aboutapp") because this should match with the existing templates on Launchpad (or at least, I think so). Also don't ruin the encoding or the unix linebreaks.
+    Upload the tarball on Launchpad. To see the upload you need to go to exact series first. So on "https://translations.launchpad.net/openintents" there is no "Upload translations" link but if you click on "OpenIntents Series: trunk" then there is.
+    Wait a few days max. and you will get an email when done. 
+
+More strings have been translated on Launchpad:
+
+    Request "Download translations" on Launchpad (PO format).
+    Wait a few hours for an email with a download link.
+    Get the tarball and unpack the files into "./translations_aboutapp" (make sure they overwrite). Ofcourse the files that were there before should have been committed (sent to Launchpad and imported there) before you download new ones from launchpad.
+    (If translations for a new language were made, you need to add the language in the script: In short_lang the labels from the .po files ("nl", "zh_CN"), in long_lang the labels from the res/values folders ("nl-rNL", "zh-rCN").)
+    Make sure that in "translator-credits" all lines with translator names end with a ";" (or a "; ").
+    Run "bash androidxml2po.bash -i". This updates all the strings.xml's. 
+
+Setup workflow
+
+    Create a similar folder/file structure as I have done for AboutApp.
+    In res/values/strings.xml add
+
+    <string name="about_translators">
+
+    translator-credits
+
+    </string>
+
+    .
+    Setup the variables in the script. "short_lang" And "long_lang": set to expected translated languages, see above. "launchpad_po_filename" is the name/prefix of the template. Make this the name of the subproject folder. This needs to be unique amongst subprojects so Launchpad can keep translations apart for the subprojects. The other variables should be correct unless you make some drastic changes or unless you change the folder structure.
+    Run "bash androidxml2po.bash -e". A .pot file is created.
+    Continue with the weekly workflow form here on. First time upload is a longer wait.
+    In case you already start with some translated strings.xml's this gets a little bit more complex. Make a backup and play with it would be my advice. 
+
+Windows and Cygwin
+
+To set up the scripts on a Windows machine, you will need:
+
+    Get Cygwin
+    Make sure that you install the following packages for Cygwin:
+        gettext
+        gettext-devel (for msgfmt and msgmerge)
+        python
+        python-libxml2 
+    Download xml2po, for example through the Gnome-Doc-Utils
+    Make xml2po run from any directory. There may be a more clever way it, but I did it in the following way:
+        Copy the folder xml2po from Gnome-Doc-Utils into your home directory, so that the script can be found in ~/xml2po/xml2po.py
+        Create a new file called "xml2po" (without any file extension) with the following content:
+
+        #!/bin/bash 
+        python ~/xml2po/xml2po.py "$@" 
+
+        and put it into /bin (C:\cygwin\bin)
+        Launch "Cygwin Bash Shell"
+        Now you should be able to call 'xml2po' from any directory. 
+    Follow the instructions above. 
+
+More resources
+
+http://groups.google.com/group/openintents/browse_frm/thread/84d7b059d0b15390 

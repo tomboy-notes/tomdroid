@@ -29,30 +29,30 @@
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
-	<string name="strListEmptyWaiting">Please wait while the notes load..</string>
-	<string name="strListEmptyNoNotes">There are no notes in Tomdroid\'s database.</string>
+	<string name="strListEmptyWaiting">笔记在加载中，请稍候</string>
+	<string name="strListEmptyNoNotes">Tomdroid的数据库里没有笔记。</string>
 	
 	<string name="menuSync">Sync</string>
-	<string name="menuPrefs">Settings</string>
-	<string name="menuAbout">About</string>
-	<string name="titleWelcome">Warning</string>
-	<string name="titleAbout">About Tomdroid</string>
+	<string name="menuPrefs">设置</string>
+	<string name="menuAbout">有关</string>
+	<string name="titleWelcome">警告</string>
+	<string name="titleAbout">关于Tomdroid</string>
 	<string name="strWelcome">Welcome to Tomdroid.\n\nPlease note that this is beta quality software and that it contains known problems, like its inability to edit notes.\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something out and tested as quickly as possible.\n\nIf you would like to contribute, help at all levels would be appreciated. Hop on board on launchpad.net/tomdroid and contact us!\n</string>
 	<string name="strAbout">%1$s\n\nAuthor: %2$s\nVersion: %3$s\nLicensed under the GPLv3</string>
 	
 	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
-	<string name="btnOk">OK</string>
-	<string name="btnCancel">Cancel</string>
-	<string name="btnClose">Close</string>
-	<string name="btnProjectPage">Project page</string>
+	<string name="btnOk">确认</string>
+	<string name="btnCancel">取消</string>
+	<string name="btnClose">关闭</string>
+	<string name="btnProjectPage">项目页</string>
 	
 	<!-- note-view.xml -->
-	<string name="strWait">Please wait while note loads...</string>
+	<string name="strWait">笔记在加载中，请稍候</string>
 	
 	<string name="prefSync">Synchronization</string>
-	<string name="prefSyncService">Service</string>
-	<string name="prefSyncServer">Server</string>
-	<string name="prefSDCard">SD Card</string>
+	<string name="prefSyncService">服务</string>
+	<string name="prefSyncServer">服务器</string>
+	<string name="prefSDCard">SD卡</string>
 	<string name="prefAuthenticate">Authenticate</string>
 	
 	<string name="prefSyncCompleteAuth">Completing authentication. Please wait...</string>
@@ -65,7 +65,7 @@
 	<string name="messageSyncNoConnection">You are not connected to the Internet.</string>
 	<string name="messageSyncAlreadyInProgress">Sync already in progress</string>
 	<string name="messageSyncError">There was an error trying to parse your note collection. If you are able to replicate the problem, please contact us!</string>
-	<string name="error">Error</string>
+	<string name="error">错误</string>
 	
 	<!-- NoteSorting -->
 	<string name="menuSort">change sort</string>
@@ -78,32 +78,32 @@
 	<string name="allNotebooksFilter">All notebooks</string>
 	
 	<!-- List Longpress Menu -->
-	<string name="view">View</string>
+	<string name="view">查看</string>
 	<string name="noteOptions">Note Options</string>
-	<string name="send">Send</string>
+	<string name="send">发送</string>
 	
 	<!--  Search -->
-	<string name="search_hint">Search Notes</string>
-	<string name="search_description">Text in your notes</string>
+	<string name="search_hint">搜索笔记</string>
+	<string name="search_description">笔记的内容</string>
 	<string name="strNoResults">No notes found for \"%s\"</string>
-	<string name="menuSearch">Search</string>
+	<string name="menuSearch">搜索</string>
 	<string name="prefSearch">Search Options</string>
-	<string name="SearchResultTitle">Search Results:</string>
-	<string name="clearSearchHistoryTitle">Clear search history</string>
+	<string name="SearchResultTitle">搜索结果</string>
+	<string name="clearSearchHistoryTitle">删除搜索历史</string>
 	<string name="clearSearchHistory">Remove all the searches you have performed</string>
-	<string name="deletedSearchHistory">Search history has been cleared.</string>
+	<string name="deletedSearchHistory">搜索历史被删除了</string>
 	
 	<!-- Date -->
 	<string name="textModified">Modified:</string>
-	<string name="textToday">Today</string>
-	<string name="textYexterday">Yesterday</string>
+	<string name="textToday">今天</string>
+	<string name="textYexterday">昨天</string>
 	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
 	I\'ve put it in here so that it\'ll get translated by translators.
 	-->
 	<!-- 30 chars max -->
-	<string name="market_title">Tomdroid notes</string>
+	<string name="market_title">Tomdroid笔记</string>
 	<!-- 325 chars max -->
 	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\nNOTE: It is a READ-ONLY client for now.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
 	
@@ -112,10 +112,8 @@
 	
 	
 	<!-- Launchpad Translation String -->
-	<string name="about_translators">
-	
-	translator-credits
-	
-	</string>
+	<string name="about_translators">Launchpad Contributions:
+  Isabel Heger https://launchpad.net/~isabel-h1
+  Stefan Hammer https://launchpad.net/~j-4</string>
 	
 </resources>
