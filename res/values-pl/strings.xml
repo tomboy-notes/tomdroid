@@ -29,16 +29,16 @@
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
-	<string name="strListEmptyWaiting">Please wait while the notes load..</string>
-	<string name="strListEmptyNoNotes">There are no notes in Tomdroid\'s database.</string>
+	<string name="strListEmptyWaiting">Proszę czekać na załadowanie notatek...</string>
+	<string name="strListEmptyNoNotes">Brak notatek w bazie danych Tomdroid.</string>
 	
-	<string name="menuSync">Sync</string>
-	<string name="menuPrefs">Settings</string>
-	<string name="menuAbout">About</string>
-	<string name="titleWelcome">Warning</string>
-	<string name="titleAbout">About Tomdroid</string>
-	<string name="strWelcome">Welcome to Tomdroid.\n\nPlease note that this is beta quality software and that it contains known problems, like its inability to edit notes.\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something out and tested as quickly as possible.\n\nIf you would like to contribute, help at all levels would be appreciated. Hop on board on launchpad.net/tomdroid and contact us!\n</string>
-	<string name="strAbout">%1$s\n\nAuthor: %2$s\nVersion: %3$s\nLicensed under the GPLv3</string>
+	<string name="menuSync">Synchronizacja</string>
+	<string name="menuPrefs">Ustawienia</string>
+	<string name="menuAbout">O aplikacji</string>
+	<string name="titleWelcome">Ostrzeżenie</string>
+	<string name="titleAbout">O Tomdroid</string>
+	<string name="strWelcome">Witaj w Tomdroid.\n\nJest to aplikacja w wersji beta, charakteryzująca się znanymi problemami, jak brak możliwości edytowania notatek.\n\nJesteśmy świadomi tych braków i pracujemy nad nimi w miarę możliwości. Jednocześnie udostępniamy aplikację w takim kształcie, by testować ją możliwe szybko.\n\nKażda pomoc jest cenna. Jeśli chciałbyś pomóc, wejdź na launchpad.net/tomdroid i skontaktuj się z nami.\n</string>
+	<string name="strAbout">%1$s\n\nAutor: %2$s\nWersja: %3$s\nNa licencji GPLv3</string>
 	
 	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
 	<string name="btnOk">OK</string>
@@ -47,56 +47,56 @@
 	<string name="btnProjectPage">Strona projektu</string>
 	
 	<!-- note-view.xml -->
-	<string name="strWait">Please wait while note loads...</string>
+	<string name="strWait">Proszę czekać na załadowanie notatek...</string>
 	
-	<string name="prefSync">Synchronization</string>
+	<string name="prefSync">Synchronizacja</string>
 	<string name="prefSyncService">Usługa</string>
 	<string name="prefSyncServer">Serwer</string>
-	<string name="prefSDCard">SD Card</string>
-	<string name="prefAuthenticate">Authenticate</string>
+	<string name="prefSDCard">Karta SD</string>
+	<string name="prefAuthenticate">Autoryzuj</string>
 	
-	<string name="prefSyncCompleteAuth">Completing authentication. Please wait...</string>
-	<string name="prefSyncConnectionFailed">The connection to the server has failed, please check that the address you entered is correct.</string>
-	<string name="prefServerEmpty">The server address changed but the new value is empty</string>
+	<string name="prefSyncCompleteAuth">Autoryzowanie. Proszę czekać...</string>
+	<string name="prefSyncConnectionFailed">Połączenie z serwerem jest niemożliwe, sprawdź, czy wprowadzony adres jest poprawny.</string>
+	<string name="prefServerEmpty">Nie wprowadzono adresu serwera</string>
 	
-	<string name="titleSyncService">Choose the sync service to use</string>
-	<string name="messageSyncComplete">Synchronization with %1$s is complete.</string>
-	<string name="messageSyncNoNote">No notes found on %1$s .</string>
-	<string name="messageSyncNoConnection">You are not connected to the Internet.</string>
-	<string name="messageSyncAlreadyInProgress">Sync already in progress</string>
-	<string name="messageSyncError">There was an error trying to parse your note collection. If you are able to replicate the problem, please contact us!</string>
+	<string name="titleSyncService">Wybierz usługę, której chcesz użyć</string>
+	<string name="messageSyncComplete">Zakończono synchronizację z %1$s.</string>
+	<string name="messageSyncNoNote">Brak notatek w %1$s .</string>
+	<string name="messageSyncNoConnection">Brak połączenia z siecią.</string>
+	<string name="messageSyncAlreadyInProgress">Synchronizacja w trakcie</string>
+	<string name="messageSyncError">Błąd wczytywania notatek. Jeśli problem się powtarza, proszę skontaktuj się z nami!</string>
 	<string name="error">Błąd</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">change sort</string>
-	<string name="titleDefaultSorting">Choose the default sorting</string>
-	<string name="prefDefaultSorting">Default sort</string>
+	<string name="menuSort">zmień sortowanie</string>
+	<string name="titleDefaultSorting">Wybierz domyślne sortowanie</string>
+	<string name="prefDefaultSorting">Domyślne sortowanie</string>
 	
 	<!-- NotebookFiltering -->
 	<string name="menuFilterNotebook">Filter</string>
-	<string name="strListEmptyNoNotebooks">There are no notebooks in the database.</string>
-	<string name="allNotebooksFilter">All notebooks</string>
+	<string name="strListEmptyNoNotebooks">Brak notatników w bazie danych.</string>
+	<string name="allNotebooksFilter">Wszystkie notatniki</string>
 	
 	<!-- List Longpress Menu -->
-	<string name="view">View</string>
-	<string name="noteOptions">Note Options</string>
+	<string name="view">Wyświetl</string>
+	<string name="noteOptions">Opcje notatek</string>
 	<string name="send">Wyślij</string>
 	
 	<!--  Search -->
-	<string name="search_hint">Search Notes</string>
-	<string name="search_description">Text in your notes</string>
-	<string name="strNoResults">No notes found for \"%s\"</string>
-	<string name="menuSearch">Search</string>
-	<string name="prefSearch">Search Options</string>
-	<string name="SearchResultTitle">Search Results:</string>
-	<string name="clearSearchHistoryTitle">Clear search history</string>
-	<string name="clearSearchHistory">Remove all the searches you have performed</string>
-	<string name="deletedSearchHistory">Search history has been cleared.</string>
+	<string name="search_hint">Przeszukaj notatki</string>
+	<string name="search_description">Treść notatki</string>
+	<string name="strNoResults">Nie znaleziono notatek zawierających \"%s\"</string>
+	<string name="menuSearch">Szukaj</string>
+	<string name="prefSearch">Opcje wyszukiwania</string>
+	<string name="SearchResultTitle">Wyniki wyszukiwania:</string>
+	<string name="clearSearchHistoryTitle">Wyczyść historię wyszukiwania</string>
+	<string name="clearSearchHistory">Wyczyść historię swoich wyszukiwań</string>
+	<string name="deletedSearchHistory">Historia wyszukiwania została wyczyszczona.</string>
 	
 	<!-- Date -->
-	<string name="textModified">Modified:</string>
+	<string name="textModified">Data modyfikacji:</string>
 	<string name="textToday">Dziś</string>
-	<string name="textYexterday">Yesterday</string>
+	<string name="textYexterday">Wczoraj</string>
 	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
@@ -113,6 +113,7 @@
 	
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
+  Piotr Adamski https://launchpad.net/~mcveat
   Stefan Hammer https://launchpad.net/~j-4</string>
 	
 </resources>

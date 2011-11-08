@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-11-01 19:48+0000\n"
-"X-Generator: Launchpad (build 14214)\n"
+"X-Launchpad-Export-Date: 2011-11-08 16:20+0000\n"
+"X-Generator: Launchpad (build 14263)\n"
 
 #. application details
 #: tmp_strings.xml:27(string)
@@ -277,12 +277,3 @@ msgstr ""
 "Launchpad Contributions:\n"
 "  Isabel Heger https://launchpad.net/~isabel-h1\n"
 "  Stefan Hammer https://launchpad.net/~j-4"
-
-#~ msgid ""
-#~ "Welcome to Tomdroid. \\n\\nPlease note that this is beta quality software "
-#~ "and that it contains known problems, like its inability to edit notes. \\n\\"
-#~ "nWe are well aware of these issues and intend to work on them quickly but I "
-#~ "also wanted to get something out and tested as quickly as possible. \\n\\nIf "
-#~ "you would like to contribute, help at all levels would be appreciated. Hop "
-#~ "on board on launchpad.net/tomdroid and contact us!\\n"
-#~ msgstr "欢迎你用Tomdroid软件。"

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ Tomdroid
+ Tomboy on Android
+ http://www.launchpad.net/tomdroid
+
+ Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
+ 
+ This file is part of Tomdroid.
+ 
+ Tomdroid is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Tomdroid is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources>
+	
+	<!-- application details -->
+	<string name="app_name">Tomdroid</string>
+	<string name="app_desc">Aplicação wikiwiki para tomar notas compatível com o Tomboy que ainda não pode tomar notas.</string>
+	<string name="author">Olivier Bilodeau</string>
+	
+	<!-- main.xml -->
+	<string name="strListEmptyWaiting">Por favor espere enquanto as notas carregam..</string>
+	<string name="strListEmptyNoNotes">Não há notas na base de dados do Tomdroid.</string>
+	
+	<string name="menuSync">Sincronizar</string>
+	<string name="menuPrefs">Preferências</string>
+	<string name="menuAbout">Sobre</string>
+	<string name="titleWelcome">Alerta</string>
+	<string name="titleAbout">Sobre Tomdroid</string>
+	<string name="strWelcome">Bem vindo ao Tomdroid.\n\nPor favor perceba que este é um software de qualidade beta e que ele contém problemas conhecidos, como sua inabilidade de editar notas.\n\nEstamos bem cientes dessas questões e pretendemos trabalhar nelas rapidamente, mas eu também precisava conseguir e testar algo o mais rápido possível.\n\nSe você gostaria de contribuir, ajuda em todos os níveis seria apreciada. Suba a bordo em launchpad.net/tomdroid e contate-nos!\n</string>
+	<string name="strAbout">%1$s\n\nAutor: %2$s\nVersão: %3$s\nLicenciado sob a GPLv3</string>
+	
+	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
+	<string name="btnOk">OK</string>
+	<string name="btnCancel">Cancelar</string>
+	<string name="btnClose">Fechar</string>
+	<string name="btnProjectPage">Página do projeto</string>
+	
+	<!-- note-view.xml -->
+	<string name="strWait">Por favor espere enquanto as notas carregam...</string>
+	
+	<string name="prefSync">Sincronização</string>
+	<string name="prefSyncService">Serviço</string>
+	<string name="prefSyncServer">Servidor</string>
+	<string name="prefSDCard">Cartão SD</string>
+	<string name="prefAuthenticate">Autenticar</string>
+	
+	<string name="prefSyncCompleteAuth">Completando autenticação. Por favor, espere...</string>
+	<string name="prefSyncConnectionFailed">A conexão ao servidor falhou, por favor verifique se o endereço que você inseriu está correto.</string>
+	<string name="prefServerEmpty">O endereço do servidor mudou mas o novo valor está vazio</string>
+	
+	<string name="titleSyncService">Escolha o serviço de sincronização a usar</string>
+	<string name="messageSyncComplete">Sincronização com %1$s está completa.</string>
+	<string name="messageSyncNoNote">Nenhuma nota encontrada em %1$s.</string>
+	<string name="messageSyncNoConnection">Você não está conectado à Internet.</string>
+	<string name="messageSyncAlreadyInProgress">Sincronização já em progresso</string>
+	<string name="messageSyncError">Houve um erro ao tentar analisar sua coleção de notas. Se você for capaz de replicar o problema, por favor nos contate!</string>
+	<string name="error">Erro</string>
+	
+	<!-- NoteSorting -->
+	<string name="menuSort">alterar ordem</string>
+	<string name="titleDefaultSorting">Escolha a ordem padrão</string>
+	<string name="prefDefaultSorting">Ordem padrão</string>
+	
+	<!-- NotebookFiltering -->
+	<string name="menuFilterNotebook">Filtrar</string>
+	<string name="strListEmptyNoNotebooks">Não há catálogos na base de dados.</string>
+	<string name="allNotebooksFilter">Todos os catálogos</string>
+	
+	<!-- List Longpress Menu -->
+	<string name="view">Visualizar</string>
+	<string name="noteOptions">Opções de Notas</string>
+	<string name="send">Enviar</string>
+	
+	<!--  Search -->
+	<string name="search_hint">Pesquisar notas</string>
+	<string name="search_description">Texto em suas notas</string>
+	<string name="strNoResults">Nenhuma nota encontrada para \"%s\"</string>
+	<string name="menuSearch">Pesquisar</string>
+	<string name="prefSearch">Opções de pesquisa</string>
+	<string name="SearchResultTitle">Resultados da busca:</string>
+	<string name="clearSearchHistoryTitle">Limpar histórico de busca</string>
+	<string name="clearSearchHistory">Remover todas as pesquisas que você realizou</string>
+	<string name="deletedSearchHistory">Histórico de pesquisa foi limpo.</string>
+	
+	<!-- Date -->
+	<string name="textModified">Modificado em:</string>
+	<string name="textToday">Hoje</string>
+	<string name="textYexterday">Ontem</string>
+	
+	<!-- 
+	Information that goes into the Android Market Application Listing. 
+	I\'ve put it in here so that it\'ll get translated by translators.
+	-->
+	<!-- 30 chars max -->
+	<string name="market_title">Tomdroid notas</string>
+	<!-- 325 chars max -->
+	<string name="market_description">Um cliente Tomboy para Android. Tomboy é uma app de notas de dektop usando uma abordagem wikiwiki e uma interface de usuário simples.\n\nNOTA: Este é um cliente de LEITURA por agora.\n\n*Compatibilidade do formato de notas com Tomboy\n* Sincronização de notas online com Snowy, Tombpoy Online e Ubuntu One\n* Importação do Cartão SD\n* Open source!</string>
+	
+	<!-- 80 chars max -->
+	<string name="market_promotext">Aplicação de notas com sincronização online compatível com Tomboy</string>
+	
+	
+	<!-- Launchpad Translation String -->
+	<string name="about_translators">Launchpad Contributions:
+  João Santana https://launchpad.net/~joaosantana</string>
+	
+</resources>
