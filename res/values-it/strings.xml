@@ -54,8 +54,6 @@
 	<string name="prefSyncServer">Server</string>
 	<string name="prefSDCard">SD Card</string>
 	<string name="prefAuthenticate">Authenticate</string>
-	<string name="prefLocation">Location on SD Card</string>
-	<string name="prefLocationSummary">Change the path to your notes-folder</string>
 	
 	<string name="prefSyncCompleteAuth">Completing authentication. Please wait...</string>
 	<string name="prefSyncConnectionFailed">The connection to the server has failed, please check that the address you entered is correct.</string>
@@ -114,10 +112,7 @@
 	
 	
 	<!-- Launchpad Translation String -->
-	<string name="about_translators">
-	
-	translator-credits
-	
-	</string>
+	<string name="about_translators">Launchpad Contributions:
+  Stefan Hammer https://launchpad.net/~j-4</string>
 	
 </resources>
