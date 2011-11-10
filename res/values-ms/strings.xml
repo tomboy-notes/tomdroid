@@ -53,6 +53,7 @@
 	<string name="prefSyncService">Perkhidmatan</string>
 	<string name="prefSyncServer">Pelayan</string>
 	<string name="prefSDCard">Kad SD</string>
+	<string name="prefTomboyWeb">Tomboy Web</string>
 	<string name="prefAuthenticate">Sahihkan</string>
 	
 	<string name="prefSyncCompleteAuth">Menyelesaikan pengesahihan. Tunggu sebentar...</string>

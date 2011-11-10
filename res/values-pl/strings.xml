@@ -53,6 +53,7 @@
 	<string name="prefSyncService">Usługa</string>
 	<string name="prefSyncServer">Serwer</string>
 	<string name="prefSDCard">Karta SD</string>
+	<string name="prefTomboyWeb">Tomboy Web</string>
 	<string name="prefAuthenticate">Autoryzuj</string>
 	
 	<string name="prefSyncCompleteAuth">Autoryzowanie. Proszę czekać...</string>
