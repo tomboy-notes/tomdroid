@@ -65,7 +65,7 @@ public class SdCardSyncService extends SyncService {
 	
 	@Override
 	public String getDescription() {
-		return "SD Card";
+		return R.string.prefSDCard;
 	}
 
 	@Override

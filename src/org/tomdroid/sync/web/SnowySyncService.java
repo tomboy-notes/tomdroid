@@ -51,7 +51,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 	
 	@Override
 	public String getDescription() {
-		return "Tomboy Web";
+		return R.string.prefTomboyWeb;
 	}
 
 	@Override
