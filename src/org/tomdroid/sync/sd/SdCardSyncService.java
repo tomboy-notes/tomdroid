@@ -37,7 +37,6 @@ import java.util.regex.Pattern;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import org.tomdroid.R;
 import org.tomdroid.Note;
 import org.tomdroid.sync.SyncService;
 import org.tomdroid.ui.Tomdroid;
@@ -66,7 +65,8 @@ public class SdCardSyncService extends SyncService {
 	
 	@Override
 	public String getDescription() {
-		return R.string.prefSDCard;
+		//TODO use string in translatable resources
+		return "SD Card";
 	}
 
 	@Override
