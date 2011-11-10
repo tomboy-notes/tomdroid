@@ -38,6 +38,7 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import org.tomdroid.Note;
+import org.tomdroid.R;
 import org.tomdroid.sync.SyncService;
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.ErrorList;
@@ -64,9 +65,8 @@ public class SdCardSyncService extends SyncService {
 	}
 	
 	@Override
-	public String getDescription() {
-		//TODO use string in translatable resources
-		return "SD Card";
+	public int getDescriptionAsId() {
+		return R.string.prefSDCard;
 	}
 
 	@Override
