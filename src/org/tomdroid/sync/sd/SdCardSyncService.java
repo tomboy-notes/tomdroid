@@ -37,6 +37,7 @@ import java.util.regex.Pattern;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import org.tomdroid.R;
 import org.tomdroid.Note;
 import org.tomdroid.sync.SyncService;
 import org.tomdroid.ui.Tomdroid;

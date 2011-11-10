@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tomdroid.R;
 import org.tomdroid.Note;
 import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncService;

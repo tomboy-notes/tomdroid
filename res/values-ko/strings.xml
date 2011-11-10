@@ -38,7 +38,7 @@
 	<string name="titleWelcome">경고</string>
 	<string name="titleAbout">Tomdroid 정보</string>
 	<string name="strWelcome">Tomdroid에 오신 것을 환영합니다.\n\n현재 이 애플리케이션은 베타버전이기 때문에 노트를 수정하지 못한다는 점과 같은 문제가 있습니다.\n\n 저희 팀은 그런 문제를 잘 알고 있으며, 기능 개선 작업을 진행 중입니다. 애플리케이션의 이른 출시는 좀 더 많은 테스트를 거치기 위한 것입니다. \n\n 런치패드 Tomdroid팀 (launchpad.net/tomdroid)에서의 모든 기여를 기다리고 있습니다..\n</string>
-	<string name="strAbout">%1$s\n\n만든이:%2s\n버전: %3$s\nGPLv3에 의해 라이센스되어 있습니다.</string>
+	<string name="strAbout">%1$s\n\n만든이: %2$s\n버전: %3$s\nGPLv3에 의해 라이센스되어 있습니다.</string>
 	
 	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
 	<string name="btnOk">확인</string>
@@ -114,6 +114,7 @@
 	
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
-  MinSik CHO https://launchpad.net/~mscho527</string>
+  MinSik CHO https://launchpad.net/~mscho527
+  Stefan Hammer https://launchpad.net/~j-4</string>
 	
 </resources>
