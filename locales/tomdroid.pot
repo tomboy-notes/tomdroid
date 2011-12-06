@@ -98,7 +98,7 @@ msgid "SD Card"
 msgstr ""
 
 #: tmp_strings.xml:56(string)
-msgid "Online Syncronization"
+msgid "Online Synchronization"
 msgstr ""
 
 #: tmp_strings.xml:57(string)
