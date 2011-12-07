@@ -66,6 +66,7 @@ public class SyncMessageHandler extends Handler {
 					message = this.activity.getString(R.string.messageSyncComplete);
 					message = String.format(message,serviceDescription);
 					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+					refreshActivity();
 				} else {
 
 					message = this.activity.getString(R.string.messageSyncError);
@@ -78,10 +79,11 @@ public class SyncMessageHandler extends Handler {
 									Toast.makeText(activity, "Could not save the errors, please check your SD card.",
 											Toast.LENGTH_SHORT).show();
 								}
+								refreshActivity();
 							}
 						})
 						.setNegativeButton("Close", new OnClickListener() {
-							public void onClick(DialogInterface dialog, int which) {}
+							public void onClick(DialogInterface dialog, int which) { refreshActivity(); }
 						}).show();
 				}
 				break;
@@ -156,6 +158,13 @@ public class SyncMessageHandler extends Handler {
 		View dot = activity.findViewById(R.id.sync_dot);
 		dot.setVisibility(View.VISIBLE);
 		dot.startAnimation(pulse);
+	}
+	
+	private void refreshActivity() {
+		if (! (activity.isTaskRoot())) {
+			activity.finish(); activity.startActivity(activity.getIntent());
+			Log.d(TAG,"Restarted the current Activity: "+activity.toString());
+		}
 	}
 
 }
