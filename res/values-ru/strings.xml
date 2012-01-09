@@ -29,82 +29,82 @@
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
-	<string name="strListEmptyWaiting">Please wait while the notes load..</string>
-	<string name="strListEmptyNoNotes">There are no notes in Tomdroid\'s database.</string>
+	<string name="strListEmptyWaiting">Пожалуйста, подождите, пока заметки загружаются..</string>
+	<string name="strListEmptyNoNotes">В базе данных Tomdroid заметок нет.</string>
 	
-	<string name="menuSync">Sync</string>
-	<string name="menuPrefs">Settings</string>
-	<string name="menuAbout">About</string>
-	<string name="titleWelcome">Warning</string>
-	<string name="titleAbout">About Tomdroid</string>
-	<string name="strWelcome">Welcome to Tomdroid.\n\nPlease note that this is beta quality software and that it contains known problems, like its inability to edit notes.\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something out and tested as quickly as possible.\n\nIf you would like to contribute, help at all levels would be appreciated. Hop on board on launchpad.net/tomdroid and contact us!\n</string>
-	<string name="strAbout">%1$s\n\nAuthor: %2$s\nVersion: %3$s\nLicensed under the GPLv3</string>
+	<string name="menuSync">Синхронизация</string>
+	<string name="menuPrefs">Настройки</string>
+	<string name="menuAbout">О программе</string>
+	<string name="titleWelcome">Внимание</string>
+	<string name="titleAbout">О Tomdroid</string>
+	<string name="strWelcome">Добро пожаловать в Tombodroid.\n\nПожалуйста, заметьте, что это программа на beta-стадии, и она содержит некоторые известные проблемы (такие как невозможность редактирования заметок).\n\nМы осведомлены об этих проблемах и планируем исправлять их быстро, но я также хотел бы получать что-то и тестировать как можно скорее.\n\nЕсли вы хотите сделать свой вклад, ваша помощь на всех уровнях будет оценена. Зайдите на launchpad.net/tomdroid и свяжитесь с нами!\n</string>
+	<string name="strAbout">%1$s\n\nАвтор: %2$s\nВерсия: %3$s\nЛицензия GPLv3</string>
 	
 	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
-	<string name="btnOk">OK</string>
-	<string name="btnCancel">Cancel</string>
-	<string name="btnClose">Close</string>
-	<string name="btnProjectPage">Project page</string>
+	<string name="btnOk">Ок</string>
+	<string name="btnCancel">Отмена</string>
+	<string name="btnClose">Закрыть</string>
+	<string name="btnProjectPage">Сайт проекта</string>
 	
 	<!-- note-view.xml -->
-	<string name="strWait">Please wait while note loads...</string>
+	<string name="strWait">Пожалуйста, подождите, пока заметка загружается..</string>
 	
-	<string name="prefSync">Synchronization</string>
-	<string name="prefSyncService">Service</string>
-	<string name="prefSyncServer">Server</string>
+	<string name="prefSync">Синхронизация</string>
+	<string name="prefSyncService">Сервис</string>
+	<string name="prefSyncServer">Сервер</string>
 	<string name="prefSDCard">SD Card</string>
-	<string name="prefTomboyWeb">Tomboy Web</string>
-	<string name="prefAuthenticate">Authenticate</string>
+	<string name="prefTomboyWeb">Онлайн синхронизация</string>
+	<string name="prefAuthenticate">Аутентификация</string>
 	
-	<string name="prefSyncCompleteAuth">Completing authentication. Please wait...</string>
-	<string name="prefSyncConnectionFailed">The connection to the server has failed, please check that the address you entered is correct.</string>
-	<string name="prefServerEmpty">The server address changed but the new value is empty</string>
+	<string name="prefSyncCompleteAuth">Завершение аутентификации. Подождите...</string>
+	<string name="prefSyncConnectionFailed">Подключение к серверу не удалось, проверьте правильность введенного вами адреса.</string>
+	<string name="prefServerEmpty">Адрес сервера изменен, но новое значение пустое</string>
 	
-	<string name="titleSyncService">Choose the sync service to use</string>
-	<string name="messageSyncComplete">Synchronization with %1$s is complete.</string>
-	<string name="messageSyncNoNote">No notes found on %1$s .</string>
-	<string name="messageSyncNoConnection">You are not connected to the Internet.</string>
-	<string name="messageSyncAlreadyInProgress">Sync already in progress</string>
-	<string name="messageSyncError">There was an error trying to parse your note collection. If you are able to replicate the problem, please contact us!</string>
-	<string name="error">Error</string>
+	<string name="titleSyncService">Выберите сервис синхронизации для использования</string>
+	<string name="messageSyncComplete">Синхронизация с %1$s завершена.</string>
+	<string name="messageSyncNoNote">В %1$s заметок не найдено .</string>
+	<string name="messageSyncNoConnection">Вы не подключены к Интернету.</string>
+	<string name="messageSyncAlreadyInProgress">Синхронизация уже выполняется</string>
+	<string name="messageSyncError">Произошла ошибка при попытке разбора вашей коллекции заметок. Если вы можете воспроизвести эту проблему, пожалуйста, свяжитесь с нами!</string>
+	<string name="error">Ошибка</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">change sort</string>
-	<string name="titleDefaultSorting">Choose the default sorting</string>
-	<string name="prefDefaultSorting">Default sort</string>
+	<string name="menuSort">выберите метод сортировки</string>
+	<string name="titleDefaultSorting">Выберите стандартный метод сортировки</string>
+	<string name="prefDefaultSorting">Стандартный метод сортировки</string>
 	
 	<!-- NotebookFiltering -->
-	<string name="menuFilterNotebook">Filter</string>
-	<string name="strListEmptyNoNotebooks">There are no notebooks in the database.</string>
-	<string name="allNotebooksFilter">All notebooks</string>
+	<string name="menuFilterNotebook">Фильтр</string>
+	<string name="strListEmptyNoNotebooks">В базе данных нет сборников заметок</string>
+	<string name="allNotebooksFilter">Все сборники  заметок</string>
 	
 	<!-- List Longpress Menu -->
-	<string name="view">View</string>
-	<string name="noteOptions">Note Options</string>
-	<string name="send">Send</string>
+	<string name="view">Просмотреть</string>
+	<string name="noteOptions">Настройки заметки</string>
+	<string name="send">Отправить</string>
 	
 	<!--  Search -->
-	<string name="search_hint">Search Notes</string>
-	<string name="search_description">Text in your notes</string>
-	<string name="strNoResults">No notes found for \"%s\"</string>
-	<string name="menuSearch">Search</string>
-	<string name="prefSearch">Search Options</string>
-	<string name="SearchResultTitle">Search Results:</string>
-	<string name="clearSearchHistoryTitle">Clear search history</string>
-	<string name="clearSearchHistory">Remove all the searches you have performed</string>
-	<string name="deletedSearchHistory">Search history has been cleared.</string>
+	<string name="search_hint">Поиск заметок</string>
+	<string name="search_description">Текст в ваших заметках</string>
+	<string name="strNoResults">Нет заметок с  \"%s\"</string>
+	<string name="menuSearch">Поиск</string>
+	<string name="prefSearch">Настройки поиска</string>
+	<string name="SearchResultTitle">Результаты поиска:</string>
+	<string name="clearSearchHistoryTitle">Очистить историю поиска</string>
+	<string name="clearSearchHistory">Удалить все совершенные поиски</string>
+	<string name="deletedSearchHistory">История поиска очищена</string>
 	
 	<!-- Date -->
-	<string name="textModified">Modified:</string>
-	<string name="textToday">Today</string>
-	<string name="textYexterday">Yesterday</string>
+	<string name="textModified">Изменен:</string>
+	<string name="textToday">Сегодня</string>
+	<string name="textYexterday">Вчера</string>
 	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
 	I\'ve put it in here so that it\'ll get translated by translators.
 	-->
 	<!-- 30 chars max -->
-	<string name="market_title">Tomdroid notes</string>
+	<string name="market_title">Заметки Tomdroid</string>
 	<!-- 325 chars max -->
 	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\nNOTE: It is a READ-ONLY client for now.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
 	
@@ -114,6 +114,9 @@
 	
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
+  Bernhard Hauer https://launchpad.net/~bernhard-hauer1
+  John Akulov https://launchpad.net/~gxoptg
+  Mirzaeva Asalle https://launchpad.net/~asaly12
   Stefan Hammer https://launchpad.net/~j-4</string>
 	
 </resources>

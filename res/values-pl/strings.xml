@@ -53,7 +53,7 @@
 	<string name="prefSyncService">Usługa</string>
 	<string name="prefSyncServer">Serwer</string>
 	<string name="prefSDCard">Karta SD</string>
-	<string name="prefTomboyWeb">Tomboy Web</string>
+	<string name="prefTomboyWeb">Synchronizacja online</string>
 	<string name="prefAuthenticate">Autoryzuj</string>
 	
 	<string name="prefSyncCompleteAuth">Autoryzowanie. Proszę czekać...</string>
@@ -74,7 +74,7 @@
 	<string name="prefDefaultSorting">Domyślne sortowanie</string>
 	
 	<!-- NotebookFiltering -->
-	<string name="menuFilterNotebook">Filter</string>
+	<string name="menuFilterNotebook">Filtr</string>
 	<string name="strListEmptyNoNotebooks">Brak notatników w bazie danych.</string>
 	<string name="allNotebooksFilter">Wszystkie notatniki</string>
 	
@@ -115,6 +115,7 @@
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
   Piotr Adamski https://launchpad.net/~mcveat
-  Stefan Hammer https://launchpad.net/~j-4</string>
+  Stefan Hammer https://launchpad.net/~j-4
+  Łukasz Serafinowski https://launchpad.net/~lukasz-serafinowski</string>
 	
 </resources>

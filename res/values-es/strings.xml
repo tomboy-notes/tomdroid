@@ -53,7 +53,7 @@
 	<string name="prefSyncService">Servicio</string>
 	<string name="prefSyncServer">Servidor</string>
 	<string name="prefSDCard">Trajeta SD</string>
-	<string name="prefTomboyWeb">Tomboy Web</string>
+	<string name="prefTomboyWeb">Sincronización en línea</string>
 	<string name="prefAuthenticate">Autenticar</string>
 	
 	<string name="prefSyncCompleteAuth">La autenticación está terminando. Por favor, espere.</string>
@@ -116,7 +116,7 @@
 	<string name="about_translators">Launchpad Contributions:
   Alicia García Adames https://launchpad.net/~aliciagadames
   Clemens Niesner https://launchpad.net/~pop-ffe
-  Isabel Heger https://launchpad.net/~isabel-h1
+  JoLiSh https://launchpad.net/~jolish
   João Santana https://launchpad.net/~joaosantana
   Stefan Hammer https://launchpad.net/~j-4</string>
 	

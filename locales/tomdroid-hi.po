@@ -1,16 +1,16 @@
-# Chinese (Simplified) translation for tomdroid
-# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# Hindi translation for tomdroid
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
 # This file is distributed under the same license as the tomdroid package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: tomdroid\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-12-07 10:08+0100\n"
-"PO-Revision-Date: 2011-12-07 09:34+0000\n"
-"Last-Translator: Stefan Hammer <Unknown>\n"
-"Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
+"PO-Revision-Date: 2012-01-05 15:39+0000\n"
+"Last-Translator: Vibhav Pant <vibhavp@gmail.com>\n"
+"Language-Team: Hindi <hi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,45 +20,45 @@ msgstr ""
 #. application details
 #: tmp_strings.xml:27(string)
 msgid "Tomdroid"
-msgstr "Tomdroid"
+msgstr ""
 
 #: tmp_strings.xml:28(string)
 msgid ""
 "Tomboy compatible wikiwiki note-taking application that can't take notes yet."
-msgstr "Tomdroid是一种与Tomboy兼容的、使用wikiwiki方法的记笔记应用，但至今为止还不能记笔记。"
+msgstr ""
 
 #: tmp_strings.xml:29(string)
 msgid "Olivier Bilodeau"
-msgstr "Olivier Bilodeau"
+msgstr ""
 
 #. main.xml
 #: tmp_strings.xml:32(string)
 msgid "Please wait while the notes load.."
-msgstr "笔记在加载中，请稍候"
+msgstr ""
 
 #: tmp_strings.xml:33(string)
 msgid "There are no notes in Tomdroid's database."
-msgstr "Tomdroid的数据库里没有笔记。"
+msgstr ""
 
 #: tmp_strings.xml:35(string)
 msgid "Sync"
-msgstr "同步"
+msgstr "सिंक"
 
 #: tmp_strings.xml:36(string)
 msgid "Settings"
-msgstr "设置"
+msgstr "सेटिंग्स"
 
 #: tmp_strings.xml:37(string)
 msgid "About"
-msgstr "有关"
+msgstr "जानकारी"
 
 #: tmp_strings.xml:38(string)
 msgid "Warning"
-msgstr "警告"
+msgstr "चेतावनी"
 
 #: tmp_strings.xml:39(string)
 msgid "About Tomdroid"
-msgstr "关于Tomdroid"
+msgstr ""
 
 #: tmp_strings.xml:40(string)
 msgid ""
@@ -69,197 +69,194 @@ msgid ""
 "would like to contribute, help at all levels would be appreciated. Hop on "
 "board on launchpad.net/tomdroid and contact us!\\n"
 msgstr ""
-"欢迎你用Tomdroid。\\n\\n请注意，软件还在发展中，还含了已知的问题，比如它还无法编辑笔记。\\n\\"
-"n我们意识到这些问题，并试图快点解决它们。\\n\\"
-"n如果你想作出贡献，我们欢迎各种帮助。为了联系我们，快参加launchpad.net/tomdroid!\\n"
 
 #: tmp_strings.xml:41(string)
 msgid "%1$s\\n\\nAuthor: %2$s\\nVersion: %3$s\\nLicensed under the GPLv3"
-msgstr "%1$s\\n\\n作者: %2$s\\n版本: %3$s\\n领有GPLv3的许可证"
+msgstr ""
 
 #. TODO aren't these available somewhere else? like in the SDK? //
 #: tmp_strings.xml:44(string)
 msgid "OK"
-msgstr "确认"
+msgstr "संस्थापित करें"
 
 #: tmp_strings.xml:45(string)
 msgid "Cancel"
-msgstr "取消"
+msgstr "रद्द करें"
 
 #: tmp_strings.xml:46(string)
 msgid "Close"
-msgstr "关闭"
+msgstr "बंद"
 
 #: tmp_strings.xml:47(string)
 msgid "Project page"
-msgstr "项目页"
+msgstr ""
 
 #. note-view.xml
 #: tmp_strings.xml:50(string)
 msgid "Please wait while note loads..."
-msgstr "笔记在加载中，请稍候"
+msgstr ""
 
 #: tmp_strings.xml:52(string)
 msgid "Synchronization"
-msgstr "同步"
+msgstr "तुल्यकालन"
 
 #: tmp_strings.xml:53(string)
 msgid "Service"
-msgstr "服务"
+msgstr "सेवा"
 
 #: tmp_strings.xml:54(string)
 msgid "Server"
-msgstr "服务器"
+msgstr "सर्वर"
 
 #: tmp_strings.xml:55(string)
 msgid "SD Card"
-msgstr "SD卡"
+msgstr ""
 
 #: tmp_strings.xml:56(string)
 msgid "Online Synchronization"
-msgstr "网上同步"
+msgstr ""
 
 #: tmp_strings.xml:57(string)
 msgid "Authenticate"
-msgstr "认证"
+msgstr ""
 
 #: tmp_strings.xml:59(string)
 msgid "Completing authentication. Please wait..."
-msgstr "完成认证。请稍候..."
+msgstr ""
 
 #: tmp_strings.xml:60(string)
 msgid ""
 "The connection to the server has failed, please check that the address you "
 "entered is correct."
-msgstr "与服务器的连接失败了，请检查您输入的网址是否正确。"
+msgstr ""
 
 #: tmp_strings.xml:61(string)
 msgid "The server address changed but the new value is empty"
-msgstr "您没有输入服务器的网址。变化被保存。"
+msgstr ""
 
 #: tmp_strings.xml:63(string)
 msgid "Choose the sync service to use"
-msgstr "请选择想使用的同步服务"
+msgstr ""
 
 #: tmp_strings.xml:64(string)
 msgid "Synchronization with %1$s is complete."
-msgstr "与%1$s的同步完成。"
+msgstr ""
 
 #: tmp_strings.xml:65(string)
 msgid "No notes found on %1$s ."
-msgstr "%1$s里没找到笔记。"
+msgstr ""
 
 #: tmp_strings.xml:66(string)
 msgid "You are not connected to the Internet."
-msgstr "现在没有上网。"
+msgstr ""
 
 #: tmp_strings.xml:67(string)
 msgid "Sync already in progress"
-msgstr "同步已经在进行中"
+msgstr ""
 
 #: tmp_strings.xml:68(string)
 msgid ""
 "There was an error trying to parse your note collection. If you are able to "
 "replicate the problem, please contact us!"
-msgstr "在搜索笔记的时候出现了错误。如果再次出现这样的错误请联系我们！"
+msgstr ""
 
 #: tmp_strings.xml:69(string)
 msgid "Error"
-msgstr "错误"
+msgstr ""
 
 #. NoteSorting
 #: tmp_strings.xml:72(string)
 msgid "change sort"
-msgstr "改变顺序"
+msgstr ""
 
 #: tmp_strings.xml:73(string)
 msgid "Choose the default sorting"
-msgstr "选择常规的顺序"
+msgstr ""
 
 #: tmp_strings.xml:74(string)
 msgid "Default sort"
-msgstr "常规的顺序"
+msgstr ""
 
 #. NotebookFiltering
 #: tmp_strings.xml:77(string)
 msgid "Filter"
-msgstr "过滤"
+msgstr ""
 
 #: tmp_strings.xml:78(string)
 msgid "There are no notebooks in the database."
-msgstr "数据库里没有笔记本。"
+msgstr ""
 
 #: tmp_strings.xml:79(string)
 msgid "All notebooks"
-msgstr "所有的笔记本"
+msgstr ""
 
 #. List Longpress Menu
 #: tmp_strings.xml:82(string)
 msgid "View"
-msgstr "查看"
+msgstr ""
 
 #: tmp_strings.xml:83(string)
 msgid "Note Options"
-msgstr "笔记选项"
+msgstr ""
 
 #: tmp_strings.xml:84(string)
 msgid "Send"
-msgstr "发送"
+msgstr ""
 
 #. Search
 #: tmp_strings.xml:87(string)
 msgid "Search Notes"
-msgstr "搜索笔记"
+msgstr ""
 
 #: tmp_strings.xml:88(string)
 msgid "Text in your notes"
-msgstr "笔记的内容"
+msgstr ""
 
 #: tmp_strings.xml:89(string)
 msgid "No notes found for \\\"%s\\\""
-msgstr "没找到有关\\\"%s\\\"的笔记"
+msgstr ""
 
 #: tmp_strings.xml:90(string)
 msgid "Search"
-msgstr "搜索"
+msgstr ""
 
 #: tmp_strings.xml:91(string)
 msgid "Search Options"
-msgstr "搜索选项"
+msgstr ""
 
 #: tmp_strings.xml:92(string)
 msgid "Search Results:"
-msgstr "搜索结果"
+msgstr ""
 
 #: tmp_strings.xml:93(string)
 msgid "Clear search history"
-msgstr "删除搜索历史"
+msgstr ""
 
 #: tmp_strings.xml:94(string)
 msgid "Remove all the searches you have performed"
-msgstr "删除所有的搜索"
+msgstr ""
 
 #: tmp_strings.xml:95(string)
 msgid "Search history has been cleared."
-msgstr "搜索历史被删除了"
+msgstr ""
 
 #. Date
 #: tmp_strings.xml:98(string)
 msgid "Modified:"
-msgstr "修改于："
+msgstr ""
 
 #: tmp_strings.xml:99(string)
 msgid "Today"
-msgstr "今天"
+msgstr ""
 
 #: tmp_strings.xml:100(string)
 msgid "Yesterday"
-msgstr "昨天"
+msgstr ""
 
 #. 30 chars max
 #: tmp_strings.xml:107(string)
 msgid "Tomdroid notes"
-msgstr "Tomdroid 笔记"
+msgstr ""
 
 #. 325 chars max
 #: tmp_strings.xml:109(string)
@@ -270,20 +267,16 @@ msgid ""
 "synchronization with Snowy, Tomboy Online or Ubuntu One\\n* SD Card "
 "importation\\n* Open source!"
 msgstr ""
-"Tomdroid是一种与Tomboy兼容的记笔记应用，提供给使用Android软件的机器。Tomboy是一种在桌面用的、使用wikiwiki方法的、有着方"
-"便的用户接口的记笔记应用。\\n\\n请注意：目前还不能编辑笔记。\\n\\n* 请注意与Tomboy兼容的笔记格式。Tomboy\\n* "
-"Tomdroid用Snowy、Tomboy  Online 或 Ubuntu One 以便在网上与Tomboy同步\\n* 通过SD卡也可以进口笔记。\\"
-"n* Tomdroid是开源软件！"
 
 #. 80 chars max
 #: tmp_strings.xml:112(string)
 msgid ""
 "Note-taking application with online synchronization compatible with Tomboy"
-msgstr "与Tomboy兼容的、可在网上同步的记笔记应用"
+msgstr ""
 
 #. Launchpad Translation String
 #: tmp_strings.xml:116(string)
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
-"  Stefan Hammer https://launchpad.net/~j-4"
+"  Vibhav Pant https://launchpad.net/~vibhavp"

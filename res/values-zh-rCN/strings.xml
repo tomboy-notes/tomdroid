@@ -53,7 +53,7 @@
 	<string name="prefSyncService">服务</string>
 	<string name="prefSyncServer">服务器</string>
 	<string name="prefSDCard">SD卡</string>
-	<string name="prefTomboyWeb">Tomboy Web</string>
+	<string name="prefTomboyWeb">网上同步</string>
 	<string name="prefAuthenticate">认证</string>
 	
 	<string name="prefSyncCompleteAuth">完成认证。请稍候...</string>
@@ -114,7 +114,6 @@
 	
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
-  Isabel Heger https://launchpad.net/~isabel-h1
   Stefan Hammer https://launchpad.net/~j-4</string>
 	
 </resources>

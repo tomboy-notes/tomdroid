@@ -37,7 +37,7 @@
 	<string name="menuAbout">À propos</string>
 	<string name="titleWelcome">Attention</string>
 	<string name="titleAbout">À propos de Tomdroid</string>
-	<string name="strWelcome">Bienvenue sur Tomdroid.\n\nVeuillez noter que l\'application est en phase beta et qu\'elle contient des problèmes connus, comme l\'incapacité d\'éditer une note.\n\nNous somme bien au courant de ces problèmes et nous avont l\'intention de travailler la dessus rapidement mais je veux aussi developper et tester l\'application aussi vite que possible.\n\nSi vous voulez contribuer, de l\'aide à tous les niveaux sera appréciée. Allez sur launchpad.net/tomdroid et contactez nous!\n</string>
+	<string name="strWelcome">Bienvenue sur Tomdroid.\n\nVeuillez noter que l\'application est en phase bêta et qu\'elle contient des problèmes connus, comme l\'incapacité d\'éditer une note.\n\nNous sommes bien au courant de ces problèmes et nous avons l\'intention de travailler là dessus rapidement mais je veux aussi développer et tester l\'application aussi vite que possible.\n\nSi vous voulez contribuer, de l\'aide à tous les niveaux sera appréciée. Allez sur launchpad.net/tomdroid et contactez nous!\n</string>
 	<string name="strAbout">%1$s\n\nAuteur: %2$s\nVersion: %3$s\nLicense sous GPLv3</string>
 	
 	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
@@ -52,8 +52,8 @@
 	<string name="prefSync">Synchronisation</string>
 	<string name="prefSyncService">Service</string>
 	<string name="prefSyncServer">Serveur</string>
-	<string name="prefSDCard">carte SD</string>
-	<string name="prefTomboyWeb">Tomboy Web</string>
+	<string name="prefSDCard">Carte SD</string>
+	<string name="prefTomboyWeb">Synchronisation en ligne</string>
 	<string name="prefAuthenticate">Authentification</string>
 	
 	<string name="prefSyncCompleteAuth">Authentification réussie. Veuillez patienter ...</string>
@@ -114,7 +114,7 @@
 	
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
-  Isabel Heger https://launchpad.net/~isabel-h1
+  Léo POUGHON https://launchpad.net/~leo-poughon
   Stefan Hammer https://launchpad.net/~j-4</string>
 	
 </resources>

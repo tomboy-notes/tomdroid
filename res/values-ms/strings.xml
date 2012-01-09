@@ -53,7 +53,7 @@
 	<string name="prefSyncService">Perkhidmatan</string>
 	<string name="prefSyncServer">Pelayan</string>
 	<string name="prefSDCard">Kad SD</string>
-	<string name="prefTomboyWeb">Tomboy Web</string>
+	<string name="prefTomboyWeb">Penyegerakan Atas Talian</string>
 	<string name="prefAuthenticate">Sahihkan</string>
 	
 	<string name="prefSyncCompleteAuth">Menyelesaikan pengesahihan. Tunggu sebentar...</string>
@@ -114,6 +114,6 @@
 	
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
-  abuyop https://launchpad.net/~abuyop</string>
+  Stefan Hammer https://launchpad.net/~j-4</string>
 	
 </resources>

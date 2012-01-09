@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tomdroid\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-11-01 20:25+0100\n"
-"PO-Revision-Date: 2011-11-03 21:15+0000\n"
-"Last-Translator: Stefan Hammer <Unknown>\n"
+"POT-Creation-Date: 2011-12-07 10:08+0100\n"
+"PO-Revision-Date: 2012-01-01 19:38+0000\n"
+"Last-Translator: Łukasz Serafinowski <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-11-10 08:16+0000\n"
-"X-Generator: Launchpad (build 14263)\n"
+"X-Launchpad-Export-Date: 2012-01-09 19:00+0000\n"
+"X-Generator: Launchpad (build 14640)\n"
 
 #. application details
 #: tmp_strings.xml:27(string)
@@ -119,14 +119,18 @@ msgid "SD Card"
 msgstr "Karta SD"
 
 #: tmp_strings.xml:56(string)
+msgid "Online Synchronization"
+msgstr "Synchronizacja online"
+
+#: tmp_strings.xml:57(string)
 msgid "Authenticate"
 msgstr "Autoryzuj"
 
-#: tmp_strings.xml:58(string)
+#: tmp_strings.xml:59(string)
 msgid "Completing authentication. Please wait..."
 msgstr "Autoryzowanie. Proszę czekać..."
 
-#: tmp_strings.xml:59(string)
+#: tmp_strings.xml:60(string)
 msgid ""
 "The connection to the server has failed, please check that the address you "
 "entered is correct."
@@ -134,31 +138,31 @@ msgstr ""
 "Połączenie z serwerem jest niemożliwe, sprawdź, czy wprowadzony adres jest "
 "poprawny."
 
-#: tmp_strings.xml:60(string)
+#: tmp_strings.xml:61(string)
 msgid "The server address changed but the new value is empty"
 msgstr "Nie wprowadzono adresu serwera"
 
-#: tmp_strings.xml:62(string)
+#: tmp_strings.xml:63(string)
 msgid "Choose the sync service to use"
 msgstr "Wybierz usługę, której chcesz użyć"
 
-#: tmp_strings.xml:63(string)
+#: tmp_strings.xml:64(string)
 msgid "Synchronization with %1$s is complete."
 msgstr "Zakończono synchronizację z %1$s."
 
-#: tmp_strings.xml:64(string)
+#: tmp_strings.xml:65(string)
 msgid "No notes found on %1$s ."
 msgstr "Brak notatek w %1$s ."
 
-#: tmp_strings.xml:65(string)
+#: tmp_strings.xml:66(string)
 msgid "You are not connected to the Internet."
 msgstr "Brak połączenia z siecią."
 
-#: tmp_strings.xml:66(string)
+#: tmp_strings.xml:67(string)
 msgid "Sync already in progress"
 msgstr "Synchronizacja w trakcie"
 
-#: tmp_strings.xml:67(string)
+#: tmp_strings.xml:68(string)
 msgid ""
 "There was an error trying to parse your note collection. If you are able to "
 "replicate the problem, please contact us!"
@@ -166,106 +170,106 @@ msgstr ""
 "Błąd wczytywania notatek. Jeśli problem się powtarza, proszę skontaktuj się "
 "z nami!"
 
-#: tmp_strings.xml:68(string)
+#: tmp_strings.xml:69(string)
 msgid "Error"
 msgstr "Błąd"
 
 #. NoteSorting
-#: tmp_strings.xml:71(string)
+#: tmp_strings.xml:72(string)
 msgid "change sort"
 msgstr "zmień sortowanie"
 
-#: tmp_strings.xml:72(string)
+#: tmp_strings.xml:73(string)
 msgid "Choose the default sorting"
 msgstr "Wybierz domyślne sortowanie"
 
-#: tmp_strings.xml:73(string)
+#: tmp_strings.xml:74(string)
 msgid "Default sort"
 msgstr "Domyślne sortowanie"
 
 #. NotebookFiltering
-#: tmp_strings.xml:76(string)
-msgid "Filter"
-msgstr ""
-
 #: tmp_strings.xml:77(string)
+msgid "Filter"
+msgstr "Filtr"
+
+#: tmp_strings.xml:78(string)
 msgid "There are no notebooks in the database."
 msgstr "Brak notatników w bazie danych."
 
-#: tmp_strings.xml:78(string)
+#: tmp_strings.xml:79(string)
 msgid "All notebooks"
 msgstr "Wszystkie notatniki"
 
 #. List Longpress Menu
-#: tmp_strings.xml:81(string)
+#: tmp_strings.xml:82(string)
 msgid "View"
 msgstr "Wyświetl"
 
-#: tmp_strings.xml:82(string)
+#: tmp_strings.xml:83(string)
 msgid "Note Options"
 msgstr "Opcje notatek"
 
-#: tmp_strings.xml:83(string)
+#: tmp_strings.xml:84(string)
 msgid "Send"
 msgstr "Wyślij"
 
 #. Search
-#: tmp_strings.xml:86(string)
+#: tmp_strings.xml:87(string)
 msgid "Search Notes"
 msgstr "Przeszukaj notatki"
 
-#: tmp_strings.xml:87(string)
+#: tmp_strings.xml:88(string)
 msgid "Text in your notes"
 msgstr "Treść notatki"
 
-#: tmp_strings.xml:88(string)
+#: tmp_strings.xml:89(string)
 msgid "No notes found for \\\"%s\\\""
 msgstr "Nie znaleziono notatek zawierających \\\"%s\\\""
 
-#: tmp_strings.xml:89(string)
+#: tmp_strings.xml:90(string)
 msgid "Search"
 msgstr "Szukaj"
 
-#: tmp_strings.xml:90(string)
+#: tmp_strings.xml:91(string)
 msgid "Search Options"
 msgstr "Opcje wyszukiwania"
 
-#: tmp_strings.xml:91(string)
+#: tmp_strings.xml:92(string)
 msgid "Search Results:"
 msgstr "Wyniki wyszukiwania:"
 
-#: tmp_strings.xml:92(string)
+#: tmp_strings.xml:93(string)
 msgid "Clear search history"
 msgstr "Wyczyść historię wyszukiwania"
 
-#: tmp_strings.xml:93(string)
+#: tmp_strings.xml:94(string)
 msgid "Remove all the searches you have performed"
 msgstr "Wyczyść historię swoich wyszukiwań"
 
-#: tmp_strings.xml:94(string)
+#: tmp_strings.xml:95(string)
 msgid "Search history has been cleared."
 msgstr "Historia wyszukiwania została wyczyszczona."
 
 #. Date
-#: tmp_strings.xml:97(string)
+#: tmp_strings.xml:98(string)
 msgid "Modified:"
 msgstr "Data modyfikacji:"
 
-#: tmp_strings.xml:98(string)
+#: tmp_strings.xml:99(string)
 msgid "Today"
 msgstr "Dziś"
 
-#: tmp_strings.xml:99(string)
+#: tmp_strings.xml:100(string)
 msgid "Yesterday"
 msgstr "Wczoraj"
 
 #. 30 chars max
-#: tmp_strings.xml:106(string)
+#: tmp_strings.xml:107(string)
 msgid "Tomdroid notes"
 msgstr "Tomdroid notes"
 
 #. 325 chars max
-#: tmp_strings.xml:108(string)
+#: tmp_strings.xml:109(string)
 msgid ""
 "A Tomboy client for Android. Tomboy is a desktop note-taking app using a "
 "wikiwiki approach and a simple user interface.\\n\\nNOTE: It is a READ-ONLY "
@@ -275,15 +279,16 @@ msgid ""
 msgstr ""
 
 #. 80 chars max
-#: tmp_strings.xml:111(string)
+#: tmp_strings.xml:112(string)
 msgid ""
 "Note-taking application with online synchronization compatible with Tomboy"
 msgstr ""
 
 #. Launchpad Translation String
-#: tmp_strings.xml:115(string)
+#: tmp_strings.xml:116(string)
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
 "  Piotr Adamski https://launchpad.net/~mcveat\n"
-"  Stefan Hammer https://launchpad.net/~j-4"
+"  Stefan Hammer https://launchpad.net/~j-4\n"
+"  Łukasz Serafinowski https://launchpad.net/~lukasz-serafinowski"
