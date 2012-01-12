@@ -38,7 +38,6 @@
 		<EditTextPreference android:key="sd_location"
 							android:title="@string/prefLocation"
 							android:positiveButtonText="@string/btnOk"
-							android:summary="@string/prefLocationSummary"
 							android:shouldDisableView="true"/>
 	</PreferenceCategory>
 	<PreferenceCategory android:title="@string/prefSearch">

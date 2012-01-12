@@ -133,6 +133,8 @@ public class PreferencesActivity extends PreferenceActivity {
 				Tomdroid.NOTES_PATH = Environment.getExternalStorageDirectory()
 								+ "/" + Preferences.getString(Preferences.Key.SD_LOCATION) + "/";
 				
+				sdLocation.setSummary(Tomdroid.NOTES_PATH);
+				
 				resetLocalDatabase();
 				return true;
 			}
@@ -248,6 +250,7 @@ public class PreferencesActivity extends PreferenceActivity {
 		syncServer.setEnabled(service.needsServer());
 		syncService.setSummary(service.getDescription());
 		sdLocation.setEnabled(service.needsLocation());
+		sdLocation.setSummary(Tomdroid.NOTES_PATH);
 	}
 		
 	private void connectionFailed() {
