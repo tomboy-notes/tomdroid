@@ -55,7 +55,6 @@
 	<string name="prefSDCard">SD Card</string>
 	<string name="prefTomboyWeb">Online Synchronization</string>
 	<string name="prefAuthenticate">Authenticate</string>
-	<string name="prefLocation">Location on SD Card</string>
 	
 	<string name="prefSyncCompleteAuth">Completing authentication. Please wait...</string>
 	<string name="prefSyncConnectionFailed">The connection to the server has failed, please check that the address you entered is correct.</string>
@@ -114,10 +113,7 @@
 	
 	
 	<!-- Launchpad Translation String -->
-	<string name="about_translators">
-	
-	translator-credits
-	
-	</string>
+	<string name="about_translators">Launchpad Contributions:
+  Vibhav Pant https://launchpad.net/~vibhavp</string>
 	
 </resources>

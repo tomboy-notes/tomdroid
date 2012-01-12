@@ -53,6 +53,7 @@
 	<string name="prefSyncService">Seirbhis</string>
 	<string name="prefSyncServer">Server</string>
 	<string name="prefSDCard">SD Card</string>
+	<string name="prefTomboyWeb">Online Synchronization</string>
 	<string name="prefAuthenticate">Authenticate</string>
 	
 	<string name="prefSyncCompleteAuth">Completing authentication. Please wait...</string>

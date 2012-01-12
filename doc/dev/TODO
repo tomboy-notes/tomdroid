@@ -5,7 +5,6 @@ TODO tasks
 - lp:766225 - Authenticating with U1 gives a "please check the address you entered" error on HTC Desire
 - lp:533933 - Sync folder does not remove messages from db
 - lp:724641 - Links break randomly
-- lp:689443 - NullPointer in SD Card Sync
 
 Unclassified:
 - getting-started FAQ (java, android env, bzr, open source)

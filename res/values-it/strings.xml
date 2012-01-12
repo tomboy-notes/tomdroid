@@ -29,74 +29,75 @@
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
-	<string name="strListEmptyWaiting">Please wait while the notes load..</string>
-	<string name="strListEmptyNoNotes">There are no notes in Tomdroid\'s database.</string>
+	<string name="strListEmptyWaiting">Per favore attendi mentre le note vengono caricate..</string>
+	<string name="strListEmptyNoNotes">Non ci sono note nell\'archivio di Tomdroid</string>
 	
-	<string name="menuSync">Sync</string>
-	<string name="menuPrefs">Settings</string>
-	<string name="menuAbout">About</string>
-	<string name="titleWelcome">Warning</string>
-	<string name="titleAbout">About Tomdroid</string>
-	<string name="strWelcome">Welcome to Tomdroid.\n\nPlease note that this is beta quality software and that it contains known problems, like its inability to edit notes.\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something out and tested as quickly as possible.\n\nIf you would like to contribute, help at all levels would be appreciated. Hop on board on launchpad.net/tomdroid and contact us!\n</string>
-	<string name="strAbout">%1$s\n\nAuthor: %2$s\nVersion: %3$s\nLicensed under the GPLv3</string>
+	<string name="menuSync">Sincronizzazione</string>
+	<string name="menuPrefs">Preferenze</string>
+	<string name="menuAbout">Informazioni su...</string>
+	<string name="titleWelcome">Attenzione</string>
+	<string name="titleAbout">A proposito di Tomdroid</string>
+	<string name="strWelcome">Benvenuto in Tomdroid.\n\nPer cortesia considera che questo è un programma di tipo beta ed esso contiene alcuni problemi noti, come la sua incapacità a modificare le note.\n\nNoi siamo ben consapevoli di questi problemi e intendiamo lavorarci sopra rapidamente ma vorremmo rilasciare qualcosa e testarlo il più rapidamente possibile.\n\nSe vuoi contribuire, saranno apprezzate migliorie ad ogni livello. Salta a bordo su launchpad.net/tomdroid e contattaci!\n</string>
+	<string name="strAbout">%1$s\n\nAutore: %2$s\nVersione: %3$s\nRilasciato con licenza GPLv3</string>
 	
 	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
 	<string name="btnOk">OK</string>
-	<string name="btnCancel">Cancel</string>
-	<string name="btnClose">Close</string>
-	<string name="btnProjectPage">Project page</string>
+	<string name="btnCancel">Annulla</string>
+	<string name="btnClose">Chiudi</string>
+	<string name="btnProjectPage">Pagina del progetto</string>
 	
 	<!-- note-view.xml -->
-	<string name="strWait">Please wait while note loads...</string>
+	<string name="strWait">Per favore attendi mentre carico le note...</string>
 	
-	<string name="prefSync">Synchronization</string>
-	<string name="prefSyncService">Service</string>
-	<string name="prefSyncServer">Server</string>
-	<string name="prefSDCard">SD Card</string>
-	<string name="prefAuthenticate">Authenticate</string>
+	<string name="prefSync">Sincronizzazione</string>
+	<string name="prefSyncService">Servizio</string>
+	<string name="prefSyncServer">Indirizzo server</string>
+	<string name="prefSDCard">Scheda SD</string>
+	<string name="prefTomboyWeb">Sincronizzazione Online</string>
+	<string name="prefAuthenticate">Autentica</string>
 	
-	<string name="prefSyncCompleteAuth">Completing authentication. Please wait...</string>
-	<string name="prefSyncConnectionFailed">The connection to the server has failed, please check that the address you entered is correct.</string>
+	<string name="prefSyncCompleteAuth">Sto completando l\'autenticazione. Per favore attendi...</string>
+	<string name="prefSyncConnectionFailed">La connessione al server è fallita, per favore controlla che l\'indirizzo che hai immesso sia corretto.</string>
 	<string name="prefServerEmpty">The server address changed but the new value is empty</string>
 	
-	<string name="titleSyncService">Choose the sync service to use</string>
-	<string name="messageSyncComplete">Synchronization with %1$s is complete.</string>
-	<string name="messageSyncNoNote">No notes found on %1$s .</string>
-	<string name="messageSyncNoConnection">You are not connected to the Internet.</string>
-	<string name="messageSyncAlreadyInProgress">Sync already in progress</string>
+	<string name="titleSyncService">Scegli come sincronizzare le note</string>
+	<string name="messageSyncComplete">Sincronizzazione con %1$s completata.</string>
+	<string name="messageSyncNoNote">Nessuna nota presente in %1$s .</string>
+	<string name="messageSyncNoConnection">Nessuna connessione</string>
+	<string name="messageSyncAlreadyInProgress">Sincronizzazione già in corso</string>
 	<string name="messageSyncError">There was an error trying to parse your note collection. If you are able to replicate the problem, please contact us!</string>
-	<string name="error">Error</string>
+	<string name="error">Errore</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">change sort</string>
-	<string name="titleDefaultSorting">Choose the default sorting</string>
-	<string name="prefDefaultSorting">Default sort</string>
+	<string name="menuSort">Cambia disposizione</string>
+	<string name="titleDefaultSorting">Scegli la disposizione predefinita</string>
+	<string name="prefDefaultSorting">Disposizione predefinita</string>
 	
 	<!-- NotebookFiltering -->
-	<string name="menuFilterNotebook">Filter</string>
+	<string name="menuFilterNotebook">Filtra</string>
 	<string name="strListEmptyNoNotebooks">There are no notebooks in the database.</string>
 	<string name="allNotebooksFilter">All notebooks</string>
 	
 	<!-- List Longpress Menu -->
-	<string name="view">View</string>
+	<string name="view">Visualizza</string>
 	<string name="noteOptions">Note Options</string>
-	<string name="send">Send</string>
+	<string name="send">Invia</string>
 	
 	<!--  Search -->
-	<string name="search_hint">Search Notes</string>
+	<string name="search_hint">Cerca</string>
 	<string name="search_description">Text in your notes</string>
-	<string name="strNoResults">No notes found for \"%s\"</string>
-	<string name="menuSearch">Search</string>
-	<string name="prefSearch">Search Options</string>
-	<string name="SearchResultTitle">Search Results:</string>
-	<string name="clearSearchHistoryTitle">Clear search history</string>
-	<string name="clearSearchHistory">Remove all the searches you have performed</string>
-	<string name="deletedSearchHistory">Search history has been cleared.</string>
+	<string name="strNoResults">Nessun risultato per \"%s\"</string>
+	<string name="menuSearch">Cerca</string>
+	<string name="prefSearch">Opzioni di Ricerca</string>
+	<string name="SearchResultTitle">Risultati</string>
+	<string name="clearSearchHistoryTitle">Pulisci la cronologia ricerche</string>
+	<string name="clearSearchHistory">Cancella la cronologia delle ricerche</string>
+	<string name="deletedSearchHistory">La cronologia ricerche è stata pulita.</string>
 	
 	<!-- Date -->
-	<string name="textModified">Modified:</string>
-	<string name="textToday">Today</string>
-	<string name="textYexterday">Yesterday</string>
+	<string name="textModified">Ultima modifica:</string>
+	<string name="textToday">Oggi</string>
+	<string name="textYexterday">Ieri</string>
 	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
@@ -113,6 +114,9 @@
 	
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
-  Stefan Hammer https://launchpad.net/~j-4</string>
+  Isabel Heger https://launchpad.net/~isabel-h1
+  Michele Galimberti https://launchpad.net/~galimberti-michele
+  Stefan Hammer https://launchpad.net/~j-4
+  nicoelba https://launchpad.net/~nicoelba</string>
 	
 </resources>

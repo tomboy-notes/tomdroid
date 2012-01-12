@@ -25,7 +25,7 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Tomboy compatible wikiwiki note-taking application that can\'t take notes yet.</string>
+	<string name="app_desc">Tomdroid是一种与Tomboy兼容的、使用wikiwiki方法的记笔记应用，但至今为止还不能记笔记。</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
@@ -33,12 +33,12 @@
 	<string name="strListEmptyNoNotes">Tomdroid的数据库里没有笔记。</string>
 	
 	<string name="menuSync">同步</string>
-	<string name="menuPrefs">设置：</string>
+	<string name="menuPrefs">设置</string>
 	<string name="menuAbout">有关</string>
 	<string name="titleWelcome">警告</string>
 	<string name="titleAbout">关于Tomdroid</string>
-	<string name="strWelcome">Welcome to Tomdroid.\n\nPlease note that this is beta quality software and that it contains known problems, like its inability to edit notes.\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something out and tested as quickly as possible.\n\nIf you would like to contribute, help at all levels would be appreciated. Hop on board on launchpad.net/tomdroid and contact us!\n</string>
-	<string name="strAbout">%1$s\n\nAuthor: %2$s\nVersion: %3$s\nLicensed under the GPLv3</string>
+	<string name="strWelcome">欢迎你用Tomdroid。\n\n请注意，软件还在发展中，还含了已知的问题，比如它还无法编辑笔记。\n\n我们意识到这些问题，并试图快点解决它们。\n\n如果你想作出贡献，我们欢迎各种帮助。为了联系我们，快参加launchpad.net/tomdroid!\n</string>
+	<string name="strAbout">%1$s\n\n作者: %2$s\n版本: %3$s\n领有GPLv3的许可证</string>
 	
 	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
 	<string name="btnOk">确认</string>
@@ -53,18 +53,19 @@
 	<string name="prefSyncService">服务</string>
 	<string name="prefSyncServer">服务器</string>
 	<string name="prefSDCard">SD卡</string>
-	<string name="prefAuthenticate">Authenticate</string>
+	<string name="prefTomboyWeb">网上同步</string>
+	<string name="prefAuthenticate">认证</string>
 	
-	<string name="prefSyncCompleteAuth">Completing authentication. Please wait...</string>
-	<string name="prefSyncConnectionFailed">The connection to the server has failed, please check that the address you entered is correct.</string>
-	<string name="prefServerEmpty">The server address changed but the new value is empty</string>
+	<string name="prefSyncCompleteAuth">完成认证。请稍候...</string>
+	<string name="prefSyncConnectionFailed">与服务器的连接失败了，请检查您输入的网址是否正确。</string>
+	<string name="prefServerEmpty">您没有输入服务器的网址。变化被保存。</string>
 	
-	<string name="titleSyncService">Choose the sync service to use</string>
-	<string name="messageSyncComplete">Synchronization with %1$s is complete.</string>
-	<string name="messageSyncNoNote">No notes found on %1$s .</string>
-	<string name="messageSyncNoConnection">You are not connected to the Internet.</string>
-	<string name="messageSyncAlreadyInProgress">Sync already in progress</string>
-	<string name="messageSyncError">There was an error trying to parse your note collection. If you are able to replicate the problem, please contact us!</string>
+	<string name="titleSyncService">请选择想使用的同步服务</string>
+	<string name="messageSyncComplete">与%1$s的同步完成。</string>
+	<string name="messageSyncNoNote">%1$s里没找到笔记。</string>
+	<string name="messageSyncNoConnection">现在没有上网。</string>
+	<string name="messageSyncAlreadyInProgress">同步已经在进行中</string>
+	<string name="messageSyncError">在搜索笔记的时候出现了错误。如果再次出现这样的错误请联系我们！</string>
 	<string name="error">错误</string>
 	
 	<!-- NoteSorting -->
@@ -73,19 +74,19 @@
 	<string name="prefDefaultSorting">常规的顺序</string>
 	
 	<!-- NotebookFiltering -->
-	<string name="menuFilterNotebook">Filter</string>
+	<string name="menuFilterNotebook">过滤</string>
 	<string name="strListEmptyNoNotebooks">数据库里没有笔记本。</string>
 	<string name="allNotebooksFilter">所有的笔记本</string>
 	
 	<!-- List Longpress Menu -->
 	<string name="view">查看</string>
-	<string name="noteOptions">Note Options</string>
+	<string name="noteOptions">笔记选项</string>
 	<string name="send">发送</string>
 	
 	<!--  Search -->
 	<string name="search_hint">搜索笔记</string>
 	<string name="search_description">笔记的内容</string>
-	<string name="strNoResults">No notes found for \"%s\"</string>
+	<string name="strNoResults">没找到有关\"%s\"的笔记</string>
 	<string name="menuSearch">搜索</string>
 	<string name="prefSearch">搜索选项</string>
 	<string name="SearchResultTitle">搜索结果</string>
@@ -105,15 +106,14 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid 笔记</string>
 	<!-- 325 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\nNOTE: It is a READ-ONLY client for now.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
+	<string name="market_description">Tomdroid是一种与Tomboy兼容的记笔记应用，提供给使用Android软件的机器。Tomboy是一种在桌面用的、使用wikiwiki方法的、有着方便的用户接口的记笔记应用。\n\n请注意：目前还不能编辑笔记。\n\n* 请注意与Tomboy兼容的笔记格式。Tomboy\n* Tomdroid用Snowy、Tomboy  Online 或 Ubuntu One 以便在网上与Tomboy同步\n* 通过SD卡也可以进口笔记。\n* Tomdroid是开源软件！</string>
 	
 	<!-- 80 chars max -->
-	<string name="market_promotext">Note-taking application with online synchronization compatible with Tomboy</string>
+	<string name="market_promotext">与Tomboy兼容的、可在网上同步的记笔记应用</string>
 	
 	
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
-  Isabel Heger https://launchpad.net/~isabel-h1
   Stefan Hammer https://launchpad.net/~j-4</string>
 	
 </resources>

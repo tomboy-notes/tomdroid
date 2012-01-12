@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ Tomdroid
+ Tomboy on Android
+ http://www.launchpad.net/tomdroid
+
+ Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
+ 
+ This file is part of Tomdroid.
+ 
+ Tomdroid is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Tomdroid is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources>
+	
+	<!-- application details -->
+	<string name="app_name">Tomdroid</string>
+	<string name="app_desc">Tomboy-сумімний wikiwiki -додаток, що має зберігати нотатки, але поки що не взмозі це робити.</string>
+	<string name="author">Olivier Bilodeau</string>
+	
+	<!-- main.xml -->
+	<string name="strListEmptyWaiting">Будь ласка, почекайте поки нотатки завантажаться</string>
+	<string name="strListEmptyNoNotes">Немає нотаток у базі данних Tomdroid</string>
+	
+	<string name="menuSync">Синхронізація</string>
+	<string name="menuPrefs">Налаштування</string>
+	<string name="menuAbout">Про програму</string>
+	<string name="titleWelcome">Застереження</string>
+	<string name="titleAbout">Про Tomdroid</string>
+	<string name="strWelcome">Ласкаво просимо до Томдроїд. \n\nБудь ласка, пам\'ятайте, що програма на стадії бета і містить відомі помилки, як, наприклад, нездатність редактувати нотатки. \n\nМи знаємо про них і намагаємося працювати над ними, і дуже швидко, але я також хотів би отримувати щось і тестувати так швидко, як це можливо.\n\nЯкщо ви бажаєте внести свою частку, допомога на всіх рівнях буде оцінена. Заходьте на launchpad.net/tomdroid і контактуйте з нами!\n</string>
+	<string name="strAbout">%1$s\n\nАвтор: %2$s\nВерсія: %3$s\nЛіцензовано згідно GPLv3</string>
+	
+	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
+	<string name="btnOk">ОК</string>
+	<string name="btnCancel">Скасувати</string>
+	<string name="btnClose">Зачинити</string>
+	<string name="btnProjectPage">Сторінка проекту</string>
+	
+	<!-- note-view.xml -->
+	<string name="strWait">Будь ласка, почекайте поки нотатка завантажиться...</string>
+	
+	<string name="prefSync">Синхронізація</string>
+	<string name="prefSyncService">Сервіс</string>
+	<string name="prefSyncServer">Сервер</string>
+	<string name="prefSDCard">Карта пам\'яті SD</string>
+	<string name="prefTomboyWeb">Онлайн Синхронізація</string>
+	<string name="prefAuthenticate">Автентифікація</string>
+	
+	<string name="prefSyncCompleteAuth">Заверщення автентифікації. Будь ласка, почекайте...</string>
+	<string name="prefSyncConnectionFailed">Підключення до серверу неможливе, будь ласка, перевірте, чи правильну адресу ви ввели.</string>
+	<string name="prefServerEmpty">Адреса серверу змінилась, але нове значення порожнє</string>
+	
+	<string name="titleSyncService">Оберіть сервер синхронізації</string>
+	<string name="messageSyncComplete">Синхронізація з %1$s завершена.</string>
+	<string name="messageSyncNoNote">Не знайдено нотаток на %1$s .</string>
+	<string name="messageSyncNoConnection">Ви не підключені до Інтернет.</string>
+	<string name="messageSyncAlreadyInProgress">Синхронізація вже здійснюється</string>
+	<string name="messageSyncError">При розборі ваших нотаток сталась помилка. Якщо ви взмозі описати проблему, будь ласка, зв\'яжіться з нами!</string>
+	<string name="error">Збій</string>
+	
+	<!-- NoteSorting -->
+	<string name="menuSort">змінити тип сортування</string>
+	<string name="titleDefaultSorting">Вибрати стандартний тип сортування</string>
+	<string name="prefDefaultSorting">Стандартний тип сортування</string>
+	
+	<!-- NotebookFiltering -->
+	<string name="menuFilterNotebook">Фільтр</string>
+	<string name="strListEmptyNoNotebooks">Немає збірників у базі данних Tomdroid</string>
+	<string name="allNotebooksFilter">Всі збірники</string>
+	
+	<!-- List Longpress Menu -->
+	<string name="view">Вигляд</string>
+	<string name="noteOptions">Налаштування нотатки</string>
+	<string name="send">Надіслати</string>
+	
+	<!--  Search -->
+	<string name="search_hint">Пошук нотатки</string>
+	<string name="search_description">Текст у ваших нотатках</string>
+	<string name="strNoResults">Немає нотаток на запит  \"%s\"</string>
+	<string name="menuSearch">Пошук</string>
+	<string name="prefSearch">Параметри пошуку</string>
+	<string name="SearchResultTitle">Результати пошуку:</string>
+	<string name="clearSearchHistoryTitle">Очистити історію пошуку</string>
+	<string name="clearSearchHistory">Видалити всі пошуки, що ви здійснювали</string>
+	<string name="deletedSearchHistory">Історія пошуку очищена</string>
+	
+	<!-- Date -->
+	<string name="textModified">Остання зміна:</string>
+	<string name="textToday">Сьогодні</string>
+	<string name="textYexterday">Вчора</string>
+	
+	<!-- 
+	Information that goes into the Android Market Application Listing. 
+	I\'ve put it in here so that it\'ll get translated by translators.
+	-->
+	<!-- 30 chars max -->
+	<string name="market_title">Tomdroid notes</string>
+	<!-- 325 chars max -->
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\nNOTE: It is a READ-ONLY client for now.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
+	
+	<!-- 80 chars max -->
+	<string name="market_promotext">Note-taking application with online synchronization compatible with Tomboy</string>
+	
+	
+	<!-- Launchpad Translation String -->
+	<string name="about_translators">Launchpad Contributions:
+  Mirzaeva Asalle https://launchpad.net/~asaly12</string>
+	
+</resources>

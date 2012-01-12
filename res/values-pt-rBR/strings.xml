@@ -53,6 +53,7 @@
 	<string name="prefSyncService">Serviço</string>
 	<string name="prefSyncServer">Servidor</string>
 	<string name="prefSDCard">Cartão SD</string>
+	<string name="prefTomboyWeb">Sincronização on-line</string>
 	<string name="prefAuthenticate">Autenticar</string>
 	
 	<string name="prefSyncCompleteAuth">Completando autenticação. Por favor, espere...</string>
@@ -113,6 +114,7 @@
 	
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
-  João Santana https://launchpad.net/~joaosantana</string>
+  João Santana https://launchpad.net/~joaosantana
+  eniomarconcini https://launchpad.net/~eniorm</string>
 	
 </resources>

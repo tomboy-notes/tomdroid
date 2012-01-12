@@ -29,6 +29,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.tomdroid.Note;
+import org.tomdroid.R;
 import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncService;
 import org.tomdroid.ui.Tomdroid;
@@ -50,8 +51,8 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 	}
 	
 	@Override
-	public String getDescription() {
-		return "Tomboy Web";
+	public int getDescriptionAsId() {
+		return R.string.prefTomboyWeb;
 	}
 
 	@Override

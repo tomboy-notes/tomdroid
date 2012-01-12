@@ -25,73 +25,74 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">La aplicación Tomboy compatible con el programa Wiki de toma de notas no puede aún tomar notas.</string>
+	<string name="app_desc">Aplicación wiki de notas compatible con Tomboy que aún no permite escribir notas.</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
-	<string name="strListEmptyWaiting">Por favor espere mientras las notas se cargan</string>
-	<string name="strListEmptyNoNotes">No hay notas en el banco de datos de tomdroid</string>
+	<string name="strListEmptyWaiting">Por favor, espere mientras se cargan las notas.</string>
+	<string name="strListEmptyNoNotes">No hay notas en la base de datos de Tomdroid.</string>
 	
-	<string name="menuSync">Sincronización</string>
+	<string name="menuSync">Sincronizar</string>
 	<string name="menuPrefs">Ajustes</string>
-	<string name="menuAbout">Informaciones</string>
-	<string name="titleWelcome">Cuidado</string>
-	<string name="titleAbout">Sobre Tomdroid</string>
-	<string name="strWelcome">Bienvenido a Tomboy.\n\n Por favor sepa que este es un software de calidad beta y que contiene problemas conocidos, como su incapacidad para editar notas.\n\nConocemos bien estos problemas y tratamos de trabajar en ellos rápidamente, pero también tuvimos la intención de lanzar algo al mercado y probarlo lo más rápidamente posible.\n\Si usted quisiera contribuir, la ayuda en todos los niveles será apreciada. ¡Entre en launchpad.net/tomdroid y contáctenos!\n</string>
-	<string name="strAbout">%1$s\n\nAuthor: %2$s\nVersion: %3$s\nLicensed under the GPLv3</string>
+	<string name="menuAbout">Acerca de Tomdroid</string>
+	<string name="titleWelcome">Advertencia</string>
+	<string name="titleAbout">Acerca de Tomdroid</string>
+	<string name="strWelcome">Bienvenido/a a Tomdroid.\n\nEste es un software de calidad beta y presenta algunos problemas, como la incapacidad de editar las notas.\n\nEstamos al corriente de ellos y los resolveremos pronto, pero queríamos lanzar la aplicación al mercado y probarla lo antes posible.\n\nSi lo desea colaborar, puede hacerlo. Todo tipo de ayuda será bienvenida. ¡Entre en launchpad.net/tomdroid y póngase en contacto con nosotros!\n</string>
+	<string name="strAbout">%1$s\n\nAutor: %2$s\nVersión: %3$s\nProyecto con licencia GPLv3</string>
 	
 	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
-	<string name="btnOk">OK</string>
+	<string name="btnOk">Aceptar</string>
 	<string name="btnCancel">Cancelar</string>
 	<string name="btnClose">Cerrar</string>
 	<string name="btnProjectPage">Página del proyecto</string>
 	
 	<!-- note-view.xml -->
-	<string name="strWait">Por favor espere mientras las notas se cargan ...</string>
+	<string name="strWait">Por favor, espere mientras se cargan las notas...</string>
 	
 	<string name="prefSync">Sincronización</string>
 	<string name="prefSyncService">Servicio</string>
-	<string name="prefSyncServer">Server</string>
-	<string name="prefSDCard">SD Card</string>
-	<string name="prefAuthenticate">Autentificar</string>
+	<string name="prefSyncServer">Servidor</string>
+	<string name="prefSDCard">Trajeta SD</string>
+	<string name="prefTomboyWeb">Sincronización en línea</string>
+	<string name="prefAuthenticate">Autenticar</string>
 	
-	<string name="prefSyncCompleteAuth">Completando autenticación. Por favor espere.</string>
-	<string name="prefSyncConnectionFailed">La conección del servidor ha fallado, por favor revise que la dirección ingresada sea correcta.</string>
-	<string name="prefServerEmpty">The server address changed but the new value is empty</string>
+	<string name="prefSyncCompleteAuth">La autenticación está terminando. Por favor, espere.</string>
+	<string name="prefSyncConnectionFailed">No se ha podido conectar con el servidor. Por favor, compruebe que la dirección es correcta.</string>
+	<string name="prefServerEmpty">No se ha podido conectar con el servidor porque no se ha especificado ninguna dirección.</string>
 	
-	<string name="titleSyncService">Choose the sync service to use</string>
-	<string name="messageSyncComplete">Synchronization with %1$s is complete.</string>
-	<string name="messageSyncNoNote">No hay notas de %1$s.</string>
-	<string name="messageSyncNoConnection">You are not connected to the Internet.</string>
-	<string name="messageSyncAlreadyInProgress">Sync already in progress</string>
-	<string name="messageSyncError">There was an error trying to parse your note collection. If you are able to replicate the problem, please contact us!</string>
-	<string name="error">Error!</string>
+	<string name="titleSyncService">Elija el servicio de sincronización</string>
+	<string name="messageSyncComplete">La sincronización con %1$s ha terminado.</string>
+	<string name="messageSyncNoNote">No hay notas en %1$s.</string>
+	<string name="messageSyncNoConnection">No está conectado/a a internet.</string>
+	<string name="messageSyncAlreadyInProgress">La sincronización ya está en curso</string>
+	<string name="messageSyncError">Se ha producido un error al procesar las notas. Si es capaz de volver a generar este mensaje, póngase en contacto con nosotros.</string>
+	<string name="error">Error</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">change sort</string>
-	<string name="titleDefaultSorting">Choose the default sorting</string>
-	<string name="prefDefaultSorting">Default sort</string>
+	<string name="menuSort">Cambiar ordenación</string>
+	<string name="titleDefaultSorting">Seleccionar la ordenación predeterminada</string>
+	<string name="prefDefaultSorting">Ordenación predeterminada</string>
 	
 	<!-- NotebookFiltering -->
-	<string name="menuFilterNotebook">Filtro</string>
-	<string name="strListEmptyNoNotebooks">There are no notebooks in the database.</string>
-	<string name="allNotebooksFilter">All notebooks</string>
+	<string name="menuFilterNotebook">Filtrar</string>
+	<string name="strListEmptyNoNotebooks">No hay cuadernos en la base de datos.</string>
+	<string name="allNotebooksFilter">Todos los cuadernos</string>
 	
 	<!-- List Longpress Menu -->
-	<string name="view">Vista</string>
-	<string name="noteOptions">Note Options</string>
-	<string name="send">Envío</string>
+	<string name="view">Ver</string>
+	<string name="noteOptions">Opciones de las notas</string>
+	<string name="send">Enviar</string>
 	
 	<!--  Search -->
-	<string name="search_hint">Search Notes</string>
-	<string name="search_description">Text in your notes</string>
-	<string name="strNoResults">No notes found for \"%s\"</string>
-	<string name="menuSearch">Búsqueda</string>
+	<string name="search_hint">Buscar notas</string>
+	<string name="search_description">Texto que aparece en las notas</string>
+	<string name="strNoResults">No hay resultados para \"%s\"</string>
+	<string name="menuSearch">Buscar</string>
 	<string name="prefSearch">Opciones de búsqueda</string>
 	<string name="SearchResultTitle">Resultados de la búsqueda:</string>
-	<string name="clearSearchHistoryTitle">Clear search history</string>
-	<string name="clearSearchHistory">Remove all the searches you have performed</string>
-	<string name="deletedSearchHistory">Search history has been cleared.</string>
+	<string name="clearSearchHistoryTitle">Eliminar el historial de búsquedas</string>
+	<string name="clearSearchHistory">Eliminar todas las búsquedas realizadas</string>
+	<string name="deletedSearchHistory">El historial de búsquedas se ha eliminado.</string>
 	
 	<!-- Date -->
 	<string name="textModified">Modificado:</string>
@@ -103,17 +104,19 @@
 	I\'ve put it in here so that it\'ll get translated by translators.
 	-->
 	<!-- 30 chars max -->
-	<string name="market_title">Tomdroid notes</string>
+	<string name="market_title">Notas de Tomdroid</string>
 	<!-- 325 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\nNOTE: It is a READ-ONLY client for now.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
+	<string name="market_description">Versión de Tomboy para Android. Tomboy es una aplicación wiki de notas de escritorio con una interfaz de usuario sencilla.\n\nNOTA: Por ahora, solo permite realizar funciones de lectura.\n\n*El formato de las notas es compatible con Tomboy\n* Sincronización de las notas en línea con Snowy, Tomboy Online o Ubuntu One\n* Permite importar de tarjetas SD\n* Software libre</string>
 	
 	<!-- 80 chars max -->
-	<string name="market_promotext">Note-taking application with online synchronization compatible with Tomboy</string>
+	<string name="market_promotext">Aplicación de notas con sincronización en línea compatible con Tomboy</string>
 	
 	
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
+  Alicia García Adames https://launchpad.net/~aliciagadames
   Clemens Niesner https://launchpad.net/~pop-ffe
+  JoLiSh https://launchpad.net/~jolish
   João Santana https://launchpad.net/~joaosantana
   Stefan Hammer https://launchpad.net/~j-4</string>
 	

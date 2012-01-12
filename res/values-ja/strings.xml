@@ -44,7 +44,7 @@
 	<string name="btnOk">OK</string>
 	<string name="btnCancel">キャンセル</string>
 	<string name="btnClose">閉じる</string>
-	<string name="btnProjectPage">プロジェクトページ</string>
+	<string name="btnProjectPage">ホームページ</string>
 	
 	<!-- note-view.xml -->
 	<string name="strWait">メモが読み込まれるまでお待ちください...</string>
@@ -53,6 +53,7 @@
 	<string name="prefSyncService">サービス</string>
 	<string name="prefSyncServer">サーバー</string>
 	<string name="prefSDCard">SDカード</string>
+	<string name="prefTomboyWeb">オンライン同期</string>
 	<string name="prefAuthenticate">認証</string>
 	
 	<string name="prefSyncCompleteAuth">認証処理中です。お待ちください...</string>

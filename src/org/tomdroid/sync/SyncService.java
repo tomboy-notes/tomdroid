@@ -99,9 +99,11 @@ public abstract class SyncService {
 	/**
 	 * @return An human readable name, used in the preferences to distinguish the different sync services.
 	 */
+	public abstract int getDescriptionAsId();
 	
-	public abstract String getDescription();
-	
+	public String getDescription() {
+		return activity.getString(getDescriptionAsId());
+	}
 	/**
 	 * Execute code in a separate thread.
 	 * Use this for blocking and/or cpu intensive operations and thus avoid blocking the UI.
@@ -113,7 +115,7 @@ public abstract class SyncService {
 		
 		pool.execute(r);
 	}
-	
+
 	/**
 	 * Execute code in a separate thread.
 	 * Any exception thrown by the thread will be added to the error list
