@@ -25,7 +25,7 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Tomboy compatible wikiwiki note-taking application that can\'t take notes yet.</string>
+	<string name="app_desc">Совместимое с Tomdroid wikiwiki приложение для просмотра заметок, которое пока не может хранить их</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
@@ -106,10 +106,10 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Заметки Tomdroid</string>
 	<!-- 325 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\nNOTE: It is a READ-ONLY client for now.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
+	<string name="market_description">Tomboy-клиент для Android. Tomboy же является  приложением для компьютера для хранения заметок с использованием wikiwiki-принципа и простго интерфейса. \n\nВНИМАНИЕ: Пока это клиент ТОЛЬКО ДЛЯ ЧТЕНИЯ.\n\n* Формат заметок совместим с Tomboy\n* Онлайн синхронизация с Snowy Tomboy online и Ubuntu One\n*  импорт с SD-карты\n* Open Source!</string>
 	
 	<!-- 80 chars max -->
-	<string name="market_promotext">Note-taking application with online synchronization compatible with Tomboy</string>
+	<string name="market_promotext">Приложение для хранения заметок с возможностью онлайн синхронизации с Tomdroid</string>
 	
 	
 	<!-- Launchpad Translation String -->
@@ -117,6 +117,7 @@
   Bernhard Hauer https://launchpad.net/~bernhard-hauer1
   John Akulov https://launchpad.net/~gxoptg
   Mirzaeva Asalle https://launchpad.net/~asaly12
-  Stefan Hammer https://launchpad.net/~j-4</string>
+  Stefan Hammer https://launchpad.net/~j-4
+  Vyacheslav Sharmanov https://launchpad.net/~vsharmanov</string>
 	
 </resources>

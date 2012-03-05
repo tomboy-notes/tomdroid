@@ -49,11 +49,11 @@
 	<!-- note-view.xml -->
 	<string name="strWait">Please wait while note loads...</string>
 	
-	<string name="prefSync">Synchronization</string>
+	<string name="prefSync">Synchronisation</string>
 	<string name="prefSyncService">Service</string>
 	<string name="prefSyncServer">Server</string>
 	<string name="prefSDCard">SD Card</string>
-	<string name="prefTomboyWeb">Online Synchronization</string>
+	<string name="prefTomboyWeb">Online Synchronisation</string>
 	<string name="prefAuthenticate">Authenticate</string>
 	
 	<string name="prefSyncCompleteAuth">Completing authentication. Please wait...</string>
@@ -114,6 +114,7 @@
 	
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
+  Stefan Hammer https://launchpad.net/~j-4
   Vibhav Pant https://launchpad.net/~vibhavp</string>
 	
 </resources>

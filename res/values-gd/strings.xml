@@ -34,14 +34,14 @@
 	
 	<string name="menuSync">Sionc</string>
 	<string name="menuPrefs">Suidheachaidhean</string>
-	<string name="menuAbout">About</string>
+	<string name="menuAbout">Mu dheidhinn</string>
 	<string name="titleWelcome">Rabhadh</string>
-	<string name="titleAbout">About Tomdroid</string>
+	<string name="titleAbout">Mu dheidhinn Tomdroid</string>
 	<string name="strWelcome">Welcome to Tomdroid.\n\nPlease note that this is beta quality software and that it contains known problems, like its inability to edit notes.\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something out and tested as quickly as possible.\n\nIf you would like to contribute, help at all levels would be appreciated. Hop on board on launchpad.net/tomdroid and contact us!\n</string>
 	<string name="strAbout">%1$s\n\nAuthor: %2$s\nVersion: %3$s\nLicensed under the GPLv3</string>
 	
 	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
-	<string name="btnOk">Ceart</string>
+	<string name="btnOk">Ceart ma-thà</string>
 	<string name="btnCancel">Sguir</string>
 	<string name="btnClose">Dùin</string>
 	<string name="btnProjectPage">Project page</string>
@@ -51,8 +51,8 @@
 	
 	<string name="prefSync">Synchronization</string>
 	<string name="prefSyncService">Seirbhis</string>
-	<string name="prefSyncServer">Server</string>
-	<string name="prefSDCard">SD Card</string>
+	<string name="prefSyncServer">Frithealaiche</string>
+	<string name="prefSDCard">Cairt SD</string>
 	<string name="prefTomboyWeb">Online Synchronization</string>
 	<string name="prefAuthenticate">Authenticate</string>
 	
@@ -81,21 +81,21 @@
 	<!-- List Longpress Menu -->
 	<string name="view">Seall</string>
 	<string name="noteOptions">Note Options</string>
-	<string name="send">Send</string>
+	<string name="send">Cuir</string>
 	
 	<!--  Search -->
-	<string name="search_hint">Search Notes</string>
-	<string name="search_description">Text in your notes</string>
-	<string name="strNoResults">No notes found for \"%s\"</string>
+	<string name="search_hint">Notaichean Sireadh</string>
+	<string name="search_description">Teacsa a-steach do notaichean</string>
+	<string name="strNoResults">Cha robh notaichean air lorg son  \"%s\"</string>
 	<string name="menuSearch">Sireadh</string>
-	<string name="prefSearch">Search Options</string>
-	<string name="SearchResultTitle">Search Results:</string>
-	<string name="clearSearchHistoryTitle">Clear search history</string>
+	<string name="prefSearch">Roghainnean Sireadh</string>
+	<string name="SearchResultTitle">Toraidhean Sireadh:</string>
+	<string name="clearSearchHistoryTitle">Glan eachdraidh sireadh</string>
 	<string name="clearSearchHistory">Remove all the searches you have performed</string>
-	<string name="deletedSearchHistory">Search history has been cleared.</string>
+	<string name="deletedSearchHistory">Bha eachdraidh an t-sireadh a\'  glanadh</string>
 	
 	<!-- Date -->
-	<string name="textModified">Modified:</string>
+	<string name="textModified">Leasaichte:</string>
 	<string name="textToday">An-diugh</string>
 	<string name="textYexterday">An-dè</string>
 	
@@ -104,7 +104,7 @@
 	I\'ve put it in here so that it\'ll get translated by translators.
 	-->
 	<!-- 30 chars max -->
-	<string name="market_title">Tomdroid notes</string>
+	<string name="market_title">Notaichean Tomdroid</string>
 	<!-- 325 chars max -->
 	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\nNOTE: It is a READ-ONLY client for now.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
 	

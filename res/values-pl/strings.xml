@@ -25,7 +25,7 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Tomboy compatible wikiwiki note-taking application that can\'t take notes yet.</string>
+	<string name="app_desc">Notatnik WikiWiki kompatybilny z Tomboy.</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
@@ -37,7 +37,7 @@
 	<string name="menuAbout">O aplikacji</string>
 	<string name="titleWelcome">Ostrzeżenie</string>
 	<string name="titleAbout">O Tomdroid</string>
-	<string name="strWelcome">Witaj w Tomdroid.\n\nJest to aplikacja w wersji beta, charakteryzująca się znanymi problemami, jak brak możliwości edytowania notatek.\n\nJesteśmy świadomi tych braków i pracujemy nad nimi w miarę możliwości. Jednocześnie udostępniamy aplikację w takim kształcie, by testować ją możliwe szybko.\n\nKażda pomoc jest cenna. Jeśli chciałbyś pomóc, wejdź na launchpad.net/tomdroid i skontaktuj się z nami.\n</string>
+	<string name="strWelcome">Witaj w Tomdroid.\n\nJest to aplikacja w wersji beta, charakteryzująca się znanymi problemami, jak brak możliwości edytowania notatek.\n\nJesteśmy świadomi tych braków i pracujemy nad nimi w miarę możliwości. Jednocześnie udostępniamy aplikację w takim kształcie, by testować ją możliwe szybko.\n\nKażda pomoc jest cenna. Jeśli chciałbyś pomóc, wejdź na https://www.launchpad.net/tomdroid/ i skontaktuj się z nami.\n</string>
 	<string name="strAbout">%1$s\n\nAutor: %2$s\nWersja: %3$s\nNa licencji GPLv3</string>
 	
 	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
@@ -106,14 +106,15 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid notes</string>
 	<!-- 325 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\nNOTE: It is a READ-ONLY client for now.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
+	<string name="market_description">Klient notatek Tomboy dla Android. Tomboy to prosty i łatwy w użyciu program do sporządzania notatek na systemy biurkowe.\n\nUwaga! Edytowanie notatek nie jest jeszcze wspierane.\n\n* Kompatybilny z formatem notatek Tomboy.\n* Synchronizacja notatek z serwisami Snowy, Tomboy Online i Ubuntu One.\n* Importowanie notatek z karty SD.\n* Open Source!</string>
 	
 	<!-- 80 chars max -->
-	<string name="market_promotext">Note-taking application with online synchronization compatible with Tomboy</string>
+	<string name="market_promotext">Notatnik ze zdalną synchronizacją, kompatybilny z programem Tomboy.</string>
 	
 	
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
+  Hubert "Schlussarz" Ślósarski https://launchpad.net/~schlussarz
   Piotr Adamski https://launchpad.net/~mcveat
   Stefan Hammer https://launchpad.net/~j-4
   Łukasz Serafinowski https://launchpad.net/~lukasz-serafinowski</string>

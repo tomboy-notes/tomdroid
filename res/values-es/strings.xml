@@ -34,8 +34,8 @@
 	
 	<string name="menuSync">Sincronizar</string>
 	<string name="menuPrefs">Ajustes</string>
-	<string name="menuAbout">Acerca de Tomdroid</string>
-	<string name="titleWelcome">Advertencia</string>
+	<string name="menuAbout">Acerca de</string>
+	<string name="titleWelcome">Aviso</string>
 	<string name="titleAbout">Acerca de Tomdroid</string>
 	<string name="strWelcome">Bienvenido/a a Tomdroid.\n\nEste es un software de calidad beta y presenta algunos problemas, como la incapacidad de editar las notas.\n\nEstamos al corriente de ellos y los resolveremos pronto, pero queríamos lanzar la aplicación al mercado y probarla lo antes posible.\n\nSi lo desea colaborar, puede hacerlo. Todo tipo de ayuda será bienvenida. ¡Entre en launchpad.net/tomdroid y póngase en contacto con nosotros!\n</string>
 	<string name="strAbout">%1$s\n\nAutor: %2$s\nVersión: %3$s\nProyecto con licencia GPLv3</string>
@@ -116,6 +116,7 @@
 	<string name="about_translators">Launchpad Contributions:
   Alicia García Adames https://launchpad.net/~aliciagadames
   Clemens Niesner https://launchpad.net/~pop-ffe
+  Fitoschido https://launchpad.net/~fitoschido
   JoLiSh https://launchpad.net/~jolish
   João Santana https://launchpad.net/~joaosantana
   Stefan Hammer https://launchpad.net/~j-4</string>
