@@ -112,7 +112,7 @@ public class Search extends ListActivity {
 		Cursor item = (Cursor) adapter.getItem(position);
 		int noteId = item.getInt(item.getColumnIndexOrThrow(Note.ID));
 
-		Uri intentUri = Uri.parse(Tomdroid.CONTENT_URI + "/" + noteId);
+		Uri intentUri = Tomdroid.getNoteIntentUri(noteId);
 		Intent i = new Intent(Intent.ACTION_VIEW, intentUri, this, ViewNote.class);
 		startActivity(i);
 	}

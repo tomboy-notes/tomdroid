@@ -70,6 +70,9 @@
 	<string name="messageSyncAlreadyInProgress">Sync already in progress</string>
 	<string name="messageSyncError">There was an error trying to parse your note collection. If you are able to replicate the problem, please contact us!</string>
 	<string name="error">Error</string>
+	<string name="titleNoteNotFound">No Such Note</string>
+	<string name="messageNoteNotFound">The requested note could not be found. Maybe it was deleted or removed throug
+	h synchronization.</string>
 	
 	<!-- NoteSorting -->
 	<string name="menuSort">change sort</string>
@@ -101,6 +104,12 @@
 	<string name="textModified">Modified:</string>
 	<string name="textToday">Today</string>
 	<string name="textYexterday">Yesterday</string>
+
+	<!-- Shortcuts handling -->
+	<string name="shortcuts_view_caption">Choose Note</string>
+	<string name="shortcut_menu_item_caption">Tomdroid Note</string>
+	<string name="btnRemoveShortcut">Remove shortcut</string>
+	<string name="createShortcut">Create shortcut</string>
 	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 

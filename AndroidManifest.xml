@@ -63,11 +63,20 @@
 
     	</activity>
 
+        <activity android:name=".ui.ShortcutActivity" android:label="@string/shortcut_menu_item_caption">
+            <intent-filter>
+                <action android:name="android.intent.action.CREATE_SHORTCUT"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
       <uses-library android:name="android.test.runner" />
     </application>
     
-	 <uses-permission android:name="android.permission.INTERNET" />
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />    
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" />
 
 <instrumentation android:name="android.test.InstrumentationTestRunner" android:targetPackage="org.tomdroid"></instrumentation>
 
