@@ -55,6 +55,9 @@
 	<string name="prefSDCard">Kad SD</string>
 	<string name="prefTomboyWeb">Penyegerakan Atas Talian</string>
 	<string name="prefAuthenticate">Sahihkan</string>
+	<string name="prefLocation">Location on SD Card</string>
+	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
+	<string name="prefNoValidLocation">\"%1$s\" is no valid folder location. Please try again!</string>
 	
 	<string name="prefSyncCompleteAuth">Menyelesaikan pengesahihan. Tunggu sebentar...</string>
 	<string name="prefSyncConnectionFailed">Sambungan ke pelayan mengalami kegagalan, sila semak alamat yang anda masukkan adalah betul.</string>
@@ -62,14 +65,16 @@
 	
 	<string name="titleSyncService">Pilih perkhidmatan segerak yang hendak digunakan</string>
 	<string name="messageSyncComplete">Penyegerakan dengan %1$s selesai.</string>
-	<string name="messageSyncNoNote">Tiada nota ditemui pada %1$s.</string>
+	<string name="messageSyncNoNote">No notes found on %1$s.</string>
 	<string name="messageSyncNoConnection">Anda tidak bersambung dengan Internet.</string>
 	<string name="messageSyncAlreadyInProgress">Segerak didalam proses.</string>
 	<string name="messageSyncError">Terdapat ralat semasa cuba menghurai koleksi nota anda. Jika anda boleh replikakan masalah, sila hubungi kami!</string>
 	<string name="error">Ralat</string>
+	<string name="titleNoteNotFound">No Such Note</string>
+	<string name="messageNoteNotFound">The requested note could not be found. Maybe it was deleted or removed through synchronization.</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">ubah isihan</string>
+	<string name="menuSort">Change Sort</string>
 	<string name="titleDefaultSorting">Pilihan pengisihan lalai</string>
 	<string name="prefDefaultSorting">Isihan lalai</string>
 	
@@ -98,6 +103,12 @@
 	<string name="textModified">Diubahsuai:</string>
 	<string name="textToday">Hari Ini</string>
 	<string name="textYexterday">Semalam</string>
+
+	<!-- Shortcuts handling -->
+	<string name="shortcuts_view_caption">Choose a Note</string>
+	<string name="shortcut_menu_item_caption">Tomdroid Note</string>
+	<string name="btnRemoveShortcut">Remove shortcut</string>
+	<string name="createShortcut">Create shortcut</string>
 	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 

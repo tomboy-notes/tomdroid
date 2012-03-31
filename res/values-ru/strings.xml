@@ -55,6 +55,9 @@
 	<string name="prefSDCard">SD Card</string>
 	<string name="prefTomboyWeb">Онлайн синхронизация</string>
 	<string name="prefAuthenticate">Аутентификация</string>
+	<string name="prefLocation">Location on SD Card</string>
+	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
+	<string name="prefNoValidLocation">\"%1$s\" is no valid folder location. Please try again!</string>
 	
 	<string name="prefSyncCompleteAuth">Завершение аутентификации. Подождите...</string>
 	<string name="prefSyncConnectionFailed">Подключение к серверу не удалось, проверьте правильность введенного вами адреса.</string>
@@ -62,14 +65,16 @@
 	
 	<string name="titleSyncService">Выберите сервис синхронизации для использования</string>
 	<string name="messageSyncComplete">Синхронизация с %1$s завершена.</string>
-	<string name="messageSyncNoNote">В %1$s заметок не найдено .</string>
+	<string name="messageSyncNoNote">No notes found on %1$s.</string>
 	<string name="messageSyncNoConnection">Вы не подключены к Интернету.</string>
 	<string name="messageSyncAlreadyInProgress">Синхронизация уже выполняется</string>
 	<string name="messageSyncError">Произошла ошибка при попытке разбора вашей коллекции заметок. Если вы можете воспроизвести эту проблему, пожалуйста, свяжитесь с нами!</string>
 	<string name="error">Ошибка</string>
+	<string name="titleNoteNotFound">No Such Note</string>
+	<string name="messageNoteNotFound">The requested note could not be found. Maybe it was deleted or removed through synchronization.</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">выберите метод сортировки</string>
+	<string name="menuSort">Change Sort</string>
 	<string name="titleDefaultSorting">Выберите стандартный метод сортировки</string>
 	<string name="prefDefaultSorting">Стандартный метод сортировки</string>
 	
@@ -98,6 +103,12 @@
 	<string name="textModified">Изменен:</string>
 	<string name="textToday">Сегодня</string>
 	<string name="textYexterday">Вчера</string>
+
+	<!-- Shortcuts handling -->
+	<string name="shortcuts_view_caption">Choose a Note</string>
+	<string name="shortcut_menu_item_caption">Tomdroid Note</string>
+	<string name="btnRemoveShortcut">Remove shortcut</string>
+	<string name="createShortcut">Create shortcut</string>
 	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
@@ -115,7 +126,7 @@
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
   Bernhard Hauer https://launchpad.net/~bernhard-hauer1
-  John Akulov https://launchpad.net/~gxoptg
+  Ivan Akulov https://launchpad.net/~gxoptg
   Mirzaeva Asalle https://launchpad.net/~asaly12
   Stefan Hammer https://launchpad.net/~j-4
   Vyacheslav Sharmanov https://launchpad.net/~vsharmanov</string>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ Tomdroid
+ Tomboy on Android
+ http://www.launchpad.net/tomdroid
+
+ Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
+ 
+ This file is part of Tomdroid.
+ 
+ Tomdroid is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Tomdroid is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources>
+	
+	<!-- application details -->
+	<string name="app_name">Tomdroid</string>
+	<string name="app_desc">Tomdroid بىر خىل Tomboy بىلەن ماسلىشىدىغان wikiwiki ئۇسۇلىدا خاتىرە خاتىرىلەيدىغان ئەپ بولۇپ، ھازىرغىچە تېخى خاتىرە خاتىرىلىيەلمەيدۇ.</string>
+	<string name="author">Olivier Bilodeau</string>
+	
+	<!-- main.xml -->
+	<string name="strListEmptyWaiting">Please wait while the notes load..</string>
+	<string name="strListEmptyNoNotes">There are no notes in Tomdroid\'s database.</string>
+	
+	<string name="menuSync">قەدەمداشلا</string>
+	<string name="menuPrefs">تەڭشەكلەر</string>
+	<string name="menuAbout">ھەققىدە</string>
+	<string name="titleWelcome">ئاگاھلاندۇرۇش</string>
+	<string name="titleAbout">Tomdroid ھەققىدە</string>
+	<string name="strWelcome">Tomdroid مەرھابا.\n\nدىققەت، بۇ سىناق باسقۇچىدىكى يۇمشاق دېتال بولۇپ، بەزى مەلۇم قىلىنغان مەسىلىلەر ساقلانغان، مەسىلەن، تېخى خاتىرىلەرنى تەھرىرلىيەلمەيدۇ.\n\nبىز بۇ مەسىلىلەرنى ھېس قىلدۇم ھەمدە تېزراق ھەل قىلىشقا تىرىشىمىز.\n\nئەگەر توھپە قوشماقچى بولسىڭىز، ھەر خىل ياردەملەرنى قىزغىن قارشى ئالىمىز، بىز بىلەن ئالاقە قىلماقچى بولسىڭىز launchpad.net/tomdroid  غا قوشۇلۇڭ!\n</string>
+	<string name="strAbout">%1$s\n\nيازغۇچى: %2$s\nنەشرى: %3$s\nبۇ ئەپ GPLv3 ئىجازىتىدە</string>
+	
+	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
+	<string name="btnOk">جەزملە</string>
+	<string name="btnCancel">ۋاز كەچ</string>
+	<string name="btnClose">ياپ</string>
+	<string name="btnProjectPage">قۇرۇلۇش بېتى</string>
+	
+	<!-- note-view.xml -->
+	<string name="strWait">خاتىرە يۈكلىنىۋاتىدۇ سەل كۈتۈڭ…</string>
+	
+	<string name="prefSync">قەدەمداشلاش</string>
+	<string name="prefSyncService">مۇلازىمەت</string>
+	<string name="prefSyncServer">مۇلازىمېتىر</string>
+	<string name="prefSDCard">SD كارتا</string>
+	<string name="prefTomboyWeb">توردا قەدەمداش</string>
+	<string name="prefAuthenticate">سالاھىيەت دەلىللەش</string>
+	<string name="prefLocation">Location on SD Card</string>
+	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
+	<string name="prefNoValidLocation">\"%1$s\" is no valid folder location. Please try again!</string>
+	
+	<string name="prefSyncCompleteAuth">سالاھىيەت دەلىللەشنى تاماملاۋاتىدۇ. سەل كۈتۈڭ…</string>
+	<string name="prefSyncConnectionFailed">مۇلازىمېتىر بىلەن باغلىنالمىدى، كىرگۈزگەن ئادرېسىڭىزنىڭ توغرىلىقىنى تەكشۈرۈڭ.</string>
+	<string name="prefServerEmpty">مۇلازىمېتىر ئادرېسى ئۆزگىرىپتۇ ئەمما يېڭى قىممەت بوش ئىكەن.</string>
+	
+	<string name="titleSyncService">ئىشلىتىدىغان قەدەمداش مۇلازىمەتنى تاللاڭ</string>
+	<string name="messageSyncComplete">%1$s بىلەن قەدەمداش تامام.</string>
+	<string name="messageSyncNoNote">No notes found on %1$s.</string>
+	<string name="messageSyncNoConnection">ئىنتېرنېتقا باغلانماپسىز.</string>
+	<string name="messageSyncAlreadyInProgress">قەدەمداش ئىجرا قىلىنىۋاتىدۇ</string>
+	<string name="messageSyncError">خاتىرە ئىزدىگەندە خاتالىق كۆرۈلدى. ئەگەر يەنە مۇشۇنداق خاتالىق كۆرۈلسە بىز بىلەن ئالاقە قىلىڭ!</string>
+	<string name="error">خاتالىق</string>
+	<string name="titleNoteNotFound">No Such Note</string>
+	<string name="messageNoteNotFound">The requested note could not be found. Maybe it was deleted or removed through synchronization.</string>
+	
+	<!-- NoteSorting -->
+	<string name="menuSort">Change Sort</string>
+	<string name="titleDefaultSorting">كۆڭۈلدىكى تەرتىپنى تاللاڭ</string>
+	<string name="prefDefaultSorting">كۆڭۈلدىكى تەرتىپ</string>
+	
+	<!-- NotebookFiltering -->
+	<string name="menuFilterNotebook">سۈزگۈچ</string>
+	<string name="strListEmptyNoNotebooks">سانداندا خاتىرە دەپتەر يوق.</string>
+	<string name="allNotebooksFilter">ھەممە خاتىرە دەپتەر</string>
+	
+	<!-- List Longpress Menu -->
+	<string name="view">كۆرۈنۈش</string>
+	<string name="noteOptions">خاتىرە تاللانمىلار</string>
+	<string name="send">يوللا</string>
+	
+	<!--  Search -->
+	<string name="search_hint">خاتىرە ئىزدە</string>
+	<string name="search_description">خاتىرىدىكى مەزمۇن</string>
+	<string name="strNoResults">\"%s\" نىڭ خاتىرىسىنى تاپالمىدى</string>
+	<string name="menuSearch">ئىزدە</string>
+	<string name="prefSearch">ئىزدەش تاللانما</string>
+	<string name="SearchResultTitle">ئىزدەش نەتىجىسى:</string>
+	<string name="clearSearchHistoryTitle">ئىزدەش تارىخىنى تازىلا</string>
+	<string name="clearSearchHistory">ھەممە ئىزدەشنى چىقىرىۋەت</string>
+	<string name="deletedSearchHistory">ئىزدەش خاتىرىسى تازىلاندى.</string>
+	
+	<!-- Date -->
+	<string name="textModified">ئۆزگەرتكەن:</string>
+	<string name="textToday">بۈگۈن</string>
+	<string name="textYexterday">تۈنۈگۈن</string>
+
+	<!-- Shortcuts handling -->
+	<string name="shortcuts_view_caption">Choose a Note</string>
+	<string name="shortcut_menu_item_caption">Tomdroid Note</string>
+	<string name="btnRemoveShortcut">Remove shortcut</string>
+	<string name="createShortcut">Create shortcut</string>
+	
+	<!-- 
+	Information that goes into the Android Market Application Listing. 
+	I\'ve put it in here so that it\'ll get translated by translators.
+	-->
+	<!-- 30 chars max -->
+	<string name="market_title">Tomdroid notes</string>
+	<!-- 325 chars max -->
+	<string name="market_description">بۇ Tomdroid بىر خىل Tomboy بىلەن ماسلىشىدىغان خاتىرە ئەپ بولۇپ، ئاندىرويىد يۇمشاق دېتال ئىشلىتىدىغانلارغا تەمىنلەنگەن ماشىنا. Tomboy ئۈستەلئۈستىدە ئىشلىتىلىدىغان، wikiwiki ئۇسۇلى ئىشلىتىدىغان، قولايلىق ئىشلەتكۈچى ئېغىزى بىلەن تەمىنلىگەن خاتىرە ئەپ.\n\nدىققەت: ھازىر تېخى خاتىرىنى تەھرىرلىيەلمەيدۇ.\n\n* دىققەت، Tomboy بىلەن ماسلىشىدىغان خاتىرە پىچىمىنى ئىشلىتىڭ.\n*Tomdroid بولسا Snowy، Tomboy توردا ياكى Ubuntu One نى ئىشلىتىپ Tomboy بىلەن قەدەمداشلايدۇ.\n*SD ئارقىلىق خاتىرە ئەكىرەلەيدۇ.\n*Tomdroid كودى ئوچۇق يۇمشاق دېتال!</string>
+	
+	<!-- 80 chars max -->
+	<string name="market_promotext">Tomboy بىلەن ماسلىشىدىغان توردا قەدەمداشلىغىلى بولىدىغان خاتىرە ئەپ</string>
+	
+	
+	<!-- Launchpad Translation String -->
+	<string name="about_translators">Launchpad Contributions:
+  Sahran https://launchpad.net/~sahran</string>
+	
+</resources>
