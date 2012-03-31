@@ -17,7 +17,34 @@ Versoin 0.?? released on ??
 * Creating home-screen shortcuts to notes is now possible (Piotr Adamski, 
   lp:882703)
 * Reload current Note after sync (Stefan Hammer, lp:675117)
-* Tons of new translations by the awesome Translators on Launchpad
+* Tons of new translations by the awesome Translators on Launchpad:
+   ar: Youssef Habri
+   ast: ASTUR2000
+   ca: Antonio Vicién Faure
+   cs: Jan Dolejš
+   da: Mads Boserup Lauritsen
+   de: Henrik Graßhoff, Stefan Hammer
+   en_GB: Vibhav Pant
+   es: Alicia García Adames, Clemens Niesner, Fitoschido, JoLiSh, João Santana
+   eu: Asier Iturralde Sarasola
+   fo: Jógvan Olsen
+   fr: Léo POUGHON
+   gd: alasdair caimbeul
+   hi: Vibhav Pant
+   hu: Péter Trombitás
+   it: Michele Galimberti, nicoelba
+   ja: Koichi Akabe
+   ko: MinSik CHO
+   pl: Piotr Adamski, Hubert Schlussarz Ślósarski, Łukasz Serafinowski
+   pt_BR: João Santana, eniomarconcini
+   pt: Sérgio Marques
+   ru: Bernhard Hauer, Ivan Akulov, Mirzaeva Asalle, Vyacheslav Sharmanov
+   sv: Daniel Ruus, stoft
+   te: Praveen Illa
+   tr: Mesut Yaver
+   ug: Sahran
+   uk: Mirzaeva Asalle
+   zh: Isabel Heger
 * Switched to the Launchpad Translation Platform (Stefan Hammer)
 * New Japanese translation (Koichi Akabe)
 * New Polish translation (Piotr Adamski)
