@@ -98,6 +98,10 @@
 	<string name="textModified">Data modyfikacji:</string>
 	<string name="textToday">Dziś</string>
 	<string name="textYexterday">Wczoraj</string>
+
+	<!-- Shortcuts handling -->
+	<string name="shortcuts_view_caption">Wybierz notatkę</string>
+	<string name="shortcut_menu_item_caption">Notatka Tomdroid</string>
 	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
