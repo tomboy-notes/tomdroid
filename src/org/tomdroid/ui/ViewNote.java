@@ -90,13 +90,13 @@ public class ViewNote extends Activity {
         Uri uri = getIntent().getData();
 
         if (uri == null) {
-			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "The Intent's data was null.");
+			TLog.d(TAG, "The Intent's data was null.");
             showNoteNotFoundDialog(uri);
         } else handleNoteUri(uri);
     }
 
     private void handleNoteUri(final Uri uri) {// We were triggered by an Intent URI
-        if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "ViewNote started: Intent-filter triggered.");
+        TLog.d(TAG, "ViewNote started: Intent-filter triggered.");
 
         // TODO validate the good action?
         // intent.getAction()
@@ -107,7 +107,7 @@ public class ViewNote extends Activity {
         if(note != null) {
             noteContent = note.getNoteContent(noteContentHandler);
         } else {
-            if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "The note "+uri+" doesn't exist");
+            TLog.d(TAG, "The note "+uri+" doesn't exist");
             showNoteNotFoundDialog(uri);
         }
     }

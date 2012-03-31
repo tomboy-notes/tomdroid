@@ -32,6 +32,7 @@ import android.widget.ListView;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
 import org.tomdroid.util.NoteViewShortcutsHelper;
+import org.tomdroid.util.TLog;
 
 /**
  * @author Piotr Adamski <mcveat@gmail.com>
@@ -44,7 +45,7 @@ public class ShortcutActivity extends ListActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "creating shortcut...");
+        TLog.d(TAG, "creating shortcut...");
         setContentView(R.layout.shortcuts_list);
 
         adapter = NoteManager.getListAdapter(this);
