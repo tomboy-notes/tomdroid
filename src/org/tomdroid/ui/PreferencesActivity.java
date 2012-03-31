@@ -30,6 +30,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.EditTextPreference;
@@ -50,6 +51,7 @@ import org.tomdroid.util.Preferences;
 import org.tomdroid.util.SearchSuggestionProvider;
 import org.tomdroid.util.TLog;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class PreferencesActivity extends PreferenceActivity {
@@ -59,6 +61,7 @@ public class PreferencesActivity extends PreferenceActivity {
 	// TODO: put the various preferences in fields and figure out what to do on activity suspend/resume
 	private EditTextPreference syncServer = null;
 	private ListPreference syncService = null;
+	private EditTextPreference sdLocation = null;
 	private Preference clearSearchHistory = null;
 	
 	@Override
@@ -70,6 +73,7 @@ public class PreferencesActivity extends PreferenceActivity {
 		// Fill the Preferences fields
 		syncServer = (EditTextPreference)findPreference(Preferences.Key.SYNC_SERVER.getName());
 		syncService = (ListPreference)findPreference(Preferences.Key.SYNC_SERVICE.getName());
+		sdLocation = (EditTextPreference)findPreference(Preferences.Key.SD_LOCATION.getName());
 		clearSearchHistory = (Preference)findPreference(Preferences.Key.CLEAR_SEARCH_HISTORY.getName());
 		
 		// Set the default values if nothing exists
@@ -113,6 +117,39 @@ public class PreferencesActivity extends PreferenceActivity {
 				return true;
 			}
 			
+		});
+		
+		// Change the Folder Location
+		sdLocation.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+
+			public boolean onPreferenceChange(Preference preference, Object locationUri) {
+
+				if (locationUri.equals(Preferences.getString(Preferences.Key.SD_LOCATION))) { 
+					return false;
+				}
+				if (locationUri.toString().contains("\n")) { 
+					noValidLocation(locationUri.toString());
+					return false;
+				}
+				
+				File path = new File(Environment.getExternalStorageDirectory()
+						+ "/" + locationUri + "/");
+
+				if(!path.exists()) {
+					TLog.w(TAG, "Folder {0} does not exist.", path);
+					folderNotExisting(path.toString());
+					return false;
+				}
+				
+				Preferences.putString(Preferences.Key.SD_LOCATION, locationUri.toString());
+				TLog.d(TAG, "Changed Folder to: " + path.toString());
+
+				Tomdroid.NOTES_PATH = path.toString();
+				sdLocation.setSummary(Tomdroid.NOTES_PATH);
+
+				resetLocalDatabase();
+				return true;
+			}
 		});
 		
 		//delete Search History
@@ -207,6 +244,11 @@ public class PreferencesActivity extends PreferenceActivity {
 		syncService.setDefaultValue(defaultService);
 		if(syncService.getValue() == null)
 			syncService.setValue(defaultService);
+		
+		String defaultLocation = (String)Preferences.Key.SD_LOCATION.getDefault();
+		sdLocation.setDefaultValue(defaultLocation);
+		if(sdLocation.getText() == null)
+			sdLocation.setText(defaultLocation);
 	
 	}
 
@@ -219,11 +261,33 @@ public class PreferencesActivity extends PreferenceActivity {
 
 		syncServer.setEnabled(service.needsServer());
 		syncService.setSummary(service.getDescription());
+		sdLocation.setEnabled(service.needsLocation());
+		sdLocation.setSummary(Tomdroid.NOTES_PATH);
 	}
 		
 	private void connectionFailed() {
 		new AlertDialog.Builder(this)
 			.setMessage(getString(R.string.prefSyncConnectionFailed))
+			.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.dismiss();
+				}})
+			.show();
+	}
+	
+	private void folderNotExisting(String path) {
+		new AlertDialog.Builder(this)
+			.setMessage(String.format(getString(R.string.prefFolderCreated), path))
+			.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.dismiss();
+				}})
+			.show();
+	}
+	
+	private void noValidLocation(String path) {
+		new AlertDialog.Builder(this)
+			.setMessage(String.format(getString(R.string.prefNoValidLocation), path))
 			.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
 					dialog.dismiss();

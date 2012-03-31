@@ -55,15 +55,6 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import org.tomdroid.Note;
-import org.tomdroid.NoteManager;
-import org.tomdroid.R;
-import org.tomdroid.sync.ServiceAuth;
-import org.tomdroid.sync.SyncManager;
-import org.tomdroid.sync.SyncService;
-import org.tomdroid.util.FirstNote;
-import org.tomdroid.util.Preferences;
-import org.tomdroid.util.Send;
 import org.tomdroid.util.TLog;
 
 public class Tomdroid extends ListActivity {
@@ -78,9 +69,8 @@ public class Tomdroid extends ListActivity {
 	public static final String	PROJECT_HOMEPAGE	= "http://www.launchpad.net/tomdroid/";
 
 	// config parameters
-	// TODO hardcoded for now
-	public static final String	NOTES_PATH			= Environment.getExternalStorageDirectory()
-															+ "/tomdroid/";
+	public static String	NOTES_PATH				= null;
+	
 	// Set this to false for release builds, the reason should be obvious
 	public static final boolean	CLEAR_PREFERENCES	= false;
 
@@ -106,6 +96,10 @@ public class Tomdroid extends ListActivity {
 		setContentView(R.layout.main);
 		Preferences.init(this, CLEAR_PREFERENCES);
 
+		// get the Path to the notes-folder from Preferences
+		NOTES_PATH = Environment.getExternalStorageDirectory()
+				+ "/" + Preferences.getString(Preferences.Key.SD_LOCATION) + "/";
+		
 		// did we already show the warning and got destroyed by android's activity killer?
 		if (Preferences.getBoolean(Preferences.Key.FIRST_RUN)) {
 			TLog.i(TAG, "Tomdroid is first run.");

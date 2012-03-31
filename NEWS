@@ -13,6 +13,7 @@ For more details and developer visible changes see the ChangeLog
 
 -------------------------------------------------------------------------------
 Versoin 0.?? released on ??
+* Can specify folder for SD Card Sync (ie: dropbox) (Stefan Hammer, lp:837119)
 * Creating home-screen shortcuts to notes is now possible (Piotr Adamski, 
   lp:882703)
 * Reload current Note after sync (Stefan Hammer, lp:675117)

@@ -72,6 +72,11 @@ public class SdCardSyncService extends SyncService {
 	}
 	
 	@Override
+	public boolean needsLocation() {
+		return true;
+	}
+	
+	@Override
 	public boolean needsAuth() {
 		return false;
 	}
