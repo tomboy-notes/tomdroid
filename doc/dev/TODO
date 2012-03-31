@@ -7,6 +7,7 @@ TODO tasks
 - lp:724641 - Links break randomly
 
 Unclassified:
+- have a 'home screen' widget
 - getting-started FAQ (java, android env, bzr, open source)
 - find a sample use of the ContentProvider regarding Edouard's branch: searchbar-on-0.3/ and tell him
 - basic note editing (snowy guys working on something with http://en.wikipedia.org/wiki/Markdown)
