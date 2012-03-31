@@ -23,22 +23,11 @@
  */
 package org.tomdroid.ui;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.tomdroid.Note;
-import org.tomdroid.NoteManager;
-import org.tomdroid.R;
-import org.tomdroid.sync.SyncManager;
-import org.tomdroid.util.LinkifyPhone;
-import org.tomdroid.util.NoteContentBuilder;
-import org.tomdroid.util.Send;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
@@ -48,11 +37,21 @@ import android.os.Message;
 import android.text.SpannableStringBuilder;
 import android.text.util.Linkify;
 import android.text.util.Linkify.TransformFilter;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
+import org.tomdroid.Note;
+import org.tomdroid.NoteManager;
+import org.tomdroid.R;
+import org.tomdroid.sync.SyncManager;
+import org.tomdroid.util.LinkifyPhone;
+import org.tomdroid.util.NoteContentBuilder;
+import org.tomdroid.util.Send;
+import org.tomdroid.util.TLog;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 // TODO this class is starting to smell
 public class ViewNote extends Activity {
@@ -91,7 +90,7 @@ public class ViewNote extends Activity {
 		if (uri != null) {
 			
 			// We were triggered by an Intent URI 
-			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "ViewNote started: Intent-filter triggered.");
+			TLog.d(TAG, "ViewNote started: Intent-filter triggered.");
 
 			// TODO validate the good action?
 			// intent.getAction()
@@ -107,7 +106,7 @@ public class ViewNote extends Activity {
 				
 			} else {
 				
-				if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "The note "+uri+" doesn't exist");
+				TLog.d(TAG, "The note {0} doesn't exist", uri);
 				
 				// TODO put error string in a translatable resource
 				new AlertDialog.Builder(this)
@@ -123,7 +122,7 @@ public class ViewNote extends Activity {
 			}
 		} else {
 			
-			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "The Intent's data was null.");
+			TLog.d(TAG, "The Intent's data was null.");
 			
 			// TODO put error string in a translatable resource
 			new AlertDialog.Builder(this)
@@ -250,7 +249,7 @@ public class ViewNote extends Activity {
 		} else {
 			
 			// TODO send an error to the user
-			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "Cursor returned null or 0 notes");
+			TLog.d(TAG, "Cursor returned null or 0 notes");
 		}
 		
 		return null;

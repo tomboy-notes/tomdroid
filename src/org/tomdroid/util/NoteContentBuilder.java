@@ -22,19 +22,15 @@
  */
 package org.tomdroid.util;
 
-import java.io.StringReader;
-
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-
-import org.tomdroid.ui.Tomdroid;
-import org.tomdroid.xml.NoteContentHandler;
-import org.xml.sax.InputSource;
-
 import android.os.Handler;
 import android.os.Message;
 import android.text.SpannableStringBuilder;
-import android.util.Log;
+import org.tomdroid.xml.NoteContentHandler;
+import org.xml.sax.InputSource;
+
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+import java.io.StringReader;
 
 public class NoteContentBuilder implements Runnable {
 	
@@ -89,12 +85,12 @@ public class NoteContentBuilder implements Runnable {
 	        spf.setFeature("http://xml.org/sax/features/namespace-prefixes", true);
 	        SAXParser sp = spf.newSAXParser();
 
-			if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "parsing note");
+			TLog.v(TAG, "parsing note");
 	        sp.parse(noteContentIs, new NoteContentHandler(noteContent));
 		} catch (Exception e) {
 			e.printStackTrace();
 			// TODO handle error in a more granular way
-			Log.e(TAG, "There was an error parsing the note.");
+			TLog.e(TAG, "There was an error parsing the note.");
 			successful = false;
 		}
 		

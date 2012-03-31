@@ -18,7 +18,7 @@ Preparing the release
 
 Releasing on launchpad
 - android:debuggable="false" in AndroidManifest.xml
-- Disable logging (set Tomdroid.LOGGING_ENABLED to false)
+- Disable logging (set org.tomdroid.util.TLog.LOGGING_ENABLED to false)
 - Export an unsigned apk
 - Sign the apk
 -- if I don't remember my alias again!: keytool -keystore <keystore> -list -v

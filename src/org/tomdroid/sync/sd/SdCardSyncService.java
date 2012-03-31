@@ -24,31 +24,23 @@
  */
 package org.tomdroid.sync.sd;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FilenameFilter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.StringReader;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-
+import android.app.Activity;
+import android.os.Handler;
+import android.util.TimeFormatException;
 import org.tomdroid.Note;
 import org.tomdroid.R;
 import org.tomdroid.sync.SyncService;
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.ErrorList;
+import org.tomdroid.util.TLog;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 
-import android.app.Activity;
-import android.os.Handler;
-import android.util.Log;
-import android.util.TimeFormatException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+import java.io.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SdCardSyncService extends SyncService {
 	
@@ -90,18 +82,18 @@ public class SdCardSyncService extends SyncService {
 		setSyncProgress(0);
 
 		// start loading local notes
-		if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "Loading local notes");
+		TLog.v(TAG, "Loading local notes");
 		
 		File path = new File(Tomdroid.NOTES_PATH);
 		
 		if (!path.exists())
 			path.mkdir();
 		
-		Log.i(TAG, "Path "+path+" exists: "+path.exists());
+		TLog.i(TAG, "Path {0} exists: {1}", path, path.exists());
 		
 		// Check a second time, if not the most likely cause is the volume doesn't exist
 		if(!path.exists()) {
-			if (Tomdroid.LOGGING_ENABLED) Log.w(TAG, "Couldn't create "+path);
+			TLog.w(TAG, "Couldn't create {0}", path);
 			sendMessage(NO_SD_CARD);
 			setSyncProgress(100);
 			return;
@@ -112,7 +104,7 @@ public class SdCardSyncService extends SyncService {
 		
 		// If there are no notes, warn the UI through an empty message
 		if (fileList == null || fileList.length == 0) {
-			if (Tomdroid.LOGGING_ENABLED) Log.i(TAG, "There are no notes in "+path);
+			TLog.i(TAG, "There are no notes in {0}", path);
 			sendMessage(PARSING_NO_NOTES);
 			setSyncProgress(100);
 			return;
@@ -170,7 +162,7 @@ public class SdCardSyncService extends SyncService {
 				contents = readFile();
 			} catch (IOException e) {
 				e.printStackTrace();
-				if (Tomdroid.LOGGING_ENABLED) Log.w(TAG, "Something went wrong trying to read the note");
+				TLog.w(TAG, "Something went wrong trying to read the note");
 				sendMessage(PARSING_FAILED, ErrorList.createError(note, e));
 				onWorkDone();
 				return;
@@ -194,27 +186,27 @@ public class SdCardSyncService extends SyncService {
 		        StringReader sr = new StringReader(contents);
 		        InputSource is = new InputSource(sr);
 		        
-				if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "parsing note");
+				TLog.d(TAG, "parsing note");
 				xr.parse(is);
 
 			// TODO wrap and throw a new exception here
 			} catch (Exception e) {
 				e.printStackTrace();
-				if(e instanceof TimeFormatException) Log.e(TAG, "Problem parsing the note's date and time");
+				if(e instanceof TimeFormatException) TLog.e(TAG, "Problem parsing the note's date and time");
 				sendMessage(PARSING_FAILED, ErrorList.createErrorWithContents(note, e, contents));
 				onWorkDone();
 				return;
 			}
 
 			// extract the <note-content..>...</note-content>
-			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "retrieving what is inside of note-content");
+			TLog.d(TAG, "retrieving what is inside of note-content");
 			
 			// FIXME here we are re-reading the whole note just to grab note-content out, there is probably a best way to do this (I'm talking to you xmlpull.org!)
 			Matcher m = note_content.matcher(contents);
 			if (m.find()) {
 				note.setXmlContent(m.group(1));
 			} else {
-				if (Tomdroid.LOGGING_ENABLED) Log.w(TAG, "Something went wrong trying to grab the note-content out of a note");
+				TLog.w(TAG, "Something went wrong trying to grab the note-content out of a note");
 				sendMessage(PARSING_FAILED, ErrorList.createErrorWithContents(note, "Something went wrong trying to grab the note-content out of a note", contents));
 				onWorkDone();
 				return;
