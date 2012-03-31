@@ -203,6 +203,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						}
 						setSyncProgress(90);
 						
+						// Editor comment: do all but one? can someone clarify?
 						JSONObject jsonNote = notes.getJSONObject(notes.length() - 1);
 						insertNote(new Note(jsonNote));
 
