@@ -22,20 +22,18 @@
  */
 package org.tomdroid.sync.web;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.UnknownHostException;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.tomdroid.ui.Tomdroid;
+import org.tomdroid.util.TLog;
 
-import android.util.Log;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.UnknownHostException;
 
 public abstract class WebConnection {
 	
@@ -80,7 +78,7 @@ public abstract class WebConnection {
 		String result = null;
 		
 		// Examine the response status
-		if (Tomdroid.LOGGING_ENABLED) Log.i(TAG, "Response status : "+response.getStatusLine().toString());
+		TLog.i(TAG, "Response status : {0}", response.getStatusLine().toString());
 
 		// Get hold of the response entity
 		HttpEntity entity = response.getEntity();
@@ -96,7 +94,7 @@ public abstract class WebConnection {
 				
 				result = convertStreamToString(instream);
 				
-				if (Tomdroid.LOGGING_ENABLED) Log.i(TAG, "Received : "+result);
+				TLog.i(TAG, "Received : {0}", result);
 				
 				// Closing the input stream will trigger connection release
 				instream.close();

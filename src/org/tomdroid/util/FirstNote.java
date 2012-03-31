@@ -22,12 +22,10 @@
  */
 package org.tomdroid.util;
 
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
-
 import org.tomdroid.Note;
 
-import android.util.Log;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
 
 /**
  * Creates an introductory note object 
@@ -40,7 +38,7 @@ public class FirstNote {
 	private static final String	TAG = "FirstNote";
 	
 	public static Note createFirstNote() {
-		Log.v(TAG, "Creating first note");
+		TLog.v(TAG, "Creating first note");
 		
 		Note note = new Note();
 		

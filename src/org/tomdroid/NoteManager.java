@@ -24,20 +24,19 @@
  */
 package org.tomdroid;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.tomdroid.ui.Tomdroid;
-import org.tomdroid.util.NoteListCursorAdapter;
-import org.tomdroid.util.XmlUtils;
-
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
-import android.util.Log;
 import android.widget.ListAdapter;
+import org.tomdroid.ui.Tomdroid;
+import org.tomdroid.util.NoteListCursorAdapter;
+import org.tomdroid.util.TLog;
+import org.tomdroid.util.XmlUtils;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class NoteManager {
 	
@@ -107,17 +106,19 @@ public class NoteManager {
 		if (managedCursor.getCount() == 0) {
 			
 			// This note is not in the database yet we need to insert it
-			if (Tomdroid.LOGGING_ENABLED) Log.v(TAG,"A new note has been detected (not yet in db)");
+			TLog.v(TAG, "A new note has been detected (not yet in db)");
 			
     		Uri uri = cr.insert(Tomdroid.CONTENT_URI, values);
 
-    		if (Tomdroid.LOGGING_ENABLED) Log.v(TAG,"Note inserted in content provider. ID: "+uri+" TITLE:"+note.getTitle()+" GUID:"+note.getGuid());
+    		TLog.v(TAG, "Note inserted in content provider. ID: {0} TITLE:{1} GUID:{2}", uri, note.getTitle(),
+                    note.getGuid());
 		} else {
 			
 			// Overwrite the previous note if it exists
 			cr.update(Tomdroid.CONTENT_URI, values, Note.GUID+" = ?", whereArgs);
 			
-			if (Tomdroid.LOGGING_ENABLED) Log.v(TAG,"Note updated in content provider. TITLE:"+note.getTitle()+" GUID:"+note.getGuid());
+			TLog.v(TAG, "Note updated in content provider. TITLE:{0} GUID:{1}", note.getTitle(),
+                    note.getGuid());
 		}
 	}
 	
@@ -209,7 +210,7 @@ public class NoteManager {
 		}
 		else {
 			// TODO send an error to the user
-			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "Cursor returned null or 0 notes");
+			TLog.d(TAG, "Cursor returned null or 0 notes");
 		}
 		
 		return id;
@@ -229,7 +230,7 @@ public class NoteManager {
 		Matcher m = stripTitle.matcher(xmlContent);
 		if (m.find()) {
 			xmlContent = xmlContent.substring(m.end(), xmlContent.length());
-			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "stripped the title from note-content");
+			TLog.d(TAG, "stripped the title from note-content");
 		}
 		
 		return xmlContent;

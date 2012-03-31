@@ -29,35 +29,32 @@
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
-	<string name="strListEmptyWaiting">Please wait while the notes load..</string>
-	<string name="strListEmptyNoNotes">There are no notes in Tomdroid\'s database.</string>
+	<string name="strListEmptyWaiting">Vinarliga bíða ímeðan notatirnar løða..</string>
+	<string name="strListEmptyNoNotes">Tað eru ongar notatir í Tomdroid databasanum.</string>
 	
-	<string name="menuSync">Sync</string>
-	<string name="menuPrefs">Settings</string>
-	<string name="menuAbout">About</string>
-	<string name="titleWelcome">Warning</string>
-	<string name="titleAbout">About Tomdroid</string>
+	<string name="menuSync">Samstilla</string>
+	<string name="menuPrefs">Uppsetingar</string>
+	<string name="menuAbout">Um</string>
+	<string name="titleWelcome">Ávaring</string>
+	<string name="titleAbout">Um Tomdroid</string>
 	<string name="strWelcome">Welcome to Tomdroid.\n\nPlease note that this is beta quality software and that it contains known problems, like its inability to edit notes.\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something out and tested as quickly as possible.\n\nIf you would like to contribute, help at all levels would be appreciated. Hop on board on launchpad.net/tomdroid and contact us!\n</string>
 	<string name="strAbout">%1$s\n\nAuthor: %2$s\nVersion: %3$s\nLicensed under the GPLv3</string>
 	
 	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
 	<string name="btnOk">OK</string>
-	<string name="btnCancel">Cancel</string>
-	<string name="btnClose">Close</string>
-	<string name="btnProjectPage">Project page</string>
+	<string name="btnCancel">Avlýs</string>
+	<string name="btnClose">Lat aftur</string>
+	<string name="btnProjectPage">Verkætlan síða</string>
 	
 	<!-- note-view.xml -->
-	<string name="strWait">Please wait while note loads...</string>
+	<string name="strWait">Vinarliga bíða meðan notatirnar løða...</string>
 	
-	<string name="prefSync">Synchronization</string>
-	<string name="prefSyncService">Service</string>
-	<string name="prefSyncServer">Server</string>
-	<string name="prefSDCard">SD Card</string>
+	<string name="prefSync">Samstilling</string>
+	<string name="prefSyncService">Tænasta</string>
+	<string name="prefSyncServer">Ambætari</string>
+	<string name="prefSDCard">SD Kort</string>
 	<string name="prefTomboyWeb">Online Synchronization</string>
 	<string name="prefAuthenticate">Authenticate</string>
-	<string name="prefLocation">Location on SD Card</string>
-	<string name="prefFolderCreated">As the folder \"%1$s\" did not exist before, i created it. Please connect your Device to the Computer and fill it with *.note files. \nYou can also put the notes anywhere else and change the folder path afterwards!</string>
-	<string name="prefNoValidLocation">\"%1$s\" is no valid Folder Location. Please try again!</string>
 	
 	<string name="prefSyncCompleteAuth">Completing authentication. Please wait...</string>
 	<string name="prefSyncConnectionFailed">The connection to the server has failed, please check that the address you entered is correct.</string>
@@ -116,10 +113,7 @@
 	
 	
 	<!-- Launchpad Translation String -->
-	<string name="about_translators">
-	
-	translator-credits
-	
-	</string>
+	<string name="about_translators">Launchpad Contributions:
+  Jógvan Olsen https://launchpad.net/~jeggy</string>
 	
 </resources>

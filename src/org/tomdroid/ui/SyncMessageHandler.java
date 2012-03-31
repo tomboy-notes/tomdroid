@@ -24,24 +24,23 @@
  */
 package org.tomdroid.ui;
 
-import org.tomdroid.R;
-import org.tomdroid.sync.SyncManager;
-import org.tomdroid.sync.SyncService;
-import org.tomdroid.util.ErrorList;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.Toast;
+import org.tomdroid.R;
+import org.tomdroid.sync.SyncManager;
+import org.tomdroid.sync.SyncService;
+import org.tomdroid.util.ErrorList;
+import org.tomdroid.util.TLog;
 
 public class SyncMessageHandler extends Handler {
 
@@ -109,8 +108,7 @@ public class SyncMessageHandler extends Handler {
 				break;
 
 			default:
-				if (Tomdroid.LOGGING_ENABLED)
-					Log.i(TAG, "handler called with an unknown message");
+				TLog.i(TAG, "handler called with an unknown message");
 				break;
 
 		}

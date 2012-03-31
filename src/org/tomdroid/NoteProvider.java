@@ -43,16 +43,7 @@
  */
 package org.tomdroid;
 
-import java.util.HashMap;
-import java.util.UUID;
-
-import org.tomdroid.ui.Tomdroid;
-
-import android.content.ContentProvider;
-import android.content.ContentUris;
-import android.content.ContentValues;
-import android.content.Context;
-import android.content.UriMatcher;
+import android.content.*;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -61,7 +52,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.text.TextUtils;
-import android.util.Log;
+import org.tomdroid.ui.Tomdroid;
+import org.tomdroid.util.TLog;
+
+import java.util.HashMap;
+import java.util.UUID;
 
 public class NoteProvider extends ContentProvider {
 	
@@ -107,10 +102,8 @@ public class NoteProvider extends ContentProvider {
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        	if (Tomdroid.LOGGING_ENABLED) {
-        		Log.d(TAG, "Upgrading database from version " + oldVersion + " to "
-                    + newVersion + ", which will destroy all old data");
-        	}
+        	TLog.d(TAG, "Upgrading database from version {0} to {1}, which will destroy all old data",
+                    oldVersion, newVersion);
             db.execSQL("DROP TABLE IF EXISTS notes");
             onCreate(db);
         }

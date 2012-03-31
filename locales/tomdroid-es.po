@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: tomdroid\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-12-07 10:08+0100\n"
-"PO-Revision-Date: 2011-12-19 22:33+0000\n"
-"Last-Translator: JoLiSh <jolish@gmail.com>\n"
+"PO-Revision-Date: 2012-02-12 15:11+0000\n"
+"Last-Translator: Fitoschido <fitoschido@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-01-09 19:00+0000\n"
-"X-Generator: Launchpad (build 14640)\n"
+"X-Launchpad-Export-Date: 2012-03-05 11:20+0000\n"
+"X-Generator: Launchpad (build 14900)\n"
 
 #. application details
 #: tmp_strings.xml:27(string)
@@ -52,11 +52,11 @@ msgstr "Ajustes"
 
 #: tmp_strings.xml:37(string)
 msgid "About"
-msgstr "Acerca de Tomdroid"
+msgstr "Acerca de"
 
 #: tmp_strings.xml:38(string)
 msgid "Warning"
-msgstr "Advertencia"
+msgstr "Aviso"
 
 #: tmp_strings.xml:39(string)
 msgid "About Tomdroid"
@@ -302,6 +302,7 @@ msgstr ""
 "Launchpad Contributions:\n"
 "  Alicia García Adames https://launchpad.net/~aliciagadames\n"
 "  Clemens Niesner https://launchpad.net/~pop-ffe\n"
+"  Fitoschido https://launchpad.net/~fitoschido\n"
 "  JoLiSh https://launchpad.net/~jolish\n"
 "  João Santana https://launchpad.net/~joaosantana\n"
 "  Stefan Hammer https://launchpad.net/~j-4"

@@ -33,31 +33,28 @@
 	<string name="strListEmptyNoNotes">There are no notes in Tomdroid\'s database.</string>
 	
 	<string name="menuSync">Sync</string>
-	<string name="menuPrefs">Settings</string>
-	<string name="menuAbout">About</string>
-	<string name="titleWelcome">Warning</string>
+	<string name="menuPrefs">అమరికలు</string>
+	<string name="menuAbout">గురించి</string>
+	<string name="titleWelcome">హెచ్ఛరిక</string>
 	<string name="titleAbout">About Tomdroid</string>
 	<string name="strWelcome">Welcome to Tomdroid.\n\nPlease note that this is beta quality software and that it contains known problems, like its inability to edit notes.\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something out and tested as quickly as possible.\n\nIf you would like to contribute, help at all levels would be appreciated. Hop on board on launchpad.net/tomdroid and contact us!\n</string>
 	<string name="strAbout">%1$s\n\nAuthor: %2$s\nVersion: %3$s\nLicensed under the GPLv3</string>
 	
 	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
-	<string name="btnOk">OK</string>
-	<string name="btnCancel">Cancel</string>
-	<string name="btnClose">Close</string>
+	<string name="btnOk">సరే</string>
+	<string name="btnCancel">రద్దుచేయి</string>
+	<string name="btnClose">మూసివేయి</string>
 	<string name="btnProjectPage">Project page</string>
 	
 	<!-- note-view.xml -->
 	<string name="strWait">Please wait while note loads...</string>
 	
 	<string name="prefSync">Synchronization</string>
-	<string name="prefSyncService">Service</string>
-	<string name="prefSyncServer">Server</string>
+	<string name="prefSyncService">సేవ</string>
+	<string name="prefSyncServer">సేవకము</string>
 	<string name="prefSDCard">SD Card</string>
 	<string name="prefTomboyWeb">Online Synchronization</string>
-	<string name="prefAuthenticate">Authenticate</string>
-	<string name="prefLocation">Location on SD Card</string>
-	<string name="prefFolderCreated">As the folder \"%1$s\" did not exist before, i created it. Please connect your Device to the Computer and fill it with *.note files. \nYou can also put the notes anywhere else and change the folder path afterwards!</string>
-	<string name="prefNoValidLocation">\"%1$s\" is no valid Folder Location. Please try again!</string>
+	<string name="prefAuthenticate">ధృవీకరించు</string>
 	
 	<string name="prefSyncCompleteAuth">Completing authentication. Please wait...</string>
 	<string name="prefSyncConnectionFailed">The connection to the server has failed, please check that the address you entered is correct.</string>
@@ -69,7 +66,7 @@
 	<string name="messageSyncNoConnection">You are not connected to the Internet.</string>
 	<string name="messageSyncAlreadyInProgress">Sync already in progress</string>
 	<string name="messageSyncError">There was an error trying to parse your note collection. If you are able to replicate the problem, please contact us!</string>
-	<string name="error">Error</string>
+	<string name="error">దోషం</string>
 	
 	<!-- NoteSorting -->
 	<string name="menuSort">change sort</string>
@@ -77,20 +74,20 @@
 	<string name="prefDefaultSorting">Default sort</string>
 	
 	<!-- NotebookFiltering -->
-	<string name="menuFilterNotebook">Filter</string>
+	<string name="menuFilterNotebook">వడపోత</string>
 	<string name="strListEmptyNoNotebooks">There are no notebooks in the database.</string>
 	<string name="allNotebooksFilter">All notebooks</string>
 	
 	<!-- List Longpress Menu -->
-	<string name="view">View</string>
+	<string name="view">వీక్షణం</string>
 	<string name="noteOptions">Note Options</string>
-	<string name="send">Send</string>
+	<string name="send">పంపు</string>
 	
 	<!--  Search -->
 	<string name="search_hint">Search Notes</string>
 	<string name="search_description">Text in your notes</string>
 	<string name="strNoResults">No notes found for \"%s\"</string>
-	<string name="menuSearch">Search</string>
+	<string name="menuSearch">శోధించు</string>
 	<string name="prefSearch">Search Options</string>
 	<string name="SearchResultTitle">Search Results:</string>
 	<string name="clearSearchHistoryTitle">Clear search history</string>
@@ -99,8 +96,8 @@
 	
 	<!-- Date -->
 	<string name="textModified">Modified:</string>
-	<string name="textToday">Today</string>
-	<string name="textYexterday">Yesterday</string>
+	<string name="textToday">నేడు</string>
+	<string name="textYexterday">నిన్న</string>
 	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
@@ -116,10 +113,7 @@
 	
 	
 	<!-- Launchpad Translation String -->
-	<string name="about_translators">
-	
-	translator-credits
-	
-	</string>
+	<string name="about_translators">Launchpad Contributions:
+  Praveen Illa https://launchpad.net/~telugulinux</string>
 	
 </resources>

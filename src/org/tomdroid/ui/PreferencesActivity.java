@@ -23,22 +23,11 @@
  */
 package org.tomdroid.ui;
 
-import java.util.ArrayList;
-
-import org.tomdroid.NoteManager;
-import org.tomdroid.R;
-import org.tomdroid.sync.ServiceAuth;
-import org.tomdroid.sync.SyncManager;
-import org.tomdroid.sync.SyncService;
-import org.tomdroid.util.FirstNote;
-import org.tomdroid.util.Preferences;
-import org.tomdroid.util.SearchSuggestionProvider;
-
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -47,12 +36,23 @@ import android.os.Message;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
-import android.preference.PreferenceActivity;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
+import android.preference.PreferenceActivity;
 import android.provider.SearchRecentSuggestions;
-import android.util.Log;
 import android.widget.Toast;
+import org.tomdroid.NoteManager;
+import org.tomdroid.R;
+import org.tomdroid.sync.ServiceAuth;
+import org.tomdroid.sync.SyncManager;
+import org.tomdroid.sync.SyncService;
+import org.tomdroid.util.FirstNote;
+import org.tomdroid.util.Preferences;
+import org.tomdroid.util.SearchSuggestionProvider;
+import org.tomdroid.util.TLog;
+
+import java.io.File;
+import java.util.ArrayList;
 
 public class PreferencesActivity extends PreferenceActivity {
 	
@@ -92,7 +92,7 @@ public class PreferencesActivity extends PreferenceActivity {
 				
 				// did the selection change?
 				if (!syncService.getValue().contentEquals(selectedSyncServiceKey)) {
-					Log.d(TAG, "preference change triggered");
+					TLog.d(TAG, "preference change triggered");
 					
 					syncServiceChanged(selectedSyncServiceKey);
 				}
@@ -126,14 +126,24 @@ public class PreferencesActivity extends PreferenceActivity {
 			public boolean onPreferenceChange(Preference preference, Object locationUri) {
 
 				if (locationUri.equals(Preferences.getString(Preferences.Key.SD_LOCATION))) { return false; }
-
+				if (locationUri.toString().contains("\n")) { 
+					noValidLocation(locationUri.toString());
+					return false;
+				}
 				Preferences.putString(Preferences.Key.SD_LOCATION, locationUri.toString());
-				if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "Changed Folder to: sdcard/" + Preferences.getString(Preferences.Key.SD_LOCATION) + "/");
+				TLog.d(TAG, "Changed Folder to: sdcard/" + Preferences.getString(Preferences.Key.SD_LOCATION) + "/");
 
 				Tomdroid.NOTES_PATH = Environment.getExternalStorageDirectory()
 								+ "/" + Preferences.getString(Preferences.Key.SD_LOCATION) + "/";
 				
 				sdLocation.setSummary(Tomdroid.NOTES_PATH);
+				
+				File path = new File(Tomdroid.NOTES_PATH);
+
+				if(!path.exists()) {
+					TLog.d(TAG, "Created Folder: {0}", path);
+					folderCreated(path.toString());
+				}
 				
 				resetLocalDatabase();
 				return true;
@@ -150,7 +160,7 @@ public class PreferencesActivity extends PreferenceActivity {
 	        	Toast.makeText(getBaseContext(),
                         getString(R.string.deletedSearchHistory),
                         Toast.LENGTH_LONG).show();
-	        	Log.d(TAG, "Deleted search history.");
+	        	TLog.d(TAG, "Deleted search history.");
 	        	
 	        	return true;
 	        }
@@ -169,7 +179,7 @@ public class PreferencesActivity extends PreferenceActivity {
 		}
 
 		// service needs authentication
-		Log.i(TAG, "Creating dialog");
+		TLog.i(TAG, "Creating dialog");
 
 		final ProgressDialog authProgress = ProgressDialog.show(this, "",
 				getString(R.string.prefSyncCompleteAuth), true, false);
@@ -256,6 +266,26 @@ public class PreferencesActivity extends PreferenceActivity {
 	private void connectionFailed() {
 		new AlertDialog.Builder(this)
 			.setMessage(getString(R.string.prefSyncConnectionFailed))
+			.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.dismiss();
+				}})
+			.show();
+	}
+	
+	private void folderCreated(String path) {
+		new AlertDialog.Builder(this)
+			.setMessage(String.format(getString(R.string.prefFolderCreated), path))
+			.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.dismiss();
+				}})
+			.show();
+	}
+	
+	private void noValidLocation(String path) {
+		new AlertDialog.Builder(this)
+			.setMessage(String.format(getString(R.string.prefNoValidLocation), path))
 			.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
 					dialog.dismiss();
