@@ -56,8 +56,8 @@
 	<string name="prefTomboyWeb">Online Synchronization</string>
 	<string name="prefAuthenticate">Authenticate</string>
 	<string name="prefLocation">Location on SD Card</string>
-	<string name="prefFolderCreated">As the folder \"%1$s\" did not exist before, i created it. Please connect your Device to the Computer and fill it with *.note files. \nYou can also put the notes anywhere else and change the folder path afterwards!</string>
-	<string name="prefNoValidLocation">\"%1$s\" is no valid Folder Location. Please try again!</string>
+	<string name="prefFolderCreated">As the folder \"%1$s\" did not exist before, i created it. Please connect your device to the computer and fill it with *.note files. \nYou can also put the notes anywhere else and change the folder path afterwards!</string>
+	<string name="prefNoValidLocation">\"%1$s\" is no valid folder location. Please try again!</string>
 	
 	<string name="prefSyncCompleteAuth">Completing authentication. Please wait...</string>
 	<string name="prefSyncConnectionFailed">The connection to the server has failed, please check that the address you entered is correct.</string>
