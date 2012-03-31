@@ -125,26 +125,29 @@ public class PreferencesActivity extends PreferenceActivity {
 
 			public boolean onPreferenceChange(Preference preference, Object locationUri) {
 
-				if (locationUri.equals(Preferences.getString(Preferences.Key.SD_LOCATION))) { return false; }
+				if (locationUri.equals(Preferences.getString(Preferences.Key.SD_LOCATION))) { 
+					return false;
+				}
 				if (locationUri.toString().contains("\n")) { 
 					noValidLocation(locationUri.toString());
 					return false;
 				}
-				Preferences.putString(Preferences.Key.SD_LOCATION, locationUri.toString());
-				TLog.d(TAG, "Changed Folder to: sdcard/" + Preferences.getString(Preferences.Key.SD_LOCATION) + "/");
-
-				Tomdroid.NOTES_PATH = Environment.getExternalStorageDirectory()
-								+ "/" + Preferences.getString(Preferences.Key.SD_LOCATION) + "/";
 				
-				sdLocation.setSummary(Tomdroid.NOTES_PATH);
-				
-				File path = new File(Tomdroid.NOTES_PATH);
+				File path = new File(Environment.getExternalStorageDirectory()
+						+ "/" + locationUri + "/");
 
 				if(!path.exists()) {
-					TLog.d(TAG, "Created Folder: {0}", path);
-					folderCreated(path.toString());
+					TLog.d(TAG, "Folder {0} does not exist.", path);
+					folderNotExisting(path.toString());
+					return false;
 				}
 				
+				Preferences.putString(Preferences.Key.SD_LOCATION, locationUri.toString());
+				TLog.d(TAG, "Changed Folder to: " + path.toString());
+
+				Tomdroid.NOTES_PATH = path.toString();
+				sdLocation.setSummary(Tomdroid.NOTES_PATH);
+
 				resetLocalDatabase();
 				return true;
 			}
@@ -273,7 +276,7 @@ public class PreferencesActivity extends PreferenceActivity {
 			.show();
 	}
 	
-	private void folderCreated(String path) {
+	private void folderNotExisting(String path) {
 		new AlertDialog.Builder(this)
 			.setMessage(String.format(getString(R.string.prefFolderCreated), path))
 			.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
