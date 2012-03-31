@@ -47,12 +47,25 @@ public class NoteContentBuilder implements Runnable {
 	// thread related
 	private Thread runner;
 	private Handler parentHandler;
+	private String subjectName;
 	
 	public NoteContentBuilder () {}
 	
 	public NoteContentBuilder setCaller(Handler parent) {
 		
 		parentHandler = parent;
+		return this;
+	}
+	
+	/**
+	 * Allows you to give a string that will be appended to errors in order to make them more useful.
+	 * You'll probably want to set it to the Note's title.
+	 * @param title
+	 * @return this (builder pattern) 
+	 */
+	public NoteContentBuilder setTitle(String title) {
+		
+		subjectName = title;
 		return this;
 	}
 	
@@ -85,12 +98,13 @@ public class NoteContentBuilder implements Runnable {
 	        spf.setFeature("http://xml.org/sax/features/namespace-prefixes", true);
 	        SAXParser sp = spf.newSAXParser();
 
-			TLog.v(TAG, "parsing note");
+			TLog.v(TAG, "parsing note {0}", subjectName);
+			
 	        sp.parse(noteContentIs, new NoteContentHandler(noteContent));
 		} catch (Exception e) {
 			e.printStackTrace();
 			// TODO handle error in a more granular way
-			TLog.e(TAG, "There was an error parsing the note.");
+			TLog.e(TAG, "There was an error parsing the note {0}", subjectName);
 			successful = false;
 		}
 		

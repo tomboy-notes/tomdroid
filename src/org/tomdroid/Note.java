@@ -173,7 +173,7 @@ public class Note {
 	public SpannableStringBuilder getNoteContent(Handler handler) {
 		
 		// TODO not sure this is the right place to do this
-		noteContent = new NoteContentBuilder().setCaller(handler).setInputSource(xmlContent).build();
+		noteContent = new NoteContentBuilder().setCaller(handler).setInputSource(xmlContent).setTitle(this.getTitle()).build();
 		return noteContent;
 	}
 	

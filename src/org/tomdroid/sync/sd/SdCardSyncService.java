@@ -191,7 +191,7 @@ public class SdCardSyncService extends SyncService {
 		        StringReader sr = new StringReader(contents);
 		        InputSource is = new InputSource(sr);
 		        
-				TLog.d(TAG, "parsing note");
+				TLog.d(TAG, "parsing note. filename: {0}", file.getName());
 				xr.parse(is);
 
 			// TODO wrap and throw a new exception here
