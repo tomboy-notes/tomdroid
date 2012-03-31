@@ -22,9 +22,7 @@
  */
 package org.tomdroid.sync.web;
 
-import java.io.UnsupportedEncodingException;
-import java.net.UnknownHostException;
-
+import android.net.Uri;
 import oauth.signpost.OAuthConsumer;
 import oauth.signpost.OAuthProvider;
 import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
@@ -33,7 +31,6 @@ import oauth.signpost.exception.OAuthCommunicationException;
 import oauth.signpost.exception.OAuthExpectationFailedException;
 import oauth.signpost.exception.OAuthMessageSignerException;
 import oauth.signpost.exception.OAuthNotAuthorizedException;
-
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -41,11 +38,11 @@ import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.Preferences;
+import org.tomdroid.util.TLog;
 
-import android.net.Uri;
-import android.util.Log;
+import java.io.UnsupportedEncodingException;
+import java.net.UnknownHostException;
 
 public class OAuthConnection extends WebConnection {
 	
@@ -168,14 +165,14 @@ public class OAuthConnection extends WebConnection {
 			return null;
 		}
 		
-		if (Tomdroid.LOGGING_ENABLED) Log.i(TAG, "Authorization URL : "+url);
+		TLog.i(TAG, "Authorization URL : {0}", url);
 		
 		return Uri.parse(url);
 	}
 	
 	public boolean getAccess(String verifier) throws UnknownHostException {
 		
-		Log.i(TAG, "Verifier: "+verifier);
+		TLog.i(TAG, "Verifier: {0}", verifier);
 		
 		// this method shouldn't have been called
 		if (isAuthenticated())
@@ -183,9 +180,7 @@ public class OAuthConnection extends WebConnection {
 		
 		if (!requestToken.equals("") && !requestTokenSecret.equals("")) {
 			consumer.setTokenWithSecret(requestToken, requestTokenSecret);
-			if(Tomdroid.LOGGING_ENABLED) {
-				Log.d(TAG, "Added request token "+requestTokenSecret+" and request token secret "+requestTokenSecret);
-			}
+			TLog.d(TAG, "Added request token {0} and request token secret {1}", requestToken, requestTokenSecret);
 		}
 		else
 			return false;
@@ -225,7 +220,7 @@ public class OAuthConnection extends WebConnection {
 		
 		saveConfiguration();
 		
-		if (Tomdroid.LOGGING_ENABLED) Log.i(TAG, "Got access token "+consumer.getToken()+".");
+		TLog.i(TAG, "Got access token {0}.", consumer.getToken());
 		
 		return true;
 	}

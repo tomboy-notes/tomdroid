@@ -4,7 +4,7 @@
  Tomboy on Android
  http://www.launchpad.net/tomdroid
 
- Copyright 2011 Stefan Hammer <j.4@gmx.at>
+ Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
  
  This file is part of Tomdroid.
  
@@ -22,113 +22,99 @@
  along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
-    
-    <string name="send">Senden</string>
-    <string name="app_name">Tomdroid</string>
-    <string name="app_desc">Tomboy kompatibles Wiki Notiz-Programm, mit dem man noch keine Notizen erstellen kann.</string>
-    <string name="author">Olivier Bilodeau</string>
-
+	
+	<!-- application details -->
+	<string name="app_name">Tomdroid</string>
+	<string name="app_desc">Tomboy kompatibles Wiki Notiz-Programm, mit dem man noch keine Notizen erstellen kann.</string>
+	<string name="author">Olivier Bilodeau</string>
+	
 	<!-- main.xml -->
-    <string name="strListEmptyWaiting">Die Notizen werden geladen. Bitte warten...</string>
-    <string name="strListEmptyNoNotes">
-    	Es sind keine Notizen in Tomdroids Datenbank vorhanden.
-    </string>
-    
-    <string name="menuSync">Synchronisieren</string>
+	<string name="strListEmptyWaiting">Die Notizen werden geladen. Bitte warten …</string>
+	<string name="strListEmptyNoNotes">Es sind keine Notizen in Tomdroids Datenbank vorhanden.</string>
+	
+	<string name="menuSync">Synchronisieren</string>
 	<string name="menuPrefs">Einstellungen</string>
 	<string name="menuAbout">Information</string>
-    <string name="titleWelcome">Warnung</string>
-    <string name="titleAbout">Über Tomdroid</string>
-    <string name="strWelcome">
-    	Willkommen bei Tomdroid.
-    	\n\nBitte beachte, dass sich dieses Programm noch im Beta-Stadium befindet und Probleme bekannt sind, wie zum Beispiel das Fehlen der Bearbeitungsfunktion.
-
-    	\n\nWir sind uns diesen Mängeln bewusst und versuchen möglichst schnell die Funktionen zu erweitern und Fehler zu beheben.
-    	
-    	\n\nFalls du die Entwicklung in irgendeiner Form unterstützen möchtest, würden wir uns sehr freuen.
-		Auf launchpad.net/tomdroid findest du die nötigen Informationen.\n
-    </string>
-    <string name="strAbout">
-    	%1$s
-    	\n\nAutor: %2$s
-    	\nVersion: %3$s
-    	\nLizensiert unter GPLv3
-    </string>
-
-    <string name="btnOk">OK</string>
-    <string name="btnCancel">Abbrechen</string>
-    <string name="btnClose">Schließen</string>
-    <string name="btnProjectPage">Projektseite</string>
-
+	<string name="titleWelcome">Warnung</string>
+	<string name="titleAbout">Über Tomdroid</string>
+	<string name="strWelcome">Willkommen bei Tomdroid.\n\nBitte beachten Sie, dass sich dieses Programm noch im Betastadium befindet und Probleme bekannt sind, wie zum Beispiel das Fehlen der Bearbeitungsfunktion.\n\nWir sind uns diesen Mängeln bewusst und versuchen, möglichst schnell die Funktionen zu erweitern und Fehler zu beheben.\n\nFalls Sie die Entwicklung in irgendeiner Form unterstützen möchten, würden wir uns sehr freuen. Auf launchpad.net/tomdroid finden Sie die nötigen Informationen!\n</string>
+	<string name="strAbout">%1$s\n\nAutor: %2$s\nVersion: %3$s\nLizensiert unter GPLv3</string>
+	
+	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
+	<string name="btnOk">OK</string>
+	<string name="btnCancel">Abbrechen</string>
+	<string name="btnClose">Schließen</string>
+	<string name="btnProjectPage">Projektseite</string>
+	
 	<!-- note-view.xml -->
-    <string name="strWait">Die Notiz wird geladen. Bitte warten...</string>
-
+	<string name="strWait">Die Notiz wird geladen. Bitte warten …</string>
+	
 	<string name="prefSync">Synchronisation</string>
-	<string name="prefSyncService">Service</string>
+	<string name="prefSyncService">Dienst</string>
 	<string name="prefSyncServer">Server</string>
 	<string name="prefSDCard">SD-Karte</string>
+	<string name="prefTomboyWeb">Online-Synchronisation</string>
 	<string name="prefAuthenticate">Authentifizieren</string>
-
-	<string name="prefSyncCompleteAuth">Authentifizierung läuft. Bitte warten...</string>
+	
+	<string name="prefSyncCompleteAuth">Authentifizierung läuft. Bitte warten …</string>
 	<string name="prefSyncConnectionFailed">Die Verbindung zum Server ist fehlgeschlagen. Bitte überprüfe die angegebene Adresse.</string>
 	<string name="prefServerEmpty">Die Adresse des Servers wurde geändert. Es wurde keine Adresse angegeben!</string>
-
-	<string name="titleSyncService">Synchronisations-Dienst wählen</string>
+	
+	<string name="titleSyncService">Synchronisationsdienst wählen</string>
 	<string name="messageSyncComplete">Erfolgreich mit %1$s synchronisiert.</string>
 	<string name="messageSyncNoNote">Es wurden keine Notizen auf %1$s gefunden.</string>
-	<string name="messageSyncNoConnection">Es besteht keine Verbindung zum Internet.</string>
+	<string name="messageSyncNoConnection">Es besteht keine Internetverbindung.</string>
 	<string name="messageSyncAlreadyInProgress">Synchronisation wird bereits ausgeführt.</string>
-	<string name="messageSyncError">Es ist ein Fehler beim Analysieren deiner Notizen aufgetreten. Falls sich dieses Problem wiederholt, melde es bitte!</string>
+	<string name="messageSyncError">Es ist ein Fehler beim Analysieren Ihrer Notizen aufgetreten. Falls dieses Problem wiederholt auftritt, melden Sie es bitte!</string>
 	<string name="error">Fehler</string>
 	
 	<!-- NoteSorting -->
-    <string name="menuSort">Reihenfolge ändern</string>
-	<string name="titleDefaultSorting">Wähle die Standard-Reihenfolge</string>
-	<string name="prefDefaultSorting">Standard-Reihenfolge</string>
+	<string name="menuSort">Reihenfolge ändern</string>
+	<string name="titleDefaultSorting">Wähle die Standardreihenfolge</string>
+	<string name="prefDefaultSorting">Standardreihenfolge</string>
 	
 	<!-- NotebookFiltering -->
-    <string name="menuFilterNotebook">Filter</string>
-    <string name="strListEmptyNoNotebooks">Es befinden sich kein Notizen in der Datenbank.</string>
-    <string name="allNotebooksFilter">Alle Notizbücher</string>
-    
-    <!-- List Longpress Menu -->
-    <string name="view">Anzeigen</string>
-    <string name="noteOptions">Notizoptionen</string>
-
-    <!--  Search -->
-    <string name="search_hint">Notizen durchsuchen</string>
-    <string name="search_description">Text in meinen Notizen</string>
-    <string name="strNoResults">Keine Notizen gefunden mit \"%s\"</string>
-    <string name="menuSearch">Suchen</string>
-    <string name="prefSearch">Suche</string>
-    <string name="SearchResultTitle">Suchergebnisse:</string>
-    <string name="clearSearchHistoryTitle">Suchverlauf löschen</string>
-    <string name="clearSearchHistory">Alle Suchvorgänge aus dem Verlauf entfernen</string>
-    <string name="deletedSearchHistory">Suchverlauf gelöscht.</string>
+	<string name="menuFilterNotebook">Filter</string>
+	<string name="strListEmptyNoNotebooks">Es befinden sich kein Notizen in der Datenbank.</string>
+	<string name="allNotebooksFilter">Alle Notizbücher</string>
+	
+	<!-- List Longpress Menu -->
+	<string name="view">Anzeigen</string>
+	<string name="noteOptions">Notizoptionen</string>
+	<string name="send">Senden</string>
+	
+	<!--  Search -->
+	<string name="search_hint">Notizen durchsuchen</string>
+	<string name="search_description">Text in meinen Notizen</string>
+	<string name="strNoResults">Keine Notizen gefunden mit \"%s\"</string>
+	<string name="menuSearch">Suchen</string>
+	<string name="prefSearch">Suchoptionen</string>
+	<string name="SearchResultTitle">Suchergebnisse:</string>
+	<string name="clearSearchHistoryTitle">Suchverlauf löschen</string>
+	<string name="clearSearchHistory">Alle Suchvorgänge aus dem Verlauf entfernen</string>
+	<string name="deletedSearchHistory">Suchverlauf gelöscht.</string>
 	
 	<!-- Date -->
-    <string name="textModified">Geändert: </string>
-    <string name="textToday">Heute</string>
-    <string name="textYexterday">Gestern</string>
-    
+	<string name="textModified">Geändert:</string>
+	<string name="textToday">Heute</string>
+	<string name="textYexterday">Gestern</string>
+	
 	<!-- 
-		Information that goes into the Android Market Application Listing. 
-		I've put it in here so that it'll get translated by translators.
+	Information that goes into the Android Market Application Listing. 
+	I\'ve put it in here so that it\'ll get translated by translators.
 	-->
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid Notizen</string>
 	<!-- 325 chars max -->
-	<string name="market_description">
-		Ein Tomboy Notiz-Programm für Android. Tomboy ist ein Notiz-Programm, dass einen wikiwiki Aufbau benutzt und eine einfache Benutzeroberfläche.
-
-		BEACHTE: Mit diesem Programm kann man momentan NUR LESEN.
-
-		* Notiz-Formatierung wie bei Tomboy.
-		* Online Notiz-Synchronisierung mit Snowy, Tomboy Online oder Ubuntu One.
-		* Importieren von der SD-Karte.
-		* Open source!
-	</string>
+	<string name="market_description">Ein Tomboy Notiz-Programm für Android. Tomboy ist ein Notiz-Programm, dass einen wikiwiki Aufbau benutzt und eine einfache Benutzeroberfläche.\n\nBEACHTE: Mit diesem Programm kann man momentan NUR LESEN.\n\n* Notiz-Formatierung wie bei Tomboy.\n* Online Notiz-Synchronisierung mit Snowy, Tomboy Online oder Ubuntu One.\n* Importieren von der SD-Karte.\n* Open source!</string>
+	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Notiz-Programm mit online Synchronisation zu Tomboy.</string>
+	
+	
+	<!-- Launchpad Translation String -->
+	<string name="about_translators">Launchpad Contributions:
+  Henrik Graßhoff https://launchpad.net/~henrik-grasshoff
+  Stefan Hammer https://launchpad.net/~j-4</string>
 	
 </resources>

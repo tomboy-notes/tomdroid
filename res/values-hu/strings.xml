@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ Tomdroid
+ Tomboy on Android
+ http://www.launchpad.net/tomdroid
+
+ Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
+ 
+ This file is part of Tomdroid.
+ 
+ Tomdroid is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Tomdroid is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources>
+	
+	<!-- application details -->
+	<string name="app_name">Tomdroid</string>
+	<string name="app_desc">Tomboy-kompatibilis wikiwiki jegyzetfüzet-alkalmazás, amely még nem tud jegyzeteket létrehozni.</string>
+	<string name="author">Olivier Bilodeau</string>
+	
+	<!-- main.xml -->
+	<string name="strListEmptyWaiting">Várjon türelemmel, amíg a jegyzetek betöltődnek...</string>
+	<string name="strListEmptyNoNotes">Nincsenek jegyzetek a Tomdroid adatbázisában.</string>
+	
+	<string name="menuSync">Szinkronizálás</string>
+	<string name="menuPrefs">Beállítások</string>
+	<string name="menuAbout">Névjegy</string>
+	<string name="titleWelcome">Figyelmeztetés</string>
+	<string name="titleAbout">A Tomdroid névjegye</string>
+	<string name="strWelcome">Üdvözli a Tomdroid.\n\nVegye figyelembe, hogy ez egy béta minőségű szoftver, több ismert hibája is van, például, hogy nem tud jegyzetet szerkeszteni.\n\nMind tisztában vagyunk a hibákkal, és amint lehet, javítjuk őket, de mindenképpen fontos, hogy minél előbb el lehessen kezdeni a tesztelést.\n\nHa szeretne közreműködni, minden jellegű segítség méltányolva lesz. Vegye fel a kapcsolatot velünk a launchpad.net/tomdroid oldalon!\n</string>
+	<string name="strAbout">%1$s\n\nKészítő %2$s\nVerzió: %3$s\nLicenc: GPLv3</string>
+	
+	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
+	<string name="btnOk">OK</string>
+	<string name="btnCancel">Mégse</string>
+	<string name="btnClose">Bezárás</string>
+	<string name="btnProjectPage">A projekt oldala</string>
+	
+	<!-- note-view.xml -->
+	<string name="strWait">Várjon türlemmel, amíg a jegyzet betöltődik...</string>
+	
+	<string name="prefSync">Szinkronizálás</string>
+	<string name="prefSyncService">Szolgáltatás</string>
+	<string name="prefSyncServer">Kiszolgáló</string>
+	<string name="prefSDCard">SD Kártya</string>
+	<string name="prefTomboyWeb">Online szinkronizálás</string>
+	<string name="prefAuthenticate">Hitelesítés</string>
+	
+	<string name="prefSyncCompleteAuth">Hitelesítés folyamatban. Várjon türelemmel...</string>
+	<string name="prefSyncConnectionFailed">Nem sikerült kapcsolódni a szerverhez. Ellenőrizze, hogy helyes címet adott-e meg.</string>
+	<string name="prefServerEmpty">A szerver címe megváltozott,  de nincs helyette megadva semmi</string>
+	
+	<string name="titleSyncService">Szinkronizálási kiszolgáló választása</string>
+	<string name="messageSyncComplete">Szinkronizálás kész ezzel: %1$</string>
+	<string name="messageSyncNoNote">Nem találhatók jegyzetek itt: %1$.</string>
+	<string name="messageSyncNoConnection">Nincs internetkapcsolat.</string>
+	<string name="messageSyncAlreadyInProgress">A szinkronizálás már folyamatban van</string>
+	<string name="messageSyncError">Hiba történt a jegyzetek betöltése közben. Ha tudja jelenteni a problémát, kérjük, tegye meg!</string>
+	<string name="error">Hiba</string>
+	
+	<!-- NoteSorting -->
+	<string name="menuSort">rendezés megváltoztatása</string>
+	<string name="titleDefaultSorting">Alapértelmezett rendezés választása</string>
+	<string name="prefDefaultSorting">Alapértelmezett rendezés</string>
+	
+	<!-- NotebookFiltering -->
+	<string name="menuFilterNotebook">Szűrő</string>
+	<string name="strListEmptyNoNotebooks">Nem található notebook az adatbázisban.</string>
+	<string name="allNotebooksFilter">Az összes notebook</string>
+	
+	<!-- List Longpress Menu -->
+	<string name="view">Nézet</string>
+	<string name="noteOptions">Jegyzetbeállítások</string>
+	<string name="send">Küldés</string>
+	
+	<!--  Search -->
+	<string name="search_hint">Jegyzetek keresése</string>
+	<string name="search_description">Szöveg a jegyzeteiben</string>
+	<string name="strNoResults">Nem található jegyzet erre: \"%s\"</string>
+	<string name="menuSearch">Keresés</string>
+	<string name="prefSearch">Keresési beállítások</string>
+	<string name="SearchResultTitle">A keresés eredménye:</string>
+	<string name="clearSearchHistoryTitle">Keresési előzmények törlése</string>
+	<string name="clearSearchHistory">Az előzőleg végrehajtott keresések törlése</string>
+	<string name="deletedSearchHistory">Keresési előzmények törölve.</string>
+	
+	<!-- Date -->
+	<string name="textModified">Módosítva:</string>
+	<string name="textToday">Ma</string>
+	<string name="textYexterday">Tegnap</string>
+	
+	<!-- 
+	Information that goes into the Android Market Application Listing. 
+	I\'ve put it in here so that it\'ll get translated by translators.
+	-->
+	<!-- 30 chars max -->
+	<string name="market_title">Tomdroid jegyzetek</string>
+	<!-- 325 chars max -->
+	<string name="market_description">Tomboy kliens Androidra. A Tomboy egy wikiwiki elven működő asztali jegyzetfüzet-alkalmazás, egyszerű felhasználói felülettel.\n\nFIGYELEM: jelenleg még csak OLVASÁSRA képes.\n\n* Komaptibilis a Tomboy-al\n* Online szinkronizálás Snowy, Tomboy Online vagy Ubuntu One használatával\n* Importálás SD kártyáról\n* Nyílt forrás!</string>
+	
+	<!-- 80 chars max -->
+	<string name="market_promotext">Jegyzetfüzet-alkalmazás Tomboy-kompatibilis online szinkronizációval</string>
+	
+	
+	<!-- Launchpad Translation String -->
+	<string name="about_translators">Launchpad Contributions:
+  Péter Trombitás https://launchpad.net/~trombipeti</string>
+	
+</resources>

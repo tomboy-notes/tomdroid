@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ Tomdroid
+ Tomboy on Android
+ http://www.launchpad.net/tomdroid
+
+ Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
+ 
+ This file is part of Tomdroid.
+ 
+ Tomdroid is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Tomdroid is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources>
+	
+	<!-- application details -->
+	<string name="app_name">Tomdroid</string>
+	<string name="app_desc">Tomboy-rekin bateragarria den oharrak hartzeko wiki aplikazioa, oraingoz oharrak hartzeko aukerarik ematen ez duena.</string>
+	<string name="author">Olivier Bilodeau</string>
+	
+	<!-- main.xml -->
+	<string name="strListEmptyWaiting">Mesedez, itxaron oharrak kargatu bitartean...</string>
+	<string name="strListEmptyNoNotes">Ez dago oharrik Tomdroid-en datubasean.</string>
+	
+	<string name="menuSync">Sinkronizatu</string>
+	<string name="menuPrefs">Ezarpenak</string>
+	<string name="menuAbout">Honi buruz</string>
+	<string name="titleWelcome">Abisua</string>
+	<string name="titleAbout">Tomdroid-i buruz</string>
+	<string name="strWelcome">Ongietorri Tomdroid-era.\n\nMesedez, kontutan izan hau beta kalitateko softwarea dela eta zenbait arazo ezagun dituela, hala nola, oharrak editatzeko ezintasuna.\n\nArazo hauen jakitun gara eta konpontzen saiatuko gara baina  aplikazioa lehenbailehen argitaratu eta testatu nahi genuen.\n\nParte hartu nahi baduzu, edozein motatako laguntza eskertuko genuke. Zoaz launchpad.net/tomdroid-era eta jarri gurekin harremanetan!\n</string>
+	<string name="strAbout">%1$s\n\nEgilea: %2$s\nBertsioa: %3$s\nGPLv3 lizentziadun proiektua</string>
+	
+	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
+	<string name="btnOk">Ados</string>
+	<string name="btnCancel">Utzi</string>
+	<string name="btnClose">Itxi</string>
+	<string name="btnProjectPage">Proiektuaren orria</string>
+	
+	<!-- note-view.xml -->
+	<string name="strWait">Mesedez, itxaron oharrak kargatu bitartean...</string>
+	
+	<string name="prefSync">Sinkronizazioa</string>
+	<string name="prefSyncService">Zerbitzua</string>
+	<string name="prefSyncServer">Zerbitzaria</string>
+	<string name="prefSDCard">SD Txartela</string>
+	<string name="prefTomboyWeb">Lineako sinkronizazioa</string>
+	<string name="prefAuthenticate">Autentifikatu</string>
+	
+	<string name="prefSyncCompleteAuth">Autentifikazioa burutzen. Mesedez, itxaron...</string>
+	<string name="prefSyncConnectionFailed">Ezin izan da konexiorik ezarri zerbitzariarekin. Mesedez, ziurtatu sartu duzun helbidea zuzena dela.</string>
+	<string name="prefServerEmpty">Zerbitzariaren helbidea aldatu da baina balio berria hutsik dago</string>
+	
+	<string name="titleSyncService">Aukeratu erabiliko den sinkronizazio zerbitzua</string>
+	<string name="messageSyncComplete">%1$-rekin sinkronizazioa burutu da.</string>
+	<string name="messageSyncNoNote">Ez da oharrik aurkitu %1$-(e)n</string>
+	<string name="messageSyncNoConnection">Ez zaude Internetera konektatuta.</string>
+	<string name="messageSyncAlreadyInProgress">Sinkronizazioa martxan dago jadanik</string>
+	<string name="messageSyncError">Errore bat eman da zure ohar bilduma analizatzen saiatzean. Arazoa erreplikatzeko gauza bazara, mesedez, jarri gurekin harremanetan!</string>
+	<string name="error">Errorea</string>
+	
+	<!-- NoteSorting -->
+	<string name="menuSort">aldatu ordenatzea</string>
+	<string name="titleDefaultSorting">Aukeratu ordenatze lehenetsia</string>
+	<string name="prefDefaultSorting">Ordenatze lehenetsia</string>
+	
+	<!-- NotebookFiltering -->
+	<string name="menuFilterNotebook">Iragazkia</string>
+	<string name="strListEmptyNoNotebooks">Ez dago koadernorik datubasean</string>
+	<string name="allNotebooksFilter">Kuaderno guztiak</string>
+	
+	<!-- List Longpress Menu -->
+	<string name="view">Ikusi</string>
+	<string name="noteOptions">Ohar aukerak</string>
+	<string name="send">Bidali</string>
+	
+	<!--  Search -->
+	<string name="search_hint">Bilatu oharrak</string>
+	<string name="search_description">Zure oharretako testua</string>
+	<string name="strNoResults">Ez da oharrik aurkitu \"%s"\-rentzat</string>
+	<string name="menuSearch">Bilatu</string>
+	<string name="prefSearch">Bilaketa aukerak</string>
+	<string name="SearchResultTitle">Bilaketaren emaitzak:</string>
+	<string name="clearSearchHistoryTitle">Garbitu bilaketa historia</string>
+	<string name="clearSearchHistory">Ezabatu egin dituzun bilaketa guztiak</string>
+	<string name="deletedSearchHistory">Bilaketa historia garbitu da.</string>
+	
+	<!-- Date -->
+	<string name="textModified">Aldatze-data:</string>
+	<string name="textToday">Gaur</string>
+	<string name="textYexterday">Atzo</string>
+	
+	<!-- 
+	Information that goes into the Android Market Application Listing. 
+	I\'ve put it in here so that it\'ll get translated by translators.
+	-->
+	<!-- 30 chars max -->
+	<string name="market_title">Tomdroid oharrak</string>
+	<!-- 325 chars max -->
+	<string name="market_description">Android-erako Tomboy bezeroa. Tomboy oharrak hartzeko mahaigaineko wiki aplikazio bat da eta erabiltzaile interfaze soila du.\n\nOHARRA: Oraingoz IRAKURKETA SOILIK baimentzen duen bezero bat da.\n\n* Tomboy-rekin bateragarria den oharren formatua\n* Oharren lineako sinkronizazioa Snowy, Tomboy Online edo Ubuntu One-ekin\n* SD txarteletik inportatzeko aukera\n* Software librea!</string>
+	
+	<!-- 80 chars max -->
+	<string name="market_promotext">Lineako sinkronizazioadun oharrak hartzeko aplikazioa, Tomboyrekin bateragarria</string>
+	
+	
+	<!-- Launchpad Translation String -->
+	<string name="about_translators">Launchpad Contributions:
+  Asier Iturralde Sarasola https://launchpad.net/~asier-iturralde</string>
+	
+</resources>

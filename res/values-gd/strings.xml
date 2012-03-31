@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ Tomdroid
+ Tomboy on Android
+ http://www.launchpad.net/tomdroid
+
+ Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
+ 
+ This file is part of Tomdroid.
+ 
+ Tomdroid is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Tomdroid is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources>
+	
+	<!-- application details -->
+	<string name="app_name">Tomdroid</string>
+	<string name="app_desc">Tomboy compatible wikiwiki note-taking application that can\'t take notes yet.</string>
+	<string name="author">Olivier Bilodeau</string>
+	
+	<!-- main.xml -->
+	<string name="strListEmptyWaiting">Please wait while the notes load..</string>
+	<string name="strListEmptyNoNotes">There are no notes in Tomdroid\'s database.</string>
+	
+	<string name="menuSync">Sionc</string>
+	<string name="menuPrefs">Suidheachaidhean</string>
+	<string name="menuAbout">Mu dheidhinn</string>
+	<string name="titleWelcome">Rabhadh</string>
+	<string name="titleAbout">Mu dheidhinn Tomdroid</string>
+	<string name="strWelcome">Welcome to Tomdroid.\n\nPlease note that this is beta quality software and that it contains known problems, like its inability to edit notes.\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something out and tested as quickly as possible.\n\nIf you would like to contribute, help at all levels would be appreciated. Hop on board on launchpad.net/tomdroid and contact us!\n</string>
+	<string name="strAbout">%1$s\n\nAuthor: %2$s\nVersion: %3$s\nLicensed under the GPLv3</string>
+	
+	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
+	<string name="btnOk">Ceart ma-thà</string>
+	<string name="btnCancel">Sguir</string>
+	<string name="btnClose">Dùin</string>
+	<string name="btnProjectPage">Project page</string>
+	
+	<!-- note-view.xml -->
+	<string name="strWait">Please wait while note loads...</string>
+	
+	<string name="prefSync">Synchronization</string>
+	<string name="prefSyncService">Seirbhis</string>
+	<string name="prefSyncServer">Frithealaiche</string>
+	<string name="prefSDCard">Cairt SD</string>
+	<string name="prefTomboyWeb">Online Synchronization</string>
+	<string name="prefAuthenticate">Authenticate</string>
+	
+	<string name="prefSyncCompleteAuth">Completing authentication. Please wait...</string>
+	<string name="prefSyncConnectionFailed">The connection to the server has failed, please check that the address you entered is correct.</string>
+	<string name="prefServerEmpty">The server address changed but the new value is empty</string>
+	
+	<string name="titleSyncService">Choose the sync service to use</string>
+	<string name="messageSyncComplete">Synchronization with %1$s is complete.</string>
+	<string name="messageSyncNoNote">No notes found on %1$s .</string>
+	<string name="messageSyncNoConnection">You are not connected to the Internet.</string>
+	<string name="messageSyncAlreadyInProgress">Sync already in progress</string>
+	<string name="messageSyncError">There was an error trying to parse your note collection. If you are able to replicate the problem, please contact us!</string>
+	<string name="error">Mearachd</string>
+	
+	<!-- NoteSorting -->
+	<string name="menuSort">change sort</string>
+	<string name="titleDefaultSorting">Choose the default sorting</string>
+	<string name="prefDefaultSorting">Default sort</string>
+	
+	<!-- NotebookFiltering -->
+	<string name="menuFilterNotebook">Filter</string>
+	<string name="strListEmptyNoNotebooks">There are no notebooks in the database.</string>
+	<string name="allNotebooksFilter">All notebooks</string>
+	
+	<!-- List Longpress Menu -->
+	<string name="view">Seall</string>
+	<string name="noteOptions">Note Options</string>
+	<string name="send">Cuir</string>
+	
+	<!--  Search -->
+	<string name="search_hint">Notaichean Sireadh</string>
+	<string name="search_description">Teacsa a-steach do notaichean</string>
+	<string name="strNoResults">Cha robh notaichean air lorg son  \"%s\"</string>
+	<string name="menuSearch">Sireadh</string>
+	<string name="prefSearch">Roghainnean Sireadh</string>
+	<string name="SearchResultTitle">Toraidhean Sireadh:</string>
+	<string name="clearSearchHistoryTitle">Glan eachdraidh sireadh</string>
+	<string name="clearSearchHistory">Remove all the searches you have performed</string>
+	<string name="deletedSearchHistory">Bha eachdraidh an t-sireadh a\'  glanadh</string>
+	
+	<!-- Date -->
+	<string name="textModified">Leasaichte:</string>
+	<string name="textToday">An-diugh</string>
+	<string name="textYexterday">An-dè</string>
+	
+	<!-- 
+	Information that goes into the Android Market Application Listing. 
+	I\'ve put it in here so that it\'ll get translated by translators.
+	-->
+	<!-- 30 chars max -->
+	<string name="market_title">Notaichean Tomdroid</string>
+	<!-- 325 chars max -->
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\nNOTE: It is a READ-ONLY client for now.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
+	
+	<!-- 80 chars max -->
+	<string name="market_promotext">Note-taking application with online synchronization compatible with Tomboy</string>
+	
+	
+	<!-- Launchpad Translation String -->
+	<string name="about_translators">Launchpad Contributions:
+  Stefan Hammer https://launchpad.net/~j-4
+  alasdair caimbeul https://launchpad.net/~alexd</string>
+	
+</resources>

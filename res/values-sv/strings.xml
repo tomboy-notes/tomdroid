@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ Tomdroid
+ Tomboy on Android
+ http://www.launchpad.net/tomdroid
+
+ Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
+ 
+ This file is part of Tomdroid.
+ 
+ Tomdroid is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Tomdroid is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources>
+	
+	<!-- application details -->
+	<string name="app_name">Tomdroid</string>
+	<string name="app_desc">Tomboy kompatibel wikiwiki som i nuläget inte kan kan skapa eller ändra existerande anteckningar.</string>
+	<string name="author">Olivier Bilodeau</string>
+	
+	<!-- main.xml -->
+	<string name="strListEmptyWaiting">Vänligen vänta medan anteckningarna laddar...</string>
+	<string name="strListEmptyNoNotes">Det finns inga anteckningar i Tomdroids databas.</string>
+	
+	<string name="menuSync">Synkronisera</string>
+	<string name="menuPrefs">Inställningar</string>
+	<string name="menuAbout">Om</string>
+	<string name="titleWelcome">Varning</string>
+	<string name="titleAbout">Om Tomdroid</string>
+	<string name="strWelcome">Välkommen till Tomdroid.\n\nVänligen notera att denna mjukvara befinner sig i betastadiet and det finns ett antal kända problem, såsom avsaknaden av möjlighet att redigera anteckningar.\n\nVi är medvetna om dessa problem och planerar att arbeta med dem snarast möjligt, men jag ville få ut nånting snabbt.\n\Om du vill bidra, hjälp på alla nivåer uppskattas. Hoppa ombord på launchpad.net/tomdroid och kontakta oss!\n</string>
+	<string name="strAbout">%1$s\n\nUtvecklare: %2$s\nVersion: %3$s\nLicensierad under GPLv3</string>
+	
+	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
+	<string name="btnOk">OK</string>
+	<string name="btnCancel">Avbryt</string>
+	<string name="btnClose">Stäng</string>
+	<string name="btnProjectPage">Projektsida</string>
+	
+	<!-- note-view.xml -->
+	<string name="strWait">Vänligen vänta medan anteckningen laddas...</string>
+	
+	<string name="prefSync">Synkronisering</string>
+	<string name="prefSyncService">Tjänst</string>
+	<string name="prefSyncServer">Server</string>
+	<string name="prefSDCard">SD-kort</string>
+	<string name="prefTomboyWeb">Direktansluten synkronisering</string>
+	<string name="prefAuthenticate">Autentisera</string>
+	
+	<string name="prefSyncCompleteAuth">Slutför autentisering. Vänligen vänta...</string>
+	<string name="prefSyncConnectionFailed">Anslutningen till servern har gått fel, vänligen kontrollera att adressen du skrev in stämmer.</string>
+	<string name="prefServerEmpty">Serverns adress har ändrats men det nya värdet är tomt</string>
+	
+	<string name="titleSyncService">Välj synkroniseringstjänst</string>
+	<string name="messageSyncComplete">Synkronisering med %1$s är klar.</string>
+	<string name="messageSyncNoNote">Inga anteckningar finns på %1$s.</string>
+	<string name="messageSyncNoConnection">Du är inte ansluten till Internet.</string>
+	<string name="messageSyncAlreadyInProgress">Synkronisering pågår redan</string>
+	<string name="messageSyncError">There was an error trying to parse your note collection. If you are able to replicate the problem, please contact us!</string>
+	<string name="error">Fel</string>
+	
+	<!-- NoteSorting -->
+	<string name="menuSort">change sort</string>
+	<string name="titleDefaultSorting">Välj standardsortering</string>
+	<string name="prefDefaultSorting">Standardsortering</string>
+	
+	<!-- NotebookFiltering -->
+	<string name="menuFilterNotebook">Filter</string>
+	<string name="strListEmptyNoNotebooks">Det finns inga anteckningsblock i databasen.</string>
+	<string name="allNotebooksFilter">Alla anteckningsblock</string>
+	
+	<!-- List Longpress Menu -->
+	<string name="view">Visa</string>
+	<string name="noteOptions">Anteckningsval</string>
+	<string name="send">Skicka</string>
+	
+	<!--  Search -->
+	<string name="search_hint">Sök Anteckningar</string>
+	<string name="search_description">Text in your notes</string>
+	<string name="strNoResults">Inga anteckningar funna för \"%s\"</string>
+	<string name="menuSearch">Sök</string>
+	<string name="prefSearch">Sökalternativ</string>
+	<string name="SearchResultTitle">Sökresultat:</string>
+	<string name="clearSearchHistoryTitle">Rensa sökhistoriken</string>
+	<string name="clearSearchHistory">Plocka bort alla sökningar du har gjort</string>
+	<string name="deletedSearchHistory">Sökhistoriken har tömts.</string>
+	
+	<!-- Date -->
+	<string name="textModified">Ändrad:</string>
+	<string name="textToday">I dag</string>
+	<string name="textYexterday">Igår</string>
+	
+	<!-- 
+	Information that goes into the Android Market Application Listing. 
+	I\'ve put it in here so that it\'ll get translated by translators.
+	-->
+	<!-- 30 chars max -->
+	<string name="market_title">Tomdroid anteckningar</string>
+	<!-- 325 chars max -->
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\nNOTE: It is a READ-ONLY client for now.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
+	
+	<!-- 80 chars max -->
+	<string name="market_promotext">Anteckningsblock med online-synkronisering som är kompatibel med Tomboy</string>
+	
+	
+	<!-- Launchpad Translation String -->
+	<string name="about_translators">Launchpad Contributions:
+  Daniel Ruus https://launchpad.net/~daniel-ruus
+  stoft https://launchpad.net/~rasmus-larsson</string>
+	
+</resources>

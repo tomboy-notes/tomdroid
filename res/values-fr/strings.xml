@@ -4,7 +4,7 @@
  Tomboy on Android
  http://www.launchpad.net/tomdroid
 
- Copyright 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
+ Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
  
  This file is part of Tomdroid.
  
@@ -20,119 +20,101 @@
  
  You should have received a copy of the GNU General Public License
  along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
- 
- @Author Benoît Soyeux <benoit.soyeux@starbusiness.fr>
- @Author Olivier Bilodeau <olivier@bottomlesspit.org>
 -->
 <resources>
-    <string name="app_name">Tomdroid</string>
-    <string name="app_desc">Application compatible à Tomboy l\'outil de prise de note wikiwiki.</string>
-    <string name="author">Olivier Bilodeau</string>
-
+	
+	<!-- application details -->
+	<string name="app_name">Tomdroid</string>
+	<string name="app_desc">Application compatible à Tomboy l\'outil de prise de note wikiwiki.</string>
+	<string name="author">Olivier Bilodeau</string>
+	
 	<!-- main.xml -->
-    <string name="strListEmptyWaiting">Veuillez patienter pendant que les notes se chargent...</string>
-    <string name="strListEmptyNoNotes">
-    	Il n\'y a pas de note dans la base de données Tomdroid.
-    </string>
-    
-    <string name="menuSync">Sync</string>
+	<string name="strListEmptyWaiting">Veuillez patienter pendant que les notes se chargent...</string>
+	<string name="strListEmptyNoNotes">Il n\'y a pas de notes dans la base de données Tomdroid.</string>
+	
+	<string name="menuSync">Synchronisation</string>
 	<string name="menuPrefs">Préférences</string>
-    <string name="menuAbout">À propos</string>
-    <string name="titleWelcome">Attention</string>
-    <string name="titleAbout">À propos de Tomdroid</string>
-    <string name="strWelcome">
-    	Bienvenue sur Tomdroid.
-    	\n\nVeuillez noter que l\'application est en phase beta et qu\'elle contient des problèmes connus, 
-		comme l\'incapacité d\'éditer une note.
-
-    	\n\nNous somme bien au courant de ces problèmes et nous avont l\'intention de travailler la dessus rapidement
-		mais je veux aussi developper et tester l\'application aussi vite que possible.
-    	
-    	\n\nSi vous voulez contribuer, de l\'aide à tous les niveaux sera appréciée.
-		Allez sur launchpad.net/tomdroid et contactez nous!\n
-    </string>
-    <string name="strAbout">
-    	%1$s
-    	\n\nAuteur: %2$s
-    	\nVersion: %3$s
-    	\nLicense sous GPLv3
-    </string>
-
-    <!-- TODO are these really needed!? -->
-    <string name="btnOk">OK</string>
-    <string name="btnCancel">Cancel</string>
-    <string name="btnClose">Fermer</string>
-    <string name="btnProjectPage">Page du projet</string>
-
+	<string name="menuAbout">À propos</string>
+	<string name="titleWelcome">Attention</string>
+	<string name="titleAbout">À propos de Tomdroid</string>
+	<string name="strWelcome">Bienvenue sur Tomdroid.\n\nVeuillez noter que l\'application est en phase bêta et qu\'elle contient des problèmes connus, comme l\'incapacité d\'éditer une note.\n\nNous sommes bien au courant de ces problèmes et nous avons l\'intention de travailler là dessus rapidement mais je veux aussi développer et tester l\'application aussi vite que possible.\n\nSi vous voulez contribuer, de l\'aide à tous les niveaux sera appréciée. Allez sur launchpad.net/tomdroid et contactez nous!\n</string>
+	<string name="strAbout">%1$s\n\nAuteur: %2$s\nVersion: %3$s\nLicense sous GPLv3</string>
+	
+	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
+	<string name="btnOk">OK</string>
+	<string name="btnCancel">Annuler</string>
+	<string name="btnClose">Fermer</string>
+	<string name="btnProjectPage">Page du projet</string>
+	
 	<!-- note-view.xml -->
-    <string name="strWait">Veuillez patienter pendant que les notes se chargent...</string>
-
+	<string name="strWait">Veuillez patienter pendant que les notes se chargent...</string>
+	
 	<string name="prefSync">Synchronisation</string>
-
 	<string name="prefSyncService">Service</string>
 	<string name="prefSyncServer">Serveur</string>
-	<string name="prefSDCard">carte SD</string>
-	<string name="prefAuthenticate">S\'authentifier</string>
-
+	<string name="prefSDCard">Carte SD</string>
+	<string name="prefTomboyWeb">Synchronisation en ligne</string>
+	<string name="prefAuthenticate">Authentification</string>
+	
 	<string name="prefSyncCompleteAuth">Authentification réussie. Veuillez patienter ...</string>
-	<string name="prefSyncConnectionFailed">La connexion au serveur a échoué, veuillez vérifier l\'adresse que vous avez entrée si elle est correcte.</string>
+	<string name="prefSyncConnectionFailed">La connexion au serveur a échoué, veuillez vérifier si l\'adresse que vous avez entrée est correcte.</string>
 	<string name="prefServerEmpty">L\'adresse du serveur a changé mais la nouvelle valeur est vide</string>
-
-	<string name="titleSyncService">service de synchronisation</string>
+	
+	<string name="titleSyncService">Choisissez un service de synchronisation</string>
 	<string name="messageSyncComplete">La synchronisation avec %1$s est terminée</string>
-	<string name="messageSyncNoNote">Aucune note trouvée sur %1$s .</string>
+	<string name="messageSyncNoNote">Aucune note trouvée sur %1$s.</string>
 	<string name="messageSyncNoConnection">Aucune connection à Internet</string>
 	<string name="messageSyncAlreadyInProgress">Synchronisation déjà en cours</string>
-	<string name="messageSyncError">Il y a une erreur lors de la syncrhonisation. Si vous pouvez reproduire le problème, contactez nous !</string>
-	<string name="error">erreur</string>
+	<string name="messageSyncError">Il y avait une erreur lors de la syncrhonisation. Si vous pouvez reproduire le problème, contactez-nous !</string>
+	<string name="error">Erreur</string>
 	
 	<!-- NoteSorting -->
-    <string name="menuSort">Changer tri</string>
+	<string name="menuSort">Changer tri</string>
 	<string name="titleDefaultSorting">Choix du tri par défaut</string>
 	<string name="prefDefaultSorting">Tri par défaut</string>
 	
-	<!-- NoteFiltering -->
-    <string name="menuFilterNotebook">Filtrer</string>
-    <string name="strListEmptyNoNotebooks">Il n\'y a aucun bloc-note dans la base de donnèes</string>
-    <string name="allNotebooksFilter">Tous les bloc-notes</string>
-    
-    <!-- List Longpress Menu -->
-    <string name="view">Voir</string>
-    <string name="noteOptions">Options de note</string>
-
-    <!--  Search -->
-    <string name="search_hint">Chercher une note</string>
-    <string name="search_description">Le texte dans vos notes</string>
-    <string name="strNoResults">Aucune note trouvé pour \"%s\"</string>
-    <string name="menuSearch">Rechercher</string>
-    <string name="prefSearch">Recherche</string>
-    <string name="SearchResultTitle">Résultats de recherche:</string>
-    <string name="clearSearchHistoryTitle">Nettoyer l\'historique de recherche</string>
-    <string name="clearSearchHistory">Détruire l\'historique de toutes les recherches effectuées</string>
-    <string name="deletedSearchHistory">L\'historique de recherche a été détruit.</string>
-
-    <!-- Date -->
-    <string name="textModified">Mise à jour: </string>
-    <string name="textToday">Aujourd\'hui</string>
-    <string name="textYexterday">Hier</string>
-    
+	<!-- NotebookFiltering -->
+	<string name="menuFilterNotebook">Filtre</string>
+	<string name="strListEmptyNoNotebooks">Il n\'y a aucun bloc-note dans la base de données</string>
+	<string name="allNotebooksFilter">Tous les bloc-notes</string>
+	
+	<!-- List Longpress Menu -->
+	<string name="view">Voir</string>
+	<string name="noteOptions">Options de note</string>
+	<string name="send">Envoyer</string>
+	
+	<!--  Search -->
+	<string name="search_hint">Chercher les notes</string>
+	<string name="search_description">Le texte dans vos notes</string>
+	<string name="strNoResults">Aucune note trouvé pour \"%s\"</string>
+	<string name="menuSearch">Rechercher</string>
+	<string name="prefSearch">Options de recherche</string>
+	<string name="SearchResultTitle">Résultats de recherche:</string>
+	<string name="clearSearchHistoryTitle">Supprimer l\'historique de recherche</string>
+	<string name="clearSearchHistory">Supprimer l\'historique de toutes les recherches effectuées</string>
+	<string name="deletedSearchHistory">L\'historique de recherche a été supprimée.</string>
+	
+	<!-- Date -->
+	<string name="textModified">Mise à jour:</string>
+	<string name="textToday">Aujourd\'hui</string>
+	<string name="textYexterday">Hier</string>
+	
 	<!-- 
-		Information that goes into the Android Market Application Listing. 
-		I've put it in here so that it'll get translated by translators.
+	Information that goes into the Android Market Application Listing. 
+	I\'ve put it in here so that it\'ll get translated by translators.
 	-->
 	<!-- 30 chars max -->
 	<string name="market_title">Notes Tomdroid</string>
 	<!-- 325 chars max -->
-	<string name="market_description">
-		Client Android pour Tomboy. Tomboy est un logiciel de prise de notes wikiwiki avec une interface usager simple.
-
-		NOTE: LECTURE SEULE pour l\'instant
-
-		* Format de note compatible avec Tomboy
-		* Synchronisation en ligne avec Snowy, Tomboy Online et Ubuntu One
-		* Importation de la carte SD
-		* Logiciel libre!
-	</string>
+	<string name="market_description">Client Android pour Tomboy. Tomboy est un logiciel de prise de notes wikiwiki avec une interface usager simple.\n\nNOTE: LECTURE SEULE pour l\'instant\n\n* Format de note compatible avec Tomboy\n* Synchronisation en ligne avec Snowy, Tomboy Online et Ubuntu One\n* Importation de la carte SD\n* Logiciel libre!</string>
+	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Appli de prise de notes avec synchronisation en ligne compatible avec Tomboy</string>
+	
+	
+	<!-- Launchpad Translation String -->
+	<string name="about_translators">Launchpad Contributions:
+  Léo POUGHON https://launchpad.net/~leo-poughon
+  Stefan Hammer https://launchpad.net/~j-4</string>
+	
 </resources>

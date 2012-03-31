@@ -22,24 +22,23 @@
  */
 package org.tomdroid.sync.web;
 
-import java.net.UnknownHostException;
-import java.util.ArrayList;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.tomdroid.Note;
-import org.tomdroid.sync.ServiceAuth;
-import org.tomdroid.sync.SyncService;
-import org.tomdroid.ui.Tomdroid;
-import org.tomdroid.util.ErrorList;
-import org.tomdroid.util.Preferences;
-
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.tomdroid.Note;
+import org.tomdroid.R;
+import org.tomdroid.sync.ServiceAuth;
+import org.tomdroid.sync.SyncService;
+import org.tomdroid.util.ErrorList;
+import org.tomdroid.util.Preferences;
+import org.tomdroid.util.TLog;
+
+import java.net.UnknownHostException;
+import java.util.ArrayList;
 
 public class SnowySyncService extends SyncService implements ServiceAuth {
 	
@@ -50,8 +49,8 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 	}
 	
 	@Override
-	public String getDescription() {
-		return "Tomboy Web";
+	public int getDescriptionAsId() {
+		return R.string.prefTomboyWeb;
 	}
 
 	@Override
@@ -88,7 +87,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 					authUri = auth.getAuthorizationUrl(server);
 					
 				} catch (UnknownHostException e) {
-					Log.e(TAG, "Internet connection not available");
+					TLog.e(TAG, "Internet connection not available");
 					sendMessage(NO_INTERNET);
 				}
 				
@@ -114,12 +113,12 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 					boolean result = auth.getAccess(uri.getQueryParameter("oauth_verifier"));
 
 					if (result) {
-						if (Tomdroid.LOGGING_ENABLED) Log.i(TAG, "The authorization process is complete.");
+						TLog.i(TAG, "The authorization process is complete.");
 					} else {
-						Log.e(TAG, "Something went wrong during the authorization process.");
+						TLog.e(TAG, "Something went wrong during the authorization process.");
 					}
 				} catch (UnknownHostException e) {
-					Log.e(TAG, "Internet connection not available");
+					TLog.e(TAG, "Internet connection not available");
 					sendMessage(NO_INTERNET);
 				}
 				
@@ -140,7 +139,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 		
 		// start loading snowy notes
 		setSyncProgress(0);
-		if (Tomdroid.LOGGING_ENABLED) Log.v(TAG, "Loading Snowy notes");
+		TLog.v(TAG, "Loading Snowy notes");
 		
 		final String userRef = Preferences.getString(Preferences.Key.SYNC_SERVER_USER_API);
 		
@@ -193,7 +192,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 								jsonNote = notes.getJSONObject(i);
 								insertNote(new Note(jsonNote));
 							} catch (JSONException e) {
-								Log.e(TAG, "Problem parsing the server response", e);
+								TLog.e(TAG, e, "Problem parsing the server response");
 								String json = (jsonNote != null) ? jsonNote.toString(2) : rawResponse;
 								sendMessage(PARSING_FAILED, ErrorList.createErrorWithContents("JSON parsing", "json", e, json));
 							}
@@ -207,7 +206,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 								.getLong("latest-sync-revision"));
 						
 					} catch (JSONException e) {
-						Log.e(TAG, "Problem parsing the server response", e);
+						TLog.e(TAG, e, "Problem parsing the server response");
 						sendMessage(PARSING_FAILED, ErrorList.createErrorWithContents("JSON parsing", "json", e, rawResponse));
 						setSyncProgress(100);
 						return;
@@ -216,7 +215,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 					setSyncProgress(100);
 					
 				} catch (java.net.UnknownHostException e) {
-					Log.e(TAG, "Internet connection not available");
+					TLog.e(TAG, "Internet connection not available");
 					sendMessage(NO_INTERNET);
 					setSyncProgress(100);
 					return;

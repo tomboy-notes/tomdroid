@@ -40,8 +40,8 @@ import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.database.Cursor;
 import android.net.Uri;
@@ -49,17 +49,22 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
-import android.view.ContextMenu;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
+import android.view.*;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.AdapterView.AdapterContextMenuInfo;
+import org.tomdroid.Note;
+import org.tomdroid.NoteManager;
+import org.tomdroid.R;
+import org.tomdroid.sync.ServiceAuth;
+import org.tomdroid.sync.SyncManager;
+import org.tomdroid.sync.SyncService;
+import org.tomdroid.util.FirstNote;
+import org.tomdroid.util.Preferences;
+import org.tomdroid.util.Send;
+import org.tomdroid.util.TLog;
 
 public class Tomdroid extends ListActivity {
 
@@ -76,8 +81,6 @@ public class Tomdroid extends ListActivity {
 	// TODO hardcoded for now
 	public static final String	NOTES_PATH			= Environment.getExternalStorageDirectory()
 															+ "/tomdroid/";
-	// Logging should be disabled for release builds
-	public static final boolean	LOGGING_ENABLED		= false;
 	// Set this to false for release builds, the reason should be obvious
 	public static final boolean	CLEAR_PREFERENCES	= false;
 
@@ -105,7 +108,7 @@ public class Tomdroid extends ListActivity {
 
 		// did we already show the warning and got destroyed by android's activity killer?
 		if (Preferences.getBoolean(Preferences.Key.FIRST_RUN)) {
-			Log.i(TAG, "Tomdroid is first run.");
+			TLog.i(TAG, "Tomdroid is first run.");
 			
 			// add a first explanatory note
 			NoteManager.putNote(this, FirstNote.createFirstNote());
@@ -205,7 +208,7 @@ public class Tomdroid extends ListActivity {
 			Uri uri = intent.getData();
 
 			if (uri != null && uri.getScheme().equals("tomdroid")) {
-				Log.i(TAG, "Got url : " + uri.toString());
+				TLog.i(TAG, "Got url : {0}", uri.toString());
 
 				final ProgressDialog dialog = ProgressDialog.show(this, "",	getString(R.string.prefSyncCompleteAuth), true, false);
 

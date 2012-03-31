@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ Tomdroid
+ Tomboy on Android
+ http://www.launchpad.net/tomdroid
+
+ Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
+ 
+ This file is part of Tomdroid.
+ 
+ Tomdroid is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Tomdroid is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources>
+	
+	<!-- application details -->
+	<string name="app_name">Tomdroid</string>
+	<string name="app_desc">Aplicación wiki de notas compatible con Tomboy que aún no permite escribir notas.</string>
+	<string name="author">Olivier Bilodeau</string>
+	
+	<!-- main.xml -->
+	<string name="strListEmptyWaiting">Por favor, espere mientras se cargan las notas.</string>
+	<string name="strListEmptyNoNotes">No hay notas en la base de datos de Tomdroid.</string>
+	
+	<string name="menuSync">Sincronizar</string>
+	<string name="menuPrefs">Ajustes</string>
+	<string name="menuAbout">Acerca de</string>
+	<string name="titleWelcome">Aviso</string>
+	<string name="titleAbout">Acerca de Tomdroid</string>
+	<string name="strWelcome">Bienvenido/a a Tomdroid.\n\nEste es un software de calidad beta y presenta algunos problemas, como la incapacidad de editar las notas.\n\nEstamos al corriente de ellos y los resolveremos pronto, pero queríamos lanzar la aplicación al mercado y probarla lo antes posible.\n\nSi lo desea colaborar, puede hacerlo. Todo tipo de ayuda será bienvenida. ¡Entre en launchpad.net/tomdroid y póngase en contacto con nosotros!\n</string>
+	<string name="strAbout">%1$s\n\nAutor: %2$s\nVersión: %3$s\nProyecto con licencia GPLv3</string>
+	
+	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
+	<string name="btnOk">Aceptar</string>
+	<string name="btnCancel">Cancelar</string>
+	<string name="btnClose">Cerrar</string>
+	<string name="btnProjectPage">Página del proyecto</string>
+	
+	<!-- note-view.xml -->
+	<string name="strWait">Por favor, espere mientras se cargan las notas...</string>
+	
+	<string name="prefSync">Sincronización</string>
+	<string name="prefSyncService">Servicio</string>
+	<string name="prefSyncServer">Servidor</string>
+	<string name="prefSDCard">Trajeta SD</string>
+	<string name="prefTomboyWeb">Sincronización en línea</string>
+	<string name="prefAuthenticate">Autenticar</string>
+	
+	<string name="prefSyncCompleteAuth">La autenticación está terminando. Por favor, espere.</string>
+	<string name="prefSyncConnectionFailed">No se ha podido conectar con el servidor. Por favor, compruebe que la dirección es correcta.</string>
+	<string name="prefServerEmpty">No se ha podido conectar con el servidor porque no se ha especificado ninguna dirección.</string>
+	
+	<string name="titleSyncService">Elija el servicio de sincronización</string>
+	<string name="messageSyncComplete">La sincronización con %1$s ha terminado.</string>
+	<string name="messageSyncNoNote">No hay notas en %1$s.</string>
+	<string name="messageSyncNoConnection">No está conectado/a a internet.</string>
+	<string name="messageSyncAlreadyInProgress">La sincronización ya está en curso</string>
+	<string name="messageSyncError">Se ha producido un error al procesar las notas. Si es capaz de volver a generar este mensaje, póngase en contacto con nosotros.</string>
+	<string name="error">Error</string>
+	
+	<!-- NoteSorting -->
+	<string name="menuSort">Cambiar ordenación</string>
+	<string name="titleDefaultSorting">Seleccionar la ordenación predeterminada</string>
+	<string name="prefDefaultSorting">Ordenación predeterminada</string>
+	
+	<!-- NotebookFiltering -->
+	<string name="menuFilterNotebook">Filtrar</string>
+	<string name="strListEmptyNoNotebooks">No hay cuadernos en la base de datos.</string>
+	<string name="allNotebooksFilter">Todos los cuadernos</string>
+	
+	<!-- List Longpress Menu -->
+	<string name="view">Ver</string>
+	<string name="noteOptions">Opciones de las notas</string>
+	<string name="send">Enviar</string>
+	
+	<!--  Search -->
+	<string name="search_hint">Buscar notas</string>
+	<string name="search_description">Texto que aparece en las notas</string>
+	<string name="strNoResults">No hay resultados para \"%s\"</string>
+	<string name="menuSearch">Buscar</string>
+	<string name="prefSearch">Opciones de búsqueda</string>
+	<string name="SearchResultTitle">Resultados de la búsqueda:</string>
+	<string name="clearSearchHistoryTitle">Eliminar el historial de búsquedas</string>
+	<string name="clearSearchHistory">Eliminar todas las búsquedas realizadas</string>
+	<string name="deletedSearchHistory">El historial de búsquedas se ha eliminado.</string>
+	
+	<!-- Date -->
+	<string name="textModified">Modificado:</string>
+	<string name="textToday">Hoy</string>
+	<string name="textYexterday">Ayer</string>
+	
+	<!-- 
+	Information that goes into the Android Market Application Listing. 
+	I\'ve put it in here so that it\'ll get translated by translators.
+	-->
+	<!-- 30 chars max -->
+	<string name="market_title">Notas de Tomdroid</string>
+	<!-- 325 chars max -->
+	<string name="market_description">Versión de Tomboy para Android. Tomboy es una aplicación wiki de notas de escritorio con una interfaz de usuario sencilla.\n\nNOTA: Por ahora, solo permite realizar funciones de lectura.\n\n*El formato de las notas es compatible con Tomboy\n* Sincronización de las notas en línea con Snowy, Tomboy Online o Ubuntu One\n* Permite importar de tarjetas SD\n* Software libre</string>
+	
+	<!-- 80 chars max -->
+	<string name="market_promotext">Aplicación de notas con sincronización en línea compatible con Tomboy</string>
+	
+	
+	<!-- Launchpad Translation String -->
+	<string name="about_translators">Launchpad Contributions:
+  Alicia García Adames https://launchpad.net/~aliciagadames
+  Clemens Niesner https://launchpad.net/~pop-ffe
+  Fitoschido https://launchpad.net/~fitoschido
+  JoLiSh https://launchpad.net/~jolish
+  João Santana https://launchpad.net/~joaosantana
+  Stefan Hammer https://launchpad.net/~j-4</string>
+	
+</resources>

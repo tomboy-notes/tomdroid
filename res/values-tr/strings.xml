@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ Tomdroid
+ Tomboy on Android
+ http://www.launchpad.net/tomdroid
+
+ Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
+ 
+ This file is part of Tomdroid.
+ 
+ Tomdroid is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Tomdroid is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources>
+	
+	<!-- application details -->
+	<string name="app_name">Tomdroid</string>
+	<string name="app_desc">Tomboy uyumlu henüz not alamayan wiki not-alma uygulamasıdır.</string>
+	<string name="author">Olivier Bilodeau</string>
+	
+	<!-- main.xml -->
+	<string name="strListEmptyWaiting">Notlar yüklenirken lütfen bekleyin...</string>
+	<string name="strListEmptyNoNotes">Tomdroid\'in veritabanında hiç not yok.</string>
+	
+	<string name="menuSync">Eşitle</string>
+	<string name="menuPrefs">Ayarlar</string>
+	<string name="menuAbout">Hakkında</string>
+	<string name="titleWelcome">Uyarı</string>
+	<string name="titleAbout">Tomdroid Hakkında</string>
+	<string name="strWelcome">Tomdroid\'e hoşgeldiniz.\n\nLütfen bu yazılımın beta kalitesinde olduğunu ve notları düzenleyememe gibi sorunları olduğunu unutmayın.\n\nBu sorunların farkındayız ve üzerinde çalışmak niyetindeyiz ama çalışan bir şeyler oluşturmak ve test etmek istemiştik.\n\nEğer katkıda bulunmak isterseniz, her türlü katkı takdir edilecektir. launchpad.net/tomdroid sayfasına gelin ve bizimle irtibata geçin!\n</string>
+	<string name="strAbout">%1$s\n\nYazar: %2$s\nSürüm: %3$s\nGPLv3 ile lisanslanmıştır</string>
+	
+	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
+	<string name="btnOk">Tamam</string>
+	<string name="btnCancel">Vazgeç</string>
+	<string name="btnClose">Kapat</string>
+	<string name="btnProjectPage">Proje sayfası</string>
+	
+	<!-- note-view.xml -->
+	<string name="strWait">Not yüklenirken lütfen bekleyin...</string>
+	
+	<string name="prefSync">Eşitleme</string>
+	<string name="prefSyncService">Hizmet</string>
+	<string name="prefSyncServer">Sunucu</string>
+	<string name="prefSDCard">SD Kart</string>
+	<string name="prefTomboyWeb">Çevrimiçi Eşitleme</string>
+	<string name="prefAuthenticate">Kimlik Doğrula</string>
+	
+	<string name="prefSyncCompleteAuth">Kimlik doğrulama tamamlanıyor. Lütfen bekleyin...</string>
+	<string name="prefSyncConnectionFailed">Sunucu bağlantısı başarısız oldu, lütfen girdiğiniz adresin doğruluğunu denetleyin.</string>
+	<string name="prefServerEmpty">Sunucu adresi değişti fakat yeni değer boş</string>
+	
+	<string name="titleSyncService">Kullanılacak eşitleme hizmetini seçin</string>
+	<string name="messageSyncComplete">%1$s ile eşitleme tamamlandı.</string>
+	<string name="messageSyncNoNote">%1$s üzerinde hiç not bulunamadı.</string>
+	<string name="messageSyncNoConnection">İnternet\'e bağlı değilsiniz.</string>
+	<string name="messageSyncAlreadyInProgress">Eşitleme zaten sürüyor</string>
+	<string name="messageSyncError">Not koleksiyonunuz ayrıştırılırken bir hata oluştu. Eğer sorunu tekrarlatabiliyorsanız, lütfen bize ulaşın!</string>
+	<string name="error">Hata</string>
+	
+	<!-- NoteSorting -->
+	<string name="menuSort">sıralamayı değiştir</string>
+	<string name="titleDefaultSorting">Varsayılan sıralamayı seç</string>
+	<string name="prefDefaultSorting">Varsayılan sıralama</string>
+	
+	<!-- NotebookFiltering -->
+	<string name="menuFilterNotebook">Süzgeç</string>
+	<string name="strListEmptyNoNotebooks">Veritabanında hiç not defteri yok.</string>
+	<string name="allNotebooksFilter">Tüm not defterleri</string>
+	
+	<!-- List Longpress Menu -->
+	<string name="view">Göster</string>
+	<string name="noteOptions">Not Seçenekleri</string>
+	<string name="send">Gönder</string>
+	
+	<!--  Search -->
+	<string name="search_hint">Notları Ara</string>
+	<string name="search_description">Notlarınızdaki metinler</string>
+	<string name="strNoResults">\"%s\" için hiç not bulunamadı</string>
+	<string name="menuSearch">Ara</string>
+	<string name="prefSearch">Arama Seçenekleri</string>
+	<string name="SearchResultTitle">Arama Sonuçları:</string>
+	<string name="clearSearchHistoryTitle">Arama geçmişini temizle</string>
+	<string name="clearSearchHistory">Yapmış olduğum tüm aramaları kaldır</string>
+	<string name="deletedSearchHistory">Arama geçmişi temizlendi.</string>
+	
+	<!-- Date -->
+	<string name="textModified">Değiştirildi:</string>
+	<string name="textToday">Bugün</string>
+	<string name="textYexterday">Dün</string>
+	
+	<!-- 
+	Information that goes into the Android Market Application Listing. 
+	I\'ve put it in here so that it\'ll get translated by translators.
+	-->
+	<!-- 30 chars max -->
+	<string name="market_title">Tomdroid notları</string>
+	<!-- 325 chars max -->
+	<string name="market_description">Android için Tomboy istemcisi. Tomboy wiki benzeri, basit arayüzlü bir masaüstü not alma uygulamasıdır.\n\nNOT: Şimdilik SALT OKUR bir istemcidir.\n\n* Not biçimi Tomboy ile uyumlu\n* Snowy, Tomboy Online veya Ubuntu One ile çevrimiçi eşitleme\n* SD Kart\'tan alım desteği\n* Açık kaynak!</string>
+	
+	<!-- 80 chars max -->
+	<string name="market_promotext">Tomboy ile uyumlu, çevrimiçi eşitlemeli not alma uygulaması</string>
+	
+	
+	<!-- Launchpad Translation String -->
+	<string name="about_translators">Launchpad Contributions:
+  Mesut Yaver https://launchpad.net/~afg-mesut
+  Stefan Hammer https://launchpad.net/~j-4</string>
+	
+</resources>

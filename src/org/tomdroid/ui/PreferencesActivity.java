@@ -23,8 +23,23 @@
  */
 package org.tomdroid.ui;
 
-import java.util.ArrayList;
-
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.preference.EditTextPreference;
+import android.preference.ListPreference;
+import android.preference.Preference;
+import android.preference.Preference.OnPreferenceChangeListener;
+import android.preference.Preference.OnPreferenceClickListener;
+import android.preference.PreferenceActivity;
+import android.provider.SearchRecentSuggestions;
+import android.widget.Toast;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
 import org.tomdroid.sync.ServiceAuth;
@@ -33,25 +48,9 @@ import org.tomdroid.sync.SyncService;
 import org.tomdroid.util.FirstNote;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.SearchSuggestionProvider;
+import org.tomdroid.util.TLog;
 
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.DialogInterface.OnClickListener;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.preference.EditTextPreference;
-import android.preference.ListPreference;
-import android.preference.Preference;
-import android.preference.PreferenceActivity;
-import android.preference.Preference.OnPreferenceChangeListener;
-import android.preference.Preference.OnPreferenceClickListener;
-import android.provider.SearchRecentSuggestions;
-import android.util.Log;
-import android.widget.Toast;
+import java.util.ArrayList;
 
 public class PreferencesActivity extends PreferenceActivity {
 	
@@ -89,7 +88,7 @@ public class PreferencesActivity extends PreferenceActivity {
 				
 				// did the selection change?
 				if (!syncService.getValue().contentEquals(selectedSyncServiceKey)) {
-					Log.d(TAG, "preference change triggered");
+					TLog.d(TAG, "preference change triggered");
 					
 					syncServiceChanged(selectedSyncServiceKey);
 				}
@@ -126,7 +125,7 @@ public class PreferencesActivity extends PreferenceActivity {
 	        	Toast.makeText(getBaseContext(),
                         getString(R.string.deletedSearchHistory),
                         Toast.LENGTH_LONG).show();
-	        	Log.d(TAG, "Deleted search history.");
+	        	TLog.d(TAG, "Deleted search history.");
 	        	
 	        	return true;
 	        }
@@ -145,7 +144,7 @@ public class PreferencesActivity extends PreferenceActivity {
 		}
 
 		// service needs authentication
-		Log.i(TAG, "Creating dialog");
+		TLog.i(TAG, "Creating dialog");
 
 		final ProgressDialog authProgress = ProgressDialog.show(this, "",
 				getString(R.string.prefSyncCompleteAuth), true, false);

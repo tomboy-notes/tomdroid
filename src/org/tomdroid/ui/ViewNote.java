@@ -37,7 +37,6 @@ import android.os.Message;
 import android.text.SpannableStringBuilder;
 import android.text.util.Linkify;
 import android.text.util.Linkify.TransformFilter;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -50,6 +49,7 @@ import org.tomdroid.util.LinkifyPhone;
 import org.tomdroid.util.NoteContentBuilder;
 import org.tomdroid.util.NoteViewShortcutsHelper;
 import org.tomdroid.util.Send;
+import org.tomdroid.util.TLog;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -73,7 +73,7 @@ public class ViewNote extends Activity {
     // UI feedback handler
 	private Handler	syncMessageHandler	= new SyncMessageHandler(this);
 
-    // TODO extract methods in here
+	// TODO extract methods in here
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -147,7 +147,7 @@ public class ViewNote extends Activity {
                 });
     }
 
-    @Override
+	@Override
 	public void onResume(){
 		super.onResume();
 		SyncManager.setActivity(this);
@@ -258,7 +258,7 @@ public class ViewNote extends Activity {
 		} else {
 
 			// TODO send an error to the user
-			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "Cursor returned null or 0 notes");
+			TLog.d(TAG, "Cursor returned null or 0 notes");
 		}
 
 		return null;

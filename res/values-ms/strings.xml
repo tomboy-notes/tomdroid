@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ Tomdroid
+ Tomboy on Android
+ http://www.launchpad.net/tomdroid
+
+ Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
+ 
+ This file is part of Tomdroid.
+ 
+ Tomdroid is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Tomdroid is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources>
+	
+	<!-- application details -->
+	<string name="app_name">Tomdroid</string>
+	<string name="app_desc">Aplikasi pengambilan-nota wikiwiki serasi dengan Tomboy tetapi tidak boleh mengambil nota lagi.</string>
+	<string name="author">Olivier Bilodeau</string>
+	
+	<!-- main.xml -->
+	<string name="strListEmptyWaiting">Tunggu sebentar ketika nota dimuatkan..</string>
+	<string name="strListEmptyNoNotes">Tiada nota didalam pengkalan data Tomdroid.</string>
+	
+	<string name="menuSync">Segerak</string>
+	<string name="menuPrefs">Tetapan</string>
+	<string name="menuAbout">Perihal</string>
+	<string name="titleWelcome">Amaran</string>
+	<string name="titleAbout">Perihal Tomdroid</string>
+	<string name="strWelcome">Selamat datang ke Tomdroid.\n\nPerhatian ini merupakan perisian berkualiti beta yang mungkin mengandungi masalah, seperti tidak boleh menyunting nota.\n\nKami mengetahui isu ini dan akan menyelesaikannya dengan segera tetapi saya juga mahu mengujinya secepat yang mungkin.\n\nJika anda hendak menyumbang pembangunannta, bantuan pada semua aspek sangat-sangat diharapkan. Layari launchpad.net/tomdroid dan hubungi kami!\n</string>
+	<string name="strAbout">%1$s\n\Pengarang: %2$s\nVersi: %3$s\nDilesen dibawah GPLv3</string>
+	
+	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
+	<string name="btnOk">OK</string>
+	<string name="btnCancel">Batal</string>
+	<string name="btnClose">Tutup</string>
+	<string name="btnProjectPage">Halaman projek</string>
+	
+	<!-- note-view.xml -->
+	<string name="strWait">Sila tunggu ketika nota dimuatkan...</string>
+	
+	<string name="prefSync">Penyegerakan</string>
+	<string name="prefSyncService">Perkhidmatan</string>
+	<string name="prefSyncServer">Pelayan</string>
+	<string name="prefSDCard">Kad SD</string>
+	<string name="prefTomboyWeb">Penyegerakan Atas Talian</string>
+	<string name="prefAuthenticate">Sahihkan</string>
+	
+	<string name="prefSyncCompleteAuth">Menyelesaikan pengesahihan. Tunggu sebentar...</string>
+	<string name="prefSyncConnectionFailed">Sambungan ke pelayan mengalami kegagalan, sila semak alamat yang anda masukkan adalah betul.</string>
+	<string name="prefServerEmpty">Alamat pelayan berubah tetapi nilai barunya kosong</string>
+	
+	<string name="titleSyncService">Pilih perkhidmatan segerak yang hendak digunakan</string>
+	<string name="messageSyncComplete">Penyegerakan dengan %1$s selesai.</string>
+	<string name="messageSyncNoNote">Tiada nota ditemui pada %1$s.</string>
+	<string name="messageSyncNoConnection">Anda tidak bersambung dengan Internet.</string>
+	<string name="messageSyncAlreadyInProgress">Segerak didalam proses.</string>
+	<string name="messageSyncError">Terdapat ralat semasa cuba menghurai koleksi nota anda. Jika anda boleh replikakan masalah, sila hubungi kami!</string>
+	<string name="error">Ralat</string>
+	
+	<!-- NoteSorting -->
+	<string name="menuSort">ubah isihan</string>
+	<string name="titleDefaultSorting">Pilihan pengisihan lalai</string>
+	<string name="prefDefaultSorting">Isihan lalai</string>
+	
+	<!-- NotebookFiltering -->
+	<string name="menuFilterNotebook">Penapis</string>
+	<string name="strListEmptyNoNotebooks">Tiada buku nota didalam pengkalan data.</string>
+	<string name="allNotebooksFilter">Semua buku nota</string>
+	
+	<!-- List Longpress Menu -->
+	<string name="view">Papar</string>
+	<string name="noteOptions">Pilihan Nota</string>
+	<string name="send">Hantar</string>
+	
+	<!--  Search -->
+	<string name="search_hint">Gelintar Nota</string>
+	<string name="search_description">Teks dalam nota anda</string>
+	<string name="strNoResults">Tiada nota ditemui untuk \"%s\"</string>
+	<string name="menuSearch">Gelintar</string>
+	<string name="prefSearch">Pilihan Gelintar</string>
+	<string name="SearchResultTitle">Keputusan Gelintar:</string>
+	<string name="clearSearchHistoryTitle">Kosongkan sejarah gelintar</string>
+	<string name="clearSearchHistory">Buang semua penggelintaran yang anda telah lakukan</string>
+	<string name="deletedSearchHistory">Sejarah gelintar telah dikosongkan.</string>
+	
+	<!-- Date -->
+	<string name="textModified">Diubahsuai:</string>
+	<string name="textToday">Hari Ini</string>
+	<string name="textYexterday">Semalam</string>
+	
+	<!-- 
+	Information that goes into the Android Market Application Listing. 
+	I\'ve put it in here so that it\'ll get translated by translators.
+	-->
+	<!-- 30 chars max -->
+	<string name="market_title">Nota Tomdroid</string>
+	<!-- 325 chars max -->
+	<string name="market_description">Klien Tomboy untuk Android. Tomboy merupakan aplikasi mengambil-nota menggunakan pendekatan wikiwiki dan antaramuka pengguna yang ringkas.\n\nPERHATIAN: Ia merupakan klien BACA-SAHAJA buat masa ini.\n\n* Format nota yang serasi dengan Tomboy\n* Penyegerakan nota atas talian dengan Snowy, Tomboy Atas Talian atau Ubuntu One\n* Pengimportan Kad SD\n* Sumber terbuka!</string>
+	
+	<!-- 80 chars max -->
+	<string name="market_promotext">Aplikasi pengambilan-nota dengan penyegerakan atas talian yang serasi dengan Tomboy</string>
+	
+	
+	<!-- Launchpad Translation String -->
+	<string name="about_translators">Launchpad Contributions:
+  Stefan Hammer https://launchpad.net/~j-4</string>
+	
+</resources>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ Tomdroid
+ Tomboy on Android
+ http://www.launchpad.net/tomdroid
+
+ Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
+ 
+ This file is part of Tomdroid.
+ 
+ Tomdroid is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Tomdroid is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources>
+	
+	<!-- application details -->
+	<string name="app_name">Tomdroid</string>
+	<string name="app_desc">Tomboy kompatibel wikiwiki notesbogsapp, der endnu ikke kan tage noter</string>
+	<string name="author">Olivier Bilodeau</string>
+	
+	<!-- main.xml -->
+	<string name="strListEmptyWaiting">Vent venligst imens noterne hentes</string>
+	<string name="strListEmptyNoNotes">Der er ingen noter i Tomdroids database</string>
+	
+	<string name="menuSync">Synkroniser</string>
+	<string name="menuPrefs">Indstillinger</string>
+	<string name="menuAbout">Om</string>
+	<string name="titleWelcome">Advarsel</string>
+	<string name="titleAbout">Om Tomdroid</string>
+	<string name="strWelcome">Velkommen til Tomdroid.\n\nBemærk venligst at dette er beta software og at det indeholder kendte mangler, som eksempelvis den manglende notefunktion.\n\nVi er opmærksomme på disse mangler og har til hensigt at løse dem hurtigt, men jeg ville også gerne have noget ud og testes hos jer så hurtigt som muligt.\n\nHvis du vil bidrage, er hjælp på alle niveauer velkommen. Hop om bord på launchpad.net/tomdroid og kontakt os!\n</string>
+	<string name="strAbout">%1$s\n\Forfatter: %2$s\nVersion: %3$s\nGivet i lincens under GPLv3</string>
+	
+	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
+	<string name="btnOk">OK</string>
+	<string name="btnCancel">Annuler</string>
+	<string name="btnClose">Afslut</string>
+	<string name="btnProjectPage">Projektside</string>
+	
+	<!-- note-view.xml -->
+	<string name="strWait">Vent venligst imens noterne hentes</string>
+	
+	<string name="prefSync">Synkronisering</string>
+	<string name="prefSyncService">Tjeneste</string>
+	<string name="prefSyncServer">Server</string>
+	<string name="prefSDCard">SD-kort</string>
+	<string name="prefTomboyWeb">Online synkronisering</string>
+	<string name="prefAuthenticate">Godkend</string>
+	
+	<string name="prefSyncCompleteAuth">Færdiggør godkendelse. Vent venligst...</string>
+	<string name="prefSyncConnectionFailed">Forbindelsen til serveren mislykkedes. Tjek venligst,  at du har indtastet den rigtige adresse.</string>
+	<string name="prefServerEmpty">Serverens adresse er skiftet, men den nye adresse er tom</string>
+	
+	<string name="titleSyncService">Vælg hvilken synkroniseringsmetode, der skal bruges</string>
+	<string name="messageSyncComplete">Synkronisering er %1$s færdig.</string>
+	<string name="messageSyncNoNote">Ingen noter er fundet på %1$s.</string>
+	<string name="messageSyncNoConnection">Du er ikke forbundet til internettet.</string>
+	<string name="messageSyncAlreadyInProgress">Synkronisering er allerede i gang.</string>
+	<string name="messageSyncError">Der er sket en fejl ved hentningen af dine noter. Hvis du har mulighed for at genskabe fejlen bedes du kontakte os!</string>
+	<string name="error">Fejl</string>
+	
+	<!-- NoteSorting -->
+	<string name="menuSort">Skift sortering</string>
+	<string name="titleDefaultSorting">Vælg standardsortering</string>
+	<string name="prefDefaultSorting">Standardsortering</string>
+	
+	<!-- NotebookFiltering -->
+	<string name="menuFilterNotebook">Filter</string>
+	<string name="strListEmptyNoNotebooks">Der er ingen notesbøger i databasen</string>
+	<string name="allNotebooksFilter">Alle notesbøger</string>
+	
+	<!-- List Longpress Menu -->
+	<string name="view">Vis</string>
+	<string name="noteOptions">Indstillinger for note</string>
+	<string name="send">Send</string>
+	
+	<!--  Search -->
+	<string name="search_hint">Søg i noter</string>
+	<string name="search_description">Tast dine noter ind</string>
+	<string name="strNoResults">Ingen note fundet for \"%s\"</string>
+	<string name="menuSearch">Søg</string>
+	<string name="prefSearch">Søgeindstillinger</string>
+	<string name="SearchResultTitle">Søgeresultater:</string>
+	<string name="clearSearchHistoryTitle">Slet søgehistorik</string>
+	<string name="clearSearchHistory">Fjern alle de søgninger du har udført</string>
+	<string name="deletedSearchHistory">Søgehistorik er blevet slettet</string>
+	
+	<!-- Date -->
+	<string name="textModified">Ændret:</string>
+	<string name="textToday">I dag</string>
+	<string name="textYexterday">I går</string>
+	
+	<!-- 
+	Information that goes into the Android Market Application Listing. 
+	I\'ve put it in here so that it\'ll get translated by translators.
+	-->
+	<!-- 30 chars max -->
+	<string name="market_title">Tomdroid noter</string>
+	<!-- 325 chars max -->
+	<string name="market_description">En Tomboy-klient til Android. Tomboy er en skrivebords notes-app med en wikiwiki tilgang og simpel brugerflader.\n\nBemærk: Det er kun en READ-ONLY klient pt.\n\*Noteformat er kompatibelt med Tomboy\n* Online synkronisering af noter via enten Snowy, Tomboy Online eller Ubuntu One\n* Import fra SD-kort\n* Open Source!</string>
+	
+	<!-- 80 chars max -->
+	<string name="market_promotext">Notes-app med online synkronisering og kompatibelt med Tomboy</string>
+	
+	
+	<!-- Launchpad Translation String -->
+	<string name="about_translators">Launchpad Contributions:
+  Mads Boserup Lauritsen https://launchpad.net/~madsbola</string>
+	
+</resources>

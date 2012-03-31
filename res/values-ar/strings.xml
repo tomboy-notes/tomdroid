@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ Tomdroid
+ Tomboy on Android
+ http://www.launchpad.net/tomdroid
+
+ Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
+ 
+ This file is part of Tomdroid.
+ 
+ Tomdroid is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Tomdroid is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources>
+	
+	<!-- application details -->
+	<string name="app_name">Tomdroid</string>
+	<string name="app_desc">تطبيق متوافق مع Tomboy أداة تدوين الملاحظات wikiwiki.</string>
+	<string name="author">Olivier Bilodeau</string>
+	
+	<!-- main.xml -->
+	<string name="strListEmptyWaiting">يرجى الانتظار لحين انتهاء تحميل الملاحظات..</string>
+	<string name="strListEmptyNoNotes">لا توجد ملاحظات في قاعدة البيانات Tomdroid.</string>
+	
+	<string name="menuSync">زامن</string>
+	<string name="menuPrefs">الإعدادات</string>
+	<string name="menuAbout">حول البرنامج</string>
+	<string name="titleWelcome">تحذير</string>
+	<string name="titleAbout">عن Tomdroid</string>
+	<string name="strWelcome">مرحبا بكم في Tomdroid.\n\nيرجى الإنتباه إلى أن هدا الإصدار تجريبي و يحتوي على مشاكل غير معروفة, مثل عدم القدرة على تعديل الملاحظات.\n\nنحن ندرك جيدا هذه المشاكل وننوي العمل عليها بسرعة ولكنني أردت أيضا أن تحصل على شيء خارج ومختبر في أسرع وقت ممكن.\n\nإذا كنت ترغب في المساهمة, ساعد على جميع المستويات و ستكون موضع تقدير. انتقل إلى launchpad.net / tomdroid واتصل بنا!\n</string>
+	<string name="strAbout">%1$s\n\nالكاتب: %2$s\nالاصدار: %3$s\nتحت رخصة GPLv3</string>
+	
+	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
+	<string name="btnOk">حسناً</string>
+	<string name="btnCancel">إلغاء</string>
+	<string name="btnClose">إغلاق</string>
+	<string name="btnProjectPage">صفحة المشروع</string>
+	
+	<!-- note-view.xml -->
+	<string name="strWait">يرجى الإنتضار حتى يتم تحميل الملاحظة...</string>
+	
+	<string name="prefSync">المزامنة</string>
+	<string name="prefSyncService">خدمة</string>
+	<string name="prefSyncServer">خادم</string>
+	<string name="prefSDCard">SD Card</string>
+	<string name="prefTomboyWeb">التزامن عبر الإنترنت</string>
+	<string name="prefAuthenticate">توثيق</string>
+	
+	<string name="prefSyncCompleteAuth">استكمال التوثيق. يرجى الانتظار...</string>
+	<string name="prefSyncConnectionFailed">الاتصال بالخادم قد فشل ، يرجى التحقق من العنوان الذي أدخلته .</string>
+	<string name="prefServerEmpty">تغيير عنوان الخادم لكن القيمة الجديدة فارغة</string>
+	
+	<string name="titleSyncService">اختيار خدمة مزامنة للاستخدام</string>
+	<string name="messageSyncComplete">التزامن مع %1$ اكتمل.</string>
+	<string name="messageSyncNoNote">لم يتم العتور على ملاحظات في %1$s.</string>
+	<string name="messageSyncNoConnection">أنت غير متصل بإنترنت.</string>
+	<string name="messageSyncAlreadyInProgress">التزامن بالفعل في التقدم</string>
+	<string name="messageSyncError">كان هناك خطأ في محاولة لتحليل مجموعة المدكرات الخاصة بك. إذا لاحظت تكرار للمشكلة ، الرجاء الاتصال بنا!</string>
+	<string name="error">خطأ</string>
+	
+	<!-- NoteSorting -->
+	<string name="menuSort">تغيير الفرز</string>
+	<string name="titleDefaultSorting">اختيار الفرز الافتراضي</string>
+	<string name="prefDefaultSorting">الفرز الافتراضي</string>
+	
+	<!-- NotebookFiltering -->
+	<string name="menuFilterNotebook">مرشح</string>
+	<string name="strListEmptyNoNotebooks">لا توجد دفاتر الملاحظات في قاعدة البيانات.</string>
+	<string name="allNotebooksFilter">جميع دفاتر الملاحظات</string>
+	
+	<!-- List Longpress Menu -->
+	<string name="view">عرض</string>
+	<string name="noteOptions">خيارات الملاحظة</string>
+	<string name="send">إرسال</string>
+	
+	<!--  Search -->
+	<string name="search_hint">بحث الملاحظات</string>
+	<string name="search_description">نص في ملاحظاتك</string>
+	<string name="strNoResults">لم يفلح بحثك عن \"%s\" في إجاد اي ملاحظة</string>
+	<string name="menuSearch">بحث</string>
+	<string name="prefSearch">خيارات البحث</string>
+	<string name="SearchResultTitle">نتائج البحث:</string>
+	<string name="clearSearchHistoryTitle">مسح تأريخ البحث</string>
+	<string name="clearSearchHistory">إزالة كافة عمليات البحث التي اجريتها</string>
+	<string name="deletedSearchHistory">تم مسح تأريخ البحث.</string>
+	
+	<!-- Date -->
+	<string name="textModified">تعديل</string>
+	<string name="textToday">اليوم</string>
+	<string name="textYexterday">أمس</string>
+	
+	<!-- 
+	Information that goes into the Android Market Application Listing. 
+	I\'ve put it in here so that it\'ll get translated by translators.
+	-->
+	<!-- 30 chars max -->
+	<string name="market_title">ملاحظات Tomdroid</string>
+	<!-- 325 chars max -->
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\nNOTE: It is a READ-ONLY client for now.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
+	
+	<!-- 80 chars max -->
+	<string name="market_promotext">تطبيق لتدوين الملاحظات مع مزامنة انترنت متوافق مع Tomboy</string>
+	
+	
+	<!-- Launchpad Translation String -->
+	<string name="about_translators">Launchpad Contributions:
+  Youssef Habri https://launchpad.net/~youssef-habri</string>
+	
+</resources>

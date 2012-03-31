@@ -24,23 +24,21 @@
  */
 package org.tomdroid.sync;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import org.tomdroid.Note;
-import org.tomdroid.NoteManager;
-import org.tomdroid.ui.Tomdroid;
-import org.tomdroid.util.ErrorList;
-
-import org.tomdroid.R;
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.widget.Toast;
+import org.tomdroid.Note;
+import org.tomdroid.NoteManager;
+import org.tomdroid.R;
+import org.tomdroid.util.ErrorList;
+import org.tomdroid.util.TLog;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public abstract class SyncService {
 	
@@ -98,9 +96,11 @@ public abstract class SyncService {
 	/**
 	 * @return An human readable name, used in the preferences to distinguish the different sync services.
 	 */
+	public abstract int getDescriptionAsId();
 	
-	public abstract String getDescription();
-	
+	public String getDescription() {
+		return activity.getString(getDescriptionAsId());
+	}
 	/**
 	 * Execute code in a separate thread.
 	 * Use this for blocking and/or cpu intensive operations and thus avoid blocking the UI.
@@ -112,7 +112,7 @@ public abstract class SyncService {
 		
 		pool.execute(r);
 	}
-	
+
 	/**
 	 * Execute code in a separate thread.
 	 * Any exception thrown by the thread will be added to the error list
@@ -174,7 +174,7 @@ public abstract class SyncService {
 		} else {
 			
 			// TODO send an error to the user
-			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "Cursor returned null or 0 notes");
+			TLog.d(TAG, "Cursor returned null or 0 notes");
 		}
 	}
 	
@@ -214,7 +214,7 @@ public abstract class SyncService {
 	
 	protected void setSyncProgress(int progress) {
 		synchronized (TAG) {
-			Log.v(TAG, "sync progress: " + progress);
+			TLog.v(TAG, "sync progress: {0}", progress);
 			Message progressMessage = new Message();
 			progressMessage.what = SYNC_PROGRESS;
 			progressMessage.arg1 = progress;

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ Tomdroid
+ Tomboy on Android
+ http://www.launchpad.net/tomdroid
+
+ Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
+ 
+ This file is part of Tomdroid.
+ 
+ Tomdroid is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Tomdroid is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources>
+	
+	<!-- application details -->
+	<string name="app_name">Tomdroid</string>
+	<string name="app_desc">Tomboy compatible wikiwiki note-taking application that can\'t take notes yet.</string>
+	<string name="author">Olivier Bilodeau</string>
+	
+	<!-- main.xml -->
+	<string name="strListEmptyWaiting">노트가 로딩될 때까지 잠시만 기다리세요.</string>
+	<string name="strListEmptyNoNotes">Tomdroid 데이터베이스에 노트가 없습니다.</string>
+	
+	<string name="menuSync">동기화</string>
+	<string name="menuPrefs">설정</string>
+	<string name="menuAbout">정보</string>
+	<string name="titleWelcome">경고</string>
+	<string name="titleAbout">Tomdroid 정보</string>
+	<string name="strWelcome">Tomdroid에 오신 것을 환영합니다.\n\n현재 이 애플리케이션은 베타버전이기 때문에 노트를 수정하지 못한다는 점과 같은 문제가 있습니다.\n\n 저희 팀은 그런 문제를 잘 알고 있으며, 기능 개선 작업을 진행 중입니다. 애플리케이션의 이른 출시는 좀 더 많은 테스트를 거치기 위한 것입니다. \n\n 런치패드 Tomdroid팀 (launchpad.net/tomdroid)에서의 모든 기여를 기다리고 있습니다..\n</string>
+	<string name="strAbout">%1$s\n\n만든이: %2$s\n버전: %3$s\nGPLv3에 의해 라이센스되어 있습니다.</string>
+	
+	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
+	<string name="btnOk">확인</string>
+	<string name="btnCancel">취소</string>
+	<string name="btnClose">닫기</string>
+	<string name="btnProjectPage">프로젝트 페이지</string>
+	
+	<!-- note-view.xml -->
+	<string name="strWait">노트를 로드하는 동안 잠시만 기다려주세요...</string>
+	
+	<string name="prefSync">동기화</string>
+	<string name="prefSyncService">서비스</string>
+	<string name="prefSyncServer">서버</string>
+	<string name="prefSDCard">SD Card</string>
+	<string name="prefTomboyWeb">Online Synchronization</string>
+	<string name="prefAuthenticate">Authenticate</string>
+	
+	<string name="prefSyncCompleteAuth">Completing authentication. Please wait...</string>
+	<string name="prefSyncConnectionFailed">The connection to the server has failed, please check that the address you entered is correct.</string>
+	<string name="prefServerEmpty">The server address changed but the new value is empty</string>
+	
+	<string name="titleSyncService">Choose the sync service to use</string>
+	<string name="messageSyncComplete">Synchronization with %1$s is complete.</string>
+	<string name="messageSyncNoNote">No notes found on %1$s .</string>
+	<string name="messageSyncNoConnection">You are not connected to the Internet.</string>
+	<string name="messageSyncAlreadyInProgress">Sync already in progress</string>
+	<string name="messageSyncError">There was an error trying to parse your note collection. If you are able to replicate the problem, please contact us!</string>
+	<string name="error">Error</string>
+	
+	<!-- NoteSorting -->
+	<string name="menuSort">change sort</string>
+	<string name="titleDefaultSorting">Choose the default sorting</string>
+	<string name="prefDefaultSorting">Default sort</string>
+	
+	<!-- NotebookFiltering -->
+	<string name="menuFilterNotebook">Filter</string>
+	<string name="strListEmptyNoNotebooks">There are no notebooks in the database.</string>
+	<string name="allNotebooksFilter">All notebooks</string>
+	
+	<!-- List Longpress Menu -->
+	<string name="view">View</string>
+	<string name="noteOptions">Note Options</string>
+	<string name="send">Send</string>
+	
+	<!--  Search -->
+	<string name="search_hint">Search Notes</string>
+	<string name="search_description">Text in your notes</string>
+	<string name="strNoResults">No notes found for \"%s\"</string>
+	<string name="menuSearch">Search</string>
+	<string name="prefSearch">Search Options</string>
+	<string name="SearchResultTitle">Search Results:</string>
+	<string name="clearSearchHistoryTitle">Clear search history</string>
+	<string name="clearSearchHistory">Remove all the searches you have performed</string>
+	<string name="deletedSearchHistory">Search history has been cleared.</string>
+	
+	<!-- Date -->
+	<string name="textModified">Modified:</string>
+	<string name="textToday">Today</string>
+	<string name="textYexterday">Yesterday</string>
+	
+	<!-- 
+	Information that goes into the Android Market Application Listing. 
+	I\'ve put it in here so that it\'ll get translated by translators.
+	-->
+	<!-- 30 chars max -->
+	<string name="market_title">Tomdroid notes</string>
+	<!-- 325 chars max -->
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\nNOTE: It is a READ-ONLY client for now.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
+	
+	<!-- 80 chars max -->
+	<string name="market_promotext">Note-taking application with online synchronization compatible with Tomboy</string>
+	
+	
+	<!-- Launchpad Translation String -->
+	<string name="about_translators">Launchpad Contributions:
+  MinSik CHO https://launchpad.net/~mscho527
+  Stefan Hammer https://launchpad.net/~j-4</string>
+	
+</resources>
