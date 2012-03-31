@@ -180,7 +180,7 @@ public class OAuthConnection extends WebConnection {
 		
 		if (!requestToken.equals("") && !requestTokenSecret.equals("")) {
 			consumer.setTokenWithSecret(requestToken, requestTokenSecret);
-			TLog.d(TAG, "Added request token {0} and request token secret {1)", requestTokenSecret, requestTokenSecret);
+			TLog.d(TAG, "Added request token {0} and request token secret {1}", requestToken, requestTokenSecret);
 		}
 		else
 			return false;
