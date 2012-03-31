@@ -119,7 +119,6 @@ public class PreferencesActivity extends PreferenceActivity {
 			
 		});
 		
-		
 		// Change the Folder Location
 		sdLocation.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 

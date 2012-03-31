@@ -55,15 +55,6 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import org.tomdroid.Note;
-import org.tomdroid.NoteManager;
-import org.tomdroid.R;
-import org.tomdroid.sync.ServiceAuth;
-import org.tomdroid.sync.SyncManager;
-import org.tomdroid.sync.SyncService;
-import org.tomdroid.util.FirstNote;
-import org.tomdroid.util.Preferences;
-import org.tomdroid.util.Send;
 import org.tomdroid.util.TLog;
 
 public class Tomdroid extends ListActivity {
@@ -103,7 +94,6 @@ public class Tomdroid extends ListActivity {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.main);
-		
 		Preferences.init(this, CLEAR_PREFERENCES);
 
 		// get the Path to the notes-folder from Preferences
