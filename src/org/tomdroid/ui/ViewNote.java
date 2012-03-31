@@ -107,7 +107,7 @@ public class ViewNote extends Activity {
         if(note != null) {
             noteContent = note.getNoteContent(noteContentHandler);
         } else {
-            TLog.d(TAG, "The note "+uri+" doesn't exist");
+            TLog.d(TAG, "The note {0} doesn't exist", uri);
             showNoteNotFoundDialog(uri);
         }
     }
