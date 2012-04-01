@@ -41,6 +41,8 @@ import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.provider.SearchRecentSuggestions;
 import android.widget.Toast;
+
+import org.apache.http.auth.AUTH;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
 import org.tomdroid.sync.ServiceAuth;
@@ -191,26 +193,27 @@ public class PreferencesActivity extends PreferenceActivity {
 			@Override
 			public void handleMessage(Message msg) {
 
-				boolean wasSuccsessful = false;
-				Uri authorizationUri = (Uri) msg.obj;
-				if (authorizationUri != null) {
-
-					Intent i = new Intent(Intent.ACTION_VIEW, authorizationUri);
-					startActivity(i);
-					wasSuccsessful = true;
-
-				} else {
-					// Auth failed, don't update the value
-					wasSuccsessful = false;
+				switch(msg.what) {
+					case SyncService.AUTH_SUCCESS:
+						Uri authorizationUri = (Uri) msg.obj;
+						if (authorizationUri != null) {
+							Intent i = new Intent(Intent.ACTION_VIEW, authorizationUri);
+							startActivity(i);
+							resetLocalDatabase();
+						}
+						break;
+						
+					case SyncService.ERROR_OAUTH_AUTHENTICATION:
+						connectionFailed((Exception) msg.obj);
+						break;
+					
+					default:
+						connectionFailed();
+						break;
 				}
-
-				if (authProgress != null)
+				
+				if (authProgress != null) {
 					authProgress.dismiss();
-
-				if (wasSuccsessful) {
-					resetLocalDatabase();
-				} else {
-					connectionFailed();
 				}
 			}
 		};
@@ -275,6 +278,16 @@ public class PreferencesActivity extends PreferenceActivity {
 			.show();
 	}
 	
+	private void connectionFailed(Exception e) {
+		new AlertDialog.Builder(this)
+			.setMessage(String.format(getString(R.string.prefSyncConnectionFailedWithDetails), e.getClass().getSimpleName()))
+			.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.dismiss();
+				}})
+			.show();
+	}
+
 	private void folderNotExisting(String path) {
 		new AlertDialog.Builder(this)
 			.setMessage(String.format(getString(R.string.prefFolderCreated), path))

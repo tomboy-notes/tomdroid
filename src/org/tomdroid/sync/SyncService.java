@@ -64,6 +64,9 @@ public abstract class SyncService {
 	public final static int NO_INTERNET = 4;
 	public final static int NO_SD_CARD = 5;
 	public final static int SYNC_PROGRESS = 6;
+	public final static int AUTH_SUCCESS = 7;
+	public final static int ERROR_OAUTH_AUTHENTICATION = 8;
+	
 	
 	public SyncService(Activity activity, Handler handler) {
 		
@@ -184,14 +187,17 @@ public abstract class SyncService {
 	 * 
 	 * @param message The message id to send, the PARSING_* or NO_INTERNET attributes can be used.
 	 */
-	
+	// TODO ok i'm not refactoring this right now but I see little value in such a wrapper 
+	// and lots of confusion for people who know android
 	protected void sendMessage(int message) {
 		
 		if(!sendMessage(message, null)) {
 			handler.sendEmptyMessage(message);
 		}
 	}
-	
+
+	// This stuff is convoluted and should be either be renamed, reworked or documented
+	// I tried hard to re-use it to propagate exceptions but I wasn't able to
 	protected boolean sendMessage(int message_id, HashMap<String, Object> payload) {
 		
 		switch(message_id) {
@@ -205,6 +211,12 @@ public abstract class SyncService {
 		}
 		
 		return false;
+	}
+	
+	protected void sendException(int messageId, Exception e) {
+		
+		Message message = handler.obtainMessage(messageId, e);
+		handler.sendMessage(message);
 	}
 	
 	/**

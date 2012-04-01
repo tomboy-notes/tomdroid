@@ -26,6 +26,11 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
+import oauth.signpost.exception.OAuthCommunicationException;
+import oauth.signpost.exception.OAuthExpectationFailedException;
+import oauth.signpost.exception.OAuthMessageSignerException;
+import oauth.signpost.exception.OAuthNotAuthorizedException;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -93,10 +98,13 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 				} catch (UnknownHostException e) {
 					TLog.e(TAG, "Internet connection not available");
 					sendMessage(NO_INTERNET);
+				} catch (Exception e) {
+					TLog.e(TAG, "Unidentified authentication error. Expception: {0} Message: {1}", e.getClass().getCanonicalName(), e.getMessage());
+					e.printStackTrace();
+					sendException(ERROR_OAUTH_AUTHENTICATION, e);
 				}
 				
-				Message message = new Message();
-				message.obj = authUri;
+				Message message = handler.obtainMessage(AUTH_SUCCESS, authUri);
 				handler.sendMessage(message);
 			}
 			
@@ -119,11 +127,15 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 					if (result) {
 						TLog.i(TAG, "The authorization process is complete.");
 					} else {
-						TLog.e(TAG, "Something went wrong during the authorization process.");
+						throw new Exception("Something went wrong during the authorization process. auth.getAccess returned false");
 					}
 				} catch (UnknownHostException e) {
 					TLog.e(TAG, "Internet connection not available");
 					sendMessage(NO_INTERNET);
+				} catch (Exception e) {
+					TLog.e(TAG, "Unidentified authentication error. Expception: {0} Message: {1}", e.getClass().getCanonicalName(), e.getMessage());
+					e.printStackTrace();
+					sendException(ERROR_OAUTH_AUTHENTICATION, e);
 				}
 				
 				// We don't care what we send, just remove the dialog
@@ -224,8 +236,15 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 					sendMessage(NO_INTERNET);
 					setSyncProgress(100);
 					return;
+					
+				} catch (Exception e) {
+					TLog.e(TAG, "Unidentified authentication error. Expception: {0} Message: {1}", e.getClass().getCanonicalName(), e.getMessage());
+					e.printStackTrace();
+					sendException(ERROR_OAUTH_AUTHENTICATION, e);
+					setSyncProgress(100);
+					return;
 				}
-				
+			
 				sendMessage(PARSING_COMPLETE);
 			}
 		});

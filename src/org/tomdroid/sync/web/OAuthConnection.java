@@ -91,7 +91,7 @@ public class OAuthConnection extends WebConnection {
 		return provider;
 	}
 	
-	private void sign(HttpRequest request) {
+	private void sign(HttpRequest request) throws OAuthMessageSignerException, OAuthExpectationFailedException, OAuthCommunicationException {
 		
 		if (isAuthenticated())
 			consumer.setTokenWithSecret(accessToken, accessTokenSecret);
@@ -101,17 +101,16 @@ public class OAuthConnection extends WebConnection {
 		// TODO: figure out if we should throw exceptions
 		try {
 			consumer.sign(request);
-		} catch (OAuthMessageSignerException e1) {
-			e1.printStackTrace();
-		} catch (OAuthExpectationFailedException e1) {
-			e1.printStackTrace();
+		} catch (OAuthMessageSignerException e) {
+			throw e;
+		} catch (OAuthExpectationFailedException e) {
+			throw e;
 		} catch (OAuthCommunicationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw e;
 		}
 	}
 	
-	public Uri getAuthorizationUrl(String server) throws UnknownHostException {
+	public Uri getAuthorizationUrl(String server) throws UnknownHostException, OAuthCommunicationException, OAuthMessageSignerException, OAuthNotAuthorizedException, OAuthExpectationFailedException, JSONException {
 		
 		String url = "";
 		
@@ -134,8 +133,7 @@ public class OAuthConnection extends WebConnection {
 			authorizeUrl = jsonResponse.getString("oauth_authorize_url");
 			
 		} catch (JSONException e) {
-			e.printStackTrace();
-			return null;
+			throw e;
 		}
 		
 		OAuthProvider provider = getProvider();
@@ -151,18 +149,14 @@ public class OAuthConnection extends WebConnection {
 			accessTokenSecret = "";
 			saveConfiguration();
 			
-		} catch (OAuthMessageSignerException e1) {
-			e1.printStackTrace();
-			return null;
-		} catch (OAuthNotAuthorizedException e1) {
-			e1.printStackTrace();
-			return null;
-		} catch (OAuthExpectationFailedException e1) {
-			e1.printStackTrace();
-			return null;
-		} catch (OAuthCommunicationException e1) {
-			e1.printStackTrace();
-			return null;
+		} catch (OAuthMessageSignerException e) {
+			throw e;
+		} catch (OAuthNotAuthorizedException e) {
+			throw e;
+		} catch (OAuthExpectationFailedException e) {
+			throw e;
+		} catch (OAuthCommunicationException e) {
+			throw e;
 		}
 		
 		TLog.i(TAG, "Authorization URL : {0}", url);
@@ -170,7 +164,7 @@ public class OAuthConnection extends WebConnection {
 		return Uri.parse(url);
 	}
 	
-	public boolean getAccess(String verifier) throws UnknownHostException {
+	public boolean getAccess(String verifier) throws UnknownHostException, OAuthMessageSignerException, OAuthNotAuthorizedException, OAuthExpectationFailedException, OAuthCommunicationException, JSONException {
 		
 		TLog.i(TAG, "Verifier: {0}", verifier);
 		
@@ -189,18 +183,14 @@ public class OAuthConnection extends WebConnection {
 		
 		try {
 			provider.retrieveAccessToken(consumer, verifier);
-		} catch (OAuthMessageSignerException e1) {
-			e1.printStackTrace();
-			return false;
-		} catch (OAuthNotAuthorizedException e1) {
-			e1.printStackTrace();
-			return false;
-		} catch (OAuthExpectationFailedException e1) {
-			e1.printStackTrace();
-			return false;
-		} catch (OAuthCommunicationException e1) {
-			e1.printStackTrace();
-			return false;
+		} catch (OAuthMessageSignerException e) {
+			throw e;
+		} catch (OAuthNotAuthorizedException e) {
+			throw e;
+		} catch (OAuthExpectationFailedException e) {
+			throw e;
+		} catch (OAuthCommunicationException e) {
+			throw e;
 		}
 		
 		// access has been granted, store the access token
@@ -214,8 +204,7 @@ public class OAuthConnection extends WebConnection {
 			// append a slash to the url, else the signature will fail
 			userApi = response.getJSONObject("user-ref").getString("api-ref");
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw e;
 		}
 		
 		saveConfiguration();
@@ -226,7 +215,7 @@ public class OAuthConnection extends WebConnection {
 	}
 	
 	@Override
-	public String get(String uri) throws java.net.UnknownHostException {
+	public String get(String uri) throws java.net.UnknownHostException, OAuthMessageSignerException, OAuthExpectationFailedException, OAuthCommunicationException {
 		
 		// Prepare a request object
 		HttpGet httpGet = new HttpGet(uri);
@@ -236,7 +225,7 @@ public class OAuthConnection extends WebConnection {
 	}
 	
 	@Override
-	public String put(String uri, String data) throws UnknownHostException {
+	public String put(String uri, String data) throws UnknownHostException, UnsupportedEncodingException, OAuthMessageSignerException, OAuthExpectationFailedException, OAuthCommunicationException {
 		
 		// Prepare a request object
 		HttpPut httpPut = new HttpPut(uri);
@@ -244,9 +233,8 @@ public class OAuthConnection extends WebConnection {
 		try {
 			// The default http content charset is ISO-8859-1, JSON requires UTF-8
 			httpPut.setEntity(new StringEntity(data, "UTF-8"));
-		} catch (UnsupportedEncodingException e1) {
-			e1.printStackTrace();
-			return null;
+		} catch (UnsupportedEncodingException e) {
+			throw e;
 		}
 		
 		httpPut.setHeader("Content-Type", "application/json");

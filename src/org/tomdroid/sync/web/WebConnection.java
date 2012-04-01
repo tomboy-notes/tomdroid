@@ -22,6 +22,10 @@
  */
 package org.tomdroid.sync.web;
 
+import oauth.signpost.exception.OAuthCommunicationException;
+import oauth.signpost.exception.OAuthExpectationFailedException;
+import oauth.signpost.exception.OAuthMessageSignerException;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -33,14 +37,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.UnknownHostException;
 
 public abstract class WebConnection {
 	
 	private static final String TAG = "WebConnection";
-	
-	public abstract String get(String uri) throws UnknownHostException;
-	public abstract String put(String uri, String data) throws UnknownHostException;
+
+	// TODO implementation specific exceptions should be removed from here but for now we want visibility in the UI of the problems
+	public abstract String get(String uri) throws UnknownHostException, OAuthMessageSignerException, OAuthExpectationFailedException, OAuthCommunicationException;
+	public abstract String put(String uri, String data) throws UnknownHostException, UnsupportedEncodingException, OAuthMessageSignerException, OAuthExpectationFailedException, OAuthCommunicationException;
 	
 	private static String convertStreamToString(InputStream is) {
 		/*

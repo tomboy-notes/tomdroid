@@ -98,6 +98,20 @@ public class SyncMessageHandler extends Handler {
 				Toast.makeText(activity, this.activity.getString(R.string.messageSyncNoConnection),
 						Toast.LENGTH_SHORT).show();
 				break;
+			
+			case SyncService.ERROR_OAUTH_AUTHENTICATION:
+				new AlertDialog.Builder(this.activity)
+				.setMessage(
+						String.format(
+								this.activity.getString(R.string.prefSyncConnectionFailedWithDetails), 
+								((Exception) msg.obj).getClass().getSimpleName()))
+				.setNeutralButton(this.activity.getString(R.string.btnOk), new OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+					}})
+				.show();
+				break;
+			
 				
 			case SyncService.NO_SD_CARD:
 				// TODO put string in a translatable bundle
