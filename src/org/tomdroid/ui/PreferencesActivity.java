@@ -112,7 +112,7 @@ public class PreferencesActivity extends PreferenceActivity {
 							Toast.LENGTH_SHORT).show();
 					return false;
 				}
-				if ((serverUri.toString().contains("\t")) || (serverUri.toString().contains(" "))){
+				if ((serverUri.toString().contains("\t")) || (serverUri.toString().contains(" ")) || (serverUri.toString().contains("\n"))){
 					noValidEntry(serverUri.toString());
 					return false;
 				}
@@ -131,7 +131,7 @@ public class PreferencesActivity extends PreferenceActivity {
 				if (locationUri.equals(Preferences.getString(Preferences.Key.SD_LOCATION))) { 
 					return false;
 				}
-				if ((locationUri.toString().contains("\t"))) { 
+				if ((locationUri.toString().contains("\t")) || (locationUri.toString().contains("\n"))) { 
 					noValidEntry(locationUri.toString());
 					return false;
 				}
