@@ -39,6 +39,7 @@ import org.xml.sax.XMLReader;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -114,6 +115,15 @@ public class SdCardSyncService extends SyncService {
 			setSyncProgress(100);
 			return;
 		}
+		
+		// Delete the notes that are not in the database
+		ArrayList<String> remoteGuids = new ArrayList<String>();
+
+		for (int i = 0; i < fileList.length; i++) {
+			// make a list with all note guids stored in filenames
+			remoteGuids.add(fileList[i].getName().replace(".note", ""));
+		}
+		deleteNotes(remoteGuids);
 		
 		// every but the last note
 		for(int i = 0; i < fileList.length-1; i++) {
