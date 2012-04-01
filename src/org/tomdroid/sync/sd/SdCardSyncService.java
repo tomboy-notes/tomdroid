@@ -116,7 +116,7 @@ public class SdCardSyncService extends SyncService {
 			return;
 		}
 		
-		// Delete the notes that are not in the database
+		// Delete the notes that are not in the folder any more
 		ArrayList<String> remoteGuids = new ArrayList<String>();
 
 		for (int i = 0; i < fileList.length; i++) {
