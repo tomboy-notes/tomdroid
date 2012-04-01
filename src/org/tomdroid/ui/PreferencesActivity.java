@@ -112,6 +112,10 @@ public class PreferencesActivity extends PreferenceActivity {
 							Toast.LENGTH_SHORT).show();
 					return false;
 				}
+				if (serverUri.toString().contains("\n")) {
+					noValidEntry(serverUri.toString(), getString(R.string.prefServerURL));
+					return false;
+				}
 			    
 				authenticate((String) serverUri);
 				return true;
@@ -128,7 +132,7 @@ public class PreferencesActivity extends PreferenceActivity {
 					return false;
 				}
 				if (locationUri.toString().contains("\n")) { 
-					noValidLocation(locationUri.toString());
+					noValidEntry(locationUri.toString(), getString(R.string.prefFolderLocation));
 					return false;
 				}
 				
@@ -277,6 +281,7 @@ public class PreferencesActivity extends PreferenceActivity {
 	
 	private void folderNotExisting(String path) {
 		new AlertDialog.Builder(this)
+			.setTitle(getString(R.string.error))
 			.setMessage(String.format(getString(R.string.prefFolderCreated), path))
 			.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
@@ -285,9 +290,10 @@ public class PreferencesActivity extends PreferenceActivity {
 			.show();
 	}
 	
-	private void noValidLocation(String path) {
+	private void noValidEntry(String Entry, String NoValidObject) {
 		new AlertDialog.Builder(this)
-			.setMessage(String.format(getString(R.string.prefNoValidLocation), path))
+			.setTitle(getString(R.string.error))
+			.setMessage(String.format(getString(R.string.prefNoValidEntry), Entry, NoValidObject))
 			.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
 					dialog.dismiss();

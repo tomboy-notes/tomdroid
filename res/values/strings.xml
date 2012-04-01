@@ -57,7 +57,11 @@
 	<string name="prefAuthenticate">Authenticate</string>
 	<string name="prefLocation">Location on SD Card</string>
 	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
-	<string name="prefNoValidLocation">\"%1$s\" is no valid folder location. Please try again!</string>
+	<string name="prefNoValidEntry">\"%1$s\" is no valid %2$s.\nPlease try again!</string>
+	<!-- "" is no valid ... . -->
+	<string name="prefFolderLocation">folder location</string>
+	<!-- "" is no valid ... . -->
+	<string name="prefServerURL">Server-URL</string>
 	
 	<string name="prefSyncCompleteAuth">Completing authentication. Please wait...</string>
 	<string name="prefSyncConnectionFailed">The connection to the server has failed, please check that the address you entered is correct.</string>
