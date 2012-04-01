@@ -35,7 +35,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.SpannableStringBuilder;
+import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
+import android.text.util.Linkify.MatchFilter;
 import android.text.util.Linkify.TransformFilter;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -50,6 +52,7 @@ import org.tomdroid.util.NoteContentBuilder;
 import org.tomdroid.util.NoteViewShortcutsHelper;
 import org.tomdroid.util.Send;
 import org.tomdroid.util.TLog;
+import org.tomdroid.xml.NoteContentHandler.LinkInternalSpan;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -175,6 +178,23 @@ public class ViewNote extends Activity {
 	}
 
 	private void showNote() {
+		
+		final LinkInternalSpan[] links = noteContent.getSpans(0, noteContent.length(), LinkInternalSpan.class);
+
+		MatchFilter noteLinkMatchFilter = new MatchFilter() {
+
+			public boolean acceptMatch(CharSequence s, int start, int end) {
+				int spanstart, spanend;
+				for(LinkInternalSpan link: links) {
+					spanstart = noteContent.getSpanStart(link);
+					spanend = noteContent.getSpanEnd(link);
+					if(!(end <= spanstart || spanend <= start)) {
+						return false;
+					}
+				}
+				return true;
+			}
+		};
 
 		// show the note (spannable makes the TextView able to output styled text)
 		content.setText(noteContent, TextView.BufferType.SPANNABLE);
@@ -193,8 +213,10 @@ public class ViewNote extends Activity {
 		Linkify.addLinks(content,
 						 buildNoteLinkifyPattern(),
 						 Tomdroid.CONTENT_URI+"/",
-						 null,
+						 noteLinkMatchFilter,
 						 noteTitleTransformFilter);
+
+		content.setMovementMethod(LinkMovementMethod.getInstance());
 	}
 
 	private Handler noteContentHandler = new Handler() {

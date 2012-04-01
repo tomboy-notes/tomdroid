@@ -26,19 +26,28 @@ package org.tomdroid.xml;
 import java.util.ArrayList;
 
 import org.tomdroid.Note;
+import org.tomdroid.NoteManager;
+import org.tomdroid.ui.Tomdroid;
+import org.tomdroid.ui.ViewNote;
+import org.tomdroid.util.TLog;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.BulletSpan;
+import android.text.style.ClickableSpan;
 import android.text.style.LeadingMarginSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StrikethroughSpan;
 import android.text.style.StyleSpan;
 import android.text.style.TypefaceSpan;
+import android.view.View;
 
 /*
  * This class is responsible for parsing the xml note content
@@ -56,6 +65,7 @@ public class NoteContentHandler extends DefaultHandler {
 	private boolean inSizeSmallTag = false;
 	private boolean inSizeLargeTag = false;
 	private boolean inSizeHugeTag = false;
+	private boolean inLinkInternalTag = false;
 	private int inListLevel = 0;
 	private boolean inListItem = false;
 	
@@ -70,6 +80,7 @@ public class NoteContentHandler extends DefaultHandler {
 	private final static String SMALL = "size:small";
 	private final static String LARGE = "size:large";
 	private final static String HUGE = "size:huge";
+	private final static String LINK_INTERNAL = "link:internal";
 	// Bullet list-related
 	private final static String LIST = "list";
 	private final static String LIST_ITEM = "list-item";
@@ -91,6 +102,8 @@ public class NoteContentHandler extends DefaultHandler {
 	private int largeEndPos;
 	private int hugeStartPos;
 	private int hugeEndPos;
+	private int linkinternalStartPos;
+	private int linkinternalEndPos;
 	private ArrayList<Integer> listItemStartPos = new ArrayList<Integer>(0);
 	private ArrayList<Integer> listItemEndPos = new ArrayList<Integer>(0);
 	private ArrayList<Boolean> listItemIsEmpty =  new ArrayList<Boolean>(0);
@@ -132,6 +145,8 @@ public class NoteContentHandler extends DefaultHandler {
 				inSizeLargeTag = true;
 			} else if (name.equals(HUGE)) {
 				inSizeHugeTag = true;
+			} else if (name.equals(LINK_INTERNAL)) {
+				inLinkInternalTag = true;
 			} else if (name.equals(LIST)) {
 				inListLevel++;
 			} else if (name.equals(LIST_ITEM)) {
@@ -227,6 +242,13 @@ public class NoteContentHandler extends DefaultHandler {
 				ssb.setSpan(new RelativeSizeSpan(Note.NOTE_SIZE_HUGE_FACTOR), hugeStartPos, hugeEndPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 				hugeStartPos = 0;
 				hugeEndPos = 0;
+
+			} else if (name.equals(LINK_INTERNAL)) {
+				inLinkInternalTag = false;
+				// apply style and reset position keepers
+				ssb.setSpan(new LinkInternalSpan(ssb.toString().substring(linkinternalStartPos, linkinternalEndPos)), linkinternalStartPos, linkinternalEndPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+				linkinternalStartPos = 0;
+				linkinternalEndPos = 0;
 
 			} else if (name.equals(LIST)) {
 				inListLevel--;
@@ -333,6 +355,14 @@ public class NoteContentHandler extends DefaultHandler {
 				// no matter what, if we are still in the tag, end is now further
 				hugeEndPos = strLenEnd;
 			}
+			if (inLinkInternalTag) {
+				// if tag is not equal to 0 then we are already in it: no need to reset it's position again 
+				if (linkinternalStartPos == 0) {
+					linkinternalStartPos = strLenStart;
+				}
+				// no matter what, if we are still in the tag, end is now further
+				linkinternalEndPos = strLenEnd;
+			}
 			if (inListItem) {
 				// this list item is not empty, so we mark it as such. We keep track of this to avoid any
 				// problems with list items nested like this: <item><item><item>Content!</item></item></item>
@@ -341,6 +371,31 @@ public class NoteContentHandler extends DefaultHandler {
 				// no matter what, if we are still in the tag, end is now further
 				listItemEndPos.set(inListLevel-1, strLenEnd);					
 			}
+		}
+	}
+	
+	public class LinkInternalSpan extends ClickableSpan {
+
+		private String title;
+		public LinkInternalSpan(String title) {
+			super();
+			this.title = title;
+		}
+
+		@Override
+		public void onClick(View v){
+			Activity act = (Activity)v.getContext();
+			int id = NoteManager.getNoteId(act, title);
+			Uri intentUri;
+			if(id != 0) {
+				intentUri = Uri.parse(Tomdroid.CONTENT_URI.toString()+"/"+id);
+			} else {
+				/* TODO: open new note */
+				TLog.d("LinkInternal", "link: {0} was clicked", title);
+				return;
+			}
+			Intent i = new Intent(Intent.ACTION_VIEW, intentUri);
+			act.startActivity(i);
 		}
 	}
 }
