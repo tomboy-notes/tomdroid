@@ -13,7 +13,9 @@ For more details and developer visible changes see the ChangeLog
 
 -------------------------------------------------------------------------------
 Versoin 0.?? released on ??
-* Fix crash when authenticating a server URL that includes newline (Stefan Hammer, lp:902855)
+
+* Fix crash when authenticating a server URL containing line breaks (Stefan Hammer, lp:902855)
+* SD card synchronisation now removes deleted messages from Database (Stefan Hammer, lp:533933 )
 * Can specify folder for SD Card Sync (ie: dropbox) (Stefan Hammer, lp:837119)
 * Creating home-screen shortcuts to notes is now possible (Piotr Adamski, 
   lp:882703)
