@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-03-31 23:20+0200\n"
+"POT-Creation-Date: 2012-04-02 22:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -114,7 +114,7 @@ msgid "The folder \\\"%1$s\\\" does not exist yet. Please connect your device to
 msgstr ""
 
 #: tmp_strings.xml:60(string)
-msgid "\\\"%1$s\\\" is no valid folder location. Please try again!"
+msgid "\\\"%1$s\\\" contains invalid characters.\\nPlease try again!"
 msgstr ""
 
 #: tmp_strings.xml:62(string)
