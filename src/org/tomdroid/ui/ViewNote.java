@@ -52,7 +52,7 @@ import org.tomdroid.util.NoteContentBuilder;
 import org.tomdroid.util.NoteViewShortcutsHelper;
 import org.tomdroid.util.Send;
 import org.tomdroid.util.TLog;
-import org.tomdroid.xml.NoteContentHandler.LinkInternalSpan;
+import org.tomdroid.xml.LinkInternalSpan;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -178,23 +178,9 @@ public class ViewNote extends Activity {
 	}
 
 	private void showNote() {
-		
-		final LinkInternalSpan[] links = noteContent.getSpans(0, noteContent.length(), LinkInternalSpan.class);
 
-		MatchFilter noteLinkMatchFilter = new MatchFilter() {
-
-			public boolean acceptMatch(CharSequence s, int start, int end) {
-				int spanstart, spanend;
-				for(LinkInternalSpan link: links) {
-					spanstart = noteContent.getSpanStart(link);
-					spanend = noteContent.getSpanEnd(link);
-					if(!(end <= spanstart || spanend <= start)) {
-						return false;
-					}
-				}
-				return true;
-			}
-		};
+		LinkInternalSpan[] links = noteContent.getSpans(0, noteContent.length(), LinkInternalSpan.class);
+		MatchFilter noteLinkMatchFilter = LinkInternalSpan.getNoteLinkMatchFilter(noteContent, links);
 
 		// show the note (spannable makes the TextView able to output styled text)
 		content.setText(noteContent, TextView.BufferType.SPANNABLE);

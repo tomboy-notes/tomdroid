@@ -26,28 +26,19 @@ package org.tomdroid.xml;
 import java.util.ArrayList;
 
 import org.tomdroid.Note;
-import org.tomdroid.NoteManager;
-import org.tomdroid.ui.Tomdroid;
-import org.tomdroid.ui.ViewNote;
-import org.tomdroid.util.TLog;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.BulletSpan;
-import android.text.style.ClickableSpan;
 import android.text.style.LeadingMarginSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StrikethroughSpan;
 import android.text.style.StyleSpan;
 import android.text.style.TypefaceSpan;
-import android.view.View;
 
 /*
  * This class is responsible for parsing the xml note content
@@ -371,31 +362,6 @@ public class NoteContentHandler extends DefaultHandler {
 				// no matter what, if we are still in the tag, end is now further
 				listItemEndPos.set(inListLevel-1, strLenEnd);					
 			}
-		}
-	}
-	
-	public class LinkInternalSpan extends ClickableSpan {
-
-		private String title;
-		public LinkInternalSpan(String title) {
-			super();
-			this.title = title;
-		}
-
-		@Override
-		public void onClick(View v){
-			Activity act = (Activity)v.getContext();
-			int id = NoteManager.getNoteId(act, title);
-			Uri intentUri;
-			if(id != 0) {
-				intentUri = Uri.parse(Tomdroid.CONTENT_URI.toString()+"/"+id);
-			} else {
-				/* TODO: open new note */
-				TLog.d("LinkInternal", "link: {0} was clicked", title);
-				return;
-			}
-			Intent i = new Intent(Intent.ACTION_VIEW, intentUri);
-			act.startActivity(i);
 		}
 	}
 }
