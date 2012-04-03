@@ -71,11 +71,10 @@ public class SyncMessageHandler extends Handler {
 					message = this.activity.getString(R.string.messageSyncError);
 					new AlertDialog.Builder(activity).setMessage(message)
 						.setTitle(this.activity.getString(R.string.error))
-						.setPositiveButton("Save to sd card", new OnClickListener() {
+						.setPositiveButton(this.activity.getString(R.string.btnSavetoSD), new OnClickListener() {
 							public void onClick(DialogInterface dialog, int which) {
 								if(!errors.save()) {
-									// TODO put string in a translatable bundle
-									Toast.makeText(activity, "Could not save the errors, please check your SD card.",
+									Toast.makeText(activity, activity.getString(R.string.messageCouldNotSave),
 											Toast.LENGTH_SHORT).show();
 								}
 								refreshActivity();
@@ -94,14 +93,12 @@ public class SyncMessageHandler extends Handler {
 				break;
 				
 			case SyncService.NO_INTERNET:
-				// TODO put string in a translatable bundle
 				Toast.makeText(activity, this.activity.getString(R.string.messageSyncNoConnection),
 						Toast.LENGTH_SHORT).show();
 				break;
 				
 			case SyncService.NO_SD_CARD:
-				// TODO put string in a translatable bundle
-				Toast.makeText(activity, "SD card not found.",
+				Toast.makeText(activity, activity.getString(R.string.messageNoSDCard),
 						Toast.LENGTH_SHORT).show();
 				break;
 

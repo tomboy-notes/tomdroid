@@ -122,7 +122,6 @@ public class Tomdroid extends ListActivity {
 		setListAdapter(adapter);
 
 		// set the view shown when the list is empty
-		// TODO default empty-list text is butt-ugly!
 		listEmptyView = (TextView) findViewById(R.id.list_empty);
 		getListView().setEmptyView(listEmptyView);
 		
