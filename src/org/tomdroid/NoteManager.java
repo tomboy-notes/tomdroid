@@ -199,8 +199,8 @@ public class NoteManager {
 		int id = 0;
 		
 		// get the notes ids
-		String[] whereArgs = { title };
-		Cursor cursor = activity.managedQuery(Tomdroid.CONTENT_URI, ID_PROJECTION, Note.TITLE+"=?", whereArgs, null);
+		String[] whereArgs = { title.toUpperCase() };
+		Cursor cursor = activity.managedQuery(Tomdroid.CONTENT_URI, ID_PROJECTION, "UPPER("+Note.TITLE+")=?", whereArgs, null);
 		
 		// cursor must not be null and must return more than 0 entry 
 		if (!(cursor == null || cursor.getCount() == 0)) {

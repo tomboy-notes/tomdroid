@@ -261,7 +261,7 @@ public class ViewNote extends Activity {
 			String pt = sb.substring(0, sb.length()-1);
 
 			// return a compiled match pattern
-			return Pattern.compile(pt);
+			return Pattern.compile(pt, Pattern.CASE_INSENSITIVE);
 
 		} else {
 
