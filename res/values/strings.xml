@@ -45,6 +45,7 @@
 	<string name="btnCancel">Cancel</string>
 	<string name="btnClose">Close</string>
 	<string name="btnProjectPage">Project page</string>
+	<string name="btnSavetoSD">Save to SD card</string>
 	
 	<!-- note-view.xml -->
 	<string name="strWait">Please wait while note loads...</string>
@@ -57,7 +58,7 @@
 	<string name="prefAuthenticate">Authenticate</string>
 	<string name="prefLocation">Location on SD Card</string>
 	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
-	<string name="prefNoValidLocation">\"%1$s\" is no valid folder location. Please try again!</string>
+	<string name="prefNoValidEntry">\"%1$s\" contains invalid characters.\nPlease try again!</string>
 	
 	<string name="prefSyncCompleteAuth">Completing authentication. Please wait...</string>
 	<string name="prefSyncConnectionFailed">The connection to the server has failed, please check that the address you entered is correct.</string>
@@ -72,6 +73,9 @@
 	<string name="error">Error</string>
 	<string name="titleNoteNotFound">No Such Note</string>
 	<string name="messageNoteNotFound">The requested note could not be found. Maybe it was deleted or removed through synchronization.</string>
+	<string name="messageErrorNoteParsing">The requested note could not be parsed. If you are able to replicate the problem, please contact us!</string>	
+	<string name="messageCouldNotSave">Could not save the errors, please check your SD card.</string>
+	<string name="messageNoSDCard">SD card not found.</string>
 	
 	<!-- NoteSorting -->
 	<string name="menuSort">Change Sort</string>

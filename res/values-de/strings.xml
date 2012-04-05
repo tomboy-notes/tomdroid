@@ -55,6 +55,9 @@
 	<string name="prefSDCard">SD-Karte</string>
 	<string name="prefTomboyWeb">Online-Synchronisation</string>
 	<string name="prefAuthenticate">Authentifizieren</string>
+	<string name="prefLocation">Location on SD Card</string>
+	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
+	<string name="prefNoValidLocation">\"%1$s\" is no valid folder location. Please try again!</string>
 	
 	<string name="prefSyncCompleteAuth">Authentifizierung läuft. Bitte warten …</string>
 	<string name="prefSyncConnectionFailed">Die Verbindung zum Server ist fehlgeschlagen. Bitte überprüfe die angegebene Adresse.</string>
@@ -62,14 +65,16 @@
 	
 	<string name="titleSyncService">Synchronisationsdienst wählen</string>
 	<string name="messageSyncComplete">Erfolgreich mit %1$s synchronisiert.</string>
-	<string name="messageSyncNoNote">Es wurden keine Notizen auf %1$s gefunden.</string>
+	<string name="messageSyncNoNote">No notes found on %1$s.</string>
 	<string name="messageSyncNoConnection">Es besteht keine Internetverbindung.</string>
 	<string name="messageSyncAlreadyInProgress">Synchronisation wird bereits ausgeführt.</string>
 	<string name="messageSyncError">Es ist ein Fehler beim Analysieren Ihrer Notizen aufgetreten. Falls dieses Problem wiederholt auftritt, melden Sie es bitte!</string>
 	<string name="error">Fehler</string>
+	<string name="titleNoteNotFound">No Such Note</string>
+	<string name="messageNoteNotFound">The requested note could not be found. Maybe it was deleted or removed through synchronization.</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">Reihenfolge ändern</string>
+	<string name="menuSort">Change Sort</string>
 	<string name="titleDefaultSorting">Wähle die Standardreihenfolge</string>
 	<string name="prefDefaultSorting">Standardreihenfolge</string>
 	
@@ -98,6 +103,12 @@
 	<string name="textModified">Geändert:</string>
 	<string name="textToday">Heute</string>
 	<string name="textYexterday">Gestern</string>
+
+	<!-- Shortcuts handling -->
+	<string name="shortcuts_view_caption">Choose a Note</string>
+	<string name="shortcut_menu_item_caption">Tomdroid Note</string>
+	<string name="btnRemoveShortcut">Remove shortcut</string>
+	<string name="createShortcut">Create shortcut</string>
 	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 

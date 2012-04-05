@@ -55,6 +55,9 @@
 	<string name="prefSDCard">Cartão SD</string>
 	<string name="prefTomboyWeb">Sincronização online</string>
 	<string name="prefAuthenticate">Autenticar</string>
+	<string name="prefLocation">Location on SD Card</string>
+	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
+	<string name="prefNoValidLocation">\"%1$s\" is no valid folder location. Please try again!</string>
 	
 	<string name="prefSyncCompleteAuth">A autenticar. Por favor, aguarde...</string>
 	<string name="prefSyncConnectionFailed">Ocorreu um erro ao ligar ao servidor. Verifique se indicou o endereço correto.</string>
@@ -62,14 +65,16 @@
 	
 	<string name="titleSyncService">Escolha o serviço de sincronização a utilizar</string>
 	<string name="messageSyncComplete">Terminada a sincronização com %1$s</string>
-	<string name="messageSyncNoNote">Nenhuma nota encontrada em %1$s</string>
+	<string name="messageSyncNoNote">No notes found on %1$s.</string>
 	<string name="messageSyncNoConnection">Não está ligado à Internet</string>
 	<string name="messageSyncAlreadyInProgress">Já está a decorrer uma sincronização</string>
-	<string name="messageSyncError">There was an error trying to parse your note collection. If you are able to replicate the problem, please contact us!</string>
+	<string name="messageSyncError">Ocorreu um erro ao processar a coleção de notas. Se conseguir  replicar este problema, contacte-nos.</string>
 	<string name="error">Erro</string>
+	<string name="titleNoteNotFound">No Such Note</string>
+	<string name="messageNoteNotFound">The requested note could not be found. Maybe it was deleted or removed through synchronization.</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">alterar ordem</string>
+	<string name="menuSort">Change Sort</string>
 	<string name="titleDefaultSorting">Escolha a ordenação</string>
 	<string name="prefDefaultSorting">Padrão</string>
 	
@@ -98,6 +103,12 @@
 	<string name="textModified">Modificada:</string>
 	<string name="textToday">Hoje</string>
 	<string name="textYexterday">Ontem</string>
+
+	<!-- Shortcuts handling -->
+	<string name="shortcuts_view_caption">Choose a Note</string>
+	<string name="shortcut_menu_item_caption">Tomdroid Note</string>
+	<string name="btnRemoveShortcut">Remove shortcut</string>
+	<string name="createShortcut">Create shortcut</string>
 	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
@@ -106,10 +117,10 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Notas Tomdroid</string>
 	<!-- 325 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\nNOTE: It is a READ-ONLY client for now.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
+	<string name="market_description">Um cliente Tomboy para Android. O Tomboy é uma aplicação de notas com uma interface simples de utilizar.\n\nNota: o Tomdroid, por agora, é só de leitura.\n\n*Compatibilidade com o Tomboy\n*Sincronização de notas na rede com o Snowy, Tomboy Online ou Ubuntu One\n* Importação do cartão SD\n*De código livre!</string>
 	
 	<!-- 80 chars max -->
-	<string name="market_promotext">Note-taking application with online synchronization compatible with Tomboy</string>
+	<string name="market_promotext">Aplicação para tirar notas com sincronização na rede e compatível com o Tomboy.</string>
 	
 	
 	<!-- Launchpad Translation String -->

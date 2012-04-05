@@ -55,6 +55,9 @@
 	<string name="prefSDCard">SD-kort</string>
 	<string name="prefTomboyWeb">Online synkronisering</string>
 	<string name="prefAuthenticate">Godkend</string>
+	<string name="prefLocation">Location on SD Card</string>
+	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
+	<string name="prefNoValidLocation">\"%1$s\" is no valid folder location. Please try again!</string>
 	
 	<string name="prefSyncCompleteAuth">Færdiggør godkendelse. Vent venligst...</string>
 	<string name="prefSyncConnectionFailed">Forbindelsen til serveren mislykkedes. Tjek venligst,  at du har indtastet den rigtige adresse.</string>
@@ -62,14 +65,16 @@
 	
 	<string name="titleSyncService">Vælg hvilken synkroniseringsmetode, der skal bruges</string>
 	<string name="messageSyncComplete">Synkronisering er %1$s færdig.</string>
-	<string name="messageSyncNoNote">Ingen noter er fundet på %1$s.</string>
+	<string name="messageSyncNoNote">No notes found on %1$s.</string>
 	<string name="messageSyncNoConnection">Du er ikke forbundet til internettet.</string>
 	<string name="messageSyncAlreadyInProgress">Synkronisering er allerede i gang.</string>
 	<string name="messageSyncError">Der er sket en fejl ved hentningen af dine noter. Hvis du har mulighed for at genskabe fejlen bedes du kontakte os!</string>
 	<string name="error">Fejl</string>
+	<string name="titleNoteNotFound">No Such Note</string>
+	<string name="messageNoteNotFound">The requested note could not be found. Maybe it was deleted or removed through synchronization.</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">Skift sortering</string>
+	<string name="menuSort">Change Sort</string>
 	<string name="titleDefaultSorting">Vælg standardsortering</string>
 	<string name="prefDefaultSorting">Standardsortering</string>
 	
@@ -98,6 +103,12 @@
 	<string name="textModified">Ændret:</string>
 	<string name="textToday">I dag</string>
 	<string name="textYexterday">I går</string>
+
+	<!-- Shortcuts handling -->
+	<string name="shortcuts_view_caption">Choose a Note</string>
+	<string name="shortcut_menu_item_caption">Tomdroid Note</string>
+	<string name="btnRemoveShortcut">Remove shortcut</string>
+	<string name="createShortcut">Create shortcut</string>
 	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 

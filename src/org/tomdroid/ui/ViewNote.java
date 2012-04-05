@@ -209,12 +209,10 @@ public class ViewNote extends Activity {
 			//parsed not ok - error
 			} else if(msg.what == NoteContentBuilder.PARSE_ERROR) {
 
-				// TODO put this String in a translatable resource
 				new AlertDialog.Builder(ViewNote.this)
-					.setMessage("The requested note could not be parsed. If you see this error " +
-								" and you are able to replicate it, please file a bug!")
-					.setTitle("Error")
-					.setNeutralButton("Ok", new OnClickListener() {
+					.setMessage(getString(R.string.messageErrorNoteParsing))
+					.setTitle(getString(R.string.error))
+					.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
 						public void onClick(DialogInterface dialog, int which) {
 							dialog.dismiss();
 							finish();

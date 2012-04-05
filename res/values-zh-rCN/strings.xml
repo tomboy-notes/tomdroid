@@ -55,6 +55,9 @@
 	<string name="prefSDCard">SD卡</string>
 	<string name="prefTomboyWeb">网上同步</string>
 	<string name="prefAuthenticate">认证</string>
+	<string name="prefLocation">Location on SD Card</string>
+	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
+	<string name="prefNoValidLocation">\"%1$s\" is no valid folder location. Please try again!</string>
 	
 	<string name="prefSyncCompleteAuth">完成认证。请稍候...</string>
 	<string name="prefSyncConnectionFailed">与服务器的连接失败了，请检查您输入的网址是否正确。</string>
@@ -62,14 +65,16 @@
 	
 	<string name="titleSyncService">请选择想使用的同步服务</string>
 	<string name="messageSyncComplete">与%1$s的同步完成。</string>
-	<string name="messageSyncNoNote">%1$s里没找到笔记。</string>
+	<string name="messageSyncNoNote">No notes found on %1$s.</string>
 	<string name="messageSyncNoConnection">现在没有上网。</string>
 	<string name="messageSyncAlreadyInProgress">同步已经在进行中</string>
 	<string name="messageSyncError">在搜索笔记的时候出现了错误。如果再次出现这样的错误请联系我们！</string>
 	<string name="error">错误</string>
+	<string name="titleNoteNotFound">No Such Note</string>
+	<string name="messageNoteNotFound">The requested note could not be found. Maybe it was deleted or removed through synchronization.</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">改变顺序</string>
+	<string name="menuSort">Change Sort</string>
 	<string name="titleDefaultSorting">选择常规的顺序</string>
 	<string name="prefDefaultSorting">常规的顺序</string>
 	
@@ -98,6 +103,12 @@
 	<string name="textModified">修改于：</string>
 	<string name="textToday">今天</string>
 	<string name="textYexterday">昨天</string>
+
+	<!-- Shortcuts handling -->
+	<string name="shortcuts_view_caption">Choose a Note</string>
+	<string name="shortcut_menu_item_caption">Tomdroid Note</string>
+	<string name="btnRemoveShortcut">Remove shortcut</string>
+	<string name="createShortcut">Create shortcut</string>
 	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
