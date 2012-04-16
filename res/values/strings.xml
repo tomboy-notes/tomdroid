@@ -61,7 +61,7 @@
 	
 	<string name="prefSyncCompleteAuth">Completing authentication. Please wait...</string>
 	<string name="prefSyncConnectionFailed">The connection to the server has failed, please check that the address you entered is correct.</string>
-	<string name="prefSyncConnectionFailedWithDetails">The connection to the server has failed, please check that the address you entered is correct. Exception %1$s</string>
+	<string name="prefSyncConnectionFailedWithDetails">The connection to the server has failed, please check that the address you entered is correct. (Exception: %1$s)</string>
 	<string name="prefServerEmpty">The server address changed but the new value is empty</string>
 	
 	<string name="titleSyncService">Choose the sync service to use</string>
