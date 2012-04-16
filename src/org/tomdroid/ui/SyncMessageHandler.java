@@ -62,6 +62,7 @@ public class SyncMessageHandler extends Handler {
 			case SyncService.PARSING_COMPLETE:
 				final ErrorList errors = (ErrorList)msg.obj;
 				if(errors.isEmpty()) {
+					
 					message = this.activity.getString(R.string.messageSyncComplete);
 					message = String.format(message,serviceDescription);
 					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
@@ -93,12 +94,14 @@ public class SyncMessageHandler extends Handler {
 				Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 				break;
 				
+			// FIXME shouldn't be here (should be in PreferencesActivity)
 			case SyncService.NO_INTERNET:
 				// TODO put string in a translatable bundle
 				Toast.makeText(activity, this.activity.getString(R.string.messageSyncNoConnection),
 						Toast.LENGTH_SHORT).show();
 				break;
 			
+			// FIXME shouldn't be here (should be in PreferencesActivity)
 			case SyncService.ERROR_OAUTH_AUTHENTICATION:
 				new AlertDialog.Builder(this.activity)
 				.setMessage(

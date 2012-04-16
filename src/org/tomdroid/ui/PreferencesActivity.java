@@ -42,7 +42,6 @@ import android.preference.PreferenceActivity;
 import android.provider.SearchRecentSuggestions;
 import android.widget.Toast;
 
-import org.apache.http.auth.AUTH;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
 import org.tomdroid.sync.ServiceAuth;
@@ -108,6 +107,7 @@ public class PreferencesActivity extends PreferenceActivity {
 			public boolean onPreferenceChange(Preference preference,
 					Object serverUri) {
 				
+				// FIXME this shouldn't be here, it should be up to the SyncService to decide
 				if (serverUri == null) {
 					Toast.makeText(PreferencesActivity.this,
 							getString(R.string.prefServerEmpty),
