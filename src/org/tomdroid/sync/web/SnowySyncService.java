@@ -101,7 +101,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 				} catch (Exception e) {
 					TLog.e(TAG, "Unidentified authentication error. Expception: {0} Message: {1}", e.getClass().getCanonicalName(), e.getMessage());
 					e.printStackTrace();
-					sendException(ERROR_OAUTH_AUTHENTICATION, e);
+					sendExceptionToHandler(handler, ERROR_OAUTH_AUTHENTICATION, e);
 				}
 				
 				Message message = handler.obtainMessage(AUTH_SUCCESS, authUri);
@@ -135,7 +135,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 				} catch (Exception e) {
 					TLog.e(TAG, "Unidentified authentication error. Expception: {0} Message: {1}", e.getClass().getCanonicalName(), e.getMessage());
 					e.printStackTrace();
-					sendException(ERROR_OAUTH_AUTHENTICATION, e);
+					sendExceptionToHandler(handler, ERROR_OAUTH_AUTHENTICATION, e);
 				}
 				
 				// We don't care what we send, just remove the dialog

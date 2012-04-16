@@ -218,6 +218,12 @@ public abstract class SyncService {
 		Message message = handler.obtainMessage(messageId, e);
 		handler.sendMessage(message);
 	}
+
+	protected void sendExceptionToHandler(Handler handler, int messageId, Exception e) {
+		
+		Message message = handler.obtainMessage(messageId, e);
+		handler.sendMessage(message);
+	}
 	
 	/**
 	 * Update the synchronization progress
