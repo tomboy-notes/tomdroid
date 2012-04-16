@@ -88,24 +88,23 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 			
 			public void run() {
 				
-				// Reset the authentication credentials
-				OAuthConnection auth = new OAuthConnection();
-				Uri authUri = null;
-				
 				try {
-					authUri = auth.getAuthorizationUrl(server);
-					
+					// Reset the authentication credentials
+					OAuthConnection auth = new OAuthConnection();
+					Uri authUri = auth.getAuthorizationUrl(server);
+					Message message = handler.obtainMessage(AUTH_SUCCESS, authUri);
+					handler.sendMessage(message);
+
 				} catch (UnknownHostException e) {
 					TLog.e(TAG, "Internet connection not available");
 					sendMessage(NO_INTERNET);
+					
 				} catch (Exception e) {
 					TLog.e(TAG, "Unidentified authentication error. Expception: {0} Message: {1}", e.getClass().getCanonicalName(), e.getMessage());
 					e.printStackTrace();
 					sendExceptionToHandler(handler, ERROR_OAUTH_AUTHENTICATION, e);
 				}
 				
-				Message message = handler.obtainMessage(AUTH_SUCCESS, authUri);
-				handler.sendMessage(message);
 			}
 			
 		});
