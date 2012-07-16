@@ -137,7 +137,7 @@
 
 	<!-- syncNotes -->
 	
-	<string name="messageSyncNoteDeleted">Note delete from %1$s successfully.</string>
+	<string name="messageSyncNoteDeleted">Note deleted from %1$s successfully.</string>
 	<string name="messageSyncNotePushed">Note sent to %1$s successfully.</string>
 		
 	
