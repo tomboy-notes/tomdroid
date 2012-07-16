@@ -37,22 +37,11 @@
             android:src="@drawable/actionbar_icon"
             android:clickable="true"
             />
-        <TextView 
-            android:id="@+id/title"
-            android:text="Tomdroid"
-            android:layout_marginLeft="46dip"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textSize="18dip"
-            android:textStyle="bold"
-			android:singleLine="true"
-        	android:ellipsize="marquee"
-        	android:fadingEdge="horizontal"
-        	android:fadingEdgeLength="5mm"
-			android:paddingTop="8dip"
-			android:paddingRight="42dip"
-            android:textColor="#FF555555"
-            />
+
+
+        
+        <!-- sync -->
+        
         <ImageView
             android:id="@+id/sync"
             android:src="@drawable/icon_actionbar_sync_background"
@@ -84,9 +73,10 @@
             android:scaleType="center"
             android:visibility="invisible"
             />
+        
         <!-- new buttons -->
         <ImageView
-            android:id="@+id/new_item"
+            android:id="@+id/save"
             android:src="@drawable/icon_actionbar_sync_background"
             android:layout_toLeftOf="@id/sync"
             android:layout_width="40dip"
@@ -98,13 +88,13 @@
             android:scaleType="center"
             />        
         <ImageView
-            android:id="@+id/new_top"
-            android:src="@android:drawable/ic_menu_add"
+            android:id="@+id/save_top"
+            android:src="@android:drawable/ic_menu_save"
             android:layout_toLeftOf="@id/sync"
             android:layout_width="40dip"
             android:layout_height="fill_parent"
             android:gravity="center_horizontal"
             android:scaleType="center"
             />
-        
+
 </org.noahy.tomdroid.ui.Actionbar>

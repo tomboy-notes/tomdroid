@@ -36,6 +36,7 @@ import org.noahy.tomdroid.util.NoteViewShortcutsHelper;
 import org.noahy.tomdroid.util.Preferences;
 import org.noahy.tomdroid.util.Send;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
@@ -53,6 +54,7 @@ import android.os.Message;
 import android.view.*;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -115,7 +117,15 @@ public class Tomdroid extends ListActivity {
 				}
 			}).setIcon(R.drawable.icon).show();
 		}
+		
+		final ImageView newButton = (ImageView) findViewById(R.id.new_item);
+		newButton.setOnClickListener(new View.OnClickListener() {
 
+			public void onClick(View v) {
+				newNote();
+			}
+		});
+		
 		// adapter that binds the ListView UI to the notes in the note manager
 		adapter = NoteManager.getListAdapter(this);
 		setListAdapter(adapter);
@@ -144,10 +154,6 @@ public class Tomdroid extends ListActivity {
 				showAboutDialog();
 				return true;
 
-			case R.id.menuNew:
-				newNote();
-				return true;
-				
 			case R.id.menuPrefs:
 				startActivity(new Intent(this, PreferencesActivity.class));
 				return true;
@@ -182,6 +188,9 @@ public class Tomdroid extends ListActivity {
 				break;
 			case R.id.view:
 				this.ViewNote(noteId);
+				break;
+			case R.id.delete:
+				this.deleteNote(noteId);
 				break;
 			case R.id.create_shortcut:
                 final NoteViewShortcutsHelper helper = new NoteViewShortcutsHelper(this);
@@ -299,5 +308,27 @@ public class Tomdroid extends ListActivity {
 
 		
 	}
+	private void deleteNote(long noteId) {
+		
+		final Note note = NoteManager.getNote(this, Uri.parse(Tomdroid.CONTENT_URI + "/" + noteId));
+		
+		final Activity activity = this;
+		new AlertDialog.Builder(this)
+        .setIcon(android.R.drawable.ic_dialog_alert)
+        .setTitle(R.string.delete_note)
+        .setMessage(R.string.delete_message)
+        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
+            public void onClick(DialogInterface dialog, int which) {
+        		String guid = note.getGuid();
+        		NoteManager.deleteNote(activity, note.getDbId());
+        		
+        		// delete note from server
+        		SyncManager.getInstance().deleteNote(guid);
+            }
+
+        })
+        .setNegativeButton(R.string.no, null)
+        .show();
+	}
 }

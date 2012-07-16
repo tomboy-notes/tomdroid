@@ -39,7 +39,7 @@
             />
         <TextView 
             android:id="@+id/title"
-            android:text="Tomdroid"
+            android:text="@string/app_name"
             android:layout_marginLeft="46dip"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
@@ -53,6 +53,10 @@
 			android:paddingRight="42dip"
             android:textColor="#FF555555"
             />
+
+        
+        <!-- sync -->
+        
         <ImageView
             android:id="@+id/sync"
             android:src="@drawable/icon_actionbar_sync_background"
@@ -84,9 +88,10 @@
             android:scaleType="center"
             android:visibility="invisible"
             />
+        
         <!-- new buttons -->
         <ImageView
-            android:id="@+id/new_item"
+            android:id="@+id/edit"
             android:src="@drawable/icon_actionbar_sync_background"
             android:layout_toLeftOf="@id/sync"
             android:layout_width="40dip"
@@ -98,13 +103,34 @@
             android:scaleType="center"
             />        
         <ImageView
-            android:id="@+id/new_top"
-            android:src="@android:drawable/ic_menu_add"
+            android:id="@+id/edit_top"
+            android:src="@android:drawable/ic_menu_edit"
             android:layout_toLeftOf="@id/sync"
             android:layout_width="40dip"
             android:layout_height="fill_parent"
             android:gravity="center_horizontal"
             android:scaleType="center"
             />
+        <ImageView
+            android:id="@+id/delete"
+            android:src="@drawable/icon_actionbar_sync_background"
+            android:layout_toLeftOf="@id/edit"
+            android:layout_width="40dip"
+            android:layout_height="fill_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@android:drawable/menuitem_background"
+            android:gravity="center_horizontal"
+            android:scaleType="center"
+            />  
         
+        <ImageView
+            android:id="@+id/delete_top"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:layout_toLeftOf="@id/edit"
+            android:layout_width="40dip"
+            android:layout_height="fill_parent"
+            android:gravity="center_horizontal"
+            android:scaleType="center"
+            />
 </org.noahy.tomdroid.ui.Actionbar>

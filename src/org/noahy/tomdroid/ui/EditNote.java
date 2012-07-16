@@ -25,18 +25,14 @@ package org.noahy.tomdroid.ui;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
-import android.text.SpannableStringBuilder;
-import android.text.util.Linkify;
+import android.text.format.Time;
 import android.text.util.Linkify.TransformFilter;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -44,81 +40,73 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.EditText;
+
 import org.noahy.tomdroid.Note;
 import org.noahy.tomdroid.NoteManager;
 import org.noahy.tomdroid.R;
 import org.noahy.tomdroid.sync.SyncManager;
-import org.noahy.tomdroid.util.LinkifyPhone;
-import org.noahy.tomdroid.util.NoteContentBuilder;
 import org.noahy.tomdroid.util.NoteViewShortcutsHelper;
-import org.noahy.tomdroid.util.Send;
 import org.noahy.tomdroid.util.TLog;
 
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
-// TODO this class is starting to smell
-public class ViewNote extends Activity {
+public class EditNote extends Activity {
 	public static final String CALLED_FROM_SHORTCUT_EXTRA = "org.noahy.tomdroid.CALLED_FROM_SHORTCUT";
     public static final String SHORTCUT_NAME = "org.noahy.tomdroid.SHORTCUT_NAME";
 
     // UI elements
-	private TextView title;
 
-	private TextView content;
+	private EditText content;
     // Model objects
 	private Note note;
 
-	private SpannableStringBuilder noteContent;
+	private String noteContent;
 
 	// Logging info
-	private static final String TAG = "ViewNote";
+	private static final String TAG = "EditNote";
     // UI feedback handler
 	private Handler	syncMessageHandler	= new SyncMessageHandler(this);
-	
-	private Uri uri;
+	private EditText titleEdit;
+	private String noteTitle;
 
 	// TODO extract methods in here
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.note_view);
-		content = (TextView) findViewById(R.id.content);
+		setContentView(R.layout.note_edit);
+		content = (EditText) findViewById(R.id.content);
 		content.setBackgroundColor(0xffffffff);
 		content.setTextColor(Color.DKGRAY);
 		content.setTextSize(18.0f);
-		title = (TextView) findViewById(R.id.title);
-		title.setTextColor(Color.DKGRAY);
-		title.setTextSize(18.0f);
+		
+		titleEdit = (EditText) findViewById(R.id.title_edit);
+		titleEdit.setBackgroundColor(0xffffffff);
+		titleEdit.setTextColor(Color.DKGRAY);
+		titleEdit.setTextSize(24.0f);
+		
+        Uri uri = getIntent().getData();
 
-		final ImageView editButton = (ImageView) findViewById(R.id.edit);
-		editButton.setOnClickListener(new View.OnClickListener() {
+
+		final ImageView saveButton = (ImageView) findViewById(R.id.save);
+		saveButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
-				startEditNote();
+				saveNote();
 			}
 		});
 		
-		final ImageView deleteButton = (ImageView) findViewById(R.id.delete);        
-		deleteButton.setOnClickListener(new View.OnClickListener() {
-
-			public void onClick(View v) {
-				deleteNote();
-			}
-		});
-		
-		
-        uri = getIntent().getData();
-
         if (uri == null) {
 			TLog.d(TAG, "The Intent's data was null.");
             showNoteNotFoundDialog(uri);
         } else handleNoteUri(uri);
     }
 
-	private void handleNoteUri(final Uri uri) {// We were triggered by an Intent URI
-        TLog.d(TAG, "ViewNote started: Intent-filter triggered.");
+    private void handleNoteUri(final Uri uri) {// We were triggered by an Intent URI
+        TLog.d(TAG, "EditNote started: Intent-filter triggered.");
 
         // TODO validate the good action?
         // intent.getAction()
@@ -127,7 +115,11 @@ public class ViewNote extends Activity {
         note = NoteManager.getNote(this, uri);
 
         if(note != null) {
-            noteContent = note.getNoteContent(noteContentHandler);
+            String xml = note.getXmlContent();
+            xml = xml.replaceAll("</*note-content[^>]*>","").replaceAll("</*link[^>]*>","").replaceAll("</*italic[^>]*>","*").replaceAll("</*bold[^>]*>","**").replaceAll("</*size:large>","+").replaceAll("</*size:large>","+").replaceAll("</*list>","").replaceAll("<list-item[^>]*>","-").replaceAll("</list-item>","");
+            noteContent = xml;
+            noteTitle = note.getTitle();
+            showNote();
         } else {
             TLog.d(TAG, "The note {0} doesn't exist", uri);
             showNoteNotFoundDialog(uri);
@@ -174,8 +166,6 @@ public class ViewNote extends Activity {
 		super.onResume();
 		SyncManager.setActivity(this);
 		SyncManager.setHandler(this.syncMessageHandler);
-		handleNoteUri(uri);
-		showNote();
 	}
 
 	@Override
@@ -183,7 +173,7 @@ public class ViewNote extends Activity {
 
 		// Create the menu based on what is defined in res/menu/noteview.xml
 		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.view_note, menu);
+		inflater.inflate(R.menu.edit_note, menu);
 		return true;
 
 	}
@@ -191,123 +181,23 @@ public class ViewNote extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-
-			case R.id.view_note_send:
-				(new Send(this, note)).send();
+			case R.id.edit_note_cancel:
+				finish();
+				return true;
+			case R.id.edit_note_save:
+				saveNote();
 				return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
 
-	private void deleteNote() {
-		final Activity activity = this;
-		new AlertDialog.Builder(this)
-        .setIcon(android.R.drawable.ic_dialog_alert)
-        .setTitle(R.string.delete_note)
-        .setMessage(R.string.delete_message)
-        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-
-            public void onClick(DialogInterface dialog, int which) {
-        		String guid = note.getGuid();
-        		NoteManager.deleteNote(activity, note.getDbId());
-        		
-        		// delete note from server
-        		SyncManager.getInstance().deleteNote(guid);
-        		activity.finish();
-            }
-
-        })
-        .setNegativeButton(R.string.no, null)
-        .show();
-	}
-
 	private void showNote() {
 
-		// show the note (spannable makes the TextView able to output styled text)
-		content.setText(noteContent, TextView.BufferType.SPANNABLE);
-		title.setText((CharSequence) note.getTitle());
-
-		// add links to stuff that is understood by Android except phone numbers because it's too aggressive
-		// TODO this is SLOWWWW!!!!
-		Linkify.addLinks(content, Linkify.EMAIL_ADDRESSES|Linkify.WEB_URLS|Linkify.MAP_ADDRESSES);
-
-		// Custom phone number linkifier (fixes lp:512204)
-		Linkify.addLinks(content, LinkifyPhone.PHONE_PATTERN, "tel:", LinkifyPhone.sPhoneNumberMatchFilter, Linkify.sPhoneNumberTransformFilter);
-
-		// This will create a link every time a note title is found in the text.
-		// The pattern contains a very dumb (title1)|(title2) escaped correctly
-		// Then we transform the url from the note name to the note id to avoid characters that mess up with the URI (ex: ?)
-		Linkify.addLinks(content,
-						 buildNoteLinkifyPattern(),
-						 Tomdroid.CONTENT_URI+"/",
-						 null,
-						 noteTitleTransformFilter);
+		content.setText(noteContent);
+		titleEdit.setText(noteTitle);
 	}
 
-	private Handler noteContentHandler = new Handler() {
 
-		@Override
-		public void handleMessage(Message msg) {
-
-			//parsed ok - show
-			if(msg.what == NoteContentBuilder.PARSE_OK) {
-				showNote();
-
-			//parsed not ok - error
-			} else if(msg.what == NoteContentBuilder.PARSE_ERROR) {
-
-				new AlertDialog.Builder(ViewNote.this)
-					.setMessage(getString(R.string.messageErrorNoteParsing))
-					.setTitle(getString(R.string.error))
-					.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
-						public void onClick(DialogInterface dialog, int which) {
-							dialog.dismiss();
-							finish();
-						}})
-					.show();
-        	}
-		}
-	};
-
-	/**
-	 * Builds a regular expression pattern that will match any of the note title currently in the collection.
-	 * Useful for the Linkify to create the links to the notes.
-	 * @return regexp pattern
-	 */
-	private Pattern buildNoteLinkifyPattern()  {
-
-		StringBuilder sb = new StringBuilder();
-		Cursor cursor = NoteManager.getTitles(this);
-
-		// cursor must not be null and must return more than 0 entry
-		if (!(cursor == null || cursor.getCount() == 0)) {
-
-			String title;
-
-			cursor.moveToFirst();
-
-			do {
-				title = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
-
-				// Pattern.quote() here make sure that special characters in the note's title are properly escaped
-				sb.append("("+Pattern.quote(title)+")|");
-
-			} while (cursor.moveToNext());
-
-			// get rid of the last | that is not needed (I know, its ugly.. better idea?)
-			String pt = sb.substring(0, sb.length()-1);
-
-			// return a compiled match pattern
-			return Pattern.compile(pt);
-
-		} else {
-
-			// TODO send an error to the user
-			TLog.d(TAG, "Cursor returned null or 0 notes");
-		}
-
-		return null;
-	}
 
 	// custom transform filter that takes the note's title part of the URI and translate it into the note id
 	// this was done to avoid problems with invalid characters in URI (ex: ? is the query separator but could be in a note title)
@@ -315,16 +205,36 @@ public class ViewNote extends Activity {
 
 		public String transformUrl(Matcher m, String str) {
 
-			int id = NoteManager.getNoteId(ViewNote.this, str);
+			int id = NoteManager.getNoteId(EditNote.this, str);
 
 			// return something like content://org.noahy.tomdroid.notes/notes/3
 			return Tomdroid.CONTENT_URI.toString()+"/"+id;
 		}
 	};
+	private void saveNote() {
+		String xml = "<note-content version=\"0.1\">"+
+			content.getText().toString()
+			.replaceAll("\\*\\*(\\S.*\\S)\\*\\*(.*\\*\\*\\S.*\\S\\*\\*)","<bold>$1</bold>$2")
+			.replaceAll("\\*\\*(\\S.*\\S)\\*\\*","<bold>$1</bold>")
+			.replaceAll("\\*(\\S.*\\S)\\*(.*\\*\\S.*\\S\\*)","<italic>$1</italic>$2")
+			.replaceAll("\\*(\\S.*\\S)\\*","<italic>$1</italic>")
+			.replaceAll("\\+(\\S.*\\S)\\+(.*\\+\\S.*\\S\\+)","<size:large>$1</size:large>$2")
+			.replaceAll("\\+(\\S.*\\S)\\+","<size:large>$1</size:large>")
+			.replaceAll("^-(.+)\n","<list-item dir=\"ltr\">$1</list-item>").replaceAll("^<list-item","<list>\n<list-item").replaceAll("</list-item>\n","</list-item>\n</list>\n").replaceAll("</list-item><list-item","</list-item>\n<list-item")+
+			"</note-content>";
+		note.setXmlContent(xml);
+		note.setTitle(titleEdit.getText().toString());
 
-    protected void startEditNote() {
-		final Intent i = new Intent(Intent.ACTION_VIEW, uri, this, EditNote.class);
-		startActivity(i);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSz");
+		Time now = new Time();
+		now.setToNow();
+		note.setLastChangeDate(sdf.format(new Date(now.toMillis(false))));
+		
+		NoteManager.putNote(this,note);
+
+		// put note to server
+		
+		SyncManager.getInstance().pushNote(note);
+
 	}
-	
 }

@@ -4,7 +4,8 @@
  Tomboy on Android
  http://www.launchpad.net/tomdroid
 
- Copyright 2009, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
+ Copyright 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
+ Copyright 2011 Stefan Hammer <j.4@gmx.at>
  
  This file is part of Tomdroid.
  
@@ -23,19 +24,12 @@
 -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-	<item 
-			android:icon="@android:drawable/ic_menu_search"
-			android:title="@string/menuSearch"
-			android:id="@+id/menuSearch"/>
 
-	<item 
-			android:icon="@android:drawable/ic_menu_info_details"
-			android:title="@string/menuAbout"
-			android:id="@+id/menuAbout"/>
-
-	<item 
-			android:icon="@android:drawable/ic_menu_preferences"
-			android:title="@string/menuPrefs"
-			android:id="@+id/menuPrefs"/>
+	<item   android:title="@string/back"
+			android:id="@+id/edit_note_cancel"
+			android:icon="@android:drawable/ic_menu_revert"/>
+	<item   android:title="@string/save"
+			android:id="@+id/edit_note_save"
+			android:icon="@android:drawable/ic_menu_save"/>
 
 </menu>
