@@ -40,7 +40,6 @@ import org.noahy.tomdroid.util.TLog;
 import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class SnowySyncService extends SyncService implements ServiceAuth {
 	
@@ -168,7 +167,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						TLog.v(TAG, "contacting "+notesUrl);
 						response = new JSONObject(auth.get(notesUrl));
 						
-						long latestSyncRevision = (Long)Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION);
+						long latestSyncRevision = Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION);
 						setSyncProgress(35);
 						
 						if (response.getLong("latest-sync-revision") < latestSyncRevision) {
@@ -212,10 +211,11 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 							}
 						}
 						setSyncProgress(90);
-						
-						// Editor comment: do all but one? can someone clarify?
-						JSONObject jsonNote = notes.getJSONObject(notes.length() - 1);
-						insertNote(new Note(jsonNote));
+						if(notes.length()>0) {
+							// Editor comment: do all but one? can someone clarify?
+							JSONObject jsonNote = notes.getJSONObject(notes.length() - 1);
+							insertNote(new Note(jsonNote));
+						}
 
 						Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, response
 								.getLong("latest-sync-revision"));
@@ -262,114 +262,124 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 	// new methods to T Edit
 
 	@Override
-	protected void pushNote(Note note){
+	protected void pushNote(Note noteIn){
+		final Note note = noteIn;
 		
-		OAuthConnection auth = getAuthConnection();
-		try {
-			TLog.v(TAG, "putting note to server");
-			String userRef = Preferences.getString(Preferences.Key.SYNC_SERVER_USER_API);
-			String rawResponse = auth.get(userRef);
+		syncInThread(new Runnable() {		
+			public void run() {
+				OAuthConnection auth = getAuthConnection();
+				try {
+					TLog.v(TAG, "putting note to server");
+					String userRef = Preferences.getString(Preferences.Key.SYNC_SERVER_USER_API);
+					String rawResponse = auth.get(userRef);
+		
+					try {
+						TLog.v(TAG, "creating JSON");
+						JSONObject data=new JSONObject();
+						data.put("latest-sync-revision",Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION)+1);
+		
+						JSONArray notesJ = new JSONArray();
+		
+						JSONObject noteJ=new JSONObject();
+						noteJ.put("guid", note.getGuid());
+						noteJ.put("title",note.getTitle());
+						noteJ.put ("note-content",note.getXmlContent());
+						noteJ.put ("note-content-version","0.1");
+						
 
-			try {
-				TLog.v(TAG, "creating JSON");
-				JSONObject data=new JSONObject();
-				data.put("latest-sync-revision",(Long)Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION)+1);
-
-				JSONArray notesJ = new JSONArray();
-
-				JSONObject noteJ=new JSONObject();
-				noteJ.put("guid", note.getGuid());
-				noteJ.put("title",note.getTitle());
-				noteJ.put ("note-content",note.getXmlContent());
-				noteJ.put ("note-content-version","0.1");
-				
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSz");
-				noteJ.put ("last-change-date", sdf.format(note.getLastChangeDate().toMillis(false)));
-				
-				notesJ.put(noteJ);
-				data.put("note-changes",notesJ);
-
-				JSONObject response = new JSONObject(rawResponse);
-
-				TLog.v(TAG, "request data: {0}",rawResponse);
-
-				String notesUrl = response.getJSONObject("notes-ref").getString("api-ref");
-
-
-				TLog.v(TAG, "put url: {0}", notesUrl);
-
-				TLog.v(TAG, "put data: {0}",data.toString());
-				
-				response = new JSONObject(auth.put(notesUrl,data.toString()));
-				
-				TLog.v(TAG, "put response: {0}",response.toString());
-				Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, response
-						.getLong("latest-sync-revision"));
-			} 
-			catch (JSONException e) {
-				TLog.e(TAG, e, "Problem parsing the server response");
-				sendMessage(PARSING_FAILED, ErrorList.createErrorWithContents("JSON parsing", "json", e, rawResponse));
-				return;
+						noteJ.put ("last-change-date", note.getLastChangeDate().format3339(false));
+						
+						notesJ.put(noteJ);
+						data.put("note-changes",notesJ);
+		
+						JSONObject response = new JSONObject(rawResponse);
+		
+						TLog.v(TAG, "request data: {0}",rawResponse);
+		
+						String notesUrl = response.getJSONObject("notes-ref").getString("api-ref");
+		
+		
+						TLog.v(TAG, "put url: {0}", notesUrl);
+		
+						TLog.v(TAG, "put data: {0}",data.toString());
+						
+						response = new JSONObject(auth.put(notesUrl,data.toString()));
+						
+						TLog.v(TAG, "put response: {0}",response.toString());
+						Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, response
+								.getLong("latest-sync-revision"));
+					} 
+					catch (JSONException e) {
+						TLog.e(TAG, e, "Problem parsing the server response");
+						sendMessage(PARSING_FAILED, ErrorList.createErrorWithContents("JSON parsing", "json", e, rawResponse));
+						return;
+					}
+				}
+				catch (java.net.UnknownHostException e) {
+					TLog.e(TAG, "Internet connection not available");
+					sendMessage(NO_INTERNET);
+					return;
+				}
+				sendMessage(NOTE_PUSHED);
 			}
-		}
-		catch (java.net.UnknownHostException e) {
-			TLog.e(TAG, "Internet connection not available");
-			sendMessage(NO_INTERNET);
-			return;
-		}
-		sendMessage(NOTE_PUSHED);
+		});
 	}
 	@Override
-	protected void deleteNote(String guid){
+	protected void deleteNote(String guidIn){
+		final String guid = guidIn;
 		
-		OAuthConnection auth = getAuthConnection();
-		try {
-			TLog.v(TAG, "putting note to server");
-			String userRef = Preferences.getString(Preferences.Key.SYNC_SERVER_USER_API);
-			String rawResponse = auth.get(userRef);
-
-			try {
-				TLog.v(TAG, "creating JSON");
-				JSONObject data=new JSONObject();
-				data.put("latest-sync-revision",(Long)Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION)+1);
-
-				JSONArray notesJ = new JSONArray();
-
-				JSONObject noteJ=new JSONObject();
-				noteJ.put("guid", guid);
-				noteJ.put("command","delete");
-				
-				notesJ.put(noteJ);
-				data.put("note-changes",notesJ);
-
-				JSONObject response = new JSONObject(rawResponse);
-
-				TLog.v(TAG, "request data: {0}",rawResponse);
-
-				String notesUrl = response.getJSONObject("notes-ref").getString("api-ref");
-
-
-				TLog.v(TAG, "put url: {0}", notesUrl);
-
-				TLog.v(TAG, "put data: {0}",data.toString());
-				
-				response = new JSONObject(auth.put(notesUrl,data.toString()));
-				
-				TLog.v(TAG, "put response: {0}",response.toString());
-				Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, response
-						.getLong("latest-sync-revision"));
-			} 
-			catch (JSONException e) {
-				TLog.e(TAG, e, "Problem parsing the server response");
-				sendMessage(PARSING_FAILED, ErrorList.createErrorWithContents("JSON parsing", "json", e, rawResponse));
-				return;
+		syncInThread(new Runnable() {		
+			public void run() {		
+				OAuthConnection auth = getAuthConnection();
+				try {
+					TLog.v(TAG, "putting note to server");
+					String userRef = Preferences.getString(Preferences.Key.SYNC_SERVER_USER_API);
+					String rawResponse = auth.get(userRef);
+		
+					try {
+						TLog.v(TAG, "creating JSON");
+						JSONObject data=new JSONObject();
+						data.put("latest-sync-revision",Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION)+1);
+		
+						JSONArray notesJ = new JSONArray();
+		
+						JSONObject noteJ=new JSONObject();
+						noteJ.put("guid", guid);
+						noteJ.put("command","delete");
+						
+						notesJ.put(noteJ);
+						data.put("note-changes",notesJ);
+		
+						JSONObject response = new JSONObject(rawResponse);
+		
+						TLog.v(TAG, "request data: {0}",rawResponse);
+		
+						String notesUrl = response.getJSONObject("notes-ref").getString("api-ref");
+		
+		
+						TLog.v(TAG, "put url: {0}", notesUrl);
+		
+						TLog.v(TAG, "put data: {0}",data.toString());
+						
+						response = new JSONObject(auth.put(notesUrl,data.toString()));
+						
+						TLog.v(TAG, "put response: {0}",response.toString());
+						Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, response
+								.getLong("latest-sync-revision"));
+					} 
+					catch (JSONException e) {
+						TLog.e(TAG, e, "Problem parsing the server response");
+						sendMessage(PARSING_FAILED, ErrorList.createErrorWithContents("JSON parsing", "json", e, rawResponse));
+						return;
+					}
+				}
+				catch (java.net.UnknownHostException e) {
+					TLog.e(TAG, "Internet connection not available");
+					sendMessage(NO_INTERNET);
+					return;
+				}
+				sendMessage(NOTE_DELETED);
 			}
-		}
-		catch (java.net.UnknownHostException e) {
-			TLog.e(TAG, "Internet connection not available");
-			sendMessage(NO_INTERNET);
-			return;
-		}
-		sendMessage(NOTE_DELETED);
-	}	
+		});
+	}
 }

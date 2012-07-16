@@ -225,10 +225,10 @@ public class EditNote extends Activity {
 		note.setXmlContent(xml);
 		note.setTitle(titleEdit.getText().toString());
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSz");
 		Time now = new Time();
 		now.setToNow();
-		note.setLastChangeDate(sdf.format(new Date(now.toMillis(false))));
+		String time = now.format3339(false);
+		note.setLastChangeDate(time);
 		
 		NoteManager.putNote(this,note);
 

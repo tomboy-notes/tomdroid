@@ -52,10 +52,12 @@ public class NewNote {
 		UUID newid = UUID.randomUUID();
 		note.setGuid(newid.toString());
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSz");
 		Time now = new Time();
 		now.setToNow();
-		note.setLastChangeDate(sdf.format(new Date(now.toMillis(false))));
+		String time = now.format3339(false);
+		TLog.i(TAG, "New note date: {0}",time);
+
+		note.setLastChangeDate(time);
 		note.setXmlContent("<note-content version=\"0.1\"></note-content>");
 		
 		return note;

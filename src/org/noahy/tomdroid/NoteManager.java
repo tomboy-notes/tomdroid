@@ -146,7 +146,6 @@ public class NoteManager {
 
 		ContentResolver cr = activity.getContentResolver();
 		int result = cr.delete(uri, null, null);
-		TLog.d(TAG, "Cursor deleted {0} notes with id {1}",result,id);
 		
 		if(result > 0) {
 			return true;
