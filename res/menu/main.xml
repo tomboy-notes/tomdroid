@@ -24,6 +24,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<item 
+			android:icon="@android:drawable/ic_menu_add"
+			android:title="@string/menuNew"
+			android:id="@+id/menuNew"/>
+
+	<item 
 			android:icon="@android:drawable/ic_menu_search"
 			android:title="@string/menuSearch"
 			android:id="@+id/menuSearch"/>

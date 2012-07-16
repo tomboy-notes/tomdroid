@@ -24,7 +24,7 @@
 <resources>
 	
 	<!-- application details -->
-	<string name="app_name">Tomdroid</string>
+	<string name="app_name">Tomdroid Edit</string>
 	<string name="app_desc">Tomboy compatible wikiwiki note-taking application that can\'t take notes yet.</string>
 	<string name="author">Olivier Bilodeau</string>
 	
@@ -45,20 +45,21 @@
 	<string name="btnCancel">Cancel</string>
 	<string name="btnClose">Close</string>
 	<string name="btnProjectPage">Project page</string>
-	<string name="btnSavetoSD">Save to SD card</string>
+	<string name="btnSavetoSD">Save</string>
 	
 	<!-- note-view.xml -->
 	<string name="strWait">Please wait while note loads...</string>
 	
-	<string name="prefSync">Synchronization</string>
+	<string name="prefSync">Synchronisation</string>
 	<string name="prefSyncService">Service</string>
 	<string name="prefSyncServer">Server</string>
 	<string name="prefSDCard">SD Card</string>
-	<string name="prefTomboyWeb">Online Synchronization</string>
+	<string name="prefTomboyWeb">Online Synchronisation</string>
 	<string name="prefAuthenticate">Authenticate</string>
 	<string name="prefLocation">Location on SD Card</string>
 	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
-	<string name="prefNoValidEntry">\"%1$s\" contains invalid characters.\nPlease try again!</string>
+	<string name="prefNoValidLocation">\"%1$s\" is not a valid folder location. Please try again!</string>
+	<string name="prefNoValidEntry">\"%1$s\" is not a valid entry. Please try again!</string>
 	
 	<string name="prefSyncCompleteAuth">Completing authentication. Please wait...</string>
 	<string name="prefSyncConnectionFailed">The connection to the server has failed, please check that the address you entered is correct.</string>
@@ -73,9 +74,9 @@
 	<string name="error">Error</string>
 	<string name="titleNoteNotFound">No Such Note</string>
 	<string name="messageNoteNotFound">The requested note could not be found. Maybe it was deleted or removed through synchronization.</string>
-	<string name="messageErrorNoteParsing">The requested note could not be parsed. If you are able to replicate the problem, please contact us!</string>	
-	<string name="messageCouldNotSave">Could not save the errors, please check your SD card.</string>
-	<string name="messageNoSDCard">SD card not found.</string>
+	<string name="messageErrorNoteParsing">Error parsing note.</string>
+	<string name="messageCouldNotSave">Could note save note.</string>
+	<string name="messageNoSDCard">SDCard storage not found.</string>
 	
 	<!-- NoteSorting -->
 	<string name="menuSort">Change Sort</string>
@@ -113,6 +114,32 @@
 	<string name="shortcut_menu_item_caption">Tomdroid Note</string>
 	<string name="btnRemoveShortcut">Remove shortcut</string>
 	<string name="createShortcut">Create shortcut</string>
+
+	<!-- stuff new to edit -->
+
+	<!-- deleteNote -->
+	<string name="delete">Delete Note</string>
+	<string name="delete_message">Are you sure you want to delete this note?</string>
+	<string name="yes">Yes</string>
+	<string name="no">No</string>
+		
+	<!-- newNote -->
+	<string name="menuNew">New Note</string>
+	<string name="NewNoteTitle"></string>
+	<string name="NewNoteTitleHint">Enter title here</string>
+	<string name="NewNoteBodyHint">Enter note here</string>
+			
+	<!-- editNote -->
+	<string name="edit">Edit Note</string>
+	<string name="save">Save Note</string>
+	<string name="back">Back</string>
+
+	<!-- syncNotes -->
+	
+	<string name="messageSyncNoteDeleted">Note delete from %1$s successfully.</string>
+	<string name="messageSyncNotePushed">Note sent to %1$s successfully.</string>
+		
+	
 	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
@@ -128,10 +155,8 @@
 	
 	
 	<!-- Launchpad Translation String -->
-	<string name="about_translators">
-	
-	translator-credits
-	
-	</string>
+	<string name="about_translators">Launchpad Contributions:
+  Stefan Hammer https://launchpad.net/~j-4
+  Vibhav Pant https://launchpad.net/~vibhavp</string>
 	
 </resources>

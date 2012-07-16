@@ -20,7 +20,7 @@
  You should have received a copy of the GNU General Public License
  along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<org.tomdroid.ui.Actionbar xmlns:android="http://schemas.android.com/apk/res/android"
+<org.noahy.tomdroid.ui.Actionbar xmlns:android="http://schemas.android.com/apk/res/android"
 		android:id="@+id/dhistory_row" 
 		android:layout_width="fill_parent" 
 		android:layout_height="40dip"
@@ -84,4 +84,4 @@
             android:scaleType="center"
             android:visibility="invisible"
             />
-</org.tomdroid.ui.Actionbar>
+</org.noahy.tomdroid.ui.Actionbar>

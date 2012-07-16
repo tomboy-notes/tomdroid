@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="org.tomdroid"
+      package="org.noahy.tomdroid"
       android:versionName="0.5.0" android:versionCode="7">
 
 	<uses-sdk android:minSdkVersion="3"
-	          android:targetSdkVersion="4" />
+	          android:targetSdkVersion="10" />
           
     <supports-screens android:anyDensity="true" />
         	       
 	<application
-		android:icon="@drawable/ic_launcher"
+		android:icon="@drawable/icon"
 		android:label="@string/app_name"
-		android:theme="@android:style/Theme.Light.NoTitleBar"
-		android:debuggable="false"
 	>
 
         <activity android:label="@string/app_name"
+        		  android:theme="@android:style/Theme.NoTitleBar"
         		  android:name=".ui.Tomdroid"
-        		  android:launchMode="singleTop"
         		  >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,6 +40,14 @@
 			    <data android:mimeType="vnd.android.cursor.item/vnd.tomdroid.note" />
 			</intent-filter>
 		</activity>
+		<activity android:name=".ui.EditNote">
+		    <intent-filter>
+			    <action android:name="android.intent.action.VIEW" />
+			    <category android:name="android.intent.category.DEFAULT" />
+			    <category android:name="android.intent.category.BROWSABLE" />
+			    <data android:mimeType="vnd.android.cursor.item/vnd.tomdroid.note" />
+			</intent-filter>
+		</activity>
 		
 		<activity android:name=".ui.Search"
 		          android:launchMode="singleTop">
@@ -52,11 +58,11 @@
 						android:resource="@xml/searchable"/>
 		</activity>
 		<provider	android:name=".util.SearchSuggestionProvider"
-					android:authorities="org.tomdroid.util.SearchSuggestionProvider"
+					android:authorities="org.noahy.tomdroid.util.SearchSuggestionProvider"
         />
 		
 		<provider android:name="NoteProvider"
-            android:authorities="org.tomdroid.notes"
+            android:authorities="org.noahy.tomdroid.notes"
         />
         
         <activity android:name=".ui.PreferencesActivity" android:label="@string/app_name">
@@ -78,6 +84,6 @@
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
     <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" />
 
-<instrumentation android:name="android.test.InstrumentationTestRunner" android:targetPackage="org.tomdroid"></instrumentation>
+<instrumentation android:name="android.test.InstrumentationTestRunner" android:targetPackage="org.noahy.tomdroid"></instrumentation>
 
 </manifest> 
