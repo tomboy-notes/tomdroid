@@ -23,6 +23,7 @@
  */
 package org.noahy.tomdroid.ui;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -32,6 +33,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -79,6 +81,7 @@ public class ViewNote extends Activity {
 	private Uri uri;
 
 	// TODO extract methods in here
+	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -91,7 +94,14 @@ public class ViewNote extends Activity {
 		title = (TextView) findViewById(R.id.title);
 		title.setTextColor(Color.DKGRAY);
 		title.setTextSize(18.0f);
-
+		
+		int api = Integer.parseInt(Build.VERSION.SDK);
+		
+		if (api >= 11) {
+			title.setTextIsSelectable(true);
+			content.setTextIsSelectable(true);
+		}
+		
 		final ImageView editButton = (ImageView) findViewById(R.id.edit);
 		editButton.setOnClickListener(new View.OnClickListener() {
 
