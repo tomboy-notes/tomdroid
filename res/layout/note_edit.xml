@@ -40,26 +40,22 @@
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content">
 	    
-		<!-- <TextView 
-			android:id="@+id/title" 
-			android:layout_width="fill_parent" 
-			android:layout_height="wrap_content"
-			android:padding="10dip"
-			android:textStyle="bold" />-->
+
 		<EditText 
-				  xmlns:android="http://schemas.android.com/apk/res/android"
-				  android:id="@+id/title"
-				  android:layout_width="match_parent" 
-				  android:layout_height="wrap_content"
-				  android:singleLine="true"
-				  android:hint="@string/NewNoteTitleHint"
-				  android:padding="10dip"
-				  android:textColor="#ffb8bcb8" />		
+			  xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:id="@+id/title"
+			  android:layout_width="match_parent" 
+			  android:layout_height="wrap_content"
+			  android:singleLine="true"
+			  android:hint="@string/NewNoteTitleHint"
+			  android:padding="10dip"
+			  android:textColor="#ffb8bcb8" />		
 		<EditText 
 		  android:id="@+id/content"
 		  android:layout_width="match_parent" 
 		  android:layout_height="wrap_content"
 		  android:singleLine="false"
+		  android:cursorVisible="true"
 		  android:hint="@string/NewNoteBodyHint"
 		  android:padding="10dip"
 		  android:textColor="#ffb8bcb8" />

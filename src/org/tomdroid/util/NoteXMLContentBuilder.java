@@ -22,7 +22,9 @@
  */
 package org.tomdroid.util;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -235,7 +237,7 @@ public class NoteXMLContentBuilder implements Runnable {
 						}
 					}
 					// add generic start/end tags defined above
-					if( !elementName.isEmpty() )
+					if( elementName.length() != 0 )
 					{
 						if( spanStart==currPos ) 
 						{
@@ -251,16 +253,27 @@ public class NoteXMLContentBuilder implements Runnable {
 				}
 				// write plain character content from previous to current (relevant) span transition:
 				noteXMLContent += noteContent.subSequence( prevPos, currPos );
+				
+				// API 3 compat
+				
+				ListIterator<Integer> iter = new ArrayList<Integer>(elemEndsByStart.keySet()).listIterator(elemEndsByStart.size());
+
 				// write needed end tags for the current span transition in the correct order, depending on the corresponding span start positions:
-				for( Integer key: elemEndsByStart.descendingKeySet() )
-				{
+
+				while (iter.hasPrevious()) {
+				    Integer key = iter.previous();
 					for( String elementName: elemEndsByStart.get(key) ) noteXMLContent += "</"+elementName+">";
 				}
+				
+				iter = new ArrayList<Integer>(elemStartsByEnd.keySet()).listIterator(elemStartsByEnd.size());
+
 				// write needed start tags for the current span transition in the correct order, depending on the corresponding span end positions:
-				for( Integer key: elemStartsByEnd.descendingKeySet() )
-				{
+				
+				while (iter.hasPrevious()) {
+				    Integer key = iter.previous();
 					for( String elementName: elemStartsByEnd.get(key) ) noteXMLContent += "<"+elementName+">";
 				}
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

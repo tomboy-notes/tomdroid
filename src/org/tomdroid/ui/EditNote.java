@@ -134,7 +134,7 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 		content.setOnFocusChangeListener(new OnFocusChangeListener() {
 
 		    public void onFocusChange(View v, boolean hasFocus) {
-		    	if(hasFocus) {
+		    	if(hasFocus && !xmlButton.isChecked()) {
 		    		formatBar.setVisibility(View.VISIBLE);
 		    	}
 		    	else {

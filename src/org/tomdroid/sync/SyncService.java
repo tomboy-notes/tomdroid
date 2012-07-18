@@ -66,6 +66,8 @@ public abstract class SyncService {
 	public final static int SYNC_PROGRESS = 6;
 	public final static int NOTE_DELETED = 7;
 	public final static int NOTE_PUSHED = 8;
+	public final static int NOTE_PUSH_ERROR = 9;
+	public final static int NOTE_DELETE_ERROR = 10;
 	
 	public SyncService(Activity activity, Handler handler) {
 		
@@ -197,6 +199,8 @@ public abstract class SyncService {
 		
 		switch(message_id) {
 		case PARSING_FAILED:
+		case NOTE_PUSH_ERROR:
+		case NOTE_DELETE_ERROR:
 			syncErrors.add(payload);
 			return true;
 		case PARSING_COMPLETE:

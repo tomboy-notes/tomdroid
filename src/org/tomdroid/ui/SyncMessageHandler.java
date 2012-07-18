@@ -119,7 +119,16 @@ public class SyncMessageHandler extends Handler {
 				Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 				break;
 				
-				
+			case SyncService.NOTE_DELETE_ERROR:
+				Toast.makeText(activity, activity.getString(R.string.messageSyncNoteDeleteError),
+						Toast.LENGTH_SHORT).show();
+				break;
+
+			case SyncService.NOTE_PUSH_ERROR:
+				Toast.makeText(activity, activity.getString(R.string.messageSyncNotePushError),
+						Toast.LENGTH_SHORT).show();
+				break;
+								
 			default:
 				TLog.i(TAG, "handler called with an unknown message");
 				break;

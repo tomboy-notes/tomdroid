@@ -311,7 +311,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 					} 
 					catch (JSONException e) {
 						TLog.e(TAG, e, "Problem parsing the server response");
-						sendMessage(PARSING_FAILED, ErrorList.createErrorWithContents("JSON parsing", "json", e, rawResponse));
+						sendMessage(NOTE_PUSH_ERROR, ErrorList.createErrorWithContents("JSON parsing", "json", e, rawResponse));
 						return;
 					}
 				}

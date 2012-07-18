@@ -26,7 +26,11 @@ package org.tomdroid.sync.sd;
 
 import android.app.Activity;
 import android.os.Handler;
+import android.text.format.Time;
 import android.util.TimeFormatException;
+import android.widget.Toast;
+
+import org.json.JSONException;
 import org.tomdroid.Note;
 import org.tomdroid.R;
 import org.tomdroid.sync.SyncService;
@@ -260,8 +264,59 @@ public class SdCardSyncService extends SyncService {
 	}
 	@Override
 	protected void pushNote(Note note){
+		TLog.v(TAG, "pushing note to sdcard");
+		
+		// TODO: create-date
+		
+		String xmlOutput = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<note version=\"0.3\" xmlns:link=\"http://beatniksoftware.com/tomboy/link\" xmlns:size=\"http://beatniksoftware.com/tomboy/size\" xmlns=\"http://beatniksoftware.com/tomboy\">\n\t<title>"+note.getTitle()+"</title>\n\t<text xml:space=\"preserve\">"+note.getXmlContent()+"</text>\n\t<last-change-date>"+note.getLastChangeDate().format3339(false)+"</last-change-date>\n\t<last-metadata-change-date>"+note.getLastChangeDate().format3339(false)+"</last-metadata-change-date>\n\t<create-date>"+note.getLastChangeDate().format3339(false)+"</create-date>\n\t<cursor-position>0</cursor-position>\n\t<width>0</width>\n\t<height>0</height>\n\t<x>-1</x>\n\t<y>-1</y>\n\t<open-on-startup>False</open-on-startup>\n</note>";
+		
+		try {
+
+			File path = new File(Tomdroid.NOTES_PATH);
+			
+			if (!path.exists())
+				path.mkdir();
+			
+			TLog.i(TAG, "Path {0} exists: {1}", path, path.exists());
+			
+			// Check a second time, if not the most likely cause is the volume doesn't exist
+			if(!path.exists()) {
+				TLog.w(TAG, "Couldn't create {0}", path);
+				sendMessage(NO_SD_CARD);
+				return;
+			}
+			
+			path = new File(Tomdroid.NOTES_PATH + "/"+note.getGuid() + ".note");
+			
+			path.createNewFile();
+			FileOutputStream fOut = new FileOutputStream(path);
+			OutputStreamWriter myOutWriter = 
+									new OutputStreamWriter(fOut);
+			myOutWriter.append(xmlOutput);
+			myOutWriter.close();
+			fOut.close();
+		}
+		catch (Exception e) {
+			TLog.e(TAG, "push to sd card didn't work");
+			sendMessage(NOTE_PUSH_ERROR);
+			return;
+		}
+		sendMessage(NOTE_PUSHED);
+
 	}
 	@Override
 	protected void deleteNote(String guid){
+		try {
+
+			File path = new File(Tomdroid.NOTES_PATH + "/" + guid + ".note");
+			path.delete();
+		}
+		catch (Exception e) {
+			TLog.e(TAG, "delete from sd card didn't work");
+			sendMessage(NOTE_DELETE_ERROR);
+			return;
+		}
+		sendMessage(NOTE_DELETED);
+
 	}
 }

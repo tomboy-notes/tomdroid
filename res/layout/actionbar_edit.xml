@@ -143,7 +143,6 @@
 			            android:textStyle="italic"
 			            android:textColor="#464646" />
 			             		            
-
 			<ToggleButton
 					android:id="@+id/strike"
 					android:background="@drawable/button_toggle"
@@ -153,6 +152,27 @@
 		            android:textOn="@string/strike"
 		            android:textOff="@string/strike"
 		            android:textColor="#464646" />				            
+         	<ToggleButton
+					android:id="@+id/highlight"
+					android:background="@drawable/button_toggle"
+		            android:layout_width="wrap_content"  
+		            android:layout_height="wrap_content"
+		            android:textSize="17dip"
+		            android:textOn="  "
+		            android:textOff="  "
+		            android:textColor="#464646"
+		            android:textColorHighlight="#FFFF00"
+		            />
+			<ToggleButton
+					android:id="@+id/mono"
+					android:background="@drawable/button_toggle"
+		            android:layout_width="wrap_content"  
+		            android:layout_height="wrap_content"
+		            android:textSize="17dip"
+		            android:textOn="@string/mono"
+		            android:textOff="@string/mono"
+		            android:typeface="monospace"
+		            android:textColor="#464646" />		
 			<Button
 					android:id="@+id/size"
 					android:background="@drawable/button_toggle"
