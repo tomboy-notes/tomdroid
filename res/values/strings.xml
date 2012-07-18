@@ -140,7 +140,9 @@
 	<string name="strike"><strike>Strike</strike></string>
 	<string name="size">Size</string>
 	<string name="xml">xml</string>
-				
+	<string name="titleErrorParsingXML">Error parsing note</string>
+	<string name="messageErrorParsingXML">There was an error parsing the note.  Please check your XML.</string>
+					
 	<!-- syncNotes -->
 	
 	<string name="messageSyncNoteDeleted">Note deleted from %1$s successfully.</string>

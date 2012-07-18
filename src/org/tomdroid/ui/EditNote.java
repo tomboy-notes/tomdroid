@@ -23,8 +23,12 @@
  */
 package org.tomdroid.ui;
 
+import java.io.StringReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
@@ -34,6 +38,9 @@ import org.tomdroid.util.LinkifyPhone;
 import org.tomdroid.util.NoteContentBuilder;
 import org.tomdroid.util.Send;
 import org.tomdroid.util.NoteXMLContentBuilder;
+import org.tomdroid.util.TLog;
+import org.tomdroid.xml.NoteContentHandler;
+import org.xml.sax.InputSource;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -79,6 +86,7 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 	private EditText title;
 	private EditText content;
 	private LinearLayout formatBar;
+	private ToggleButton xmlButton;
 	
 	// Model objects
 	private Note note;
@@ -111,6 +119,8 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 		title.setBackgroundColor(0xffffffff);
 		title.setTextSize(24.0f);
 
+		xmlButton = (ToggleButton) findViewById(R.id.xml);   
+		
 		final ImageView saveButton = (ImageView) findViewById(R.id.save);
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
@@ -344,8 +354,41 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 		}  
 	};
 
-	private void updateNoteContent() {
-		SpannableStringBuilder newNoteContent = (SpannableStringBuilder) this.content.getText();
+	private void updateNoteContent(boolean xml) {
+		
+		SpannableStringBuilder newNoteContent = new SpannableStringBuilder();
+		
+		if(xml) {
+			// parse XML
+			String xmlContent = this.content.getText().toString();
+			String subjectName = this.title.getText().toString();
+	        TLog.d(TAG, "update from xml content: {0}",xmlContent);
+	        InputSource noteContentIs = new InputSource(new StringReader(xmlContent));
+			try {
+				// Parsing
+		    	// XML 
+		    	// Get a SAXParser from the SAXPArserFactory
+		        SAXParserFactory spf = SAXParserFactory.newInstance();
+
+		        // trashing the namespaces but keep prefixes (since we don't have the xml header)
+		        spf.setFeature("http://xml.org/sax/features/namespaces", false);
+		        spf.setFeature("http://xml.org/sax/features/namespace-prefixes", true);
+		        SAXParser sp = spf.newSAXParser();
+
+				TLog.v(TAG, "parsing note {0}", subjectName);
+				
+		        sp.parse(noteContentIs, new NoteContentHandler(newNoteContent));
+			} catch (Exception e) {
+				e.printStackTrace();
+				// TODO handle error in a more granular way
+				TLog.e(TAG, "There was an error parsing the note {0}", subjectName);
+				return;
+			}
+			
+		}
+		else
+			newNoteContent = (SpannableStringBuilder) this.content.getText();
+
 		// store changed note content
 		String newXmlContent = new NoteXMLContentBuilder().setCaller(noteXMLWriteHandler).setInputSource(newNoteContent).build();
 		// Since 0.5 EditNote expects the redundant title being removed from the note content, but we still may need this for debugging:
@@ -355,7 +398,7 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 	}
 	
 	private void saveNote() {
-		updateNoteContent();
+		updateNoteContent(xmlButton.isChecked());
 		
 		note.setTitle(title.getText().toString());
 
@@ -382,12 +425,20 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
             public void onClick(View v) {
             	 
             	if(xmlButton.isChecked()) {
-   		    		formatBar.setVisibility(View.INVISIBLE);
+        			SpannableStringBuilder newNoteContent = (SpannableStringBuilder) content.getText();
+
+        			// store changed note content
+        			String newXmlContent = new NoteXMLContentBuilder().setCaller(noteXMLWriteHandler).setInputSource(newNoteContent).build();
+        			// Since 0.5 EditNote expects the redundant title being removed from the note content, but we still may need this for debugging:
+        			//note.setXmlContent("<note-content version=\"0.1\">"+note.getTitle()+"\n\n"+newXmlContent+"</note-content>");
+        			note.setXmlContent("<note-content version=\"0.1\">"+newXmlContent+"</note-content>");
+            		formatBar.setVisibility(View.INVISIBLE);
             		content.setText(note.getXmlContent());
             	}
             	else {
+            		updateNoteContent(true);
             		if(content.isFocused())
-		    		formatBar.setVisibility(View.VISIBLE);
+            			formatBar.setVisibility(View.VISIBLE);
 		    		showNote();
             	}
             }
@@ -427,7 +478,7 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
             		if (!exists){
             			str.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             		}
-            		updateNoteContent();
+            		updateNoteContent(xmlButton.isChecked());
 	           		content.clearFocus();
             		boldButton.setChecked(false);
             	}
@@ -468,7 +519,7 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
             			str.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             		}
             		
-            		updateNoteContent();
+            		updateNoteContent(xmlButton.isChecked());
 	           		content.clearFocus();
 	          		italicButton.setChecked(false);
             	}
@@ -507,7 +558,7 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
             		if (!exists){
             			str.setSpan(new StrikethroughSpan(), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             		}
-            		updateNoteContent();
+            		updateNoteContent(xmlButton.isChecked());
 	           		content.clearFocus();
             		strikeoutButton.setChecked(false);
             	}
@@ -549,7 +600,7 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
                 			}
                         }
                 		s.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), styleStart, position, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                		updateNoteContent();
+                		updateNoteContent(xmlButton.isChecked());
                 	}
                 	if (emButton.isChecked()){
                 		StyleSpan[] ss = s.getSpans(styleStart, position, StyleSpan.class);
@@ -560,7 +611,7 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
                 			}
                         }
                 		s.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), styleStart, position, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                		updateNoteContent();
+                		updateNoteContent(xmlButton.isChecked());
                 	}
         		}
         		
@@ -614,7 +665,7 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
             }
         	if(size != 1.0f) {
         		str.setSpan(new RelativeSizeSpan(size), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-    			updateNoteContent();
+    			updateNoteContent(xmlButton.isChecked());
         	}
     	}
     }	
