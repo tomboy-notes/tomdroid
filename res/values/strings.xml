@@ -24,8 +24,8 @@
 <resources>
 	
 	<!-- application details -->
-	<string name="app_name">Tomdroid Edit</string>
-	<string name="app_desc">Tomboy compatible wikiwiki note-taking application that can\'t take notes yet.</string>
+	<string name="app_name">Tomdroid</string>
+	<string name="app_desc">Tomboy compatible wikiwiki note-taking application that can take notes.</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
