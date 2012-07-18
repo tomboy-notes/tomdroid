@@ -37,7 +37,7 @@
 	<string name="menuAbout">About</string>
 	<string name="titleWelcome">Warning</string>
 	<string name="titleAbout">About Tomdroid</string>
-	<string name="strWelcome">Welcome to Tomdroid.\n\nPlease note that this is beta quality software and that it contains known problems, like its inability to edit notes.\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something out and tested as quickly as possible.\n\nIf you would like to contribute, help at all levels would be appreciated. Hop on board on launchpad.net/tomdroid and contact us!\n</string>
+	<string name="strWelcome">Welcome to Tomdroid.\n\nPlease note that this is beta quality software and that it contains known problems.\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something out and tested as quickly as possible.\n\nIf you would like to contribute, help at all levels would be appreciated. Hop on board on launchpad.net/tomdroid and contact us!\n</string>
 	<string name="strAbout">%1$s\n\nAuthor: %2$s\nVersion: %3$s\nLicensed under the GPLv3</string>
 	
 	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
@@ -134,7 +134,13 @@
 	<string name="edit">Edit Note</string>
 	<string name="save">Save Note</string>
 	<string name="back">Back</string>
-
+	<string name="bold">B</string>
+	<string name="italic">I</string>
+	<string name="underline"><u>U</u></string>
+	<string name="strike"><strike>Strike</strike></string>
+	<string name="size">Size</string>
+	<string name="xml">xml</string>
+				
 	<!-- syncNotes -->
 	
 	<string name="messageSyncNoteDeleted">Note deleted from %1$s successfully.</string>

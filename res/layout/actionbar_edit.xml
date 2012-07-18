@@ -97,4 +97,71 @@
             android:scaleType="center"
             />
 
+        <!-- formatting -->
+		<ToggleButton
+			android:id="@+id/xml"
+			android:background="@drawable/button_toggle"
+			android:layout_width="wrap_content"  
+			android:layout_height="wrap_content"
+			android:textSize="17dip"
+			android:textOn="@string/xml"
+			android:textOff="@string/xml"
+			android:layout_toLeftOf="@id/save"
+			android:layout_marginTop="2dip"
+			android:layout_marginRight="2dip"
+			android:layout_marginBottom="2dip"
+			android:textColor="#464646" />      
+		                
+		<LinearLayout android:id="@+id/format_bar" 
+		           android:orientation="horizontal"
+		           android:layout_width="wrap_content" 
+		           android:layout_height="match_parent"
+		           android:padding="2dip"
+		           android:visibility="gone"
+		           android:layout_toLeftOf="@id/xml"
+		           >
+		
+			<ToggleButton  
+						android:id="@+id/bold"
+						android:background="@drawable/button_toggle"
+			            android:layout_width="wrap_content"  
+			            android:layout_height="wrap_content" 
+			            android:textSize="17dip"
+			            android:textOn="@string/bold"
+			            android:textOff="@string/bold"
+			            android:textStyle="bold"
+			            android:textColor="#464646" />   
+			                    
+			<ToggleButton
+						android:id="@+id/italic"
+						android:background="@drawable/button_toggle"
+			            android:layout_width="wrap_content"  
+			            android:layout_height="wrap_content"
+			            android:textSize="17dip"
+			            android:textOn="@string/italic"
+			            android:textOff="@string/italic"
+			            android:textStyle="italic"
+			            android:textColor="#464646" />
+			             		            
+
+			<ToggleButton
+					android:id="@+id/strike"
+					android:background="@drawable/button_toggle"
+		            android:layout_width="wrap_content"  
+		            android:layout_height="wrap_content"
+		            android:textSize="17dip"
+		            android:textOn="@string/strike"
+		            android:textOff="@string/strike"
+		            android:textColor="#464646" />				            
+			<Button
+					android:id="@+id/size"
+					android:background="@drawable/button_toggle"
+		            android:layout_width="wrap_content"  
+		            android:layout_height="wrap_content"
+		            android:textSize="17dip"
+		            android:text="@string/size"
+		            android:textColor="#000000" /> 
+
+		</LinearLayout>
+      
 </org.tomdroid.ui.Actionbar>

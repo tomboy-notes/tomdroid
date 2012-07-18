@@ -44,6 +44,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import org.tomdroid.Note;
@@ -65,10 +66,10 @@ public class ViewNote extends Activity {
     public static final String SHORTCUT_NAME = "org.tomdroid.SHORTCUT_NAME";
 
     // UI elements
+	private TextView content;
 	private TextView title;
 
-	private TextView content;
-    // Model objects
+	// Model objects
 	private Note note;
 
 	private SpannableStringBuilder noteContent;
@@ -93,12 +94,12 @@ public class ViewNote extends Activity {
 		content.setTextSize(18.0f);
 		title = (TextView) findViewById(R.id.title);
 		title.setTextColor(Color.DKGRAY);
-		title.setTextSize(18.0f);
+		title.setBackgroundColor(0xffffffff);
+		title.setTextSize(24.0f);
 		
 		int api = Integer.parseInt(Build.VERSION.SDK);
 		
 		if (api >= 11) {
-			title.setTextIsSelectable(true);
 			content.setTextIsSelectable(true);
 		}
 		
@@ -137,6 +138,7 @@ public class ViewNote extends Activity {
         note = NoteManager.getNote(this, uri);
 
         if(note != null) {
+			title.setText((CharSequence) note.getTitle());
             noteContent = note.getNoteContent(noteContentHandler);
         } else {
             TLog.d(TAG, "The note {0} doesn't exist", uri);
@@ -235,7 +237,6 @@ public class ViewNote extends Activity {
 
 		// show the note (spannable makes the TextView able to output styled text)
 		content.setText(noteContent, TextView.BufferType.SPANNABLE);
-		title.setText((CharSequence) note.getTitle());
 
 		// add links to stuff that is understood by Android except phone numbers because it's too aggressive
 		// TODO this is SLOWWWW!!!!

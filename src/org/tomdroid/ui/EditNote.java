@@ -23,73 +23,93 @@
  */
 package org.tomdroid.ui;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
-import android.content.Intent;
-import android.graphics.Color;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Handler;
-import android.text.format.Time;
-import android.text.util.Linkify.TransformFilter;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.EditText;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
 import org.tomdroid.sync.SyncManager;
-import org.tomdroid.util.NoteViewShortcutsHelper;
-import org.tomdroid.util.TLog;
+import org.tomdroid.util.LinkifyPhone;
+import org.tomdroid.util.NoteContentBuilder;
+import org.tomdroid.util.Send;
+import org.tomdroid.util.NoteXMLContentBuilder;
 
-import java.util.regex.Matcher;
-import java.util.Date;
-import java.text.SimpleDateFormat;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.DialogInterface.OnClickListener;
+import android.database.Cursor;
+import android.graphics.Color;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.text.Editable;
+import android.text.Selection;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.TextWatcher;
+import android.text.format.Time;
+import android.text.style.AbsoluteSizeSpan;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.StrikethroughSpan;
+import android.text.style.StyleSpan;
+import android.text.style.UnderlineSpan;
+import android.text.util.Linkify;
+import android.text.util.Linkify.TransformFilter;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnFocusChangeListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.ToggleButton;
 
-public class EditNote extends Activity {
-	public static final String CALLED_FROM_SHORTCUT_EXTRA = "org.tomdroid.CALLED_FROM_SHORTCUT";
-    public static final String SHORTCUT_NAME = "org.tomdroid.SHORTCUT_NAME";
-
-    // UI elements
-
+// TODO this class is starting to smell
+public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedListener {
+	
+	// UI elements
+	private EditText title;
 	private EditText content;
-    // Model objects
+	private LinearLayout formatBar;
+	
+	// Model objects
 	private Note note;
-
-	private String noteContent;
-
+	private SpannableStringBuilder noteContent;
+	
 	// Logging info
 	private static final String TAG = "EditNote";
-    // UI feedback handler
+	
+	// UI feedback handler
 	private Handler	syncMessageHandler	= new SyncMessageHandler(this);
-	private EditText titleEdit;
-	private String noteTitle;
 
+	// rich text variables
+	
+	int styleStart = -1, cursorLoc = 0;
+    private int sselectionStart;
+	private int sselectionEnd;
+	
 	// TODO extract methods in here
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		
 		setContentView(R.layout.note_edit);
 		content = (EditText) findViewById(R.id.content);
 		content.setBackgroundColor(0xffffffff);
 		content.setTextColor(Color.DKGRAY);
 		content.setTextSize(18.0f);
-		
-		titleEdit = (EditText) findViewById(R.id.title_edit);
-		titleEdit.setBackgroundColor(0xffffffff);
-		titleEdit.setTextColor(Color.DKGRAY);
-		titleEdit.setTextSize(24.0f);
-		
-        Uri uri = getIntent().getData();
-
+		title = (EditText) findViewById(R.id.title);
+		title.setTextColor(Color.DKGRAY);
+		title.setBackgroundColor(0xffffffff);
+		title.setTextSize(24.0f);
 
 		final ImageView saveButton = (ImageView) findViewById(R.id.save);
 		saveButton.setOnClickListener(new View.OnClickListener() {
@@ -99,106 +119,218 @@ public class EditNote extends Activity {
 			}
 		});
 		
-        if (uri == null) {
-			TLog.d(TAG, "The Intent's data was null.");
-            showNoteNotFoundDialog(uri);
-        } else handleNoteUri(uri);
-    }
+		formatBar = (LinearLayout) findViewById(R.id.format_bar);
 
-    private void handleNoteUri(final Uri uri) {// We were triggered by an Intent URI
-        TLog.d(TAG, "EditNote started: Intent-filter triggered.");
+		content.setOnFocusChangeListener(new OnFocusChangeListener() {
 
-        // TODO validate the good action?
-        // intent.getAction()
+		    public void onFocusChange(View v, boolean hasFocus) {
+		    	if(hasFocus) {
+		    		formatBar.setVisibility(View.VISIBLE);
+		    	}
+		    	else {
+		    		formatBar.setVisibility(View.INVISIBLE);
+		    	}
+		    }
+		});
+		
+		// add format bar listeners
+		
+		addFormatListeners();
+		
+		final Intent intent = getIntent();
+		Uri uri = intent.getData();
+		
+		if (uri != null) {
+			
+			// We were triggered by an Intent URI 
+			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "EditNote started: Intent-filter triggered.");
 
-        // TODO verify that getNote is doing the proper validation
-        note = NoteManager.getNote(this, uri);
-
-        if(note != null) {
-            String xml = note.getXmlContent();
-            xml = xml.replaceAll("</*note-content[^>]*>","").replaceAll("</*link[^>]*>","").replaceAll("</*italic[^>]*>","*").replaceAll("</*bold[^>]*>","**").replaceAll("</*size:large>","+").replaceAll("</*size:large>","+").replaceAll("</*list>","").replaceAll("<list-item[^>]*>","-").replaceAll("</list-item>","");
-            noteContent = xml;
-            noteTitle = note.getTitle();
-            showNote();
-        } else {
-            TLog.d(TAG, "The note {0} doesn't exist", uri);
-            showNoteNotFoundDialog(uri);
-        }
-    }
-
-    private void showNoteNotFoundDialog(final Uri uri) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        addCommonNoteNotFoundDialogElements(builder);
-        addShortcutNoteNotFoundElements(uri, builder);
-        builder.show();
-    }
-
-    private void addShortcutNoteNotFoundElements(final Uri uri, final AlertDialog.Builder builder) {
-        final boolean proposeShortcutRemoval;
-        final boolean calledFromShortcut = getIntent().getBooleanExtra(CALLED_FROM_SHORTCUT_EXTRA, false);
-        final String shortcutName = getIntent().getStringExtra(SHORTCUT_NAME);
-        proposeShortcutRemoval = calledFromShortcut && uri != null && shortcutName != null;
-
-        if (proposeShortcutRemoval) {
-            final Intent removeIntent = new NoteViewShortcutsHelper(this).getRemoveShortcutIntent(shortcutName, uri);
-            builder.setPositiveButton(getString(R.string.btnRemoveShortcut), new OnClickListener() {
-                public void onClick(final DialogInterface dialogInterface, final int i) {
-                    sendBroadcast(removeIntent);
-                    finish();
-                }
-            });
-        }
-    }
-
-    private void addCommonNoteNotFoundDialogElements(final AlertDialog.Builder builder) {
-        builder.setMessage(getString(R.string.messageNoteNotFound))
-                .setTitle(getString(R.string.titleNoteNotFound))
-                .setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        finish();
-                    }
-                });
-    }
-
+			// TODO validate the good action?
+			// intent.getAction()
+			
+			// TODO verify that getNote is doing the proper validation
+			note = NoteManager.getNote(this, uri);
+			
+			if(note != null) {
+				title.setText((CharSequence) note.getTitle());
+				
+				noteContent = note.getNoteContent(noteXMLParseHandler);
+				//Log.i(TAG, "THE NOTE IS: " + note.getXmlContent().toString());
+				
+			} else {
+				
+				if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "The note "+uri+" doesn't exist");
+				
+				// TODO put error string in a translatable resource
+				new AlertDialog.Builder(this)
+					.setMessage("The requested note could not be found. If you see this error " +
+							    "and you are able to replicate it, please file a bug!")
+					.setTitle("Error")
+					.setNeutralButton("Ok", new OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+							finish();
+						}})
+					.show();
+			}
+		} else {
+			
+			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "The Intent's data was null.");
+			
+			// TODO put error string in a translatable resource
+			new AlertDialog.Builder(this)
+			.setMessage("The requested note could not be found. If you see this error " +
+					    " and you are able to replicate it, please file a bug!")
+			.setTitle(getString(R.string.error))
+			.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.dismiss();
+					finish();
+				}})
+			.show();
+		}
+	}
+	
 	@Override
 	public void onResume(){
 		super.onResume();
 		SyncManager.setActivity(this);
 		SyncManager.setHandler(this.syncMessageHandler);
 	}
-
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-
 		// Create the menu based on what is defined in res/menu/noteview.xml
 		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.edit_note, menu);
+		inflater.inflate(R.menu.view_note, menu);
 		return true;
-
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-			case R.id.edit_note_cancel:
-				finish();
-				return true;
-			case R.id.edit_note_save:
-				saveNote();
+			case R.id.view_note_send:
+				(new Send(this, note)).send();
 				return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
+	
+	
 	private void showNote() {
 
-		content.setText(noteContent);
-		titleEdit.setText(noteTitle);
+		// show the note (spannable makes the TextView able to output styled text)
+		content.setText(noteContent, TextView.BufferType.SPANNABLE);
+		
+		// add links to stuff that is understood by Android except phone numbers because it's too aggressive
+		// TODO this is SLOWWWW!!!!
+		Linkify.addLinks(content, Linkify.EMAIL_ADDRESSES|Linkify.WEB_URLS|Linkify.MAP_ADDRESSES);
+		
+		// Custom phone number linkifier (fixes lp:512204)
+		Linkify.addLinks(content, LinkifyPhone.PHONE_PATTERN, "tel:", LinkifyPhone.sPhoneNumberMatchFilter, Linkify.sPhoneNumberTransformFilter);
+		
+		// This will create a link every time a note title is found in the text.
+		// The pattern contains a very dumb (title1)|(title2) escaped correctly
+		// Then we transform the url from the note name to the note id to avoid characters that mess up with the URI (ex: ?)
+		Linkify.addLinks(content, 
+						 buildNoteLinkifyPattern(),
+						 Tomdroid.CONTENT_URI+"/",
+						 null,
+						 noteTitleTransformFilter);
 	}
+	
+	private Handler noteXMLParseHandler = new Handler() {
 
+		@Override
+		public void handleMessage(Message msg) {
+			
+			//parsed ok - show
+			if(msg.what == NoteContentBuilder.PARSE_OK) {
+				showNote();
 
+			//parsed not ok - error
+			} else if(msg.what == NoteContentBuilder.PARSE_ERROR) {
+				
+				// TODO put this String in a translatable resource
+				new AlertDialog.Builder(EditNote.this)
+					.setMessage("The requested note could not be parsed. If you see this error " +
+								" and you are able to replicate it, please file a bug!")
+					.setTitle("Error")
+					.setNeutralButton("Ok", new OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+							finish();
+						}})
+					.show();
+        	}
+		}
+	};
 
+	private Handler noteXMLWriteHandler = new Handler() {
+
+		@Override
+		public void handleMessage(Message msg) {
+			
+			//parsed ok - do nothing
+			if(msg.what == NoteXMLContentBuilder.PARSE_OK) {
+			//parsed not ok - error
+			} else if(msg.what == NoteXMLContentBuilder.PARSE_ERROR) {
+				
+				// TODO put this String in a translatable resource
+				new AlertDialog.Builder(EditNote.this)
+					.setMessage("The requested note could not be parsed. If you see this error " +
+								" and you are able to replicate it, please file a bug!")
+					.setTitle("Error")
+					.setNeutralButton("Ok", new OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+							finish();
+						}})
+					.show();
+        	}
+		}
+	};
+
+	/**
+	 * Builds a regular expression pattern that will match any of the note title currently in the collection.
+	 * Useful for the Linkify to create the links to the notes.
+	 * @return regexp pattern
+	 */
+	private Pattern buildNoteLinkifyPattern()  {
+		
+		StringBuilder sb = new StringBuilder();
+		Cursor cursor = NoteManager.getTitles(this);
+		
+		// cursor must not be null and must return more than 0 entry 
+		if (!(cursor == null || cursor.getCount() == 0)) {
+			
+			String title;
+			
+			cursor.moveToFirst();
+			
+			do {
+				title = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
+				
+				// Pattern.quote() here make sure that special characters in the note's title are properly escaped 
+				sb.append("("+Pattern.quote(title)+")|");
+				
+			} while (cursor.moveToNext());
+			
+			// get rid of the last | that is not needed (I know, its ugly.. better idea?)
+			String pt = sb.substring(0, sb.length()-1);
+
+			// return a compiled match pattern
+			return Pattern.compile(pt);
+			
+		} else {
+			
+			// TODO send an error to the user
+			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "Cursor returned null or 0 notes");
+		}
+		
+		return null;
+	}
+	
 	// custom transform filter that takes the note's title part of the URI and translate it into the note id
 	// this was done to avoid problems with invalid characters in URI (ex: ? is the query separator but could be in a note title)
 	private TransformFilter noteTitleTransformFilter = new TransformFilter() {
@@ -206,35 +338,284 @@ public class EditNote extends Activity {
 		public String transformUrl(Matcher m, String str) {
 
 			int id = NoteManager.getNoteId(EditNote.this, str);
-
+			
 			// return something like content://org.tomdroid.notes/notes/3
 			return Tomdroid.CONTENT_URI.toString()+"/"+id;
-		}
+		}  
 	};
+
+	private void updateNoteContent() {
+		SpannableStringBuilder newNoteContent = (SpannableStringBuilder) this.content.getText();
+		// store changed note content
+		String newXmlContent = new NoteXMLContentBuilder().setCaller(noteXMLWriteHandler).setInputSource(newNoteContent).build();
+		// Since 0.5 EditNote expects the redundant title being removed from the note content, but we still may need this for debugging:
+		//note.setXmlContent("<note-content version=\"0.1\">"+note.getTitle()+"\n\n"+newXmlContent+"</note-content>");
+		note.setXmlContent("<note-content version=\"0.1\">"+newXmlContent+"</note-content>");
+		noteContent = note.getNoteContent(noteXMLParseHandler);
+	}
+	
 	private void saveNote() {
-		String xml = "<note-content version=\"0.1\">"+
-			content.getText().toString()
-			.replaceAll("\\*\\*(\\S.*\\S)\\*\\*(.*\\*\\*\\S.*\\S\\*\\*)","<bold>$1</bold>$2")
-			.replaceAll("\\*\\*(\\S.*\\S)\\*\\*","<bold>$1</bold>")
-			.replaceAll("\\*(\\S.*\\S)\\*(.*\\*\\S.*\\S\\*)","<italic>$1</italic>$2")
-			.replaceAll("\\*(\\S.*\\S)\\*","<italic>$1</italic>")
-			.replaceAll("\\+(\\S.*\\S)\\+(.*\\+\\S.*\\S\\+)","<size:large>$1</size:large>$2")
-			.replaceAll("\\+(\\S.*\\S)\\+","<size:large>$1</size:large>")
-			.replaceAll("^-(.+)\n","<list-item dir=\"ltr\">$1</list-item>").replaceAll("^<list-item","<list>\n<list-item").replaceAll("</list-item>\n","</list-item>\n</list>\n").replaceAll("</list-item><list-item","</list-item>\n<list-item")+
-			"</note-content>";
-		note.setXmlContent(xml);
-		note.setTitle(titleEdit.getText().toString());
+		updateNoteContent();
+		
+		note.setTitle(title.getText().toString());
 
 		Time now = new Time();
 		now.setToNow();
 		String time = now.format3339(false);
 		note.setLastChangeDate(time);
-		
-		NoteManager.putNote(this,note);
 
+		NoteManager.putNote( this, note );
+		noteContent = note.getNoteContent(noteXMLParseHandler);
+		
 		// put note to server
 		
 		SyncManager.getInstance().pushNote(note);
 
 	}
+
+	private void addFormatListeners()
+	{
+
+		final ToggleButton xmlButton = (ToggleButton) findViewById(R.id.xml);   
+        
+		xmlButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+            	 
+            	if(xmlButton.isChecked()) {
+   		    		formatBar.setVisibility(View.INVISIBLE);
+            		content.setText(note.getXmlContent());
+            	}
+            	else {
+            		if(content.isFocused())
+		    		formatBar.setVisibility(View.VISIBLE);
+		    		showNote();
+            	}
+            }
+        });
+		
+		final ToggleButton boldButton = (ToggleButton)findViewById(R.id.bold);
+		
+		boldButton.setOnClickListener(new Button.OnClickListener() {
+
+			public void onClick(View v) {
+		    	
+            	int selectionStart = content.getSelectionStart();
+            	
+            	styleStart = selectionStart;
+            	
+            	int selectionEnd = content.getSelectionEnd();
+            	
+            	if (selectionStart > selectionEnd){
+            		int temp = selectionEnd;
+            		selectionEnd = selectionStart;
+            		selectionStart = temp;
+            	}
+            	
+            	if (selectionEnd > selectionStart)
+            	{
+            		Spannable str = content.getText();
+            		StyleSpan[] ss = str.getSpans(selectionStart, selectionEnd, StyleSpan.class);
+            		
+            		boolean exists = false;
+            		for (int i = 0; i < ss.length; i++) {
+            			if (ss[i].getStyle() == android.graphics.Typeface.BOLD){
+            				str.removeSpan(ss[i]);
+            				exists = true;
+            			}
+                    }
+            		
+            		if (!exists){
+            			str.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            		}
+            		updateNoteContent();
+	           		content.clearFocus();
+            		boldButton.setChecked(false);
+            	}
+            }
+		});
+		
+		final ToggleButton italicButton = (ToggleButton)findViewById(R.id.italic);
+		
+		italicButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+            	            	
+            	int selectionStart = content.getSelectionStart();
+            	
+            	styleStart = selectionStart;
+            	
+            	int selectionEnd = content.getSelectionEnd();
+            	
+            	if (selectionStart > selectionEnd){
+            		int temp = selectionEnd;
+            		selectionEnd = selectionStart;
+            		selectionStart = temp;
+            	}
+            	
+            	if (selectionEnd > selectionStart)
+            	{
+            		Spannable str = content.getText();
+            		StyleSpan[] ss = str.getSpans(selectionStart, selectionEnd, StyleSpan.class);
+            		
+            		boolean exists = false;
+            		for (int i = 0; i < ss.length; i++) {
+            			if (ss[i].getStyle() == android.graphics.Typeface.ITALIC){
+            				str.removeSpan(ss[i]);
+            				exists = true;
+            			}
+                    }
+            		
+            		if (!exists){
+            			str.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            		}
+            		
+            		updateNoteContent();
+	           		content.clearFocus();
+	          		italicButton.setChecked(false);
+            	}
+            }
+		});
+		
+		
+		final ToggleButton strikeoutButton = (ToggleButton) findViewById(R.id.strike);   
+        
+		strikeoutButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+            	 
+            	int selectionStart = content.getSelectionStart();
+            	
+            	styleStart = selectionStart;
+            	
+            	int selectionEnd = content.getSelectionEnd();
+            	
+            	if (selectionStart > selectionEnd){
+            		int temp = selectionEnd;
+            		selectionEnd = selectionStart;
+            		selectionStart = temp;
+            	}
+            	
+            	if (selectionEnd > selectionStart)
+            	{
+            		Spannable str = content.getText();
+            		StrikethroughSpan[] ss = str.getSpans(selectionStart, selectionEnd, StrikethroughSpan.class);
+            		
+            		boolean exists = false;
+            		for (int i = 0; i < ss.length; i++) {
+            				str.removeSpan(ss[i]);
+            				exists = true;
+                    }
+            		
+            		if (!exists){
+            			str.setSpan(new StrikethroughSpan(), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            		}
+            		updateNoteContent();
+	           		content.clearFocus();
+            		strikeoutButton.setChecked(false);
+            	}
+            }
+        });
+        
+        content.addTextChangedListener(new TextWatcher() { 
+            public void afterTextChanged(Editable s) { 
+            	
+            	//add style as the user types if a toggle button is enabled
+            	ToggleButton boldButton = (ToggleButton) findViewById(R.id.bold);
+            	ToggleButton emButton = (ToggleButton) findViewById(R.id.italic);
+            	
+            	int position = Selection.getSelectionStart(content.getText());
+            	
+        		if (position < 0){
+        			position = 0;
+        		}
+            	
+        		if (position > 0){
+        			
+        			if (styleStart > position || position > (cursorLoc + 1)){
+						//user changed cursor location, reset
+						if (position - cursorLoc > 1){
+							//user pasted text
+							styleStart = cursorLoc;
+						}
+						else{
+							styleStart = position - 1;
+						}
+					}
+        			
+                	if (boldButton.isChecked()){  
+                		StyleSpan[] ss = s.getSpans(styleStart, position, StyleSpan.class);
+
+                		for (int i = 0; i < ss.length; i++) {
+                			if (ss[i].getStyle() == android.graphics.Typeface.BOLD){
+                				s.removeSpan(ss[i]);
+                			}
+                        }
+                		s.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), styleStart, position, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                		updateNoteContent();
+                	}
+                	if (emButton.isChecked()){
+                		StyleSpan[] ss = s.getSpans(styleStart, position, StyleSpan.class);
+                		
+                		for (int i = 0; i < ss.length; i++) {
+                			if (ss[i].getStyle() == android.graphics.Typeface.ITALIC){
+                				s.removeSpan(ss[i]);
+                			}
+                        }
+                		s.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), styleStart, position, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                		updateNoteContent();
+                	}
+        		}
+        		
+        		cursorLoc = Selection.getSelectionStart(content.getText());
+            } 
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { 
+                    //unused
+            } 
+            public void onTextChanged(CharSequence s, int start, int before, int count) { 
+                    //unused
+            } 
+        });
+        
+		final Button sizeButton = (Button)findViewById(R.id.size);
+		
+		sizeButton.setOnClickListener(new Button.OnClickListener() {
+
+			public void onClick(View v) {
+                sselectionStart = content.getSelectionStart();
+            	sselectionEnd = content.getSelectionEnd();
+            	
+	            TextSizeDialog colorDlg = new TextSizeDialog(EditNote.this, (TextSizeDialog.OnSizeChangedListener)EditNote.this, sselectionStart, sselectionEnd);
+            	colorDlg.show();
+            }
+		});
+
+
+		
+	}
+	public void sizeChanged(float size) 
+	{
+        //((Button)findViewById(R.id.color)).setTextColor(color);
+        
+        int selectionStart = sselectionStart;
+    	int selectionEnd = sselectionEnd;
+
+    	if(selectionStart != selectionEnd)
+    	{
+        	if (selectionStart > selectionEnd){
+        		int temp = selectionEnd;
+        		selectionEnd = selectionStart;
+        		selectionStart = temp;
+        	}
+        	
+        	Spannable str = content.getText();
+        	
+        	RelativeSizeSpan[] ss = str.getSpans(selectionStart, selectionEnd, RelativeSizeSpan.class);
+    		
+    		for (int i = 0; i < ss.length; i++) {
+    				str.removeSpan(ss[i]);
+            }
+        	if(size != 1.0f) {
+        		str.setSpan(new RelativeSizeSpan(size), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+    			updateNoteContent();
+        	}
+    	}
+    }	
 }

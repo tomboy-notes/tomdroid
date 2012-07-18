@@ -46,9 +46,15 @@
 			android:layout_height="wrap_content"
 			android:padding="10dip"
 			android:textStyle="bold" />-->
-		
 		<TextView 
-				  xmlns:android="http://schemas.android.com/apk/res/android"
+				  android:id="@+id/title"
+				  android:layout_width="fill_parent" 
+				  android:layout_height="wrap_content"
+				  android:singleLine="false"
+				  android:text="@string/strWait"
+				  android:padding="10dip"
+				  android:textColor="#ffb8bcb8" />	
+		<TextView 
 				  android:id="@+id/content"
 				  android:layout_width="fill_parent" 
 				  android:layout_height="wrap_content"
