@@ -60,9 +60,11 @@ import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
 import android.text.format.Time;
 import android.text.style.AbsoluteSizeSpan;
+import android.text.style.BackgroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StrikethroughSpan;
 import android.text.style.StyleSpan;
+import android.text.style.TypefaceSpan;
 import android.text.style.UnderlineSpan;
 import android.text.util.Linkify;
 import android.text.util.Linkify.TransformFilter;
@@ -138,7 +140,7 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 		    		formatBar.setVisibility(View.VISIBLE);
 		    	}
 		    	else {
-		    		formatBar.setVisibility(View.INVISIBLE);
+		    		formatBar.setVisibility(View.GONE);
 		    	}
 		    }
 		});
@@ -432,7 +434,7 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
         			// Since 0.5 EditNote expects the redundant title being removed from the note content, but we still may need this for debugging:
         			//note.setXmlContent("<note-content version=\"0.1\">"+note.getTitle()+"\n\n"+newXmlContent+"</note-content>");
         			note.setXmlContent("<note-content version=\"0.1\">"+newXmlContent+"</note-content>");
-            		formatBar.setVisibility(View.INVISIBLE);
+            		formatBar.setVisibility(View.GONE);
             		content.setText(note.getXmlContent());
             	}
             	else {
@@ -525,7 +527,85 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
             	}
             }
 		});
+
+		final Button highButton = (Button)findViewById(R.id.highlight);
 		
+		highButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+            	            	
+            	int selectionStart = content.getSelectionStart();
+            	
+            	styleStart = selectionStart;
+            	
+            	int selectionEnd = content.getSelectionEnd();
+            	
+            	if (selectionStart > selectionEnd){
+            		int temp = selectionEnd;
+            		selectionEnd = selectionStart;
+            		selectionStart = temp;
+            	}
+            	
+            	if (selectionEnd > selectionStart)
+            	{
+            		Spannable str = content.getText();
+            		BackgroundColorSpan[] ss = str.getSpans(selectionStart, selectionEnd, BackgroundColorSpan.class);
+            		
+            		boolean exists = false;
+            		for (int i = 0; i < ss.length; i++) {
+        				str.removeSpan(ss[i]);
+        				exists = true;
+                    }
+            		
+            		if (!exists){
+            			str.setSpan(new BackgroundColorSpan(Note.NOTE_HIGHLIGHT_COLOR), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            		}
+            		
+            		updateNoteContent(xmlButton.isChecked());
+	           		content.clearFocus();
+            	}
+            }
+		});
+		
+		final ToggleButton monoButton = (ToggleButton)findViewById(R.id.mono);
+		
+		monoButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+            	            	
+            	int selectionStart = content.getSelectionStart();
+            	
+            	styleStart = selectionStart;
+            	
+            	int selectionEnd = content.getSelectionEnd();
+            	
+            	if (selectionStart > selectionEnd){
+            		int temp = selectionEnd;
+            		selectionEnd = selectionStart;
+            		selectionStart = temp;
+            	}
+            	
+            	if (selectionEnd > selectionStart)
+            	{
+            		Spannable str = content.getText();
+            		TypefaceSpan[] ss = str.getSpans(selectionStart, selectionEnd, TypefaceSpan.class);
+            		
+            		boolean exists = false;
+            		for (int i = 0; i < ss.length; i++) {
+            			if (ss[i].getFamily()==Note.NOTE_MONOSPACE_TYPEFACE){
+            				str.removeSpan(ss[i]);
+            				exists = true;
+            			}
+                    }
+            		
+            		if (!exists){
+            			str.setSpan(new TypefaceSpan(Note.NOTE_MONOSPACE_TYPEFACE), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            		}
+            		
+            		updateNoteContent(xmlButton.isChecked());
+	           		content.clearFocus();
+	           		monoButton.setChecked(false);
+            	}
+            }
+		});
 		
 		final ToggleButton strikeoutButton = (ToggleButton) findViewById(R.id.strike);   
         

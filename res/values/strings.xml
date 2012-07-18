@@ -137,10 +137,11 @@
 	<string name="bold">B</string>
 	<string name="italic">I</string>
 	<string name="underline"><u>U</u></string>
-	<string name="strike"><strike>Strike</strike></string>
-	<string name="mono">a</string>
-		<string name="size">Size</string>
-	<string name="xml">xml</string>
+	<string name="strike"><strike>S</strike></string>
+	<string name="mono">mono</string>
+	<string name="highlight"></string>
+	<string name="size">size</string>
+	<string name="xml">&lt;/&gt;</string>
 	<string name="titleErrorParsingXML">Error parsing note</string>
 	<string name="messageErrorParsingXML">There was an error parsing the note.  Please check your XML.</string>
 					
