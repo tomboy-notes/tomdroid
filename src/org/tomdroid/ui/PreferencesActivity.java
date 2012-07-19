@@ -63,6 +63,7 @@ public class PreferencesActivity extends PreferenceActivity {
 	private ListPreference syncService = null;
 	private EditTextPreference sdLocation = null;
 	private Preference clearSearchHistory = null;
+	private EditTextPreference baseSize = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,7 @@ public class PreferencesActivity extends PreferenceActivity {
 		syncService = (ListPreference)findPreference(Preferences.Key.SYNC_SERVICE.getName());
 		sdLocation = (EditTextPreference)findPreference(Preferences.Key.SD_LOCATION.getName());
 		clearSearchHistory = (Preference)findPreference(Preferences.Key.CLEAR_SEARCH_HISTORY.getName());
+		baseSize = (EditTextPreference)findPreference(Preferences.Key.BASE_TEXT_SIZE.getName());
 		
 		// Set the default values if nothing exists
 		this.setDefaults();
@@ -171,6 +173,26 @@ public class PreferencesActivity extends PreferenceActivity {
 	        	return true;
 	        }
 	    });
+
+		baseSize.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+			
+			public boolean onPreferenceChange(Preference preference, Object newValue) {
+				try {
+					Float.parseFloat((String)newValue);
+					Preferences.putString(Preferences.Key.BASE_TEXT_SIZE, (String)newValue);
+				}
+				catch(Exception e) {
+		        	Toast.makeText(getBaseContext(),
+	                        getString(R.string.illegalTextSize),
+	                        Toast.LENGTH_LONG).show();
+		        	TLog.e(TAG, "Illegal text size in preferences");
+		        	return false;
+				}
+				baseSize.setSummary((String)newValue);
+				return true;
+			}
+		});
+		
 	}
 	
 	private void authenticate(String serverUri) {
@@ -253,7 +275,10 @@ public class PreferencesActivity extends PreferenceActivity {
 		sdLocation.setDefaultValue(defaultLocation);
 		if(sdLocation.getText() == null)
 			sdLocation.setText(defaultLocation);
-	
+
+		String defaultSize = (String)Preferences.Key.BASE_TEXT_SIZE.getDefault();
+		baseSize.setDefaultValue(defaultSize);
+		baseSize.setSummary(Preferences.getString(Preferences.Key.BASE_TEXT_SIZE));
 	}
 
 	private void setServer(String syncServiceKey) {

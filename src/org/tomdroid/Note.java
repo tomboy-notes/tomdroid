@@ -51,8 +51,7 @@ public class Note {
 	private static final String TAG = "Note";
 	
 	// Notes constants
-	// TODO this is a weird yellow that was usable for the android emulator, I must confirm this for real usage
-	public static final int NOTE_HIGHLIGHT_COLOR = 0xFFFFFF77;
+	public static final int NOTE_HIGHLIGHT_COLOR = 0x99FFFF00; // lowered alpha to show cursor
 	public static final String NOTE_MONOSPACE_TYPEFACE = "monospace";
 	public static final float NOTE_SIZE_SMALL_FACTOR = 0.8f;
 	public static final float NOTE_SIZE_LARGE_FACTOR = 1.5f;

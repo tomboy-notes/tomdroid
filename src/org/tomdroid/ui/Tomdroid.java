@@ -99,7 +99,7 @@ public class Tomdroid extends ListActivity {
 
 		setContentView(R.layout.main);
 		Preferences.init(this, CLEAR_PREFERENCES);
-
+		
 		// get the Path to the notes-folder from Preferences
 		NOTES_PATH = Environment.getExternalStorageDirectory()
 				+ "/" + Preferences.getString(Preferences.Key.SD_LOCATION) + "/";
@@ -120,14 +120,6 @@ public class Tomdroid extends ListActivity {
 				}
 			}).setIcon(R.drawable.icon).show();
 		}
-		
-		final ImageView newButton = (ImageView) findViewById(R.id.new_item);
-		newButton.setOnClickListener(new View.OnClickListener() {
-
-			public void onClick(View v) {
-				newNote();
-			}
-		});
 		
 		// adapter that binds the ListView UI to the notes in the note manager
 		adapter = NoteManager.getListAdapter(this);
@@ -155,6 +147,12 @@ public class Tomdroid extends ListActivity {
 		switch (item.getItemId()) {
 			case R.id.menuAbout:
 				showAboutDialog();
+				return true;
+			case R.id.menuSync:
+				SyncManager.getInstance().startSynchronization();
+				return true;
+			case R.id.menuNew:
+				newNote();
 				return true;
 
 			case R.id.menuPrefs:

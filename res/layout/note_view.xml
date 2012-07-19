@@ -26,8 +26,6 @@
 		android:layout_height="fill_parent"
 		android:orientation="vertical"
     	>
-<include android:id="@+id/actionbar" layout="@layout/actionbar_view" />
-    
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 			android:id="@+id/textScroller"
 			android:layout_width="fill_parent"

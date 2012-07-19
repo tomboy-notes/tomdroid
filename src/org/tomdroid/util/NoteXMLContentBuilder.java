@@ -254,7 +254,7 @@ public class NoteXMLContentBuilder implements Runnable {
 				// write plain character content from previous to current (relevant) span transition:
 				noteXMLContent += noteContent.subSequence( prevPos, currPos );
 				
-				// API 3 compat
+				// API 3 compat - is this reversal really necessary?  I think it should be reversed in the for(String elementName...)
 				
 				ListIterator<Integer> iter = new ArrayList<Integer>(elemEndsByStart.keySet()).listIterator(elemEndsByStart.size());
 
@@ -262,7 +262,14 @@ public class NoteXMLContentBuilder implements Runnable {
 
 				while (iter.hasPrevious()) {
 				    Integer key = iter.previous();
-					for( String elementName: elemEndsByStart.get(key) ) noteXMLContent += "</"+elementName+">";
+				    
+				    // here we do the reversal, this fixes the mismatched tags.
+				    
+					for(int i = elemEndsByStart.get(key).size()-1; i > -1; i--) {
+						String elementName = elemEndsByStart.get(key).get(i);
+						TLog.v(TAG, "adding {0}",key+" </"+elementName+">");
+						noteXMLContent += "</"+elementName+">";
+					}
 				}
 				
 				iter = new ArrayList<Integer>(elemStartsByEnd.keySet()).listIterator(elemStartsByEnd.size());
@@ -271,8 +278,12 @@ public class NoteXMLContentBuilder implements Runnable {
 				
 				while (iter.hasPrevious()) {
 				    Integer key = iter.previous();
-					for( String elementName: elemStartsByEnd.get(key) ) noteXMLContent += "<"+elementName+">";
+					for( String elementName: elemStartsByEnd.get(key) ) {
+						TLog.v(TAG, "adding {0}",key+" <"+elementName+">");
+						noteXMLContent += "<"+elementName+">";
+					}
 				}
+				TLog.v(TAG, "span adding finished");
 
 			}
 		} catch (Exception e) {

@@ -137,6 +137,7 @@ public class SyncMessageHandler extends Handler {
 	}
 
 	private void handleSyncProgress(Message msg) {
+/*
 		ImageView syncIcon = (ImageView) activity.findViewById(R.id.syncIcon);
 
 		RotateAnimation rotation = new RotateAnimation(180 * msg.arg2 / 100f,
@@ -145,12 +146,12 @@ public class SyncMessageHandler extends Handler {
 		rotation.setDuration(700);
 		rotation.setFillAfter(true);
 		syncIcon.startAnimation(rotation);
-
 		if (msg.arg1 == 0) {
 			onSynchronizationStarted();
 		} else if (msg.arg1 == 100) {
 			onSynchronizationDone();
 		}
+*/
 	}
 
 	private void onSynchronizationDone() {

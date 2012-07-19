@@ -36,12 +36,15 @@ import org.tomdroid.R;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.util.LinkifyPhone;
 import org.tomdroid.util.NoteContentBuilder;
+import org.tomdroid.util.NoteViewShortcutsHelper;
+import org.tomdroid.util.Preferences;
 import org.tomdroid.util.Send;
 import org.tomdroid.util.NoteXMLContentBuilder;
 import org.tomdroid.util.TLog;
 import org.tomdroid.xml.NoteContentHandler;
 import org.xml.sax.InputSource;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -50,6 +53,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -59,13 +63,12 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
 import android.text.format.Time;
-import android.text.style.AbsoluteSizeSpan;
+import android.text.method.ArrowKeyMovementMethod;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StrikethroughSpan;
 import android.text.style.StyleSpan;
 import android.text.style.TypefaceSpan;
-import android.text.style.UnderlineSpan;
 import android.text.util.Linkify;
 import android.text.util.Linkify.TransformFilter;
 import android.util.Log;
@@ -76,7 +79,7 @@ import android.view.View;
 import android.view.View.OnFocusChangeListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -88,7 +91,6 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 	private EditText title;
 	private EditText content;
 	private LinearLayout formatBar;
-	private ToggleButton xmlButton;
 	
 	// Model objects
 	private Note note;
@@ -99,44 +101,36 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 	
 	// UI feedback handler
 	private Handler	syncMessageHandler	= new SyncMessageHandler(this);
-
+	private Uri uri;
+	public static final String CALLED_FROM_SHORTCUT_EXTRA = "org.tomdroid.CALLED_FROM_SHORTCUT";
+    public static final String SHORTCUT_NAME = "org.tomdroid.SHORTCUT_NAME";
+    
 	// rich text variables
 	
 	int styleStart = -1, cursorLoc = 0;
     private int sselectionStart;
 	private int sselectionEnd;
+	private boolean xmlOn = false;
+	
 	
 	// TODO extract methods in here
+	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.note_edit);
 		content = (EditText) findViewById(R.id.content);
-		content.setBackgroundColor(0xffffffff);
-		content.setTextColor(Color.DKGRAY);
-		content.setTextSize(18.0f);
 		title = (EditText) findViewById(R.id.title);
-		title.setTextColor(Color.DKGRAY);
-		title.setBackgroundColor(0xffffffff);
-		title.setTextSize(24.0f);
-
-		xmlButton = (ToggleButton) findViewById(R.id.xml);   
 		
-		final ImageView saveButton = (ImageView) findViewById(R.id.save);
-		saveButton.setOnClickListener(new View.OnClickListener() {
+		updateTextAttributes();
 
-			public void onClick(View v) {
-				saveNote();
-			}
-		});
-		
 		formatBar = (LinearLayout) findViewById(R.id.format_bar);
 
 		content.setOnFocusChangeListener(new OnFocusChangeListener() {
 
 		    public void onFocusChange(View v, boolean hasFocus) {
-		    	if(hasFocus && !xmlButton.isChecked()) {
+		    	if(hasFocus && !xmlOn) {
 		    		formatBar.setVisibility(View.VISIBLE);
 		    	}
 		    	else {
@@ -148,81 +142,165 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 		// add format bar listeners
 		
 		addFormatListeners();
-		
-		final Intent intent = getIntent();
-		Uri uri = intent.getData();
-		
-		if (uri != null) {
-			
-			// We were triggered by an Intent URI 
-			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "EditNote started: Intent-filter triggered.");
 
-			// TODO validate the good action?
-			// intent.getAction()
-			
-			// TODO verify that getNote is doing the proper validation
-			note = NoteManager.getNote(this, uri);
-			
-			if(note != null) {
-				title.setText((CharSequence) note.getTitle());
-				
-				noteContent = note.getNoteContent(noteXMLParseHandler);
-				//Log.i(TAG, "THE NOTE IS: " + note.getXmlContent().toString());
-				
-			} else {
-				
-				if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "The note "+uri+" doesn't exist");
-				
-				// TODO put error string in a translatable resource
-				new AlertDialog.Builder(this)
-					.setMessage("The requested note could not be found. If you see this error " +
-							    "and you are able to replicate it, please file a bug!")
-					.setTitle("Error")
-					.setNeutralButton("Ok", new OnClickListener() {
+		int api = Integer.parseInt(Build.VERSION.SDK);
+		
+		if (api >= 11) {
+			content.setTextIsSelectable(true);
+		}
+		
+        uri = getIntent().getData();
+
+        if (uri == null) {
+			TLog.d(TAG, "The Intent's data was null.");
+            showNoteNotFoundDialog(uri);
+        } else handleNoteUri(uri);
+        
+	}
+
+	private void handleNoteUri(final Uri uri) {// We were triggered by an Intent URI
+        TLog.d(TAG, "ViewNote started: Intent-filter triggered.");
+
+        // TODO validate the good action?
+        // intent.getAction()
+
+        // TODO verify that getNote is doing the proper validation
+        note = NoteManager.getNote(this, uri);
+
+        if(note != null) {
+			title.setText((CharSequence) note.getTitle());
+            noteContent = note.getNoteContent(noteContentHandler);
+        } else {
+            TLog.d(TAG, "The note {0} doesn't exist", uri);
+            showNoteNotFoundDialog(uri);
+        }
+    }
+
+	private Handler noteContentHandler = new Handler() {
+
+		@Override
+		public void handleMessage(Message msg) {
+
+			//parsed ok - show
+			if(msg.what == NoteContentBuilder.PARSE_OK) {
+				showNote();
+
+			//parsed not ok - error
+			} else if(msg.what == NoteContentBuilder.PARSE_ERROR) {
+
+				new AlertDialog.Builder(EditNote.this)
+					.setMessage(getString(R.string.messageErrorNoteParsing))
+					.setTitle(getString(R.string.error))
+					.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
 						public void onClick(DialogInterface dialog, int which) {
 							dialog.dismiss();
 							finish();
 						}})
 					.show();
-			}
-		} else {
-			
-			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "The Intent's data was null.");
-			
-			// TODO put error string in a translatable resource
-			new AlertDialog.Builder(this)
-			.setMessage("The requested note could not be found. If you see this error " +
-					    " and you are able to replicate it, please file a bug!")
-			.setTitle(getString(R.string.error))
-			.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) {
-					dialog.dismiss();
-					finish();
-				}})
-			.show();
+        	}
 		}
-	}
+	};
 	
+	private void showNoteNotFoundDialog(final Uri uri) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        addCommonNoteNotFoundDialogElements(builder);
+        addShortcutNoteNotFoundElements(uri, builder);
+        builder.show();
+    }
+    private void addShortcutNoteNotFoundElements(final Uri uri, final AlertDialog.Builder builder) {
+        final boolean proposeShortcutRemoval;
+        final boolean calledFromShortcut = getIntent().getBooleanExtra(CALLED_FROM_SHORTCUT_EXTRA, false);
+        final String shortcutName = getIntent().getStringExtra(SHORTCUT_NAME);
+        proposeShortcutRemoval = calledFromShortcut && uri != null && shortcutName != null;
+
+        if (proposeShortcutRemoval) {
+            final Intent removeIntent = new NoteViewShortcutsHelper(this).getRemoveShortcutIntent(shortcutName, uri);
+            builder.setPositiveButton(getString(R.string.btnRemoveShortcut), new OnClickListener() {
+                public void onClick(final DialogInterface dialogInterface, final int i) {
+                    sendBroadcast(removeIntent);
+                    finish();
+                }
+            });
+        }
+    }
+
+    private void addCommonNoteNotFoundDialogElements(final AlertDialog.Builder builder) {
+        builder.setMessage(getString(R.string.messageNoteNotFound))
+                .setTitle(getString(R.string.titleNoteNotFound))
+                .setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        finish();
+                    }
+                });
+    }
+    
 	@Override
 	public void onResume(){
 		super.onResume();
 		SyncManager.setActivity(this);
 		SyncManager.setHandler(this.syncMessageHandler);
+		handleNoteUri(uri);
+		updateTextAttributes();
+		showNote();
 	}
 	
+	private void updateTextAttributes() {
+		float baseSize = Float.parseFloat(Preferences.getString(Preferences.Key.BASE_TEXT_SIZE));
+		content.setTextSize(baseSize);
+		title.setTextSize(baseSize*1.3f);
+
+		title.setTextColor(Color.DKGRAY);
+		title.setBackgroundColor(0xffffffff);
+
+		content.setBackgroundColor(0xffffffff);
+		content.setTextColor(Color.DKGRAY);		
+	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Create the menu based on what is defined in res/menu/noteview.xml
 		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.view_note, menu);
+		inflater.inflate(R.menu.edit_note, menu);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-			case R.id.view_note_send:
-				(new Send(this, note)).send();
+			case R.id.menuPrefs:
+				startActivity(new Intent(this, PreferencesActivity.class));
+				return true;
+			case R.id.edit_note_send:
+					(new Send(this, note)).send();
+					return true;
+			case R.id.edit_note_save:
+				saveNote();
+				return true;
+			case R.id.edit_note_xml:
+            	if(!xmlOn) {
+            		item.setTitle(getString(R.string.text));
+            		item.setIcon(R.drawable.text);
+            		xmlOn = true;
+        			SpannableStringBuilder newNoteContent = (SpannableStringBuilder) content.getText();
+
+        			// store changed note content
+        			String newXmlContent = new NoteXMLContentBuilder().setCaller(noteXMLWriteHandler).setInputSource(newNoteContent).build();
+        			// Since 0.5 EditNote expects the redundant title being removed from the note content, but we still may need this for debugging:
+        			//note.setXmlContent("<note-content version=\"0.1\">"+note.getTitle()+"\n\n"+newXmlContent+"</note-content>");
+        			note.setXmlContent("<note-content version=\"0.1\">"+newXmlContent+"</note-content>");
+            		formatBar.setVisibility(View.GONE);
+            		content.setText(note.getXmlContent());
+            	}
+            	else {
+            		item.setTitle(getString(R.string.xml));
+            		item.setIcon(R.drawable.xml);
+            		xmlOn = false;
+            		updateNoteContent(true);  // update based on xml that we are switching FROM
+            		if(content.isFocused())
+            			formatBar.setVisibility(View.VISIBLE);
+		    		showNote();
+            	}
 				return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -322,7 +400,8 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 			
 			do {
 				title = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
-				
+				if(title.length() == 0)
+					continue;
 				// Pattern.quote() here make sure that special characters in the note's title are properly escaped 
 				sb.append("("+Pattern.quote(title)+")|");
 				
@@ -393,6 +472,9 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 
 		// store changed note content
 		String newXmlContent = new NoteXMLContentBuilder().setCaller(noteXMLWriteHandler).setInputSource(newNoteContent).build();
+		
+		TLog.e(TAG, "parsed XML Content: {0}", newXmlContent);
+		
 		// Since 0.5 EditNote expects the redundant title being removed from the note content, but we still may need this for debugging:
 		//note.setXmlContent("<note-content version=\"0.1\">"+note.getTitle()+"\n\n"+newXmlContent+"</note-content>");
 		note.setXmlContent("<note-content version=\"0.1\">"+newXmlContent+"</note-content>");
@@ -400,7 +482,7 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 	}
 	
 	private void saveNote() {
-		updateNoteContent(xmlButton.isChecked());
+		updateNoteContent(xmlOn);
 		
 		note.setTitle(title.getText().toString());
 
@@ -421,31 +503,6 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 	private void addFormatListeners()
 	{
 
-		final ToggleButton xmlButton = (ToggleButton) findViewById(R.id.xml);   
-        
-		xmlButton.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-            	 
-            	if(xmlButton.isChecked()) {
-        			SpannableStringBuilder newNoteContent = (SpannableStringBuilder) content.getText();
-
-        			// store changed note content
-        			String newXmlContent = new NoteXMLContentBuilder().setCaller(noteXMLWriteHandler).setInputSource(newNoteContent).build();
-        			// Since 0.5 EditNote expects the redundant title being removed from the note content, but we still may need this for debugging:
-        			//note.setXmlContent("<note-content version=\"0.1\">"+note.getTitle()+"\n\n"+newXmlContent+"</note-content>");
-        			note.setXmlContent("<note-content version=\"0.1\">"+newXmlContent+"</note-content>");
-            		formatBar.setVisibility(View.GONE);
-            		content.setText(note.getXmlContent());
-            	}
-            	else {
-            		updateNoteContent(true);
-            		if(content.isFocused())
-            			formatBar.setVisibility(View.VISIBLE);
-		    		showNote();
-            	}
-            }
-        });
-		
 		final ToggleButton boldButton = (ToggleButton)findViewById(R.id.bold);
 		
 		boldButton.setOnClickListener(new Button.OnClickListener() {
@@ -480,7 +537,7 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
             		if (!exists){
             			str.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             		}
-            		updateNoteContent(xmlButton.isChecked());
+            		updateNoteContent(xmlOn);
 	           		content.clearFocus();
             		boldButton.setChecked(false);
             	}
@@ -521,14 +578,14 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
             			str.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             		}
             		
-            		updateNoteContent(xmlButton.isChecked());
+            		updateNoteContent(xmlOn);
 	           		content.clearFocus();
 	          		italicButton.setChecked(false);
             	}
             }
 		});
 
-		final Button highButton = (Button)findViewById(R.id.highlight);
+		final ImageButton highButton = (ImageButton)findViewById(R.id.highlight);
 		
 		highButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
@@ -560,7 +617,7 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
             			str.setSpan(new BackgroundColorSpan(Note.NOTE_HIGHLIGHT_COLOR), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             		}
             		
-            		updateNoteContent(xmlButton.isChecked());
+            		updateNoteContent(xmlOn);
 	           		content.clearFocus();
             	}
             }
@@ -600,7 +657,7 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
             			str.setSpan(new TypefaceSpan(Note.NOTE_MONOSPACE_TYPEFACE), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             		}
             		
-            		updateNoteContent(xmlButton.isChecked());
+            		updateNoteContent(xmlOn);
 	           		content.clearFocus();
 	           		monoButton.setChecked(false);
             	}
@@ -638,7 +695,7 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
             		if (!exists){
             			str.setSpan(new StrikethroughSpan(), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             		}
-            		updateNoteContent(xmlButton.isChecked());
+            		updateNoteContent(xmlOn);
 	           		content.clearFocus();
             		strikeoutButton.setChecked(false);
             	}
@@ -680,7 +737,7 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
                 			}
                         }
                 		s.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), styleStart, position, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                		updateNoteContent(xmlButton.isChecked());
+                		updateNoteContent(xmlOn);
                 	}
                 	if (emButton.isChecked()){
                 		StyleSpan[] ss = s.getSpans(styleStart, position, StyleSpan.class);
@@ -691,7 +748,7 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
                 			}
                         }
                 		s.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), styleStart, position, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                		updateNoteContent(xmlButton.isChecked());
+                		updateNoteContent(xmlOn);
                 	}
         		}
         		
@@ -745,7 +802,7 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
             }
         	if(size != 1.0f) {
         		str.setSpan(new RelativeSizeSpan(size), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-    			updateNoteContent(xmlButton.isChecked());
+    			updateNoteContent(xmlOn);
         	}
     	}
     }	

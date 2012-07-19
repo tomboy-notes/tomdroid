@@ -22,7 +22,12 @@
  along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-	                        
+	<PreferenceCategory android:title="@string/prefText">
+   		<EditTextPreference android:key="base_text_size"
+						android:title="@string/prefBaseSize"
+						android:shouldDisableView="true"
+						android:singleLine="true"/>
+    </PreferenceCategory>	                        
 	<PreferenceCategory android:title="@string/prefSync">
 		
 		<ListPreference android:title="@string/prefSyncService"

@@ -61,12 +61,6 @@ public class Search extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.search);
-	    
-		title = (TextView) findViewById(R.id.title);
-		title.setTextColor(Color.DKGRAY);
-		title.setTextSize(18.0f);
-		title.setText((CharSequence) getString(R.string.SearchResultTitle));
-	    	    
 	    handleIntent(getIntent());
 	}
 

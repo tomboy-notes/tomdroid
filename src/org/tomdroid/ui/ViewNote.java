@@ -54,6 +54,7 @@ import org.tomdroid.sync.SyncManager;
 import org.tomdroid.util.LinkifyPhone;
 import org.tomdroid.util.NoteContentBuilder;
 import org.tomdroid.util.NoteViewShortcutsHelper;
+import org.tomdroid.util.Preferences;
 import org.tomdroid.util.Send;
 import org.tomdroid.util.TLog;
 
@@ -89,36 +90,16 @@ public class ViewNote extends Activity {
 
 		setContentView(R.layout.note_view);
 		content = (TextView) findViewById(R.id.content);
-		content.setBackgroundColor(0xffffffff);
-		content.setTextColor(Color.DKGRAY);
-		content.setTextSize(18.0f);
 		title = (TextView) findViewById(R.id.title);
-		title.setTextColor(Color.DKGRAY);
-		title.setBackgroundColor(0xffffffff);
-		title.setTextSize(24.0f);
+		
+		// this we will call on resume as well.
+		updateTextAttributes();
 		
 		int api = Integer.parseInt(Build.VERSION.SDK);
 		
 		if (api >= 11) {
 			content.setTextIsSelectable(true);
 		}
-		
-		final ImageView editButton = (ImageView) findViewById(R.id.edit);
-		editButton.setOnClickListener(new View.OnClickListener() {
-
-			public void onClick(View v) {
-				startEditNote();
-			}
-		});
-		
-		final ImageView deleteButton = (ImageView) findViewById(R.id.delete);        
-		deleteButton.setOnClickListener(new View.OnClickListener() {
-
-			public void onClick(View v) {
-				deleteNote();
-			}
-		});
-		
 		
         uri = getIntent().getData();
 
@@ -187,9 +168,22 @@ public class ViewNote extends Activity {
 		SyncManager.setActivity(this);
 		SyncManager.setHandler(this.syncMessageHandler);
 		handleNoteUri(uri);
+		updateTextAttributes();
 		showNote();
 	}
+	
+	private void updateTextAttributes() {
+		float baseSize = Float.parseFloat(Preferences.getString(Preferences.Key.BASE_TEXT_SIZE));
+		content.setTextSize(baseSize);
+		title.setTextSize(baseSize*1.3f);
 
+		title.setTextColor(Color.DKGRAY);
+		title.setBackgroundColor(0xffffffff);
+
+		content.setBackgroundColor(0xffffffff);
+		content.setTextColor(Color.DKGRAY);		
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -203,9 +197,17 @@ public class ViewNote extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-
+			case R.id.menuPrefs:
+				startActivity(new Intent(this, PreferencesActivity.class));
+				return true;
 			case R.id.view_note_send:
 				(new Send(this, note)).send();
+				return true;
+			case R.id.view_note_edit:
+				startEditNote();
+				return true;
+			case R.id.view_note_delete:
+				deleteNote();
 				return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -299,7 +301,8 @@ public class ViewNote extends Activity {
 
 			do {
 				title = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
-
+				if(title.length() == 0)
+					continue;
 				// Pattern.quote() here make sure that special characters in the note's title are properly escaped
 				sb.append("("+Pattern.quote(title)+")|");
 

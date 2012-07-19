@@ -50,6 +50,8 @@
 	<!-- note-view.xml -->
 	<string name="strWait">Please wait while note loads...</string>
 	
+	<string name="prefText">Text Preferences</string>
+	<string name="prefBaseSize">Base Font Size</string>
 	<string name="prefSync">Synchronisation</string>
 	<string name="prefSyncService">Service</string>
 	<string name="prefSyncServer">Server</string>
@@ -125,14 +127,14 @@
 	<string name="no">No</string>
 		
 	<!-- newNote -->
-	<string name="menuNew">New Note</string>
+	<string name="menuNew">New</string>
 	<string name="NewNoteTitle"></string>
 	<string name="NewNoteTitleHint">Enter title here</string>
 	<string name="NewNoteBodyHint">Enter note here</string>
 			
 	<!-- editNote -->
-	<string name="edit">Edit Note</string>
-	<string name="save">Save Note</string>
+	<string name="edit">Edit</string>
+	<string name="save">Save</string>
 	<string name="back">Back</string>
 	<string name="bold">B</string>
 	<string name="italic">I</string>
@@ -141,10 +143,21 @@
 	<string name="mono">mono</string>
 	<string name="highlight"></string>
 	<string name="size">size</string>
-	<string name="xml">&lt;/&gt;</string>
+	<string name="xml">XML</string>
+	<string name="text">Text</string>
 	<string name="titleErrorParsingXML">Error parsing note</string>
 	<string name="messageErrorParsingXML">There was an error parsing the note.  Please check your XML.</string>
-					
+
+	<!-- New Titles -->
+	<string name="view_title">Tomdroid - View Note</string>
+	<string name="edit_title">Tomdroid - Edit Note</string>
+	<string name="search_title">Tomdroid - Search Results</string>
+	<string name="shortcut_title">Tomdroid - Shortcuts</string>
+	
+	<!-- new prefs -->
+	<string name="illegalTextSize">Illegal text size chosen.  Please choose a number.</string>
+	
+						
 	<!-- syncNotes -->
 	
 	<string name="messageSyncNoteDeleted">Note deleted from %1$s successfully.</string>

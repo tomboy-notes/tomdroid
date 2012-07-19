@@ -46,7 +46,9 @@ public class Preferences {
 		REQUEST_TOKEN_URL ("request_token_url", ""),
 		LATEST_SYNC_REVISION ("latest_sync_revision", 0L),
 		SORT_ORDER ("sort_order", "sort_date"),
-		FIRST_RUN ("first_run", true);
+		FIRST_RUN ("first_run", true),
+		
+		BASE_TEXT_SIZE("base_text_size","18");
 		
 		private String name = "";
 		private Object defaultValue = "";
