@@ -29,24 +29,27 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
+import android.text.format.Time;
 import android.widget.ListAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.NoteListCursorAdapter;
+import org.tomdroid.util.Preferences;
 import org.tomdroid.util.TLog;
 import org.tomdroid.util.XmlUtils;
 
+import java.lang.reflect.Array;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.Date;
-import java.text.SimpleDateFormat;
-import java.text.ParseException;
 
 public class NoteManager {
 	
-	public static final String[] FULL_PROJECTION = { Note.ID, Note.TITLE, Note.FILE, Note.NOTE_CONTENT, Note.MODIFIED_DATE, Note.GUID };
-	public static final String[] LIST_PROJECTION = { Note.ID, Note.TITLE, Note.MODIFIED_DATE };
+	public static final String[] FULL_PROJECTION = { Note.ID, Note.TITLE, Note.FILE, Note.NOTE_CONTENT, Note.MODIFIED_DATE, Note.GUID, Note.TAGS };
+	public static final String[] LIST_PROJECTION = { Note.ID, Note.TITLE, Note.MODIFIED_DATE, Note.TAGS };
+	public static final String[] DATE_PROJECTION = { Note.ID, Note.GUID, Note.MODIFIED_DATE };
 	public static final String[] TITLE_PROJECTION = { Note.TITLE };
 	public static final String[] GUID_PROJECTION = { Note.ID, Note.GUID };
 	public static final String[] ID_PROJECTION = { Note.ID };
@@ -69,12 +72,16 @@ public class NoteManager {
 			cursor.moveToFirst();
 			String noteContent = cursor.getString(cursor.getColumnIndexOrThrow(Note.NOTE_CONTENT));
 			String noteTitle = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
+			String noteChangeDate = cursor.getString(cursor.getColumnIndexOrThrow(Note.MODIFIED_DATE));
+			String noteTags = cursor.getString(cursor.getColumnIndexOrThrow(Note.TAGS));
 			String noteGUID = cursor.getString(cursor.getColumnIndexOrThrow(Note.GUID));
 			int noteDbid = cursor.getInt(cursor.getColumnIndexOrThrow(Note.ID));
 			
 			note = new Note();
 			note.setTitle(noteTitle);
 			note.setXmlContent(stripTitleFromContent(noteContent, noteTitle));
+			note.setLastChangeDate(noteChangeDate);
+			note.addTag(noteTags);
 			note.setGuid(noteGUID);
 			note.setDbId(noteDbid);
 		}
@@ -84,7 +91,7 @@ public class NoteManager {
 	
 	// puts a note in the content provider
 	// return uri
-	public static Uri putNote(Activity activity, Note note) {
+	public static Uri putNote(Activity activity, Note note, boolean push) {
 		
 		// verify if the note is already in the content provider
 		
@@ -126,20 +133,66 @@ public class NoteManager {
                     note.getGuid());
 		} else {
 			
+			TLog.v(TAG, "A local note has been detected (already in db)");
+
 			managedCursor.moveToFirst();
-
-			TLog.v(TAG, "An old note has been detected (already in db)");
-
 			uri = Uri.parse(Tomdroid.CONTENT_URI + "/" + managedCursor.getString(managedCursor.getColumnIndexOrThrow(Note.ID)));
 			
-			cr.update(Tomdroid.CONTENT_URI, values, Note.GUID+" = ?", whereArgs);
+			// check date difference
 			
-			TLog.v(TAG, "Note updated in content provider. TITLE:{0} GUID:{1}", note.getTitle(),
-                    note.getGuid());
+			String oldDateString = managedCursor.getString(managedCursor.getColumnIndexOrThrow(Note.MODIFIED_DATE));
+			Time oldDate = new Time();
+			oldDate.parse3339(oldDateString);
+			int compared = Time.compare(oldDate, note.getLastChangeDate());
+			
+			if(compared > 0) { 
+				if(push) { 
+					note = getNote(activity,uri);
+					
+					/* pushing local changes, reject older incoming note.
+					 * If the local counterpart has the tag "system:deleted", delete from both local and remote.
+					 * Otherwise, push local to remote.
+					 */
+					
+					if(note.getTags().contains("system:deleted")) {
+						TLog.v(TAG, "local note is deleted, deleting from server TITLE:{0} GUID:{1}", note.getTitle(),note.getGuid());
+						SyncManager.getInstance().deleteNote(note.getGuid()); // delete from remote
+						deleteNote(activity,note.getDbId()); // really delete locally
+					}
+					else {
+						TLog.v(TAG, "local note is newer, sending new version TITLE:{0} GUID:{1}", note.getTitle(),note.getGuid());
+						SyncManager.getInstance().pushNote(note);
+					}
+				}
+				else // ignore newer local note, overwrite with remote
+					cr.update(Tomdroid.CONTENT_URI, values, Note.GUID+" = ?", whereArgs);
+			}
+			else if(compared < 0) {
+				cr.update(Tomdroid.CONTENT_URI, values, Note.GUID+" = ?", whereArgs);
+				
+				TLog.v(TAG, "Local note is older, updated in content provider TITLE:{0} GUID:{1}", note.getTitle(), note.getGuid());
+			}
+			else {
+				TLog.v(TAG, "Local note is same date, skipped: TITLE:{0} GUID:{1}", note.getTitle(), note.getGuid());
+			}
 		}
 		return uri;
 	}
 	
+	// this function just adds a "deleted" tag, to allow remote delete when syncing
+	
+	public static void deleteNote(Activity activity, Note note)
+	{
+		note.addTag("system:deleted");
+		Time now = new Time();
+		now.setToNow();
+		note.setLastChangeDate(now);
+		putNote(activity,note, false);		
+		Toast.makeText(activity, activity.getString(R.string.messageNoteDeleted), Toast.LENGTH_SHORT).show();
+	}
+
+	// this function actually deletes the note locally, called when syncing
+
 	public static boolean deleteNote(Activity activity, int id)
 	{
 		Uri uri = Uri.parse(Tomdroid.CONTENT_URI+"/"+id);
@@ -153,14 +206,14 @@ public class NoteManager {
 		else 
 			return false;
 	}
-	
+
 	public static Cursor getAllNotes(Activity activity, Boolean includeNotebookTemplates) {
 		// get a cursor representing all notes from the NoteProvider
 		Uri notes = Tomdroid.CONTENT_URI;
-		String where = null;
+		String where = Note.TAGS + " NOT LIKE '%" + "system:deleted" + "%'";
 		String orderBy;
 		if (!includeNotebookTemplates) {
-			where = Note.TAGS + " NOT LIKE '%" + "system:template" + "%'";
+			where += Note.TAGS + " NOT LIKE '%" + "system:template" + "%'";
 		}
 		orderBy = Note.MODIFIED_DATE + " DESC";
 		return activity.managedQuery(notes, LIST_PROJECTION, where, null, orderBy);		
@@ -169,17 +222,13 @@ public class NoteManager {
 
 	public static ListAdapter getListAdapter(Activity activity, String querys) {
 		
-		String where;
-		if (querys==null) {
-			where=null;
-		} else {
+		String where = "(" + Note.TAGS + " NOT LIKE '%" + "system:deleted" + "%')";
+		if (querys != null ) {
 			// sql statements to search notes
 			String[] query = querys.split(" ");
-			where="";
 			int count=0;
 			for (String string : query) {
-				if (count>0) where = where + " AND ";
-				where = where + "("+Note.TITLE+" LIKE '%"+string+"%' OR "+Note.NOTE_CONTENT+" LIKE '%"+string+"%')";
+				where = where + " AND ("+Note.TITLE+" LIKE '%"+string+"%' OR "+Note.NOTE_CONTENT+" LIKE '%"+string+"%')";
 				count++;
 			}	
 		}
@@ -253,5 +302,16 @@ public class NoteManager {
 		}
 		
 		return xmlContent;
+	}
+	
+	/**
+	 * getNewNotes
+	 * get a guid list of notes that are newer than latest sync date 
+	 * @param activity
+	 */
+	public static Cursor getNewNotes(Activity activity) {
+		Cursor cursor = activity.managedQuery(Tomdroid.CONTENT_URI, DATE_PROJECTION, "strftime('%s', "+Note.MODIFIED_DATE+") > strftime('%s', '"+Preferences.getString(Preferences.Key.LATEST_SYNC_DATE)+"')", null, null);	
+				
+		return cursor;
 	}
 }

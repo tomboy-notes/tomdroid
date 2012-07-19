@@ -51,11 +51,6 @@ public class ShortcutActivity extends ListActivity {
         setListAdapter(adapter);
         getListView().setEmptyView(findViewById(R.id.list_empty));
 
-        findViewById(R.id.action_icon).setOnClickListener(new View.OnClickListener() {
-            public void onClick(final View view) {
-                Tomdroid.ViewList(ShortcutActivity.this);
-            }
-        });
     }
 
     @Override

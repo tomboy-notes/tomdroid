@@ -147,7 +147,9 @@
 	<string name="text">Text</string>
 	<string name="titleErrorParsingXML">Error parsing note</string>
 	<string name="messageErrorParsingXML">There was an error parsing the note.  Please check your XML.</string>
-
+	<string name="messageNoteSaved">Note saved locally.</string>
+	<string name="messageNoteDeleted">Note deleted locally.</string>
+		
 	<!-- New Titles -->
 	<string name="view_title">Tomdroid - View Note</string>
 	<string name="edit_title">Tomdroid - Edit Note</string>
@@ -160,6 +162,9 @@
 						
 	<!-- syncNotes -->
 	
+	<string name="push_changes_title">Push Changes</string>
+	<string name="push_changes_message">Push local changes?</string>
+
 	<string name="messageSyncNoteDeleted">Note deleted from %1$s successfully.</string>
 	<string name="messageSyncNotePushed">Note sent to %1$s successfully.</string>
 	<string name="messageSyncNoteDeleteError">Error deleting note from %1$s.</string>

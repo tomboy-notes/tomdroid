@@ -47,6 +47,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
@@ -223,10 +225,8 @@ public class ViewNote extends Activity {
 
             public void onClick(DialogInterface dialog, int which) {
         		String guid = note.getGuid();
-        		NoteManager.deleteNote(activity, note.getDbId());
-        		
-        		// delete note from server
-        		SyncManager.getInstance().deleteNote(guid);
+        		NoteManager.deleteNote(activity, note);
+        		Toast.makeText(activity, getString(R.string.messageNoteDeleted), Toast.LENGTH_SHORT).show();
         		activity.finish();
             }
 

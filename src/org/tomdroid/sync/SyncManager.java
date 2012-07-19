@@ -57,10 +57,10 @@ public class SyncManager {
 		return null;
 	}
 	
-	public void startSynchronization() {
+	public void startSynchronization(boolean push) {
 		
 		SyncService service = getCurrentService();
-		service.startSynchronization();
+		service.startSynchronization(push);
 	}
 	
 	public SyncService getCurrentService() {

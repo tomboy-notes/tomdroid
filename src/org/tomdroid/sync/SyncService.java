@@ -26,12 +26,14 @@ package org.tomdroid.sync;
 
 import android.app.Activity;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.Toast;
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
+import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.ErrorList;
 import org.tomdroid.util.TLog;
 
@@ -76,7 +78,7 @@ public abstract class SyncService {
 		pool = Executors.newFixedThreadPool(poolSize);
 	}
 
-	public void startSynchronization() {
+	public void startSynchronization(boolean push) {
 		
 		if (syncProgress != 100){
 			Toast.makeText(activity, activity.getString(R.string.messageSyncAlreadyInProgress), Toast.LENGTH_SHORT).show();
@@ -84,10 +86,10 @@ public abstract class SyncService {
 		}
 		
 		syncErrors = new ErrorList();
-		sync();
+		sync(push);
 	}
 	
-	protected abstract void sync();
+	protected abstract void sync(boolean push);
 	public abstract boolean needsServer();
 	public abstract boolean needsLocation();
 	public abstract boolean needsAuth();
@@ -143,8 +145,8 @@ public abstract class SyncService {
 	 * @param note The note to insert.
 	 */
 	
-	protected void insertNote(Note note) {
-		NoteManager.putNote(this.activity, note);
+	protected void insertNote(Note note, boolean force) {
+		NoteManager.putNote(this.activity, note, force);
 	}
 	
 	/**
@@ -171,6 +173,42 @@ public abstract class SyncService {
 				if(!remoteGuids.contains(localGuid)) {
 					int id = localGuids.getInt(localGuids.getColumnIndexOrThrow(Note.ID));
 					NoteManager.deleteNote(this.activity, id);
+				}
+				
+			} while (localGuids.moveToNext());
+			
+		} else {
+			
+			// TODO send an error to the user
+			TLog.d(TAG, "Cursor returned null or 0 notes");
+		}
+	}
+
+	/**
+	 * Add notes from the content provider. The guids passed identify the notes existing
+	 * on the remote end (ie. that shouldn't be added).
+	 * 
+	 * @param remoteGuids The notes NOT to add.
+	 */
+	
+	protected void pushNotes(ArrayList<String> remoteGuids) {
+		
+		Cursor localGuids = NoteManager.getGuids(this.activity);
+		
+		// cursor must not be null and must return more than 0 entry 
+		if (!(localGuids == null || localGuids.getCount() == 0)) {
+			
+			String localGuid;
+			
+			localGuids.moveToFirst();
+			
+			do {
+				localGuid = localGuids.getString(localGuids.getColumnIndexOrThrow(Note.GUID));
+				
+				if(!remoteGuids.contains(localGuid)) {
+					int id = localGuids.getInt(localGuids.getColumnIndexOrThrow(Note.ID));
+					Note note = NoteManager.getNote(this.activity, Uri.parse(Tomdroid.CONTENT_URI + "/" + id));
+					SyncManager.getInstance().pushNote(note);
 				}
 				
 			} while (localGuids.moveToNext());

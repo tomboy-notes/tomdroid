@@ -26,6 +26,8 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
+import android.text.format.Time;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -119,7 +121,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 
 					if (result) {
 						TLog.i(TAG, "The authorization process is complete.");
-						sync();
+						//sync();
 					} else {
 						TLog.e(TAG, "Something went wrong during the authorization process.");
 					}
@@ -141,7 +143,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 	
 
 	@Override
-	protected void sync() {
+	protected void sync(final boolean push) {
 		
 		// start loading snowy notes
 		setSyncProgress(0);
@@ -181,14 +183,18 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						JSONArray notes = response.getJSONArray("notes");
 						setSyncProgress(60);
 						
-						// Delete the notes that are not in the database
+						// Delete or push the notes that are not in the database
 						ArrayList<String> remoteGuids = new ArrayList<String>();
 
 						for (int i = 0; i < notes.length(); i++) {
 							remoteGuids.add(notes.getJSONObject(i).getString("guid"));
 						}
-
-						deleteNotes(remoteGuids);
+						
+						if(push)
+							pushNotes(remoteGuids);
+						else
+							deleteNotes(remoteGuids);
+						
 						setSyncProgress(70);
 
 						TLog.v(TAG, "number of notes: {0}", notes.length());
@@ -203,7 +209,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 							
 							try {
 								jsonNote = notes.getJSONObject(i);
-								insertNote(new Note(jsonNote));
+								insertNote(new Note(jsonNote),push);
 							} catch (JSONException e) {
 								TLog.e(TAG, e, "Problem parsing the server response");
 								String json = (jsonNote != null) ? jsonNote.toString(2) : rawResponse;
@@ -214,11 +220,16 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						if(notes.length()>0) {
 							// Editor comment: do all but one? can someone clarify?
 							JSONObject jsonNote = notes.getJSONObject(notes.length() - 1);
-							insertNote(new Note(jsonNote));
+							insertNote(new Note(jsonNote), push);
 						}
 
-						Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, response
-								.getLong("latest-sync-revision"));
+						Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, response.getLong("latest-sync-revision"));
+						
+						Time now = new Time();
+						now.setToNow();
+						String nowString = now.format3339(false);
+						
+						Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, nowString);
 						
 					} catch (JSONException e) {
 						TLog.e(TAG, e, "Problem parsing the server response");
@@ -243,6 +254,8 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 	
 	private OAuthConnection getAuthConnection() {
 		
+		// TODO: there needs to be a way to reset these values, otherwise cannot change server!
+		
 		OAuthConnection auth = new OAuthConnection();
 		
 		auth.accessToken = Preferences.getString(Preferences.Key.ACCESS_TOKEN);
@@ -262,52 +275,45 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 	// new methods to T Edit
 
 	@Override
-	protected void pushNote(Note noteIn){
-		final Note note = noteIn;
-		
+	protected void pushNote(final Note note){
+		final String userRef = Preferences.getString(Preferences.Key.SYNC_SERVER_USER_API);
+
 		syncInThread(new Runnable() {		
 			public void run() {
 				OAuthConnection auth = getAuthConnection();
 				try {
 					TLog.v(TAG, "putting note to server");
-					String userRef = Preferences.getString(Preferences.Key.SYNC_SERVER_USER_API);
 					String rawResponse = auth.get(userRef);
-		
 					try {
 						TLog.v(TAG, "creating JSON");
-						JSONObject data=new JSONObject();
-						data.put("latest-sync-revision",Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION)+1);
-		
-						JSONArray notesJ = new JSONArray();
-		
-						JSONObject noteJ=new JSONObject();
-						noteJ.put("guid", note.getGuid());
-						noteJ.put("title",note.getTitle());
-						noteJ.put ("note-content",note.getXmlContent());
-						noteJ.put ("note-content-version","0.1");
-						
 
-						noteJ.put ("last-change-date", note.getLastChangeDate().format3339(false));
-						
-						notesJ.put(noteJ);
-						data.put("note-changes",notesJ);
-		
-						JSONObject response = new JSONObject(rawResponse);
-		
+						JSONObject data = new JSONObject();
+						data.put("latest-sync-revision",Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION)+1);
+						JSONArray Jnotes = new JSONArray();
+						JSONObject Jnote=new JSONObject();
+						Jnote.put("guid", note.getGuid());
+						Jnote.put("title",note.getTitle());
+						Jnote.put ("note-content",note.getXmlContent());
+						Jnote.put ("note-content-version","0.1");
+						Jnote.put ("last-change-date", note.getLastChangeDate().format3339(false));
+						Jnotes.put(Jnote);
+						data.put("note-changes",Jnotes);
+
 						TLog.v(TAG, "request data: {0}",rawResponse);
+
+						TLog.v(TAG, "put data: {0}",data.toString());
+						
+						JSONObject response = new JSONObject(rawResponse);
 		
 						String notesUrl = response.getJSONObject("notes-ref").getString("api-ref");
 		
-		
 						TLog.v(TAG, "put url: {0}", notesUrl);
-		
-						TLog.v(TAG, "put data: {0}",data.toString());
 						
 						response = new JSONObject(auth.put(notesUrl,data.toString()));
 						
 						TLog.v(TAG, "put response: {0}",response.toString());
-						Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, response
-								.getLong("latest-sync-revision"));
+
+						Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, response.getLong("latest-sync-revision"));
 					} 
 					catch (JSONException e) {
 						TLog.e(TAG, e, "Problem parsing the server response");
@@ -325,8 +331,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 		});
 	}
 	@Override
-	protected void deleteNote(String guidIn){
-		final String guid = guidIn;
+	protected void deleteNote(final String guid){
 		
 		syncInThread(new Runnable() {		
 			public void run() {		

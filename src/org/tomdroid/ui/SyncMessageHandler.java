@@ -30,6 +30,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Handler;
 import android.os.Message;
+import android.view.Menu;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -155,7 +156,7 @@ public class SyncMessageHandler extends Handler {
 	}
 
 	private void onSynchronizationDone() {
-		ImageView syncButton = (ImageView) activity.findViewById(R.id.sync);
+/*		ImageView syncButton = (ImageView) activity.findViewById(R.id.sync);
 		ImageView syncIcon = (ImageView) activity.findViewById(R.id.syncIcon);
 
 		syncButton.setClickable(true);
@@ -163,11 +164,11 @@ public class SyncMessageHandler extends Handler {
 
 		View dot = activity.findViewById(R.id.sync_dot);
 		dot.setVisibility(View.INVISIBLE);
-		dot.getAnimation().setRepeatCount(0);
+		dot.getAnimation().setRepeatCount(0);*/
 	}
 
 	private void onSynchronizationStarted() {
-		ImageView syncButton = (ImageView) activity.findViewById(R.id.sync);
+/*		ImageView syncButton = (ImageView) activity.findViewById(R.id.sync);
 		ImageView syncIcon = (ImageView) activity.findViewById(R.id.syncIcon);
 
 		syncButton.setClickable(false);
@@ -176,7 +177,7 @@ public class SyncMessageHandler extends Handler {
 		Animation pulse = AnimationUtils.loadAnimation(activity, R.anim.pulse);
 		View dot = activity.findViewById(R.id.sync_dot);
 		dot.setVisibility(View.VISIBLE);
-		dot.startAnimation(pulse);
+		dot.startAnimation(pulse);*/
 	}
 	
 	private void refreshActivity() {

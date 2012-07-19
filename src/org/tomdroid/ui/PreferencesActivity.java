@@ -333,7 +333,7 @@ public class PreferencesActivity extends PreferenceActivity {
 		
 		// add a first explanatory note
 		// TODO this will be problematic with two-way sync
-		NoteManager.putNote(this, FirstNote.createFirstNote());
+		NoteManager.putNote(this, FirstNote.createFirstNote(), false);
 	}
 	
 	/**

@@ -98,9 +98,16 @@ public class Note {
 			}
 		}
 	}
-	
+
 	public String getTags() {
 		return tags;
+	}
+	
+	public void addTag(String tag) {
+		if(tags.length() > 0)
+			this.tags = this.tags+","+tag;
+		else
+			this.tags = tag;
 	}
 
 	public String getUrl() {

@@ -87,7 +87,7 @@ public class SdCardSyncService extends SyncService {
 	}
 
 	@Override
-	protected void sync() {
+	protected void sync(boolean push) {
 
 		setSyncProgress(0);
 
@@ -120,25 +120,28 @@ public class SdCardSyncService extends SyncService {
 			return;
 		}
 		
-		// Delete the notes that are not in the folder any more
+		// Delete or push the notes that are not in the folder any more
 		ArrayList<String> remoteGuids = new ArrayList<String>();
 
 		for (int i = 0; i < fileList.length; i++) {
 			// make a list with all note guids stored in filenames
 			remoteGuids.add(fileList[i].getName().replace(".note", ""));
 		}
-		deleteNotes(remoteGuids);
+		if(push)
+			pushNotes(remoteGuids);
+		else
+			deleteNotes(remoteGuids);
 		
 		// every but the last note
 		for(int i = 0; i < fileList.length-1; i++) {
 			// TODO better progress reporting from within the workers
 			
 			// give a filename to a thread and ask to parse it
-			syncInThread(new Worker(fileList[i], false));
+			syncInThread(new Worker(fileList[i], false, push));
         }
 		
 		// last task, warn it so it'll warn UI when done
-		syncInThread(new Worker(fileList[fileList.length-1], true));
+		syncInThread(new Worker(fileList[fileList.length-1], true, push));
 	}
 	
 	/**
@@ -163,10 +166,11 @@ public class SdCardSyncService extends SyncService {
 		private File file;
 		private boolean isLast;
 		final char[] buffer = new char[0x1000];
-		
-		public Worker(File f, boolean isLast) {
+		final boolean push;
+		public Worker(File f, boolean isLast, boolean push) {
 			file = f;
 			this.isLast = isLast;
+			this.push = push;
 		}
 
 		public void run() {
@@ -231,7 +235,7 @@ public class SdCardSyncService extends SyncService {
 				return;
 			}
 			
-			insertNote(note);
+			insertNote(note, push);
 			onWorkDone();
 		}
 		

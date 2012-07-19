@@ -82,6 +82,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 // TODO this class is starting to smell
@@ -490,13 +491,8 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 		now.setToNow();
 		String time = now.format3339(false);
 		note.setLastChangeDate(time);
-
-		NoteManager.putNote( this, note );
-		noteContent = note.getNoteContent(noteXMLParseHandler);
-		
-		// put note to server
-		
-		SyncManager.getInstance().pushNote(note);
+		NoteManager.putNote( this, note, false);
+		Toast.makeText(this, getString(R.string.messageNoteSaved), Toast.LENGTH_SHORT).show();
 
 	}
 

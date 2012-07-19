@@ -58,6 +58,8 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import org.tomdroid.util.TLog;
 
 public class Tomdroid extends ListActivity {
@@ -109,7 +111,7 @@ public class Tomdroid extends ListActivity {
 			TLog.i(TAG, "Tomdroid is first run.");
 			
 			// add a first explanatory note
-			NoteManager.putNote(this, FirstNote.createFirstNote());
+			NoteManager.putNote(this, FirstNote.createFirstNote(), false);
 			
 			// Warn that this is a "will eat your babies" release
 			new AlertDialog.Builder(this).setMessage(getString(R.string.strWelcome)).setTitle(
@@ -149,7 +151,25 @@ public class Tomdroid extends ListActivity {
 				showAboutDialog();
 				return true;
 			case R.id.menuSync:
-				SyncManager.getInstance().startSynchronization();
+				if(NoteManager.getNewNotes(this).getCount() > 0) {
+					new AlertDialog.Builder(this)
+			        .setIcon(android.R.drawable.ic_dialog_alert)
+			        .setTitle(R.string.push_changes_title)
+			        .setMessage(R.string.push_changes_message)
+			        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+			            public void onClick(DialogInterface dialog, int which) {
+							SyncManager.getInstance().startSynchronization(true);
+			            }
+			        })
+			        .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+			            public void onClick(DialogInterface dialog, int which) {
+							SyncManager.getInstance().startSynchronization(false);
+			            }
+			        })
+			        .show();
+				}
+				else
+					SyncManager.getInstance().startSynchronization(false);
 				return true;
 			case R.id.menuNew:
 				newNote();
@@ -296,11 +316,7 @@ public class Tomdroid extends ListActivity {
 		// add a new note
 		
 		Note note = NewNote.createNewNote(this);
-		Uri uri = NoteManager.putNote(this, note);
-
-		// put note to server
-		
-		SyncManager.getInstance().pushNote(note);
+		Uri uri = NoteManager.putNote(this, note, false);
 
 		// view new note
 		
@@ -321,12 +337,8 @@ public class Tomdroid extends ListActivity {
         .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int which) {
-        		String guid = note.getGuid();
-        		NoteManager.deleteNote(activity, note.getDbId());
-        		
-        		// delete note from server
-        		SyncManager.getInstance().deleteNote(guid);
-            }
+        		NoteManager.deleteNote(activity, note);
+           }
 
         })
         .setNegativeButton(R.string.no, null)

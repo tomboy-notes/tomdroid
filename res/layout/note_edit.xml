@@ -105,41 +105,35 @@
 	</LinearLayout>
 
 	<ScrollView 
-			android:id="@+id/textScroller"
-			android:layout_width="fill_parent"
-			android:layout_height="fill_parent"
-			android:background="#ffffffff"
-			>			
+		android:id="@+id/textScroller"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="#ffffffff"
+		>			
 		<LinearLayout 
 			android:id="@+id/LinearLayout01" 
 			android:orientation="vertical"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content">
-		    
-	
 			<EditText 
-				  android:id="@+id/title"
-				  android:layout_width="match_parent" 
-				  android:layout_height="wrap_content"
-				  android:singleLine="true"
-				  android:inputType="textCapWords"
-				  android:hint="@string/NewNoteTitleHint"
-				  android:padding="10dip"
-				  android:textCursorDrawable="@null"
-				  android:textColor="#ffb8bcb8" />		
+				android:id="@+id/title"
+				android:layout_width="match_parent" 
+				android:layout_height="wrap_content"
+				android:singleLine="true"
+				android:inputType="textCapWords"
+				android:hint="@string/NewNoteTitleHint"
+				android:padding="10dip"
+				android:textCursorDrawable="@null"
+				android:textColor="#ffb8bcb8" />		
 			<EditText 
-			  android:id="@+id/content"
-			  android:layout_width="match_parent" 
-			  android:layout_height="match_parent"
-			  android:singleLine="false"
-			  android:linksClickable="false"
-			  android:hint="@string/NewNoteBodyHint"
-			  android:padding="10dip"
-			  android:textCursorDrawable="@null"
-			  android:textColor="#ffb8bcb8" />
-			
-					
-			
+				android:id="@+id/content"
+				android:layout_width="match_parent" 
+				android:layout_height="match_parent"
+				android:linksClickable="false"
+				android:hint="@string/NewNoteBodyHint"
+				android:padding="10dip"
+				android:textCursorDrawable="@null"
+				android:textColor="#ffb8bcb8" />
 		</LinearLayout>
 	</ScrollView>
 </LinearLayout>
