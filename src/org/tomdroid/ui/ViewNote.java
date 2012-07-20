@@ -96,13 +96,13 @@ public class ViewNote extends Activity {
 		
 		// this we will call on resume as well.
 		updateTextAttributes();
-		
+/*		
 		int api = Integer.parseInt(Build.VERSION.SDK);
 		
 		if (api >= 11) {
 			content.setTextIsSelectable(true);
 		}
-		
+		*/
         uri = getIntent().getData();
 
         if (uri == null) {

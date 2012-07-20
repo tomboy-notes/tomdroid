@@ -143,13 +143,13 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 		// add format bar listeners
 		
 		addFormatListeners();
-
+/*
 		int api = Integer.parseInt(Build.VERSION.SDK);
 		
 		if (api >= 11) {
 			content.setTextIsSelectable(true);
 		}
-		
+		*/
         uri = getIntent().getData();
 
         if (uri == null) {
