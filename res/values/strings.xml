@@ -137,11 +137,10 @@
 	<string name="save">Save</string>
 	<string name="back">Back</string>
 	<string name="bold">B</string>
-	<string name="italic">I</string>
-	<string name="underline"><u>U</u></string>
+	<string name="italic">i</string>
 	<string name="strike"><strike>S</strike></string>
-	<string name="mono">mono</string>
-	<string name="highlight"></string>
+	<string name="mono">monospace</string>
+	<string name="highlight">highlight</string>
 	<string name="size">size</string>
 	<string name="xml">XML</string>
 	<string name="text">Text</string>

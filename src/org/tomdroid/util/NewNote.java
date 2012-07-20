@@ -23,12 +23,7 @@
 package org.tomdroid.util;
 
 import org.tomdroid.Note;
-import org.tomdroid.R;
-
 import java.util.UUID;
-import java.util.Date;
-import java.text.SimpleDateFormat;
-
 import android.content.Context;
 import android.text.format.Time;
 

@@ -26,12 +26,9 @@ package org.tomdroid.sync.sd;
 
 import android.app.Activity;
 import android.os.Handler;
-import android.text.format.Time;
 import android.util.TimeFormatException;
-import android.widget.Toast;
-
-import org.json.JSONException;
 import org.tomdroid.Note;
+import org.tomdroid.NoteManager;
 import org.tomdroid.R;
 import org.tomdroid.sync.SyncService;
 import org.tomdroid.ui.Tomdroid;
@@ -50,8 +47,6 @@ import java.util.regex.Pattern;
 public class SdCardSyncService extends SyncService {
 	
 	private int numberOfFilesToSync = 0;
-	
-	// regexp for <note-content..>...</note-content>
 	private static Pattern note_content = Pattern.compile("<note-content[^>]+>(.*)<\\/note-content>", Pattern.CASE_INSENSITIVE+Pattern.DOTALL);
 	
 	// logging related
@@ -182,7 +177,7 @@ public class SdCardSyncService extends SyncService {
 			// Try reading the file first
 			String contents = "";
 			try {
-				contents = readFile();
+				contents = readFile(file,buffer);
 			} catch (IOException e) {
 				e.printStackTrace();
 				TLog.w(TAG, "Something went wrong trying to read the note");
@@ -220,9 +215,6 @@ public class SdCardSyncService extends SyncService {
 				onWorkDone();
 				return;
 			}
-
-			// extract the <note-content..>...</note-content>
-			TLog.d(TAG, "retrieving what is inside of note-content");
 			
 			// FIXME here we are re-reading the whole note just to grab note-content out, there is probably a best way to do this (I'm talking to you xmlpull.org!)
 			Matcher m = note_content.matcher(contents);
@@ -234,31 +226,18 @@ public class SdCardSyncService extends SyncService {
 				onWorkDone();
 				return;
 			}
-			
+
 			insertNote(note, push);
 			onWorkDone();
 		}
 		
-		private String readFile() throws IOException {
-			StringBuilder out = new StringBuilder();
-			
-			int read;
-			Reader reader = new InputStreamReader(new FileInputStream(file), "UTF-8");
-			
-			do {
-			  read = reader.read(buffer, 0, buffer.length);
-			  if (read > 0) {
-			    out.append(buffer, 0, read);
-			  }
-			}
-			while (read >= 0);
-			
-			reader.close();
-			return out.toString();
-		}
-		
 		private void onWorkDone(){
 			if (isLast) {
+
+				// delete leftover local deleted notes
+				
+				NoteManager.deleteDeletedNotes(activity);
+				
 				setSyncProgress(100);
 				sendMessage(PARSING_COMPLETE);
 			}
@@ -266,13 +245,29 @@ public class SdCardSyncService extends SyncService {
 				setSyncProgress((int) (getSyncProgress() + 100.0 / numberOfFilesToSync));			
 		}
 	}
+
+	private String readFile(File file, char[] buffer) throws IOException {
+		StringBuilder out = new StringBuilder();
+		
+		int read;
+		Reader reader = new InputStreamReader(new FileInputStream(file), "UTF-8");
+		
+		do {
+		  read = reader.read(buffer, 0, buffer.length);
+		  if (read > 0) {
+		    out.append(buffer, 0, read);
+		  }
+		}
+		while (read >= 0);
+		
+		reader.close();
+		return out.toString();
+	}
+	
 	@Override
 	protected void pushNote(Note note){
 		TLog.v(TAG, "pushing note to sdcard");
-		
-		// TODO: create-date
-		
-		String xmlOutput = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<note version=\"0.3\" xmlns:link=\"http://beatniksoftware.com/tomboy/link\" xmlns:size=\"http://beatniksoftware.com/tomboy/size\" xmlns=\"http://beatniksoftware.com/tomboy\">\n\t<title>"+note.getTitle()+"</title>\n\t<text xml:space=\"preserve\">"+note.getXmlContent()+"</text>\n\t<last-change-date>"+note.getLastChangeDate().format3339(false)+"</last-change-date>\n\t<last-metadata-change-date>"+note.getLastChangeDate().format3339(false)+"</last-metadata-change-date>\n\t<create-date>"+note.getLastChangeDate().format3339(false)+"</create-date>\n\t<cursor-position>0</cursor-position>\n\t<width>0</width>\n\t<height>0</height>\n\t<x>-1</x>\n\t<y>-1</y>\n\t<open-on-startup>False</open-on-startup>\n</note>";
+		Note rnote = new Note();
 		
 		try {
 
@@ -291,6 +286,67 @@ public class SdCardSyncService extends SyncService {
 			}
 			
 			path = new File(Tomdroid.NOTES_PATH + "/"+note.getGuid() + ".note");
+
+			String createDate = note.getLastChangeDate().format3339(false);
+			int cursorPos = 0;
+			int width = 0;
+			int height = 0;
+			int X = -1;
+			int Y = -1;
+			
+			if (path.exists()) { // update existing note
+
+				// Try reading the file first
+				String contents = "";
+				try {
+					final char[] buffer = new char[0x1000];
+					contents = readFile(path,buffer);
+				} catch (IOException e) {
+					e.printStackTrace();
+					TLog.w(TAG, "Something went wrong trying to read the note");
+					sendMessage(PARSING_FAILED, ErrorList.createError(note, e));
+					return;
+				}
+
+				try {
+					// Parsing
+			    	// XML 
+			    	// Get a SAXParser from the SAXPArserFactory
+			        SAXParserFactory spf = SAXParserFactory.newInstance();
+			        SAXParser sp = spf.newSAXParser();
+			
+			        // Get the XMLReader of the SAXParser we created
+			        XMLReader xr = sp.getXMLReader();
+
+			        // Create a new ContentHandler, send it this note to fill and apply it to the XML-Reader
+			        NoteHandler xmlHandler = new NoteHandler(rnote);
+			        xr.setContentHandler(xmlHandler);
+
+			        // Create the proper input source
+			        StringReader sr = new StringReader(contents);
+			        InputSource is = new InputSource(sr);
+			        
+					TLog.d(TAG, "parsing note. filename: {0}", path.getName());
+					xr.parse(is);
+
+				// TODO wrap and throw a new exception here
+				} catch (Exception e) {
+					e.printStackTrace();
+					if(e instanceof TimeFormatException) TLog.e(TAG, "Problem parsing the note's date and time");
+					sendMessage(PARSING_FAILED, ErrorList.createErrorWithContents(note, e, contents));
+					return;
+				}
+
+				createDate = rnote.createDate.format3339(false);
+				cursorPos = rnote.cursorPos;
+				width = rnote.width;
+				height = rnote.height;
+				X = rnote.X;			
+				Y = rnote.Y;
+			}
+
+			// TODO: create-date
+			String xmlOutput = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<note version=\"0.3\" xmlns:link=\"http://beatniksoftware.com/tomboy/link\" xmlns:size=\"http://beatniksoftware.com/tomboy/size\" xmlns=\"http://beatniksoftware.com/tomboy\">\n\t<title>"+note.getTitle()+"</title>\n\t<text xml:space=\"preserve\">"+note.getXmlContent()+"</text>\n\t<last-change-date>"+note.getLastChangeDate().format3339(false)+"</last-change-date>\n\t<last-metadata-change-date>"+note.getLastChangeDate().format3339(false)+"</last-metadata-change-date>\n\t<create-date>"+createDate+"</create-date>\n\t<cursor-position>"+cursorPos+"</cursor-position>\n\t<width>"+width+"</width>\n\t<height>"+height+"</height>\n\t<x>"+X+"</x>\n\t<y>"+Y+"</y>\n\t<open-on-startup>False</open-on-startup>\n</note>";
 			
 			path.createNewFile();
 			FileOutputStream fOut = new FileOutputStream(path);

@@ -26,26 +26,22 @@ package org.tomdroid.ui;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.SpannableStringBuilder;
+import android.text.method.ScrollingMovementMethod;
 import android.text.util.Linkify;
 import android.text.util.Linkify.TransformFilter;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -93,16 +89,10 @@ public class ViewNote extends Activity {
 		setContentView(R.layout.note_view);
 		content = (TextView) findViewById(R.id.content);
 		title = (TextView) findViewById(R.id.title);
-		
+
 		// this we will call on resume as well.
 		updateTextAttributes();
-/*		
-		int api = Integer.parseInt(Build.VERSION.SDK);
-		
-		if (api >= 11) {
-			content.setTextIsSelectable(true);
-		}
-		*/
+
         uri = getIntent().getData();
 
         if (uri == null) {
@@ -183,7 +173,8 @@ public class ViewNote extends Activity {
 		title.setBackgroundColor(0xffffffff);
 
 		content.setBackgroundColor(0xffffffff);
-		content.setTextColor(Color.DKGRAY);		
+		content.setTextColor(Color.DKGRAY);
+		content.setMovementMethod(ScrollingMovementMethod.getInstance());
 	}
 	
 	@Override
@@ -224,7 +215,7 @@ public class ViewNote extends Activity {
         .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int which) {
-        		String guid = note.getGuid();
+        		note.getGuid();
         		NoteManager.deleteNote(activity, note);
         		Toast.makeText(activity, getString(R.string.messageNoteDeleted), Toast.LENGTH_SHORT).show();
         		activity.finish();

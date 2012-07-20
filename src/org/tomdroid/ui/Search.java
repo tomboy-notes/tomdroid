@@ -27,7 +27,6 @@ import android.app.ListActivity;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -47,8 +46,6 @@ public class Search extends ListActivity {
 	
 	// Logging info
 	private static final String	TAG					= "Tomdroid Search";
-	// UI elements
-	private TextView title;
 	// UI to data model glue
 	private TextView			listEmptyView;	
 	// UI feedback handler

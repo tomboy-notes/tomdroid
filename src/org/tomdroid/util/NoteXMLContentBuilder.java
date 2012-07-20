@@ -41,7 +41,6 @@ import android.text.style.RelativeSizeSpan;
 import android.text.style.StrikethroughSpan;
 import android.text.style.StyleSpan;
 import android.text.style.TypefaceSpan;
-import android.text.style.UnderlineSpan;
 import android.util.Log;
 
 public class NoteXMLContentBuilder implements Runnable {
@@ -56,8 +55,6 @@ public class NoteXMLContentBuilder implements Runnable {
 	
 	private final String TAG = "NoteBuilder";
 	
-	// thread related
-	private Thread runner;
 	private Handler parentHandler;
 	
 	public NoteXMLContentBuilder () {}

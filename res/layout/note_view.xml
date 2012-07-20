@@ -21,36 +21,34 @@
  You should have received a copy of the GNU General Public License
  along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
 	android:orientation="vertical"
+	android:id="@+id/view_parent"
 	>
-	<LinearLayout
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:orientation="vertical"
-		>
-    	<TextView 
-		  android:id="@+id/title"
-		  android:layout_width="fill_parent" 
-		  android:layout_height="50dip"
-		  android:text="@string/strWait"
-		  android:padding="10dip"
-		  android:textColor="#ffb8bcb8" />
-    </LinearLayout>	
-	<LinearLayout
-		android:layout_width="fill_parent"
-		android:layout_height="fill_parent"
-		android:orientation="vertical"
-		>
-		<TextView
-		    android:id="@+id/content"
-		    android:layout_width="fill_parent"
-		    android:layout_height="fill_parent"
-		    android:padding="10dip"
-		    android:singleLine="false"
-		    android:text="@string/strWait"
-		    android:textColor="#ffb8bcb8" />
-	</LinearLayout>
-</LinearLayout>
+   	<TextView 
+	  android:id="@+id/title"
+	  android:layout_width="fill_parent" 
+	  android:layout_height="wrap_content"
+	  android:padding="10dip"
+	  android:singleLine="true"
+	  android:text="@string/strWait"
+	  android:layout_alignParentTop="true"
+	  android:textColor="#ffb8bcb8" />
+	<TextView
+	    android:id="@+id/content"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_below="@id/title"
+	    android:padding="10dp"
+	    android:gravity="top"
+		android:text="@string/strWait"
+		android:textIsSelectable="true"
+		android:linksClickable="false"
+		android:width="0dip"
+		android:height="0dip"
+		android:scrollHorizontally="false"
+	    android:textColor="#ffb8bcb8" />
+   	
+</RelativeLayout>

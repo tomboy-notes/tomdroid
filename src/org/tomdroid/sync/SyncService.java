@@ -46,7 +46,7 @@ public abstract class SyncService {
 	
 	private static final String TAG = "SyncService";
 	
-	private Activity activity;
+	public Activity activity;
 	private final ExecutorService pool;
 	private final static int poolSize = 1;
 	
@@ -145,8 +145,8 @@ public abstract class SyncService {
 	 * @param note The note to insert.
 	 */
 	
-	protected void insertNote(Note note, boolean force) {
-		NoteManager.putNote(this.activity, note, force);
+	protected void insertNote(Note note, boolean push) {
+		NoteManager.putNote(this.activity, note, push);
 	}
 	
 	/**

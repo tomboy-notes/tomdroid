@@ -32,6 +32,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.tomdroid.Note;
+import org.tomdroid.NoteManager;
 import org.tomdroid.R;
 import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncService;
@@ -40,7 +41,6 @@ import org.tomdroid.util.Preferences;
 import org.tomdroid.util.TLog;
 
 import java.net.UnknownHostException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class SnowySyncService extends SyncService implements ServiceAuth {
@@ -222,6 +222,10 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 							JSONObject jsonNote = notes.getJSONObject(notes.length() - 1);
 							insertNote(new Note(jsonNote), push);
 						}
+						
+						// delete leftover local notes
+						
+						NoteManager.deleteDeletedNotes(activity);
 
 						Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, response.getLong("latest-sync-revision"));
 						

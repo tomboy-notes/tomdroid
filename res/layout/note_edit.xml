@@ -1,26 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 
- Tomdroid
- Tomboy on Android
- http://www.launchpad.net/tomdroid
 
- Copyright 2008, 2009 Olivier Bilodeau <olivier@bottomlesspit.org>
- 
- This file is part of Tomdroid.
- 
- Tomdroid is free software: you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 3 of the License, or
- (at your option) any later version.
- 
- Tomdroid is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
- 
- You should have received a copy of the GNU General Public License
- along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
--->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"
@@ -77,56 +56,51 @@
 			android:background="@drawable/button_toggle"
             android:layout_width="wrap_content"  
             android:layout_height="match_parent"
-            android:textSize="17dip"
+			android:contentDescription="@string/highlight"
             android:src="@drawable/highlight"
 			android:padding="8dip"
             />
-		<ToggleButton
+		<ImageButton
 			android:id="@+id/mono"
 			android:background="@drawable/button_toggle"
             android:layout_width="wrap_content"  
             android:layout_height="match_parent"
-            android:textSize="17dip"
-            android:textOn="@string/mono"
-            android:textOff="@string/mono"
-            android:typeface="monospace"
 			android:padding="8dip"
-            android:textColor="#464646" />		
-		<Button
+			android:contentDescription="@string/mono"
+            android:src="@drawable/mono"
+            />		
+		<ImageButton
 			android:id="@+id/size"
 			android:background="@drawable/button_toggle"
             android:layout_width="wrap_content"  
             android:layout_height="match_parent"
-            android:textSize="17dip"
-            android:text="@string/size"
 			android:padding="8dip"
-            android:textColor="#000000" /> 
+			android:contentDescription="@string/size"
+            android:src="@drawable/size"
+			/> 
 
 	</LinearLayout>
 
 	
-	<LinearLayout 
-		android:id="@+id/LinearLayout01" 
+	<RelativeLayout 
+		android:id="@+id/edit_parent" 
 		android:orientation="vertical"
 	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content">
+	    android:layout_height="fill_parent"
+	    >
 			<EditText 
 				android:id="@+id/title"
 				android:layout_width="match_parent" 
-				android:layout_height="50dip"
+				android:layout_height="wrap_content"
 				android:singleLine="true"
 				android:inputType="textCapWords"
 				android:hint="@string/NewNoteTitleHint"
 				android:padding="10dip"
 				android:textCursorDrawable="@null"
+				android:layout_alignParentTop="true"
 				android:textColor="#ffb8bcb8" />
-	</LinearLayout>		
-	<LinearLayout 
-		android:id="@+id/LinearLayout02" 
-		android:orientation="vertical"
-	    android:layout_width="fill_parent"
-	    android:layout_height="match_parent">
 			<EditText 
+				android:layout_below="@id/title"
 				android:id="@+id/content"
 				android:layout_width="match_parent" 
 				android:layout_height="match_parent"
@@ -134,6 +108,12 @@
 				android:hint="@string/NewNoteBodyHint"
 				android:padding="10dip"
 				android:textCursorDrawable="@null"
+				android:gravity="top"
+				android:singleLine="false"
+				android:inputType="textMultiLine"
+				android:width="0dip"
+				android:height="0dip"
+				android:scrollHorizontally="false"
 				android:textColor="#ffb8bcb8" />
-	</LinearLayout>
+	</RelativeLayout>
 </LinearLayout>

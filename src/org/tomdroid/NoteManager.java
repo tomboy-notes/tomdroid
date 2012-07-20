@@ -31,7 +31,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.text.format.Time;
 import android.widget.ListAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.tomdroid.sync.SyncManager;
@@ -41,7 +40,6 @@ import org.tomdroid.util.Preferences;
 import org.tomdroid.util.TLog;
 import org.tomdroid.util.XmlUtils;
 
-import java.lang.reflect.Array;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -173,6 +171,8 @@ public class NoteManager {
 				TLog.v(TAG, "Local note is older, updated in content provider TITLE:{0} GUID:{1}", note.getTitle(), note.getGuid());
 			}
 			else {
+				cr.update(Tomdroid.CONTENT_URI, values, Note.GUID+" = ?", whereArgs); // update anyway, for debugging
+
 				TLog.v(TAG, "Local note is same date, skipped: TITLE:{0} GUID:{1}", note.getTitle(), note.getGuid());
 			}
 		}
@@ -207,6 +207,18 @@ public class NoteManager {
 			return false;
 	}
 
+	// this function deletes deleted notes - if they never existed on the server, we still delete them at sync
+
+	public static void deleteDeletedNotes(Activity activity)
+	{
+		// get a cursor representing all deleted notes from the NoteProvider
+		Uri notes = Tomdroid.CONTENT_URI;
+		String where = Note.TAGS + " LIKE '%system:deleted%'";
+		ContentResolver cr = activity.getContentResolver();
+		int rows = cr.delete(notes, where, null);
+		TLog.v(TAG, "Deleted {0} local notes based on system:deleted tag",rows);
+	}
+
 	public static Cursor getAllNotes(Activity activity, Boolean includeNotebookTemplates) {
 		// get a cursor representing all notes from the NoteProvider
 		Uri notes = Tomdroid.CONTENT_URI;
@@ -226,10 +238,8 @@ public class NoteManager {
 		if (querys != null ) {
 			// sql statements to search notes
 			String[] query = querys.split(" ");
-			int count=0;
 			for (String string : query) {
 				where = where + " AND ("+Note.TITLE+" LIKE '%"+string+"%' OR "+Note.NOTE_CONTENT+" LIKE '%"+string+"%')";
-				count++;
 			}	
 		}
 

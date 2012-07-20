@@ -16,10 +16,7 @@ public class TextSizeDialog extends Dialog {
     }
 
     private OnSizeChangedListener mListener;
-	private int start;
-	private int end;
-
-    private static class TextSizeView extends View 
+	private static class TextSizeView extends View 
     {
         private Paint mPaint;
         private OnSizeChangedListener mListener;
@@ -84,9 +81,6 @@ public class TextSizeDialog extends Dialog {
     {
         super(context);
         
-        start = selStart;
-        end = selEnd;
-
         mListener = listener;
     }
 

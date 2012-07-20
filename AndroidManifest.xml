@@ -4,10 +4,15 @@
       android:versionName="0.5.0" android:versionCode="7">
 
 	<uses-sdk android:minSdkVersion="3"
-	          android:targetSdkVersion="3" />
+	          android:targetSdkVersion="10" />
           
-    <supports-screens android:anyDensity="true" />
-
+    <supports-screens android:resizeable="true"
+                      android:smallScreens="true"
+                      android:normalScreens="true"
+                      android:largeScreens="true"
+                      android:xlargeScreens="true"
+                      android:anyDensity="true"/>
+    
     <uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
@@ -41,12 +46,7 @@
         		  android:theme="@android:style/Theme.Holo"
         		  android:label="@string/view_title"
 		    >
-		    <intent-filter>
-			    <action android:name="android.intent.action.VIEW" />
-			    <category android:name="android.intent.category.DEFAULT" />
-			    <category android:name="android.intent.category.BROWSABLE" />
-			    <data android:mimeType="vnd.android.cursor.item/vnd.tomdroid.note" />
-			</intent-filter>
+
 		</activity>
 		<activity android:name=".ui.EditNote"
         		  android:theme="@android:style/Theme.Holo"

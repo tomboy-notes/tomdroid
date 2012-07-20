@@ -24,6 +24,9 @@
  */
 package org.tomdroid.ui;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
@@ -31,7 +34,9 @@ import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.sync.SyncService;
 import org.tomdroid.util.FirstNote;
+import org.tomdroid.util.LinkifyPhone;
 import org.tomdroid.util.NewNote;
+import org.tomdroid.util.NoteContentBuilder;
 import org.tomdroid.util.NoteViewShortcutsHelper;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.Send;
@@ -46,20 +51,22 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.text.SpannableStringBuilder;
+import android.text.util.Linkify;
+import android.text.util.Linkify.TransformFilter;
 import android.view.*;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView.AdapterContextMenuInfo;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import org.tomdroid.util.TLog;
 
 public class Tomdroid extends ListActivity {
@@ -70,6 +77,8 @@ public class Tomdroid extends ListActivity {
 	public static final String	CONTENT_TYPE		= "vnd.android.cursor.dir/vnd.tomdroid.note";
 	public static final String	CONTENT_ITEM_TYPE	= "vnd.android.cursor.item/vnd.tomdroid.note";
 	public static final String	PROJECT_HOMEPAGE	= "http://www.launchpad.net/tomdroid/";
+	public static final String CALLED_FROM_SHORTCUT_EXTRA = "org.tomdroid.CALLED_FROM_SHORTCUT";
+    public static final String SHORTCUT_NAME = "org.tomdroid.SHORTCUT_NAME";
 
 	// config parameters
 	public static String	NOTES_PATH				= null;
@@ -93,6 +102,18 @@ public class Tomdroid extends ListActivity {
 
 	// UI feedback handler
 	private Handler	syncMessageHandler	= new SyncMessageHandler(this);
+
+	// UI for tablet
+	private LinearLayout rightPane;
+	private TextView content;
+	private TextView title;
+	
+	// other tablet-based variables
+
+	private Note note;
+	private SpannableStringBuilder noteContent;
+	private Uri uri;
+	private int lastIndex = 0;
 	
 	/** Called when the activity is created. */
 	@Override
@@ -132,7 +153,190 @@ public class Tomdroid extends ListActivity {
 		getListView().setEmptyView(listEmptyView);
 		
 		registerForContextMenu(findViewById(android.R.id.list));
+		
+		// add note to pane for tablet
+		
+		rightPane = (LinearLayout) findViewById(R.id.right_pane);
+		
+		if(rightPane != null) {
+			content = (TextView) findViewById(R.id.content);
+			title = (TextView) findViewById(R.id.title);
+			
+			// this we will call on resume as well.
+			updateTextAttributes();
+			showNoteInPane(0);
+		}
 	}
+	private void updateTextAttributes() {
+		float baseSize = Float.parseFloat(Preferences.getString(Preferences.Key.BASE_TEXT_SIZE));
+		content.setTextSize(baseSize);
+		title.setTextSize(baseSize*1.3f);
+
+		title.setTextColor(Color.DKGRAY);
+		title.setBackgroundColor(0xffffffff);
+
+		content.setBackgroundColor(0xffffffff);
+		content.setTextColor(Color.DKGRAY);		
+	}
+	private void showNoteInPane(int position) {
+		if(rightPane == null)
+			return;
+		adapter = NoteManager.getListAdapter(this);
+		setListAdapter(adapter);
+		Cursor item = (Cursor) adapter.getItem(position);
+		long noteId = item.getInt(item.getColumnIndexOrThrow(Note.ID));	
+		uri = Uri.parse(CONTENT_URI + "/" + noteId);
+
+        note = NoteManager.getNote(this, uri);
+
+        if(note != null) {
+			title.setText((CharSequence) note.getTitle());
+            noteContent = note.getNoteContent(noteContentHandler);
+            showNote();
+        } else {
+            TLog.d(TAG, "The note {0} doesn't exist", uri);
+            showNoteNotFoundDialog(uri);
+	        }
+	}
+	private void showNote() {
+
+		// show the note (spannable makes the TextView able to output styled text)
+		content.setText(noteContent, TextView.BufferType.SPANNABLE);
+
+		// add links to stuff that is understood by Android except phone numbers because it's too aggressive
+		// TODO this is SLOWWWW!!!!
+		Linkify.addLinks(content, Linkify.EMAIL_ADDRESSES|Linkify.WEB_URLS|Linkify.MAP_ADDRESSES);
+
+		// Custom phone number linkifier (fixes lp:512204)
+		Linkify.addLinks(content, LinkifyPhone.PHONE_PATTERN, "tel:", LinkifyPhone.sPhoneNumberMatchFilter, Linkify.sPhoneNumberTransformFilter);
+
+		// This will create a link every time a note title is found in the text.
+		// The pattern contains a very dumb (title1)|(title2) escaped correctly
+		// Then we transform the url from the note name to the note id to avoid characters that mess up with the URI (ex: ?)
+		Linkify.addLinks(content,
+						 buildNoteLinkifyPattern(),
+						 Tomdroid.CONTENT_URI+"/",
+						 null,
+						 noteTitleTransformFilter);
+	}
+	private void showNoteNotFoundDialog(final Uri uri) {
+	    final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+	    addCommonNoteNotFoundDialogElements(builder);
+	    addShortcutNoteNotFoundElements(uri, builder);
+	    builder.show();
+	}
+	private void addShortcutNoteNotFoundElements(final Uri uri, final AlertDialog.Builder builder) {
+	    final boolean proposeShortcutRemoval;
+	    final boolean calledFromShortcut = getIntent().getBooleanExtra(CALLED_FROM_SHORTCUT_EXTRA, false);
+	    final String shortcutName = getIntent().getStringExtra(SHORTCUT_NAME);
+	    proposeShortcutRemoval = calledFromShortcut && uri != null && shortcutName != null;
+	
+	    if (proposeShortcutRemoval) {
+	        final Intent removeIntent = new NoteViewShortcutsHelper(this).getRemoveShortcutIntent(shortcutName, uri);
+	        builder.setPositiveButton(getString(R.string.btnRemoveShortcut), new OnClickListener() {
+	            public void onClick(final DialogInterface dialogInterface, final int i) {
+	                sendBroadcast(removeIntent);
+	                finish();
+	            }
+	        });
+	    }
+	}
+	
+	private void addCommonNoteNotFoundDialogElements(final AlertDialog.Builder builder) {
+	    builder.setMessage(getString(R.string.messageNoteNotFound))
+	            .setTitle(getString(R.string.titleNoteNotFound))
+	            .setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
+	                public void onClick(DialogInterface dialog, int which) {
+	                    dialog.dismiss();
+	                    finish();
+	                }
+	            });
+	}	
+	
+	private Handler noteContentHandler = new Handler() {
+	
+		@Override
+		public void handleMessage(Message msg) {
+	
+			//parsed ok - show
+			if(msg.what == NoteContentBuilder.PARSE_OK) {
+				showNote();
+	
+			//parsed not ok - error
+			} else if(msg.what == NoteContentBuilder.PARSE_ERROR) {
+	
+				new AlertDialog.Builder(Tomdroid.this)
+					.setMessage(getString(R.string.messageErrorNoteParsing))
+					.setTitle(getString(R.string.error))
+					.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+							finish();
+						}})
+					.show();
+	    	}
+		}
+	};
+	
+	/**
+	 * Builds a regular expression pattern that will match any of the note title currently in the collection.
+	 * Useful for the Linkify to create the links to the notes.
+	 * @return regexp pattern
+	 */
+	private Pattern buildNoteLinkifyPattern()  {
+	
+		StringBuilder sb = new StringBuilder();
+		Cursor cursor = NoteManager.getTitles(this);
+	
+		// cursor must not be null and must return more than 0 entry
+		if (!(cursor == null || cursor.getCount() == 0)) {
+	
+			String title;
+	
+			cursor.moveToFirst();
+	
+			do {
+				title = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
+				if(title.length() == 0)
+					continue;
+				// Pattern.quote() here make sure that special characters in the note's title are properly escaped
+				sb.append("("+Pattern.quote(title)+")|");
+	
+			} while (cursor.moveToNext());
+	
+			// get rid of the last | that is not needed (I know, its ugly.. better idea?)
+			String pt = sb.substring(0, sb.length()-1);
+	
+			// return a compiled match pattern
+			return Pattern.compile(pt);
+	
+		} else {
+	
+			// TODO send an error to the user
+			TLog.d(TAG, "Cursor returned null or 0 notes");
+		}
+	
+		return null;
+	}
+	
+	// custom transform filter that takes the note's title part of the URI and translate it into the note id
+	// this was done to avoid problems with invalid characters in URI (ex: ? is the query separator but could be in a note title)
+	private TransformFilter noteTitleTransformFilter = new TransformFilter() {
+	
+		public String transformUrl(Matcher m, String str) {
+	
+			int id = NoteManager.getNoteId(Tomdroid.this, str);
+	
+			// return something like content://org.tomdroid.notes/notes/3
+			return Tomdroid.CONTENT_URI.toString()+"/"+id;
+		}
+	};
+	
+	protected void startEditNote() {
+		final Intent i = new Intent(Intent.ACTION_VIEW, uri, this, EditNote.class);
+		startActivity(i);
+	}
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -181,6 +385,15 @@ public class Tomdroid extends ListActivity {
 				
 			case R.id.menuSearch:
 				startSearch(null, false, null, false);
+				return true;
+
+			// tablet 
+			
+			case R.id.menuEdit:
+				startEditNote();
+				return true;
+			case R.id.menuDelete:
+				deleteNote(note.getDbId());
 				return true;
 		}
 
@@ -253,6 +466,13 @@ public class Tomdroid extends ListActivity {
 		
 		SyncManager.setActivity(this);
 		SyncManager.setHandler(this.syncMessageHandler);
+		
+		// tablet refresh
+		
+		if(rightPane != null) {
+			updateTextAttributes();
+			showNoteInPane(lastIndex);
+		}
 	}
 
 	private void showAboutDialog() {
@@ -290,10 +510,16 @@ public class Tomdroid extends ListActivity {
 
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
-
-		Cursor item = (Cursor) adapter.getItem(position);
-		long noteId = item.getInt(item.getColumnIndexOrThrow(Note.ID));
-			this.ViewNote(noteId);
+		lastIndex = position;
+		
+		if (rightPane != null) {
+			showNoteInPane(position);
+		}
+		else {
+			Cursor item = (Cursor) adapter.getItem(position);
+			long noteId = item.getInt(item.getColumnIndexOrThrow(Note.ID));
+				this.ViewNote(noteId);
+		}
 		
 	}
 	
@@ -317,6 +543,10 @@ public class Tomdroid extends ListActivity {
 		
 		Note note = NewNote.createNewNote(this);
 		Uri uri = NoteManager.putNote(this, note, false);
+		
+		// set list item to top
+		
+		lastIndex = 0;
 
 		// view new note
 		
@@ -338,6 +568,8 @@ public class Tomdroid extends ListActivity {
 
             public void onClick(DialogInterface dialog, int which) {
         		NoteManager.deleteNote(activity, note);
+        		lastIndex = 0;
+    			showNoteInPane(0);
            }
 
         })

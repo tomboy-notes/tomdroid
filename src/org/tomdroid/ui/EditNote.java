@@ -53,7 +53,6 @@ import android.content.DialogInterface.OnClickListener;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -63,7 +62,6 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
 import android.text.format.Time;
-import android.text.method.ArrowKeyMovementMethod;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StrikethroughSpan;
@@ -139,17 +137,11 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 		    	}
 		    }
 		});
-		
+
 		// add format bar listeners
 		
 		addFormatListeners();
-/*
-		int api = Integer.parseInt(Build.VERSION.SDK);
-		
-		if (api >= 11) {
-			content.setTextIsSelectable(true);
-		}
-		*/
+
         uri = getIntent().getData();
 
         if (uri == null) {
@@ -474,7 +466,7 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 		// store changed note content
 		String newXmlContent = new NoteXMLContentBuilder().setCaller(noteXMLWriteHandler).setInputSource(newNoteContent).build();
 		
-		TLog.e(TAG, "parsed XML Content: {0}", newXmlContent);
+		//TLog.v(TAG, "parsed XML Content: {0}", newXmlContent);
 		
 		// Since 0.5 EditNote expects the redundant title being removed from the note content, but we still may need this for debugging:
 		//note.setXmlContent("<note-content version=\"0.1\">"+note.getTitle()+"\n\n"+newXmlContent+"</note-content>");
@@ -534,7 +526,6 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
             			str.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             		}
             		updateNoteContent(xmlOn);
-	           		content.clearFocus();
             		boldButton.setChecked(false);
             	}
             }
@@ -575,7 +566,6 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
             		}
             		
             		updateNoteContent(xmlOn);
-	           		content.clearFocus();
 	          		italicButton.setChecked(false);
             	}
             }
@@ -614,12 +604,11 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
             		}
             		
             		updateNoteContent(xmlOn);
-	           		content.clearFocus();
             	}
             }
 		});
 		
-		final ToggleButton monoButton = (ToggleButton)findViewById(R.id.mono);
+		final ImageButton monoButton = (ImageButton)findViewById(R.id.mono);
 		
 		monoButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
@@ -654,8 +643,6 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
             		}
             		
             		updateNoteContent(xmlOn);
-	           		content.clearFocus();
-	           		monoButton.setChecked(false);
             	}
             }
 		});
@@ -692,7 +679,6 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
             			str.setSpan(new StrikethroughSpan(), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             		}
             		updateNoteContent(xmlOn);
-	           		content.clearFocus();
             		strikeoutButton.setChecked(false);
             	}
             }
@@ -758,7 +744,7 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
             } 
         });
         
-		final Button sizeButton = (Button)findViewById(R.id.size);
+		final ImageButton sizeButton = (ImageButton)findViewById(R.id.size);
 		
 		sizeButton.setOnClickListener(new Button.OnClickListener() {
 

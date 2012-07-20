@@ -47,9 +47,6 @@ public class Note {
 	public static final String TAGS = "tags";
 	public static final String NOTE_CONTENT = "content";
 	
-	// Logging info
-	private static final String TAG = "Note";
-	
 	// Notes constants
 	public static final int NOTE_HIGHLIGHT_COLOR = 0x99FFFF00; // lowered alpha to show cursor
 	public static final String NOTE_MONOSPACE_TYPEFACE = "monospace";
@@ -66,6 +63,17 @@ public class Note {
 	private String tags;
 	private Time lastChangeDate;
 	private int dbId;
+
+	// Unused members (for SD Card)
+	
+	public Time createDate = new Time();
+	public int cursorPos = 0;
+	public int height = 0;
+	public int width = 0;
+	public int X = -1;
+	public int Y = -1;
+
+	
 	// TODO before guid were of the UUID object type, now they are simple strings 
 	// but at some point we probably need to validate their uniqueness (per note collection or universe-wide?) 
 	private String guid;
