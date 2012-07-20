@@ -44,7 +44,8 @@ public class NoteHandler extends DefaultHandler {
 	private boolean inHeightTag = false;
 	private boolean inXTag = false;
 	private boolean inYTag = false;
-	
+	private boolean inTagTag = false;
+
 	// -- Tomboy's notes XML tags names --
 	private final static String TITLE = "title";
 	private final static String LAST_CHANGE_DATE = "last-change-date";
@@ -55,6 +56,7 @@ public class NoteHandler extends DefaultHandler {
 	private final static String NOTE_H = "height";
 	private final static String NOTE_X = "x";
 	private final static String NOTE_Y = "y";
+	private final static String NOTE_TAG = "tag";
 	
 	// Buffers for parsed elements
 	private StringBuilder title = new StringBuilder();
@@ -66,6 +68,7 @@ public class NoteHandler extends DefaultHandler {
 	private StringBuilder height = new StringBuilder();
 	private StringBuilder X = new StringBuilder();
 	private StringBuilder Y = new StringBuilder();
+	private StringBuilder tag = new StringBuilder();
 	
 	// link to model 
 	private Note note;
@@ -107,7 +110,9 @@ public class NoteHandler extends DefaultHandler {
 		else if (localName.equals(NOTE_Y)) {
 			inYTag = true;
 		}
-
+		else if (localName.equals(NOTE_TAG)) {
+			inTagTag = true;
+		}
 	}
 
 	@Override
@@ -156,7 +161,11 @@ public class NoteHandler extends DefaultHandler {
 			if(Y.length() > 0)
 				note.Y = Integer.parseInt(Y.toString());
 		}
-		
+		else if (localName.equals(NOTE_TAG)) {
+			inTagTag = false;
+			if(tag.length() > 0)
+				note.addTag(tag.toString());
+		}
 	}
 
 	@Override
@@ -189,6 +198,9 @@ public class NoteHandler extends DefaultHandler {
 		}
 		else if (inYTag) {
 			Y.append(ch, start, length);
+		}
+		else if (inTagTag) {
+			tag.append(ch, start, length);
 		}
 	}
 }
