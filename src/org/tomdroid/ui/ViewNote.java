@@ -160,8 +160,8 @@ public class ViewNote extends Activity {
 		SyncManager.setActivity(this);
 		SyncManager.setHandler(this.syncMessageHandler);
 		handleNoteUri(uri);
-		updateTextAttributes();
 		showNote();
+		updateTextAttributes();
 	}
 	
 	private void updateTextAttributes() {
@@ -246,6 +246,7 @@ public class ViewNote extends Activity {
 						 Tomdroid.CONTENT_URI+"/",
 						 null,
 						 noteTitleTransformFilter);
+
 	}
 
 	private Handler noteContentHandler = new Handler() {

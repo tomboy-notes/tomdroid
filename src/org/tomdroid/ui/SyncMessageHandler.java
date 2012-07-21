@@ -24,12 +24,16 @@
  */
 package org.tomdroid.ui;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 import org.tomdroid.R;
 import org.tomdroid.sync.SyncManager;
@@ -174,11 +178,16 @@ public class SyncMessageHandler extends Handler {
 		dot.startAnimation(pulse);*/
 	}
 	
+	@SuppressLint("NewApi")
 	private void refreshActivity() {
+		TLog.d(TAG, "refreshing activity");
+		
+		if(Integer.parseInt(Build.VERSION.SDK) > 10)
+			activity.invalidateOptionsMenu();
+		
 		if (! (activity.isTaskRoot())) {
 			activity.finish(); activity.startActivity(activity.getIntent());
 			TLog.d(TAG,"Restarted the current Activity: {0}", activity.toString());
 		}
 	}
-
 }

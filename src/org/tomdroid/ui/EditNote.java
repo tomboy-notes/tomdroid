@@ -50,6 +50,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
@@ -233,6 +234,7 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 		super.onResume();
 		SyncManager.setActivity(this);
 		SyncManager.setHandler(this.syncMessageHandler);
+		updateNoteContent(xmlOn);
 		handleNoteUri(uri);
 		updateTextAttributes();
 		showNote();
@@ -428,8 +430,8 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 		}  
 	};
 
-	private void updateNoteContent(boolean xml) {
-		
+	private boolean updateNoteContent(boolean xml) {
+
 		SpannableStringBuilder newNoteContent = new SpannableStringBuilder();
 		
 		if(xml) {
@@ -456,7 +458,7 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 				e.printStackTrace();
 				// TODO handle error in a more granular way
 				TLog.e(TAG, "There was an error parsing the note {0}", subjectName);
-				return;
+				return false;
 			}
 			
 		}
@@ -472,11 +474,15 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 		//note.setXmlContent("<note-content version=\"0.1\">"+note.getTitle()+"\n\n"+newXmlContent+"</note-content>");
 		note.setXmlContent("<note-content version=\"0.1\">"+newXmlContent+"</note-content>");
 		noteContent = note.getNoteContent(noteXMLParseHandler);
+		return true;
 	}
 	
 	private void saveNote() {
-		updateNoteContent(xmlOn);
-		
+		boolean updated = updateNoteContent(xmlOn);
+		if(!updated) {
+			Toast.makeText(this, getString(R.string.messageErrorParsingXML), Toast.LENGTH_SHORT).show();
+			return;
+		}
 		note.setTitle(title.getText().toString());
 
 		Time now = new Time();
@@ -528,6 +534,8 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
             		updateNoteContent(xmlOn);
             		boldButton.setChecked(false);
             	}
+            	else
+            		cursorLoc = selectionStart;
             }
 		});
 		
@@ -568,9 +576,50 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
             		updateNoteContent(xmlOn);
 	          		italicButton.setChecked(false);
             	}
+            	else
+            		cursorLoc = selectionStart;
             }
 		});
-
+		
+		final ToggleButton strikeoutButton = (ToggleButton) findViewById(R.id.strike);   
+        
+		strikeoutButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+            	 
+            	int selectionStart = content.getSelectionStart();
+            	
+            	styleStart = selectionStart;
+            	
+            	int selectionEnd = content.getSelectionEnd();
+            	
+            	if (selectionStart > selectionEnd){
+            		int temp = selectionEnd;
+            		selectionEnd = selectionStart;
+            		selectionStart = temp;
+            	}
+            	
+            	if (selectionEnd > selectionStart)
+            	{
+            		Spannable str = content.getText();
+            		StrikethroughSpan[] ss = str.getSpans(selectionStart, selectionEnd, StrikethroughSpan.class);
+            		
+            		boolean exists = false;
+            		for (int i = 0; i < ss.length; i++) {
+            				str.removeSpan(ss[i]);
+            				exists = true;
+                    }
+            		
+            		if (!exists){
+            			str.setSpan(new StrikethroughSpan(), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            		}
+            		updateNoteContent(xmlOn);
+            		strikeoutButton.setChecked(false);
+            	}
+            	else
+            		cursorLoc = selectionStart;
+            }
+        });
+		
 		final ImageButton highButton = (ImageButton)findViewById(R.id.highlight);
 		
 		highButton.setOnClickListener(new Button.OnClickListener() {
@@ -646,50 +695,11 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
             	}
             }
 		});
-		
-		final ToggleButton strikeoutButton = (ToggleButton) findViewById(R.id.strike);   
-        
-		strikeoutButton.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-            	 
-            	int selectionStart = content.getSelectionStart();
-            	
-            	styleStart = selectionStart;
-            	
-            	int selectionEnd = content.getSelectionEnd();
-            	
-            	if (selectionStart > selectionEnd){
-            		int temp = selectionEnd;
-            		selectionEnd = selectionStart;
-            		selectionStart = temp;
-            	}
-            	
-            	if (selectionEnd > selectionStart)
-            	{
-            		Spannable str = content.getText();
-            		StrikethroughSpan[] ss = str.getSpans(selectionStart, selectionEnd, StrikethroughSpan.class);
-            		
-            		boolean exists = false;
-            		for (int i = 0; i < ss.length; i++) {
-            				str.removeSpan(ss[i]);
-            				exists = true;
-                    }
-            		
-            		if (!exists){
-            			str.setSpan(new StrikethroughSpan(), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            		}
-            		updateNoteContent(xmlOn);
-            		strikeoutButton.setChecked(false);
-            	}
-            }
-        });
         
         content.addTextChangedListener(new TextWatcher() { 
             public void afterTextChanged(Editable s) { 
-            	
+
             	//add style as the user types if a toggle button is enabled
-            	ToggleButton boldButton = (ToggleButton) findViewById(R.id.bold);
-            	ToggleButton emButton = (ToggleButton) findViewById(R.id.italic);
             	
             	int position = Selection.getSelectionStart(content.getText());
             	
@@ -698,6 +708,7 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
         		}
             	
         		if (position > 0){
+					TLog.d(TAG,"cursor at position {0}",position);
         			
         			if (styleStart > position || position > (cursorLoc + 1)){
 						//user changed cursor location, reset
@@ -709,28 +720,35 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 							styleStart = position - 1;
 						}
 					}
+					TLog.d(TAG,"styleStart {0}",styleStart);
         			
                 	if (boldButton.isChecked()){  
                 		StyleSpan[] ss = s.getSpans(styleStart, position, StyleSpan.class);
 
                 		for (int i = 0; i < ss.length; i++) {
-                			if (ss[i].getStyle() == android.graphics.Typeface.BOLD){
-                				s.removeSpan(ss[i]);
-                			}
+            				s.removeSpan(ss[i]);
                         }
                 		s.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), styleStart, position, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                		updateNoteContent(xmlOn);
                 	}
-                	if (emButton.isChecked()){
+                	if (italicButton.isChecked()){
                 		StyleSpan[] ss = s.getSpans(styleStart, position, StyleSpan.class);
                 		
                 		for (int i = 0; i < ss.length; i++) {
                 			if (ss[i].getStyle() == android.graphics.Typeface.ITALIC){
-                				s.removeSpan(ss[i]);
+                    			if (ss[i].getStyle() == android.graphics.Typeface.ITALIC){
+                    				s.removeSpan(ss[i]);
+                    			}
                 			}
                         }
                 		s.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), styleStart, position, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                		updateNoteContent(xmlOn);
+                	}
+                	if (strikeoutButton.isChecked()){
+                		StrikethroughSpan[] ss = s.getSpans(styleStart, position, StrikethroughSpan.class);
+                		
+                		for (int i = 0; i < ss.length; i++) {
+            				s.removeSpan(ss[i]);
+                        }
+            			s.setSpan(new StrikethroughSpan(), styleStart, position, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 	}
         		}
         		

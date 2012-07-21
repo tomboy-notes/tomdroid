@@ -279,6 +279,8 @@ public class PreferencesActivity extends PreferenceActivity {
 		String defaultSize = (String)Preferences.Key.BASE_TEXT_SIZE.getDefault();
 		baseSize.setDefaultValue(defaultSize);
 		baseSize.setSummary(Preferences.getString(Preferences.Key.BASE_TEXT_SIZE));
+		if(baseSize.getText() == null)
+			baseSize.setText(defaultSize);
 	}
 
 	private void setServer(String syncServiceKey) {

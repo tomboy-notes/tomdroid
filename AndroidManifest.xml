@@ -49,12 +49,14 @@
 
 		</activity>
 		<activity android:name=".ui.EditNote"
-        		  android:theme="@android:style/Theme.Holo"
-        		  android:label="@string/edit_title"
+			android:configChanges="keyboardHidden|orientation"
+			android:theme="@android:style/Theme.Holo"
+			android:label="@string/edit_title"
 		    >
 		</activity>
 		
 		<activity android:name=".ui.Search"
+        		  android:theme="@android:style/Theme.Holo"
         		  android:label="@string/search_title"
 		          android:launchMode="singleTop">
 			<intent-filter>

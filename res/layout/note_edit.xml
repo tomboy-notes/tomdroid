@@ -1,20 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"
-		android:orientation="vertical"
     	>
-
+	<LinearLayout 
+		android:id="@+id/edit_parent" 
+		android:orientation="vertical"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    >
+   		<EditText 
+			android:id="@+id/title"
+			android:layout_width="match_parent" 
+			android:layout_height="wrap_content"
+			android:singleLine="true"
+			android:inputType="textCapWords"
+			android:hint="@string/NewNoteTitleHint"
+			android:padding="10dip"
+			android:textCursorDrawable="@null"
+			android:textColor="#ffb8bcb8" />
+		<LinearLayout 
+			android:id="@+id/content_parent" 
+			android:orientation="vertical"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"
+		    >
+	   		<EditText 
+				android:id="@+id/content"
+				android:layout_width="match_parent" 
+				android:layout_height="match_parent"
+				android:gravity="top"
+				android:linksClickable="false"
+				android:hint="@string/NewNoteBodyHint"
+				android:padding="10dip"
+				android:textCursorDrawable="@null"
+				android:scrollHorizontally="false"
+				android:textColor="#ffb8bcb8" />
+		</LinearLayout>
+	</LinearLayout>
+	
 	<!-- formatting -->
 		                
 	<LinearLayout android:id="@+id/format_bar" 
 		android:orientation="horizontal"
-		android:layout_width="match_parent" 
+		android:layout_width="wrap_content" 
 		android:layout_height="50dip"
 		android:padding="2dip"
 		android:visibility="gone"
-		android:background="#FFFFFF"
+		android:layout_alignParentTop="true"
+		android:layout_alignParentRight="true"
 		>
 	
 		<ToggleButton  
@@ -80,40 +115,5 @@
 			/> 
 
 	</LinearLayout>
-
 	
-	<RelativeLayout 
-		android:id="@+id/edit_parent" 
-		android:orientation="vertical"
-	    android:layout_width="fill_parent"
-	    android:layout_height="fill_parent"
-	    >
-			<EditText 
-				android:id="@+id/title"
-				android:layout_width="match_parent" 
-				android:layout_height="wrap_content"
-				android:singleLine="true"
-				android:inputType="textCapWords"
-				android:hint="@string/NewNoteTitleHint"
-				android:padding="10dip"
-				android:textCursorDrawable="@null"
-				android:layout_alignParentTop="true"
-				android:textColor="#ffb8bcb8" />
-			<EditText 
-				android:layout_below="@id/title"
-				android:id="@+id/content"
-				android:layout_width="match_parent" 
-				android:layout_height="match_parent"
-				android:gravity="top"
-				android:linksClickable="false"
-				android:hint="@string/NewNoteBodyHint"
-				android:padding="10dip"
-				android:textCursorDrawable="@null"
-				android:singleLine="false"
-				android:inputType="textMultiLine"
-				android:width="0dip"
-				android:height="0dip"
-				android:scrollHorizontally="false"
-				android:textColor="#ffb8bcb8" />
-	</RelativeLayout>
-</LinearLayout>
+</RelativeLayout>

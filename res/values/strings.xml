@@ -161,6 +161,7 @@
 						
 	<!-- syncNotes -->
 	
+	<string name="syncing">Syncing…</string>
 	<string name="push_changes_title">Push Changes</string>
 	<string name="push_changes_message">Push local changes?</string>
 

@@ -114,6 +114,7 @@ public class Tomdroid extends ListActivity {
 	private SpannableStringBuilder noteContent;
 	private Uri uri;
 	private int lastIndex = 0;
+	public MenuItem syncMenuItem;
 	
 	/** Called when the activity is created. */
 	@Override
@@ -349,12 +350,13 @@ public class Tomdroid extends ListActivity {
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
+	public boolean onOptionsItemSelected(final MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.menuAbout:
 				showAboutDialog();
 				return true;
 			case R.id.menuSync:
+				this.syncMenuItem = item;
 				if(NoteManager.getNewNotes(this).getCount() > 0) {
 					new AlertDialog.Builder(this)
 			        .setIcon(android.R.drawable.ic_dialog_alert)
@@ -362,18 +364,22 @@ public class Tomdroid extends ListActivity {
 			        .setMessage(R.string.push_changes_message)
 			        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog, int which) {
-							SyncManager.getInstance().startSynchronization(true);
+							item.setTitle(Tomdroid.this.getString(R.string.syncing));
+			            	SyncManager.getInstance().startSynchronization(true);
 			            }
 			        })
 			        .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog, int which) {
+							item.setTitle(Tomdroid.this.getString(R.string.syncing));
 							SyncManager.getInstance().startSynchronization(false);
 			            }
 			        })
 			        .show();
 				}
-				else
+				else {
+					item.setTitle(Tomdroid.this.getString(R.string.syncing));
 					SyncManager.getInstance().startSynchronization(false);
+				}
 				return true;
 			case R.id.menuNew:
 				newNote();
