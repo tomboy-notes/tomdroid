@@ -43,22 +43,22 @@
         </activity>
     
 		<activity android:name=".ui.ViewNote"
-        		  android:theme="@android:style/Theme.Holo"
+        		  android:theme="@style/MyTheme"
         		  android:label="@string/view_title"
 		    >
 
 		</activity>
 		<activity android:name=".ui.EditNote"
 			android:configChanges="keyboardHidden|orientation"
-			android:theme="@android:style/Theme.Holo"
+			android:theme="@style/MyTheme"
 			android:label="@string/edit_title"
 		    >
 		</activity>
 		
 		<activity android:name=".ui.Search"
-        		  android:theme="@android:style/Theme.Holo"
-        		  android:label="@string/search_title"
-		          android:launchMode="singleTop">
+       		  android:theme="@style/MyTheme"
+       		  android:label="@string/search_title"
+	          android:launchMode="singleTop">
 			<intent-filter>
 				<action android:name="android.intent.action.SEARCH" />
 			</intent-filter>
