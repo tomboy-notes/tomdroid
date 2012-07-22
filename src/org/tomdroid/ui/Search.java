@@ -88,7 +88,7 @@ public class Search extends ListActivity {
 		
 		
 		// adapter that binds the ListView UI to the notes in the note manager
-		adapter = NoteManager.getListAdapter(this, query, Tomdroid.includeNotebookTemplates);
+		adapter = NoteManager.getListAdapter(this, query);
 		setListAdapter(adapter);
 		
 		// set the view shown when query not found

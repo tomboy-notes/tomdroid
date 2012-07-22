@@ -36,6 +36,8 @@ public class Preferences {
 		SYNC_SERVER_USER_API ("sync_server_user_api", ""),
 		SYNC_SERVER ("sync_server", "https://one.ubuntu.com/notes"),
 		SD_LOCATION ("sd_location", "tomdroid"),
+		INCLUDE_NOTE_TEMPLATES("include_note_templates", false),
+		DEL_ALL_NOTES("del_all_notes", ""),
 		CLEAR_SEARCH_HISTORY ("clearSearchHistory", ""),
 		ACCESS_TOKEN ("access_token", ""),
 		ACCESS_TOKEN_SECRET ("access_token_secret", ""),
@@ -49,9 +51,8 @@ public class Preferences {
 		LATEST_SYNC_DATE ("latest_sync_date", (new Time()).format3339(false)), // will be used to tell whether we have newer notes
 		SORT_ORDER ("sort_order", "sort_date"),
 		FIRST_RUN ("first_run", true),
-		
 		BASE_TEXT_SIZE("base_text_size","18");
-		
+
 		private String name = "";
 		private Object defaultValue = "";
 		

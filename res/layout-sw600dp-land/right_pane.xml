@@ -17,7 +17,7 @@
 		  android:layout_height="50dp"
 		  android:padding="10dip"
 		  android:singleLine="true"
-		  android:text="@string/strWait"
+		  android:text=""
 		  android:layout_alignParentTop="true"
 		  android:textColor="#ffb8bcb8" />
 		<TextView
@@ -27,7 +27,7 @@
 		    android:layout_below="@id/title"
 		    android:padding="10dp"
 		    android:gravity="top"
-			android:text="@string/strWait"
+			android:text=""
 			android:textIsSelectable="true"
 			android:linksClickable="false"
 		    android:textColor="#ffb8bcb8" />

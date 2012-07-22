@@ -317,11 +317,14 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 		// This will create a link every time a note title is found in the text.
 		// The pattern contains a very dumb (title1)|(title2) escaped correctly
 		// Then we transform the url from the note name to the note id to avoid characters that mess up with the URI (ex: ?)
-		Linkify.addLinks(content, 
-						 buildNoteLinkifyPattern(),
-						 Tomdroid.CONTENT_URI+"/",
-						 null,
-						 noteTitleTransformFilter);
+		Pattern pattern = buildNoteLinkifyPattern();
+		
+		if(pattern != null)
+			Linkify.addLinks(content,
+							 buildNoteLinkifyPattern(),
+							 Tomdroid.CONTENT_URI+"/",
+							 null,
+							 noteTitleTransformFilter);
 	}
 	
 	private Handler noteXMLParseHandler = new Handler() {
@@ -401,6 +404,10 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 				sb.append("("+Pattern.quote(title)+")|");
 				
 			} while (cursor.moveToNext());
+
+			// if only empty titles, return
+			if (sb.length() == 0)
+				return null;
 			
 			// get rid of the last | that is not needed (I know, its ugly.. better idea?)
 			String pt = sb.substring(0, sb.length()-1);

@@ -23,8 +23,10 @@
  */
 package org.tomdroid.ui;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -59,24 +61,33 @@ public class PreferencesActivity extends PreferenceActivity {
 	private static final String TAG = "PreferencesActivity";
 	
 	// TODO: put the various preferences in fields and figure out what to do on activity suspend/resume
+	private EditTextPreference baseSize = null;
 	private EditTextPreference syncServer = null;
 	private ListPreference syncService = null;
 	private EditTextPreference sdLocation = null;
+	private Preference delNotes = null;
 	private Preference clearSearchHistory = null;
-	private EditTextPreference baseSize = null;
+
+	private Context context;
+	private Activity activity;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);
+		
+		this.context = getApplicationContext();
+		this.activity = this;
+		
 		addPreferencesFromResource(R.xml.preferences);
 		
 		// Fill the Preferences fields
+		baseSize = (EditTextPreference)findPreference(Preferences.Key.BASE_TEXT_SIZE.getName());
 		syncServer = (EditTextPreference)findPreference(Preferences.Key.SYNC_SERVER.getName());
 		syncService = (ListPreference)findPreference(Preferences.Key.SYNC_SERVICE.getName());
 		sdLocation = (EditTextPreference)findPreference(Preferences.Key.SD_LOCATION.getName());
 		clearSearchHistory = (Preference)findPreference(Preferences.Key.CLEAR_SEARCH_HISTORY.getName());
-		baseSize = (EditTextPreference)findPreference(Preferences.Key.BASE_TEXT_SIZE.getName());
+		delNotes = (Preference)findPreference(Preferences.Key.DEL_ALL_NOTES.getName());
 		
 		// Set the default values if nothing exists
 		this.setDefaults();
@@ -118,6 +129,7 @@ public class PreferencesActivity extends PreferenceActivity {
 					noValidEntry(serverUri.toString());
 					return false;
 				}
+				syncServer.setSummary((String)serverUri);
 			    
 				authenticate((String) serverUri);
 				return true;
@@ -189,6 +201,28 @@ public class PreferencesActivity extends PreferenceActivity {
 		        	return false;
 				}
 				baseSize.setSummary((String)newValue);
+				return true;
+			}
+		});
+
+		delNotes.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			
+	        public boolean onPreferenceClick(Preference preference) {
+				final Activity activity = PreferencesActivity.this;
+				new AlertDialog.Builder(activity)
+		        .setIcon(android.R.drawable.ic_dialog_alert)
+		        .setTitle(R.string.delete_all)
+		        .setMessage(R.string.delete_all_message)
+		        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+
+		            public void onClick(DialogInterface dialog, int which) {
+		        		NoteManager.deleteAllNotes(activity);
+		           }
+
+		        })
+		        .setNegativeButton(R.string.no, null)
+		        .show();
+
 				return true;
 			}
 		});
@@ -265,6 +299,7 @@ public class PreferencesActivity extends PreferenceActivity {
 		syncServer.setDefaultValue(defaultServer);
 		if(syncServer.getText() == null)
 			syncServer.setText(defaultServer);
+		syncServer.setSummary(defaultServer);
 
 		String defaultService = (String)Preferences.Key.SYNC_SERVICE.getDefault();
 		syncService.setDefaultValue(defaultService);

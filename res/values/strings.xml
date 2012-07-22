@@ -62,11 +62,15 @@
 	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
 	<string name="prefNoValidLocation">\"%1$s\" is not a valid folder location. Please try again!</string>
 	<string name="prefNoValidEntry">\"%1$s\" is not a valid entry. Please try again!</string>
-	
-	<string name="prefSyncCompleteAuth">Completing authentication. Please wait...</string>
+	<string name="prefSyncCompleteAuth">Completing authentication. Please wait…</string>
 	<string name="prefSyncConnectionFailed">The connection to the server has failed, please check that the address you entered is correct.</string>
 	<string name="prefServerEmpty">The server address changed but the new value is empty</string>
-	
+	<string name="prefMisc">Misc. Options</string>
+	<string name="prefNoteTemplatesTitle">Include Note Templates</string>
+	<string name="prefNoteTemplates">If checked, will show note templates in notes list.</string>
+	<string name="deleteAllNotesTitle">Clear Notes</string>
+	<string name="deleteAllNotes">Clear all notes from local database</string>
+			
 	<string name="titleSyncService">Choose the sync service to use</string>
 	<string name="messageSyncComplete">Synchronization with %1$s is complete.</string>
 	<string name="messageSyncNoNote">No notes found on %1$s.</string>
@@ -100,7 +104,6 @@
 	<string name="search_description">Text in your notes</string>
 	<string name="strNoResults">No notes found for \"%s\"</string>
 	<string name="menuSearch">Search</string>
-	<string name="prefSearch">Search Options</string>
 	<string name="SearchResultTitle">Search Results:</string>
 	<string name="clearSearchHistoryTitle">Clear search history</string>
 	<string name="clearSearchHistory">Remove all the searches you have performed</string>
@@ -125,7 +128,9 @@
 	<string name="delete_message">Are you sure you want to delete this note?</string>
 	<string name="yes">Yes</string>
 	<string name="no">No</string>
-		
+	<string name="delete_all">Clear Notes</string>
+	<string name="delete_all_message">Are you sure you want to clear the notes database?</string>
+			
 	<!-- newNote -->
 	<string name="menuNew">New</string>
 	<string name="NewNoteTitle"></string>
@@ -164,7 +169,6 @@
 	<string name="syncing">Syncing…</string>
 	<string name="push_changes_title">Push Changes</string>
 	<string name="push_changes_message">Push local changes?</string>
-
 	<string name="messageSyncNoteDeleted">Note deleted from %1$s successfully.</string>
 	<string name="messageSyncNotePushed">Note sent to %1$s successfully.</string>
 	<string name="messageSyncNoteDeleteError">Error deleting note from %1$s.</string>

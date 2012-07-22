@@ -99,7 +99,6 @@ public class Tomdroid extends ListActivity {
 	// UI to data model glue
 	private TextView			listEmptyView;
 	private ListAdapter			adapter;
-	public static Boolean includeNotebookTemplates = false;  //TODO: make this togglable from preferences?
 
 	// UI feedback handler
 	private Handler	syncMessageHandler	= new SyncMessageHandler(this);
@@ -147,7 +146,7 @@ public class Tomdroid extends ListActivity {
 		}
 		
 		// adapter that binds the ListView UI to the notes in the note manager
-		adapter = NoteManager.getListAdapter(this, includeNotebookTemplates);
+		adapter = NoteManager.getListAdapter(this);
 		setListAdapter(adapter);
 
 		// set the view shown when the list is empty
@@ -183,9 +182,15 @@ public class Tomdroid extends ListActivity {
 	private void showNoteInPane(int position) {
 		if(rightPane == null)
 			return;
-		adapter = NoteManager.getListAdapter(this, includeNotebookTemplates);
+		adapter = NoteManager.getListAdapter(this);
 		setListAdapter(adapter);
 		Cursor item = (Cursor) adapter.getItem(position);
+		if (item.getCount() == 0) {
+            TLog.d(TAG, "Index {0} not found in list", position);
+            title.setText("");
+            content.setText("");
+			return;
+		}
 		long noteId = item.getInt(item.getColumnIndexOrThrow(Note.ID));	
 		uri = Uri.parse(CONTENT_URI + "/" + noteId);
 
@@ -215,11 +220,15 @@ public class Tomdroid extends ListActivity {
 		// This will create a link every time a note title is found in the text.
 		// The pattern contains a very dumb (title1)|(title2) escaped correctly
 		// Then we transform the url from the note name to the note id to avoid characters that mess up with the URI (ex: ?)
-		Linkify.addLinks(content,
-						 buildNoteLinkifyPattern(),
-						 Tomdroid.CONTENT_URI+"/",
-						 null,
-						 noteTitleTransformFilter);
+		
+		Pattern pattern = buildNoteLinkifyPattern();
+		
+		if(pattern != null)
+			Linkify.addLinks(content,
+							 buildNoteLinkifyPattern(),
+							 Tomdroid.CONTENT_URI+"/",
+							 null,
+							 noteTitleTransformFilter);
 	}
 	private void showNoteNotFoundDialog(final Uri uri) {
 	    final AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -305,7 +314,11 @@ public class Tomdroid extends ListActivity {
 				sb.append("("+Pattern.quote(title)+")|");
 	
 			} while (cursor.moveToNext());
-	
+			
+			// if only empty titles, return
+			if (sb.length() == 0)
+				return null;
+			
 			// get rid of the last | that is not needed (I know, its ugly.. better idea?)
 			String pt = sb.substring(0, sb.length()-1);
 	
@@ -554,7 +567,12 @@ public class Tomdroid extends ListActivity {
 		// set list item to top
 		
 		lastIndex = 0;
-
+		
+		// recreate listAdapter
+		
+		adapter = NoteManager.getListAdapter(this);
+		setListAdapter(adapter);
+		
 		// view new note
 		
 		Intent i = new Intent(Intent.ACTION_VIEW, uri, this, EditNote.class);

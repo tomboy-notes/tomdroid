@@ -47,7 +47,7 @@ public class ShortcutActivity extends ListActivity {
         TLog.d(TAG, "creating shortcut...");
         setContentView(R.layout.shortcuts_list);
 
-        adapter = NoteManager.getListAdapter(this, Tomdroid.includeNotebookTemplates);
+        adapter = NoteManager.getListAdapter(this);
         setListAdapter(adapter);
         getListView().setEmptyView(findViewById(R.id.list_empty));
 

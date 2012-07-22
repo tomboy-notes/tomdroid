@@ -219,6 +219,17 @@ public class NoteManager {
 		TLog.v(TAG, "Deleted {0} local notes based on system:deleted tag",rows);
 	}
 
+	// this function deletes all notes - called from preferences
+
+	public static void deleteAllNotes(Activity activity)
+	{
+		// get a cursor representing all deleted notes from the NoteProvider
+		Uri notes = Tomdroid.CONTENT_URI;
+		ContentResolver cr = activity.getContentResolver();
+		int rows = cr.delete(notes, null, null);
+		TLog.v(TAG, "Deleted {0} local notes",rows);
+	}
+
 	public static Cursor getAllNotes(Activity activity, Boolean includeNotebookTemplates) {
 		// get a cursor representing all notes from the NoteProvider
 		Uri notes = Tomdroid.CONTENT_URI;
@@ -232,7 +243,9 @@ public class NoteManager {
 	}
 	
 
-	public static ListAdapter getListAdapter(Activity activity, String querys, Boolean includeNotebookTemplates) {
+	public static ListAdapter getListAdapter(Activity activity, String querys) {
+		
+		boolean includeNotebookTemplates = Preferences.getBoolean(Preferences.Key.INCLUDE_NOTE_TEMPLATES);
 		
 		String where = "(" + Note.TAGS + " NOT LIKE '%" + "system:deleted" + "%')";
 		if (!includeNotebookTemplates) {
@@ -256,9 +269,9 @@ public class NoteManager {
 		return new NoteListCursorAdapter(activity, R.layout.main_list_item, notesCursor, from, to);
 	}
 	
-	public static ListAdapter getListAdapter(Activity activity, Boolean includeNotebookTemplates) {
+	public static ListAdapter getListAdapter(Activity activity) {
 		
-		return getListAdapter(activity, null, includeNotebookTemplates);
+		return getListAdapter(activity, null);
 	}
 
 	// gets the titles of the notes present in the db, used in ViewNote.buildLinkifyPattern()
