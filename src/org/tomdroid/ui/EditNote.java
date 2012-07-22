@@ -620,7 +620,7 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
             }
         });
 		
-		final ImageButton highButton = (ImageButton)findViewById(R.id.highlight);
+		final ToggleButton highButton = (ToggleButton)findViewById(R.id.highlight);
 		
 		highButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
@@ -653,11 +653,14 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
             		}
             		
             		updateNoteContent(xmlOn);
+            		highButton.setChecked(false);
             	}
+            	else
+            		cursorLoc = selectionStart;
             }
 		});
 		
-		final ImageButton monoButton = (ImageButton)findViewById(R.id.mono);
+		final ToggleButton monoButton = (ToggleButton)findViewById(R.id.mono);
 		
 		monoButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
@@ -692,7 +695,10 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
             		}
             		
             		updateNoteContent(xmlOn);
+            		monoButton.setChecked(false);
             	}
+            	else
+            		cursorLoc = selectionStart;
             }
 		});
         
@@ -750,6 +756,24 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
                         }
             			s.setSpan(new StrikethroughSpan(), styleStart, position, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 	}
+                	if (highButton.isChecked()){
+                		BackgroundColorSpan[] ss = s.getSpans(styleStart, position, BackgroundColorSpan.class);
+                		
+                		for (int i = 0; i < ss.length; i++) {
+            				s.removeSpan(ss[i]);
+                        }
+            			s.setSpan(new BackgroundColorSpan(Note.NOTE_HIGHLIGHT_COLOR), styleStart, position, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                	}
+                	if (monoButton.isChecked()){
+                		TypefaceSpan[] ss = s.getSpans(styleStart, position, TypefaceSpan.class);
+                		
+                		for (int i = 0; i < ss.length; i++) {
+                			if (ss[i].getFamily()==Note.NOTE_MONOSPACE_TYPEFACE){
+                				s.removeSpan(ss[i]);
+                			}
+                        }
+            			s.setSpan(new TypefaceSpan(Note.NOTE_MONOSPACE_TYPEFACE), styleStart, position, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                	}                	
         		}
         		
         		cursorLoc = Selection.getSelectionStart(content.getText());

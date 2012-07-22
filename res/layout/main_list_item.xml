@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="6dip"
 		android:textStyle="bold"
-		android:textColor="#FFFFFFFF"
+		android:textColor="#FFDDDDDD"
 		android:textSize="18dp"
 	/>
 
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/note_title"
         android:layout_alignLeft="@+id/title"
-		android:textColor="#FFFFFFFF"
+		android:textColor="#FFDDDDDD"
 		android:textSize="14dp"
     />
 

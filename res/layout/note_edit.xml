@@ -86,21 +86,33 @@
             android:textOff="@string/strike"
 			android:padding="8dip"
             android:textColor="#464646" />				            
-        <ImageButton
+        <ToggleButton
 			android:id="@+id/highlight"
 			android:background="@drawable/button_toggle"
             android:layout_width="wrap_content"  
             android:layout_height="match_parent"
+			android:textOn=""
+			android:textOff=""
+			android:drawableTop="@drawable/highlight"
 			android:contentDescription="@string/highlight"
             android:src="@drawable/highlight"
-			android:padding="8dip"
+			android:paddingLeft="8dip"
+			android:paddingRight="8dip"
+			android:paddingBottom="8dip"
+			android:paddingTop="12dip"
             />
-		<ImageButton
+		<ToggleButton
 			android:id="@+id/mono"
 			android:background="@drawable/button_toggle"
             android:layout_width="wrap_content"  
             android:layout_height="match_parent"
-			android:padding="8dip"
+			android:textOn=""
+			android:textOff=""
+			android:drawableTop="@drawable/mono"
+			android:paddingLeft="8dip"
+			android:paddingRight="8dip"
+			android:paddingBottom="8dip"
+			android:paddingTop="12dip"
 			android:contentDescription="@string/mono"
             android:src="@drawable/mono"
             />		
