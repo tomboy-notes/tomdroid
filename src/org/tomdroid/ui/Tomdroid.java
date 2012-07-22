@@ -62,6 +62,7 @@ import android.text.util.Linkify;
 import android.text.util.Linkify.TransformFilter;
 import android.view.*;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.widget.AbsListView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
@@ -153,6 +154,9 @@ public class Tomdroid extends ListActivity {
 		listEmptyView = (TextView) findViewById(R.id.list_empty);
 		getListView().setEmptyView(listEmptyView);
 		
+		getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+		getListView().setSelector(android.R.color.darker_gray);
+
 		registerForContextMenu(findViewById(android.R.id.list));
 		
 		// add note to pane for tablet
@@ -165,7 +169,7 @@ public class Tomdroid extends ListActivity {
 			
 			// this we will call on resume as well.
 			updateTextAttributes();
-			showNoteInPane(0);
+			showNoteInPane(-1);
 		}
 	}
 	private void updateTextAttributes() {
@@ -182,8 +186,11 @@ public class Tomdroid extends ListActivity {
 	private void showNoteInPane(int position) {
 		if(rightPane == null)
 			return;
-		adapter = NoteManager.getListAdapter(this);
-		setListAdapter(adapter);
+		if(position == -1) {
+			adapter = NoteManager.getListAdapter(this);
+			setListAdapter(adapter);
+			position = 0;
+		}
 		Cursor item = (Cursor) adapter.getItem(position);
 		if (item.getCount() == 0) {
             TLog.d(TAG, "Index {0} not found in list", position);
@@ -443,6 +450,9 @@ public class Tomdroid extends ListActivity {
 			case R.id.view:
 				this.ViewNote(noteId);
 				break;
+			case R.id.edit:
+				this.startEditNote();
+				break;
 			case R.id.delete:
 				this.deleteNote(noteId);
 				break;
@@ -530,17 +540,18 @@ public class Tomdroid extends ListActivity {
 
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
+		super.onListItemClick(l, v, position, id);
 		lastIndex = position;
 		
 		if (rightPane != null) {
 			showNoteInPane(position);
+		    v.setSelected(true);
 		}
 		else {
 			Cursor item = (Cursor) adapter.getItem(position);
 			long noteId = item.getInt(item.getColumnIndexOrThrow(Note.ID));
 				this.ViewNote(noteId);
 		}
-		
 	}
 	
 	public void ViewNote(long noteId) {
@@ -594,7 +605,7 @@ public class Tomdroid extends ListActivity {
             public void onClick(DialogInterface dialog, int which) {
         		NoteManager.deleteNote(activity, note);
         		lastIndex = 0;
-    			showNoteInPane(0);
+    			showNoteInPane(-1);
            }
 
         })
