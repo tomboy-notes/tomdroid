@@ -99,6 +99,7 @@ public class Tomdroid extends ListActivity {
 	// UI to data model glue
 	private TextView			listEmptyView;
 	private ListAdapter			adapter;
+	public static Boolean includeNotebookTemplates = false;  //TODO: make this togglable from preferences?
 
 	// UI feedback handler
 	private Handler	syncMessageHandler	= new SyncMessageHandler(this);
@@ -146,7 +147,7 @@ public class Tomdroid extends ListActivity {
 		}
 		
 		// adapter that binds the ListView UI to the notes in the note manager
-		adapter = NoteManager.getListAdapter(this);
+		adapter = NoteManager.getListAdapter(this, includeNotebookTemplates);
 		setListAdapter(adapter);
 
 		// set the view shown when the list is empty
@@ -182,7 +183,7 @@ public class Tomdroid extends ListActivity {
 	private void showNoteInPane(int position) {
 		if(rightPane == null)
 			return;
-		adapter = NoteManager.getListAdapter(this);
+		adapter = NoteManager.getListAdapter(this, includeNotebookTemplates);
 		setListAdapter(adapter);
 		Cursor item = (Cursor) adapter.getItem(position);
 		long noteId = item.getInt(item.getColumnIndexOrThrow(Note.ID));	

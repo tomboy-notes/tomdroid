@@ -222,19 +222,22 @@ public class NoteManager {
 	public static Cursor getAllNotes(Activity activity, Boolean includeNotebookTemplates) {
 		// get a cursor representing all notes from the NoteProvider
 		Uri notes = Tomdroid.CONTENT_URI;
-		String where = Note.TAGS + " NOT LIKE '%" + "system:deleted" + "%'";
+		String where = "("+Note.TAGS + " NOT LIKE '%" + "system:deleted" + "%')";
 		String orderBy;
 		if (!includeNotebookTemplates) {
-			where += Note.TAGS + " NOT LIKE '%" + "system:template" + "%'";
+			where += " AND (" + Note.TAGS + " NOT LIKE '%" + "system:template" + "%')";
 		}
 		orderBy = Note.MODIFIED_DATE + " DESC";
 		return activity.managedQuery(notes, LIST_PROJECTION, where, null, orderBy);		
 	}
 	
 
-	public static ListAdapter getListAdapter(Activity activity, String querys) {
+	public static ListAdapter getListAdapter(Activity activity, String querys, Boolean includeNotebookTemplates) {
 		
 		String where = "(" + Note.TAGS + " NOT LIKE '%" + "system:deleted" + "%')";
+		if (!includeNotebookTemplates) {
+			where += " AND (" + Note.TAGS + " NOT LIKE '%" + "system:template" + "%')";
+		}
 		if (querys != null ) {
 			// sql statements to search notes
 			String[] query = querys.split(" ");
@@ -253,9 +256,9 @@ public class NoteManager {
 		return new NoteListCursorAdapter(activity, R.layout.main_list_item, notesCursor, from, to);
 	}
 	
-	public static ListAdapter getListAdapter(Activity activity) {
+	public static ListAdapter getListAdapter(Activity activity, Boolean includeNotebookTemplates) {
 		
-		return getListAdapter(activity, null);
+		return getListAdapter(activity, null, includeNotebookTemplates);
 	}
 
 	// gets the titles of the notes present in the db, used in ViewNote.buildLinkifyPattern()
