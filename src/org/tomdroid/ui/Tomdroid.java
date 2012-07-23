@@ -153,9 +153,6 @@ public class Tomdroid extends ListActivity {
 		// set the view shown when the list is empty
 		listEmptyView = (TextView) findViewById(R.id.list_empty);
 		getListView().setEmptyView(listEmptyView);
-		
-		getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-		getListView().setSelector(android.R.color.darker_gray);
 
 		registerForContextMenu(findViewById(android.R.id.list));
 		
@@ -545,7 +542,6 @@ public class Tomdroid extends ListActivity {
 		
 		if (rightPane != null) {
 			showNoteInPane(position);
-		    v.setSelected(true);
 		}
 		else {
 			Cursor item = (Cursor) adapter.getItem(position);
