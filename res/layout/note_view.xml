@@ -48,7 +48,6 @@
 		    android:padding="10dp"
 			android:text="@string/strWait"
 			android:textIsSelectable="true"
-			android:linksClickable="false"
 			android:scrollHorizontally="false"
 		    android:textColor="#ffb8bcb8" />
 	</LinearLayout>

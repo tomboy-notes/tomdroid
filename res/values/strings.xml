@@ -66,6 +66,8 @@
 	<string name="prefSyncConnectionFailed">The connection to the server has failed, please check that the address you entered is correct.</string>
 	<string name="prefServerEmpty">The server address changed but the new value is empty</string>
 	<string name="prefMisc">Misc. Options</string>
+	<string name="prefAutoSaveTitle">Auto Save Note</string>
+	<string name="prefAutoSave">Save notes automatically on exiting editor.</string>
 	<string name="prefNoteTemplatesTitle">Include Note Templates</string>
 	<string name="prefNoteTemplates">If checked, will show note templates in notes list.</string>
 	<string name="deleteAllNotesTitle">Clear Notes</string>

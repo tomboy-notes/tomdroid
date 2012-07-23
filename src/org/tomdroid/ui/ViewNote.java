@@ -95,10 +95,6 @@ public class ViewNote extends Activity {
 
         uri = getIntent().getData();
 
-        if (uri == null) {
-			TLog.d(TAG, "The Intent's data was null.");
-            showNoteNotFoundDialog(uri);
-        } else handleNoteUri(uri);
     }
 
 	private void handleNoteUri(final Uri uri) {// We were triggered by an Intent URI
@@ -156,11 +152,14 @@ public class ViewNote extends Activity {
 
 	@Override
 	public void onResume(){
+		TLog.v(TAG, "resume view note");
 		super.onResume();
 		SyncManager.setActivity(this);
 		SyncManager.setHandler(this.syncMessageHandler);
-		handleNoteUri(uri);
-		showNote();
+        if (uri == null) {
+			TLog.d(TAG, "The Intent's data was null.");
+            showNoteNotFoundDialog(uri);
+        } else handleNoteUri(uri);
 		updateTextAttributes();
 	}
 	
@@ -190,6 +189,12 @@ public class ViewNote extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
+	        case android.R.id.home:
+	            // app icon in action bar clicked; go home
+	            Intent intent = new Intent(this, Tomdroid.class);
+	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+	            startActivity(intent);
+	            return true;		
 			case R.id.menuPrefs:
 				startActivity(new Intent(this, PreferencesActivity.class));
 				return true;

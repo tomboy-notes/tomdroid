@@ -30,12 +30,15 @@ import android.util.TimeFormatException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.tomdroid.util.NoteContentBuilder;
+import org.tomdroid.util.TLog;
 import org.tomdroid.util.XmlUtils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Note {
+
+	private String TAG = "Note";
 
 	// Static references to fields (used in Bundles, ContentResolvers, etc.)
 	public static final String ID = "_id";

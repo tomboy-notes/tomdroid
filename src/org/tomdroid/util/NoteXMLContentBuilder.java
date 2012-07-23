@@ -264,7 +264,6 @@ public class NoteXMLContentBuilder implements Runnable {
 				    
 					for(int i = elemEndsByStart.get(key).size()-1; i > -1; i--) {
 						String elementName = elemEndsByStart.get(key).get(i);
-						TLog.v(TAG, "adding {0}",key+" </"+elementName+">");
 						noteXMLContent += "</"+elementName+">";
 					}
 				}
@@ -276,17 +275,15 @@ public class NoteXMLContentBuilder implements Runnable {
 				while (iter.hasPrevious()) {
 				    Integer key = iter.previous();
 					for( String elementName: elemStartsByEnd.get(key) ) {
-						TLog.v(TAG, "adding {0}",key+" <"+elementName+">");
 						noteXMLContent += "<"+elementName+">";
 					}
 				}
-				TLog.v(TAG, "span adding finished");
 
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			// TODO handle error in a more granular way
-			Log.e(TAG, "There was an error parsing the note.");
+			TLog.e(TAG, "There was an error parsing the note.");
 			successful = false;
 		}
 		

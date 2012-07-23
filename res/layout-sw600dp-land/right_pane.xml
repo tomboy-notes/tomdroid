@@ -29,8 +29,6 @@
 		    android:gravity="top"
 			android:text=""
 			android:textIsSelectable="true"
-			android:linksClickable="false"
 		    android:textColor="#ffb8bcb8" />
-	   	
 	</RelativeLayout>
 </LinearLayout>

@@ -112,6 +112,8 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 	private int sselectionEnd;
 	private boolean xmlOn = false;
 	
+	// check whether text has been changed yet
+	private boolean textChanged = false;
 	
 	// TODO extract methods in here
 	@SuppressLint("NewApi")
@@ -139,21 +141,18 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 		    }
 		});
 
-		// add format bar listeners
-		
-		addFormatListeners();
-
         uri = getIntent().getData();
 
         if (uri == null) {
 			TLog.d(TAG, "The Intent's data was null.");
             showNoteNotFoundDialog(uri);
         } else handleNoteUri(uri);
+
         
 	}
 
 	private void handleNoteUri(final Uri uri) {// We were triggered by an Intent URI
-        TLog.d(TAG, "ViewNote started: Intent-filter triggered.");
+        TLog.d(TAG, "EditNote started: Intent-filter triggered.");
 
         // TODO validate the good action?
         // intent.getAction()
@@ -178,6 +177,10 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 			//parsed ok - show
 			if(msg.what == NoteContentBuilder.PARSE_OK) {
 				showNote();
+				
+				// add format bar listeners here
+				
+				addFormatListeners();
 
 			//parsed not ok - error
 			} else if(msg.what == NoteContentBuilder.PARSE_ERROR) {
@@ -229,15 +232,20 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
                 });
     }
     
+    @Override
+    protected void onPause() {
+		if(textChanged && Preferences.getBoolean(Preferences.Key.AUTO_SAVE))
+			saveNote();
+    	updateNoteContent(xmlOn);
+		super.onPause();
+    }    
+    
 	@Override
 	public void onResume(){
 		super.onResume();
 		SyncManager.setActivity(this);
 		SyncManager.setHandler(this.syncMessageHandler);
-		updateNoteContent(xmlOn);
-		handleNoteUri(uri);
 		updateTextAttributes();
-		showNote();
 	}
 	
 	private void updateTextAttributes() {
@@ -254,15 +262,25 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Create the menu based on what is defined in res/menu/noteview.xml
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.edit_note, menu);
+
+		// Create the menu based on what is defined in res/menu/noteview.xml
+		if(Preferences.getBoolean(Preferences.Key.AUTO_SAVE))
+			menu.findItem(R.id.edit_note_save).setVisible(false);
+
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
+	        case android.R.id.home:
+	            // app icon in action bar clicked; go home
+	            Intent intent = new Intent(this, Tomdroid.class);
+	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+	            startActivity(intent);
+	            return true;
 			case R.id.menuPrefs:
 				startActivity(new Intent(this, PreferencesActivity.class));
 				return true;
@@ -334,7 +352,7 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 			
 			//parsed ok - show
 			if(msg.what == NoteContentBuilder.PARSE_OK) {
-				showNote();
+				//showNote();
 
 			//parsed not ok - error
 			} else if(msg.what == NoteContentBuilder.PARSE_ERROR) {
@@ -418,7 +436,7 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 		} else {
 			
 			// TODO send an error to the user
-			if (Tomdroid.LOGGING_ENABLED) Log.d(TAG, "Cursor returned null or 0 notes");
+			TLog.d(TAG, "Cursor returned null or 0 notes");
 		}
 		
 		return null;
@@ -445,7 +463,6 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 			// parse XML
 			String xmlContent = this.content.getText().toString();
 			String subjectName = this.title.getText().toString();
-	        TLog.d(TAG, "update from xml content: {0}",xmlContent);
 	        InputSource noteContentIs = new InputSource(new StringReader(xmlContent));
 			try {
 				// Parsing
@@ -458,8 +475,6 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 		        spf.setFeature("http://xml.org/sax/features/namespace-prefixes", true);
 		        SAXParser sp = spf.newSAXParser();
 
-				TLog.v(TAG, "parsing note {0}", subjectName);
-				
 		        sp.parse(noteContentIs, new NoteContentHandler(newNoteContent));
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -474,8 +489,6 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 
 		// store changed note content
 		String newXmlContent = new NoteXMLContentBuilder().setCaller(noteXMLWriteHandler).setInputSource(newNoteContent).build();
-		
-		//TLog.v(TAG, "parsed XML Content: {0}", newXmlContent);
 		
 		// Since 0.5 EditNote expects the redundant title being removed from the note content, but we still may need this for debugging:
 		//note.setXmlContent("<note-content version=\"0.1\">"+note.getTitle()+"\n\n"+newXmlContent+"</note-content>");
@@ -498,6 +511,7 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 		note.setLastChangeDate(time);
 		NoteManager.putNote( this, note, false);
 		Toast.makeText(this, getString(R.string.messageNoteSaved), Toast.LENGTH_SHORT).show();
+		TLog.v(TAG, "note saved");
 
 	}
 
@@ -710,8 +724,11 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 		});
         
         content.addTextChangedListener(new TextWatcher() { 
-            public void afterTextChanged(Editable s) { 
-
+            public void afterTextChanged(Editable s) {
+            	
+                // set text as changed to force auto save if preferred
+            	textChanged = true;
+ 
             	//add style as the user types if a toggle button is enabled
             	
             	int position = Selection.getSelectionStart(content.getText());
@@ -721,7 +738,6 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
         		}
             	
         		if (position > 0){
-					TLog.d(TAG,"cursor at position {0}",position);
         			
         			if (styleStart > position || position > (cursorLoc + 1)){
 						//user changed cursor location, reset
@@ -733,7 +749,6 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 							styleStart = position - 1;
 						}
 					}
-					TLog.d(TAG,"styleStart {0}",styleStart);
         			
                 	if (boldButton.isChecked()){  
                 		StyleSpan[] ss = s.getSpans(styleStart, position, StyleSpan.class);
@@ -784,6 +799,20 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
         		}
         		
         		cursorLoc = Selection.getSelectionStart(content.getText());
+            } 
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { 
+                    //unused
+            } 
+            public void onTextChanged(CharSequence s, int start, int before, int count) { 
+                    //unused
+            } 
+        });
+
+        // set text as changed to force auto save if preferred
+        
+        title.addTextChangedListener(new TextWatcher() { 
+            public void afterTextChanged(Editable s) {
+            	textChanged = true;
             } 
             public void beforeTextChanged(CharSequence s, int start, int count, int after) { 
                     //unused
