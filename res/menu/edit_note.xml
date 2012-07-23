@@ -24,22 +24,29 @@
 -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-	<item   android:title="@string/send"
-			android:id="@+id/edit_note_send"
-			android:icon="@android:drawable/ic_menu_share"/>
-    <item android:id="@+id/edit_note_save"
+	<item android:id="@+id/edit_note_save"
           android:icon="@android:drawable/ic_menu_save"
           android:title="@string/save"
-          android:showAsAction="ifRoom|withText" 
+          android:showAsAction="always"
+          android:orderInCategory="1"
           />
     <item android:id="@+id/edit_note_xml"
           android:title="@string/xml"
           android:icon="@drawable/xml"
-          android:showAsAction="ifRoom|withText" 
+          android:showAsAction="ifRoom" 
+          android:orderInCategory="2"
+          />
+    <item android:title="@string/send"
+		  android:id="@+id/edit_note_send"
+          android:showAsAction="ifRoom"
+		  android:icon="@android:drawable/ic_menu_share"
+          android:orderInCategory="3"
           />
 	<item 
 		android:icon="@android:drawable/ic_menu_preferences"
 		android:title="@string/menuPrefs"
+		android:showAsAction="collapseActionView"
+        android:orderInCategory="4"
 		android:id="@+id/menuPrefs"/>
     
 </menu>

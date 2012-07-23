@@ -23,14 +23,18 @@
  */
 package org.tomdroid.ui;
 
-import android.app.ListActivity;
+import android.app.AlertDialog;
 import android.app.SearchManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.SearchRecentSuggestions;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -39,10 +43,11 @@ import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
 import org.tomdroid.sync.SyncManager;
+import org.tomdroid.ui.actionbar.ActionBarListActivity;
 import org.tomdroid.util.SearchSuggestionProvider;
 import org.tomdroid.util.TLog;
 
-public class Search extends ListActivity {
+public class Search extends ActionBarListActivity {
 	
 	// Logging info
 	private static final String	TAG					= "Tomdroid Search";
@@ -95,6 +100,31 @@ public class Search extends ListActivity {
 		listEmptyView = (TextView) findViewById(R.id.no_results);
 		listEmptyView.setText(getString(R.string.strNoResults, query));
 		getListView().setEmptyView(listEmptyView);
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+
+		// Create the menu based on what is defined in res/menu/main.xml
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.search, menu);
+        // Calling super after populating the menu is necessary here to ensure that the
+        // action bar helpers have a chance to handle this event.
+		return super.onCreateOptionsMenu(menu);
+
+	}
+	@Override
+	public boolean onOptionsItemSelected(final MenuItem item) {
+		switch (item.getItemId()) {
+        	case android.R.id.home:
+        		Tomdroid.ViewList(this);
+            	return true;
+				
+			case R.id.menuSearch:
+				startSearch(null, false, null, false);
+				return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 	
 	@Override

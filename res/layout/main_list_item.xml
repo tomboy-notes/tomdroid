@@ -29,24 +29,34 @@
     android:paddingTop="2dip"
     android:paddingBottom="2dip"
     android:paddingLeft="5dip"
+    android:paddingRight="5dip"
     android:mode="twoLine"
 	>
+	
+	<ImageView
+		android:id="@+id/list_icon"
+		android:layout_width="40dip"
+		android:layout_height="40dip"
+		android:src="@drawable/ic_shortcut"
+		android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+	/>
 
     <TextView android:id="@+id/note_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dip"
+        android:layout_marginLeft="48dip"
 		android:textStyle="bold"
-		android:textColor="#FFDDDDDD"
 		android:textSize="18dp"
 	/>
 
     <TextView android:id="@+id/note_date"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="48dip"
         android:layout_below="@+id/note_title"
         android:layout_alignLeft="@+id/title"
-		android:textColor="#FFDDDDDD"
 		android:textSize="14dp"
     />
 

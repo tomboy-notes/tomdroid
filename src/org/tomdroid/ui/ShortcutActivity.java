@@ -22,7 +22,6 @@
  */
 package org.tomdroid.ui;
 
-import android.app.ListActivity;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -30,13 +29,14 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
+import org.tomdroid.ui.actionbar.ActionBarListActivity;
 import org.tomdroid.util.NoteViewShortcutsHelper;
 import org.tomdroid.util.TLog;
 
 /**
  * @author Piotr Adamski <mcveat@gmail.com>
  */
-public class ShortcutActivity extends ListActivity {
+public class ShortcutActivity extends ActionBarListActivity {
     private final String TAG = ShortcutActivity.class.getName();
     private ListAdapter adapter;
 

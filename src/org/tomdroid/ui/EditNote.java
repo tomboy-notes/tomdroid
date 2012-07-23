@@ -34,6 +34,7 @@ import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
 import org.tomdroid.sync.SyncManager;
+import org.tomdroid.ui.actionbar.ActionBarActivity;
 import org.tomdroid.util.LinkifyPhone;
 import org.tomdroid.util.NoteContentBuilder;
 import org.tomdroid.util.NoteViewShortcutsHelper;
@@ -45,12 +46,10 @@ import org.tomdroid.xml.NoteContentHandler;
 import org.xml.sax.InputSource;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
-import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
@@ -70,7 +69,6 @@ import android.text.style.StyleSpan;
 import android.text.style.TypefaceSpan;
 import android.text.util.Linkify;
 import android.text.util.Linkify.TransformFilter;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -85,7 +83,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 // TODO this class is starting to smell
-public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedListener {
+public class EditNote extends ActionBarActivity implements TextSizeDialog.OnSizeChangedListener {
 	
 	// UI elements
 	private EditText title;
@@ -269,17 +267,16 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 		if(Preferences.getBoolean(Preferences.Key.AUTO_SAVE))
 			menu.findItem(R.id.edit_note_save).setVisible(false);
 
-		return true;
+        // Calling super after populating the menu is necessary here to ensure that the
+        // action bar helpers have a chance to handle this event.
+		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 	        case android.R.id.home:
-	            // app icon in action bar clicked; go home
-	            Intent intent = new Intent(this, Tomdroid.class);
-	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	            startActivity(intent);
+	        	Tomdroid.ViewList(this);
 	            return true;
 			case R.id.menuPrefs:
 				startActivity(new Intent(this, PreferencesActivity.class));
