@@ -29,11 +29,13 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 import org.tomdroid.R;
 import org.tomdroid.sync.SyncManager;
@@ -182,12 +184,12 @@ public class SyncMessageHandler extends Handler {
 	private void refreshActivity() {
 		TLog.d(TAG, "refreshing activity");
 		
-		if(Integer.parseInt(Build.VERSION.SDK) > 10)
-			activity.invalidateOptionsMenu();
-		
-		if (! (activity.isTaskRoot())) {
-			activity.finish(); activity.startActivity(activity.getIntent());
-			TLog.d(TAG,"Restarted the current Activity: {0}", activity.toString());
-		}
+		//TODO: This is a hack to reset the "Syncing..." in the menu for both the action bar and the menu.  Not pretty!
+
+		Intent intent = activity.getIntent();
+		intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+		activity.finish();
+		activity.startActivity(intent);
+		TLog.d(TAG,"Restarted the current Activity: {0}", activity.toString());
 	}
 }
