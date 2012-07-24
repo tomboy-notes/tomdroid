@@ -41,6 +41,7 @@
 		android:layout_height="match_parent"
 		android:overScrollMode="always"
 		android:fadingEdge="none"
+		android:fillViewport="true"
 		android:background="#ffffffff"
 		>
 		

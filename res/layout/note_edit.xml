@@ -26,6 +26,7 @@
 		    android:layout_height="fill_parent"
 			android:overScrollMode="always"
 			android:fadingEdge="none"
+			android:fillViewport="true"
 			android:background="#ffffffff"
 			>
 	   		<EditText 
@@ -52,6 +53,7 @@
 		android:visibility="gone"
 		android:layout_alignParentTop="true"
 		android:layout_alignParentRight="true"
+		android:background="#ffffff"
 		>
 	
 		<ToggleButton  
