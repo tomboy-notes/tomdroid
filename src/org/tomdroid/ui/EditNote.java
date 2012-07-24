@@ -118,6 +118,7 @@ public class EditNote extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.note_edit);
+		
 		content = (EditText) findViewById(R.id.content);
 		title = (EditText) findViewById(R.id.title);
 

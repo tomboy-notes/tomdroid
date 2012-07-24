@@ -24,14 +24,10 @@
 package org.tomdroid.ui;
 
 import android.annotation.TargetApi;
-import android.app.AlertDialog;
 import android.app.SearchManager;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.SearchRecentSuggestions;
@@ -41,7 +37,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SearchView;
 import android.widget.TextView;
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
@@ -67,6 +62,7 @@ public class Search extends ActionBarListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.search);
+
 	    handleIntent(getIntent());
 	}
 

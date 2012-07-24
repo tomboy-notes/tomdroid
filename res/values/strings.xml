@@ -168,11 +168,10 @@
 	<string name="shortcut_title">Tomdroid - Shortcuts</string>
 	
 	<!-- new prefs -->
-	<string name="illegalTextSize">Illegal text size chosen.  Please choose a number.</string>
+	<string name="illegalTextSize">Illegal text size chosen. Please choose a number.</string>
 	
 						
 	<!-- syncNotes -->
-	
 	<string name="push_changes_title">Push Changes</string>
 	<string name="push_changes_message">Push local changes?</string>
 	<string name="messageSyncNoteDeleted">Note deleted from %1$s successfully.</string>

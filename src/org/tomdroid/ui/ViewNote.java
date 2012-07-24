@@ -86,16 +86,14 @@ public class ViewNote extends ActionBarActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.note_view);
+		
 		content = (TextView) findViewById(R.id.content);
 		title = (TextView) findViewById(R.id.title);
 
 		// this we will call on resume as well.
 		updateTextAttributes();
-
         uri = getIntent().getData();
-
     }
 
 	private void handleNoteUri(final Uri uri) {// We were triggered by an Intent URI
