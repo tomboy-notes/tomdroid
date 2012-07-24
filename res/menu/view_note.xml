@@ -46,7 +46,7 @@
 		android:icon="@android:drawable/ic_menu_preferences"
 		android:title="@string/menuPrefs"
 		android:id="@+id/menuPrefs"
-		android:showAsAction="collapseActionView"
+		android:showAsAction="never"
 		android:orderInCategory="4"/>
     
 </menu>

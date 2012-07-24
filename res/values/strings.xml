@@ -152,9 +152,14 @@
 	<string name="xml">XML</string>
 	<string name="text">Text</string>
 	<string name="titleErrorParsingXML">Error parsing note</string>
-	<string name="messageErrorParsingXML">There was an error parsing the note.  Please check your XML.</string>
+	<string name="messageErrorParsingXML">There was an error parsing the note. Please check your XML.</string>
 	<string name="messageNoteSaved">Note saved locally.</string>
 	<string name="messageNoteDeleted">Note deleted locally.</string>
+	<string name="messageSelectSize">Select text size</string>
+	<string name="small">Small</string>
+	<string name="normal">Normal</string>
+	<string name="large">Large</string>
+	<string name="huge">Huge</string>
 		
 	<!-- New Titles -->
 	<string name="view_title">Tomdroid - View Note</string>

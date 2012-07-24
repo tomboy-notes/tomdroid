@@ -82,7 +82,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 // TODO this class is starting to smell
-public class EditNote extends ActionBarActivity implements TextSizeDialog.OnSizeChangedListener {
+public class EditNote extends ActionBarActivity {
 	
 	// UI elements
 	private EditText title;
@@ -809,15 +809,34 @@ public class EditNote extends ActionBarActivity implements TextSizeDialog.OnSize
 			public void onClick(View v) {
                 sselectionStart = content.getSelectionStart();
             	sselectionEnd = content.getSelectionEnd();
-            	
-	            TextSizeDialog colorDlg = new TextSizeDialog(EditNote.this, (TextSizeDialog.OnSizeChangedListener)EditNote.this, sselectionStart, sselectionEnd);
-            	colorDlg.show();
+            	showSizeDialog();
             }
 		});
-
-
-		
 	}
+	
+	private void showSizeDialog() {
+		final CharSequence[] items = {getString(R.string.small), getString(R.string.normal), getString(R.string.large), getString(R.string.huge)};
+
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle(R.string.messageSelectSize);
+		builder.setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
+		    public void onClick(DialogInterface dialog, int item) {
+		        Toast.makeText(getApplicationContext(), items[item], Toast.LENGTH_SHORT).show();
+		        float c = 1.0f;	
+		        switch (item) {
+	        		case 0: c = 0.8f; break;
+	        		case 1: c = 1.0f; break;
+	        		case 2: c = 1.5f; break;
+	        		case 3: c = 1.8f; break;
+				}
+	        	sizeChanged(c);
+                dialog.dismiss();
+		    }
+		});
+		builder.show();
+	}
+	
+
 	public void sizeChanged(float size) 
 	{
         //((Button)findViewById(R.id.color)).setTextColor(color);

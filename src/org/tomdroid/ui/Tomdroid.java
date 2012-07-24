@@ -42,9 +42,12 @@ import org.tomdroid.util.NoteViewShortcutsHelper;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.Send;
 
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -53,6 +56,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -66,6 +70,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import org.tomdroid.util.TLog;
@@ -349,7 +354,8 @@ public class Tomdroid extends ActionBarListActivity {
 			return Tomdroid.CONTENT_URI.toString()+"/"+id;
 		}
 	};
-	
+
+	@TargetApi(11)
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -357,9 +363,10 @@ public class Tomdroid extends ActionBarListActivity {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.main, menu);
 
-        	// Calling super after populating the menu is necessary here to ensure that the
-       		// action bar helpers have a chance to handle this event.
+        // Calling super after populating the menu is necessary here to ensure that the
+       	// action bar helpers have a chance to handle this event.
 		return super.onCreateOptionsMenu(menu);
+		
 	}
 
 	@Override
