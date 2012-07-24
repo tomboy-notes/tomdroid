@@ -31,13 +31,13 @@
     android:paddingLeft="5dip"
     android:paddingRight="5dip"
     android:mode="twoLine"
-	>
+>
 	
 	<ImageView
 		android:id="@+id/list_icon"
 		android:layout_width="36dip"
 		android:layout_height="36dip"
-        android:layout_marginTop="5dip"
+        	android:layout_marginTop="5dip"
 		android:src="@drawable/ic_shortcut"
 		android:layout_alignParentLeft="true"
 	/>
