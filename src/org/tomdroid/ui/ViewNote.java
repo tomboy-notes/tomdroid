@@ -194,8 +194,11 @@ public class ViewNote extends ActionBarActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 	        case android.R.id.home:
-	        	Tomdroid.ViewList(this);
-	            return true;
+	        	// app icon in action bar clicked; go home
+                Intent intent = new Intent(this, Tomdroid.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            	return true;
 			case R.id.menuPrefs:
 				startActivity(new Intent(this, PreferencesActivity.class));
 				return true;

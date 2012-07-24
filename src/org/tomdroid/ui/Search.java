@@ -123,7 +123,10 @@ public class Search extends ActionBarListActivity {
 	public boolean onOptionsItemSelected(final MenuItem item) {
 		switch (item.getItemId()) {
         	case android.R.id.home:
-        		Tomdroid.ViewList(this);
+        		// app icon in action bar clicked; go home
+                Intent intent = new Intent(this, Tomdroid.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             	return true;
 				
 			case R.id.menuSearch:

@@ -42,13 +42,10 @@ import org.tomdroid.util.NoteViewShortcutsHelper;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.Send;
 
-import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -56,7 +53,6 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -70,7 +66,6 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SearchView;
 import android.widget.TextView;
 
 import org.tomdroid.util.TLog;
@@ -373,7 +368,10 @@ public class Tomdroid extends ActionBarListActivity {
 	public boolean onOptionsItemSelected(final MenuItem item) {
 		switch (item.getItemId()) {
         	case android.R.id.home:
-        		ViewList(this);
+                // app icon in action bar clicked; go home
+                Intent intent = new Intent(this, Tomdroid.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             	return true;
 			case R.id.menuAbout:
 				showAboutDialog();
@@ -387,20 +385,20 @@ public class Tomdroid extends ActionBarListActivity {
 			        .setMessage(R.string.push_changes_message)
 			        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog, int which) {
-							item.setTitle(Tomdroid.this.getString(R.string.syncing));
+	                        getActionBarHelper().setRefreshActionItemState(true);
 			            	SyncManager.getInstance().startSynchronization(true);
 			            }
 			        })
 			        .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog, int which) {
-							item.setTitle(Tomdroid.this.getString(R.string.syncing));
+	                        getActionBarHelper().setRefreshActionItemState(true);
 							SyncManager.getInstance().startSynchronization(false);
 			            }
 			        })
 			        .show();
 				}
 				else {
-					item.setTitle(Tomdroid.this.getString(R.string.syncing));
+                    getActionBarHelper().setRefreshActionItemState(true);
 					SyncManager.getInstance().startSynchronization(false);
 				}
 				return true;
@@ -568,14 +566,6 @@ public class Tomdroid extends ActionBarListActivity {
 		Uri intentUri = getNoteIntentUri(noteId);
 		final Intent i = new Intent(Intent.ACTION_VIEW, intentUri, this, EditNote.class);
 		startActivity(i);
-	}
-	
-	public static void ViewList(Context View) {
-		if ( ! ( View instanceof Tomdroid ) )
-	    {
-			View.startActivity(new Intent(View, Tomdroid.class)
-			.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-	    }
 	}
 
 	public void newNote() {

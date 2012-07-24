@@ -26,8 +26,8 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:minHeight="?android:attr/listPreferredItemHeight"
-    android:paddingTop="2dip"
-    android:paddingBottom="2dip"
+    android:paddingTop="5dip"
+    android:paddingBottom="5dip"
     android:paddingLeft="5dip"
     android:paddingRight="5dip"
     android:mode="twoLine"
@@ -35,17 +35,17 @@
 	
 	<ImageView
 		android:id="@+id/list_icon"
-		android:layout_width="40dip"
-		android:layout_height="40dip"
+		android:layout_width="36dip"
+		android:layout_height="36dip"
+        android:layout_marginTop="5dip"
 		android:src="@drawable/ic_shortcut"
 		android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
 	/>
 
     <TextView android:id="@+id/note_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dip"
+        android:layout_marginTop="3dip"
         android:layout_marginLeft="48dip"
 		android:textStyle="bold"
 		android:textSize="18dp"
