@@ -36,20 +36,25 @@
 	  android:singleLine="true"
 	  android:text="@string/strWait"
 	  android:textColor="#ffb8bcb8" />
-	<LinearLayout
+	<ScrollView
 	   	android:layout_width="match_parent"
 		android:layout_height="match_parent"
+		android:overScrollMode="always"
+		android:fadingEdge="none"
+		android:fillViewport="true"
+		android:background="#ffffffff"
 		>
+		
 		<TextView
 		    android:id="@+id/content"
 		    android:layout_width="match_parent"
-			android:layout_height="match_parent"
+			android:layout_height="wrap_content"
 			android:hint="@string/NewNoteBodyHint"
 		    android:padding="10dp"
 			android:text="@string/strWait"
 			android:textIsSelectable="true"
 			android:scrollHorizontally="false"
 		    android:textColor="#ffb8bcb8" />
-	</LinearLayout>
+	</ScrollView>
 </LinearLayout>   	
 	

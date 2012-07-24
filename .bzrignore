@@ -2,10 +2,3 @@ bin
 src/org/tomdroid/R.java
 sdcard.img.private
 gen/*
-bin/AndroidManifest.xml
-bin/classes
-bin/classes.dex
-bin/jarlist.cache
-bin/note-editing-and-syncing-with-combatActionBar.apk
-bin/res
-bin/resources.ap_

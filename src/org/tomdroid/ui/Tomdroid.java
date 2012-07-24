@@ -350,22 +350,16 @@ public class Tomdroid extends ActionBarListActivity {
 		}
 	};
 	
-	protected void startEditNote() {
-		final Intent i = new Intent(Intent.ACTION_VIEW, uri, this, EditNote.class);
-		startActivity(i);
-	}
-
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
 		// Create the menu based on what is defined in res/menu/main.xml
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.main, menu);
-        // Calling super after populating the menu is necessary here to ensure that the
-        // action bar helpers have a chance to handle this event.
-		return super.onCreateOptionsMenu(menu);
 
+        	// Calling super after populating the menu is necessary here to ensure that the
+       		// action bar helpers have a chance to handle this event.
+		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
@@ -450,7 +444,7 @@ public class Tomdroid extends ActionBarListActivity {
 				this.ViewNote(noteId);
 				break;
 			case R.id.edit:
-				this.startEditNote();
+				this.startEditNote(noteId);
 				break;
 			case R.id.delete:
 				this.deleteNote(noteId);
@@ -555,6 +549,17 @@ public class Tomdroid extends ActionBarListActivity {
 	public void ViewNote(long noteId) {
 		Uri intentUri = getNoteIntentUri(noteId);
 		Intent i = new Intent(Intent.ACTION_VIEW, intentUri, this, ViewNote.class);
+		startActivity(i);
+	}
+	
+	protected void startEditNote() {
+		final Intent i = new Intent(Intent.ACTION_VIEW, uri, this, EditNote.class);
+		startActivity(i);
+	}
+	
+	protected void startEditNote(long noteId) {
+		Uri intentUri = getNoteIntentUri(noteId);
+		final Intent i = new Intent(Intent.ACTION_VIEW, intentUri, this, EditNote.class);
 		startActivity(i);
 	}
 	

@@ -37,7 +37,6 @@ import org.tomdroid.sync.SyncManager;
 import org.tomdroid.ui.actionbar.ActionBarActivity;
 import org.tomdroid.util.LinkifyPhone;
 import org.tomdroid.util.NoteContentBuilder;
-import org.tomdroid.util.NoteViewShortcutsHelper;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.Send;
 import org.tomdroid.util.NoteXMLContentBuilder;
@@ -45,13 +44,13 @@ import org.tomdroid.util.TLog;
 import org.tomdroid.xml.NoteContentHandler;
 import org.xml.sax.InputSource;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -114,7 +113,6 @@ public class EditNote extends ActionBarActivity implements TextSizeDialog.OnSize
 	private boolean textChanged = false;
 	
 	// TODO extract methods in here
-	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -122,8 +120,6 @@ public class EditNote extends ActionBarActivity implements TextSizeDialog.OnSize
 		setContentView(R.layout.note_edit);
 		content = (EditText) findViewById(R.id.content);
 		title = (EditText) findViewById(R.id.title);
-		
-		updateTextAttributes();
 
 		formatBar = (LinearLayout) findViewById(R.id.format_bar);
 
@@ -138,15 +134,11 @@ public class EditNote extends ActionBarActivity implements TextSizeDialog.OnSize
 		    	}
 		    }
 		});
-
+		
+		// this we will call on resume as well.
+		updateTextAttributes();
+		
         uri = getIntent().getData();
-
-        if (uri == null) {
-			TLog.d(TAG, "The Intent's data was null.");
-            showNoteNotFoundDialog(uri);
-        } else handleNoteUri(uri);
-
-        
 	}
 
 	private void handleNoteUri(final Uri uri) {// We were triggered by an Intent URI
@@ -196,30 +188,8 @@ public class EditNote extends ActionBarActivity implements TextSizeDialog.OnSize
 		}
 	};
 	
-	private void showNoteNotFoundDialog(final Uri uri) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        addCommonNoteNotFoundDialogElements(builder);
-        addShortcutNoteNotFoundElements(uri, builder);
-        builder.show();
-    }
-    private void addShortcutNoteNotFoundElements(final Uri uri, final AlertDialog.Builder builder) {
-        final boolean proposeShortcutRemoval;
-        final boolean calledFromShortcut = getIntent().getBooleanExtra(CALLED_FROM_SHORTCUT_EXTRA, false);
-        final String shortcutName = getIntent().getStringExtra(SHORTCUT_NAME);
-        proposeShortcutRemoval = calledFromShortcut && uri != null && shortcutName != null;
-
-        if (proposeShortcutRemoval) {
-            final Intent removeIntent = new NoteViewShortcutsHelper(this).getRemoveShortcutIntent(shortcutName, uri);
-            builder.setPositiveButton(getString(R.string.btnRemoveShortcut), new OnClickListener() {
-                public void onClick(final DialogInterface dialogInterface, final int i) {
-                    sendBroadcast(removeIntent);
-                    finish();
-                }
-            });
-        }
-    }
-
-    private void addCommonNoteNotFoundDialogElements(final AlertDialog.Builder builder) {
+    private void showNoteNotFoundDialog(final Uri uri) {
+    	final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(getString(R.string.messageNoteNotFound))
                 .setTitle(getString(R.string.titleNoteNotFound))
                 .setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
@@ -228,21 +198,33 @@ public class EditNote extends ActionBarActivity implements TextSizeDialog.OnSize
                         finish();
                     }
                 });
+        builder.show();
     }
     
     @Override
     protected void onPause() {
-		if(textChanged && Preferences.getBoolean(Preferences.Key.AUTO_SAVE))
-			saveNote();
-    	updateNoteContent(xmlOn);
-		super.onPause();
+    	if (uri == null) {
+            super.onPause();
+        } else {
+        	if(textChanged && Preferences.getBoolean(Preferences.Key.AUTO_SAVE))
+        		saveNote();
+        	updateNoteContent(xmlOn);
+        	super.onPause();
+        }
     }    
     
 	@Override
 	public void onResume(){
+		TLog.v(TAG, "resume edit note");
 		super.onResume();
 		SyncManager.setActivity(this);
 		SyncManager.setHandler(this.syncMessageHandler);
+
+        if (uri == null) {
+			TLog.d(TAG, "The Intent's data was null.");
+            showNoteNotFoundDialog(uri);
+        } else handleNoteUri(uri);
+
 		updateTextAttributes();
 	}
 	
@@ -251,11 +233,12 @@ public class EditNote extends ActionBarActivity implements TextSizeDialog.OnSize
 		content.setTextSize(baseSize);
 		title.setTextSize(baseSize*1.3f);
 
-		title.setTextColor(Color.DKGRAY);
+		title.setTextColor(Color.BLUE);
+		title.setPaintFlags(title.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 		title.setBackgroundColor(0xffffffff);
 
 		content.setBackgroundColor(0xffffffff);
-		content.setTextColor(Color.DKGRAY);		
+		content.setTextColor(Color.DKGRAY);
 	}
 
 	@Override
