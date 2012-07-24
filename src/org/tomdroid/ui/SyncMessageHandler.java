@@ -174,6 +174,7 @@ public class SyncMessageHandler extends Handler {
 		View dot = activity.findViewById(R.id.sync_dot);
 		dot.setVisibility(View.VISIBLE);
 		dot.startAnimation(pulse);*/
+
 	}
 	
 	private void refreshActivity() {
