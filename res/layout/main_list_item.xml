@@ -30,7 +30,7 @@
     android:paddingBottom="2dip"
     android:paddingLeft="5dip"
     android:mode="twoLine"
-	>
+>
 
     <TextView android:id="@+id/note_title"
         android:layout_width="fill_parent"

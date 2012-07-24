@@ -163,11 +163,9 @@
 	<string name="shortcut_title">Tomdroid - Shortcuts</string>
 	
 	<!-- new prefs -->
-	<string name="illegalTextSize">Illegal text size chosen.  Please choose a number.</string>
-	
+	<string name="illegalTextSize">Illegal text size chosen. Please choose a number.</string>
 						
 	<!-- syncNotes -->
-	
 	<string name="syncing">Syncing…</string>
 	<string name="push_changes_title">Push Changes</string>
 	<string name="push_changes_message">Push local changes?</string>
@@ -175,8 +173,6 @@
 	<string name="messageSyncNotePushed">Note sent to %1$s successfully.</string>
 	<string name="messageSyncNoteDeleteError">Error deleting note from %1$s.</string>
 	<string name="messageSyncNotePushError">Error sending note to %1$s.</string>
-		
-	
 	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
@@ -185,15 +181,16 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid notes</string>
 	<!-- 325 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\nNOTE: It is a READ-ONLY client for now.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Note-taking application with online synchronization compatible with Tomboy</string>
 	
 	
 	<!-- Launchpad Translation String -->
-	<string name="about_translators">Launchpad Contributions:
-  Stefan Hammer https://launchpad.net/~j-4
-  Vibhav Pant https://launchpad.net/~vibhavp</string>
+	<string name="about_translators">
 	
+	translator-credits
+	
+	</string>
 </resources>

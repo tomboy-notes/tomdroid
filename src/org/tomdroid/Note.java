@@ -37,8 +37,6 @@ import java.util.regex.Pattern;
 
 public class Note {
 
-	private String TAG = "Note";
-
 	// Static references to fields (used in Bundles, ContentResolvers, etc.)
 	public static final String ID = "_id";
 	public static final String GUID = "guid";
