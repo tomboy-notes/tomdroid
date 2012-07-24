@@ -30,12 +30,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 import org.tomdroid.R;
 import org.tomdroid.sync.SyncManager;
@@ -178,9 +174,9 @@ public class SyncMessageHandler extends Handler {
 		View dot = activity.findViewById(R.id.sync_dot);
 		dot.setVisibility(View.VISIBLE);
 		dot.startAnimation(pulse);*/
+
 	}
 	
-	@SuppressLint("NewApi")
 	private void refreshActivity() {
 		TLog.d(TAG, "refreshing activity");
 		

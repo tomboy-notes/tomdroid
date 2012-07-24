@@ -41,7 +41,6 @@ import android.text.style.RelativeSizeSpan;
 import android.text.style.StrikethroughSpan;
 import android.text.style.StyleSpan;
 import android.text.style.TypefaceSpan;
-import android.util.Log;
 
 public class NoteXMLContentBuilder implements Runnable {
 	

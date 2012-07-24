@@ -62,7 +62,6 @@ import android.text.util.Linkify;
 import android.text.util.Linkify.TransformFilter;
 import android.view.*;
 import android.view.ContextMenu.ContextMenuInfo;
-import android.widget.AbsListView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
