@@ -45,6 +45,8 @@
 		    android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:hint="@string/NewNoteBodyHint"
+			android:scrollbars = "vertical"
+			android:overScrollMode="always"
 		    android:padding="10dp"
 			android:text="@string/strWait"
 			android:textIsSelectable="true"

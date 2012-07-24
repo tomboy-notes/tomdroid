@@ -36,7 +36,6 @@ import org.tomdroid.R;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.util.LinkifyPhone;
 import org.tomdroid.util.NoteContentBuilder;
-import org.tomdroid.util.NoteViewShortcutsHelper;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.Send;
 import org.tomdroid.util.NoteXMLContentBuilder;
@@ -51,6 +50,7 @@ import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -233,11 +233,12 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 		content.setTextSize(baseSize);
 		title.setTextSize(baseSize*1.3f);
 
-		title.setTextColor(Color.DKGRAY);
+		title.setTextColor(Color.BLUE);
+		title.setPaintFlags(title.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 		title.setBackgroundColor(0xffffffff);
 
 		content.setBackgroundColor(0xffffffff);
-		content.setTextColor(Color.DKGRAY);		
+		content.setTextColor(Color.DKGRAY);
 	}
 
 	@Override

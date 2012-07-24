@@ -31,6 +31,8 @@
 				android:layout_width="match_parent" 
 				android:layout_height="match_parent"
 				android:gravity="top"
+				android:scrollbars = "vertical"
+				android:overScrollMode="always"
 				android:linksClickable="false"
 				android:hint="@string/NewNoteBodyHint"
 				android:padding="10dip"
