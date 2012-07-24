@@ -351,12 +351,6 @@ public class Tomdroid extends ListActivity {
 		}
 	};
 	
-	protected void startEditNote() {
-		final Intent i = new Intent(Intent.ACTION_VIEW, uri, this, EditNote.class);
-		startActivity(i);
-	}
-
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -364,7 +358,6 @@ public class Tomdroid extends ListActivity {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.main, menu);
 		return true;
-
 	}
 
 	@Override
@@ -448,7 +441,7 @@ public class Tomdroid extends ListActivity {
 				this.ViewNote(noteId);
 				break;
 			case R.id.edit:
-				this.startEditNote();
+				this.startEditNote(noteId);
 				break;
 			case R.id.delete:
 				this.deleteNote(noteId);
@@ -553,6 +546,17 @@ public class Tomdroid extends ListActivity {
 	public void ViewNote(long noteId) {
 		Uri intentUri = getNoteIntentUri(noteId);
 		Intent i = new Intent(Intent.ACTION_VIEW, intentUri, this, ViewNote.class);
+		startActivity(i);
+	}
+	
+	protected void startEditNote() {
+		final Intent i = new Intent(Intent.ACTION_VIEW, uri, this, EditNote.class);
+		startActivity(i);
+	}
+	
+	protected void startEditNote(long noteId) {
+		Uri intentUri = getNoteIntentUri(noteId);
+		final Intent i = new Intent(Intent.ACTION_VIEW, intentUri, this, EditNote.class);
 		startActivity(i);
 	}
 	

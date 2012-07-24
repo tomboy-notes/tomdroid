@@ -44,13 +44,11 @@ import org.tomdroid.util.TLog;
 import org.tomdroid.xml.NoteContentHandler;
 import org.xml.sax.InputSource;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
-import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
@@ -70,7 +68,6 @@ import android.text.style.StyleSpan;
 import android.text.style.TypefaceSpan;
 import android.text.util.Linkify;
 import android.text.util.Linkify.TransformFilter;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -116,7 +113,6 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 	private boolean textChanged = false;
 	
 	// TODO extract methods in here
-	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -124,8 +120,6 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 		setContentView(R.layout.note_edit);
 		content = (EditText) findViewById(R.id.content);
 		title = (EditText) findViewById(R.id.title);
-		
-		updateTextAttributes();
 
 		formatBar = (LinearLayout) findViewById(R.id.format_bar);
 
@@ -140,15 +134,11 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 		    	}
 		    }
 		});
-
+		
+		// this we will call on resume as well.
+		updateTextAttributes();
+		
         uri = getIntent().getData();
-
-        if (uri == null) {
-			TLog.d(TAG, "The Intent's data was null.");
-            showNoteNotFoundDialog(uri);
-        } else handleNoteUri(uri);
-
-        
 	}
 
 	private void handleNoteUri(final Uri uri) {// We were triggered by an Intent URI
@@ -198,30 +188,8 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 		}
 	};
 	
-	private void showNoteNotFoundDialog(final Uri uri) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        addCommonNoteNotFoundDialogElements(builder);
-        addShortcutNoteNotFoundElements(uri, builder);
-        builder.show();
-    }
-    private void addShortcutNoteNotFoundElements(final Uri uri, final AlertDialog.Builder builder) {
-        final boolean proposeShortcutRemoval;
-        final boolean calledFromShortcut = getIntent().getBooleanExtra(CALLED_FROM_SHORTCUT_EXTRA, false);
-        final String shortcutName = getIntent().getStringExtra(SHORTCUT_NAME);
-        proposeShortcutRemoval = calledFromShortcut && uri != null && shortcutName != null;
-
-        if (proposeShortcutRemoval) {
-            final Intent removeIntent = new NoteViewShortcutsHelper(this).getRemoveShortcutIntent(shortcutName, uri);
-            builder.setPositiveButton(getString(R.string.btnRemoveShortcut), new OnClickListener() {
-                public void onClick(final DialogInterface dialogInterface, final int i) {
-                    sendBroadcast(removeIntent);
-                    finish();
-                }
-            });
-        }
-    }
-
-    private void addCommonNoteNotFoundDialogElements(final AlertDialog.Builder builder) {
+    private void showNoteNotFoundDialog(final Uri uri) {
+    	final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(getString(R.string.messageNoteNotFound))
                 .setTitle(getString(R.string.titleNoteNotFound))
                 .setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
@@ -230,21 +198,33 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
                         finish();
                     }
                 });
+        builder.show();
     }
     
     @Override
     protected void onPause() {
-		if(textChanged && Preferences.getBoolean(Preferences.Key.AUTO_SAVE))
-			saveNote();
-    	updateNoteContent(xmlOn);
-		super.onPause();
+    	if (uri == null) {
+            super.onPause();
+        } else {
+        	if(textChanged && Preferences.getBoolean(Preferences.Key.AUTO_SAVE))
+        		saveNote();
+        	updateNoteContent(xmlOn);
+        	super.onPause();
+        }
     }    
     
 	@Override
 	public void onResume(){
+		TLog.v(TAG, "resume edit note");
 		super.onResume();
 		SyncManager.setActivity(this);
 		SyncManager.setHandler(this.syncMessageHandler);
+
+        if (uri == null) {
+			TLog.d(TAG, "The Intent's data was null.");
+            showNoteNotFoundDialog(uri);
+        } else handleNoteUri(uri);
+
 		updateTextAttributes();
 	}
 	
