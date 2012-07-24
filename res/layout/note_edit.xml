@@ -20,26 +20,26 @@
 			android:padding="10dip"
 			android:textCursorDrawable="@null"
 			android:textColor="#ffb8bcb8" />
-		<LinearLayout 
-			android:id="@+id/content_parent" 
-			android:orientation="vertical"
+		<ScrollView
+			android:id="@+id/content_parent"
 		    android:layout_width="fill_parent"
 		    android:layout_height="fill_parent"
-		    >
+			android:overScrollMode="always"
+			android:fadingEdge="none"
+			android:background="#ffffffff"
+			>
 	   		<EditText 
 				android:id="@+id/content"
 				android:layout_width="match_parent" 
-				android:layout_height="match_parent"
+				android:layout_height="wrap_content"
 				android:gravity="top"
-				android:scrollbars = "vertical"
-				android:overScrollMode="always"
 				android:linksClickable="false"
 				android:hint="@string/NewNoteBodyHint"
 				android:padding="10dip"
 				android:textCursorDrawable="@null"
 				android:scrollHorizontally="false"
 				android:textColor="#ffb8bcb8" />
-		</LinearLayout>
+		</ScrollView>
 	</LinearLayout>
 	
 	<!-- formatting -->

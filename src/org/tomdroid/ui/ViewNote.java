@@ -175,7 +175,6 @@ public class ViewNote extends Activity {
 
 		content.setBackgroundColor(0xffffffff);
 		content.setTextColor(Color.DKGRAY);
-		content.setMovementMethod(ScrollingMovementMethod.getInstance());
 	}
 	
 	@Override
