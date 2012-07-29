@@ -2,14 +2,3 @@ bin
 src/org/tomdroid/R.java
 sdcard.img.private
 gen/*
-bin/AndroidManifest.xml
-bin/AndroidManifest.xml.~1~
-bin/classes
-bin/classes.dex
-bin/classes.dex.~1~
-bin/jarlist.cache
-bin/note-editing-and-syncing.apk
-bin/note-editing-and-syncing.apk.~1~
-bin/res
-bin/resources.ap_
-bin/resources.ap_.~1~
