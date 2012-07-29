@@ -52,6 +52,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -173,7 +174,8 @@ public class Tomdroid extends ActionBarListActivity {
 		content.setTextSize(baseSize);
 		title.setTextSize(baseSize*1.3f);
 
-		title.setTextColor(Color.DKGRAY);
+		title.setTextColor(Color.BLUE);
+		title.setPaintFlags(title.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 		title.setBackgroundColor(0xffffffff);
 
 		content.setBackgroundColor(0xffffffff);
