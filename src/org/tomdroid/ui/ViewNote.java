@@ -23,7 +23,6 @@
  */
 package org.tomdroid.ui;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -82,10 +81,10 @@ public class ViewNote extends ActionBarActivity {
 	private Uri uri;
 
 	// TODO extract methods in here
-	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Preferences.init(this, Tomdroid.CLEAR_PREFERENCES);
 		setContentView(R.layout.note_view);
 		
 		content = (TextView) findViewById(R.id.content);

@@ -31,6 +31,7 @@ import org.tomdroid.NoteManager;
 import org.tomdroid.R;
 import org.tomdroid.ui.actionbar.ActionBarListActivity;
 import org.tomdroid.util.NoteViewShortcutsHelper;
+import org.tomdroid.util.Preferences;
 import org.tomdroid.util.TLog;
 
 /**
@@ -43,10 +44,11 @@ public class ShortcutActivity extends ActionBarListActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Preferences.init(this, Tomdroid.CLEAR_PREFERENCES);
+		
         TLog.d(TAG, "creating shortcut...");
         setContentView(R.layout.shortcuts_list);
-
+        setTitle(R.string.shortcuts_view_caption);
         adapter = NoteManager.getListAdapter(this);
         setListAdapter(adapter);
         getListView().setEmptyView(findViewById(R.id.list_empty));
