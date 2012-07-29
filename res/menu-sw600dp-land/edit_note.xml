@@ -30,6 +30,11 @@
           android:showAsAction="always|withText"
           android:orderInCategory="1"
           />
+    <item android:id="@+id/edit_note_discard"
+          android:icon="@android:drawable/ic_menu_close_clear_cancel"
+          android:title="@string/discard"
+          android:showAsAction="never|withText" 
+          />
     <item android:id="@+id/edit_note_xml"
           android:title="@string/xml"
           android:icon="@drawable/xml"
@@ -37,17 +42,16 @@
           android:orderInCategory="2"
           />
     <item android:title="@string/send"
-		  android:id="@+id/edit_note_send"
+          android:id="@+id/edit_note_send"
           android:showAsAction="ifRoom|withText"
-		  android:icon="@android:drawable/ic_menu_share"
+          android:icon="@android:drawable/ic_menu_share"
           android:orderInCategory="3"
           />
-	<item 
-		android:icon="@android:drawable/ic_menu_preferences"
-		android:title="@string/menuPrefs"
-		android:id="@+id/menuPrefs"
-        android:showAsAction="never|withText"
-        android:orderInCategory="4"
-        />
-    
+    <item 
+          android:icon="@android:drawable/ic_menu_preferences"
+          android:title="@string/menuPrefs"
+          android:id="@+id/menuPrefs"
+          android:showAsAction="never|withText"
+          android:orderInCategory="4"
+          />  
 </menu>

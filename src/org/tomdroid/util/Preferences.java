@@ -51,8 +51,7 @@ public class Preferences {
 		LATEST_SYNC_DATE ("latest_sync_date", (new Time()).format3339(false)), // will be used to tell whether we have newer notes
 		SORT_ORDER ("sort_order", "sort_date"),
 		FIRST_RUN ("first_run", true),
-		BASE_TEXT_SIZE("base_text_size","18"), 
-		AUTO_SAVE("auto_save",false);
+		BASE_TEXT_SIZE("base_text_size","18");
 
 		private String name = "";
 		private Object defaultValue = "";

@@ -142,6 +142,7 @@
 	<!-- editNote -->
 	<string name="edit">Edit</string>
 	<string name="save">Save</string>
+	<string name="discard">Discard</string>
 	<string name="back">Back</string>
 	<string name="bold">B</string>
 	<string name="italic">i</string>
@@ -160,6 +161,8 @@
 	<string name="normal">Normal</string>
 	<string name="large">Large</string>
 	<string name="huge">Huge</string>
+	<string name="messageDiscardChanges">Do you really want to discard your changes and revert the note to the last saved state?</string>
+	<string name="titleDiscardChanges">Discard Changes?</string>
 		
 	<!-- New Titles -->
 	<string name="view_title">Tomdroid - View Note</string>
