@@ -33,7 +33,7 @@
 	  android:layout_height="wrap_content"
 	  android:padding="10dip"
 	  android:singleLine="true"
-	  android:text="@string/strWait"
+	  android:text=""
 	  android:textColor="#ffb8bcb8" />
 	<ScrollView
 	   	android:layout_width="match_parent"
