@@ -83,7 +83,7 @@
     	</activity>
 
         <activity android:name=".ui.ShortcutActivity" 
-            android:label="@string/shortcut_title">
+            android:label="@string/shortcut_menu_item_caption">
             <intent-filter>
                 <action android:name="android.intent.action.CREATE_SHORTCUT"/>
                 <category android:name="android.intent.category.DEFAULT"/>
