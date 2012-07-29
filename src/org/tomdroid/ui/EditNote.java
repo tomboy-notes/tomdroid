@@ -111,6 +111,8 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 	
 	// check whether text has been changed yet
 	private boolean textChanged = false;
+	// discard changes -> not will not be saved
+	private boolean discardChanges = false;
 	
 	// TODO extract methods in here
 	@Override
@@ -206,7 +208,7 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
     	if (uri == null) {
             super.onPause();
         } else {
-        	if(textChanged && Preferences.getBoolean(Preferences.Key.AUTO_SAVE))
+        	if(textChanged && !discardChanges)
         		saveNote();
         	updateNoteContent(xmlOn);
         	super.onPause();
@@ -245,11 +247,6 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.edit_note, menu);
-
-		// Create the menu based on what is defined in res/menu/noteview.xml
-		if(Preferences.getBoolean(Preferences.Key.AUTO_SAVE))
-			menu.findItem(R.id.edit_note_save).setVisible(false);
-
 		return true;
 	}
 
@@ -270,6 +267,9 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 					return true;
 			case R.id.edit_note_save:
 				saveNote();
+				return true;
+			case R.id.edit_note_discard:
+				discardNoteContent();
 				return true;
 			case R.id.edit_note_xml:
             	if(!xmlOn) {
@@ -484,6 +484,7 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 			Toast.makeText(this, getString(R.string.messageErrorParsingXML), Toast.LENGTH_SHORT).show();
 			return;
 		}
+		
 		note.setTitle(title.getText().toString());
 
 		Time now = new Time();
@@ -493,7 +494,25 @@ public class EditNote extends Activity implements TextSizeDialog.OnSizeChangedLi
 		NoteManager.putNote( this, note, false);
 		Toast.makeText(this, getString(R.string.messageNoteSaved), Toast.LENGTH_SHORT).show();
 		TLog.v(TAG, "note saved");
-
+	}
+	
+	private void discardNoteContent() {
+		new AlertDialog.Builder(EditNote.this)
+			.setMessage(getString(R.string.messageDiscardChanges))
+			.setTitle(getString(R.string.titleDiscardChanges))
+			.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+			            public void onClick(DialogInterface dialog, int which) {
+			            	discardChanges = true;
+			            	dialog.dismiss();
+							finish();
+			            }
+			        })
+			        .setNegativeButton(R.string.btnCancel, new DialogInterface.OnClickListener() {
+			            public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+			            }
+				})
+			.show();
 	}
 
 	private void addFormatListeners()

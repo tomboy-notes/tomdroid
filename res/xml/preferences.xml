@@ -53,11 +53,6 @@
                 android:title="@string/prefNoteTemplatesTitle"
                 android:summary="@string/prefNoteTemplates" 
                 android:defaultValue="False" />
-        <CheckBoxPreference
-                android:key="auto_save"
-                android:title="@string/prefAutoSaveTitle"
-                android:summary="@string/prefAutoSave" 
-                android:defaultValue="False" />
 		<Preference
                 android:title="@string/deleteAllNotesTitle"
                 android:summary="@string/deleteAllNotes"
