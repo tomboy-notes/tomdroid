@@ -107,6 +107,7 @@ public class EditNote extends ActionBarActivity {
 	int styleStart = -1, cursorLoc = 0;
     private int sselectionStart;
 	private int sselectionEnd;
+    private float size = 1.0f;
 	private boolean xmlOn = false;
 	
 	// check whether text has been changed yet
@@ -297,7 +298,13 @@ public class EditNote extends ActionBarActivity {
             		updateNoteContent(true);  // update based on xml that we are switching FROM
             		if(content.isFocused())
             			formatBar.setVisibility(View.VISIBLE);
-		    		showNote();
+            		// TODO this is a ugly bugfix. without the runnable delay, the note content will not be displayed. there must be another method to do this!
+            		getWindow().getDecorView().postDelayed(
+            		new Runnable() {
+                        public void run() {
+                            showNote();
+                        }
+                    }, 1);
             	}
 				return true;
 		}
@@ -799,7 +806,15 @@ public class EditNote extends ActionBarActivity {
                 			}
                         }
             			s.setSpan(new TypefaceSpan(Note.NOTE_MONOSPACE_TYPEFACE), styleStart, position, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                	}                	
+                	}
+                	if (size != 1.0f){
+                		RelativeSizeSpan[] ss = s.getSpans(styleStart, position, RelativeSizeSpan.class);
+                		
+                		for (int i = 0; i < ss.length; i++) {
+                			s.removeSpan(ss[i]);
+                		}
+                		s.setSpan(new RelativeSizeSpan(size), styleStart, position, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                	}
         		}
         		
         		cursorLoc = Selection.getSelectionStart(content.getText());
@@ -831,8 +846,8 @@ public class EditNote extends ActionBarActivity {
 		sizeButton.setOnClickListener(new Button.OnClickListener() {
 
 			public void onClick(View v) {
-                sselectionStart = content.getSelectionStart();
-            	sselectionEnd = content.getSelectionEnd();
+				sselectionStart = content.getSelectionStart();
+		    	sselectionEnd = content.getSelectionEnd();
             	showSizeDialog();
             }
 		});
@@ -845,47 +860,71 @@ public class EditNote extends ActionBarActivity {
 		builder.setTitle(R.string.messageSelectSize);
 		builder.setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
 		    public void onClick(DialogInterface dialog, int item) {
-		        Toast.makeText(getApplicationContext(), items[item], Toast.LENGTH_SHORT).show();
-		        float c = 1.0f;	
+		        Toast.makeText(getApplicationContext(), items[item], Toast.LENGTH_SHORT).show();	
 		        switch (item) {
-	        		case 0: c = 0.8f; break;
-	        		case 1: c = 1.0f; break;
-	        		case 2: c = 1.5f; break;
-	        		case 3: c = 1.8f; break;
+	        		case 0: size = 0.8f; break;
+	        		case 1: size = 1.0f; break;
+	        		case 2: size = 1.5f; break;
+	        		case 3: size = 1.8f; break;
 				}
-	        	sizeChanged(c);
+		        
+		    	if (sselectionStart == sselectionEnd) {
+		    		// there is no text selected -> start span here and elongate while typing
+	            	styleStart = sselectionStart;
+		    		cursorLoc = sselectionStart;
+		    	} else {
+		    		// there is some text selected, just change the size of this text
+		    		changeSize();
+		    	}
                 dialog.dismiss();
 		    }
 		});
 		builder.show();
 	}
 
-	public void sizeChanged(float size) 
+	public void changeSize() 
 	{
-        //((Button)findViewById(R.id.color)).setTextColor(color);
+        if (sselectionStart > sselectionEnd){
+        	int temp = sselectionEnd;
+        	sselectionEnd = sselectionStart;
+        	sselectionStart = temp;
+        }
         
-        int selectionStart = sselectionStart;
-    	int selectionEnd = sselectionEnd;
-
-    	if(selectionStart != selectionEnd)
+    	if(sselectionStart < sselectionEnd)
     	{
-        	if (selectionStart > selectionEnd){
-        		int temp = selectionEnd;
-        		selectionEnd = selectionStart;
-        		selectionStart = temp;
-        	}
-        	
         	Spannable str = content.getText();
         	
-        	RelativeSizeSpan[] ss = str.getSpans(selectionStart, selectionEnd, RelativeSizeSpan.class);
-    		
+        	// get all the spans in the selected range
+        	RelativeSizeSpan[] ss = str.getSpans(sselectionStart, sselectionEnd, RelativeSizeSpan.class);
+        	
+        	// check the position of the old span and the text size and decide how to rebuild the spans
     		for (int i = 0; i < ss.length; i++) {
-    				str.removeSpan(ss[i]);
+    			int oldStart = str.getSpanStart(ss[i]);
+    			int oldEnd = str.getSpanEnd(ss[i]);
+    			float oldSize = ss[i].getSizeChange();
+    			str.removeSpan(ss[i]);
+				
+    			if (oldStart < sselectionStart && sselectionEnd < oldEnd) {
+    				// old span starts end ends outside selection
+    				str.setSpan(new RelativeSizeSpan(oldSize), oldStart, sselectionStart, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            		str.setSpan(new RelativeSizeSpan(oldSize), sselectionEnd, oldEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+    			} else if (oldStart < sselectionStart && oldEnd <= sselectionEnd){
+    				// old span starts outside, ends inside the selection
+            		str.setSpan(new RelativeSizeSpan(oldSize), oldStart, sselectionStart, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+    			} else if (sselectionStart <= oldStart && sselectionEnd < oldEnd){
+    				// old span starts inside, ends outside the selection
+    				str.setSpan(new RelativeSizeSpan(oldSize), sselectionEnd, oldEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+    			} else if (sselectionStart <= oldStart && oldEnd <= sselectionEnd) {
+    				// old span was equal or within the selection -> just delete it and make the new one.
+    			}
+    	
             }
+    		// generate the new span in the selected range
         	if(size != 1.0f) {
-        		str.setSpan(new RelativeSizeSpan(size), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-    			updateNoteContent(xmlOn);
+        		str.setSpan(new RelativeSizeSpan(size), sselectionStart, sselectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         	}
+			updateNoteContent(xmlOn);
+			size = 1.0f;
     	}
     }	
 }
