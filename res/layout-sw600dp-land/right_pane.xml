@@ -25,7 +25,6 @@
 			android:id="@+id/content"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:hint="@string/NewNoteBodyHint"
 			android:padding="10dp"
 			android:text="@string/strWait"
 			android:textIsSelectable="true"
