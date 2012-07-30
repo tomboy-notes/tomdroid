@@ -859,7 +859,6 @@ public class EditNote extends ActionBarActivity {
 		});
 		builder.show();
 	}
-	
 
 	public void sizeChanged(float size) 
 	{
