@@ -7,5 +7,5 @@
 	<ListView android:id="@android:id/list"
     	android:layout_width="@dimen/left600"
 		android:layout_height="fill_parent"/>
-	<include android:id="@+id/right_pane" layout="@layout/right_pane" />
+	<include android:id="@+id/right_pane" layout="@layout/note_view" />
 </LinearLayout>
