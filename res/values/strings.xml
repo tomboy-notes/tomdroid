@@ -156,6 +156,11 @@
 	<string name="messageErrorParsingXML">There was an error parsing the note.  Please check your XML.</string>
 	<string name="messageNoteSaved">Note saved locally.</string>
 	<string name="messageNoteDeleted">Note deleted locally.</string>
+	<string name="messageSelectSize">Select text size</string>
+	<string name="small">Small</string>
+	<string name="normal">Normal</string>
+	<string name="large">Large</string>
+	<string name="huge">Huge</string>
 	<string name="messageDiscardChanges">Do you really want to discard your changes and revert the note to the last saved state?</string>
 	<string name="titleDiscardChanges">Discard Changes?</string>
 		
