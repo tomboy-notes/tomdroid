@@ -116,11 +116,14 @@ public class Tomdroid extends ListActivity {
 	private Uri uri;
 	private int lastIndex = 0;
 	public MenuItem syncMenuItem;
+	public static Tomdroid context;
 	
 	/** Called when the activity is created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		this.context = this;
 
 		setContentView(R.layout.main);
 		Preferences.init(this, CLEAR_PREFERENCES);
@@ -370,11 +373,11 @@ public class Tomdroid extends ListActivity {
 			case R.id.menuSync:
 				this.syncMenuItem = item;
 				if(NoteManager.getNewNotes(this).getCount() > 0) {
-					item.setTitle(Tomdroid.this.getString(R.string.syncing));
+					//item.setTitle(Tomdroid.this.getString(R.string.syncing));
 	            	SyncManager.getInstance().startSynchronization(true); // push by default
 				}
 				else {
-					item.setTitle(Tomdroid.this.getString(R.string.syncing));
+					//item.setTitle(Tomdroid.this.getString(R.string.syncing));
 					SyncManager.getInstance().startSynchronization(false);
 				}
 				return true;

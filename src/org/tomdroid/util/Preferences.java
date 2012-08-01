@@ -83,7 +83,6 @@ public class Preferences {
 	}
 	
 	public static String getString(Key key) {
-		
 		return client.getString(key.getName(), (String) key.getDefault());
 	}
 	

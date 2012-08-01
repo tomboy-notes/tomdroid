@@ -90,10 +90,10 @@ public class PreferencesActivity extends PreferenceActivity {
 		delNotes = (Preference)findPreference(Preferences.Key.DEL_ALL_NOTES.getName());
 		
 		// Set the default values if nothing exists
-		this.setDefaults();
+		setDefaults();
 		
 		// Fill the services combo list
-		this.fillServices();
+		fillServices();
 		
 		// Enable or disable the server field depending on the selected sync service
 		setServer(syncService.getValue());
@@ -299,7 +299,7 @@ public class PreferencesActivity extends PreferenceActivity {
 		syncServer.setDefaultValue(defaultServer);
 		if(syncServer.getText() == null)
 			syncServer.setText(defaultServer);
-		syncServer.setSummary(defaultServer);
+		syncServer.setSummary(Preferences.getString(Preferences.Key.SYNC_SERVER));
 
 		String defaultService = (String)Preferences.Key.SYNC_SERVICE.getDefault();
 		syncService.setDefaultValue(defaultService);

@@ -26,11 +26,14 @@ package org.tomdroid;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Bundle;
 import android.text.format.Time;
 import android.widget.ListAdapter;
 import android.widget.Toast;
@@ -101,7 +104,7 @@ public class NoteManager {
 		whereArgs[0] = note.getGuid().toString();
 		
 		// The note identifier is the guid
-		final ContentResolver cr = activity.getContentResolver();
+		ContentResolver cr = activity.getContentResolver();
 		Cursor managedCursor = cr.query(notes,
                 LIST_PROJECTION,  
                 Note.GUID + "= ?",
@@ -152,46 +155,24 @@ public class NoteManager {
 			int compareSyncOld = Time.compare(syncDate, oldDate);
 			int compareSyncNew = Time.compare(syncDate, note.getLastChangeDate());
 			
-			if(compareSyncOld < 0 && compareSyncNew < 0 && push) { // conflict!  both are newer than last sync
+			if(compareSyncOld < 0 && compareSyncNew < 0 && push) { // sync conflict!  both are newer than last sync
 				
-				final ContentValues fvalues = values;
-				final String[] fwhere = whereArgs;
-				final Activity factivity = activity;
-				final Uri furi = uri;
-				final Note fnote = getNote(factivity,furi);
+				// show Sync Dialog, send everything there so it can show in its own activity
 				
-				new AlertDialog.Builder(activity)
-		        .setIcon(android.R.drawable.ic_dialog_alert)
-		        .setTitle(R.string.sync_conflict_title)
-		        .setMessage(String.format(activity.getString(R.string.sync_conflict_message),note.getTitle()))
-		        .setPositiveButton(R.string.remote, new DialogInterface.OnClickListener() {
-		            public void onClick(DialogInterface dialog, int which) {
-		            	// pull remote changes
-						TLog.v(TAG, "user chose to pull remote conflicting note TITLE:{0} GUID:{1}", fnote.getTitle(),fnote.getGuid());
-						cr.update(Tomdroid.CONTENT_URI, fvalues, Note.GUID+" = ?", fwhere);
-		            }
-		        })
-		        .setNegativeButton(R.string.local, new DialogInterface.OnClickListener() {
-		            public void onClick(DialogInterface dialog, int which) {
-						/* pushing local changes, reject older incoming note.
-						 * If the local counterpart has the tag "system:deleted", delete from both local and remote.
-						 * Otherwise, push local to remote.
-						 */
-		            	
-						
-						TLog.v(TAG, "user chose to send local conflicting note TITLE:{0} GUID:{1}", fnote.getTitle(),fnote.getGuid());
+				Intent myIntent = new Intent(activity.getApplicationContext(), SyncDialog.class);	
+				Bundle bundle = new Bundle();	
+				bundle.putString("uri",uri.toString());	
 
-						if(fnote.getTags().contains("system:deleted")) {
-							TLog.v(TAG, "local note is deleted, deleting from server TITLE:{0} GUID:{1}", fnote.getTitle(),fnote.getGuid());
-							SyncManager.getInstance().deleteNote(fnote.getGuid()); // delete from remote
-							deleteNote(factivity,fnote.getDbId()); // really delete locally
-						}
-						else {
-							SyncManager.getInstance().pushNote(fnote);
-						}
-		            }
-		        })
-		        .show();
+				bundle.putString("title",note.getTitle());
+				bundle.putString("file",note.getFileName());
+				bundle.putString("guid",note.getGuid());
+				bundle.putString("date",note.getLastChangeDate().format3339(false));
+				bundle.putString("content", note.getXmlContent());
+				bundle.putString("tags", note.getTags());
+				
+				myIntent.putExtras(bundle);	
+				myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);	
+				activity.getApplicationContext().startActivity(myIntent);
 			}
 			else if(compared > 0) { // local newer 
 

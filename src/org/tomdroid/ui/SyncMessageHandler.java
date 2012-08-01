@@ -178,14 +178,6 @@ public class SyncMessageHandler extends Handler {
 	}
 	
 	private void refreshActivity() {
-		TLog.d(TAG, "refreshing activity");
-		
-		//TODO: This is a hack to reset the "Syncing..." in the menu for both the action bar and the menu.  Not pretty!
 
-		Intent intent = activity.getIntent();
-		intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-		activity.finish();
-		activity.startActivity(intent);
-		TLog.d(TAG,"Restarted the current Activity: {0}", activity.toString());
 	}
 }
