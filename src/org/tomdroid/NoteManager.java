@@ -25,8 +25,10 @@
 package org.tomdroid;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.net.Uri;
 import android.text.format.Time;
@@ -99,7 +101,7 @@ public class NoteManager {
 		whereArgs[0] = note.getGuid().toString();
 		
 		// The note identifier is the guid
-		ContentResolver cr = activity.getContentResolver();
+		final ContentResolver cr = activity.getContentResolver();
 		Cursor managedCursor = cr.query(notes,
                 LIST_PROJECTION,  
                 Note.GUID + "= ?",
@@ -142,9 +144,57 @@ public class NoteManager {
 			Time oldDate = new Time();
 			oldDate.parse3339(oldDateString);
 			int compared = Time.compare(oldDate, note.getLastChangeDate());
+
+			String syncDateString = Preferences.getString(Preferences.Key.LATEST_SYNC_DATE);
+			Time syncDate = new Time();
+			syncDate.parse3339(syncDateString);
 			
-			if(compared > 0) { 
-				if(push) { 
+			int compareSyncOld = Time.compare(syncDate, oldDate);
+			int compareSyncNew = Time.compare(syncDate, note.getLastChangeDate());
+			
+			if(compareSyncOld < 0 && compareSyncNew < 0 && push) { // conflict!  both are newer than last sync
+				
+				final ContentValues fvalues = values;
+				final String[] fwhere = whereArgs;
+				final Activity factivity = activity;
+				final Uri furi = uri;
+				final Note fnote = getNote(factivity,furi);
+				
+				new AlertDialog.Builder(activity)
+		        .setIcon(android.R.drawable.ic_dialog_alert)
+		        .setTitle(R.string.sync_conflict_title)
+		        .setMessage(String.format(activity.getString(R.string.sync_conflict_message),note.getTitle()))
+		        .setPositiveButton(R.string.remote, new DialogInterface.OnClickListener() {
+		            public void onClick(DialogInterface dialog, int which) {
+		            	// pull remote changes
+						TLog.v(TAG, "user chose to pull remote conflicting note TITLE:{0} GUID:{1}", fnote.getTitle(),fnote.getGuid());
+						cr.update(Tomdroid.CONTENT_URI, fvalues, Note.GUID+" = ?", fwhere);
+		            }
+		        })
+		        .setNegativeButton(R.string.local, new DialogInterface.OnClickListener() {
+		            public void onClick(DialogInterface dialog, int which) {
+						/* pushing local changes, reject older incoming note.
+						 * If the local counterpart has the tag "system:deleted", delete from both local and remote.
+						 * Otherwise, push local to remote.
+						 */
+		            	
+						
+						TLog.v(TAG, "user chose to send local conflicting note TITLE:{0} GUID:{1}", fnote.getTitle(),fnote.getGuid());
+
+						if(fnote.getTags().contains("system:deleted")) {
+							TLog.v(TAG, "local note is deleted, deleting from server TITLE:{0} GUID:{1}", fnote.getTitle(),fnote.getGuid());
+							SyncManager.getInstance().deleteNote(fnote.getGuid()); // delete from remote
+							deleteNote(factivity,fnote.getDbId()); // really delete locally
+						}
+						else {
+							SyncManager.getInstance().pushNote(fnote);
+						}
+		            }
+		        })
+		        .show();
+			}
+			else if(compared > 0) { // local newer 
+
 					note = getNote(activity,uri);
 					
 					/* pushing local changes, reject older incoming note.
@@ -161,16 +211,17 @@ public class NoteManager {
 						TLog.v(TAG, "local note is newer, sending new version TITLE:{0} GUID:{1}", note.getTitle(),note.getGuid());
 						SyncManager.getInstance().pushNote(note);
 					}
-				}
-				else // ignore newer local note, overwrite with remote
-					cr.update(Tomdroid.CONTENT_URI, values, Note.GUID+" = ?", whereArgs);
+
 			}
-			else if(compared < 0) {
+			else if(compared < 0) { // local older
+				
+				// pull remote changes
+				
 				cr.update(Tomdroid.CONTENT_URI, values, Note.GUID+" = ?", whereArgs);
 				
 				TLog.v(TAG, "Local note is older, updated in content provider TITLE:{0} GUID:{1}", note.getTitle(), note.getGuid());
 			}
-			else {
+			else { // both same date
 				cr.update(Tomdroid.CONTENT_URI, values, Note.GUID+" = ?", whereArgs); // update anyway, for debugging
 
 				TLog.v(TAG, "Local note is same date, skipped: TITLE:{0} GUID:{1}", note.getTitle(), note.getGuid());

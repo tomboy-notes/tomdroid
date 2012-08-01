@@ -370,23 +370,8 @@ public class Tomdroid extends ListActivity {
 			case R.id.menuSync:
 				this.syncMenuItem = item;
 				if(NoteManager.getNewNotes(this).getCount() > 0) {
-					new AlertDialog.Builder(this)
-			        .setIcon(android.R.drawable.ic_dialog_alert)
-			        .setTitle(R.string.push_changes_title)
-			        .setMessage(R.string.push_changes_message)
-			        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-			            public void onClick(DialogInterface dialog, int which) {
-							item.setTitle(Tomdroid.this.getString(R.string.syncing));
-			            	SyncManager.getInstance().startSynchronization(true);
-			            }
-			        })
-			        .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-			            public void onClick(DialogInterface dialog, int which) {
-							item.setTitle(Tomdroid.this.getString(R.string.syncing));
-							SyncManager.getInstance().startSynchronization(false);
-			            }
-			        })
-			        .show();
+					item.setTitle(Tomdroid.this.getString(R.string.syncing));
+	            	SyncManager.getInstance().startSynchronization(true); // push by default
 				}
 				else {
 					item.setTitle(Tomdroid.this.getString(R.string.syncing));
