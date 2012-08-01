@@ -295,12 +295,6 @@ public class EditNote extends Activity {
             		if(content.isFocused())
             			formatBar.setVisibility(View.VISIBLE);
             		// TODO this is a ugly bugfix. without the runnable delay, the note content will not be displayed. there must be another method to do this!
-            		getWindow().getDecorView().postDelayed(
-            		new Runnable() {
-                        public void run() {
-                            showNote();
-                        }
-                    }, 1);
             	}
 				return true;
 		}
@@ -340,7 +334,7 @@ public class EditNote extends Activity {
 			
 			//parsed ok - show
 			if(msg.what == NoteContentBuilder.PARSE_OK) {
-				//showNote();
+				showNote();
 
 			//parsed not ok - error
 			} else if(msg.what == NoteContentBuilder.PARSE_ERROR) {
