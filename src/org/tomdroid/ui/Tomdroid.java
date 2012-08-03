@@ -202,18 +202,26 @@ public class Tomdroid extends ListActivity {
 		long noteId = item.getInt(item.getColumnIndexOrThrow(Note.ID));	
 		uri = Uri.parse(CONTENT_URI + "/" + noteId);
 
+		TLog.d(TAG, "Getting note {0}", position);
+
         note = NoteManager.getNote(this, uri);
 
         if(note != null) {
+    		TLog.d(TAG, "note {0} found", position);
 			title.setText((CharSequence) note.getTitle());
-            noteContent = note.getNoteContent(noteContentHandler);
-            showNote();
+            noteContent = new NoteContentBuilder().setCaller(noteContentHandler).setInputSource(note.getXmlContent()).setTitle(note.getTitle()).build();
         } else {
             TLog.d(TAG, "The note {0} doesn't exist", uri);
             showNoteNotFoundDialog(uri);
-	        }
+        }
 	}
-	private void showNote() {
+	private void showNote(boolean xml) {
+		
+		if(xml) {
+			content.setText(note.getXmlContent());
+			return;
+		}
+		
 
 		// show the note (spannable makes the TextView able to output styled text)
 		content.setText(noteContent, TextView.BufferType.SPANNABLE);
@@ -279,7 +287,7 @@ public class Tomdroid extends ListActivity {
 	
 			//parsed ok - show
 			if(msg.what == NoteContentBuilder.PARSE_OK) {
-				showNote();
+				showNote(false);
 	
 			//parsed not ok - error
 			} else if(msg.what == NoteContentBuilder.PARSE_ERROR) {
@@ -289,8 +297,7 @@ public class Tomdroid extends ListActivity {
 					.setTitle(getString(R.string.error))
 					.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
 						public void onClick(DialogInterface dialog, int which) {
-							dialog.dismiss();
-							finish();
+							showNote(true);
 						}})
 					.show();
 	    	}
@@ -354,6 +361,7 @@ public class Tomdroid extends ListActivity {
 			return Tomdroid.CONTENT_URI.toString()+"/"+id;
 		}
 	};
+	private boolean creating = true;
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -384,7 +392,21 @@ public class Tomdroid extends ListActivity {
 			case R.id.menuNew:
 				newNote();
 				return true;
+			case R.id.menuRevert:
+				new AlertDialog.Builder(this)
+		        .setIcon(android.R.drawable.ic_dialog_alert)
+		        .setTitle(R.string.revert_notes)
+		        .setMessage(R.string.revert_notes_message)
+		        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
+		            public void onClick(DialogInterface dialog, int which) {
+						SyncManager.getInstance().startSynchronization(false);
+		           }
+
+		        })
+		        .setNegativeButton(R.string.no, null)
+		        .show();
+				return true;
 			case R.id.menuPrefs:
 				startActivity(new Intent(this, PreferencesActivity.class));
 				return true;
@@ -431,6 +453,9 @@ public class Tomdroid extends ListActivity {
 				break;
 			case R.id.edit:
 				this.startEditNote(noteId);
+				break;
+			case R.id.revert:
+				this.revertNote(note.getGuid());
 				break;
 			case R.id.delete:
 				this.deleteNote(noteId);
@@ -480,8 +505,10 @@ public class Tomdroid extends ListActivity {
 		
 		if(rightPane != null) {
 			updateTextAttributes();
-			showNoteInPane(lastIndex);
+			if(!creating)
+				showNoteInPane(lastIndex);
 		}
+		creating = false;
 	}
 
 	private void showAboutDialog() {
@@ -595,6 +622,22 @@ public class Tomdroid extends ListActivity {
         		NoteManager.deleteNote(activity, note);
         		lastIndex = 0;
     			showNoteInPane(-1);
+           }
+
+        })
+        .setNegativeButton(R.string.no, null)
+        .show();
+	}
+	private void revertNote(final String guid) {
+		
+		new AlertDialog.Builder(this)
+        .setIcon(android.R.drawable.ic_dialog_alert)
+        .setTitle(R.string.revert_note)
+        .setMessage(R.string.revert_note_message)
+        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+				SyncManager.getInstance().pullNote(guid);
            }
 
         })

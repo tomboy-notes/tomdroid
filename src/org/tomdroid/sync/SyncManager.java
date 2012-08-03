@@ -107,4 +107,9 @@ public class SyncManager {
 		SyncService service = getCurrentService();
 		service.deleteNote(guid);		
 	}
+	
+	public void pullNote(String guid) {
+		SyncService service = getCurrentService();
+		service.pullNote(guid);		
+	}
 }

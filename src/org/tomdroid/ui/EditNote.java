@@ -169,7 +169,7 @@ public class EditNote extends Activity {
 
 			//parsed ok - show
 			if(msg.what == NoteContentBuilder.PARSE_OK) {
-				showNote();
+				showNote(false);
 				
 				// add format bar listeners here
 				
@@ -184,7 +184,7 @@ public class EditNote extends Activity {
 					.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
 						public void onClick(DialogInterface dialog, int which) {
 							dialog.dismiss();
-							finish();
+							showNote(true);
 						}})
 					.show();
         	}
@@ -302,7 +302,15 @@ public class EditNote extends Activity {
 	}
 	
 	
-	private void showNote() {
+	private void showNote(boolean xml) {
+		if(xml) {
+
+    		formatBar.setVisibility(View.GONE);
+			
+			content.setText(note.getXmlContent());
+			xmlOn = true;
+			return;
+		}
 
 		// show the note (spannable makes the TextView able to output styled text)
 		content.setText(noteContent, TextView.BufferType.SPANNABLE);
@@ -334,7 +342,7 @@ public class EditNote extends Activity {
 			
 			//parsed ok - show
 			if(msg.what == NoteContentBuilder.PARSE_OK) {
-				showNote();
+				showNote(false);
 
 			//parsed not ok - error
 			} else if(msg.what == NoteContentBuilder.PARSE_ERROR) {
@@ -347,7 +355,7 @@ public class EditNote extends Activity {
 					.setNeutralButton("Ok", new OnClickListener() {
 						public void onClick(DialogInterface dialog, int which) {
 							dialog.dismiss();
-							finish();
+							showNote(true);
 						}})
 					.show();
         	}

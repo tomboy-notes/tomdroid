@@ -68,14 +68,17 @@ public abstract class SyncService {
 	public final static int SYNC_PROGRESS = 6;
 	public final static int NOTE_DELETED = 7;
 	public final static int NOTE_PUSHED = 8;
-	public final static int NOTE_PUSH_ERROR = 9;
-	public final static int NOTE_DELETE_ERROR = 10;
+	public final static int NOTE_PULLED = 9;
+	public final static int NOTE_PUSH_ERROR = 10;
+	public final static int NOTE_DELETE_ERROR = 11;
+	public final static int NOTE_PULL_ERROR = 12;
 	
 	public SyncService(Activity activity, Handler handler) {
 		
 		this.activity = activity;
 		this.handler = handler;
 		pool = Executors.newFixedThreadPool(poolSize);
+		syncErrors = new ErrorList();
 	}
 
 	public void startSynchronization(boolean push) {
@@ -85,7 +88,6 @@ public abstract class SyncService {
 			return;
 		}
 		
-		syncErrors = new ErrorList();
 		sync(push);
 	}
 	
@@ -239,6 +241,7 @@ public abstract class SyncService {
 		case PARSING_FAILED:
 		case NOTE_PUSH_ERROR:
 		case NOTE_DELETE_ERROR:
+		case NOTE_PULL_ERROR:
 			syncErrors.add(payload);
 			return true;
 		case PARSING_COMPLETE:
@@ -283,4 +286,5 @@ public abstract class SyncService {
 	
 	protected abstract void pushNote(Note note);
 	protected abstract void deleteNote(String guid);
+	protected abstract void pullNote(String guid);
 }

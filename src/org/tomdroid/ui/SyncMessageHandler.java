@@ -115,7 +115,12 @@ public class SyncMessageHandler extends Handler {
 				message = String.format(message,serviceDescription);
 				Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 				break;
-				
+			case SyncService.NOTE_PULLED:
+				message = this.activity.getString(R.string.messageSyncNotePulled);
+				message = String.format(message,serviceDescription);
+				Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+				break;
+													
 			case SyncService.NOTE_DELETE_ERROR:
 				Toast.makeText(activity, activity.getString(R.string.messageSyncNoteDeleteError),
 						Toast.LENGTH_SHORT).show();
@@ -124,6 +129,11 @@ public class SyncMessageHandler extends Handler {
 			case SyncService.NOTE_PUSH_ERROR:
 				Toast.makeText(activity, activity.getString(R.string.messageSyncNotePushError),
 						Toast.LENGTH_SHORT).show();
+				break;
+			case SyncService.NOTE_PULL_ERROR:
+				message = this.activity.getString(R.string.messageSyncNotePullError);
+				message = String.format(message,serviceDescription);
+				Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 				break;
 								
 			default:

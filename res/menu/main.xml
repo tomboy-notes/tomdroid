@@ -33,12 +33,17 @@
 		android:title="@string/menuSync"
        	android:showAsAction="ifRoom|withText" 
 		android:id="@+id/menuSync"/>
-   	
+
+   	<item 
+		android:icon="@android:drawable/ic_menu_revert"
+		android:title="@string/menuRevert"
+		android:id="@+id/menuRevert"/>
+   		
 	<item 
 		android:icon="@android:drawable/ic_menu_search"
 		android:title="@string/menuSearch"
 		android:id="@+id/menuSearch"/>
-
+	
 	<item 
 		android:icon="@android:drawable/ic_menu_info_details"
 		android:title="@string/menuAbout"

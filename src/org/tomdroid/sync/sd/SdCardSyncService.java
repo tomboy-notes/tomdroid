@@ -390,4 +390,29 @@ public class SdCardSyncService extends SyncService {
 		sendMessage(NOTE_DELETED);
 
 	}
+
+	@Override
+	protected void pullNote(String guid) {
+		// start loading local notes
+		TLog.v(TAG, "pulling remote note");
+		
+		File path = new File(Tomdroid.NOTES_PATH);
+		
+		if (!path.exists())
+			path.mkdir();
+		
+		TLog.i(TAG, "Path {0} exists: {1}", path, path.exists());
+		
+		// Check a second time, if not the most likely cause is the volume doesn't exist
+		if(!path.exists()) {
+			TLog.w(TAG, "Couldn't create {0}", path);
+			sendMessage(NO_SD_CARD);
+			return;
+		}
+		
+		path = new File(Tomdroid.NOTES_PATH + guid + ".note");
+
+		syncInThread(new Worker(path, true, false));
+		
+	}
 }

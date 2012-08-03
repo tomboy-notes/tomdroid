@@ -48,7 +48,7 @@
 	<string name="btnSavetoSD">Save</string>
 	
 	<!-- note-view.xml -->
-	<string name="strWait">Please wait while note loads...</string>
+	<string name="strWait">Please wait while note loads…</string>
 	
 	<string name="prefText">Text Preferences</string>
 	<string name="prefBaseSize">Base Font Size</string>
@@ -181,9 +181,21 @@
 	<string name="remote">Keep Remote</string>
 	<string name="messageSyncNoteDeleted">Note deleted from %1$s successfully.</string>
 	<string name="messageSyncNotePushed">Note sent to %1$s successfully.</string>
+	<string name="messageSyncNotePulled">Note received from %1$s successfully.</string>
 	<string name="messageSyncNoteDeleteError">Error deleting note from %1$s.</string>
 	<string name="messageSyncNotePushError">Error sending note to %1$s.</string>
+	<string name="messageSyncNotePullError">Error receiving note from %1$s.</string>
+
+	<!-- revert notes -->
 	
+		
+	<string name="contextRevert">Revert</string>
+	<string name="menuRevert">Revert All</string>
+	<string name="revert_notes">Revert Notes</string>
+	<string name="revert_notes_message">This will revert your local notes to whatever versions exist on the remote service.  Are you sure you want to do this?</string>
+	<string name="revert_note">Revert Note</string>
+	<string name="revert_note_message">This will revert a local note to whatever version exist on the remote service.  Are you sure you want to do this?</string>
+				
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
 	I\'ve put it in here so that it\'ll get translated by translators.

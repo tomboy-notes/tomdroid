@@ -378,7 +378,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 					} 
 					catch (JSONException e) {
 						TLog.e(TAG, e, "Problem parsing the server response");
-						sendMessage(PARSING_FAILED, ErrorList.createErrorWithContents("JSON parsing", "json", e, rawResponse));
+						sendMessage(NOTE_DELETE_ERROR, ErrorList.createErrorWithContents("JSON parsing", "json", e, rawResponse));
 						return;
 					}
 				}
@@ -390,5 +390,58 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 				sendMessage(NOTE_DELETED);
 			}
 		});
+	}
+
+	@Override
+	protected void pullNote(final String guid) {
+
+		
+		// start loading snowy notes
+		
+		TLog.v(TAG, "pulling remote note");
+		
+		final String userRef = Preferences.getString(Preferences.Key.SYNC_SERVER_USER_API);
+		
+		syncInThread(new Runnable() {
+			
+			public void run() {
+				
+				OAuthConnection auth = getAuthConnection();
+				
+				try {
+					TLog.v(TAG, "contacting "+userRef);
+					String rawResponse = auth.get(userRef);
+					
+					try {
+						JSONObject response = new JSONObject(rawResponse);
+						String notesUrl = response.getJSONObject("notes-ref").getString("api-ref");
+						
+						TLog.v(TAG, "contacting "+notesUrl + guid);
+
+						rawResponse = auth.get(notesUrl + guid +"?include_notes=true");
+						
+						response = new JSONObject(rawResponse);
+						JSONArray notes = response.getJSONArray("notes");
+						JSONObject jsonNote = notes.getJSONObject(0);
+
+						TLog.v(TAG, "parsing remote note");
+						
+						insertNote(new Note(jsonNote),false);
+
+					} catch (JSONException e) {
+						TLog.e(TAG, e, "Problem parsing the server response");
+						sendMessage(NOTE_PULL_ERROR, ErrorList.createErrorWithContents("JSON parsing", "json", e, rawResponse));
+						return;
+					}
+					
+				} catch (java.net.UnknownHostException e) {
+					TLog.e(TAG, "Internet connection not available");
+					sendMessage(NO_INTERNET);
+					return;
+				}
+				
+				sendMessage(NOTE_PULLED);
+			}
+		});		
 	}
 }
