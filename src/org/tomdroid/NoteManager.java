@@ -39,6 +39,7 @@ import android.widget.ListAdapter;
 import android.widget.Toast;
 
 import org.tomdroid.sync.SyncManager;
+import org.tomdroid.ui.SyncDialog;
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.NoteListCursorAdapter;
 import org.tomdroid.util.Preferences;
@@ -94,6 +95,7 @@ public class NoteManager {
 	
 	// puts a note in the content provider
 	// return uri
+	// boolean push means we are syncing
 	public static Uri putNote(Activity activity, Note note, boolean push) {
 		
 		// verify if the note is already in the content provider
@@ -146,35 +148,46 @@ public class NoteManager {
 			String oldDateString = managedCursor.getString(managedCursor.getColumnIndexOrThrow(Note.MODIFIED_DATE));
 			Time oldDate = new Time();
 			oldDate.parse3339(oldDateString);
-			int compared = Time.compare(oldDate, note.getLastChangeDate());
 
 			String syncDateString = Preferences.getString(Preferences.Key.LATEST_SYNC_DATE);
 			Time syncDate = new Time();
 			syncDate.parse3339(syncDateString);
 			
-			int compareSyncOld = Time.compare(syncDate, oldDate);
-			int compareSyncNew = Time.compare(syncDate, note.getLastChangeDate());
+			int compareSyncLocal = Time.compare(syncDate, oldDate);
+			int compareSyncRemote = Time.compare(syncDate, note.getLastChangeDate());
+			int compareBoth = Time.compare(oldDate, note.getLastChangeDate());
 			
-			if(compareSyncOld < 0 && compareSyncNew < 0 && push) { // sync conflict!  both are newer than last sync
+			TLog.v(TAG, "compare both: {0}, compare local: {1}, compare remote: {2}", compareBoth, compareSyncLocal, compareSyncRemote);
+			if(compareBoth != 0)
+				TLog.v(TAG, "Different note dates");
+			if((compareSyncLocal < 0 && compareSyncRemote < 0) || (compareSyncLocal > 0 && compareSyncRemote > 0))
+				TLog.v(TAG, "both either older or newer");
+			if(push)
+				TLog.v(TAG, "pushing");
 				
-				// show Sync Dialog, send everything there so it can show in its own activity
+			if(compareBoth != 0 && ((compareSyncLocal < 0 && compareSyncRemote < 0) || (compareSyncLocal > 0 && compareSyncRemote > 0)) && push) { // sync conflict!  both are older or newer than last sync
+				TLog.v(TAG, "note conflict... showing resolution dialog");
 				
-				Intent myIntent = new Intent(activity.getApplicationContext(), SyncDialog.class);	
-				Bundle bundle = new Bundle();	
+				// send everything to Tomdroid so it can show Sync Dialog
+			    Bundle bundle = new Bundle();	
 				bundle.putString("uri",uri.toString());	
-
 				bundle.putString("title",note.getTitle());
 				bundle.putString("file",note.getFileName());
 				bundle.putString("guid",note.getGuid());
 				bundle.putString("date",note.getLastChangeDate().format3339(false));
 				bundle.putString("content", note.getXmlContent());
 				bundle.putString("tags", note.getTags());
+				bundle.putInt("datediff", compareBoth);
+
+				Intent intent = new Intent(activity.getApplicationContext(), SyncDialog.class);	
+				intent.putExtras(bundle);
+
+				//activity.finish();
+				activity.startActivity(intent);				
 				
-				myIntent.putExtras(bundle);	
-				myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);	
-				activity.getApplicationContext().startActivity(myIntent);
 			}
-			else if(compared > 0) { // local newer 
+			else if(compareBoth > 0) { // local newer 
+				TLog.v(TAG, "local newer, pushing local to remote");
 
 					note = getNote(activity,uri);
 					
@@ -194,13 +207,13 @@ public class NoteManager {
 					}
 
 			}
-			else if(compared < 0) { // local older
+			else if(compareBoth < 0) { // local older
+				TLog.v(TAG, "Local note is older, updating in content provider TITLE:{0} GUID:{1}", note.getTitle(), note.getGuid());
 				
 				// pull remote changes
 				
 				cr.update(Tomdroid.CONTENT_URI, values, Note.GUID+" = ?", whereArgs);
 				
-				TLog.v(TAG, "Local note is older, updated in content provider TITLE:{0} GUID:{1}", note.getTitle(), note.getGuid());
 			}
 			else { // both same date
 				cr.update(Tomdroid.CONTENT_URI, values, Note.GUID+" = ?", whereArgs); // update anyway, for debugging

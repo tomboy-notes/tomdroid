@@ -25,6 +25,7 @@ package org.tomdroid;
 
 import android.os.Handler;
 import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.text.format.Time;
 import android.util.TimeFormatException;
 import org.json.JSONArray;
@@ -95,7 +96,7 @@ public class Note {
 		setTitle(XmlUtils.unescape(json.optString("title")));
 		setGuid(json.optString("guid"));
 		setLastChangeDate(json.optString("last-change-date"));
-		setXmlContent(json.optString("note-content"));
+		setXmlContent("<note-content version=\"0.1\">"+json.optString("note-content")+"</note-content>");
 		JSONArray jtags = json.optJSONArray("tags");
 		String tag;
 		tags = new String();
@@ -109,6 +110,10 @@ public class Note {
 
 	public String getTags() {
 		return tags;
+	}
+	
+	public void setTags(String tags) {
+		this.tags = tags;
 	}
 	
 	public void addTag(String tag) {

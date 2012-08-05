@@ -24,17 +24,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:id="@+id/view_parent"
+	android:id="@+id/compare_parent"
 	android:orientation="vertical"
 	>
-	<TextView 
-	  android:id="@+id/title"
-	  android:layout_width="match_parent" 
-	  android:layout_height="wrap_content"
-	  android:padding="10dip"
-	  android:singleLine="true"
-	  android:text=""
-	  android:textColor="#ffb8bcb8" />
+	
 	<ScrollView
 	   	android:layout_width="match_parent"
 		android:layout_height="match_parent"
@@ -43,15 +36,29 @@
 		android:fillViewport="true"
 		android:background="#ffffffff"
 		>
-		
-		<TextView
-			android:id="@+id/content"
+		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:padding="10dp"
-			android:text="@string/strWait"
-			android:textIsSelectable="true"
-			android:scrollHorizontally="false"
-			android:textColor="#ffb8bcb8" />
+			android:id="@+id/view_parent"
+			android:orientation="vertical"
+			>
+			<TextView 
+			  android:id="@+id/title"
+			  android:layout_width="match_parent" 
+			  android:layout_height="wrap_content"
+			  android:padding="10dip"
+			  android:singleLine="true"
+			  android:text=""
+			  android:textColor="#ffb8bcb8" />
+			<TextView
+				android:id="@+id/content"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:padding="10dp"
+				android:text="@string/strWait"
+				android:textIsSelectable="true"
+				android:scrollHorizontally="false"
+				android:textColor="#ffb8bcb8" />
+		</LinearLayout>
 	</ScrollView>
 </LinearLayout>

@@ -24,6 +24,7 @@
  */
 package org.tomdroid.ui;
 
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -45,6 +46,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.app.AlertDialog.Builder;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -362,6 +366,7 @@ public class Tomdroid extends ListActivity {
 		}
 	};
 	private boolean creating = true;
+	private SyncManager sync;
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -380,14 +385,9 @@ public class Tomdroid extends ListActivity {
 				return true;
 			case R.id.menuSync:
 				this.syncMenuItem = item;
-				if(NoteManager.getNewNotes(this).getCount() > 0) {
-					//item.setTitle(Tomdroid.this.getString(R.string.syncing));
-	            	SyncManager.getInstance().startSynchronization(true); // push by default
-				}
-				else {
-					//item.setTitle(Tomdroid.this.getString(R.string.syncing));
-					SyncManager.getInstance().startSynchronization(false);
-				}
+				item.setTitle(Tomdroid.this.getString(R.string.syncing));
+            	sync = SyncManager.getInstance();
+            	sync.startSynchronization(true); // push by default
 				return true;
 			case R.id.menuNew:
 				newNote();
@@ -476,6 +476,9 @@ public class Tomdroid extends ListActivity {
 		Intent intent = this.getIntent();
 
 		SyncService currentService = SyncManager.getInstance().getCurrentService();
+		
+		if(currentService.isSyncable() && syncMenuItem != null)
+			syncMenuItem.setTitle(getString(R.string.menuSync));
 		
 		if (currentService.needsAuth() && intent != null) {
 			Uri uri = intent.getData();

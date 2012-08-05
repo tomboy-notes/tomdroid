@@ -188,9 +188,9 @@ public class SyncMessageHandler extends Handler {
 	}
 	
 	private void refreshActivity() {
-		Intent intent = activity.getIntent();
+/*		Intent intent = activity.getIntent();
 	    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 		activity.finish();
-		activity.startActivity(intent);
+		activity.startActivity(intent);*/
 	}
 }

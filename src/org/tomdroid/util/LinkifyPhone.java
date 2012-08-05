@@ -59,7 +59,7 @@ public class LinkifyPhone {
 	public static final Pattern PHONE_PATTERN = Pattern.compile( // sdd = space, dot, or dash
 			"(\\+[0-9]+[\\- \\.]*)?"                    // +<digits><sdd>*
 			+ "(\\([0-9]+\\)[\\- \\.]*)?"               // (<digits>)<sdd>*
-			+ "([0-9][0-9\\- \\.][0-9\\- \\.]+[0-9])"); // <digit><digit|sdd>+<digit> 
+			+ "([0-9]+[\\- \\.][0-9\\- \\.]+[0-9])"); // <digits><sdd><digits|sdds><digit> (at least one sdd!) 
 
 	/**
 	 *  Filters out URL matches that:
