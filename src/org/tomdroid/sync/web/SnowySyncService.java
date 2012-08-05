@@ -153,6 +153,8 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 		
 		syncInThread(new Runnable() {
 			
+			private long latestRevision;
+
 			public void run() {
 				
 				OAuthConnection auth = getAuthConnection();
@@ -227,13 +229,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						
 						NoteManager.deleteDeletedNotes(activity);
 
-						Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, response.getLong("latest-sync-revision"));
-						
-						Time now = new Time();
-						now.setToNow();
-						String nowString = now.format3339(false);
-						
-						Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, nowString);
+						latestRevision = response.getLong("latest-sync-revision");
 						
 					} catch (JSONException e) {
 						TLog.e(TAG, e, "Problem parsing the server response");
@@ -250,6 +246,14 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 					setSyncProgress(100);
 					return;
 				}
+				
+				Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, latestRevision);
+				
+				Time now = new Time();
+				now.setToNow();
+				String nowString = now.format3339(false);
+				
+				Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, nowString);
 				
 				sendMessage(PARSING_COMPLETE);
 			}

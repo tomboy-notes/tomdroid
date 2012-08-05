@@ -26,6 +26,7 @@ package org.tomdroid.sync.sd;
 
 import android.app.Activity;
 import android.os.Handler;
+import android.text.format.Time;
 import android.util.TimeFormatException;
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
@@ -33,6 +34,7 @@ import org.tomdroid.R;
 import org.tomdroid.sync.SyncService;
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.ErrorList;
+import org.tomdroid.util.Preferences;
 import org.tomdroid.util.TLog;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
@@ -237,6 +239,12 @@ public class SdCardSyncService extends SyncService {
 				// delete leftover local deleted notes
 				
 				NoteManager.deleteDeletedNotes(activity);
+
+				Time now = new Time();
+				now.setToNow();
+				String nowString = now.format3339(false);
+				
+				Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, nowString);
 				
 				setSyncProgress(100);
 				sendMessage(PARSING_COMPLETE);
