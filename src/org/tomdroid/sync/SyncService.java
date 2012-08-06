@@ -142,15 +142,23 @@ public abstract class SyncService {
 	}
 	
 	/**
-	 * Insert a note in the content provider. The identifier for the notes is the guid.
+	 * Insert notes in the content provider. 
+	 * 
+	 * @param notes The notes to insert.
+	 */
+	
+	protected void insertNotes(Note[] notes, boolean push) {
+		NoteManager.putNotes(this.activity, notes, push);
+	}
+	/**
+	 * Insert last note in the content provider. tell the 
 	 * 
 	 * @param note The note to insert.
 	 */
 	
 	protected void insertNote(Note note, boolean push) {
 		NoteManager.putNote(this.activity, note, push);
-	}
-	
+	}	
 	/**
 	 * Delete notes in the content provider. The guids passed identify the notes existing
 	 * on the remote end (ie. that shouldn't be deleted).
@@ -193,7 +201,7 @@ public abstract class SyncService {
 	 * @param remoteGuids The notes NOT to add.
 	 */
 	
-	protected void pushNotes(ArrayList<String> remoteGuids) {
+	protected void pullNotes(ArrayList<String> remoteGuids) {
 		
 		Cursor localGuids = NoteManager.getGuids(this.activity);
 		
@@ -287,4 +295,14 @@ public abstract class SyncService {
 	protected abstract void pushNote(Note note);
 	protected abstract void deleteNote(String guid);
 	protected abstract void pullNote(String guid);
+
+	public void setLastGUID(String lastGuid) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void finishSync(boolean refresh) {
+		// TODO Auto-generated method stub
+		
+	}
 }

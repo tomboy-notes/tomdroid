@@ -23,6 +23,7 @@
 package org.tomdroid.sync.web;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
@@ -36,6 +37,8 @@ import org.tomdroid.NoteManager;
 import org.tomdroid.R;
 import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncService;
+import org.tomdroid.ui.SyncDialog;
+import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.ErrorList;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.TLog;
@@ -46,6 +49,8 @@ import java.util.ArrayList;
 public class SnowySyncService extends SyncService implements ServiceAuth {
 	
 	private static final String TAG = "SnowySyncService";
+	private String lastGUID;
+	private long latestRevision;
 	
 	public SnowySyncService(Activity activity, Handler handler) {
 		super(activity, handler);
@@ -147,14 +152,14 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 		
 		// start loading snowy notes
 		setSyncProgress(0);
+		this.lastGUID  = null;
+		
 		TLog.v(TAG, "Loading Snowy notes");
 		
 		final String userRef = Preferences.getString(Preferences.Key.SYNC_SERVER_USER_API);
 		
 		syncInThread(new Runnable() {
 			
-			private long latestRevision;
-
 			public void run() {
 				
 				OAuthConnection auth = getAuthConnection();
@@ -174,13 +179,6 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						long latestSyncRevision = Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION);
 						setSyncProgress(35);
 						
-						if (response.getLong("latest-sync-revision") != -1 && response.getLong("latest-sync-revision") < latestSyncRevision) {
-							TLog.v(TAG, "sync revision earlier than latest sync; cancelling");
-							setSyncProgress(100);
-							sendMessage(PARSING_COMPLETE);
-							return;
-						}
-						
 						rawResponse = auth.get(notesUrl + "?include_notes=true");
 						
 						response = new JSONObject(rawResponse);
@@ -195,17 +193,18 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						}
 						
 						if(push)
-							pushNotes(remoteGuids);
+							pullNotes(remoteGuids);
 						else
 							deleteNotes(remoteGuids);
 						
 						setSyncProgress(70);
 
 						TLog.v(TAG, "number of notes: {0}", notes.length());
-
+						Note[] inotes = new Note[notes.length()];
 						
 						// Insert or update the rest of the notes
-						for (int i = 0; i < notes.length() - 1; i++) {
+						int i = 0;
+						for ( i = 0; i < notes.length() - 1; i++) {
 							
 							TLog.v(TAG, "parsing note numer: {0}", i+1);
 							
@@ -213,7 +212,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 							
 							try {
 								jsonNote = notes.getJSONObject(i);
-								insertNote(new Note(jsonNote),push);
+								inotes[i] = new Note(jsonNote);
 							} catch (JSONException e) {
 								TLog.e(TAG, e, "Problem parsing the server response");
 								String json = (jsonNote != null) ? jsonNote.toString(2) : rawResponse;
@@ -222,10 +221,13 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						}
 						setSyncProgress(90);
 						if(notes.length()>0) {
-							// Editor comment: do all but one? can someone clarify?
+							// Do last note (length-1)
 							JSONObject jsonNote = notes.getJSONObject(notes.length() - 1);
-							insertNote(new Note(jsonNote), push);
+							inotes[i] = new Note(jsonNote);
+							insertNotes(inotes,push);
 						}
+						else
+							setSyncProgress(100);
 						
 						// delete leftover local notes
 						
@@ -239,27 +241,38 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						setSyncProgress(100);
 						return;
 					}
-					
-					setSyncProgress(100);
-					
 				} catch (java.net.UnknownHostException e) {
 					TLog.e(TAG, "Internet connection not available");
 					sendMessage(NO_INTERNET);
 					setSyncProgress(100);
 					return;
 				}
-				
 				Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, latestRevision);
-				
-				Time now = new Time();
-				now.setToNow();
-				String nowString = now.format3339(false);
-				
-				Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, nowString);
-				
-				sendMessage(PARSING_COMPLETE);
+				if(isSyncable())
+					finishSync(true);
 			}
 		});
+	}
+	
+	public void finishSync(boolean refresh) {
+		setSyncProgress(100);
+		this.lastGUID = null;
+
+		Time now = new Time();
+		now.setToNow();
+		String nowString = now.format3339(false);
+
+		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, nowString);
+		if(refresh)
+			sendMessage(PARSING_COMPLETE);
+	}
+
+	public void setLastGUID(String guid) {
+		this.lastGUID = guid;
+	}
+	
+	protected String getLastGUID(String guid) {
+		return this.lastGUID;
 	}
 	
 	private OAuthConnection getAuthConnection() {
@@ -337,6 +350,17 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 					return;
 				}
 				sendMessage(NOTE_PUSHED);
+				
+				if(note.lastSync) { // update sync date based on conflict resolution
+					TLog.d(TAG, "note is last to sync");
+					Time now = new Time();
+					now.setToNow();
+					String nowString = now.format3339(false);
+					Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, nowString);
+					finishSync(true);
+				}
+				else if(note.getGuid() == lastGUID)
+					finishSync(true);
 			}
 		});
 	}
@@ -394,6 +418,10 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 					return;
 				}
 				sendMessage(NOTE_DELETED);
+				if(guid == lastGUID) {
+					TLog.d(TAG, "note is last to sync");
+					finishSync(true);
+				}
 			}
 		});
 	}

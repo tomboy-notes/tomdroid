@@ -61,6 +61,8 @@ public class NoteManager {
 	
 	// static properties
 	private static final String TAG = "NoteManager";
+	private static String lastGuid;
+	private static String lastSyncGUID;
 	
 	// gets a note from the content provider
 	public static Note getNote(Activity activity, Uri uri) {
@@ -91,6 +93,26 @@ public class NoteManager {
 		}
 		
 		return note;
+	}
+	
+	// puts all notes in the content provider
+	// this allows us to figure out which is the last note
+	// boolean push means we are syncing
+	public static void putNotes(Activity activity, Note[] notes, boolean push) {
+		if(push)
+			setLastGuid(notes[notes.length-1].getGuid());
+		for (Note note : notes) {
+			putNote(activity,note,push);
+		}
+	}
+	
+	private static void setLastGuid(String guid) {
+		lastGuid = guid;		
+	}
+
+	// set the latest GUID to send to service
+	private static void setLastSyncGUID(String guid) {
+		lastSyncGUID = guid;
 	}
 	
 	// puts a note in the content provider
@@ -142,6 +164,7 @@ public class NoteManager {
 
 			managedCursor.moveToFirst();
 			uri = Uri.parse(Tomdroid.CONTENT_URI + "/" + managedCursor.getString(managedCursor.getColumnIndexOrThrow(Note.ID)));
+			Note localNote = getNote(activity,uri);
 			
 			// check date difference
 			
@@ -166,6 +189,7 @@ public class NoteManager {
 				TLog.v(TAG, "pushing");
 				
 			if(compareBoth != 0 && ((compareSyncLocal < 0 && compareSyncRemote < 0) || (compareSyncLocal > 0 && compareSyncRemote > 0)) && push) { // sync conflict!  both are older or newer than last sync
+				
 				TLog.v(TAG, "note conflict... showing resolution dialog");
 				
 				// send everything to Tomdroid so it can show Sync Dialog
@@ -179,33 +203,37 @@ public class NoteManager {
 				bundle.putString("tags", note.getTags());
 				bundle.putInt("datediff", compareBoth);
 
+				bundle.putBoolean("lastSync", lastSyncGUID == null);
 				Intent intent = new Intent(activity.getApplicationContext(), SyncDialog.class);	
 				intent.putExtras(bundle);
 
-				//activity.finish();
-				activity.startActivity(intent);				
-				
+				if(lastSyncGUID == null) {// make the first the last, since it will be on the bottom of the stack
+					TLog.d(TAG, "setting conflict {0} as last to sync", note.getGuid());
+					lastSyncGUID = note.getGuid();
+					activity.startActivityForResult(intent, 0);		
+				}
+				else
+					activity.startActivity(intent);		
 			}
 			else if(compareBoth > 0) { // local newer 
 				TLog.v(TAG, "local newer, pushing local to remote");
 
-					note = getNote(activity,uri);
-					
 					/* pushing local changes, reject older incoming note.
 					 * If the local counterpart has the tag "system:deleted", delete from both local and remote.
 					 * Otherwise, push local to remote.
 					 */
 					
-					if(note.getTags().contains("system:deleted")) {
-						TLog.v(TAG, "local note is deleted, deleting from server TITLE:{0} GUID:{1}", note.getTitle(),note.getGuid());
-						SyncManager.getInstance().deleteNote(note.getGuid()); // delete from remote
-						deleteNote(activity,note.getDbId()); // really delete locally
+					if(localNote.getTags().contains("system:deleted")) {
+						TLog.v(TAG, "local note is deleted, deleting from server TITLE:{0} GUID:{1}", localNote.getTitle(),localNote.getGuid());
+						SyncManager.getInstance().deleteNote(localNote.getGuid()); // delete from remote
+						deleteNote(activity,localNote.getDbId()); // really delete locally
 					}
 					else {
-						TLog.v(TAG, "local note is newer, sending new version TITLE:{0} GUID:{1}", note.getTitle(),note.getGuid());
-						SyncManager.getInstance().pushNote(note);
+						TLog.v(TAG, "local note is newer, sending new version TITLE:{0} GUID:{1}", localNote.getTitle(),localNote.getGuid());
+						SyncManager.getInstance().pushNote(localNote);
 					}
-
+					if(push)
+						setLastSyncGUID(localNote.getGuid());
 			}
 			else if(compareBoth < 0) { // local older
 				TLog.v(TAG, "Local note is older, updating in content provider TITLE:{0} GUID:{1}", note.getTitle(), note.getGuid());
@@ -221,11 +249,22 @@ public class NoteManager {
 				TLog.v(TAG, "Local note is same date, skipped: TITLE:{0} GUID:{1}", note.getTitle(), note.getGuid());
 			}
 		}
+		if(lastGuid == note.getGuid()) {
+			if(lastSyncGUID == null) {// last note, not sending any notes, finish sync 
+				SyncManager.getInstance().getCurrentService().finishSync(false);
+				Intent intent = new Intent(activity.getApplicationContext(), SyncDialog.class); // start empty to trigger refresh FIXME
+				activity.startActivity(intent);		
+			}
+			else { // last note, sending notes, tell sync which is the last to sync
+				TLog.d(TAG, "setting {0} as last sync GUID", note.getTitle(), note.getGuid());
+				SyncManager.getInstance().getCurrentService().setLastGUID(lastSyncGUID);
+				lastSyncGUID = null;
+			}
+		}
 		return uri;
 	}
 	
 	// this function just adds a "deleted" tag, to allow remote delete when syncing
-	
 	public static void deleteNote(Activity activity, Note note)
 	{
 		note.addTag("system:deleted");
@@ -237,7 +276,6 @@ public class NoteManager {
 	}
 
 	// this function actually deletes the note locally, called when syncing
-
 	public static boolean deleteNote(Activity activity, int id)
 	{
 		Uri uri = Uri.parse(Tomdroid.CONTENT_URI+"/"+id);

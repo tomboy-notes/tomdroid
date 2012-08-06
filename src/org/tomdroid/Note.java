@@ -79,6 +79,9 @@ public class Note {
 	// but at some point we probably need to validate their uniqueness (per note collection or universe-wide?) 
 	private String guid;
 	
+	// this is to tell the sync service to update the last date after pushing this note
+	public boolean lastSync = false;
+	
 	// Date converter pattern (remove extra sub milliseconds from datetime string)
 	// ex: will strip 3020 in 2010-01-23T12:07:38.7743020-05:00
 	private static final Pattern dateCleaner = Pattern.compile(
@@ -96,7 +99,11 @@ public class Note {
 		setTitle(XmlUtils.unescape(json.optString("title")));
 		setGuid(json.optString("guid"));
 		setLastChangeDate(json.optString("last-change-date"));
-		setXmlContent("<note-content version=\"0.1\">"+json.optString("note-content")+"</note-content>");
+		String newXMLContent = json.optString("note-content");
+		if(newXMLContent.contains("<note-content version=\"0.1\">"))
+			setXmlContent(json.optString("note-content"));
+		else
+			setXmlContent("<note-content version=\"0.1\">"+json.optString("note-content")+"</note-content>"); // TODO: why is it sometimes missing?
 		JSONArray jtags = json.optJSONArray("tags");
 		String tag;
 		tags = new String();

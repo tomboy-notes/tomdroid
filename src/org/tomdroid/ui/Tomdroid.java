@@ -34,6 +34,7 @@ import org.tomdroid.R;
 import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.sync.SyncService;
+import org.tomdroid.util.ErrorList;
 import org.tomdroid.util.FirstNote;
 import org.tomdroid.util.LinkifyPhone;
 import org.tomdroid.util.NewNote;
@@ -71,7 +72,10 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import org.tomdroid.util.TLog;
 
 public class Tomdroid extends ListActivity {
@@ -106,7 +110,7 @@ public class Tomdroid extends ListActivity {
 	private ListAdapter			adapter;
 
 	// UI feedback handler
-	private Handler	syncMessageHandler	= new SyncMessageHandler(this);
+	private Handler	 syncMessageHandler	= new SyncMessageHandler(this);
 
 	// UI for tablet
 	private LinearLayout rightPane;
@@ -367,6 +371,7 @@ public class Tomdroid extends ListActivity {
 	};
 	private boolean creating = true;
 	private SyncManager sync;
+	private ProgressDialog syncProgressDialog;
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -384,10 +389,9 @@ public class Tomdroid extends ListActivity {
 				showAboutDialog();
 				return true;
 			case R.id.menuSync:
-				this.syncMenuItem = item;
-				item.setTitle(Tomdroid.this.getString(R.string.syncing));
-            	sync = SyncManager.getInstance();
-            	sync.startSynchronization(true); // push by default
+//				this.syncMenuItem = item;
+//				item.setTitle(Tomdroid.this.getString(R.string.syncing));
+				startSyncing(true);
 				return true;
 			case R.id.menuNew:
 				newNote();
@@ -400,7 +404,7 @@ public class Tomdroid extends ListActivity {
 		        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
 		            public void onClick(DialogInterface dialog, int which) {
-						SyncManager.getInstance().startSynchronization(false);
+						startSyncing(false);
 		           }
 
 		        })
@@ -426,6 +430,13 @@ public class Tomdroid extends ListActivity {
 		}
 
 		return super.onOptionsItemSelected(item);
+	}
+	
+	private void startSyncing(boolean push) {
+		String serviceDescription = SyncManager.getInstance().getCurrentService().getDescription();
+		syncProgressDialog = ProgressDialog.show(this,getString(R.string.syncing), String.format(getString(R.string.syncing_with),serviceDescription), true);
+    	sync = SyncManager.getInstance();
+    	sync.startSynchronization(push); // push by default		
 	}
 	
 	@Override
@@ -476,9 +487,6 @@ public class Tomdroid extends ListActivity {
 		Intent intent = this.getIntent();
 
 		SyncService currentService = SyncManager.getInstance().getCurrentService();
-		
-		if(currentService.isSyncable() && syncMenuItem != null)
-			syncMenuItem.setTitle(getString(R.string.menuSync));
 		
 		if (currentService.needsAuth() && intent != null) {
 			Uri uri = intent.getData();
@@ -646,5 +654,123 @@ public class Tomdroid extends ListActivity {
         })
         .setNegativeButton(R.string.no, null)
         .show();
+	}
+
+	public class SyncMessageHandler extends Handler {
+	
+		private Activity activity;
+		
+		public SyncMessageHandler(Activity activity) {
+			this.activity = activity;
+		}
+	
+		@Override
+		public void handleMessage(Message msg) {
+	
+			String serviceDescription = SyncManager.getInstance().getCurrentService().getDescription();
+			String message = "";
+				
+			switch (msg.what) {
+	
+				case SyncService.PARSING_COMPLETE:
+					final ErrorList errors = (ErrorList)msg.obj;
+					if(errors == null || errors.isEmpty()) {
+						message = this.activity.getString(R.string.messageSyncComplete);
+						message = String.format(message,serviceDescription);
+						Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+						finishSync();
+					} else {
+	
+						message = this.activity.getString(R.string.messageSyncError);
+						new AlertDialog.Builder(activity).setMessage(message)
+							.setTitle(this.activity.getString(R.string.error))
+							.setPositiveButton(this.activity.getString(R.string.btnSavetoSD), new OnClickListener() {
+								public void onClick(DialogInterface dialog, int which) {
+									if(!errors.save()) {
+										Toast.makeText(activity, activity.getString(R.string.messageCouldNotSave),
+												Toast.LENGTH_SHORT).show();
+									}
+									finishSync();
+								}
+							})
+							.setNegativeButton("Close", new OnClickListener() {
+								public void onClick(DialogInterface dialog, int which) { finishSync(); }
+							}).show();
+					}
+					break;
+	
+				case SyncService.PARSING_NO_NOTES:
+					message = this.activity.getString(R.string.messageSyncNoNote);
+					message = String.format(message,serviceDescription);
+					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+					break;
+					
+				case SyncService.NO_INTERNET:
+					Toast.makeText(activity, this.activity.getString(R.string.messageSyncNoConnection),
+							Toast.LENGTH_SHORT).show();
+					break;
+					
+				case SyncService.NO_SD_CARD:
+					Toast.makeText(activity, activity.getString(R.string.messageNoSDCard),
+							Toast.LENGTH_SHORT).show();
+					break;
+	
+				case SyncService.SYNC_PROGRESS:
+					break;
+	
+	
+				case SyncService.NOTE_DELETED:
+					message = this.activity.getString(R.string.messageSyncNoteDeleted);
+					message = String.format(message,serviceDescription);
+					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+					break;
+	
+				case SyncService.NOTE_PUSHED:
+					message = this.activity.getString(R.string.messageSyncNotePushed);
+					message = String.format(message,serviceDescription);
+					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+					break;
+				case SyncService.NOTE_PULLED:
+					message = this.activity.getString(R.string.messageSyncNotePulled);
+					message = String.format(message,serviceDescription);
+					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+					break;
+														
+				case SyncService.NOTE_DELETE_ERROR:
+					Toast.makeText(activity, activity.getString(R.string.messageSyncNoteDeleteError),
+							Toast.LENGTH_SHORT).show();
+					break;
+	
+				case SyncService.NOTE_PUSH_ERROR:
+					Toast.makeText(activity, activity.getString(R.string.messageSyncNotePushError),
+							Toast.LENGTH_SHORT).show();
+					break;
+				case SyncService.NOTE_PULL_ERROR:
+					message = this.activity.getString(R.string.messageSyncNotePullError);
+					message = String.format(message,serviceDescription);
+					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+					break;
+									
+				default:
+					TLog.i(TAG, "handler called with an unknown message");
+					break;
+	
+			}
+		}
+	}
+
+	protected void  onActivityResult (int requestCode, int resultCode, Intent  data) {
+		TLog.d(TAG, "onActivityResult called");
+		if(resultCode == Activity.RESULT_OK) {
+			TLog.d(TAG, "result ok, finishing sync");
+			syncMessageHandler.sendEmptyMessage(SyncService.PARSING_COMPLETE);
+		}
+	}
+	
+	public void finishSync() {
+		if(syncProgressDialog != null)
+			syncProgressDialog.dismiss();
+		if(rightPane != null)
+			showNoteInPane(lastIndex);
 	}
 }

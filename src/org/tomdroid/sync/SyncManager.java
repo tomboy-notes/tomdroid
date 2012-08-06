@@ -98,7 +98,6 @@ public class SyncManager {
 	// new methods to TEdit
 	
 	public void pushNote(Note note) {
-		
 		SyncService service = getCurrentService();
 		service.pushNote(note);
 	}

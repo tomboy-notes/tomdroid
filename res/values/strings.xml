@@ -175,13 +175,16 @@
 						
 	<!-- syncNotes -->
 	<string name="syncing">Syncing…</string>
+	<string name="syncing_with">Syncing with %1$s - please wait…</string>
 	<string name="sync_conflict_title">Note Conflict</string>
-	<string name="sync_conflict_message">There was a conflict syncing the note %1$s.  Please choose from one of the actions below.  You may edit either text before choosing.</string>
-	<string name="sync_conflict_deleted">There was a conflict syncing the note %1$s (local version was deleted).  Please choose from one of the actions below.</string>
+	<string name="sync_conflict_message">There was a conflict syncing the note "%1$s".  Please choose from one of the actions below.  You may edit either text before choosing.</string>
+	<string name="sync_conflict_deleted">There was a conflict syncing the note "%1$s" (local version was deleted).  Please choose from one of the actions below.</string>
 	<string name="keep_local">Keep Local</string>
 	<string name="keep_remote">Keep Remote</string>
 	<string name="delete_remote">Keep Remote</string>
 	<string name="diff_label">Difference Between Files:</string>
+	<string name="diff_titles">-- Title Differences --</string>
+	<string name="diff_content">-- Content Differences --</string>
 	<string name="local_label">Local Version:</string>
 	<string name="remote_label">Remote Version:</string>
 	<string name="deleted">Deleted</string>

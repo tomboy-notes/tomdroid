@@ -66,92 +66,103 @@
 	</ScrollView>
 			
 	<!-- formatting -->
-		                
-	<LinearLayout android:id="@+id/format_bar" 
+	<LinearLayout android:id="@+id/format_bar_shell" 
 		android:orientation="horizontal"
 		android:layout_width="wrap_content" 
 		android:layout_height="50dip"
-		android:padding="2dip"
-		android:visibility="gone"
 		android:layout_alignParentTop="true"
 		android:layout_alignParentRight="true"
-		android:background="#ffffff"
-		>
-	
-		<ToggleButton  
-			android:id="@+id/bold"
-			android:background="@drawable/button_toggle"
-			android:layout_width="wrap_content"  
-			android:layout_height="match_parent" 
-			android:textSize="17dip"
-			android:textOn="@string/bold"
-			android:textOff="@string/bold"
-			android:textStyle="bold"
-			android:padding="8dip"
-			android:textColor="#464646" />   
-		                    
+		>		                
+		<LinearLayout android:id="@+id/format_bar" 
+			android:orientation="horizontal"
+			android:layout_width="wrap_content" 
+			android:layout_height="50dip"
+			android:padding="2dip"
+			android:visibility="gone"
+			android:background="#ffffff"
+			>
+		
+			<ToggleButton  
+				android:id="@+id/bold"
+				android:background="@drawable/button_toggle"
+				android:layout_width="wrap_content"  
+				android:layout_height="match_parent" 
+				android:textSize="17dip"
+				android:textOn="@string/bold"
+				android:textOff="@string/bold"
+				android:textStyle="bold"
+				android:padding="8dip"
+				android:textColor="#464646" />   
+			                    
+			<ToggleButton
+				android:id="@+id/italic"
+				android:background="@drawable/button_toggle"
+				android:layout_width="wrap_content"  
+				android:layout_height="match_parent"
+				android:textSize="17dip"
+				android:textOn="@string/italic"
+				android:textOff="@string/italic"
+				android:textStyle="italic"
+				android:padding="8dip"
+				android:textColor="#464646" />
+			             		            
+			<ToggleButton
+				android:id="@+id/strike"
+				android:background="@drawable/button_toggle"
+	            android:layout_width="wrap_content"  
+	            android:layout_height="match_parent"
+	            android:textSize="17dip"
+	            android:textOn="@string/strike"
+	            android:textOff="@string/strike"
+				android:padding="8dip"
+	            android:textColor="#464646" />				            
+	        <ToggleButton
+				android:id="@+id/highlight"
+				android:background="@drawable/button_toggle"
+	            android:layout_width="wrap_content"  
+	            android:layout_height="match_parent"
+				android:textOn=""
+				android:textOff=""
+				android:drawableTop="@drawable/highlight"
+				android:contentDescription="@string/highlight"
+	            android:src="@drawable/highlight"
+				android:paddingLeft="8dip"
+				android:paddingRight="8dip"
+				android:paddingBottom="8dip"
+				android:paddingTop="12dip"
+	            />
+			<ToggleButton
+				android:id="@+id/mono"
+				android:background="@drawable/button_toggle"
+	            android:layout_width="wrap_content"  
+	            android:layout_height="match_parent"
+				android:textOn=""
+				android:textOff=""
+				android:drawableTop="@drawable/mono"
+				android:paddingLeft="8dip"
+				android:paddingRight="8dip"
+				android:paddingBottom="8dip"
+				android:paddingTop="12dip"
+				android:contentDescription="@string/mono"
+	            android:src="@drawable/mono"
+	            />		
+			<ImageButton
+				android:id="@+id/size"
+				android:background="@drawable/button_toggle"
+	            android:layout_width="wrap_content"  
+	            android:layout_height="match_parent"
+				android:padding="8dip"
+				android:contentDescription="@string/size"
+	            android:src="@drawable/size"
+				/> 
+		</LinearLayout>
 		<ToggleButton
-			android:id="@+id/italic"
-			android:background="@drawable/button_toggle"
-			android:layout_width="wrap_content"  
-			android:layout_height="match_parent"
-			android:textSize="17dip"
-			android:textOn="@string/italic"
-			android:textOff="@string/italic"
-			android:textStyle="italic"
-			android:padding="8dip"
-			android:textColor="#464646" />
-		             		            
-		<ToggleButton
-			android:id="@+id/strike"
+			android:id="@+id/slider"
 			android:background="@drawable/button_toggle"
             android:layout_width="wrap_content"  
-            android:layout_height="match_parent"
-            android:textSize="17dip"
-            android:textOn="@string/strike"
-            android:textOff="@string/strike"
-			android:padding="8dip"
-            android:textColor="#464646" />				            
-        <ToggleButton
-			android:id="@+id/highlight"
-			android:background="@drawable/button_toggle"
-            android:layout_width="wrap_content"  
-            android:layout_height="match_parent"
-			android:textOn=""
-			android:textOff=""
-			android:drawableTop="@drawable/highlight"
-			android:contentDescription="@string/highlight"
-            android:src="@drawable/highlight"
-			android:paddingLeft="8dip"
-			android:paddingRight="8dip"
-			android:paddingBottom="8dip"
-			android:paddingTop="12dip"
-            />
-		<ToggleButton
-			android:id="@+id/mono"
-			android:background="@drawable/button_toggle"
-            android:layout_width="wrap_content"  
-            android:layout_height="match_parent"
-			android:textOn=""
-			android:textOff=""
-			android:drawableTop="@drawable/mono"
-			android:paddingLeft="8dip"
-			android:paddingRight="8dip"
-			android:paddingBottom="8dip"
-			android:paddingTop="12dip"
-			android:contentDescription="@string/mono"
-            android:src="@drawable/mono"
+            android:layout_height="wrap_content"
+			android:textOn="&gt;"
+			android:textOff="&lt;"
             />		
-		<ImageButton
-			android:id="@+id/size"
-			android:background="@drawable/button_toggle"
-            android:layout_width="wrap_content"  
-            android:layout_height="match_parent"
-			android:padding="8dip"
-			android:contentDescription="@string/size"
-            android:src="@drawable/size"
-			/> 
-
 	</LinearLayout>
-	
 </RelativeLayout>

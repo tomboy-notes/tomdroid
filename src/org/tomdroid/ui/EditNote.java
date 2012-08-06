@@ -87,7 +87,7 @@ public class EditNote extends Activity {
 	// UI elements
 	private EditText title;
 	private EditText content;
-	private LinearLayout formatBar;
+	private LinearLayout formatBarShell;
 	
 	// Model objects
 	private Note note;
@@ -124,16 +124,16 @@ public class EditNote extends Activity {
 		content = (EditText) findViewById(R.id.content);
 		title = (EditText) findViewById(R.id.title);
 
-		formatBar = (LinearLayout) findViewById(R.id.format_bar);
+		formatBarShell = (LinearLayout) findViewById(R.id.format_bar_shell);
 
 		content.setOnFocusChangeListener(new OnFocusChangeListener() {
 
 		    public void onFocusChange(View v, boolean hasFocus) {
 		    	if(hasFocus && !xmlOn) {
-		    		formatBar.setVisibility(View.VISIBLE);
+		    		formatBarShell.setVisibility(View.VISIBLE);
 		    	}
 		    	else {
-		    		formatBar.setVisibility(View.GONE);
+		    		formatBarShell.setVisibility(View.GONE);
 		    	}
 		    }
 		});
@@ -284,7 +284,7 @@ public class EditNote extends Activity {
         			// Since 0.5 EditNote expects the redundant title being removed from the note content, but we still may need this for debugging:
         			//note.setXmlContent("<note-content version=\"0.1\">"+note.getTitle()+"\n\n"+newXmlContent+"</note-content>");
         			note.setXmlContent("<note-content version=\"0.1\">"+newXmlContent+"</note-content>");
-            		formatBar.setVisibility(View.GONE);
+            		formatBarShell.setVisibility(View.GONE);
             		content.setText(note.getXmlContent());
             	}
             	else {
@@ -293,8 +293,7 @@ public class EditNote extends Activity {
             		xmlOn = false;
             		updateNoteContent(true);  // update based on xml that we are switching FROM
             		if(content.isFocused())
-            			formatBar.setVisibility(View.VISIBLE);
-            		// TODO this is a ugly bugfix. without the runnable delay, the note content will not be displayed. there must be another method to do this!
+            			formatBarShell.setVisibility(View.VISIBLE);
             	}
 				return true;
 		}
@@ -305,7 +304,7 @@ public class EditNote extends Activity {
 	private void showNote(boolean xml) {
 		if(xml) {
 
-    		formatBar.setVisibility(View.GONE);
+			formatBarShell.setVisibility(View.GONE);
 			
 			content.setText(note.getXmlContent());
 			xmlOn = true;
@@ -526,7 +525,19 @@ public class EditNote extends Activity {
 
 	private void addFormatListeners()
 	{
+		final ToggleButton slideButton = (ToggleButton)findViewById(R.id.slider);
+		
+		slideButton.setOnClickListener(new Button.OnClickListener() {
 
+			public void onClick(View v) {
+				LinearLayout formatBar = (LinearLayout) findViewById(R.id.format_bar);
+				if(slideButton.isChecked())
+					formatBar.setVisibility(View.VISIBLE);
+				else
+					formatBar.setVisibility(View.GONE);
+            }
+		});
+		
 		final ToggleButton boldButton = (ToggleButton)findViewById(R.id.bold);
 		
 		boldButton.setOnClickListener(new Button.OnClickListener() {

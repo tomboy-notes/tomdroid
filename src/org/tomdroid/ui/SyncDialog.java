@@ -65,6 +65,7 @@ public class SyncDialog extends Activity {
 	
 	private Note note;
 	private Uri uri;
+	private boolean lastSync;
 	
 	@Override	
 	public void onCreate(Bundle savedInstanceState) {	
@@ -82,6 +83,8 @@ public class SyncDialog extends Activity {
 		setContentView(R.layout.note_compare);
 		
 		final Bundle extras = this.getIntent().getExtras();
+		
+		lastSync = extras.getBoolean("lastSync",false);
 
 		ContentValues values = new ContentValues();
 		values.put(Note.TITLE, extras.getString("title"));
@@ -94,7 +97,7 @@ public class SyncDialog extends Activity {
 		uri = Uri.parse(extras.getString("uri"));
 		
 		note = NoteManager.getNote(this, uri);
-		
+
 		final ContentResolver cr = getContentResolver();
 		final boolean deleted = note.getTags().contains("system:deleted"); 
 		
@@ -111,7 +114,7 @@ public class SyncDialog extends Activity {
 
 		final EditText localTitle = (EditText)findViewById(R.id.local_title);
 		final EditText remoteTitle = (EditText)findViewById(R.id.remote_title);
-		
+
 		if(deleted) {
 			message = getString(R.string.sync_conflict_deleted);
 			
@@ -132,29 +135,70 @@ public class SyncDialog extends Activity {
 	        });
 		}
 		else {
-			message = getString(R.string.sync_conflict_message);
-			Patch patch = DiffUtils.diff(Arrays.asList(TextUtils.split(note.getXmlContent(), "\\r?\\n|\\r")), Arrays.asList(TextUtils.split(extras.getString("content"), "\\r?\\n|\\r")));
 			String diff = "";
-            for (Delta delta: patch.getDeltas()) {
-            	diff += delta.toString()+"\n";
-            }
-            
-            Pattern digitPattern = Pattern.compile(".*position: ([0-9]+), lines: ");
+			boolean titleMatch = note.getTitle().equals(extras.getString("title"));
+			message = getString(R.string.sync_conflict_message);
+			if(!titleMatch) {
+				diff = getString(R.string.diff_titles)+"\n"+getString(R.string.local_label)+": "+note.getTitle()+"\n"+getString(R.string.remote_label)+": "+extras.getString("title");		
+			}
 
-            Matcher matcher = digitPattern.matcher(diff);
-            StringBuffer result = new StringBuffer();
-            while (matcher.find())
-            {
-                matcher.appendReplacement(result, "Line "+String.valueOf(Integer.parseInt(matcher.group(1)) + 1)+":\n");
-            }
-            matcher.appendTail(result);
-            diff = result.toString();
-            
-            diff = diff.replaceAll("\\[([^]]*)\\] to \\[([^]]*)\\]","Local: $1\nRemote: $2").replaceAll("]$","");
+			if(note.getXmlContent().equals(extras.getString("content"))){
+				if(titleMatch) { // same note, fix the dates
+					if(extras.getInt("datediff") < 0) { // local older
+						NoteManager.putNote(this, note, false);
+						if(lastSync) {
+							if (getParent() == null) {
+							    setResult(Activity.RESULT_OK, getIntent());
+							} else {
+							    getParent().setResult(Activity.RESULT_OK, getIntent());
+							}
+						}
+					}
+					else {
+						if(lastSync)
+							note.lastSync = true;
+						SyncManager.getInstance().pushNote(note);
+					}
+					finish();				
+				}
+				else {
+		            diffView.setText(diff);
+	    			localEdit.setVisibility(View.GONE);
+	    			remoteEdit.setVisibility(View.GONE);					
+				}
+			}
+			else {
+				if(titleMatch) {
+	    			localTitle.setVisibility(View.GONE);
+	    			remoteTitle.setVisibility(View.GONE);
+				}
+				else
+	    			diff += "\n\n";
+
+				Patch patch = DiffUtils.diff(Arrays.asList(TextUtils.split(note.getXmlContent(), "\\r?\\n|\\r")), Arrays.asList(TextUtils.split(extras.getString("content"), "\\r?\\n|\\r")));
+	            String diffResult = "";
+				for (Delta delta: patch.getDeltas()) {
+	            	diffResult += delta.toString()+"\n";
+	            }
+	            
+	            Pattern digitPattern = Pattern.compile(".*position: ([0-9]+), lines: ");
+	
+	            Matcher matcher = digitPattern.matcher(diffResult);
+	            StringBuffer result = new StringBuffer();
+	            while (matcher.find())
+	            {
+	                matcher.appendReplacement(result, "Line "+String.valueOf(Integer.parseInt(matcher.group(1)) + 1)+":\n");
+	            }
+	            matcher.appendTail(result);
+				
+	            diff += getString(R.string.diff_content)+"\n";		
+	            
+	            diff += result.toString().replaceAll("\\[([^]]*)\\] to \\[([^]]*)\\]",getString(R.string.local_label)+": $1\n"+getString(R.string.remote_label)+": $2").replaceAll("]$","");
+				
+	            diffView.setText(diff);
+				
+			}
 			
-            
-            
-            diffView.setText(diff);
 			localBtn.setOnClickListener( new View.OnClickListener() {
 				public void onClick(View v) {
 	            	// take local
@@ -215,7 +259,10 @@ public class SyncDialog extends Activity {
 		NoteManager.putNote(SyncDialog.this, rnote, false);
 
 		// push both
-		
+		if(lastSync) {
+			rnote.lastSync = true;
+			findViewById(R.id.compare_parent).setVisibility(View.INVISIBLE);
+		}
 		SyncManager.getInstance().pushNote(note);
 		SyncManager.getInstance().pushNote(rnote);
 		finish();	
@@ -229,6 +276,11 @@ public class SyncDialog extends Activity {
 		String time = now.format3339(false);
 		note.setLastChangeDate(time);
 		NoteManager.putNote(SyncDialog.this, note, false);
+		
+		if(lastSync) {
+			note.lastSync = true;
+			findViewById(R.id.compare_parent).setVisibility(View.GONE);
+		}
 		SyncManager.getInstance().pushNote(note);
 		finish();
 	}	

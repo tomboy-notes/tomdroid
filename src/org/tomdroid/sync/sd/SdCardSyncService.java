@@ -125,7 +125,7 @@ public class SdCardSyncService extends SyncService {
 			remoteGuids.add(fileList[i].getName().replace(".note", ""));
 		}
 		if(push)
-			pushNotes(remoteGuids);
+			pullNotes(remoteGuids);
 		else
 			deleteNotes(remoteGuids);
 		
