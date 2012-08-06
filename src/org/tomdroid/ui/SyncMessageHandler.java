@@ -188,6 +188,11 @@ public class SyncMessageHandler extends Handler {
 	}
 	
 	private void refreshActivity() {
+		
+		// call sync dialog to trigger onPause/onResume for Tomdroid - yeah, it's a hack (FIXME)
+		
+		Intent intent = new Intent(activity.getApplicationContext(), SyncDialog.class);	
+		activity.startActivity(intent);	
 /*		Intent intent = activity.getIntent();
 	    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 		activity.finish();

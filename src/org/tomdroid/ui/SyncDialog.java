@@ -68,8 +68,15 @@ public class SyncDialog extends Activity {
 	
 	@Override	
 	public void onCreate(Bundle savedInstanceState) {	
-		TLog.v(TAG, "starting SyncDialog");
 		super.onCreate(savedInstanceState);	
+		
+		// if we're just triggering a refresh
+		if(!this.getIntent().hasExtra("datediff")) {
+			finish();
+			return;
+		}
+
+		TLog.v(TAG, "starting SyncDialog");
 		this.context = this;
 		
 		setContentView(R.layout.note_compare);

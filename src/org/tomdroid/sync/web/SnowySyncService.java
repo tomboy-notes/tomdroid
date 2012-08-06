@@ -175,7 +175,9 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						setSyncProgress(35);
 						
 						if (response.getLong("latest-sync-revision") != -1 && response.getLong("latest-sync-revision") < latestSyncRevision) {
+							TLog.v(TAG, "sync revision earlier than latest sync; cancelling");
 							setSyncProgress(100);
+							sendMessage(PARSING_COMPLETE);
 							return;
 						}
 						
