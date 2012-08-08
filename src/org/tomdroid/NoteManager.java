@@ -46,6 +46,7 @@ import org.tomdroid.util.Preferences;
 import org.tomdroid.util.TLog;
 import org.tomdroid.util.XmlUtils;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -98,9 +99,11 @@ public class NoteManager {
 	// puts all notes in the content provider
 	// this allows us to figure out which is the last note
 	// boolean push means we are syncing
-	public static void putNotes(Activity activity, Note[] notes, boolean push) {
-		if(push)
-			setLastGuid(notes[notes.length-1].getGuid());
+	public static void putNotes(Activity activity, List<Note> notes, boolean push) {
+		if(notes.size() == 0)
+			return;
+		if(push && lastGuid == null)
+			setLastGuid(notes.get(notes.size()-1).getGuid());
 		for (Note note : notes) {
 			putNote(activity,note,push);
 		}
@@ -190,7 +193,7 @@ public class NoteManager {
 				
 			if(compareBoth != 0 && ((compareSyncLocal < 0 && compareSyncRemote < 0) || (compareSyncLocal > 0 && compareSyncRemote > 0)) && push) { // sync conflict!  both are older or newer than last sync
 				
-				TLog.v(TAG, "note conflict... showing resolution dialog");
+				TLog.v(TAG, "note conflict... showing resolution dialog TITLE:{0} GUID:{1}", note.getTitle(), note.getGuid());
 				
 				// send everything to Tomdroid so it can show Sync Dialog
 			    Bundle bundle = new Bundle();	
@@ -249,11 +252,9 @@ public class NoteManager {
 				TLog.v(TAG, "Local note is same date, skipped: TITLE:{0} GUID:{1}", note.getTitle(), note.getGuid());
 			}
 		}
-		if(lastGuid == note.getGuid()) {
+		if(note.getGuid().equals(lastGuid)) {
 			if(lastSyncGUID == null) {// last note, not sending any notes, finish sync 
 				SyncManager.getInstance().getCurrentService().finishSync(false);
-				Intent intent = new Intent(activity.getApplicationContext(), SyncDialog.class); // start empty to trigger refresh FIXME
-				activity.startActivity(intent);		
 			}
 			else { // last note, sending notes, tell sync which is the last to sync
 				TLog.d(TAG, "setting {0} as last sync GUID", note.getTitle(), note.getGuid());
@@ -422,5 +423,9 @@ public class NoteManager {
 		Cursor cursor = activity.managedQuery(Tomdroid.CONTENT_URI, DATE_PROJECTION, "strftime('%s', "+Note.MODIFIED_DATE+") > strftime('%s', '"+Preferences.getString(Preferences.Key.LATEST_SYNC_DATE)+"')", null, null);	
 				
 		return cursor;
+	}
+
+	public static void setLastGUID(String guid) {
+		lastGuid = guid;
 	}
 }

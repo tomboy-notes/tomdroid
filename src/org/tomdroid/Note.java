@@ -61,7 +61,7 @@ public class Note {
 	private String url;
 	private String fileName;
 	private String title;
-	private String tags;
+	private String tags = "";
 	private Time lastChangeDate;
 	private int dbId;
 

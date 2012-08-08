@@ -96,8 +96,6 @@ public class EditNote extends Activity {
 	// Logging info
 	private static final String TAG = "EditNote";
 	
-	// UI feedback handler
-	private Handler	syncMessageHandler	= new SyncMessageHandler(this);
 	private Uri uri;
 	public static final String CALLED_FROM_SHORTCUT_EXTRA = "org.tomdroid.CALLED_FROM_SHORTCUT";
     public static final String SHORTCUT_NAME = "org.tomdroid.SHORTCUT_NAME";
@@ -220,8 +218,6 @@ public class EditNote extends Activity {
 	public void onResume(){
 		TLog.v(TAG, "resume edit note");
 		super.onResume();
-		SyncManager.setActivity(this);
-		SyncManager.setHandler(this.syncMessageHandler);
 
         if (uri == null) {
 			TLog.d(TAG, "The Intent's data was null.");

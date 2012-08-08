@@ -39,6 +39,7 @@ import org.tomdroid.util.TLog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -72,7 +73,8 @@ public abstract class SyncService {
 	public final static int NOTE_PUSH_ERROR = 10;
 	public final static int NOTE_DELETE_ERROR = 11;
 	public final static int NOTE_PULL_ERROR = 12;
-	
+	public final static int BEGIN_PROGRESS = 13;
+		
 	public SyncService(Activity activity, Handler handler) {
 		
 		this.activity = activity;
@@ -147,8 +149,9 @@ public abstract class SyncService {
 	 * @param notes The notes to insert.
 	 */
 	
-	protected void insertNotes(Note[] notes, boolean push) {
-		NoteManager.putNotes(this.activity, notes, push);
+	protected void insertNotes(List<Note> notes, boolean push) {
+		if(notes.size() > 0)
+			NoteManager.putNotes(this.activity, notes, push);
 	}
 	/**
 	 * Insert last note in the content provider. tell the 
@@ -201,33 +204,34 @@ public abstract class SyncService {
 	 * @param remoteGuids The notes NOT to add.
 	 */
 	
-	protected void pullNotes(ArrayList<String> remoteGuids) {
+	protected List<Note> pullNotes(ArrayList<String> remoteGuids) {
 		
 		Cursor localGuids = NoteManager.getGuids(this.activity);
-		
+		String lastGUID = null;
 		// cursor must not be null and must return more than 0 entry 
+		List<Note> notes = new ArrayList<Note>();
 		if (!(localGuids == null || localGuids.getCount() == 0)) {
 			
 			String localGuid;
 			
 			localGuids.moveToFirst();
-			
 			do {
 				localGuid = localGuids.getString(localGuids.getColumnIndexOrThrow(Note.GUID));
 				
 				if(!remoteGuids.contains(localGuid)) {
 					int id = localGuids.getInt(localGuids.getColumnIndexOrThrow(Note.ID));
-					Note note = NoteManager.getNote(this.activity, Uri.parse(Tomdroid.CONTENT_URI + "/" + id));
-					SyncManager.getInstance().pushNote(note);
+					notes.add(NoteManager.getNote(this.activity, Uri.parse(Tomdroid.CONTENT_URI + "/" + id)));
+					lastGUID = localGuid;
 				}
 				
 			} while (localGuids.moveToNext());
 			
+
 		} else {
-			
 			// TODO send an error to the user
 			TLog.d(TAG, "Cursor returned null or 0 notes");
 		}
+		return notes;
 	}
 	
 	/**
@@ -245,6 +249,8 @@ public abstract class SyncService {
 	
 	protected boolean sendMessage(int message_id, HashMap<String, Object> payload) {
 		
+		Message message;
+		
 		switch(message_id) {
 		case PARSING_FAILED:
 		case NOTE_PUSH_ERROR:
@@ -252,8 +258,12 @@ public abstract class SyncService {
 		case NOTE_PULL_ERROR:
 			syncErrors.add(payload);
 			return true;
+		case BEGIN_PROGRESS:
+			 message = handler.obtainMessage(BEGIN_PROGRESS, payload);
+			handler.sendMessage(message);			
+			return true;
 		case PARSING_COMPLETE:
-			Message message = handler.obtainMessage(PARSING_COMPLETE, syncErrors);
+			message = handler.obtainMessage(PARSING_COMPLETE, syncErrors);
 			handler.sendMessage(message);
 			return true;
 		}

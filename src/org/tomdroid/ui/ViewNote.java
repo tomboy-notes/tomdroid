@@ -75,7 +75,6 @@ public class ViewNote extends Activity {
 	// Logging info
 	private static final String TAG = "ViewNote";
     // UI feedback handler
-	private Handler	syncMessageHandler	= new SyncMessageHandler(this);
 	
 	private Uri uri;
 
@@ -152,8 +151,7 @@ public class ViewNote extends Activity {
 	public void onResume(){
 		TLog.v(TAG, "resume view note");
 		super.onResume();
-		SyncManager.setActivity(this);
-		SyncManager.setHandler(this.syncMessageHandler);
+
         if (uri == null) {
 			TLog.d(TAG, "The Intent's data was null.");
             showNoteNotFoundDialog(uri);

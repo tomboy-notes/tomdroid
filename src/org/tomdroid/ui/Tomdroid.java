@@ -24,7 +24,7 @@
  */
 package org.tomdroid.ui;
 
-import java.util.UUID;
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -42,14 +42,12 @@ import org.tomdroid.util.NoteContentBuilder;
 import org.tomdroid.util.NoteViewShortcutsHelper;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.Send;
+import org.tomdroid.util.TLog;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
-import android.app.AlertDialog.Builder;
-import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -72,11 +70,9 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.tomdroid.util.TLog;
 
 public class Tomdroid extends ListActivity {
 
@@ -201,7 +197,7 @@ public class Tomdroid extends ListActivity {
 			position = 0;
 		}
 		Cursor item = (Cursor) adapter.getItem(position);
-		if (item.getCount() == 0) {
+		if (item == null || item.getCount() == 0) {
             TLog.d(TAG, "Index {0} not found in list", position);
             title.setText("");
             content.setText("");
@@ -371,7 +367,7 @@ public class Tomdroid extends ListActivity {
 	};
 	private boolean creating = true;
 	private SyncManager sync;
-	private ProgressDialog syncProgressDialog;
+	private static ProgressDialog syncProgressDialog;
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -422,10 +418,12 @@ public class Tomdroid extends ListActivity {
 			// tablet 
 			
 			case R.id.menuEdit:
-				startEditNote();
+				if(note != null)
+					startEditNote();
 				return true;
 			case R.id.menuDelete:
-				deleteNote(note.getDbId());
+				if(note != null)
+					deleteNote(note.getDbId());
 				return true;
 		}
 
@@ -434,8 +432,11 @@ public class Tomdroid extends ListActivity {
 	
 	private void startSyncing(boolean push) {
 		String serviceDescription = SyncManager.getInstance().getCurrentService().getDescription();
-		syncProgressDialog = ProgressDialog.show(this,getString(R.string.syncing), String.format(getString(R.string.syncing_with),serviceDescription), true);
-    	sync = SyncManager.getInstance();
+		syncProgressDialog = new ProgressDialog(this);
+		syncProgressDialog.setMessage(String.format(getString(R.string.syncing_with),serviceDescription));
+        syncProgressDialog.setIndeterminate(true);
+		syncProgressDialog.show();
+		sync = SyncManager.getInstance();
     	sync.startSynchronization(push); // push by default		
 	}
 	
@@ -714,18 +715,43 @@ public class Tomdroid extends ListActivity {
 					Toast.makeText(activity, activity.getString(R.string.messageNoSDCard),
 							Toast.LENGTH_SHORT).show();
 					break;
-	
+					
+				case SyncService.BEGIN_PROGRESS:
+					if(syncProgressDialog != null) {
+						HashMap<String, Object> hm = (HashMap<String, Object>) msg.obj;
+						syncProgressDialog.dismiss();
+						syncProgressDialog = new ProgressDialog(Tomdroid.this);
+						syncProgressDialog.setMessage(String.format(getString(R.string.syncing_with),serviceDescription));
+						syncProgressDialog.setIndeterminate(false);
+						syncProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+				        syncProgressDialog.setProgress(0);
+						syncProgressDialog.setMax((Integer) hm.get("total"));
+						syncProgressDialog.show();
+					}
+					break;					
 				case SyncService.SYNC_PROGRESS:
 					break;
 	
 	
 				case SyncService.NOTE_DELETED:
+					if(syncProgressDialog != null) {
+						if(syncProgressDialog.getProgress() == syncProgressDialog.getMax())
+							syncProgressDialog.dismiss();
+						else
+						syncProgressDialog.setProgress(syncProgressDialog.getProgress()+1);
+					}
 					message = this.activity.getString(R.string.messageSyncNoteDeleted);
 					message = String.format(message,serviceDescription);
 					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 					break;
 	
 				case SyncService.NOTE_PUSHED:
+					if(syncProgressDialog != null) {
+						if(syncProgressDialog.getProgress() == syncProgressDialog.getMax())
+							syncProgressDialog.dismiss();
+						else
+						syncProgressDialog.setProgress(syncProgressDialog.getProgress()+1);
+					}
 					message = this.activity.getString(R.string.messageSyncNotePushed);
 					message = String.format(message,serviceDescription);
 					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();

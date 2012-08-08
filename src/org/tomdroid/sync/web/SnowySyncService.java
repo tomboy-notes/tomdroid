@@ -45,6 +45,8 @@ import org.tomdroid.util.TLog;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class SnowySyncService extends SyncService implements ServiceAuth {
 	
@@ -184,6 +186,8 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						response = new JSONObject(rawResponse);
 						JSONArray notes = response.getJSONArray("notes");
 						setSyncProgress(60);
+
+						TLog.v(TAG, "number of notes: {0}", notes.length());
 						
 						// Delete or push the notes that are not in the database
 						ArrayList<String> remoteGuids = new ArrayList<String>();
@@ -191,28 +195,26 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						for (int i = 0; i < notes.length(); i++) {
 							remoteGuids.add(notes.getJSONObject(i).getString("guid"));
 						}
-						
-						if(push)
-							pullNotes(remoteGuids);
+						List<Note> pullNotes = new ArrayList<Note>();
+						if(push) {
+							pullNotes = pullNotes(remoteGuids);
+						}
 						else
 							deleteNotes(remoteGuids);
 						
 						setSyncProgress(70);
 
-						TLog.v(TAG, "number of notes: {0}", notes.length());
-						Note[] inotes = new Note[notes.length()];
-						
+						List<Note> insertNotes = new ArrayList<Note>();
+
 						// Insert or update the rest of the notes
 						int i = 0;
 						for ( i = 0; i < notes.length() - 1; i++) {
-							
-							TLog.v(TAG, "parsing note numer: {0}", i+1);
 							
 							JSONObject jsonNote = null;
 							
 							try {
 								jsonNote = notes.getJSONObject(i);
-								inotes[i] = new Note(jsonNote);
+								insertNotes.add(new Note(jsonNote));
 							} catch (JSONException e) {
 								TLog.e(TAG, e, "Problem parsing the server response");
 								String json = (jsonNote != null) ? jsonNote.toString(2) : rawResponse;
@@ -223,11 +225,22 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						if(notes.length()>0) {
 							// Do last note (length-1)
 							JSONObject jsonNote = notes.getJSONObject(notes.length() - 1);
-							inotes[i] = new Note(jsonNote);
-							insertNotes(inotes,push);
+							insertNotes.add(new Note(jsonNote));
 						}
-						else
-							setSyncProgress(100);
+						
+						// perform remote pushing (pull from local) and local insertion, begin progress bar
+						
+						if(insertNotes.size() > 0 || pullNotes.size() > 0) {
+							HashMap<String, Object> hm = new HashMap<String, Object>();
+							hm.put("total", insertNotes.size()+pullNotes.size());
+							sendMessage(BEGIN_PROGRESS,hm);
+							
+							// tell NoteManager we are pushing our local notes
+							if(pullNotes.size() > 0) 
+								NoteManager.setLastGUID(pullNotes.get(pullNotes.size()-1).getGuid());
+							insertNotes(insertNotes,push);
+							pushNotes(pullNotes);
+						}
 						
 						// delete leftover local notes
 						
@@ -297,6 +310,16 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 	
 	// new methods to T Edit
 
+	private void pushNotes(List<Note> notes) {
+		if(notes.size() == 0)
+			return;
+		
+		TLog.v(TAG, "pushing {0} notes to server",notes.size());
+		for(Note note : notes) {
+			pushNote(note);
+		}
+	}
+	
 	@Override
 	protected void pushNote(final Note note){
 		final String userRef = Preferences.getString(Preferences.Key.SYNC_SERVER_USER_API);
@@ -359,7 +382,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 					Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, nowString);
 					finishSync(true);
 				}
-				else if(note.getGuid() == lastGUID)
+				else if(note.getGuid().equals(lastGUID))
 					finishSync(true);
 			}
 		});
@@ -418,7 +441,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 					return;
 				}
 				sendMessage(NOTE_DELETED);
-				if(guid == lastGUID) {
+				if(guid.equals(lastGUID)) {
 					TLog.d(TAG, "note is last to sync");
 					finishSync(true);
 				}

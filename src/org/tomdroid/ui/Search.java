@@ -49,7 +49,6 @@ public class Search extends ListActivity {
 	// UI to data model glue
 	private TextView			listEmptyView;	
 	// UI feedback handler
-	private Handler	syncMessageHandler	= new SyncMessageHandler(this);
 
 	private ListAdapter			adapter;
 
@@ -111,7 +110,5 @@ public class Search extends ListActivity {
 	@Override
 	public void onResume(){
 		super.onResume();
-		SyncManager.setActivity(this);
-		SyncManager.setHandler(this.syncMessageHandler);
 	}
 }
