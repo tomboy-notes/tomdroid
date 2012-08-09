@@ -437,14 +437,11 @@ public class Tomdroid extends ListActivity {
 		
 		syncProgressDialog = new ProgressDialog(this);
 		syncProgressDialog.setTitle(getString(R.string.syncing));
-		syncProgressDialog.setMessage(String.format(getString(R.string.syncing_with),serviceDescription));
-		syncProgressDialog.setIndeterminate(false);
+		syncProgressDialog.setMessage(String.format(getString(R.string.syncing_connect),serviceDescription));
 		syncProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        syncProgressDialog.setProgress(0);
-		syncIndeterminateDialog = new ProgressDialog(this);
-		syncIndeterminateDialog.setTitle(getString(R.string.syncing));
-		syncIndeterminateDialog.setMessage(String.format(getString(R.string.syncing_with),serviceDescription));
-        syncIndeterminateDialog.show();
+		syncProgressDialog.setIndeterminate(true);
+		syncProgressDialog.setMax(0);
+		syncProgressDialog.show();
 
         sync = SyncManager.getInstance();
     	sync.startSynchronization(push); // push by default		
@@ -718,24 +715,48 @@ public class Tomdroid extends ListActivity {
 					break;
 					
 				case SyncService.NO_INTERNET:
+					if(syncIndeterminateDialog != null)
+						syncIndeterminateDialog.dismiss();
+					if(syncProgressDialog != null)
+						syncProgressDialog.dismiss();
 					Toast.makeText(activity, this.activity.getString(R.string.messageSyncNoConnection),
 							Toast.LENGTH_SHORT).show();
 					break;
 					
 				case SyncService.NO_SD_CARD:
+					if(syncIndeterminateDialog != null)
+						syncIndeterminateDialog.dismiss();
+					if(syncProgressDialog != null)
+						syncProgressDialog.dismiss();
 					Toast.makeText(activity, activity.getString(R.string.messageNoSDCard),
 							Toast.LENGTH_SHORT).show();
 					break;
 					
 				case SyncService.BEGIN_PROGRESS:
-					if(syncIndeterminateDialog != null) {
+					if(syncProgressDialog != null) {
 						HashMap<String, Object> hm = (HashMap<String, Object>) msg.obj;
-						syncIndeterminateDialog.dismiss();
+				        syncProgressDialog.setIndeterminate(false);
+				        syncProgressDialog.setMessage(getString(R.string.syncing_local));
+				        syncProgressDialog.setProgress(0);
 						syncProgressDialog.setMax((Integer) hm.get("total"));
 						syncProgressDialog.show();
 					}
-					break;					
+					break;
+					
 				case SyncService.SYNC_PROGRESS:
+					switch(msg.arg1) {
+						case 70:
+					        syncProgressDialog.setMessage(String.format(getString(R.string.syncing_remote),serviceDescription));
+							break;
+						case 80:
+					        syncProgressDialog.setMessage(String.format(getString(R.string.syncing_compare),serviceDescription));
+							break;
+						case 90:
+					        syncProgressDialog.setMessage(String.format(getString(R.string.syncing_finish),serviceDescription));
+							break;
+						default:
+							break;
+					}
 					break;
 	
 	
@@ -781,8 +802,10 @@ public class Tomdroid extends ListActivity {
 					break;
 				case SyncService.IN_PROGRESS:
 					Toast.makeText(activity, activity.getString(R.string.messageSyncAlreadyInProgress), Toast.LENGTH_SHORT).show();
-					if(syncIndeterminateDialog != null && syncIndeterminateDialog.isShowing())
+					if(syncIndeterminateDialog != null)
 						syncIndeterminateDialog.dismiss();
+					if(syncProgressDialog != null)
+						syncProgressDialog.dismiss();
 					break;
 				default:
 					TLog.i(TAG, "handler called with an unknown message");

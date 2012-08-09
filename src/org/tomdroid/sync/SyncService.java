@@ -237,7 +237,6 @@ public abstract class SyncService {
 		
 		SyncManager.getInstance().getCurrentService().deleteNotes(deleteableNotes);
 		
-		
 		setSyncProgress(80);
 
 	// deal with notes in both - compare and push, pull or diff
@@ -390,7 +389,7 @@ public abstract class SyncService {
 	/**
 	 * Update the synchronization progress
 	 * 
-	 * @param progress 
+	 * @param progress new progress (syncProgress is old)
 	 */
 	
 	public void setSyncProgress(int progress) {

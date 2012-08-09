@@ -179,13 +179,13 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						response = new JSONObject(auth.get(notesUrl));
 						
 						long latestSyncRevision = Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION);
-						setSyncProgress(35);
+						setSyncProgress(40);
 						
 						rawResponse = auth.get(notesUrl + "?include_notes=true");
 						
 						response = new JSONObject(rawResponse);
 						JSONArray notes = response.getJSONArray("notes");
-						setSyncProgress(60);
+						setSyncProgress(50);
 
 						TLog.v(TAG, "number of notes: {0}", notes.length());
 						
@@ -299,7 +299,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 					} 
 					catch (JSONException e) {
 						TLog.e(TAG, e, "Problem parsing the server response");
-						sendMessage(PARSING_COMPLETE, ErrorList.createErrorWithContents("JSON parsing", "json", e, rawResponse));
+						sendMessage(NOTE_PUSH_ERROR, ErrorList.createErrorWithContents("JSON parsing", "json", e, rawResponse));
 						
 						return;
 					}

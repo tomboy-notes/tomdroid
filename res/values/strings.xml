@@ -175,7 +175,11 @@
 						
 	<!-- syncNotes -->
 	<string name="syncing">Syncing…</string>
-	<string name="syncing_with">Syncing with %1$s</string>
+	<string name="syncing_connect">Syncing with %1$s - connecting…</string>
+	<string name="syncing_local">Syncing with %1$s - adding local notes…</string>
+	<string name="syncing_remote">Syncing with %1$s - pushing notes to service…</string>
+	<string name="syncing_compare">Syncing with %1$s - comparing notes…</string>
+	<string name="syncing_finish">Syncing with %1$s - finishing sync…</string>
 	<string name="sync_conflict_title">Note Conflict</string>
 	<string name="sync_conflict_message">There was a conflict syncing the note "%1$s".  Please choose from one of the actions below.  You may edit either text before choosing.</string>
 	<string name="sync_conflict_deleted">There was a conflict syncing the note "%1$s" (local version was deleted).  Please choose from one of the actions below.</string>
