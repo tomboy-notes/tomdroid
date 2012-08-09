@@ -38,6 +38,7 @@ public class Preferences {
 		SD_LOCATION ("sd_location", "tomdroid"),
 		INCLUDE_NOTE_TEMPLATES("include_note_templates", false),
 		DEL_ALL_NOTES("del_all_notes", ""),
+		BACKUP_NOTES("backup_notes", ""),
 		CLEAR_SEARCH_HISTORY ("clearSearchHistory", ""),
 		ACCESS_TOKEN ("access_token", ""),
 		ACCESS_TOKEN_SECRET ("access_token_secret", ""),

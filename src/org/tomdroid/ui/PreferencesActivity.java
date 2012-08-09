@@ -48,6 +48,7 @@ import org.tomdroid.R;
 import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.sync.SyncService;
+import org.tomdroid.sync.sd.SdCardSyncService;
 import org.tomdroid.util.FirstNote;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.SearchSuggestionProvider;
@@ -67,6 +68,7 @@ public class PreferencesActivity extends PreferenceActivity {
 	private EditTextPreference sdLocation = null;
 	private Preference delNotes = null;
 	private Preference clearSearchHistory = null;
+	private Preference backupNotes = null;
 
 	private Context context;
 	private Activity activity;
@@ -88,6 +90,7 @@ public class PreferencesActivity extends PreferenceActivity {
 		sdLocation = (EditTextPreference)findPreference(Preferences.Key.SD_LOCATION.getName());
 		clearSearchHistory = (Preference)findPreference(Preferences.Key.CLEAR_SEARCH_HISTORY.getName());
 		delNotes = (Preference)findPreference(Preferences.Key.DEL_ALL_NOTES.getName());
+		backupNotes = (Preference)findPreference(Preferences.Key.BACKUP_NOTES.getName());
 		
 		// Set the default values if nothing exists
 		setDefaults();
@@ -227,6 +230,27 @@ public class PreferencesActivity extends PreferenceActivity {
 			}
 		});
 		
+		backupNotes.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			
+	        public boolean onPreferenceClick(Preference preference) {
+				final Activity activity = PreferencesActivity.this;
+				new AlertDialog.Builder(activity)
+		        .setIcon(android.R.drawable.ic_dialog_alert)
+		        .setTitle(R.string.backup_notes_title)
+		        .setMessage(R.string.backup_notes)
+		        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+
+		            public void onClick(DialogInterface dialog, int which) {
+		            	SyncManager.getService("sdcard").startSynchronization(true);
+		           }
+
+		        })
+		        .setNegativeButton(R.string.no, null)
+		        .show();
+
+				return true;
+			}
+		});		
 	}
 	
 	private void authenticate(String serverUri) {
@@ -327,7 +351,7 @@ public class PreferencesActivity extends PreferenceActivity {
 
 		syncServer.setEnabled(service.needsServer());
 		syncService.setSummary(service.getDescription());
-		sdLocation.setEnabled(service.needsLocation());
+		backupNotes.setEnabled(!service.needsLocation()); // if not using sd card, allow backup
 		sdLocation.setSummary(Tomdroid.NOTES_PATH);
 	}
 		

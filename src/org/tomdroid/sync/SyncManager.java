@@ -34,7 +34,7 @@ import android.os.Handler;
 
 public class SyncManager {
 	
-	private ArrayList<SyncService> services = new ArrayList<SyncService>();
+	private static ArrayList<SyncService> services = new ArrayList<SyncService>();
 	
 	public SyncManager() {
 		createServices();
@@ -44,7 +44,7 @@ public class SyncManager {
 		return services;
 	}
 	
-	public SyncService getService(String name) {
+	public static SyncService getService(String name) {
 		
 		for (int i = 0; i < services.size(); i++) {
 			SyncService service = services.get(i);			

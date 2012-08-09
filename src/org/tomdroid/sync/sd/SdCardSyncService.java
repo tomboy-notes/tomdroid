@@ -54,7 +54,7 @@ public class SdCardSyncService extends SyncService {
 	private static Pattern note_content = Pattern.compile("<note-content[^>]+>(.*)<\\/note-content>", Pattern.CASE_INSENSITIVE+Pattern.DOTALL);
 
 	// list of notes to sync
-	private ArrayList<Note> syncableNotes;
+	private ArrayList<Note> syncableNotes = new ArrayList<Note>();;
 
 	// logging related
 	private final static String TAG = "SdCardSyncService";
@@ -114,11 +114,10 @@ public class SdCardSyncService extends SyncService {
 		File[] fileList = path.listFiles(new NotesFilter());
 		numberOfFilesToSync  = fileList.length;
 		
-		// If there are no notes, warn the UI through an empty message
+		// If there are no notes, just start the sync
 		if (fileList == null || fileList.length == 0) {
 			TLog.i(TAG, "There are no notes in {0}", path);
-			sendMessage(PARSING_NO_NOTES);
-			setSyncProgress(100);
+			syncNotes(syncableNotes, push);
 			return;
 		}
 		
