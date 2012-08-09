@@ -436,8 +436,8 @@ public class Tomdroid extends ListActivity {
 		String serviceDescription = SyncManager.getInstance().getCurrentService().getDescription();
 		
 		syncProgressDialog = new ProgressDialog(this);
-		syncProgressDialog.setTitle(getString(R.string.syncing));
-		syncProgressDialog.setMessage(String.format(getString(R.string.syncing_connect),serviceDescription));
+		syncProgressDialog.setTitle(String.format(getString(R.string.syncing),serviceDescription));
+		syncProgressDialog.setMessage(getString(R.string.syncing_connect));
 		syncProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 		syncProgressDialog.setIndeterminate(true);
 		syncProgressDialog.setMax(0);
@@ -744,20 +744,10 @@ public class Tomdroid extends ListActivity {
 					break;
 					
 				case SyncService.SYNC_PROGRESS:
-					switch(msg.arg1) {
-						case 70:
-					        syncProgressDialog.setMessage(String.format(getString(R.string.syncing_remote),serviceDescription));
-							break;
-						case 80:
-					        syncProgressDialog.setMessage(String.format(getString(R.string.syncing_compare),serviceDescription));
-							break;
-						case 90:
-					        syncProgressDialog.setMessage(String.format(getString(R.string.syncing_finish),serviceDescription));
-							break;
-						default:
-							break;
-					}
+					if(msg.arg1 == 90)
+				        syncProgressDialog.setMessage(getString(R.string.syncing_remote));
 					break;
+
 	
 	
 				case SyncService.NOTE_DELETED:
