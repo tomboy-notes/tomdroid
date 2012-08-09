@@ -64,6 +64,44 @@ public class NoteManager {
 	private static final String TAG = "NoteManager";
 	private static String lastGuid;
 	private static String lastSyncGUID;
+
+	// gets a note from the content provider, based on guid
+	public static Note getNoteByGuid(Activity activity, String guid) {
+		Uri notes = Tomdroid.CONTENT_URI;
+		
+		String[] whereArgs = new String[1];
+		whereArgs[0] = guid;
+		
+		// The note identifier is the guid
+		ContentResolver cr = activity.getContentResolver();
+		Cursor cursor = cr.query(notes,
+                FULL_PROJECTION,  
+                Note.GUID + "= ?",
+                whereArgs,
+                null);
+		activity.startManagingCursor(cursor);
+		if (cursor == null || cursor.getCount() == 0) {
+			return null;
+		}
+		else {
+			cursor.moveToFirst();
+			String noteContent = cursor.getString(cursor.getColumnIndexOrThrow(Note.NOTE_CONTENT));
+			String noteTitle = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
+			String noteChangeDate = cursor.getString(cursor.getColumnIndexOrThrow(Note.MODIFIED_DATE));
+			String noteTags = cursor.getString(cursor.getColumnIndexOrThrow(Note.TAGS));
+			String noteGUID = cursor.getString(cursor.getColumnIndexOrThrow(Note.GUID));
+			int noteDbid = cursor.getInt(cursor.getColumnIndexOrThrow(Note.ID));
+			
+			Note note = new Note();
+			note.setTitle(noteTitle);
+			note.setXmlContent(stripTitleFromContent(noteContent, noteTitle));
+			note.setLastChangeDate(noteChangeDate);
+			note.addTag(noteTags);
+			note.setGuid(noteGUID);
+			note.setDbId(noteDbid);
+			return note;
+		}
+	}
 	
 	// gets a note from the content provider
 	public static Note getNote(Activity activity, Uri uri) {
@@ -95,33 +133,28 @@ public class NoteManager {
 		
 		return note;
 	}
-	
-	// puts all notes in the content provider
-	// this allows us to figure out which is the last note
-	// boolean push means we are syncing
-	public static void putNotes(Activity activity, List<Note> notes, boolean push) {
-		if(notes.size() == 0)
-			return;
-		if(push && lastGuid == null)
-			setLastGuid(notes.get(notes.size()-1).getGuid());
-		for (Note note : notes) {
-			putNote(activity,note,push);
-		}
-	}
-	
-	private static void setLastGuid(String guid) {
-		lastGuid = guid;		
-	}
 
-	// set the latest GUID to send to service
-	private static void setLastSyncGUID(String guid) {
-		lastSyncGUID = guid;
+	// check in a note exists in the content provider
+	public static boolean noteExists(Activity activity, String guid) {
+		Uri notes = Tomdroid.CONTENT_URI;
+		
+		String[] whereArgs = new String[1];
+		whereArgs[0] = guid;
+		
+		// The note identifier is the guid
+		ContentResolver cr = activity.getContentResolver();
+		Cursor cursor = cr.query(notes,
+                ID_PROJECTION,  
+                Note.GUID + "= ?",
+                whereArgs,
+                null);
+		activity.startManagingCursor(cursor);
+		return (cursor != null && cursor.getCount() != 0);
 	}
 	
 	// puts a note in the content provider
 	// return uri
-	// boolean push means we are syncing
-	public static Uri putNote(Activity activity, Note note, boolean push) {
+	public static Uri putNote(Activity activity, Note note) {
 		
 		// verify if the note is already in the content provider
 		
@@ -150,7 +183,7 @@ public class NoteManager {
 		values.put(Note.NOTE_CONTENT, note.getXmlContent());
 		values.put(Note.TAGS, note.getTags());
 		
-		Uri uri;
+		Uri uri = null;
 		
 		if (managedCursor == null || managedCursor.getCount() == 0) {
 			
@@ -165,102 +198,9 @@ public class NoteManager {
 			
 			TLog.v(TAG, "A local note has been detected (already in db)");
 
-			managedCursor.moveToFirst();
-			uri = Uri.parse(Tomdroid.CONTENT_URI + "/" + managedCursor.getString(managedCursor.getColumnIndexOrThrow(Note.ID)));
-			Note localNote = getNote(activity,uri);
+			cr.update(Tomdroid.CONTENT_URI, values, Note.GUID+" = ?", whereArgs); 
 			
-			// check date difference
-			
-			String oldDateString = managedCursor.getString(managedCursor.getColumnIndexOrThrow(Note.MODIFIED_DATE));
-			Time oldDate = new Time();
-			oldDate.parse3339(oldDateString);
-
-			String syncDateString = Preferences.getString(Preferences.Key.LATEST_SYNC_DATE);
-			Time syncDate = new Time();
-			syncDate.parse3339(syncDateString);
-			
-			int compareSyncLocal = Time.compare(syncDate, oldDate);
-			int compareSyncRemote = Time.compare(syncDate, note.getLastChangeDate());
-			int compareBoth = Time.compare(oldDate, note.getLastChangeDate());
-			
-			TLog.v(TAG, "compare both: {0}, compare local: {1}, compare remote: {2}", compareBoth, compareSyncLocal, compareSyncRemote);
-			if(compareBoth != 0)
-				TLog.v(TAG, "Different note dates");
-			if((compareSyncLocal < 0 && compareSyncRemote < 0) || (compareSyncLocal > 0 && compareSyncRemote > 0))
-				TLog.v(TAG, "both either older or newer");
-			if(push)
-				TLog.v(TAG, "pushing");
-				
-			if(compareBoth != 0 && ((compareSyncLocal < 0 && compareSyncRemote < 0) || (compareSyncLocal > 0 && compareSyncRemote > 0)) && push) { // sync conflict!  both are older or newer than last sync
-				
-				TLog.v(TAG, "note conflict... showing resolution dialog TITLE:{0} GUID:{1}", note.getTitle(), note.getGuid());
-				
-				// send everything to Tomdroid so it can show Sync Dialog
-			    Bundle bundle = new Bundle();	
-				bundle.putString("uri",uri.toString());	
-				bundle.putString("title",note.getTitle());
-				bundle.putString("file",note.getFileName());
-				bundle.putString("guid",note.getGuid());
-				bundle.putString("date",note.getLastChangeDate().format3339(false));
-				bundle.putString("content", note.getXmlContent());
-				bundle.putString("tags", note.getTags());
-				bundle.putInt("datediff", compareBoth);
-
-				bundle.putBoolean("lastSync", lastSyncGUID == null);
-				Intent intent = new Intent(activity.getApplicationContext(), SyncDialog.class);	
-				intent.putExtras(bundle);
-
-				if(lastSyncGUID == null) {// make the first the last, since it will be on the bottom of the stack
-					TLog.d(TAG, "setting conflict {0} as last to sync", note.getGuid());
-					lastSyncGUID = note.getGuid();
-					activity.startActivityForResult(intent, 0);		
-				}
-				else
-					activity.startActivity(intent);		
-			}
-			else if(compareBoth > 0) { // local newer 
-				TLog.v(TAG, "local newer, pushing local to remote");
-
-					/* pushing local changes, reject older incoming note.
-					 * If the local counterpart has the tag "system:deleted", delete from both local and remote.
-					 * Otherwise, push local to remote.
-					 */
-					
-					if(localNote.getTags().contains("system:deleted")) {
-						TLog.v(TAG, "local note is deleted, deleting from server TITLE:{0} GUID:{1}", localNote.getTitle(),localNote.getGuid());
-						SyncManager.getInstance().deleteNote(localNote.getGuid()); // delete from remote
-						deleteNote(activity,localNote.getDbId()); // really delete locally
-					}
-					else {
-						TLog.v(TAG, "local note is newer, sending new version TITLE:{0} GUID:{1}", localNote.getTitle(),localNote.getGuid());
-						SyncManager.getInstance().pushNote(localNote);
-					}
-					if(push)
-						setLastSyncGUID(localNote.getGuid());
-			}
-			else if(compareBoth < 0) { // local older
-				TLog.v(TAG, "Local note is older, updating in content provider TITLE:{0} GUID:{1}", note.getTitle(), note.getGuid());
-				
-				// pull remote changes
-				
-				cr.update(Tomdroid.CONTENT_URI, values, Note.GUID+" = ?", whereArgs);
-				
-			}
-			else { // both same date
-				cr.update(Tomdroid.CONTENT_URI, values, Note.GUID+" = ?", whereArgs); // update anyway, for debugging
-
-				TLog.v(TAG, "Local note is same date, skipped: TITLE:{0} GUID:{1}", note.getTitle(), note.getGuid());
-			}
-		}
-		if(note.getGuid().equals(lastGuid)) {
-			if(lastSyncGUID == null) {// last note, not sending any notes, finish sync 
-				SyncManager.getInstance().getCurrentService().finishSync(false);
-			}
-			else { // last note, sending notes, tell sync which is the last to sync
-				TLog.d(TAG, "setting {0} as last sync GUID", note.getTitle(), note.getGuid());
-				SyncManager.getInstance().getCurrentService().setLastGUID(lastSyncGUID);
-				lastSyncGUID = null;
-			}
+			TLog.v(TAG, "Note updated in content provider: TITLE:{0} GUID:{1}", note.getTitle(), note.getGuid());
 		}
 		return uri;
 	}
@@ -272,7 +212,7 @@ public class NoteManager {
 		Time now = new Time();
 		now.setToNow();
 		note.setLastChangeDate(now);
-		putNote(activity,note, false);		
+		putNote(activity,note);		
 		Toast.makeText(activity, activity.getString(R.string.messageNoteDeleted), Toast.LENGTH_SHORT).show();
 	}
 

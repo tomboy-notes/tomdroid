@@ -189,62 +189,12 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 
 						TLog.v(TAG, "number of notes: {0}", notes.length());
 						
-						// Delete or push the notes that are not in the database
-						ArrayList<String> remoteGuids = new ArrayList<String>();
-
-						for (int i = 0; i < notes.length(); i++) {
-							remoteGuids.add(notes.getJSONObject(i).getString("guid"));
-						}
-						List<Note> pullNotes = new ArrayList<Note>();
-						if(push) {
-							pullNotes = pullNotes(remoteGuids);
-						}
-						else
-							deleteNotes(remoteGuids);
+						ArrayList<Note> notesList = new ArrayList<Note>();
 						
-						setSyncProgress(70);
-
-						List<Note> insertNotes = new ArrayList<Note>();
-
-						// Insert or update the rest of the notes
-						int i = 0;
-						for ( i = 0; i < notes.length() - 1; i++) {
+						for(int i = 0; i < notes.length(); i++)
+							notesList.add(new Note(notes.getJSONObject(i)));
 							
-							JSONObject jsonNote = null;
-							
-							try {
-								jsonNote = notes.getJSONObject(i);
-								insertNotes.add(new Note(jsonNote));
-							} catch (JSONException e) {
-								TLog.e(TAG, e, "Problem parsing the server response");
-								String json = (jsonNote != null) ? jsonNote.toString(2) : rawResponse;
-								sendMessage(PARSING_FAILED, ErrorList.createErrorWithContents("JSON parsing", "json", e, json));
-							}
-						}
-						setSyncProgress(90);
-						if(notes.length()>0) {
-							// Do last note (length-1)
-							JSONObject jsonNote = notes.getJSONObject(notes.length() - 1);
-							insertNotes.add(new Note(jsonNote));
-						}
-						
-						// perform remote pushing (pull from local) and local insertion, begin progress bar
-						
-						if(insertNotes.size() > 0 || pullNotes.size() > 0) {
-							HashMap<String, Object> hm = new HashMap<String, Object>();
-							hm.put("total", insertNotes.size()+pullNotes.size());
-							sendMessage(BEGIN_PROGRESS,hm);
-							
-							// tell NoteManager we are pushing our local notes
-							if(pullNotes.size() > 0) 
-								NoteManager.setLastGUID(pullNotes.get(pullNotes.size()-1).getGuid());
-							insertNotes(insertNotes,push);
-							pushNotes(pullNotes);
-						}
-						
-						// delete leftover local notes
-						
-						NoteManager.deleteDeletedNotes(activity);
+						syncNotes(notesList, push);
 
 						latestRevision = response.getLong("latest-sync-revision");
 						
@@ -309,16 +259,6 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 	}
 	
 	// new methods to T Edit
-
-	private void pushNotes(List<Note> notes) {
-		if(notes.size() == 0)
-			return;
-		
-		TLog.v(TAG, "pushing {0} notes to server",notes.size());
-		for(Note note : notes) {
-			pushNote(note);
-		}
-	}
 	
 	@Override
 	protected void pushNote(final Note note){
@@ -345,10 +285,6 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						Jnotes.put(Jnote);
 						data.put("note-changes",Jnotes);
 
-						TLog.v(TAG, "request data: {0}",rawResponse);
-
-						TLog.v(TAG, "put data: {0}",data.toString());
-						
 						JSONObject response = new JSONObject(rawResponse);
 		
 						String notesUrl = response.getJSONObject("notes-ref").getString("api-ref");
@@ -363,7 +299,8 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 					} 
 					catch (JSONException e) {
 						TLog.e(TAG, e, "Problem parsing the server response");
-						sendMessage(NOTE_PUSH_ERROR, ErrorList.createErrorWithContents("JSON parsing", "json", e, rawResponse));
+						sendMessage(PARSING_COMPLETE, ErrorList.createErrorWithContents("JSON parsing", "json", e, rawResponse));
+						
 						return;
 					}
 				}
@@ -387,6 +324,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 			}
 		});
 	}
+	
 	@Override
 	protected void deleteNote(final String guid){
 		
@@ -394,12 +332,11 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 			public void run() {		
 				OAuthConnection auth = getAuthConnection();
 				try {
-					TLog.v(TAG, "putting note to server");
+					TLog.v(TAG, "deleting note on server");
 					String userRef = Preferences.getString(Preferences.Key.SYNC_SERVER_USER_API);
 					String rawResponse = auth.get(userRef);
 		
 					try {
-						TLog.v(TAG, "creating JSON");
 						JSONObject data=new JSONObject();
 						data.put("latest-sync-revision",Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION)+1);
 		
@@ -418,16 +355,10 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 		
 						String notesUrl = response.getJSONObject("notes-ref").getString("api-ref");
 		
-		
-						TLog.v(TAG, "put url: {0}", notesUrl);
-		
-						TLog.v(TAG, "put data: {0}",data.toString());
-						
 						response = new JSONObject(auth.put(notesUrl,data.toString()));
 						
-						TLog.v(TAG, "put response: {0}",response.toString());
-						Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, response
-								.getLong("latest-sync-revision"));
+						TLog.v(TAG, "delete response: {0}",response.toString());
+						Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, response.getLong("latest-sync-revision"));
 					} 
 					catch (JSONException e) {
 						TLog.e(TAG, e, "Problem parsing the server response");
@@ -483,7 +414,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 
 						TLog.v(TAG, "parsing remote note");
 						
-						insertNote(new Note(jsonNote),false);
+						insertNote(new Note(jsonNote));
 
 					} catch (JSONException e) {
 						TLog.e(TAG, e, "Problem parsing the server response");

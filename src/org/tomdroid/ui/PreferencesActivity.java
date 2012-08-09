@@ -369,8 +369,8 @@ public class PreferencesActivity extends PreferenceActivity {
 		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, 0);
 		
 		// add a first explanatory note
-		// TODO this will be problematic with two-way sync
-		NoteManager.putNote(this, FirstNote.createFirstNote(), false);
+		// TODO this may be problematic with two-way sync
+		NoteManager.putNote(this, FirstNote.createFirstNote());
 	}
 	
 	/**

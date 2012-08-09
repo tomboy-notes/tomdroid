@@ -43,6 +43,8 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -50,7 +52,10 @@ public class SdCardSyncService extends SyncService {
 	
 	private int numberOfFilesToSync = 0;
 	private static Pattern note_content = Pattern.compile("<note-content[^>]+>(.*)<\\/note-content>", Pattern.CASE_INSENSITIVE+Pattern.DOTALL);
-	
+
+	// list of notes to sync
+	private ArrayList<Note> syncableNotes;
+
 	// logging related
 	private final static String TAG = "SdCardSyncService";
 	
@@ -117,17 +122,7 @@ public class SdCardSyncService extends SyncService {
 			return;
 		}
 		
-		// Delete or push the notes that are not in the folder any more
-		ArrayList<String> remoteGuids = new ArrayList<String>();
-
-		for (int i = 0; i < fileList.length; i++) {
-			// make a list with all note guids stored in filenames
-			remoteGuids.add(fileList[i].getName().replace(".note", ""));
-		}
-		if(push)
-			pullNotes(remoteGuids);
-		else
-			deleteNotes(remoteGuids);
+	// get all remote notes for sync
 		
 		// every but the last note
 		for(int i = 0; i < fileList.length-1; i++) {
@@ -137,7 +132,7 @@ public class SdCardSyncService extends SyncService {
 			syncInThread(new Worker(fileList[i], false, push));
         }
 		
-		// last task, warn it so it'll warn UI when done
+		// last task, warn it so it will know to start sync
 		syncInThread(new Worker(fileList[fileList.length-1], true, push));
 	}
 	
@@ -228,29 +223,15 @@ public class SdCardSyncService extends SyncService {
 				onWorkDone();
 				return;
 			}
-
-			insertNote(note, push);
+			
+			syncableNotes.add(note);
 			onWorkDone();
 		}
 		
 		private void onWorkDone(){
 			if (isLast) {
-
-				// delete leftover local deleted notes
-				
-				NoteManager.deleteDeletedNotes(activity);
-
-				Time now = new Time();
-				now.setToNow();
-				String nowString = now.format3339(false);
-				
-				Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, nowString);
-				
-				setSyncProgress(100);
-				sendMessage(PARSING_COMPLETE);
+				syncNotes(syncableNotes, push);
 			}
-			else
-				setSyncProgress((int) (getSyncProgress() + 100.0 / numberOfFilesToSync));			
 		}
 	}
 

@@ -64,8 +64,6 @@ public class SyncDialog extends Activity {
 	private Context context;
 	
 	private Note note;
-	private Uri uri;
-	private boolean lastSync;
 	
 	@Override	
 	public void onCreate(Bundle savedInstanceState) {	
@@ -84,8 +82,6 @@ public class SyncDialog extends Activity {
 		
 		final Bundle extras = this.getIntent().getExtras();
 		
-		lastSync = extras.getBoolean("lastSync",false);
-
 		ContentValues values = new ContentValues();
 		values.put(Note.TITLE, extras.getString("title"));
 		values.put(Note.FILE, extras.getString("file"));
@@ -94,9 +90,7 @@ public class SyncDialog extends Activity {
 		values.put(Note.NOTE_CONTENT, extras.getString("content"));
 		values.put(Note.TAGS, extras.getString("tags"));
 
-		uri = Uri.parse(extras.getString("uri"));
-		
-		note = NoteManager.getNote(this, uri);
+		note = NoteManager.getNoteByGuid(this, extras.getString("guid"));
 
 		final ContentResolver cr = getContentResolver();
 		final boolean deleted = note.getTags().contains("system:deleted"); 
@@ -145,18 +139,9 @@ public class SyncDialog extends Activity {
 			if(note.getXmlContent().equals(extras.getString("content"))){
 				if(titleMatch) { // same note, fix the dates
 					if(extras.getInt("datediff") < 0) { // local older
-						NoteManager.putNote(this, note, false);
-						if(lastSync) {
-							if (getParent() == null) {
-							    setResult(Activity.RESULT_OK, getIntent());
-							} else {
-							    getParent().setResult(Activity.RESULT_OK, getIntent());
-							}
-						}
+						NoteManager.putNote(this, note);
 					}
 					else {
-						if(lastSync)
-							note.lastSync = true;
 						SyncManager.getInstance().pushNote(note);
 					}
 					finish();				
@@ -249,20 +234,16 @@ public class SyncDialog extends Activity {
 		}
 		else if(dateDiff < 0) { // local older, rename local
 			note.setTitle(String.format(getString(R.string.old),note.getTitle()));
-			NoteManager.putNote(SyncDialog.this, note, false);
+			NoteManager.putNote(SyncDialog.this, note);
 		}
 		else { // remote older, rename remote
 			rnote.setTitle(String.format(getString(R.string.old),rnote.getTitle()));
 		}
 		
 		// create note
-		NoteManager.putNote(SyncDialog.this, rnote, false);
+		NoteManager.putNote(SyncDialog.this, rnote);
 
 		// push both
-		if(lastSync) {
-			rnote.lastSync = true;
-			findViewById(R.id.compare_parent).setVisibility(View.INVISIBLE);
-		}
 		SyncManager.getInstance().pushNote(note);
 		SyncManager.getInstance().pushNote(rnote);
 		finish();	
@@ -275,12 +256,7 @@ public class SyncDialog extends Activity {
 		now.setToNow();
 		String time = now.format3339(false);
 		note.setLastChangeDate(time);
-		NoteManager.putNote(SyncDialog.this, note, false);
-		
-		if(lastSync) {
-			note.lastSync = true;
-			findViewById(R.id.compare_parent).setVisibility(View.GONE);
-		}
+		NoteManager.putNote(SyncDialog.this, note);
 		SyncManager.getInstance().pushNote(note);
 		finish();
 	}	

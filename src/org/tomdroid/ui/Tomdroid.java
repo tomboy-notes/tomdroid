@@ -62,6 +62,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.text.SpannableStringBuilder;
+import android.text.format.Time;
 import android.text.util.Linkify;
 import android.text.util.Linkify.TransformFilter;
 import android.view.*;
@@ -141,7 +142,7 @@ public class Tomdroid extends ListActivity {
 			TLog.i(TAG, "Tomdroid is first run.");
 			
 			// add a first explanatory note
-			NoteManager.putNote(this, FirstNote.createFirstNote(), false);
+			NoteManager.putNote(this, FirstNote.createFirstNote());
 			
 			// Warn that this is a "will eat your babies" release
 			new AlertDialog.Builder(this).setMessage(getString(R.string.strWelcome)).setTitle(
@@ -367,6 +368,7 @@ public class Tomdroid extends ListActivity {
 	};
 	private boolean creating = true;
 	private SyncManager sync;
+	private static ProgressDialog syncIndeterminateDialog;
 	private static ProgressDialog syncProgressDialog;
 	
 	@Override
@@ -432,11 +434,19 @@ public class Tomdroid extends ListActivity {
 	
 	private void startSyncing(boolean push) {
 		String serviceDescription = SyncManager.getInstance().getCurrentService().getDescription();
+		
 		syncProgressDialog = new ProgressDialog(this);
+		syncProgressDialog.setTitle(getString(R.string.syncing));
 		syncProgressDialog.setMessage(String.format(getString(R.string.syncing_with),serviceDescription));
-        syncProgressDialog.setIndeterminate(true);
-		syncProgressDialog.show();
-		sync = SyncManager.getInstance();
+		syncProgressDialog.setIndeterminate(false);
+		syncProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        syncProgressDialog.setProgress(0);
+		syncIndeterminateDialog = new ProgressDialog(this);
+		syncIndeterminateDialog.setTitle(getString(R.string.syncing));
+		syncIndeterminateDialog.setMessage(String.format(getString(R.string.syncing_with),serviceDescription));
+        syncIndeterminateDialog.show();
+
+        sync = SyncManager.getInstance();
     	sync.startSynchronization(push); // push by default		
 	}
 	
@@ -601,7 +611,7 @@ public class Tomdroid extends ListActivity {
 		// add a new note
 		
 		Note note = NewNote.createNewNote(this);
-		Uri uri = NoteManager.putNote(this, note, false);
+		Uri uri = NoteManager.putNote(this, note);
 		
 		// set list item to top
 		
@@ -670,6 +680,7 @@ public class Tomdroid extends ListActivity {
 	
 			String serviceDescription = SyncManager.getInstance().getCurrentService().getDescription();
 			String message = "";
+			boolean increment = false;
 				
 			switch (msg.what) {
 	
@@ -717,14 +728,9 @@ public class Tomdroid extends ListActivity {
 					break;
 					
 				case SyncService.BEGIN_PROGRESS:
-					if(syncProgressDialog != null) {
+					if(syncIndeterminateDialog != null) {
 						HashMap<String, Object> hm = (HashMap<String, Object>) msg.obj;
-						syncProgressDialog.dismiss();
-						syncProgressDialog = new ProgressDialog(Tomdroid.this);
-						syncProgressDialog.setMessage(String.format(getString(R.string.syncing_with),serviceDescription));
-						syncProgressDialog.setIndeterminate(false);
-						syncProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-				        syncProgressDialog.setProgress(0);
+						syncIndeterminateDialog.dismiss();
 						syncProgressDialog.setMax((Integer) hm.get("total"));
 						syncProgressDialog.show();
 					}
@@ -734,40 +740,34 @@ public class Tomdroid extends ListActivity {
 	
 	
 				case SyncService.NOTE_DELETED:
-					if(syncProgressDialog != null) {
-						if(syncProgressDialog.getProgress() == syncProgressDialog.getMax())
-							syncProgressDialog.dismiss();
-						else
-						syncProgressDialog.setProgress(syncProgressDialog.getProgress()+1);
-					}
+					increment = true;
 					message = this.activity.getString(R.string.messageSyncNoteDeleted);
 					message = String.format(message,serviceDescription);
 					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 					break;
 	
 				case SyncService.NOTE_PUSHED:
-					if(syncProgressDialog != null) {
-						if(syncProgressDialog.getProgress() == syncProgressDialog.getMax())
-							syncProgressDialog.dismiss();
-						else
-						syncProgressDialog.setProgress(syncProgressDialog.getProgress()+1);
-					}
+					increment = true;
 					message = this.activity.getString(R.string.messageSyncNotePushed);
 					message = String.format(message,serviceDescription);
 					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+
 					break;
 				case SyncService.NOTE_PULLED:
 					message = this.activity.getString(R.string.messageSyncNotePulled);
 					message = String.format(message,serviceDescription);
 					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+					increment = true;
 					break;
 														
 				case SyncService.NOTE_DELETE_ERROR:
+					increment = true;
 					Toast.makeText(activity, activity.getString(R.string.messageSyncNoteDeleteError),
 							Toast.LENGTH_SHORT).show();
 					break;
 	
 				case SyncService.NOTE_PUSH_ERROR:
+					increment = true;
 					Toast.makeText(activity, activity.getString(R.string.messageSyncNotePushError),
 							Toast.LENGTH_SHORT).show();
 					break;
@@ -776,24 +776,48 @@ public class Tomdroid extends ListActivity {
 					message = String.format(message,serviceDescription);
 					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 					break;
-									
+				case SyncService.INCREMENT_PROGRESS:
+					increment = true;
+					break;
+				case SyncService.IN_PROGRESS:
+					Toast.makeText(activity, activity.getString(R.string.messageSyncAlreadyInProgress), Toast.LENGTH_SHORT).show();
+					if(syncIndeterminateDialog != null && syncIndeterminateDialog.isShowing())
+						syncIndeterminateDialog.dismiss();
+					break;
 				default:
 					TLog.i(TAG, "handler called with an unknown message");
 					break;
 	
 			}
+			if(increment) {
+				if(syncProgressDialog != null)
+					syncProgressDialog.setProgress(syncProgressDialog.getProgress()+1);
+				if(syncProgressDialog.getProgress() == syncProgressDialog.getMax())
+					syncMessageHandler.sendEmptyMessage(SyncService.PARSING_COMPLETE);
+			}
 		}
+			
 	}
 
 	protected void  onActivityResult (int requestCode, int resultCode, Intent  data) {
 		TLog.d(TAG, "onActivityResult called");
-		if(resultCode == Activity.RESULT_OK) {
-			TLog.d(TAG, "result ok, finishing sync");
-			syncMessageHandler.sendEmptyMessage(SyncService.PARSING_COMPLETE);
-		}
+		syncMessageHandler.sendEmptyMessage(SyncService.INCREMENT_PROGRESS);
 	}
 	
 	public void finishSync() {
+		
+		Time now = new Time();
+		now.setToNow();
+		String nowString = now.format3339(false);
+		
+	// delete leftover local notes
+		
+		NoteManager.deleteDeletedNotes(this);
+
+		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, nowString);
+		SyncService currentService = SyncManager.getInstance().getCurrentService();
+		currentService.setSyncProgress(100);
+		
 		if(syncProgressDialog != null)
 			syncProgressDialog.dismiss();
 		if(rightPane != null)

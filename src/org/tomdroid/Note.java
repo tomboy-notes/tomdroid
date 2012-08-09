@@ -23,6 +23,7 @@
  */
 package org.tomdroid;
 
+import android.net.Uri;
 import android.os.Handler;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;

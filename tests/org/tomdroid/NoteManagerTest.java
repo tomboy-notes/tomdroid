@@ -38,7 +38,7 @@ public class NoteManagerTest extends ActivityUnitTestCase<Tomdroid> {
 				"'last-change-date': '2009-04-19T21:29:23.2197340-07:00', " +
 				"'tags': ['tag1', 'tag2']}");
 		Note n = new Note(note);
-		NoteManager.putNote(a, n, false);
+		NoteManager.putNote(a, n);
 		
 		// Add a notebook template to the content manager.
 		JSONObject template = new JSONObject(
@@ -47,7 +47,7 @@ public class NoteManagerTest extends ActivityUnitTestCase<Tomdroid> {
 				"'last-change-date': '2009-04-19T21:29:23.2197340-07:00', " +
 				"'tags': ['system:template', 'tag2']}");
 		Note t = new Note(template);
-		NoteManager.putNote(a, t, false);
+		NoteManager.putNote(a, t);
 	}
 		
 	@Override
