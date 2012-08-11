@@ -53,7 +53,7 @@ public class NewNote {
 		TLog.i(TAG, "New note date: {0}",time);
 
 		note.setLastChangeDate(time);
-		note.setXmlContent("<note-content version=\"0.1\"></note-content>");
+		note.setXmlContent("");
 		
 		return note;
 	}

@@ -87,9 +87,13 @@ public class NoteXMLContentBuilder implements Runnable {
 			String plainText = noteContent.toString();
 			TreeMap<String,String> replacements = new TreeMap<String,String>();
 			replacements.put( "&", "&amp;" ); replacements.put( "<", "&lt;" ); replacements.put( ">", "&gt;" );
-			for( Map.Entry<String,String> entry: replacements.entrySet() )
-				for( int currPos=plainText.lastIndexOf(entry.getKey(), plainText.length()); currPos>0; currPos=plainText.lastIndexOf(entry.getKey(), currPos-1) )
+			for( Map.Entry<String,String> entry: replacements.entrySet() ) {
+				for( int currPos=plainText.lastIndexOf(entry.getKey(), plainText.length()); currPos>0; currPos=plainText.lastIndexOf(entry.getKey(), currPos-1) ){
 	 				noteContent.replace( currPos, currPos+entry.getKey().length(), entry.getValue() );
+					TLog.d(TAG, "new xml content: {0}", noteContent.toString());
+				}
+				plainText = noteContent.toString(); // have to refresh!
+			}
 			
 			// translate spans into XML elements:
 			for( int prevPos=0, currPos=0, maxPos=noteContent.length(); 

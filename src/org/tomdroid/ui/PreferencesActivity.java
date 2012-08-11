@@ -241,7 +241,7 @@ public class PreferencesActivity extends PreferenceActivity {
 		        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
 		            public void onClick(DialogInterface dialog, int which) {
-		            	SyncManager.getService("sdcard").startSynchronization(true);
+		            	SyncManager.getService("sdcard").pushNotes();
 		           }
 
 		        })

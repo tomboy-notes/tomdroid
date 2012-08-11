@@ -566,16 +566,18 @@ public class Tomdroid extends ListActivity {
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
-		lastIndex = position;
-		
 		if (rightPane != null) {
-			showNoteInPane(position);
+			if(position == lastIndex) // same index, edit
+				this.startEditNote();
+			else
+				showNoteInPane(position);
 		}
 		else {
 			Cursor item = (Cursor) adapter.getItem(position);
 			long noteId = item.getInt(item.getColumnIndexOrThrow(Note.ID));
 				this.ViewNote(noteId);
 		}
+		lastIndex = position;
 	}
 	
 	public void ViewNote(long noteId) {
@@ -803,10 +805,11 @@ public class Tomdroid extends ListActivity {
 	
 			}
 			if(increment) {
-				if(syncProgressDialog != null)
+				if(syncProgressDialog != null) {
 					syncProgressDialog.setProgress(syncProgressDialog.getProgress()+1);
-				if(syncProgressDialog.getProgress() == syncProgressDialog.getMax())
-					syncMessageHandler.sendEmptyMessage(SyncService.PARSING_COMPLETE);
+					if(syncProgressDialog.getProgress() == syncProgressDialog.getMax())
+						syncMessageHandler.sendEmptyMessage(SyncService.PARSING_COMPLETE);
+				}
 			}
 		}
 			

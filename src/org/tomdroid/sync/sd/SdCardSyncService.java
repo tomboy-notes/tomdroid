@@ -25,6 +25,7 @@
 package org.tomdroid.sync.sd;
 
 import android.app.Activity;
+import android.database.Cursor;
 import android.os.Handler;
 import android.text.format.Time;
 import android.util.TimeFormatException;
@@ -345,7 +346,7 @@ public class SdCardSyncService extends SyncService {
 			}
 
 			// TODO: create-date
-			String xmlOutput = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<note version=\"0.3\" xmlns:link=\"http://beatniksoftware.com/tomboy/link\" xmlns:size=\"http://beatniksoftware.com/tomboy/size\" xmlns=\"http://beatniksoftware.com/tomboy\">\n\t<title>"+note.getTitle()+"</title>\n\t<text xml:space=\"preserve\">"+note.getXmlContent()+"</text>\n\t<last-change-date>"+note.getLastChangeDate().format3339(false)+"</last-change-date>\n\t<last-metadata-change-date>"+note.getLastChangeDate().format3339(false)+"</last-metadata-change-date>\n\t<create-date>"+createDate+"</create-date>\n\t<cursor-position>"+cursorPos+"</cursor-position>\n\t<width>"+width+"</width>\n\t<height>"+height+"</height>\n\t<x>"+X+"</x>\n\t<y>"+Y+"</y>"+tags+"\n\t<open-on-startup>False</open-on-startup>\n</note>\n";
+			String xmlOutput = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<note version=\"0.3\" xmlns:link=\"http://beatniksoftware.com/tomboy/link\" xmlns:size=\"http://beatniksoftware.com/tomboy/size\" xmlns=\"http://beatniksoftware.com/tomboy\">\n\t<title>"+note.getTitle()+"</title>\n\t<text xml:space=\"preserve\"><note-content version=\"0.1\">"+note.getXmlContent()+"</note-content></text>\n\t<last-change-date>"+note.getLastChangeDate().format3339(false)+"</last-change-date>\n\t<last-metadata-change-date>"+note.getLastChangeDate().format3339(false)+"</last-metadata-change-date>\n\t<create-date>"+createDate+"</create-date>\n\t<cursor-position>"+cursorPos+"</cursor-position>\n\t<width>"+width+"</width>\n\t<height>"+height+"</height>\n\t<x>"+X+"</x>\n\t<y>"+Y+"</y>"+tags+"\n\t<open-on-startup>False</open-on-startup>\n</note>\n";
 			
 			path.createNewFile();
 			FileOutputStream fOut = new FileOutputStream(path);
@@ -403,4 +404,12 @@ public class SdCardSyncService extends SyncService {
 		syncInThread(new Worker(path, true, false));
 		
 	}
+	@Override
+	public void pushNotes() {
+		Note[] notes = NoteManager.getAllNotesAsNotes(activity, true);
+		for(Note note : notes){
+			this.pushNote(note);
+		}
+	}
+	
 }

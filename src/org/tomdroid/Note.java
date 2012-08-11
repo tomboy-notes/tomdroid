@@ -101,10 +101,7 @@ public class Note {
 		setGuid(json.optString("guid"));
 		setLastChangeDate(json.optString("last-change-date"));
 		String newXMLContent = json.optString("note-content");
-		if(newXMLContent.contains("<note-content version=\"0.1\">"))
-			setXmlContent(json.optString("note-content"));
-		else
-			setXmlContent("<note-content version=\"0.1\">"+json.optString("note-content")+"</note-content>"); // TODO: why is it sometimes missing?
+		setXmlContent(newXMLContent);
 		JSONArray jtags = json.optJSONArray("tags");
 		String tag;
 		tags = new String();

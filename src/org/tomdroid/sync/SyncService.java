@@ -450,5 +450,10 @@ public abstract class SyncService {
 		}
 	}
 
+	public void pushNotes() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

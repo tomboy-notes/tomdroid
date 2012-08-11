@@ -265,7 +265,48 @@ public class NoteManager {
 		orderBy = Note.MODIFIED_DATE + " DESC";
 		return activity.managedQuery(notes, LIST_PROJECTION, where, null, orderBy);		
 	}
+
+	// this function gets all non-deleted notes as notes in an array
 	
+	public static Note[] getAllNotesAsNotes(Activity activity, boolean includeNotebookTemplates) {
+		Uri uri = Tomdroid.CONTENT_URI;
+		String where = "("+Note.TAGS + " NOT LIKE '%" + "system:deleted" + "%')";
+		String orderBy;
+		if (!includeNotebookTemplates) {
+			where += " AND (" + Note.TAGS + " NOT LIKE '%" + "system:template" + "%')";
+		}
+		orderBy = Note.MODIFIED_DATE + " DESC";
+		Cursor cursor = activity.managedQuery(uri, FULL_PROJECTION, where, null, orderBy);
+		if (cursor == null || cursor.getCount() == 0) {
+			TLog.d(TAG, "no notes in cursor");
+			return null;
+		}
+		TLog.d(TAG, "{0} notes in cursor",cursor.getCount());
+		Note[] notes = new Note[cursor.getCount()];
+		cursor.moveToFirst();
+		int key = 0;
+
+		while(!cursor.isAfterLast()) {
+			String noteContent = cursor.getString(cursor.getColumnIndexOrThrow(Note.NOTE_CONTENT));
+			String noteTitle = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
+			String noteChangeDate = cursor.getString(cursor.getColumnIndexOrThrow(Note.MODIFIED_DATE));
+			String noteTags = cursor.getString(cursor.getColumnIndexOrThrow(Note.TAGS));
+			String noteGUID = cursor.getString(cursor.getColumnIndexOrThrow(Note.GUID));
+			int noteDbid = cursor.getInt(cursor.getColumnIndexOrThrow(Note.ID));
+			
+			Note note = new Note();
+			note.setTitle(noteTitle);
+			note.setXmlContent(stripTitleFromContent(noteContent, noteTitle));
+			note.setLastChangeDate(noteChangeDate);
+			note.addTag(noteTags);
+			note.setGuid(noteGUID);
+			note.setDbId(noteDbid);
+			notes[key++] = note;
+			cursor.moveToNext();
+		}
+		cursor.close();
+		return notes;
+	}	
 
 	public static ListAdapter getListAdapter(Activity activity, String querys) {
 		

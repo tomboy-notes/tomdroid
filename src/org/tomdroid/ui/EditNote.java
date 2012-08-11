@@ -279,7 +279,8 @@ public class EditNote extends Activity {
         			String newXmlContent = new NoteXMLContentBuilder().setCaller(noteXMLWriteHandler).setInputSource(newNoteContent).build();
         			// Since 0.5 EditNote expects the redundant title being removed from the note content, but we still may need this for debugging:
         			//note.setXmlContent("<note-content version=\"0.1\">"+note.getTitle()+"\n\n"+newXmlContent+"</note-content>");
-        			note.setXmlContent("<note-content version=\"0.1\">"+newXmlContent+"</note-content>");
+        			TLog.d(TAG, "new xml content: {0}", newXmlContent);
+        			note.setXmlContent(newXmlContent);
             		formatBarShell.setVisibility(View.GONE);
             		content.setText(note.getXmlContent());
             	}
@@ -446,7 +447,7 @@ public class EditNote extends Activity {
 		
 		if(xml) {
 			// parse XML
-			String xmlContent = this.content.getText().toString();
+			String xmlContent = "<note-content version=\"1.0\">"+this.content.getText().toString()+"</note-content>";
 			String subjectName = this.title.getText().toString();
 	        InputSource noteContentIs = new InputSource(new StringReader(xmlContent));
 			try {
@@ -477,12 +478,14 @@ public class EditNote extends Activity {
 		
 		// Since 0.5 EditNote expects the redundant title being removed from the note content, but we still may need this for debugging:
 		//note.setXmlContent("<note-content version=\"0.1\">"+note.getTitle()+"\n\n"+newXmlContent+"</note-content>");
-		note.setXmlContent("<note-content version=\"0.1\">"+newXmlContent+"</note-content>");
+		note.setXmlContent(newXmlContent);
 		noteContent = note.getNoteContent(noteXMLParseHandler);
 		return true;
 	}
 	
 	private void saveNote() {
+		TLog.v(TAG, "saving note");
+		
 		boolean updated = updateNoteContent(xmlOn);
 		if(!updated) {
 			Toast.makeText(this, getString(R.string.messageErrorParsingXML), Toast.LENGTH_SHORT).show();
@@ -497,6 +500,7 @@ public class EditNote extends Activity {
 		note.setLastChangeDate(time);
 		NoteManager.putNote( this, note);
 		Toast.makeText(this, getString(R.string.messageNoteSaved), Toast.LENGTH_SHORT).show();
+		
 		TLog.v(TAG, "note saved");
 	}
 	
