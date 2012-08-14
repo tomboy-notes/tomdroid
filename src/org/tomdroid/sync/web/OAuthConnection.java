@@ -259,7 +259,7 @@ public class OAuthConnection extends WebConnection {
 		return parseResponse(response);
 	}
 	
-	private void saveConfiguration() {
+	public void saveConfiguration() {
 		
 		Preferences.putString(Preferences.Key.ACCESS_TOKEN, accessToken);
 		Preferences.putString(Preferences.Key.ACCESS_TOKEN_SECRET, accessTokenSecret);

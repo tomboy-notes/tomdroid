@@ -159,10 +159,12 @@
 		<ToggleButton
 			android:id="@+id/slider"
 			android:background="@drawable/button_toggle"
-            android:layout_width="wrap_content"  
+            android:textColor="#FF000000"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
-			android:textOn="&gt;"
-			android:textOff="&lt;"
+			android:layout_marginLeft="10dp"
+			android:textOn="@string/gt"
+			android:textOff="@string/lt"
             />		
 	</LinearLayout>
 </RelativeLayout>

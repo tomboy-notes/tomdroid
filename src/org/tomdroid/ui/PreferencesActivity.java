@@ -48,7 +48,7 @@ import org.tomdroid.R;
 import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.sync.SyncService;
-import org.tomdroid.sync.sd.SdCardSyncService;
+import org.tomdroid.sync.web.OAuthConnection;
 import org.tomdroid.util.FirstNote;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.SearchSuggestionProvider;
@@ -73,6 +73,7 @@ public class PreferencesActivity extends PreferenceActivity {
 	private Context context;
 	private Activity activity;
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
@@ -116,7 +117,7 @@ public class PreferencesActivity extends PreferenceActivity {
 			}
 		});
 		
-		// Re-authenticate if the sync server changes
+		// force reauthentication if the sync server changes
 		syncServer.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 
 			public boolean onPreferenceChange(Preference preference,
@@ -133,8 +134,11 @@ public class PreferencesActivity extends PreferenceActivity {
 					return false;
 				}
 				syncServer.setSummary((String)serverUri);
-			    
-				authenticate((String) serverUri);
+				
+				// TODO is this necessary? hasn't it changed already?
+				Preferences.putString(Preferences.Key.SYNC_SERVER, (String)serverUri);
+
+				reauthenticate();
 				return true;
 			}
 			
@@ -219,7 +223,7 @@ public class PreferencesActivity extends PreferenceActivity {
 		        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
 		            public void onClick(DialogInterface dialog, int which) {
-		        		NoteManager.deleteAllNotes(activity);
+		            	resetLocalDatabase();
 		           }
 
 		        })
@@ -241,7 +245,7 @@ public class PreferencesActivity extends PreferenceActivity {
 		        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
 		            public void onClick(DialogInterface dialog, int which) {
-		            	SyncManager.getService("sdcard").pushNotes();
+		            	SyncManager.getService("sdcard").backupNotes();
 		           }
 
 		        })
@@ -252,54 +256,14 @@ public class PreferencesActivity extends PreferenceActivity {
 			}
 		});		
 	}
-	
-	private void authenticate(String serverUri) {
 
-		// update the value before doing anything
-		Preferences.putString(Preferences.Key.SYNC_SERVER, serverUri);
+	private void reauthenticate() {
 
-		SyncService currentService = SyncManager.getInstance().getCurrentService();
-
-		if (!currentService.needsAuth()) {
-			return;
-		}
-
-		// service needs authentication
-		TLog.i(TAG, "Creating dialog");
-
-		final ProgressDialog authProgress = ProgressDialog.show(this, "",
-				getString(R.string.prefSyncCompleteAuth), true, false);
-
-		Handler handler = new Handler() {
-
-			@Override
-			public void handleMessage(Message msg) {
-
-				boolean wasSuccsessful = false;
-				Uri authorizationUri = (Uri) msg.obj;
-				if (authorizationUri != null) {
-
-					Intent i = new Intent(Intent.ACTION_VIEW, authorizationUri);
-					startActivity(i);
-					wasSuccsessful = true;
-
-				} else {
-					// Auth failed, don't update the value
-					wasSuccsessful = false;
-				}
-
-				if (authProgress != null)
-					authProgress.dismiss();
-
-				if (wasSuccsessful) {
-					resetLocalDatabase();
-				} else {
-					connectionFailed();
-				}
-			}
-		};
-
-		((ServiceAuth) currentService).getAuthUri(serverUri, handler);
+		// don't do anything, we'll authenticate on sync instead
+		// save empty config, wiping old config
+		
+		OAuthConnection auth = new OAuthConnection();
+		auth.saveConfiguration();
 	}
 	
 	private void fillServices()
@@ -415,7 +379,7 @@ public class PreferencesActivity extends PreferenceActivity {
 		// I believe it's done this way because if needsAuth the database is reset when they successfully auth for the first time
 		// TODO we should graphically warn the user that his database is about to be dropped
 		if (!service.needsAuth()){
-		    resetLocalDatabase();
+		    //resetLocalDatabase();
 		}
 	}
 }

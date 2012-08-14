@@ -31,7 +31,7 @@ import android.text.format.Time;
 public class Preferences {
 	
 	public enum Key {
-		SYNC_SERVICE ("sync_service", "sdcard"),
+		SYNC_SERVICE ("sync_service", "tomboy-web"),
 		SYNC_SERVER_ROOT_API ("sync_server_root_api", ""),
 		SYNC_SERVER_USER_API ("sync_server_user_api", ""),
 		SYNC_SERVER ("sync_server", "https://one.ubuntu.com/notes"),

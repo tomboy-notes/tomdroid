@@ -23,6 +23,7 @@
 package org.tomdroid.util;
 
 import org.tomdroid.Note;
+import org.tomdroid.R;
 
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
@@ -42,7 +43,7 @@ public class FirstNote {
 		
 		Note note = new Note();
 		
-		note.setTitle("Tomdroid's first note");
+		note.setTitle(getString("FirstNote.Title"));
 		// FIXME as soon as we can create notes, make sure GUID is unique! 
 		note.setGuid("8f837a99-c920-4501-b303-6a39af57a714");
 		note.setLastChangeDate("2010-10-09T16:50:12.219-04:00");

@@ -46,6 +46,7 @@ import org.tomdroid.util.Preferences;
 import org.tomdroid.util.TLog;
 import org.tomdroid.util.XmlUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -213,7 +214,7 @@ public class NoteManager {
 		now.setToNow();
 		note.setLastChangeDate(now);
 		putNote(activity,note);		
-		Toast.makeText(activity, activity.getString(R.string.messageNoteDeleted), Toast.LENGTH_SHORT).show();
+
 	}
 
 	// this function actually deletes the note locally, called when syncing
@@ -311,7 +312,8 @@ public class NoteManager {
 	public static ListAdapter getListAdapter(Activity activity, String querys) {
 		
 		boolean includeNotebookTemplates = Preferences.getBoolean(Preferences.Key.INCLUDE_NOTE_TEMPLATES);
-		
+
+		String[] qargs = null;
 		String where = "(" + Note.TAGS + " NOT LIKE '%" + "system:deleted" + "%')";
 		if (!includeNotebookTemplates) {
 			where += " AND (" + Note.TAGS + " NOT LIKE '%" + "system:template" + "%')";
@@ -319,14 +321,18 @@ public class NoteManager {
 		if (querys != null ) {
 			// sql statements to search notes
 			String[] query = querys.split(" ");
+			qargs = new String[query.length*2];
+			int count = 0;
 			for (String string : query) {
-				where = where + " AND ("+Note.TITLE+" LIKE '%"+string+"%' OR "+Note.NOTE_CONTENT+" LIKE '%"+string+"%')";
+				qargs[count++] = "%"+string+"%"; 
+				qargs[count++] = "%"+string+"%"; 
+				where = where + " AND ("+Note.TITLE+" LIKE ? OR "+Note.NOTE_CONTENT+" LIKE ?)";
 			}	
 		}
 
 		// get a cursor representing all notes from the NoteProvider
 		Uri notes = Tomdroid.CONTENT_URI;
-		Cursor notesCursor = activity.managedQuery(notes, LIST_PROJECTION, where, null, null);
+		Cursor notesCursor = activity.managedQuery(notes, LIST_PROJECTION, where, qargs, null);
 		
 		// set up an adapter binding the TITLE field of the cursor to the list item
 		String[] from = new String[] { Note.TITLE };

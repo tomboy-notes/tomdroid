@@ -85,6 +85,11 @@ public abstract class SyncService {
 	public final static int BEGIN_PROGRESS = 13;
 	public final static int INCREMENT_PROGRESS = 14;
 	public final static int IN_PROGRESS = 15;
+	public final static int NOTES_BACKED_UP = 16;
+	public final static int CONNECTING_FAILED = 17;
+	public final static int AUTH_COMPLETE = 18;
+	public final static int AUTH_FAILED = 19;
+	
 	public SyncService(Activity activity, Handler handler) {
 		
 		this.activity = activity;
@@ -99,6 +104,11 @@ public abstract class SyncService {
 			sendMessage(IN_PROGRESS);
 			return;
 		}
+		
+		// deleting "First Note"
+		Note firstNote = NoteManager.getNoteByGuid(activity, "8f837a99-c920-4501-b303-6a39af57a714");
+		if(firstNote != null)
+			NoteManager.deleteNote(activity, firstNote.getDbId());
 		
 		sync(push);
 	}
@@ -367,22 +377,20 @@ public abstract class SyncService {
 		Message message;
 		
 		switch(message_id) {
-		case PARSING_FAILED:
-		case NOTE_PUSH_ERROR:
-		case NOTE_DELETE_ERROR:
-		case NOTE_PULL_ERROR:
-			syncErrors.add(payload);
-			return true;
-		case BEGIN_PROGRESS:
-			 message = handler.obtainMessage(BEGIN_PROGRESS, payload);
-			handler.sendMessage(message);			
-			return true;
-		case PARSING_COMPLETE:
-			message = handler.obtainMessage(PARSING_COMPLETE, syncErrors);
-			handler.sendMessage(message);
-			return true;
+			case PARSING_FAILED:
+			case NOTE_PUSH_ERROR:
+			case NOTE_DELETE_ERROR:
+			case NOTE_PULL_ERROR:
+			case PARSING_COMPLETE:
+				message = handler.obtainMessage(message_id, syncErrors);
+				syncErrors.add(payload);
+				handler.sendMessage(message);
+				return true;
+			case BEGIN_PROGRESS:
+				message = handler.obtainMessage(message_id, payload);
+				handler.sendMessage(message);
+				return true;
 		}
-		
 		return false;
 	}
 	
@@ -455,5 +463,9 @@ public abstract class SyncService {
 		
 	}
 
+	public void backupNotes() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

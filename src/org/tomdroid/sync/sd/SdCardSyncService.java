@@ -256,10 +256,18 @@ public class SdCardSyncService extends SyncService {
 	@Override
 	protected void pushNote(Note note){
 		TLog.v(TAG, "pushing note to sdcard");
-		Note rnote = new Note();
 		
-		try {
+		int mint = doPushNote(note);
 
+		if(mint > 0)
+			sendMessage(mint);
+		else
+			sendMessage(NOTE_PUSHED);
+	}
+	private int doPushNote(Note note) {
+
+		Note rnote = new Note();
+		try {
 			File path = new File(Tomdroid.NOTES_PATH);
 			
 			if (!path.exists())
@@ -270,12 +278,11 @@ public class SdCardSyncService extends SyncService {
 			// Check a second time, if not the most likely cause is the volume doesn't exist
 			if(!path.exists()) {
 				TLog.w(TAG, "Couldn't create {0}", path);
-				sendMessage(NO_SD_CARD);
-				return;
+				return NO_SD_CARD;
 			}
 			
 			path = new File(Tomdroid.NOTES_PATH + "/"+note.getGuid() + ".note");
-
+	
 			String createDate = note.getLastChangeDate().format3339(false);
 			int cursorPos = 0;
 			int width = 0;
@@ -285,7 +292,7 @@ public class SdCardSyncService extends SyncService {
 			String tags = "";
 			
 			if (path.exists()) { // update existing note
-
+	
 				// Try reading the file first
 				String contents = "";
 				try {
@@ -294,10 +301,9 @@ public class SdCardSyncService extends SyncService {
 				} catch (IOException e) {
 					e.printStackTrace();
 					TLog.w(TAG, "Something went wrong trying to read the note");
-					sendMessage(PARSING_FAILED, ErrorList.createError(note, e));
-					return;
+					return PARSING_FAILED;
 				}
-
+	
 				try {
 					// Parsing
 			    	// XML 
@@ -307,26 +313,25 @@ public class SdCardSyncService extends SyncService {
 			
 			        // Get the XMLReader of the SAXParser we created
 			        XMLReader xr = sp.getXMLReader();
-
+	
 			        // Create a new ContentHandler, send it this note to fill and apply it to the XML-Reader
 			        NoteHandler xmlHandler = new NoteHandler(rnote);
 			        xr.setContentHandler(xmlHandler);
-
+	
 			        // Create the proper input source
 			        StringReader sr = new StringReader(contents);
 			        InputSource is = new InputSource(sr);
 			        
 					TLog.d(TAG, "parsing note. filename: {0}", path.getName());
 					xr.parse(is);
-
+	
 				// TODO wrap and throw a new exception here
 				} catch (Exception e) {
 					e.printStackTrace();
 					if(e instanceof TimeFormatException) TLog.e(TAG, "Problem parsing the note's date and time");
-					sendMessage(PARSING_FAILED, ErrorList.createErrorWithContents(note, e, contents));
-					return;
+					return PARSING_FAILED;
 				}
-
+	
 				createDate = rnote.createDate.format3339(false);
 				cursorPos = rnote.cursorPos;
 				width = rnote.width;
@@ -344,9 +349,9 @@ public class SdCardSyncService extends SyncService {
 					tags += "\n\t</tags>"; 
 				}
 			}
-
+	
 			// TODO: create-date
-			String xmlOutput = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<note version=\"0.3\" xmlns:link=\"http://beatniksoftware.com/tomboy/link\" xmlns:size=\"http://beatniksoftware.com/tomboy/size\" xmlns=\"http://beatniksoftware.com/tomboy\">\n\t<title>"+note.getTitle()+"</title>\n\t<text xml:space=\"preserve\"><note-content version=\"0.1\">"+note.getXmlContent()+"</note-content></text>\n\t<last-change-date>"+note.getLastChangeDate().format3339(false)+"</last-change-date>\n\t<last-metadata-change-date>"+note.getLastChangeDate().format3339(false)+"</last-metadata-change-date>\n\t<create-date>"+createDate+"</create-date>\n\t<cursor-position>"+cursorPos+"</cursor-position>\n\t<width>"+width+"</width>\n\t<height>"+height+"</height>\n\t<x>"+X+"</x>\n\t<y>"+Y+"</y>"+tags+"\n\t<open-on-startup>False</open-on-startup>\n</note>\n";
+			String xmlOutput = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<note version=\"0.3\" xmlns:link=\"http://beatniksoftware.com/tomboy/link\" xmlns:size=\"http://beatniksoftware.com/tomboy/size\" xmlns=\"http://beatniksoftware.com/tomboy\">\n\t<title>"+note.getTitle().replace("&", "&amp;")+"</title>\n\t<text xml:space=\"preserve\"><note-content version=\"0.1\">"+note.getXmlContent()+"</note-content></text>\n\t<last-change-date>"+note.getLastChangeDate().format3339(false)+"</last-change-date>\n\t<last-metadata-change-date>"+note.getLastChangeDate().format3339(false)+"</last-metadata-change-date>\n\t<create-date>"+createDate+"</create-date>\n\t<cursor-position>"+cursorPos+"</cursor-position>\n\t<width>"+width+"</width>\n\t<height>"+height+"</height>\n\t<x>"+X+"</x>\n\t<y>"+Y+"</y>"+tags+"\n\t<open-on-startup>False</open-on-startup>\n</note>\n";
 			
 			path.createNewFile();
 			FileOutputStream fOut = new FileOutputStream(path);
@@ -354,16 +359,16 @@ public class SdCardSyncService extends SyncService {
 									new OutputStreamWriter(fOut);
 			myOutWriter.append(xmlOutput);
 			myOutWriter.close();
-			fOut.close();
+			fOut.close();	
+	
 		}
 		catch (Exception e) {
 			TLog.e(TAG, "push to sd card didn't work");
-			sendMessage(NOTE_PUSH_ERROR);
-			return;
+			return NOTE_PUSH_ERROR;
 		}
-		sendMessage(NOTE_PUSHED);
-
+		return 0;
 	}
+
 	@Override
 	protected void deleteNote(String guid){
 		try {
@@ -411,5 +416,12 @@ public class SdCardSyncService extends SyncService {
 			this.pushNote(note);
 		}
 	}
-	
+	@Override
+	public void backupNotes() {
+		Note[] notes = NoteManager.getAllNotesAsNotes(activity, true);
+		for(Note note : notes){
+			this.doPushNote(note);
+		}
+		sendMessage(NOTES_BACKED_UP);
+	}
 }

@@ -268,7 +268,7 @@ public class EditNote extends Activity {
 			case R.id.edit_note_discard:
 				discardNoteContent();
 				return true;
-			case R.id.edit_note_xml:
+/*			case R.id.edit_note_xml:
             	if(!xmlOn) {
             		item.setTitle(getString(R.string.text));
             		item.setIcon(R.drawable.text);
@@ -292,7 +292,7 @@ public class EditNote extends Activity {
             		if(content.isFocused())
             			formatBarShell.setVisibility(View.VISIBLE);
             	}
-				return true;
+				return true;*/
 		}
 		return super.onOptionsItemSelected(item);
 	}

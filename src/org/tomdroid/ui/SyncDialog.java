@@ -103,6 +103,10 @@ public class SyncDialog extends Activity {
 		
 		TextView messageView = (TextView)findViewById(R.id.message);
 		TextView diffView = (TextView)findViewById(R.id.diff);
+		TextView diffLabel = (TextView)findViewById(R.id.diff_label);
+		TextView localLabel = (TextView)findViewById(R.id.local_label);
+		TextView remoteLabel = (TextView)findViewById(R.id.remote_label);
+
 		final EditText localEdit = (EditText)findViewById(R.id.local);
 		final EditText remoteEdit = (EditText)findViewById(R.id.remote);
 
@@ -112,6 +116,8 @@ public class SyncDialog extends Activity {
 		if(deleted) {
 			message = getString(R.string.sync_conflict_deleted);
 			
+			diffLabel.setVisibility(View.GONE);
+			localLabel.setVisibility(View.GONE);
 			diffView.setVisibility(View.GONE);
 			localEdit.setVisibility(View.GONE);
 			localTitle.setVisibility(View.GONE);
@@ -121,10 +127,7 @@ public class SyncDialog extends Activity {
 			localBtn.setText(getString(R.string.delete_remote));
 			localBtn.setOnClickListener( new View.OnClickListener() {
 				public void onClick(View v) {
-	            	// take local
-					TLog.v(TAG, "user chose to delete remote note TITLE:{0} GUID:{1}", note.getTitle(),note.getGuid());
-					SyncManager.getInstance().deleteNote(note.getGuid()); // delete from remote
-					NoteManager.deleteNote(SyncDialog.this, note.getDbId()); // really delete locally
+					onChooseDelete();
 				}
 	        });
 		}
@@ -259,5 +262,12 @@ public class SyncDialog extends Activity {
 		NoteManager.putNote(SyncDialog.this, note);
 		SyncManager.getInstance().pushNote(note);
 		finish();
-	}	
+	}
+	
+	protected void onChooseDelete() {
+		TLog.v(TAG, "user chose to delete remote note TITLE:{0} GUID:{1}", note.getTitle(),note.getGuid());
+		SyncManager.getInstance().deleteNote(note.getGuid()); // delete from remote
+		NoteManager.deleteNote(SyncDialog.this, note.getDbId()); // really delete locally
+		finish();
+	}
 }	
