@@ -221,10 +221,19 @@ public abstract class SyncService {
 		TLog.d(TAG, "Notes to pull: {0}, Notes to push: {1}, Notes to delete: {2}, Notes to compare: {3}",pullableNotes.size(),pushableNotes.size(),deleteableNotes.size(),comparableNotes.size());
 		
 	// init progress bar
-
-		HashMap<String, Object> hm = new HashMap<String, Object>();
-		hm.put("total", pullableNotes.size()+pushableNotes.size()+comparableNotes.size()+deleteableNotes.size());
-		sendMessage(BEGIN_PROGRESS,hm);
+		
+		int totalNotes = pullableNotes.size()+pushableNotes.size()+comparableNotes.size()+deleteableNotes.size();
+		
+		if(totalNotes > 0) {
+			HashMap<String, Object> hm = new HashMap<String, Object>();
+			hm.put("total", totalNotes);
+			sendMessage(BEGIN_PROGRESS,hm);
+		}
+		else { // quit
+			setSyncProgress(100);
+			sendMessage(PARSING_COMPLETE);
+		}
+			
 
 	// deal with notes that are not in local content provider - always pull
 		
@@ -241,7 +250,7 @@ public abstract class SyncService {
 			SyncManager.getInstance().getCurrentService().pushNotes(pushableNotes);
 		}
 		else
-			deleteNonRemoteNotes(pullableNotes);
+			deleteNonRemoteNotes(pushableNotes);
 
 		// deleted notes not in remote
 		

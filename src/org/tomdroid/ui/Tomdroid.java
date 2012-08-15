@@ -758,7 +758,7 @@ public class Tomdroid extends ListActivity {
 						dismiss = true;
 						message = this.activity.getString(R.string.messageAuthFailed);
 						message = String.format(message,serviceDescription);
-						Toast.makeText(activity, message, Toast.LENGTH_LONG).show();
+						Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 						break;
 					case SyncService.PARSING_COMPLETE:
 						final ErrorList errors = (ErrorList)msg.obj;
@@ -776,7 +776,7 @@ public class Tomdroid extends ListActivity {
 									public void onClick(DialogInterface dialog, int which) {
 										if(!errors.save()) {
 											Toast.makeText(activity, activity.getString(R.string.messageCouldNotSave),
-													Toast.LENGTH_LONG).show();
+													Toast.LENGTH_SHORT).show();
 										}
 										finishSync();
 									}
@@ -790,24 +790,24 @@ public class Tomdroid extends ListActivity {
 						dismiss = true;
 						message = this.activity.getString(R.string.messageSyncConnectingFailed);
 						message = String.format(message,serviceDescription);
-						Toast.makeText(activity, message, Toast.LENGTH_LONG).show();
+						Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 						break;
 					case SyncService.PARSING_FAILED:
 						dismiss = true;
 						message = this.activity.getString(R.string.messageSyncParseFailed);
 						message = String.format(message,serviceDescription);
-						Toast.makeText(activity, message, Toast.LENGTH_LONG).show();
+						Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 						break;
 					case SyncService.PARSING_NO_NOTES:
 						dismiss = true;
 						message = this.activity.getString(R.string.messageSyncNoNote);
 						message = String.format(message,serviceDescription);
-						Toast.makeText(activity, message, Toast.LENGTH_LONG).show();
+						Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 						break;
 						
 					case SyncService.NO_INTERNET:
 						dismiss = true;
-						Toast.makeText(activity, this.activity.getString(R.string.messageSyncNoConnection),Toast.LENGTH_LONG).show();
+						Toast.makeText(activity, this.activity.getString(R.string.messageSyncNoConnection),Toast.LENGTH_SHORT).show();
 						break;
 						
 					case SyncService.NO_SD_CARD:
@@ -872,7 +872,7 @@ public class Tomdroid extends ListActivity {
 						increment = true;
 						break;
 					case SyncService.IN_PROGRESS:
-						Toast.makeText(activity, activity.getString(R.string.messageSyncAlreadyInProgress), Toast.LENGTH_LONG).show();
+						Toast.makeText(activity, activity.getString(R.string.messageSyncAlreadyInProgress), Toast.LENGTH_SHORT).show();
 						dismiss = true;
 						break;
 					case SyncService.NOTES_BACKED_UP:
