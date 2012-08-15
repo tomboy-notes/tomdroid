@@ -31,12 +31,11 @@
     <item android:id="@+id/edit_note_save"
 		android:icon="@android:drawable/ic_menu_save"
 		android:title="@string/save"
-		android:showAsAction="ifRoom|withText" 
 		/>
     <item android:id="@+id/edit_note_discard"
 		android:icon="@android:drawable/ic_menu_close_clear_cancel"
 		android:title="@string/discard"
-		android:showAsAction="never|withText" 
+		android:showAsAction="ifRoom|withText" 
 		/>
     <item android:id="@+id/edit_note_xml"
 		android:title="@string/xml"
