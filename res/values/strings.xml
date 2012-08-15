@@ -125,7 +125,7 @@
 			
 	<!-- newNote -->
 	<string name="menuNew">New</string>
-	<string name="NewNoteTitle"></string>
+	<string name="NewNoteTitle">New Note</string>
 	<string name="NewNoteTitleHint">Enter title here</string>
 	<string name="NewNoteBodyHint">Enter note here</string>
 			

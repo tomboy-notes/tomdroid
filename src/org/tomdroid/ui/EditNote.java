@@ -24,6 +24,9 @@
 package org.tomdroid.ui;
 
 import java.io.StringReader;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -492,7 +495,49 @@ public class EditNote extends Activity {
 			return;
 		}
 		
-		note.setTitle(title.getText().toString());
+		
+		String noteTitle = title.getText().toString();
+		
+		// check for empty titles, set to R.string.NewNoteTitle
+		
+		if (noteTitle.replace(" ","").equals(""))
+			noteTitle = getString(R.string.NewNoteTitle);
+
+		// check for duplicate titles - add number to end
+
+		Cursor cursor = NoteManager.getTitles(this);
+		
+		// cursor must not be null and must return more than 0 entry 
+		if (!(cursor == null || cursor.getCount() == 0)) {
+			
+			String[] titles = new String[cursor.getCount()];
+			int count = 0;
+			cursor.moveToFirst();
+			do {
+				titles[count++] = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
+			} while (cursor.moveToNext());
+			
+			// sort to get {"Note","Note 1", "Note 2", ... }
+			Arrays.sort(titles);
+			
+			String origTitle = noteTitle;
+
+			int inc = 1;
+			for(String atitle : titles) {
+				if(atitle.length() == 0)
+					continue;
+				
+				if(atitle.equals(noteTitle)) {
+					if(inc == 1)  // first match, matching "Note", set to "Note 1"
+						noteTitle = noteTitle + " 1";
+					else // later match, matching "Note X", set to "Note X+1"
+						noteTitle = origTitle + " " + inc;
+					inc++;
+				}
+			}
+		}
+		
+		note.setTitle(noteTitle);
 
 		Time now = new Time();
 		now.setToNow();
