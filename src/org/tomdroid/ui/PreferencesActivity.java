@@ -374,6 +374,8 @@ public class PreferencesActivity extends PreferenceActivity {
 		
 		if (service == null)
 			return;
+		
+		// I've removed the reset, since now we may have new notes, and want to move them from one service to another, etc.
 
 		// reset if no-auth required
 		// I believe it's done this way because if needsAuth the database is reset when they successfully auth for the first time
