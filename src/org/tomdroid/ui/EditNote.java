@@ -499,8 +499,10 @@ public class EditNote extends Activity {
 		String time = now.format3339(false);
 		note.setLastChangeDate(time);
 		NoteManager.putNote( this, note);
+
+		textChanged = false;
+
 		Toast.makeText(this, getString(R.string.messageNoteSaved), Toast.LENGTH_SHORT).show();
-		
 		TLog.v(TAG, "note saved");
 	}
 	
