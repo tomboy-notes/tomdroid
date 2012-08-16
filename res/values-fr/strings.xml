@@ -116,13 +116,15 @@
 	-->
 	<!-- 30 chars max -->
 	<string name="market_title">Notes Tomdroid</string>
-	<!-- 325 chars max -->
+	<!-- 4000 chars max -->
 	<string name="market_description">Client Android pour Tomboy. Tomboy est un logiciel de prise de notes wikiwiki avec une interface usager simple.\n\nNOTE: LECTURE SEULE pour l\'instant\n\n* Format de note compatible avec Tomboy\n* Synchronisation en ligne avec Snowy, Tomboy Online et Ubuntu One\n* Importation de la carte SD\n* Logiciel libre!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Appli de prise de notes avec synchronisation en ligne compatible avec Tomboy</string>
-	
-	
+
+	<!-- 500 chars max -->
+        <string name="market_recent_changes">* Recherche dans les notes et recherche intégrée au système Android\n* Menu contextuel\n* Plusieurs améliorations à l\'utilisabilité\n* Icônes haute qualité\n* Plusieurs correctifs\n* Traduction en allemand\n</string>
+
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
   Léo POUGHON https://launchpad.net/~leo-poughon
