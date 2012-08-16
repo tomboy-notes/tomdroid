@@ -4,9 +4,11 @@ TODO tasks
 - lp:766225 - Authenticating with U1 gives a "please check the address you entered" error on HTC Desire
 - lp:533933 - Sync folder does not remove messages from db
 - lp:724641 - Links break randomly
+- bump copyrights on files toutched since 2012
 
-next major release:
-- semi-automated code layout: consider http://uncrustify.sourceforge.net/ else there's eclipse
+After release
+- implement mandatory formatting for .java and .xml: consider http://uncrustify.sourceforge.net/ else there's eclipse
+- no more tab characters
 
 Unclassified:
 - define privacy policy (required for the market)
