@@ -210,9 +210,12 @@ public class EditNote extends Activity {
     	if (uri == null) {
             super.onPause();
         } else {
-        	if(textChanged && !discardChanges)
+        	if(discardChanges) { // finishing activity, discarding changes
+        		if(note.getTitle().length() == 0 && note.getXmlContent().length() == 0) // if the note is empty, e.g. new
+        			NoteManager.deleteNote(this, note);
+        	}
+        	else if(textChanged) // changed and not discarding changes TODO: find some way to delete the note if empty, but only on closing activity()
         		saveNote();
-        	updateNoteContent(xmlOn);
         	super.onPause();
         }
     }    
