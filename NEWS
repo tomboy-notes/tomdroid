@@ -12,7 +12,7 @@ Join it at: https://launchpad.net/~tomdroid-dev
 For more details and developer visible changes see the ChangeLog
 
 -------------------------------------------------------------------------------
-Version 0.6.0 - "You ruined my life" released on 2012-08-16
+Version 0.6.0 - "Small World" released on 2012-08-16
 
 * Fix crash when authenticating a server URL containing line breaks (Stefan Hammer, lp:902855)
 * SD card synchronisation now removes deleted messages from Database (Stefan Hammer, lp:533933 )
