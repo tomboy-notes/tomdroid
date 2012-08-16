@@ -16,7 +16,7 @@ Tomdroid 0.7 beta - Editing and Two-Way Sync!
 	
 	Editing Features:
 	* Rich text editor for editing and formatting notes (credit: http://code.google.com/p/android-richtexteditor/)
-	* Abilitiy to create new notes
+	* Ability to create new notes
 	* Ability to delete local notes
 	* Automatic renaming of notes on duplicate title (as Note 1, Note 2, etc.)
 	* Note saved automatically on pause

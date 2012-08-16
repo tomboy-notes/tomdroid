@@ -27,6 +27,7 @@ import java.io.StringReader;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -207,18 +208,19 @@ public class EditNote extends Activity {
     
     @Override
     protected void onPause() {
-    	if (uri == null) {
-            super.onPause();
-        } else {
-        	if(discardChanges) { // finishing activity, discarding changes
-        		if(note.getTitle().length() == 0 && note.getXmlContent().length() == 0) // if the note is empty, e.g. new
-        			NoteManager.deleteNote(this, note);
-        	}
-        	else if(textChanged) // changed and not discarding changes TODO: find some way to delete the note if empty, but only on closing activity()
-        		saveNote();
-        	super.onPause();
+    	if (uri != null) {
+        	if(!discardChanges && textChanged) // changed and not discarding changes
+       			saveNote();
         }
-    }    
+    	super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+		if(note.getTitle().length() == 0 && note.getXmlContent().length() == 0 && !textChanged) // if the note is empty, e.g. new
+				NoteManager.deleteNote(this, note);
+    	super.onDestroy();
+    }
     
 	@Override
 	public void onResume(){
@@ -498,49 +500,7 @@ public class EditNote extends Activity {
 			return;
 		}
 		
-		
-		String noteTitle = title.getText().toString();
-		
-		// check for empty titles, set to R.string.NewNoteTitle
-		
-		if (noteTitle.replace(" ","").equals(""))
-			noteTitle = getString(R.string.NewNoteTitle);
-
-		// check for duplicate titles - add number to end
-
-		Cursor cursor = NoteManager.getTitles(this);
-		
-		// cursor must not be null and must return more than 0 entry 
-		if (!(cursor == null || cursor.getCount() == 0)) {
-			
-			String[] titles = new String[cursor.getCount()];
-			int count = 0;
-			cursor.moveToFirst();
-			do {
-				titles[count++] = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
-			} while (cursor.moveToNext());
-			
-			// sort to get {"Note","Note 1", "Note 2", ... }
-			Arrays.sort(titles);
-			
-			String origTitle = noteTitle;
-
-			int inc = 1;
-			for(String atitle : titles) {
-				if(atitle.length() == 0)
-					continue;
-				
-				if(atitle.equals(noteTitle)) {
-					if(inc == 1)  // first match, matching "Note", set to "Note 1"
-						noteTitle = noteTitle + " 1";
-					else // later match, matching "Note X", set to "Note X+1"
-						noteTitle = origTitle + " " + inc;
-					inc++;
-				}
-			}
-		}
-		
-		note.setTitle(noteTitle);
+		setNoteTitle();
 
 		Time now = new Time();
 		now.setToNow();
@@ -554,6 +514,60 @@ public class EditNote extends Activity {
 		TLog.v(TAG, "note saved");
 	}
 	
+	private void setNoteTitle() {
+		
+		String noteTitle = title.getText().toString();
+
+		String origTitle = noteTitle;
+
+		// check for empty titles, set to R.string.NewNoteTitle
+		
+		if (noteTitle.replace(" ","").equals("")) {
+			noteTitle = getString(R.string.NewNoteTitle);
+			origTitle = noteTitle; // have to set this too!
+		}
+
+		// check for duplicate titles - add number to end
+
+		Cursor cursor = NoteManager.getTitles(this);
+		
+		// cursor must not be null and must return more than 0 entry 
+		if (!(cursor == null || cursor.getCount() == 0)) {
+			
+			ArrayList<String> titles = new ArrayList<String>();
+			
+			int count = 0;
+			String guid = note.getGuid();
+
+			cursor.moveToFirst();
+			do {
+				String aguid = cursor.getString(cursor.getColumnIndexOrThrow(Note.GUID));
+				if(!guid.equals(aguid)) // skip this note
+					titles.add(cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE)));
+			} while (cursor.moveToNext());
+			
+			// sort to get {"Note","Note 2", "Note 3", ... }
+			Collections.sort(titles);
+			
+			int inc = 2;
+			for(String atitle : titles) {
+				if(atitle.length() == 0)
+					continue;
+				
+				if(atitle.equals(noteTitle)) {
+					if(inc == 1)  // first match, matching "Note", set to "Note 2"
+						noteTitle = noteTitle + " 2";
+					else // later match, matching "Note X", set to "Note X+1"
+						noteTitle = origTitle + " " + inc;
+					inc++;
+				}
+			}
+		}
+		
+		note.setTitle(noteTitle);
+		title.setText(noteTitle);
+	}
+
 	private void discardNoteContent() {
 		new AlertDialog.Builder(EditNote.this)
 			.setMessage(getString(R.string.messageDiscardChanges))

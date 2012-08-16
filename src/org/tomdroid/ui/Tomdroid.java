@@ -914,7 +914,7 @@ public class Tomdroid extends ListActivity {
 		
 	// delete leftover local notes
 		
-		NoteManager.deleteDeletedNotes(this);
+		NoteManager.purgeDeletedNotes(this);
 
 		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, nowString);
 		SyncService currentService = SyncManager.getInstance().getCurrentService();

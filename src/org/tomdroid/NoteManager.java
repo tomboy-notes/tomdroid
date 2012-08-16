@@ -51,20 +51,19 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@SuppressWarnings("deprecation")
 public class NoteManager {
 	
 	public static final String[] FULL_PROJECTION = { Note.ID, Note.TITLE, Note.FILE, Note.NOTE_CONTENT, Note.MODIFIED_DATE, Note.GUID, Note.TAGS };
 	public static final String[] LIST_PROJECTION = { Note.ID, Note.TITLE, Note.MODIFIED_DATE, Note.TAGS };
 	public static final String[] DATE_PROJECTION = { Note.ID, Note.GUID, Note.MODIFIED_DATE };
-	public static final String[] TITLE_PROJECTION = { Note.TITLE };
+	public static final String[] TITLE_PROJECTION = { Note.TITLE, Note.GUID };
 	public static final String[] GUID_PROJECTION = { Note.ID, Note.GUID };
 	public static final String[] ID_PROJECTION = { Note.ID };
 	public static final String[] EMPTY_PROJECTION = {};
 	
 	// static properties
 	private static final String TAG = "NoteManager";
-	private static String lastGuid;
-	private static String lastSyncGUID;
 
 	// gets a note from the content provider, based on guid
 	public static Note getNoteByGuid(Activity activity, String guid) {
@@ -234,7 +233,7 @@ public class NoteManager {
 
 	// this function deletes deleted notes - if they never existed on the server, we still delete them at sync
 
-	public static void deleteDeletedNotes(Activity activity)
+	public static void purgeDeletedNotes(Activity activity)
 	{
 		// get a cursor representing all deleted notes from the NoteProvider
 		Uri notes = Tomdroid.CONTENT_URI;
@@ -348,8 +347,9 @@ public class NoteManager {
 	// gets the titles of the notes present in the db, used in ViewNote.buildLinkifyPattern()
 	public static Cursor getTitles(Activity activity) {
 		
+		String where = Note.TAGS + " NOT LIKE '%system:deleted%'";
 		// get a cursor containing the notes titles
-		return activity.managedQuery(Tomdroid.CONTENT_URI, TITLE_PROJECTION, null, null, null);
+		return activity.managedQuery(Tomdroid.CONTENT_URI, TITLE_PROJECTION, where, null, null);
 	}
 	
 	// gets the ids of the notes present in the db, used in SyncService.deleteNotes()
@@ -412,7 +412,4 @@ public class NoteManager {
 		return cursor;
 	}
 
-	public static void setLastGUID(String guid) {
-		lastGuid = guid;
-	}
 }
