@@ -37,11 +37,13 @@
 		android:title="@string/discard"
 		android:showAsAction="ifRoom|withText" 
 		/>
-    <item android:id="@+id/edit_note_xml"
+<!--
+     <item android:id="@+id/edit_note_xml"
 		android:title="@string/xml"
 		android:icon="@drawable/xml"
 		android:showAsAction="never|withText" 
-		/>
+		/> 
+-->
 	<item 
 		android:icon="@android:drawable/ic_menu_preferences"
 		android:title="@string/menuPrefs"
