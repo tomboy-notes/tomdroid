@@ -37,6 +37,7 @@ Tomdroid 0.7 beta - Editing and Two-Way Sync!
 	Preference Tweaks
 	* Added preference for changing base font size
 	* Added preference button for backing up notes to SD card (when using online sync)
+	* Added preference button for removing all notes from remote service
 	* added option to hide/show note templates
 	* added option to clear local notes database (useful if switching sync services)
 	

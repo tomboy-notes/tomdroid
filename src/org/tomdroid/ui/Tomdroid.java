@@ -743,161 +743,160 @@ public class Tomdroid extends ListActivity {
 	
 			String serviceDescription = SyncManager.getInstance().getCurrentService().getDescription();
 			String message = "";
-			boolean increment = false;
+			int increment = 0;
 			boolean dismiss = false;
 			TLog.d(TAG, "SyncMessageHandler message: {0}",msg.what);
-			
-			try {
-				switch (msg.what) {
-					case SyncService.AUTH_COMPLETE:
-						message = this.activity.getString(R.string.messageAuthComplete);
-						message = String.format(message,serviceDescription);
-						Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
-						break;
-					case SyncService.AUTH_FAILED:
-						dismiss = true;
-						message = this.activity.getString(R.string.messageAuthFailed);
-						message = String.format(message,serviceDescription);
-						Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
-						break;
-					case SyncService.PARSING_COMPLETE:
-						final ErrorList errors = (ErrorList)msg.obj;
-						if(errors == null || errors.isEmpty()) {
-							message = this.activity.getString(R.string.messageSyncComplete);
-							message = String.format(message,serviceDescription);
-							Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
-							finishSync();
-						} else {
-		
-							message = this.activity.getString(R.string.messageSyncError);
-							new AlertDialog.Builder(activity).setMessage(message)
-								.setTitle(this.activity.getString(R.string.error))
-								.setPositiveButton(this.activity.getString(R.string.btnSavetoSD), new OnClickListener() {
-									public void onClick(DialogInterface dialog, int which) {
-										if(!errors.save()) {
-											Toast.makeText(activity, activity.getString(R.string.messageCouldNotSave),
-													Toast.LENGTH_SHORT).show();
-										}
-										finishSync();
-									}
-								})
-								.setNegativeButton("Close", new OnClickListener() {
-									public void onClick(DialogInterface dialog, int which) { finishSync(); }
-								}).show();
-						}
-						break;
-					case SyncService.CONNECTING_FAILED:
-						dismiss = true;
-						message = this.activity.getString(R.string.messageSyncConnectingFailed);
-						message = String.format(message,serviceDescription);
-						Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
-						break;
-					case SyncService.PARSING_FAILED:
-						dismiss = true;
-						message = this.activity.getString(R.string.messageSyncParseFailed);
-						message = String.format(message,serviceDescription);
-						Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
-						break;
-					case SyncService.PARSING_NO_NOTES:
-						dismiss = true;
-						message = this.activity.getString(R.string.messageSyncNoNote);
-						message = String.format(message,serviceDescription);
-						Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
-						break;
-						
-					case SyncService.NO_INTERNET:
-						dismiss = true;
-						Toast.makeText(activity, this.activity.getString(R.string.messageSyncNoConnection),Toast.LENGTH_SHORT).show();
-						break;
-						
-					case SyncService.NO_SD_CARD:
-						dismiss = true;
-						Toast.makeText(activity, activity.getString(R.string.messageNoSDCard),
-								Toast.LENGTH_SHORT).show();
-						break;
-						
-					case SyncService.BEGIN_PROGRESS:
-						if(syncProgressDialog != null) {
-							HashMap<String, Object> hm = (HashMap<String, Object>) msg.obj;
-					        syncProgressDialog.setIndeterminate(false);
-					        syncProgressDialog.setMessage(getString(R.string.syncing_local));
-					        syncProgressDialog.setProgress(0);
-							syncProgressDialog.setMax((Integer) hm.get("total"));
-							syncProgressDialog.show();
-						}
-						break;
-						
-					case SyncService.SYNC_PROGRESS:
-						if(msg.arg1 == 90)
-							if(syncProgressDialog != null)
-								syncProgressDialog.setMessage(getString(R.string.syncing_remote));
-						break;
 
-					case SyncService.NOTE_DELETED:
-						increment = true;
-						message = this.activity.getString(R.string.messageSyncNoteDeleted);
+			switch (msg.what) {
+				case SyncService.AUTH_COMPLETE:
+					message = this.activity.getString(R.string.messageAuthComplete);
+					message = String.format(message,serviceDescription);
+					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+					break;
+				case SyncService.AUTH_FAILED:
+					dismiss = true;
+					message = this.activity.getString(R.string.messageAuthFailed);
+					message = String.format(message,serviceDescription);
+					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+					break;
+				case SyncService.PARSING_COMPLETE:
+					final ErrorList errors = (ErrorList)msg.obj;
+					if(errors == null || errors.isEmpty()) {
+						message = this.activity.getString(R.string.messageSyncComplete);
 						message = String.format(message,serviceDescription);
-						//Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
-						break;
-		
-					case SyncService.NOTE_PUSHED:
-						increment = true;
-						message = this.activity.getString(R.string.messageSyncNotePushed);
-						message = String.format(message,serviceDescription);
-						//Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+						Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+						finishSync();
+					} else {
 	
-						break;
-					case SyncService.NOTE_PULLED:
-						message = this.activity.getString(R.string.messageSyncNotePulled);
-						message = String.format(message,serviceDescription);
-						//Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
-						increment = true;
-						break;
-															
-					case SyncService.NOTE_DELETE_ERROR:
-						increment = true;
-						//Toast.makeText(activity, activity.getString(R.string.messageSyncNoteDeleteError), Toast.LENGTH_SHORT).show();
-						break;
-		
-					case SyncService.NOTE_PUSH_ERROR:
-						increment = true;
-						//Toast.makeText(activity, activity.getString(R.string.messageSyncNotePushError), Toast.LENGTH_SHORT).show();
-						break;
-					case SyncService.NOTE_PULL_ERROR:
-						message = this.activity.getString(R.string.messageSyncNotePullError);
-						message = String.format(message,serviceDescription);
-						//Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
-						break;
-					case SyncService.INCREMENT_PROGRESS:
-						increment = true;
-						break;
-					case SyncService.IN_PROGRESS:
-						Toast.makeText(activity, activity.getString(R.string.messageSyncAlreadyInProgress), Toast.LENGTH_SHORT).show();
-						dismiss = true;
-						break;
-					case SyncService.NOTES_BACKED_UP:
-						Toast.makeText(activity, activity.getString(R.string.messageNotesBackedUp), Toast.LENGTH_SHORT).show();
-						break;
-					default:
-						TLog.i(TAG, "handler called with an unknown message");
-						dismiss = true;
-						break;
-		
-				}
-				if(syncProgressDialog != null) {
-					if(increment) {
-						TLog.d(TAG, "sync progress {0} of {1}",syncProgressDialog.getProgress(),syncProgressDialog.getMax());
-						syncProgressDialog.setProgress(syncProgressDialog.getProgress()+1);
-						if(syncProgressDialog.getProgress() >= syncProgressDialog.getMax())
-							syncMessageHandler.sendEmptyMessage(SyncService.PARSING_COMPLETE);
+						message = this.activity.getString(R.string.messageSyncError);
+						new AlertDialog.Builder(activity).setMessage(message)
+							.setTitle(this.activity.getString(R.string.error))
+							.setPositiveButton(this.activity.getString(R.string.btnSavetoSD), new OnClickListener() {
+								public void onClick(DialogInterface dialog, int which) {
+									if(!errors.save()) {
+										Toast.makeText(activity, activity.getString(R.string.messageCouldNotSave),
+												Toast.LENGTH_SHORT).show();
+									}
+									finishSync();
+								}
+							})
+							.setNegativeButton("Close", new OnClickListener() {
+								public void onClick(DialogInterface dialog, int which) { finishSync(); }
+							}).show();
 					}
-					if(dismiss)
-						syncProgressDialog.dismiss();
-				}	
+					break;
+				case SyncService.CONNECTING_FAILED:
+					dismiss = true;
+					message = this.activity.getString(R.string.messageSyncConnectingFailed);
+					message = String.format(message,serviceDescription);
+					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+					break;
+				case SyncService.PARSING_FAILED:
+					dismiss = true;
+					message = this.activity.getString(R.string.messageSyncParseFailed);
+					message = String.format(message,serviceDescription);
+					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+					break;
+				case SyncService.PARSING_NO_NOTES:
+					dismiss = true;
+					message = this.activity.getString(R.string.messageSyncNoNote);
+					message = String.format(message,serviceDescription);
+					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+					break;
+					
+				case SyncService.NO_INTERNET:
+					dismiss = true;
+					Toast.makeText(activity, this.activity.getString(R.string.messageSyncNoConnection),Toast.LENGTH_SHORT).show();
+					break;
+					
+				case SyncService.NO_SD_CARD:
+					dismiss = true;
+					Toast.makeText(activity, activity.getString(R.string.messageNoSDCard),
+							Toast.LENGTH_SHORT).show();
+					break;
+					
+				case SyncService.BEGIN_PROGRESS:
+					if(syncProgressDialog != null) {
+				        syncProgressDialog.setIndeterminate(false);
+				        syncProgressDialog.setMessage(getString(R.string.syncing_local));
+				        syncProgressDialog.setProgress(0);
+						syncProgressDialog.setMax(msg.arg1);
+						syncProgressDialog.show();
+					}
+					break;
+					
+				case SyncService.SYNC_PROGRESS:
+					if(msg.arg1 == 90)
+						if(syncProgressDialog != null)
+							syncProgressDialog.setMessage(getString(R.string.syncing_remote));
+					break;
+
+				case SyncService.NOTE_DELETED:
+					increment = 1;
+					message = this.activity.getString(R.string.messageSyncNoteDeleted);
+					message = String.format(message,serviceDescription);
+					//Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+					break;
+	
+				case SyncService.NOTE_PUSHED:
+					increment = 1;
+					message = this.activity.getString(R.string.messageSyncNotePushed);
+					message = String.format(message,serviceDescription);
+					//Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+
+					break;
+				case SyncService.NOTE_PULLED:
+					message = this.activity.getString(R.string.messageSyncNotePulled);
+					message = String.format(message,serviceDescription);
+					//Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+					increment = 1;
+					break;
+														
+				case SyncService.NOTE_DELETE_ERROR:
+					increment = 1;
+					//Toast.makeText(activity, activity.getString(R.string.messageSyncNoteDeleteError), Toast.LENGTH_SHORT).show();
+					break;
+	
+				case SyncService.NOTE_PUSH_ERROR:
+					increment = 1;
+					//Toast.makeText(activity, activity.getString(R.string.messageSyncNotePushError), Toast.LENGTH_SHORT).show();
+					break;
+				case SyncService.NOTE_PULL_ERROR:
+					message = this.activity.getString(R.string.messageSyncNotePullError);
+					message = String.format(message,serviceDescription);
+					//Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+					break;
+
+				case SyncService.NOTES_PUSHED: // multiple notes pushed
+					increment = msg.arg1;
+					break;
+					
+				case SyncService.INCREMENT_PROGRESS:
+					increment = 1;
+					break;
+				case SyncService.IN_PROGRESS:
+					Toast.makeText(activity, activity.getString(R.string.messageSyncAlreadyInProgress), Toast.LENGTH_SHORT).show();
+					dismiss = true;
+					break;
+				case SyncService.NOTES_BACKED_UP:
+					Toast.makeText(activity, activity.getString(R.string.messageNotesBackedUp), Toast.LENGTH_SHORT).show();
+					break;
+				default:
+					TLog.i(TAG, "handler called with an unknown message");
+					dismiss = true;
+					break;
+	
 			}
-			catch(Exception e) {
-				TLog.e(TAG, "SyncMessageHandler Error: {0}",e);
-			}
+			if(syncProgressDialog != null) {
+				if(increment > 0) {
+					TLog.d(TAG, "sync progress {0} of {1}",syncProgressDialog.getProgress(),syncProgressDialog.getMax());
+					syncProgressDialog.setProgress(syncProgressDialog.getProgress()+increment);
+					if(syncProgressDialog.getProgress() >= syncProgressDialog.getMax())
+						syncMessageHandler.sendEmptyMessage(SyncService.PARSING_COMPLETE);
+				}
+				if(dismiss)
+					syncProgressDialog.dismiss();
+			}	
 		}
 	}
 

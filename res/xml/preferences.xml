@@ -44,10 +44,6 @@
 				android:positiveButtonText="@string/btnOk"
 				android:shouldDisableView="true"
 				android:singleLine="true"/>
-		<Preference
-                android:title="@string/backupPrefTitle"
-                android:summary="@string/backupPref"
-                android:key="backup_notes" />
 	</PreferenceCategory>
 	<PreferenceCategory android:title="@string/prefMisc">
         <CheckBoxPreference
@@ -55,14 +51,23 @@
                 android:title="@string/prefNoteTemplatesTitle"
                 android:summary="@string/prefNoteTemplates" 
                 android:defaultValue="False" />
-		<Preference
+	</PreferenceCategory>
+	<PreferenceCategory android:title="@string/prefTools">
+        <Preference
+                android:title="@string/backupPrefTitle"
+                android:summary="@string/backupPref"
+                android:key="backup_notes" />
+        <Preference
                 android:title="@string/deleteAllNotesTitle"
                 android:summary="@string/deleteAllNotes"
                 android:key="del_all_notes" />
+		<Preference
+                android:title="@string/deleteRemoteNotesTitle"
+                android:summary="@string/deleteRemoteNotes"
+                android:key="del_remote_notes" />
 		<Preference
                 android:title="@string/clearSearchHistoryTitle"
                 android:summary="@string/clearSearchHistory"
                 android:key="clearSearchHistory" />
 	</PreferenceCategory>
-	
 </PreferenceScreen>

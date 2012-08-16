@@ -190,16 +190,11 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 
 					try {
 						JSONObject response = new JSONObject(rawResponse);
-						String notesUrl = response.getJSONObject("notes-ref")
-								.getString("api-ref");
+						String notesUrl = response.getJSONObject("notes-ref").getString("api-ref");
 
 						TLog.v(TAG, "contacting " + notesUrl);
-						response = new JSONObject(auth.get(notesUrl));
 
-						setSyncProgress(40);
-
-						rawResponse = auth
-								.get(notesUrl + "?include_notes=true");
+						rawResponse = auth.get(notesUrl + "?include_notes=true");
 
 						response = new JSONObject(rawResponse);
 						JSONArray notes = response.getJSONArray("notes");
@@ -212,10 +207,11 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						for (int i = 0; i < notes.length(); i++)
 							notesList.add(new Note(notes.getJSONObject(i)));
 
-						syncNotes(notesList, push);
-
 						latestRevision = response
 								.getLong("latest-sync-revision");
+						
+						syncNotes(notesList, push);
+
 
 					} catch (JSONException e) {
 						TLog.e(TAG, e, "Problem parsing the server response");
@@ -241,7 +237,6 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 
 	public void finishSync(boolean refresh) {
 		setSyncProgress(100);
-		this.lastGUID = null;
 
 		Time now = new Time();
 		now.setToNow();
@@ -250,14 +245,6 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, nowString);
 		if (refresh)
 			sendMessage(PARSING_COMPLETE);
-	}
-
-	public void setLastGUID(String guid) {
-		this.lastGUID = guid;
-	}
-
-	protected String getLastGUID(String guid) {
-		return this.lastGUID;
 	}
 
 	private OAuthConnection getAuthConnection() {
@@ -291,6 +278,77 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 
 	// new methods to T Edit
 
+	@Override
+	protected void pushNotes(final ArrayList<Note> notes) {
+		if(notes.size() == 0)
+			return;
+
+		final String userRef = Preferences
+				.getString(Preferences.Key.SYNC_SERVER_USER_API);
+
+		syncInThread(new Runnable() {
+			public void run() {
+				OAuthConnection auth = getAuthConnection();
+				try {
+					TLog.v(TAG, "pushing {0} notes to remote service",notes.size());
+					String rawResponse = auth.get(userRef);
+					try {
+						TLog.v(TAG, "creating JSON");
+
+						JSONObject data = new JSONObject();
+						data.put("latest-sync-revision",Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION) + 1);
+						JSONArray Jnotes = new JSONArray();
+						for(Note note : notes) {
+							JSONObject Jnote = new JSONObject();
+							Jnote.put("guid", note.getGuid());
+							
+							if(note.getTags().contains("system:deleted")) // deleted note
+								Jnote.put("command","delete");
+							else { // changed note
+								Jnote.put("title", note.getTitle());
+								Jnote.put("note-content", note.getXmlContent());
+								Jnote.put("note-content-version", "0.1");
+								Jnote.put("last-change-date", note.getLastChangeDate().format3339(false));
+							}
+							Jnotes.put(Jnote);
+						}
+						data.put("note-changes", Jnotes);
+
+						JSONObject response = new JSONObject(rawResponse);
+
+						String notesUrl = response.getJSONObject("notes-ref")
+								.getString("api-ref");
+
+						TLog.v(TAG, "put url: {0}", notesUrl);
+
+						response = new JSONObject(auth.put(notesUrl,
+								data.toString()));
+
+						TLog.v(TAG, "put response: {0}", response.toString());
+
+						Preferences.putLong(
+								Preferences.Key.LATEST_SYNC_REVISION,
+								response.getLong("latest-sync-revision"));
+					} catch (JSONException e) {
+						TLog.e(TAG, e, "Problem parsing the server response");
+						sendMessage(NOTE_PUSH_ERROR,
+								ErrorList.createErrorWithContents(
+										"JSON parsing", "json", e, rawResponse));
+
+						return;
+					}
+				} catch (java.net.UnknownHostException e) {
+					TLog.e(TAG, "Internet connection not available");
+					sendMessage(NO_INTERNET);
+					return;
+				}
+				// send number of notes pushed, to increment respectively
+				sendMessage(NOTES_PUSHED,notes.size(),0);
+			}
+
+		});
+	}
+	
 	@Override
 	protected void pushNote(final Note note) {
 		final String userRef = Preferences
@@ -350,18 +408,6 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 					return;
 				}
 				sendMessage(NOTE_PUSHED);
-
-				if (note.lastSync) { // update sync date based on conflict
-										// resolution
-					TLog.d(TAG, "note is last to sync");
-					Time now = new Time();
-					now.setToNow();
-					String nowString = now.format3339(false);
-					Preferences.putString(Preferences.Key.LATEST_SYNC_DATE,
-							nowString);
-					finishSync(true);
-				} else if (note.getGuid().equals(lastGUID))
-					finishSync(true);
 			}
 		});
 	}
@@ -484,5 +530,93 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 				sendMessage(NOTE_PULLED);
 			}
 		});
+	}
+	public void deleteAllNotes() {
+
+		TLog.v(TAG, "Deleting Snowy notes");
+
+		final String userRef = Preferences.getString(Preferences.Key.SYNC_SERVER_USER_API);
+
+		syncInThread(new Runnable() {
+
+			public void run() {
+
+				OAuthConnection auth = getAuthConnection();
+
+				try {
+					TLog.v(TAG, "contacting " + userRef);
+					String rawResponse = auth.get(userRef);
+					if (rawResponse == null) {
+						return;
+					}
+					try {
+						JSONObject response = new JSONObject(rawResponse);
+						String notesUrl = response.getJSONObject("notes-ref").getString("api-ref");
+
+						TLog.v(TAG, "contacting " + notesUrl);
+						response = new JSONObject(auth.get(notesUrl));
+
+						JSONArray notes = response.getJSONArray("notes");
+						setSyncProgress(50);
+
+						TLog.v(TAG, "number of notes: {0}", notes.length());
+						
+						ArrayList<String> guidList = new ArrayList<String>();
+
+						for (int i = 0; i < notes.length(); i++) {
+							JSONObject ajnote = notes.getJSONObject(i);
+							guidList.add(ajnote.getString("guid"));
+						}
+
+						TLog.v(TAG, "creating JSON");
+
+						JSONObject data = new JSONObject();
+						data.put("latest-sync-revision",Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION) + 1);
+						JSONArray Jnotes = new JSONArray();
+						for(String guid : guidList) {
+							JSONObject Jnote = new JSONObject();
+							Jnote.put("guid", guid);
+							Jnote.put("command","delete");
+							Jnotes.put(Jnote);
+						}
+						data.put("note-changes", Jnotes);
+
+						response = new JSONObject(auth.put(notesUrl,data.toString()));
+
+						TLog.v(TAG, "delete response: {0}", response.toString());
+						
+						// reset latest sync date so we can push our notes again
+						
+						Preferences.putString(Preferences.Key.LATEST_SYNC_DATE,new Time().format3339(false));
+						
+					} catch (JSONException e) {
+						TLog.e(TAG, e, "Problem parsing the server response");
+						sendMessage(PARSING_FAILED,
+								ErrorList.createErrorWithContents(
+										"JSON parsing", "json", e, rawResponse));
+						setSyncProgress(100);
+						return;
+					}
+				} catch (java.net.UnknownHostException e) {
+					TLog.e(TAG, "Internet connection not available");
+					sendMessage(NO_INTERNET);
+					setSyncProgress(100);
+					return;
+				}
+				sendMessage(REMOTE_NOTES_DELETED);
+			}
+		});
+	}
+
+	@Override
+	protected void pushNotes() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void backupNotes() {
+		// TODO Auto-generated method stub
+		
 	}
 }

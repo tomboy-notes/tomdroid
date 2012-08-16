@@ -69,9 +69,13 @@ public class PreferencesActivity extends PreferenceActivity {
 	private Preference delNotes = null;
 	private Preference clearSearchHistory = null;
 	private Preference backupNotes = null;
+	private Preference delRemoteNotes = null;
+	private Preference restoreNotes = null;
 
 	private Context context;
 	private Activity activity;
+
+
 	
 	@SuppressWarnings("deprecation")
 	@Override
@@ -91,7 +95,9 @@ public class PreferencesActivity extends PreferenceActivity {
 		sdLocation = (EditTextPreference)findPreference(Preferences.Key.SD_LOCATION.getName());
 		clearSearchHistory = (Preference)findPreference(Preferences.Key.CLEAR_SEARCH_HISTORY.getName());
 		delNotes = (Preference)findPreference(Preferences.Key.DEL_ALL_NOTES.getName());
+		delRemoteNotes = (Preference)findPreference(Preferences.Key.DEL_REMOTE_NOTES.getName());
 		backupNotes = (Preference)findPreference(Preferences.Key.BACKUP_NOTES.getName());
+		restoreNotes = (Preference)findPreference(Preferences.Key.RESTORE_NOTES.getName());
 		
 		// Set the default values if nothing exists
 		setDefaults();
@@ -233,6 +239,29 @@ public class PreferencesActivity extends PreferenceActivity {
 				return true;
 			}
 		});
+
+		delRemoteNotes.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			
+	        public boolean onPreferenceClick(Preference preference) {
+				final Activity activity = PreferencesActivity.this;
+				new AlertDialog.Builder(activity)
+		        .setIcon(android.R.drawable.ic_dialog_alert)
+		        .setTitle(R.string.delete_remote_notes)
+		        .setMessage(R.string.delete_remote_notes_message)
+		        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+
+		            public void onClick(DialogInterface dialog, int which) {
+		            	resetRemoteService();
+		           }
+
+		        })
+		        .setNegativeButton(R.string.no, null)
+		        .show();
+
+				return true;
+			}
+		});
+		
 		
 		backupNotes.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 			
@@ -361,6 +390,10 @@ public class PreferencesActivity extends PreferenceActivity {
 		NoteManager.putNote(this, FirstNote.createFirstNote());
 	}
 	
+	private void resetRemoteService() {
+		SyncManager.getInstance().getCurrentService().deleteAllNotes();
+	}
+	
 	/**
 	 * Housekeeping when a syncServer changes
 	 * @param syncServiceKey - key of the new sync service 
@@ -377,11 +410,5 @@ public class PreferencesActivity extends PreferenceActivity {
 		
 		// I've removed the reset, since now we may have new notes, and want to move them from one service to another, etc.
 
-		// reset if no-auth required
-		// I believe it's done this way because if needsAuth the database is reset when they successfully auth for the first time
-		// TODO we should graphically warn the user that his database is about to be dropped
-		if (!service.needsAuth()){
-		    //resetLocalDatabase();
-		}
 	}
 }

@@ -122,7 +122,9 @@
 	<string name="no">No</string>
 	<string name="delete_all">Clear Notes</string>
 	<string name="delete_all_message">Are you sure you want to clear the notes database?</string>
-			
+	<string name="delete_remote_notes">Delete Remote Notes</string>
+	<string name="delete_remote_notes_message">Are you sure you want to delete all notes from the remote service?</string>
+				
 	<!-- newNote -->
 	<string name="menuNew">New</string>
 	<string name="NewNoteTitle">New Note</string>
@@ -167,12 +169,15 @@
 	<string name="prefBaseSize">Base Font Size</string>
 	<string name="prefSync">Synchronization</string>
 	<string name="prefMisc">Misc. Options</string>
+	<string name="prefTools">Tools</string>
 	<string name="prefAutoSaveTitle">Auto Save Note</string>
 	<string name="prefAutoSave">Save notes automatically on exiting editor.</string>
 	<string name="prefNoteTemplatesTitle">Show Note Templates</string>
 	<string name="prefNoteTemplates">If checked, will show note templates in notes list.</string>
 	<string name="deleteAllNotesTitle">Clear Notes</string>
 	<string name="deleteAllNotes">Clear all notes from local database</string>
+	<string name="deleteRemoteNotesTitle">Delete Remote Notes</string>
+	<string name="deleteRemoteNotes">Delete all notes from remote service</string>
 	<string name="illegalTextSize">Illegal text size chosen. Please choose a number.</string>
 							
 	<!-- syncNotes -->
@@ -204,7 +209,8 @@
 	<string name="messageSyncNotePullError">Error receiving note from %1$s.</string>
 	<string name="messageSyncParseFailed">Error parsing response from %1$s.</string>
 	<string name="messageSyncConnectingFailed">Error connecting to %1$s.  You probably need to authenticate in "Settings".</string>
-		
+	<string name="messageRemoteNotesDeleted">Notes deleted from %1$s successfully.</string>
+			
 	<!-- revert notes -->
 	
 	<string name="contextRevert">Revert</string>
@@ -220,10 +226,13 @@
 	<string name="backupPref">Copy all local notes to SD Card</string>
 	<string name="backup_notes_title">Backup Notes?</string>
 	<string name="backup_notes">Copy all local notes to SD Card?  This may overwrite existing notes on the SD Card.</string>
+	<string name="restorePrefTitle">Restore Notes</string>
+	<string name="restorePref">Pull all notes from SD Card</string>
+	<string name="restore_notes_title">Restore Notes?</string>
+	<string name="restore_notes">Pull all notes from SD Card?  This may overwrite your existing notes.</string>
 	<string name="messageNotesBackedUp">Notes backed up to SD card successfully.</string>
-	<string name="restoreNotesTitle">Restore Notes</string>
-	<string name="restoreNotes">Copy all notes from SD Card into app</string>
-
+	<string name="messageNotesRestored">Notes restored from SD card successfully.</string>
+	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
 	I\'ve put it in here so that it\'ll get translated by translators.

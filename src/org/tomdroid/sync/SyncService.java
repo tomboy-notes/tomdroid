@@ -82,13 +82,16 @@ public abstract class SyncService {
 	public final static int NOTE_PUSH_ERROR = 10;
 	public final static int NOTE_DELETE_ERROR = 11;
 	public final static int NOTE_PULL_ERROR = 12;
-	public final static int BEGIN_PROGRESS = 13;
-	public final static int INCREMENT_PROGRESS = 14;
-	public final static int IN_PROGRESS = 15;
-	public final static int NOTES_BACKED_UP = 16;
-	public final static int CONNECTING_FAILED = 17;
-	public final static int AUTH_COMPLETE = 18;
-	public final static int AUTH_FAILED = 19;
+	public final static int NOTES_PUSHED = 13;
+	public final static int BEGIN_PROGRESS = 14;
+	public final static int INCREMENT_PROGRESS = 15;
+	public final static int IN_PROGRESS = 16;
+	public final static int NOTES_BACKED_UP = 17;
+	public final static int NOTES_RESTORED = 18;
+	public final static int CONNECTING_FAILED = 19;
+	public final static int AUTH_COMPLETE = 20;
+	public final static int AUTH_FAILED = 21;
+	public final static int REMOTE_NOTES_DELETED = 22;
 	
 	public SyncService(Activity activity, Handler handler) {
 		
@@ -155,6 +158,7 @@ public abstract class SyncService {
 				try {
 					r.run();
 				} catch(Exception e) {
+					TLog.e(TAG, e, "Problem syncing in thread");
 					sendMessage(PARSING_FAILED, ErrorList.createError("System Error", "system", e));
 				}
 			}
@@ -183,6 +187,8 @@ public abstract class SyncService {
 		HashMap<String,Note[]> comparableNotes = new HashMap<String,Note[]>();
 		ArrayList<String> deleteableNotes = new ArrayList<String>();
 		
+		// check if remote notes are already in local
+		
 		for ( Note remoteNote : notesList) {
 			Note localNote = NoteManager.getNoteByGuid(activity,remoteNote.getGuid());
 			remoteGuids.add(remoteNote.getGuid());
@@ -194,10 +200,10 @@ public abstract class SyncService {
 				comparableNotes.put(localNote.getGuid(), compNotes);
 			}
 		}
-		// get non-remote notes
+
+		// get non-remote notes; if newer than last sync, push, otherwise delete
 		
 		Cursor localGuids = NoteManager.getGuids(this.activity);
-		// cursor must not be null and must return more than 0 entry 
 		if (!(localGuids == null || localGuids.getCount() == 0)) {
 			
 			String localGuid;
@@ -207,10 +213,13 @@ public abstract class SyncService {
 				localGuid = localGuids.getString(localGuids.getColumnIndexOrThrow(Note.GUID));
 				
 				if(!remoteGuids.contains(localGuid)) {
-					int id = localGuids.getInt(localGuids.getColumnIndexOrThrow(Note.ID));
 					Note note = NoteManager.getNoteByGuid(this.activity, localGuid);
-					if(note.getTags().contains("system:deleted"))
-						deleteableNotes.add(note.getGuid());
+					String syncDateString = Preferences.getString(Preferences.Key.LATEST_SYNC_DATE);
+					Time syncDate = new Time();
+					syncDate.parse3339(syncDateString);
+					int compareSync = Time.compare(syncDate, note.getLastChangeDate());
+					if(compareSync > 0)
+						NoteManager.deleteNote(this.activity, note.getDbId());
 					else
 						pushableNotes.add(note);
 				}
@@ -225,15 +234,12 @@ public abstract class SyncService {
 		int totalNotes = pullableNotes.size()+pushableNotes.size()+comparableNotes.size()+deleteableNotes.size();
 		
 		if(totalNotes > 0) {
-			HashMap<String, Object> hm = new HashMap<String, Object>();
-			hm.put("total", totalNotes);
-			sendMessage(BEGIN_PROGRESS,hm);
+			sendMessage(BEGIN_PROGRESS,totalNotes,0);
 		}
 		else { // quit
 			setSyncProgress(100);
 			sendMessage(PARSING_COMPLETE);
 		}
-			
 
 	// deal with notes that are not in local content provider - always pull
 		
@@ -243,18 +249,17 @@ public abstract class SyncService {
 		setSyncProgress(70);
 		
 	// deal with notes not in remote service - push or delete
-			
-		// if two-way sync, push local only notes, otherwise delete them
 		
-		if(push) {
-			SyncManager.getInstance().getCurrentService().pushNotes(pushableNotes);
-		}
-		else
+		// if one-way sync, delete pushable notes, else add for mock comparison
+		if(!push)
 			deleteNonRemoteNotes(pushableNotes);
-
-		// deleted notes not in remote
-		
-		SyncManager.getInstance().getCurrentService().deleteNotes(deleteableNotes);
+		else {
+			for(Note note : pushableNotes) {
+				Note blankNote = new Note();
+				Note[] compNotes = {note, blankNote};
+				comparableNotes.put(note.getGuid(), compNotes);
+			}
+		}
 		
 		setSyncProgress(80);
 
@@ -276,6 +281,9 @@ public abstract class SyncService {
 	
 	private void compareNotes(HashMap<String, Note[]> comparableNotes, boolean push) {
 
+		ArrayList<Note> pushableNotes = new ArrayList<Note>();
+		HashMap<String,Note[]> conflictingNotes = new HashMap<String,Note[]>();
+		
 		String syncDateString = Preferences.getString(Preferences.Key.LATEST_SYNC_DATE);
 		Time syncDate = new Time();
 		syncDate.parse3339(syncDateString);
@@ -287,6 +295,13 @@ public abstract class SyncService {
 			Note localNote = notes[0];
 			Note remoteNote = notes[1];
 
+		//	if no remote note, push
+			
+			if(remoteNote.getGuid() == null) {
+				pushableNotes.add(localNote);
+				continue;
+			}
+			
 			int compareSyncLocal = Time.compare(syncDate, localNote.getLastChangeDate());
 			int compareSyncRemote = Time.compare(syncDate, remoteNote.getLastChangeDate());
 			int compareBoth = Time.compare(localNote.getLastChangeDate(), remoteNote.getLastChangeDate());
@@ -294,78 +309,72 @@ public abstract class SyncService {
 		// if not two-way, overwrite the local version
 		
 			if(!push) {
+				sendMessage(INCREMENT_PROGRESS);
+				NoteManager.putNote(activity, remoteNote);
+				continue;
+			}
+
+		// begin compare
+			
+			// check date difference
+			
+			TLog.v(TAG, "compare both: {0}, compare local: {1}, compare remote: {2}", compareBoth, compareSyncLocal, compareSyncRemote);
+			if(compareBoth != 0)
+				TLog.v(TAG, "Different note dates");
+			if((compareSyncLocal < 0 && compareSyncRemote < 0) || (compareSyncLocal > 0 && compareSyncRemote > 0))
+				TLog.v(TAG, "both either older or newer");
+				
+			if(compareBoth != 0 && ((compareSyncLocal < 0 && compareSyncRemote < 0) || (compareSyncLocal > 0 && compareSyncRemote > 0))) // sync conflict!  both are older or newer than last sync
+				conflictingNotes.put(remoteNote.getGuid(), notes);
+			else if(compareBoth > 0) // local newer, bundle in pushable
+				pushableNotes.add(localNote);
+			else if(compareBoth < 0) { // local older, pull immediately, no need to bundle
+				TLog.v(TAG, "Local note is older, updating in content provider TITLE:{0} GUID:{1}", localNote.getTitle(), localNote.getGuid());
+				sendMessage(INCREMENT_PROGRESS);
 				NoteManager.putNote(activity, remoteNote);
 			}
-			else {
-				
-				// check date difference
-				
-				TLog.v(TAG, "compare both: {0}, compare local: {1}, compare remote: {2}", compareBoth, compareSyncLocal, compareSyncRemote);
-				if(compareBoth != 0)
-					TLog.v(TAG, "Different note dates");
-				if((compareSyncLocal < 0 && compareSyncRemote < 0) || (compareSyncLocal > 0 && compareSyncRemote > 0))
-					TLog.v(TAG, "both either older or newer");
-					
-				if(compareBoth != 0 && ((compareSyncLocal < 0 && compareSyncRemote < 0) || (compareSyncLocal > 0 && compareSyncRemote > 0))) { // sync conflict!  both are older or newer than last sync
-					
-					TLog.v(TAG, "note conflict... showing resolution dialog TITLE:{0} GUID:{1}", localNote.getTitle(), localNote.getGuid());
-					
-					// send everything to Tomdroid so it can show Sync Dialog
-				    Bundle bundle = new Bundle();	
-					bundle.putString("title",remoteNote.getTitle());
-					bundle.putString("file",remoteNote.getFileName());
-					bundle.putString("guid",remoteNote.getGuid());
-					bundle.putString("date",remoteNote.getLastChangeDate().format3339(false));
-					bundle.putString("content", remoteNote.getXmlContent());
-					bundle.putString("tags", remoteNote.getTags());
-					bundle.putInt("datediff", compareBoth);
-	
-					Intent intent = new Intent(activity.getApplicationContext(), SyncDialog.class);	
-					intent.putExtras(bundle);
-
-					activity.startActivityForResult(intent, compareCount++);		
-				}
-				else if(compareBoth > 0) { // local newer 
-
-					TLog.v(TAG, "local newer, pushing local to remote");
-	
-						/* pushing local changes, reject older incoming note.
-						 * If the local counterpart has the tag "system:deleted", delete from both local and remote.
-						 * Otherwise, push local to remote.
-						 */
-						
-						if(localNote.getTags().contains("system:deleted")) {
-							TLog.v(TAG, "local note is deleted, deleting from server TITLE:{0} GUID:{1}", localNote.getTitle(),localNote.getGuid());
-							SyncManager.getInstance().deleteNote(localNote.getGuid()); // delete from remote
-							NoteManager.deleteNote(activity,localNote.getDbId()); // really delete locally
-						}
-						else {
-							TLog.v(TAG, "local note is newer, sending new version TITLE:{0} GUID:{1}", localNote.getTitle(),localNote.getGuid());
-							SyncManager.getInstance().pushNote(localNote);
-						}
-				}
-				else if(compareBoth < 0) { // local older
-					TLog.v(TAG, "Local note is older, updating in content provider TITLE:{0} GUID:{1}", localNote.getTitle(), localNote.getGuid());
+			else { // both same date
+				if(localNote.getTags().contains("system:deleted")) // deleted, bundle for remote deletion
+					pushableNotes.add(localNote);
+				else { // update local, though probably not necessary
+					TLog.v(TAG, "Notes are same date, updating in content provider TITLE:{0} GUID:{1}", localNote.getTitle(), localNote.getGuid());
 					sendMessage(INCREMENT_PROGRESS);
-					// pull remote changes
 					NoteManager.putNote(activity, remoteNote);
-				}
-				else { // both same date
-					if(localNote.getTags().contains("system:deleted")) {
-						TLog.v(TAG, "local note is deleted, deleting from server TITLE:{0} GUID:{1}", localNote.getTitle(),localNote.getGuid());
-						SyncManager.getInstance().deleteNote(localNote.getGuid()); // delete from remote
-						NoteManager.deleteNote(activity,localNote.getDbId()); // really delete locally
-					}
-					else {
-						TLog.v(TAG, "Notes are same date, updating in content provider TITLE:{0} GUID:{1}", localNote.getTitle(), localNote.getGuid());
-						
-						sendMessage(INCREMENT_PROGRESS);
-						// pull remote changes anyway
-						NoteManager.putNote(activity, remoteNote);
-					}
 				}
 			}
 		}
+
+	// push pushable notes
+		
+		pushNotes(pushableNotes); 
+		
+	// fix conflicting notes
+		
+		for (Note[] notes : conflictingNotes.values()) {
+			
+			Note localNote = notes[0];
+			Note remoteNote = notes[1];
+			int compareBoth = Time.compare(localNote.getLastChangeDate(), remoteNote.getLastChangeDate());
+			
+			TLog.v(TAG, "note conflict... showing resolution dialog TITLE:{0} GUID:{1}", localNote.getTitle(), localNote.getGuid());
+			
+			// send everything to Tomdroid so it can show Sync Dialog
+			
+		    Bundle bundle = new Bundle();	
+			bundle.putString("title",remoteNote.getTitle());
+			bundle.putString("file",remoteNote.getFileName());
+			bundle.putString("guid",remoteNote.getGuid());
+			bundle.putString("date",remoteNote.getLastChangeDate().format3339(false));
+			bundle.putString("content", remoteNote.getXmlContent());
+			bundle.putString("tags", remoteNote.getTags());
+			bundle.putInt("datediff", compareBoth);
+	
+			Intent intent = new Intent(activity.getApplicationContext(), SyncDialog.class);	
+			intent.putExtras(bundle);
+	
+			activity.startActivityForResult(intent, compareCount++);
+		}
+		
 	}
 
 	/**
@@ -380,12 +389,32 @@ public abstract class SyncService {
 			handler.sendEmptyMessage(message);
 		}
 	}
-	
+	protected void sendMessage(int message_id, int arg1, int arg2) {
+		Message message = handler.obtainMessage(message_id);
+		message.arg1 = arg1;
+		message.arg2 = arg2;
+		handler.sendMessage(message);
+	}	
 	protected boolean sendMessage(int message_id, HashMap<String, Object> payload) {
 		
 		Message message;
-		
+		String text;
 		switch(message_id) {
+			case REMOTE_NOTES_DELETED:
+				text = this.activity.getString(R.string.messageRemoteNotesDeleted);
+				text = String.format(text,getDescription());
+				Toast.makeText(activity, text, Toast.LENGTH_SHORT).show();
+				return true;
+
+			case NOTES_BACKED_UP:
+				text = this.activity.getString(R.string.messageNotesBackedUp);
+				Toast.makeText(activity, text, Toast.LENGTH_SHORT).show();
+				return true;
+			case NOTES_RESTORED:
+				text = this.activity.getString(R.string.messageNotesRestored);
+				Toast.makeText(activity, text, Toast.LENGTH_SHORT).show();
+				return true;
+
 			case PARSING_FAILED:
 			case NOTE_PUSH_ERROR:
 			case NOTE_DELETE_ERROR:
@@ -396,6 +425,7 @@ public abstract class SyncService {
 				handler.sendMessage(message);
 				return true;
 			case BEGIN_PROGRESS:
+			case NOTES_PUSHED:
 				message = handler.obtainMessage(message_id, payload);
 				handler.sendMessage(message);
 				return true;
@@ -405,6 +435,8 @@ public abstract class SyncService {
 	
 	/**
 	 * Update the synchronization progress
+	 * 
+	 * TODO: rename to distinguish from new progress?
 	 * 
 	 * @param progress new progress (syncProgress is old)
 	 */
@@ -438,43 +470,14 @@ public abstract class SyncService {
 	protected abstract void deleteNote(String guid);
 	protected abstract void pullNote(String guid);
 
-	public void setLastGUID(String lastGuid) {
-		// TODO Auto-generated method stub
-		
-	}
+	protected abstract void finishSync(boolean refresh);
 
-	public void finishSync(boolean refresh) {
-		// TODO Auto-generated method stub
-		
-	}
+	protected abstract void pushNotes(ArrayList<Note> notes);
 
-	protected void pushNotes(ArrayList<Note> notes) {
-		if(notes.size() == 0)
-			return;
-		
-		TLog.v(TAG, "pushing {0} notes to remote service",notes.size());
-		for(Note note : notes) {
-			pushNote(note);
-		}
-	}
-	protected void deleteNotes(ArrayList<String> notes) {
-		if(notes.size() == 0)
-			return;
-		
-		TLog.v(TAG, "deleting {0} notes from remote service",notes.size());
-		for(String note : notes) {
-			deleteNote(note);
-		}
-	}
+	protected abstract void pushNotes();
 
-	public void pushNotes() {
-		// TODO Auto-generated method stub
-		
-	}
+	public abstract void backupNotes();
 
-	public void backupNotes() {
-		// TODO Auto-generated method stub
-		
-	}
+	public abstract void deleteAllNotes();
 
 }

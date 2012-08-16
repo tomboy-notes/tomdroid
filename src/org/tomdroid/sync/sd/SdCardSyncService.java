@@ -252,18 +252,35 @@ public class SdCardSyncService extends SyncService {
 		reader.close();
 		return out.toString();
 	}
-	
+
+	// this function either deletes or pushes, based on existence of deleted tag
+	@Override
+	protected void pushNotes(final ArrayList<Note> notes) {
+		if(notes.size() == 0)
+			return;
+		
+		for (Note note : notes) {
+			if(note.getTags().contains("system:deleted")) // deleted note
+				deleteNote(note.getGuid());
+			else
+				pushNote(note);
+		}
+	}
+
+	// this function is a shell to allow backup function to push as well but send a different message... may not be necessary any more...
 	@Override
 	protected void pushNote(Note note){
 		TLog.v(TAG, "pushing note to sdcard");
 		
-		int mint = doPushNote(note);
+		int message = doPushNote(note);
 
-		if(mint > 0)
-			sendMessage(mint);
+		if(message > 0)
+			sendMessage(message);
 		else
 			sendMessage(NOTE_PUSHED);
 	}
+	
+	// actually pushes a note to sdcard
 	private int doPushNote(Note note) {
 
 		Note rnote = new Note();
@@ -372,7 +389,6 @@ public class SdCardSyncService extends SyncService {
 	@Override
 	protected void deleteNote(String guid){
 		try {
-
 			File path = new File(Tomdroid.NOTES_PATH + "/" + guid + ".note");
 			path.delete();
 		}
@@ -384,7 +400,8 @@ public class SdCardSyncService extends SyncService {
 		sendMessage(NOTE_DELETED);
 
 	}
-
+	
+	// pull note used for revert
 	@Override
 	protected void pullNote(String guid) {
 		// start loading local notes
@@ -409,6 +426,8 @@ public class SdCardSyncService extends SyncService {
 		syncInThread(new Worker(path, true, false));
 		
 	}
+	
+	// this function pushes all notes - is it used?
 	@Override
 	public void pushNotes() {
 		Note[] notes = NoteManager.getAllNotesAsNotes(activity, true);
@@ -416,6 +435,8 @@ public class SdCardSyncService extends SyncService {
 			this.pushNote(note);
 		}
 	}
+	
+	// backup function accessed via preferences
 	@Override
 	public void backupNotes() {
 		Note[] notes = NoteManager.getAllNotesAsNotes(activity, true);
@@ -423,5 +444,28 @@ public class SdCardSyncService extends SyncService {
 			this.doPushNote(note);
 		}
 		sendMessage(NOTES_BACKED_UP);
+	}
+
+	@Override
+	protected void finishSync(boolean refresh) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteAllNotes() {
+		try {
+			File path = new File(Tomdroid.NOTES_PATH);
+			File[] fileList = path.listFiles(new NotesFilter());
+			
+			for(int i = 0; i < fileList.length-1; i++) {
+				fileList[i].delete();
+	        }
+		}
+		catch (Exception e) {
+			TLog.e(TAG, "delete from sd card didn't work");
+			return;
+		}
+		TLog.d(TAG, "notes deleted from SD Card");
 	}
 }
