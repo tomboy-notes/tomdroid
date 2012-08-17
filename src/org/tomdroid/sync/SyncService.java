@@ -226,7 +226,7 @@ public abstract class SyncService {
 			if(localNote == null) {
 				pullableNotes.add(remoteNote);
 			}
-			else if(push) {
+			else {
 				Note[] compNotes = {localNote, remoteNote};
 				comparableNotes.put(localNote.getGuid(), compNotes);
 			}
@@ -362,7 +362,7 @@ public abstract class SyncService {
 
 		//	if no remote note, push
 			
-			if(remoteNote.getGuid() == null) {
+			if(remoteNote.getGuid() == null && push) {
 				pushableNotes.add(localNote);
 				continue;
 			}
@@ -376,9 +376,10 @@ public abstract class SyncService {
 			int compareSyncRemote = Time.compare(syncDate, remoteNote.getLastChangeDate());
 			int compareBoth = Time.compare(localNote.getLastChangeDate(), remoteNote.getLastChangeDate());
 
-		// if not two-way, overwrite the local version
+		// if not two-way and not same date, overwrite the local version
 		
-			if(!push) {
+			if(!push && compareBoth != 0) {
+				TLog.v(TAG, "Different note dates, overwriting local note");
 				sendMessage(INCREMENT_PROGRESS);
 				NoteManager.putNote(activity, remoteNote);
 				continue;
@@ -409,7 +410,7 @@ public abstract class SyncService {
 				NoteManager.putNote(activity, remoteNote);
 			}
 			else { // both same date
-				if(localNote.getTags().contains("system:deleted")) // deleted, bundle for remote deletion
+				if(localNote.getTags().contains("system:deleted") && push) // deleted, bundle for remote deletion
 					pushableNotes.add(localNote);
 				else { // do nothing
 					TLog.v(TAG, "Notes are same date, doing nothing: TITLE:{0} GUID:{1}", localNote.getTitle(), localNote.getGuid());
@@ -425,8 +426,8 @@ public abstract class SyncService {
 		}
 		
 	// push pushable notes
-		
-		pushNotes(pushableNotes); 
+		if(push)
+			pushNotes(pushableNotes); 
 
 		if(cancelled) {
 			doCancel();
