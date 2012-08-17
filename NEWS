@@ -27,6 +27,7 @@ Tomdroid 0.7 beta - Editing and Two-Way Sync!
 	* Note conflict resolution screen when notes are of different date and both older or newer than last sync date
 	* Automatic authentication - if you use Ubuntu One, pressing "Sync" on first launch is enough to authenticate and sync
 	* updating progress bar with information on current task, number of notes
+	* Ability to cancel sync via button
 	* switching sync services/servers doesn't clear notes database anymore
 	* switching sync servers clears authentication, doesn't authenticate (see "Automatic authentication", above)
 	
