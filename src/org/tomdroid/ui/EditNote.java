@@ -79,7 +79,6 @@ import android.view.View;
 import android.view.View.OnFocusChangeListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -126,20 +125,6 @@ public class EditNote extends Activity {
 		content = (EditText) findViewById(R.id.content);
 		title = (EditText) findViewById(R.id.title);
 
-		formatBarShell = (LinearLayout) findViewById(R.id.format_bar_shell);
-
-		content.setOnFocusChangeListener(new OnFocusChangeListener() {
-
-		    public void onFocusChange(View v, boolean hasFocus) {
-		    	if(hasFocus && !xmlOn) {
-		    		formatBarShell.setVisibility(View.VISIBLE);
-		    	}
-		    	else {
-		    		formatBarShell.setVisibility(View.GONE);
-		    	}
-		    }
-		});
-		
 		// this we will call on resume as well.
 		updateTextAttributes();
 		
@@ -452,7 +437,7 @@ public class EditNote extends Activity {
 	private boolean updateNoteContent(boolean xml) {
 
 		SpannableStringBuilder newNoteContent = new SpannableStringBuilder();
-		
+		// TODO: probably should remove the whole XML viewing function - I don't think there is any need for it except debugging
 		if(xml) {
 			// parse XML
 			String xmlContent = "<note-content version=\"1.0\">"+this.content.getText().toString()+"</note-content>";
@@ -487,7 +472,7 @@ public class EditNote extends Activity {
 		// Since 0.5 EditNote expects the redundant title being removed from the note content, but we still may need this for debugging:
 		//note.setXmlContent("<note-content version=\"0.1\">"+note.getTitle()+"\n\n"+newXmlContent+"</note-content>");
 		note.setXmlContent(newXmlContent);
-		noteContent = note.getNoteContent(noteXMLParseHandler);
+		noteContent = note.getNoteContent(noteXMLWriteHandler);
 		return true;
 	}
 	
@@ -589,18 +574,6 @@ public class EditNote extends Activity {
 
 	private void addFormatListeners()
 	{
-		final ToggleButton slideButton = (ToggleButton)findViewById(R.id.slider);
-		
-		slideButton.setOnClickListener(new Button.OnClickListener() {
-
-			public void onClick(View v) {
-				LinearLayout formatBar = (LinearLayout) findViewById(R.id.format_bar);
-				if(slideButton.isChecked())
-					formatBar.setVisibility(View.VISIBLE);
-				else
-					formatBar.setVisibility(View.GONE);
-            }
-		});
 		
 		final ToggleButton boldButton = (ToggleButton)findViewById(R.id.bold);
 		
@@ -636,7 +609,8 @@ public class EditNote extends Activity {
             		if (!exists){
             			str.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             		}
-            		updateNoteContent(xmlOn);
+        			textChanged = true;
+        			updateNoteContent(xmlOn);
             		boldButton.setChecked(false);
             	}
             	else
@@ -678,6 +652,7 @@ public class EditNote extends Activity {
             			str.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             		}
             		
+        			textChanged = true;
             		updateNoteContent(xmlOn);
 	          		italicButton.setChecked(false);
             	}
@@ -717,6 +692,7 @@ public class EditNote extends Activity {
             		if (!exists){
             			str.setSpan(new StrikethroughSpan(), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             		}
+        			textChanged = true;
             		updateNoteContent(xmlOn);
             		strikeoutButton.setChecked(false);
             	}
@@ -757,7 +733,8 @@ public class EditNote extends Activity {
             			str.setSpan(new BackgroundColorSpan(Note.NOTE_HIGHLIGHT_COLOR), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             		}
             		
-            		updateNoteContent(xmlOn);
+        			textChanged = true;
+        			updateNoteContent(xmlOn);
             		highButton.setChecked(false);
             	}
             	else
@@ -799,7 +776,8 @@ public class EditNote extends Activity {
             			str.setSpan(new TypefaceSpan(Note.NOTE_MONOSPACE_TYPEFACE), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             		}
             		
-            		updateNoteContent(xmlOn);
+        			textChanged = true;
+        			updateNoteContent(xmlOn);
             		monoButton.setChecked(false);
             	}
             	else
@@ -914,7 +892,7 @@ public class EditNote extends Activity {
             } 
         });
         
-		final ImageButton sizeButton = (ImageButton)findViewById(R.id.size);
+		final ToggleButton sizeButton = (ToggleButton)findViewById(R.id.size);
 		
 		sizeButton.setOnClickListener(new Button.OnClickListener() {
 
@@ -996,6 +974,7 @@ public class EditNote extends Activity {
         	if(size != 1.0f) {
         		str.setSpan(new RelativeSizeSpan(size), sselectionStart, sselectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         	}
+			textChanged = true;
 			updateNoteContent(xmlOn);
 			size = 1.0f;
     	}
