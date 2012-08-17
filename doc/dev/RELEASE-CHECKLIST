@@ -11,7 +11,7 @@ Preparing the release
 - Increment version number in AndroidManifest.xml (android:versionCode and android:versionName), doc/user/README
 - Make sure TODO is up-to-date
 - Update the NEWS file
-- Make sure doc/user/README is accurate
+- Make sure README is accurate
 - Follow Android's doc on publishing apps to the marketplace
 - Generate ChangeLog (bzr log -v -n0 --gnu-changelog > ChangeLog)
 - Make sure AUTHORS is accurate (grep '<.*@.*>' ChangeLog | awk '// {print $2,$3,$4}'  | sort | uniq)
