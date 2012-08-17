@@ -24,18 +24,11 @@
 -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-	<item   android:title="@string/send"
-		android:id="@+id/edit_note_send"
-		android:showAsAction="never|withText" 
-		android:icon="@android:drawable/ic_menu_share"/>
-    <item android:id="@+id/edit_note_save"
-		android:icon="@android:drawable/ic_menu_save"
-		android:title="@string/save"
-		/>
     <item android:id="@+id/edit_note_discard"
 		android:icon="@android:drawable/ic_menu_close_clear_cancel"
 		android:title="@string/discard"
 		android:showAsAction="ifRoom|withText" 
+		android:orderInCategory="1"
 		/>
 <!--
      <item android:id="@+id/edit_note_xml"
@@ -44,9 +37,25 @@
 		android:showAsAction="never|withText" 
 		/> 
 -->
+	<item android:id="@+id/edit_note_save"
+          android:icon="@android:drawable/ic_menu_save"
+          android:title="@string/save"
+          android:showAsAction="never"
+          android:orderInCategory="2"
+          />
+
+    <item android:title="@string/send"
+		  android:id="@+id/edit_note_send"
+          android:showAsAction="ifRoom|withText"
+		  android:icon="@android:drawable/ic_menu_share"
+          android:orderInCategory="3"
+          />
 	<item 
 		android:icon="@android:drawable/ic_menu_preferences"
 		android:title="@string/menuPrefs"
-		android:id="@+id/menuPrefs"/>
+		android:showAsAction="never|withText"
+        android:orderInCategory="4"
+		android:id="@+id/menuPrefs"
+		/>
     
 </menu>

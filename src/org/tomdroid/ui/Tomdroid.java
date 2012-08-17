@@ -35,6 +35,7 @@ import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.sync.SyncService;
 import org.tomdroid.util.ErrorList;
+import org.tomdroid.ui.actionbar.ActionBarListActivity;
 import org.tomdroid.util.FirstNote;
 import org.tomdroid.util.LinkifyPhone;
 import org.tomdroid.util.NewNote;
@@ -44,11 +45,10 @@ import org.tomdroid.util.Preferences;
 import org.tomdroid.util.Send;
 import org.tomdroid.util.TLog;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ListActivity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -74,9 +74,9 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import org.tomdroid.util.TLog;
 
-
-public class Tomdroid extends ListActivity {
+public class Tomdroid extends ActionBarListActivity {
 
 	// Global definition for Tomdroid
 	public static final String	AUTHORITY			= "org.tomdroid.notes";
@@ -166,7 +166,6 @@ public class Tomdroid extends ListActivity {
 		registerForContextMenu(findViewById(android.R.id.list));
 		
 		// add note to pane for tablet
-		
 		rightPane = (LinearLayout) findViewById(R.id.right_pane);
 		
 		if(rightPane != null) {
@@ -188,7 +187,7 @@ public class Tomdroid extends ListActivity {
 		title.setBackgroundColor(0xffffffff);
 
 		content.setBackgroundColor(0xffffffff);
-		content.setTextColor(Color.DKGRAY);		
+		content.setTextColor(Color.DKGRAY);
 	}
 	private void showNoteInPane(int position) {
 		if(rightPane == null)
@@ -371,13 +370,18 @@ public class Tomdroid extends ListActivity {
 	private SyncManager sync;
 	private static ProgressDialog syncProgressDialog;
 	
+	@TargetApi(11)
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
 		// Create the menu based on what is defined in res/menu/main.xml
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.main, menu);
-		return true;
+
+        // Calling super after populating the menu is necessary here to ensure that the
+       	// action bar helpers have a chance to handle this event.
+		return super.onCreateOptionsMenu(menu);
+		
 	}
 
 	@Override
@@ -387,8 +391,6 @@ public class Tomdroid extends ListActivity {
 				showAboutDialog();
 				return true;
 			case R.id.menuSync:
-//				this.syncMenuItem = item;
-//				item.setTitle(Tomdroid.this.getString(R.string.syncing));
 				startSyncing(true);
 				return true;
 			case R.id.menuNew:
@@ -417,8 +419,7 @@ public class Tomdroid extends ListActivity {
 				startSearch(null, false, null, false);
 				return true;
 
-			// tablet 
-			
+			// tablet
 			case R.id.menuEdit:
 				if(note != null)
 					startEditNote();
@@ -428,7 +429,6 @@ public class Tomdroid extends ListActivity {
 					deleteNote(note.getDbId(), lastIndex);
 				return true;
 		}
-
 		return super.onOptionsItemSelected(item);
 	}
 	
@@ -672,14 +672,6 @@ public class Tomdroid extends ListActivity {
 		Uri intentUri = getNoteIntentUri(noteId);
 		final Intent i = new Intent(Intent.ACTION_VIEW, intentUri, this, EditNote.class);
 		startActivity(i);
-	}
-	
-	public static void ViewList(Context View) {
-		if ( ! ( View instanceof Tomdroid ) )
-	    {
-			View.startActivity(new Intent(View, Tomdroid.class)
-			.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-	    }
 	}
 
 	public void newNote() {

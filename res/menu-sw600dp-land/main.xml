@@ -26,23 +26,27 @@
    	<item 
 		android:icon="@android:drawable/ic_menu_add"
 		android:title="@string/menuNew"
-       	android:showAsAction="ifRoom|withText" 
+       	android:showAsAction="always|withText"
+        android:orderInCategory="2"
 		android:id="@+id/menuNew"
 		/>
     <item android:id="@+id/menuEdit"
 		android:icon="@android:drawable/ic_menu_edit"
 		android:title="@string/edit"
+        android:orderInCategory="2"
 		android:showAsAction="ifRoom|withText" 
 		/>
     <item android:id="@+id/menuDelete"
           android:icon="@android:drawable/ic_menu_delete"
           android:title="@string/delete"
+          android:orderInCategory="2"
           android:showAsAction="ifRoom|withText" 
           />
     <item 
 		android:icon="@drawable/ic_menu_sync"
 		android:title="@string/menuSync"
-       	android:showAsAction="ifRoom|withText" 
+       	android:showAsAction="always|withText"
+        android:orderInCategory="3"
 		android:id="@+id/menuSync"/>
 	<item 
 		android:icon="@android:drawable/ic_menu_revert"
@@ -51,16 +55,22 @@
 	<item 
 		android:icon="@android:drawable/ic_menu_search"
 		android:title="@string/menuSearch"
+        android:showAsAction="ifRoom|withText"
+        android:orderInCategory="1"
 		android:id="@+id/menuSearch"/>
 
 	<item 
 		android:icon="@android:drawable/ic_menu_info_details"
 		android:title="@string/menuAbout"
+       	android:showAsAction="never|withText"
+        android:orderInCategory="4"
 		android:id="@+id/menuAbout"/>
 
 	<item 
 		android:icon="@android:drawable/ic_menu_preferences"
 		android:title="@string/menuPrefs"
+       	android:showAsAction="never|withText"
+        android:orderInCategory="4"
 		android:id="@+id/menuPrefs"/>
 
 </menu>

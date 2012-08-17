@@ -145,7 +145,7 @@
 	<string name="xml">XML</string>
 	<string name="text">Text</string>
 	<string name="titleErrorParsingXML">Error parsing note</string>
-	<string name="messageErrorParsingXML">There was an error parsing the note.  Please check your XML.</string>
+	<string name="messageErrorParsingXML">There was an error parsing the note. Please check your XML.</string>
 	<string name="messageNoteSaved">Note saved locally.</string>
 	<string name="messageNoteDeleted">Note deleted locally.</string>
 	<string name="messageSelectSize">Select text size</string>
@@ -179,8 +179,9 @@
 	<string name="deleteRemoteNotesTitle">Delete Remote Notes</string>
 	<string name="deleteRemoteNotes">Delete all notes from remote service</string>
 	<string name="illegalTextSize">Illegal text size chosen. Please choose a number.</string>
-							
+
 	<!-- syncNotes -->
+
 	<string name="syncing">Syncing with %1$s</string>
 	<string name="syncing_connect">connecting to service…</string>
 	<string name="syncing_local">updating local notes…</string>
