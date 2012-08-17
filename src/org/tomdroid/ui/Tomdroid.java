@@ -425,7 +425,7 @@ public class Tomdroid extends ListActivity {
 				return true;
 			case R.id.menuDelete:
 				if(note != null)
-					deleteNote(note.getDbId());
+					deleteNote(note.getDbId(), lastIndex);
 				return true;
 		}
 
@@ -534,6 +534,7 @@ public class Tomdroid extends ListActivity {
 	public boolean onContextItemSelected(MenuItem item) {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo)item.getMenuInfo();
 		long noteId = info.id;
+		int notePosition = info.position;
 		Uri intentUri = Uri.parse(Tomdroid.CONTENT_URI+"/"+noteId);
         Note note = NoteManager.getNote(this, intentUri);
 
@@ -551,7 +552,7 @@ public class Tomdroid extends ListActivity {
 				this.revertNote(note.getGuid());
 				break;
 			case R.id.delete:
-				this.deleteNote(noteId);
+				this.deleteNote(noteId, notePosition);
 				break;
 			case R.id.create_shortcut:
                 final NoteViewShortcutsHelper helper = new NoteViewShortcutsHelper(this);
@@ -704,7 +705,7 @@ public class Tomdroid extends ListActivity {
 
 		
 	}
-	private void deleteNote(long noteId) {
+	private void deleteNote(long noteId, final int notePosition) {
 		
 		final Note note = NoteManager.getNote(this, Uri.parse(Tomdroid.CONTENT_URI + "/" + noteId));
 		
@@ -717,8 +718,10 @@ public class Tomdroid extends ListActivity {
 
             public void onClick(DialogInterface dialog, int which) {
         		NoteManager.deleteNote(activity, note);
-        		lastIndex = 0;
-    			showNoteInPane(-1);
+    			adapter = NoteManager.getListAdapter(context);
+    			setListAdapter(adapter);
+    			setSelection(notePosition);
+    			showNoteInPane(notePosition);
            }
 
         })
