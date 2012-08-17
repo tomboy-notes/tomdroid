@@ -62,6 +62,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.text.format.Time;
 import android.text.util.Linkify;
 import android.text.util.Linkify.TransformFilter;
@@ -760,29 +761,30 @@ public class Tomdroid extends ListActivity {
 
 			switch (msg.what) {
 				case SyncService.AUTH_COMPLETE:
-					message = this.activity.getString(R.string.messageAuthComplete);
+					message = getString(R.string.messageAuthComplete);
 					message = String.format(message,serviceDescription);
 					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 					break;
 				case SyncService.AUTH_FAILED:
 					dismiss = true;
-					message = this.activity.getString(R.string.messageAuthFailed);
+					message = getString(R.string.messageAuthFailed);
 					message = String.format(message,serviceDescription);
 					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 					break;
 				case SyncService.PARSING_COMPLETE:
 					final ErrorList errors = (ErrorList)msg.obj;
 					if(errors == null || errors.isEmpty()) {
-						message = this.activity.getString(R.string.messageSyncComplete);
+						message = getString(R.string.messageSyncComplete);
 						message = String.format(message,serviceDescription);
 						Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 						finishSync();
 					} else {
+						TLog.v(TAG, "syncErrors: {0}", TextUtils.join("\n",errors.toArray()));
 	
-						message = this.activity.getString(R.string.messageSyncError);
+						message = getString(R.string.messageSyncError);
 						new AlertDialog.Builder(activity).setMessage(message)
-							.setTitle(this.activity.getString(R.string.error))
-							.setPositiveButton(this.activity.getString(R.string.btnSavetoSD), new OnClickListener() {
+							.setTitle(getString(R.string.error))
+							.setPositiveButton(getString(R.string.btnSavetoSD), new OnClickListener() {
 								public void onClick(DialogInterface dialog, int which) {
 									if(!errors.save()) {
 										Toast.makeText(activity, activity.getString(R.string.messageCouldNotSave),
@@ -791,33 +793,33 @@ public class Tomdroid extends ListActivity {
 									finishSync();
 								}
 							})
-							.setNegativeButton("Close", new OnClickListener() {
+							.setNegativeButton(getString(R.string.close), new OnClickListener() {
 								public void onClick(DialogInterface dialog, int which) { finishSync(); }
 							}).show();
 					}
 					break;
 				case SyncService.CONNECTING_FAILED:
 					dismiss = true;
-					message = this.activity.getString(R.string.messageSyncConnectingFailed);
+					message = getString(R.string.messageSyncConnectingFailed);
 					message = String.format(message,serviceDescription);
 					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 					break;
 				case SyncService.PARSING_FAILED:
 					dismiss = true;
-					message = this.activity.getString(R.string.messageSyncParseFailed);
+					message = getString(R.string.messageSyncParseFailed);
 					message = String.format(message,serviceDescription);
 					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 					break;
 				case SyncService.PARSING_NO_NOTES:
 					dismiss = true;
-					message = this.activity.getString(R.string.messageSyncNoNote);
+					message = getString(R.string.messageSyncNoNote);
 					message = String.format(message,serviceDescription);
 					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 					break;
 					
 				case SyncService.NO_INTERNET:
 					dismiss = true;
-					Toast.makeText(activity, this.activity.getString(R.string.messageSyncNoConnection),Toast.LENGTH_SHORT).show();
+					Toast.makeText(activity, getString(R.string.messageSyncNoConnection),Toast.LENGTH_SHORT).show();
 					break;
 					
 				case SyncService.NO_SD_CARD:
@@ -844,20 +846,20 @@ public class Tomdroid extends ListActivity {
 
 				case SyncService.NOTE_DELETED:
 					increment = 1;
-					message = this.activity.getString(R.string.messageSyncNoteDeleted);
+					message = getString(R.string.messageSyncNoteDeleted);
 					message = String.format(message,serviceDescription);
 					//Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 					break;
 	
 				case SyncService.NOTE_PUSHED:
 					increment = 1;
-					message = this.activity.getString(R.string.messageSyncNotePushed);
+					message = getString(R.string.messageSyncNotePushed);
 					message = String.format(message,serviceDescription);
 					//Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 
 					break;
 				case SyncService.NOTE_PULLED:
-					message = this.activity.getString(R.string.messageSyncNotePulled);
+					message = getString(R.string.messageSyncNotePulled);
 					message = String.format(message,serviceDescription);
 					//Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 					increment = 1;
@@ -873,7 +875,7 @@ public class Tomdroid extends ListActivity {
 					//Toast.makeText(activity, activity.getString(R.string.messageSyncNotePushError), Toast.LENGTH_SHORT).show();
 					break;
 				case SyncService.NOTE_PULL_ERROR:
-					message = this.activity.getString(R.string.messageSyncNotePullError);
+					message = getString(R.string.messageSyncNotePullError);
 					message = String.format(message,serviceDescription);
 					//Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 					break;
@@ -894,7 +896,7 @@ public class Tomdroid extends ListActivity {
 					break;
 				case SyncService.SYNC_CANCELLED:
 					dismiss = true;
-					message = this.activity.getString(R.string.messageSyncCancelled);
+					message = getString(R.string.messageSyncCancelled);
 					message = String.format(message,serviceDescription);
 					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 					break;

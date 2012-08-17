@@ -122,6 +122,8 @@ public class ErrorList extends LinkedList<HashMap<String, Object>> {
 		
 		for(int i = 0; i < this.size(); i++) {
 			HashMap<String, Object> error = this.get(i);
+			if(error == null)
+				continue;
 			String filename = findFilename(path, (String)error.get("filename"), 0);
 			
 			try {

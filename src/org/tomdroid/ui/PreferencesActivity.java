@@ -50,6 +50,7 @@ import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.sync.SyncService;
 import org.tomdroid.sync.web.OAuthConnection;
+import org.tomdroid.ui.Tomdroid.SyncMessageHandler;
 import org.tomdroid.util.FirstNote;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.SearchSuggestionProvider;
@@ -76,6 +77,7 @@ public class PreferencesActivity extends PreferenceActivity {
 	private Context context;
 	private Activity activity;
 
+	private Handler	 preferencesMessageHandler	= new PreferencesMessageHandler(this);
 
 	
 	@SuppressWarnings("deprecation")
@@ -86,6 +88,8 @@ public class PreferencesActivity extends PreferenceActivity {
 		
 		this.context = getApplicationContext();
 		this.activity = this;
+		SyncManager.setActivity(this);
+		SyncManager.setHandler(this.preferencesMessageHandler);
 		
 		addPreferencesFromResource(R.xml.preferences);
 		
@@ -416,4 +420,39 @@ public class PreferencesActivity extends PreferenceActivity {
 		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, new Time().format3339(false));
 
 	}
+
+	public class PreferencesMessageHandler extends Handler {
+		
+		private Activity activity;
+		
+		public PreferencesMessageHandler(Activity activity) {
+			this.activity = activity;
+		}
+	
+		@Override
+		public void handleMessage(Message msg) {
+	
+			String serviceDescription = SyncManager.getInstance().getCurrentService().getDescription();
+			String text = "";
+
+			TLog.d(TAG, "PreferencesMessageHandler message: {0}",msg.what);
+
+			switch (msg.what) {
+				case SyncService.REMOTE_NOTES_DELETED:
+					text = getString(R.string.messageRemoteNotesDeleted);
+					text = String.format(text,serviceDescription);
+					Toast.makeText(activity, text, Toast.LENGTH_SHORT).show();
+					break;
+				case SyncService.NOTES_BACKED_UP:
+					text = getString(R.string.messageNotesBackedUp);
+					Toast.makeText(activity, text, Toast.LENGTH_SHORT).show();
+					break;
+				case SyncService.NOTES_RESTORED:
+					text = getString(R.string.messageNotesRestored);
+					Toast.makeText(activity, text, Toast.LENGTH_SHORT).show();
+					break;
+			}
+		}
+	}
+	
 }

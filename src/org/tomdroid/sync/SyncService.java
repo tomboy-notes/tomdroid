@@ -32,6 +32,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.text.format.Time;
 import android.widget.Toast;
 
@@ -101,10 +102,11 @@ public abstract class SyncService {
 		this.activity = activity;
 		this.handler = handler;
 		pool = Executors.newFixedThreadPool(poolSize);
-		syncErrors = new ErrorList();
 	}
 
 	public void startSynchronization(boolean push) {
+		
+		syncErrors = null;
 		
 		if (syncProgress != 100){
 			sendMessage(IN_PROGRESS);
@@ -375,10 +377,10 @@ public abstract class SyncService {
 			else { // both same date
 				if(localNote.getTags().contains("system:deleted")) // deleted, bundle for remote deletion
 					pushableNotes.add(localNote);
-				else { // update local, though probably not necessary
-					TLog.v(TAG, "Notes are same date, updating in content provider TITLE:{0} GUID:{1}", localNote.getTitle(), localNote.getGuid());
+				else { // do nothing
+					TLog.v(TAG, "Notes are same date, doing nothing: TITLE:{0} GUID:{1}", localNote.getTitle(), localNote.getGuid());
 					sendMessage(INCREMENT_PROGRESS);
-					NoteManager.putNote(activity, remoteNote);
+					// NoteManager.putNote(activity, remoteNote);
 				}
 			}
 		}
@@ -445,37 +447,19 @@ public abstract class SyncService {
 		handler.sendMessage(message);
 	}	
 	protected boolean sendMessage(int message_id, HashMap<String, Object> payload) {
-		
+
 		Message message;
 		String text;
 		switch(message_id) {
-			case REMOTE_NOTES_DELETED:
-				text = this.activity.getString(R.string.messageRemoteNotesDeleted);
-				text = String.format(text,getDescription());
-				Toast.makeText(activity, text, Toast.LENGTH_SHORT).show();
-				return true;
-
-			case NOTES_BACKED_UP:
-				text = this.activity.getString(R.string.messageNotesBackedUp);
-				Toast.makeText(activity, text, Toast.LENGTH_SHORT).show();
-				return true;
-			case NOTES_RESTORED:
-				text = this.activity.getString(R.string.messageNotesRestored);
-				Toast.makeText(activity, text, Toast.LENGTH_SHORT).show();
-				return true;
-
 			case PARSING_FAILED:
 			case NOTE_PUSH_ERROR:
 			case NOTE_DELETE_ERROR:
 			case NOTE_PULL_ERROR:
 			case PARSING_COMPLETE:
+				if(payload == null && syncErrors == null)
+					return false;
 				message = handler.obtainMessage(message_id, syncErrors);
 				syncErrors.add(payload);
-				handler.sendMessage(message);
-				return true;
-			case BEGIN_PROGRESS:
-			case NOTES_PUSHED:
-				message = handler.obtainMessage(message_id, payload);
 				handler.sendMessage(message);
 				return true;
 		}

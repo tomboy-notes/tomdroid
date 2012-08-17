@@ -193,10 +193,29 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 
 					try {
 						JSONObject response = new JSONObject(rawResponse);
+
+						// get notes list without content, to check for revision
+						
 						String notesUrl = response.getJSONObject("notes-ref").getString("api-ref");
-
+						rawResponse = auth.get(notesUrl);
+						response = new JSONObject(rawResponse);
+						
+						long latestSyncRevision = (Long)Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION);
+						
+						TLog.d(TAG, "old latest sync revision: {0}", latestSyncRevision);
+						
+						setSyncProgress(35);
+						
+						if (response.getLong("latest-sync-revision") <= latestSyncRevision && NoteManager.getNewNotes(activity).getCount() == 0) { // same sync revision + now new local notes = no need to sync
+							TLog.v(TAG, "older sync revision on server, cancelling");
+							finishSync(true);
+							return;
+						}
+						
+						// get notes list with content to find changes
+						
 						TLog.v(TAG, "contacting " + notesUrl);
-
+						
 						rawResponse = auth.get(notesUrl + "?include_notes=true");
 						if(cancelled) {
 							doCancel();
@@ -213,14 +232,13 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						for (int i = 0; i < notes.length(); i++)
 							notesList.add(new Note(notes.getJSONObject(i)));
 
-						latestRevision = response
-								.getLong("latest-sync-revision");
 						if(cancelled) {
 							doCancel();
 							return; 
 						}						
 						syncNotes(notesList, push);
-
+						latestRevision = response.getLong("latest-sync-revision");
+						TLog.d(TAG, "new latest sync revision: {0}", latestRevision);
 
 					} catch (JSONException e) {
 						TLog.e(TAG, e, "Problem parsing the server response");
@@ -240,8 +258,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 					doCancel();
 					return; 
 				}
-				Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION,
-						latestRevision);
+				Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, latestRevision);
 				if (isSyncable())
 					finishSync(true);
 			}
@@ -249,7 +266,6 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 	}
 
 	public void finishSync(boolean refresh) {
-		setSyncProgress(100);
 
 		Time now = new Time();
 		now.setToNow();
@@ -258,6 +274,8 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, nowString);
 		if (refresh)
 			sendMessage(PARSING_COMPLETE);
+		else
+			setSyncProgress(100);
 	}
 
 	private OAuthConnection getAuthConnection() {

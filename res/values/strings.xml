@@ -199,6 +199,7 @@
 	<string name="deleted">Deleted</string>
 	<string name="copy">Create copy</string>
 	<string name="old">%1$s (old)</string>
+	<string name="close">Close</string>
 	<string name="cancel">Cancel</string>
 	<string name="messageAuthComplete">Authorization with %1$s successful.</string>
 	<string name="messageAuthFailed">Authorization with %1$s failed.  Maybe try again?</string>
