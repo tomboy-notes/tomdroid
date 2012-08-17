@@ -61,6 +61,7 @@
 				android:padding="10dip"
 				android:textCursorDrawable="@null"
 				android:scrollHorizontally="false"
+				android:inputType="textCapSentences"
 				android:textColor="#ffb8bcb8" />
 		</LinearLayout>
 	</ScrollView>
