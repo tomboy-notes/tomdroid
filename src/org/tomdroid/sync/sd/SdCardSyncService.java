@@ -114,7 +114,12 @@ public class SdCardSyncService extends SyncService {
 		
 		File[] fileList = path.listFiles(new NotesFilter());
 		numberOfFilesToSync  = fileList.length;
-		
+
+		if(cancelled) {
+			doCancel();
+			return; 
+		}		
+
 		// If there are no notes, just start the sync
 		if (fileList == null || fileList.length == 0) {
 			TLog.i(TAG, "There are no notes in {0}", path);
@@ -126,11 +131,20 @@ public class SdCardSyncService extends SyncService {
 		
 		// every but the last note
 		for(int i = 0; i < fileList.length-1; i++) {
+			if(cancelled) {
+				doCancel();
+				return; 
+			}
 			// TODO better progress reporting from within the workers
 			
 			// give a filename to a thread and ask to parse it
 			syncInThread(new Worker(fileList[i], false, push));
         }
+
+		if(cancelled) {
+			doCancel();
+			return; 
+		}
 		
 		// last task, warn it so it will know to start sync
 		syncInThread(new Worker(fileList[fileList.length-1], true, push));

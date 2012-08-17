@@ -35,6 +35,7 @@ import android.os.Handler;
 public class SyncManager {
 	
 	private static ArrayList<SyncService> services = new ArrayList<SyncService>();
+	private SyncService service;
 	
 	public SyncManager() {
 		createServices();
@@ -57,7 +58,8 @@ public class SyncManager {
 	
 	public void startSynchronization(boolean push) {
 		
-		SyncService service = getCurrentService();
+		service = getCurrentService();
+		service.setCancelled(false);
 		service.startSynchronization(push);
 	}
 	
@@ -110,5 +112,9 @@ public class SyncManager {
 	public void pullNote(String guid) {
 		SyncService service = getCurrentService();
 		service.pullNote(guid);		
+	}
+
+	public void cancel() {
+		service.setCancelled(true);
 	}
 }

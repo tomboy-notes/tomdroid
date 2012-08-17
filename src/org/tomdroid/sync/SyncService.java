@@ -69,6 +69,8 @@ public abstract class SyncService {
 	private ErrorList syncErrors;
 	private int syncProgress = 100;
 
+	public boolean cancelled = false;
+
 	// handler messages
 	public final static int PARSING_COMPLETE = 1;
 	public final static int PARSING_FAILED = 2;
@@ -92,6 +94,7 @@ public abstract class SyncService {
 	public final static int AUTH_COMPLETE = 20;
 	public final static int AUTH_FAILED = 21;
 	public final static int REMOTE_NOTES_DELETED = 22;
+	public final static int SYNC_CANCELLED = 23;
 	
 	public SyncService(Activity activity, Handler handler) {
 		
@@ -201,6 +204,11 @@ public abstract class SyncService {
 			}
 		}
 
+		if(cancelled) {
+			doCancel();
+			return; 
+		}
+		
 		// get non-remote notes; if newer than last sync, push, otherwise delete
 		
 		Cursor localGuids = NoteManager.getGuids(this.activity);
@@ -228,6 +236,11 @@ public abstract class SyncService {
 
 		}
 		TLog.d(TAG, "Notes to pull: {0}, Notes to push: {1}, Notes to delete: {2}, Notes to compare: {3}",pullableNotes.size(),pushableNotes.size(),deleteableNotes.size(),comparableNotes.size());
+
+		if(cancelled) {
+			doCancel();
+			return; 
+		}
 		
 	// init progress bar
 		
@@ -239,14 +252,25 @@ public abstract class SyncService {
 		else { // quit
 			setSyncProgress(100);
 			sendMessage(PARSING_COMPLETE);
+			return;
 		}
 
+		if(cancelled) {
+			doCancel();
+			return; 
+		}
+		
 	// deal with notes that are not in local content provider - always pull
 		
 		for(Note note : pullableNotes)
 			insertNote(note);
 
 		setSyncProgress(70);
+
+		if(cancelled) {
+			doCancel();
+			return; 
+		}
 		
 	// deal with notes not in remote service - push or delete
 		
@@ -263,6 +287,11 @@ public abstract class SyncService {
 		
 		setSyncProgress(80);
 
+		if(cancelled) {
+			doCancel();
+			return; 
+		}
+		
 	// deal with notes in both - compare and push, pull or diff
 		
 		compareNotes(comparableNotes,push);
@@ -301,6 +330,11 @@ public abstract class SyncService {
 				pushableNotes.add(localNote);
 				continue;
 			}
+
+			if(cancelled) {
+				doCancel();
+				return; 
+			}
 			
 			int compareSyncLocal = Time.compare(syncDate, localNote.getLastChangeDate());
 			int compareSyncRemote = Time.compare(syncDate, remoteNote.getLastChangeDate());
@@ -315,6 +349,11 @@ public abstract class SyncService {
 			}
 
 		// begin compare
+
+			if(cancelled) {
+				doCancel();
+				return; 
+			}
 			
 			// check date difference
 			
@@ -344,9 +383,19 @@ public abstract class SyncService {
 			}
 		}
 
+		if(cancelled) {
+			doCancel();
+			return; 
+		}
+		
 	// push pushable notes
 		
 		pushNotes(pushableNotes); 
+
+		if(cancelled) {
+			doCancel();
+			return; 
+		}
 		
 	// fix conflicting notes
 		
@@ -480,4 +529,16 @@ public abstract class SyncService {
 
 	public abstract void deleteAllNotes();
 
+	public void setCancelled(boolean cancel) {
+		this.cancelled  = cancel;
+	}
+
+	public boolean doCancel() {
+		TLog.v(TAG, "sync cancelled");
+		
+		setSyncProgress(100);
+		sendMessage(SYNC_CANCELLED);
+		
+		return true;
+	}
 }

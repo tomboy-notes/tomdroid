@@ -476,17 +476,28 @@ public class Tomdroid extends ListActivity {
 		}
 		else {
 			String serviceDescription = SyncManager.getInstance().getCurrentService().getDescription();
+	        sync = SyncManager.getInstance();
 			
 			syncProgressDialog = new ProgressDialog(this);
 			syncProgressDialog.setTitle(String.format(getString(R.string.syncing),serviceDescription));
 			syncProgressDialog.setMessage(getString(R.string.syncing_connect));
 			syncProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-			syncProgressDialog.setCancelable(false);
+			syncProgressDialog.setButton(ProgressDialog.BUTTON_NEGATIVE, getString(R.string.cancel), new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					syncProgressDialog.cancel();
+				}
+			});
+			syncProgressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+
+				public void onCancel(DialogInterface dialog) {
+					sync.cancel();
+				}
+				
+			});
 			syncProgressDialog.setMax(0);
 	        syncProgressDialog.setIndeterminate(true);
 			syncProgressDialog.show();
 	
-	        sync = SyncManager.getInstance();
 	    	sync.startSynchronization(push); // push by default
 		}
 	}
@@ -880,6 +891,12 @@ public class Tomdroid extends ListActivity {
 					break;
 				case SyncService.NOTES_BACKED_UP:
 					Toast.makeText(activity, activity.getString(R.string.messageNotesBackedUp), Toast.LENGTH_SHORT).show();
+					break;
+				case SyncService.SYNC_CANCELLED:
+					dismiss = true;
+					message = this.activity.getString(R.string.messageSyncCancelled);
+					message = String.format(message,serviceDescription);
+					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 					break;
 				default:
 					TLog.i(TAG, "handler called with an unknown message");

@@ -42,6 +42,7 @@ import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.provider.SearchRecentSuggestions;
+import android.text.format.Time;
 import android.widget.Toast;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
@@ -408,7 +409,11 @@ public class PreferencesActivity extends PreferenceActivity {
 		if (service == null)
 			return;
 		
-		// I've removed the reset, since now we may have new notes, and want to move them from one service to another, etc.
+		// not resetting database, since now we may have new notes, and want to move them from one service to another, etc.
+		
+		// reset last sync date, so we can push local notes to the service - to pull instead, we have "revert all"
+		
+		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, new Time().format3339(false));
 
 	}
 }

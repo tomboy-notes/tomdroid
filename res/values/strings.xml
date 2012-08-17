@@ -199,6 +199,7 @@
 	<string name="deleted">Deleted</string>
 	<string name="copy">Create copy</string>
 	<string name="old">%1$s (old)</string>
+	<string name="cancel">Cancel</string>
 	<string name="messageAuthComplete">Authorization with %1$s successful.</string>
 	<string name="messageAuthFailed">Authorization with %1$s failed.  Maybe try again?</string>
 	<string name="messageSyncNoteDeleted">Note deleted from %1$s successfully.</string>
@@ -210,7 +211,8 @@
 	<string name="messageSyncParseFailed">Error parsing response from %1$s.</string>
 	<string name="messageSyncConnectingFailed">Error connecting to %1$s.  You probably need to authenticate in "Settings".</string>
 	<string name="messageRemoteNotesDeleted">Notes deleted from %1$s successfully.</string>
-			
+	<string name="messageSyncCancelled">Sync with %1$s cancelled.</string>
+				
 	<!-- revert notes -->
 	
 	<string name="contextRevert">Revert</string>

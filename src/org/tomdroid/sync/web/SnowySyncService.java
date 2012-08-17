@@ -174,12 +174,15 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 			public void run() {
 
 				OAuthConnection auth = getAuthConnection();
-				latestRevision = Preferences
-						.getLong(Preferences.Key.LATEST_SYNC_REVISION);
+				latestRevision = Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION);
 
 				try {
 					TLog.v(TAG, "contacting " + userRef);
 					String rawResponse = auth.get(userRef);
+					if(cancelled) {
+						doCancel();
+						return; 
+					}
 					if (rawResponse == null) {
 						sendMessage(CONNECTING_FAILED);
 						setSyncProgress(100);
@@ -195,7 +198,10 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						TLog.v(TAG, "contacting " + notesUrl);
 
 						rawResponse = auth.get(notesUrl + "?include_notes=true");
-
+						if(cancelled) {
+							doCancel();
+							return; 
+						}
 						response = new JSONObject(rawResponse);
 						JSONArray notes = response.getJSONArray("notes");
 						setSyncProgress(50);
@@ -209,7 +215,10 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 
 						latestRevision = response
 								.getLong("latest-sync-revision");
-						
+						if(cancelled) {
+							doCancel();
+							return; 
+						}						
 						syncNotes(notesList, push);
 
 
@@ -226,6 +235,10 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 					sendMessage(NO_INTERNET);
 					setSyncProgress(100);
 					return;
+				}
+				if(cancelled) {
+					doCancel();
+					return; 
 				}
 				Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION,
 						latestRevision);
