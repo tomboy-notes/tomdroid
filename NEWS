@@ -12,38 +12,37 @@ Join it at: https://launchpad.net/~tomdroid-dev
 For more details and developer visible changes see the ChangeLog
 
 -------------------------------------------------------------------------------
-Tomdroid 0.7 beta - Editing and Two-Way Sync!
-	
-	Editing Features:
-	* Rich text editor for editing and formatting notes (credit: http://code.google.com/p/android-richtexteditor/)
-	* Ability to create new notes
-	* Ability to delete local notes
-	* Automatic renaming of notes on duplicate title (as Note 1, Note 2, etc.)
-	* Note saved automatically on pause
-	* Ability to revert changes
-	
-	Sync Features:
-	* Two-way sync by default, one-way "pull" sync via "Revert" button
-	* Note conflict resolution screen when notes are of different date and both older or newer than last sync date
-	* Automatic authentication - if you use Ubuntu One, pressing "Sync" on first launch is enough to authenticate and sync
-	* updating progress bar with information on current task, number of notes
-	* switching sync services/servers doesn't clear notes database anymore
-	* switching sync servers clears authentication, doesn't authenticate (see "Automatic authentication", above)
-	
-	UI Tweaks:
-	* moved Tomdroid toolbar into native ActionBar (https://blueprints.launchpad.net/tomdroid/+spec/actionbar-redesign)
-	* added basic tablet integration (https://blueprints.launchpad.net/tomdroid/+spec/tablet-ui)
-	
-	Preference Tweaks
-	* Added preference for changing base font size
-	* Added preference button for backing up notes to SD card (when using online sync)
-	* Added preference button for removing all notes from remote service
-	* added option to hide/show note templates
-	* added option to clear local notes database (useful if switching sync services)
-	
-	Misc:
-	* fixed SQL query should use "?" (lp:880322)
-	
+Tomdroid 0.7 beta - "House of Fun" - Editing and Two-Way Sync!
+
+Editing Features:
+* Rich text editor for editing and formatting notes (credit: http://code.google.com/p/android-richtexteditor/)
+* Ability to create new notes
+* Ability to delete local notes
+* Automatic renaming of notes on duplicate title (as Note 1, Note 2, etc.)
+* Note saved automatically on pause
+* Ability to revert changes
+
+Sync Features:
+* Two-way sync by default, one-way "pull" sync via "Revert" button
+* Note conflict resolution screen when notes are of different date and both older or newer than last sync date
+* Automatic authentication - if you use Ubuntu One, pressing "Sync" on first launch is enough to authenticate and sync
+* updating progress bar with information on current task, number of notes
+* switching sync services/servers doesn't clear notes database anymore
+* switching sync servers clears authentication, doesn't authenticate (see "Automatic authentication", above)
+
+UI Tweaks:
+* moved Tomdroid toolbar into native ActionBar (https://blueprints.launchpad.net/tomdroid/+spec/actionbar-redesign)
+* added basic tablet integration (https://blueprints.launchpad.net/tomdroid/+spec/tablet-ui)
+
+Preference Tweaks
+* Added preference for changing base font size
+* Added preference button for backing up notes to SD card (when using online sync)
+* Added preference button for removing all notes from remote service
+* added option to hide/show note templates
+* added option to clear local notes database (useful if switching sync services)
+
+Misc:
+* fixed SQL query should use "?" (lp:880322)
 
 -------------------------------------------------------------------------------
 Version 0.6.0 - "Small World" released on 2012-08-16
