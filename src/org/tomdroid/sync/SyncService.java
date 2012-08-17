@@ -228,9 +228,9 @@ public abstract class SyncService {
 					Time syncDate = new Time();
 					syncDate.parse3339(syncDateString);
 					int compareSync = Time.compare(syncDate, note.getLastChangeDate());
-					if(compareSync > 0)
+					if(compareSync > 0) // older than last sync, means it's been deleted from server
 						NoteManager.deleteNote(this.activity, note.getDbId());
-					else
+					else if(!note.getTags().contains("system:template")) // don't push templates TODO: find out what's wrong with this, if anything
 						pushableNotes.add(note);
 				}
 				
