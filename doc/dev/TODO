@@ -4,8 +4,14 @@ TODO tasks
 - lp:766225 - Authenticating with U1 gives a "please check the address you entered" error on HTC Desire
 - lp:533933 - Sync folder does not remove messages from db
 - lp:724641 - Links break randomly
+- bump copyrights on files toutched since 2012
+
+After release
+- implement mandatory formatting for .java and .xml: consider http://uncrustify.sourceforge.net/ else there's eclipse
+- no more tab characters
 
 Unclassified:
+- define privacy policy (required for the market)
 - have a 'home screen' widget
 - getting-started FAQ (java, android env, bzr, open source)
 - find a sample use of the ContentProvider regarding Edouard's branch: searchbar-on-0.3/ and tell him
@@ -25,6 +31,10 @@ Unclassified:
 
 Port threading to Android's mechanism (maybe wait to check for 1.5's new API):
 - Check Handler / Looper / AsyncQueryHandler classes
+
+Use cool stuff
+- http://actionbarsherlock.com/
+- continuous integration / build automation / etc. - http://code.google.com/p/maven-android-plugin/
 
 SD card sync:
 - Syncing from SD card only adds notes from the SD card and overwrite on identical guid. At some point, we'll have to consider deletions.
