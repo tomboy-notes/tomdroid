@@ -36,6 +36,7 @@ import android.text.TextUtils;
 import android.text.format.Time;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.tomdroid.Note;
@@ -183,7 +184,32 @@ public abstract class SyncService {
 		sendMessage(INCREMENT_PROGRESS );
 	}	
 
+	// syncing based on updated local notes only
+	
+	protected void syncNotes(Cursor localGuids, boolean push) {
+		ArrayList<String> remoteGuids = new ArrayList<String>();
+		ArrayList<Note> pushableNotes = new ArrayList<Note>();
+		ArrayList<Note> pullableNotes = new ArrayList<Note>();
+		HashMap<String,Note[]> comparableNotes = new HashMap<String,Note[]>();
+		ArrayList<String> deleteableNotes = new ArrayList<String>();
+		
+		localGuids.moveToFirst();
+		do {
+			Note note = NoteManager.getNoteByGuid(activity, localGuids.getString(localGuids.getColumnIndexOrThrow(Note.GUID)));
+			
+			if(!note.getTags().contains("system:template")) // don't push templates TODO: find out what's wrong with this, if anything
+				pushableNotes.add(note);
+		} while (localGuids.moveToNext());
+		
+		if(cancelled) {
+			doCancel();
+			return; 
+		}		
+		
+		doSyncNotes(remoteGuids, pushableNotes, pullableNotes, comparableNotes, deleteableNotes, push);
+	}
 
+	
 	protected void syncNotes(ArrayList<Note> notesList, boolean push) {
 
 		ArrayList<String> remoteGuids = new ArrayList<String>();
@@ -243,6 +269,14 @@ public abstract class SyncService {
 			doCancel();
 			return; 
 		}
+		doSyncNotes(remoteGuids, pushableNotes, pullableNotes, comparableNotes, deleteableNotes, push);
+	}
+	
+	// actually do sync
+	private void doSyncNotes(ArrayList<String> remoteGuids,
+			ArrayList<Note> pushableNotes, ArrayList<Note> pullableNotes,
+			HashMap<String, Note[]> comparableNotes,
+			ArrayList<String> deleteableNotes, boolean push) {
 		
 	// init progress bar
 		
@@ -294,7 +328,7 @@ public abstract class SyncService {
 			return; 
 		}
 		
-	// deal with notes in both - compare and push, pull or diff
+	// deal with notes in both (as well as pushable notes) - compare and push, pull or diff
 		
 		compareNotes(comparableNotes,push);
 		

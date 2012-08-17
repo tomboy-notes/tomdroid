@@ -24,6 +24,7 @@ package org.tomdroid.sync.web;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
@@ -202,16 +203,32 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						
 						long latestSyncRevision = (Long)Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION);
 						
-						TLog.d(TAG, "old latest sync revision: {0}", latestSyncRevision);
+						TLog.d(TAG, "old latest sync revision: {0}, remote latest sync revision: {1}", latestSyncRevision, response.getLong("latest-sync-revision"));
 						
 						setSyncProgress(35);
 						
-						if (response.getLong("latest-sync-revision") <= latestSyncRevision && NoteManager.getNewNotes(activity).getCount() == 0) { // same sync revision + now new local notes = no need to sync
-							TLog.v(TAG, "older sync revision on server, cancelling");
+						Cursor newLocalNotes = NoteManager.getNewNotes(activity); 
+						
+						if (response.getLong("latest-sync-revision") <= latestSyncRevision && newLocalNotes.getCount() == 0) { // same sync revision + no new local notes = no need to sync
+							TLog.v(TAG, "old sync revision on server, cancelling");
 							finishSync(true);
 							return;
 						}
+
+						// don't get notes if older revision - only pushing notes
 						
+						if (push && response.getLong("latest-sync-revision") <= latestSyncRevision) {
+							TLog.v(TAG, "old sync revision on server, pushing new notes");
+							
+							JSONArray notes = response.getJSONArray("notes");
+							List<String> notesList = new ArrayList<String>();
+							for (int i = 0; i < notes.length(); i++)
+								notesList.add(notes.getJSONObject(i).optString("guid"));
+							syncNotes(newLocalNotes, push);
+							setSyncProgress(50);
+							return;
+						}
+
 						// get notes list with content to find changes
 						
 						TLog.v(TAG, "contacting " + notesUrl);
