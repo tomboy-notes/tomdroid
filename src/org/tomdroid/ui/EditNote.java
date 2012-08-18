@@ -581,7 +581,7 @@ public class EditNote extends ActionBarActivity {
 							finish();
 			            }
 			        })
-			        .setNegativeButton(R.string.btnCancel, new DialogInterface.OnClickListener() {
+			        .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog, int which) {
 							dialog.dismiss();
 			            }
