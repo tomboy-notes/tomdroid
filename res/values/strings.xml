@@ -153,7 +153,7 @@
 	<string name="normal">Normal</string>
 	<string name="large">Large</string>
 	<string name="huge">Huge</string>
-	<string name="messageDiscardChanges">Do you really want to discard your changes and revert the note to the last saved state?</string>
+	<string name="messageDiscardChanges">Do you really want to discard your changes and revert the note to the last saved version?</string>
 	<string name="titleDiscardChanges">Discard Changes?</string>
 	<string name="gt"><b>&gt;</b></string>
 	<string name="lt"><b>&lt;</b></string>
