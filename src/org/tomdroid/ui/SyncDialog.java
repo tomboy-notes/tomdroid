@@ -69,12 +69,12 @@ public class SyncDialog extends Activity {
 	public void onCreate(Bundle savedInstanceState) {	
 		super.onCreate(savedInstanceState);	
 		
-		// if we're just triggering a refresh
 		if(!this.getIntent().hasExtra("datediff")) {
 			finish();
 			return;
 		}
-
+		if (Preferences.getString(Preferences.Key.THEME_CHOICE).equals("dark"))
+			super.setTheme( R.style.DarkTheme);
 		TLog.v(TAG, "starting SyncDialog");
 		this.context = this;
 		

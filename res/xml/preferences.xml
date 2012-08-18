@@ -22,12 +22,17 @@
  along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-	<PreferenceCategory android:title="@string/prefText">
+	<PreferenceCategory android:title="@string/prefDisplay">
    		<EditTextPreference android:key="base_text_size"
 						android:title="@string/prefBaseSize"
 						android:shouldDisableView="true"
 						android:singleLine="true"/>
-    </PreferenceCategory>	                        
+		<ListPreference android:title="@string/prefTheme"
+			    android:summary="@string/prefThemeSummary"
+				android:dialogTitle="@string/prefTheme"
+				android:key="theme_choice" 
+				android:defaultValue="light"/>
+   	</PreferenceCategory>	                        
 	<PreferenceCategory android:title="@string/prefSync">
 		
 		<ListPreference android:title="@string/prefSyncService"

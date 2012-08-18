@@ -80,6 +80,7 @@ import android.view.View.OnFocusChangeListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.SlidingDrawer;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -90,7 +91,7 @@ public class EditNote extends ActionBarActivity {
 	// UI elements
 	private EditText title;
 	private EditText content;
-	private LinearLayout formatBarShell;
+	private SlidingDrawer formatBar;
 	
 	// Model objects
 	private Note note;
@@ -120,14 +121,26 @@ public class EditNote extends ActionBarActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+		if (Preferences.getString(Preferences.Key.THEME_CHOICE).equals("dark"))
+			super.setTheme( R.style.DarkTheme);
 		setContentView(R.layout.note_edit);
 		
 		content = (EditText) findViewById(R.id.content);
 		title = (EditText) findViewById(R.id.title);
+		
+		formatBar = (SlidingDrawer) findViewById(R.id.formatBar);
 
-		// this we will call on resume as well.
-		updateTextAttributes();
+		content.setOnFocusChangeListener(new OnFocusChangeListener() {
+
+		    public void onFocusChange(View v, boolean hasFocus) {
+		    	if(hasFocus && !xmlOn) {
+		    		formatBar.setVisibility(View.VISIBLE);
+		    	}
+		    	else {
+		    		formatBar.setVisibility(View.GONE);
+		    	}
+		    }
+		});
 		
         uri = getIntent().getData();
 	}
@@ -298,7 +311,7 @@ public class EditNote extends ActionBarActivity {
 	private void showNote(boolean xml) {
 		if(xml) {
 
-			formatBarShell.setVisibility(View.GONE);
+			formatBar.setVisibility(View.GONE);
 			
 			content.setText(note.getXmlContent());
 			xmlOn = true;

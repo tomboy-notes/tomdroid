@@ -43,6 +43,7 @@ import org.tomdroid.NoteManager;
 import org.tomdroid.R;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.ui.actionbar.ActionBarListActivity;
+import org.tomdroid.util.Preferences;
 import org.tomdroid.util.SearchSuggestionProvider;
 import org.tomdroid.util.TLog;
 
@@ -60,6 +61,8 @@ public class Search extends ActionBarListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
+		if (Preferences.getString(Preferences.Key.THEME_CHOICE).equals("dark"))
+			super.setTheme( R.style.DarkTheme);	    
 	    setContentView(R.layout.search);
 
 	    handleIntent(getIntent());

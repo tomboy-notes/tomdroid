@@ -165,8 +165,10 @@
 	<string name="shortcut_title">Tomdroid - Shortcuts</string>
 		
 	<!-- new prefs -->
-	<string name="prefText">Text Preferences</string>
+	<string name="prefDisplay">Display Preferences</string>
 	<string name="prefBaseSize">Base Font Size</string>
+	<string name="prefTheme">Choose Theme</string>
+	<string name="prefThemeSummary">requires restart</string>
 	<string name="prefSync">Synchronization</string>
 	<string name="prefMisc">Misc. Options</string>
 	<string name="prefTools">Tools</string>

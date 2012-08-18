@@ -103,6 +103,8 @@ public class Tomdroid extends ActionBarListActivity {
         return Uri.parse(CONTENT_URI + "/" + noteId);
     }
 
+	private View main;
+	
 	// UI to data model glue
 	private TextView			listEmptyView;
 	private ListAdapter			adapter;
@@ -128,11 +130,14 @@ public class Tomdroid extends ActionBarListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		this.context = this;
-
-		setContentView(R.layout.main);
 		Preferences.init(this, CLEAR_PREFERENCES);
+		this.context = this;
+        main =  View.inflate(this, R.layout.main, null);
+
+		if (Preferences.getString(Preferences.Key.THEME_CHOICE).equals("dark"))
+			super.setTheme( R.style.DarkTheme);
+		
+        setContentView(main);
 		
 		// get the Path to the notes-folder from Preferences
 		NOTES_PATH = Environment.getExternalStorageDirectory()
@@ -162,7 +167,11 @@ public class Tomdroid extends ActionBarListActivity {
 		// set the view shown when the list is empty
 		listEmptyView = (TextView) findViewById(R.id.list_empty);
 		getListView().setEmptyView(listEmptyView);
-
+		
+		// FIXME: why is this necessary?
+		if (Preferences.getString(Preferences.Key.THEME_CHOICE).equals("dark"))
+			getListView().setBackgroundColor(0xFF000000);
+		
 		registerForContextMenu(findViewById(android.R.id.list));
 		
 		// add note to pane for tablet

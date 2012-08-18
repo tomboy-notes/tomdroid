@@ -32,7 +32,8 @@ Sync Features:
 * switching sync servers clears authentication, doesn't authenticate (see "Automatic authentication", above)
 
 UI Tweaks:
-* moved Tomdroid toolbar into native ActionBar (https://blueprints.launchpad.net/tomdroid/+spec/actionbar-redesign)
+* moved Tomdroid toolbar into native ActionBar with compatibility for older APKS (https://blueprints.launchpad.net/tomdroid/+spec/actionbar-redesign)
+* added option to change from light to dark themes
 * added basic tablet integration (https://blueprints.launchpad.net/tomdroid/+spec/tablet-ui)
 
 Preference Tweaks

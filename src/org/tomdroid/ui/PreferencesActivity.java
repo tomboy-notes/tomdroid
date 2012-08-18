@@ -73,11 +73,13 @@ public class PreferencesActivity extends PreferenceActivity {
 	private Preference backupNotes = null;
 	private Preference delRemoteNotes = null;
 	private Preference restoreNotes = null;
+	private ListPreference themeChoice = null;
 
 	private Context context;
 	private Activity activity;
 
 	private Handler	 preferencesMessageHandler	= new PreferencesMessageHandler(this);
+
 
 	
 	@SuppressWarnings("deprecation")
@@ -103,12 +105,12 @@ public class PreferencesActivity extends PreferenceActivity {
 		delRemoteNotes = (Preference)findPreference(Preferences.Key.DEL_REMOTE_NOTES.getName());
 		backupNotes = (Preference)findPreference(Preferences.Key.BACKUP_NOTES.getName());
 		restoreNotes = (Preference)findPreference(Preferences.Key.RESTORE_NOTES.getName());
-		
+		themeChoice = (ListPreference)findPreference(Preferences.Key.THEME_CHOICE.getName());
 		// Set the default values if nothing exists
 		setDefaults();
 		
 		// Fill the services combo list
-		fillServices();
+		fillLists();
 		
 		// Enable or disable the server field depending on the selected sync service
 		setServer(syncService.getValue());
@@ -300,7 +302,7 @@ public class PreferencesActivity extends PreferenceActivity {
 		auth.saveConfiguration();
 	}
 	
-	private void fillServices()
+	private void fillLists()
 	{
 		ArrayList<SyncService> availableServices = SyncManager.getInstance().getServices();
 		CharSequence[] entries = new CharSequence[availableServices.size()];
@@ -313,6 +315,12 @@ public class PreferencesActivity extends PreferenceActivity {
 		
 		syncService.setEntries(entries);
 		syncService.setEntryValues(entryValues);
+		
+		String[] e2 = {"Light","Dark"};
+		String[] ev2 = {"light","dark"};
+		
+		themeChoice.setEntries(e2);
+		themeChoice.setEntryValues(ev2);
 	}
 	
 	private void setDefaults()

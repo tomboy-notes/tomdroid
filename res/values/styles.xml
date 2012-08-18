@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
-    <style name="MyTheme" parent="@android:style/Theme.Light">
+    <style name="LightTheme" parent="@android:style/Theme.Light">
         <item name="android:windowTitleSize">@dimen/actionbar_compat_height</item>
         <item name="android:windowTitleBackgroundStyle">@style/ActionBarCompat</item>
         <item name="android:windowContentOverlay">@drawable/actionbar_shadow</item>
@@ -11,7 +11,17 @@
         <item name="actionbarCompatItemHomeStyle">@style/ActionBarCompatHomeItem</item>
         <item name="actionbarCompatProgressIndicatorStyle">@style/ActionBarCompatProgressIndicator</item>
     </style>
-
+    <style name="DarkTheme" parent="@android:style/Theme.Black">
+        <item name="android:windowTitleSize">@dimen/actionbar_compat_height</item>
+        <item name="android:windowTitleBackgroundStyle">@style/ActionBarCompat</item>
+        <item name="android:windowContentOverlay">@drawable/actionbar_shadow</item>
+        
+        <!-- for programmatic instantiation -->
+        <item name="actionbarCompatTitleStyle1">@style/ActionBarCompatTitle</item>
+        <item name="actionbarCompatItemStyle1">@style/ActionBarCompatItem</item>
+        <item name="actionbarCompatItemHomeStyle1">@style/ActionBarCompatHomeItem</item>
+        <item name="actionbarCompatProgressIndicatorStyle1">@style/ActionBarCompatProgressIndicator</item>
+    </style>
     <style name="ActionBarCompat">
         <item name="android:background">#333333</item>
     </style>
