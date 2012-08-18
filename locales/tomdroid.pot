@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-04-03 15:11+0200\n"
+"POT-Creation-Date: 2012-08-18 12:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -292,7 +292,7 @@ msgstr ""
 msgid "Tomdroid notes"
 msgstr ""
 
-#. 325 chars max
+#. 4000 chars max
 #: tmp_strings.xml:124(string)
 msgid "A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\\n\\nNOTE: It is a READ-ONLY client for now.\\n\\n* Note format compatibility with Tomboy\\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\\n* SD Card importation\\n* Open source!"
 msgstr ""
@@ -302,8 +302,13 @@ msgstr ""
 msgid "Note-taking application with online synchronization compatible with Tomboy"
 msgstr ""
 
+#. 500 chars max
+#: tmp_strings.xml:130(string)
+msgid "* Search notes and system integrated search\\n* Context menu\\n* Several usability improvements\\n* Higher quality icons\\n* Several bug fixes\\n* German translation\\n"
+msgstr ""
+
 #. Launchpad Translation String
-#: tmp_strings.xml:131(string)
+#: tmp_strings.xml:133(string)
 msgid "translator-credits"
 msgstr ""
 
