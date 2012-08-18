@@ -330,7 +330,10 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 	protected void pushNotes(final ArrayList<Note> notes) {
 		if(notes.size() == 0)
 			return;
-
+		if(cancelled) {
+			doCancel();
+			return; 
+		}		
 		final String userRef = Preferences
 				.getString(Preferences.Key.SYNC_SERVER_USER_API);
 
@@ -340,6 +343,10 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 				try {
 					TLog.v(TAG, "pushing {0} notes to remote service",notes.size());
 					String rawResponse = auth.get(userRef);
+					if(cancelled) {
+						doCancel();
+						return; 
+					}		
 					try {
 						TLog.v(TAG, "creating JSON");
 
@@ -363,12 +370,20 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						data.put("note-changes", Jnotes);
 
 						JSONObject response = new JSONObject(rawResponse);
-
+						if(cancelled) {
+							doCancel();
+							return; 
+						}		
 						String notesUrl = response.getJSONObject("notes-ref")
 								.getString("api-ref");
 
 						TLog.v(TAG, "put url: {0}", notesUrl);
-
+						
+						if(cancelled) {
+							doCancel();
+							return; 
+						}	
+						
 						response = new JSONObject(auth.put(notesUrl,
 								data.toString()));
 
