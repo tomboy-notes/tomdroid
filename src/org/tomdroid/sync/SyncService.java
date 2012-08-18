@@ -98,6 +98,7 @@ public abstract class SyncService {
 	public final static int AUTH_FAILED = 21;
 	public final static int REMOTE_NOTES_DELETED = 22;
 	public final static int SYNC_CANCELLED = 23;
+	public final static int LATEST_REVISION = 24;
 	
 	public SyncService(Activity activity, Handler handler) {
 		
@@ -387,6 +388,7 @@ public abstract class SyncService {
 		//	if no remote note, push
 			
 			if(remoteNote.getGuid() == null && push) {
+				TLog.i(TAG, "no remote note, pushing");
 				pushableNotes.add(localNote);
 				continue;
 			}
@@ -394,7 +396,7 @@ public abstract class SyncService {
 		// if different guids, means conflicting titles
 
 			if(!remoteNote.getGuid().equals(localNote.getGuid())) {
-				TLog.v(TAG, "adding conflict of two different notes with same title");
+				TLog.i(TAG, "adding conflict of two different notes with same title");
 				conflictingNotes.put(remoteNote.getGuid(), notes);
 				continue;
 			}
@@ -411,7 +413,7 @@ public abstract class SyncService {
 		// if not two-way and not same date, overwrite the local version
 		
 			if(!push && compareBoth != 0) {
-				TLog.v(TAG, "Different note dates, overwriting local note");
+				TLog.i(TAG, "Different note dates, overwriting local note");
 				sendMessage(INCREMENT_PROGRESS);
 				NoteManager.putNote(activity, remoteNote);
 				continue;
@@ -437,15 +439,17 @@ public abstract class SyncService {
 			else if(compareBoth > 0) // local newer, bundle in pushable
 				pushableNotes.add(localNote);
 			else if(compareBoth < 0) { // local older, pull immediately, no need to bundle
-				TLog.v(TAG, "Local note is older, updating in content provider TITLE:{0} GUID:{1}", localNote.getTitle(), localNote.getGuid());
+				TLog.i(TAG, "Local note is older, updating in content provider TITLE:{0} GUID:{1}", localNote.getTitle(), localNote.getGuid());
 				sendMessage(INCREMENT_PROGRESS);
 				NoteManager.putNote(activity, remoteNote);
 			}
 			else { // both same date
-				if(localNote.getTags().contains("system:deleted") && push) // deleted, bundle for remote deletion
+				if(localNote.getTags().contains("system:deleted") && push) { // deleted, bundle for remote deletion
+					TLog.i(TAG, "Notes are same date, deleted, deleting remote: TITLE:{0} GUID:{1}", localNote.getTitle(), localNote.getGuid());
 					pushableNotes.add(localNote);
+				}
 				else { // do nothing
-					TLog.v(TAG, "Notes are same date, doing nothing: TITLE:{0} GUID:{1}", localNote.getTitle(), localNote.getGuid());
+					TLog.i(TAG, "Notes are same date, doing nothing: TITLE:{0} GUID:{1}", localNote.getTitle(), localNote.getGuid());
 					sendMessage(INCREMENT_PROGRESS);
 					// NoteManager.putNote(activity, remoteNote);
 				}
@@ -575,7 +579,7 @@ public abstract class SyncService {
 	protected abstract void deleteNote(String guid);
 	protected abstract void pullNote(String guid);
 
-	protected abstract void finishSync(boolean refresh);
+	public abstract void finishSync(boolean refresh);
 
 	public abstract void pushNotes(ArrayList<Note> notes);
 

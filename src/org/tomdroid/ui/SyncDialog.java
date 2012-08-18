@@ -46,6 +46,7 @@ import android.app.Activity;
 import android.app.AlertDialog;	
 import android.app.Dialog;	
 import android.app.AlertDialog.Builder;
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;	
@@ -53,12 +54,16 @@ import android.content.DialogInterface;
 import android.content.Intent;	
 import android.net.Uri;
 import android.os.Bundle;	
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.text.format.Time;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 	
 public class SyncDialog extends Activity {	
 	private static final String TAG = "SyncDialog";
@@ -68,6 +73,8 @@ public class SyncDialog extends Activity {
 	private boolean differentNotes;
 	private Note remoteNote;
 	private int dateDiff;
+	private SyncManager syncManager;
+	private static ProgressDialog syncProgressDialog;
 	
 	@Override	
 	public void onCreate(Bundle savedInstanceState) {	
@@ -83,6 +90,16 @@ public class SyncDialog extends Activity {
 		this.context = this;
 		
 		setContentView(R.layout.note_compare);
+		
+		SyncManager.setActivity(this);
+		SyncManager.setHandler(this.syncMessageHandler);
+		String serviceDescription = SyncManager.getInstance().getCurrentService().getDescription();
+
+		syncProgressDialog = new ProgressDialog(this);
+		syncProgressDialog.setTitle(String.format(getString(R.string.syncing),serviceDescription));
+		syncProgressDialog.setMessage(getString(R.string.syncing_connect));
+        syncProgressDialog.setCancelable(false);
+        syncProgressDialog.setIndeterminate(true);
 		
 		final Bundle extras = this.getIntent().getExtras();
 
@@ -135,6 +152,7 @@ public class SyncDialog extends Activity {
 		final EditText remoteTitle = (EditText)findViewById(R.id.remote_title);
 
 		if(deleted) {
+			TLog.v(TAG, "comparing deleted with remote");
 			message = getString(R.string.sync_conflict_deleted);
 			
 			diffLabel.setVisibility(View.GONE);
@@ -166,22 +184,32 @@ public class SyncDialog extends Activity {
 			}
 
 			if(localNote.getXmlContent().equals(extras.getString("content"))){
+				TLog.v(TAG, "compared notes have same content");
 				if(titleMatch) { // same note, fix the dates
 					if(extras.getInt("datediff") < 0) { // local older
+						TLog.v(TAG, "compared notes have same content and titles, pulling newer remote");
 						NoteManager.putNote(this, localNote);
+						finish();				
 					}
 					else {
-						SyncManager.getInstance().pushNote(localNote);
+						TLog.v(TAG, "compared notes have same content and titles, pushing newer local");
+						ArrayList<Note> notes = new ArrayList<Note>();
+						notes.add(localNote);
+						SyncManager.getInstance().getCurrentService().pushNotes(notes);
+						syncProgressDialog.setMessage(getString(R.string.syncing_remote));
+						syncProgressDialog.show();
+						return;
 					}
-					finish();				
 				}
 				else {
+					TLog.v(TAG, "compared notes have different titles");
 		            diffView.setText(diff);
 	    			localEdit.setVisibility(View.GONE);
 	    			remoteEdit.setVisibility(View.GONE);					
 				}
 			}
 			else {
+				TLog.v(TAG, "compared notes have different content");
 				if(titleMatch && !differentNotes) {
 	    			localTitle.setVisibility(View.GONE);
 	    			remoteTitle.setVisibility(View.GONE);
@@ -280,13 +308,16 @@ public class SyncDialog extends Activity {
 		// add remote note to local
 		NoteManager.putNote(SyncDialog.this, remoteNote);
 
-		// push both
-		SyncManager.getInstance().pushNote(localNote);
-		SyncManager.getInstance().pushNote(remoteNote);
-		finish();	
+		ArrayList<Note> notes = new ArrayList<Note>();
+		notes.add(localNote);
+		notes.add(remoteNote);
+		SyncManager.getInstance().getCurrentService().pushNotes(notes);
+		syncProgressDialog.setMessage(getString(R.string.syncing_remote));
+		syncProgressDialog.show();
 	}
 
 	protected void onChooseNote(String title, String content, boolean choseLocal) {
+		ArrayList<Note> notes = new ArrayList<Note>();
 		
 		title = NoteManager.validateNoteTitle(this, title, localNote.getGuid());
 		
@@ -305,7 +336,6 @@ public class SyncDialog extends Activity {
 				NoteManager.putNote(this, localNote);
 				remoteNote.addTag("system:deleted");
 				
-				ArrayList<Note> notes = new ArrayList<Note>();
 				notes.add(localNote); // add for pushing
 				notes.add(remoteNote); // add for deletion
 				
@@ -317,21 +347,48 @@ public class SyncDialog extends Activity {
 				remoteNote.setXmlContent(content);
 				remoteNote.setLastChangeDate(time);
 				NoteManager.putNote(this, remoteNote);
-				SyncManager.getInstance().pushNote(remoteNote);
+
+				notes.add(remoteNote);
+				SyncManager.getInstance().getCurrentService().pushNotes(notes);
+				syncProgressDialog.setMessage(getString(R.string.syncing_remote));
+				syncProgressDialog.show();
 			}
 		}
 		else { // just readd and push modified localNote
 			NoteManager.putNote(SyncDialog.this, localNote);
-			SyncManager.getInstance().pushNote(localNote);
+
+			notes.add(localNote);
+			SyncManager.getInstance().getCurrentService().pushNotes(notes);
+			syncProgressDialog.setMessage(getString(R.string.syncing_remote));
+			syncProgressDialog.show();
 		}
 
-		finish();
 	}
 	
-	protected void onChooseDelete() {
+	// local is deleted, delete remote as well
+	protected void onChooseDelete() { 
 		TLog.v(TAG, "user chose to delete remote note TITLE:{0} GUID:{1}", localNote.getTitle(),localNote.getGuid());
-		SyncManager.getInstance().deleteNote(localNote.getGuid()); // delete from remote
 		NoteManager.deleteNote(SyncDialog.this, localNote.getDbId()); // really delete locally
-		finish();
+
+		// this will delete the note, since it already has the "system:deleted" tag
+		ArrayList<Note> notes = new ArrayList<Note>();
+		notes.add(localNote);
+		SyncManager.getInstance().getCurrentService().pushNotes(notes);
+		syncProgressDialog.setMessage(getString(R.string.syncing_remote));
+		syncProgressDialog.show();
 	}
+	
+	/** Handler for the message from sync service */
+	private Handler syncMessageHandler = new Handler() {
+		
+		@Override
+        public void handleMessage(Message msg) {
+			finish();
+		}
+    };
+    
+    protected void onDestroy() {
+    	syncProgressDialog.dismiss();
+    	super.onDestroy();
+    }
 }	

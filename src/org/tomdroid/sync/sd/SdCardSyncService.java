@@ -461,7 +461,7 @@ public class SdCardSyncService extends SyncService {
 	}
 
 	@Override
-	protected void finishSync(boolean refresh) {
+	public void finishSync(boolean refresh) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -111,6 +111,9 @@ public class Tomdroid extends ActionBarListActivity {
 
 	// UI feedback handler
 	private Handler	 syncMessageHandler	= new SyncMessageHandler(this);
+	
+	// latest sync revision
+	private int latestRevision;
 
 	// UI for tablet
 	private LinearLayout rightPane;
@@ -446,8 +449,8 @@ public class Tomdroid extends ActionBarListActivity {
 	
 	private void startSyncing(boolean push) {
 
-		SyncService currentService = SyncManager.getInstance().getCurrentService();
 		String serverUri = Preferences.getString(Preferences.Key.SYNC_SERVER);
+		SyncService currentService = SyncManager.getInstance().getCurrentService();
 		
 		if (currentService.needsAuth()) {
 	
@@ -488,7 +491,7 @@ public class Tomdroid extends ActionBarListActivity {
 			((ServiceAuth) currentService).getAuthUri(serverUri, handler);
 		}
 		else {
-			String serviceDescription = SyncManager.getInstance().getCurrentService().getDescription();
+			String serviceDescription = currentService.getDescription();
 	        sync = SyncManager.getInstance();
 			
 			syncProgressDialog = new ProgressDialog(this);
@@ -582,7 +585,7 @@ public class Tomdroid extends ActionBarListActivity {
 		Intent intent = this.getIntent();
 
 		SyncService currentService = SyncManager.getInstance().getCurrentService();
-		
+
 		if (currentService.needsAuth() && intent != null) {
 			Uri uri = intent.getData();
 
@@ -605,7 +608,7 @@ public class Tomdroid extends ActionBarListActivity {
 				((ServiceAuth) currentService).remoteAuthComplete(uri, handler);
 			}
 		}
-		
+
 		SyncManager.setActivity(this);
 		SyncManager.setHandler(this.syncMessageHandler);
 		
@@ -760,7 +763,8 @@ public class Tomdroid extends ActionBarListActivity {
 		@Override
 		public void handleMessage(Message msg) {
 	
-			String serviceDescription = SyncManager.getInstance().getCurrentService().getDescription();
+			SyncService currentService = SyncManager.getInstance().getCurrentService();
+			String serviceDescription = currentService.getDescription();
 			String message = "";
 			int increment = 0;
 			boolean dismiss = false;
@@ -834,7 +838,9 @@ public class Tomdroid extends ActionBarListActivity {
 					Toast.makeText(activity, activity.getString(R.string.messageNoSDCard),
 							Toast.LENGTH_SHORT).show();
 					break;
-					
+				case SyncService.LATEST_REVISION:
+					latestRevision = msg.arg1;
+					break;
 				case SyncService.BEGIN_PROGRESS:
 					if(syncProgressDialog != null) {
 				        syncProgressDialog.setIndeterminate(false);
@@ -932,6 +938,7 @@ public class Tomdroid extends ActionBarListActivity {
 	}
 	
 	public void finishSync() {
+		TLog.v(TAG, "Finishing Sync; latest revision: {0}", latestRevision);
 		
 		Time now = new Time();
 		now.setToNow();
@@ -942,8 +949,10 @@ public class Tomdroid extends ActionBarListActivity {
 		NoteManager.purgeDeletedNotes(this);
 
 		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, nowString);
+		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, latestRevision);
+		
 		SyncService currentService = SyncManager.getInstance().getCurrentService();
-		currentService.setSyncProgress(100);
+		currentService.finishSync(false);
 		
 		if(syncProgressDialog != null)
 			syncProgressDialog.dismiss();

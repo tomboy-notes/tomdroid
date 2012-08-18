@@ -53,7 +53,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 
 	private static final String TAG = "SnowySyncService";
 	private String lastGUID;
-	private long latestRevision;
+	private int latestRevision;
 
 	public SnowySyncService(Activity activity, Handler handler) {
 		super(activity, handler);
@@ -175,7 +175,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 			public void run() {
 
 				OAuthConnection auth = getAuthConnection();
-				latestRevision = Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION);
+				latestRevision = (int)Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION);
 
 				try {
 					TLog.v(TAG, "contacting " + userRef);
@@ -203,13 +203,16 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						
 						long latestSyncRevision = (Long)Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION);
 						
-						TLog.d(TAG, "old latest sync revision: {0}, remote latest sync revision: {1}", latestSyncRevision, response.getLong("latest-sync-revision"));
 						
 						setSyncProgress(35);
-						
+
+						latestRevision = (int)response.getLong("latest-sync-revision");
+						sendMessage(LATEST_REVISION,latestRevision,0);
+						TLog.d(TAG, "old latest sync revision: {0}, remote latest sync revision: {1}", latestSyncRevision, response.getLong("latest-sync-revision"));
+
 						Cursor newLocalNotes = NoteManager.getNewNotes(activity); 
 						
-						if (response.getLong("latest-sync-revision") <= latestSyncRevision && newLocalNotes.getCount() == 0) { // same sync revision + no new local notes = no need to sync
+						if (latestRevision <= latestSyncRevision && newLocalNotes.getCount() == 0) { // same sync revision + no new local notes = no need to sync
 							TLog.v(TAG, "old sync revision on server, cancelling");
 							finishSync(true);
 							return;
@@ -253,9 +256,8 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 							doCancel();
 							return; 
 						}						
+
 						syncNotes(notesList, push);
-						latestRevision = response.getLong("latest-sync-revision");
-						TLog.d(TAG, "new latest sync revision: {0}", latestRevision);
 
 					} catch (JSONException e) {
 						TLog.e(TAG, e, "Problem parsing the server response");
@@ -275,7 +277,6 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 					doCancel();
 					return; 
 				}
-				Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, latestRevision);
 				if (isSyncable())
 					finishSync(true);
 			}
@@ -284,11 +285,6 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 
 	public void finishSync(boolean refresh) {
 
-		Time now = new Time();
-		now.setToNow();
-		String nowString = now.format3339(false);
-
-		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, nowString);
 		if (refresh)
 			sendMessage(PARSING_COMPLETE);
 		else
@@ -389,9 +385,6 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 
 						TLog.v(TAG, "put response: {0}", response.toString());
 
-						Preferences.putLong(
-								Preferences.Key.LATEST_SYNC_REVISION,
-								response.getLong("latest-sync-revision"));
 					} catch (JSONException e) {
 						TLog.e(TAG, e, "Problem parsing the server response");
 						sendMessage(NOTE_PUSH_ERROR,
