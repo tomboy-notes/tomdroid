@@ -269,7 +269,7 @@ public class SdCardSyncService extends SyncService {
 
 	// this function either deletes or pushes, based on existence of deleted tag
 	@Override
-	protected void pushNotes(final ArrayList<Note> notes) {
+	public void pushNotes(final ArrayList<Note> notes) {
 		if(notes.size() == 0)
 			return;
 		

@@ -189,10 +189,11 @@
 	<string name="syncing_local">updating local notes…</string>
 	<string name="syncing_remote">updating remote notes…</string>
 	<string name="sync_conflict_title">Note Conflict</string>
-	<string name="sync_conflict_message">There was a conflict syncing the note "%1$s".  Please choose from one of the actions below.  You may edit either text before choosing.</string>
+	<string name="sync_conflict_message">There was a conflict syncing the note "%1$s".  The difference is shown below, please choose an action.  You may edit either note before choosing.</string>
 	<string name="sync_conflict_deleted">There was a conflict syncing the note "%1$s" (local version was deleted).  Please choose from one of the actions below.</string>
-	<string name="keep_local">Keep Local</string>
-	<string name="keep_remote">Keep Remote</string>
+	<string name="sync_conflict_titles_message">There was a conflict syncing the note "%1$s".  A note with that title already exists in the database.  The difference between the notes is shown below, please choose an action.  You may edit either note before choosing.</string>
+	<string name="overwrite_remote">Overwrite Remote</string>
+	<string name="overwrite_local">Overwrite Local</string>
 	<string name="delete_remote">Delete Remote</string>
 	<string name="diff_label">Difference Between Files:</string>
 	<string name="diff_titles">-- Title Differences --</string>

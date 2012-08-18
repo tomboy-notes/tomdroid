@@ -47,6 +47,7 @@ import org.tomdroid.util.TLog;
 import org.tomdroid.util.XmlUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -410,6 +411,62 @@ public class NoteManager {
 		Cursor cursor = activity.managedQuery(Tomdroid.CONTENT_URI, DATE_PROJECTION, "strftime('%s', "+Note.MODIFIED_DATE+") > strftime('%s', '"+Preferences.getString(Preferences.Key.LATEST_SYNC_DATE)+"')", null, null);	
 				
 		return cursor;
+	}
+
+	/**
+	 * validateNoteTitle
+	 * check title against titles that exist in database, returning modified title if necessary 
+	 * @param activity - the calling activity
+	 * @param noteTitle - the title to check
+	 * @param guid - the note's guid, to avoid checking against itself
+	 * @return new title
+	 */
+	public static String validateNoteTitle(Activity activity, String noteTitle, String guid) {
+
+		String origTitle = noteTitle;
+
+		// check for empty titles, set to R.string.NewNoteTitle
+		
+		if (noteTitle.replace(" ","").equals("")) {
+			noteTitle = activity.getString(R.string.NewNoteTitle);
+			origTitle = noteTitle; // have to set this too!
+		}
+
+		// check for duplicate titles - add number to end
+
+		Cursor cursor = getTitles(activity);
+		
+		// cursor must not be null and must return more than 0 entry 
+		if (!(cursor == null || cursor.getCount() == 0)) {
+			
+			ArrayList<String> titles = new ArrayList<String>();
+			
+			cursor.moveToFirst();
+			do {
+				String aguid = cursor.getString(cursor.getColumnIndexOrThrow(Note.GUID));
+				if(!guid.equals(aguid)) // skip this note
+					titles.add(cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE)));
+			} while (cursor.moveToNext());
+			
+			// sort to get {"Note","Note 2", "Note 3", ... }
+			Collections.sort(titles);
+			
+			int inc = 2;
+			for(String atitle : titles) {
+				if(atitle.length() == 0)
+					continue;
+				
+				if(atitle.equals(noteTitle)) {
+					if(inc == 1)  // first match, matching "Note", set to "Note 2"
+						noteTitle = noteTitle + " 2";
+					else // later match, matching "Note X", set to "Note X+1"
+						noteTitle = origTitle + " " + inc;
+					inc++;
+				}
+			}
+		}
+		
+		return noteTitle;
 	}
 
 }

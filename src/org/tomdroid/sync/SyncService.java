@@ -49,6 +49,7 @@ import org.tomdroid.util.Preferences;
 import org.tomdroid.util.TLog;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -224,7 +225,30 @@ public abstract class SyncService {
 			Note localNote = NoteManager.getNoteByGuid(activity,remoteNote.getGuid());
 			remoteGuids.add(remoteNote.getGuid());
 			if(localNote == null) {
-				pullableNotes.add(remoteNote);
+				
+				// check to make sure there is no note with this title, otherwise show conflict dialogue
+
+				Cursor cursor = NoteManager.getTitles(activity);
+				
+				if (!(cursor == null || cursor.getCount() == 0)) {
+					
+					cursor.moveToFirst();
+					do {
+						String atitle = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
+						if(atitle.equals(remoteNote.getTitle())) {
+							String aguid = cursor.getString(cursor.getColumnIndexOrThrow(Note.GUID));
+							localNote = NoteManager.getNoteByGuid(activity, aguid);
+							break;
+						}
+					} while (cursor.moveToNext());
+				}
+				if(localNote == null)
+					pullableNotes.add(remoteNote);
+				else { // compare two different notes with same title
+					remoteGuids.add(localNote.getGuid()); // add to avoid catching it below
+					Note[] compNotes = {localNote, remoteNote};
+					comparableNotes.put(localNote.getGuid(), compNotes);
+				}
 			}
 			else {
 				Note[] compNotes = {localNote, remoteNote};
@@ -366,7 +390,15 @@ public abstract class SyncService {
 				pushableNotes.add(localNote);
 				continue;
 			}
+			
+		// if different guids, means conflicting titles
 
+			if(!remoteNote.getGuid().equals(localNote.getGuid())) {
+				TLog.v(TAG, "adding conflict of two different notes with same title");
+				conflictingNotes.put(remoteNote.getGuid(), notes);
+				continue;
+			}
+			
 			if(cancelled) {
 				doCancel();
 				return; 
@@ -454,7 +486,12 @@ public abstract class SyncService {
 			bundle.putString("content", remoteNote.getXmlContent());
 			bundle.putString("tags", remoteNote.getTags());
 			bundle.putInt("datediff", compareBoth);
-	
+			
+			// put local guid if conflicting titles
+
+			if(!remoteNote.getGuid().equals(localNote.getGuid()))
+				bundle.putString("localGUID", localNote.getGuid());
+			
 			Intent intent = new Intent(activity.getApplicationContext(), SyncDialog.class);	
 			intent.putExtras(bundle);
 	
@@ -540,7 +577,7 @@ public abstract class SyncService {
 
 	protected abstract void finishSync(boolean refresh);
 
-	protected abstract void pushNotes(ArrayList<Note> notes);
+	public abstract void pushNotes(ArrayList<Note> notes);
 
 	protected abstract void pushNotes();
 

@@ -236,6 +236,9 @@ public class Tomdroid extends ActionBarListActivity {
 			return;
 		}
 		
+		// trying to avoid lp:1038118
+		
+		content.invalidate();
 
 		// show the note (spannable makes the TextView able to output styled text)
 		content.setText(noteContent, TextView.BufferType.SPANNABLE);

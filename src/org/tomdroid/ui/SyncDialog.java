@@ -24,6 +24,7 @@
  */
 package org.tomdroid.ui;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.UUID;
 import java.util.regex.Matcher;
@@ -63,7 +64,10 @@ public class SyncDialog extends Activity {
 	private static final String TAG = "SyncDialog";
 	private Context context;
 	
-	private Note note;
+	private Note localNote;
+	private boolean differentNotes;
+	private Note remoteNote;
+	private int dateDiff;
 	
 	@Override	
 	public void onCreate(Bundle savedInstanceState) {	
@@ -81,6 +85,13 @@ public class SyncDialog extends Activity {
 		setContentView(R.layout.note_compare);
 		
 		final Bundle extras = this.getIntent().getExtras();
+
+		remoteNote = new Note();
+		remoteNote.setTitle(extras.getString("title"));
+		remoteNote.setGuid(extras.getString("guid"));
+		remoteNote.setLastChangeDate(extras.getString("date"));
+		remoteNote.setXmlContent(extras.getString("content"));	
+		remoteNote.setTags(extras.getString("tags"));
 		
 		ContentValues values = new ContentValues();
 		values.put(Note.TITLE, extras.getString("title"));
@@ -89,11 +100,22 @@ public class SyncDialog extends Activity {
 		values.put(Note.MODIFIED_DATE, extras.getString("date"));
 		values.put(Note.NOTE_CONTENT, extras.getString("content"));
 		values.put(Note.TAGS, extras.getString("tags"));
-
-		note = NoteManager.getNoteByGuid(this, extras.getString("guid"));
-
-		final ContentResolver cr = getContentResolver();
-		final boolean deleted = note.getTags().contains("system:deleted"); 
+		 
+		dateDiff = extras.getInt("datediff");
+		
+		// check if we're comparing two different notes with same title
+		
+		differentNotes = getIntent().hasExtra("localGUID"); 
+		if(differentNotes) {
+			localNote = NoteManager.getNoteByGuid(this, extras.getString("localGUID"));
+			TLog.v(TAG, "comparing two different notes with same title");
+		}
+		else {
+			localNote = NoteManager.getNoteByGuid(this, extras.getString("guid"));
+			TLog.v(TAG, "comparing two versions of the same note");
+		}
+		
+		final boolean deleted = localNote.getTags().contains("system:deleted"); 
 		
 		String message;
 
@@ -105,7 +127,6 @@ public class SyncDialog extends Activity {
 		TextView diffView = (TextView)findViewById(R.id.diff);
 		TextView diffLabel = (TextView)findViewById(R.id.diff_label);
 		TextView localLabel = (TextView)findViewById(R.id.local_label);
-		TextView remoteLabel = (TextView)findViewById(R.id.remote_label);
 
 		final EditText localEdit = (EditText)findViewById(R.id.local);
 		final EditText remoteEdit = (EditText)findViewById(R.id.remote);
@@ -133,19 +154,24 @@ public class SyncDialog extends Activity {
 		}
 		else {
 			String diff = "";
-			boolean titleMatch = note.getTitle().equals(extras.getString("title"));
-			message = getString(R.string.sync_conflict_message);
+			boolean titleMatch = localNote.getTitle().equals(extras.getString("title"));
+			
+			if(differentNotes)
+				message = getString(R.string.sync_conflict_titles_message);
+			else
+				message = getString(R.string.sync_conflict_message);
+			
 			if(!titleMatch) {
-				diff = getString(R.string.diff_titles)+"\n"+getString(R.string.local_label)+": "+note.getTitle()+"\n"+getString(R.string.remote_label)+": "+extras.getString("title");		
+				diff = getString(R.string.diff_titles)+"\n"+getString(R.string.local_label)+": "+localNote.getTitle()+"\n"+getString(R.string.remote_label)+": "+extras.getString("title");		
 			}
 
-			if(note.getXmlContent().equals(extras.getString("content"))){
+			if(localNote.getXmlContent().equals(extras.getString("content"))){
 				if(titleMatch) { // same note, fix the dates
 					if(extras.getInt("datediff") < 0) { // local older
-						NoteManager.putNote(this, note);
+						NoteManager.putNote(this, localNote);
 					}
 					else {
-						SyncManager.getInstance().pushNote(note);
+						SyncManager.getInstance().pushNote(localNote);
 					}
 					finish();				
 				}
@@ -156,14 +182,14 @@ public class SyncDialog extends Activity {
 				}
 			}
 			else {
-				if(titleMatch) {
+				if(titleMatch && !differentNotes) {
 	    			localTitle.setVisibility(View.GONE);
 	    			remoteTitle.setVisibility(View.GONE);
 				}
 				else
 	    			diff += "\n\n";
 
-				Patch patch = DiffUtils.diff(Arrays.asList(TextUtils.split(note.getXmlContent(), "\\r?\\n|\\r")), Arrays.asList(TextUtils.split(extras.getString("content"), "\\r?\\n|\\r")));
+				Patch patch = DiffUtils.diff(Arrays.asList(TextUtils.split(localNote.getXmlContent(), "\\r?\\n|\\r")), Arrays.asList(TextUtils.split(extras.getString("content"), "\\r?\\n|\\r")));
 	            String diffResult = "";
 				for (Delta delta: patch.getDeltas()) {
 	            	diffResult += delta.toString()+"\n";
@@ -190,84 +216,122 @@ public class SyncDialog extends Activity {
 			localBtn.setOnClickListener( new View.OnClickListener() {
 				public void onClick(View v) {
 	            	// take local
-					TLog.v(TAG, "user chose local version for note TITLE:{0} GUID:{1}", note.getTitle(),note.getGuid());
-					onChooseNote(localTitle.getText().toString(),localEdit.getText().toString());
+					TLog.v(TAG, "user chose local version for note TITLE:{0} GUID:{1}", localNote.getTitle(),localNote.getGuid());
+					onChooseNote(localTitle.getText().toString(),localEdit.getText().toString(), true);
 				}
 	        });
-			localTitle.setText(note.getTitle());
-			localEdit.setText(note.getXmlContent());
+			localTitle.setText(localNote.getTitle());
+			localEdit.setText(localNote.getXmlContent());
 		}
 		
-		messageView.setText(String.format(message,note.getTitle()));
+		messageView.setText(String.format(message,localNote.getTitle()));
 		remoteTitle.setText(extras.getString("title"));
 		remoteEdit.setText(extras.getString("content"));
 
 		remoteBtn.setOnClickListener( new View.OnClickListener() {
 			public void onClick(View v) {
             	// take local
-				TLog.v(TAG, "user chose remote version for note TITLE:{0} GUID:{1}", note.getTitle(),note.getGuid());
-				onChooseNote(remoteTitle.getText().toString(),remoteEdit.getText().toString());
+				TLog.v(TAG, "user chose remote version for note TITLE:{0} GUID:{1}", localNote.getTitle(),localNote.getGuid());
+				onChooseNote(remoteTitle.getText().toString(),remoteEdit.getText().toString(), false);
 			}
         });
 		
 		copyBtn.setOnClickListener( new View.OnClickListener() {
 			public void onClick(View v) {
             	// take local
-				TLog.v(TAG, "user chose to create copy for note TITLE:{0} GUID:{1}", note.getTitle(),note.getGuid());
-				copyNote(extras);
+				TLog.v(TAG, "user chose to create copy for note TITLE:{0} GUID:{1}", localNote.getTitle(),localNote.getGuid());
+				copyNote();
 			}
         });
 	}
 
-	protected void copyNote(Bundle extras) {
-		final int dateDiff = extras.getInt("datediff");
-    	
-		TLog.v(TAG, "user chose to create new copy for conflicting note TITLE:{0} GUID:{1}", note.getTitle(),note.getGuid());
-
-		UUID newid = UUID.randomUUID();
-
-		Note rnote = new Note();
-		rnote.setTitle(extras.getString("title"));
-		rnote.setTags(extras.getString("tags"));
-		rnote.setGuid(newid.toString());
-		rnote.setLastChangeDate(extras.getString("date"));
-		rnote.setXmlContent(extras.getString("content"));
+	protected void copyNote() {
 		
-		if(!note.getTitle().equals(extras.getString("title"))) { // different titles, just create new note
-		}
-		else if(dateDiff < 0) { // local older, rename local
-			note.setTitle(String.format(getString(R.string.old),note.getTitle()));
-			NoteManager.putNote(SyncDialog.this, note);
-		}
-		else { // remote older, rename remote
-			rnote.setTitle(String.format(getString(R.string.old),rnote.getTitle()));
+		TLog.v(TAG, "user chose to create new copy for conflicting note TITLE:{0} GUID:{1}", localNote.getTitle(),localNote.getGuid());
+
+		// not doing a title difference, get new guid for new note
+		
+		if(!differentNotes) {
+			UUID newid = UUID.randomUUID();
+			remoteNote.setGuid(newid.toString());
 		}
 		
-		// create note
-		NoteManager.putNote(SyncDialog.this, rnote);
+		String localTitle = ((EditText)findViewById(R.id.local_title)).getText().toString();
+		String remoteTitle = ((EditText)findViewById(R.id.remote_title)).getText().toString();
+		localNote.setTitle(localTitle);
+		remoteNote.setTitle(remoteTitle);
+		
+		if(!localNote.getTitle().equals(remoteNote.getTitle())) { // different titles, just create new note
+		}
+		else {
+			
+			// validate against existing titles
+			String newTitle = NoteManager.validateNoteTitle(this, String.format(getString(R.string.old),localNote.getTitle()), localNote.getGuid());
+			
+			if(dateDiff < 0) { // local older, rename local
+				localNote.setTitle(newTitle);
+				NoteManager.putNote(SyncDialog.this, localNote); // update local note with new title
+			}
+			else { // remote older, rename remote
+				remoteNote.setTitle(newTitle);
+			}
+		}
+			
+		// add remote note to local
+		NoteManager.putNote(SyncDialog.this, remoteNote);
 
 		// push both
-		SyncManager.getInstance().pushNote(note);
-		SyncManager.getInstance().pushNote(rnote);
+		SyncManager.getInstance().pushNote(localNote);
+		SyncManager.getInstance().pushNote(remoteNote);
 		finish();	
 	}
 
-	protected void onChooseNote(String title, String content) {
-		note.setTitle(title);
-		note.setXmlContent(content);
+	protected void onChooseNote(String title, String content, boolean choseLocal) {
+		
+		title = NoteManager.validateNoteTitle(this, title, localNote.getGuid());
+		
 		Time now = new Time();
 		now.setToNow();
 		String time = now.format3339(false);
-		note.setLastChangeDate(time);
-		NoteManager.putNote(SyncDialog.this, note);
-		SyncManager.getInstance().pushNote(note);
+		
+		localNote.setTitle(title);
+		localNote.setXmlContent(content);
+		localNote.setLastChangeDate(time);
+
+		// doing a title difference
+
+		if(differentNotes) {
+			if(choseLocal) { // chose to keep local, delete remote, push local
+				NoteManager.putNote(this, localNote);
+				remoteNote.addTag("system:deleted");
+				
+				ArrayList<Note> notes = new ArrayList<Note>();
+				notes.add(localNote); // add for pushing
+				notes.add(remoteNote); // add for deletion
+				
+				SyncManager.getInstance().getCurrentService().pushNotes(notes);
+			}
+			else { // chose to keep remote, delete local, add remote, push remote back 
+				NoteManager.deleteNote(this, localNote);
+				remoteNote.setTitle(title);
+				remoteNote.setXmlContent(content);
+				remoteNote.setLastChangeDate(time);
+				NoteManager.putNote(this, remoteNote);
+				SyncManager.getInstance().pushNote(remoteNote);
+			}
+		}
+		else { // just readd and push modified localNote
+			NoteManager.putNote(SyncDialog.this, localNote);
+			SyncManager.getInstance().pushNote(localNote);
+		}
+
 		finish();
 	}
 	
 	protected void onChooseDelete() {
-		TLog.v(TAG, "user chose to delete remote note TITLE:{0} GUID:{1}", note.getTitle(),note.getGuid());
-		SyncManager.getInstance().deleteNote(note.getGuid()); // delete from remote
-		NoteManager.deleteNote(SyncDialog.this, note.getDbId()); // really delete locally
+		TLog.v(TAG, "user chose to delete remote note TITLE:{0} GUID:{1}", localNote.getTitle(),localNote.getGuid());
+		SyncManager.getInstance().deleteNote(localNote.getGuid()); // delete from remote
+		NoteManager.deleteNote(SyncDialog.this, localNote.getDbId()); // really delete locally
 		finish();
 	}
 }	

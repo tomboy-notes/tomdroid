@@ -327,7 +327,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 	// new methods to T Edit
 
 	@Override
-	protected void pushNotes(final ArrayList<Note> notes) {
+	public void pushNotes(final ArrayList<Note> notes) {
 		if(notes.size() == 0)
 			return;
 		if(cancelled) {

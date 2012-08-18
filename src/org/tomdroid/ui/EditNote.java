@@ -24,9 +24,7 @@
 package org.tomdroid.ui;
 
 import java.io.StringReader;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -37,7 +35,6 @@ import javax.xml.parsers.SAXParserFactory;
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
-import org.tomdroid.sync.SyncManager;
 import org.tomdroid.ui.actionbar.ActionBarActivity;
 import org.tomdroid.util.LinkifyPhone;
 import org.tomdroid.util.NoteContentBuilder;
@@ -79,7 +76,6 @@ import android.view.View;
 import android.view.View.OnFocusChangeListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.SlidingDrawer;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -502,7 +498,9 @@ public class EditNote extends ActionBarActivity {
 			return;
 		}
 		
-		setNoteTitle();
+		String validTitle = NoteManager.validateNoteTitle(this, title.getText().toString(), note.getGuid()); 
+		title.setText(validTitle);
+		note.setTitle(validTitle);
 
 		Time now = new Time();
 		now.setToNow();
@@ -514,60 +512,6 @@ public class EditNote extends ActionBarActivity {
 
 		Toast.makeText(this, getString(R.string.messageNoteSaved), Toast.LENGTH_SHORT).show();
 		TLog.v(TAG, "note saved");
-	}
-	
-	private void setNoteTitle() {
-		
-		String noteTitle = title.getText().toString();
-
-		String origTitle = noteTitle;
-
-		// check for empty titles, set to R.string.NewNoteTitle
-		
-		if (noteTitle.replace(" ","").equals("")) {
-			noteTitle = getString(R.string.NewNoteTitle);
-			origTitle = noteTitle; // have to set this too!
-		}
-
-		// check for duplicate titles - add number to end
-
-		Cursor cursor = NoteManager.getTitles(this);
-		
-		// cursor must not be null and must return more than 0 entry 
-		if (!(cursor == null || cursor.getCount() == 0)) {
-			
-			ArrayList<String> titles = new ArrayList<String>();
-			
-			int count = 0;
-			String guid = note.getGuid();
-
-			cursor.moveToFirst();
-			do {
-				String aguid = cursor.getString(cursor.getColumnIndexOrThrow(Note.GUID));
-				if(!guid.equals(aguid)) // skip this note
-					titles.add(cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE)));
-			} while (cursor.moveToNext());
-			
-			// sort to get {"Note","Note 2", "Note 3", ... }
-			Collections.sort(titles);
-			
-			int inc = 2;
-			for(String atitle : titles) {
-				if(atitle.length() == 0)
-					continue;
-				
-				if(atitle.equals(noteTitle)) {
-					if(inc == 1)  // first match, matching "Note", set to "Note 2"
-						noteTitle = noteTitle + " 2";
-					else // later match, matching "Note X", set to "Note X+1"
-						noteTitle = origTitle + " " + inc;
-					inc++;
-				}
-			}
-		}
-		
-		note.setTitle(noteTitle);
-		title.setText(noteTitle);
 	}
 
 	private void discardNoteContent() {
