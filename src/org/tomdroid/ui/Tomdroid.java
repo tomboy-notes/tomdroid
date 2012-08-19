@@ -419,7 +419,9 @@ public class Tomdroid extends ActionBarListActivity {
 		        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
 		            public void onClick(DialogInterface dialog, int which) {
-						startSyncing(false);
+		        		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, 0);
+		        		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, new Time().format3339(false));
+		            	startSyncing(false);
 		           }
 
 		        })
