@@ -45,6 +45,7 @@
 	<string name="btnCancel">रद्द करें</string>
 	<string name="btnClose">बंद</string>
 	<string name="btnProjectPage">Project page</string>
+	<string name="btnSavetoSD">Save to SD card</string>
 	
 	<!-- note-view.xml -->
 	<string name="strWait">Please wait while note loads...</string>
@@ -57,7 +58,7 @@
 	<string name="prefAuthenticate">Authenticate</string>
 	<string name="prefLocation">Location on SD Card</string>
 	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
-	<string name="prefNoValidLocation">\"%1$s\" is no valid folder location. Please try again!</string>
+	<string name="prefNoValidEntry">\"%1$s\" contains invalid characters.\nPlease try again!</string>
 	
 	<string name="prefSyncCompleteAuth">Completing authentication. Please wait...</string>
 	<string name="prefSyncConnectionFailed">The connection to the server has failed, please check that the address you entered is correct.</string>
@@ -72,6 +73,9 @@
 	<string name="error">Error</string>
 	<string name="titleNoteNotFound">No Such Note</string>
 	<string name="messageNoteNotFound">The requested note could not be found. Maybe it was deleted or removed through synchronization.</string>
+	<string name="messageErrorNoteParsing">The requested note could not be parsed. If you are able to replicate the problem, please contact us!</string>	
+	<string name="messageCouldNotSave">Could not save the errors, please check your SD card.</string>
+	<string name="messageNoSDCard">SD card not found.</string>
 	
 	<!-- NoteSorting -->
 	<string name="menuSort">Change Sort</string>
@@ -116,13 +120,15 @@
 	-->
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid notes</string>
-	<!-- 325 chars max -->
+	<!-- 4000 chars max -->
 	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\nNOTE: It is a READ-ONLY client for now.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Note-taking application with online synchronization compatible with Tomboy</string>
-	
-	
+
+	<!-- 500 chars max -->
+        <string name="market_recent_changes">* Search notes and system integrated search\n* Context menu\n* Several usability improvements\n* Higher quality icons\n* Several bug fixes\n* German translation\n</string>
+
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
   Vibhav Pant https://launchpad.net/~vibhavp</string>

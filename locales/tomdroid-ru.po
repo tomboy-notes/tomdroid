@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tomdroid\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-03-31 22:50+0200\n"
-"PO-Revision-Date: 2012-02-16 08:06+0000\n"
-"Last-Translator: Vyacheslav Sharmanov <Unknown>\n"
+"POT-Creation-Date: 2012-08-18 12:40+0200\n"
+"PO-Revision-Date: 2012-04-07 21:11+0000\n"
+"Last-Translator: Alex Mr.Brightside Demurine <extrimall90@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-03-31 21:21+0000\n"
-"X-Generator: Launchpad (build 15032)\n"
+"X-Launchpad-Export-Date: 2012-08-19 21:32+0000\n"
+"X-Generator: Launchpad (build 15810)\n"
 
 #. application details
 #: tmp_strings.xml:27(string)
@@ -88,11 +88,11 @@ msgstr "%1$s\\n\\nАвтор: %2$s\\nВерсия: %3$s\\nЛицензия GPLv3
 msgid "OK"
 msgstr "Ок"
 
-#: tmp_strings.xml:45(string)
+#: tmp_strings.xml:45(string) tmp_strings.xml:209(string)
 msgid "Cancel"
 msgstr "Отмена"
 
-#: tmp_strings.xml:46(string)
+#: tmp_strings.xml:46(string) tmp_strings.xml:208(string)
 msgid "Close"
 msgstr "Закрыть"
 
@@ -100,12 +100,16 @@ msgstr "Закрыть"
 msgid "Project page"
 msgstr "Сайт проекта"
 
+#: tmp_strings.xml:48(string)
+msgid "Save to SD card"
+msgstr "Сохранить на SD карту"
+
 #. note-view.xml
-#: tmp_strings.xml:50(string)
+#: tmp_strings.xml:51(string)
 msgid "Please wait while note loads..."
 msgstr "Пожалуйста, подождите, пока заметка загружается.."
 
-#: tmp_strings.xml:52(string)
+#: tmp_strings.xml:173(string)
 msgid "Synchronization"
 msgstr "Синхронизация"
 
@@ -121,7 +125,7 @@ msgstr "Сервер"
 msgid "SD Card"
 msgstr "SD Card"
 
-#: tmp_strings.xml:56(string)
+#: tmp_strings.xml:57(string)
 msgid "Online Synchronization"
 msgstr "Онлайн синхронизация"
 
@@ -129,11 +133,28 @@ msgstr "Онлайн синхронизация"
 msgid "Authenticate"
 msgstr "Аутентификация"
 
+#: tmp_strings.xml:58(string)
+msgid "Location on SD Card"
+msgstr "Местоположение на SD карте"
+
 #: tmp_strings.xml:59(string)
+msgid ""
+"The folder \\\"%1$s\\\" does not exist yet. Please connect your device to "
+"the computer, create the folder and fill it with *.note files."
+msgstr ""
+"Папка \\\"%1$s\\\" ещё не существует. Пожалуйста, подсоедините Ваше "
+"устройство к компьютеру, создайте папку и заполните её *.note файлами."
+
+#: tmp_strings.xml:61(string)
+msgid "\\\"%1$s\\\" contains invalid characters.\\nPlease try again!"
+msgstr ""
+"\\\"%1$s\\\" содержит неверные символы.\\n Пожалуйста, попробуйте снова!"
+
+#: tmp_strings.xml:63(string)
 msgid "Completing authentication. Please wait..."
 msgstr "Завершение аутентификации. Подождите..."
 
-#: tmp_strings.xml:60(string)
+#: tmp_strings.xml:63(string)
 msgid ""
 "The connection to the server has failed, please check that the address you "
 "entered is correct."
@@ -141,31 +162,31 @@ msgstr ""
 "Подключение к серверу не удалось, проверьте правильность введенного вами "
 "адреса."
 
-#: tmp_strings.xml:61(string)
+#: tmp_strings.xml:64(string)
 msgid "The server address changed but the new value is empty"
 msgstr "Адрес сервера изменен, но новое значение пустое"
 
-#: tmp_strings.xml:63(string)
+#: tmp_strings.xml:66(string)
 msgid "Choose the sync service to use"
 msgstr "Выберите сервис синхронизации для использования"
 
-#: tmp_strings.xml:64(string)
+#: tmp_strings.xml:67(string)
 msgid "Synchronization with %1$s is complete."
 msgstr "Синхронизация с %1$s завершена."
 
-#: tmp_strings.xml:65(string)
+#: tmp_strings.xml:68(string)
 msgid "No notes found on %1$s."
-msgstr ""
+msgstr "Не найдено записей в %1$s."
 
-#: tmp_strings.xml:66(string)
+#: tmp_strings.xml:69(string)
 msgid "You are not connected to the Internet."
 msgstr "Вы не подключены к Интернету."
 
-#: tmp_strings.xml:67(string)
+#: tmp_strings.xml:70(string)
 msgid "Sync already in progress"
 msgstr "Синхронизация уже выполняется"
 
-#: tmp_strings.xml:68(string)
+#: tmp_strings.xml:71(string)
 msgid ""
 "There was an error trying to parse your note collection. If you are able to "
 "replicate the problem, please contact us!"
@@ -173,133 +194,151 @@ msgstr ""
 "Произошла ошибка при попытке разбора вашей коллекции заметок. Если вы можете "
 "воспроизвести эту проблему, пожалуйста, свяжитесь с нами!"
 
-#: tmp_strings.xml:69(string)
+#: tmp_strings.xml:72(string)
 msgid "Error"
 msgstr "Ошибка"
 
-#: tmp_strings.xml:70(string)
+#: tmp_strings.xml:73(string)
 msgid "No Such Note"
-msgstr ""
+msgstr "НетТакой Заметки"
 
-#: tmp_strings.xml:71(string)
+#: tmp_strings.xml:74(string)
 msgid ""
 "The requested note could not be found. Maybe it was deleted or removed "
 "through synchronization."
 msgstr ""
+"Запрашиваемая заметка не может быть найдена. Может быть она была удалена или "
+"перемещена во время синхронизации."
+
+#: tmp_strings.xml:76(string)
+msgid ""
+"The requested note could not be parsed. If you are able to replicate the "
+"problem, please contact us!"
+msgstr ""
+"Запрашиваемая заметка не может быть проанализирована. Если Вы сможете её "
+"скопировать, пожалуйста, свяжитесь с нами!"
+
+#: tmp_strings.xml:77(string)
+msgid "Could not save the errors, please check your SD card."
+msgstr "Невозможно сохранить ошибки, пожалуйста проверьте вашу SD карту."
+
+#: tmp_strings.xml:78(string)
+msgid "SD card not found."
+msgstr "SD карта не найдена."
 
 #. NoteSorting
-#: tmp_strings.xml:74(string)
+#: tmp_strings.xml:80(string)
 msgid "Change Sort"
-msgstr ""
+msgstr "Изменить Вид"
 
-#: tmp_strings.xml:75(string)
+#: tmp_strings.xml:81(string)
 msgid "Choose the default sorting"
 msgstr "Выберите стандартный метод сортировки"
 
-#: tmp_strings.xml:76(string)
+#: tmp_strings.xml:82(string)
 msgid "Default sort"
 msgstr "Стандартный метод сортировки"
 
 #. NotebookFiltering
-#: tmp_strings.xml:79(string)
+#: tmp_strings.xml:85(string)
 msgid "Filter"
 msgstr "Фильтр"
 
-#: tmp_strings.xml:80(string)
+#: tmp_strings.xml:86(string)
 msgid "There are no notebooks in the database."
 msgstr "В базе данных нет сборников заметок"
 
-#: tmp_strings.xml:81(string)
+#: tmp_strings.xml:87(string)
 msgid "All notebooks"
 msgstr "Все сборники  заметок"
 
 #. List Longpress Menu
-#: tmp_strings.xml:84(string)
+#: tmp_strings.xml:90(string)
 msgid "View"
 msgstr "Просмотреть"
 
-#: tmp_strings.xml:85(string)
+#: tmp_strings.xml:91(string)
 msgid "Note Options"
 msgstr "Настройки заметки"
 
-#: tmp_strings.xml:86(string)
+#: tmp_strings.xml:92(string)
 msgid "Send"
 msgstr "Отправить"
 
 #. Search
-#: tmp_strings.xml:89(string)
+#: tmp_strings.xml:95(string)
 msgid "Search Notes"
 msgstr "Поиск заметок"
 
-#: tmp_strings.xml:90(string)
+#: tmp_strings.xml:96(string)
 msgid "Text in your notes"
 msgstr "Текст в ваших заметках"
 
-#: tmp_strings.xml:91(string)
+#: tmp_strings.xml:97(string)
 msgid "No notes found for \\\"%s\\\""
 msgstr "Нет заметок с  \\\"%s\\\""
 
-#: tmp_strings.xml:92(string)
+#: tmp_strings.xml:98(string)
 msgid "Search"
 msgstr "Поиск"
 
-#: tmp_strings.xml:93(string)
+#: tmp_strings.xml:100(string)
 msgid "Search Options"
 msgstr "Настройки поиска"
 
-#: tmp_strings.xml:94(string)
+#: tmp_strings.xml:99(string)
 msgid "Search Results:"
 msgstr "Результаты поиска:"
 
-#: tmp_strings.xml:95(string)
+#: tmp_strings.xml:100(string)
 msgid "Clear search history"
 msgstr "Очистить историю поиска"
 
-#: tmp_strings.xml:96(string)
+#: tmp_strings.xml:101(string)
 msgid "Remove all the searches you have performed"
 msgstr "Удалить все совершенные поиски"
 
-#: tmp_strings.xml:97(string)
+#: tmp_strings.xml:102(string)
 msgid "Search history has been cleared."
 msgstr "История поиска очищена"
 
 #. Date
-#: tmp_strings.xml:100(string)
+#: tmp_strings.xml:105(string)
 msgid "Modified:"
 msgstr "Изменен:"
 
-#: tmp_strings.xml:101(string)
+#: tmp_strings.xml:106(string)
 msgid "Today"
 msgstr "Сегодня"
 
-#: tmp_strings.xml:102(string)
+#: tmp_strings.xml:107(string)
 msgid "Yesterday"
 msgstr "Вчера"
 
 #. Shortcuts handling
-#: tmp_strings.xml:105(string)
+#: tmp_strings.xml:110(string)
 msgid "Choose a Note"
-msgstr ""
+msgstr "Выбрать Заметку"
 
-#: tmp_strings.xml:106(string)
+#: tmp_strings.xml:111(string)
 msgid "Tomdroid Note"
-msgstr ""
+msgstr "Заметка Tomdroid"
 
-#: tmp_strings.xml:107(string)
+#: tmp_strings.xml:112(string)
 msgid "Remove shortcut"
-msgstr ""
+msgstr "Удалить ярлык"
 
-#: tmp_strings.xml:108(string)
+#: tmp_strings.xml:113(string)
 msgid "Create shortcut"
-msgstr ""
+msgstr "Создать ярлык"
 
 #. 30 chars max
-#: tmp_strings.xml:115(string)
+#: tmp_strings.xml:251(string)
 msgid "Tomdroid notes"
 msgstr "Заметки Tomdroid"
 
-#. 325 chars max
-#: tmp_strings.xml:117(string)
+#. 4000 chars max
+#: tmp_strings.xml:124(string)
 msgid ""
 "A Tomboy client for Android. Tomboy is a desktop note-taking app using a "
 "wikiwiki approach and a simple user interface.\\n\\nNOTE: It is a READ-ONLY "
@@ -314,26 +353,29 @@ msgstr ""
 "Ubuntu One\\n*  импорт с SD-карты\\n* Open Source!"
 
 #. 80 chars max
-#: tmp_strings.xml:120(string)
+#: tmp_strings.xml:256(string)
 msgid ""
 "Note-taking application with online synchronization compatible with Tomboy"
 msgstr ""
 "Приложение для хранения заметок с возможностью онлайн синхронизации с "
 "Tomdroid"
 
+#. 500 chars max
+#: tmp_strings.xml:259(string)
+msgid ""
+"* Search notes and system integrated search\\n* Context menu\\n* Several "
+"usability improvements\\n* Higher quality icons\\n* Several bug fixes\\n* "
+"German translation\\n"
+msgstr ""
+
 #. Launchpad Translation String
-#: tmp_strings.xml:124(string)
+#: tmp_strings.xml:262(string)
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
+"  Alex Mr.Brightside Demurine https://launchpad.net/~extrimall90\n"
+"  Asalle Kim https://launchpad.net/~asaly12\n"
 "  Bernhard Hauer https://launchpad.net/~bernhard-hauer1\n"
 "  Ivan Akulov https://launchpad.net/~gxoptg\n"
-"  Mirzaeva Asalle https://launchpad.net/~asaly12\n"
 "  Stefan Hammer https://launchpad.net/~j-4\n"
 "  Vyacheslav Sharmanov https://launchpad.net/~vsharmanov"
-
-#~ msgid "change sort"
-#~ msgstr "выберите метод сортировки"
-
-#~ msgid "No notes found on %1$s ."
-#~ msgstr "В %1$s заметок не найдено ."

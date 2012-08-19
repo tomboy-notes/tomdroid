@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tomdroid\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-03-31 22:50+0200\n"
-"PO-Revision-Date: 2011-12-07 09:36+0000\n"
+"POT-Creation-Date: 2012-08-18 12:40+0200\n"
+"PO-Revision-Date: 2012-04-03 18:01+0000\n"
 "Last-Translator: Stefan Hammer <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-03-31 21:20+0000\n"
-"X-Generator: Launchpad (build 15032)\n"
+"X-Launchpad-Export-Date: 2012-08-19 21:32+0000\n"
+"X-Generator: Launchpad (build 15810)\n"
 
 #. application details
 #: tmp_strings.xml:27(string)
@@ -88,11 +88,11 @@ msgstr "%1$s\\n\\nAutor: %2$s\\nVersion: %3$s\\nLizensiert unter GPLv3"
 msgid "OK"
 msgstr "OK"
 
-#: tmp_strings.xml:45(string)
+#: tmp_strings.xml:45(string) tmp_strings.xml:209(string)
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: tmp_strings.xml:46(string)
+#: tmp_strings.xml:46(string) tmp_strings.xml:208(string)
 msgid "Close"
 msgstr "Schließen"
 
@@ -100,12 +100,16 @@ msgstr "Schließen"
 msgid "Project page"
 msgstr "Projektseite"
 
+#: tmp_strings.xml:48(string)
+msgid "Save to SD card"
+msgstr "Auf SD-Karte speichern"
+
 #. note-view.xml
-#: tmp_strings.xml:50(string)
+#: tmp_strings.xml:51(string)
 msgid "Please wait while note loads..."
 msgstr "Die Notiz wird geladen. Bitte warten …"
 
-#: tmp_strings.xml:52(string)
+#: tmp_strings.xml:173(string)
 msgid "Synchronization"
 msgstr "Synchronisation"
 
@@ -121,7 +125,7 @@ msgstr "Server"
 msgid "SD Card"
 msgstr "SD-Karte"
 
-#: tmp_strings.xml:56(string)
+#: tmp_strings.xml:57(string)
 msgid "Online Synchronization"
 msgstr "Online-Synchronisation"
 
@@ -129,11 +133,27 @@ msgstr "Online-Synchronisation"
 msgid "Authenticate"
 msgstr "Authentifizieren"
 
+#: tmp_strings.xml:58(string)
+msgid "Location on SD Card"
+msgstr "Ort auf der SD-Karte"
+
 #: tmp_strings.xml:59(string)
+msgid ""
+"The folder \\\"%1$s\\\" does not exist yet. Please connect your device to "
+"the computer, create the folder and fill it with *.note files."
+msgstr ""
+"Der Ordner \\\"%1$s\\\" existiert noch nicht. Bitte verbinde dein Gerät mit "
+"dem Computer, erstelle den Ordner und befüllt ihn mit *.note Dateien."
+
+#: tmp_strings.xml:61(string)
+msgid "\\\"%1$s\\\" contains invalid characters.\\nPlease try again!"
+msgstr "\\\"%1$s\\\" enthält ungültige Zeichen.\\nBitte versuche es erneut!"
+
+#: tmp_strings.xml:63(string)
 msgid "Completing authentication. Please wait..."
 msgstr "Authentifizierung läuft. Bitte warten …"
 
-#: tmp_strings.xml:60(string)
+#: tmp_strings.xml:63(string)
 msgid ""
 "The connection to the server has failed, please check that the address you "
 "entered is correct."
@@ -141,32 +161,32 @@ msgstr ""
 "Die Verbindung zum Server ist fehlgeschlagen. Bitte überprüfe die angegebene "
 "Adresse."
 
-#: tmp_strings.xml:61(string)
+#: tmp_strings.xml:64(string)
 msgid "The server address changed but the new value is empty"
 msgstr ""
 "Die Adresse des Servers wurde geändert. Es wurde keine Adresse angegeben!"
 
-#: tmp_strings.xml:63(string)
+#: tmp_strings.xml:66(string)
 msgid "Choose the sync service to use"
 msgstr "Synchronisationsdienst wählen"
 
-#: tmp_strings.xml:64(string)
+#: tmp_strings.xml:67(string)
 msgid "Synchronization with %1$s is complete."
 msgstr "Erfolgreich mit %1$s synchronisiert."
 
-#: tmp_strings.xml:65(string)
+#: tmp_strings.xml:68(string)
 msgid "No notes found on %1$s."
-msgstr ""
+msgstr "Keine Notizen auf %1$s gefunden."
 
-#: tmp_strings.xml:66(string)
+#: tmp_strings.xml:69(string)
 msgid "You are not connected to the Internet."
 msgstr "Es besteht keine Internetverbindung."
 
-#: tmp_strings.xml:67(string)
+#: tmp_strings.xml:70(string)
 msgid "Sync already in progress"
 msgstr "Synchronisation wird bereits ausgeführt."
 
-#: tmp_strings.xml:68(string)
+#: tmp_strings.xml:71(string)
 msgid ""
 "There was an error trying to parse your note collection. If you are able to "
 "replicate the problem, please contact us!"
@@ -174,133 +194,152 @@ msgstr ""
 "Es ist ein Fehler beim Analysieren Ihrer Notizen aufgetreten. Falls dieses "
 "Problem wiederholt auftritt, melden Sie es bitte!"
 
-#: tmp_strings.xml:69(string)
+#: tmp_strings.xml:72(string)
 msgid "Error"
 msgstr "Fehler"
 
-#: tmp_strings.xml:70(string)
+#: tmp_strings.xml:73(string)
 msgid "No Such Note"
-msgstr ""
+msgstr "Notiz nicht vorhanden"
 
-#: tmp_strings.xml:71(string)
+#: tmp_strings.xml:74(string)
 msgid ""
 "The requested note could not be found. Maybe it was deleted or removed "
 "through synchronization."
 msgstr ""
+"Die gewünschte Notiz konnte nicht gefunden werden. Vielleicht wurde sie "
+"gelöscht oder durch Synchronisieren entfernt."
+
+#: tmp_strings.xml:76(string)
+msgid ""
+"The requested note could not be parsed. If you are able to replicate the "
+"problem, please contact us!"
+msgstr ""
+"Die gewünschte Notiz konnte nicht analysiert werden. Falls dieses Problem "
+"wiederholt auftritt, melden Sie es bitte."
+
+#: tmp_strings.xml:77(string)
+msgid "Could not save the errors, please check your SD card."
+msgstr ""
+"Die Fehler konnten nicht gespeichert werden, bitte überprüfe die SD-Karte."
+
+#: tmp_strings.xml:78(string)
+msgid "SD card not found."
+msgstr "SD-Karte wurde nicht gefunden."
 
 #. NoteSorting
-#: tmp_strings.xml:74(string)
+#: tmp_strings.xml:80(string)
 msgid "Change Sort"
-msgstr ""
+msgstr "Reihenfolge ändern"
 
-#: tmp_strings.xml:75(string)
+#: tmp_strings.xml:81(string)
 msgid "Choose the default sorting"
 msgstr "Wähle die Standardreihenfolge"
 
-#: tmp_strings.xml:76(string)
+#: tmp_strings.xml:82(string)
 msgid "Default sort"
 msgstr "Standardreihenfolge"
 
 #. NotebookFiltering
-#: tmp_strings.xml:79(string)
+#: tmp_strings.xml:85(string)
 msgid "Filter"
 msgstr "Filter"
 
-#: tmp_strings.xml:80(string)
+#: tmp_strings.xml:86(string)
 msgid "There are no notebooks in the database."
 msgstr "Es befinden sich kein Notizen in der Datenbank."
 
-#: tmp_strings.xml:81(string)
+#: tmp_strings.xml:87(string)
 msgid "All notebooks"
 msgstr "Alle Notizbücher"
 
 #. List Longpress Menu
-#: tmp_strings.xml:84(string)
+#: tmp_strings.xml:90(string)
 msgid "View"
 msgstr "Anzeigen"
 
-#: tmp_strings.xml:85(string)
+#: tmp_strings.xml:91(string)
 msgid "Note Options"
 msgstr "Notizoptionen"
 
-#: tmp_strings.xml:86(string)
+#: tmp_strings.xml:92(string)
 msgid "Send"
 msgstr "Senden"
 
 #. Search
-#: tmp_strings.xml:89(string)
+#: tmp_strings.xml:95(string)
 msgid "Search Notes"
 msgstr "Notizen durchsuchen"
 
-#: tmp_strings.xml:90(string)
+#: tmp_strings.xml:96(string)
 msgid "Text in your notes"
 msgstr "Text in meinen Notizen"
 
-#: tmp_strings.xml:91(string)
+#: tmp_strings.xml:97(string)
 msgid "No notes found for \\\"%s\\\""
 msgstr "Keine Notizen gefunden mit \\\"%s\\\""
 
-#: tmp_strings.xml:92(string)
+#: tmp_strings.xml:98(string)
 msgid "Search"
 msgstr "Suchen"
 
-#: tmp_strings.xml:93(string)
+#: tmp_strings.xml:100(string)
 msgid "Search Options"
 msgstr "Suchoptionen"
 
-#: tmp_strings.xml:94(string)
+#: tmp_strings.xml:99(string)
 msgid "Search Results:"
 msgstr "Suchergebnisse:"
 
-#: tmp_strings.xml:95(string)
+#: tmp_strings.xml:100(string)
 msgid "Clear search history"
 msgstr "Suchverlauf löschen"
 
-#: tmp_strings.xml:96(string)
+#: tmp_strings.xml:101(string)
 msgid "Remove all the searches you have performed"
 msgstr "Alle Suchvorgänge aus dem Verlauf entfernen"
 
-#: tmp_strings.xml:97(string)
+#: tmp_strings.xml:102(string)
 msgid "Search history has been cleared."
 msgstr "Suchverlauf gelöscht."
 
 #. Date
-#: tmp_strings.xml:100(string)
+#: tmp_strings.xml:105(string)
 msgid "Modified:"
 msgstr "Geändert:"
 
-#: tmp_strings.xml:101(string)
+#: tmp_strings.xml:106(string)
 msgid "Today"
 msgstr "Heute"
 
-#: tmp_strings.xml:102(string)
+#: tmp_strings.xml:107(string)
 msgid "Yesterday"
 msgstr "Gestern"
 
 #. Shortcuts handling
-#: tmp_strings.xml:105(string)
+#: tmp_strings.xml:110(string)
 msgid "Choose a Note"
-msgstr ""
+msgstr "Wähle eine Notiz"
 
-#: tmp_strings.xml:106(string)
+#: tmp_strings.xml:111(string)
 msgid "Tomdroid Note"
-msgstr ""
+msgstr "Tomdroid Notiz"
 
-#: tmp_strings.xml:107(string)
+#: tmp_strings.xml:112(string)
 msgid "Remove shortcut"
-msgstr ""
+msgstr "Verknüpfung entfernen"
 
-#: tmp_strings.xml:108(string)
+#: tmp_strings.xml:113(string)
 msgid "Create shortcut"
-msgstr ""
+msgstr "Verknüpfung erstellen"
 
 #. 30 chars max
-#: tmp_strings.xml:115(string)
+#: tmp_strings.xml:251(string)
 msgid "Tomdroid notes"
 msgstr "Tomdroid Notizen"
 
-#. 325 chars max
-#: tmp_strings.xml:117(string)
+#. 4000 chars max
+#: tmp_strings.xml:124(string)
 msgid ""
 "A Tomboy client for Android. Tomboy is a desktop note-taking app using a "
 "wikiwiki approach and a simple user interface.\\n\\nNOTE: It is a READ-ONLY "
@@ -316,21 +355,27 @@ msgstr ""
 "source!"
 
 #. 80 chars max
-#: tmp_strings.xml:120(string)
+#: tmp_strings.xml:256(string)
 msgid ""
 "Note-taking application with online synchronization compatible with Tomboy"
 msgstr "Notiz-Programm mit online Synchronisation zu Tomboy."
 
+#. 500 chars max
+#: tmp_strings.xml:259(string)
+msgid ""
+"* Search notes and system integrated search\\n* Context menu\\n* Several "
+"usability improvements\\n* Higher quality icons\\n* Several bug fixes\\n* "
+"German translation\\n"
+msgstr ""
+"* Notizen durchsuchen\\n* Kontextmenü\\n* Verschiedene "
+"Usabilityverbesserungen\\n* Höherqualitative Icons\\n* Bug Fixes\\n* "
+"Deutsche *bersetzung"
+
 #. Launchpad Translation String
-#: tmp_strings.xml:124(string)
+#: tmp_strings.xml:262(string)
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
-"  Henrik Graßhoff https://launchpad.net/~henrik-grasshoff\n"
-"  Stefan Hammer https://launchpad.net/~j-4"
-
-#~ msgid "No notes found on %1$s ."
-#~ msgstr "Es wurden keine Notizen auf %1$s gefunden."
-
-#~ msgid "change sort"
-#~ msgstr "Reihenfolge ändern"
+"  Ghenrik https://launchpad.net/~ghenrik-deactivatedaccount\n"
+"  Stefan Hammer https://launchpad.net/~j-4\n"
+"  mili https://launchpad.net/~mili-f"

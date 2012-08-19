@@ -30,24 +30,25 @@
 	
 	<!-- main.xml -->
 	<string name="strListEmptyWaiting">Espereu mentre es carreguen les notes...</string>
-	<string name="strListEmptyNoNotes">No hi han notes a la base de dades del Tomdroid.</string>
+	<string name="strListEmptyNoNotes">No hi ha cap nota a la base de dades del Tomdroid.</string>
 	
 	<string name="menuSync">Sincronitza</string>
 	<string name="menuPrefs">Paràmetres</string>
 	<string name="menuAbout">Quant a</string>
-	<string name="titleWelcome">Advertència</string>
+	<string name="titleWelcome">Avís</string>
 	<string name="titleAbout">Quant al Tomdroid</string>
-	<string name="strWelcome">Welcome to Tomdroid.\n\nPlease note that this is beta quality software and that it contains known problems, like its inability to edit notes.\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something out and tested as quickly as possible.\n\nIf you would like to contribute, help at all levels would be appreciated. Hop on board on launchpad.net/tomdroid and contact us!\n</string>
-	<string name="strAbout">%1$s\n\nAuthor: %2$s\nVersion: %3$s\nLicensed under the GPLv3</string>
+	<string name="strWelcome">Benvinguts al Tomdroid.\n\nTingueu en compte que es tracta d\'un programari en qualitat "beta" i que conté problemes coneguts, com la impossibilitat d\'editar notes.\n\nSom ben conscients d\'aquests inconvenients i intentem treballar-hi de pressa, tot i que també volem tenir quelcom llest i provat el més aviat possible.\n\nSi voleu contribuir-hi us agrairem qualsevol tipus d\'ajuda. Uniu-vos a launchpad.net/tomdroid i contacteu amb nosaltres!\n</string>
+	<string name="strAbout">%1$s\n\nAutor: %2$s\nVersió: %3$s\nLlicenciat sota la GPLv3</string>
 	
 	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
 	<string name="btnOk">Accepta</string>
 	<string name="btnCancel">Cancel·la</string>
 	<string name="btnClose">Tanca</string>
 	<string name="btnProjectPage">Pàgina del projecte</string>
+	<string name="btnSavetoSD">Guarda a la targeta SD</string>
 	
 	<!-- note-view.xml -->
-	<string name="strWait">Please wait while note loads...</string>
+	<string name="strWait">Espereu mentre la nota es carrega...</string>
 	
 	<string name="prefSync">Sincronizació</string>
 	<string name="prefSyncService">Servei</string>
@@ -55,9 +56,9 @@
 	<string name="prefSDCard">Targeta SD</string>
 	<string name="prefTomboyWeb">Sincronització en línia</string>
 	<string name="prefAuthenticate">Autentica</string>
-	<string name="prefLocation">Location on SD Card</string>
-	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
-	<string name="prefNoValidLocation">\"%1$s\" is no valid folder location. Please try again!</string>
+	<string name="prefLocation">Ubicació a la targeta SD</string>
+	<string name="prefFolderCreated">Encara no existeix la carpeta «%1$s». Connecteu el dispositiu a l\'ordinador, creeu la carpeta i deseu els fitxers *.note a dins.</string>
+	<string name="prefNoValidEntry">\"%1$s\" conté caracters invàlids.\nProveu un altre cop.</string>
 	
 	<string name="prefSyncCompleteAuth">Espereu mentre es completa l\'autenticació...</string>
 	<string name="prefSyncConnectionFailed">La connexió amb el servidor ha fallat. Comproveu que l\'adreça que heu indicat és correcta.</string>
@@ -65,16 +66,19 @@
 	
 	<string name="titleSyncService">Trieu el servei de sincronització que es farà servir</string>
 	<string name="messageSyncComplete">S\'ha completat la sincronització amb %1$s</string>
-	<string name="messageSyncNoNote">No notes found on %1$s.</string>
+	<string name="messageSyncNoNote">No s\'han trobat notes a %1$s.</string>
 	<string name="messageSyncNoConnection">No esteu connectats a Internet</string>
 	<string name="messageSyncAlreadyInProgress">La sincronització ja està en marxa</string>
-	<string name="messageSyncError">There was an error trying to parse your note collection. If you are able to replicate the problem, please contact us!</string>
+	<string name="messageSyncError">Hi ha algun error per analitzar la vostra col·lecció de notes. Si sou capaços de reproduir el problema contacteu amb nosaltres!</string>
 	<string name="error">Error</string>
-	<string name="titleNoteNotFound">No Such Note</string>
-	<string name="messageNoteNotFound">The requested note could not be found. Maybe it was deleted or removed through synchronization.</string>
+	<string name="titleNoteNotFound">No hi ha cap nota</string>
+	<string name="messageNoteNotFound">No s\'ha trobat la nota sol·licitada. Potser ha estat eliminada durant la sincronització.</string>
+	<string name="messageErrorNoteParsing">La nota que heu demanat no es pot analitzar. Si sou capaços de reproduir el problema contacteu amb nosaltres!</string>	
+	<string name="messageCouldNotSave">No s\'han pogut guardar els errors, comproveu la targeta SD.</string>
+	<string name="messageNoSDCard">No s\'ha trobat la tarja SD</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">Change Sort</string>
+	<string name="menuSort">Ordenació</string>
 	<string name="titleDefaultSorting">Trieu l\'ordenació per defecte</string>
 	<string name="prefDefaultSorting">Ordenació per defecte</string>
 	
@@ -84,8 +88,8 @@
 	<string name="allNotebooksFilter">Totes les llibretes</string>
 	
 	<!-- List Longpress Menu -->
-	<string name="view">View</string>
-	<string name="noteOptions">Note Options</string>
+	<string name="view">Mostra</string>
+	<string name="noteOptions">Opcions de les notes</string>
 	<string name="send">Envia</string>
 	
 	<!--  Search -->
@@ -105,10 +109,10 @@
 	<string name="textYexterday">Ahir</string>
 
 	<!-- Shortcuts handling -->
-	<string name="shortcuts_view_caption">Choose a Note</string>
-	<string name="shortcut_menu_item_caption">Tomdroid Note</string>
-	<string name="btnRemoveShortcut">Remove shortcut</string>
-	<string name="createShortcut">Create shortcut</string>
+	<string name="shortcuts_view_caption">Tria una nota</string>
+	<string name="shortcut_menu_item_caption">Nota del Tomdroid</string>
+	<string name="btnRemoveShortcut">Elimina la drecera</string>
+	<string name="createShortcut">Crea una drecera</string>
 	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
@@ -116,15 +120,20 @@
 	-->
 	<!-- 30 chars max -->
 	<string name="market_title">Notes del Tomdroid</string>
-	<!-- 325 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\nNOTE: It is a READ-ONLY client for now.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
+	<!-- 4000 chars max -->
+	<string name="market_description">Un client del Tomboy per l\'Android. El Tomboy és una aplicació per prendre notes a l\'estil wikiwiki.\n\n* NOTA: És un client de NOMÉS LECTURA de moment.\n\n* Format compatible amb el Tomboy\n* Sincronització en línia amb el Snowy, el Tomboy Online o l\'Ubuntu One\n* Importació des de la targeta SD\n* De codi obert!</string>
 	
 	<!-- 80 chars max -->
-	<string name="market_promotext">Note-taking application with online synchronization compatible with Tomboy</string>
-	
-	
+	<string name="market_promotext">Aplicació per prendre notes amb sincronització compatible amb el Tomboy</string>
+
+	<!-- 500 chars max -->
+        <string name="market_recent_changes">* Cercador de notes i integració amb el cercador del sistema \n* Menú contextual\n* Diverses millores en la usabilitat\n* Icones de més qualitat\n* Correcció de diversos errors\n* Traducció a l\'alemany\n</string>
+
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
-  Antonio Vicién Faure https://launchpad.net/~antoniopolonio</string>
+  Adolfo Jayme Barrientos https://launchpad.net/~fitoschido
+  Antonio Vicién Faure https://launchpad.net/~antoniopolonio
+  David Planella https://launchpad.net/~dpm
+  Stefan Hammer https://launchpad.net/~j-4</string>
 	
 </resources>

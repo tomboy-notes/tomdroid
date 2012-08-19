@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tomdroid\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-03-31 22:50+0200\n"
-"PO-Revision-Date: 2012-03-05 16:48+0000\n"
+"POT-Creation-Date: 2012-08-18 12:40+0200\n"
+"PO-Revision-Date: 2012-08-16 08:48+0000\n"
 "Last-Translator: Antonio Vicién Faure <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-03-31 21:21+0000\n"
-"X-Generator: Launchpad (build 15032)\n"
+"X-Launchpad-Export-Date: 2012-08-19 21:32+0000\n"
+"X-Generator: Launchpad (build 15810)\n"
 
 #. application details
 #: tmp_strings.xml:27(string)
@@ -40,7 +40,7 @@ msgstr "Espereu mentre es carreguen les notes..."
 
 #: tmp_strings.xml:33(string)
 msgid "There are no notes in Tomdroid's database."
-msgstr "No hi han notes a la base de dades del Tomdroid."
+msgstr "No hi ha cap nota a la base de dades del Tomdroid."
 
 #: tmp_strings.xml:35(string)
 msgid "Sync"
@@ -56,7 +56,7 @@ msgstr "Quant a"
 
 #: tmp_strings.xml:38(string)
 msgid "Warning"
-msgstr "Advertència"
+msgstr "Avís"
 
 #: tmp_strings.xml:39(string)
 msgid "About Tomdroid"
@@ -71,21 +71,28 @@ msgid ""
 "would like to contribute, help at all levels would be appreciated. Hop on "
 "board on launchpad.net/tomdroid and contact us!\\n"
 msgstr ""
+"Benvinguts al Tomdroid.\\n\\nTingueu en compte que es tracta d'un programari "
+"en qualitat \"beta\" i que conté problemes coneguts, com la impossibilitat "
+"d'editar notes.\\n\\nSom ben conscients d'aquests inconvenients i intentem "
+"treballar-hi de pressa, tot i que també volem tenir quelcom llest i provat "
+"el més aviat possible.\\n\\nSi voleu contribuir-hi us agrairem qualsevol "
+"tipus d'ajuda. Uniu-vos a launchpad.net/tomdroid i contacteu amb nosaltres!\\"
+"n"
 
 #: tmp_strings.xml:41(string)
 msgid "%1$s\\n\\nAuthor: %2$s\\nVersion: %3$s\\nLicensed under the GPLv3"
-msgstr ""
+msgstr "%1$s\\n\\nAutor: %2$s\\nVersió: %3$s\\nLlicenciat sota la GPLv3"
 
 #. TODO aren't these available somewhere else? like in the SDK? //
 #: tmp_strings.xml:44(string)
 msgid "OK"
 msgstr "Accepta"
 
-#: tmp_strings.xml:45(string)
+#: tmp_strings.xml:45(string) tmp_strings.xml:209(string)
 msgid "Cancel"
 msgstr "Cancel·la"
 
-#: tmp_strings.xml:46(string)
+#: tmp_strings.xml:46(string) tmp_strings.xml:208(string)
 msgid "Close"
 msgstr "Tanca"
 
@@ -93,12 +100,16 @@ msgstr "Tanca"
 msgid "Project page"
 msgstr "Pàgina del projecte"
 
-#. note-view.xml
-#: tmp_strings.xml:50(string)
-msgid "Please wait while note loads..."
-msgstr ""
+#: tmp_strings.xml:48(string)
+msgid "Save to SD card"
+msgstr "Guarda a la targeta SD"
 
-#: tmp_strings.xml:52(string)
+#. note-view.xml
+#: tmp_strings.xml:51(string)
+msgid "Please wait while note loads..."
+msgstr "Espereu mentre la nota es carrega..."
+
+#: tmp_strings.xml:173(string)
 msgid "Synchronization"
 msgstr "Sincronizació"
 
@@ -114,7 +125,7 @@ msgstr "Servidor"
 msgid "SD Card"
 msgstr "Targeta SD"
 
-#: tmp_strings.xml:56(string)
+#: tmp_strings.xml:57(string)
 msgid "Online Synchronization"
 msgstr "Sincronització en línia"
 
@@ -122,11 +133,27 @@ msgstr "Sincronització en línia"
 msgid "Authenticate"
 msgstr "Autentica"
 
+#: tmp_strings.xml:58(string)
+msgid "Location on SD Card"
+msgstr "Ubicació a la targeta SD"
+
 #: tmp_strings.xml:59(string)
+msgid ""
+"The folder \\\"%1$s\\\" does not exist yet. Please connect your device to "
+"the computer, create the folder and fill it with *.note files."
+msgstr ""
+"Encara no existeix la carpeta «%1$s». Connecteu el dispositiu a l'ordinador, "
+"creeu la carpeta i deseu els fitxers *.note a dins."
+
+#: tmp_strings.xml:61(string)
+msgid "\\\"%1$s\\\" contains invalid characters.\\nPlease try again!"
+msgstr "\\\"%1$s\\\" conté caracters invàlids.\\nProveu un altre cop."
+
+#: tmp_strings.xml:63(string)
 msgid "Completing authentication. Please wait..."
 msgstr "Espereu mentre es completa l'autenticació..."
 
-#: tmp_strings.xml:60(string)
+#: tmp_strings.xml:63(string)
 msgid ""
 "The connection to the server has failed, please check that the address you "
 "entered is correct."
@@ -134,163 +161,183 @@ msgstr ""
 "La connexió amb el servidor ha fallat. Comproveu que l'adreça que heu "
 "indicat és correcta."
 
-#: tmp_strings.xml:61(string)
+#: tmp_strings.xml:64(string)
 msgid "The server address changed but the new value is empty"
 msgstr "L'adreça del servidor ha canviat, però el nou valor és buit"
 
-#: tmp_strings.xml:63(string)
+#: tmp_strings.xml:66(string)
 msgid "Choose the sync service to use"
 msgstr "Trieu el servei de sincronització que es farà servir"
 
-#: tmp_strings.xml:64(string)
+#: tmp_strings.xml:67(string)
 msgid "Synchronization with %1$s is complete."
 msgstr "S'ha completat la sincronització amb %1$s"
 
-#: tmp_strings.xml:65(string)
+#: tmp_strings.xml:68(string)
 msgid "No notes found on %1$s."
-msgstr ""
+msgstr "No s'han trobat notes a %1$s."
 
-#: tmp_strings.xml:66(string)
+#: tmp_strings.xml:69(string)
 msgid "You are not connected to the Internet."
 msgstr "No esteu connectats a Internet"
 
-#: tmp_strings.xml:67(string)
+#: tmp_strings.xml:70(string)
 msgid "Sync already in progress"
 msgstr "La sincronització ja està en marxa"
 
-#: tmp_strings.xml:68(string)
+#: tmp_strings.xml:71(string)
 msgid ""
 "There was an error trying to parse your note collection. If you are able to "
 "replicate the problem, please contact us!"
 msgstr ""
+"Hi ha algun error per analitzar la vostra col·lecció de notes. Si sou "
+"capaços de reproduir el problema contacteu amb nosaltres!"
 
-#: tmp_strings.xml:69(string)
+#: tmp_strings.xml:72(string)
 msgid "Error"
 msgstr "Error"
 
-#: tmp_strings.xml:70(string)
+#: tmp_strings.xml:73(string)
 msgid "No Such Note"
-msgstr ""
+msgstr "No hi ha cap nota"
 
-#: tmp_strings.xml:71(string)
+#: tmp_strings.xml:74(string)
 msgid ""
 "The requested note could not be found. Maybe it was deleted or removed "
 "through synchronization."
 msgstr ""
+"No s'ha trobat la nota sol·licitada. Potser ha estat eliminada durant la "
+"sincronització."
+
+#: tmp_strings.xml:76(string)
+msgid ""
+"The requested note could not be parsed. If you are able to replicate the "
+"problem, please contact us!"
+msgstr ""
+"La nota que heu demanat no es pot analitzar. Si sou capaços de reproduir el "
+"problema contacteu amb nosaltres!"
+
+#: tmp_strings.xml:77(string)
+msgid "Could not save the errors, please check your SD card."
+msgstr "No s'han pogut guardar els errors, comproveu la targeta SD."
+
+#: tmp_strings.xml:78(string)
+msgid "SD card not found."
+msgstr "No s'ha trobat la tarja SD"
 
 #. NoteSorting
-#: tmp_strings.xml:74(string)
+#: tmp_strings.xml:80(string)
 msgid "Change Sort"
-msgstr ""
+msgstr "Ordenació"
 
-#: tmp_strings.xml:75(string)
+#: tmp_strings.xml:81(string)
 msgid "Choose the default sorting"
 msgstr "Trieu l'ordenació per defecte"
 
-#: tmp_strings.xml:76(string)
+#: tmp_strings.xml:82(string)
 msgid "Default sort"
 msgstr "Ordenació per defecte"
 
 #. NotebookFiltering
-#: tmp_strings.xml:79(string)
+#: tmp_strings.xml:85(string)
 msgid "Filter"
 msgstr "Filtra"
 
-#: tmp_strings.xml:80(string)
+#: tmp_strings.xml:86(string)
 msgid "There are no notebooks in the database."
 msgstr "No hi han llibretes a la base de dades"
 
-#: tmp_strings.xml:81(string)
+#: tmp_strings.xml:87(string)
 msgid "All notebooks"
 msgstr "Totes les llibretes"
 
 #. List Longpress Menu
-#: tmp_strings.xml:84(string)
+#: tmp_strings.xml:90(string)
 msgid "View"
-msgstr ""
+msgstr "Mostra"
 
-#: tmp_strings.xml:85(string)
+#: tmp_strings.xml:91(string)
 msgid "Note Options"
-msgstr ""
+msgstr "Opcions de les notes"
 
-#: tmp_strings.xml:86(string)
+#: tmp_strings.xml:92(string)
 msgid "Send"
 msgstr "Envia"
 
 #. Search
-#: tmp_strings.xml:89(string)
+#: tmp_strings.xml:95(string)
 msgid "Search Notes"
 msgstr "Cerca notes"
 
-#: tmp_strings.xml:90(string)
+#: tmp_strings.xml:96(string)
 msgid "Text in your notes"
 msgstr "Text a les vostres notes"
 
-#: tmp_strings.xml:91(string)
+#: tmp_strings.xml:97(string)
 msgid "No notes found for \\\"%s\\\""
 msgstr "No s'han trobat notes amb \\\"%s\\\""
 
-#: tmp_strings.xml:92(string)
+#: tmp_strings.xml:98(string)
 msgid "Search"
 msgstr "Cerca"
 
-#: tmp_strings.xml:93(string)
+#: tmp_strings.xml:100(string)
 msgid "Search Options"
 msgstr "Opcions de cerca"
 
-#: tmp_strings.xml:94(string)
+#: tmp_strings.xml:99(string)
 msgid "Search Results:"
 msgstr "Resultats de la cerca:"
 
-#: tmp_strings.xml:95(string)
+#: tmp_strings.xml:100(string)
 msgid "Clear search history"
 msgstr "Neteja l'historial de cerques"
 
-#: tmp_strings.xml:96(string)
+#: tmp_strings.xml:101(string)
 msgid "Remove all the searches you have performed"
 msgstr "Elimina totes les cerques realitzades"
 
-#: tmp_strings.xml:97(string)
+#: tmp_strings.xml:102(string)
 msgid "Search history has been cleared."
 msgstr "S'ha netejat l'historial de cerques"
 
 #. Date
-#: tmp_strings.xml:100(string)
+#: tmp_strings.xml:105(string)
 msgid "Modified:"
 msgstr "Modificat:"
 
-#: tmp_strings.xml:101(string)
+#: tmp_strings.xml:106(string)
 msgid "Today"
 msgstr "Avui"
 
-#: tmp_strings.xml:102(string)
+#: tmp_strings.xml:107(string)
 msgid "Yesterday"
 msgstr "Ahir"
 
 #. Shortcuts handling
-#: tmp_strings.xml:105(string)
+#: tmp_strings.xml:110(string)
 msgid "Choose a Note"
-msgstr ""
+msgstr "Tria una nota"
 
-#: tmp_strings.xml:106(string)
+#: tmp_strings.xml:111(string)
 msgid "Tomdroid Note"
-msgstr ""
+msgstr "Nota del Tomdroid"
 
-#: tmp_strings.xml:107(string)
+#: tmp_strings.xml:112(string)
 msgid "Remove shortcut"
-msgstr ""
+msgstr "Elimina la drecera"
 
-#: tmp_strings.xml:108(string)
+#: tmp_strings.xml:113(string)
 msgid "Create shortcut"
-msgstr ""
+msgstr "Crea una drecera"
 
 #. 30 chars max
-#: tmp_strings.xml:115(string)
+#: tmp_strings.xml:251(string)
 msgid "Tomdroid notes"
 msgstr "Notes del Tomdroid"
 
-#. 325 chars max
-#: tmp_strings.xml:117(string)
+#. 4000 chars max
+#: tmp_strings.xml:124(string)
 msgid ""
 "A Tomboy client for Android. Tomboy is a desktop note-taking app using a "
 "wikiwiki approach and a simple user interface.\\n\\nNOTE: It is a READ-ONLY "
@@ -298,22 +345,36 @@ msgid ""
 "synchronization with Snowy, Tomboy Online or Ubuntu One\\n* SD Card "
 "importation\\n* Open source!"
 msgstr ""
+"Un client del Tomboy per l'Android. El Tomboy és una aplicació per prendre "
+"notes a l'estil wikiwiki.\\n\\n* NOTA: És un client de NOMÉS LECTURA de "
+"moment.\\n\\n* Format compatible amb el Tomboy\\n* Sincronització en línia "
+"amb el Snowy, el Tomboy Online o l'Ubuntu One\\n* Importació des de la "
+"targeta SD\\n* De codi obert!"
 
 #. 80 chars max
-#: tmp_strings.xml:120(string)
+#: tmp_strings.xml:256(string)
 msgid ""
 "Note-taking application with online synchronization compatible with Tomboy"
 msgstr ""
+"Aplicació per prendre notes amb sincronització compatible amb el Tomboy"
+
+#. 500 chars max
+#: tmp_strings.xml:259(string)
+msgid ""
+"* Search notes and system integrated search\\n* Context menu\\n* Several "
+"usability improvements\\n* Higher quality icons\\n* Several bug fixes\\n* "
+"German translation\\n"
+msgstr ""
+"* Cercador de notes i integració amb el cercador del sistema \\n* Menú "
+"contextual\\n* Diverses millores en la usabilitat\\n* Icones de més "
+"qualitat\\n* Correcció de diversos errors\\n* Traducció a l'alemany\\n"
 
 #. Launchpad Translation String
-#: tmp_strings.xml:124(string)
+#: tmp_strings.xml:262(string)
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
-"  Antonio Vicién Faure https://launchpad.net/~antoniopolonio"
-
-#~ msgid "No notes found on %1$s ."
-#~ msgstr "No s'han trobat notes a %1$s"
-
-#~ msgid "change sort"
-#~ msgstr "Canvia l'ordenació"
+"  Adolfo Jayme Barrientos https://launchpad.net/~fitoschido\n"
+"  Antonio Vicién Faure https://launchpad.net/~antoniopolonio\n"
+"  David Planella https://launchpad.net/~dpm\n"
+"  Stefan Hammer https://launchpad.net/~j-4"

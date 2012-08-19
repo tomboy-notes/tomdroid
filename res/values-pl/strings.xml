@@ -45,6 +45,7 @@
 	<string name="btnCancel">Anuluj</string>
 	<string name="btnClose">Zamknij</string>
 	<string name="btnProjectPage">Strona projektu</string>
+	<string name="btnSavetoSD">Zapisz na kartę SD</string>
 	
 	<!-- note-view.xml -->
 	<string name="strWait">Proszę czekać na załadowanie notatek...</string>
@@ -55,9 +56,9 @@
 	<string name="prefSDCard">Karta SD</string>
 	<string name="prefTomboyWeb">Synchronizacja online</string>
 	<string name="prefAuthenticate">Autoryzuj</string>
-	<string name="prefLocation">Location on SD Card</string>
-	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
-	<string name="prefNoValidLocation">\"%1$s\" is no valid folder location. Please try again!</string>
+	<string name="prefLocation">Położenie na karcie SD</string>
+	<string name="prefFolderCreated">Folder \"%1$s\" jeszcze nie istnieje. Proszę podłącz swoje urządzenie do komputera, stwórz folder i umieść w nim pliki *.note.</string>
+	<string name="prefNoValidEntry">\"%1$s\" zawiera niedozwolone znaki.\nProszę spróbować ponownie.</string>
 	
 	<string name="prefSyncCompleteAuth">Autoryzowanie. Proszę czekać...</string>
 	<string name="prefSyncConnectionFailed">Połączenie z serwerem jest niemożliwe, sprawdź, czy wprowadzony adres jest poprawny.</string>
@@ -65,16 +66,19 @@
 	
 	<string name="titleSyncService">Wybierz usługę, której chcesz użyć</string>
 	<string name="messageSyncComplete">Zakończono synchronizację z %1$s.</string>
-	<string name="messageSyncNoNote">No notes found on %1$s.</string>
+	<string name="messageSyncNoNote">Nie znaleziono notatek na %1$s.</string>
 	<string name="messageSyncNoConnection">Brak połączenia z siecią.</string>
 	<string name="messageSyncAlreadyInProgress">Synchronizacja w trakcie</string>
 	<string name="messageSyncError">Błąd wczytywania notatek. Jeśli problem się powtarza, proszę skontaktuj się z nami!</string>
 	<string name="error">Błąd</string>
-	<string name="titleNoteNotFound">No Such Note</string>
-	<string name="messageNoteNotFound">The requested note could not be found. Maybe it was deleted or removed through synchronization.</string>
+	<string name="titleNoteNotFound">Nie ma takiej notatki</string>
+	<string name="messageNoteNotFound">Nie odnaleziono notatki. Możliwe, że została usunięta lub przeniesiona podczas synchronizacji.</string>
+	<string name="messageErrorNoteParsing">The requested note could not be parsed. If you are able to replicate the problem, please contact us!</string>	
+	<string name="messageCouldNotSave">Nie można zapisać błędów. Sprawdź kartę SD.</string>
+	<string name="messageNoSDCard">Nie znaleziono karty SD.</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">Change Sort</string>
+	<string name="menuSort">Zmień sortowanie</string>
 	<string name="titleDefaultSorting">Wybierz domyślne sortowanie</string>
 	<string name="prefDefaultSorting">Domyślne sortowanie</string>
 	
@@ -105,10 +109,10 @@
 	<string name="textYexterday">Wczoraj</string>
 
 	<!-- Shortcuts handling -->
-	<string name="shortcuts_view_caption">Choose a Note</string>
-	<string name="shortcut_menu_item_caption">Tomdroid Note</string>
-	<string name="btnRemoveShortcut">Remove shortcut</string>
-	<string name="createShortcut">Create shortcut</string>
+	<string name="shortcuts_view_caption">Wybierz notatke</string>
+	<string name="shortcut_menu_item_caption">Notatki Tomdroid</string>
+	<string name="btnRemoveShortcut">Usuń skrót</string>
+	<string name="createShortcut">Utwórz skrót</string>
 	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
@@ -116,17 +120,21 @@
 	-->
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid notes</string>
-	<!-- 325 chars max -->
+	<!-- 4000 chars max -->
 	<string name="market_description">Klient notatek Tomboy dla Android. Tomboy to prosty i łatwy w użyciu program do sporządzania notatek na systemy biurkowe.\n\nUwaga! Edytowanie notatek nie jest jeszcze wspierane.\n\n* Kompatybilny z formatem notatek Tomboy.\n* Synchronizacja notatek z serwisami Snowy, Tomboy Online i Ubuntu One.\n* Importowanie notatek z karty SD.\n* Open Source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Notatnik ze zdalną synchronizacją, kompatybilny z programem Tomboy.</string>
-	
-	
+
+	<!-- 500 chars max -->
+        <string name="market_recent_changes">* Search notes and system integrated search\n* Context menu\n* Several usability improvements\n* Higher quality icons\n* Several bug fixes\n* German translation\n</string>
+
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
-  Hubert "Schlussarz" Ślósarski https://launchpad.net/~schlussarz
+  Account Deactivated https://launchpad.net/~accountdeactivated
+  Antoni Kudelski https://launchpad.net/~antoni-kudelski
   Piotr Adamski https://launchpad.net/~mcveat
+  Piotr Wawrzyniak https://launchpad.net/~wawrzino
   Stefan Hammer https://launchpad.net/~j-4
   Łukasz Serafinowski https://launchpad.net/~lukasz-serafinowski</string>
 	

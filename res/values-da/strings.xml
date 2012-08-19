@@ -45,6 +45,7 @@
 	<string name="btnCancel">Annuler</string>
 	<string name="btnClose">Afslut</string>
 	<string name="btnProjectPage">Projektside</string>
+	<string name="btnSavetoSD">Gem til SD-kort</string>
 	
 	<!-- note-view.xml -->
 	<string name="strWait">Vent venligst imens noterne hentes</string>
@@ -55,9 +56,9 @@
 	<string name="prefSDCard">SD-kort</string>
 	<string name="prefTomboyWeb">Online synkronisering</string>
 	<string name="prefAuthenticate">Godkend</string>
-	<string name="prefLocation">Location on SD Card</string>
-	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
-	<string name="prefNoValidLocation">\"%1$s\" is no valid folder location. Please try again!</string>
+	<string name="prefLocation">Placering på SD-kort</string>
+	<string name="prefFolderCreated">Mappen \"%1$s\" eksisterer ikke endnu. Forbind venligst din enhed til computeren, opret en mappe og læg dine *.note filer i den.</string>
+	<string name="prefNoValidEntry">\"%1$s\" indeholder ugyldige bogstaver.\n Forsøg venligst igen!</string>
 	
 	<string name="prefSyncCompleteAuth">Færdiggør godkendelse. Vent venligst...</string>
 	<string name="prefSyncConnectionFailed">Forbindelsen til serveren mislykkedes. Tjek venligst,  at du har indtastet den rigtige adresse.</string>
@@ -65,16 +66,19 @@
 	
 	<string name="titleSyncService">Vælg hvilken synkroniseringsmetode, der skal bruges</string>
 	<string name="messageSyncComplete">Synkronisering er %1$s færdig.</string>
-	<string name="messageSyncNoNote">No notes found on %1$s.</string>
+	<string name="messageSyncNoNote">Ingen noter fundet i %1$s.</string>
 	<string name="messageSyncNoConnection">Du er ikke forbundet til internettet.</string>
 	<string name="messageSyncAlreadyInProgress">Synkronisering er allerede i gang.</string>
 	<string name="messageSyncError">Der er sket en fejl ved hentningen af dine noter. Hvis du har mulighed for at genskabe fejlen bedes du kontakte os!</string>
 	<string name="error">Fejl</string>
-	<string name="titleNoteNotFound">No Such Note</string>
-	<string name="messageNoteNotFound">The requested note could not be found. Maybe it was deleted or removed through synchronization.</string>
+	<string name="titleNoteNotFound">Noten findes ikke</string>
+	<string name="messageNoteNotFound">Den ønskede note er ikke fundet. Måske er den blevet slettet eller flyttet i synkroniseringsprocessen.</string>
+	<string name="messageErrorNoteParsing">Den ønskede note kunne ikke tolkes. Kontakt os venligst hvis du har mulighed for at genskabe fejlen.</string>	
+	<string name="messageCouldNotSave">Kan ikke gemme fejlene, kontroler venligst dit SD-kort</string>
+	<string name="messageNoSDCard">SD-kort ikke fundet.</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">Change Sort</string>
+	<string name="menuSort">Skift sortering</string>
 	<string name="titleDefaultSorting">Vælg standardsortering</string>
 	<string name="prefDefaultSorting">Standardsortering</string>
 	
@@ -105,10 +109,10 @@
 	<string name="textYexterday">I går</string>
 
 	<!-- Shortcuts handling -->
-	<string name="shortcuts_view_caption">Choose a Note</string>
-	<string name="shortcut_menu_item_caption">Tomdroid Note</string>
-	<string name="btnRemoveShortcut">Remove shortcut</string>
-	<string name="createShortcut">Create shortcut</string>
+	<string name="shortcuts_view_caption">Vælg en note</string>
+	<string name="shortcut_menu_item_caption">Tomdroid note</string>
+	<string name="btnRemoveShortcut">Fjern genvej</string>
+	<string name="createShortcut">Opret genvej</string>
 	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
@@ -116,13 +120,15 @@
 	-->
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid noter</string>
-	<!-- 325 chars max -->
+	<!-- 4000 chars max -->
 	<string name="market_description">En Tomboy-klient til Android. Tomboy er en skrivebords notes-app med en wikiwiki tilgang og simpel brugerflader.\n\nBemærk: Det er kun en READ-ONLY klient pt.\n\*Noteformat er kompatibelt med Tomboy\n* Online synkronisering af noter via enten Snowy, Tomboy Online eller Ubuntu One\n* Import fra SD-kort\n* Open Source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Notes-app med online synkronisering og kompatibelt med Tomboy</string>
-	
-	
+
+	<!-- 500 chars max -->
+        <string name="market_recent_changes">* Search notes and system integrated search\n* Context menu\n* Several usability improvements\n* Higher quality icons\n* Several bug fixes\n* German translation\n</string>
+
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
   Mads Boserup Lauritsen https://launchpad.net/~madsbola</string>

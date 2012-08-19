@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tomdroid\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-03-31 22:50+0200\n"
-"PO-Revision-Date: 2011-12-07 09:34+0000\n"
-"Last-Translator: Stefan Hammer <Unknown>\n"
+"POT-Creation-Date: 2012-08-18 12:40+0200\n"
+"PO-Revision-Date: 2012-04-19 08:14+0000\n"
+"Last-Translator: mozillazg <Unknown>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-03-31 21:20+0000\n"
-"X-Generator: Launchpad (build 15032)\n"
+"X-Launchpad-Export-Date: 2012-08-19 21:32+0000\n"
+"X-Generator: Launchpad (build 15810)\n"
 
 #. application details
 #: tmp_strings.xml:27(string)
@@ -25,7 +25,7 @@ msgstr "Tomdroid"
 #: tmp_strings.xml:28(string)
 msgid ""
 "Tomboy compatible wikiwiki note-taking application that can't take notes yet."
-msgstr "Tomdroid是一种与Tomboy兼容的、使用wikiwiki方法的记笔记应用，但至今为止还不能记笔记。"
+msgstr "Tomboy 兼容还不能记笔记的维基便笺应用。"
 
 #: tmp_strings.xml:29(string)
 msgid "Olivier Bilodeau"
@@ -34,11 +34,11 @@ msgstr "Olivier Bilodeau"
 #. main.xml
 #: tmp_strings.xml:32(string)
 msgid "Please wait while the notes load.."
-msgstr "笔记在加载中，请稍候"
+msgstr "便笺正在加载，请稍后.."
 
 #: tmp_strings.xml:33(string)
 msgid "There are no notes in Tomdroid's database."
-msgstr "Tomdroid的数据库里没有笔记。"
+msgstr "Tomdroid 的数据库里没有便笺。"
 
 #: tmp_strings.xml:35(string)
 msgid "Sync"
@@ -50,7 +50,7 @@ msgstr "设置"
 
 #: tmp_strings.xml:37(string)
 msgid "About"
-msgstr "有关"
+msgstr "关于"
 
 #: tmp_strings.xml:38(string)
 msgid "Warning"
@@ -58,7 +58,7 @@ msgstr "警告"
 
 #: tmp_strings.xml:39(string)
 msgid "About Tomdroid"
-msgstr "关于Tomdroid"
+msgstr "关于 Tomdroid"
 
 #: tmp_strings.xml:40(string)
 msgid ""
@@ -75,31 +75,35 @@ msgstr ""
 
 #: tmp_strings.xml:41(string)
 msgid "%1$s\\n\\nAuthor: %2$s\\nVersion: %3$s\\nLicensed under the GPLv3"
-msgstr "%1$s\\n\\n作者: %2$s\\n版本: %3$s\\n领有GPLv3的许可证"
+msgstr "%1$s\\n\\n作者: %2$s\\n版本: %3$s\\n遵照 GPLv3 许可"
 
 #. TODO aren't these available somewhere else? like in the SDK? //
 #: tmp_strings.xml:44(string)
 msgid "OK"
 msgstr "确认"
 
-#: tmp_strings.xml:45(string)
+#: tmp_strings.xml:45(string) tmp_strings.xml:209(string)
 msgid "Cancel"
 msgstr "取消"
 
-#: tmp_strings.xml:46(string)
+#: tmp_strings.xml:46(string) tmp_strings.xml:208(string)
 msgid "Close"
 msgstr "关闭"
 
 #: tmp_strings.xml:47(string)
 msgid "Project page"
-msgstr "项目页"
+msgstr "项目主页"
+
+#: tmp_strings.xml:48(string)
+msgid "Save to SD card"
+msgstr "保存到 SD 卡"
 
 #. note-view.xml
-#: tmp_strings.xml:50(string)
+#: tmp_strings.xml:51(string)
 msgid "Please wait while note loads..."
-msgstr "笔记在加载中，请稍候"
+msgstr "笔记正在加载中，请稍候"
 
-#: tmp_strings.xml:52(string)
+#: tmp_strings.xml:173(string)
 msgid "Synchronization"
 msgstr "同步"
 
@@ -113,183 +117,211 @@ msgstr "服务器"
 
 #: tmp_strings.xml:55(string)
 msgid "SD Card"
-msgstr "SD卡"
+msgstr "SD 卡"
 
-#: tmp_strings.xml:56(string)
+#: tmp_strings.xml:57(string)
 msgid "Online Synchronization"
-msgstr "网上同步"
+msgstr "在线同步"
 
 #: tmp_strings.xml:57(string)
 msgid "Authenticate"
 msgstr "认证"
 
+#: tmp_strings.xml:58(string)
+msgid "Location on SD Card"
+msgstr "在 SD 卡上的位置"
+
 #: tmp_strings.xml:59(string)
+msgid ""
+"The folder \\\"%1$s\\\" does not exist yet. Please connect your device to "
+"the computer, create the folder and fill it with *.note files."
+msgstr "文件夹“%1$s”不存在。请连接您的设备到计算机，创建文件夹并载入 *.note 文件。"
+
+#: tmp_strings.xml:61(string)
+msgid "\\\"%1$s\\\" contains invalid characters.\\nPlease try again!"
+msgstr "“%1$s”包含无效字符。\\n请重试！"
+
+#: tmp_strings.xml:63(string)
 msgid "Completing authentication. Please wait..."
 msgstr "完成认证。请稍候..."
 
-#: tmp_strings.xml:60(string)
+#: tmp_strings.xml:63(string)
 msgid ""
 "The connection to the server has failed, please check that the address you "
 "entered is correct."
 msgstr "与服务器的连接失败了，请检查您输入的网址是否正确。"
 
-#: tmp_strings.xml:61(string)
+#: tmp_strings.xml:64(string)
 msgid "The server address changed but the new value is empty"
-msgstr "您没有输入服务器的网址。变化被保存。"
+msgstr "服务器地址已更改，但新值为空"
 
-#: tmp_strings.xml:63(string)
+#: tmp_strings.xml:66(string)
 msgid "Choose the sync service to use"
 msgstr "请选择想使用的同步服务"
 
-#: tmp_strings.xml:64(string)
+#: tmp_strings.xml:67(string)
 msgid "Synchronization with %1$s is complete."
 msgstr "与%1$s的同步完成。"
 
-#: tmp_strings.xml:65(string)
+#: tmp_strings.xml:68(string)
 msgid "No notes found on %1$s."
-msgstr ""
+msgstr "在 %1$s 中未发现便笺。"
 
-#: tmp_strings.xml:66(string)
+#: tmp_strings.xml:69(string)
 msgid "You are not connected to the Internet."
 msgstr "现在没有上网。"
 
-#: tmp_strings.xml:67(string)
+#: tmp_strings.xml:70(string)
 msgid "Sync already in progress"
 msgstr "同步已经在进行中"
 
-#: tmp_strings.xml:68(string)
+#: tmp_strings.xml:71(string)
 msgid ""
 "There was an error trying to parse your note collection. If you are able to "
 "replicate the problem, please contact us!"
 msgstr "在搜索笔记的时候出现了错误。如果再次出现这样的错误请联系我们！"
 
-#: tmp_strings.xml:69(string)
+#: tmp_strings.xml:72(string)
 msgid "Error"
 msgstr "错误"
 
-#: tmp_strings.xml:70(string)
+#: tmp_strings.xml:73(string)
 msgid "No Such Note"
-msgstr ""
+msgstr "没有这样的便笺"
 
-#: tmp_strings.xml:71(string)
+#: tmp_strings.xml:74(string)
 msgid ""
 "The requested note could not be found. Maybe it was deleted or removed "
 "through synchronization."
-msgstr ""
-
-#. NoteSorting
-#: tmp_strings.xml:74(string)
-msgid "Change Sort"
-msgstr ""
-
-#: tmp_strings.xml:75(string)
-msgid "Choose the default sorting"
-msgstr "选择常规的顺序"
+msgstr "未找到请求的便笺。或许它已通过同步被删除或移除。"
 
 #: tmp_strings.xml:76(string)
+msgid ""
+"The requested note could not be parsed. If you are able to replicate the "
+"problem, please contact us!"
+msgstr "无法解析请求的便笺。如果您能重现该问题，请与我们联系！"
+
+#: tmp_strings.xml:77(string)
+msgid "Could not save the errors, please check your SD card."
+msgstr "无法保存错误，请检查您的 SD 卡。"
+
+#: tmp_strings.xml:78(string)
+msgid "SD card not found."
+msgstr "未发现 SD 卡。"
+
+#. NoteSorting
+#: tmp_strings.xml:80(string)
+msgid "Change Sort"
+msgstr "更改排序"
+
+#: tmp_strings.xml:81(string)
+msgid "Choose the default sorting"
+msgstr "选择默认顺序"
+
+#: tmp_strings.xml:82(string)
 msgid "Default sort"
-msgstr "常规的顺序"
+msgstr "默认顺序"
 
 #. NotebookFiltering
-#: tmp_strings.xml:79(string)
+#: tmp_strings.xml:85(string)
 msgid "Filter"
 msgstr "过滤"
 
-#: tmp_strings.xml:80(string)
+#: tmp_strings.xml:86(string)
 msgid "There are no notebooks in the database."
-msgstr "数据库里没有笔记本。"
+msgstr "数据库里没有便笺。"
 
-#: tmp_strings.xml:81(string)
+#: tmp_strings.xml:87(string)
 msgid "All notebooks"
-msgstr "所有的笔记本"
+msgstr "所有便笺本"
 
 #. List Longpress Menu
-#: tmp_strings.xml:84(string)
+#: tmp_strings.xml:90(string)
 msgid "View"
 msgstr "查看"
 
-#: tmp_strings.xml:85(string)
+#: tmp_strings.xml:91(string)
 msgid "Note Options"
-msgstr "笔记选项"
+msgstr "便笺选项"
 
-#: tmp_strings.xml:86(string)
+#: tmp_strings.xml:92(string)
 msgid "Send"
 msgstr "发送"
 
 #. Search
-#: tmp_strings.xml:89(string)
+#: tmp_strings.xml:95(string)
 msgid "Search Notes"
-msgstr "搜索笔记"
+msgstr "搜索便笺"
 
-#: tmp_strings.xml:90(string)
+#: tmp_strings.xml:96(string)
 msgid "Text in your notes"
-msgstr "笔记的内容"
+msgstr "便笺内容"
 
-#: tmp_strings.xml:91(string)
+#: tmp_strings.xml:97(string)
 msgid "No notes found for \\\"%s\\\""
-msgstr "没找到有关\\\"%s\\\"的笔记"
+msgstr "没找到有关“%s”的便笺"
 
-#: tmp_strings.xml:92(string)
+#: tmp_strings.xml:98(string)
 msgid "Search"
 msgstr "搜索"
 
-#: tmp_strings.xml:93(string)
+#: tmp_strings.xml:100(string)
 msgid "Search Options"
 msgstr "搜索选项"
 
-#: tmp_strings.xml:94(string)
+#: tmp_strings.xml:99(string)
 msgid "Search Results:"
 msgstr "搜索结果"
 
-#: tmp_strings.xml:95(string)
+#: tmp_strings.xml:100(string)
 msgid "Clear search history"
 msgstr "删除搜索历史"
 
-#: tmp_strings.xml:96(string)
+#: tmp_strings.xml:101(string)
 msgid "Remove all the searches you have performed"
 msgstr "删除所有的搜索"
 
-#: tmp_strings.xml:97(string)
+#: tmp_strings.xml:102(string)
 msgid "Search history has been cleared."
 msgstr "搜索历史被删除了"
 
 #. Date
-#: tmp_strings.xml:100(string)
+#: tmp_strings.xml:105(string)
 msgid "Modified:"
-msgstr "修改于："
+msgstr "修改时间："
 
-#: tmp_strings.xml:101(string)
+#: tmp_strings.xml:106(string)
 msgid "Today"
 msgstr "今天"
 
-#: tmp_strings.xml:102(string)
+#: tmp_strings.xml:107(string)
 msgid "Yesterday"
 msgstr "昨天"
 
 #. Shortcuts handling
-#: tmp_strings.xml:105(string)
+#: tmp_strings.xml:110(string)
 msgid "Choose a Note"
-msgstr ""
+msgstr "选择便笺"
 
-#: tmp_strings.xml:106(string)
+#: tmp_strings.xml:111(string)
 msgid "Tomdroid Note"
-msgstr ""
+msgstr "Tomdroid 便笺"
 
-#: tmp_strings.xml:107(string)
+#: tmp_strings.xml:112(string)
 msgid "Remove shortcut"
-msgstr ""
+msgstr "移除快捷方式"
 
-#: tmp_strings.xml:108(string)
+#: tmp_strings.xml:113(string)
 msgid "Create shortcut"
-msgstr ""
+msgstr "创建快捷方式"
 
 #. 30 chars max
-#: tmp_strings.xml:115(string)
+#: tmp_strings.xml:251(string)
 msgid "Tomdroid notes"
 msgstr "Tomdroid 笔记"
 
-#. 325 chars max
-#: tmp_strings.xml:117(string)
+#. 4000 chars max
+#: tmp_strings.xml:124(string)
 msgid ""
 "A Tomboy client for Android. Tomboy is a desktop note-taking app using a "
 "wikiwiki approach and a simple user interface.\\n\\nNOTE: It is a READ-ONLY "
@@ -303,20 +335,25 @@ msgstr ""
 "n* Tomdroid是开源软件！"
 
 #. 80 chars max
-#: tmp_strings.xml:120(string)
+#: tmp_strings.xml:256(string)
 msgid ""
 "Note-taking application with online synchronization compatible with Tomboy"
-msgstr "与Tomboy兼容的、可在网上同步的记笔记应用"
+msgstr "兼容 Tomboy 并支持在线同步的便笺应用"
+
+#. 500 chars max
+#: tmp_strings.xml:259(string)
+msgid ""
+"* Search notes and system integrated search\\n* Context menu\\n* Several "
+"usability improvements\\n* Higher quality icons\\n* Several bug fixes\\n* "
+"German translation\\n"
+msgstr ""
 
 #. Launchpad Translation String
-#: tmp_strings.xml:124(string)
+#: tmp_strings.xml:262(string)
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
-"  Stefan Hammer https://launchpad.net/~j-4"
-
-#~ msgid "change sort"
-#~ msgstr "改变顺序"
-
-#~ msgid "No notes found on %1$s ."
-#~ msgstr "%1$s里没找到笔记。"
+"  Isabel Heger https://launchpad.net/~isabel-h1\n"
+"  Stefan Hammer https://launchpad.net/~j-4\n"
+"  Wang Dianjin https://launchpad.net/~tuhaihe\n"
+"  mozillazg https://launchpad.net/~mozillazg"

@@ -30,14 +30,14 @@
 	
 	<!-- main.xml -->
 	<string name="strListEmptyWaiting">Aguarde o carregamento das notas...</string>
-	<string name="strListEmptyNoNotes">Não existem notas na base de dados do Tomdroid</string>
+	<string name="strListEmptyNoNotes">Não existem notas na base de dados Tomdroid.</string>
 	
 	<string name="menuSync">Sincronizar</string>
 	<string name="menuPrefs">Definições</string>
 	<string name="menuAbout">Sobre</string>
 	<string name="titleWelcome">Aviso</string>
 	<string name="titleAbout">Sobre o Tomdroid</string>
-	<string name="strWelcome">Welcome to Tomdroid.\n\nPlease note that this is beta quality software and that it contains known problems, like its inability to edit notes.\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something out and tested as quickly as possible.\n\nIf you would like to contribute, help at all levels would be appreciated. Hop on board on launchpad.net/tomdroid and contact us!\n</string>
+	<string name="strWelcome">Bem vindo ao Tomdroid.\n\nTenha em atenção que esta é uma versão beta e que possui diversos erros, como a impossibilidade de editar notas.\n\nTemos conhecimentos das limitações e que as pretendemos resolver, mas ainda existem outros problemas que pretendemos resolver primeiro.\n\nSe quiser ajudar no desenvolvimento, será bem recebido. Consulte launchpad.net/tomdroid e contacte-nos!\n</string>
 	<string name="strAbout">%1$s\n\nAutor: %2$s\nVersão: %3$s\nLicenciado nos termos da GPLv3</string>
 	
 	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
@@ -45,6 +45,7 @@
 	<string name="btnCancel">Cancelar</string>
 	<string name="btnClose">Fechar</string>
 	<string name="btnProjectPage">Página do projeto</string>
+	<string name="btnSavetoSD">Gravar no cartão SD</string>
 	
 	<!-- note-view.xml -->
 	<string name="strWait">Aguarde o carregamento da nota...</string>
@@ -55,26 +56,29 @@
 	<string name="prefSDCard">Cartão SD</string>
 	<string name="prefTomboyWeb">Sincronização online</string>
 	<string name="prefAuthenticate">Autenticar</string>
-	<string name="prefLocation">Location on SD Card</string>
-	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
-	<string name="prefNoValidLocation">\"%1$s\" is no valid folder location. Please try again!</string>
+	<string name="prefLocation">Local do cartão SD</string>
+	<string name="prefFolderCreated">A pasta \"%1$s\" ainda não existe. Ligue o dispositivo ao computador, crie a pasta e preencha-a com ficheiros *.note.</string>
+	<string name="prefNoValidEntry">\"%1$s\" possui caracteres inválidos.\nTente novamente!</string>
 	
 	<string name="prefSyncCompleteAuth">A autenticar. Por favor, aguarde...</string>
 	<string name="prefSyncConnectionFailed">Ocorreu um erro ao ligar ao servidor. Verifique se indicou o endereço correto.</string>
 	<string name="prefServerEmpty">O endereço do servidor foi alterado mas o novo valor está vazio</string>
 	
-	<string name="titleSyncService">Escolha o serviço de sincronização a utilizar</string>
+	<string name="titleSyncService">Escolha o serviço de sincronização</string>
 	<string name="messageSyncComplete">Terminada a sincronização com %1$s</string>
-	<string name="messageSyncNoNote">No notes found on %1$s.</string>
-	<string name="messageSyncNoConnection">Não está ligado à Internet</string>
-	<string name="messageSyncAlreadyInProgress">Já está a decorrer uma sincronização</string>
+	<string name="messageSyncNoNote">Não foram encontradas notas em %1$s.</string>
+	<string name="messageSyncNoConnection">Não está ligado à Internet.</string>
+	<string name="messageSyncAlreadyInProgress">Já está em curso uma sincronização</string>
 	<string name="messageSyncError">Ocorreu um erro ao processar a coleção de notas. Se conseguir  replicar este problema, contacte-nos.</string>
 	<string name="error">Erro</string>
-	<string name="titleNoteNotFound">No Such Note</string>
-	<string name="messageNoteNotFound">The requested note could not be found. Maybe it was deleted or removed through synchronization.</string>
+	<string name="titleNoteNotFound">Nota inexistente</string>
+	<string name="messageNoteNotFound">A nota indicada não foi encontrada. Pode ter sido eliminada durante a sincronização.</string>
+	<string name="messageErrorNoteParsing">A nota indicada não foi processada. Se conseguir reproduzir novamente o erro, contacte-nos!</string>	
+	<string name="messageCouldNotSave">Não foi possível gravar os erros. Verifique o cartão SD.</string>
+	<string name="messageNoSDCard">Cartão SD não encontrado.</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">Change Sort</string>
+	<string name="menuSort">Alterar ordenação</string>
 	<string name="titleDefaultSorting">Escolha a ordenação</string>
 	<string name="prefDefaultSorting">Padrão</string>
 	
@@ -105,10 +109,10 @@
 	<string name="textYexterday">Ontem</string>
 
 	<!-- Shortcuts handling -->
-	<string name="shortcuts_view_caption">Choose a Note</string>
-	<string name="shortcut_menu_item_caption">Tomdroid Note</string>
-	<string name="btnRemoveShortcut">Remove shortcut</string>
-	<string name="createShortcut">Create shortcut</string>
+	<string name="shortcuts_view_caption">Escolha a nota</string>
+	<string name="shortcut_menu_item_caption">Nota Tomdroid</string>
+	<string name="btnRemoveShortcut">Remover atalho</string>
+	<string name="createShortcut">Criar atalho</string>
 	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
@@ -116,15 +120,18 @@
 	-->
 	<!-- 30 chars max -->
 	<string name="market_title">Notas Tomdroid</string>
-	<!-- 325 chars max -->
+	<!-- 4000 chars max -->
 	<string name="market_description">Um cliente Tomboy para Android. O Tomboy é uma aplicação de notas com uma interface simples de utilizar.\n\nNota: o Tomdroid, por agora, é só de leitura.\n\n*Compatibilidade com o Tomboy\n*Sincronização de notas na rede com o Snowy, Tomboy Online ou Ubuntu One\n* Importação do cartão SD\n*De código livre!</string>
 	
 	<!-- 80 chars max -->
-	<string name="market_promotext">Aplicação para tirar notas com sincronização na rede e compatível com o Tomboy.</string>
-	
-	
+	<string name="market_promotext">Aplicação para criar notas e sincronização online compatível com o Tomboy.</string>
+
+	<!-- 500 chars max -->
+        <string name="market_recent_changes">* Procura de notas e integração de sistemas\n* Menu de contexto\n* Diversas correções\n* Melhoras nos ícones\n* Diversos erros corrigidos\n* Tradução alemã\n</string>
+
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
+  Stefan Hammer https://launchpad.net/~j-4
   Sérgio Marques https://launchpad.net/~sergio+marques</string>
 	
 </resources>

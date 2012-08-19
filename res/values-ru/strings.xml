@@ -45,6 +45,7 @@
 	<string name="btnCancel">Отмена</string>
 	<string name="btnClose">Закрыть</string>
 	<string name="btnProjectPage">Сайт проекта</string>
+	<string name="btnSavetoSD">Сохранить на SD карту</string>
 	
 	<!-- note-view.xml -->
 	<string name="strWait">Пожалуйста, подождите, пока заметка загружается..</string>
@@ -55,9 +56,9 @@
 	<string name="prefSDCard">SD Card</string>
 	<string name="prefTomboyWeb">Онлайн синхронизация</string>
 	<string name="prefAuthenticate">Аутентификация</string>
-	<string name="prefLocation">Location on SD Card</string>
-	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
-	<string name="prefNoValidLocation">\"%1$s\" is no valid folder location. Please try again!</string>
+	<string name="prefLocation">Местоположение на SD карте</string>
+	<string name="prefFolderCreated">Папка \"%1$s\" ещё не существует. Пожалуйста, подсоедините Ваше устройство к компьютеру, создайте папку и заполните её *.note файлами.</string>
+	<string name="prefNoValidEntry">\"%1$s\" содержит неверные символы.\n Пожалуйста, попробуйте снова!</string>
 	
 	<string name="prefSyncCompleteAuth">Завершение аутентификации. Подождите...</string>
 	<string name="prefSyncConnectionFailed">Подключение к серверу не удалось, проверьте правильность введенного вами адреса.</string>
@@ -65,16 +66,19 @@
 	
 	<string name="titleSyncService">Выберите сервис синхронизации для использования</string>
 	<string name="messageSyncComplete">Синхронизация с %1$s завершена.</string>
-	<string name="messageSyncNoNote">No notes found on %1$s.</string>
+	<string name="messageSyncNoNote">Не найдено записей в %1$s.</string>
 	<string name="messageSyncNoConnection">Вы не подключены к Интернету.</string>
 	<string name="messageSyncAlreadyInProgress">Синхронизация уже выполняется</string>
 	<string name="messageSyncError">Произошла ошибка при попытке разбора вашей коллекции заметок. Если вы можете воспроизвести эту проблему, пожалуйста, свяжитесь с нами!</string>
 	<string name="error">Ошибка</string>
-	<string name="titleNoteNotFound">No Such Note</string>
-	<string name="messageNoteNotFound">The requested note could not be found. Maybe it was deleted or removed through synchronization.</string>
+	<string name="titleNoteNotFound">НетТакой Заметки</string>
+	<string name="messageNoteNotFound">Запрашиваемая заметка не может быть найдена. Может быть она была удалена или перемещена во время синхронизации.</string>
+	<string name="messageErrorNoteParsing">Запрашиваемая заметка не может быть проанализирована. Если Вы сможете её скопировать, пожалуйста, свяжитесь с нами!</string>	
+	<string name="messageCouldNotSave">Невозможно сохранить ошибки, пожалуйста проверьте вашу SD карту.</string>
+	<string name="messageNoSDCard">SD карта не найдена.</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">Change Sort</string>
+	<string name="menuSort">Изменить Вид</string>
 	<string name="titleDefaultSorting">Выберите стандартный метод сортировки</string>
 	<string name="prefDefaultSorting">Стандартный метод сортировки</string>
 	
@@ -105,10 +109,10 @@
 	<string name="textYexterday">Вчера</string>
 
 	<!-- Shortcuts handling -->
-	<string name="shortcuts_view_caption">Choose a Note</string>
-	<string name="shortcut_menu_item_caption">Tomdroid Note</string>
-	<string name="btnRemoveShortcut">Remove shortcut</string>
-	<string name="createShortcut">Create shortcut</string>
+	<string name="shortcuts_view_caption">Выбрать Заметку</string>
+	<string name="shortcut_menu_item_caption">Заметка Tomdroid</string>
+	<string name="btnRemoveShortcut">Удалить ярлык</string>
+	<string name="createShortcut">Создать ярлык</string>
 	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
@@ -116,18 +120,21 @@
 	-->
 	<!-- 30 chars max -->
 	<string name="market_title">Заметки Tomdroid</string>
-	<!-- 325 chars max -->
+	<!-- 4000 chars max -->
 	<string name="market_description">Tomboy-клиент для Android. Tomboy же является  приложением для компьютера для хранения заметок с использованием wikiwiki-принципа и простго интерфейса. \n\nВНИМАНИЕ: Пока это клиент ТОЛЬКО ДЛЯ ЧТЕНИЯ.\n\n* Формат заметок совместим с Tomboy\n* Онлайн синхронизация с Snowy Tomboy online и Ubuntu One\n*  импорт с SD-карты\n* Open Source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Приложение для хранения заметок с возможностью онлайн синхронизации с Tomdroid</string>
-	
-	
+
+	<!-- 500 chars max -->
+        <string name="market_recent_changes">* Search notes and system integrated search\n* Context menu\n* Several usability improvements\n* Higher quality icons\n* Several bug fixes\n* German translation\n</string>
+
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
+  Alex Mr.Brightside Demurine https://launchpad.net/~extrimall90
+  Asalle Kim https://launchpad.net/~asaly12
   Bernhard Hauer https://launchpad.net/~bernhard-hauer1
   Ivan Akulov https://launchpad.net/~gxoptg
-  Mirzaeva Asalle https://launchpad.net/~asaly12
   Stefan Hammer https://launchpad.net/~j-4
   Vyacheslav Sharmanov https://launchpad.net/~vsharmanov</string>
 	

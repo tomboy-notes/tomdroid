@@ -45,6 +45,7 @@
 	<string name="btnCancel">Avbryt</string>
 	<string name="btnClose">Stäng</string>
 	<string name="btnProjectPage">Projektsida</string>
+	<string name="btnSavetoSD">Spara till SD-kort</string>
 	
 	<!-- note-view.xml -->
 	<string name="strWait">Vänligen vänta medan anteckningen laddas...</string>
@@ -55,9 +56,9 @@
 	<string name="prefSDCard">SD-kort</string>
 	<string name="prefTomboyWeb">Direktansluten synkronisering</string>
 	<string name="prefAuthenticate">Autentisera</string>
-	<string name="prefLocation">Location on SD Card</string>
-	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
-	<string name="prefNoValidLocation">\"%1$s\" is no valid folder location. Please try again!</string>
+	<string name="prefLocation">Plats på SD-kort</string>
+	<string name="prefFolderCreated">Katalogen \"%1$s\" finns inte än. Vänligen anslut din enhet till datorn, skapa katalogen och fyll den med *.note filer.</string>
+	<string name="prefNoValidEntry">\"%1$s\" innehåller otillåtna tecken.\nVänligen försök igen!</string>
 	
 	<string name="prefSyncCompleteAuth">Slutför autentisering. Vänligen vänta...</string>
 	<string name="prefSyncConnectionFailed">Anslutningen till servern har gått fel, vänligen kontrollera att adressen du skrev in stämmer.</string>
@@ -65,16 +66,19 @@
 	
 	<string name="titleSyncService">Välj synkroniseringstjänst</string>
 	<string name="messageSyncComplete">Synkronisering med %1$s är klar.</string>
-	<string name="messageSyncNoNote">No notes found on %1$s.</string>
+	<string name="messageSyncNoNote">Inga anteckningar funna på %1$s.</string>
 	<string name="messageSyncNoConnection">Du är inte ansluten till Internet.</string>
 	<string name="messageSyncAlreadyInProgress">Synkronisering pågår redan</string>
-	<string name="messageSyncError">There was an error trying to parse your note collection. If you are able to replicate the problem, please contact us!</string>
+	<string name="messageSyncError">Det uppstod ett fel vid tolkningen av din anteckningssamling. Vänligen kontakta oss ifall du lyckas återskapa felet!</string>
 	<string name="error">Fel</string>
-	<string name="titleNoteNotFound">No Such Note</string>
-	<string name="messageNoteNotFound">The requested note could not be found. Maybe it was deleted or removed through synchronization.</string>
+	<string name="titleNoteNotFound">Inga Sådana Anteckningar</string>
+	<string name="messageNoteNotFound">Den efterfrågade anteckningen kan inte hittas. Den kanske har raderats eller flyttats via synkronisering.</string>
+	<string name="messageErrorNoteParsing">Den efterfrågade anteckningen kunde inte tolkas. Om du kan återskapa felet, vänligen kontakta oss!</string>	
+	<string name="messageCouldNotSave">Kan inte spara felen, kontrollera ditt SD-kort.</string>
+	<string name="messageNoSDCard">SD-koret kan inte hittas.</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">Change Sort</string>
+	<string name="menuSort">Ändra Sortering</string>
 	<string name="titleDefaultSorting">Välj standardsortering</string>
 	<string name="prefDefaultSorting">Standardsortering</string>
 	
@@ -90,7 +94,7 @@
 	
 	<!--  Search -->
 	<string name="search_hint">Sök Anteckningar</string>
-	<string name="search_description">Text in your notes</string>
+	<string name="search_description">Text i dina anteckningar</string>
 	<string name="strNoResults">Inga anteckningar funna för \"%s\"</string>
 	<string name="menuSearch">Sök</string>
 	<string name="prefSearch">Sökalternativ</string>
@@ -105,10 +109,10 @@
 	<string name="textYexterday">Igår</string>
 
 	<!-- Shortcuts handling -->
-	<string name="shortcuts_view_caption">Choose a Note</string>
-	<string name="shortcut_menu_item_caption">Tomdroid Note</string>
-	<string name="btnRemoveShortcut">Remove shortcut</string>
-	<string name="createShortcut">Create shortcut</string>
+	<string name="shortcuts_view_caption">Välj en anteckning</string>
+	<string name="shortcut_menu_item_caption">Tomdroid Anteckning</string>
+	<string name="btnRemoveShortcut">Ta bort genväg</string>
+	<string name="createShortcut">Skapa genväg</string>
 	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
@@ -116,16 +120,19 @@
 	-->
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid anteckningar</string>
-	<!-- 325 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\nNOTE: It is a READ-ONLY client for now.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
+	<!-- 4000 chars max -->
+	<string name="market_description">En Tomboy-klient för Android. Tomboy är en anteckningsapp för skrivbordet som använder sig av ett wikiwiki-grepp och ett enkelt gränssnitt.\n\nOBS: Endast läsåtkomst än så länge.\n\n* Formatkompatibel med Tomboy\n* Synkronisering med Snowy, Tomboy Online eller Ubuntu One\n* Import från SD-kort\n* Öppen källkod!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Anteckningsblock med online-synkronisering som är kompatibel med Tomboy</string>
-	
-	
+
+	<!-- 500 chars max -->
+        <string name="market_recent_changes">* Search notes and system integrated search\n* Context menu\n* Several usability improvements\n* Higher quality icons\n* Several bug fixes\n* German translation\n</string>
+
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
   Daniel Ruus https://launchpad.net/~daniel-ruus
+  Stefan Hammer https://launchpad.net/~j-4
   stoft https://launchpad.net/~rasmus-larsson</string>
 	
 </resources>

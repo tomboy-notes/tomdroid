@@ -45,6 +45,7 @@
 	<string name="btnCancel">Abbrechen</string>
 	<string name="btnClose">Schließen</string>
 	<string name="btnProjectPage">Projektseite</string>
+	<string name="btnSavetoSD">Auf SD-Karte speichern</string>
 	
 	<!-- note-view.xml -->
 	<string name="strWait">Die Notiz wird geladen. Bitte warten …</string>
@@ -55,9 +56,9 @@
 	<string name="prefSDCard">SD-Karte</string>
 	<string name="prefTomboyWeb">Online-Synchronisation</string>
 	<string name="prefAuthenticate">Authentifizieren</string>
-	<string name="prefLocation">Location on SD Card</string>
-	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
-	<string name="prefNoValidLocation">\"%1$s\" is no valid folder location. Please try again!</string>
+	<string name="prefLocation">Ort auf der SD-Karte</string>
+	<string name="prefFolderCreated">Der Ordner \"%1$s\" existiert noch nicht. Bitte verbinde dein Gerät mit dem Computer, erstelle den Ordner und befüllt ihn mit *.note Dateien.</string>
+	<string name="prefNoValidEntry">\"%1$s\" enthält ungültige Zeichen.\nBitte versuche es erneut!</string>
 	
 	<string name="prefSyncCompleteAuth">Authentifizierung läuft. Bitte warten …</string>
 	<string name="prefSyncConnectionFailed">Die Verbindung zum Server ist fehlgeschlagen. Bitte überprüfe die angegebene Adresse.</string>
@@ -65,16 +66,19 @@
 	
 	<string name="titleSyncService">Synchronisationsdienst wählen</string>
 	<string name="messageSyncComplete">Erfolgreich mit %1$s synchronisiert.</string>
-	<string name="messageSyncNoNote">No notes found on %1$s.</string>
+	<string name="messageSyncNoNote">Keine Notizen auf %1$s gefunden.</string>
 	<string name="messageSyncNoConnection">Es besteht keine Internetverbindung.</string>
 	<string name="messageSyncAlreadyInProgress">Synchronisation wird bereits ausgeführt.</string>
 	<string name="messageSyncError">Es ist ein Fehler beim Analysieren Ihrer Notizen aufgetreten. Falls dieses Problem wiederholt auftritt, melden Sie es bitte!</string>
 	<string name="error">Fehler</string>
-	<string name="titleNoteNotFound">No Such Note</string>
-	<string name="messageNoteNotFound">The requested note could not be found. Maybe it was deleted or removed through synchronization.</string>
+	<string name="titleNoteNotFound">Notiz nicht vorhanden</string>
+	<string name="messageNoteNotFound">Die gewünschte Notiz konnte nicht gefunden werden. Vielleicht wurde sie gelöscht oder durch Synchronisieren entfernt.</string>
+	<string name="messageErrorNoteParsing">Die gewünschte Notiz konnte nicht analysiert werden. Falls dieses Problem wiederholt auftritt, melden Sie es bitte.</string>	
+	<string name="messageCouldNotSave">Die Fehler konnten nicht gespeichert werden, bitte überprüfe die SD-Karte.</string>
+	<string name="messageNoSDCard">SD-Karte wurde nicht gefunden.</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">Change Sort</string>
+	<string name="menuSort">Reihenfolge ändern</string>
 	<string name="titleDefaultSorting">Wähle die Standardreihenfolge</string>
 	<string name="prefDefaultSorting">Standardreihenfolge</string>
 	
@@ -105,10 +109,10 @@
 	<string name="textYexterday">Gestern</string>
 
 	<!-- Shortcuts handling -->
-	<string name="shortcuts_view_caption">Choose a Note</string>
-	<string name="shortcut_menu_item_caption">Tomdroid Note</string>
-	<string name="btnRemoveShortcut">Remove shortcut</string>
-	<string name="createShortcut">Create shortcut</string>
+	<string name="shortcuts_view_caption">Wähle eine Notiz</string>
+	<string name="shortcut_menu_item_caption">Tomdroid Notiz</string>
+	<string name="btnRemoveShortcut">Verknüpfung entfernen</string>
+	<string name="createShortcut">Verknüpfung erstellen</string>
 	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
@@ -116,16 +120,19 @@
 	-->
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid Notizen</string>
-	<!-- 325 chars max -->
+	<!-- 4000 chars max -->
 	<string name="market_description">Ein Tomboy Notiz-Programm für Android. Tomboy ist ein Notiz-Programm, dass einen wikiwiki Aufbau benutzt und eine einfache Benutzeroberfläche.\n\nBEACHTE: Mit diesem Programm kann man momentan NUR LESEN.\n\n* Notiz-Formatierung wie bei Tomboy.\n* Online Notiz-Synchronisierung mit Snowy, Tomboy Online oder Ubuntu One.\n* Importieren von der SD-Karte.\n* Open source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Notiz-Programm mit online Synchronisation zu Tomboy.</string>
-	
-	
+
+	<!-- 500 chars max -->
+        <string name="market_recent_changes">* Notizen durchsuchen\n* Kontextmenü\n* Verschiedene Usabilityverbesserungen\n* Höherqualitative Icons\n* Bug Fixes\n* Deutsche *bersetzung</string>
+
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
-  Henrik Graßhoff https://launchpad.net/~henrik-grasshoff
-  Stefan Hammer https://launchpad.net/~j-4</string>
+  Ghenrik https://launchpad.net/~ghenrik-deactivatedaccount
+  Stefan Hammer https://launchpad.net/~j-4
+  mili https://launchpad.net/~mili-f</string>
 	
 </resources>

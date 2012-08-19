@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tomdroid\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-03-31 22:50+0200\n"
-"PO-Revision-Date: 2012-01-10 16:50+0000\n"
-"Last-Translator: Péter Trombitás <trombipeti@gmail.com>\n"
+"POT-Creation-Date: 2012-08-18 12:40+0200\n"
+"PO-Revision-Date: 2012-06-23 06:33+0000\n"
+"Last-Translator: Horváth Zoltán <Unknown>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-03-31 21:21+0000\n"
-"X-Generator: Launchpad (build 15032)\n"
+"X-Launchpad-Export-Date: 2012-08-19 21:32+0000\n"
+"X-Generator: Launchpad (build 15810)\n"
 
 #. application details
 #: tmp_strings.xml:27(string)
@@ -88,11 +88,11 @@ msgstr "%1$s\\n\\nKészítő %2$s\\nVerzió: %3$s\\nLicenc: GPLv3"
 msgid "OK"
 msgstr "OK"
 
-#: tmp_strings.xml:45(string)
+#: tmp_strings.xml:45(string) tmp_strings.xml:209(string)
 msgid "Cancel"
 msgstr "Mégse"
 
-#: tmp_strings.xml:46(string)
+#: tmp_strings.xml:46(string) tmp_strings.xml:208(string)
 msgid "Close"
 msgstr "Bezárás"
 
@@ -100,12 +100,16 @@ msgstr "Bezárás"
 msgid "Project page"
 msgstr "A projekt oldala"
 
+#: tmp_strings.xml:48(string)
+msgid "Save to SD card"
+msgstr "Mentés SD kártyára"
+
 #. note-view.xml
-#: tmp_strings.xml:50(string)
+#: tmp_strings.xml:51(string)
 msgid "Please wait while note loads..."
 msgstr "Várjon türlemmel, amíg a jegyzet betöltődik..."
 
-#: tmp_strings.xml:52(string)
+#: tmp_strings.xml:173(string)
 msgid "Synchronization"
 msgstr "Szinkronizálás"
 
@@ -121,7 +125,7 @@ msgstr "Kiszolgáló"
 msgid "SD Card"
 msgstr "SD Kártya"
 
-#: tmp_strings.xml:56(string)
+#: tmp_strings.xml:57(string)
 msgid "Online Synchronization"
 msgstr "Online szinkronizálás"
 
@@ -129,11 +133,28 @@ msgstr "Online szinkronizálás"
 msgid "Authenticate"
 msgstr "Hitelesítés"
 
+#: tmp_strings.xml:58(string)
+msgid "Location on SD Card"
+msgstr "Hely az SD kártyán"
+
 #: tmp_strings.xml:59(string)
+msgid ""
+"The folder \\\"%1$s\\\" does not exist yet. Please connect your device to "
+"the computer, create the folder and fill it with *.note files."
+msgstr ""
+"A mappa \\\"%1$s\\\"még nem létezik. Kérem csatlakoztassa készülékét a "
+"számítógéphez, hozza létre a mappát, és töltse fel *.note fájlokkal."
+
+#: tmp_strings.xml:61(string)
+msgid "\\\"%1$s\\\" contains invalid characters.\\nPlease try again!"
+msgstr ""
+"\\\"%1$s\\\" érvénytelen karaktereket tartalmaz.\\nKérem, próbálja újra!"
+
+#: tmp_strings.xml:63(string)
 msgid "Completing authentication. Please wait..."
 msgstr "Hitelesítés folyamatban. Várjon türelemmel..."
 
-#: tmp_strings.xml:60(string)
+#: tmp_strings.xml:63(string)
 msgid ""
 "The connection to the server has failed, please check that the address you "
 "entered is correct."
@@ -141,31 +162,31 @@ msgstr ""
 "Nem sikerült kapcsolódni a szerverhez. Ellenőrizze, hogy helyes címet adott-"
 "e meg."
 
-#: tmp_strings.xml:61(string)
+#: tmp_strings.xml:64(string)
 msgid "The server address changed but the new value is empty"
 msgstr "A szerver címe megváltozott,  de nincs helyette megadva semmi"
 
-#: tmp_strings.xml:63(string)
+#: tmp_strings.xml:66(string)
 msgid "Choose the sync service to use"
 msgstr "Szinkronizálási kiszolgáló választása"
 
-#: tmp_strings.xml:64(string)
+#: tmp_strings.xml:67(string)
 msgid "Synchronization with %1$s is complete."
 msgstr "Szinkronizálás kész ezzel: %1$"
 
-#: tmp_strings.xml:65(string)
+#: tmp_strings.xml:68(string)
 msgid "No notes found on %1$s."
-msgstr ""
+msgstr "Nem találhatóak jegyzetek ezen: %1$s."
 
-#: tmp_strings.xml:66(string)
+#: tmp_strings.xml:69(string)
 msgid "You are not connected to the Internet."
 msgstr "Nincs internetkapcsolat."
 
-#: tmp_strings.xml:67(string)
+#: tmp_strings.xml:70(string)
 msgid "Sync already in progress"
 msgstr "A szinkronizálás már folyamatban van"
 
-#: tmp_strings.xml:68(string)
+#: tmp_strings.xml:71(string)
 msgid ""
 "There was an error trying to parse your note collection. If you are able to "
 "replicate the problem, please contact us!"
@@ -173,133 +194,151 @@ msgstr ""
 "Hiba történt a jegyzetek betöltése közben. Ha tudja jelenteni a problémát, "
 "kérjük, tegye meg!"
 
-#: tmp_strings.xml:69(string)
+#: tmp_strings.xml:72(string)
 msgid "Error"
 msgstr "Hiba"
 
-#: tmp_strings.xml:70(string)
+#: tmp_strings.xml:73(string)
 msgid "No Such Note"
-msgstr ""
+msgstr "Nincs ilyen jegyzet"
 
-#: tmp_strings.xml:71(string)
+#: tmp_strings.xml:74(string)
 msgid ""
 "The requested note could not be found. Maybe it was deleted or removed "
 "through synchronization."
 msgstr ""
+"A kért jegyzet nem található. Lehetséges, hogy törölve lett, vagy el lett "
+"távolítva a szinkronizáció során."
+
+#: tmp_strings.xml:76(string)
+msgid ""
+"The requested note could not be parsed. If you are able to replicate the "
+"problem, please contact us!"
+msgstr ""
+"A kért jegyzet nem értelmezhető. Ha Ön képes megismételni ezt a hibát, "
+"kérjük jelezze felénk!"
+
+#: tmp_strings.xml:77(string)
+msgid "Could not save the errors, please check your SD card."
+msgstr "A hibák nem menthetőek, kérem ellenőrízze az SD kártyáját!"
+
+#: tmp_strings.xml:78(string)
+msgid "SD card not found."
+msgstr "SD kártya nem található."
 
 #. NoteSorting
-#: tmp_strings.xml:74(string)
+#: tmp_strings.xml:80(string)
 msgid "Change Sort"
-msgstr ""
+msgstr "Rendezés módosítása"
 
-#: tmp_strings.xml:75(string)
+#: tmp_strings.xml:81(string)
 msgid "Choose the default sorting"
 msgstr "Alapértelmezett rendezés választása"
 
-#: tmp_strings.xml:76(string)
+#: tmp_strings.xml:82(string)
 msgid "Default sort"
 msgstr "Alapértelmezett rendezés"
 
 #. NotebookFiltering
-#: tmp_strings.xml:79(string)
+#: tmp_strings.xml:85(string)
 msgid "Filter"
 msgstr "Szűrő"
 
-#: tmp_strings.xml:80(string)
+#: tmp_strings.xml:86(string)
 msgid "There are no notebooks in the database."
 msgstr "Nem található notebook az adatbázisban."
 
-#: tmp_strings.xml:81(string)
+#: tmp_strings.xml:87(string)
 msgid "All notebooks"
 msgstr "Az összes notebook"
 
 #. List Longpress Menu
-#: tmp_strings.xml:84(string)
+#: tmp_strings.xml:90(string)
 msgid "View"
 msgstr "Nézet"
 
-#: tmp_strings.xml:85(string)
+#: tmp_strings.xml:91(string)
 msgid "Note Options"
 msgstr "Jegyzetbeállítások"
 
-#: tmp_strings.xml:86(string)
+#: tmp_strings.xml:92(string)
 msgid "Send"
 msgstr "Küldés"
 
 #. Search
-#: tmp_strings.xml:89(string)
+#: tmp_strings.xml:95(string)
 msgid "Search Notes"
 msgstr "Jegyzetek keresése"
 
-#: tmp_strings.xml:90(string)
+#: tmp_strings.xml:96(string)
 msgid "Text in your notes"
 msgstr "Szöveg a jegyzeteiben"
 
-#: tmp_strings.xml:91(string)
+#: tmp_strings.xml:97(string)
 msgid "No notes found for \\\"%s\\\""
 msgstr "Nem található jegyzet erre: \\\"%s\\\""
 
-#: tmp_strings.xml:92(string)
+#: tmp_strings.xml:98(string)
 msgid "Search"
 msgstr "Keresés"
 
-#: tmp_strings.xml:93(string)
+#: tmp_strings.xml:100(string)
 msgid "Search Options"
 msgstr "Keresési beállítások"
 
-#: tmp_strings.xml:94(string)
+#: tmp_strings.xml:99(string)
 msgid "Search Results:"
 msgstr "A keresés eredménye:"
 
-#: tmp_strings.xml:95(string)
+#: tmp_strings.xml:100(string)
 msgid "Clear search history"
 msgstr "Keresési előzmények törlése"
 
-#: tmp_strings.xml:96(string)
+#: tmp_strings.xml:101(string)
 msgid "Remove all the searches you have performed"
 msgstr "Az előzőleg végrehajtott keresések törlése"
 
-#: tmp_strings.xml:97(string)
+#: tmp_strings.xml:102(string)
 msgid "Search history has been cleared."
 msgstr "Keresési előzmények törölve."
 
 #. Date
-#: tmp_strings.xml:100(string)
+#: tmp_strings.xml:105(string)
 msgid "Modified:"
 msgstr "Módosítva:"
 
-#: tmp_strings.xml:101(string)
+#: tmp_strings.xml:106(string)
 msgid "Today"
 msgstr "Ma"
 
-#: tmp_strings.xml:102(string)
+#: tmp_strings.xml:107(string)
 msgid "Yesterday"
 msgstr "Tegnap"
 
 #. Shortcuts handling
-#: tmp_strings.xml:105(string)
+#: tmp_strings.xml:110(string)
 msgid "Choose a Note"
-msgstr ""
+msgstr "Válasszon egy jegyzetet!"
 
-#: tmp_strings.xml:106(string)
+#: tmp_strings.xml:111(string)
 msgid "Tomdroid Note"
-msgstr ""
+msgstr "Tomdroid Jegyzet"
 
-#: tmp_strings.xml:107(string)
+#: tmp_strings.xml:112(string)
 msgid "Remove shortcut"
-msgstr ""
+msgstr "Parancsikon eltávolítása"
 
-#: tmp_strings.xml:108(string)
+#: tmp_strings.xml:113(string)
 msgid "Create shortcut"
-msgstr ""
+msgstr "Parancsikon létrehozása"
 
 #. 30 chars max
-#: tmp_strings.xml:115(string)
+#: tmp_strings.xml:251(string)
 msgid "Tomdroid notes"
 msgstr "Tomdroid jegyzetek"
 
-#. 325 chars max
-#: tmp_strings.xml:117(string)
+#. 4000 chars max
+#: tmp_strings.xml:124(string)
 msgid ""
 "A Tomboy client for Android. Tomboy is a desktop note-taking app using a "
 "wikiwiki approach and a simple user interface.\\n\\nNOTE: It is a READ-ONLY "
@@ -314,20 +353,26 @@ msgstr ""
 "Importálás SD kártyáról\\n* Nyílt forrás!"
 
 #. 80 chars max
-#: tmp_strings.xml:120(string)
+#: tmp_strings.xml:256(string)
 msgid ""
 "Note-taking application with online synchronization compatible with Tomboy"
 msgstr "Jegyzetfüzet-alkalmazás Tomboy-kompatibilis online szinkronizációval"
 
+#. 500 chars max
+#: tmp_strings.xml:259(string)
+msgid ""
+"* Search notes and system integrated search\\n* Context menu\\n* Several "
+"usability improvements\\n* Higher quality icons\\n* Several bug fixes\\n* "
+"German translation\\n"
+msgstr ""
+"* Jegyzetkeresés és rendszerintegrált keresés\\n* Összefüggés menü\\n* "
+"Néhány használhatósági fejlesztés\\n* Jobb minőségű ikonok\\n* Néhány "
+"hibajavítás\\n* Német fordítás\\n* Magyar fordítás\\n*"
+
 #. Launchpad Translation String
-#: tmp_strings.xml:124(string)
+#: tmp_strings.xml:262(string)
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
+"  Horváth Zoltán https://launchpad.net/~veszett-kutya76\n"
 "  Péter Trombitás https://launchpad.net/~trombipeti"
-
-#~ msgid "change sort"
-#~ msgstr "rendezés megváltoztatása"
-
-#~ msgid "No notes found on %1$s ."
-#~ msgstr "Nem találhatók jegyzetek itt: %1$."

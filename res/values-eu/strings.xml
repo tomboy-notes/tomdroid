@@ -45,6 +45,7 @@
 	<string name="btnCancel">Utzi</string>
 	<string name="btnClose">Itxi</string>
 	<string name="btnProjectPage">Proiektuaren orria</string>
+	<string name="btnSavetoSD">Gorde SD txartelean</string>
 	
 	<!-- note-view.xml -->
 	<string name="strWait">Mesedez, itxaron oharrak kargatu bitartean...</string>
@@ -55,9 +56,9 @@
 	<string name="prefSDCard">SD Txartela</string>
 	<string name="prefTomboyWeb">Lineako sinkronizazioa</string>
 	<string name="prefAuthenticate">Autentifikatu</string>
-	<string name="prefLocation">Location on SD Card</string>
-	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
-	<string name="prefNoValidLocation">\"%1$s\" is no valid folder location. Please try again!</string>
+	<string name="prefLocation">SD txarteleko kokalekua</string>
+	<string name="prefFolderCreated">\"%1$s\" karpeta ez da existitzen oraindik. Mesedez, konektatu zure gailua ordenagailura, sortu karpeta eta bete *.note fitxategiekin.</string>
+	<string name="prefNoValidEntry">\"%1$s\"-(e)k baliogabeko karaktereak dauzka.\nMesedez, saiatu berriz!</string>
 	
 	<string name="prefSyncCompleteAuth">Autentifikazioa burutzen. Mesedez, itxaron...</string>
 	<string name="prefSyncConnectionFailed">Ezin izan da konexiorik ezarri zerbitzariarekin. Mesedez, ziurtatu sartu duzun helbidea zuzena dela.</string>
@@ -65,16 +66,19 @@
 	
 	<string name="titleSyncService">Aukeratu erabiliko den sinkronizazio zerbitzua</string>
 	<string name="messageSyncComplete">%1$-rekin sinkronizazioa burutu da.</string>
-	<string name="messageSyncNoNote">No notes found on %1$s.</string>
+	<string name="messageSyncNoNote">Ez da oharrik aurkitu %1$s-(e)n</string>
 	<string name="messageSyncNoConnection">Ez zaude Internetera konektatuta.</string>
 	<string name="messageSyncAlreadyInProgress">Sinkronizazioa martxan dago jadanik</string>
 	<string name="messageSyncError">Errore bat eman da zure ohar bilduma analizatzen saiatzean. Arazoa erreplikatzeko gauza bazara, mesedez, jarri gurekin harremanetan!</string>
 	<string name="error">Errorea</string>
-	<string name="titleNoteNotFound">No Such Note</string>
-	<string name="messageNoteNotFound">The requested note could not be found. Maybe it was deleted or removed through synchronization.</string>
+	<string name="titleNoteNotFound">Ez dago halako oharrik</string>
+	<string name="messageNoteNotFound">Eskatutako oharra ezin izan da aurkitu. Behar bada sinkronizazioan ezabatu edo kendu zen.</string>
+	<string name="messageErrorNoteParsing">Eskatutako oharra ezin izan da analizatu. Arazoa errepikatzeko gauza bazara, jarri gurekin harremanetan!</string>	
+	<string name="messageCouldNotSave">Ezin izan dira erroreak gorde, mesedez, egiaztatu zure SD txartela.</string>
+	<string name="messageNoSDCard">Ez da SD txartelik aurkitu.</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">Change Sort</string>
+	<string name="menuSort">Aldatu ordenatzea</string>
 	<string name="titleDefaultSorting">Aukeratu ordenatze lehenetsia</string>
 	<string name="prefDefaultSorting">Ordenatze lehenetsia</string>
 	
@@ -105,10 +109,10 @@
 	<string name="textYexterday">Atzo</string>
 
 	<!-- Shortcuts handling -->
-	<string name="shortcuts_view_caption">Choose a Note</string>
-	<string name="shortcut_menu_item_caption">Tomdroid Note</string>
-	<string name="btnRemoveShortcut">Remove shortcut</string>
-	<string name="createShortcut">Create shortcut</string>
+	<string name="shortcuts_view_caption">Aukeratu ohar bat</string>
+	<string name="shortcut_menu_item_caption">Tomdroid oharra</string>
+	<string name="btnRemoveShortcut">Kendu lasterbidea</string>
+	<string name="createShortcut">Sortu lasterbidea</string>
 	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
@@ -116,15 +120,18 @@
 	-->
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid oharrak</string>
-	<!-- 325 chars max -->
+	<!-- 4000 chars max -->
 	<string name="market_description">Android-erako Tomboy bezeroa. Tomboy oharrak hartzeko mahaigaineko wiki aplikazio bat da eta erabiltzaile interfaze soila du.\n\nOHARRA: Oraingoz IRAKURKETA SOILIK baimentzen duen bezero bat da.\n\n* Tomboy-rekin bateragarria den oharren formatua\n* Oharren lineako sinkronizazioa Snowy, Tomboy Online edo Ubuntu One-ekin\n* SD txarteletik inportatzeko aukera\n* Software librea!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Lineako sinkronizazioadun oharrak hartzeko aplikazioa, Tomboyrekin bateragarria</string>
-	
-	
+
+	<!-- 500 chars max -->
+        <string name="market_recent_changes">* Search notes and system integrated search\n* Context menu\n* Several usability improvements\n* Higher quality icons\n* Several bug fixes\n* German translation\n</string>
+
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
-  Asier Iturralde Sarasola https://launchpad.net/~asier-iturralde</string>
+  Asier Iturralde Sarasola https://launchpad.net/~asier-iturralde
+  Stefan Hammer https://launchpad.net/~j-4</string>
 	
 </resources>

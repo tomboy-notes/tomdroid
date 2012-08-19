@@ -45,6 +45,7 @@
 	<string name="btnCancel">Annuler</string>
 	<string name="btnClose">Fermer</string>
 	<string name="btnProjectPage">Page du projet</string>
+	<string name="btnSavetoSD">Enregistrer sur carte SD</string>
 	
 	<!-- note-view.xml -->
 	<string name="strWait">Veuillez patienter pendant que les notes se chargent...</string>
@@ -55,9 +56,9 @@
 	<string name="prefSDCard">Carte SD</string>
 	<string name="prefTomboyWeb">Synchronisation en ligne</string>
 	<string name="prefAuthenticate">Authentification</string>
-	<string name="prefLocation">Location on SD Card</string>
-	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
-	<string name="prefNoValidLocation">\"%1$s\" is no valid folder location. Please try again!</string>
+	<string name="prefLocation">Emplacement sur carte SD</string>
+	<string name="prefFolderCreated">Le dossier « %1$s » n\'existe pas encore. Connectez votre appareil à l\'ordinateur, créer le dossier et le remplir avec les fichiers *. note.</string>
+	<string name="prefNoValidEntry">« %1$s » contient des caractères non valides. \nVeuillez réessayer !</string>
 	
 	<string name="prefSyncCompleteAuth">Authentification réussie. Veuillez patienter ...</string>
 	<string name="prefSyncConnectionFailed">La connexion au serveur a échoué, veuillez vérifier si l\'adresse que vous avez entrée est correcte.</string>
@@ -65,16 +66,19 @@
 	
 	<string name="titleSyncService">Choisissez un service de synchronisation</string>
 	<string name="messageSyncComplete">La synchronisation avec %1$s est terminée</string>
-	<string name="messageSyncNoNote">No notes found on %1$s.</string>
+	<string name="messageSyncNoNote">Pas de notes trouvées sur le %1$s.</string>
 	<string name="messageSyncNoConnection">Aucune connection à Internet</string>
 	<string name="messageSyncAlreadyInProgress">Synchronisation déjà en cours</string>
 	<string name="messageSyncError">Il y avait une erreur lors de la syncrhonisation. Si vous pouvez reproduire le problème, contactez-nous !</string>
 	<string name="error">Erreur</string>
-	<string name="titleNoteNotFound">No Such Note</string>
-	<string name="messageNoteNotFound">The requested note could not be found. Maybe it was deleted or removed through synchronization.</string>
+	<string name="titleNoteNotFound">Pas de note correspondante</string>
+	<string name="messageNoteNotFound">La note demandée n\'a pu être trouvée. Peut-être qu\'elle a été supprimée ou retirée par le biais de la synchronisation.</string>
+	<string name="messageErrorNoteParsing">La note demandée n\'a pas pu être analysée. Si vous êtes en mesure de reproduire le problème, contactez-nous !</string>	
+	<string name="messageCouldNotSave">Impossible d\'enregistrer les erreurs, vérifiez votre carte SD.</string>
+	<string name="messageNoSDCard">Carte SD introuvable.</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">Change Sort</string>
+	<string name="menuSort">Modifier le tri</string>
 	<string name="titleDefaultSorting">Choix du tri par défaut</string>
 	<string name="prefDefaultSorting">Tri par défaut</string>
 	
@@ -105,10 +109,10 @@
 	<string name="textYexterday">Hier</string>
 
 	<!-- Shortcuts handling -->
-	<string name="shortcuts_view_caption">Choose a Note</string>
-	<string name="shortcut_menu_item_caption">Tomdroid Note</string>
-	<string name="btnRemoveShortcut">Remove shortcut</string>
-	<string name="createShortcut">Create shortcut</string>
+	<string name="shortcuts_view_caption">Choisir une note</string>
+	<string name="shortcut_menu_item_caption">Note Tomdroid</string>
+	<string name="btnRemoveShortcut">Supprimer le raccourci</string>
+	<string name="createShortcut">Créer un raccourci</string>
 	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
@@ -123,10 +127,12 @@
 	<string name="market_promotext">Appli de prise de notes avec synchronisation en ligne compatible avec Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">* Recherche dans les notes et recherche intégrée au système Android\n* Menu contextuel\n* Plusieurs améliorations à l\'utilisabilité\n* Icônes haute qualité\n* Plusieurs correctifs\n* Traduction en allemand\n</string>
+        <string name="market_recent_changes">* Search notes and system integrated search\n* Context menu\n* Several usability improvements\n* Higher quality icons\n* Several bug fixes\n* German translation\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
+  François Laurent https://launchpad.net/~francois.laurent
+  Isabel Heger https://launchpad.net/~isabel-h1
   Léo POUGHON https://launchpad.net/~leo-poughon
   Stefan Hammer https://launchpad.net/~j-4</string>
 	

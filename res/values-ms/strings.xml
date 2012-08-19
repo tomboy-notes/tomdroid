@@ -45,6 +45,7 @@
 	<string name="btnCancel">Batal</string>
 	<string name="btnClose">Tutup</string>
 	<string name="btnProjectPage">Halaman projek</string>
+	<string name="btnSavetoSD">Simpan ke kad SD</string>
 	
 	<!-- note-view.xml -->
 	<string name="strWait">Sila tunggu ketika nota dimuatkan...</string>
@@ -55,9 +56,9 @@
 	<string name="prefSDCard">Kad SD</string>
 	<string name="prefTomboyWeb">Penyegerakan Atas Talian</string>
 	<string name="prefAuthenticate">Sahihkan</string>
-	<string name="prefLocation">Location on SD Card</string>
-	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
-	<string name="prefNoValidLocation">\"%1$s\" is no valid folder location. Please try again!</string>
+	<string name="prefLocation">Lokasi pada Kad SD</string>
+	<string name="prefFolderCreated">Folder  \"%1$s\" tidak wujud lagi. Sila sambung peranti anda ke komputer, cipta folder dan isi ia dengan fail *.note.</string>
+	<string name="prefNoValidEntry">\"%1$s\" mengandungi aksara tidak sah.\nSila cuba lagi!</string>
 	
 	<string name="prefSyncCompleteAuth">Menyelesaikan pengesahihan. Tunggu sebentar...</string>
 	<string name="prefSyncConnectionFailed">Sambungan ke pelayan mengalami kegagalan, sila semak alamat yang anda masukkan adalah betul.</string>
@@ -65,16 +66,19 @@
 	
 	<string name="titleSyncService">Pilih perkhidmatan segerak yang hendak digunakan</string>
 	<string name="messageSyncComplete">Penyegerakan dengan %1$s selesai.</string>
-	<string name="messageSyncNoNote">No notes found on %1$s.</string>
+	<string name="messageSyncNoNote">Tiada nota ditemui dalam %1$s.</string>
 	<string name="messageSyncNoConnection">Anda tidak bersambung dengan Internet.</string>
 	<string name="messageSyncAlreadyInProgress">Segerak didalam proses.</string>
 	<string name="messageSyncError">Terdapat ralat semasa cuba menghurai koleksi nota anda. Jika anda boleh replikakan masalah, sila hubungi kami!</string>
 	<string name="error">Ralat</string>
-	<string name="titleNoteNotFound">No Such Note</string>
-	<string name="messageNoteNotFound">The requested note could not be found. Maybe it was deleted or removed through synchronization.</string>
+	<string name="titleNoteNotFound">Tiada Nota Sebegitu</string>
+	<string name="messageNoteNotFound">Nota dipinta tidak dapat ditemui. Mungkin ia telah dipadam atau dibuang melalui penyegerakan.</string>
+	<string name="messageErrorNoteParsing">Nota dipinta tidak dapat dihurai. Jika anda boleh replikasi masalah tersebut, sila hubungi kami!</string>	
+	<string name="messageCouldNotSave">Tidak dapat simpan ralat, sila semak kad SD anda.</string>
+	<string name="messageNoSDCard">Kad SD tidak ditemui.</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">Change Sort</string>
+	<string name="menuSort">Ubah Isih</string>
 	<string name="titleDefaultSorting">Pilihan pengisihan lalai</string>
 	<string name="prefDefaultSorting">Isihan lalai</string>
 	
@@ -105,10 +109,10 @@
 	<string name="textYexterday">Semalam</string>
 
 	<!-- Shortcuts handling -->
-	<string name="shortcuts_view_caption">Choose a Note</string>
-	<string name="shortcut_menu_item_caption">Tomdroid Note</string>
-	<string name="btnRemoveShortcut">Remove shortcut</string>
-	<string name="createShortcut">Create shortcut</string>
+	<string name="shortcuts_view_caption">Pilih satu Nota</string>
+	<string name="shortcut_menu_item_caption">Nota Tomdroid</string>
+	<string name="btnRemoveShortcut">Buang pintasan</string>
+	<string name="createShortcut">Cipta pintasan</string>
 	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
@@ -116,15 +120,18 @@
 	-->
 	<!-- 30 chars max -->
 	<string name="market_title">Nota Tomdroid</string>
-	<!-- 325 chars max -->
+	<!-- 4000 chars max -->
 	<string name="market_description">Klien Tomboy untuk Android. Tomboy merupakan aplikasi mengambil-nota menggunakan pendekatan wikiwiki dan antaramuka pengguna yang ringkas.\n\nPERHATIAN: Ia merupakan klien BACA-SAHAJA buat masa ini.\n\n* Format nota yang serasi dengan Tomboy\n* Penyegerakan nota atas talian dengan Snowy, Tomboy Atas Talian atau Ubuntu One\n* Pengimportan Kad SD\n* Sumber terbuka!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Aplikasi pengambilan-nota dengan penyegerakan atas talian yang serasi dengan Tomboy</string>
-	
-	
+
+	<!-- 500 chars max -->
+        <string name="market_recent_changes">* Search notes and system integrated search\n* Context menu\n* Several usability improvements\n* Higher quality icons\n* Several bug fixes\n* German translation\n</string>
+
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
-  Stefan Hammer https://launchpad.net/~j-4</string>
+  Stefan Hammer https://launchpad.net/~j-4
+  abuyop https://launchpad.net/~abuyop</string>
 	
 </resources>
