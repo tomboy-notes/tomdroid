@@ -53,10 +53,13 @@ import android.content.ContentValues;
 import android.content.Context;	
 import android.content.DialogInterface;	
 import android.content.Intent;	
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;	
 import android.os.Handler;
 import android.os.Message;
+import android.text.Html;
 import android.text.TextUtils;
 import android.text.format.Time;
 import android.util.Log;
@@ -65,6 +68,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 	
 public class CompareNotes extends ActionBarActivity {	
 	private static final String TAG = "SyncDialog";
@@ -90,8 +94,6 @@ public class CompareNotes extends ActionBarActivity {
 		
 		setContentView(R.layout.note_compare);
 		
-		SyncManager.setActivity(this);
-		SyncManager.setHandler(this.syncMessageHandler);
 		String serviceDescription = SyncManager.getInstance().getCurrentService().getDescription();
 
 		syncProgressDialog = new ProgressDialog(this);
@@ -140,16 +142,22 @@ public class CompareNotes extends ActionBarActivity {
 		Button copyBtn = (Button)findViewById(R.id.copyButton);
 		
 		TextView messageView = (TextView)findViewById(R.id.message);
-		TextView diffView = (TextView)findViewById(R.id.diff);
-		TextView diffLabel = (TextView)findViewById(R.id.diff_label);
-		TextView localLabel = (TextView)findViewById(R.id.local_label);
-
-		final EditText localEdit = (EditText)findViewById(R.id.local);
-		final EditText remoteEdit = (EditText)findViewById(R.id.remote);
+		
+		final ToggleButton diffLabel = (ToggleButton)findViewById(R.id.diff_label);
+		final ToggleButton localLabel = (ToggleButton)findViewById(R.id.local_label);
+		final ToggleButton remoteLabel = (ToggleButton)findViewById(R.id.remote_label);
 
 		final EditText localTitle = (EditText)findViewById(R.id.local_title);
 		final EditText remoteTitle = (EditText)findViewById(R.id.remote_title);
+		
+		final TextView diffView = (TextView)findViewById(R.id.diff);
+		final EditText localEdit = (EditText)findViewById(R.id.local);
+		final EditText remoteEdit = (EditText)findViewById(R.id.remote);
 
+
+		updateTextAttributes(localTitle, localEdit);
+		updateTextAttributes(remoteTitle, remoteEdit);
+		
 		if(deleted) {
 			TLog.v(TAG, "comparing deleted with remote");
 			message = getString(R.string.sync_conflict_deleted);
@@ -179,7 +187,7 @@ public class CompareNotes extends ActionBarActivity {
 				message = getString(R.string.sync_conflict_message);
 			
 			if(!titleMatch) {
-				diff = getString(R.string.diff_titles)+"\n"+getString(R.string.local_label)+": "+localNote.getTitle()+"\n"+getString(R.string.remote_label)+": "+extras.getString("title");		
+				diff = "<b>"+getString(R.string.diff_titles)+"</b><br/><i>"+getString(R.string.local_label)+"</i><br/> "+localNote.getTitle()+"<br/><br/><i>"+getString(R.string.remote_label)+"</i><br/>"+extras.getString("title");		
 			}
 
 			if(localNote.getXmlContent().equals(extras.getString("content"))){
@@ -214,29 +222,66 @@ public class CompareNotes extends ActionBarActivity {
 	    			remoteTitle.setVisibility(View.GONE);
 				}
 				else
-	    			diff += "\n\n";
+	    			diff += "<br/><br/>";
+
+				//localNote.setXmlContent("Stet clita kasd gubergren,\nno sea takimata sanctus est Lorem ipsum dolor sit amet.\n"+localNote.getXmlContent()+"\nStet clita kasd gubergren,\n no sea takimata sanctus est Lorem ipsum dolor sit amet.");
 
 				Patch patch = DiffUtils.diff(Arrays.asList(TextUtils.split(localNote.getXmlContent(), "\\r?\\n|\\r")), Arrays.asList(TextUtils.split(extras.getString("content"), "\\r?\\n|\\r")));
 	            String diffResult = "";
 				for (Delta delta: patch.getDeltas()) {
-	            	diffResult += delta.toString()+"\n";
+	            	diffResult += delta.toString()+"<br/>";
 	            }
-	            
-	            Pattern digitPattern = Pattern.compile(".*position: ([0-9]+), lines: ");
-	
-	            Matcher matcher = digitPattern.matcher(diffResult);
+
+	            Pattern firstPattern = Pattern.compile("\\[ChangeDelta, position: ([0-9]+), lines: \\[([^]]+)\\] to \\[([^]]+)\\]\\]");
+	            Pattern secondPattern = Pattern.compile("\\[InsertDelta, position: ([0-9]+), lines: \\[([^]]+)\\]\\]");
+	            Pattern thirdPattern = Pattern.compile("\\[DeleteDelta, position: ([0-9]+), lines: \\[([^]]+)\\]\\]");
+	        	
+	            Matcher matcher = firstPattern.matcher(diffResult);
 	            StringBuffer result = new StringBuffer();
 	            while (matcher.find())
 	            {
-	                matcher.appendReplacement(result, "Line "+String.valueOf(Integer.parseInt(matcher.group(1)) + 1)+":\n");
+	                matcher.appendReplacement(
+	                	result, 
+                		"<b>"+String.format(getString(R.string.line_x),String.valueOf(Integer.parseInt(matcher.group(1)) + 1))+"</b><br/><i>"
+                		+getString(R.string.local_label)+":</i><br/>"+matcher.group(2)+"<br/><br/><i>"
+                		+getString(R.string.remote_label)+":</i><br/>"+matcher.group(3)+"<br/>"
+	                );
 	            }
 	            matcher.appendTail(result);
-				
-	            diff += getString(R.string.diff_content)+"\n";		
+
+	            matcher = secondPattern.matcher(result);
+	            result = new StringBuffer();
+	            while (matcher.find())
+	            {
+	                matcher.appendReplacement(
+	                	result, 
+						"<b>"+String.format(getString(R.string.line_x),String.valueOf(Integer.parseInt(matcher.group(1)) + 1))+"</b><br/><i>"
+	                	+getString(R.string.remote_label)+":</i><br/>"+matcher.group(2)+"<br/><br/>"
+
+	                );
+	            }
+	            matcher.appendTail(result);
+
+	            matcher = thirdPattern.matcher(result);
+	            result = new StringBuffer();
+	            while (matcher.find())
+	            {
+	                matcher.appendReplacement(
+	                	result, 
+						"<b>"+String.format(getString(R.string.line_x),String.valueOf(Integer.parseInt(matcher.group(1)) + 1))+"</b><br/><i>"
+	                	+getString(R.string.local_label)+":</i><br/>"+matcher.group(2)+"<br/><br/>"
+
+	                );
+	            }
+	            matcher.appendTail(result);
 	            
-	            diff += result.toString().replaceAll("\\[([^]]*)\\] to \\[([^]]*)\\]",getString(R.string.local_label)+": $1\n"+getString(R.string.remote_label)+": $2").replaceAll("]$","");
+				diff += "<b>"+getString(R.string.diff_content)+"</b><br/>";		
+	            
+	            diff += result;
 				
-	            diffView.setText(diff);
+	            diff = diff.replace("\n","<br/>");
+	            
+	            diffView.setText(Html.fromHtml(diff));
 				
 			}
 			
@@ -270,6 +315,28 @@ public class CompareNotes extends ActionBarActivity {
 				copyNote();
 			}
         });
+		
+		// collapse notes
+		collapseNote(localTitle, localEdit, true);
+		collapseNote(remoteTitle, remoteEdit, true);
+		diffView.setVisibility(View.GONE);
+
+		diffLabel.setOnClickListener( new View.OnClickListener() {
+			public void onClick(View v) {
+				diffView.setVisibility(diffLabel.isChecked()?View.VISIBLE:View.GONE);
+			}
+        });	
+		
+		localLabel.setOnClickListener( new View.OnClickListener() {
+			public void onClick(View v) {
+				collapseNote(localTitle, localEdit, !localLabel.isChecked());
+			}
+        });	
+		remoteLabel.setOnClickListener( new View.OnClickListener() {
+			public void onClick(View v) {
+				collapseNote(remoteTitle, remoteEdit, !remoteLabel.isChecked());
+			}
+        });	
 	}
 
 	protected void copyNote() {
@@ -386,8 +453,41 @@ public class CompareNotes extends ActionBarActivity {
 		}
     };
     
+	@Override
+   protected void onResume() {
+    	super.onResume();
+		SyncManager.setActivity(this);
+		SyncManager.setHandler(this.syncMessageHandler);    	
+    }
+    
+	@Override
     protected void onDestroy() {
     	syncProgressDialog.dismiss();
     	super.onDestroy();
     }
+
+	private void updateTextAttributes(EditText title, EditText content) {
+		float baseSize = Float.parseFloat(Preferences.getString(Preferences.Key.BASE_TEXT_SIZE));
+		content.setTextSize(baseSize);
+		title.setTextSize(baseSize*1.3f);
+
+		title.setTextColor(Color.BLUE);
+		title.setPaintFlags(title.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+		title.setBackgroundColor(0xffffffff);
+
+		content.setBackgroundColor(0xffffffff);
+		content.setTextColor(Color.DKGRAY);
+	}
+
+	private void collapseNote(EditText title, EditText content, boolean collapse) {
+		if(collapse) {
+			title.setVisibility(View.GONE);
+			content.setVisibility(View.GONE);
+		}
+		else {
+			title.setVisibility(View.VISIBLE);
+			content.setVisibility(View.VISIBLE);
+		}
+		
+	}
 }	

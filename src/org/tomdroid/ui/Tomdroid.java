@@ -977,12 +977,13 @@ public class Tomdroid extends ActionBarListActivity {
         Note localNote = NoteManager.getNote(this, uri);
 		Note remoteNote = new Note();
 
+
 		remoteNote.setGuid(localNote.getGuid());
 		remoteNote.setTitle(localNote.getTitle()+" Remote");
 		Time time= new Time();
 		remoteNote.setLastChangeDate(time.format3339(false));
-		remoteNote.setXmlContent(localNote.getXmlContent()+"\nLorem ipsum dolor sit amet, \nconsetetur sadipscing elitr, \nsed diam nonumyeirmod tempor invidunt ut la");
-		
+		remoteNote.setXmlContent(localNote.getXmlContent()+"\nLorem ipsum dolor sit amet, \nsed diam nonumyeirmod tempor invidunt ut la");
+
 		int compareBoth = Time.compare(localNote.getLastChangeDate(), remoteNote.getLastChangeDate());
 		
 		TLog.v(TAG, "note conflict... showing resolution dialog TITLE:{0} GUID:{1}", localNote.getTitle(), localNote.getGuid());

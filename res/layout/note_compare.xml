@@ -75,14 +75,15 @@
 			android:id="@+id/compare"
 			android:orientation="vertical"
 			>
-			<TextView
+			<ToggleButton
 				android:id="@+id/diff_label"
-				android:text="@string/diff_label"
+				android:background="@drawable/button_toggle"
+				android:textOn="@string/diff_label"
+				android:textOff="@string/diff_label"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:padding="10dp"
-				android:background="#000000"
-				android:textColor="#FFFFFF" />			
+				/>		
 			<TextView
 				android:id="@+id/diff"
 				android:layout_width="match_parent"
@@ -90,14 +91,15 @@
 				android:padding="10dp"
 				android:scrollHorizontally="false"
 				android:textColor="#000000" />
-			<TextView
+			<ToggleButton
 				android:id="@+id/local_label"
-				android:text="@string/local_label"
+				android:background="@drawable/button_toggle"
+				android:textOn="@string/local_label"
+				android:textOff="@string/local_label"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:padding="10dp"
-				android:background="#000000"
-				android:textColor="#FFFFFF" />
+				/>
 			<EditText 
 				android:id="@+id/local_title"
 				android:layout_width="match_parent" 
@@ -115,14 +117,15 @@
 				android:inputType="textMultiLine|textCapSentences"
 				android:textCursorDrawable="@null"
 				android:textColor="#000000" />
-			<TextView
+			<ToggleButton
 				android:id="@+id/remote_label"
-				android:text="@string/remote_label"
+				android:background="@drawable/button_toggle"
+				android:textOn="@string/remote_label"
+				android:textOff="@string/remote_label"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:padding="10dp"
-				android:background="#000000"
-				android:textColor="#FFFFFF" />
+				/>
 			<EditText 
 				android:id="@+id/remote_title"
 				android:layout_width="match_parent" 
