@@ -31,6 +31,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -43,6 +44,7 @@ import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.provider.SearchRecentSuggestions;
 import android.text.format.Time;
+import android.view.Window;
 import android.widget.Toast;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
@@ -51,6 +53,7 @@ import org.tomdroid.sync.SyncManager;
 import org.tomdroid.sync.SyncService;
 import org.tomdroid.sync.web.OAuthConnection;
 import org.tomdroid.ui.Tomdroid.SyncMessageHandler;
+import org.tomdroid.ui.actionbar.ActionBarPreferenceActivity;
 import org.tomdroid.util.FirstNote;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.SearchSuggestionProvider;
@@ -59,7 +62,7 @@ import org.tomdroid.util.TLog;
 import java.io.File;
 import java.util.ArrayList;
 
-public class PreferencesActivity extends PreferenceActivity {
+public class PreferencesActivity extends ActionBarPreferenceActivity {
 	
 	private static final String TAG = "PreferencesActivity";
 	
@@ -85,7 +88,8 @@ public class PreferencesActivity extends PreferenceActivity {
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) 
+			requestWindowFeature(Window.FEATURE_CUSTOM_TITLE); // added for actionbarcompat
 		super.onCreate(savedInstanceState);
 		
 		this.context = getApplicationContext();

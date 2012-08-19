@@ -24,6 +24,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.XmlResourceParser;
 import android.os.Bundle;
+import android.preference.PreferenceActivity;
 import android.view.InflateException;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -54,11 +55,12 @@ public class ActionBarHelperBase extends ActionBarHelper {
     protected ActionBarHelperBase(Activity activity) {
         super(activity);
     }
-
     /**{@inheritDoc}*/
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        mActivity.requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
+        if (!(mActivity instanceof PreferenceActivity)) {
+            mActivity.requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
+        }
     }
 
     /**{@inheritDoc}*/
