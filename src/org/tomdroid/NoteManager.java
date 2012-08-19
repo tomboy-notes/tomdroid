@@ -39,7 +39,7 @@ import android.widget.ListAdapter;
 import android.widget.Toast;
 
 import org.tomdroid.sync.SyncManager;
-import org.tomdroid.ui.SyncDialog;
+import org.tomdroid.ui.CompareNotes;
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.NoteListCursorAdapter;
 import org.tomdroid.util.Preferences;

@@ -38,7 +38,7 @@ import org.tomdroid.NoteManager;
 import org.tomdroid.R;
 import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncService;
-import org.tomdroid.ui.SyncDialog;
+import org.tomdroid.ui.CompareNotes;
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.ErrorList;
 import org.tomdroid.util.Preferences;

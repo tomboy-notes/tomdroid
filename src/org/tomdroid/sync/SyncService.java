@@ -42,7 +42,7 @@ import org.json.JSONObject;
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
-import org.tomdroid.ui.SyncDialog;
+import org.tomdroid.ui.CompareNotes;
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.ErrorList;
 import org.tomdroid.util.Preferences;
@@ -496,7 +496,7 @@ public abstract class SyncService {
 			if(!remoteNote.getGuid().equals(localNote.getGuid()))
 				bundle.putString("localGUID", localNote.getGuid());
 			
-			Intent intent = new Intent(activity.getApplicationContext(), SyncDialog.class);	
+			Intent intent = new Intent(activity.getApplicationContext(), CompareNotes.class);	
 			intent.putExtras(bundle);
 	
 			activity.startActivityForResult(intent, compareCount++);

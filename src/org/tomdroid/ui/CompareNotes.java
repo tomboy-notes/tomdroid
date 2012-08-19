@@ -65,7 +65,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 	
-public class SyncDialog extends Activity {	
+public class CompareNotes extends Activity {	
 	private static final String TAG = "SyncDialog";
 	private Context context;
 	
@@ -298,7 +298,7 @@ public class SyncDialog extends Activity {
 			
 			if(dateDiff < 0) { // local older, rename local
 				localNote.setTitle(newTitle);
-				NoteManager.putNote(SyncDialog.this, localNote); // update local note with new title
+				NoteManager.putNote(CompareNotes.this, localNote); // update local note with new title
 			}
 			else { // remote older, rename remote
 				remoteNote.setTitle(newTitle);
@@ -306,7 +306,7 @@ public class SyncDialog extends Activity {
 		}
 			
 		// add remote note to local
-		NoteManager.putNote(SyncDialog.this, remoteNote);
+		NoteManager.putNote(CompareNotes.this, remoteNote);
 
 		ArrayList<Note> notes = new ArrayList<Note>();
 		notes.add(localNote);
@@ -355,7 +355,7 @@ public class SyncDialog extends Activity {
 			}
 		}
 		else { // just readd and push modified localNote
-			NoteManager.putNote(SyncDialog.this, localNote);
+			NoteManager.putNote(CompareNotes.this, localNote);
 
 			notes.add(localNote);
 			SyncManager.getInstance().getCurrentService().pushNotes(notes);
@@ -368,7 +368,7 @@ public class SyncDialog extends Activity {
 	// local is deleted, delete remote as well
 	protected void onChooseDelete() { 
 		TLog.v(TAG, "user chose to delete remote note TITLE:{0} GUID:{1}", localNote.getTitle(),localNote.getGuid());
-		NoteManager.deleteNote(SyncDialog.this, localNote.getDbId()); // really delete locally
+		NoteManager.deleteNote(CompareNotes.this, localNote.getDbId()); // really delete locally
 
 		// this will delete the note, since it already has the "system:deleted" tag
 		ArrayList<Note> notes = new ArrayList<Note>();
