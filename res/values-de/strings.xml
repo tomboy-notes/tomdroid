@@ -25,7 +25,7 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Tomboy kompatibles Wiki Notiz-Programm, mit dem man noch keine Notizen erstellen kann.</string>
+	<string name="app_desc">Tomboy kompartibles wikiwiki Notizprogramm, mit dem man Notizen erstellen kann.</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
@@ -37,7 +37,7 @@
 	<string name="menuAbout">Information</string>
 	<string name="titleWelcome">Warnung</string>
 	<string name="titleAbout">Über Tomdroid</string>
-	<string name="strWelcome">Willkommen bei Tomdroid.\n\nBitte beachten Sie, dass sich dieses Programm noch im Betastadium befindet und Probleme bekannt sind, wie zum Beispiel das Fehlen der Bearbeitungsfunktion.\n\nWir sind uns diesen Mängeln bewusst und versuchen, möglichst schnell die Funktionen zu erweitern und Fehler zu beheben.\n\nFalls Sie die Entwicklung in irgendeiner Form unterstützen möchten, würden wir uns sehr freuen. Auf launchpad.net/tomdroid finden Sie die nötigen Informationen!\n</string>
+	<string name="strWelcome">Willkommen zu Tomdroid.\n\nBitte beachten Sie, dass dies Beta-Software ist, die bekannte Fehler beinhaltet.\n\nUns allen sind diese Probleme bekannt und wir beabsichtigen, sie schleunigst zu beheben, jedoch wollte ich ebenfalls so früh wie möglich eine Version zum Testen veröffentlichen.\n\nSollten Sie gewillt sein, sich zu beteiligen, würden wir Hilfe an jeder Stelle begrüßen. Öffnen Sie dazu einfach launchpad.net/tomdroid und kontaktieren Sie uns!\n</string>
 	<string name="strAbout">%1$s\n\nAutor: %2$s\nVersion: %3$s\nLizensiert unter GPLv3</string>
 	
 	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
@@ -45,36 +45,39 @@
 	<string name="btnCancel">Abbrechen</string>
 	<string name="btnClose">Schließen</string>
 	<string name="btnProjectPage">Projektseite</string>
+	<string name="btnSavetoSD">Speichern</string>
 	
 	<!-- note-view.xml -->
-	<string name="strWait">Die Notiz wird geladen. Bitte warten …</string>
+	<string name="strWait">Die Notizen laden. Bitte warten Sie...</string>
 	
-	<string name="prefSync">Synchronisation</string>
 	<string name="prefSyncService">Dienst</string>
 	<string name="prefSyncServer">Server</string>
 	<string name="prefSDCard">SD-Karte</string>
 	<string name="prefTomboyWeb">Online-Synchronisation</string>
 	<string name="prefAuthenticate">Authentifizieren</string>
-	<string name="prefLocation">Location on SD Card</string>
-	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
-	<string name="prefNoValidLocation">\"%1$s\" is no valid folder location. Please try again!</string>
-	
-	<string name="prefSyncCompleteAuth">Authentifizierung läuft. Bitte warten …</string>
+	<string name="prefLocation">Ort auf der SD-Karte</string>
+	<string name="prefFolderCreated">Der Ordner \"%1$s\" existiert noch nicht. Bitte verbinde dein Gerät mit dem Computer, erstelle den Ordner und befüllt ihn mit *.note Dateien.</string>
+	<string name="prefNoValidLocation">\"%1$s\" ist kein gültiger Speicherort. Bitte versuchen Sie es erneut!</string>
+	<string name="prefNoValidEntry">\"%1$s\" ist keine gültige Eingabe. Bitte versuchen Sie es erneut!</string>
+	<string name="prefSyncCompleteAuth">Authentifizierung abschließen, bitte warten...</string>
 	<string name="prefSyncConnectionFailed">Die Verbindung zum Server ist fehlgeschlagen. Bitte überprüfe die angegebene Adresse.</string>
 	<string name="prefServerEmpty">Die Adresse des Servers wurde geändert. Es wurde keine Adresse angegeben!</string>
-	
+			
 	<string name="titleSyncService">Synchronisationsdienst wählen</string>
 	<string name="messageSyncComplete">Erfolgreich mit %1$s synchronisiert.</string>
-	<string name="messageSyncNoNote">No notes found on %1$s.</string>
+	<string name="messageSyncNoNote">Keine Notizen auf %1$s gefunden.</string>
 	<string name="messageSyncNoConnection">Es besteht keine Internetverbindung.</string>
 	<string name="messageSyncAlreadyInProgress">Synchronisation wird bereits ausgeführt.</string>
 	<string name="messageSyncError">Es ist ein Fehler beim Analysieren Ihrer Notizen aufgetreten. Falls dieses Problem wiederholt auftritt, melden Sie es bitte!</string>
 	<string name="error">Fehler</string>
-	<string name="titleNoteNotFound">No Such Note</string>
-	<string name="messageNoteNotFound">The requested note could not be found. Maybe it was deleted or removed through synchronization.</string>
+	<string name="titleNoteNotFound">Notiz nicht vorhanden</string>
+	<string name="messageNoteNotFound">Die gewünschte Notiz konnte nicht gefunden werden. Vielleicht wurde sie gelöscht oder durch Synchronisieren entfernt.</string>
+	<string name="messageErrorNoteParsing">Fehler beim Erstellen der Notiz.</string>
+	<string name="messageCouldNotSave">Could not save note.</string>
+	<string name="messageNoSDCard">SD-Karte wurde nicht gefunden.</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">Change Sort</string>
+	<string name="menuSort">Reihenfolge ändern</string>
 	<string name="titleDefaultSorting">Wähle die Standardreihenfolge</string>
 	<string name="prefDefaultSorting">Standardreihenfolge</string>
 	
@@ -93,7 +96,6 @@
 	<string name="search_description">Text in meinen Notizen</string>
 	<string name="strNoResults">Keine Notizen gefunden mit \"%s\"</string>
 	<string name="menuSearch">Suchen</string>
-	<string name="prefSearch">Suchoptionen</string>
 	<string name="SearchResultTitle">Suchergebnisse:</string>
 	<string name="clearSearchHistoryTitle">Suchverlauf löschen</string>
 	<string name="clearSearchHistory">Alle Suchvorgänge aus dem Verlauf entfernen</string>
@@ -105,27 +107,162 @@
 	<string name="textYexterday">Gestern</string>
 
 	<!-- Shortcuts handling -->
-	<string name="shortcuts_view_caption">Choose a Note</string>
-	<string name="shortcut_menu_item_caption">Tomdroid Note</string>
-	<string name="btnRemoveShortcut">Remove shortcut</string>
-	<string name="createShortcut">Create shortcut</string>
+	<string name="shortcuts_view_caption">Wähle eine Notiz</string>
+	<string name="shortcut_menu_item_caption">Tomdroid Notiz</string>
+	<string name="btnRemoveShortcut">Verknüpfung entfernen</string>
+	<string name="createShortcut">Verknüpfung erstellen</string>
+
+	<!-- stuff new to edit -->
+
+	<!-- deleteNote -->
+	<string name="delete">Löschen</string>
+	<string name="delete_note">Notiz löschen</string>
+	<string name="delete_message">Soll diese Notiz wirklich gelöscht werden?</string>
+	<string name="yes">Ja</string>
+	<string name="no">Nein</string>
+	<string name="delete_all">Notizen löschen</string>
+	<string name="delete_all_message">Sind Sie sicher, dass sie die Notiz-Datenbank löschen wollen?</string>
+	<string name="delete_remote_notes">Notizen am Server löschen</string>
+	<string name="delete_remote_notes_message">Sind Sie sicher, dass sie alle Notizen am Server löschen wollen?</string>
+				
+	<!-- newNote -->
+	<string name="menuNew">Neu</string>
+	<string name="NewNoteTitle">Neue Notiz</string>
+	<string name="NewNoteTitleHint">Titel hier eingeben</string>
+	<string name="NewNoteBodyHint">Notiz hier eingeben</string>
+			
+	<!-- editNote -->
+	<string name="edit">Bearbeiten</string>
+	<string name="save">Speichern</string>
+	<string name="discard">Verwerfen</string>
+	<string name="back">Zurück</string>
+	<string name="bold">B</string>
+	<string name="italic">i</string>
+	<string name="strike"><strike>S</strike></string>
+	<string name="mono">Feste Zeichenbreite</string>
+	<string name="highlight">hervorheben</string>
+	<string name="size">Größe</string>
+	<string name="xml">XML</string>
+	<string name="text">Text</string>
+	<string name="titleErrorParsingXML">Fehler beim Erstellen der Notiz</string>
+	<string name="messageErrorParsingXML">Es ist ein Fehler beim Erstellen der Notiz aufgetreten. Bitte überprüfe den XML-Code.</string>
+	<string name="messageNoteSaved">Notiz wurde lokal gespeichert.</string>
+	<string name="messageNoteDeleted">Notiz wurde local gelöscht.</string>
+	<string name="messageSelectSize">Textgröße wählen</string>
+	<string name="small">Klein</string>
+	<string name="normal">Normal</string>
+	<string name="large">Groß</string>
+	<string name="huge">Sehr groß</string>
+	<string name="messageDiscardChanges">Wollen Sie die Änderungen verwerfen und die ursprüngliche Version wiederherstellen?</string>
+	<string name="titleDiscardChanges">Änderungen verwerfen?</string>
+	<string name="gt"><b>&gt;</b></string>
+	<string name="lt"><b>&lt;</b></string>
+			
+	<!-- New Titles -->
+	<string name="view_title">Tomdroid - Notizansicht</string>
+	<string name="edit_title">Tomdroid - Bearbeitungsansicht</string>
+	<string name="search_title">Tomdroid - Suchergebnisse</string>
+	<string name="shortcut_title">Tomdroid - Verknüpfungen</string>
+	<string name="pref_title">Tomdroid - Settings</string>
+			
+	<!-- new prefs -->
+	<string name="prefDisplay">Display Preferences</string>
+	<string name="prefBaseSize">Normale Zeichengröße</string>
+	<string name="prefTheme">Choose Theme</string>
+	<string name="prefThemeSummary">requires restart</string>
+	<string name="prefSync">Synchronisation</string>
+	<string name="prefMisc">Sonstige Optionen</string>
+	<string name="prefTools">Werkzeuge</string>
+	<string name="prefAutoSaveTitle">Automatisches Speichern</string>
+	<string name="prefAutoSave">Notizen beim Verlassen automatisch speichern</string>
+	<string name="prefNoteTemplatesTitle">Zeige Notiz-Vorlagen</string>
+	<string name="prefNoteTemplates">Zeige Notizvorlagen in der Notizliste an.</string>
+	<string name="deleteAllNotesTitle">Notizen löschen</string>
+	<string name="deleteAllNotes">Lösche alle Notizen von der lokalen Datenbank</string>
+	<string name="deleteRemoteNotesTitle">Notizen am Server löschen</string>
+	<string name="deleteRemoteNotes">Lösche alle Notizen vom Server</string>
+	<string name="illegalTextSize">Ungültige Textgröße. Bitte eine Nummer eingeben</string>
+
+	<!-- syncNotes -->
+
+	<string name="syncing">Synchronisiere mit %1$s</string>
+	<string name="syncing_connect">Verbinde zu service</string>
+	<string name="syncing_local">Aktualisieren der Notizen...</string>
+	<string name="syncing_remote">Aktualisiere Notizen...</string>
+	<string name="sync_conflict_title">Notizkonflikt</string>
+	<string name="sync_conflict_message">There was a conflict syncing the note "%1$s".  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="sync_conflict_deleted">Es ist ein Fehler beim synchronisieren der Notiz "%1$s" aufgetreten (die lokale Version wurde entfernt). Bitte wählen Sie eine der angeführten Optionen aus.</string>
+	<string name="sync_conflict_titles_message">There was a conflict syncing the note "%1$s".  A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="overwrite_remote">Overwrite\nRemote</string>
+	<string name="overwrite_local">Overwrite\nLocal</string>
+	<string name="delete_remote">Lösche serverseitige Version</string>
+	<string name="diff_label">Difference Between Files</string>
+	<string name="diff_titles">-- Unterschiede im Titel --</string>
+	<string name="diff_content">-- Unterschiede im Inhalt --</string>
+	<string name="line_x">Line %1$s:</string>
+	<string name="local_label">Local Version</string>
+	<string name="remote_label">Remote Version</string>
+	<string name="deleted">gelöscht</string>
+	<string name="copy">Create\nCopy</string>
+	<string name="old">%1$2 (alt)</string>
+	<string name="close">Schließen</string>
+	<string name="cancel">Abbrechen</string>
+	<string name="messageAuthComplete">Authentifizierung mit %1$s erfolgreich.</string>
+	<string name="messageAuthFailed">Authentifizierung mit %1$s fehlgeschlagen. Versuchen sie es erneut.</string>
+	<string name="messageSyncNoteDeleted">Notiz von %1$s erfolgreich gelöscht.</string>
+	<string name="messageSyncNotePushed">Notiz erfolgreich an %1$s gesendet.</string>
+	<string name="messageSyncNotePulled">Notiz erfolgreich von %1$s empfangen.</string>
+	<string name="messageSyncNoteDeleteError">Fehler beim Löschen der Notiz von %1$s.</string>
+	<string name="messageSyncNotePushError">Fehler beim Senden der Notiz an %1$s.</string>
+	<string name="messageSyncNotePullError">Fehler beim Empfangen der Notiz von %1$s.</string>
+	<string name="messageSyncParseFailed">Fehler beim Verarbeiten der Antwort von %1$s.</string>
+	<string name="messageSyncConnectingFailed">Fehler beim Verbinden zu %1$s. Möglicherweise müssen Sie sich erst über die "Einstellungen" authentifizieren.</string>
+	<string name="messageRemoteNotesDeleted">Notizen erfolgreich von %1$s gelöscht.</string>
+	<string name="messageSyncCancelled">Synchronisation mit %1$s abgebrochen.</string>
+				
+	<!-- revert notes -->
 	
+	<string name="contextRevert">Rückgängig machen</string>
+	<string name="menuRevert">Alles Rückgangig machen</string>
+	<string name="revert_notes">Notizen zurücksetzen.</string>
+	<string name="revert_notes_message">Hiermit werden alle Notizen auf die am Server gespeicherten Versionen zurückgesetzt. Wollen Sie fortfahren?</string>
+	<string name="revert_note">Notiz zurücksetzten</string>
+	<string name="revert_note_message">Hiermit wird die Notiz verworfen und die am Server gespeicherte Version geladen. Wollen Sie fortfahren?</string>
+
+	<!-- backup notes -->
+	
+	<string name="backupPrefTitle">Sicherungskopie der Notizen erstellen</string>
+	<string name="backupPref">Alle lokalen Notizen auf SD-Karte kopieren</string>
+	<string name="backup_notes_title">Sicherungskopie erstellen?</string>
+	<string name="backup_notes">Sollen alle lokalen Notizen auf die SD-Karte kopiert werden? Bereits bestehende Notizen auf der SD-Karte werden überschrieben.</string>
+	<string name="restorePrefTitle">Notizen wiederherstellen</string>
+	<string name="restorePref">Alle Notizen von der SD-Karte laden</string>
+	<string name="restore_notes_title">Notizen wiederherstellen?</string>
+	<string name="restore_notes">Alle Notizen von der SD-Karte laden? Existierende Notizen werden überschrieben.</string>
+	<string name="messageNotesBackedUp">Notizen erfolgreich auf die SD-Karte gesichert.</string>
+	<string name="messageNotesRestored">Notizen erfolgreich von der SD-Karte geladen.</string>
+	<string name="messageDatabaseReset">Notes cleared successfully.</string>
+		
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
 	I\'ve put it in here so that it\'ll get translated by translators.
 	-->
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid Notizen</string>
-	<!-- 325 chars max -->
-	<string name="market_description">Ein Tomboy Notiz-Programm für Android. Tomboy ist ein Notiz-Programm, dass einen wikiwiki Aufbau benutzt und eine einfache Benutzeroberfläche.\n\nBEACHTE: Mit diesem Programm kann man momentan NUR LESEN.\n\n* Notiz-Formatierung wie bei Tomboy.\n* Online Notiz-Synchronisierung mit Snowy, Tomboy Online oder Ubuntu One.\n* Importieren von der SD-Karte.\n* Open source!</string>
+	<!-- 4000 chars max -->
+	<string name="market_description">Ein übersichtlicher Tomboy Client für Android. 
+Tomdroid ist ein nützliches Notizprogramm mit einfacher, intuitiver Bedienung, welches den wikiwiki Ansatz verfolgt. \n\n* Formatkompatibilität mit Tomboy\n* Online Notizsynchronisation mit Snowy, Tomboy online oder Ubuntu One möglich\* Import/Export der Notizen von SD-Karte möglich\n* Open Source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Notiz-Programm mit online Synchronisation zu Tomboy.</string>
-	
-	
+
+	<!-- 500 chars max -->
+        <string name="market_recent_changes">* Notizen durchsuchen\n* Kontextmenü\n* Verschiedene Usabilityverbesserungen\n* Höherqualitative Icons\n* Bug Fixes\n* Deutsche *bersetzung</string>
+
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
-  Henrik Graßhoff https://launchpad.net/~henrik-grasshoff
-  Stefan Hammer https://launchpad.net/~j-4</string>
-	
+  Franz Pöschel https://launchpad.net/~f-poeschel-mail
+  Ghenrik https://launchpad.net/~ghenrik-deactivatedaccount
+  Stefan Hammer https://launchpad.net/~j-4
+  mili https://launchpad.net/~mili-f</string>
 </resources>

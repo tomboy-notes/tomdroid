@@ -25,7 +25,7 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Tomboy-rekin bateragarria den oharrak hartzeko wiki aplikazioa, oraingoz oharrak hartzeko aukerarik ematen ez duena.</string>
+	<string name="app_desc">Tomboy compatible wikiwiki note-taking application that can take notes.</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
@@ -37,7 +37,7 @@
 	<string name="menuAbout">Honi buruz</string>
 	<string name="titleWelcome">Abisua</string>
 	<string name="titleAbout">Tomdroid-i buruz</string>
-	<string name="strWelcome">Ongietorri Tomdroid-era.\n\nMesedez, kontutan izan hau beta kalitateko softwarea dela eta zenbait arazo ezagun dituela, hala nola, oharrak editatzeko ezintasuna.\n\nArazo hauen jakitun gara eta konpontzen saiatuko gara baina  aplikazioa lehenbailehen argitaratu eta testatu nahi genuen.\n\nParte hartu nahi baduzu, edozein motatako laguntza eskertuko genuke. Zoaz launchpad.net/tomdroid-era eta jarri gurekin harremanetan!\n</string>
+	<string name="strWelcome">Welcome to Tomdroid.\n\nPlease note that this is beta quality software and that it contains known problems.\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something out and tested as quickly as possible.\n\nIf you would like to contribute, help at all levels would be appreciated. Hop on board on launchpad.net/tomdroid and contact us!\n</string>
 	<string name="strAbout">%1$s\n\nEgilea: %2$s\nBertsioa: %3$s\nGPLv3 lizentziadun proiektua</string>
 	
 	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
@@ -45,36 +45,39 @@
 	<string name="btnCancel">Utzi</string>
 	<string name="btnClose">Itxi</string>
 	<string name="btnProjectPage">Proiektuaren orria</string>
+	<string name="btnSavetoSD">Gorde</string>
 	
 	<!-- note-view.xml -->
-	<string name="strWait">Mesedez, itxaron oharrak kargatu bitartean...</string>
+	<string name="strWait">Mesedez itxaron oharra kargatu bitartean...</string>
 	
-	<string name="prefSync">Sinkronizazioa</string>
 	<string name="prefSyncService">Zerbitzua</string>
 	<string name="prefSyncServer">Zerbitzaria</string>
 	<string name="prefSDCard">SD Txartela</string>
 	<string name="prefTomboyWeb">Lineako sinkronizazioa</string>
 	<string name="prefAuthenticate">Autentifikatu</string>
-	<string name="prefLocation">Location on SD Card</string>
-	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
-	<string name="prefNoValidLocation">\"%1$s\" is no valid folder location. Please try again!</string>
-	
-	<string name="prefSyncCompleteAuth">Autentifikazioa burutzen. Mesedez, itxaron...</string>
+	<string name="prefLocation">SD txarteleko kokalekua</string>
+	<string name="prefFolderCreated">\"%1$s\" karpeta ez da existitzen oraindik. Mesedez, konektatu zure gailua ordenagailura, sortu karpeta eta bete *.note fitxategiekin.</string>
+	<string name="prefNoValidLocation">\"%1$s\" ez da baliozko karpeta kokaleku bat. Mesedez saiatu berriro!</string>
+	<string name="prefNoValidEntry">\"%1$s\" ez da baliozko sarrera bat. Mesedez saiatu berriro!</string>
+	<string name="prefSyncCompleteAuth">Autentifikazioa osatzen. Itxaron mesedez...</string>
 	<string name="prefSyncConnectionFailed">Ezin izan da konexiorik ezarri zerbitzariarekin. Mesedez, ziurtatu sartu duzun helbidea zuzena dela.</string>
 	<string name="prefServerEmpty">Zerbitzariaren helbidea aldatu da baina balio berria hutsik dago</string>
-	
+			
 	<string name="titleSyncService">Aukeratu erabiliko den sinkronizazio zerbitzua</string>
 	<string name="messageSyncComplete">%1$-rekin sinkronizazioa burutu da.</string>
-	<string name="messageSyncNoNote">No notes found on %1$s.</string>
+	<string name="messageSyncNoNote">Ez da oharrik aurkitu %1$s-(e)n</string>
 	<string name="messageSyncNoConnection">Ez zaude Internetera konektatuta.</string>
 	<string name="messageSyncAlreadyInProgress">Sinkronizazioa martxan dago jadanik</string>
 	<string name="messageSyncError">Errore bat eman da zure ohar bilduma analizatzen saiatzean. Arazoa erreplikatzeko gauza bazara, mesedez, jarri gurekin harremanetan!</string>
 	<string name="error">Errorea</string>
-	<string name="titleNoteNotFound">No Such Note</string>
-	<string name="messageNoteNotFound">The requested note could not be found. Maybe it was deleted or removed through synchronization.</string>
+	<string name="titleNoteNotFound">Ez dago halako oharrik</string>
+	<string name="messageNoteNotFound">Eskatutako oharra ezin izan da aurkitu. Behar bada sinkronizazioan ezabatu edo kendu zen.</string>
+	<string name="messageErrorNoteParsing">Errorea oharra analizatzean.</string>
+	<string name="messageCouldNotSave">Could not save note.</string>
+	<string name="messageNoSDCard">SDCard storage not found.</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">Change Sort</string>
+	<string name="menuSort">Aldatu ordenatzea</string>
 	<string name="titleDefaultSorting">Aukeratu ordenatze lehenetsia</string>
 	<string name="prefDefaultSorting">Ordenatze lehenetsia</string>
 	
@@ -93,7 +96,6 @@
 	<string name="search_description">Zure oharretako testua</string>
 	<string name="strNoResults">Ez da oharrik aurkitu \"%s"\-rentzat</string>
 	<string name="menuSearch">Bilatu</string>
-	<string name="prefSearch">Bilaketa aukerak</string>
 	<string name="SearchResultTitle">Bilaketaren emaitzak:</string>
 	<string name="clearSearchHistoryTitle">Garbitu bilaketa historia</string>
 	<string name="clearSearchHistory">Ezabatu egin dituzun bilaketa guztiak</string>
@@ -105,26 +107,159 @@
 	<string name="textYexterday">Atzo</string>
 
 	<!-- Shortcuts handling -->
-	<string name="shortcuts_view_caption">Choose a Note</string>
-	<string name="shortcut_menu_item_caption">Tomdroid Note</string>
-	<string name="btnRemoveShortcut">Remove shortcut</string>
-	<string name="createShortcut">Create shortcut</string>
+	<string name="shortcuts_view_caption">Aukeratu ohar bat</string>
+	<string name="shortcut_menu_item_caption">Tomdroid oharra</string>
+	<string name="btnRemoveShortcut">Kendu lasterbidea</string>
+	<string name="createShortcut">Sortu lasterbidea</string>
+
+	<!-- stuff new to edit -->
+
+	<!-- deleteNote -->
+	<string name="delete">Ezabatu</string>
+	<string name="delete_note">Ezabatu oharra</string>
+	<string name="delete_message">Ziur zaude ohar hau ezabatu nahi duzula?</string>
+	<string name="yes">Bai</string>
+	<string name="no">Ez</string>
+	<string name="delete_all">Garbitu oharrak</string>
+	<string name="delete_all_message">Ziur zaude oharren datu-basea garbitu nahi duzula?</string>
+	<string name="delete_remote_notes">Ezabatu urruneko oharrak</string>
+	<string name="delete_remote_notes_message">Ziur zaude urruneko zerbitzuko ohar guztiak ezabatu nahi dituzula?</string>
+				
+	<!-- newNote -->
+	<string name="menuNew">Berria</string>
+	<string name="NewNoteTitle">Ohar berria</string>
+	<string name="NewNoteTitleHint">Idatzi izenburua hemen</string>
+	<string name="NewNoteBodyHint">Idatzi oharra hemen</string>
+			
+	<!-- editNote -->
+	<string name="edit">Editatu</string>
+	<string name="save">Gorde</string>
+	<string name="discard">Baztertu</string>
+	<string name="back">Atzera</string>
+	<string name="bold">B</string>
+	<string name="italic">i</string>
+	<string name="strike"><strike>S</strike></string>
+	<string name="mono">tarte bakarrekoa</string>
+	<string name="highlight">nabarmendu</string>
+	<string name="size">tamaina</string>
+	<string name="xml">XML</string>
+	<string name="text">Testua</string>
+	<string name="titleErrorParsingXML">Errorea oharra analizatzean</string>
+	<string name="messageErrorParsingXML">Errore bat gertatu da oharra analizatzean. Mesedez egiaztatu zure XMLa.</string>
+	<string name="messageNoteSaved">Oharra lokalki gordeta.</string>
+	<string name="messageNoteDeleted">Oharra lokalki ezabatuta.</string>
+	<string name="messageSelectSize">Hautatu testuaren tamaina</string>
+	<string name="small">Txikia</string>
+	<string name="normal">Arrunta</string>
+	<string name="large">Handia</string>
+	<string name="huge">Oso handia</string>
+	<string name="messageDiscardChanges">Ziur zaude aldaketak baztertu eta oharraren gordetako azken bertsiora itzuli nahi duzula?</string>
+	<string name="titleDiscardChanges">Aldaketak baztertu?</string>
+	<string name="gt"><b>&gt;</b></string>
+	<string name="lt"><b>&lt;</b></string>
+			
+	<!-- New Titles -->
+	<string name="view_title">Tomdroid - Ikusi oharra</string>
+	<string name="edit_title">Tomdroid - Editatu oharra</string>
+	<string name="search_title">Tomdroid - Search Results</string>
+	<string name="shortcut_title">Tomdroid - Shortcuts</string>
+	<string name="pref_title">Tomdroid - Settings</string>
+			
+	<!-- new prefs -->
+	<string name="prefDisplay">Display Preferences</string>
+	<string name="prefBaseSize">Base Font Size</string>
+	<string name="prefTheme">Choose Theme</string>
+	<string name="prefThemeSummary">requires restart</string>
+	<string name="prefSync">Sinkronizazioa</string>
+	<string name="prefMisc">Misc. Options</string>
+	<string name="prefTools">Tools</string>
+	<string name="prefAutoSaveTitle">Auto Save Note</string>
+	<string name="prefAutoSave">Save notes automatically on exiting editor.</string>
+	<string name="prefNoteTemplatesTitle">Show Note Templates</string>
+	<string name="prefNoteTemplates">If checked, will show note templates in notes list.</string>
+	<string name="deleteAllNotesTitle">Garbitu oharrak</string>
+	<string name="deleteAllNotes">Clear all notes from local database</string>
+	<string name="deleteRemoteNotesTitle">Ezabatu urruneko oharrak</string>
+	<string name="deleteRemoteNotes">Delete all notes from remote service</string>
+	<string name="illegalTextSize">Illegal text size chosen. Please choose a number.</string>
+
+	<!-- syncNotes -->
+
+	<string name="syncing">Syncing with %1$s</string>
+	<string name="syncing_connect">connecting to service…</string>
+	<string name="syncing_local">updating local notes…</string>
+	<string name="syncing_remote">updating remote notes…</string>
+	<string name="sync_conflict_title">Note Conflict</string>
+	<string name="sync_conflict_message">There was a conflict syncing the note "%1$s".  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="sync_conflict_deleted">There was a conflict syncing the note "%1$s" (local version was deleted).  Please choose from one of the actions below.</string>
+	<string name="sync_conflict_titles_message">There was a conflict syncing the note "%1$s".  A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="overwrite_remote">Overwrite\nRemote</string>
+	<string name="overwrite_local">Overwrite\nLocal</string>
+	<string name="delete_remote">Delete Remote</string>
+	<string name="diff_label">Difference Between Files</string>
+	<string name="diff_titles">-- Title Differences --</string>
+	<string name="diff_content">-- Content Differences --</string>
+	<string name="line_x">Line %1$s:</string>
+	<string name="local_label">Local Version</string>
+	<string name="remote_label">Remote Version</string>
+	<string name="deleted">Deleted</string>
+	<string name="copy">Create\nCopy</string>
+	<string name="old">%1$s (old)</string>
+	<string name="close">Itxi</string>
+	<string name="cancel">Utzi</string>
+	<string name="messageAuthComplete">Authorization with %1$s successful.</string>
+	<string name="messageAuthFailed">Authorization with %1$s failed.  Maybe try again?</string>
+	<string name="messageSyncNoteDeleted">Note deleted from %1$s successfully.</string>
+	<string name="messageSyncNotePushed">Note sent to %1$s successfully.</string>
+	<string name="messageSyncNotePulled">Note received from %1$s successfully.</string>
+	<string name="messageSyncNoteDeleteError">Error deleting note from %1$s.</string>
+	<string name="messageSyncNotePushError">Error sending note to %1$s.</string>
+	<string name="messageSyncNotePullError">Error receiving note from %1$s.</string>
+	<string name="messageSyncParseFailed">Error parsing response from %1$s.</string>
+	<string name="messageSyncConnectingFailed">Error connecting to %1$s.  You probably need to authenticate in "Settings".</string>
+	<string name="messageRemoteNotesDeleted">Notes deleted from %1$s successfully.</string>
+	<string name="messageSyncCancelled">Sync with %1$s cancelled.</string>
+				
+	<!-- revert notes -->
 	
+	<string name="contextRevert">Revert</string>
+	<string name="menuRevert">Revert All</string>
+	<string name="revert_notes">Revert Notes</string>
+	<string name="revert_notes_message">This will revert your local notes to whatever versions exist on the remote service.  Are you sure you want to do this?</string>
+	<string name="revert_note">Revert Note</string>
+	<string name="revert_note_message">This will revert a local note to whatever version exist on the remote service.  Are you sure you want to do this?</string>
+
+	<!-- backup notes -->
+	
+	<string name="backupPrefTitle">Backup Notes</string>
+	<string name="backupPref">Copy all local notes to SD Card</string>
+	<string name="backup_notes_title">Backup Notes?</string>
+	<string name="backup_notes">Copy all local notes to SD Card?  This may overwrite existing notes on the SD Card.</string>
+	<string name="restorePrefTitle">Restore Notes</string>
+	<string name="restorePref">Pull all notes from SD Card</string>
+	<string name="restore_notes_title">Restore Notes?</string>
+	<string name="restore_notes">Pull all notes from SD Card?  This may overwrite your existing notes.</string>
+	<string name="messageNotesBackedUp">Notes backed up to SD card successfully.</string>
+	<string name="messageNotesRestored">Notes restored from SD card successfully.</string>
+	<string name="messageDatabaseReset">Notes cleared successfully.</string>
+		
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
 	I\'ve put it in here so that it\'ll get translated by translators.
 	-->
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid oharrak</string>
-	<!-- 325 chars max -->
-	<string name="market_description">Android-erako Tomboy bezeroa. Tomboy oharrak hartzeko mahaigaineko wiki aplikazio bat da eta erabiltzaile interfaze soila du.\n\nOHARRA: Oraingoz IRAKURKETA SOILIK baimentzen duen bezero bat da.\n\n* Tomboy-rekin bateragarria den oharren formatua\n* Oharren lineako sinkronizazioa Snowy, Tomboy Online edo Ubuntu One-ekin\n* SD txarteletik inportatzeko aukera\n* Software librea!</string>
+	<!-- 4000 chars max -->
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Lineako sinkronizazioadun oharrak hartzeko aplikazioa, Tomboyrekin bateragarria</string>
-	
-	
+
+	<!-- 500 chars max -->
+        <string name="market_recent_changes">* Search notes and system integrated search\n* Context menu\n* Several usability improvements\n* Higher quality icons\n* Several bug fixes\n* German translation\n</string>
+
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
-  Asier Iturralde Sarasola https://launchpad.net/~asier-iturralde</string>
-	
+  Asier Iturralde Sarasola https://launchpad.net/~asier-iturralde
+  Stefan Hammer https://launchpad.net/~j-4</string>
 </resources>
