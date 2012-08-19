@@ -44,6 +44,7 @@ import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.provider.SearchRecentSuggestions;
 import android.text.format.Time;
+import android.view.MenuItem;
 import android.view.Window;
 import android.widget.Toast;
 import org.tomdroid.NoteManager;
@@ -88,8 +89,13 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) 
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+
 			requestWindowFeature(Window.FEATURE_CUSTOM_TITLE); // added for actionbarcompat
+		}
+		if (Preferences.getString(Preferences.Key.THEME_CHOICE).equals("dark"))
+			super.setTheme( R.style.DarkTheme);
+		
 		super.onCreate(savedInstanceState);
 		
 		this.context = getApplicationContext();
@@ -401,14 +407,18 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 	private void resetLocalDatabase() {
 		getContentResolver().delete(Tomdroid.CONTENT_URI, null, null);
 		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, 0);
+		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, new Time().format3339(false));
 		
 		// add a first explanatory note
-		// TODO this may be problematic with two-way sync
 		NoteManager.putNote(this, FirstNote.createFirstNote());
+		
+		String text = getString(R.string.messageDatabaseReset);
+		Toast.makeText(activity, text, Toast.LENGTH_SHORT).show();
 	}
 	
 	private void resetRemoteService() {
 		SyncManager.getInstance().getCurrentService().deleteAllNotes();
+
 	}
 	
 	/**
@@ -430,6 +440,7 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 		// reset last sync date, so we can push local notes to the service - to pull instead, we have "revert all"
 		
 		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, new Time().format3339(false));
+		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, 0);
 
 	}
 
@@ -466,5 +477,16 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 			}
 		}
 	}
-	
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if(item.getItemId() == android.R.id.home) {
+	        	// app icon in action bar clicked; go home
+                Intent intent = new Intent(this, Tomdroid.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            	return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
 }

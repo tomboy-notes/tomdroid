@@ -163,7 +163,8 @@
 	<string name="edit_title">Tomdroid - Edit Note</string>
 	<string name="search_title">Tomdroid - Search Results</string>
 	<string name="shortcut_title">Tomdroid - Shortcuts</string>
-		
+	<string name="pref_title">Tomdroid - Settings</string>
+			
 	<!-- new prefs -->
 	<string name="prefDisplay">Display Preferences</string>
 	<string name="prefBaseSize">Base Font Size</string>
@@ -239,7 +240,8 @@
 	<string name="restore_notes">Pull all notes from SD Card?  This may overwrite your existing notes.</string>
 	<string name="messageNotesBackedUp">Notes backed up to SD card successfully.</string>
 	<string name="messageNotesRestored">Notes restored from SD card successfully.</string>
-	
+	<string name="messageDatabaseReset">Notes cleared successfully.</string>
+		
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
 	I\'ve put it in here so that it\'ll get translated by translators.

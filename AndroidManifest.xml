@@ -79,8 +79,9 @@
         />
         
         <activity android:name=".ui.PreferencesActivity" 
-        	android:theme="@style/DarkTheme"
-            android:label="@string/app_name">
+        	android:theme="@style/LightTheme"
+ 			android:label="@string/pref_title"
+ 			>
 
     	</activity>
 
