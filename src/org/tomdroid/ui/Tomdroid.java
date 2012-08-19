@@ -25,6 +25,7 @@
 package org.tomdroid.ui;
 
 import java.util.HashMap;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -134,11 +135,8 @@ public class Tomdroid extends ActionBarListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Preferences.init(this, CLEAR_PREFERENCES);
-		this.context = this;
+		context = this;
         main =  View.inflate(this, R.layout.main, null);
-
-		if (Preferences.getString(Preferences.Key.THEME_CHOICE).equals("dark"))
-			super.setTheme( R.style.DarkTheme);
 		
         setContentView(main);
 		
@@ -171,10 +169,6 @@ public class Tomdroid extends ActionBarListActivity {
 		listEmptyView = (TextView) findViewById(R.id.list_empty);
 		getListView().setEmptyView(listEmptyView);
 		
-		// FIXME: why is this necessary?
-		if (Preferences.getString(Preferences.Key.THEME_CHOICE).equals("dark"))
-			getListView().setBackgroundColor(0xFF000000);
-		
 		registerForContextMenu(findViewById(android.R.id.list));
 		
 		// add note to pane for tablet
@@ -188,6 +182,9 @@ public class Tomdroid extends ActionBarListActivity {
 			updateTextAttributes();
 			showNoteInPane(-1);
 		}
+		
+		// dev function, uncomment to test out the compare_notes activity
+		//compareTestNotes();
 	}
 	private void updateTextAttributes() {
 		float baseSize = Float.parseFloat(Preferences.getString(Preferences.Key.BASE_TEXT_SIZE));
@@ -960,5 +957,55 @@ public class Tomdroid extends ActionBarListActivity {
 			syncProgressDialog.dismiss();
 		if(rightPane != null)
 			showNoteInPane(lastIndex);
+	}
+	
+	// dev function, used for testing out the note conflict resolution
+	public void compareTestNotes() {
+		int position = 0;
+		Cursor item = (Cursor) adapter.getItem(position);
+		if (item == null || item.getCount() == 0) {
+            TLog.d(TAG, "Index {0} not found in list", position);
+            title.setText("");
+            content.setText("");
+			return;
+		}
+		long noteId = item.getInt(item.getColumnIndexOrThrow(Note.ID));	
+		uri = Uri.parse(CONTENT_URI + "/" + noteId);
+
+		TLog.d(TAG, "Getting note {0}", position);
+
+        Note localNote = NoteManager.getNote(this, uri);
+		Note remoteNote = new Note();
+
+		remoteNote.setGuid(localNote.getGuid());
+		remoteNote.setTitle(localNote.getTitle()+" Remote");
+		Time time= new Time();
+		remoteNote.setLastChangeDate(time.format3339(false));
+		remoteNote.setXmlContent(localNote.getXmlContent()+"\nLorem ipsum dolor sit amet, \nconsetetur sadipscing elitr, \nsed diam nonumyeirmod tempor invidunt ut la");
+		
+		int compareBoth = Time.compare(localNote.getLastChangeDate(), remoteNote.getLastChangeDate());
+		
+		TLog.v(TAG, "note conflict... showing resolution dialog TITLE:{0} GUID:{1}", localNote.getTitle(), localNote.getGuid());
+		
+		// send everything to Tomdroid so it can show Sync Dialog
+		
+	    Bundle bundle = new Bundle();	
+		bundle.putString("title",remoteNote.getTitle());
+		bundle.putString("file",remoteNote.getFileName());
+		bundle.putString("guid",remoteNote.getGuid());
+		bundle.putString("date",remoteNote.getLastChangeDate().format3339(false));
+		bundle.putString("content", remoteNote.getXmlContent());
+		bundle.putString("tags", remoteNote.getTags());
+		bundle.putInt("datediff", compareBoth);
+		
+		// put local guid if conflicting titles
+
+		if(!remoteNote.getGuid().equals(localNote.getGuid()))
+			bundle.putString("localGUID", localNote.getGuid());
+		
+		Intent intent = new Intent(this, CompareNotes.class);	
+		intent.putExtras(bundle);
+
+		startActivity(intent);
 	}
 }

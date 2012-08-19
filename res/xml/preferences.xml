@@ -27,11 +27,6 @@
 						android:title="@string/prefBaseSize"
 						android:shouldDisableView="true"
 						android:singleLine="true"/>
-		<ListPreference android:title="@string/prefTheme"
-			    android:summary="@string/prefThemeSummary"
-				android:dialogTitle="@string/prefTheme"
-				android:key="theme_choice" 
-				android:defaultValue="light"/>
    	</PreferenceCategory>	                        
 	<PreferenceCategory android:title="@string/prefSync">
 		

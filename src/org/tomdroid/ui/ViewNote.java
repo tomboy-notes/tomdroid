@@ -84,8 +84,6 @@ public class ViewNote extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Preferences.init(this, Tomdroid.CLEAR_PREFERENCES);
-		if (Preferences.getString(Preferences.Key.THEME_CHOICE).equals("dark"))
-			super.setTheme( R.style.DarkTheme);
 		setContentView(R.layout.note_view);
 		
 		content = (TextView) findViewById(R.id.content);

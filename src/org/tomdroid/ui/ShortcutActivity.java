@@ -45,8 +45,6 @@ public class ShortcutActivity extends ActionBarListActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Preferences.init(this, Tomdroid.CLEAR_PREFERENCES);
-		if (Preferences.getString(Preferences.Key.THEME_CHOICE).equals("dark"))
-			super.setTheme( R.style.DarkTheme);
         TLog.d(TAG, "creating shortcut...");
         setContentView(R.layout.shortcuts_list);
         setTitle(R.string.shortcuts_view_caption);

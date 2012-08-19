@@ -61,8 +61,6 @@ public class Search extends ActionBarListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-		if (Preferences.getString(Preferences.Key.THEME_CHOICE).equals("dark"))
-			super.setTheme( R.style.DarkTheme);	    
 	    setContentView(R.layout.search);
 
 	    handleIntent(getIntent());

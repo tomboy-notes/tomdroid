@@ -35,6 +35,7 @@ import org.tomdroid.NoteManager;
 import org.tomdroid.R;
 import org.tomdroid.R.string;
 import org.tomdroid.sync.SyncManager;
+import org.tomdroid.ui.actionbar.ActionBarActivity;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.TLog;
 
@@ -65,7 +66,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 	
-public class CompareNotes extends Activity {	
+public class CompareNotes extends ActionBarActivity {	
 	private static final String TAG = "SyncDialog";
 	private Context context;
 	
@@ -84,8 +85,6 @@ public class CompareNotes extends Activity {
 			finish();
 			return;
 		}
-		if (Preferences.getString(Preferences.Key.THEME_CHOICE).equals("dark"))
-			super.setTheme( R.style.DarkTheme);
 		TLog.v(TAG, "starting SyncDialog");
 		this.context = this;
 		

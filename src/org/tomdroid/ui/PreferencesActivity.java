@@ -76,10 +76,7 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 	private Preference clearSearchHistory = null;
 	private Preference backupNotes = null;
 	private Preference delRemoteNotes = null;
-	private Preference restoreNotes = null;
-	private ListPreference themeChoice = null;
 
-	private Context context;
 	private Activity activity;
 
 	private Handler	 preferencesMessageHandler	= new PreferencesMessageHandler(this);
@@ -89,16 +86,11 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-
+		if (Build.VERSION.SDK_INT < 11)
 			requestWindowFeature(Window.FEATURE_CUSTOM_TITLE); // added for actionbarcompat
-		}
-		if (Preferences.getString(Preferences.Key.THEME_CHOICE).equals("dark"))
-			super.setTheme( R.style.DarkTheme);
 		
 		super.onCreate(savedInstanceState);
 		
-		this.context = getApplicationContext();
 		this.activity = this;
 		SyncManager.setActivity(this);
 		SyncManager.setHandler(this.preferencesMessageHandler);
@@ -114,8 +106,6 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 		delNotes = (Preference)findPreference(Preferences.Key.DEL_ALL_NOTES.getName());
 		delRemoteNotes = (Preference)findPreference(Preferences.Key.DEL_REMOTE_NOTES.getName());
 		backupNotes = (Preference)findPreference(Preferences.Key.BACKUP_NOTES.getName());
-		restoreNotes = (Preference)findPreference(Preferences.Key.RESTORE_NOTES.getName());
-		themeChoice = (ListPreference)findPreference(Preferences.Key.THEME_CHOICE.getName());
 		// Set the default values if nothing exists
 		setDefaults();
 		
@@ -325,12 +315,7 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 		
 		syncService.setEntries(entries);
 		syncService.setEntryValues(entryValues);
-		
-		String[] e2 = {"Light","Dark"};
-		String[] ev2 = {"light","dark"};
-		
-		themeChoice.setEntries(e2);
-		themeChoice.setEntryValues(ev2);
+
 	}
 	
 	private void setDefaults()

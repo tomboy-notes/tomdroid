@@ -54,7 +54,6 @@ public class Preferences {
 		LATEST_SYNC_DATE ("latest_sync_date", (new Time()).format3339(false)), // will be used to tell whether we have newer notes
 		SORT_ORDER ("sort_order", "sort_date"),
 		FIRST_RUN ("first_run", true),
-		THEME_CHOICE("theme_choice","light"),
 		BASE_TEXT_SIZE("base_text_size","18");
 
 		private String name = "";

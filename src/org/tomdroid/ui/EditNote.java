@@ -117,8 +117,6 @@ public class EditNote extends ActionBarActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		if (Preferences.getString(Preferences.Key.THEME_CHOICE).equals("dark"))
-			super.setTheme( R.style.DarkTheme);
 		setContentView(R.layout.note_edit);
 		
 		content = (EditText) findViewById(R.id.content);
