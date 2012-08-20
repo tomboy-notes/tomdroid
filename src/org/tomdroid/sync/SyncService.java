@@ -25,33 +25,22 @@
 package org.tomdroid.sync;
 
 import android.app.Activity;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.TextUtils;
 import android.text.format.Time;
-import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
-import org.tomdroid.R;
 import org.tomdroid.ui.CompareNotes;
-import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.ErrorList;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.TLog;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -189,8 +178,7 @@ public abstract class SyncService {
 	// syncing based on updated local notes only
 	
 	protected void syncNotes(Cursor localGuids, boolean push) {
-		ArrayList<String> remoteGuids = new ArrayList<String>();
-		ArrayList<Note> pushableNotes = new ArrayList<Note>();
+        ArrayList<Note> pushableNotes = new ArrayList<Note>();
 		ArrayList<Note> pullableNotes = new ArrayList<Note>();
 		HashMap<String,Note[]> comparableNotes = new HashMap<String,Note[]>();
 		ArrayList<String> deleteableNotes = new ArrayList<String>();
@@ -208,7 +196,7 @@ public abstract class SyncService {
 			return; 
 		}		
 		
-		doSyncNotes(remoteGuids, pushableNotes, pullableNotes, comparableNotes, deleteableNotes, push);
+		doSyncNotes(pushableNotes, pullableNotes, comparableNotes, deleteableNotes, push);
 	}
 
 	
@@ -294,14 +282,13 @@ public abstract class SyncService {
 			doCancel();
 			return; 
 		}
-		doSyncNotes(remoteGuids, pushableNotes, pullableNotes, comparableNotes, deleteableNotes, push);
+		doSyncNotes(pushableNotes, pullableNotes, comparableNotes, deleteableNotes, push);
 	}
 	
 	// actually do sync
-	private void doSyncNotes(ArrayList<String> remoteGuids,
-			ArrayList<Note> pushableNotes, ArrayList<Note> pullableNotes,
-			HashMap<String, Note[]> comparableNotes,
-			ArrayList<String> deleteableNotes, boolean push) {
+	private void doSyncNotes(ArrayList<Note> pushableNotes, ArrayList<Note> pullableNotes,
+                             HashMap<String, Note[]> comparableNotes,
+                             ArrayList<String> deleteableNotes, boolean push) {
 		
 	// init progress bar
 		
@@ -421,12 +408,7 @@ public abstract class SyncService {
 
 		// begin compare
 
-			if(cancelled) {
-				doCancel();
-				return; 
-			}
-			
-			// check date difference
+            // check date difference
 			
 			TLog.v(TAG, "compare both: {0}, compare local: {1}, compare remote: {2}", compareBoth, compareSyncLocal, compareSyncRemote);
 			if(compareBoth != 0)
@@ -525,8 +507,7 @@ public abstract class SyncService {
 	protected boolean sendMessage(int message_id, HashMap<String, Object> payload) {
 
 		Message message;
-		String text;
-		switch(message_id) {
+        switch(message_id) {
 			case PARSING_FAILED:
 			case NOTE_PUSH_ERROR:
 			case NOTE_DELETE_ERROR:
@@ -535,7 +516,7 @@ public abstract class SyncService {
 				if(payload == null && syncErrors == null)
 					return false;
 				message = handler.obtainMessage(message_id, syncErrors);
-				syncErrors.add(payload);
+				if (syncErrors != null) syncErrors.add(payload);
 				handler.sendMessage(message);
 				return true;
 		}
@@ -583,9 +564,7 @@ public abstract class SyncService {
 
 	public abstract void pushNotes(ArrayList<Note> notes);
 
-	protected abstract void pushNotes();
-
-	public abstract void backupNotes();
+    public abstract void backupNotes();
 
 	public abstract void deleteAllNotes();
 

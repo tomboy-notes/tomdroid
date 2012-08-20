@@ -23,7 +23,6 @@
 package org.tomdroid.sync.web;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Handler;
@@ -38,15 +37,12 @@ import org.tomdroid.NoteManager;
 import org.tomdroid.R;
 import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncService;
-import org.tomdroid.ui.CompareNotes;
-import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.ErrorList;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.TLog;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class SnowySyncService extends SyncService implements ServiceAuth {
@@ -664,13 +660,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 		});
 	}
 
-	@Override
-	protected void pushNotes() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
+    @Override
 	public void backupNotes() {
 		// TODO Auto-generated method stub
 		

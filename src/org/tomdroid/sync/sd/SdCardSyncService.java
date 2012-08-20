@@ -25,9 +25,7 @@
 package org.tomdroid.sync.sd;
 
 import android.app.Activity;
-import android.database.Cursor;
 import android.os.Handler;
-import android.text.format.Time;
 import android.util.TimeFormatException;
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
@@ -35,7 +33,6 @@ import org.tomdroid.R;
 import org.tomdroid.sync.SyncService;
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.ErrorList;
-import org.tomdroid.util.Preferences;
 import org.tomdroid.util.TLog;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
@@ -44,8 +41,6 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -440,17 +435,8 @@ public class SdCardSyncService extends SyncService {
 		syncInThread(new Worker(path, true, false));
 		
 	}
-	
-	// this function pushes all notes - is it used?
-	@Override
-	public void pushNotes() {
-		Note[] notes = NoteManager.getAllNotesAsNotes(activity, true);
-		for(Note note : notes){
-			this.pushNote(note);
-		}
-	}
-	
-	// backup function accessed via preferences
+
+    // backup function accessed via preferences
 	@Override
 	public void backupNotes() {
 		Note[] notes = NoteManager.getAllNotesAsNotes(activity, true);
