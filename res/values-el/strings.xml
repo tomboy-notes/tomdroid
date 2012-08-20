@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ Tomdroid
+ Tomboy on Android
+ http://www.launchpad.net/tomdroid
+
+ Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
+ 
+ This file is part of Tomdroid.
+ 
+ Tomdroid is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Tomdroid is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources>
+	
+	<!-- application details -->
+	<string name="app_name">Tomdroid</string>
+	<string name="app_desc">Εφαρμογή Σημειώσεων wikiwiki, συμβατή με το Tomboy, ανίκανη για δημιουργία σημειώσεων προς το παρόν.</string>
+	<string name="author">Olivier Bilodeau</string>
+	
+	<!-- main.xml -->
+	<string name="strListEmptyWaiting">Παρακαλώ περιμένετε ενώ σημειώσεις φορτώνονται ..</string>
+	<string name="strListEmptyNoNotes">Δεν υπάρχουν σημειώσεις στην βάση δεδομένων του Tomdroid.</string>
+	
+	<string name="menuSync">Συγχρονισμός</string>
+	<string name="menuPrefs">Ρυθμίσεις</string>
+	<string name="menuAbout">Σχετικά</string>
+	<string name="titleWelcome">Προειδοποιήση</string>
+	<string name="titleAbout">Σχετικά με το Tomdroid</string>
+	<string name="strWelcome">Καλωσήρθατε στο Tomdroid.\n\nΠαρακαλώ έχετε υπόψιν ότι αυτή είναι μία δοκιμαστική έκδοση του λογισμικού και περιέχει γνωστά προβλήματα, όπως η αδυναμία του να επεξεργαστείτε σημειώσεις.\n\nΓνωρίζουμε καλά αυτά τα προβλήματα και είμαστε διατεθειμένοι να δουλέψουμε επάνω σε αυτά γρήγορα αλλά επίσης θα ήθελα να ετοιμάσουμε κάτι και να το δοκιμάσουμε όσο το δυνατόν πιο σύντομα.\n\nΕάν θα θέλατε να συνεισφέρετε, θα εκτιμούσαμε την βοήθεια σε όλα τα επίπεδα.Μεταβείτε στο launchpad.net/tomdroid και επικοινωνήστε μαζί μας!\n</string>
+	<string name="strAbout">%1$s\n\nΔημιουργός: %2$s\nΈκδοση: %3$s\nΆδεια χρήσης GPLv3</string>
+	
+	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
+	<string name="btnOk">OK</string>
+	<string name="btnCancel">Ακύρωση</string>
+	<string name="btnClose">Κλείσιμο</string>
+	<string name="btnProjectPage">Σελίδα έργου</string>
+	<string name="btnSavetoSD">Αποθήκευση σε κάρτα SD</string>
+	
+	<!-- note-view.xml -->
+	<string name="strWait">Παρακαλώ περιμένετε καθώς φορτώνεται η σημείωση...</string>
+	
+	<string name="prefSync">Συγχρονισμός</string>
+	<string name="prefSyncService">Υπηρεσία</string>
+	<string name="prefSyncServer">Εξυπηρετητής</string>
+	<string name="prefSDCard">Κάρτα SD</string>
+	<string name="prefTomboyWeb">Συγχρονισμός σε απευθείας σύνδεση</string>
+	<string name="prefAuthenticate">Πιστοποίηση</string>
+	<string name="prefLocation">Τοποθεσία στην κάρτα SD</string>
+	<string name="prefFolderCreated">Ο φάκελος \"%1$s\" δεν υπάρχει ακόμα. Παρακαλούμε συνδέστε τη συσκευή σας στον υπολογιστή, δημιουργήστε το φάκελο και γεμίστε το με αρχεία *.note .</string>
+	<string name="prefNoValidEntry">\"%1$s\" περιέχει μη έγκυρους χαρακτήρες.\nΠαρακαλώ δοκιμάστε ξανά!</string>
+	
+	<string name="prefSyncCompleteAuth">Ολοκλήρωση ταυτοποίησης. Παρακαλώ περιμένετε...</string>
+	<string name="prefSyncConnectionFailed">Η σύνδεση με τον εξυπηρετητή απέτυχε, παρακαλώ ελέγξτε ότι η διεύθυνση που δώσατε είναι σωστή.</string>
+	<string name="prefServerEmpty">Η διεύθυνση του εξυπηρετητή άλλαξε, αλλά η νέα τιμή είναι άδεια</string>
+	
+	<string name="titleSyncService">Επιλέξτε την υπηρεσία συγχρονισμού για χρήση</string>
+	<string name="messageSyncComplete">Ο συγχρονισμός με %1$s ολοκληρώθηκε.</string>
+	<string name="messageSyncNoNote">Δεν βρέθηκαν σημειώσεις στο %1$s.</string>
+	<string name="messageSyncNoConnection">Δεν είστε συνδεδεμένοι στο διαδίκτυο.</string>
+	<string name="messageSyncAlreadyInProgress">Συγχρονισμός είναι ήδη σε εξέλιξη</string>
+	<string name="messageSyncError">Υπήρξε ένα σφάλμα προσπαθώντας να αναλύσει τη συλλογή των σημειώσεων. Εάν είστε σε θέση να αναπαράγετε το πρόβλημα, παρακαλούμε επικοινωνήστε μαζί μας!</string>
+	<string name="error">Σφάλμα</string>
+	<string name="titleNoteNotFound">Δεν υπάρχει τέτοια σημείωση</string>
+	<string name="messageNoteNotFound">Η ζητούμενη σημείωση δεν μπορούσε να βρεθεί. Ίσως έχει διαγραφεί ή αφαιρεθεί μέσω συγχρονισμού.</string>
+	<string name="messageErrorNoteParsing">Η ζητούμενη σημείωση δεν μπόρεσε να επεξεργαστεί. Εάν είστε σε θέση να αναπαράγεται το πρόβλημα, παρακαλούμε επικοινωνήστε μαζί μας!</string>	
+	<string name="messageCouldNotSave">Δεν μπορείτε να αποθηκεύσετε τα σφάλματα, παρακαλώ ελέγξτε την SD κάρτα σας.</string>
+	<string name="messageNoSDCard">Η κάρτα SD δεν βρέθηκε</string>
+	
+	<!-- NoteSorting -->
+	<string name="menuSort">Αλλάξτε ταξινόμηση</string>
+	<string name="titleDefaultSorting">Επιλέξτε την προεπιλεγμένη ταξινόμηση</string>
+	<string name="prefDefaultSorting">Προεπιλεγμένη ταξινόμηση</string>
+	
+	<!-- NotebookFiltering -->
+	<string name="menuFilterNotebook">Φίλτρο</string>
+	<string name="strListEmptyNoNotebooks">Δεν υπάρχουν σημειωματάρια στη βάση δεδομένων.</string>
+	<string name="allNotebooksFilter">Όλα τα σημειωματάρια</string>
+	
+	<!-- List Longpress Menu -->
+	<string name="view">Προβολή</string>
+	<string name="noteOptions">Επιλογές σημείωσης</string>
+	<string name="send">Αποστολή</string>
+	
+	<!--  Search -->
+	<string name="search_hint">Αναζήτηση σημειώσεων</string>
+	<string name="search_description">Κείμενο στις σημειώσεις σας</string>
+	<string name="strNoResults">Δεν βρέθηκαν σημειώσεις για \"%s\"</string>
+	<string name="menuSearch">Αναζήτηση</string>
+	<string name="prefSearch">Επιλογές αναζήτησης</string>
+	<string name="SearchResultTitle">Αποτελέσματα αναζήτησης:</string>
+	<string name="clearSearchHistoryTitle">Καθαρισμός ιστορικού αναζητήσης</string>
+	<string name="clearSearchHistory">Αφαιρέστε όλες τις αναζητήσεις που έχουν πραγματοποιηθεί</string>
+	<string name="deletedSearchHistory">Ιστορικό αναζήτησης έχει διαγραφεί.</string>
+	
+	<!-- Date -->
+	<string name="textModified">Τροποποιήθηκε:</string>
+	<string name="textToday">Σήμερα</string>
+	<string name="textYexterday">Εχθές</string>
+
+	<!-- Shortcuts handling -->
+	<string name="shortcuts_view_caption">Επιλέξτε μια σημείωση</string>
+	<string name="shortcut_menu_item_caption">Σημείωση Tomdroid</string>
+	<string name="btnRemoveShortcut">Αφαίρεση συντόμευσης</string>
+	<string name="createShortcut">Δημιουργία συντόμευσης</string>
+	
+	<!-- 
+	Information that goes into the Android Market Application Listing. 
+	I\'ve put it in here so that it\'ll get translated by translators.
+	-->
+	<!-- 30 chars max -->
+	<string name="market_title">Σημειώσεις Tomdroid</string>
+	<!-- 4000 chars max -->
+	<string name="market_description">Tomboy client για το Android. Το Tomboy είναι μια desktop εφαρμογή σημειώσεων που χρησιμοποιεί μια wikiwiki προσέγγιση και μια απλή διεπαφή χρήστη.\n\nΣημείωση: Είναι ένας READ-ONLY client προς το παρόν.\n\n* Format Σημειώσεων συμβατό με το Tomboy\n* Online συγχρονισμός σημειώσεων με το Snowy, Tomboy Online ή Ubuntu One\n* Εισαγωγή από SD Card\n* Open source!</string>
+	
+	<!-- 80 chars max -->
+	<string name="market_promotext">Εφαρμογή διαχείρισης Σημειώσεων, με online συγχρονισμό, συμβατή με το Tomboy</string>
+
+	<!-- 500 chars max -->
+        <string name="market_recent_changes">* Search notes and system integrated search\n* Context menu\n* Several usability improvements\n* Higher quality icons\n* Several bug fixes\n* German translation\n</string>
+
+	<!-- Launchpad Translation String -->
+	<string name="about_translators">Launchpad Contributions:
+  Pigeonaras https://launchpad.net/~pigeonaras
+  alexxtasi https://launchpad.net/~alexxtasi
+  tzem https://launchpad.net/~athmakrigiannis</string>
+	
+</resources>

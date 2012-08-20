@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ Tomdroid
+ Tomboy on Android
+ http://www.launchpad.net/tomdroid
+
+ Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
+ 
+ This file is part of Tomdroid.
+ 
+ Tomdroid is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Tomdroid is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources>
+	
+	<!-- application details -->
+	<string name="app_name">டொம் ட்ரொயிட்</string>
+	<string name="app_desc">டொம்பாய் விக்கி விக்கி குறிப்பு எடுக்க  இணக்கத்தன்மையுடைய  பயன்பாட்டு மென்பொருள்  எனினும் அதனுடாக இன்னும் குறிப்பு எடுக்க முடியாது</string>
+	<string name="author">ஒலிவியர்  பிலோடியு</string>
+	
+	<!-- main.xml -->
+	<string name="strListEmptyWaiting">குறிப்புகள் ஏற்ற வரை காத்திருக்கவும் ..</string>
+	<string name="strListEmptyNoNotes">டொம் ட்ரொயிட் தரவுத்தளத்தில்  குறிப்புகள்  இல்லை.</string>
+	
+	<string name="menuSync">ஒத்திசை</string>
+	<string name="menuPrefs">அமைவுகள்</string>
+	<string name="menuAbout">பற்றி</string>
+	<string name="titleWelcome">எச்சரிக்கை</string>
+	<string name="titleAbout">டொம் ட்ரொயிட் பற்றி</string>
+	<string name="strWelcome">டொம் ட்ரொயிட் உங்களை வரவேற்கிறது. \ n\ n இந்த பீட்டா தரம் மென்பொருள் இது குறிப்புகள் திருத்த அதன் இயலாமை போன்ற அறியப்பட்ட பிரச்சினைகள், கொண்டிருக்கும் என்பதை நினைவில் கொள்க. \ n \ n இந்த பிரச்சினைகளை நன்கு அறிந்துள்ளனர், அப்பிரச்சினைகளை தீர்க்க நாம் தொடர்ந்து பணியாற்றி வருகிறோம் மற்றும் இது  முடிந்தவரை விரைவாக சோதிக்கப்பட்டபதிப்பாகும்  . \ n \ n உங்கள் பங்களிப்பை அனைத்து மட்டங்களில் இருந்து எதிர்பார்கிறேன்  . Launchpad.net / tomdroid  பலகையில்  எங்களை தொடர்பு கொள்ளவும்! \ n</string>
+	<string name="strAbout">%1$s\n\nஆசிரியர்: %2$s\nபதிப்பு: %3$s\nஉள்ளது GPLv3 கீழ் உதவி</string>
+	
+	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
+	<string name="btnOk">சரி</string>
+	<string name="btnCancel">ரத்து செய்</string>
+	<string name="btnClose">மூடு</string>
+	<string name="btnProjectPage">திட்ட பக்கம்</string>
+	<string name="btnSavetoSD">SD அட்டையில் சேமி</string>
+	
+	<!-- note-view.xml -->
+	<string name="strWait">குறிப்பு ஏற்றும் வரை காத்திருக்கவும் ...</string>
+	
+	<string name="prefSync">ஒருங்கிணைப்பு</string>
+	<string name="prefSyncService">சேவை</string>
+	<string name="prefSyncServer">சேவையகம்</string>
+	<string name="prefSDCard">SD அட்டை</string>
+	<string name="prefTomboyWeb">இணைய ஒருங்கிணைப்பு</string>
+	<string name="prefAuthenticate">அங்கீகரிக்க</string>
+	<string name="prefLocation">SD அட்டை இருக்குமிடம்</string>
+	<string name="prefFolderCreated">கோப்புறை \ "% 1 $ S \" இன்னும் இல்லை. தயவு செய்து, கணினியில்  உங்கள் சாதனத்தை இணைக்க ,கோப்புறையை உருவாக்க மற்றும் * அதை நிரப்ப. குறிப்பு கோப்புகள்.</string>
+	<string name="prefNoValidEntry">\ "% 1 $ s \" செல்லாத எழுத்துகள் உள்ளன. \ n மீண்டும் முயற்சிக்கவும்!</string>
+	
+	<string name="prefSyncCompleteAuth">அங்கீகாரிக்கும் வரை  . தயவு செய்து காத்திருக்கவும் ...</string>
+	<string name="prefSyncConnectionFailed">சேவையக இணைப்பு தோல்வியுற்றது, நீங்கள் உள்ளிட்ட முகவரி சரியானதா என்று சரிபார்க்கவும்.</string>
+	<string name="prefServerEmpty">சேவையகமுகவரி மாற்றம் ஆனால் புதிய மதிப்பு காலியாக உள்ளது</string>
+	
+	<string name="titleSyncService">ஒத்திசைவு சேவையை  பயன்படுத்த தேர்வு செய்க</string>
+	<string name="messageSyncComplete">% 1 $ s உடன் ஒருங்கிணைக்க முடிந்தது.</string>
+	<string name="messageSyncNoNote">$ கள்% 1 இல் குறிப்புகள் காணப்படவில்லை.</string>
+	<string name="messageSyncNoConnection">நீங்கள் இணைய இணைப்பில்இணைக்கப்படவில்லை</string>
+	<string name="messageSyncAlreadyInProgress">ஒத்திசைவு ஏற்கனவே செயல்பாட்டில் உள்ளது</string>
+	<string name="messageSyncError">உங்கள் குறிப்பு தொகுப்பு இடும் முயற்சியில்  ஒரு பிழை ஏற்பட்டது. உங்களுக்கு பிரச்சனை பிரதியெடுக்க முடியும் என்றால், எங்களை தொடர்பு கொள்க!</string>
+	<string name="error">பிழை</string>
+	<string name="titleNoteNotFound">அத்தகைய குறிப்பு இல்லை</string>
+	<string name="messageNoteNotFound">கோரப்பட்ட குறிப்பு கண்டறிய முடியவில்லை. இது நீக்கப்பட்டு அல்லது ஒத்திசைவு மூலம் அகற்றப்பட்டது.</string>
+	<string name="messageErrorNoteParsing">கோரப்பட்ட குறிப்பு பாகுபடுத்த முடியவில்லை. உங்களுக்கு பிரச்சனை பிரதியெடுக்க முடியும் என்றால், எங்களை தொடர்பு கொள்க!</string>	
+	<string name="messageCouldNotSave">பிழைகள் காப்பாற்ற முடியவில்லை, உங்கள் SD அட்டையை பரிசோதியுங்கள்</string>
+	<string name="messageNoSDCard">SD அட்டை கிடைக்கவில்லை.</string>
+	
+	<!-- NoteSorting -->
+	<string name="menuSort">வரிசை மாற்ற</string>
+	<string name="titleDefaultSorting">முன்னிருப்பு வரிசையாக்க தேர்வு செய்யவும்</string>
+	<string name="prefDefaultSorting">முன்னிருப்பு வகை</string>
+	
+	<!-- NotebookFiltering -->
+	<string name="menuFilterNotebook">வடிகட்டி</string>
+	<string name="strListEmptyNoNotebooks">தரவுத்தளத்தில் எந்த குறிப்பேடுகள் உள்ளன.</string>
+	<string name="allNotebooksFilter">அனைத்து குறிப்பேடுகள்</string>
+	
+	<!-- List Longpress Menu -->
+	<string name="view">காண்க</string>
+	<string name="noteOptions">குறிப்பு விருப்பங்கள்</string>
+	<string name="send">அனுப்புக</string>
+	
+	<!--  Search -->
+	<string name="search_hint">தேடல் குறிப்புகள்</string>
+	<string name="search_description">உங்கள் குறிப்புகள் இலுள்ள உரை</string>
+	<string name="strNoResults">குறிப்புகள்  எதுவும் கிடைக்கவில்லை \"% s \"</string>
+	<string name="menuSearch">தேடல்</string>
+	<string name="prefSearch">தேடல் விருப்பங்கள்</string>
+	<string name="SearchResultTitle">தேடல் முடிவுகள்:</string>
+	<string name="clearSearchHistoryTitle">தெளிவான தேடல் வரலாறு</string>
+	<string name="clearSearchHistory">உங்களுக்கு செய்துகாட்டியதாக அனைத்து தேடல்களை நீக்க</string>
+	<string name="deletedSearchHistory">அகற்றப்பட்ட</string>
+	
+	<!-- Date -->
+	<string name="textModified">மாற்றப்பட்ட</string>
+	<string name="textToday">இன்று</string>
+	<string name="textYexterday">நேற்று</string>
+
+	<!-- Shortcuts handling -->
+	<string name="shortcuts_view_caption">ஒரு குறிப்பபை  தேர்வு செய்யவும்</string>
+	<string name="shortcut_menu_item_caption">குறிப்பு</string>
+	<string name="btnRemoveShortcut">குறுக்குவழியை நீக்க</string>
+	<string name="createShortcut">குறுக்குவழி உருவாக்குக</string>
+	
+	<!-- 
+	Information that goes into the Android Market Application Listing. 
+	I\'ve put it in here so that it\'ll get translated by translators.
+	-->
+	<!-- 30 chars max -->
+	<string name="market_title">டொம் ட்ரொயிட் குறிப்புகள்</string>
+	<!-- 4000 chars max -->
+	<string name="market_description">அண்ட்ராய்டுக்கான ஒரு Tomboy கிளையன். . Tomboy ஒரு WikiWiki அணுகுமுறை மற்றும் எளிய பயனர் இடைமுகம் \ n \ n குறிப்பு பயன்படுத்தி ஒரு டெஸ்க்டாப் குறிப்பு-எடுத்து பயன்பாடு ஆகும். இது இப்போது ஒரு படிப்பு வாடிக்கையாளர் \ n \ n Tomboy \ n * இணைய குறிப்பு ஒருங்கிணைப்பின் * குறிப்பு வடிவ ஒத்தியல்பானது ஸ்னோவி உடன், Tomboy இணைய அல்லது உபுண்டு ஒரு \ n * SD அட்டை இறக்குமதி \ n * திறந்த மூலம் !</string>
+	
+	<!-- 80 chars max -->
+	<string name="market_promotext">Tomboy இணக்கத்தன்மை ஆன்லைன் ஒருங்கிணைப்பின் குறிப்பு-எடுக்கும்போது பயன்பாடு</string>
+
+	<!-- 500 chars max -->
+        <string name="market_recent_changes">* Search notes and system integrated search\n* Context menu\n* Several usability improvements\n* Higher quality icons\n* Several bug fixes\n* German translation\n</string>
+
+	<!-- Launchpad Translation String -->
+	<string name="about_translators">Launchpad Contributions:
+  Jackseen Jeyaluck https://launchpad.net/~jackseen1988
+  Stefan Hammer https://launchpad.net/~j-4</string>
+	
+</resources>

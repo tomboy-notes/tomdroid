@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ Tomdroid
+ Tomboy on Android
+ http://www.launchpad.net/tomdroid
+
+ Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
+ 
+ This file is part of Tomdroid.
+ 
+ Tomdroid is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Tomdroid is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources>
+	
+	<!-- application details -->
+	<string name="app_name">Tomdroid</string>
+	<string name="app_desc">Tomboy compatible wikiwiki note-taking application that can\'t take notes yet.</string>
+	<string name="author">Olivier Bilodeau</string>
+	
+	<!-- main.xml -->
+	<string name="strListEmptyWaiting">Odota, kun muistiinpanot latautuvat...</string>
+	<string name="strListEmptyNoNotes">There are no notes in Tomdroid\'s database.</string>
+	
+	<string name="menuSync">Synkronoi</string>
+	<string name="menuPrefs">Asetukset</string>
+	<string name="menuAbout">Tietoja</string>
+	<string name="titleWelcome">Varoitus</string>
+	<string name="titleAbout">Tietoja Tomdroidista</string>
+	<string name="strWelcome">Welcome to Tomdroid.\n\nPlease note that this is beta quality software and that it contains known problems, like its inability to edit notes.\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something out and tested as quickly as possible.\n\nIf you would like to contribute, help at all levels would be appreciated. Hop on board on launchpad.net/tomdroid and contact us!\n</string>
+	<string name="strAbout">%1$s\n\nTekijä: %2$s\nVersio: %3$s\nLisensoitu GPLv3:n alaisuuteen</string>
+	
+	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
+	<string name="btnOk">OK</string>
+	<string name="btnCancel">Peru</string>
+	<string name="btnClose">Sulje</string>
+	<string name="btnProjectPage">Projektin sivusto</string>
+	<string name="btnSavetoSD">Tallenna SD-muistikortille</string>
+	
+	<!-- note-view.xml -->
+	<string name="strWait">Odota, kun muistiinpano latautuu...</string>
+	
+	<string name="prefSync">Synkronointi</string>
+	<string name="prefSyncService">Palvelu</string>
+	<string name="prefSyncServer">Palvelin</string>
+	<string name="prefSDCard">SD-kortti</string>
+	<string name="prefTomboyWeb">Online Synchronization</string>
+	<string name="prefAuthenticate">Tunnistaudu</string>
+	<string name="prefLocation">Sijainti SD-kortilla</string>
+	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
+	<string name="prefNoValidEntry">\"%1$s\" sisältää epäkelpoja merkkejä.\nYritä uudelleen!</string>
+	
+	<string name="prefSyncCompleteAuth">Viimeistellään tunnistautumista. Odota...</string>
+	<string name="prefSyncConnectionFailed">The connection to the server has failed, please check that the address you entered is correct.</string>
+	<string name="prefServerEmpty">The server address changed but the new value is empty</string>
+	
+	<string name="titleSyncService">Valitse käytettävä synkronointipalvelu</string>
+	<string name="messageSyncComplete">Synchronization with %1$s is complete.</string>
+	<string name="messageSyncNoNote">No notes found on %1$s.</string>
+	<string name="messageSyncNoConnection">Et ole yhteydessä internetiin.</string>
+	<string name="messageSyncAlreadyInProgress">Synkronointi on jo meneillään</string>
+	<string name="messageSyncError">There was an error trying to parse your note collection. If you are able to replicate the problem, please contact us!</string>
+	<string name="error">Virhe</string>
+	<string name="titleNoteNotFound">No Such Note</string>
+	<string name="messageNoteNotFound">The requested note could not be found. Maybe it was deleted or removed through synchronization.</string>
+	<string name="messageErrorNoteParsing">The requested note could not be parsed. If you are able to replicate the problem, please contact us!</string>	
+	<string name="messageCouldNotSave">Could not save the errors, please check your SD card.</string>
+	<string name="messageNoSDCard">SD card not found.</string>
+	
+	<!-- NoteSorting -->
+	<string name="menuSort">Change Sort</string>
+	<string name="titleDefaultSorting">Choose the default sorting</string>
+	<string name="prefDefaultSorting">Default sort</string>
+	
+	<!-- NotebookFiltering -->
+	<string name="menuFilterNotebook">Filter</string>
+	<string name="strListEmptyNoNotebooks">There are no notebooks in the database.</string>
+	<string name="allNotebooksFilter">All notebooks</string>
+	
+	<!-- List Longpress Menu -->
+	<string name="view">View</string>
+	<string name="noteOptions">Note Options</string>
+	<string name="send">Lähetä</string>
+	
+	<!--  Search -->
+	<string name="search_hint">Search Notes</string>
+	<string name="search_description">Text in your notes</string>
+	<string name="strNoResults">No notes found for \"%s\"</string>
+	<string name="menuSearch">Hae</string>
+	<string name="prefSearch">Hakuasetukset</string>
+	<string name="SearchResultTitle">Hakutulokset:</string>
+	<string name="clearSearchHistoryTitle">Tyhjennä hakuhistoria</string>
+	<string name="clearSearchHistory">Poista kaikki suorittamasi haut</string>
+	<string name="deletedSearchHistory">Hakuhistoria on tyhjennetty.</string>
+	
+	<!-- Date -->
+	<string name="textModified">Muokattu:</string>
+	<string name="textToday">Tänään</string>
+	<string name="textYexterday">Eilen</string>
+
+	<!-- Shortcuts handling -->
+	<string name="shortcuts_view_caption">Choose a Note</string>
+	<string name="shortcut_menu_item_caption">Tomdroid Note</string>
+	<string name="btnRemoveShortcut">Remove shortcut</string>
+	<string name="createShortcut">Create shortcut</string>
+	
+	<!-- 
+	Information that goes into the Android Market Application Listing. 
+	I\'ve put it in here so that it\'ll get translated by translators.
+	-->
+	<!-- 30 chars max -->
+	<string name="market_title">Tomdroid notes</string>
+	<!-- 4000 chars max -->
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\nNOTE: It is a READ-ONLY client for now.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
+	
+	<!-- 80 chars max -->
+	<string name="market_promotext">Note-taking application with online synchronization compatible with Tomboy</string>
+
+	<!-- 500 chars max -->
+        <string name="market_recent_changes">* Search notes and system integrated search\n* Context menu\n* Several usability improvements\n* Higher quality icons\n* Several bug fixes\n* German translation\n</string>
+
+	<!-- Launchpad Translation String -->
+	<string name="about_translators">Launchpad Contributions:
+  Jiri Grönroos https://launchpad.net/~jiri-gronroos
+  Juhani Numminen https://launchpad.net/~jsonic</string>
+	
+</resources>
