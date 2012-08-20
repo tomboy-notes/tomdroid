@@ -31,7 +31,6 @@
 	    android:layout_width="fill_parent"
 	    android:layout_height="fill_parent"
 		android:overScrollMode="always"
-		android:fadingEdge="none"
 		android:fillViewport="true"
 		android:background="#ffffffff"
 		>
@@ -54,7 +53,7 @@
 	   		<EditText 
 				android:id="@+id/content"
 				android:layout_width="match_parent" 
-				android:layout_height="wrap_content"
+				android:layout_height="fill_parent"
 				android:gravity="top"
 				android:linksClickable="false"
 				android:hint="@string/NewNoteBodyHint"
