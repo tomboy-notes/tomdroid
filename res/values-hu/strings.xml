@@ -168,8 +168,6 @@
 	<!-- new prefs -->
 	<string name="prefDisplay">Display Preferences</string>
 	<string name="prefBaseSize">Alap betűméret</string>
-	<string name="prefTheme">Choose Theme</string>
-	<string name="prefThemeSummary">requires restart</string>
 	<string name="prefSync">Szinkronizálás</string>
 	<string name="prefMisc">Kül. lehetőségek</string>
 	<string name="prefTools">Eszközök</string>

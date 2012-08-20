@@ -168,8 +168,6 @@
 	<!-- new prefs -->
 	<string name="prefDisplay">Display Preferences</string>
 	<string name="prefBaseSize">Mida base del text</string>
-	<string name="prefTheme">Choose Theme</string>
-	<string name="prefThemeSummary">requires restart</string>
 	<string name="prefSync">Sincronizació</string>
 	<string name="prefMisc">Altres opcions</string>
 	<string name="prefTools">Eines</string>

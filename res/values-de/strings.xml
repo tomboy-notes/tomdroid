@@ -168,8 +168,6 @@
 	<!-- new prefs -->
 	<string name="prefDisplay">Display Preferences</string>
 	<string name="prefBaseSize">Normale Zeichengröße</string>
-	<string name="prefTheme">Choose Theme</string>
-	<string name="prefThemeSummary">requires restart</string>
 	<string name="prefSync">Synchronisation</string>
 	<string name="prefMisc">Sonstige Optionen</string>
 	<string name="prefTools">Werkzeuge</string>
