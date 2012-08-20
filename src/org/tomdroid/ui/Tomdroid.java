@@ -126,7 +126,7 @@ public class Tomdroid extends ActionBarListActivity {
 	private Note note;
 	private SpannableStringBuilder noteContent;
 	private Uri uri;
-	private int lastIndex = 0;
+	private int lastIndex = -1;
 	public MenuItem syncMenuItem;
 	public static Tomdroid context;
 	
@@ -177,10 +177,6 @@ public class Tomdroid extends ActionBarListActivity {
 		if(rightPane != null) {
 			content = (TextView) findViewById(R.id.content);
 			title = (TextView) findViewById(R.id.title);
-			
-			// this we will call on resume as well.
-			updateTextAttributes();
-			showNoteInPane(-1);
 		}
 		
 		// dev function, uncomment to test out the compare_notes activity
@@ -221,7 +217,11 @@ public class Tomdroid extends ActionBarListActivity {
         note = NoteManager.getNote(this, uri);
 
         if(note != null) {
-    		TLog.d(TAG, "note {0} found", position);
+
+        	// trying to fix lp:1038118
+    		rightPane.invalidate();
+        	
+        	TLog.d(TAG, "note {0} found", position);
 			title.setText((CharSequence) note.getTitle());
             noteContent = new NoteContentBuilder().setCaller(noteContentHandler).setInputSource(note.getXmlContent()).setTitle(note.getTitle()).build();
         } else {
@@ -236,10 +236,6 @@ public class Tomdroid extends ActionBarListActivity {
 			return;
 		}
 		
-		// trying to avoid lp:1038118
-		
-		content.invalidate();
-
 		// show the note (spannable makes the TextView able to output styled text)
 		content.setText(noteContent, TextView.BufferType.SPANNABLE);
 
