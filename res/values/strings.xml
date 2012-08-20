@@ -73,7 +73,7 @@
 	<string name="titleNoteNotFound">No Such Note</string>
 	<string name="messageNoteNotFound">The requested note could not be found. Maybe it was deleted or removed through synchronization.</string>
 	<string name="messageErrorNoteParsing">Error parsing note.</string>
-	<string name="messageCouldNotSave">Could note save note.</string>
+	<string name="messageCouldNotSave">Could not save note.</string>
 	<string name="messageNoSDCard">SDCard storage not found.</string>
 	
 	<!-- NoteSorting -->

@@ -25,7 +25,7 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Tomboy-kompatibilis wikiwiki jegyzetfüzet-alkalmazás, amely még nem tud jegyzeteket létrehozni.</string>
+	<string name="app_desc">A Tomboy kompatibilis wikiwiki jegyzetkészítő alkalmazás, amellyel jegyzeteket készíthet.</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
@@ -37,7 +37,7 @@
 	<string name="menuAbout">Névjegy</string>
 	<string name="titleWelcome">Figyelmeztetés</string>
 	<string name="titleAbout">A Tomdroid névjegye</string>
-	<string name="strWelcome">Üdvözli a Tomdroid.\n\nVegye figyelembe, hogy ez egy béta minőségű szoftver, több ismert hibája is van, például, hogy nem tud jegyzetet szerkeszteni.\n\nMind tisztában vagyunk a hibákkal, és amint lehet, javítjuk őket, de mindenképpen fontos, hogy minél előbb el lehessen kezdeni a tesztelést.\n\nHa szeretne közreműködni, minden jellegű segítség méltányolva lesz. Vegye fel a kapcsolatot velünk a launchpad.net/tomdroid oldalon!\n</string>
+	<string name="strWelcome">Üdvözlet a Tomdroidban.\n\nTartsd észben, kérlek, hogy ez egy béta-minőségű szoftver, ami tartalmazhat ismert hibákat.\n\nJól ismerjük ezeket a problémákat, de én már ki akartam adni és letesztelni amilyen gyorsan csak lehetséges.\n\nHa hozzá szeretnél járulni bármilyen szinten, méltányolnánk. Pattanj a  launchpad.net/tomdroid fedélzetére velünk!\n</string>
 	<string name="strAbout">%1$s\n\nKészítő %2$s\nVerzió: %3$s\nLicenc: GPLv3</string>
 	
 	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
@@ -45,36 +45,39 @@
 	<string name="btnCancel">Mégse</string>
 	<string name="btnClose">Bezárás</string>
 	<string name="btnProjectPage">A projekt oldala</string>
+	<string name="btnSavetoSD">Mentés</string>
 	
 	<!-- note-view.xml -->
-	<string name="strWait">Várjon türlemmel, amíg a jegyzet betöltődik...</string>
+	<string name="strWait">Várj, amíg betöltődik a jegyzet...</string>
 	
-	<string name="prefSync">Szinkronizálás</string>
 	<string name="prefSyncService">Szolgáltatás</string>
 	<string name="prefSyncServer">Kiszolgáló</string>
 	<string name="prefSDCard">SD Kártya</string>
 	<string name="prefTomboyWeb">Online szinkronizálás</string>
 	<string name="prefAuthenticate">Hitelesítés</string>
-	<string name="prefLocation">Location on SD Card</string>
-	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
-	<string name="prefNoValidLocation">\"%1$s\" is no valid folder location. Please try again!</string>
-	
-	<string name="prefSyncCompleteAuth">Hitelesítés folyamatban. Várjon türelemmel...</string>
+	<string name="prefLocation">Hely az SD kártyán</string>
+	<string name="prefFolderCreated">A mappa \"%1$s\"még nem létezik. Kérem csatlakoztassa készülékét a számítógéphez, hozza létre a mappát, és töltse fel *.note fájlokkal.</string>
+	<string name="prefNoValidLocation">\"%1$s\" az nem egy valós mappa helye. Kérlek, próbáld újra!</string>
+	<string name="prefNoValidEntry">\"%1$s\" nem valós bevitel. Kérlek, próbáld újra!</string>
+	<string name="prefSyncCompleteAuth">Hitelesítés befejezése. Kérlek, várj...</string>
 	<string name="prefSyncConnectionFailed">Nem sikerült kapcsolódni a szerverhez. Ellenőrizze, hogy helyes címet adott-e meg.</string>
 	<string name="prefServerEmpty">A szerver címe megváltozott,  de nincs helyette megadva semmi</string>
-	
+			
 	<string name="titleSyncService">Szinkronizálási kiszolgáló választása</string>
 	<string name="messageSyncComplete">Szinkronizálás kész ezzel: %1$</string>
-	<string name="messageSyncNoNote">No notes found on %1$s.</string>
+	<string name="messageSyncNoNote">Nem találhatóak jegyzetek ezen: %1$s.</string>
 	<string name="messageSyncNoConnection">Nincs internetkapcsolat.</string>
 	<string name="messageSyncAlreadyInProgress">A szinkronizálás már folyamatban van</string>
 	<string name="messageSyncError">Hiba történt a jegyzetek betöltése közben. Ha tudja jelenteni a problémát, kérjük, tegye meg!</string>
 	<string name="error">Hiba</string>
-	<string name="titleNoteNotFound">No Such Note</string>
-	<string name="messageNoteNotFound">The requested note could not be found. Maybe it was deleted or removed through synchronization.</string>
+	<string name="titleNoteNotFound">Nincs ilyen jegyzet</string>
+	<string name="messageNoteNotFound">A kért jegyzet nem található. Lehetséges, hogy törölve lett, vagy el lett távolítva a szinkronizáció során.</string>
+	<string name="messageErrorNoteParsing">Hiba a jegyzet elemzése során.</string>
+	<string name="messageCouldNotSave">Could not save note.</string>
+	<string name="messageNoSDCard">SDCard tároló nem található.</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">Change Sort</string>
+	<string name="menuSort">Rendezés módosítása</string>
 	<string name="titleDefaultSorting">Alapértelmezett rendezés választása</string>
 	<string name="prefDefaultSorting">Alapértelmezett rendezés</string>
 	
@@ -93,7 +96,6 @@
 	<string name="search_description">Szöveg a jegyzeteiben</string>
 	<string name="strNoResults">Nem található jegyzet erre: \"%s\"</string>
 	<string name="menuSearch">Keresés</string>
-	<string name="prefSearch">Keresési beállítások</string>
 	<string name="SearchResultTitle">A keresés eredménye:</string>
 	<string name="clearSearchHistoryTitle">Keresési előzmények törlése</string>
 	<string name="clearSearchHistory">Az előzőleg végrehajtott keresések törlése</string>
@@ -105,26 +107,159 @@
 	<string name="textYexterday">Tegnap</string>
 
 	<!-- Shortcuts handling -->
-	<string name="shortcuts_view_caption">Choose a Note</string>
-	<string name="shortcut_menu_item_caption">Tomdroid Note</string>
-	<string name="btnRemoveShortcut">Remove shortcut</string>
-	<string name="createShortcut">Create shortcut</string>
+	<string name="shortcuts_view_caption">Válasszon egy jegyzetet!</string>
+	<string name="shortcut_menu_item_caption">Tomdroid Jegyzet</string>
+	<string name="btnRemoveShortcut">Parancsikon eltávolítása</string>
+	<string name="createShortcut">Parancsikon létrehozása</string>
+
+	<!-- stuff new to edit -->
+
+	<!-- deleteNote -->
+	<string name="delete">Törlés</string>
+	<string name="delete_note">Jegyzet törlése</string>
+	<string name="delete_message">Biztos vagy a jegyzet törlésében?</string>
+	<string name="yes">Igen</string>
+	<string name="no">Nem</string>
+	<string name="delete_all">Jegyzetek törlése</string>
+	<string name="delete_all_message">Biztos, hogy törölni akarja a jegyzet adatbázist?</string>
+	<string name="delete_remote_notes">Távoli jegyzetek törlése</string>
+	<string name="delete_remote_notes_message">Biztos benne, hogy törölni akarja az összes jegyzetet a távoli szolgáltatásról?</string>
+				
+	<!-- newNote -->
+	<string name="menuNew">Új</string>
+	<string name="NewNoteTitle">Új jegyzet</string>
+	<string name="NewNoteTitleHint">Írd ide a címet</string>
+	<string name="NewNoteBodyHint">Írd ide a jegyzetet</string>
+			
+	<!-- editNote -->
+	<string name="edit">Szerkesztés</string>
+	<string name="save">Mentés</string>
+	<string name="discard">Elvetés</string>
+	<string name="back">Vissza</string>
+	<string name="bold">B</string>
+	<string name="italic">i</string>
+	<string name="strike"><strike>S</strike></string>
+	<string name="mono">állandó szélességű</string>
+	<string name="highlight">kiemelt</string>
+	<string name="size">méret</string>
+	<string name="xml">XML</string>
+	<string name="text">Szöveg</string>
+	<string name="titleErrorParsingXML">Hiba a jegyzet elemzése során</string>
+	<string name="messageErrorParsingXML">Hiba történt a jegyzet elemzése során. Kérlek, ellenőrízd az XML kódot!</string>
+	<string name="messageNoteSaved">A jegyzet helyileg mentve.</string>
+	<string name="messageNoteDeleted">A jegyzet helyileg törölve.</string>
+	<string name="messageSelectSize">Kiválasztott szöveg métere</string>
+	<string name="small">Kicsi</string>
+	<string name="normal">Normál</string>
+	<string name="large">Nagy</string>
+	<string name="huge">Óriási</string>
+	<string name="messageDiscardChanges">Tényleg ki akarod hagyni a változtatásokat és visszatérni a jegyzet utoljára mentett állapotához?</string>
+	<string name="titleDiscardChanges">Eldobja a módosításokat?</string>
+	<string name="gt"><b>&gt;</b></string>
+	<string name="lt"><b>&lt;</b></string>
+			
+	<!-- New Titles -->
+	<string name="view_title">Tomdtoid - Jegyzet megtekintés</string>
+	<string name="edit_title">Tomdroid - Jegyzet szerkesztés</string>
+	<string name="search_title">Tomdroid - Találatok</string>
+	<string name="shortcut_title">Tomdroid - Billentyűparancsok</string>
+	<string name="pref_title">Tomdroid - Settings</string>
+			
+	<!-- new prefs -->
+	<string name="prefDisplay">Display Preferences</string>
+	<string name="prefBaseSize">Alap betűméret</string>
+	<string name="prefTheme">Choose Theme</string>
+	<string name="prefThemeSummary">requires restart</string>
+	<string name="prefSync">Szinkronizálás</string>
+	<string name="prefMisc">Kül. lehetőségek</string>
+	<string name="prefTools">Eszközök</string>
+	<string name="prefAutoSaveTitle">Jegyzet automatikus mentése</string>
+	<string name="prefAutoSave">Menti a jegyzeteket a szerkesztőből való kilépéskor.</string>
+	<string name="prefNoteTemplatesTitle">Jegyzet sablonok megtekintése</string>
+	<string name="prefNoteTemplates">Ha bejelölöd, megmutatja a jegyzet sablonokat is a jegyzetek listában</string>
+	<string name="deleteAllNotesTitle">Jegyzetek törlése</string>
+	<string name="deleteAllNotes">Törli az összes jegyzetet a helyi adatbázisból</string>
+	<string name="deleteRemoteNotesTitle">Távoli jegyzetek törlése</string>
+	<string name="deleteRemoteNotes">Törli az összes jegyzetet a távoli szolgáltatásról</string>
+	<string name="illegalTextSize">Tiltott szöveg méretet választottál. Kérlek, számot adj meg!</string>
+
+	<!-- syncNotes -->
+
+	<string name="syncing">Szinkronizálás ezzel:  %1$s</string>
+	<string name="syncing_connect">csatlakozás szolgáltatáshoz...</string>
+	<string name="syncing_local">helyi jegyzetek frissítése...</string>
+	<string name="syncing_remote">távoli jegyzetek frissítése...</string>
+	<string name="sync_conflict_title">Jegyzetütközés</string>
+	<string name="sync_conflict_message">There was a conflict syncing the note "%1$s".  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="sync_conflict_deleted">Jegyzetütközés történt a "%1$s" jegyzet szinkronizálása során.  (helyi változat törölve lett) Kérlek válassz az alábbi lehetőségek közül!</string>
+	<string name="sync_conflict_titles_message">There was a conflict syncing the note "%1$s".  A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="overwrite_remote">Overwrite\nRemote</string>
+	<string name="overwrite_local">Overwrite\nLocal</string>
+	<string name="delete_remote">Töröld a távolit</string>
+	<string name="diff_label">Difference Between Files</string>
+	<string name="diff_titles">-- Cím eltérés --</string>
+	<string name="diff_content">-- Tartalom eltérés --</string>
+	<string name="line_x">Line %1$s:</string>
+	<string name="local_label">Local Version</string>
+	<string name="remote_label">Remote Version</string>
+	<string name="deleted">Törölve</string>
+	<string name="copy">Create\nCopy</string>
+	<string name="old">%1$s (korú)</string>
+	<string name="close">Bezárás</string>
+	<string name="cancel">Mégse</string>
+	<string name="messageAuthComplete">Sikeres azonosítás ezzel: %1$s.</string>
+	<string name="messageAuthFailed">Sikertelen azonosítás ezzel: %1$s. Újra próbálhatom?</string>
+	<string name="messageSyncNoteDeleted">A jegyzet sikeresen törölve erről: %1$s</string>
+	<string name="messageSyncNotePushed">A jegyzet sikeresen elküldve erre: %1$s</string>
+	<string name="messageSyncNotePulled">A jegyzet sikeresen fogadva erről: %1$s</string>
+	<string name="messageSyncNoteDeleteError">Hiba a jegyzet törlése során erről: %1$s</string>
+	<string name="messageSyncNotePushError">Hiba a jegyzet küldése során erre: %1$s</string>
+	<string name="messageSyncNotePullError">Hiba a jegyzet fogadása során erről: %1$s</string>
+	<string name="messageSyncParseFailed">Hiba a válasz elemzése során erről: %1$s</string>
+	<string name="messageSyncConnectingFailed">Hiba csatlakozás során ehez: %1$s. Valószínűleg kell az azonosítás a "Beállítások"-ban.</string>
+	<string name="messageRemoteNotesDeleted">A jegyzetek sikeresem törölve erről: %1$s</string>
+	<string name="messageSyncCancelled">A szinkronizálás ezzel %1$s törölve.</string>
+				
+	<!-- revert notes -->
 	
+	<string name="contextRevert">Visszavonás</string>
+	<string name="menuRevert">Mindent visszavon</string>
+	<string name="revert_notes">Jegyzetek visszavonása</string>
+	<string name="revert_notes_message">Ez vissza fogja állítani a helyi jegyzeteket bármilyen állapotukban is vannak azok a távoli szolgáltatón. Biztos, hogy ezt akarja tenni?</string>
+	<string name="revert_note">jegyzet helyreállítása</string>
+	<string name="revert_note_message">Ez vissza fogja állítani a helyi jegyzetet, bármilyen állapotban is van a távoli szolgáltatón. Biztos, hogy ezt akarja tenni?</string>
+
+	<!-- backup notes -->
+	
+	<string name="backupPrefTitle">Jegyzetek biztonsági mentése</string>
+	<string name="backupPref">Másold az összes helyi jegyzetet az SD kártyára</string>
+	<string name="backup_notes_title">Biztonsági mentsem a jegyzeteket?</string>
+	<string name="backup_notes">Másoljam az összes helyi jegyzetet az SD kártyára? Ez felülírhatja a már lézető jegyzeteket az SD kártyán.</string>
+	<string name="restorePrefTitle">Jegyzetek visszaállítása</string>
+	<string name="restorePref">Húzd be az összes jegyzetet az SD kártyáról.</string>
+	<string name="restore_notes_title">Visszaállítsam a jegyzeteket?</string>
+	<string name="restore_notes">Húzzam be az összes jegyzetet az SD kártyáról? Ez felülírhatja a meglevő jegyzeteidet.</string>
+	<string name="messageNotesBackedUp">A jegyzetek sikeresen biztonsági mentve az SD kártyára.</string>
+	<string name="messageNotesRestored">A jegyzetek sikeresen visszaállítva az SD kártyáról.</string>
+	<string name="messageDatabaseReset">Notes cleared successfully.</string>
+		
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
 	I\'ve put it in here so that it\'ll get translated by translators.
 	-->
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid jegyzetek</string>
-	<!-- 325 chars max -->
-	<string name="market_description">Tomboy kliens Androidra. A Tomboy egy wikiwiki elven működő asztali jegyzetfüzet-alkalmazás, egyszerű felhasználói felülettel.\n\nFIGYELEM: jelenleg még csak OLVASÁSRA képes.\n\n* Komaptibilis a Tomboy-al\n* Online szinkronizálás Snowy, Tomboy Online vagy Ubuntu One használatával\n* Importálás SD kártyáról\n* Nyílt forrás!</string>
+	<!-- 4000 chars max -->
+	<string name="market_description">Ez egy Tomboy kliens Androidhoz. A Tomboy egy asztali jegyzet készítő alkalmazás wiki stílusú megközelítésben egyszerű felhasználói felülettel.\n\n* A jegyzet formátuma kompatibilis a Tomboy-al\n* Hálózati jegyzet szinkronizálás a Snowy, Tomboy Online és az Ubuntu One szolgáltatásokon keresztül.\n* SD kártya importálás\n* Nyílt forráskód!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Jegyzetfüzet-alkalmazás Tomboy-kompatibilis online szinkronizációval</string>
-	
-	
+
+	<!-- 500 chars max -->
+        <string name="market_recent_changes">* Jegyzetkeresés és rendszerintegrált keresés\n* Összefüggés menü\n* Néhány használhatósági fejlesztés\n* Jobb minőségű ikonok\n* Néhány hibajavítás\n* Német fordítás\n* Magyar fordítás\n*</string>
+
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
+  Horváth Zoltán https://launchpad.net/~veszett-kutya76
   Péter Trombitás https://launchpad.net/~trombipeti</string>
-	
 </resources>
