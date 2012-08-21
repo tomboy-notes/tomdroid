@@ -201,6 +201,10 @@ public class Tomdroid extends ActionBarListActivity {
 	private void showNoteInPane(int position) {
 		if(rightPane == null)
 			return;
+
+        title.setText("");
+        content.setText("");
+		
 		if(position == -1) {
 			adapter = NoteManager.getListAdapter(this);
 			setListAdapter(adapter);
@@ -209,8 +213,6 @@ public class Tomdroid extends ActionBarListActivity {
 		Cursor item = (Cursor) adapter.getItem(position);
 		if (item == null || item.getCount() == 0) {
             TLog.d(TAG, "Index {0} not found in list", position);
-            title.setText("");
-            content.setText("");
 			return;
 		}
 		long noteId = item.getInt(item.getColumnIndexOrThrow(Note.ID));	
@@ -221,8 +223,8 @@ public class Tomdroid extends ActionBarListActivity {
         note = NoteManager.getNote(this, uri);
 
         if(note != null) {
-    		TLog.d(TAG, "note {0} found", position);
-			title.setText((CharSequence) note.getTitle());
+        	
+        	TLog.d(TAG, "note {0} found", position);
             noteContent = new NoteContentBuilder().setCaller(noteContentHandler).setInputSource(note.getXmlContent()).setTitle(note.getTitle()).build();
         } else {
             TLog.d(TAG, "The note {0} doesn't exist", uri);
@@ -236,10 +238,6 @@ public class Tomdroid extends ActionBarListActivity {
 			return;
 		}
 		
-		// trying to avoid lp:1038118
-		
-		content.invalidate();
-
 		// show the note (spannable makes the TextView able to output styled text)
 		content.setText(noteContent, TextView.BufferType.SPANNABLE);
 
@@ -262,6 +260,11 @@ public class Tomdroid extends ActionBarListActivity {
 							 Tomdroid.CONTENT_URI+"/",
 							 null,
 							 noteTitleTransformFilter);
+
+		title.setText((CharSequence) note.getTitle());
+
+    	// trying to fix lp:1038118
+		rightPane.invalidate();
 	}
 	private void showNoteNotFoundDialog(final Uri uri) {
 	    final AlertDialog.Builder builder = new AlertDialog.Builder(this);
