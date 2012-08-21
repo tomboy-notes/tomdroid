@@ -263,8 +263,6 @@ public class Tomdroid extends ActionBarListActivity {
 
 		title.setText((CharSequence) note.getTitle());
 
-    	// trying to fix lp:1038118
-		rightPane.invalidate();
 	}
 	private void showNoteNotFoundDialog(final Uri uri) {
 	    final AlertDialog.Builder builder = new AlertDialog.Builder(this);
