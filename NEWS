@@ -12,6 +12,12 @@ Join it at: https://launchpad.net/~tomdroid-dev
 For more details and developer visible changes see the ChangeLog
 
 -------------------------------------------------------------------------------
+Tomdroid 0.7.1 beta - <releaseName> released on <releaseDate>
+
+* Actionbar for all versions of Android
+* Usability and cosmetic improvements (lp:1038118, lp:1038352)
+
+-------------------------------------------------------------------------------
 Tomdroid 0.7 beta - "House of Fun" - Editing and Two-Way Sync!
 
 Editing Features:
