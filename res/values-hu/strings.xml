@@ -73,7 +73,7 @@
 	<string name="titleNoteNotFound">Nincs ilyen jegyzet</string>
 	<string name="messageNoteNotFound">A kért jegyzet nem található. Lehetséges, hogy törölve lett, vagy el lett távolítva a szinkronizáció során.</string>
 	<string name="messageErrorNoteParsing">Hiba a jegyzet elemzése során.</string>
-	<string name="messageCouldNotSave">Could not save note.</string>
+	<string name="messageCouldNotSave">Nem tudom menteni a jegyzetet</string>
 	<string name="messageNoSDCard">SDCard tároló nem található.</string>
 	
 	<!-- NoteSorting -->
@@ -163,10 +163,10 @@
 	<string name="edit_title">Tomdroid - Jegyzet szerkesztés</string>
 	<string name="search_title">Tomdroid - Találatok</string>
 	<string name="shortcut_title">Tomdroid - Billentyűparancsok</string>
-	<string name="pref_title">Tomdroid - Settings</string>
+	<string name="pref_title">Tomdroid - beállítások</string>
 			
 	<!-- new prefs -->
-	<string name="prefDisplay">Display Preferences</string>
+	<string name="prefDisplay">Kijelző beállításai</string>
 	<string name="prefBaseSize">Alap betűméret</string>
 	<string name="prefSync">Szinkronizálás</string>
 	<string name="prefMisc">Kül. lehetőségek</string>
@@ -188,20 +188,20 @@
 	<string name="syncing_local">helyi jegyzetek frissítése...</string>
 	<string name="syncing_remote">távoli jegyzetek frissítése...</string>
 	<string name="sync_conflict_title">Jegyzetütközés</string>
-	<string name="sync_conflict_message">There was a conflict syncing the note "%1$s".  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="sync_conflict_message">Konfliktus történt a "%1$s" jegyzet szinkronizálása során. Kérem válasszon az alábbiak közül a konfliktus feloldásához. Mindkét jegyzetet szerkesztheti a választás előtt, vagy megnézheti a külömbségeket az alábbi címkékre kattintva.</string>
 	<string name="sync_conflict_deleted">Jegyzetütközés történt a "%1$s" jegyzet szinkronizálása során.  (helyi változat törölve lett) Kérlek válassz az alábbi lehetőségek közül!</string>
 	<string name="sync_conflict_titles_message">There was a conflict syncing the note "%1$s".  A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
-	<string name="overwrite_remote">Overwrite\nRemote</string>
-	<string name="overwrite_local">Overwrite\nLocal</string>
+	<string name="overwrite_remote">Felülírás\nTávoli</string>
+	<string name="overwrite_local">Felülírás\nHelyi</string>
 	<string name="delete_remote">Töröld a távolit</string>
-	<string name="diff_label">Difference Between Files</string>
+	<string name="diff_label">Külömbségek fájlok között</string>
 	<string name="diff_titles">-- Cím eltérés --</string>
 	<string name="diff_content">-- Tartalom eltérés --</string>
-	<string name="line_x">Line %1$s:</string>
-	<string name="local_label">Local Version</string>
-	<string name="remote_label">Remote Version</string>
+	<string name="line_x">Sor %1$s:</string>
+	<string name="local_label">Helyi változat</string>
+	<string name="remote_label">Távoli változat</string>
 	<string name="deleted">Törölve</string>
-	<string name="copy">Create\nCopy</string>
+	<string name="copy">Létrehoz\nMásol</string>
 	<string name="old">%1$s (korú)</string>
 	<string name="close">Bezárás</string>
 	<string name="cancel">Mégse</string>
@@ -239,7 +239,7 @@
 	<string name="restore_notes">Húzzam be az összes jegyzetet az SD kártyáról? Ez felülírhatja a meglevő jegyzeteidet.</string>
 	<string name="messageNotesBackedUp">A jegyzetek sikeresen biztonsági mentve az SD kártyára.</string>
 	<string name="messageNotesRestored">A jegyzetek sikeresen visszaállítva az SD kártyáról.</string>
-	<string name="messageDatabaseReset">Notes cleared successfully.</string>
+	<string name="messageDatabaseReset">A jegyzetek sikeresen törölve.</string>
 		
 	<!-- 
 	Information that goes into the Android Market Application Listing. 

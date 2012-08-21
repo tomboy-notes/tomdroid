@@ -45,10 +45,10 @@
 	<string name="btnCancel">Anuluj</string>
 	<string name="btnClose">Zamknij</string>
 	<string name="btnProjectPage">Strona projektu</string>
-	<string name="btnSavetoSD">Save</string>
+	<string name="btnSavetoSD">Zapisz</string>
 	
 	<!-- note-view.xml -->
-	<string name="strWait">Please wait while note loads…</string>
+	<string name="strWait">Proszę czekać na załadowanie notatek…</string>
 	
 	<string name="prefSyncService">Usługa</string>
 	<string name="prefSyncServer">Serwer</string>
@@ -115,46 +115,46 @@
 	<!-- stuff new to edit -->
 
 	<!-- deleteNote -->
-	<string name="delete">Delete</string>
-	<string name="delete_note">Delete Note</string>
+	<string name="delete">Usuń</string>
+	<string name="delete_note">Usuń notatkę</string>
 	<string name="delete_message">Are you sure you want to delete this note?</string>
-	<string name="yes">Yes</string>
-	<string name="no">No</string>
+	<string name="yes">Tak</string>
+	<string name="no">Nie</string>
 	<string name="delete_all">Clear Notes</string>
 	<string name="delete_all_message">Are you sure you want to clear the notes database?</string>
 	<string name="delete_remote_notes">Delete Remote Notes</string>
 	<string name="delete_remote_notes_message">Are you sure you want to delete all notes from the remote service?</string>
 				
 	<!-- newNote -->
-	<string name="menuNew">New</string>
-	<string name="NewNoteTitle">New Note</string>
+	<string name="menuNew">Nowa</string>
+	<string name="NewNoteTitle">Nowa notatka</string>
 	<string name="NewNoteTitleHint">Enter title here</string>
 	<string name="NewNoteBodyHint">Enter note here</string>
 			
 	<!-- editNote -->
-	<string name="edit">Edit</string>
-	<string name="save">Save</string>
-	<string name="discard">Discard</string>
-	<string name="back">Back</string>
+	<string name="edit">Edytuj</string>
+	<string name="save">Zapisz</string>
+	<string name="discard">Porzuć</string>
+	<string name="back">Wróć</string>
 	<string name="bold">B</string>
 	<string name="italic">i</string>
 	<string name="strike"><strike>S</strike></string>
 	<string name="mono">monospace</string>
-	<string name="highlight">highlight</string>
-	<string name="size">size</string>
+	<string name="highlight">wyróżnienie</string>
+	<string name="size">rozmiar</string>
 	<string name="xml">XML</string>
-	<string name="text">Text</string>
+	<string name="text">Tekst</string>
 	<string name="titleErrorParsingXML">Error parsing note</string>
 	<string name="messageErrorParsingXML">There was an error parsing the note. Please check your XML.</string>
 	<string name="messageNoteSaved">Note saved locally.</string>
-	<string name="messageNoteDeleted">Note deleted locally.</string>
-	<string name="messageSelectSize">Select text size</string>
+	<string name="messageNoteDeleted">Notatka usunięta lokalnie.</string>
+	<string name="messageSelectSize">Wybierz rozmiar tekstu</string>
 	<string name="small">Small</string>
 	<string name="normal">Normal</string>
 	<string name="large">Large</string>
 	<string name="huge">Huge</string>
 	<string name="messageDiscardChanges">Do you really want to discard your changes and revert the note to the last saved version?</string>
-	<string name="titleDiscardChanges">Discard Changes?</string>
+	<string name="titleDiscardChanges">Porzucić zmiany?</string>
 	<string name="gt"><b>&gt;</b></string>
 	<string name="lt"><b>&lt;</b></string>
 			
@@ -166,11 +166,11 @@
 	<string name="pref_title">Tomdroid - Settings</string>
 			
 	<!-- new prefs -->
-	<string name="prefDisplay">Display Preferences</string>
+	<string name="prefDisplay">Preferencje wyświetlania</string>
 	<string name="prefBaseSize">Base Font Size</string>
 	<string name="prefSync">Synchronizacja</string>
-	<string name="prefMisc">Misc. Options</string>
-	<string name="prefTools">Tools</string>
+	<string name="prefMisc">Pozostałe opcje</string>
+	<string name="prefTools">Narzędzia</string>
 	<string name="prefAutoSaveTitle">Auto Save Note</string>
 	<string name="prefAutoSave">Save notes automatically on exiting editor.</string>
 	<string name="prefNoteTemplatesTitle">Show Note Templates</string>

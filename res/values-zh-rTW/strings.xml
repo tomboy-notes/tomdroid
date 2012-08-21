@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ Tomdroid
+ Tomboy on Android
+ http://www.launchpad.net/tomdroid
+
+ Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
+ 
+ This file is part of Tomdroid.
+ 
+ Tomdroid is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Tomdroid is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources>
+	
+	<!-- application details -->
+	<string name="app_name">Tomdroid</string>
+	<string name="app_desc">相容於Tomboy的高效做筆記應用程式。</string>
+	<string name="author">Olivier Bilodeau</string>
+	
+	<!-- main.xml -->
+	<string name="strListEmptyWaiting">當筆記載入時請稍候..</string>
+	<string name="strListEmptyNoNotes">沒有筆記在Tomdroid的資料庫中。</string>
+	
+	<string name="menuSync">同步</string>
+	<string name="menuPrefs">設定</string>
+	<string name="menuAbout">關於</string>
+	<string name="titleWelcome">警告</string>
+	<string name="titleAbout">關於 Tomdroid</string>
+	<string name="strWelcome">Welcome to Tomdroid.\n\nPlease note that this is beta quality software and that it contains known problems.\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something out and tested as quickly as possible.\n\nIf you would like to contribute, help at all levels would be appreciated. Hop on board on launchpad.net/tomdroid and contact us!\n</string>
+	<string name="strAbout">%1$s\n\n作者：%2$s\n版本：%3$s\n授權於GPLv3之下</string>
+	
+	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
+	<string name="btnOk">確定</string>
+	<string name="btnCancel">取消</string>
+	<string name="btnClose">關閉</string>
+	<string name="btnProjectPage">項目頁面</string>
+	<string name="btnSavetoSD">儲存</string>
+	
+	<!-- note-view.xml -->
+	<string name="strWait">當筆記本載入時請稍候...</string>
+	
+	<string name="prefSyncService">服務</string>
+	<string name="prefSyncServer">伺服器</string>
+	<string name="prefSDCard">SD卡</string>
+	<string name="prefTomboyWeb">線上同步</string>
+	<string name="prefAuthenticate">驗證</string>
+	<string name="prefLocation">SD卡上的位置</string>
+	<string name="prefFolderCreated">該資料夾「%1$s」不存在。請連接您的裝置到電腦上，建立該資料夾並放置帶有「*.note」的檔案。</string>
+	<string name="prefNoValidLocation">「%1$s」不是一個有效的資料夾。請再試一次！</string>
+	<string name="prefNoValidEntry">「%1$s」不是有效的。請再試一次！</string>
+	<string name="prefSyncCompleteAuth">正在完成驗證。請稍候...</string>
+	<string name="prefSyncConnectionFailed">連接至伺服器失敗，請檢查您輸入的地址是正確的。</string>
+	<string name="prefServerEmpty">伺服器地址更改，但新的值是空的</string>
+			
+	<string name="titleSyncService">選擇要使用的同步服務</string>
+	<string name="messageSyncComplete">與%1$s同步完成。</string>
+	<string name="messageSyncNoNote">在%1$s沒找到筆記。</string>
+	<string name="messageSyncNoConnection">您沒有連接到網際網路。</string>
+	<string name="messageSyncAlreadyInProgress">同步已經在進行</string>
+	<string name="messageSyncError">嘗試分析您的筆記集時出現一個錯誤。如果您能夠複製這個問題，請與我們聯繫！</string>
+	<string name="error">錯誤</string>
+	<string name="titleNoteNotFound">沒有這樣的筆記</string>
+	<string name="messageNoteNotFound">要求的筆記無法找到。也許它已被刪除或透過同步而移除。</string>
+	<string name="messageErrorNoteParsing">錯誤解析記錄。</string>
+	<string name="messageCouldNotSave">無法儲存筆記。</string>
+	<string name="messageNoSDCard">沒有找到SD卡存放。</string>
+	
+	<!-- NoteSorting -->
+	<string name="menuSort">更改排序</string>
+	<string name="titleDefaultSorting">選擇預設的排序</string>
+	<string name="prefDefaultSorting">預設排序</string>
+	
+	<!-- NotebookFiltering -->
+	<string name="menuFilterNotebook">篩選器</string>
+	<string name="strListEmptyNoNotebooks">在資料庫中沒有筆記簿。</string>
+	<string name="allNotebooksFilter">所有的筆記簿</string>
+	
+	<!-- List Longpress Menu -->
+	<string name="view">檢視</string>
+	<string name="noteOptions">筆記選項</string>
+	<string name="send">送出</string>
+	
+	<!--  Search -->
+	<string name="search_hint">搜尋筆記</string>
+	<string name="search_description">在您筆記中的文字</string>
+	<string name="strNoResults">沒有找到符合「%s」的筆記</string>
+	<string name="menuSearch">搜尋</string>
+	<string name="SearchResultTitle">搜尋結果：</string>
+	<string name="clearSearchHistoryTitle">清除搜尋歷史記錄</string>
+	<string name="clearSearchHistory">刪除所有您已經執行的搜尋</string>
+	<string name="deletedSearchHistory">搜尋歷史記錄已被清除。</string>
+	
+	<!-- Date -->
+	<string name="textModified">修改時間：</string>
+	<string name="textToday">今天</string>
+	<string name="textYexterday">昨天</string>
+
+	<!-- Shortcuts handling -->
+	<string name="shortcuts_view_caption">選擇一個筆記</string>
+	<string name="shortcut_menu_item_caption">Tomdroid 筆記</string>
+	<string name="btnRemoveShortcut">移除捷徑</string>
+	<string name="createShortcut">建立捷徑</string>
+
+	<!-- stuff new to edit -->
+
+	<!-- deleteNote -->
+	<string name="delete">刪除</string>
+	<string name="delete_note">刪除筆記</string>
+	<string name="delete_message">您確定要刪除這份筆記嗎？</string>
+	<string name="yes">是的</string>
+	<string name="no">不是</string>
+	<string name="delete_all">清除筆記</string>
+	<string name="delete_all_message">您確定要清除筆記資料庫嗎？</string>
+	<string name="delete_remote_notes">刪除遠端筆記</string>
+	<string name="delete_remote_notes_message">您確定要從遠端服務刪除所有筆記嗎？</string>
+				
+	<!-- newNote -->
+	<string name="menuNew">新增</string>
+	<string name="NewNoteTitle">新增筆記</string>
+	<string name="NewNoteTitleHint">在這裡輸入標題</string>
+	<string name="NewNoteBodyHint">在這裡輸入筆記</string>
+			
+	<!-- editNote -->
+	<string name="edit">編輯</string>
+	<string name="save">儲存</string>
+	<string name="discard">丟棄</string>
+	<string name="back">返回</string>
+	<string name="bold">B</string>
+	<string name="italic">i</string>
+	<string name="strike"><strike>S</strike></string>
+	<string name="mono">monospace</string>
+	<string name="highlight">突顯</string>
+	<string name="size">大小</string>
+	<string name="xml">XML</string>
+	<string name="text">文字</string>
+	<string name="titleErrorParsingXML">解析筆記錯誤</string>
+	<string name="messageErrorParsingXML">出現解析筆記錯誤。請檢查您的 XML 。</string>
+	<string name="messageNoteSaved">筆記，儲存在本地。</string>
+	<string name="messageNoteDeleted">筆記在本地被刪除。</string>
+	<string name="messageSelectSize">選擇文字大小</string>
+	<string name="small">小型</string>
+	<string name="normal">一般</string>
+	<string name="large">大型</string>
+	<string name="huge">特大</string>
+	<string name="messageDiscardChanges">您真的要放棄您的更改，並恢復到最後儲存版本的筆記嗎？</string>
+	<string name="titleDiscardChanges">放棄變更？</string>
+	<string name="gt"><b>&gt;</b></string>
+	<string name="lt"><b>&lt;</b></string>
+			
+	<!-- New Titles -->
+	<string name="view_title">Tomdroid - 檢視筆記</string>
+	<string name="edit_title">Tomdroid - 編輯筆記</string>
+	<string name="search_title">Tomdroid - 搜尋結果</string>
+	<string name="shortcut_title">Tomdroid - 捷徑</string>
+	<string name="pref_title">Tomdroid - 設定</string>
+			
+	<!-- new prefs -->
+	<string name="prefDisplay">顯示偏好設定</string>
+	<string name="prefBaseSize">基本字體大小</string>
+	<string name="prefSync">同步</string>
+	<string name="prefMisc">其他選項</string>
+	<string name="prefTools">工具</string>
+	<string name="prefAutoSaveTitle">自動儲存筆記</string>
+	<string name="prefAutoSave">在退出編輯器上自動儲存筆記。</string>
+	<string name="prefNoteTemplatesTitle">顯示筆記範本</string>
+	<string name="prefNoteTemplates">如果勾選，將顯示筆記範本在筆記清單中。</string>
+	<string name="deleteAllNotesTitle">清除筆記</string>
+	<string name="deleteAllNotes">從本地資料庫中清除所有筆記</string>
+	<string name="deleteRemoteNotesTitle">刪除遠端筆記</string>
+	<string name="deleteRemoteNotes">從遠端服務中刪除所有筆記</string>
+	<string name="illegalTextSize">所選的文字大小不合法。請選擇一個號碼。</string>
+
+	<!-- syncNotes -->
+
+	<string name="syncing">與%1$s同步</string>
+	<string name="syncing_connect">連接到遠端服務...</string>
+	<string name="syncing_local">更新本地筆記...</string>
+	<string name="syncing_remote">更新遠端筆記...</string>
+	<string name="sync_conflict_title">筆記發生衝突</string>
+	<string name="sync_conflict_message">同步“%1$s”筆記有一個衝突。請選擇一個行動來解決衝突。您可以在選擇之前編輯筆記，或點擊下面的標籤來查看不同。</string>
+	<string name="sync_conflict_deleted">同步“%1$s”筆記有衝突(本地版本已經刪除)。請選擇下面的操作之一。</string>
+	<string name="sync_conflict_titles_message">同步“%1$s”筆記有一個衝突。一樣標題的筆記已經存在於資料庫中。請選擇一個行動來解決衝突。您可以在選擇之前編輯筆記，或點擊下面的標籤來查看不同。</string>
+	<string name="overwrite_remote">覆蓋\n遠端</string>
+	<string name="overwrite_local">覆蓋\n本地</string>
+	<string name="delete_remote">刪除遠端</string>
+	<string name="diff_label">檔案之間的差異</string>
+	<string name="diff_titles">-- 標題差異 --</string>
+	<string name="diff_content">-- 內容差異 --</string>
+	<string name="line_x">Line %1$s:</string>
+	<string name="local_label">本地版本</string>
+	<string name="remote_label">遠端版本</string>
+	<string name="deleted">已刪除</string>
+	<string name="copy">建立\n複製</string>
+	<string name="old">%1$s (舊的)</string>
+	<string name="close">關閉</string>
+	<string name="cancel">取消</string>
+	<string name="messageAuthComplete">驗證%1$s成功</string>
+	<string name="messageAuthFailed">驗證%1$s失敗。再試一次嗎？</string>
+	<string name="messageSyncNoteDeleted">筆記成功地從%1$s刪除</string>
+	<string name="messageSyncNotePushed">筆記成功地傳送到%1$s。</string>
+	<string name="messageSyncNotePulled">筆記成功地從%1$s接收到。</string>
+	<string name="messageSyncNoteDeleteError">從%1$s刪除筆記出現錯誤。</string>
+	<string name="messageSyncNotePushError">傳送筆記到%1$s出現錯誤。</string>
+	<string name="messageSyncNotePullError">從%1$s接收筆記出現錯誤。</string>
+	<string name="messageSyncParseFailed">從%1$s解析的回應出現錯誤。</string>
+	<string name="messageSyncConnectingFailed">連接到%1$s出現錯誤。您可能需要在“設定”中進行身份驗證。</string>
+	<string name="messageRemoteNotesDeleted">筆記成功地從%1$s刪除</string>
+	<string name="messageSyncCancelled">與%1$s同步取消了。</string>
+				
+	<!-- revert notes -->
+	
+	<string name="contextRevert">恢復</string>
+	<string name="menuRevert">恢復所有的</string>
+	<string name="revert_notes">恢復筆記</string>
+	<string name="revert_notes_message">這將恢復您的本地筆記為存在遠端服務上的任何版本。您確定您想這樣做嗎？</string>
+	<string name="revert_note">恢復筆記</string>
+	<string name="revert_note_message">這將恢復一個本地筆記為存在遠端服務上的任何版本。您確定您想這樣做嗎？</string>
+
+	<!-- backup notes -->
+	
+	<string name="backupPrefTitle">備份筆記</string>
+	<string name="backupPref">複製所有本地筆記到SD卡</string>
+	<string name="backup_notes_title">要備份筆記嗎？</string>
+	<string name="backup_notes">複製所有本地筆記到SD卡？這可能會覆蓋現有在SD卡上的筆記。</string>
+	<string name="restorePrefTitle">恢復筆記</string>
+	<string name="restorePref">從SD卡撤出所有筆記</string>
+	<string name="restore_notes_title">要恢復筆記嗎？</string>
+	<string name="restore_notes">從SD卡撤出所有筆記嗎？這可能會覆蓋您存在的筆記。</string>
+	<string name="messageNotesBackedUp">筆記成功地備份到SD卡。</string>
+	<string name="messageNotesRestored">從SD卡成功地恢復筆記</string>
+	<string name="messageDatabaseReset">筆記成功清除。</string>
+		
+	<!-- 
+	Information that goes into the Android Market Application Listing. 
+	I\'ve put it in here so that it\'ll get translated by translators.
+	-->
+	<!-- 30 chars max -->
+	<string name="market_title">Tomdroid筆記</string>
+	<!-- 4000 chars max -->
+	<string name="market_description">一個用於Android的Tomboy客戶端。Tomboy是一個桌面做筆記應用程式，它使用一個高效的方法和一個簡單的使用者介面。\n\n* 筆記格式相容於Tomboy\n* 線上筆記同步用Snowy，Tomboy Online或Ubuntu One\n* SD卡輸入\n * 開放原始碼！</string>
+	
+	<!-- 80 chars max -->
+	<string name="market_promotext">用線上同步相容於Tomboy的作筆記應用程式</string>
+
+	<!-- 500 chars max -->
+        <string name="market_recent_changes">* Search notes and system integrated search\n* Context menu\n* Several usability improvements\n* Higher quality icons\n* Several bug fixes\n* German translation\n</string>
+
+	<!-- Launchpad Translation String -->
+	<string name="about_translators">Launchpad Contributions:
+  taijuin lee https://launchpad.net/~taijuin</string>
+</resources>

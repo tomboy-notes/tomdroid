@@ -70,7 +70,7 @@
 	<string name="messageSyncAlreadyInProgress">La sincronización ya está en curso</string>
 	<string name="messageSyncError">Se ha producido un error al procesar las notas. Si es capaz de volver a generar este mensaje, póngase en contacto con nosotros.</string>
 	<string name="error">Error</string>
-	<string name="titleNoteNotFound">Sin notas.</string>
+	<string name="titleNoteNotFound">No existe tal nota</string>
 	<string name="messageNoteNotFound">No se encuentra la nota solicitada. Puede que haya sido borrada por el proceso de sincronización.</string>
 	<string name="messageErrorNoteParsing">Error al analizar la nota.</string>
 	<string name="messageCouldNotSave">Could not save note.</string>
@@ -254,7 +254,7 @@
 	<string name="market_promotext">Aplicación de notas con sincronización en línea compatible con Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">* Search notes and system integrated search\n* Context menu\n* Several usability improvements\n* Higher quality icons\n* Several bug fixes\n* German translation\n</string>
+        <string name="market_recent_changes">* Búsqueda en notas y búsqueda integrada con el sistema\n* Menú contextual\n* Varias mejoras de usabilidad\n* Iconos de mayor calidad\n* Varias correcciones de fallos\n* Traducción al alemán\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

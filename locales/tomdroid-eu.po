@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tomdroid\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-08-18 12:43+0200\n"
-"PO-Revision-Date: 2012-08-19 21:09+0000\n"
+"POT-Creation-Date: 2012-08-20 14:41+0530\n"
+"PO-Revision-Date: 2012-08-20 22:59+0000\n"
 "Last-Translator: Asier Iturralde Sarasola <Unknown>\n"
 "Language-Team: Basque <eu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-08-19 21:12+0000\n"
+"X-Launchpad-Export-Date: 2012-08-21 14:52+0000\n"
 "X-Generator: Launchpad (build 15810)\n"
 
 #. application details
@@ -25,7 +25,7 @@ msgstr "Tomdroid"
 #: tmp_strings.xml:28(string)
 msgid ""
 "Tomboy compatible wikiwiki note-taking application that can take notes."
-msgstr ""
+msgstr "Tomboy-rekin bateragarria den oharrak hartzeko wiki aplikazioa."
 
 #: tmp_strings.xml:29(string)
 msgid "Olivier Bilodeau"
@@ -69,6 +69,12 @@ msgid ""
 "all levels would be appreciated. Hop on board on launchpad.net/tomdroid and "
 "contact us!\\n"
 msgstr ""
+"Ongi etorri Tomdroid-era.\\n\\nMesedez, kontutan izan hau beta kalitateko "
+"softwarea dela eta errore ezagunak dituela.\\n\\nJabetzen gara arazoak "
+"daudela eta lehenbailehen konpontzen saiatzen gara baina zerbait kaleratu "
+"eta probatu nahi genuen.\\n\\nLagundu nahi bagaituzu, zure laguntza ongi "
+"etorria izango da. Zoaz launchpad.net/tomdroid webgunera eta jarri gurekin "
+"harremanetan!\\n"
 
 #: tmp_strings.xml:41(string)
 msgid "%1$s\\n\\nAuthor: %2$s\\nVersion: %3$s\\nLicensed under the GPLv3"
@@ -80,11 +86,11 @@ msgstr ""
 msgid "OK"
 msgstr "Ados"
 
-#: tmp_strings.xml:45(string) tmp_strings.xml:204(string)
+#: tmp_strings.xml:45(string) tmp_strings.xml:207(string)
 msgid "Cancel"
 msgstr "Utzi"
 
-#: tmp_strings.xml:46(string) tmp_strings.xml:203(string)
+#: tmp_strings.xml:46(string) tmp_strings.xml:206(string)
 msgid "Close"
 msgstr "Itxi"
 
@@ -99,7 +105,7 @@ msgstr "Gorde"
 #. note-view.xml
 #: tmp_strings.xml:51(string)
 msgid "Please wait while note loads…"
-msgstr "Mesedez itxaron oharra kargatu bitartean..."
+msgstr "Mesedez itxaron oharra kargatu bitartean…"
 
 #: tmp_strings.xml:53(string)
 msgid "Service"
@@ -144,7 +150,7 @@ msgstr "\\\"%1$s\\\" ez da baliozko sarrera bat. Mesedez saiatu berriro!"
 
 #: tmp_strings.xml:62(string)
 msgid "Completing authentication. Please wait…"
-msgstr "Autentifikazioa osatzen. Itxaron mesedez..."
+msgstr "Autentifikazioa osatzen. Itxaron mesedez…"
 
 #: tmp_strings.xml:63(string)
 msgid ""
@@ -207,12 +213,12 @@ msgid "Error parsing note."
 msgstr "Errorea oharra analizatzean."
 
 #: tmp_strings.xml:76(string)
-msgid "Could note save note."
-msgstr "Ezin izan da oharra gorde"
+msgid "Could not save note."
+msgstr "Ezin izan da oharra gorde."
 
 #: tmp_strings.xml:77(string)
 msgid "SDCard storage not found."
-msgstr ""
+msgstr "Ez da SD txarteleko biltegirik aurkitu."
 
 #. NoteSorting
 #: tmp_strings.xml:80(string)
@@ -337,7 +343,7 @@ msgstr "Bai"
 msgid "No"
 msgstr "Ez"
 
-#: tmp_strings.xml:123(string) tmp_strings.xml:177(string)
+#: tmp_strings.xml:123(string) tmp_strings.xml:178(string)
 msgid "Clear Notes"
 msgstr "Garbitu oharrak"
 
@@ -345,7 +351,7 @@ msgstr "Garbitu oharrak"
 msgid "Are you sure you want to clear the notes database?"
 msgstr "Ziur zaude oharren datu-basea garbitu nahi duzula?"
 
-#: tmp_strings.xml:125(string) tmp_strings.xml:179(string)
+#: tmp_strings.xml:125(string) tmp_strings.xml:180(string)
 msgid "Delete Remote Notes"
 msgstr "Ezabatu urruneko oharrak"
 
@@ -466,11 +472,11 @@ msgstr "Aldaketak baztertu?"
 
 #: tmp_strings.xml:158(b)
 msgid "&gt;"
-msgstr ""
+msgstr "&gt;"
 
 #: tmp_strings.xml:159(b)
 msgid "&lt;"
-msgstr ""
+msgstr "&lt;"
 
 #. New Titles
 #: tmp_strings.xml:162(string)
@@ -483,275 +489,320 @@ msgstr "Tomdroid - Editatu oharra"
 
 #: tmp_strings.xml:164(string)
 msgid "Tomdroid - Search Results"
-msgstr ""
+msgstr "Tomdroid - Bilaketaren emaitzak"
 
 #: tmp_strings.xml:165(string)
 msgid "Tomdroid - Shortcuts"
-msgstr ""
+msgstr "Tomdroid - Lasterbideak"
+
+#: tmp_strings.xml:166(string)
+msgid "Tomdroid - Settings"
+msgstr "Tomdroid - Ezarpenak"
 
 #. new prefs
-#: tmp_strings.xml:168(string)
-msgid "Text Preferences"
-msgstr ""
-
 #: tmp_strings.xml:169(string)
-msgid "Base Font Size"
-msgstr ""
+msgid "Display Preferences"
+msgstr "Bistaratzeko hobespenak"
 
 #: tmp_strings.xml:170(string)
+msgid "Base Font Size"
+msgstr "Oinarrizko letra-tamaina"
+
+#: tmp_strings.xml:171(string)
 msgid "Synchronization"
 msgstr "Sinkronizazioa"
 
-#: tmp_strings.xml:171(string)
-msgid "Misc. Options"
-msgstr ""
-
 #: tmp_strings.xml:172(string)
-msgid "Tools"
-msgstr ""
+msgid "Misc. Options"
+msgstr "Askotariko aukerak"
 
 #: tmp_strings.xml:173(string)
-msgid "Auto Save Note"
-msgstr ""
+msgid "Tools"
+msgstr "Tresnak"
 
 #: tmp_strings.xml:174(string)
-msgid "Save notes automatically on exiting editor."
-msgstr ""
+msgid "Auto Save Note"
+msgstr "Gorde automatikoki oharra"
 
 #: tmp_strings.xml:175(string)
-msgid "Show Note Templates"
-msgstr ""
+msgid "Save notes automatically on exiting editor."
+msgstr "Editoretik irtetean oharrak automatikoki gordetzen ditu."
 
 #: tmp_strings.xml:176(string)
+msgid "Show Note Templates"
+msgstr "Erakutsi oharren txantiloiak"
+
+#: tmp_strings.xml:177(string)
 msgid "If checked, will show note templates in notes list."
-msgstr ""
+msgstr "Hautatuz gero oharren txantiloiak erakutsiko ditu oharren zerrendan."
 
-#: tmp_strings.xml:178(string)
+#: tmp_strings.xml:179(string)
 msgid "Clear all notes from local database"
-msgstr ""
-
-#: tmp_strings.xml:180(string)
-msgid "Delete all notes from remote service"
-msgstr ""
+msgstr "Garbitu datu-base lokaleko ohar guztiak"
 
 #: tmp_strings.xml:181(string)
+msgid "Delete all notes from remote service"
+msgstr "Ezabatu urruneko zerbitzuko ohar guztiak"
+
+#: tmp_strings.xml:182(string)
 msgid "Illegal text size chosen. Please choose a number."
-msgstr ""
+msgstr "Testu-tamaina baliogabea hautatuta. Mesedez aukeratu zenbaki bat."
 
 #. syncNotes
-#: tmp_strings.xml:185(string)
-msgid "Syncing with %1$s"
-msgstr ""
-
 #: tmp_strings.xml:186(string)
-msgid "connecting to service…"
-msgstr ""
+msgid "Syncing with %1$s"
+msgstr "%1$s-(r)ekin sinkronizatzen"
 
 #: tmp_strings.xml:187(string)
-msgid "updating local notes…"
-msgstr ""
+msgid "connecting to service…"
+msgstr "zerbitzura konektatzen…"
 
 #: tmp_strings.xml:188(string)
-msgid "updating remote notes…"
-msgstr ""
+msgid "updating local notes…"
+msgstr "ohar lokalak eguneratzen…"
 
 #: tmp_strings.xml:189(string)
-msgid "Note Conflict"
-msgstr ""
+msgid "updating remote notes…"
+msgstr "urruneko oharrak eguneratzen…"
 
 #: tmp_strings.xml:190(string)
-msgid ""
-"There was a conflict syncing the note \"%1$s\". Please choose from one of "
-"the actions below. You may edit either text before choosing."
-msgstr ""
+msgid "Note Conflict"
+msgstr "Ohar-gatazka"
 
 #: tmp_strings.xml:191(string)
+msgid ""
+"There was a conflict syncing the note \"%1$s\". Please choose an action to "
+"resolve the conflict. You may edit either note before choosing, or view the "
+"difference by clicking on the labels below."
+msgstr ""
+"Gatazka bat gertatu da \"%1$s\" oharra sinkronizatzean. Mesedez aukeratu "
+"gatazka konpontzeko ekintza bat. Bi oharretako edozein edita dezakezu "
+"aukeratu aurretik edo desberdintasunak ikusi beheko etiketetan klik eginez."
+
+#: tmp_strings.xml:192(string)
 msgid ""
 "There was a conflict syncing the note \"%1$s\" (local version was deleted). "
 "Please choose from one of the actions below."
 msgstr ""
-
-#: tmp_strings.xml:192(string)
-msgid "Keep Local"
-msgstr ""
+"Gatazka bat gertatu da \"%1$s\" oharra sinkronizatzean (bertsio lokala "
+"ezabatu da). Mesedez aukeratu beheko ekintzetako bat."
 
 #: tmp_strings.xml:193(string)
-msgid "Keep Remote"
+msgid ""
+"There was a conflict syncing the note \"%1$s\". A note with that title "
+"already exists in the database. Please choose an action to resolve the "
+"conflict. You may edit either note before choosing, or view the difference "
+"by clicking on the labels below."
 msgstr ""
+"Gatazka bat gertatu da \"%1$s\" oharra sinkronizatzean. Izenburu berdineko "
+"ohar bat existitzen da dagoeneko datu-basean. Mesedez aukeratu gatazka "
+"konpontzeko ekintza bat. Bi oharretako edozein edita dezakezu aukeratu "
+"aurretik edo desberdintasunak ikusi beheko etiketetan klik eginez."
 
 #: tmp_strings.xml:194(string)
-msgid "Delete Remote"
-msgstr ""
+msgid "Overwrite\\nRemote"
+msgstr "Gainidatzi\\nurrunekoa"
 
 #: tmp_strings.xml:195(string)
-msgid "Difference Between Files:"
-msgstr ""
+msgid "Overwrite\\nLocal"
+msgstr "Gainidatzi\\nlokala"
 
 #: tmp_strings.xml:196(string)
-msgid "-- Title Differences --"
-msgstr ""
+msgid "Delete Remote"
+msgstr "Ezabatu urrunekoa"
 
 #: tmp_strings.xml:197(string)
-msgid "-- Content Differences --"
-msgstr ""
+msgid "Difference Between Files"
+msgstr "Fitxategien arteko desberdintasunak"
 
 #: tmp_strings.xml:198(string)
-msgid "Local Version:"
-msgstr ""
+msgid "-- Title Differences --"
+msgstr "-- Izenburuko desberdintasunak --"
 
 #: tmp_strings.xml:199(string)
-msgid "Remote Version:"
-msgstr ""
+msgid "-- Content Differences --"
+msgstr "-- Edukiko desberdintasunak --"
 
 #: tmp_strings.xml:200(string)
-msgid "Deleted"
-msgstr ""
+msgid "Line %1$s:"
+msgstr "%1$s lerroa:"
 
 #: tmp_strings.xml:201(string)
-msgid "Create copy"
-msgstr ""
+msgid "Local Version"
+msgstr "Bertsio lokala"
 
 #: tmp_strings.xml:202(string)
-msgid "%1$s (old)"
-msgstr ""
+msgid "Remote Version"
+msgstr "Urruneko bertsioa"
+
+#: tmp_strings.xml:203(string)
+msgid "Deleted"
+msgstr "Ezabatuta"
+
+#: tmp_strings.xml:204(string)
+msgid "Create\\nCopy"
+msgstr "Sortu\\kopia"
 
 #: tmp_strings.xml:205(string)
-msgid "Authorization with %1$s successful."
-msgstr ""
-
-#: tmp_strings.xml:206(string)
-msgid "Authorization with %1$s failed. Maybe try again?"
-msgstr ""
-
-#: tmp_strings.xml:207(string)
-msgid "Note deleted from %1$s successfully."
-msgstr ""
+msgid "%1$s (old)"
+msgstr "%1$s (zaharra)"
 
 #: tmp_strings.xml:208(string)
-msgid "Note sent to %1$s successfully."
-msgstr ""
+msgid "Authorization with %1$s successful."
+msgstr "%1$s-(r)ekin autorizatzea arrakastatsua izan da."
 
 #: tmp_strings.xml:209(string)
-msgid "Note received from %1$s successfully."
-msgstr ""
+msgid "Authorization with %1$s failed. Maybe try again?"
+msgstr "%1$s-(r)ekin autorizatzeak huts egin du. Berriz saiatu?"
 
 #: tmp_strings.xml:210(string)
-msgid "Error deleting note from %1$s."
-msgstr ""
+msgid "Note deleted from %1$s successfully."
+msgstr "Behar bezala ezabatu da oharra %1$s-(e)tik."
 
 #: tmp_strings.xml:211(string)
-msgid "Error sending note to %1$s."
-msgstr ""
+msgid "Note sent to %1$s successfully."
+msgstr "Behar bezala bidali da oharra %1$s-(e)ra."
 
 #: tmp_strings.xml:212(string)
-msgid "Error receiving note from %1$s."
-msgstr ""
+msgid "Note received from %1$s successfully."
+msgstr "Behar bezala jaso da oharra %1$s-(e)tik"
 
 #: tmp_strings.xml:213(string)
-msgid "Error parsing response from %1$s."
-msgstr ""
+msgid "Error deleting note from %1$s."
+msgstr "Errorea %1$s-(e)tik oharra ezabatzean."
 
 #: tmp_strings.xml:214(string)
+msgid "Error sending note to %1$s."
+msgstr "Errorea %1$s-(e)ra oharra bidaltzean."
+
+#: tmp_strings.xml:215(string)
+msgid "Error receiving note from %1$s."
+msgstr "Errorea %1$s-(e)tik oharra jasotzean."
+
+#: tmp_strings.xml:216(string)
+msgid "Error parsing response from %1$s."
+msgstr "Errorea %1$s-(e)tik jasotako erantzuna analizatzean."
+
+#: tmp_strings.xml:217(string)
 msgid ""
 "Error connecting to %1$s. You probably need to authenticate in \"Settings\"."
 msgstr ""
+"Errorea %1$s-(e)ra konektatzean. Segur aski \"Ezarpenak\"-en autentifikatu "
+"beharko duzu."
 
-#: tmp_strings.xml:215(string)
+#: tmp_strings.xml:218(string)
 msgid "Notes deleted from %1$s successfully."
-msgstr ""
+msgstr "Oharrak behar bezala ezabatu dira %1$s-(e)tik."
 
-#: tmp_strings.xml:216(string)
+#: tmp_strings.xml:219(string)
 msgid "Sync with %1$s cancelled."
-msgstr ""
+msgstr "%1$s-(r)ekin sinkronizatzea ezeztatuta."
 
 #. revert notes
-#: tmp_strings.xml:220(string)
-msgid "Revert"
-msgstr ""
-
-#: tmp_strings.xml:221(string)
-msgid "Revert All"
-msgstr ""
-
-#: tmp_strings.xml:222(string)
-msgid "Revert Notes"
-msgstr ""
-
 #: tmp_strings.xml:223(string)
+msgid "Revert"
+msgstr "Leheneratu"
+
+#: tmp_strings.xml:224(string)
+msgid "Revert All"
+msgstr "Leheneratu guztia"
+
+#: tmp_strings.xml:225(string)
+msgid "Revert Notes"
+msgstr "Leheneratu oharrak"
+
+#: tmp_strings.xml:226(string)
 msgid ""
 "This will revert your local notes to whatever versions exist on the remote "
 "service. Are you sure you want to do this?"
 msgstr ""
+"Honek zure ohar lokalak urruneko zerbitzuan dagoen bertsiora leheneratuko "
+"ditu. Ziur zaude hau egin nahi duzula?"
 
-#: tmp_strings.xml:224(string)
+#: tmp_strings.xml:227(string)
 msgid "Revert Note"
-msgstr ""
+msgstr "Leheneratu oharra"
 
-#: tmp_strings.xml:225(string)
+#: tmp_strings.xml:228(string)
 msgid ""
 "This will revert a local note to whatever version exist on the remote "
 "service. Are you sure you want to do this?"
 msgstr ""
+"Honek zure ohar lokal bat urruneko zerbitzuan dagoen bertsiora leheneratuko "
+"du. Ziur zaude hau egin nahi duzula?"
 
 #. backup notes
-#: tmp_strings.xml:229(string)
-msgid "Backup Notes"
-msgstr ""
-
-#: tmp_strings.xml:230(string)
-msgid "Copy all local notes to SD Card"
-msgstr ""
-
-#: tmp_strings.xml:231(string)
-msgid "Backup Notes?"
-msgstr ""
-
 #: tmp_strings.xml:232(string)
+msgid "Backup Notes"
+msgstr "Egin oharren babeskopia"
+
+#: tmp_strings.xml:233(string)
+msgid "Copy all local notes to SD Card"
+msgstr "Kopiatu ohar lokal guztiak SD txartelera"
+
+#: tmp_strings.xml:234(string)
+msgid "Backup Notes?"
+msgstr "Oharren babeskopia egin?"
+
+#: tmp_strings.xml:235(string)
 msgid ""
 "Copy all local notes to SD Card? This may overwrite existing notes on the SD "
 "Card."
 msgstr ""
-
-#: tmp_strings.xml:233(string)
-msgid "Restore Notes"
-msgstr ""
-
-#: tmp_strings.xml:234(string)
-msgid "Pull all notes from SD Card"
-msgstr ""
-
-#: tmp_strings.xml:235(string)
-msgid "Restore Notes?"
-msgstr ""
+"Ohar lokal guztiak SD txartelera kopiatu? Honek SD txartelean dauden oharrak "
+"gainidatziko ditu."
 
 #: tmp_strings.xml:236(string)
-msgid "Pull all notes from SD Card? This may overwrite your existing notes."
-msgstr ""
+msgid "Restore Notes"
+msgstr "Leheneratu oharrak"
 
 #: tmp_strings.xml:237(string)
-msgid "Notes backed up to SD card successfully."
-msgstr ""
+msgid "Pull all notes from SD Card"
+msgstr "Erauzi SD txarteleko ohar guztiak"
 
 #: tmp_strings.xml:238(string)
-msgid "Notes restored from SD card successfully."
+msgid "Restore Notes?"
+msgstr "Oharrak leheneratu?"
+
+#: tmp_strings.xml:239(string)
+msgid "Pull all notes from SD Card? This may overwrite your existing notes."
 msgstr ""
+"SD txarteleko ohar guztiak erauzi? Honek existitzen diren oharrak gainidatzi "
+"ditzake."
+
+#: tmp_strings.xml:240(string)
+msgid "Notes backed up to SD card successfully."
+msgstr "Oharren babeskopia behar bezala egin da SD txartelean."
+
+#: tmp_strings.xml:241(string)
+msgid "Notes restored from SD card successfully."
+msgstr "Oharrak behar bezala leheneratu dira SD txarteletik."
+
+#: tmp_strings.xml:242(string)
+msgid "Notes cleared successfully."
+msgstr "Oharrak behar bezala garbitu dira."
 
 #. 30 chars max
-#: tmp_strings.xml:245(string)
+#: tmp_strings.xml:249(string)
 msgid "Tomdroid notes"
 msgstr "Tomdroid oharrak"
 
 #. 4000 chars max
-#: tmp_strings.xml:247(string)
+#: tmp_strings.xml:251(string)
 msgid ""
 "A Tomboy client for Android. Tomboy is a desktop note-taking app using a "
 "wikiwiki approach and a simple user interface.\\n\\n* Note format "
 "compatibility with Tomboy\\n* Online note synchronization with Snowy, Tomboy "
 "Online or Ubuntu One\\n* SD Card importation\\n* Open source!"
 msgstr ""
+"Androiderako Tomboy bezero bat. Tomboy oharrak hartzeko mahaigaineko "
+"erabiltzaile-interfaze sinplea duen wiki erako aplikazio bat da.\\n\\n* "
+"Tomboy-rekin bateragarria den ohar-formatua\\n* Snowy, Tomboy Online edo "
+"Ubuntu One-ekin oharrak linean sinkronizatzeko aukera\\n* SD txarteletik "
+"inportatzeko aukera\\n* Kode irekikoa!"
 
 #. 80 chars max
-#: tmp_strings.xml:250(string)
+#: tmp_strings.xml:254(string)
 msgid ""
 "Note-taking application with online synchronization compatible with Tomboy"
 msgstr ""
@@ -759,15 +810,18 @@ msgstr ""
 "bateragarria"
 
 #. 500 chars max
-#: tmp_strings.xml:253(string)
+#: tmp_strings.xml:257(string)
 msgid ""
 "* Search notes and system integrated search\\n* Context menu\\n* Several "
 "usability improvements\\n* Higher quality icons\\n* Several bug fixes\\n* "
 "German translation\\n"
 msgstr ""
+"* Bilaketak oharretan eta sisteman integratutako bilaketak\\n* Laster-menua\\"
+"n* Erabilgarritasun hobetua\\n* Ikono hobeak\\n* Hainbat errore-konponketa\\"
+"n* Aleman itzulpena\\n"
 
 #. Launchpad Translation String
-#: tmp_strings.xml:256(string)
+#: tmp_strings.xml:260(string)
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"

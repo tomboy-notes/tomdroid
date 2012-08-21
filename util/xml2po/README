@@ -5,7 +5,7 @@ Tomdroid README:
 
 	Run following command:
 	bash androidxml2po.bash -e
-	The new /locales/export/tomdroid.pot file will then be automatically detected by Launchpad Translatoins.
+	The new /locales/export/tomdroid.pot file will then be automatically detected by Launchpad Translations.
 
 * Import *.po files from Launchpad for creating new string.xml's
 

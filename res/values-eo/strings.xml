@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ Tomdroid
+ Tomboy on Android
+ http://www.launchpad.net/tomdroid
+
+ Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
+ 
+ This file is part of Tomdroid.
+ 
+ Tomdroid is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Tomdroid is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources>
+	
+	<!-- application details -->
+	<string name="app_name">Tomdroido</string>
+	<string name="app_desc">Tomboy compatible wikiwiki note-taking application that can take notes.</string>
+	<string name="author">Olivier BILODEAU</string>
+	
+	<!-- main.xml -->
+	<string name="strListEmptyWaiting">Please wait while the notes load..</string>
+	<string name="strListEmptyNoNotes">There are no notes in Tomdroid\'s database.</string>
+	
+	<string name="menuSync">Sinkronigi</string>
+	<string name="menuPrefs">Agordoj</string>
+	<string name="menuAbout">Pri</string>
+	<string name="titleWelcome">Averto</string>
+	<string name="titleAbout">Pri Tomdroido</string>
+	<string name="strWelcome">Welcome to Tomdroid.\n\nPlease note that this is beta quality software and that it contains known problems.\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something out and tested as quickly as possible.\n\nIf you would like to contribute, help at all levels would be appreciated. Hop on board on launchpad.net/tomdroid and contact us!\n</string>
+	<string name="strAbout">%1$s\n\nAŭtoro: %2$s\nVersio: %3$s\nPublikigita sub GPLv3</string>
+	
+	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
+	<string name="btnOk">Bone</string>
+	<string name="btnCancel">Nuligi</string>
+	<string name="btnClose">Fermi</string>
+	<string name="btnProjectPage">Paĝo de projekto</string>
+	<string name="btnSavetoSD">Save</string>
+	
+	<!-- note-view.xml -->
+	<string name="strWait">Please wait while note loads…</string>
+	
+	<string name="prefSyncService">Servo</string>
+	<string name="prefSyncServer">Servilo</string>
+	<string name="prefSDCard">SD-karto</string>
+	<string name="prefTomboyWeb">Online Synchronisation</string>
+	<string name="prefAuthenticate">Aŭtentigi</string>
+	<string name="prefLocation">Lokado en SD-karto</string>
+	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
+	<string name="prefNoValidLocation">\"%1$s\" is not a valid folder location. Please try again!</string>
+	<string name="prefNoValidEntry">\"%1$s\" is not a valid entry. Please try again!</string>
+	<string name="prefSyncCompleteAuth">Completing authentication. Please wait…</string>
+	<string name="prefSyncConnectionFailed">The connection to the server has failed, please check that the address you entered is correct.</string>
+	<string name="prefServerEmpty">The server address changed but the new value is empty</string>
+			
+	<string name="titleSyncService">Elektu uzendan servon de sinkronigado</string>
+	<string name="messageSyncComplete">Synchronization with %1$s is complete.</string>
+	<string name="messageSyncNoNote">Neniu noto trovata en %1$s.</string>
+	<string name="messageSyncNoConnection">Vi ne estas konektata en interreto.</string>
+	<string name="messageSyncAlreadyInProgress">Sinkronigado jam farata</string>
+	<string name="messageSyncError">There was an error trying to parse your note collection. If you are able to replicate the problem, please contact us!</string>
+	<string name="error">Eraro</string>
+	<string name="titleNoteNotFound">Nenia noto</string>
+	<string name="messageNoteNotFound">The requested note could not be found. Maybe it was deleted or removed through synchronization.</string>
+	<string name="messageErrorNoteParsing">Error parsing note.</string>
+	<string name="messageCouldNotSave">Could not save note.</string>
+	<string name="messageNoSDCard">SDCard storage not found.</string>
+	
+	<!-- NoteSorting -->
+	<string name="menuSort">Ŝanĝi ordigon</string>
+	<string name="titleDefaultSorting">Elektu la aprioran ordigon</string>
+	<string name="prefDefaultSorting">Agriora ordigo</string>
+	
+	<!-- NotebookFiltering -->
+	<string name="menuFilterNotebook">Filtrigi</string>
+	<string name="strListEmptyNoNotebooks">There are no notebooks in the database.</string>
+	<string name="allNotebooksFilter">All notebooks</string>
+	
+	<!-- List Longpress Menu -->
+	<string name="view">Vido</string>
+	<string name="noteOptions">Opcioj de noto</string>
+	<string name="send">Sendi</string>
+	
+	<!--  Search -->
+	<string name="search_hint">Serĉi noton</string>
+	<string name="search_description">Skribi en viaj notoj</string>
+	<string name="strNoResults">Neniu noto trovata per \"%s\"</string>
+	<string name="menuSearch">Serĉi</string>
+	<string name="SearchResultTitle">Serĉrezultoj:</string>
+	<string name="clearSearchHistoryTitle">Vakigi kronologion de serĉo</string>
+	<string name="clearSearchHistory">Remove all the searches you have performed</string>
+	<string name="deletedSearchHistory">Search history has been cleared.</string>
+	
+	<!-- Date -->
+	<string name="textModified">Modifita:</string>
+	<string name="textToday">Hodiaŭ</string>
+	<string name="textYexterday">Hieraŭ</string>
+
+	<!-- Shortcuts handling -->
+	<string name="shortcuts_view_caption">Elektu noton</string>
+	<string name="shortcut_menu_item_caption">Noto de Tomdroido</string>
+	<string name="btnRemoveShortcut">Forigi klavkombinon</string>
+	<string name="createShortcut">Krei klavkombinon</string>
+
+	<!-- stuff new to edit -->
+
+	<!-- deleteNote -->
+	<string name="delete">Delete</string>
+	<string name="delete_note">Delete Note</string>
+	<string name="delete_message">Are you sure you want to delete this note?</string>
+	<string name="yes">Yes</string>
+	<string name="no">No</string>
+	<string name="delete_all">Clear Notes</string>
+	<string name="delete_all_message">Are you sure you want to clear the notes database?</string>
+	<string name="delete_remote_notes">Delete Remote Notes</string>
+	<string name="delete_remote_notes_message">Are you sure you want to delete all notes from the remote service?</string>
+				
+	<!-- newNote -->
+	<string name="menuNew">New</string>
+	<string name="NewNoteTitle">New Note</string>
+	<string name="NewNoteTitleHint">Enter title here</string>
+	<string name="NewNoteBodyHint">Enter note here</string>
+			
+	<!-- editNote -->
+	<string name="edit">Edit</string>
+	<string name="save">Save</string>
+	<string name="discard">Discard</string>
+	<string name="back">Back</string>
+	<string name="bold">B</string>
+	<string name="italic">i</string>
+	<string name="strike"><strike>S</strike></string>
+	<string name="mono">monospace</string>
+	<string name="highlight">highlight</string>
+	<string name="size">size</string>
+	<string name="xml">XML</string>
+	<string name="text">Text</string>
+	<string name="titleErrorParsingXML">Error parsing note</string>
+	<string name="messageErrorParsingXML">There was an error parsing the note. Please check your XML.</string>
+	<string name="messageNoteSaved">Note saved locally.</string>
+	<string name="messageNoteDeleted">Note deleted locally.</string>
+	<string name="messageSelectSize">Select text size</string>
+	<string name="small">Small</string>
+	<string name="normal">Normal</string>
+	<string name="large">Large</string>
+	<string name="huge">Huge</string>
+	<string name="messageDiscardChanges">Do you really want to discard your changes and revert the note to the last saved version?</string>
+	<string name="titleDiscardChanges">Discard Changes?</string>
+	<string name="gt"><b>&gt;</b></string>
+	<string name="lt"><b>&lt;</b></string>
+			
+	<!-- New Titles -->
+	<string name="view_title">Tomdroid - View Note</string>
+	<string name="edit_title">Tomdroid - Edit Note</string>
+	<string name="search_title">Tomdroid - Search Results</string>
+	<string name="shortcut_title">Tomdroid - Shortcuts</string>
+	<string name="pref_title">Tomdroid - Settings</string>
+			
+	<!-- new prefs -->
+	<string name="prefDisplay">Display Preferences</string>
+	<string name="prefBaseSize">Base Font Size</string>
+	<string name="prefSync">Sinkronigado</string>
+	<string name="prefMisc">Misc. Options</string>
+	<string name="prefTools">Tools</string>
+	<string name="prefAutoSaveTitle">Auto Save Note</string>
+	<string name="prefAutoSave">Save notes automatically on exiting editor.</string>
+	<string name="prefNoteTemplatesTitle">Show Note Templates</string>
+	<string name="prefNoteTemplates">If checked, will show note templates in notes list.</string>
+	<string name="deleteAllNotesTitle">Clear Notes</string>
+	<string name="deleteAllNotes">Clear all notes from local database</string>
+	<string name="deleteRemoteNotesTitle">Delete Remote Notes</string>
+	<string name="deleteRemoteNotes">Delete all notes from remote service</string>
+	<string name="illegalTextSize">Illegal text size chosen. Please choose a number.</string>
+
+	<!-- syncNotes -->
+
+	<string name="syncing">Syncing with %1$s</string>
+	<string name="syncing_connect">connecting to service…</string>
+	<string name="syncing_local">updating local notes…</string>
+	<string name="syncing_remote">updating remote notes…</string>
+	<string name="sync_conflict_title">Note Conflict</string>
+	<string name="sync_conflict_message">There was a conflict syncing the note "%1$s".  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="sync_conflict_deleted">There was a conflict syncing the note "%1$s" (local version was deleted).  Please choose from one of the actions below.</string>
+	<string name="sync_conflict_titles_message">There was a conflict syncing the note "%1$s".  A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="overwrite_remote">Overwrite\nRemote</string>
+	<string name="overwrite_local">Overwrite\nLocal</string>
+	<string name="delete_remote">Delete Remote</string>
+	<string name="diff_label">Difference Between Files</string>
+	<string name="diff_titles">-- Title Differences --</string>
+	<string name="diff_content">-- Content Differences --</string>
+	<string name="line_x">Line %1$s:</string>
+	<string name="local_label">Local Version</string>
+	<string name="remote_label">Remote Version</string>
+	<string name="deleted">Deleted</string>
+	<string name="copy">Create\nCopy</string>
+	<string name="old">%1$s (old)</string>
+	<string name="close">Fermi</string>
+	<string name="cancel">Nuligi</string>
+	<string name="messageAuthComplete">Authorization with %1$s successful.</string>
+	<string name="messageAuthFailed">Authorization with %1$s failed.  Maybe try again?</string>
+	<string name="messageSyncNoteDeleted">Note deleted from %1$s successfully.</string>
+	<string name="messageSyncNotePushed">Note sent to %1$s successfully.</string>
+	<string name="messageSyncNotePulled">Note received from %1$s successfully.</string>
+	<string name="messageSyncNoteDeleteError">Error deleting note from %1$s.</string>
+	<string name="messageSyncNotePushError">Error sending note to %1$s.</string>
+	<string name="messageSyncNotePullError">Error receiving note from %1$s.</string>
+	<string name="messageSyncParseFailed">Error parsing response from %1$s.</string>
+	<string name="messageSyncConnectingFailed">Error connecting to %1$s.  You probably need to authenticate in "Settings".</string>
+	<string name="messageRemoteNotesDeleted">Notes deleted from %1$s successfully.</string>
+	<string name="messageSyncCancelled">Sync with %1$s cancelled.</string>
+				
+	<!-- revert notes -->
+	
+	<string name="contextRevert">Revert</string>
+	<string name="menuRevert">Revert All</string>
+	<string name="revert_notes">Revert Notes</string>
+	<string name="revert_notes_message">This will revert your local notes to whatever versions exist on the remote service.  Are you sure you want to do this?</string>
+	<string name="revert_note">Revert Note</string>
+	<string name="revert_note_message">This will revert a local note to whatever version exist on the remote service.  Are you sure you want to do this?</string>
+
+	<!-- backup notes -->
+	
+	<string name="backupPrefTitle">Backup Notes</string>
+	<string name="backupPref">Copy all local notes to SD Card</string>
+	<string name="backup_notes_title">Backup Notes?</string>
+	<string name="backup_notes">Copy all local notes to SD Card?  This may overwrite existing notes on the SD Card.</string>
+	<string name="restorePrefTitle">Restore Notes</string>
+	<string name="restorePref">Pull all notes from SD Card</string>
+	<string name="restore_notes_title">Restore Notes?</string>
+	<string name="restore_notes">Pull all notes from SD Card?  This may overwrite your existing notes.</string>
+	<string name="messageNotesBackedUp">Notes backed up to SD card successfully.</string>
+	<string name="messageNotesRestored">Notes restored from SD card successfully.</string>
+	<string name="messageDatabaseReset">Notes cleared successfully.</string>
+		
+	<!-- 
+	Information that goes into the Android Market Application Listing. 
+	I\'ve put it in here so that it\'ll get translated by translators.
+	-->
+	<!-- 30 chars max -->
+	<string name="market_title">Notoj de Tomdroido</string>
+	<!-- 4000 chars max -->
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
+	
+	<!-- 80 chars max -->
+	<string name="market_promotext">Note-taking application with online synchronization compatible with Tomboy</string>
+
+	<!-- 500 chars max -->
+        <string name="market_recent_changes">* Search notes and system integrated search\n* Context menu\n* Several usability improvements\n* Higher quality icons\n* Several bug fixes\n* German translation\n</string>
+
+	<!-- Launchpad Translation String -->
+	<string name="about_translators">Launchpad Contributions:
+  Michael Moroni https://launchpad.net/~airon90</string>
+</resources>

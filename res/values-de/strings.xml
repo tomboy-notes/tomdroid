@@ -73,7 +73,7 @@
 	<string name="titleNoteNotFound">Notiz nicht vorhanden</string>
 	<string name="messageNoteNotFound">Die gewünschte Notiz konnte nicht gefunden werden. Vielleicht wurde sie gelöscht oder durch Synchronisieren entfernt.</string>
 	<string name="messageErrorNoteParsing">Fehler beim Erstellen der Notiz.</string>
-	<string name="messageCouldNotSave">Could not save note.</string>
+	<string name="messageCouldNotSave">Notiz konnte nicht gespeichert werden.</string>
 	<string name="messageNoSDCard">SD-Karte wurde nicht gefunden.</string>
 	
 	<!-- NoteSorting -->
@@ -163,10 +163,10 @@
 	<string name="edit_title">Tomdroid - Bearbeitungsansicht</string>
 	<string name="search_title">Tomdroid - Suchergebnisse</string>
 	<string name="shortcut_title">Tomdroid - Verknüpfungen</string>
-	<string name="pref_title">Tomdroid - Settings</string>
+	<string name="pref_title">Tomdroid - Einstellungen</string>
 			
 	<!-- new prefs -->
-	<string name="prefDisplay">Display Preferences</string>
+	<string name="prefDisplay">Anzeige-Einstellungen</string>
 	<string name="prefBaseSize">Normale Zeichengröße</string>
 	<string name="prefSync">Synchronisation</string>
 	<string name="prefMisc">Sonstige Optionen</string>
@@ -191,17 +191,17 @@
 	<string name="sync_conflict_message">There was a conflict syncing the note "%1$s".  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
 	<string name="sync_conflict_deleted">Es ist ein Fehler beim synchronisieren der Notiz "%1$s" aufgetreten (die lokale Version wurde entfernt). Bitte wählen Sie eine der angeführten Optionen aus.</string>
 	<string name="sync_conflict_titles_message">There was a conflict syncing the note "%1$s".  A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
-	<string name="overwrite_remote">Overwrite\nRemote</string>
-	<string name="overwrite_local">Overwrite\nLocal</string>
+	<string name="overwrite_remote">Ersetze\nam Server</string>
+	<string name="overwrite_local">Ersetze\nlokal</string>
 	<string name="delete_remote">Lösche serverseitige Version</string>
-	<string name="diff_label">Difference Between Files</string>
+	<string name="diff_label">Unterschied zwischen Dateien</string>
 	<string name="diff_titles">-- Unterschiede im Titel --</string>
 	<string name="diff_content">-- Unterschiede im Inhalt --</string>
-	<string name="line_x">Line %1$s:</string>
-	<string name="local_label">Local Version</string>
-	<string name="remote_label">Remote Version</string>
+	<string name="line_x">Zeile %1$s:</string>
+	<string name="local_label">Lokale Version</string>
+	<string name="remote_label">Version am Server</string>
 	<string name="deleted">gelöscht</string>
-	<string name="copy">Create\nCopy</string>
+	<string name="copy">Kopie\nerstellen</string>
 	<string name="old">%1$2 (alt)</string>
 	<string name="close">Schließen</string>
 	<string name="cancel">Abbrechen</string>
@@ -220,7 +220,7 @@
 				
 	<!-- revert notes -->
 	
-	<string name="contextRevert">Rückgängig machen</string>
+	<string name="contextRevert">Zurücksetzen</string>
 	<string name="menuRevert">Alles Rückgangig machen</string>
 	<string name="revert_notes">Notizen zurücksetzen.</string>
 	<string name="revert_notes_message">Hiermit werden alle Notizen auf die am Server gespeicherten Versionen zurückgesetzt. Wollen Sie fortfahren?</string>
@@ -239,7 +239,7 @@
 	<string name="restore_notes">Alle Notizen von der SD-Karte laden? Existierende Notizen werden überschrieben.</string>
 	<string name="messageNotesBackedUp">Notizen erfolgreich auf die SD-Karte gesichert.</string>
 	<string name="messageNotesRestored">Notizen erfolgreich von der SD-Karte geladen.</string>
-	<string name="messageDatabaseReset">Notes cleared successfully.</string>
+	<string name="messageDatabaseReset">Notizen wurden erfolgreich gelöscht.</string>
 		
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
@@ -261,6 +261,8 @@ Tomdroid ist ein nützliches Notizprogramm mit einfacher, intuitiver Bedienung, 
 	<string name="about_translators">Launchpad Contributions:
   Franz Pöschel https://launchpad.net/~f-poeschel-mail
   Ghenrik https://launchpad.net/~ghenrik-deactivatedaccount
+  Jan Henke https://launchpad.net/~jhe
+  Phillip https://launchpad.net/~phillip-szelat
   Stefan Hammer https://launchpad.net/~j-4
   mili https://launchpad.net/~mili-f</string>
 </resources>

@@ -25,7 +25,7 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Tomboy compatible wikiwiki note-taking application that can take notes.</string>
+	<string name="app_desc">Tomboy-rekin bateragarria den oharrak hartzeko wiki aplikazioa.</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
@@ -37,7 +37,7 @@
 	<string name="menuAbout">Honi buruz</string>
 	<string name="titleWelcome">Abisua</string>
 	<string name="titleAbout">Tomdroid-i buruz</string>
-	<string name="strWelcome">Welcome to Tomdroid.\n\nPlease note that this is beta quality software and that it contains known problems.\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something out and tested as quickly as possible.\n\nIf you would like to contribute, help at all levels would be appreciated. Hop on board on launchpad.net/tomdroid and contact us!\n</string>
+	<string name="strWelcome">Ongi etorri Tomdroid-era.\n\nMesedez, kontutan izan hau beta kalitateko softwarea dela eta errore ezagunak dituela.\n\nJabetzen gara arazoak daudela eta lehenbailehen konpontzen saiatzen gara baina zerbait kaleratu eta probatu nahi genuen.\n\nLagundu nahi bagaituzu, zure laguntza ongi etorria izango da. Zoaz launchpad.net/tomdroid webgunera eta jarri gurekin harremanetan!\n</string>
 	<string name="strAbout">%1$s\n\nEgilea: %2$s\nBertsioa: %3$s\nGPLv3 lizentziadun proiektua</string>
 	
 	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
@@ -48,7 +48,7 @@
 	<string name="btnSavetoSD">Gorde</string>
 	
 	<!-- note-view.xml -->
-	<string name="strWait">Mesedez itxaron oharra kargatu bitartean...</string>
+	<string name="strWait">Mesedez itxaron oharra kargatu bitartean…</string>
 	
 	<string name="prefSyncService">Zerbitzua</string>
 	<string name="prefSyncServer">Zerbitzaria</string>
@@ -59,7 +59,7 @@
 	<string name="prefFolderCreated">\"%1$s\" karpeta ez da existitzen oraindik. Mesedez, konektatu zure gailua ordenagailura, sortu karpeta eta bete *.note fitxategiekin.</string>
 	<string name="prefNoValidLocation">\"%1$s\" ez da baliozko karpeta kokaleku bat. Mesedez saiatu berriro!</string>
 	<string name="prefNoValidEntry">\"%1$s\" ez da baliozko sarrera bat. Mesedez saiatu berriro!</string>
-	<string name="prefSyncCompleteAuth">Autentifikazioa osatzen. Itxaron mesedez...</string>
+	<string name="prefSyncCompleteAuth">Autentifikazioa osatzen. Itxaron mesedez…</string>
 	<string name="prefSyncConnectionFailed">Ezin izan da konexiorik ezarri zerbitzariarekin. Mesedez, ziurtatu sartu duzun helbidea zuzena dela.</string>
 	<string name="prefServerEmpty">Zerbitzariaren helbidea aldatu da baina balio berria hutsik dago</string>
 			
@@ -73,8 +73,8 @@
 	<string name="titleNoteNotFound">Ez dago halako oharrik</string>
 	<string name="messageNoteNotFound">Eskatutako oharra ezin izan da aurkitu. Behar bada sinkronizazioan ezabatu edo kendu zen.</string>
 	<string name="messageErrorNoteParsing">Errorea oharra analizatzean.</string>
-	<string name="messageCouldNotSave">Could not save note.</string>
-	<string name="messageNoSDCard">SDCard storage not found.</string>
+	<string name="messageCouldNotSave">Ezin izan da oharra gorde.</string>
+	<string name="messageNoSDCard">Ez da SD txarteleko biltegirik aurkitu.</string>
 	
 	<!-- NoteSorting -->
 	<string name="menuSort">Aldatu ordenatzea</string>
@@ -161,85 +161,85 @@
 	<!-- New Titles -->
 	<string name="view_title">Tomdroid - Ikusi oharra</string>
 	<string name="edit_title">Tomdroid - Editatu oharra</string>
-	<string name="search_title">Tomdroid - Search Results</string>
-	<string name="shortcut_title">Tomdroid - Shortcuts</string>
-	<string name="pref_title">Tomdroid - Settings</string>
+	<string name="search_title">Tomdroid - Bilaketaren emaitzak</string>
+	<string name="shortcut_title">Tomdroid - Lasterbideak</string>
+	<string name="pref_title">Tomdroid - Ezarpenak</string>
 			
 	<!-- new prefs -->
-	<string name="prefDisplay">Display Preferences</string>
-	<string name="prefBaseSize">Base Font Size</string>
+	<string name="prefDisplay">Bistaratzeko hobespenak</string>
+	<string name="prefBaseSize">Oinarrizko letra-tamaina</string>
 	<string name="prefSync">Sinkronizazioa</string>
-	<string name="prefMisc">Misc. Options</string>
-	<string name="prefTools">Tools</string>
-	<string name="prefAutoSaveTitle">Auto Save Note</string>
-	<string name="prefAutoSave">Save notes automatically on exiting editor.</string>
-	<string name="prefNoteTemplatesTitle">Show Note Templates</string>
-	<string name="prefNoteTemplates">If checked, will show note templates in notes list.</string>
+	<string name="prefMisc">Askotariko aukerak</string>
+	<string name="prefTools">Tresnak</string>
+	<string name="prefAutoSaveTitle">Gorde automatikoki oharra</string>
+	<string name="prefAutoSave">Editoretik irtetean oharrak automatikoki gordetzen ditu.</string>
+	<string name="prefNoteTemplatesTitle">Erakutsi oharren txantiloiak</string>
+	<string name="prefNoteTemplates">Hautatuz gero oharren txantiloiak erakutsiko ditu oharren zerrendan.</string>
 	<string name="deleteAllNotesTitle">Garbitu oharrak</string>
-	<string name="deleteAllNotes">Clear all notes from local database</string>
+	<string name="deleteAllNotes">Garbitu datu-base lokaleko ohar guztiak</string>
 	<string name="deleteRemoteNotesTitle">Ezabatu urruneko oharrak</string>
-	<string name="deleteRemoteNotes">Delete all notes from remote service</string>
-	<string name="illegalTextSize">Illegal text size chosen. Please choose a number.</string>
+	<string name="deleteRemoteNotes">Ezabatu urruneko zerbitzuko ohar guztiak</string>
+	<string name="illegalTextSize">Testu-tamaina baliogabea hautatuta. Mesedez aukeratu zenbaki bat.</string>
 
 	<!-- syncNotes -->
 
-	<string name="syncing">Syncing with %1$s</string>
-	<string name="syncing_connect">connecting to service…</string>
-	<string name="syncing_local">updating local notes…</string>
-	<string name="syncing_remote">updating remote notes…</string>
-	<string name="sync_conflict_title">Note Conflict</string>
-	<string name="sync_conflict_message">There was a conflict syncing the note "%1$s".  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
-	<string name="sync_conflict_deleted">There was a conflict syncing the note "%1$s" (local version was deleted).  Please choose from one of the actions below.</string>
-	<string name="sync_conflict_titles_message">There was a conflict syncing the note "%1$s".  A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
-	<string name="overwrite_remote">Overwrite\nRemote</string>
-	<string name="overwrite_local">Overwrite\nLocal</string>
-	<string name="delete_remote">Delete Remote</string>
-	<string name="diff_label">Difference Between Files</string>
-	<string name="diff_titles">-- Title Differences --</string>
-	<string name="diff_content">-- Content Differences --</string>
-	<string name="line_x">Line %1$s:</string>
-	<string name="local_label">Local Version</string>
-	<string name="remote_label">Remote Version</string>
-	<string name="deleted">Deleted</string>
-	<string name="copy">Create\nCopy</string>
-	<string name="old">%1$s (old)</string>
+	<string name="syncing">%1$s-(r)ekin sinkronizatzen</string>
+	<string name="syncing_connect">zerbitzura konektatzen…</string>
+	<string name="syncing_local">ohar lokalak eguneratzen…</string>
+	<string name="syncing_remote">urruneko oharrak eguneratzen…</string>
+	<string name="sync_conflict_title">Ohar-gatazka</string>
+	<string name="sync_conflict_message">Gatazka bat gertatu da "%1$s" oharra sinkronizatzean. Mesedez aukeratu gatazka konpontzeko ekintza bat. Bi oharretako edozein edita dezakezu aukeratu aurretik edo desberdintasunak ikusi beheko etiketetan klik eginez.</string>
+	<string name="sync_conflict_deleted">Gatazka bat gertatu da "%1$s" oharra sinkronizatzean (bertsio lokala ezabatu da). Mesedez aukeratu beheko ekintzetako bat.</string>
+	<string name="sync_conflict_titles_message">Gatazka bat gertatu da "%1$s" oharra sinkronizatzean. Izenburu berdineko ohar bat existitzen da dagoeneko datu-basean. Mesedez aukeratu gatazka konpontzeko ekintza bat. Bi oharretako edozein edita dezakezu aukeratu aurretik edo desberdintasunak ikusi beheko etiketetan klik eginez.</string>
+	<string name="overwrite_remote">Gainidatzi\nurrunekoa</string>
+	<string name="overwrite_local">Gainidatzi\nlokala</string>
+	<string name="delete_remote">Ezabatu urrunekoa</string>
+	<string name="diff_label">Fitxategien arteko desberdintasunak</string>
+	<string name="diff_titles">-- Izenburuko desberdintasunak --</string>
+	<string name="diff_content">-- Edukiko desberdintasunak --</string>
+	<string name="line_x">%1$s lerroa:</string>
+	<string name="local_label">Bertsio lokala</string>
+	<string name="remote_label">Urruneko bertsioa</string>
+	<string name="deleted">Ezabatuta</string>
+	<string name="copy">Sortu\kopia</string>
+	<string name="old">%1$s (zaharra)</string>
 	<string name="close">Itxi</string>
 	<string name="cancel">Utzi</string>
-	<string name="messageAuthComplete">Authorization with %1$s successful.</string>
-	<string name="messageAuthFailed">Authorization with %1$s failed.  Maybe try again?</string>
-	<string name="messageSyncNoteDeleted">Note deleted from %1$s successfully.</string>
-	<string name="messageSyncNotePushed">Note sent to %1$s successfully.</string>
-	<string name="messageSyncNotePulled">Note received from %1$s successfully.</string>
-	<string name="messageSyncNoteDeleteError">Error deleting note from %1$s.</string>
-	<string name="messageSyncNotePushError">Error sending note to %1$s.</string>
-	<string name="messageSyncNotePullError">Error receiving note from %1$s.</string>
-	<string name="messageSyncParseFailed">Error parsing response from %1$s.</string>
-	<string name="messageSyncConnectingFailed">Error connecting to %1$s.  You probably need to authenticate in "Settings".</string>
-	<string name="messageRemoteNotesDeleted">Notes deleted from %1$s successfully.</string>
-	<string name="messageSyncCancelled">Sync with %1$s cancelled.</string>
+	<string name="messageAuthComplete">%1$s-(r)ekin autorizatzea arrakastatsua izan da.</string>
+	<string name="messageAuthFailed">%1$s-(r)ekin autorizatzeak huts egin du. Berriz saiatu?</string>
+	<string name="messageSyncNoteDeleted">Behar bezala ezabatu da oharra %1$s-(e)tik.</string>
+	<string name="messageSyncNotePushed">Behar bezala bidali da oharra %1$s-(e)ra.</string>
+	<string name="messageSyncNotePulled">Behar bezala jaso da oharra %1$s-(e)tik</string>
+	<string name="messageSyncNoteDeleteError">Errorea %1$s-(e)tik oharra ezabatzean.</string>
+	<string name="messageSyncNotePushError">Errorea %1$s-(e)ra oharra bidaltzean.</string>
+	<string name="messageSyncNotePullError">Errorea %1$s-(e)tik oharra jasotzean.</string>
+	<string name="messageSyncParseFailed">Errorea %1$s-(e)tik jasotako erantzuna analizatzean.</string>
+	<string name="messageSyncConnectingFailed">Errorea %1$s-(e)ra konektatzean. Segur aski "Ezarpenak"-en autentifikatu beharko duzu.</string>
+	<string name="messageRemoteNotesDeleted">Oharrak behar bezala ezabatu dira %1$s-(e)tik.</string>
+	<string name="messageSyncCancelled">%1$s-(r)ekin sinkronizatzea ezeztatuta.</string>
 				
 	<!-- revert notes -->
 	
-	<string name="contextRevert">Revert</string>
-	<string name="menuRevert">Revert All</string>
-	<string name="revert_notes">Revert Notes</string>
-	<string name="revert_notes_message">This will revert your local notes to whatever versions exist on the remote service.  Are you sure you want to do this?</string>
-	<string name="revert_note">Revert Note</string>
-	<string name="revert_note_message">This will revert a local note to whatever version exist on the remote service.  Are you sure you want to do this?</string>
+	<string name="contextRevert">Leheneratu</string>
+	<string name="menuRevert">Leheneratu guztia</string>
+	<string name="revert_notes">Leheneratu oharrak</string>
+	<string name="revert_notes_message">Honek zure ohar lokalak urruneko zerbitzuan dagoen bertsiora leheneratuko ditu. Ziur zaude hau egin nahi duzula?</string>
+	<string name="revert_note">Leheneratu oharra</string>
+	<string name="revert_note_message">Honek zure ohar lokal bat urruneko zerbitzuan dagoen bertsiora leheneratuko du. Ziur zaude hau egin nahi duzula?</string>
 
 	<!-- backup notes -->
 	
-	<string name="backupPrefTitle">Backup Notes</string>
-	<string name="backupPref">Copy all local notes to SD Card</string>
-	<string name="backup_notes_title">Backup Notes?</string>
-	<string name="backup_notes">Copy all local notes to SD Card?  This may overwrite existing notes on the SD Card.</string>
-	<string name="restorePrefTitle">Restore Notes</string>
-	<string name="restorePref">Pull all notes from SD Card</string>
-	<string name="restore_notes_title">Restore Notes?</string>
-	<string name="restore_notes">Pull all notes from SD Card?  This may overwrite your existing notes.</string>
-	<string name="messageNotesBackedUp">Notes backed up to SD card successfully.</string>
-	<string name="messageNotesRestored">Notes restored from SD card successfully.</string>
-	<string name="messageDatabaseReset">Notes cleared successfully.</string>
+	<string name="backupPrefTitle">Egin oharren babeskopia</string>
+	<string name="backupPref">Kopiatu ohar lokal guztiak SD txartelera</string>
+	<string name="backup_notes_title">Oharren babeskopia egin?</string>
+	<string name="backup_notes">Ohar lokal guztiak SD txartelera kopiatu? Honek SD txartelean dauden oharrak gainidatziko ditu.</string>
+	<string name="restorePrefTitle">Leheneratu oharrak</string>
+	<string name="restorePref">Erauzi SD txarteleko ohar guztiak</string>
+	<string name="restore_notes_title">Oharrak leheneratu?</string>
+	<string name="restore_notes">SD txarteleko ohar guztiak erauzi? Honek existitzen diren oharrak gainidatzi ditzake.</string>
+	<string name="messageNotesBackedUp">Oharren babeskopia behar bezala egin da SD txartelean.</string>
+	<string name="messageNotesRestored">Oharrak behar bezala leheneratu dira SD txarteletik.</string>
+	<string name="messageDatabaseReset">Oharrak behar bezala garbitu dira.</string>
 		
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
@@ -248,13 +248,13 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid oharrak</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
+	<string name="market_description">Androiderako Tomboy bezero bat. Tomboy oharrak hartzeko mahaigaineko erabiltzaile-interfaze sinplea duen wiki erako aplikazio bat da.\n\n* Tomboy-rekin bateragarria den ohar-formatua\n* Snowy, Tomboy Online edo Ubuntu One-ekin oharrak linean sinkronizatzeko aukera\n* SD txarteletik inportatzeko aukera\n* Kode irekikoa!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Lineako sinkronizazioadun oharrak hartzeko aplikazioa, Tomboyrekin bateragarria</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">* Search notes and system integrated search\n* Context menu\n* Several usability improvements\n* Higher quality icons\n* Several bug fixes\n* German translation\n</string>
+        <string name="market_recent_changes">* Bilaketak oharretan eta sisteman integratutako bilaketak\n* Laster-menua\n* Erabilgarritasun hobetua\n* Ikono hobeak\n* Hainbat errore-konponketa\n* Aleman itzulpena\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

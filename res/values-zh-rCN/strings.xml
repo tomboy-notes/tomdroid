@@ -25,7 +25,7 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Tomboy compatible wikiwiki note-taking application that can take notes.</string>
+	<string name="app_desc">Tomboy 兼容便笺应用 wikiwiki。</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
@@ -37,7 +37,7 @@
 	<string name="menuAbout">关于</string>
 	<string name="titleWelcome">警告</string>
 	<string name="titleAbout">关于 Tomdroid</string>
-	<string name="strWelcome">Welcome to Tomdroid.\n\nPlease note that this is beta quality software and that it contains known problems.\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something out and tested as quickly as possible.\n\nIf you would like to contribute, help at all levels would be appreciated. Hop on board on launchpad.net/tomdroid and contact us!\n</string>
+	<string name="strWelcome">欢迎使用 Tomdroid。\n\n请注意此软件仍在测试阶段且一定会有已知的问题。\n\n我们都知道这些问题也打算尽快修复，我也是想努力解决并尽快测试。\n\n如果您要为此做些贡献，欢迎之至。可到 launchpad.net/tomdroid 吼一下联系我们！\n</string>
 	<string name="strAbout">%1$s\n\n作者: %2$s\n版本: %3$s\n遵照 GPLv3 许可</string>
 	
 	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
@@ -48,18 +48,18 @@
 	<string name="btnSavetoSD">保存</string>
 	
 	<!-- note-view.xml -->
-	<string name="strWait">Please wait while note loads…</string>
+	<string name="strWait">便笺加载中请稍等...</string>
 	
 	<string name="prefSyncService">服务</string>
 	<string name="prefSyncServer">服务器</string>
 	<string name="prefSDCard">SD 卡</string>
-	<string name="prefTomboyWeb">Online Synchronisation</string>
+	<string name="prefTomboyWeb">在线同步</string>
 	<string name="prefAuthenticate">认证</string>
 	<string name="prefLocation">在 SD 卡上的位置</string>
 	<string name="prefFolderCreated">文件夹“%1$s”不存在。请连接您的设备到计算机，创建文件夹并载入 *.note 文件。</string>
-	<string name="prefNoValidLocation">\"%1$s\" is not a valid folder location. Please try again!</string>
-	<string name="prefNoValidEntry">\"%1$s\" is not a valid entry. Please try again!</string>
-	<string name="prefSyncCompleteAuth">Completing authentication. Please wait…</string>
+	<string name="prefNoValidLocation">“%1$s”是无效的文件夹地址。请重试！</string>
+	<string name="prefNoValidEntry">“%1$s”是无效的条目。请重试！</string>
+	<string name="prefSyncCompleteAuth">正在完成授权。请稍等...</string>
 	<string name="prefSyncConnectionFailed">与服务器的连接失败了，请检查您输入的网址是否正确。</string>
 	<string name="prefServerEmpty">服务器地址已更改，但新值为空</string>
 			
@@ -72,9 +72,9 @@
 	<string name="error">错误</string>
 	<string name="titleNoteNotFound">没有这样的便笺</string>
 	<string name="messageNoteNotFound">未找到请求的便笺。或许它已通过同步被删除或移除。</string>
-	<string name="messageErrorNoteParsing">Error parsing note.</string>
-	<string name="messageCouldNotSave">Could not save note.</string>
-	<string name="messageNoSDCard">SDCard storage not found.</string>
+	<string name="messageErrorNoteParsing">解析便笺错误。</string>
+	<string name="messageCouldNotSave">无法保存便笺。</string>
+	<string name="messageNoSDCard">未找到 SD 卡存储。</string>
 	
 	<!-- NoteSorting -->
 	<string name="menuSort">更改排序</string>
@@ -120,103 +120,103 @@
 	<string name="delete_message">您确认要删除这条便笺吗？</string>
 	<string name="yes">确认</string>
 	<string name="no">取消</string>
-	<string name="delete_all">Clear Notes</string>
-	<string name="delete_all_message">Are you sure you want to clear the notes database?</string>
-	<string name="delete_remote_notes">Delete Remote Notes</string>
-	<string name="delete_remote_notes_message">Are you sure you want to delete all notes from the remote service?</string>
+	<string name="delete_all">清除便笺</string>
+	<string name="delete_all_message">您确定要清除便笺数据库？</string>
+	<string name="delete_remote_notes">删除远程便笺</string>
+	<string name="delete_remote_notes_message">您确定要从远程服务删除全部便笺吗？</string>
 				
 	<!-- newNote -->
 	<string name="menuNew">添加</string>
 	<string name="NewNoteTitle">新便笺</string>
-	<string name="NewNoteTitleHint">Enter title here</string>
-	<string name="NewNoteBodyHint">Enter note here</string>
+	<string name="NewNoteTitleHint">在此输入标题</string>
+	<string name="NewNoteBodyHint">在此输入便笺</string>
 			
 	<!-- editNote -->
 	<string name="edit">编辑</string>
 	<string name="save">保存</string>
 	<string name="discard">去掉</string>
-	<string name="back">Back</string>
+	<string name="back">返回</string>
 	<string name="bold">B</string>
 	<string name="italic">i</string>
 	<string name="strike"><strike>S</strike></string>
-	<string name="mono">monospace</string>
-	<string name="highlight">highlight</string>
+	<string name="mono">等宽字体</string>
+	<string name="highlight">高亮</string>
 	<string name="size">大小</string>
 	<string name="xml">XML</string>
-	<string name="text">Text</string>
-	<string name="titleErrorParsingXML">Error parsing note</string>
-	<string name="messageErrorParsingXML">There was an error parsing the note. Please check your XML.</string>
-	<string name="messageNoteSaved">Note saved locally.</string>
-	<string name="messageNoteDeleted">Note deleted locally.</string>
-	<string name="messageSelectSize">Select text size</string>
+	<string name="text">文本</string>
+	<string name="titleErrorParsingXML">解析便笺错误</string>
+	<string name="messageErrorParsingXML">解析便笺发生错误。请检查您的 XML。</string>
+	<string name="messageNoteSaved">便笺已本地保存。</string>
+	<string name="messageNoteDeleted">便笺已从本地删除。</string>
+	<string name="messageSelectSize">选择文本大小</string>
 	<string name="small">小</string>
-	<string name="normal">Normal</string>
+	<string name="normal">普通</string>
 	<string name="large">大</string>
 	<string name="huge">巨大</string>
-	<string name="messageDiscardChanges">Do you really want to discard your changes and revert the note to the last saved version?</string>
-	<string name="titleDiscardChanges">Discard Changes?</string>
+	<string name="messageDiscardChanges">您要丢弃更改并将便笺恢复到最近保存的版本吗？</string>
+	<string name="titleDiscardChanges">丢弃更改？</string>
 	<string name="gt"><b>&gt;</b></string>
 	<string name="lt"><b>&lt;</b></string>
 			
 	<!-- New Titles -->
-	<string name="view_title">Tomdroid - View Note</string>
-	<string name="edit_title">Tomdroid - Edit Note</string>
+	<string name="view_title">Tomdroid - 查看便笺</string>
+	<string name="edit_title">Tomdroid - 便笺便笺</string>
 	<string name="search_title">Tomdroid - 搜索结果</string>
 	<string name="shortcut_title">Tomdroid - 快捷</string>
-	<string name="pref_title">Tomdroid - Settings</string>
+	<string name="pref_title">Tomdroid - 设置</string>
 			
 	<!-- new prefs -->
-	<string name="prefDisplay">Display Preferences</string>
-	<string name="prefBaseSize">Base Font Size</string>
+	<string name="prefDisplay">显示首选项</string>
+	<string name="prefBaseSize">基本字体大小</string>
 	<string name="prefSync">同步</string>
-	<string name="prefMisc">Misc. Options</string>
+	<string name="prefMisc">杂项设置</string>
 	<string name="prefTools">工具</string>
-	<string name="prefAutoSaveTitle">Auto Save Note</string>
-	<string name="prefAutoSave">Save notes automatically on exiting editor.</string>
-	<string name="prefNoteTemplatesTitle">Show Note Templates</string>
-	<string name="prefNoteTemplates">If checked, will show note templates in notes list.</string>
-	<string name="deleteAllNotesTitle">Clear Notes</string>
-	<string name="deleteAllNotes">Clear all notes from local database</string>
-	<string name="deleteRemoteNotesTitle">Delete Remote Notes</string>
-	<string name="deleteRemoteNotes">Delete all notes from remote service</string>
-	<string name="illegalTextSize">Illegal text size chosen. Please choose a number.</string>
+	<string name="prefAutoSaveTitle">自动保存便笺</string>
+	<string name="prefAutoSave">退出编辑器时自动保存便笺。</string>
+	<string name="prefNoteTemplatesTitle">显示便笺模板</string>
+	<string name="prefNoteTemplates">如已勾选，将在便笺列表中显示便笺模板。</string>
+	<string name="deleteAllNotesTitle">清除便笺</string>
+	<string name="deleteAllNotes">从本地数据库中清除全部便笺</string>
+	<string name="deleteRemoteNotesTitle">删除远程便笺</string>
+	<string name="deleteRemoteNotes">从远程服务删除全部便笺</string>
+	<string name="illegalTextSize">非法文本大小。请选择一个数字。</string>
 
 	<!-- syncNotes -->
 
-	<string name="syncing">Syncing with %1$s</string>
-	<string name="syncing_connect">connecting to service…</string>
-	<string name="syncing_local">updating local notes…</string>
-	<string name="syncing_remote">updating remote notes…</string>
+	<string name="syncing">正在同步 %1$s</string>
+	<string name="syncing_connect">正在连接到服务...</string>
+	<string name="syncing_local">正在更新本地便笺...</string>
+	<string name="syncing_remote">正在更新远程便笺...</string>
 	<string name="sync_conflict_title">便笺冲突</string>
-	<string name="sync_conflict_message">There was a conflict syncing the note "%1$s".  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="sync_conflict_message">同步“%1$s”时发生冲突。请选择解决冲突的动作。您可在选择前编辑便笺，或点击下方的标签查看差别。</string>
 	<string name="sync_conflict_deleted">There was a conflict syncing the note "%1$s" (local version was deleted).  Please choose from one of the actions below.</string>
 	<string name="sync_conflict_titles_message">There was a conflict syncing the note "%1$s".  A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
-	<string name="overwrite_remote">Overwrite\nRemote</string>
-	<string name="overwrite_local">Overwrite\nLocal</string>
-	<string name="delete_remote">Delete Remote</string>
-	<string name="diff_label">Difference Between Files</string>
-	<string name="diff_titles">-- Title Differences --</string>
-	<string name="diff_content">-- Content Differences --</string>
-	<string name="line_x">Line %1$s:</string>
-	<string name="local_label">Local Version</string>
-	<string name="remote_label">Remote Version</string>
+	<string name="overwrite_remote">覆盖\n远程</string>
+	<string name="overwrite_local">覆盖\n本地</string>
+	<string name="delete_remote">删除远程</string>
+	<string name="diff_label">文件间的差别</string>
+	<string name="diff_titles">-- 标题差别 --</string>
+	<string name="diff_content">-- 内容差别 --</string>
+	<string name="line_x">行 %1$s：</string>
+	<string name="local_label">本地版本</string>
+	<string name="remote_label">远程版本</string>
 	<string name="deleted">已删除</string>
-	<string name="copy">Create\nCopy</string>
-	<string name="old">%1$s (old)</string>
+	<string name="copy">创建\n复制</string>
+	<string name="old">%1$s (旧)</string>
 	<string name="close">关闭</string>
 	<string name="cancel">取消</string>
-	<string name="messageAuthComplete">Authorization with %1$s successful.</string>
-	<string name="messageAuthFailed">Authorization with %1$s failed.  Maybe try again?</string>
-	<string name="messageSyncNoteDeleted">Note deleted from %1$s successfully.</string>
-	<string name="messageSyncNotePushed">Note sent to %1$s successfully.</string>
-	<string name="messageSyncNotePulled">Note received from %1$s successfully.</string>
-	<string name="messageSyncNoteDeleteError">Error deleting note from %1$s.</string>
-	<string name="messageSyncNotePushError">Error sending note to %1$s.</string>
-	<string name="messageSyncNotePullError">Error receiving note from %1$s.</string>
-	<string name="messageSyncParseFailed">Error parsing response from %1$s.</string>
-	<string name="messageSyncConnectingFailed">Error connecting to %1$s.  You probably need to authenticate in "Settings".</string>
-	<string name="messageRemoteNotesDeleted">Notes deleted from %1$s successfully.</string>
-	<string name="messageSyncCancelled">Sync with %1$s cancelled.</string>
+	<string name="messageAuthComplete">%1$s 授权成功。</string>
+	<string name="messageAuthFailed">%1$s 授权失败。重试？</string>
+	<string name="messageSyncNoteDeleted">便笺成功从 %1$s 删除。</string>
+	<string name="messageSyncNotePushed">便笺成功发送到 %1$s。</string>
+	<string name="messageSyncNotePulled">从 %1$s 接收便笺成功。</string>
+	<string name="messageSyncNoteDeleteError">从 %1$s 删除便笺出错。</string>
+	<string name="messageSyncNotePushError">发送便笺到 %1$s 出错。</string>
+	<string name="messageSyncNotePullError">从 %1$s 接收便笺出错。</string>
+	<string name="messageSyncParseFailed">解析 %1$s 响应出错。</string>
+	<string name="messageSyncConnectingFailed">连接到 %1$s 出错。您可能需要在“设置”里面进行授权。</string>
+	<string name="messageRemoteNotesDeleted">从 %1$s 删除便笺成功。</string>
+	<string name="messageSyncCancelled">%1$s 同步已取消。</string>
 				
 	<!-- revert notes -->
 	
@@ -230,16 +230,16 @@
 	<!-- backup notes -->
 	
 	<string name="backupPrefTitle">做备份</string>
-	<string name="backupPref">Copy all local notes to SD Card</string>
+	<string name="backupPref">复制全部便笺到 SD 卡</string>
 	<string name="backup_notes_title">要做备份吗？</string>
-	<string name="backup_notes">Copy all local notes to SD Card?  This may overwrite existing notes on the SD Card.</string>
+	<string name="backup_notes">复制所有的本地便笺到 SD 卡？这可能会覆盖 SD 卡上已有的便笺。</string>
 	<string name="restorePrefTitle">恢复便笺</string>
-	<string name="restorePref">Pull all notes from SD Card</string>
+	<string name="restorePref">拉取 SD 卡上的全部便笺</string>
 	<string name="restore_notes_title">要恢复便笺吗？</string>
-	<string name="restore_notes">Pull all notes from SD Card?  This may overwrite your existing notes.</string>
-	<string name="messageNotesBackedUp">Notes backed up to SD card successfully.</string>
-	<string name="messageNotesRestored">Notes restored from SD card successfully.</string>
-	<string name="messageDatabaseReset">Notes cleared successfully.</string>
+	<string name="restore_notes">拉取 SD 卡上的全部便笺？这可能会覆盖您已有的便笺。</string>
+	<string name="messageNotesBackedUp">便笺成功备份到 SD 卡。</string>
+	<string name="messageNotesRestored">从 SD 卡恢复便笺成功。</string>
+	<string name="messageDatabaseReset">便笺清除成功。</string>
 		
 	<!-- 
 	Information that goes into the Android Market Application Listing. 

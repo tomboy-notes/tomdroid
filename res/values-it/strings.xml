@@ -254,10 +254,11 @@
 	<string name="market_promotext">Applicazione per prendere note con sincronizzazione online Tomboy compatibile</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">* Search notes and system integrated search\n* Context menu\n* Several usability improvements\n* Higher quality icons\n* Several bug fixes\n* German translation\n</string>
+        <string name="market_recent_changes">* Ricerca delle note e ricerca integrata nel sistema\n* Menu di contesto\n* Diversi miglioramenti dell\'usabilità\n* Maggiore qualità delle icone\n* Diversi bug risolti\n* Traduzione in tedesco\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
+  Andrea Bernini https://launchpad.net/~andrea-bernini
   François Laurent https://launchpad.net/~francois.laurent
   Isabel Heger https://launchpad.net/~isabel-h1
   Michele Galimberti https://launchpad.net/~galimberti-michele

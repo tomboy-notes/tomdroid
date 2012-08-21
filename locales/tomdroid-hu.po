@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tomdroid\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-08-18 12:43+0200\n"
-"PO-Revision-Date: 2012-08-19 20:23+0000\n"
+"POT-Creation-Date: 2012-08-20 14:41+0530\n"
+"PO-Revision-Date: 2012-08-19 22:33+0000\n"
 "Last-Translator: Horváth Zoltán <Unknown>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-08-19 21:12+0000\n"
+"X-Launchpad-Export-Date: 2012-08-21 14:52+0000\n"
 "X-Generator: Launchpad (build 15810)\n"
 
 #. application details
@@ -86,11 +86,11 @@ msgstr "%1$s\\n\\nKészítő %2$s\\nVerzió: %3$s\\nLicenc: GPLv3"
 msgid "OK"
 msgstr "OK"
 
-#: tmp_strings.xml:45(string) tmp_strings.xml:204(string)
+#: tmp_strings.xml:45(string) tmp_strings.xml:207(string)
 msgid "Cancel"
 msgstr "Mégse"
 
-#: tmp_strings.xml:46(string) tmp_strings.xml:203(string)
+#: tmp_strings.xml:46(string) tmp_strings.xml:206(string)
 msgid "Close"
 msgstr "Bezárás"
 
@@ -212,8 +212,8 @@ msgid "Error parsing note."
 msgstr "Hiba a jegyzet elemzése során."
 
 #: tmp_strings.xml:76(string)
-msgid "Could note save note."
-msgstr "Nem tudom menteni a jegyzetet."
+msgid "Could not save note."
+msgstr "Nem tudom menteni a jegyzetet"
 
 #: tmp_strings.xml:77(string)
 msgid "SDCard storage not found."
@@ -342,7 +342,7 @@ msgstr "Igen"
 msgid "No"
 msgstr "Nem"
 
-#: tmp_strings.xml:123(string) tmp_strings.xml:177(string)
+#: tmp_strings.xml:123(string) tmp_strings.xml:178(string)
 msgid "Clear Notes"
 msgstr "Jegyzetek törlése"
 
@@ -350,7 +350,7 @@ msgstr "Jegyzetek törlése"
 msgid "Are you sure you want to clear the notes database?"
 msgstr "Biztos, hogy törölni akarja a jegyzet adatbázist?"
 
-#: tmp_strings.xml:125(string) tmp_strings.xml:179(string)
+#: tmp_strings.xml:125(string) tmp_strings.xml:180(string)
 msgid "Delete Remote Notes"
 msgstr "Távoli jegyzetek törlése"
 
@@ -496,87 +496,93 @@ msgstr "Tomdroid - Találatok"
 msgid "Tomdroid - Shortcuts"
 msgstr "Tomdroid - Billentyűparancsok"
 
-#. new prefs
-#: tmp_strings.xml:168(string)
-msgid "Text Preferences"
-msgstr "Szöveg beállítások"
+#: tmp_strings.xml:166(string)
+msgid "Tomdroid - Settings"
+msgstr "Tomdroid - beállítások"
 
+#. new prefs
 #: tmp_strings.xml:169(string)
+msgid "Display Preferences"
+msgstr "Kijelző beállításai"
+
+#: tmp_strings.xml:170(string)
 msgid "Base Font Size"
 msgstr "Alap betűméret"
 
-#: tmp_strings.xml:170(string)
+#: tmp_strings.xml:171(string)
 msgid "Synchronization"
 msgstr "Szinkronizálás"
 
-#: tmp_strings.xml:171(string)
+#: tmp_strings.xml:172(string)
 msgid "Misc. Options"
 msgstr "Kül. lehetőségek"
 
-#: tmp_strings.xml:172(string)
+#: tmp_strings.xml:173(string)
 msgid "Tools"
 msgstr "Eszközök"
 
-#: tmp_strings.xml:173(string)
+#: tmp_strings.xml:174(string)
 msgid "Auto Save Note"
 msgstr "Jegyzet automatikus mentése"
 
-#: tmp_strings.xml:174(string)
+#: tmp_strings.xml:175(string)
 msgid "Save notes automatically on exiting editor."
 msgstr "Menti a jegyzeteket a szerkesztőből való kilépéskor."
 
-#: tmp_strings.xml:175(string)
+#: tmp_strings.xml:176(string)
 msgid "Show Note Templates"
 msgstr "Jegyzet sablonok megtekintése"
 
-#: tmp_strings.xml:176(string)
+#: tmp_strings.xml:177(string)
 msgid "If checked, will show note templates in notes list."
 msgstr ""
 "Ha bejelölöd, megmutatja a jegyzet sablonokat is a jegyzetek listában"
 
-#: tmp_strings.xml:178(string)
+#: tmp_strings.xml:179(string)
 msgid "Clear all notes from local database"
 msgstr "Törli az összes jegyzetet a helyi adatbázisból"
 
-#: tmp_strings.xml:180(string)
+#: tmp_strings.xml:181(string)
 msgid "Delete all notes from remote service"
 msgstr "Törli az összes jegyzetet a távoli szolgáltatásról"
 
-#: tmp_strings.xml:181(string)
+#: tmp_strings.xml:182(string)
 msgid "Illegal text size chosen. Please choose a number."
 msgstr "Tiltott szöveg méretet választottál. Kérlek, számot adj meg!"
 
 #. syncNotes
-#: tmp_strings.xml:185(string)
+#: tmp_strings.xml:186(string)
 msgid "Syncing with %1$s"
 msgstr "Szinkronizálás ezzel:  %1$s"
 
-#: tmp_strings.xml:186(string)
+#: tmp_strings.xml:187(string)
 msgid "connecting to service…"
 msgstr "csatlakozás szolgáltatáshoz..."
 
-#: tmp_strings.xml:187(string)
+#: tmp_strings.xml:188(string)
 msgid "updating local notes…"
 msgstr "helyi jegyzetek frissítése..."
 
-#: tmp_strings.xml:188(string)
+#: tmp_strings.xml:189(string)
 msgid "updating remote notes…"
 msgstr "távoli jegyzetek frissítése..."
 
-#: tmp_strings.xml:189(string)
+#: tmp_strings.xml:190(string)
 msgid "Note Conflict"
 msgstr "Jegyzetütközés"
 
-#: tmp_strings.xml:190(string)
-msgid ""
-"There was a conflict syncing the note \"%1$s\". Please choose from one of "
-"the actions below. You may edit either text before choosing."
-msgstr ""
-"Jegyzetütközés történt a \"%1$s\" jegyzet szinkronizálása során. Kérlek "
-"válassz az alábbi lehetőségek közül! Bármely szöveget szerkesztheted a "
-"választás előtt."
-
 #: tmp_strings.xml:191(string)
+msgid ""
+"There was a conflict syncing the note \"%1$s\". Please choose an action to "
+"resolve the conflict. You may edit either note before choosing, or view the "
+"difference by clicking on the labels below."
+msgstr ""
+"Konfliktus történt a \"%1$s\" jegyzet szinkronizálása során. Kérem válasszon "
+"az alábbiak közül a konfliktus feloldásához. Mindkét jegyzetet szerkesztheti "
+"a választás előtt, vagy megnézheti a külömbségeket az alábbi címkékre "
+"kattintva."
+
+#: tmp_strings.xml:192(string)
 msgid ""
 "There was a conflict syncing the note \"%1$s\" (local version was deleted). "
 "Please choose from one of the actions below."
@@ -584,115 +590,127 @@ msgstr ""
 "Jegyzetütközés történt a \"%1$s\" jegyzet szinkronizálása során.  (helyi "
 "változat törölve lett) Kérlek válassz az alábbi lehetőségek közül!"
 
-#: tmp_strings.xml:192(string)
-msgid "Keep Local"
-msgstr "Tartsd meg helyiként"
-
 #: tmp_strings.xml:193(string)
-msgid "Keep Remote"
-msgstr "Tartsd meg távoliként"
+msgid ""
+"There was a conflict syncing the note \"%1$s\". A note with that title "
+"already exists in the database. Please choose an action to resolve the "
+"conflict. You may edit either note before choosing, or view the difference "
+"by clicking on the labels below."
+msgstr ""
 
 #: tmp_strings.xml:194(string)
+msgid "Overwrite\\nRemote"
+msgstr "Felülírás\\nTávoli"
+
+#: tmp_strings.xml:195(string)
+msgid "Overwrite\\nLocal"
+msgstr "Felülírás\\nHelyi"
+
+#: tmp_strings.xml:196(string)
 msgid "Delete Remote"
 msgstr "Töröld a távolit"
 
-#: tmp_strings.xml:195(string)
-msgid "Difference Between Files:"
-msgstr "Eltérés az állományok közt:"
+#: tmp_strings.xml:197(string)
+msgid "Difference Between Files"
+msgstr "Külömbségek fájlok között"
 
-#: tmp_strings.xml:196(string)
+#: tmp_strings.xml:198(string)
 msgid "-- Title Differences --"
 msgstr "-- Cím eltérés --"
 
-#: tmp_strings.xml:197(string)
+#: tmp_strings.xml:199(string)
 msgid "-- Content Differences --"
 msgstr "-- Tartalom eltérés --"
 
-#: tmp_strings.xml:198(string)
-msgid "Local Version:"
-msgstr "Helyi változat:"
-
-#: tmp_strings.xml:199(string)
-msgid "Remote Version:"
-msgstr "Távoli változat:"
-
 #: tmp_strings.xml:200(string)
+msgid "Line %1$s:"
+msgstr "Sor %1$s:"
+
+#: tmp_strings.xml:201(string)
+msgid "Local Version"
+msgstr "Helyi változat"
+
+#: tmp_strings.xml:202(string)
+msgid "Remote Version"
+msgstr "Távoli változat"
+
+#: tmp_strings.xml:203(string)
 msgid "Deleted"
 msgstr "Törölve"
 
-#: tmp_strings.xml:201(string)
-msgid "Create copy"
-msgstr "Másolatkészítés"
+#: tmp_strings.xml:204(string)
+msgid "Create\\nCopy"
+msgstr "Létrehoz\\nMásol"
 
-#: tmp_strings.xml:202(string)
+#: tmp_strings.xml:205(string)
 msgid "%1$s (old)"
 msgstr "%1$s (korú)"
 
-#: tmp_strings.xml:205(string)
+#: tmp_strings.xml:208(string)
 msgid "Authorization with %1$s successful."
 msgstr "Sikeres azonosítás ezzel: %1$s."
 
-#: tmp_strings.xml:206(string)
+#: tmp_strings.xml:209(string)
 msgid "Authorization with %1$s failed. Maybe try again?"
 msgstr "Sikertelen azonosítás ezzel: %1$s. Újra próbálhatom?"
 
-#: tmp_strings.xml:207(string)
+#: tmp_strings.xml:210(string)
 msgid "Note deleted from %1$s successfully."
 msgstr "A jegyzet sikeresen törölve erről: %1$s"
 
-#: tmp_strings.xml:208(string)
+#: tmp_strings.xml:211(string)
 msgid "Note sent to %1$s successfully."
 msgstr "A jegyzet sikeresen elküldve erre: %1$s"
 
-#: tmp_strings.xml:209(string)
+#: tmp_strings.xml:212(string)
 msgid "Note received from %1$s successfully."
 msgstr "A jegyzet sikeresen fogadva erről: %1$s"
 
-#: tmp_strings.xml:210(string)
+#: tmp_strings.xml:213(string)
 msgid "Error deleting note from %1$s."
 msgstr "Hiba a jegyzet törlése során erről: %1$s"
 
-#: tmp_strings.xml:211(string)
+#: tmp_strings.xml:214(string)
 msgid "Error sending note to %1$s."
 msgstr "Hiba a jegyzet küldése során erre: %1$s"
 
-#: tmp_strings.xml:212(string)
+#: tmp_strings.xml:215(string)
 msgid "Error receiving note from %1$s."
 msgstr "Hiba a jegyzet fogadása során erről: %1$s"
 
-#: tmp_strings.xml:213(string)
+#: tmp_strings.xml:216(string)
 msgid "Error parsing response from %1$s."
 msgstr "Hiba a válasz elemzése során erről: %1$s"
 
-#: tmp_strings.xml:214(string)
+#: tmp_strings.xml:217(string)
 msgid ""
 "Error connecting to %1$s. You probably need to authenticate in \"Settings\"."
 msgstr ""
 "Hiba csatlakozás során ehez: %1$s. Valószínűleg kell az azonosítás a "
 "\"Beállítások\"-ban."
 
-#: tmp_strings.xml:215(string)
+#: tmp_strings.xml:218(string)
 msgid "Notes deleted from %1$s successfully."
 msgstr "A jegyzetek sikeresem törölve erről: %1$s"
 
-#: tmp_strings.xml:216(string)
+#: tmp_strings.xml:219(string)
 msgid "Sync with %1$s cancelled."
 msgstr "A szinkronizálás ezzel %1$s törölve."
 
 #. revert notes
-#: tmp_strings.xml:220(string)
+#: tmp_strings.xml:223(string)
 msgid "Revert"
 msgstr "Visszavonás"
 
-#: tmp_strings.xml:221(string)
+#: tmp_strings.xml:224(string)
 msgid "Revert All"
 msgstr "Mindent visszavon"
 
-#: tmp_strings.xml:222(string)
+#: tmp_strings.xml:225(string)
 msgid "Revert Notes"
 msgstr "Jegyzetek visszavonása"
 
-#: tmp_strings.xml:223(string)
+#: tmp_strings.xml:226(string)
 msgid ""
 "This will revert your local notes to whatever versions exist on the remote "
 "service. Are you sure you want to do this?"
@@ -700,11 +718,11 @@ msgstr ""
 "Ez vissza fogja állítani a helyi jegyzeteket bármilyen állapotukban is "
 "vannak azok a távoli szolgáltatón. Biztos, hogy ezt akarja tenni?"
 
-#: tmp_strings.xml:224(string)
+#: tmp_strings.xml:227(string)
 msgid "Revert Note"
 msgstr "jegyzet helyreállítása"
 
-#: tmp_strings.xml:225(string)
+#: tmp_strings.xml:228(string)
 msgid ""
 "This will revert a local note to whatever version exist on the remote "
 "service. Are you sure you want to do this?"
@@ -713,19 +731,19 @@ msgstr ""
 "távoli szolgáltatón. Biztos, hogy ezt akarja tenni?"
 
 #. backup notes
-#: tmp_strings.xml:229(string)
+#: tmp_strings.xml:232(string)
 msgid "Backup Notes"
 msgstr "Jegyzetek biztonsági mentése"
 
-#: tmp_strings.xml:230(string)
+#: tmp_strings.xml:233(string)
 msgid "Copy all local notes to SD Card"
 msgstr "Másold az összes helyi jegyzetet az SD kártyára"
 
-#: tmp_strings.xml:231(string)
+#: tmp_strings.xml:234(string)
 msgid "Backup Notes?"
 msgstr "Biztonsági mentsem a jegyzeteket?"
 
-#: tmp_strings.xml:232(string)
+#: tmp_strings.xml:235(string)
 msgid ""
 "Copy all local notes to SD Card? This may overwrite existing notes on the SD "
 "Card."
@@ -733,39 +751,43 @@ msgstr ""
 "Másoljam az összes helyi jegyzetet az SD kártyára? Ez felülírhatja a már "
 "lézető jegyzeteket az SD kártyán."
 
-#: tmp_strings.xml:233(string)
+#: tmp_strings.xml:236(string)
 msgid "Restore Notes"
 msgstr "Jegyzetek visszaállítása"
 
-#: tmp_strings.xml:234(string)
+#: tmp_strings.xml:237(string)
 msgid "Pull all notes from SD Card"
 msgstr "Húzd be az összes jegyzetet az SD kártyáról."
 
-#: tmp_strings.xml:235(string)
+#: tmp_strings.xml:238(string)
 msgid "Restore Notes?"
 msgstr "Visszaállítsam a jegyzeteket?"
 
-#: tmp_strings.xml:236(string)
+#: tmp_strings.xml:239(string)
 msgid "Pull all notes from SD Card? This may overwrite your existing notes."
 msgstr ""
 "Húzzam be az összes jegyzetet az SD kártyáról? Ez felülírhatja a meglevő "
 "jegyzeteidet."
 
-#: tmp_strings.xml:237(string)
+#: tmp_strings.xml:240(string)
 msgid "Notes backed up to SD card successfully."
 msgstr "A jegyzetek sikeresen biztonsági mentve az SD kártyára."
 
-#: tmp_strings.xml:238(string)
+#: tmp_strings.xml:241(string)
 msgid "Notes restored from SD card successfully."
 msgstr "A jegyzetek sikeresen visszaállítva az SD kártyáról."
 
+#: tmp_strings.xml:242(string)
+msgid "Notes cleared successfully."
+msgstr "A jegyzetek sikeresen törölve."
+
 #. 30 chars max
-#: tmp_strings.xml:245(string)
+#: tmp_strings.xml:249(string)
 msgid "Tomdroid notes"
 msgstr "Tomdroid jegyzetek"
 
 #. 4000 chars max
-#: tmp_strings.xml:247(string)
+#: tmp_strings.xml:251(string)
 msgid ""
 "A Tomboy client for Android. Tomboy is a desktop note-taking app using a "
 "wikiwiki approach and a simple user interface.\\n\\n* Note format "
@@ -779,13 +801,13 @@ msgstr ""
 "keresztül.\\n* SD kártya importálás\\n* Nyílt forráskód!"
 
 #. 80 chars max
-#: tmp_strings.xml:250(string)
+#: tmp_strings.xml:254(string)
 msgid ""
 "Note-taking application with online synchronization compatible with Tomboy"
 msgstr "Jegyzetfüzet-alkalmazás Tomboy-kompatibilis online szinkronizációval"
 
 #. 500 chars max
-#: tmp_strings.xml:253(string)
+#: tmp_strings.xml:257(string)
 msgid ""
 "* Search notes and system integrated search\\n* Context menu\\n* Several "
 "usability improvements\\n* Higher quality icons\\n* Several bug fixes\\n* "
@@ -796,7 +818,7 @@ msgstr ""
 "hibajavítás\\n* Német fordítás\\n* Magyar fordítás\\n*"
 
 #. Launchpad Translation String
-#: tmp_strings.xml:256(string)
+#: tmp_strings.xml:260(string)
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"

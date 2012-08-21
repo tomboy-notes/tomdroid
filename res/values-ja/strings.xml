@@ -25,7 +25,7 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Tomboy compatible wikiwiki note-taking application that can take notes.</string>
+	<string name="app_desc">Tomboy 互換の wikiwiki メモ帳アプリケーションで、メモを取ることができます。</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
@@ -37,7 +37,7 @@
 	<string name="menuAbout">情報</string>
 	<string name="titleWelcome">注意</string>
 	<string name="titleAbout">Tomdroidについて</string>
-	<string name="strWelcome">Welcome to Tomdroid.\n\nPlease note that this is beta quality software and that it contains known problems.\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something out and tested as quickly as possible.\n\nIf you would like to contribute, help at all levels would be appreciated. Hop on board on launchpad.net/tomdroid and contact us!\n</string>
+	<string name="strWelcome">Tomdroid へようこそ。\n\nこれはベータ段階のソフトウェアであり、既知のバグがあることに注意してください。\n\n私たちはこれらの問題を十分に認識しており迅速に作業していますが、一方で、可能な限り早く新たな問題の認識とテストを行いたいとも考えています。\n\nもし貢献していただける場合は、どのようなことであれ歓迎します。 launchpad.net/tomdroid 上のページに飛んで、私たちに連絡してください！\n</string>
 	<string name="strAbout">%1$s\n\n開発者: %2$s\nバージョン: %3$s\nライセンス: GPLv3</string>
 	
 	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
@@ -45,21 +45,21 @@
 	<string name="btnCancel">キャンセル</string>
 	<string name="btnClose">閉じる</string>
 	<string name="btnProjectPage">ホームページ</string>
-	<string name="btnSavetoSD">Save</string>
+	<string name="btnSavetoSD">保存</string>
 	
 	<!-- note-view.xml -->
-	<string name="strWait">Please wait while note loads…</string>
+	<string name="strWait">ノートを読み込んでいる間お待ちください...</string>
 	
 	<string name="prefSyncService">サービス</string>
 	<string name="prefSyncServer">サーバー</string>
 	<string name="prefSDCard">SDカード</string>
-	<string name="prefTomboyWeb">Online Synchronisation</string>
+	<string name="prefTomboyWeb">オンライン同期</string>
 	<string name="prefAuthenticate">認証</string>
 	<string name="prefLocation">SDカード上の場所</string>
 	<string name="prefFolderCreated">フォルダー \"%1$s\" は、まだ存在しません。デバイスをコンピューターに接続し、フォルダーを作成して *.note ファイルを入れてください。</string>
-	<string name="prefNoValidLocation">\"%1$s\" is not a valid folder location. Please try again!</string>
-	<string name="prefNoValidEntry">\"%1$s\" is not a valid entry. Please try again!</string>
-	<string name="prefSyncCompleteAuth">Completing authentication. Please wait…</string>
+	<string name="prefNoValidLocation">\"%1$s\" は無効なフォルダーの位置です。もう一度試してみてください！</string>
+	<string name="prefNoValidEntry">\"%1$s\" は無効なエントリーの位置です。もう一度試してみてください！</string>
+	<string name="prefSyncCompleteAuth">認証処理中です。しばらくお待ちください...</string>
 	<string name="prefSyncConnectionFailed">サーバーへの接続に失敗しました。入力したアドレスが正しいかどうか確認してください。</string>
 	<string name="prefServerEmpty">サーバーのアドレスが変更されましたが、新しい値は空です。</string>
 			
@@ -70,14 +70,14 @@
 	<string name="messageSyncAlreadyInProgress">同期は既に進行しています</string>
 	<string name="messageSyncError">メモコレクションの変換中にエラーが発生しました。再現可能な場合は私たちに連絡してください！</string>
 	<string name="error">エラー</string>
-	<string name="titleNoteNotFound">No Such Note</string>
-	<string name="messageNoteNotFound">The requested note could not be found. Maybe it was deleted or removed through synchronization.</string>
-	<string name="messageErrorNoteParsing">Error parsing note.</string>
-	<string name="messageCouldNotSave">Could not save note.</string>
-	<string name="messageNoSDCard">SDCard storage not found.</string>
+	<string name="titleNoteNotFound">そのようなメモはありません</string>
+	<string name="messageNoteNotFound">要求されたメモは見つかりませんでした。おそらく、同期の際に移動もしくは削除されました。</string>
+	<string name="messageErrorNoteParsing">メモの解析でエラー。</string>
+	<string name="messageCouldNotSave">メモを保存できませんでした。</string>
+	<string name="messageNoSDCard">SDカードの領域が見つかりません。</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">Change Sort</string>
+	<string name="menuSort">ソートを変更</string>
 	<string name="titleDefaultSorting">デフォルトのソートの選択</string>
 	<string name="prefDefaultSorting">デフォルトのソート</string>
 	
@@ -107,139 +107,139 @@
 	<string name="textYexterday">昨日</string>
 
 	<!-- Shortcuts handling -->
-	<string name="shortcuts_view_caption">Choose a Note</string>
-	<string name="shortcut_menu_item_caption">Tomdroid Note</string>
-	<string name="btnRemoveShortcut">Remove shortcut</string>
+	<string name="shortcuts_view_caption">メモを選択</string>
+	<string name="shortcut_menu_item_caption">Tomdroid メモ</string>
+	<string name="btnRemoveShortcut">ショートカットを削除</string>
 	<string name="createShortcut">ショートカットを作成</string>
 
 	<!-- stuff new to edit -->
 
 	<!-- deleteNote -->
-	<string name="delete">Delete</string>
-	<string name="delete_note">Delete Note</string>
-	<string name="delete_message">Are you sure you want to delete this note?</string>
-	<string name="yes">Yes</string>
-	<string name="no">No</string>
-	<string name="delete_all">Clear Notes</string>
-	<string name="delete_all_message">Are you sure you want to clear the notes database?</string>
-	<string name="delete_remote_notes">Delete Remote Notes</string>
-	<string name="delete_remote_notes_message">Are you sure you want to delete all notes from the remote service?</string>
+	<string name="delete">削除</string>
+	<string name="delete_note">メモを削除</string>
+	<string name="delete_message">このメモを削除してもよろしいですか？</string>
+	<string name="yes">はい</string>
+	<string name="no">いいえ</string>
+	<string name="delete_all">メモの全消去</string>
+	<string name="delete_all_message">メモのデータベースを消去してもよろしいですか？</string>
+	<string name="delete_remote_notes">リモートのメモの削除</string>
+	<string name="delete_remote_notes_message">リモートサービスからすべてのメモを削除してもよろしいですか？</string>
 				
 	<!-- newNote -->
-	<string name="menuNew">New</string>
-	<string name="NewNoteTitle">New Note</string>
-	<string name="NewNoteTitleHint">Enter title here</string>
-	<string name="NewNoteBodyHint">Enter note here</string>
+	<string name="menuNew">新規</string>
+	<string name="NewNoteTitle">新しいメモ</string>
+	<string name="NewNoteTitleHint">ここにタイトルを入力</string>
+	<string name="NewNoteBodyHint">ここにメモを入力</string>
 			
 	<!-- editNote -->
-	<string name="edit">Edit</string>
-	<string name="save">Save</string>
-	<string name="discard">Discard</string>
-	<string name="back">Back</string>
+	<string name="edit">編集</string>
+	<string name="save">保存</string>
+	<string name="discard">破棄</string>
+	<string name="back">戻る</string>
 	<string name="bold">B</string>
 	<string name="italic">i</string>
 	<string name="strike"><strike>S</strike></string>
-	<string name="mono">monospace</string>
-	<string name="highlight">highlight</string>
-	<string name="size">size</string>
+	<string name="mono">均等幅</string>
+	<string name="highlight">ハイライト</string>
+	<string name="size">サイズ</string>
 	<string name="xml">XML</string>
-	<string name="text">Text</string>
-	<string name="titleErrorParsingXML">Error parsing note</string>
-	<string name="messageErrorParsingXML">There was an error parsing the note. Please check your XML.</string>
-	<string name="messageNoteSaved">Note saved locally.</string>
-	<string name="messageNoteDeleted">Note deleted locally.</string>
-	<string name="messageSelectSize">Select text size</string>
-	<string name="small">Small</string>
-	<string name="normal">Normal</string>
-	<string name="large">Large</string>
-	<string name="huge">Huge</string>
-	<string name="messageDiscardChanges">Do you really want to discard your changes and revert the note to the last saved version?</string>
-	<string name="titleDiscardChanges">Discard Changes?</string>
+	<string name="text">テキスト</string>
+	<string name="titleErrorParsingXML">メモの解析でエラー</string>
+	<string name="messageErrorParsingXML">メモの解析でエラーが発生しました。XMLを確認してください。</string>
+	<string name="messageNoteSaved">メモがローカルに保存されました。</string>
+	<string name="messageNoteDeleted">メモがローカルで削除されました。</string>
+	<string name="messageSelectSize">テキストサイズの選択</string>
+	<string name="small">小</string>
+	<string name="normal">標準</string>
+	<string name="large">大</string>
+	<string name="huge">極大</string>
+	<string name="messageDiscardChanges">本当に変更点を破棄し、メモを最後に保存された版に戻してもよろしいですか？</string>
+	<string name="titleDiscardChanges">変更を破棄しますか？</string>
 	<string name="gt"><b>&gt;</b></string>
 	<string name="lt"><b>&lt;</b></string>
 			
 	<!-- New Titles -->
-	<string name="view_title">Tomdroid - View Note</string>
-	<string name="edit_title">Tomdroid - Edit Note</string>
-	<string name="search_title">Tomdroid - Search Results</string>
-	<string name="shortcut_title">Tomdroid - Shortcuts</string>
-	<string name="pref_title">Tomdroid - Settings</string>
+	<string name="view_title">Tomdroid - メモの表示</string>
+	<string name="edit_title">Tomdroid - メモの編集</string>
+	<string name="search_title">Tomdroid - 検索結果</string>
+	<string name="shortcut_title">Tomdroid - ショートカット</string>
+	<string name="pref_title">Tomdroid - 設定</string>
 			
 	<!-- new prefs -->
-	<string name="prefDisplay">Display Preferences</string>
-	<string name="prefBaseSize">Base Font Size</string>
+	<string name="prefDisplay">表示設定</string>
+	<string name="prefBaseSize">基本フォントサイズ</string>
 	<string name="prefSync">同期</string>
-	<string name="prefMisc">Misc. Options</string>
-	<string name="prefTools">Tools</string>
-	<string name="prefAutoSaveTitle">Auto Save Note</string>
-	<string name="prefAutoSave">Save notes automatically on exiting editor.</string>
-	<string name="prefNoteTemplatesTitle">Show Note Templates</string>
-	<string name="prefNoteTemplates">If checked, will show note templates in notes list.</string>
-	<string name="deleteAllNotesTitle">Clear Notes</string>
-	<string name="deleteAllNotes">Clear all notes from local database</string>
-	<string name="deleteRemoteNotesTitle">Delete Remote Notes</string>
-	<string name="deleteRemoteNotes">Delete all notes from remote service</string>
-	<string name="illegalTextSize">Illegal text size chosen. Please choose a number.</string>
+	<string name="prefMisc">その他のオプション</string>
+	<string name="prefTools">ツール</string>
+	<string name="prefAutoSaveTitle">メモの自動保存</string>
+	<string name="prefAutoSave">編集終了時にメモを自動的に保存します。</string>
+	<string name="prefNoteTemplatesTitle">メモのテンプレートを表示</string>
+	<string name="prefNoteTemplates">チェックすると、メモのリスト中にメモのテンプレートが表示されます。</string>
+	<string name="deleteAllNotesTitle">メモの全消去</string>
+	<string name="deleteAllNotes">ローカルのデータベースからメモを全消去します</string>
+	<string name="deleteRemoteNotesTitle">リモートのメモの削除</string>
+	<string name="deleteRemoteNotes">リモートサービスからメモを全消去します</string>
+	<string name="illegalTextSize">無効なテキストサイズが入力されました。数字を入力してください。</string>
 
 	<!-- syncNotes -->
 
-	<string name="syncing">Syncing with %1$s</string>
-	<string name="syncing_connect">connecting to service…</string>
-	<string name="syncing_local">updating local notes…</string>
-	<string name="syncing_remote">updating remote notes…</string>
-	<string name="sync_conflict_title">Note Conflict</string>
-	<string name="sync_conflict_message">There was a conflict syncing the note "%1$s".  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
-	<string name="sync_conflict_deleted">There was a conflict syncing the note "%1$s" (local version was deleted).  Please choose from one of the actions below.</string>
-	<string name="sync_conflict_titles_message">There was a conflict syncing the note "%1$s".  A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
-	<string name="overwrite_remote">Overwrite\nRemote</string>
-	<string name="overwrite_local">Overwrite\nLocal</string>
-	<string name="delete_remote">Delete Remote</string>
-	<string name="diff_label">Difference Between Files</string>
-	<string name="diff_titles">-- Title Differences --</string>
-	<string name="diff_content">-- Content Differences --</string>
-	<string name="line_x">Line %1$s:</string>
-	<string name="local_label">Local Version</string>
-	<string name="remote_label">Remote Version</string>
+	<string name="syncing">%1$s と同期中</string>
+	<string name="syncing_connect">サービスに接続しています...</string>
+	<string name="syncing_local">ローカルのメモを更新しています...</string>
+	<string name="syncing_remote">リモートのメモを更新しています...</string>
+	<string name="sync_conflict_title">メモが競合しました</string>
+	<string name="sync_conflict_message">メモ "%1$s" の同期中に競合が発生しました。競合を解決するための処理を選択してください。選択前にどちらかのメモを編集するか、下のラベルをクリックして差分を表示することができます。</string>
+	<string name="sync_conflict_deleted">メモ "%1$s" の同期中に競合が発生しました(ローカルの版が削除されています)。競合を解決するための処理を以下から選択してください。</string>
+	<string name="sync_conflict_titles_message">メモ "%1$s" の同期中に競合が発生しました。このタイトルのメモは既にデータベースに存在します。競合を解決するための処理を選択してください。選択前にどちらかのメモを編集するか、下のラベルをクリックして差分を表示することができます。</string>
+	<string name="overwrite_remote">リモートの\n上書き</string>
+	<string name="overwrite_local">ローカルの\n上書き</string>
+	<string name="delete_remote">リモートの削除</string>
+	<string name="diff_label">ファイル間の差分</string>
+	<string name="diff_titles">-- タイトルの差分 --</string>
+	<string name="diff_content">-- 内容の差分 --</string>
+	<string name="line_x">%1$s 行目:</string>
+	<string name="local_label">ローカル版</string>
+	<string name="remote_label">リモート版</string>
 	<string name="deleted">Deleted</string>
 	<string name="copy">Create\nCopy</string>
 	<string name="old">%1$s (old)</string>
 	<string name="close">閉じる</string>
 	<string name="cancel">キャンセル</string>
-	<string name="messageAuthComplete">Authorization with %1$s successful.</string>
-	<string name="messageAuthFailed">Authorization with %1$s failed.  Maybe try again?</string>
-	<string name="messageSyncNoteDeleted">Note deleted from %1$s successfully.</string>
-	<string name="messageSyncNotePushed">Note sent to %1$s successfully.</string>
-	<string name="messageSyncNotePulled">Note received from %1$s successfully.</string>
-	<string name="messageSyncNoteDeleteError">Error deleting note from %1$s.</string>
-	<string name="messageSyncNotePushError">Error sending note to %1$s.</string>
-	<string name="messageSyncNotePullError">Error receiving note from %1$s.</string>
-	<string name="messageSyncParseFailed">Error parsing response from %1$s.</string>
-	<string name="messageSyncConnectingFailed">Error connecting to %1$s.  You probably need to authenticate in "Settings".</string>
-	<string name="messageRemoteNotesDeleted">Notes deleted from %1$s successfully.</string>
-	<string name="messageSyncCancelled">Sync with %1$s cancelled.</string>
+	<string name="messageAuthComplete">%1$s の認証に成功しました。</string>
+	<string name="messageAuthFailed">%1$s の認証に失敗しました。再試行しますか？</string>
+	<string name="messageSyncNoteDeleted">%1$s からのメモの削除に成功しました。</string>
+	<string name="messageSyncNotePushed">%1$s へのメモの送信に成功しました。</string>
+	<string name="messageSyncNotePulled">%1$s からのメモの受信に成功しました。</string>
+	<string name="messageSyncNoteDeleteError">%1$s からのメモの削除でエラーが発生しました。</string>
+	<string name="messageSyncNotePushError">%1$s へのメモの送信でエラーが発生しました。</string>
+	<string name="messageSyncNotePullError">%1$s からのメモの受信でエラーが発生しました。</string>
+	<string name="messageSyncParseFailed">%1$s からの応答の処理でエラーが発生しました。</string>
+	<string name="messageSyncConnectingFailed">%1$s への接続中にエラーが発生しました。おそらく「設定」で認証する必要があります。</string>
+	<string name="messageRemoteNotesDeleted">%1$s からのメモの削除に成功しました。</string>
+	<string name="messageSyncCancelled">%1$s との同期がキャンセルされました。</string>
 				
 	<!-- revert notes -->
 	
-	<string name="contextRevert">Revert</string>
-	<string name="menuRevert">Revert All</string>
-	<string name="revert_notes">Revert Notes</string>
-	<string name="revert_notes_message">This will revert your local notes to whatever versions exist on the remote service.  Are you sure you want to do this?</string>
-	<string name="revert_note">Revert Note</string>
-	<string name="revert_note_message">This will revert a local note to whatever version exist on the remote service.  Are you sure you want to do this?</string>
+	<string name="contextRevert">元に戻す</string>
+	<string name="menuRevert">すべて元に戻す</string>
+	<string name="revert_notes">すべてのメモを元に戻す</string>
+	<string name="revert_notes_message">この操作はローカルのすべてのメモをリモートサービスにある版に戻します。本当に実行してもよろしいですか？</string>
+	<string name="revert_note">メモを元に戻す</string>
+	<string name="revert_note_message">この操作はローカルのメモをリモートサービスにある版に戻します。本当に実行してもよろしいですか？</string>
 
 	<!-- backup notes -->
 	
-	<string name="backupPrefTitle">Backup Notes</string>
-	<string name="backupPref">Copy all local notes to SD Card</string>
-	<string name="backup_notes_title">Backup Notes?</string>
-	<string name="backup_notes">Copy all local notes to SD Card?  This may overwrite existing notes on the SD Card.</string>
-	<string name="restorePrefTitle">Restore Notes</string>
-	<string name="restorePref">Pull all notes from SD Card</string>
-	<string name="restore_notes_title">Restore Notes?</string>
-	<string name="restore_notes">Pull all notes from SD Card?  This may overwrite your existing notes.</string>
-	<string name="messageNotesBackedUp">Notes backed up to SD card successfully.</string>
-	<string name="messageNotesRestored">Notes restored from SD card successfully.</string>
-	<string name="messageDatabaseReset">Notes cleared successfully.</string>
+	<string name="backupPrefTitle">メモのバックアップ</string>
+	<string name="backupPref">すべてのローカルのメモをSDカードにコピーします</string>
+	<string name="backup_notes_title">メモをバックアップしますか？</string>
+	<string name="backup_notes">すべてのローカルのメモをSDカードにコピーしますか？この処理はSDカードに存在するメモを上書きします。</string>
+	<string name="restorePrefTitle">メモの復元</string>
+	<string name="restorePref">SDカードからすべてのメモを取り込みます</string>
+	<string name="restore_notes_title">メモを復元しますか？</string>
+	<string name="restore_notes">SDカードからすべてのメモを取り込みますか？この処理は既存のメモを上書きします。</string>
+	<string name="messageNotesBackedUp">メモのSDカードへのバックアップに成功しました。</string>
+	<string name="messageNotesRestored">SDカードからのメモの復元に成功しました。</string>
+	<string name="messageDatabaseReset">メモの全消去に成功しました。</string>
 		
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
@@ -248,13 +248,13 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid メモ</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
+	<string name="market_description">Android 向けの Tomboy クライアントです。Tomboy はデスクトップのメモ帳アプリで、 wikiwiki 形式を採用しており、シンプルなインターフェースを備えています。\n\n* Tomboy 互換のメモ形式\n* Snowy、Tomboy Online、Ubuntu One とのオンライン同期\n* SDカードへの取り込み\n* オープンソース！</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Tomboyと互換性のある、オンラインで同期するメモ帳アプリケーション</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">* Search notes and system integrated search\n* Context menu\n* Several usability improvements\n* Higher quality icons\n* Several bug fixes\n* German translation\n</string>
+        <string name="market_recent_changes">* メモの検索と、システムと統合した検索\n* コンテキストメニュー\n* いくつかの使いやすさの改善\n* 高品質になったアイコン\n* いくつかのバグ修正\n* ドイツ語訳\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
