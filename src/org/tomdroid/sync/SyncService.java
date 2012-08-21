@@ -25,33 +25,21 @@
 package org.tomdroid.sync;
 
 import android.app.Activity;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.TextUtils;
 import android.text.format.Time;
-import android.widget.Toast;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
-import org.tomdroid.R;
 import org.tomdroid.ui.CompareNotes;
-import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.ErrorList;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.TLog;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -525,7 +513,6 @@ public abstract class SyncService {
 	protected boolean sendMessage(int message_id, HashMap<String, Object> payload) {
 
 		Message message;
-		String text;
 		switch(message_id) {
 			case PARSING_FAILED:
 			case NOTE_PUSH_ERROR:
@@ -534,8 +521,10 @@ public abstract class SyncService {
 			case PARSING_COMPLETE:
 				if(payload == null && syncErrors == null)
 					return false;
-				message = handler.obtainMessage(message_id, syncErrors);
+				if(syncErrors == null)
+					syncErrors = new ErrorList();
 				syncErrors.add(payload);
+				message = handler.obtainMessage(message_id, syncErrors);
 				handler.sendMessage(message);
 				return true;
 		}
@@ -582,8 +571,6 @@ public abstract class SyncService {
 	public abstract void finishSync(boolean refresh);
 
 	public abstract void pushNotes(ArrayList<Note> notes);
-
-	protected abstract void pushNotes();
 
 	public abstract void backupNotes();
 

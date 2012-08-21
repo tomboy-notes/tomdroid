@@ -665,12 +665,6 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 	}
 
 	@Override
-	protected void pushNotes() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void backupNotes() {
 		// TODO Auto-generated method stub
 		
