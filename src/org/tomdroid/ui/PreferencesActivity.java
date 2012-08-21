@@ -81,6 +81,7 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 
 	private Handler	 preferencesMessageHandler	= new PreferencesMessageHandler(this);
 
+	private static ProgressDialog syncProgressDialog;
 
 	
 	@SuppressWarnings("deprecation")
@@ -281,6 +282,7 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 		        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
 		            public void onClick(DialogInterface dialog, int which) {
+		            	showSyncDialog();
 		            	SyncManager.getService("sdcard").backupNotes();
 		           }
 
@@ -402,8 +404,8 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 	}
 	
 	private void resetRemoteService() {
+		showSyncDialog();
 		SyncManager.getInstance().getCurrentService().deleteAllNotes();
-
 	}
 	
 	/**
@@ -415,9 +417,9 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 		setServer(syncServiceKey);
 		
 		// TODO this should be refactored further, notice that setServer performs the same operations 
-		SyncService service = SyncManager.getInstance().getService(syncServiceKey);
 		
-		if (service == null)
+		SyncManager.getInstance();
+		if (SyncManager.getService(syncServiceKey) == null)
 			return;
 		
 		// not resetting database, since now we may have new notes, and want to move them from one service to another, etc.
@@ -460,6 +462,7 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 					Toast.makeText(activity, text, Toast.LENGTH_SHORT).show();
 					break;
 			}
+			syncProgressDialog.dismiss();
 		}
 	}
 
@@ -473,5 +476,27 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
             	return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	private void showSyncDialog() {
+		String serviceDescription = SyncManager.getInstance().getCurrentService().getDescription();
+		syncProgressDialog = new ProgressDialog(this);
+		syncProgressDialog.setTitle(String.format(getString(R.string.syncing),serviceDescription));
+		syncProgressDialog.setMessage(getString(R.string.syncing_connect));
+		syncProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+		syncProgressDialog.setButton(ProgressDialog.BUTTON_NEGATIVE, getString(R.string.cancel), new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				syncProgressDialog.cancel();
+			}
+		});
+		syncProgressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+
+			public void onCancel(DialogInterface dialog) {
+				SyncManager.getInstance().cancel();
+			}
+			
+		});
+        syncProgressDialog.setIndeterminate(true);
+		syncProgressDialog.show();
 	}
 }

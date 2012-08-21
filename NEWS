@@ -15,7 +15,19 @@ For more details and developer visible changes see the ChangeLog
 Tomdroid 0.7.1 beta - <releaseName> released on <releaseDate>
 
 * Actionbar for all versions of Android
+* Converted format bar to sliding drawer
+* Added progress bar and toast notifications to preferences
+* Cosmetic improvements and bug fixes with conflict resolution
+* Added cancel button to sync
+* Fixed revert all for deleted notes
+* Added routine to avoid full sync if server revision is old (only push changed notes)
+* Set note content entry type to "sentence caps"
 * Usability and cosmetic improvements (lp:1038118, lp:1038352)
+* bug fix lp:1038115 (beta) do not scroll list to top after deleting a note
+* bug fix lp:1038119 (beta) syncing is not smart :)
+* bug fix lp:1038352 tapping on blank area should go to end of line
+* bug fix lp:1038769 Typo in the string #41
+* bug fix lp:1038968 NullPointerException on SD Csrd sync with notes causing parse error
 
 -------------------------------------------------------------------------------
 Tomdroid 0.7 beta - "House of Fun" - Editing and Two-Way Sync!

@@ -113,9 +113,12 @@ public class Tomdroid extends ActionBarListActivity {
 	// UI feedback handler
 	private Handler	 syncMessageHandler	= new SyncMessageHandler(this);
 	
-	// latest sync revision
+	// sync variables
 	private int latestRevision;
-
+	private boolean creating = true;
+	private SyncManager sync;
+	private static ProgressDialog syncProgressDialog;
+	
 	// UI for tablet
 	private LinearLayout rightPane;
 	private TextView content;
@@ -379,9 +382,6 @@ public class Tomdroid extends ActionBarListActivity {
 			return Tomdroid.CONTENT_URI.toString()+"/"+id;
 		}
 	};
-	private boolean creating = true;
-	private SyncManager sync;
-	private static ProgressDialog syncProgressDialog;
 	
 	@TargetApi(11)
 	@Override
