@@ -12,22 +12,28 @@ Join it at: https://launchpad.net/~tomdroid-dev
 For more details and developer visible changes see the ChangeLog
 
 -------------------------------------------------------------------------------
+Tomdroid 0.7.1 beta - <releaseName> released on <releaseDate>
+
+* Actionbar for all versions of Android
+* Usability and cosmetic improvements (lp:1038118, lp:1038352)
+
+-------------------------------------------------------------------------------
 Tomdroid 0.7 beta - "House of Fun" - Editing and Two-Way Sync!
 
 Editing Features:
 * Rich text editor for editing and formatting notes (credit: http://code.google.com/p/android-richtexteditor/)
 * Ability to create new notes
-* Ability to delete local notes
+* Ability to delete local notes (lp:657563)
 * Automatic renaming of notes on duplicate title (as Note 1, Note 2, etc.)
 * Note saved automatically on pause
 * Ability to revert changes
 
 Sync Features:
-* Two-way sync by default, one-way "pull" sync via "Revert" button
+* Two-way sync by default, one-way "pull" sync via "Revert" button (lp:549647)
 * Note conflict resolution screen when notes are of different date and both older or newer than last sync date
 * Automatic authentication - if you use Ubuntu One, pressing "Sync" on first launch is enough to authenticate and sync
 * updating progress bar with information on current task, number of notes
-* Ability to cancel sync via button
+* Ability to cancel sync via button (lp:592946)
 * switching sync services/servers doesn't clear notes database anymore
 * switching sync servers clears authentication, doesn't authenticate (see "Automatic authentication", above)
 
