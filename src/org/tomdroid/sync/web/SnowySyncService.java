@@ -640,9 +640,12 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						response = new JSONObject(auth.put(notesUrl,data.toString()));
 
 						TLog.v(TAG, "delete response: {0}", response.toString());
+
 						
 						// reset latest sync date so we can push our notes again
 						
+						latestRevision = (int)response.getLong("latest-sync-revision");
+						Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, latestRevision);
 						Preferences.putString(Preferences.Key.LATEST_SYNC_DATE,new Time().format3339(false));
 						
 					} catch (JSONException e) {
