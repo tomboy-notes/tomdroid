@@ -95,9 +95,9 @@ public class CompareNotes extends ActionBarActivity {
 		remoteNote.setGuid(extras.getString("guid"));
 		remoteNote.setLastChangeDate(extras.getString("date"));
 		remoteNote.setXmlContent(extras.getString("content"));
-        Serializable tags = extras.getSerializable("tags");
-        if (tags instanceof HashSet) //noinspection unchecked
-            remoteNote.setTags((HashSet<String>) tags);
+        @SuppressWarnings("unchecked")
+        HashSet<String> tags = (HashSet<String>) extras.getSerializable("tags");
+        remoteNote.setTags(tags);
 		
 		dateDiff = extras.getInt("datediff");
 		

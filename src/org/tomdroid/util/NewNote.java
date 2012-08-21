@@ -36,8 +36,8 @@ public class NewNote {
 
 	// Logging info
 	private static final String	TAG = "NewNote";
-	
-	public static Note createNewNote(Context context) {
+
+	public static Note createNewNote() {
 		TLog.v(TAG, "Creating new note");
 		
 		Note note = new Note();
@@ -58,4 +58,9 @@ public class NewNote {
 		return note;
 	}
 
+    public static Note createNewNoteInNotebook(String notebookName) {
+        Note note = createNewNote();
+        note.addTag("system:notebook:" + notebookName);
+        return note;
+    }
 }

@@ -48,7 +48,8 @@ public class ShortcutActivity extends ActionBarListActivity {
         TLog.d(TAG, "creating shortcut...");
         setContentView(R.layout.shortcuts_list);
         setTitle(R.string.shortcuts_view_caption);
-        adapter = NoteManager.getListAdapter(this);
+
+        adapter = NoteManager.getListAdapterForListActivity(this);
         setListAdapter(adapter);
         getListView().setEmptyView(findViewById(R.id.list_empty));
 

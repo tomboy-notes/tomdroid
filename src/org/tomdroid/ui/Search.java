@@ -29,7 +29,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.SearchRecentSuggestions;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -41,9 +40,7 @@ import android.widget.TextView;
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
-import org.tomdroid.sync.SyncManager;
 import org.tomdroid.ui.actionbar.ActionBarListActivity;
-import org.tomdroid.util.Preferences;
 import org.tomdroid.util.SearchSuggestionProvider;
 import org.tomdroid.util.TLog;
 
@@ -93,7 +90,7 @@ public class Search extends ActionBarListActivity {
 		
 		
 		// adapter that binds the ListView UI to the notes in the note manager
-		adapter = NoteManager.getListAdapter(this, query);
+		adapter = NoteManager.getListAdapterForSearchResults(this, query);
 		setListAdapter(adapter);
 		
 		// set the view shown when query not found
@@ -134,11 +131,7 @@ public class Search extends ActionBarListActivity {
 	
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
-
-		Cursor item = (Cursor) adapter.getItem(position);
-		int noteId = item.getInt(item.getColumnIndexOrThrow(Note.ID));
-
-		Uri intentUri = Tomdroid.getNoteIntentUri(noteId);
+        Uri intentUri = Tomdroid.getNoteIntentUri(((Note) adapter.getItem(position)).getDbId());
 		Intent i = new Intent(Intent.ACTION_VIEW, intentUri, this, ViewNote.class);
 		startActivity(i);
 	}

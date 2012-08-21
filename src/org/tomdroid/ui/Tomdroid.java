@@ -33,16 +33,8 @@ import org.tomdroid.R;
 import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.sync.SyncService;
-import org.tomdroid.util.ErrorList;
+import org.tomdroid.util.*;
 import org.tomdroid.ui.actionbar.ActionBarListActivity;
-import org.tomdroid.util.FirstNote;
-import org.tomdroid.util.LinkifyPhone;
-import org.tomdroid.util.NewNote;
-import org.tomdroid.util.NoteContentBuilder;
-import org.tomdroid.util.NoteViewShortcutsHelper;
-import org.tomdroid.util.Preferences;
-import org.tomdroid.util.Send;
-import org.tomdroid.util.TLog;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -84,17 +76,18 @@ public class Tomdroid extends ActionBarListActivity {
 	public static final String	PROJECT_HOMEPAGE	= "http://www.launchpad.net/tomdroid/";
 	public static final String CALLED_FROM_SHORTCUT_EXTRA = "org.tomdroid.CALLED_FROM_SHORTCUT";
     public static final String SHORTCUT_NAME = "org.tomdroid.SHORTCUT_NAME";
+    public static final String NOTEBOOK_NAME_EXTRA = "org.tomdroid.NOTEBOOK_NAME";
 
 	// config parameters
 	public static String	NOTES_PATH				= null;
-	
+
 	// Set this to false for release builds, the reason should be obvious
 	public static final boolean	CLEAR_PREFERENCES	= false;
 
-	// Logging info
+    // Logging info
 	private static final String	TAG					= "Tomdroid";
 
-	public static Uri getNoteIntentUri(long noteId) {
+    public static Uri getNoteIntentUri(long noteId) {
         return Uri.parse(CONTENT_URI + "/" + noteId);
     }
 
@@ -149,8 +142,7 @@ public class Tomdroid extends ActionBarListActivity {
 		}
 		
 		// adapter that binds the ListView UI to the notes in the note manager
-		adapter = NoteManager.getListAdapter(this);
-		setListAdapter(adapter);
+        updateAdapter();
 
 		// set the view shown when the list is empty
         TextView listEmptyView = (TextView) findViewById(R.id.list_empty);
@@ -173,7 +165,15 @@ public class Tomdroid extends ActionBarListActivity {
 		// dev function, uncomment to test out the compare_notes activity
 		//compareTestNotes();
 	}
-	private void updateTextAttributes() {
+
+    private ListAdapter getCorrectAdapter() {
+        String notebookName = getIntent().getStringExtra(NOTEBOOK_NAME_EXTRA);
+        boolean notebookNameFound = notebookName != null && notebookName.length() > 0;
+        if (!notebookNameFound) return NoteManager.getListAdapterForListActivity(this);
+        else return NoteManager.getListAdapterForNotebookListActivity(this, notebookName);
+    }
+
+    private void updateTextAttributes() {
 		float baseSize = Float.parseFloat(Preferences.getString(Preferences.Key.BASE_TEXT_SIZE));
 		content.setTextSize(baseSize);
 		title.setTextSize(baseSize*1.3f);
@@ -193,17 +193,11 @@ public class Tomdroid extends ActionBarListActivity {
         content.setText("");
 		
 		if(position == -1) {
-			adapter = NoteManager.getListAdapter(this);
-			setListAdapter(adapter);
+            updateAdapter();
 			position = 0;
 		}
-		Cursor item = (Cursor) adapter.getItem(position);
-		if (item == null || item.getCount() == 0) {
-            TLog.d(TAG, "Index {0} not found in list", position);
-			return;
-		}
-		long noteId = item.getInt(item.getColumnIndexOrThrow(Note.ID));	
-		uri = Uri.parse(CONTENT_URI + "/" + noteId);
+		Note item = (Note) adapter.getItem(position);
+		uri = Uri.parse(CONTENT_URI + "/" + item.getDbId());
 
 		TLog.d(TAG, "Getting note {0}", position);
 
@@ -247,7 +241,7 @@ public class Tomdroid extends ActionBarListActivity {
 							 null,
 							 noteTitleTransformFilter);
 
-		title.setText((CharSequence) note.getTitle());
+		title.setText(note.getTitle());
 
     	// trying to fix lp:1038118
 		rightPane.invalidate();
@@ -599,6 +593,8 @@ public class Tomdroid extends ActionBarListActivity {
 
 		SyncManager.setActivity(this);
 		SyncManager.setHandler(this.syncMessageHandler);
+
+        updateAdapter();
 		
 		// tablet refresh
 		
@@ -646,21 +642,33 @@ public class Tomdroid extends ActionBarListActivity {
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
-		if (rightPane != null) {
-			if(position == lastIndex) // same index, edit
-				this.startEditNote();
-			else
-				showNoteInPane(position);
-		}
-		else {
-			Cursor item = (Cursor) adapter.getItem(position);
-			long noteId = item.getInt(item.getColumnIndexOrThrow(Note.ID));
-				this.ViewNote(noteId);
-		}
-		lastIndex = position;
+        boolean notebookClicked = adapter.getItemViewType(position) == NoteListAdapter.NOTEBOOK_TYPE;
+        if (notebookClicked) handleNotebookListItemClicked((String) adapter.getItem(position));
+        else handleNoteListItemClick(position);
 	}
-	
-	public void ViewNote(long noteId) {
+
+    private void handleNotebookListItemClicked(String name) {
+        final Intent i = new Intent(this, Tomdroid.class);
+        i.putExtra(NOTEBOOK_NAME_EXTRA, name);
+        startActivity(i);
+    }
+
+    private void handleNoteListItemClick(int position) {
+        if (rightPane != null) {
+            if(position == lastIndex) // same index, edit
+                this.startEditNote();
+            else
+                showNoteInPane(position);
+        }
+        else {
+            Note item = (Note) adapter.getItem(position);
+            long noteId = item.getDbId();
+                this.ViewNote(noteId);
+        }
+        lastIndex = position;
+    }
+
+    public void ViewNote(long noteId) {
 		Uri intentUri = getNoteIntentUri(noteId);
 		Intent i = new Intent(Intent.ACTION_VIEW, intentUri, this, ViewNote.class);
 		startActivity(i);
@@ -680,8 +688,9 @@ public class Tomdroid extends ActionBarListActivity {
 	public void newNote() {
 		
 		// add a new note
-		
-		Note note = NewNote.createNewNote(this);
+        String notebookName = getIntent().getStringExtra(NOTEBOOK_NAME_EXTRA);
+        boolean notebookNameFound = notebookName != null && notebookName.length() > 0;
+		Note note = notebookNameFound ? NewNote.createNewNoteInNotebook(notebookName) : NewNote.createNewNote();
 		Uri uri = NoteManager.putNote(this, note);
 		
 		// set list item to top
@@ -689,9 +698,8 @@ public class Tomdroid extends ActionBarListActivity {
 		lastIndex = 0;
 		
 		// recreate listAdapter
-		
-		adapter = NoteManager.getListAdapter(this);
-		setListAdapter(adapter);
+
+        updateAdapter();
 		
 		// view new note
 		
@@ -709,12 +717,12 @@ public class Tomdroid extends ActionBarListActivity {
         .setIcon(android.R.drawable.ic_dialog_alert)
         .setTitle(R.string.delete_note)
         .setMessage(R.string.delete_message)
-        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+        .setPositiveButton(R.string.yes, new OnClickListener() {
 
             public void onClick(DialogInterface dialog, int which) {
         		NoteManager.deleteNote(activity, note);
-    			adapter = NoteManager.getListAdapter(context);
-    			setListAdapter(adapter);
+
+                updateAdapter();
     			setSelection(notePosition);
     			showNoteInPane(notePosition);
            }
@@ -931,20 +939,19 @@ public class Tomdroid extends ActionBarListActivity {
 			syncProgressDialog.dismiss();
 		if(rightPane != null)
 			showNoteInPane(lastIndex);
+        updateAdapter();
 	}
-	
-	// dev function, used for testing out the note conflict resolution
+
+    private void updateAdapter() {
+        adapter = getCorrectAdapter();
+        setListAdapter(adapter);
+    }
+
+    // dev function, used for testing out the note conflict resolution
 	public void compareTestNotes() {
 		int position = 0;
-		Cursor item = (Cursor) adapter.getItem(position);
-		if (item == null || item.getCount() == 0) {
-            TLog.d(TAG, "Index {0} not found in list", position);
-            title.setText("");
-            content.setText("");
-			return;
-		}
-		long noteId = item.getInt(item.getColumnIndexOrThrow(Note.ID));	
-		uri = Uri.parse(CONTENT_URI + "/" + noteId);
+		Note item = (Note) adapter.getItem(position);
+		uri = Uri.parse(CONTENT_URI + "/" + item.getDbId());
 
 		TLog.d(TAG, "Getting note {0}", position);
 

@@ -23,8 +23,9 @@
 package org.tomdroid.util;
 
 import java.text.DateFormat;
-import java.util.Date;
+import java.util.*;
 
+import android.widget.BaseAdapter;
 import org.tomdroid.Note;
 import org.tomdroid.R;
 
@@ -35,64 +36,92 @@ import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 /* Provides a custom ListView layout for Note List */
 
-public class NoteListCursorAdapter extends SimpleCursorAdapter {
+public class NoteListAdapter extends BaseAdapter {
+    public static final int NOTEBOOK_TYPE = 0;
+    public static final int NOTE_TYPE = 1;
 
-    private int layout;
     private Context context;
+    private final List<String> notebooks;
+    private final List<Note> notes;
 
     private DateFormat localeDateFormat;
     private DateFormat localeTimeFormat;
+    private LayoutInflater inflater;
 
-    public NoteListCursorAdapter (Context context, int layout, Cursor c, String[] from, int[] to) {
-        super(context, layout, c, from, to);
-        this.layout = layout;
+    public NoteListAdapter(Context context, List<String> notebooks, List<Note> notes) {
+        super();
         this.context = context;
+        this.notebooks = notebooks;
+        this.notes = notes;
         localeDateFormat = android.text.format.DateFormat.getDateFormat(context);
         localeTimeFormat = android.text.format.DateFormat.getTimeFormat(context);
+        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
-    
 
-    @Override
-    public View newView(Context context, Cursor cursor, ViewGroup parent) {
-
-        Cursor c = getCursor();
-
-        final LayoutInflater inflater = LayoutInflater.from(context);
-        View v = inflater.inflate(layout, parent, false);
-
-        populateFields(v, c);
-
-        return v;
+    public NoteListAdapter(Context context, List<Note> notes) {
+        this(context, Collections.<String>emptyList(), notes);
     }
 
     @Override
-    public void bindView(View v, Context context, Cursor c) {
-
-        populateFields(v, c);
+    public int getCount() {
+        return notebooks.size() + notes.size();
     }
-    
+
+    @Override
+    public Object getItem(int i) {
+        int notebooksSize = notebooks.size();
+        return i <= notebooksSize - 1 ? notebooks.get(i) : notes.get(i - notebooksSize);
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return i;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position <= notebooks.size() - 1 ? NOTEBOOK_TYPE : NOTE_TYPE;
+    }
+
+    @Override
+    public int getViewTypeCount() {
+        return NOTE_TYPE + 1;
+    }
+
     @Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-    	View view = super.getView(position, convertView, parent);
-    	return view;
-	}
-    
-    private void populateFields(View v, Cursor c){
+        int type = getItemViewType(position);
+        if (convertView == null) convertView = inflateRightView(type);
+        switch (type) {
+            case NOTE_TYPE:
+                populateNoteFields(convertView, (Note) getItem(position));
+                break;
+            case NOTEBOOK_TYPE:
+                populateNotebookFields(convertView, (String) getItem(position));
+                break;
+        }
+        return convertView;
+    }
 
-        int nameCol = c.getColumnIndex(Note.TITLE);
-        int modifiedCol = c.getColumnIndex(Note.MODIFIED_DATE);
-        
-        String title = c.getString(nameCol);
-        
+    private void populateNotebookFields(View v, String notebookName) {
+        View title = v.findViewById(R.id.notebook_title);
+        if (title != null) ((TextView) title).setText(notebookName);
+    }
+
+    private View inflateRightView(int type) {
+        return type == NOTE_TYPE ?
+                inflater.inflate(R.layout.main_list_item, null) :
+                inflater.inflate(R.layout.main_list_notebook_item, null);
+    }
+
+    private void populateNoteFields(View v, Note n){
         //Format last modified dates to be similar to desktop Tomboy
         //TODO this is messy - must be a better way than having 3 separate date types
-        Time lastModified = new Time();
-        lastModified.parse3339(c.getString(modifiedCol));
+        Time lastModified = n.getLastChangeDate();
         Long lastModifiedMillis = lastModified.toMillis(false);
         Date lastModifiedDate = new Date(lastModifiedMillis);
         
@@ -102,9 +131,8 @@ public class NoteListCursorAdapter extends SimpleCursorAdapter {
         	strModified += this.context.getString(R.string.textToday) +", " + localeTimeFormat.format(lastModifiedDate);
         } else {
         	// Add a day to the last modified date - if the date is now today, it means the note was edited yesterday
-        	Time yesterdayTest = lastModified;
-        	yesterdayTest.monthDay += 1;
-        	if (DateUtils.isToday(yesterdayTest.toMillis(false))){
+            lastModified.monthDay += 1;
+        	if (DateUtils.isToday(lastModified.toMillis(false))){
         		strModified += this.context.getString(R.string.textYexterday) +", " + localeTimeFormat.format(lastModifiedDate);
         	} else {
         		strModified += localeDateFormat.format(lastModifiedDate) + ", " + localeTimeFormat.format(lastModifiedDate);
@@ -116,12 +144,11 @@ public class NoteListCursorAdapter extends SimpleCursorAdapter {
          */
         TextView note_title = (TextView) v.findViewById(R.id.note_title);
         if (note_title != null) {
-        	note_title.setText(title);
+        	note_title.setText(n.getTitle());
         }
         TextView note_modified = (TextView) v.findViewById(R.id.note_date);
         if (note_modified != null) {
         	note_modified.setText(strModified);
         }
     }
-
 }

@@ -33,15 +33,16 @@ import android.text.format.Time;
 import android.widget.ListAdapter;
 
 import org.tomdroid.ui.Tomdroid;
-import org.tomdroid.util.NoteListCursorAdapter;
+import org.tomdroid.util.NoteListAdapter;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.TLog;
 import org.tomdroid.util.XmlUtils;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static java.util.Arrays.asList;
 
 @SuppressWarnings("deprecation")
 public class NoteManager {
@@ -55,8 +56,9 @@ public class NoteManager {
 
     // static properties
 	private static final String TAG = "NoteManager";
+    public static final Pattern NOTEBOOK_PATTERN = Pattern.compile("system:notebook:([^,]*)(,|$)");
 
-	// gets a note from the content provider, based on guid
+    // gets a note from the content provider, based on guid
 	public static Note getNoteByGuid(Activity activity, String guid) {
 		Uri notes = Tomdroid.CONTENT_URI;
 		
@@ -277,16 +279,11 @@ public class NoteManager {
 		return notes;
 	}	
 
-	public static ListAdapter getListAdapter(Activity activity, String querys) {
-		
-		boolean includeNotebookTemplates = Preferences.getBoolean(Preferences.Key.INCLUDE_NOTE_TEMPLATES);
+	public static ListAdapter getListAdapterForSearchResults(Activity activity, String querys) {
+        StringBuilder where = getBaseNoteQueryWhereClause();
 
-		String[] qargs = null;
-		String where = "(" + Note.TAGS + " NOT LIKE '%" + "system:deleted" + "%')";
-		if (!includeNotebookTemplates) {
-			where += " AND (" + Note.TAGS + " NOT LIKE '%" + "system:template" + "%')";
-		}
-		if (querys != null ) {
+        String[] qargs = null;
+        if (querys != null ) {
 			// sql statements to search notes
 			String[] query = querys.split(" ");
 			qargs = new String[query.length*2];
@@ -294,51 +291,99 @@ public class NoteManager {
 			for (String string : query) {
 				qargs[count++] = "%"+string+"%"; 
 				qargs[count++] = "%"+string+"%"; 
-				where = where + " AND ("+Note.TITLE+" LIKE ? OR "+Note.NOTE_CONTENT+" LIKE ?)";
+				where.append(" AND (").append(Note.TITLE).append(" LIKE ? OR ").append(Note.NOTE_CONTENT).append(" LIKE ?)");
 			}	
 		}
 
-		// get a cursor representing all notes from the NoteProvider
-		Uri notes = Tomdroid.CONTENT_URI;
-		Cursor notesCursor = activity.managedQuery(notes, LIST_PROJECTION, where, qargs, null);
-		
-		// set up an adapter binding the TITLE field of the cursor to the list item
-		String[] from = new String[] { Note.TITLE };
-		int[] to = new int[] { R.id.note_title };
-		return new NoteListCursorAdapter(activity, R.layout.main_list_item, notesCursor, from, to);
-	}
-	
-	public static ListAdapter getListAdapter(Activity activity) {
-		
-		return getListAdapter(activity, null);
+        Cursor notesCursor = activity.managedQuery(Tomdroid.CONTENT_URI, LIST_PROJECTION, where.toString(), qargs, null);
+        return new NoteListAdapter(activity, notesListFromCursor(notesCursor));
 	}
 
-	// gets the titles of the notes present in the db, used in ViewNote.buildLinkifyPattern()
+    private static LinkedList<Note> notesListFromCursor(Cursor notesCursor) {
+        LinkedList<Note> notes = new LinkedList<Note>();
+        for (notesCursor.moveToFirst(); !notesCursor.isAfterLast(); notesCursor.moveToNext()) {
+            notes.add(noteFromListProjectionRow(notesCursor));
+        }
+        return notes;
+    }
+
+    public static ListAdapter getListAdapterForListActivity(Activity activity) {
+        StringBuilder where = getBaseNoteQueryWhereClause();
+
+        Cursor notesCursor = activity.managedQuery(Tomdroid.CONTENT_URI, LIST_PROJECTION, where.toString(), null, null);
+
+        TreeSet<String> notebooks = new TreeSet<String>();
+        List<Note> notes = new LinkedList<Note>();
+
+        int tagsColumn = notesCursor.getColumnIndex(Note.TAGS);
+
+        for (notesCursor.moveToFirst(); !notesCursor.isAfterLast(); notesCursor.moveToNext()) {
+            Matcher matcher = NOTEBOOK_PATTERN.matcher(notesCursor.getString(tagsColumn));
+            if (matcher.matches()) notebooks.add(matcher.group(1));
+            else notes.add(noteFromListProjectionRow(notesCursor));
+        }
+
+        return new NoteListAdapter(activity, new LinkedList<String>(notebooks), notes);
+    }
+
+    public static ListAdapter getListAdapterForNotebookListActivity(Activity activity, String notebookName) {
+        StringBuilder where = getBaseNoteQueryWhereClause();
+        where.append(" AND tags LIKE '%system:notebook:").append(notebookName).append("%'");
+        Cursor notesCursor = activity.managedQuery(Tomdroid.CONTENT_URI, LIST_PROJECTION, where.toString(), null, null);
+        return new NoteListAdapter(activity, notesListFromCursor(notesCursor));
+    }
+
+    private static Note noteFromListProjectionRow(Cursor notesCursor) {
+        int idColumn = notesCursor.getColumnIndex(Note.ID);
+        int titleColumn = notesCursor.getColumnIndex(Note.TITLE);
+        int modifiedColumn = notesCursor.getColumnIndex(Note.MODIFIED_DATE);
+        int tagsColumn = notesCursor.getColumnIndex(Note.TAGS);
+
+        Note note = new Note();
+        note.setDbId(notesCursor.getInt(idColumn));
+        note.setTitle(notesCursor.getString(titleColumn));
+        note.setLastChangeDate(notesCursor.getString(modifiedColumn));
+        String[] tags = notesCursor.getString(tagsColumn).split(",");
+        note.setTags(new HashSet<String>(asList(tags)));
+        return note;
+    }
+
+    private static StringBuilder getBaseNoteQueryWhereClause() {
+        StringBuilder where = new StringBuilder("(").append(Note.TAGS).append(" NOT LIKE '%system:deleted%')");
+
+        boolean includeNotebookTemplates = Preferences.getBoolean(Preferences.Key.INCLUDE_NOTE_TEMPLATES);
+        if (!includeNotebookTemplates) {
+            where.append(" AND (").append(Note.TAGS).append(" NOT LIKE '%system:template%')");
+        }
+        return where;
+    }
+
+    // gets the titles of the notes present in the db, used in ViewNote.buildLinkifyPattern()
 	public static Cursor getTitles(Activity activity) {
 		
 		String where = Note.TAGS + " NOT LIKE '%system:deleted%'";
 		// get a cursor containing the notes titles
 		return activity.managedQuery(Tomdroid.CONTENT_URI, TITLE_PROJECTION, where, null, null);
 	}
-	
+
 	// gets the ids of the notes present in the db, used in SyncService.deleteNotes()
 	public static Cursor getGuids(Activity activity) {
-		
+
 		// get a cursor containing the notes guids
 		return activity.managedQuery(Tomdroid.CONTENT_URI, GUID_PROJECTION, null, null, null);
 	}
-	
+
 	public static int getNoteId(Activity activity, String title) {
-		
+
 		int id = 0;
-		
+
 		// get the notes ids
 		String[] whereArgs = { title };
 		Cursor cursor = activity.managedQuery(Tomdroid.CONTENT_URI, ID_PROJECTION, Note.TITLE+"=?", whereArgs, null);
-		
-		// cursor must not be null and must return more than 0 entry 
+
+		// cursor must not be null and must return more than 0 entry
 		if (!(cursor == null || cursor.getCount() == 0)) {
-			
+
 			cursor.moveToFirst();
 			id = cursor.getInt(cursor.getColumnIndexOrThrow(Note.ID));
 		}
@@ -346,10 +391,10 @@ public class NoteManager {
 			// TODO send an error to the user
 			TLog.d(TAG, "Cursor returned null or 0 notes");
 		}
-		
+
 		return id;
 	}
-	
+
 	/**
 	 * stripTitleFromContent
 	 * Because of an historic oddity in Tomboy's note format, a note's title is in a <title> tag but is also repeated
@@ -358,20 +403,20 @@ public class NoteManager {
 	private static String stripTitleFromContent(String xmlContent, String title) {
 		// get rid of the title that is doubled in the note's content
 		// using quote to escape potential regexp chars in pattern
-		
-		Pattern stripTitle = Pattern.compile("^\\s*"+Pattern.quote(XmlUtils.escape(title))+"\\n\\n"); 
+
+		Pattern stripTitle = Pattern.compile("^\\s*"+Pattern.quote(XmlUtils.escape(title))+"\\n\\n");
 		Matcher m = stripTitle.matcher(xmlContent);
 		if (m.find()) {
 			xmlContent = xmlContent.substring(m.end(), xmlContent.length());
 			TLog.d(TAG, "stripped the title from note-content");
 		}
-		
+
 		return xmlContent;
 	}
-	
+
 	/**
 	 * getNewNotes
-	 * get a guid list of notes that are newer than latest sync date 
+	 * get a guid list of notes that are newer than latest sync date
 	 */
 	public static Cursor getNewNotes(Activity activity) {
         return activity.managedQuery(Tomdroid.CONTENT_URI, DATE_PROJECTION, "strftime('%s', "+Note.MODIFIED_DATE+") > strftime('%s', '"+Preferences.getString(Preferences.Key.LATEST_SYNC_DATE)+"')", null, null);
@@ -379,7 +424,7 @@ public class NoteManager {
 
 	/**
 	 * validateNoteTitle
-	 * check title against titles that exist in database, returning modified title if necessary 
+	 * check title against titles that exist in database, returning modified title if necessary
 	 * @param activity - the calling activity
 	 * @param noteTitle - the title to check
 	 * @param guid - the note's guid, to avoid checking against itself
@@ -390,7 +435,7 @@ public class NoteManager {
 		String origTitle = noteTitle;
 
 		// check for empty titles, set to R.string.NewNoteTitle
-		
+
 		if (noteTitle.replace(" ","").equals("")) {
 			noteTitle = activity.getString(R.string.NewNoteTitle);
 			origTitle = noteTitle; // have to set this too!
@@ -399,27 +444,27 @@ public class NoteManager {
 		// check for duplicate titles - add number to end
 
 		Cursor cursor = getTitles(activity);
-		
-		// cursor must not be null and must return more than 0 entry 
+
+		// cursor must not be null and must return more than 0 entry
 		if (!(cursor == null || cursor.getCount() == 0)) {
-			
+
 			ArrayList<String> titles = new ArrayList<String>();
-			
+
 			cursor.moveToFirst();
 			do {
 				String aguid = cursor.getString(cursor.getColumnIndexOrThrow(Note.GUID));
 				if(!guid.equals(aguid)) // skip this note
 					titles.add(cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE)));
 			} while (cursor.moveToNext());
-			
+
 			// sort to get {"Note","Note 2", "Note 3", ... }
 			Collections.sort(titles);
-			
+
 			int inc = 2;
 			for(String atitle : titles) {
 				if(atitle.length() == 0)
 					continue;
-				
+
 				if(atitle.equals(noteTitle)) {
 					if(inc == 1)  // first match, matching "Note", set to "Note 2"
 						noteTitle = noteTitle + " 2";
@@ -429,8 +474,7 @@ public class NoteManager {
 				}
 			}
 		}
-		
+
 		return noteTitle;
 	}
-
 }

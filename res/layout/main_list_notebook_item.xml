@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+ Tomdroid
+ Tomboy on Android
+ http://www.launchpad.net/tomdroid
+
+ This file is part of Tomdroid.
+ 
+ Tomdroid is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Tomdroid is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<TwoLineListItem xmlns:android="http://schemas.android.com/apk/res/android"
+                 android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                 android:minHeight="?android:attr/listPreferredItemHeight"
+                 android:paddingTop="5dip"
+                 android:paddingBottom="5dip"
+                 android:paddingLeft="5dip"
+                 android:paddingRight="5dip"
+                 android:mode="twoLine"
+        >
+
+    <ImageView
+            android:layout_width="36dip"
+            android:layout_height="36dip"
+            android:layout_marginTop="5dip"
+            android:src="@drawable/mono"
+            android:layout_alignParentLeft="true"
+            />
+
+    <TextView android:id="@+id/notebook_title"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="3dip"
+              android:layout_marginLeft="48dip"
+              android:textStyle="bold"
+              android:textSize="18dp"
+            />
+</TwoLineListItem>
