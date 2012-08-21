@@ -141,18 +141,18 @@ public class NoteContentHandler extends DefaultHandler {
 				// is empty until characters() gets called and proves otherwise.
 				
 				if (listItemIsEmpty.size() < inListLevel) {
-					listItemIsEmpty.add(new Boolean(true));
+					listItemIsEmpty.add(true);
 				}
 				// if listItem's position not already in tracking array, add it.
 				// Otherwise if the start position equals 0 then set
 				if (listItemStartPos.size() < inListLevel) {
-					listItemStartPos.add(new Integer(ssb.length()));
+					listItemStartPos.add(ssb.length());
 				} else if (listItemStartPos.get(inListLevel-1) == 0) { 
-					listItemStartPos.set(inListLevel-1, new Integer(ssb.length()));					
+					listItemStartPos.set(inListLevel-1, ssb.length());
 				}
 				// no matter what, we track the end (we add if array not big enough or set otherwise) 
 				if (listItemEndPos.size() < inListLevel) {
-					listItemEndPos.add(new Integer(ssb.length()));
+					listItemEndPos.add(ssb.length());
 				} else {
 					listItemEndPos.set(inListLevel-1, ssb.length());					
 				}
@@ -235,9 +235,9 @@ public class NoteContentHandler extends DefaultHandler {
 				// if this list item is "empty" then we don't need to try rendering anything.
 				if (!inListItem && listItemIsEmpty.get(inListLevel-1))
 				{
-					listItemStartPos.set(inListLevel-1, new Integer(0));
-					listItemEndPos.set(inListLevel-1, new Integer(0));
-					listItemIsEmpty.set(inListLevel-1, new Boolean(true));
+					listItemStartPos.set(inListLevel-1, 0);
+					listItemEndPos.set(inListLevel-1, 0);
+					listItemIsEmpty.set(inListLevel-1, true);
 					
 					return;					
 				}
@@ -246,9 +246,9 @@ public class NoteContentHandler extends DefaultHandler {
 				// Show a leading margin that is as wide as the nested level we are in
 				ssb.setSpan(new LeadingMarginSpan.Standard(30*inListLevel), listItemStartPos.get(inListLevel-1), listItemEndPos.get(inListLevel-1), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 				ssb.setSpan(new BulletSpan(), listItemStartPos.get(inListLevel-1), listItemEndPos.get(inListLevel-1), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-				listItemStartPos.set(inListLevel-1, new Integer(0));
-				listItemEndPos.set(inListLevel-1, new Integer(0));
-				listItemIsEmpty.set(inListLevel-1, new Boolean(true));
+				listItemStartPos.set(inListLevel-1, 0);
+				listItemEndPos.set(inListLevel-1, 0);
+				listItemIsEmpty.set(inListLevel-1, true);
 				
 				inListItem = false;
 			}
@@ -336,7 +336,7 @@ public class NoteContentHandler extends DefaultHandler {
 			if (inListItem) {
 				// this list item is not empty, so we mark it as such. We keep track of this to avoid any
 				// problems with list items nested like this: <item><item><item>Content!</item></item></item>
-				listItemIsEmpty.set(inListLevel-1, new Boolean(false));
+				listItemIsEmpty.set(inListLevel-1, false);
 				
 				// no matter what, if we are still in the tag, end is now further
 				listItemEndPos.set(inListLevel-1, strLenEnd);					

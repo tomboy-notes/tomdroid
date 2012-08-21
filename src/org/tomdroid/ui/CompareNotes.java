@@ -24,8 +24,10 @@
  */
 package org.tomdroid.ui;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,7 +35,6 @@ import java.util.regex.Pattern;
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
-import org.tomdroid.R.string;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.ui.actionbar.ActionBarActivity;
 import org.tomdroid.util.Preferences;
@@ -43,43 +44,29 @@ import difflib.Delta;
 import difflib.DiffUtils;
 import difflib.Patch;
 
-import android.app.Activity;	
-import android.app.AlertDialog;	
-import android.app.Dialog;	
-import android.app.AlertDialog.Builder;
 import android.app.ProgressDialog;
-import android.content.ContentResolver;
-import android.content.ContentValues;
-import android.content.Context;	
-import android.content.DialogInterface;	
-import android.content.Intent;	
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.net.Uri;
-import android.os.Bundle;	
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Html;
 import android.text.TextUtils;
 import android.text.format.Time;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 	
 public class CompareNotes extends ActionBarActivity {	
 	private static final String TAG = "SyncDialog";
-	private Context context;
-	
-	private Note localNote;
+
+    private Note localNote;
 	private boolean differentNotes;
 	private Note remoteNote;
 	private int dateDiff;
-	private SyncManager syncManager;
-	private static ProgressDialog syncProgressDialog;
+    private static ProgressDialog syncProgressDialog;
 	
 	@Override	
 	public void onCreate(Bundle savedInstanceState) {	
@@ -90,9 +77,8 @@ public class CompareNotes extends ActionBarActivity {
 			return;
 		}
 		TLog.v(TAG, "starting SyncDialog");
-		this.context = this;
-		
-		setContentView(R.layout.note_compare);
+
+        setContentView(R.layout.note_compare);
 		
 		String serviceDescription = SyncManager.getInstance().getCurrentService().getDescription();
 
@@ -108,17 +94,11 @@ public class CompareNotes extends ActionBarActivity {
 		remoteNote.setTitle(extras.getString("title"));
 		remoteNote.setGuid(extras.getString("guid"));
 		remoteNote.setLastChangeDate(extras.getString("date"));
-		remoteNote.setXmlContent(extras.getString("content"));	
-		remoteNote.setTags(extras.getString("tags"));
+		remoteNote.setXmlContent(extras.getString("content"));
+        Serializable tags = extras.getSerializable("tags");
+        if (tags instanceof HashSet) //noinspection unchecked
+            remoteNote.setTags((HashSet<String>) tags);
 		
-		ContentValues values = new ContentValues();
-		values.put(Note.TITLE, extras.getString("title"));
-		values.put(Note.FILE, extras.getString("file"));
-		values.put(Note.GUID, extras.getString("guid"));
-		values.put(Note.MODIFIED_DATE, extras.getString("date"));
-		values.put(Note.NOTE_CONTENT, extras.getString("content"));
-		values.put(Note.TAGS, extras.getString("tags"));
-		 
 		dateDiff = extras.getInt("datediff");
 		
 		// check if we're comparing two different notes with same title

@@ -24,8 +24,6 @@
  */
 package org.tomdroid.ui;
 
-import java.util.HashMap;
-import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -75,7 +73,6 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import org.tomdroid.util.TLog;
 
 public class Tomdroid extends ActionBarListActivity {
 
@@ -97,18 +94,11 @@ public class Tomdroid extends ActionBarListActivity {
 	// Logging info
 	private static final String	TAG					= "Tomdroid";
 
-	// Logging should be disabled for release builds
-	public static final boolean	LOGGING_ENABLED		= false;
-
 	public static Uri getNoteIntentUri(long noteId) {
         return Uri.parse(CONTENT_URI + "/" + noteId);
     }
 
-	private View main;
-	
-	// UI to data model glue
-	private TextView			listEmptyView;
-	private ListAdapter			adapter;
+    private ListAdapter			adapter;
 
 	// UI feedback handler
 	private Handler	 syncMessageHandler	= new SyncMessageHandler(this);
@@ -127,8 +117,7 @@ public class Tomdroid extends ActionBarListActivity {
 	private SpannableStringBuilder noteContent;
 	private Uri uri;
 	private int lastIndex = 0;
-	public MenuItem syncMenuItem;
-	public static Tomdroid context;
+    public static Tomdroid context;
 	
 	/** Called when the activity is created. */
 	@Override
@@ -136,9 +125,7 @@ public class Tomdroid extends ActionBarListActivity {
 		super.onCreate(savedInstanceState);
 		Preferences.init(this, CLEAR_PREFERENCES);
 		context = this;
-        main =  View.inflate(this, R.layout.main, null);
-		
-        setContentView(main);
+        setContentView(R.layout.main);
 		
 		// get the Path to the notes-folder from Preferences
 		NOTES_PATH = Environment.getExternalStorageDirectory()
@@ -166,7 +153,7 @@ public class Tomdroid extends ActionBarListActivity {
 		setListAdapter(adapter);
 
 		// set the view shown when the list is empty
-		listEmptyView = (TextView) findViewById(R.id.list_empty);
+        TextView listEmptyView = (TextView) findViewById(R.id.list_empty);
 		getListView().setEmptyView(listEmptyView);
 		
 		registerForContextMenu(findViewById(android.R.id.list));
@@ -222,7 +209,7 @@ public class Tomdroid extends ActionBarListActivity {
 
         if(note != null) {
     		TLog.d(TAG, "note {0} found", position);
-			title.setText((CharSequence) note.getTitle());
+			title.setText(note.getTitle());
             noteContent = new NoteContentBuilder().setCaller(noteContentHandler).setInputSource(note.getXmlContent()).setTitle(note.getTitle()).build();
         } else {
             TLog.d(TAG, "The note {0} doesn't exist", uri);
@@ -343,7 +330,7 @@ public class Tomdroid extends ActionBarListActivity {
 				if(title.length() == 0)
 					continue;
 				// Pattern.quote() here make sure that special characters in the note's title are properly escaped
-				sb.append("("+Pattern.quote(title)+")|");
+				sb.append("(").append(Pattern.quote(title)).append(")|");
 	
 			} while (cursor.moveToNext());
 			
@@ -463,7 +450,7 @@ public class Tomdroid extends ActionBarListActivity {
 				@Override
 				public void handleMessage(Message msg) {
 	
-					boolean wasSuccessful = false;
+					boolean wasSuccessful;
 					Uri authorizationUri = (Uri) msg.obj;
 					if (authorizationUri != null) {
 	
@@ -764,7 +751,7 @@ public class Tomdroid extends ActionBarListActivity {
 	
 			SyncService currentService = SyncManager.getInstance().getCurrentService();
 			String serviceDescription = currentService.getDescription();
-			String message = "";
+			String message;
 			int increment = 0;
 			boolean dismiss = false;
 			TLog.d(TAG, "SyncMessageHandler message: {0}",msg.what);
@@ -858,38 +845,23 @@ public class Tomdroid extends ActionBarListActivity {
 
 				case SyncService.NOTE_DELETED:
 					increment = 1;
-					message = getString(R.string.messageSyncNoteDeleted);
-					message = String.format(message,serviceDescription);
-					//Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 					break;
 	
 				case SyncService.NOTE_PUSHED:
 					increment = 1;
-					message = getString(R.string.messageSyncNotePushed);
-					message = String.format(message,serviceDescription);
-					//Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
-
 					break;
 				case SyncService.NOTE_PULLED:
-					message = getString(R.string.messageSyncNotePulled);
-					message = String.format(message,serviceDescription);
-					//Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 					increment = 1;
 					break;
 														
 				case SyncService.NOTE_DELETE_ERROR:
 					increment = 1;
-					//Toast.makeText(activity, activity.getString(R.string.messageSyncNoteDeleteError), Toast.LENGTH_SHORT).show();
 					break;
 	
 				case SyncService.NOTE_PUSH_ERROR:
 					increment = 1;
-					//Toast.makeText(activity, activity.getString(R.string.messageSyncNotePushError), Toast.LENGTH_SHORT).show();
 					break;
 				case SyncService.NOTE_PULL_ERROR:
-					message = getString(R.string.messageSyncNotePullError);
-					message = String.format(message,serviceDescription);
-					//Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 					break;
 
 				case SyncService.NOTES_PUSHED: // multiple notes pushed
@@ -996,7 +968,7 @@ public class Tomdroid extends ActionBarListActivity {
 		bundle.putString("guid",remoteNote.getGuid());
 		bundle.putString("date",remoteNote.getLastChangeDate().format3339(false));
 		bundle.putString("content", remoteNote.getXmlContent());
-		bundle.putString("tags", remoteNote.getTags());
+		bundle.putSerializable("tags", remoteNote.getTags());
 		bundle.putInt("datediff", compareBoth);
 		
 		// put local guid if conflicting titles

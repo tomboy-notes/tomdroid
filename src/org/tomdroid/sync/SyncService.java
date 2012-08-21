@@ -99,8 +99,8 @@ public abstract class SyncService {
 	public final static int REMOTE_NOTES_DELETED = 22;
 	public final static int SYNC_CANCELLED = 23;
 	public final static int LATEST_REVISION = 24;
-	
-	public SyncService(Activity activity, Handler handler) {
+
+    public SyncService(Activity activity, Handler handler) {
 		
 		this.activity = activity;
 		this.handler = handler;
@@ -488,7 +488,7 @@ public abstract class SyncService {
 			bundle.putString("guid",remoteNote.getGuid());
 			bundle.putString("date",remoteNote.getLastChangeDate().format3339(false));
 			bundle.putString("content", remoteNote.getXmlContent());
-			bundle.putString("tags", remoteNote.getTags());
+			bundle.putSerializable("tags", remoteNote.getTags());
 			bundle.putInt("datediff", compareBoth);
 			
 			// put local guid if conflicting titles

@@ -25,9 +25,7 @@
 package org.tomdroid.sync.sd;
 
 import android.app.Activity;
-import android.database.Cursor;
 import android.os.Handler;
-import android.text.format.Time;
 import android.util.TimeFormatException;
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
@@ -35,7 +33,6 @@ import org.tomdroid.R;
 import org.tomdroid.sync.SyncService;
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.ErrorList;
-import org.tomdroid.util.Preferences;
 import org.tomdroid.util.TLog;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
@@ -44,18 +41,16 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.HashSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SdCardSyncService extends SyncService {
-	
-	private int numberOfFilesToSync = 0;
-	private static Pattern note_content = Pattern.compile("<note-content[^>]+>(.*)<\\/note-content>", Pattern.CASE_INSENSITIVE+Pattern.DOTALL);
+
+    private static Pattern note_content = Pattern.compile("<note-content[^>]+>(.*)<\\/note-content>", Pattern.CASE_INSENSITIVE+Pattern.DOTALL);
 
 	// list of notes to sync
-	private ArrayList<Note> syncableNotes = new ArrayList<Note>();;
+	private ArrayList<Note> syncableNotes = new ArrayList<Note>();
 
 	// logging related
 	private final static String TAG = "SdCardSyncService";
@@ -113,9 +108,8 @@ public class SdCardSyncService extends SyncService {
 		}
 		
 		File[] fileList = path.listFiles(new NotesFilter());
-		numberOfFilesToSync  = fileList.length;
 
-		if(cancelled) {
+        if(cancelled) {
 			doCancel();
 			return; 
 		}		
@@ -186,7 +180,7 @@ public class SdCardSyncService extends SyncService {
 			note.setGuid(file.getName().replace(".note", ""));
 			
 			// Try reading the file first
-			String contents = "";
+			String contents;
 			try {
 				contents = readFile(file,buffer);
 			} catch (IOException e) {
@@ -320,12 +314,12 @@ public class SdCardSyncService extends SyncService {
 			int height = 0;
 			int X = -1;
 			int Y = -1;
-			String tags = "";
-			
+            StringBuilder tagsStr = new StringBuilder();
+
 			if (path.exists()) { // update existing note
 	
 				// Try reading the file first
-				String contents = "";
+				String contents;
 				try {
 					final char[] buffer = new char[0x1000];
 					contents = readFile(path,buffer);
@@ -369,20 +363,18 @@ public class SdCardSyncService extends SyncService {
 				height = rnote.height;
 				X = rnote.X;			
 				Y = rnote.Y;
-				
-				tags = rnote.getTags();
-				if(tags.length()>0) {
-					String[] tagsA = tags.split(",");
-					tags = "\n\t<tags>";
-					for(String atag : tagsA) {
-						tags += "\n\t\t<tag>"+atag+"</tag>"; 
-					}
-					tags += "\n\t</tags>"; 
+
+
+                HashSet<String> tags = rnote.getTags();
+                if (!tags.isEmpty()) {
+					tagsStr.append("\n\t<tags>");
+					for(String tag : tags) tagsStr.append("\n\t\t<tag>").append(tag).append("</tag>");
+					tagsStr.append("\n\t</tags>");
 				}
 			}
 	
 			// TODO: create-date
-			String xmlOutput = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<note version=\"0.3\" xmlns:link=\"http://beatniksoftware.com/tomboy/link\" xmlns:size=\"http://beatniksoftware.com/tomboy/size\" xmlns=\"http://beatniksoftware.com/tomboy\">\n\t<title>"+note.getTitle().replace("&", "&amp;")+"</title>\n\t<text xml:space=\"preserve\"><note-content version=\"0.1\">"+note.getXmlContent()+"</note-content></text>\n\t<last-change-date>"+note.getLastChangeDate().format3339(false)+"</last-change-date>\n\t<last-metadata-change-date>"+note.getLastChangeDate().format3339(false)+"</last-metadata-change-date>\n\t<create-date>"+createDate+"</create-date>\n\t<cursor-position>"+cursorPos+"</cursor-position>\n\t<width>"+width+"</width>\n\t<height>"+height+"</height>\n\t<x>"+X+"</x>\n\t<y>"+Y+"</y>"+tags+"\n\t<open-on-startup>False</open-on-startup>\n</note>\n";
+			String xmlOutput = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<note version=\"0.3\" xmlns:link=\"http://beatniksoftware.com/tomboy/link\" xmlns:size=\"http://beatniksoftware.com/tomboy/size\" xmlns=\"http://beatniksoftware.com/tomboy\">\n\t<title>"+note.getTitle().replace("&", "&amp;")+"</title>\n\t<text xml:space=\"preserve\"><note-content version=\"0.1\">"+note.getXmlContent()+"</note-content></text>\n\t<last-change-date>"+note.getLastChangeDate().format3339(false)+"</last-change-date>\n\t<last-metadata-change-date>"+note.getLastChangeDate().format3339(false)+"</last-metadata-change-date>\n\t<create-date>"+createDate+"</create-date>\n\t<cursor-position>"+cursorPos+"</cursor-position>\n\t<width>"+width+"</width>\n\t<height>"+height+"</height>\n\t<x>"+X+"</x>\n\t<y>"+Y+"</y>"+tagsStr.toString()+"\n\t<open-on-startup>False</open-on-startup>\n</note>\n";
 			
 			path.createNewFile();
 			FileOutputStream fOut = new FileOutputStream(path);

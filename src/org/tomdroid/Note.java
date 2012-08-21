@@ -23,10 +23,8 @@
  */
 package org.tomdroid;
 
-import android.net.Uri;
 import android.os.Handler;
 import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
 import android.text.format.Time;
 import android.util.TimeFormatException;
 import org.json.JSONArray;
@@ -34,6 +32,9 @@ import org.json.JSONObject;
 import org.tomdroid.util.NoteContentBuilder;
 import org.tomdroid.util.XmlUtils;
 
+import java.text.MessageFormat;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -44,7 +45,6 @@ public class Note {
 	public static final String GUID = "guid";
 	public static final String TITLE = "title";
 	public static final String MODIFIED_DATE = "modified_date";
-	public static final String URL = "url";
 	public static final String FILE = "file";
 	public static final String TAGS = "tags";
 	public static final String NOTE_CONTENT = "content";
@@ -55,14 +55,11 @@ public class Note {
 	public static final float NOTE_SIZE_SMALL_FACTOR = 0.8f;
 	public static final float NOTE_SIZE_LARGE_FACTOR = 1.5f;
 	public static final float NOTE_SIZE_HUGE_FACTOR = 1.8f;
-	
-	// Members
-	private SpannableStringBuilder noteContent;
-	private String xmlContent;
-	private String url;
+
+    private String xmlContent;
 	private String fileName;
 	private String title;
-	private String tags = "";
+	private HashSet<String> tags = new HashSet<String>();
 	private Time lastChangeDate;
 	private int dbId;
 
@@ -80,19 +77,12 @@ public class Note {
 	// but at some point we probably need to validate their uniqueness (per note collection or universe-wide?) 
 	private String guid;
 	
-	// this is to tell the sync service to update the last date after pushing this note
-	public boolean lastSync = false;
-	
 	// Date converter pattern (remove extra sub milliseconds from datetime string)
 	// ex: will strip 3020 in 2010-01-23T12:07:38.7743020-05:00
 	private static final Pattern dateCleaner = Pattern.compile(
 			"(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3})" +	// matches: 2010-01-23T12:07:38.774
 			".+" + 														// matches what we are getting rid of
 			"([-\\+]\\d{2}:\\d{2})");									// matches timezone (-xx:xx or +xx:xx)
-	
-	public Note() {
-		tags = new String();
-	}
 	
 	public Note(JSONObject json) {
 		
@@ -103,40 +93,32 @@ public class Note {
 		String newXMLContent = json.optString("note-content");
 		setXmlContent(newXMLContent);
 		JSONArray jtags = json.optJSONArray("tags");
-		String tag;
-		tags = new String();
-		if (jtags != null) {
-			for (int i = 0; i < jtags.length(); i++ ) {
-				tag = jtags.optString(i);
-				tags += tag + ",";
-			}
-		}
-	}
+        if (jtags == null) return;
+        for (int i = 0; i < jtags.length(); i++ ) tags.add(jtags.optString(i));
+    }
 
-	public String getTags() {
+    public Note() {}
+
+    public HashSet<String> getTags() {
 		return tags;
 	}
+
+    public String getTagsCommaSeparated() {
+        StringBuilder sb = new StringBuilder();
+        Iterator<String> tagsIterator = tags.iterator();
+        while (tagsIterator.hasNext()) sb.append(tagsIterator.next()).append(tagsIterator.hasNext() ? "," : "");
+        return sb.toString();
+    }
 	
-	public void setTags(String tags) {
+	public void setTags(HashSet<String> tags) {
 		this.tags = tags;
 	}
 	
 	public void addTag(String tag) {
-		if(tags.length() > 0)
-			this.tags = this.tags+","+tag;
-		else
-			this.tags = tag;
+        tags.add(tag);
 	}
 
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	public String getFileName() {
+    public String getFileName() {
 		return fileName;
 	}
 
@@ -196,8 +178,7 @@ public class Note {
 	public SpannableStringBuilder getNoteContent(Handler handler) {
 		
 		// TODO not sure this is the right place to do this
-		noteContent = new NoteContentBuilder().setCaller(handler).setInputSource(xmlContent).setTitle(this.getTitle()).build();
-		return noteContent;
+        return new NoteContentBuilder().setCaller(handler).setInputSource(xmlContent).setTitle(this.getTitle()).build();
 	}
 	
 	public String getXmlContent() {
@@ -210,8 +191,7 @@ public class Note {
 
 	@Override
 	public String toString() {
-
-		return new String("Note: "+ getTitle() + " (" + getLastChangeDate() + ")");
+		return MessageFormat.format("Note: {0} ({1})", getTitle(), getLastChangeDate());
 	}
 	
 }

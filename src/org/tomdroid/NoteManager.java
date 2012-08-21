@@ -25,21 +25,13 @@
 package org.tomdroid;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.content.ContentResolver;
 import android.content.ContentValues;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Bundle;
 import android.text.format.Time;
 import android.widget.ListAdapter;
-import android.widget.Toast;
 
-import org.tomdroid.sync.SyncManager;
-import org.tomdroid.ui.CompareNotes;
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.NoteListCursorAdapter;
 import org.tomdroid.util.Preferences;
@@ -48,7 +40,6 @@ import org.tomdroid.util.XmlUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -61,9 +52,8 @@ public class NoteManager {
 	public static final String[] TITLE_PROJECTION = { Note.TITLE, Note.GUID };
 	public static final String[] GUID_PROJECTION = { Note.ID, Note.GUID };
 	public static final String[] ID_PROJECTION = { Note.ID };
-	public static final String[] EMPTY_PROJECTION = {};
-	
-	// static properties
+
+    // static properties
 	private static final String TAG = "NoteManager";
 
 	// gets a note from the content provider, based on guid
@@ -135,25 +125,7 @@ public class NoteManager {
 		return note;
 	}
 
-	// check in a note exists in the content provider
-	public static boolean noteExists(Activity activity, String guid) {
-		Uri notes = Tomdroid.CONTENT_URI;
-		
-		String[] whereArgs = new String[1];
-		whereArgs[0] = guid;
-		
-		// The note identifier is the guid
-		ContentResolver cr = activity.getContentResolver();
-		Cursor cursor = cr.query(notes,
-                ID_PROJECTION,  
-                Note.GUID + "= ?",
-                whereArgs,
-                null);
-		activity.startManagingCursor(cursor);
-		return (cursor != null && cursor.getCount() != 0);
-	}
-	
-	// puts a note in the content provider
+    // puts a note in the content provider
 	// return uri
 	public static Uri putNote(Activity activity, Note note) {
 		
@@ -162,7 +134,7 @@ public class NoteManager {
 		// TODO make the query prettier (use querybuilder)
 		Uri notes = Tomdroid.CONTENT_URI;
 		String[] whereArgs = new String[1];
-		whereArgs[0] = note.getGuid().toString();
+		whereArgs[0] = note.getGuid();
 		
 		// The note identifier is the guid
 		ContentResolver cr = activity.getContentResolver();
@@ -178,11 +150,11 @@ public class NoteManager {
 		ContentValues values = new ContentValues();
 		values.put(Note.TITLE, note.getTitle());
 		values.put(Note.FILE, note.getFileName());
-		values.put(Note.GUID, note.getGuid().toString());
+		values.put(Note.GUID, note.getGuid());
 		// Notice that we store the date in UTC because sqlite doesn't handle RFC3339 timezone information
 		values.put(Note.MODIFIED_DATE, note.getLastChangeDate().format3339(false));
 		values.put(Note.NOTE_CONTENT, note.getXmlContent());
-		values.put(Note.TAGS, note.getTags());
+		values.put(Note.TAGS, note.getTagsCommaSeparated());
 		
 		Uri uri = null;
 		
@@ -224,12 +196,8 @@ public class NoteManager {
 
 		ContentResolver cr = activity.getContentResolver();
 		int result = cr.delete(uri, null, null);
-		
-		if(result > 0) {
-			return true;
-		}
-		else 
-			return false;
+
+        return result > 0;
 	}
 
 	// this function deletes deleted notes - if they never existed on the server, we still delete them at sync
@@ -386,7 +354,6 @@ public class NoteManager {
 	 * stripTitleFromContent
 	 * Because of an historic oddity in Tomboy's note format, a note's title is in a <title> tag but is also repeated
 	 * in the <note-content> tag. This method strips it from <note-content>.
-	 * @param noteContent
 	 */
 	private static String stripTitleFromContent(String xmlContent, String title) {
 		// get rid of the title that is doubled in the note's content
@@ -405,12 +372,9 @@ public class NoteManager {
 	/**
 	 * getNewNotes
 	 * get a guid list of notes that are newer than latest sync date 
-	 * @param activity
 	 */
 	public static Cursor getNewNotes(Activity activity) {
-		Cursor cursor = activity.managedQuery(Tomdroid.CONTENT_URI, DATE_PROJECTION, "strftime('%s', "+Note.MODIFIED_DATE+") > strftime('%s', '"+Preferences.getString(Preferences.Key.LATEST_SYNC_DATE)+"')", null, null);	
-				
-		return cursor;
+        return activity.managedQuery(Tomdroid.CONTENT_URI, DATE_PROJECTION, "strftime('%s', "+Note.MODIFIED_DATE+") > strftime('%s', '"+Preferences.getString(Preferences.Key.LATEST_SYNC_DATE)+"')", null, null);
 	}
 
 	/**
