@@ -438,9 +438,9 @@ public class SdCardSyncService extends SyncService {
 	@Override
 	public void backupNotes() {
 		Note[] notes = NoteManager.getAllNotesAsNotes(activity, true);
-		for(Note note : notes){
-			this.doPushNote(note);
-		}
+		if(notes != null && notes.length > 0) 
+			for(Note note : notes)
+				doPushNote(note);
 		sendMessage(NOTES_BACKED_UP);
 	}
 

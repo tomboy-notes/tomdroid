@@ -16,6 +16,8 @@ Tomdroid <version-code> - "<version-name>" released on <release-date>
 
 * fixed bug lp:1039703 Tomdroid crashes when rotating the device during synchronisation
 * fixed bug lp:1039824 Crash when rotate on Revert All
+* fixed bug lp:1039814 Crash on Backup Notes
+* fixed bug lp:
 
 -------------------------------------------------------------------------------
 Tomdroid 0.7.1 beta - "Fast paced" released on 2012-08-21
