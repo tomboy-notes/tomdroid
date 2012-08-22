@@ -234,18 +234,22 @@ public class Tomdroid extends ActionBarListActivity {
         adapter = NoteManager.getListAdapter(this, position);
 		setListAdapter(adapter);
 
-        // restore
+    // restore
+	
 		getListView().setSelectionFromTop(index, top);
+		
+		if(position >= adapter.getCount())
+			position = 0;
 		
 		Cursor item = (Cursor) adapter.getItem(position);
 		if (item == null || item.getCount() == 0) {
             TLog.d(TAG, "Index {0} not found in list", position);
 			return;
 		}
+		TLog.d(TAG, "Getting note {0}", position);
+
 		long noteId = item.getInt(item.getColumnIndexOrThrow(Note.ID));	
 		uri = Uri.parse(CONTENT_URI + "/" + noteId);
-
-		TLog.d(TAG, "Getting note {0}", position);
 
         note = NoteManager.getNote(this, uri);
 
