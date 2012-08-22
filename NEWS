@@ -30,6 +30,12 @@ Tomdroid 0.7.1 beta - <releaseName> released on <releaseDate>
 * bug fix lp:1038968 NullPointerException on SD Card sync with notes causing parse error
 
 -------------------------------------------------------------------------------
+Version 0.6.1 - "Polyglot" released on <releaseDate>
+
+* New translations: bs, el, eo, fa, fi, nb, si, ta
+* Updated translations: ar, ca, cs, da, de, en-rGB, es, eu, fo, fr, gd, hi, hu, it, ja, ko, ms, pl, pt-rBR, pt, ru, sv, te, tr, ug, uk, zh-rCN, zh
+
+-------------------------------------------------------------------------------
 Tomdroid 0.7 beta - "House of Fun" - Editing and Two-Way Sync!
 
 Editing Features:
