@@ -136,8 +136,11 @@
 	<string name="save">Save</string>
 	<string name="discard">Discard</string>
 	<string name="back">Back</string>
+	<!-- B stands for bold (in format bar) -->
 	<string name="bold">B</string>
+	<!-- i stands for italic (in format bar) -->
 	<string name="italic">i</string>
+	<!-- S stands for strike through (in format bar) -->
 	<string name="strike"><strike>S</strike></string>
 	<string name="mono">monospace</string>
 	<string name="highlight">highlight</string>

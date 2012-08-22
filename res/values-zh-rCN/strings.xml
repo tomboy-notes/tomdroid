@@ -136,8 +136,11 @@
 	<string name="save">保存</string>
 	<string name="discard">去掉</string>
 	<string name="back">返回</string>
+	<!-- B stands for bold (in format bar) -->
 	<string name="bold">B</string>
+	<!-- i stands for italic (in format bar) -->
 	<string name="italic">i</string>
+	<!-- S stands for strike through (in format bar) -->
 	<string name="strike"><strike>S</strike></string>
 	<string name="mono">等宽字体</string>
 	<string name="highlight">高亮</string>

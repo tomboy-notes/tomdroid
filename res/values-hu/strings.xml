@@ -136,8 +136,11 @@
 	<string name="save">Mentés</string>
 	<string name="discard">Elvetés</string>
 	<string name="back">Vissza</string>
+	<!-- B stands for bold (in format bar) -->
 	<string name="bold">B</string>
+	<!-- i stands for italic (in format bar) -->
 	<string name="italic">i</string>
+	<!-- S stands for strike through (in format bar) -->
 	<string name="strike"><strike>S</strike></string>
 	<string name="mono">állandó szélességű</string>
 	<string name="highlight">kiemelt</string>
