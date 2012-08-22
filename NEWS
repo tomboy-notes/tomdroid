@@ -15,6 +15,7 @@ For more details and developer visible changes see the ChangeLog
 Tomdroid <version-code> - "<version-name>" released on <release-date>
 
 * added GMail-style two-color pane and selector
+* made First Note translatable
 * fixed bug lp:1039703 Tomdroid crashes when rotating the device during synchronisation
 * fixed bug lp:1039824 Crash when rotate on Revert All
 * fixed bug lp:1039814 Crash on Backup Notes

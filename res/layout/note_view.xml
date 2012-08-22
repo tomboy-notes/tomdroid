@@ -49,7 +49,8 @@
 			  android:padding="10dip"
 			  android:singleLine="true"
 			  android:text=""
-			  android:textColor="#ffb8bcb8" />
+			  android:textColor="#ffb8bcb8"
+			  />
 			<TextView
 				android:id="@+id/content"
 				android:layout_width="match_parent"
@@ -58,7 +59,9 @@
 				android:text="@string/strWait"
 				android:textIsSelectable="true"
 				android:scrollHorizontally="false"
-				android:textColor="#ffb8bcb8" />
+				android:textColor="#ffb8bcb8"
+				android:fadingEdgeLength="0dp" 
+				/>
 		</LinearLayout>
 	</ScrollView>
 </LinearLayout>

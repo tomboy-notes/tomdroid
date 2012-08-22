@@ -341,7 +341,7 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, new Time().format3339(false));
 		
 		// add a first explanatory note
-		NoteManager.putNote(this, FirstNote.createFirstNote());
+		NoteManager.putNote(this, FirstNote.createFirstNote(this));
 		
 		String text = getString(R.string.messageDatabaseReset);
 		Toast.makeText(activity, text, Toast.LENGTH_SHORT).show();

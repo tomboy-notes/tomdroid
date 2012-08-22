@@ -159,6 +159,7 @@ public class Tomdroid extends ActionBarListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 		Preferences.init(this, CLEAR_PREFERENCES);
 		context = this;
         main =  View.inflate(this, R.layout.main, null);
@@ -174,7 +175,7 @@ public class Tomdroid extends ActionBarListActivity {
 			TLog.i(TAG, "Tomdroid is first run.");
 			
 			// add a first explanatory note
-			NoteManager.putNote(this, FirstNote.createFirstNote());
+			NoteManager.putNote(this, FirstNote.createFirstNote(this));
 			
 			// Warn that this is a "will eat your babies" release
 			showDialog(DIALOG_FIRST_RUN);
