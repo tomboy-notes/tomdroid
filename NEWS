@@ -27,7 +27,7 @@ Tomdroid 0.7.1 beta - <releaseName> released on <releaseDate>
 * bug fix lp:1038119 (beta) syncing is not smart :)
 * bug fix lp:1038352 tapping on blank area should go to end of line
 * bug fix lp:1038769 Typo in the string #41
-* bug fix lp:1038968 NullPointerException on SD Csrd sync with notes causing parse error
+* bug fix lp:1038968 NullPointerException on SD Card sync with notes causing parse error
 
 -------------------------------------------------------------------------------
 Tomdroid 0.7 beta - "House of Fun" - Editing and Two-Way Sync!
