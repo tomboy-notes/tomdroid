@@ -37,12 +37,12 @@ public class NewNote {
 	// Logging info
 	private static final String	TAG = "NewNote";
 	
-	public static Note createNewNote(Context context) {
+	public static Note createNewNote(Context context, String title, String xmlContent) {
 		TLog.v(TAG, "Creating new note");
 		
 		Note note = new Note();
 		
-		note.setTitle("");
+		note.setTitle(title);
 
 		UUID newid = UUID.randomUUID();
 		note.setGuid(newid.toString());
@@ -53,7 +53,7 @@ public class NewNote {
 		TLog.i(TAG, "New note date: {0}",time);
 
 		note.setLastChangeDate(time);
-		note.setXmlContent("");
+		note.setXmlContent(xmlContent);
 		
 		return note;
 	}

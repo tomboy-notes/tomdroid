@@ -805,7 +805,7 @@ public class Tomdroid extends ActionBarListActivity {
 		
 		// add a new note
 		
-		Note note = NewNote.createNewNote(this);
+		Note note = NewNote.createNewNote(this, "", "");
 		Uri uri = NoteManager.putNote(this, note);
 		
 		// recreate listAdapter
