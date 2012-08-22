@@ -12,6 +12,12 @@ Join it at: https://launchpad.net/~tomdroid-dev
 For more details and developer visible changes see the ChangeLog
 
 -------------------------------------------------------------------------------
+Version 0.6.1 - "Polyglot" released on <releaseDate>
+
+* New translations: bs, el, eo, fa, fi, nb, si, ta
+* Updated translations: ar, ca, cs, da, de, en-rGB, es, eu, fo, fr, gd, hi, hu, it, ja, ko, ms, pl, pt-rBR, pt, ru, sv, te, tr, ug, uk, zh-rCN, zh
+
+-------------------------------------------------------------------------------
 Version 0.6.0 - "Small World" released on 2012-08-16
 
 * Fix crash when authenticating a server URL containing line breaks (Stefan Hammer, lp:902855)
