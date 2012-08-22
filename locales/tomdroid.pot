@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-08-19 23:39+0200\n"
+"POT-Creation-Date: 2012-08-22 17:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -304,7 +304,7 @@ msgstr ""
 
 #. 500 chars max
 #: tmp_strings.xml:130(string)
-msgid "* Search notes and system integrated search\\n* Context menu\\n* Several usability improvements\\n* Higher quality icons\\n* Several bug fixes\\n* German translation\\n"
+msgid "0.6 \\\"Small World\\\" release\\n* Create home-screen shortcuts to notes\\n* Specify a folder to use for SD Card sync\\n* Reload current note after sync\\n* A lot of new translations: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\\n* Several bugfixes\\n"
 msgstr ""
 
 #. Launchpad Translation String
