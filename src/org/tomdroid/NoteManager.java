@@ -309,7 +309,7 @@ public class NoteManager {
 		return notes;
 	}	
 
-	public static ListAdapter getListAdapter(Activity activity, String querys) {
+	public static ListAdapter getListAdapter(Activity activity, String querys, int selectedIndex) {
 		
 		boolean includeNotebookTemplates = Preferences.getBoolean(Preferences.Key.INCLUDE_NOTE_TEMPLATES);
 
@@ -337,12 +337,20 @@ public class NoteManager {
 		// set up an adapter binding the TITLE field of the cursor to the list item
 		String[] from = new String[] { Note.TITLE };
 		int[] to = new int[] { R.id.note_title };
-		return new NoteListCursorAdapter(activity, R.layout.main_list_item, notesCursor, from, to);
+		return new NoteListCursorAdapter(activity, R.layout.main_list_item, notesCursor, from, to, selectedIndex);
 	}
 	
+	public static ListAdapter getListAdapter(Activity activity, int selectedIndex) {
+		
+		return getListAdapter(activity, null, selectedIndex);
+	}
+	public static ListAdapter getListAdapter(Activity activity, String querys) {
+		
+		return getListAdapter(activity, querys, -1);
+	}
 	public static ListAdapter getListAdapter(Activity activity) {
 		
-		return getListAdapter(activity, null);
+		return getListAdapter(activity, null, -1);
 	}
 
 	// gets the titles of the notes present in the db, used in ViewNote.buildLinkifyPattern()

@@ -50,6 +50,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.LauncherActivity.ListItem;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -199,7 +200,7 @@ public class Tomdroid extends ActionBarListActivity {
 			
 			// this we will call on resume as well.
 			updateTextAttributes();
-			showNoteInPane(-1);
+			showNoteInPane(0);
 		}
 		
 		// dev function, uncomment to test out the compare_notes activity
@@ -224,11 +225,18 @@ public class Tomdroid extends ActionBarListActivity {
         title.setText("");
         content.setText("");
 		
-		if(position == -1) {
-			adapter = NoteManager.getListAdapter(this);
-			setListAdapter(adapter);
-			position = 0;
-		}
+     // save index and top position
+
+        int index = getListView().getFirstVisiblePosition();
+        View v = getListView().getChildAt(0);
+        int top = (v == null) ? 0 : v.getTop();
+
+        adapter = NoteManager.getListAdapter(this, position);
+		setListAdapter(adapter);
+
+        // restore
+		getListView().setSelectionFromTop(index, top);
+		
 		Cursor item = (Cursor) adapter.getItem(position);
 		if (item == null || item.getCount() == 0) {
             TLog.d(TAG, "Index {0} not found in list", position);
@@ -242,9 +250,9 @@ public class Tomdroid extends ActionBarListActivity {
         note = NoteManager.getNote(this, uri);
 
         if(note != null) {
-        	
         	TLog.d(TAG, "note {0} found", position);
             noteContent = new NoteContentBuilder().setCaller(noteContentHandler).setInputSource(note.getXmlContent()).setTitle(note.getTitle()).build();
+    		lastIndex = position;
         } else {
             TLog.d(TAG, "The note {0} doesn't exist", uri);
             showDialog(DIALOG_NOT_FOUND);
@@ -769,7 +777,6 @@ public class Tomdroid extends ActionBarListActivity {
 			long noteId = item.getInt(item.getColumnIndexOrThrow(Note.ID));
 				this.ViewNote(noteId);
 		}
-		lastIndex = position;
 	}
 	
 	public void ViewNote(long noteId) {
@@ -796,14 +803,14 @@ public class Tomdroid extends ActionBarListActivity {
 		Note note = NewNote.createNewNote(this);
 		Uri uri = NoteManager.putNote(this, note);
 		
-		// set list item to top
-		
-		lastIndex = 0;
-		
 		// recreate listAdapter
 		
 		adapter = NoteManager.getListAdapter(this);
 		setListAdapter(adapter);
+
+		// show new note and update list
+
+		showNoteInPane(0);
 		
 		// view new note
 		
