@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-08-21 16:54+0200\n"
+"POT-Creation-Date: 2012-08-22 18:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,11 +64,11 @@ msgstr ""
 msgid "OK"
 msgstr ""
 
-#: tmp_strings.xml:45(string) tmp_strings.xml:207(string)
+#: tmp_strings.xml:45(string) tmp_strings.xml:210(string)
 msgid "Cancel"
 msgstr ""
 
-#: tmp_strings.xml:46(string) tmp_strings.xml:206(string)
+#: tmp_strings.xml:46(string) tmp_strings.xml:209(string)
 msgid "Close"
 msgstr ""
 
@@ -304,7 +304,7 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: tmp_strings.xml:123(string) tmp_strings.xml:178(string)
+#: tmp_strings.xml:123(string) tmp_strings.xml:181(string)
 msgid "Clear Notes"
 msgstr ""
 
@@ -312,7 +312,7 @@ msgstr ""
 msgid "Are you sure you want to clear the notes database?"
 msgstr ""
 
-#: tmp_strings.xml:125(string) tmp_strings.xml:180(string)
+#: tmp_strings.xml:125(string) tmp_strings.xml:183(string)
 msgid "Delete Remote Notes"
 msgstr ""
 
@@ -350,381 +350,383 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: tmp_strings.xml:139(string)
+#. B stands for bold (in format bar)
+#: tmp_strings.xml:140(string)
 msgid "B"
 msgstr ""
 
-#: tmp_strings.xml:140(string)
+#. i stands for italic (in format bar)
+#: tmp_strings.xml:142(string)
 msgid "i"
 msgstr ""
 
-#: tmp_strings.xml:141(strike)
+#: tmp_strings.xml:144(strike)
 msgid "S"
 msgstr ""
 
-#: tmp_strings.xml:142(string)
+#: tmp_strings.xml:145(string)
 msgid "monospace"
 msgstr ""
 
-#: tmp_strings.xml:143(string)
+#: tmp_strings.xml:146(string)
 msgid "highlight"
 msgstr ""
 
-#: tmp_strings.xml:144(string)
+#: tmp_strings.xml:147(string)
 msgid "size"
 msgstr ""
 
-#: tmp_strings.xml:145(string)
+#: tmp_strings.xml:148(string)
 msgid "XML"
 msgstr ""
 
-#: tmp_strings.xml:146(string)
+#: tmp_strings.xml:149(string)
 msgid "Text"
 msgstr ""
 
-#: tmp_strings.xml:147(string)
+#: tmp_strings.xml:150(string)
 msgid "Error parsing note"
 msgstr ""
 
-#: tmp_strings.xml:148(string)
+#: tmp_strings.xml:151(string)
 msgid "There was an error parsing the note. Please check your XML."
 msgstr ""
 
-#: tmp_strings.xml:149(string)
+#: tmp_strings.xml:152(string)
 msgid "Note saved locally."
 msgstr ""
 
-#: tmp_strings.xml:150(string)
+#: tmp_strings.xml:153(string)
 msgid "Note deleted locally."
 msgstr ""
 
-#: tmp_strings.xml:151(string)
+#: tmp_strings.xml:154(string)
 msgid "Select text size"
 msgstr ""
 
-#: tmp_strings.xml:152(string)
+#: tmp_strings.xml:155(string)
 msgid "Small"
 msgstr ""
 
-#: tmp_strings.xml:153(string)
+#: tmp_strings.xml:156(string)
 msgid "Normal"
 msgstr ""
 
-#: tmp_strings.xml:154(string)
+#: tmp_strings.xml:157(string)
 msgid "Large"
 msgstr ""
 
-#: tmp_strings.xml:155(string)
+#: tmp_strings.xml:158(string)
 msgid "Huge"
 msgstr ""
 
-#: tmp_strings.xml:156(string)
+#: tmp_strings.xml:159(string)
 msgid "Do you really want to discard your changes and revert the note to the last saved version?"
 msgstr ""
 
-#: tmp_strings.xml:157(string)
+#: tmp_strings.xml:160(string)
 msgid "Discard Changes?"
 msgstr ""
 
-#: tmp_strings.xml:158(b)
+#: tmp_strings.xml:161(b)
 msgid "&gt;"
 msgstr ""
 
-#: tmp_strings.xml:159(b)
+#: tmp_strings.xml:162(b)
 msgid "&lt;"
 msgstr ""
 
 #. New Titles
-#: tmp_strings.xml:162(string)
+#: tmp_strings.xml:165(string)
 msgid "Tomdroid - View Note"
 msgstr ""
 
-#: tmp_strings.xml:163(string)
+#: tmp_strings.xml:166(string)
 msgid "Tomdroid - Edit Note"
 msgstr ""
 
-#: tmp_strings.xml:164(string)
+#: tmp_strings.xml:167(string)
 msgid "Tomdroid - Search Results"
 msgstr ""
 
-#: tmp_strings.xml:165(string)
+#: tmp_strings.xml:168(string)
 msgid "Tomdroid - Shortcuts"
 msgstr ""
 
-#: tmp_strings.xml:166(string)
+#: tmp_strings.xml:169(string)
 msgid "Tomdroid - Settings"
 msgstr ""
 
 #. new prefs
-#: tmp_strings.xml:169(string)
+#: tmp_strings.xml:172(string)
 msgid "Display Preferences"
 msgstr ""
 
-#: tmp_strings.xml:170(string)
+#: tmp_strings.xml:173(string)
 msgid "Base Font Size"
 msgstr ""
 
-#: tmp_strings.xml:171(string)
+#: tmp_strings.xml:174(string)
 msgid "Synchronization"
 msgstr ""
 
-#: tmp_strings.xml:172(string)
+#: tmp_strings.xml:175(string)
 msgid "Misc. Options"
 msgstr ""
 
-#: tmp_strings.xml:173(string)
+#: tmp_strings.xml:176(string)
 msgid "Tools"
 msgstr ""
 
-#: tmp_strings.xml:174(string)
+#: tmp_strings.xml:177(string)
 msgid "Auto Save Note"
 msgstr ""
 
-#: tmp_strings.xml:175(string)
+#: tmp_strings.xml:178(string)
 msgid "Save notes automatically on exiting editor."
 msgstr ""
 
-#: tmp_strings.xml:176(string)
+#: tmp_strings.xml:179(string)
 msgid "Show Note Templates"
 msgstr ""
 
-#: tmp_strings.xml:177(string)
+#: tmp_strings.xml:180(string)
 msgid "If checked, will show note templates in notes list."
 msgstr ""
 
-#: tmp_strings.xml:179(string)
+#: tmp_strings.xml:182(string)
 msgid "Clear all notes from local database"
 msgstr ""
 
-#: tmp_strings.xml:181(string)
+#: tmp_strings.xml:184(string)
 msgid "Delete all notes from remote service"
 msgstr ""
 
-#: tmp_strings.xml:182(string)
+#: tmp_strings.xml:185(string)
 msgid "Illegal text size chosen. Please choose a number."
 msgstr ""
 
 #. syncNotes
-#: tmp_strings.xml:186(string)
+#: tmp_strings.xml:189(string)
 msgid "Syncing with %1$s"
 msgstr ""
 
-#: tmp_strings.xml:187(string)
+#: tmp_strings.xml:190(string)
 msgid "connecting to service…"
 msgstr ""
 
-#: tmp_strings.xml:188(string)
+#: tmp_strings.xml:191(string)
 msgid "updating local notes…"
 msgstr ""
 
-#: tmp_strings.xml:189(string)
+#: tmp_strings.xml:192(string)
 msgid "updating remote notes…"
 msgstr ""
 
-#: tmp_strings.xml:190(string)
+#: tmp_strings.xml:193(string)
 msgid "Note Conflict"
 msgstr ""
 
-#: tmp_strings.xml:191(string)
+#: tmp_strings.xml:194(string)
 msgid "There was a conflict syncing the note \"%1$s\". Please choose an action to resolve the conflict. You may edit either note before choosing, or view the difference by clicking on the labels below."
 msgstr ""
 
-#: tmp_strings.xml:192(string)
+#: tmp_strings.xml:195(string)
 msgid "There was a conflict syncing the note \"%1$s\" (local version was deleted). Please choose from one of the actions below."
 msgstr ""
 
-#: tmp_strings.xml:193(string)
+#: tmp_strings.xml:196(string)
 msgid "There was a conflict syncing the note \"%1$s\". A note with that title already exists in the database. Please choose an action to resolve the conflict. You may edit either note before choosing, or view the difference by clicking on the labels below."
 msgstr ""
 
-#: tmp_strings.xml:194(string)
+#: tmp_strings.xml:197(string)
 msgid "Overwrite\\nRemote"
 msgstr ""
 
-#: tmp_strings.xml:195(string)
+#: tmp_strings.xml:198(string)
 msgid "Overwrite\\nLocal"
 msgstr ""
 
-#: tmp_strings.xml:196(string)
+#: tmp_strings.xml:199(string)
 msgid "Delete Remote"
 msgstr ""
 
-#: tmp_strings.xml:197(string)
+#: tmp_strings.xml:200(string)
 msgid "Difference Between Files"
 msgstr ""
 
-#: tmp_strings.xml:198(string)
+#: tmp_strings.xml:201(string)
 msgid "-- Title Differences --"
 msgstr ""
 
-#: tmp_strings.xml:199(string)
+#: tmp_strings.xml:202(string)
 msgid "-- Content Differences --"
 msgstr ""
 
-#: tmp_strings.xml:200(string)
+#: tmp_strings.xml:203(string)
 msgid "Line %1$s:"
 msgstr ""
 
-#: tmp_strings.xml:201(string)
+#: tmp_strings.xml:204(string)
 msgid "Local Version"
 msgstr ""
 
-#: tmp_strings.xml:202(string)
+#: tmp_strings.xml:205(string)
 msgid "Remote Version"
 msgstr ""
 
-#: tmp_strings.xml:203(string)
+#: tmp_strings.xml:206(string)
 msgid "Deleted"
 msgstr ""
 
-#: tmp_strings.xml:204(string)
+#: tmp_strings.xml:207(string)
 msgid "Create\\nCopy"
 msgstr ""
 
-#: tmp_strings.xml:205(string)
+#: tmp_strings.xml:208(string)
 msgid "%1$s (old)"
 msgstr ""
 
-#: tmp_strings.xml:208(string)
+#: tmp_strings.xml:211(string)
 msgid "Authorization with %1$s successful."
 msgstr ""
 
-#: tmp_strings.xml:209(string)
+#: tmp_strings.xml:212(string)
 msgid "Authorization with %1$s failed. Maybe try again?"
 msgstr ""
 
-#: tmp_strings.xml:210(string)
+#: tmp_strings.xml:213(string)
 msgid "Note deleted from %1$s successfully."
 msgstr ""
 
-#: tmp_strings.xml:211(string)
+#: tmp_strings.xml:214(string)
 msgid "Note sent to %1$s successfully."
 msgstr ""
 
-#: tmp_strings.xml:212(string)
+#: tmp_strings.xml:215(string)
 msgid "Note received from %1$s successfully."
 msgstr ""
 
-#: tmp_strings.xml:213(string)
+#: tmp_strings.xml:216(string)
 msgid "Error deleting note from %1$s."
 msgstr ""
 
-#: tmp_strings.xml:214(string)
+#: tmp_strings.xml:217(string)
 msgid "Error sending note to %1$s."
 msgstr ""
 
-#: tmp_strings.xml:215(string)
+#: tmp_strings.xml:218(string)
 msgid "Error receiving note from %1$s."
 msgstr ""
 
-#: tmp_strings.xml:216(string)
+#: tmp_strings.xml:219(string)
 msgid "Error parsing response from %1$s."
 msgstr ""
 
-#: tmp_strings.xml:217(string)
+#: tmp_strings.xml:220(string)
 msgid "Error connecting to %1$s. You probably need to authenticate in \"Settings\"."
 msgstr ""
 
-#: tmp_strings.xml:218(string)
+#: tmp_strings.xml:221(string)
 msgid "Notes deleted from %1$s successfully."
 msgstr ""
 
-#: tmp_strings.xml:219(string)
+#: tmp_strings.xml:222(string)
 msgid "Sync with %1$s cancelled."
 msgstr ""
 
 #. revert notes
-#: tmp_strings.xml:223(string)
+#: tmp_strings.xml:226(string)
 msgid "Revert"
 msgstr ""
 
-#: tmp_strings.xml:224(string)
+#: tmp_strings.xml:227(string)
 msgid "Revert All"
 msgstr ""
 
-#: tmp_strings.xml:225(string)
+#: tmp_strings.xml:228(string)
 msgid "Revert Notes"
 msgstr ""
 
-#: tmp_strings.xml:226(string)
+#: tmp_strings.xml:229(string)
 msgid "This will revert your local notes to whatever versions exist on the remote service. Are you sure you want to do this?"
 msgstr ""
 
-#: tmp_strings.xml:227(string)
+#: tmp_strings.xml:230(string)
 msgid "Revert Note"
 msgstr ""
 
-#: tmp_strings.xml:228(string)
+#: tmp_strings.xml:231(string)
 msgid "This will revert a local note to whatever version exist on the remote service. Are you sure you want to do this?"
 msgstr ""
 
 #. backup notes
-#: tmp_strings.xml:232(string)
+#: tmp_strings.xml:235(string)
 msgid "Backup Notes"
 msgstr ""
 
-#: tmp_strings.xml:233(string)
+#: tmp_strings.xml:236(string)
 msgid "Copy all local notes to SD Card"
 msgstr ""
 
-#: tmp_strings.xml:234(string)
+#: tmp_strings.xml:237(string)
 msgid "Backup Notes?"
 msgstr ""
 
-#: tmp_strings.xml:235(string)
+#: tmp_strings.xml:238(string)
 msgid "Copy all local notes to SD Card? This may overwrite existing notes on the SD Card."
 msgstr ""
 
-#: tmp_strings.xml:236(string)
+#: tmp_strings.xml:239(string)
 msgid "Restore Notes"
 msgstr ""
 
-#: tmp_strings.xml:237(string)
+#: tmp_strings.xml:240(string)
 msgid "Pull all notes from SD Card"
 msgstr ""
 
-#: tmp_strings.xml:238(string)
+#: tmp_strings.xml:241(string)
 msgid "Restore Notes?"
 msgstr ""
 
-#: tmp_strings.xml:239(string)
+#: tmp_strings.xml:242(string)
 msgid "Pull all notes from SD Card? This may overwrite your existing notes."
 msgstr ""
 
-#: tmp_strings.xml:240(string)
+#: tmp_strings.xml:243(string)
 msgid "Notes backed up to SD card successfully."
 msgstr ""
 
-#: tmp_strings.xml:241(string)
+#: tmp_strings.xml:244(string)
 msgid "Notes restored from SD card successfully."
 msgstr ""
 
-#: tmp_strings.xml:242(string)
+#: tmp_strings.xml:245(string)
 msgid "Notes cleared successfully."
 msgstr ""
 
 #. 30 chars max
-#: tmp_strings.xml:249(string)
+#: tmp_strings.xml:252(string)
 msgid "Tomdroid notes"
 msgstr ""
 
 #. 4000 chars max
-#: tmp_strings.xml:251(string)
+#: tmp_strings.xml:254(string)
 msgid "A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\\n\\n* Note format compatibility with Tomboy\\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\\n* SD Card importation\\n* Open source!"
 msgstr ""
 
 #. 80 chars max
-#: tmp_strings.xml:254(string)
+#: tmp_strings.xml:257(string)
 msgid "Note-taking application with online synchronization compatible with Tomboy"
 msgstr ""
 
 #. 500 chars max
-#: tmp_strings.xml:257(string)
-msgid "* Search notes and system integrated search\\n* Context menu\\n* Several usability improvements\\n* Higher quality icons\\n* Several bug fixes\\n* German translation\\n"
+#: tmp_strings.xml:260(string)
+msgid "0.6 \\\"Small World\\\" release\\n* Create home-screen shortcuts to notes\\n* Specify a folder to use for SD Card sync\\n* Reload current note after sync\\n* A lot of new translations: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\\n* Several bugfixes\\n"
 msgstr ""
 
 #. Launchpad Translation String
-#: tmp_strings.xml:260(string)
+#: tmp_strings.xml:263(string)
 msgid "translator-credits"
 msgstr ""
 
