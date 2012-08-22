@@ -44,6 +44,7 @@ import android.provider.SearchRecentSuggestions;
 import android.text.format.Time;
 import android.view.MenuItem;
 import android.view.Window;
+import android.webkit.URLUtil;
 import android.widget.Toast;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
@@ -149,7 +150,8 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 							Toast.LENGTH_SHORT).show();
 					return false;
 				}
-				if ((serverUri.toString().contains("\t")) || (serverUri.toString().contains(" ")) || (serverUri.toString().contains("\n"))){
+				
+				if (!URLUtil.isValidUrl(serverUri.toString())){
 					noValidEntry(serverUri.toString());
 					return false;
 				}
@@ -328,7 +330,7 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 	}
 	
 	private void noValidEntry(String entry) {
-		dialogString = String.format(getString(R.string.prefFolderCreated), entry);
+		dialogString = String.format(getString(R.string.prefNoValidEntry), entry);
 		showDialog(DIALOG_FOLDER_ERROR);
 	}
 
