@@ -26,6 +26,7 @@
         <activity android:label="@string/app_name"
         		  android:theme="@style/LightTheme"
         		  android:name=".ui.Tomdroid"
+        		  android:configChanges="orientation|screenSize"
         		  >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -54,7 +55,7 @@
 			</intent-filter>
 		</activity>
 		<activity android:name=".ui.EditNote"
-			android:configChanges="keyboardHidden|orientation"
+			android:configChanges="keyboardHidden|orientation|screenSize"
 			android:theme="@style/LightTheme"
 			android:label="@string/edit_title"
 		    >
@@ -81,6 +82,7 @@
         <activity android:name=".ui.PreferencesActivity" 
         	android:theme="@style/LightTheme"
  			android:label="@string/pref_title"
+ 			android:configChanges="orientation|screenSize"
  			>
 
     	</activity>

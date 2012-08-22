@@ -49,6 +49,7 @@ import org.tomdroid.util.TLog;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -87,7 +88,27 @@ public class Tomdroid extends ActionBarListActivity {
 	public static final String	PROJECT_HOMEPAGE	= "http://www.launchpad.net/tomdroid/";
 	public static final String CALLED_FROM_SHORTCUT_EXTRA = "org.tomdroid.CALLED_FROM_SHORTCUT";
     public static final String SHORTCUT_NAME = "org.tomdroid.SHORTCUT_NAME";
-
+	
+    private static final int DIALOG_SYNC = 0;
+	private static final int DIALOG_ABOUT = 1;
+	private static final int DIALOG_FIRST_RUN = 2;
+	private static final int DIALOG_NOT_FOUND = 3;
+	private static final int DIALOG_PARSE_ERROR = 4;
+	private static final int DIALOG_REVERT_ALL = 5;
+	private static final int DIALOG_AUTH_PROGRESS = 6;
+	private static final int DIALOG_CONNECT_FAILED = 7;
+	private static final int DIALOG_DELETE_NOTE = 8;
+	private static final int DIALOG_REVERT_NOTE = 9;
+	private static final int DIALOG_SYNC_ERRORS = 10;
+	private static final int DIALOG_SYNC_PROGRESS_UPDATE = 11;
+	
+	// dialog-specific variables
+	
+	private int alertPosition;
+	private Note alertNote;
+	private String alertString;
+	private boolean alertBoolean;
+	
 	// config parameters
 	public static String	NOTES_PATH				= null;
 	
@@ -116,8 +137,8 @@ public class Tomdroid extends ActionBarListActivity {
 	// sync variables
 	private int latestRevision;
 	private boolean creating = true;
-	private SyncManager sync;
 	private static ProgressDialog syncProgressDialog;
+	private static ProgressDialog authProgressDialog;
 	
 	// UI for tablet
 	private LinearLayout rightPane;
@@ -155,13 +176,8 @@ public class Tomdroid extends ActionBarListActivity {
 			NoteManager.putNote(this, FirstNote.createFirstNote());
 			
 			// Warn that this is a "will eat your babies" release
-			new AlertDialog.Builder(this).setMessage(getString(R.string.strWelcome)).setTitle(
-					getString(R.string.titleWelcome)).setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) {
-					Preferences.putBoolean(Preferences.Key.FIRST_RUN, false);
-					dialog.dismiss();
-				}
-			}).setIcon(R.drawable.icon).show();
+			showDialog(DIALOG_FIRST_RUN);
+
 		}
 		
 		// adapter that binds the ListView UI to the notes in the note manager
@@ -231,7 +247,7 @@ public class Tomdroid extends ActionBarListActivity {
             noteContent = new NoteContentBuilder().setCaller(noteContentHandler).setInputSource(note.getXmlContent()).setTitle(note.getTitle()).build();
         } else {
             TLog.d(TAG, "The note {0} doesn't exist", uri);
-            showNoteNotFoundDialog(uri);
+            showDialog(DIALOG_NOT_FOUND);
         }
 	}
 	private void showNote(boolean xml) {
@@ -266,12 +282,6 @@ public class Tomdroid extends ActionBarListActivity {
 
 		title.setText((CharSequence) note.getTitle());
 
-	}
-	private void showNoteNotFoundDialog(final Uri uri) {
-	    final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-	    addCommonNoteNotFoundDialogElements(builder);
-	    addShortcutNoteNotFoundElements(uri, builder);
-	    builder.show();
 	}
 	private void addShortcutNoteNotFoundElements(final Uri uri, final AlertDialog.Builder builder) {
 	    final boolean proposeShortcutRemoval;
@@ -313,14 +323,7 @@ public class Tomdroid extends ActionBarListActivity {
 			//parsed not ok - error
 			} else if(msg.what == NoteContentBuilder.PARSE_ERROR) {
 	
-				new AlertDialog.Builder(Tomdroid.this)
-					.setMessage(getString(R.string.messageErrorNoteParsing))
-					.setTitle(getString(R.string.error))
-					.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
-						public void onClick(DialogInterface dialog, int which) {
-							showNote(true);
-						}})
-					.show();
+				showDialog(DIALOG_PARSE_ERROR);
 	    	}
 		}
 	};
@@ -382,7 +385,7 @@ public class Tomdroid extends ActionBarListActivity {
 			return Tomdroid.CONTENT_URI.toString()+"/"+id;
 		}
 	};
-	
+
 	@TargetApi(11)
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -401,7 +404,7 @@ public class Tomdroid extends ActionBarListActivity {
 	public boolean onOptionsItemSelected(final MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.menuAbout:
-				showAboutDialog();
+				showDialog(DIALOG_ABOUT);
 				return true;
 			case R.id.menuSync:
 				startSyncing(true);
@@ -410,21 +413,7 @@ public class Tomdroid extends ActionBarListActivity {
 				newNote();
 				return true;
 			case R.id.menuRevert:
-				new AlertDialog.Builder(this)
-		        .setIcon(android.R.drawable.ic_dialog_alert)
-		        .setTitle(R.string.revert_notes)
-		        .setMessage(R.string.revert_notes_message)
-		        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-
-		            public void onClick(DialogInterface dialog, int which) {
-		        		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, 0);
-		        		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, new Time().format3339(false));
-		            	startSyncing(false);
-		           }
-
-		        })
-		        .setNegativeButton(R.string.no, null)
-		        .show();
+				showDialog(DIALOG_REVERT_ALL);
 				return true;
 			case R.id.menuPrefs:
 				startActivity(new Intent(this, PreferencesActivity.class));
@@ -456,8 +445,8 @@ public class Tomdroid extends ActionBarListActivity {
 	
 			// service needs authentication
 			TLog.i(TAG, "Creating dialog");
-	
-			final ProgressDialog authProgress = ProgressDialog.show(this, "", getString(R.string.prefSyncCompleteAuth), true, false);
+
+			showDialog(DIALOG_AUTH_PROGRESS);
 	
 			Handler handler = new Handler() {
 	
@@ -477,13 +466,13 @@ public class Tomdroid extends ActionBarListActivity {
 						wasSuccessful = false;
 					}
 	
-					if (authProgress != null)
-						authProgress.dismiss();
+					if (authProgressDialog != null)
+						authProgressDialog.dismiss();
 	
 					if (wasSuccessful) {
 						resetLocalDatabase();
 					} else {
-						connectionFailed();
+						showDialog(DIALOG_CONNECT_FAILED);
 					}
 				}
 			};
@@ -491,30 +480,9 @@ public class Tomdroid extends ActionBarListActivity {
 			((ServiceAuth) currentService).getAuthUri(serverUri, handler);
 		}
 		else {
-			String serviceDescription = currentService.getDescription();
-	        sync = SyncManager.getInstance();
-			
-			syncProgressDialog = new ProgressDialog(this);
-			syncProgressDialog.setTitle(String.format(getString(R.string.syncing),serviceDescription));
-			syncProgressDialog.setMessage(getString(R.string.syncing_connect));
-			syncProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-			syncProgressDialog.setButton(ProgressDialog.BUTTON_NEGATIVE, getString(R.string.cancel), new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) {
-					syncProgressDialog.cancel();
-				}
-			});
-			syncProgressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-
-				public void onCancel(DialogInterface dialog) {
-					sync.cancel();
-				}
-				
-			});
-			syncProgressDialog.setMax(0);
-	        syncProgressDialog.setIndeterminate(true);
-			syncProgressDialog.show();
-	
-	    	sync.startSynchronization(push); // push by default
+	        
+	        showDialog(DIALOG_SYNC);
+	        SyncManager.getInstance().startSynchronization(push); // push by default
 		}
 	}
 	
@@ -525,15 +493,6 @@ public class Tomdroid extends ActionBarListActivity {
 		
 		// first explanatory note will be deleted on sync
 		//NoteManager.putNote(this, FirstNote.createFirstNote());
-	}
-	private void connectionFailed() {
-		new AlertDialog.Builder(this)
-			.setMessage(getString(R.string.prefSyncConnectionFailed))
-			.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) {
-					dialog.dismiss();
-				}})
-			.show();
 	}
 	
 	@Override
@@ -591,14 +550,15 @@ public class Tomdroid extends ActionBarListActivity {
 
 			if (uri != null && uri.getScheme().equals("tomdroid")) {
 				TLog.i(TAG, "Got url : {0}", uri.toString());
-
-				final ProgressDialog dialog = ProgressDialog.show(this, "",	getString(R.string.prefSyncCompleteAuth), true, false);
+				
+				showDialog(DIALOG_AUTH_PROGRESS);
 
 				Handler handler = new Handler() {
 
 					@Override
 					public void handleMessage(Message msg) {
-						dialog.dismiss();
+						if(authProgressDialog != null)
+							authProgressDialog.dismiss();
 						if(msg.what == SyncService.AUTH_COMPLETE)
 							startSyncing(true);
 					}
@@ -622,37 +582,177 @@ public class Tomdroid extends ActionBarListActivity {
 		creating = false;
 	}
 
-	private void showAboutDialog() {
-
-		// grab version info
-		String ver;
-		try {
-			ver = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
-		} catch (NameNotFoundException e) {
-			e.printStackTrace();
-			ver = "Not found!";
-		}
-
-		// format the string
-		String aboutDialogFormat = getString(R.string.strAbout);
-		String aboutDialogStr = String.format(aboutDialogFormat, getString(R.string.app_desc), // App description
-				getString(R.string.author), // Author name
-				ver // Version
-				);
-
-		// build and show the dialog
-		new AlertDialog.Builder(this).setMessage(aboutDialogStr).setTitle(getString(R.string.titleAbout))
-				.setIcon(R.drawable.icon).setNegativeButton(getString(R.string.btnProjectPage), new OnClickListener() {
+	protected Dialog onCreateDialog(int id) {
+	    final Activity activity = this;
+		AlertDialog alertDialog;
+	    switch(id) {
+		    case DIALOG_SYNC:
+				SyncService currentService = SyncManager.getInstance().getCurrentService();
+				String serviceDescription = currentService.getDescription();
+				syncProgressDialog = new ProgressDialog(this);
+				syncProgressDialog.setTitle(String.format(getString(R.string.syncing),serviceDescription));
+				syncProgressDialog.setMessage(getString(R.string.syncing_connect));
+				syncProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+				syncProgressDialog.setButton(ProgressDialog.BUTTON_NEGATIVE, getString(R.string.cancel), new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
-						startActivity(new Intent(Intent.ACTION_VIEW, Uri
-								.parse(Tomdroid.PROJECT_HOMEPAGE)));
+						syncProgressDialog.cancel();
+					}
+				});
+				syncProgressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+
+					public void onCancel(DialogInterface dialog) {
+						SyncManager.getInstance().cancel();
+					}
+					
+				});
+				syncProgressDialog.setMax(0);
+		        syncProgressDialog.setIndeterminate(true);
+		        return syncProgressDialog;
+		    case DIALOG_SYNC_PROGRESS_UPDATE:
+		    	return syncProgressDialog;
+		    case DIALOG_ABOUT:
+				// grab version info
+				String ver;
+				try {
+					ver = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+				} catch (NameNotFoundException e) {
+					e.printStackTrace();
+					ver = "Not found!";
+					return null;
+				}
+		    	
+		    	// format the string
+				String aboutDialogFormat = getString(R.string.strAbout);
+				String aboutDialogStr = String.format(aboutDialogFormat, getString(R.string.app_desc), // App description
+						getString(R.string.author), // Author name
+						ver // Version
+						);
+
+				// build and show the dialog
+				alertDialog = new AlertDialog.Builder(this).setMessage(aboutDialogStr).setTitle(getString(R.string.titleAbout))
+						.setIcon(R.drawable.icon).setNegativeButton(getString(R.string.btnProjectPage), new OnClickListener() {
+							public void onClick(DialogInterface dialog, int which) {
+								startActivity(new Intent(Intent.ACTION_VIEW, Uri
+										.parse(Tomdroid.PROJECT_HOMEPAGE)));
+								dialog.dismiss();
+							}
+						}).setPositiveButton(getString(R.string.btnOk), new OnClickListener() {
+							public void onClick(DialogInterface dialog, int which) {
+								dialog.dismiss();
+							}
+						}).create();
+				break;
+		    case DIALOG_FIRST_RUN:
+				alertDialog = new AlertDialog.Builder(this).setMessage(getString(R.string.strWelcome)).setTitle(
+						getString(R.string.titleWelcome)).setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						Preferences.putBoolean(Preferences.Key.FIRST_RUN, false);
 						dialog.dismiss();
 					}
-				}).setPositiveButton(getString(R.string.btnOk), new OnClickListener() {
+				}).setIcon(R.drawable.icon).create();
+				break;
+		    case DIALOG_NOT_FOUND:
+		    	final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			    addCommonNoteNotFoundDialogElements(builder);
+			    addShortcutNoteNotFoundElements(uri, builder);
+			    alertDialog = builder.create();
+				break;
+		    case DIALOG_PARSE_ERROR:
+				alertDialog = new AlertDialog.Builder(this)
+				.setMessage(getString(R.string.messageErrorNoteParsing))
+				.setTitle(getString(R.string.error))
+				.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						showNote(true);
+					}})
+				.create();
+				break;
+		    case DIALOG_REVERT_ALL:
+				alertDialog = new AlertDialog.Builder(this)
+		        .setIcon(android.R.drawable.ic_dialog_alert)
+		        .setTitle(R.string.revert_notes)
+		        .setMessage(R.string.revert_notes_message)
+		        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+
+		            public void onClick(DialogInterface dialog, int which) {
+		        		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, 0);
+		        		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, new Time().format3339(false));
+		            	startSyncing(false);
+		           }
+
+		        })
+		        .setNegativeButton(R.string.no, null)
+		        .create();
+				break;
+		    case DIALOG_AUTH_PROGRESS:
+		    	authProgressDialog = new ProgressDialog(this);
+		    	authProgressDialog.setTitle("");
+		    	authProgressDialog.setMessage(getString(R.string.prefSyncCompleteAuth));
+		    	authProgressDialog.setIndeterminate(true);
+		    	authProgressDialog.setCancelable(false);
+		        return authProgressDialog;
+		    case DIALOG_CONNECT_FAILED:
+				alertDialog = new AlertDialog.Builder(this)
+				.setMessage(getString(R.string.prefSyncConnectionFailed))
+				.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						dialog.dismiss();
+					}})
+				.create();
+				break;
+		    case DIALOG_DELETE_NOTE:
+				alertDialog = new AlertDialog.Builder(this)
+		        .setIcon(android.R.drawable.ic_dialog_alert)
+		        .setTitle(R.string.delete_note)
+		        .setMessage(R.string.delete_message)
+		        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+
+		            public void onClick(DialogInterface dialog, int which) {
+		        		NoteManager.deleteNote(activity, alertNote);
+		    			adapter = NoteManager.getListAdapter(context);
+		    			setListAdapter(adapter);
+		    			setSelection(alertPosition);
+		    			showNoteInPane(alertPosition);
+		           }
+
+		        })
+		        .setNegativeButton(R.string.no, null)
+		        .create();
+				break;
+		    case DIALOG_REVERT_NOTE:
+				alertDialog = new AlertDialog.Builder(this)
+		        .setIcon(android.R.drawable.ic_dialog_alert)
+		        .setTitle(R.string.revert_note)
+		        .setMessage(R.string.revert_note_message)
+		        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+
+		            public void onClick(DialogInterface dialog, int which) {
+						SyncManager.getInstance().pullNote(alertString);
+		           }
+
+		        })
+		        .setNegativeButton(R.string.no, null)
+		        .create();
+				break;
+		    case DIALOG_SYNC_ERRORS:
+				alertDialog = new AlertDialog.Builder(activity).setMessage(alertString)
+				.setTitle(getString(R.string.error))
+				.setPositiveButton(getString(R.string.btnSavetoSD), new OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						if(!alertBoolean) {
+							Toast.makeText(activity, activity.getString(R.string.messageCouldNotSave),
+									Toast.LENGTH_SHORT).show();
+						}
+						finishSync();
 					}
+				})
+				.setNegativeButton(getString(R.string.close), new OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) { finishSync(); }
 				}).show();
+		    default:
+		    	alertDialog = null;
+		    }
+		return alertDialog;
 	}
 
 	@Override
@@ -714,42 +814,14 @@ public class Tomdroid extends ActionBarListActivity {
 	}
 	private void deleteNote(long noteId, final int notePosition) {
 		
-		final Note note = NoteManager.getNote(this, Uri.parse(Tomdroid.CONTENT_URI + "/" + noteId));
-		
-		final Activity activity = this;
-		new AlertDialog.Builder(this)
-        .setIcon(android.R.drawable.ic_dialog_alert)
-        .setTitle(R.string.delete_note)
-        .setMessage(R.string.delete_message)
-        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+		alertNote = NoteManager.getNote(this, Uri.parse(Tomdroid.CONTENT_URI + "/" + noteId));
+		alertPosition = notePosition;
+		showDialog(DIALOG_DELETE_NOTE);
 
-            public void onClick(DialogInterface dialog, int which) {
-        		NoteManager.deleteNote(activity, note);
-    			adapter = NoteManager.getListAdapter(context);
-    			setListAdapter(adapter);
-    			setSelection(notePosition);
-    			showNoteInPane(notePosition);
-           }
-
-        })
-        .setNegativeButton(R.string.no, null)
-        .show();
 	}
 	private void revertNote(final String guid) {
-		
-		new AlertDialog.Builder(this)
-        .setIcon(android.R.drawable.ic_dialog_alert)
-        .setTitle(R.string.revert_note)
-        .setMessage(R.string.revert_note_message)
-        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-
-            public void onClick(DialogInterface dialog, int which) {
-				SyncManager.getInstance().pullNote(guid);
-           }
-
-        })
-        .setNegativeButton(R.string.no, null)
-        .show();
+		alertString = guid;
+		showDialog(DIALOG_REVERT_NOTE);
 	}
 
 	public class SyncMessageHandler extends Handler {
@@ -792,21 +864,9 @@ public class Tomdroid extends ActionBarListActivity {
 					} else {
 						TLog.v(TAG, "syncErrors: {0}", TextUtils.join("\n",errors.toArray()));
 	
-						message = getString(R.string.messageSyncError);
-						new AlertDialog.Builder(activity).setMessage(message)
-							.setTitle(getString(R.string.error))
-							.setPositiveButton(getString(R.string.btnSavetoSD), new OnClickListener() {
-								public void onClick(DialogInterface dialog, int which) {
-									if(!errors.save()) {
-										Toast.makeText(activity, activity.getString(R.string.messageCouldNotSave),
-												Toast.LENGTH_SHORT).show();
-									}
-									finishSync();
-								}
-							})
-							.setNegativeButton(getString(R.string.close), new OnClickListener() {
-								public void onClick(DialogInterface dialog, int which) { finishSync(); }
-							}).show();
+						alertString = getString(R.string.messageSyncError);
+						alertBoolean = errors.save();
+						showDialog(DIALOG_SYNC_ERRORS);
 					}
 					break;
 				case SyncService.CONNECTING_FAILED:
@@ -847,7 +907,7 @@ public class Tomdroid extends ActionBarListActivity {
 				        syncProgressDialog.setMessage(getString(R.string.syncing_local));
 				        syncProgressDialog.setProgress(0);
 						syncProgressDialog.setMax(msg.arg1);
-						syncProgressDialog.show();
+						showDialog(DIALOG_SYNC_PROGRESS_UPDATE);
 					}
 					break;
 					

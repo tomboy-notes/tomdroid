@@ -12,6 +12,20 @@ Join it at: https://launchpad.net/~tomdroid-dev
 For more details and developer visible changes see the ChangeLog
 
 -------------------------------------------------------------------------------
+Tomdroid <version-code> - "<version-name>" released on <release-date>
+
+* fixed bug lp:1039703 Tomdroid crashes when rotating the device during synchronisation
+* fixed bug lp:1039703
+* fixed bug lp:1039703
+* fixed bug lp:1039703
+* fixed bug lp:1039703
+* fixed bug lp:1039703
+* fixed bug lp:1039703
+* fixed bug lp:1039703
+* fixed bug lp:1039703
+* fixed bug lp:1039703
+
+-------------------------------------------------------------------------------
 Tomdroid 0.7.1 beta - "Fast paced" released on 2012-08-21
 
 * Actionbar for all versions of Android
@@ -23,11 +37,11 @@ Tomdroid 0.7.1 beta - "Fast paced" released on 2012-08-21
 * Added routine to avoid full sync if server revision is old (only push changed notes)
 * Set note content entry type to "sentence caps"
 * Usability and cosmetic improvements (lp:1038118, lp:1038352)
-* bug fix lp:1038115 (beta) do not scroll list to top after deleting a note
-* bug fix lp:1038119 (beta) syncing is not smart :)
-* bug fix lp:1038352 tapping on blank area should go to end of line
-* bug fix lp:1038769 Typo in the string #41
-* bug fix lp:1038968 NullPointerException on SD Card sync with notes causing parse error
+* fixed bug lp:1038115 (beta) do not scroll list to top after deleting a note
+* fixed bug lp:1038119 (beta) syncing is not smart :)
+* fixed bug lp:1038352 tapping on blank area should go to end of line
+* fixed bug lp:1038769 Typo in the string #41
+* fixed bug lp:1038968 NullPointerException on SD Card sync with notes causing parse error
 
 -------------------------------------------------------------------------------
 Version 0.6.1 - "Polyglot" released on <releaseDate>
