@@ -112,6 +112,8 @@ public class EditNote extends ActionBarActivity {
 	private boolean textChanged = false;
 	// discard changes -> not will not be saved
 	private boolean discardChanges = false;
+	// force close without onDestroy() function when note not existing!
+	private boolean forceClose = false;
 	
 	// TODO extract methods in here
 	@Override
@@ -193,6 +195,7 @@ public class EditNote extends ActionBarActivity {
                 .setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
+                        forceClose = true;
                         finish();
                     }
                 });
@@ -210,8 +213,10 @@ public class EditNote extends ActionBarActivity {
 
     @Override
     protected void onDestroy() {
-		if(note.getTitle().length() == 0 && note.getXmlContent().length() == 0 && !textChanged) // if the note is empty, e.g. new
+    	if(!forceClose) {
+    		if(note.getTitle().length() == 0 && note.getXmlContent().length() == 0 && !textChanged) // if the note is empty, e.g. new
 				NoteManager.deleteNote(this, note);
+    	}
     	super.onDestroy();
     }
     
