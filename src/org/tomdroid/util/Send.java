@@ -94,16 +94,14 @@ public class Send {
 		FileOutputStream outFile = null;
 		Uri noteUri = null;
 		try {
-			File outputDir = activity.getCacheDir(); // context being the Activity pointer
-			File outputFile = File.createTempFile(note.getGuid(), "note", outputDir);
-			
-			outFile = new FileOutputStream(outputFile);
+			outFile = activity.openFileOutput(note.getGuid()+".note", activity.MODE_WORLD_READABLE);
 			OutputStreamWriter osw = new OutputStreamWriter(outFile);
 			osw.write(xmlOutput);
 			osw.flush();
 			osw.close();
 			
-			noteUri = Uri.fromFile(outputFile);
+			File noteFile = activity.getFileStreamPath(note.getGuid()+".note");
+			noteUri = Uri.fromFile(noteFile);
 			 
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -122,7 +120,8 @@ public class Send {
 
 	    // Add attributes to the intent
 	    sendIntent.putExtra(Intent.EXTRA_STREAM, noteUri);
-	    sendIntent.setType("application/tomboy");
+	    sendIntent.setType("text/xml");
+
 	    activity.startActivity(Intent.createChooser(sendIntent, note.getTitle()));
 		return;
 	}
@@ -139,6 +138,5 @@ public class Send {
 	    sendIntent.setType("text/plain");
 
 	    activity.startActivity(Intent.createChooser(sendIntent, note.getTitle()));
-
 	}
 }
