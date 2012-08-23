@@ -37,6 +37,7 @@ import org.tomdroid.NoteManager;
 import org.tomdroid.R;
 import org.tomdroid.ui.actionbar.ActionBarActivity;
 import org.tomdroid.util.LinkifyPhone;
+import org.tomdroid.util.NewNote;
 import org.tomdroid.util.NoteContentBuilder;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.Send;
@@ -207,6 +208,8 @@ public class EditNote extends ActionBarActivity {
     	if (uri != null) {
         	if(!discardChanges && textChanged) // changed and not discarding changes
        			saveNote();
+        	else if (discardChanges && NewNote.neverSaved)
+        		NoteManager.deleteNote(this, note);
         }
     	super.onPause();
     }
@@ -512,6 +515,7 @@ public class EditNote extends ActionBarActivity {
 		NoteManager.putNote( this, note);
 
 		textChanged = false;
+		NewNote.neverSaved = false;
 
 		Toast.makeText(this, getString(R.string.messageNoteSaved), Toast.LENGTH_SHORT).show();
 		TLog.v(TAG, "note saved");
