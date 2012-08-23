@@ -45,17 +45,19 @@
 		/> 
 -->
 
-    <item android:title="@string/send"
+<!--     
+	<item android:title="@string/send"
 		  android:id="@+id/edit_note_send"
           android:showAsAction="ifRoom|withText"
 		  android:icon="@android:drawable/ic_menu_share"
           android:orderInCategory="3"
           />
+     -->
 	<item 
 		android:icon="@android:drawable/ic_menu_preferences"
 		android:title="@string/menuPrefs"
 		android:showAsAction="never|withText"
-        android:orderInCategory="4"
+        android:orderInCategory="3"
 		android:id="@+id/menuPrefs"
 		/>
     

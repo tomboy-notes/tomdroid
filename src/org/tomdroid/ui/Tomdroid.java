@@ -104,13 +104,6 @@ public class Tomdroid extends ActionBarListActivity {
 	private static final int DIALOG_SYNC_PROGRESS_UPDATE = 11;
 	private static final int DIALOG_SEND_CHOOSE = 12;
 	
-	// dialog-specific variables
-	
-	private int alertPosition;
-	private Note alertNote;
-	private String alertString;
-	private boolean alertBoolean;
-	
 	// config parameters
 	public static String	NOTES_PATH				= null;
 	
@@ -535,7 +528,9 @@ public class Tomdroid extends ActionBarListActivity {
 
         switch (item.getItemId()) {
             case R.id.menu_send:
-            	showDialog(DIALOG_SEND_CHOOSE);
+            	Bundle bundle = new Bundle();
+            	bundle.putString("uri", intentUri.toString());
+            	showDialog(DIALOG_SEND_CHOOSE, bundle);
 				break;
 			case R.id.view:
 				this.ViewNote(noteId);
@@ -603,7 +598,13 @@ public class Tomdroid extends ActionBarListActivity {
 		creating = false;
 	}
 
+	@Override
 	protected Dialog onCreateDialog(int id) {
+		return onCreateDialog(id, null);
+	}
+
+	@Override
+	protected Dialog onCreateDialog(int id, final Bundle bundle) {
 	    final Activity activity = this;
 		AlertDialog alertDialog;
 	    switch(id) {
@@ -722,7 +723,9 @@ public class Tomdroid extends ActionBarListActivity {
 				.create();
 				break;
 		    case DIALOG_DELETE_NOTE:
-				alertDialog = new AlertDialog.Builder(this)
+		    	final Note alertNote = NoteManager.getNote(this, Uri.parse(bundle.getString("uri")));
+		    	final int alertPosition = bundle.getInt("position");
+		    	alertDialog = new AlertDialog.Builder(this)
 		        .setIcon(android.R.drawable.ic_dialog_alert)
 		        .setTitle(R.string.delete_note)
 		        .setMessage(R.string.delete_message)
@@ -748,7 +751,7 @@ public class Tomdroid extends ActionBarListActivity {
 		        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
 		            public void onClick(DialogInterface dialog, int which) {
-						SyncManager.getInstance().pullNote(alertString);
+						SyncManager.getInstance().pullNote(bundle.getString("guid"));
 		           }
 
 		        })
@@ -756,11 +759,11 @@ public class Tomdroid extends ActionBarListActivity {
 		        .create();
 				break;
 		    case DIALOG_SYNC_ERRORS:
-				alertDialog = new AlertDialog.Builder(activity).setMessage(alertString)
+				alertDialog = new AlertDialog.Builder(activity).setMessage(bundle.getString("message"))
 				.setTitle(getString(R.string.error))
 				.setPositiveButton(getString(R.string.btnSavetoSD), new OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
-						if(!alertBoolean) {
+						if(!bundle.getBoolean("saved")) {
 							Toast.makeText(activity, activity.getString(R.string.messageCouldNotSave),
 									Toast.LENGTH_SHORT).show();
 						}
@@ -772,18 +775,19 @@ public class Tomdroid extends ActionBarListActivity {
 				}).create();
 				break;
 		    case DIALOG_SEND_CHOOSE:
+                final Uri intentUri = Uri.parse(bundle.getString("uri"));
 				alertDialog = new AlertDialog.Builder(activity)
 				.setMessage(getString(R.string.sendChoice))
 				.setTitle(getString(R.string.sendChoiceTitle))
 				.setPositiveButton(getString(R.string.btnSendAsFile), new OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
-		                (new Send(activity, note, true)).send();
+						(new Send(activity, intentUri, true)).send();
 
 					}
 				})
 				.setNegativeButton(getString(R.string.btnSendAsText), new OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) { 
-		                (new Send(activity, note, false)).send();
+		                (new Send(activity, intentUri, false)).send();
 					}
 				}).create();
 		    	break;
@@ -850,15 +854,16 @@ public class Tomdroid extends ActionBarListActivity {
 		
 	}
 	private void deleteNote(long noteId, final int notePosition) {
-		
-		alertNote = NoteManager.getNote(this, Uri.parse(Tomdroid.CONTENT_URI + "/" + noteId));
-		alertPosition = notePosition;
-		showDialog(DIALOG_DELETE_NOTE);
-
+			
+		Bundle bundle = new Bundle();
+		bundle.putString("uri", Tomdroid.CONTENT_URI + "/" + noteId);
+		bundle.putInt("position", notePosition);
+		showDialog(DIALOG_DELETE_NOTE, bundle);
 	}
 	private void revertNote(final String guid) {
-		alertString = guid;
-		showDialog(DIALOG_REVERT_NOTE);
+		Bundle bundle = new Bundle();
+		bundle.putString("guid", guid);
+		showDialog(DIALOG_REVERT_NOTE, bundle);
 	}
 
 	public class SyncMessageHandler extends Handler {
@@ -900,10 +905,10 @@ public class Tomdroid extends ActionBarListActivity {
 						finishSync();
 					} else {
 						TLog.v(TAG, "syncErrors: {0}", TextUtils.join("\n",errors.toArray()));
-	
-						alertString = getString(R.string.messageSyncError);
-						alertBoolean = errors.save();
-						showDialog(DIALOG_SYNC_ERRORS);
+						Bundle bundle = new Bundle();
+						bundle.putString("message",getString(R.string.messageSyncError));
+						bundle.putBoolean("saved",errors.save());
+						showDialog(DIALOG_SYNC_ERRORS, bundle);
 					}
 					break;
 				case SyncService.CONNECTING_FAILED:

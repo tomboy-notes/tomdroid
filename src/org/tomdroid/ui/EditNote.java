@@ -275,9 +275,6 @@ public class EditNote extends ActionBarActivity {
 			case R.id.menuPrefs:
 				startActivity(new Intent(this, PreferencesActivity.class));
 				return true;
-			case R.id.edit_note_send:
-					(new Send(this, note, false)).send();
-					return true;
 			case R.id.edit_note_save:
 				saveNote();
 				return true;

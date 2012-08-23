@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 
 import org.tomdroid.Note;
+import org.tomdroid.NoteManager;
 import org.tomdroid.R;
 import org.tomdroid.ui.Tomdroid;
 
@@ -30,10 +31,10 @@ public class Send {
 	private int DIALOG_CHOOSE = 0;
 	private boolean sendAsFile;;
 	
-	public Send(Activity activity, Note note, boolean sendAsFile) {
+	public Send(Activity activity, Uri uri, boolean sendAsFile) {
 		this.activity = activity;
-		this.note = note;
 		this.sendAsFile = sendAsFile;
+		this.note = NoteManager.getNote(activity, uri);
 	}
 	
 	public void send() {
@@ -94,6 +95,8 @@ public class Send {
 		FileOutputStream outFile = null;
 		Uri noteUri = null;
 		try {
+			clearFilesDir();
+			
 			outFile = activity.openFileOutput(note.getGuid()+".note", activity.MODE_WORLD_READABLE);
 			OutputStreamWriter osw = new OutputStreamWriter(outFile);
 			osw.write(xmlOutput);
@@ -120,7 +123,7 @@ public class Send {
 
 	    // Add attributes to the intent
 	    sendIntent.putExtra(Intent.EXTRA_STREAM, noteUri);
-	    sendIntent.setType("text/xml");
+	    sendIntent.setType("text/plain");
 
 	    activity.startActivity(Intent.createChooser(sendIntent, note.getTitle()));
 		return;
@@ -138,5 +141,15 @@ public class Send {
 	    sendIntent.setType("text/plain");
 
 	    activity.startActivity(Intent.createChooser(sendIntent, note.getTitle()));
+	}
+
+	private void clearFilesDir() {
+		File dir = activity.getFilesDir();
+        String[] children = dir.list();
+        for (String s : children) {
+            File f = new File(dir, s);
+            if(f.getName().endsWith(".note"))
+            	f.delete();
+        }
 	}
 }
