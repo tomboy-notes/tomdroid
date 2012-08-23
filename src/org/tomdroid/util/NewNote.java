@@ -37,12 +37,13 @@ public class NewNote {
 	// Logging info
 	private static final String	TAG = "NewNote";
 	// indicates, if note was never saved before (for dismiss dialogue)
-	public static boolean neverSaved = true;
+	public static boolean neverSaved;
 	
 	public static Note createNewNote(Context context, String title, String xmlContent) {
 		TLog.v(TAG, "Creating new note");
 		
 		Note note = new Note();
+		neverSaved = true;
 		
 		note.setTitle(title);
 

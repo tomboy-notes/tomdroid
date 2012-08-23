@@ -210,6 +210,7 @@ public class EditNote extends ActionBarActivity {
        			saveNote();
         	else if (discardChanges && NewNote.neverSaved)
         		NoteManager.deleteNote(this, note);
+        		NewNote.neverSaved = false;
         }
     	super.onPause();
     }
