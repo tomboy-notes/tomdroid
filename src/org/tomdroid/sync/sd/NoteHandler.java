@@ -24,6 +24,7 @@
 package org.tomdroid.sync.sd;
 
 import org.tomdroid.Note;
+import org.tomdroid.util.TLog;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -31,7 +32,9 @@ import org.xml.sax.helpers.DefaultHandler;
 import android.util.TimeFormatException;
 
 public class NoteHandler extends DefaultHandler {
-	
+
+	private String TAG = "NoteHandler";
+
 	// position keepers
 	private boolean inTitleTag = false;
 	private boolean inLastChangeDateTag = false;

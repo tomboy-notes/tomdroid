@@ -72,13 +72,15 @@ import android.widget.ToggleButton;
 	
 public class CompareNotes extends ActionBarActivity {	
 	private static final String TAG = "SyncDialog";
-	private Context context;
 	
 	private Note localNote;
 	private boolean differentNotes;
 	private Note remoteNote;
 	private int dateDiff;
-	private SyncManager syncManager;
+	private boolean noRemote;
+
+	private Uri uri;
+
 	private static ProgressDialog syncProgressDialog;
 	
 	@Override	
@@ -86,11 +88,11 @@ public class CompareNotes extends ActionBarActivity {
 		super.onCreate(savedInstanceState);	
 		
 		if(!this.getIntent().hasExtra("datediff")) {
+			TLog.v(TAG, "no date diff");
 			finish();
 			return;
 		}
 		TLog.v(TAG, "starting SyncDialog");
-		this.context = this;
 		
 		setContentView(R.layout.note_compare);
 		
@@ -120,6 +122,7 @@ public class CompareNotes extends ActionBarActivity {
 		values.put(Note.TAGS, extras.getString("tags"));
 		 
 		dateDiff = extras.getInt("datediff");
+		noRemote = extras.getBoolean("noRemote");
 		
 		// check if we're comparing two different notes with same title
 		
@@ -170,12 +173,23 @@ public class CompareNotes extends ActionBarActivity {
 
 			copyBtn.setVisibility(View.GONE);
 			
-			localBtn.setText(getString(R.string.delete_remote));
-			localBtn.setOnClickListener( new View.OnClickListener() {
-				public void onClick(View v) {
-					onChooseDelete();
-				}
-	        });
+			// if importing note, offer discard option to open main screen
+			if(noRemote) {
+				localBtn.setText(getString(R.string.discard));
+				localBtn.setOnClickListener( new View.OnClickListener() {
+					public void onClick(View v) {
+						finishForResult();
+					}
+		        });
+			}
+			else {
+				localBtn.setText(getString(R.string.delete_remote));
+				localBtn.setOnClickListener( new View.OnClickListener() {
+					public void onClick(View v) {
+						onChooseDelete();
+					}
+		        });
+			}
 		}
 		else {
 			String diff = "";
@@ -195,8 +209,11 @@ public class CompareNotes extends ActionBarActivity {
 				if(titleMatch) { // same note, fix the dates
 					if(extras.getInt("datediff") < 0) { // local older
 						TLog.v(TAG, "compared notes have same content and titles, pulling newer remote");
-						NoteManager.putNote(this, localNote);
-						finish();				
+						uri = NoteManager.putNote(this, remoteNote);
+					}
+					else if(extras.getInt("datediff") == 0 || noRemote) {
+						TLog.v(TAG, "compared notes have same content and titles, same date, doing nothing");
+						uri = Uri.parse(Tomdroid.CONTENT_URI+"/"+NoteManager.getNoteIdByGUID(this, localNote.getGuid()));
 					}
 					else {
 						TLog.v(TAG, "compared notes have same content and titles, pushing newer local");
@@ -207,6 +224,15 @@ public class CompareNotes extends ActionBarActivity {
 						syncProgressDialog.show();
 						return;
 					}
+					
+					if(noRemote) {
+						TLog.v(TAG, "compared notes have same content and titles, showing note");
+						finishForResult();
+					}
+					else
+						finish();
+					
+					return;
 				}
 				else {
 					TLog.v(TAG, "compared notes have different titles");
@@ -223,8 +249,6 @@ public class CompareNotes extends ActionBarActivity {
 				}
 				else
 	    			diff += "<br/><br/>";
-
-				//localNote.setXmlContent("Stet clita kasd gubergren,\nno sea takimata sanctus est Lorem ipsum dolor sit amet.\n"+localNote.getXmlContent()+"\nStet clita kasd gubergren,\n no sea takimata sanctus est Lorem ipsum dolor sit amet.");
 
 				Patch patch = DiffUtils.diff(Arrays.asList(TextUtils.split(localNote.getXmlContent(), "\\r?\\n|\\r")), Arrays.asList(TextUtils.split(extras.getString("content"), "\\r?\\n|\\r")));
 	            String diffResult = "";
@@ -285,11 +309,22 @@ public class CompareNotes extends ActionBarActivity {
 				
 			}
 			
+			if(noRemote) {
+				localBtn.setText(getString(R.string.discard));
+				message = getString(R.string.sync_conflict_import_message);
+			}
+			
 			localBtn.setOnClickListener( new View.OnClickListener() {
 				public void onClick(View v) {
-	            	// take local
-					TLog.v(TAG, "user chose local version for note TITLE:{0} GUID:{1}", localNote.getTitle(),localNote.getGuid());
-					onChooseNote(localTitle.getText().toString(),localEdit.getText().toString(), true);
+
+					// check if there is no remote (e.g. we are receiving a note file that conflicts with a local note - see Receive.java), just finish
+					if(noRemote)
+						finish();
+					else {
+						// take local
+						TLog.v(TAG, "user chose local version for note TITLE:{0} GUID:{1}", localNote.getTitle(),localNote.getGuid());
+						onChooseNote(localTitle.getText().toString(),localEdit.getText().toString(), true);
+					}
 				}
 	        });
 			localTitle.setText(localNote.getTitle());
@@ -372,14 +407,19 @@ public class CompareNotes extends ActionBarActivity {
 		}
 			
 		// add remote note to local
-		NoteManager.putNote(CompareNotes.this, remoteNote);
+		uri = NoteManager.putNote(CompareNotes.this, remoteNote);
 
-		ArrayList<Note> notes = new ArrayList<Note>();
-		notes.add(localNote);
-		notes.add(remoteNote);
-		SyncManager.getInstance().getCurrentService().pushNotes(notes);
-		syncProgressDialog.setMessage(getString(R.string.syncing_remote));
-		syncProgressDialog.show();
+		if(noRemote) {
+			finishForResult();
+		}
+		else {
+			ArrayList<Note> notes = new ArrayList<Note>();
+			notes.add(localNote);
+			notes.add(remoteNote);
+			SyncManager.getInstance().getCurrentService().pushNotes(notes);
+			syncProgressDialog.setMessage(getString(R.string.syncing_remote));
+			syncProgressDialog.show();
+		}
 	}
 
 	protected void onChooseNote(String title, String content, boolean choseLocal) {
@@ -405,7 +445,8 @@ public class CompareNotes extends ActionBarActivity {
 				notes.add(localNote); // add for pushing
 				notes.add(remoteNote); // add for deletion
 				
-				SyncManager.getInstance().getCurrentService().pushNotes(notes);
+				if(!noRemote)
+					SyncManager.getInstance().getCurrentService().pushNotes(notes);
 			}
 			else { // chose to keep remote, delete local, add remote, push remote back 
 				NoteManager.deleteNote(this, localNote);
@@ -414,19 +455,26 @@ public class CompareNotes extends ActionBarActivity {
 				remoteNote.setLastChangeDate(time);
 				NoteManager.putNote(this, remoteNote);
 
-				notes.add(remoteNote);
+				if(!noRemote) {
+					notes.add(remoteNote);
+					SyncManager.getInstance().getCurrentService().pushNotes(notes);
+					syncProgressDialog.setMessage(getString(R.string.syncing_remote));
+					syncProgressDialog.show();
+				}
+			}
+		}
+		else { // just readd and push modified localNote
+			uri = NoteManager.putNote(CompareNotes.this, localNote);
+
+			if(noRemote) {
+				finishForResult();
+			}
+			else {
+				notes.add(localNote);
 				SyncManager.getInstance().getCurrentService().pushNotes(notes);
 				syncProgressDialog.setMessage(getString(R.string.syncing_remote));
 				syncProgressDialog.show();
 			}
-		}
-		else { // just readd and push modified localNote
-			NoteManager.putNote(CompareNotes.this, localNote);
-
-			notes.add(localNote);
-			SyncManager.getInstance().getCurrentService().pushNotes(notes);
-			syncProgressDialog.setMessage(getString(R.string.syncing_remote));
-			syncProgressDialog.show();
 		}
 
 	}
@@ -489,5 +537,17 @@ public class CompareNotes extends ActionBarActivity {
 			content.setVisibility(View.VISIBLE);
 		}
 		
+	}
+	
+	private void finishForResult(){
+		// if we are receiving a note file, return the 
+		Intent data = new Intent();
+		data.putExtra("uri", uri.toString());
+		if (getParent() == null) {
+		    setResult(Activity.RESULT_OK, data);
+		} else {
+		    getParent().setResult(Activity.RESULT_OK, data);
+		}
+		finish();
 	}
 }	

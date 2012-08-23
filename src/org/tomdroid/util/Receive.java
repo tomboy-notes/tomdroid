@@ -24,18 +24,31 @@
 
 package org.tomdroid.util;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.io.StringReader;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
+import org.tomdroid.sync.SyncService;
+import org.tomdroid.sync.sd.NoteHandler;
+import org.tomdroid.ui.CompareNotes;
 import org.tomdroid.ui.EditNote;
+import org.tomdroid.ui.Tomdroid;
+import org.tomdroid.ui.ViewNote;
 import org.tomdroid.ui.actionbar.ActionBarActivity;
 import org.tomdroid.xml.NoteContentHandler;
 import org.xml.sax.InputSource;
+import org.xml.sax.XMLReader;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -46,6 +59,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.SpannableStringBuilder;
+import android.text.format.Time;
+import android.util.TimeFormatException;
 
 public class Receive extends ActionBarActivity {
 	
@@ -54,16 +69,121 @@ public class Receive extends ActionBarActivity {
 
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-	    // set intent, action, MIME type
+
+		// set intent, action, MIME type
 	    Intent intent = getIntent();
 	    String action = intent.getAction();
 	    String type = intent.getType();
 
-	    if (Intent.ACTION_SEND.equals(action) && type != null) {
-	        if ("text/plain".equals(type)) {
-	            useSendText(intent); // use the text being sent
-	        }
-	    }
+		TLog.v(TAG, "Receiving note of type {0}",type);
+		TLog.d(TAG, "File path: {0}",intent.getData().getPath());
+		TLog.d(TAG, "Action type: {0}",action);
+	    
+    	if(intent.getData().getPath().contains(".note")) {
+    		TLog.w(TAG, "receiving note as XML file");
+    		useSendXML(intent);
+    	}
+    	else if (Intent.ACTION_SEND.equals(action) && type != null && "text/plain".equals(type)) {
+    		TLog.v(TAG, "receiving note as plain text");
+            useSendText(intent); // use the text being sent
+        }
+	}
+	void useSendXML(Intent intent) {
+		Note remoteNote = new Note();
+		File file = new File(intent.getData().getPath());
+		final char[] buffer = new char[0x1000];
+		
+		remoteNote.setFileName(file.getAbsolutePath());
+		// the note guid is not stored in the xml but in the filename
+		remoteNote.setGuid(file.getName().replace(".note", ""));
+
+		// Try reading the file first
+		String contents = "";
+		try {
+			contents = readFile(file,buffer);
+		} catch (IOException e) {
+			e.printStackTrace();
+			TLog.w(TAG, "Something went wrong trying to read the note");
+			finish();
+		}
+		
+		try {
+			// Parsing
+	    	// XML 
+	    	// Get a SAXParser from the SAXPArserFactory
+	        SAXParserFactory spf = SAXParserFactory.newInstance();
+	        SAXParser sp = spf.newSAXParser();
+	
+	        // Get the XMLReader of the SAXParser we created
+	        XMLReader xr = sp.getXMLReader();
+
+	        // Create a new ContentHandler, send it this note to fill and apply it to the XML-Reader
+	        NoteHandler xmlHandler = new NoteHandler(remoteNote);
+	        xr.setContentHandler(xmlHandler);
+
+	        // Create the proper input source
+	        StringReader sr = new StringReader(contents);
+	        InputSource is = new InputSource(sr);
+	        
+			TLog.d(TAG, "parsing note. filename: {0}", file.getName());
+			xr.parse(is);
+
+		// TODO wrap and throw a new exception here
+		} catch (Exception e) {
+			e.printStackTrace();
+			if(e instanceof TimeFormatException) TLog.e(TAG, "Problem parsing the note's date and time");
+			finish();
+		}
+
+		Pattern note_content = Pattern.compile("<note-content[^>]+>(.*)<\\/note-content>", Pattern.CASE_INSENSITIVE+Pattern.DOTALL);
+
+		// FIXME here we are re-reading the whole note just to grab note-content out, there is probably a better way to do this (I'm talking to you xmlpull.org!)
+		Matcher m = note_content.matcher(contents);
+		if (m.find()) {
+			remoteNote.setXmlContent(m.group(1));
+		} else {
+			TLog.w(TAG, "Something went wrong trying to grab the note-content out of a note");
+			return;
+		}
+		
+		// check and see if the note already exists; if so, send to conflict resolver
+		Note localNote = NoteManager.getNoteByGuid(this, remoteNote.getGuid()); 
+		
+		if(localNote != null) {
+			int compareBoth = Time.compare(localNote.getLastChangeDate(), remoteNote.getLastChangeDate());
+			
+			TLog.v(TAG, "note conflict... showing resolution dialog TITLE:{0} GUID:{1}", localNote.getTitle(), localNote.getGuid());
+			
+			// send everything to Tomdroid so it can show Sync Dialog
+			
+		    Bundle bundle = new Bundle();	
+			bundle.putString("title",remoteNote.getTitle());
+			bundle.putString("file",remoteNote.getFileName());
+			bundle.putString("guid",remoteNote.getGuid());
+			bundle.putString("date",remoteNote.getLastChangeDate().format3339(false));
+			bundle.putString("content", remoteNote.getXmlContent());
+			bundle.putString("tags", remoteNote.getTags());
+			bundle.putInt("datediff", compareBoth);
+			bundle.putBoolean("noRemote", true);
+			
+			Intent cintent = new Intent(getApplicationContext(), CompareNotes.class);	
+			cintent.putExtras(bundle);
+	
+			startActivityForResult(cintent, 0);
+			return;
+		}
+		
+		// note doesn't exist, just give it a new title if necessary
+		
+		remoteNote.setTitle(NoteManager.validateNoteTitle(this, remoteNote.getTitle(), remoteNote.getGuid()));
+		
+    	// add to content provider
+		Uri uri = NoteManager.putNote(this, remoteNote);
+		
+		// view new note
+		Intent i = new Intent(Intent.ACTION_VIEW, uri, this, Tomdroid.class);
+		startActivity(i);
+		finish();		
 	}
 
 	void useSendText(Intent intent) {
@@ -133,4 +253,29 @@ public class Receive extends ActionBarActivity {
         	}
 		}
 	};
+	private String readFile(File file, char[] buffer) throws IOException {
+		StringBuilder out = new StringBuilder();
+		
+		int read;
+		Reader reader = new InputStreamReader(new FileInputStream(file), "UTF-8");
+		
+		do {
+		  read = reader.read(buffer, 0, buffer.length);
+		  if (read > 0) {
+		    out.append(buffer, 0, read);
+		  }
+		}
+		while (read >= 0);
+		
+		reader.close();
+		return out.toString();
+	}
+	protected void  onActivityResult (int requestCode, int resultCode, Intent  data) {
+		TLog.d(TAG, "onActivityResult called");
+		Uri uri = Uri.parse(data.getStringExtra("uri"));
+		// view new note
+		Intent i = new Intent(Intent.ACTION_VIEW, uri, this, Tomdroid.class);
+		startActivity(i);
+		finish();
+	}
 }

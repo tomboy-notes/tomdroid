@@ -489,7 +489,6 @@ public abstract class SyncService {
 	
 			activity.startActivityForResult(intent, compareCount++);
 		}
-		
 	}
 
 	/**

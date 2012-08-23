@@ -69,6 +69,25 @@
         		<category android:name="android.intent.category.DEFAULT" />
         		<data android:mimeType="text/plain" />
     		</intent-filter>
+		    <!-- To receive note files from file browser -->
+        	<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.BROWSABLE" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<data android:scheme="http" />
+				<data android:host="*" />
+				<data android:pathPattern=".*\\.note" />
+			</intent-filter>
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+		        <category android:name="android.intent.category.BROWSABLE" />
+				<data android:scheme="file" />
+				<data android:host="*" />
+				<data android:pathPattern=".*\\.note" />
+  				<data android:mimeType="*/*" 
+				/>
+			</intent-filter>
 		</activity>
 		<activity android:name=".ui.Search"
        		  android:theme="@style/LightTheme"

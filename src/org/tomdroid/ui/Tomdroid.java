@@ -94,7 +94,7 @@ public class Tomdroid extends ActionBarListActivity {
 	private static final int DIALOG_ABOUT = 1;
 	private static final int DIALOG_FIRST_RUN = 2;
 	private static final int DIALOG_NOT_FOUND = 3;
-	private static final int DIALOG_PARSE_ERROR = 4;
+	public static final int DIALOG_PARSE_ERROR = 4;
 	private static final int DIALOG_REVERT_ALL = 5;
 	private static final int DIALOG_AUTH_PROGRESS = 6;
 	private static final int DIALOG_CONNECT_FAILED = 7;
@@ -102,6 +102,7 @@ public class Tomdroid extends ActionBarListActivity {
 	private static final int DIALOG_REVERT_NOTE = 9;
 	private static final int DIALOG_SYNC_ERRORS = 10;
 	private static final int DIALOG_SYNC_PROGRESS_UPDATE = 11;
+	private static final int DIALOG_SEND_CHOOSE = 12;
 	
 	// dialog-specific variables
 	
@@ -191,9 +192,15 @@ public class Tomdroid extends ActionBarListActivity {
 		getListView().setEmptyView(listEmptyView);
 		
 		registerForContextMenu(findViewById(android.R.id.list));
-		
+
 		// add note to pane for tablet
 		rightPane = (LinearLayout) findViewById(R.id.right_pane);
+
+		if(getIntent().getData() != null) {
+			uri = getIntent().getData();
+			Intent i = new Intent(Intent.ACTION_VIEW, uri, this, ViewNote.class);
+			startActivity(i);
+		}
 		
 		if(rightPane != null) {
 			content = (TextView) findViewById(R.id.content);
@@ -267,6 +274,7 @@ public class Tomdroid extends ActionBarListActivity {
 		
 		if(xml) {
 			content.setText(note.getXmlContent());
+			title.setText((CharSequence) note.getTitle());
 			return;
 		}
 		
@@ -527,7 +535,7 @@ public class Tomdroid extends ActionBarListActivity {
 
         switch (item.getItemId()) {
             case R.id.menu_send:
-                (new Send(this, note)).send();
+            	showDialog(DIALOG_SEND_CHOOSE);
 				break;
 			case R.id.view:
 				this.ViewNote(noteId);
@@ -761,7 +769,24 @@ public class Tomdroid extends ActionBarListActivity {
 				})
 				.setNegativeButton(getString(R.string.close), new OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) { finishSync(); }
-				}).show();
+				}).create();
+				break;
+		    case DIALOG_SEND_CHOOSE:
+				alertDialog = new AlertDialog.Builder(activity)
+				.setMessage(getString(R.string.sendChoice))
+				.setTitle(getString(R.string.sendChoiceTitle))
+				.setPositiveButton(getString(R.string.btnSendAsFile), new OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+		                (new Send(activity, note, true)).send();
+
+					}
+				})
+				.setNegativeButton(getString(R.string.btnSendAsText), new OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) { 
+		                (new Send(activity, note, false)).send();
+					}
+				}).create();
+		    	break;
 		    default:
 		    	alertDialog = null;
 		    }

@@ -120,6 +120,9 @@ public class EditNote extends ActionBarActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		Preferences.init(this, Tomdroid.CLEAR_PREFERENCES);
+		
 		setContentView(R.layout.note_edit);
 		
 		content = (EditText) findViewById(R.id.content);
@@ -273,7 +276,7 @@ public class EditNote extends ActionBarActivity {
 				startActivity(new Intent(this, PreferencesActivity.class));
 				return true;
 			case R.id.edit_note_send:
-					(new Send(this, note)).send();
+					(new Send(this, note, false)).send();
 					return true;
 			case R.id.edit_note_save:
 				saveNote();

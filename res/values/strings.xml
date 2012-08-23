@@ -243,7 +243,16 @@
 	<string name="messageNotesBackedUp">Notes backed up to SD card successfully.</string>
 	<string name="messageNotesRestored">Notes restored from SD card successfully.</string>
 	<string name="messageDatabaseReset">Notes cleared successfully.</string>
+
+	<!-- send note -->
 	
+	<string name="sendChoiceTitle">Choose Send Method</string>
+	<string name="sendChoice">How would you like to send the note?</string>
+	<string name="btnSendAsText">As Text</string>
+	<string name="btnSendAsFile">As File</string>
+	<string name="sync_conflict_import_message">There was a conflict importing the note "%1$s".  The note already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+		
+		
 	<string name="firstNoteTitle">Tomdroid\'s First Note</string>
 	
 	<!-- 

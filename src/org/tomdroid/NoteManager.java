@@ -201,6 +201,8 @@ public class NoteManager {
 
 			cr.update(Tomdroid.CONTENT_URI, values, Note.GUID+" = ?", whereArgs); 
 			
+			uri = Uri.parse(Tomdroid.CONTENT_URI+"/"+getNoteIdByGUID(activity, note.getGuid()));
+
 			TLog.v(TAG, "Note updated in content provider: TITLE:{0} GUID:{1}", note.getTitle(), note.getGuid());
 		}
 		return uri;
@@ -389,7 +391,29 @@ public class NoteManager {
 		
 		return id;
 	}
+
+	public static int getNoteIdByGUID(Activity activity, String guid) {
+		int id = 0;
+		
+		// get the notes ids
+		String[] whereArgs = { guid };
+		Cursor cursor = activity.managedQuery(Tomdroid.CONTENT_URI, ID_PROJECTION, Note.GUID+"=?", whereArgs, null);
+		
+		// cursor must not be null and must return more than 0 entry 
+		if (!(cursor == null || cursor.getCount() == 0)) {
+			
+			cursor.moveToFirst();
+			id = cursor.getInt(cursor.getColumnIndexOrThrow(Note.ID));
+		}
+		else {
+			// TODO send an error to the user
+			TLog.d(TAG, "Cursor returned null or 0 notes");
+		}
+		
+		return id;
+	}
 	
+		
 	/**
 	 * stripTitleFromContent
 	 * Because of an historic oddity in Tomboy's note format, a note's title is in a <title> tag but is also repeated

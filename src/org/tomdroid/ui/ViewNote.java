@@ -197,7 +197,7 @@ public class ViewNote extends ActionBarActivity {
 				startActivity(new Intent(this, PreferencesActivity.class));
 				return true;
 			case R.id.view_note_send:
-				(new Send(this, note)).send();
+				(new Send(this, note, false)).send();
 				return true;
 			case R.id.view_note_edit:
 				startEditNote();
