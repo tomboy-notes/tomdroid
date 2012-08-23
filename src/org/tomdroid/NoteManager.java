@@ -435,7 +435,7 @@ public class NoteManager {
 
 		// check for empty titles, set to R.string.NewNoteTitle
 		
-		if (noteTitle.replace(" ","").equals("")) {
+		if (noteTitle == null || noteTitle.replace(" ","").equals("")) {
 			noteTitle = activity.getString(R.string.NewNoteTitle);
 			origTitle = noteTitle; // have to set this too!
 		}

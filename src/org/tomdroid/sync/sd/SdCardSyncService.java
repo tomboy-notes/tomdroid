@@ -430,7 +430,7 @@ public class SdCardSyncService extends SyncService {
 		
 		path = new File(Tomdroid.NOTES_PATH + guid + ".note");
 
-		syncInThread(new Worker(path, true, false));
+		syncInThread(new Worker(path, false, false));
 		
 	}
 	
@@ -462,8 +462,10 @@ public class SdCardSyncService extends SyncService {
 		}
 		catch (Exception e) {
 			TLog.e(TAG, "delete from sd card didn't work");
+			sendMessage(NOTE_DELETE_ERROR);
 			return;
 		}
 		TLog.d(TAG, "notes deleted from SD Card");
+		sendMessage(REMOTE_NOTES_DELETED);
 	}
 }
