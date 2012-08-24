@@ -423,8 +423,8 @@ public class NoteManager {
 	public static String stripTitleFromContent(String xmlContent, String title) {
 		// get rid of the title that is doubled in the note's content
 		// using quote to escape potential regexp chars in pattern
-		
 		Pattern stripTitle = Pattern.compile("^\\s*"+Pattern.quote(XmlUtils.escape(title))+"\\n\\n"); 
+
 		Matcher m = stripTitle.matcher(xmlContent);
 		if (m.find()) {
 			xmlContent = xmlContent.substring(m.end(), xmlContent.length());
