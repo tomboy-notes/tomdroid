@@ -223,7 +223,7 @@ public class SdCardSyncService extends SyncService {
 			// FIXME here we are re-reading the whole note just to grab note-content out, there is probably a better way to do this (I'm talking to you xmlpull.org!)
 			Matcher m = note_content.matcher(contents);
 			if (m.find()) {
-				note.setXmlContent(m.group(1));
+				note.setXmlContent(NoteManager.stripTitleFromContent(m.group(1),note.getTitle()));
 			} else {
 				TLog.w(TAG, "Something went wrong trying to grab the note-content out of a note");
 				sendMessage(PARSING_FAILED, ErrorList.createErrorWithContents(note, "Something went wrong trying to grab the note-content out of a note", contents));
@@ -307,13 +307,12 @@ public class SdCardSyncService extends SyncService {
 			
 			path = new File(Tomdroid.NOTES_PATH + "/"+note.getGuid() + ".note");
 	
-			String createDate = note.getLastChangeDate().format3339(false);
-			int cursorPos = 0;
-			int width = 0;
-			int height = 0;
-			int X = -1;
-			int Y = -1;
-			String tags = note.getTags();
+			note.createDate = note.getLastChangeDate();
+			note.cursorPos = 0;
+			note.width = 0;
+			note.height = 0;
+			note.X = -1;
+			note.Y = -1;
 			
 			if (path.exists()) { // update existing note
 	
@@ -356,38 +355,17 @@ public class SdCardSyncService extends SyncService {
 					return PARSING_FAILED;
 				}
 	
-				createDate = rnote.createDate.format3339(false);
-				cursorPos = rnote.cursorPos;
-				width = rnote.width;
-				height = rnote.height;
-				X = rnote.X;			
-				Y = rnote.Y;
+				note.createDate = rnote.createDate;
+				note.cursorPos = rnote.cursorPos;
+				note.width = rnote.width;
+				note.height = rnote.height;
+				note.X = rnote.X;		
+				note.Y = rnote.Y;
 				
-				tags = rnote.getTags();
-			}
-
-			if(tags.length()>0) {
-				String[] tagsA = tags.split(",");
-				tags = "\n\t<tags>";
-				for(String atag : tagsA) {
-					tags += "\n\t\t<tag>"+atag+"</tag>"; 
-				}
-				tags += "\n\t</tags>"; 
+				note.setTags(rnote.getTags());
 			}
 			
-			// TODO: create-date
-			String xmlOutput = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<note version=\"0.3\" xmlns:link=\"http://beatniksoftware.com/tomboy/link\" xmlns:size=\"http://beatniksoftware.com/tomboy/size\" xmlns=\"http://beatniksoftware.com/tomboy\">\n\t<title>"
-					+note.getTitle().replace("&", "&amp;")+"</title>\n\t<text xml:space=\"preserve\"><note-content version=\"0.1\">"
-					+note.getXmlContent()+"</note-content></text>\n\t<last-change-date>"
-					+note.getLastChangeDate().format3339(false)+"</last-change-date>\n\t<last-metadata-change-date>"
-					+note.getLastChangeDate().format3339(false)+"</last-metadata-change-date>\n\t<create-date>"
-					+createDate+"</create-date>\n\t<cursor-position>"
-					+cursorPos+"</cursor-position>\n\t<width>"
-					+width+"</width>\n\t<height>"
-					+height+"</height>\n\t<x>"
-					+X+"</x>\n\t<y>"
-					+Y+"</y>"
-					+tags+"\n\t<open-on-startup>False</open-on-startup>\n</note>\n";
+			String xmlOutput = note.getXmlFileString();
 			
 			path.createNewFile();
 			FileOutputStream fOut = new FileOutputStream(path);

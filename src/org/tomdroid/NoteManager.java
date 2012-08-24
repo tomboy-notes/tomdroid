@@ -420,7 +420,7 @@ public class NoteManager {
 	 * in the <note-content> tag. This method strips it from <note-content>.
 	 * @param noteContent
 	 */
-	private static String stripTitleFromContent(String xmlContent, String title) {
+	public static String stripTitleFromContent(String xmlContent, String title) {
 		// get rid of the title that is doubled in the note's content
 		// using quote to escape potential regexp chars in pattern
 		

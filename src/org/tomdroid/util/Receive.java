@@ -140,7 +140,7 @@ public class Receive extends ActionBarActivity {
 		// FIXME here we are re-reading the whole note just to grab note-content out, there is probably a better way to do this (I'm talking to you xmlpull.org!)
 		Matcher m = note_content.matcher(contents);
 		if (m.find()) {
-			remoteNote.setXmlContent(m.group(1));
+			remoteNote.setXmlContent(NoteManager.stripTitleFromContent(m.group(1),remoteNote.getTitle()));
 		} else {
 			TLog.w(TAG, "Something went wrong trying to grab the note-content out of a note");
 			return;
@@ -272,7 +272,10 @@ public class Receive extends ActionBarActivity {
 	}
 	protected void  onActivityResult (int requestCode, int resultCode, Intent  data) {
 		TLog.d(TAG, "onActivityResult called");
-		Uri uri = Uri.parse(data.getStringExtra("uri"));
+		Uri uri = null;
+		if(data != null && data.hasExtra("uri"))
+			uri = Uri.parse(data.getStringExtra("uri"));
+		
 		// view new note
 		Intent i = new Intent(Intent.ACTION_VIEW, uri, this, Tomdroid.class);
 		startActivity(i);

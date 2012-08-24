@@ -214,4 +214,35 @@ public class Note {
 		return new String("Note: "+ getTitle() + " (" + getLastChangeDate() + ")");
 	}
 	
+	// gets full xml to be exported as .note file
+	public String getXmlFileString() {
+		
+		String tagString = "";
+
+		if(tags.length()>0) {
+			String[] tagsA = tags.split(",");
+			tagString = "\n\t<tags>";
+			for(String atag : tagsA) {
+				tagString += "\n\t\t<tag>"+atag+"</tag>"; 
+			}
+			tagString += "\n\t</tags>"; 
+		}
+
+		// TODO: create-date
+		String fileString = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<note version=\"0.3\" xmlns:link=\"http://beatniksoftware.com/tomboy/link\" xmlns:size=\"http://beatniksoftware.com/tomboy/size\" xmlns=\"http://beatniksoftware.com/tomboy\">\n\t<title>"
+				+getTitle().replace("&", "&amp;")+"</title>\n\t<text xml:space=\"preserve\"><note-content version=\"0.1\">"
+				+getTitle().replace("&", "&amp;")+"\n\n" // added for compatibility
+				+getXmlContent()+"</note-content></text>\n\t<last-change-date>"
+				+getLastChangeDate().format3339(false)+"</last-change-date>\n\t<last-metadata-change-date>"
+				+getLastChangeDate().format3339(false)+"</last-metadata-change-date>\n\t<create-date>"
+				+createDate.format3339(false)+"</create-date>\n\t<cursor-position>"
+				+cursorPos+"</cursor-position>\n\t<width>"
+				+width+"</width>\n\t<height>"
+				+height+"</height>\n\t<x>"
+				+X+"</x>\n\t<y>"
+				+Y+"</y>"
+				+tagString+"\n\t<open-on-startup>False</open-on-startup>\n</note>\n";
+		return fileString;
+	}
+	
 }

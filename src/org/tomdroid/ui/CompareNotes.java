@@ -173,9 +173,9 @@ public class CompareNotes extends ActionBarActivity {
 
 			copyBtn.setVisibility(View.GONE);
 			
-			// if importing note, offer discard option to open main screen
+			// if importing note, offer cancel import option to open main screen
 			if(noRemote) {
-				localBtn.setText(getString(R.string.discard));
+				localBtn.setText(getString(R.string.btnCancelImport));
 				localBtn.setOnClickListener( new View.OnClickListener() {
 					public void onClick(View v) {
 						finishForResult();
@@ -204,7 +204,7 @@ public class CompareNotes extends ActionBarActivity {
 				diff = "<b>"+getString(R.string.diff_titles)+"</b><br/><i>"+getString(R.string.local_label)+"</i><br/> "+localNote.getTitle()+"<br/><br/><i>"+getString(R.string.remote_label)+"</i><br/>"+extras.getString("title");		
 			}
 
-			if(localNote.getXmlContent().equals(extras.getString("content"))){
+			if(localNote.getXmlContent().equals(extras.getString("content").replaceAll("</*link:[^>]+>", ""))) {
 				TLog.v(TAG, "compared notes have same content");
 				if(titleMatch) { // same note, fix the dates
 					if(extras.getInt("datediff") < 0) { // local older
@@ -310,7 +310,7 @@ public class CompareNotes extends ActionBarActivity {
 			}
 			
 			if(noRemote) {
-				localBtn.setText(getString(R.string.discard));
+				localBtn.setText(getString(R.string.btnCancelImport));
 				message = getString(R.string.sync_conflict_import_message);
 			}
 			

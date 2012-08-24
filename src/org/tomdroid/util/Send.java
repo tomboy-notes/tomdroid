@@ -64,33 +64,13 @@ public class Send {
 	};
 	
 	private void sendNoteAsFile() {
-		int cursorPos = 0;
-		int width = 0;
-		int height = 0;
-		int X = -1;
-		int Y = -1;
-		String tags = note.getTags();
-		if(tags.length()>0) {
-			String[] tagsA = tags.split(",");
-			tags = "\n\t<tags>";
-			for(String atag : tagsA) {
-				tags += "\n\t\t<tag>"+atag+"</tag>"; 
-			}
-			tags += "\n\t</tags>"; 
-		}
+		note.cursorPos = 0;
+		note.width = 0;
+		note.height = 0;
+		note.X = -1;
+		note.Y = -1;
 		
-		String xmlOutput = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<note version=\"0.3\" xmlns:link=\"http://beatniksoftware.com/tomboy/link\" xmlns:size=\"http://beatniksoftware.com/tomboy/size\" xmlns=\"http://beatniksoftware.com/tomboy\">\n\t<title>"
-				+note.getTitle().replace("&", "&amp;")+"</title>\n\t<text xml:space=\"preserve\"><note-content version=\"0.1\">"
-				+note.getXmlContent()+"</note-content></text>\n\t<last-change-date>"
-				+note.getLastChangeDate().format3339(false)+"</last-change-date>\n\t<last-metadata-change-date>"
-				+note.getLastChangeDate().format3339(false)+"</last-metadata-change-date>\n\t<create-date>"
-				+note.getLastChangeDate().format3339(false)+"</create-date>\n\t<cursor-position>"
-				+cursorPos+"</cursor-position>\n\t<width>"
-				+width+"</width>\n\t<height>"
-				+height+"</height>\n\t<x>"
-				+X+"</x>\n\t<y>"
-				+Y+"</y>"
-				+note.getTags()+"\n\t<open-on-startup>False</open-on-startup>\n</note>\n";	
+		String xmlOutput = note.getXmlFileString();	
 		
 		FileOutputStream outFile = null;
 		Uri noteUri = null;
@@ -145,6 +125,8 @@ public class Send {
 
 	private void clearFilesDir() {
 		File dir = activity.getFilesDir();
+		if(dir == null || !dir.exists())
+			return;
         String[] children = dir.list();
         for (String s : children) {
             File f = new File(dir, s);
