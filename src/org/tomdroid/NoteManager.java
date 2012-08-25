@@ -68,6 +68,8 @@ public class NoteManager {
 
 	// gets a note from the content provider, based on guid
 	public static Note getNoteByGuid(Activity activity, String guid) {
+		TLog.i(TAG, "Getting note with guid: {0}", guid);
+
 		Uri notes = Tomdroid.CONTENT_URI;
 		
 		String[] whereArgs = new String[1];
@@ -162,7 +164,7 @@ public class NoteManager {
 		// TODO make the query prettier (use querybuilder)
 		Uri notes = Tomdroid.CONTENT_URI;
 		String[] whereArgs = new String[1];
-		whereArgs[0] = note.getGuid().toString();
+		whereArgs[0] = note.getGuid();
 		
 		// The note identifier is the guid
 		ContentResolver cr = activity.getContentResolver();
@@ -203,8 +205,11 @@ public class NoteManager {
 			
 			uri = Uri.parse(Tomdroid.CONTENT_URI+"/"+getNoteIdByGUID(activity, note.getGuid()));
 
-			TLog.v(TAG, "Note updated in content provider: TITLE:{0} GUID:{1}", note.getTitle(), note.getGuid());
+			TLog.v(TAG, "Note updated in content provider: TITLE:{0} GUID:{1} TAGS:{2}", note.getTitle(), note.getGuid(), note.getTags());
 		}
+		
+		note = getNote(activity, uri);
+		TLog.d(TAG, "New note values: TITLE:{0} GUID:{1} TAGS:{2}", note.getTitle(), note.getGuid(), note.getTags());
 		return uri;
 	}
 	
@@ -215,10 +220,14 @@ public class NoteManager {
 		Time now = new Time();
 		now.setToNow();
 		note.setLastChangeDate(now);
-		putNote(activity,note);		
-
+		putNote(activity,note);
 	}
-
+	public static void deleteNote(Activity activity, String guid)
+	{
+		Note note = getNoteByGuid(activity,guid);
+		deleteNote(activity, note);
+	}
+	
 	// this function actually deletes the note locally, called when syncing
 	public static boolean deleteNote(Activity activity, int id)
 	{
@@ -316,25 +325,39 @@ public class NoteManager {
 		boolean includeNotebookTemplates = Preferences.getBoolean(Preferences.Key.INCLUDE_NOTE_TEMPLATES);
 
 		String[] qargs = null;
-		String where = "(" + Note.TAGS + " NOT LIKE '%" + "system:deleted" + "%')";
-		if (!includeNotebookTemplates) {
-			where += " AND (" + Note.TAGS + " NOT LIKE '%" + "system:template" + "%')";
-		}
+		String where = "";
+		int count = 0;
+		
 		if (querys != null ) {
 			// sql statements to search notes
 			String[] query = querys.split(" ");
-			qargs = new String[query.length*2];
-			int count = 0;
+			qargs = new String[query.length*2+(!includeNotebookTemplates?2:1)];
 			for (String string : query) {
 				qargs[count++] = "%"+string+"%"; 
 				qargs[count++] = "%"+string+"%"; 
-				where = where + " AND ("+Note.TITLE+" LIKE ? OR "+Note.NOTE_CONTENT+" LIKE ?)";
+				where = where + "("+Note.TITLE+" LIKE ? OR "+Note.NOTE_CONTENT+" LIKE ?) AND ";
 			}	
+		}
+		else {
+			qargs = new String[(!includeNotebookTemplates?2:1)];
+		}
+		where += "(" + Note.TAGS + " NOT LIKE ?)";
+		qargs[count++] = "%system:deleted%";
+		if (!includeNotebookTemplates) {
+			where += " AND (" + Note.TAGS + " NOT LIKE ?)";
+			qargs[count++] = "%system:template%";
 		}
 
 		// get a cursor representing all notes from the NoteProvider
 		Uri notes = Tomdroid.CONTENT_URI;
-		Cursor notesCursor = activity.managedQuery(notes, LIST_PROJECTION, where, qargs, null);
+
+		ContentResolver cr = activity.getContentResolver();
+		Cursor notesCursor = cr.query(notes,
+				LIST_PROJECTION,  
+				where,
+				qargs,
+                null);
+		activity.startManagingCursor(notesCursor);
 		
 		// set up an adapter binding the TITLE field of the cursor to the list item
 		String[] from = new String[] { Note.TITLE };

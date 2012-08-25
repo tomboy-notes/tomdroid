@@ -218,7 +218,6 @@ public class ViewNote extends ActionBarActivity {
         .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int which) {
-        		note.getGuid();
         		NoteManager.deleteNote(activity, note);
         		Toast.makeText(activity, getString(R.string.messageNoteDeleted), Toast.LENGTH_SHORT).show();
         		activity.finish();

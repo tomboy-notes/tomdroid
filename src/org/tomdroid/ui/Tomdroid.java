@@ -253,6 +253,7 @@ public class Tomdroid extends ActionBarListActivity {
 		uri = Uri.parse(CONTENT_URI + "/" + noteId);
 
         note = NoteManager.getNote(this, uri);
+		TLog.v(TAG, "Note guid: {0}", note.getGuid());
 
         if(note != null) {
         	TLog.d(TAG, "note {0} found", position);
@@ -399,6 +400,7 @@ public class Tomdroid extends ActionBarListActivity {
 			return Tomdroid.CONTENT_URI.toString()+"/"+id;
 		}
 	};
+	private String dialogString;
 
 	@TargetApi(11)
 	@Override
@@ -443,8 +445,12 @@ public class Tomdroid extends ActionBarListActivity {
 					startEditNote();
 				return true;
 			case R.id.menuDelete:
-				if(note != null)
-					deleteNote(note.getDbId(), lastIndex);
+				if(note != null) {
+			    	Bundle bundle = new Bundle();
+			    	dialogString = note.getGuid(); // why can't we put it in the bundle?  deletes the wrong note!?
+					bundle.putInt("position", lastIndex);
+					showDialog(DIALOG_DELETE_NOTE, bundle);
+				}
 				return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -523,15 +529,16 @@ public class Tomdroid extends ActionBarListActivity {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo)item.getMenuInfo();
 		long noteId = info.id;
 		int notePosition = info.position;
+
 		Uri intentUri = Uri.parse(Tomdroid.CONTENT_URI+"/"+noteId);
         Note note = NoteManager.getNote(this, intentUri);
+    	Bundle bundle = new Bundle();
 
         switch (item.getItemId()) {
             case R.id.menu_send:
-            	Bundle bundle = new Bundle();
             	bundle.putString("uri", intentUri.toString());
             	showDialog(DIALOG_SEND_CHOOSE, bundle);
-				break;
+				return true;
 			case R.id.view:
 				this.ViewNote(noteId);
 				break;
@@ -542,8 +549,11 @@ public class Tomdroid extends ActionBarListActivity {
 				this.revertNote(note.getGuid());
 				break;
 			case R.id.delete:
-				this.deleteNote(noteId, notePosition);
-				break;
+				TLog.i(TAG, "Deleting note with guid: {0}", note.getGuid());
+				dialogString = note.getGuid();
+				bundle.putInt("position", notePosition);
+				showDialog(DIALOG_DELETE_NOTE, bundle);
+				return true;
 			case R.id.create_shortcut:
                 final NoteViewShortcutsHelper helper = new NoteViewShortcutsHelper(this);
                 sendBroadcast(helper.getBroadcastableCreateShortcutIntent(intentUri, note.getTitle()));
@@ -723,8 +733,6 @@ public class Tomdroid extends ActionBarListActivity {
 				.create();
 				break;
 		    case DIALOG_DELETE_NOTE:
-		    	final Note alertNote = NoteManager.getNote(this, Uri.parse(bundle.getString("uri")));
-		    	final int alertPosition = bundle.getInt("position");
 		    	alertDialog = new AlertDialog.Builder(this)
 		        .setIcon(android.R.drawable.ic_dialog_alert)
 		        .setTitle(R.string.delete_note)
@@ -732,11 +740,8 @@ public class Tomdroid extends ActionBarListActivity {
 		        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
 		            public void onClick(DialogInterface dialog, int which) {
-		        		NoteManager.deleteNote(activity, alertNote);
-		    			adapter = NoteManager.getListAdapter(context);
-		    			setListAdapter(adapter);
-		    			setSelection(alertPosition);
-		    			showNoteInPane(alertPosition);
+						TLog.i(TAG, "Chose to delete note with guid: {0}", bundle.getString("guid"));
+		        		deleteNote(dialogString, bundle.getInt("position"));
 		           }
 
 		        })
@@ -853,13 +858,11 @@ public class Tomdroid extends ActionBarListActivity {
 
 		
 	}
-	private void deleteNote(long noteId, final int notePosition) {
-			
-		Bundle bundle = new Bundle();
-		bundle.putString("uri", Tomdroid.CONTENT_URI + "/" + noteId);
-		bundle.putInt("position", notePosition);
-		showDialog(DIALOG_DELETE_NOTE, bundle);
+	private void deleteNote(String guid, int position) {
+		NoteManager.deleteNote(this, guid);
+		showNoteInPane(position);
 	}
+	
 	private void revertNote(final String guid) {
 		Bundle bundle = new Bundle();
 		bundle.putString("guid", guid);
