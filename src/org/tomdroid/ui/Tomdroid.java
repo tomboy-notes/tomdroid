@@ -24,8 +24,6 @@
  */
 package org.tomdroid.ui;
 
-import java.util.HashMap;
-import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -50,7 +48,6 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.LauncherActivity.ListItem;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -77,7 +74,6 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import org.tomdroid.util.TLog;
 
 public class Tomdroid extends ActionBarListActivity {
 
@@ -103,6 +99,10 @@ public class Tomdroid extends ActionBarListActivity {
 	private static final int DIALOG_SYNC_ERRORS = 10;
 	private static final int DIALOG_SYNC_PROGRESS_UPDATE = 11;
 	private static final int DIALOG_SEND_CHOOSE = 12;
+	
+	private String dialogString;
+	private boolean dialogBoolean;
+	private int dialogInt;
 	
 	// config parameters
 	public static String	NOTES_PATH				= null;
@@ -203,9 +203,6 @@ public class Tomdroid extends ActionBarListActivity {
 			updateTextAttributes();
 			showNoteInPane(0);
 		}
-		
-		// dev function, uncomment to test out the compare_notes activity
-		//compareTestNotes();
 	}
 	private void updateTextAttributes() {
 		float baseSize = Float.parseFloat(Preferences.getString(Preferences.Key.BASE_TEXT_SIZE));
@@ -400,7 +397,6 @@ public class Tomdroid extends ActionBarListActivity {
 			return Tomdroid.CONTENT_URI.toString()+"/"+id;
 		}
 	};
-	private String dialogString;
 
 	@TargetApi(11)
 	@Override
@@ -446,16 +442,16 @@ public class Tomdroid extends ActionBarListActivity {
 				return true;
 			case R.id.menuDelete:
 				if(note != null) {
-			    	Bundle bundle = new Bundle();
 			    	dialogString = note.getGuid(); // why can't we put it in the bundle?  deletes the wrong note!?
-					bundle.putInt("position", lastIndex);
-					showDialog(DIALOG_DELETE_NOTE, bundle);
+					dialogInt = lastIndex;
+					showDialog(DIALOG_DELETE_NOTE);
 				}
 				return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
 	
+	@SuppressWarnings("deprecation")
 	private void startSyncing(boolean push) {
 
 		String serverUri = Preferences.getString(Preferences.Key.SYNC_SERVER);
@@ -536,8 +532,8 @@ public class Tomdroid extends ActionBarListActivity {
 
         switch (item.getItemId()) {
             case R.id.menu_send:
-            	bundle.putString("uri", intentUri.toString());
-            	showDialog(DIALOG_SEND_CHOOSE, bundle);
+            	dialogString = intentUri.toString();
+            	showDialog(DIALOG_SEND_CHOOSE);
 				return true;
 			case R.id.view:
 				this.ViewNote(noteId);
@@ -551,8 +547,8 @@ public class Tomdroid extends ActionBarListActivity {
 			case R.id.delete:
 				TLog.i(TAG, "Deleting note with guid: {0}", note.getGuid());
 				dialogString = note.getGuid();
-				bundle.putInt("position", notePosition);
-				showDialog(DIALOG_DELETE_NOTE, bundle);
+				dialogInt = notePosition;
+				showDialog(DIALOG_DELETE_NOTE);
 				return true;
 			case R.id.create_shortcut:
                 final NoteViewShortcutsHelper helper = new NoteViewShortcutsHelper(this);
@@ -610,11 +606,6 @@ public class Tomdroid extends ActionBarListActivity {
 
 	@Override
 	protected Dialog onCreateDialog(int id) {
-		return onCreateDialog(id, null);
-	}
-
-	@Override
-	protected Dialog onCreateDialog(int id, final Bundle bundle) {
 	    final Activity activity = this;
 		AlertDialog alertDialog;
 	    switch(id) {
@@ -740,8 +731,8 @@ public class Tomdroid extends ActionBarListActivity {
 		        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
 		            public void onClick(DialogInterface dialog, int which) {
-						TLog.i(TAG, "Chose to delete note with guid: {0}", bundle.getString("guid"));
-		        		deleteNote(dialogString, bundle.getInt("position"));
+						TLog.i(TAG, "Chose to delete note with guid: {0}", dialogString);
+		        		deleteNote(dialogString, dialogInt);
 		           }
 
 		        })
@@ -756,7 +747,7 @@ public class Tomdroid extends ActionBarListActivity {
 		        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
 		            public void onClick(DialogInterface dialog, int which) {
-						SyncManager.getInstance().pullNote(bundle.getString("guid"));
+						SyncManager.getInstance().pullNote(dialogString);
 		           }
 
 		        })
@@ -764,11 +755,11 @@ public class Tomdroid extends ActionBarListActivity {
 		        .create();
 				break;
 		    case DIALOG_SYNC_ERRORS:
-				alertDialog = new AlertDialog.Builder(activity).setMessage(bundle.getString("message"))
+				alertDialog = new AlertDialog.Builder(activity).setMessage(dialogString)
 				.setTitle(getString(R.string.error))
 				.setPositiveButton(getString(R.string.btnSavetoSD), new OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
-						if(!bundle.getBoolean("saved")) {
+						if(!dialogBoolean) {
 							Toast.makeText(activity, activity.getString(R.string.messageCouldNotSave),
 									Toast.LENGTH_SHORT).show();
 						}
@@ -780,7 +771,7 @@ public class Tomdroid extends ActionBarListActivity {
 				}).create();
 				break;
 		    case DIALOG_SEND_CHOOSE:
-                final Uri intentUri = Uri.parse(bundle.getString("uri"));
+                final Uri intentUri = Uri.parse(dialogString);
 				alertDialog = new AlertDialog.Builder(activity)
 				.setMessage(getString(R.string.sendChoice))
 				.setTitle(getString(R.string.sendChoiceTitle))
@@ -863,10 +854,10 @@ public class Tomdroid extends ActionBarListActivity {
 		showNoteInPane(position);
 	}
 	
+	@SuppressWarnings("deprecation")
 	private void revertNote(final String guid) {
-		Bundle bundle = new Bundle();
-		bundle.putString("guid", guid);
-		showDialog(DIALOG_REVERT_NOTE, bundle);
+		dialogString = guid;
+		showDialog(DIALOG_REVERT_NOTE);
 	}
 
 	public class SyncMessageHandler extends Handler {
@@ -908,10 +899,9 @@ public class Tomdroid extends ActionBarListActivity {
 						finishSync();
 					} else {
 						TLog.v(TAG, "syncErrors: {0}", TextUtils.join("\n",errors.toArray()));
-						Bundle bundle = new Bundle();
-						bundle.putString("message",getString(R.string.messageSyncError));
-						bundle.putBoolean("saved",errors.save());
-						showDialog(DIALOG_SYNC_ERRORS, bundle);
+						dialogString = getString(R.string.messageSyncError);
+						dialogBoolean = errors.save();
+						showDialog(DIALOG_SYNC_ERRORS);
 					}
 					break;
 				case SyncService.CONNECTING_FAILED:
@@ -1063,56 +1053,5 @@ public class Tomdroid extends ActionBarListActivity {
 			syncProgressDialog.dismiss();
 		if(rightPane != null)
 			showNoteInPane(lastIndex);
-	}
-	
-	// dev function, used for testing out the note conflict resolution
-	public void compareTestNotes() {
-		int position = 0;
-		Cursor item = (Cursor) adapter.getItem(position);
-		if (item == null || item.getCount() == 0) {
-            TLog.d(TAG, "Index {0} not found in list", position);
-            title.setText("");
-            content.setText("");
-			return;
-		}
-		long noteId = item.getInt(item.getColumnIndexOrThrow(Note.ID));	
-		uri = Uri.parse(CONTENT_URI + "/" + noteId);
-
-		TLog.d(TAG, "Getting note {0}", position);
-
-        Note localNote = NoteManager.getNote(this, uri);
-		Note remoteNote = new Note();
-
-
-		remoteNote.setGuid(localNote.getGuid());
-		remoteNote.setTitle(localNote.getTitle()+" Remote");
-		Time time= new Time();
-		remoteNote.setLastChangeDate(time.format3339(false));
-		remoteNote.setXmlContent(localNote.getXmlContent()+"\nLorem ipsum dolor sit amet, \nsed diam nonumyeirmod tempor invidunt ut la");
-
-		int compareBoth = Time.compare(localNote.getLastChangeDate(), remoteNote.getLastChangeDate());
-		
-		TLog.v(TAG, "note conflict... showing resolution dialog TITLE:{0} GUID:{1}", localNote.getTitle(), localNote.getGuid());
-		
-		// send everything to Tomdroid so it can show Sync Dialog
-		
-	    Bundle bundle = new Bundle();	
-		bundle.putString("title",remoteNote.getTitle());
-		bundle.putString("file",remoteNote.getFileName());
-		bundle.putString("guid",remoteNote.getGuid());
-		bundle.putString("date",remoteNote.getLastChangeDate().format3339(false));
-		bundle.putString("content", remoteNote.getXmlContent());
-		bundle.putString("tags", remoteNote.getTags());
-		bundle.putInt("datediff", compareBoth);
-		
-		// put local guid if conflicting titles
-
-		if(!remoteNote.getGuid().equals(localNote.getGuid()))
-			bundle.putString("localGUID", localNote.getGuid());
-		
-		Intent intent = new Intent(this, CompareNotes.class);	
-		intent.putExtras(bundle);
-
-		startActivity(intent);
 	}
 }
