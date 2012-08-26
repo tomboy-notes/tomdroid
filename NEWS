@@ -26,6 +26,7 @@ Tomdroid <version-code> - "<version-name>" released on <release-date>
 * fixed bug lp:1040338 Crash on Cancel
 * fixed bug lp:1040389 Share/Send from chrome or play crash
 * fixed bug lp:1040551 Tomdroid two-way sync to SD card messes up titles
+* fixed bug lp:1041792 Error is occured on text decoration in beta Edit
 
 -------------------------------------------------------------------------------
 Tomdroid 0.7.1 beta - "Fast paced" released on 2012-08-21

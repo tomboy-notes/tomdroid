@@ -26,6 +26,7 @@ package org.tomdroid.xml;
 import java.util.ArrayList;
 
 import org.tomdroid.Note;
+import org.tomdroid.util.TLog;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -45,6 +46,8 @@ import android.text.style.TypefaceSpan;
  * and formatting the contents in a SpannableStringBuilder
  */
 public class NoteContentHandler extends DefaultHandler {
+
+	private String TAG = "NoteContentHandler";
 	
 	// position keepers
 	private boolean inNoteContentTag = false;
@@ -75,22 +78,22 @@ public class NoteContentHandler extends DefaultHandler {
 	private final static String LIST_ITEM = "list-item";
 	
 	// holding state for tags
-	private int boldStartPos;
-	private int boldEndPos;
-	private int italicStartPos;
-	private int italicEndPos;
-	private int strikethroughStartPos;
-	private int strikethroughEndPos;
-	private int highlightStartPos;
-	private int highlightEndPos;
-	private int monospaceStartPos;
-	private int monospaceEndPos;
-	private int smallStartPos;
-	private int smallEndPos;
-	private int largeStartPos;
-	private int largeEndPos;
-	private int hugeStartPos;
-	private int hugeEndPos;
+	private int boldStartPos = -1;
+	private int boldEndPos = -1;
+	private int italicStartPos = -1;
+	private int italicEndPos = -1;
+	private int strikethroughStartPos = -1;
+	private int strikethroughEndPos = -1;
+	private int highlightStartPos = -1;
+	private int highlightEndPos = -1;
+	private int monospaceStartPos = -1;
+	private int monospaceEndPos = -1;
+	private int smallStartPos = -1;
+	private int smallEndPos = -1;
+	private int largeStartPos = -1;
+	private int largeEndPos = -1;
+	private int hugeStartPos = -1;
+	private int hugeEndPos = -1;
 	private ArrayList<Integer> listItemStartPos = new ArrayList<Integer>(0);
 	private ArrayList<Integer> listItemEndPos = new ArrayList<Integer>(0);
 	private ArrayList<Boolean> listItemIsEmpty =  new ArrayList<Boolean>(0);
@@ -173,60 +176,71 @@ public class NoteContentHandler extends DefaultHandler {
 		// if we are in note-content, keep and convert formatting tags
 		if (inNoteContentTag) {
 			if (name.equals(BOLD)) {
+				if(boldStartPos == boldEndPos) return;
+				//TLog.d(TAG, "Bold span: {0} to {1} is {2}",boldStartPos,boldEndPos, ssb.subSequence(boldStartPos, boldEndPos).toString());
 				inBoldTag = false;
 				// apply style and reset position keepers
 				ssb.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), boldStartPos, boldEndPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-				boldStartPos = 0;
-				boldEndPos = 0;
+				boldStartPos = -1;
+				boldEndPos = -1;
 
 			} else if (name.equals(ITALIC)) {
+				TLog.d(TAG, "Italic span: {0} to {1} is {2}",italicStartPos,italicEndPos, ssb.subSequence(italicStartPos, italicEndPos).toString());
+				if(italicStartPos == italicEndPos) return;
 				inItalicTag = false;
 				// apply style and reset position keepers
 				ssb.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), italicStartPos, italicEndPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-				italicStartPos = 0;
-				italicEndPos = 0;
+				italicStartPos = -1;
+				italicEndPos = -1;
 
 			} else if (name.equals(STRIKETHROUGH)) {
+				if(strikethroughStartPos == strikethroughEndPos)
+					return;
 				inStrikeTag = false;
 				// apply style and reset position keepers
 				ssb.setSpan(new StrikethroughSpan(), strikethroughStartPos, strikethroughEndPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-				strikethroughStartPos = 0;
-				strikethroughEndPos = 0;
+				strikethroughStartPos = -1;
+				strikethroughEndPos = -1;
 
 			} else if (name.equals(HIGHLIGHT)) {
+				if(highlightStartPos == highlightEndPos) return;
 				inHighlighTag = false;
 				// apply style and reset position keepers
 				ssb.setSpan(new BackgroundColorSpan(Note.NOTE_HIGHLIGHT_COLOR), highlightStartPos, highlightEndPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-				highlightStartPos = 0;
-				highlightEndPos = 0;
+				highlightStartPos = -1;
+				highlightEndPos = -1;
 				
 			} else if (name.equals(MONOSPACE)) {
+				if(monospaceStartPos == monospaceEndPos) return;
 				inMonospaceTag = false;
 				// apply style and reset position keepers
 				ssb.setSpan(new TypefaceSpan(Note.NOTE_MONOSPACE_TYPEFACE), monospaceStartPos, monospaceEndPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-				monospaceStartPos = 0;
-				monospaceEndPos = 0;
+				monospaceStartPos = -1;
+				monospaceEndPos = -1;
 
 			} else if (name.equals(SMALL)) {
+				if(smallStartPos == smallEndPos) return;
 				inSizeSmallTag = false;
 				// apply style and reset position keepers
 				ssb.setSpan(new RelativeSizeSpan(Note.NOTE_SIZE_SMALL_FACTOR), smallStartPos, smallEndPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-				smallStartPos = 0;
-				smallEndPos = 0;
+				smallStartPos = -1;
+				smallEndPos = -1;
 				
 			} else if (name.equals(LARGE)) {
+				if(largeStartPos == largeEndPos) return;
 				inSizeLargeTag = false;
 				// apply style and reset position keepers
 				ssb.setSpan(new RelativeSizeSpan(Note.NOTE_SIZE_LARGE_FACTOR), largeStartPos, largeEndPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-				largeStartPos = 0;
-				largeEndPos = 0;
+				largeStartPos = -1;
+				largeEndPos = -1;
 
 			} else if (name.equals(HUGE)) {
+				if(hugeStartPos == hugeEndPos) return;
 				inSizeHugeTag = false;
 				// apply style and reset position keepers
 				ssb.setSpan(new RelativeSizeSpan(Note.NOTE_SIZE_HUGE_FACTOR), hugeStartPos, hugeEndPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-				hugeStartPos = 0;
-				hugeEndPos = 0;
+				hugeStartPos = -1;
+				hugeEndPos = -1;
 
 			} else if (name.equals(LIST)) {
 				inListLevel--;
@@ -271,7 +285,7 @@ public class NoteContentHandler extends DefaultHandler {
 			// TODO I haven't tested nested tags yet
 			if (inBoldTag) {
 				// if tag is not equal to 0 then we are already in it: no need to reset it's position again 
-				if (boldStartPos == 0) {
+				if (boldStartPos == -1) {
 					boldStartPos = strLenStart;
 				}
 				// no matter what, if we are still in the tag, end is now further
@@ -279,7 +293,7 @@ public class NoteContentHandler extends DefaultHandler {
 			}
 			if (inItalicTag) {
 				// if tag is not equal to 0 then we are already in it: no need to reset it's position again 
-				if (italicStartPos == 0) {
+				if (italicStartPos == -1) {
 					italicStartPos = strLenStart;
 				}
 				// no matter what, if we are still in the tag, end is now further
@@ -287,7 +301,7 @@ public class NoteContentHandler extends DefaultHandler {
 			}
 			if (inStrikeTag) {
 				// if tag is not equal to 0 then we are already in it: no need to reset it's position again 
-				if (strikethroughStartPos == 0) {
+				if (strikethroughStartPos == -1) {
 					strikethroughStartPos = strLenStart;
 				}
 				// no matter what, if we are still in the tag, end is now further
@@ -295,7 +309,7 @@ public class NoteContentHandler extends DefaultHandler {
 			}
 			if (inHighlighTag) {
 				// if tag is not equal to 0 then we are already in it: no need to reset it's position again 
-				if (highlightStartPos == 0) {
+				if (highlightStartPos == -1) {
 					highlightStartPos = strLenStart;
 				}
 				// no matter what, if we are still in the tag, end is now further
@@ -303,7 +317,7 @@ public class NoteContentHandler extends DefaultHandler {
 			}
 			if (inMonospaceTag) {
 				// if tag is not equal to 0 then we are already in it: no need to reset it's position again 
-				if (monospaceStartPos == 0) {
+				if (monospaceStartPos == -1) {
 					monospaceStartPos = strLenStart;
 				}
 				// no matter what, if we are still in the tag, end is now further
@@ -311,7 +325,7 @@ public class NoteContentHandler extends DefaultHandler {
 			}
 			if (inSizeSmallTag) {
 				// if tag is not equal to 0 then we are already in it: no need to reset it's position again 
-				if (smallStartPos == 0) {
+				if (smallStartPos == -1) {
 					smallStartPos = strLenStart;
 				}
 				// no matter what, if we are still in the tag, end is now further
@@ -319,7 +333,7 @@ public class NoteContentHandler extends DefaultHandler {
 			}
 			if (inSizeLargeTag) {
 				// if tag is not equal to 0 then we are already in it: no need to reset it's position again 
-				if (largeStartPos == 0) {
+				if (largeStartPos == -1) {
 					largeStartPos = strLenStart;
 				}
 				// no matter what, if we are still in the tag, end is now further
@@ -327,7 +341,7 @@ public class NoteContentHandler extends DefaultHandler {
 			}
 			if (inSizeHugeTag) {
 				// if tag is not equal to 0 then we are already in it: no need to reset it's position again 
-				if (hugeStartPos == 0) {
+				if (hugeStartPos == -1) {
 					hugeStartPos = strLenStart;
 				}
 				// no matter what, if we are still in the tag, end is now further

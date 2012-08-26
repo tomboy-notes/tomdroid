@@ -49,13 +49,7 @@ public class NewNote {
 
 		UUID newid = UUID.randomUUID();
 		note.setGuid(newid.toString());
-		
-		Time now = new Time();
-		now.setToNow();
-		String time = now.format3339(false);
-		TLog.i(TAG, "New note date: {0}",time);
-
-		note.setLastChangeDate(time);
+		note.setLastChangeDate();
 		note.setXmlContent(xmlContent);
 		
 		return note;

@@ -49,6 +49,7 @@ public class NoteContentBuilder {
 	private Runnable runner;
 	private Handler parentHandler;
 	private String subjectName;
+	private String noteContentString;
 	
 	public NoteContentBuilder () {}
 	
@@ -72,8 +73,8 @@ public class NoteContentBuilder {
 	
 	public NoteContentBuilder setInputSource(String nc) {
 		
-		String noteContent = "<note-content>"+nc+"</note-content>";
-		noteContentIs = new InputSource(new StringReader(noteContent));
+		noteContentString = "<note-content>"+nc+"</note-content>";
+		noteContentIs = new InputSource(new StringReader(noteContentString));
 		return this;
 	}
 	
@@ -103,7 +104,7 @@ public class NoteContentBuilder {
 				} catch (Exception e) {
 					e.printStackTrace();
 					// TODO handle error in a more granular way
-					TLog.e(TAG, "There was an error parsing the note {0}", subjectName);
+					TLog.e(TAG, "There was an error parsing the note {0}", noteContentString);
 					successful = false;
 				}
 				

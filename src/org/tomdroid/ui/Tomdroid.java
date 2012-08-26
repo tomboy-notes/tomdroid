@@ -290,7 +290,7 @@ public class Tomdroid extends ActionBarListActivity {
 			title.setText((CharSequence) note.getTitle());
 			return;
 		}
-		
+
 		// show the note (spannable makes the TextView able to output styled text)
 		content.setText(noteContent, TextView.BufferType.SPANNABLE);
 

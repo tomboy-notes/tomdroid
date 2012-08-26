@@ -34,6 +34,7 @@ import android.graphics.Typeface;
 import android.os.Handler;
 import android.os.Message;
 import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.BulletSpan;
 import android.text.style.LeadingMarginSpan;
@@ -48,6 +49,12 @@ public class NoteXMLContentBuilder implements Runnable {
 	public static final int PARSE_ERROR = 1;
 	
 	private SpannableStringBuilder noteContent = null;
+
+	// set up check for mismatch (cross-boundary spans like <bold>foo<italic>bar</bold>foo</italic>)
+	
+	private ArrayList<String> openTags = new ArrayList<String>();
+	private ArrayList<String> closeTags = new ArrayList<String>();
+	private ArrayList<String> tagsToOpen = new ArrayList<String>();
 	
 	// this is what we are building here
 	private String noteXMLContent = new String();
@@ -94,7 +101,7 @@ public class NoteXMLContentBuilder implements Runnable {
 				}
 				plainText = noteContent.toString(); // have to refresh!
 			}
-			
+
 			// translate spans into XML elements:
 			for( int prevPos=0, currPos=0, maxPos=noteContent.length(); 
 					currPos!=-1 && currPos<=maxPos && prevPos<maxPos;
@@ -253,7 +260,7 @@ public class NoteXMLContentBuilder implements Runnable {
 				}
 				// write plain character content from previous to current (relevant) span transition:
 				noteXMLContent += noteContent.subSequence( prevPos, currPos );
-				
+
 				// API 3 compat - is this reversal really necessary?  I think it should be reversed in the for(String elementName...)
 				
 				ListIterator<Integer> iter = new ArrayList<Integer>(elemEndsByStart.keySet()).listIterator(elemEndsByStart.size());
@@ -262,13 +269,9 @@ public class NoteXMLContentBuilder implements Runnable {
 
 				while (iter.hasPrevious()) {
 				    Integer key = iter.previous();
-				    
-				    // here we do the reversal, this fixes the mismatched tags.
-				    
-					for(int i = elemEndsByStart.get(key).size()-1; i > -1; i--) {
-						String elementName = elemEndsByStart.get(key).get(i);
-						noteXMLContent += "</"+elementName+">";
-					}
+					for( String elementName: elemEndsByStart.get(key) ) {
+						closeTags.add(elementName); // add for comparing with later ones
+					}				    
 				}
 				
 				iter = new ArrayList<Integer>(elemStartsByEnd.keySet()).listIterator(elemStartsByEnd.size());
@@ -278,9 +281,14 @@ public class NoteXMLContentBuilder implements Runnable {
 				while (iter.hasPrevious()) {
 				    Integer key = iter.previous();
 					for( String elementName: elemStartsByEnd.get(key) ) {
-						noteXMLContent += "<"+elementName+">";
+						tagsToOpen.add(elementName); // add for comparing with later ones
 					}
 				}
+				TLog.e(TAG, "Open tags: {0}",TextUtils.join(",",openTags));
+				TLog.e(TAG, "Close tags: {0}",TextUtils.join(",",closeTags));
+
+			    noteXMLContent += addTags(); 
+				TLog.d(TAG, "XML so far: {0}",noteXMLContent);
 
 			}
 		} catch (Exception e) {
@@ -290,10 +298,42 @@ public class NoteXMLContentBuilder implements Runnable {
 			successful = false;
 		}
 		
+		TLog.d(TAG, "Final XML: {0}",noteXMLContent);
+		
 		warnHandler(successful);
 	}
 	
-    private void warnHandler(boolean successful) {
+    private String addTags() {
+    	String tags = "";
+		if(!closeTags.isEmpty()) { 
+			if(!openTags.isEmpty()) { // check for mismatch
+				String tag = openTags.get(openTags.size()-1);
+				tags += "</"+tag+">";
+				if(closeTags.get(closeTags.size()-1).equals(tag)) { // match, close tag
+					closeTags.remove(closeTags.size()-1);
+					openTags.remove(openTags.size()-1);
+					TLog.d(TAG, "Closed matched tag: {0}","</"+tag+">");
+				}
+				else { // mismatch, close for reopening, reiterate for closing
+					openTags.remove(openTags.size()-1);
+					tagsToOpen.add(tag);
+					TLog.d(TAG, "Closed mismatched tag: {0}","</"+tag+">");
+					tags += addTags();
+				}
+			}
+		}
+		for(String tag : tagsToOpen) {
+			if(TextUtils.join(",", openTags).contains(tag)) // already opened
+				continue;
+			tags+="<"+tag+">";
+			openTags.add(tag);
+			TLog.d(TAG, "Opened tag: {0}","<"+tag+">");
+		}
+		tagsToOpen.clear();
+		return tags;
+	}
+
+	private void warnHandler(boolean successful) {
 		
 		// notify the main UI that we are done here (sending an ok along with the note's title)
 		Message msg = Message.obtain();
