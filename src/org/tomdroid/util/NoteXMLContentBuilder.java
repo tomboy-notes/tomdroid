@@ -287,7 +287,7 @@ public class NoteXMLContentBuilder implements Runnable {
 				TLog.e(TAG, "Open tags: {0}",TextUtils.join(",",openTags));
 				TLog.e(TAG, "Close tags: {0}",TextUtils.join(",",closeTags));
 
-			    noteXMLContent += addTags(); 
+			    noteXMLContent += addTags(currPos == maxPos); 
 				TLog.d(TAG, "XML so far: {0}",noteXMLContent);
 
 			}
@@ -297,16 +297,23 @@ public class NoteXMLContentBuilder implements Runnable {
 			TLog.e(TAG, "There was an error parsing the note.");
 			successful = false;
 		}
+		if(!openTags.isEmpty()) {
+			for(int x = 0; x < openTags.size(); x++) {
+				String tag = openTags.get(openTags.size()-x-1);
+				TLog.d(TAG, "Closed final tag: {0}","</"+tag+">");
+				noteXMLContent += "</"+tag+">";
+			}
+		}
 		
 		TLog.d(TAG, "Final XML: {0}",noteXMLContent);
 		
 		warnHandler(successful);
 	}
 	
-    private String addTags() {
+    private String addTags(boolean end) {
     	String tags = "";
-		if(!closeTags.isEmpty()) { 
-			if(!openTags.isEmpty()) { // check for mismatch
+		if(!openTags.isEmpty()) { 
+			if(!closeTags.isEmpty()) { // check for mismatch
 				String tag = openTags.get(openTags.size()-1);
 				tags += "</"+tag+">";
 				if(closeTags.get(closeTags.size()-1).equals(tag)) { // match, close tag
@@ -318,18 +325,21 @@ public class NoteXMLContentBuilder implements Runnable {
 					openTags.remove(openTags.size()-1);
 					tagsToOpen.add(tag);
 					TLog.d(TAG, "Closed mismatched tag: {0}","</"+tag+">");
-					tags += addTags();
+					tags += addTags(end);
 				}
 			}
 		}
-		for(String tag : tagsToOpen) {
-			if(TextUtils.join(",", openTags).contains(tag)) // already opened
-				continue;
-			tags+="<"+tag+">";
-			openTags.add(tag);
-			TLog.d(TAG, "Opened tag: {0}","<"+tag+">");
+		if(!end) {
+			for(String tag : tagsToOpen) {
+				if(TextUtils.join(",", openTags).contains(tag)) // already opened
+					continue;
+				tags+="<"+tag+">";
+				openTags.add(tag);
+				TLog.d(TAG, "Opened tag: {0}","<"+tag+">");
+			}
 		}
 		tagsToOpen.clear();
+		
 		return tags;
 	}
 
