@@ -188,6 +188,7 @@
 
 	<string name="syncing">%1$s-(r)ekin sinkronizatzen</string>
 	<string name="syncing_connect">zerbitzura konektatzen…</string>
+	<string name="gettings_notes">getting list of remote notes…</string>
 	<string name="syncing_local">ohar lokalak eguneratzen…</string>
 	<string name="syncing_remote">urruneko oharrak eguneratzen…</string>
 	<string name="sync_conflict_title">Ohar-gatazka</string>

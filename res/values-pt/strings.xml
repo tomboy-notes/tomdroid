@@ -188,6 +188,7 @@
 
 	<string name="syncing">Sincronizar com %1$s</string>
 	<string name="syncing_connect">a ligar ao dispositivo...</string>
+	<string name="gettings_notes">getting list of remote notes…</string>
 	<string name="syncing_local">a atualizar notas locais...</string>
 	<string name="syncing_remote">a atualizar notas remotas</string>
 	<string name="sync_conflict_title">Conflitos</string>

@@ -94,6 +94,9 @@ public class CompareNotes extends ActionBarActivity {
 		}
 		TLog.v(TAG, "starting SyncDialog");
 		
+		SyncManager.setActivity(this);
+		SyncManager.setHandler(this.syncMessageHandler);   
+		
 		setContentView(R.layout.note_compare);
 		
 		String serviceDescription = SyncManager.getInstance().getCurrentService().getDescription();
@@ -487,9 +490,9 @@ public class CompareNotes extends ActionBarActivity {
 		// this will delete the note, since it already has the "system:deleted" tag
 		ArrayList<Note> notes = new ArrayList<Note>();
 		notes.add(localNote);
-		SyncManager.getInstance().getCurrentService().pushNotes(notes);
 		syncProgressDialog.setMessage(getString(R.string.syncing_remote));
 		syncProgressDialog.show();
+		SyncManager.getInstance().getCurrentService().pushNotes(notes);
 	}
 	
 	/** Handler for the message from sync service */

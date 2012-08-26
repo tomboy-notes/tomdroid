@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-08-26 15:52+0530\n"
+"POT-Creation-Date: 2012-08-26 18:57+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,11 +64,11 @@ msgstr ""
 msgid "OK"
 msgstr ""
 
-#: tmp_strings.xml:45(string) tmp_strings.xml:210(string)
+#: tmp_strings.xml:45(string) tmp_strings.xml:211(string)
 msgid "Cancel"
 msgstr ""
 
-#: tmp_strings.xml:46(string) tmp_strings.xml:209(string)
+#: tmp_strings.xml:46(string) tmp_strings.xml:210(string)
 msgid "Close"
 msgstr ""
 
@@ -516,266 +516,270 @@ msgid "connecting to service…"
 msgstr ""
 
 #: tmp_strings.xml:191(string)
-msgid "updating local notes…"
+msgid "getting list of remote notes…"
 msgstr ""
 
 #: tmp_strings.xml:192(string)
-msgid "updating remote notes…"
+msgid "updating local notes…"
 msgstr ""
 
 #: tmp_strings.xml:193(string)
-msgid "Note Conflict"
+msgid "updating remote notes…"
 msgstr ""
 
 #: tmp_strings.xml:194(string)
-msgid "There was a conflict syncing the note '%1$s'. Please choose an action to resolve the conflict. You may edit either note before choosing, or view the difference by clicking on the labels below."
+msgid "Note Conflict"
 msgstr ""
 
 #: tmp_strings.xml:195(string)
-msgid "There was a conflict syncing the note '%1$s' (local version was deleted). Please choose from one of the actions below."
+msgid "There was a conflict syncing the note '%1$s'. Please choose an action to resolve the conflict. You may edit either note before choosing, or view the difference by clicking on the labels below."
 msgstr ""
 
 #: tmp_strings.xml:196(string)
-msgid "There was a conflict syncing the note '%1$s'. A note with that title already exists in the database. Please choose an action to resolve the conflict. You may edit either note before choosing, or view the difference by clicking on the labels below."
+msgid "There was a conflict syncing the note '%1$s' (local version was deleted). Please choose from one of the actions below."
 msgstr ""
 
 #: tmp_strings.xml:197(string)
-msgid "Overwrite\\nRemote"
+msgid "There was a conflict syncing the note '%1$s'. A note with that title already exists in the database. Please choose an action to resolve the conflict. You may edit either note before choosing, or view the difference by clicking on the labels below."
 msgstr ""
 
 #: tmp_strings.xml:198(string)
-msgid "Overwrite\\nLocal"
+msgid "Overwrite\\nRemote"
 msgstr ""
 
 #: tmp_strings.xml:199(string)
-msgid "Delete\\nRemote"
+msgid "Overwrite\\nLocal"
 msgstr ""
 
 #: tmp_strings.xml:200(string)
-msgid "Difference Between Files"
+msgid "Delete\\nRemote"
 msgstr ""
 
 #: tmp_strings.xml:201(string)
-msgid "-- Title Differences --"
+msgid "Difference Between Files"
 msgstr ""
 
 #: tmp_strings.xml:202(string)
-msgid "-- Content Differences --"
+msgid "-- Title Differences --"
 msgstr ""
 
 #: tmp_strings.xml:203(string)
-msgid "Line %1$s:"
+msgid "-- Content Differences --"
 msgstr ""
 
 #: tmp_strings.xml:204(string)
-msgid "Local Version"
+msgid "Line %1$s:"
 msgstr ""
 
 #: tmp_strings.xml:205(string)
-msgid "Remote Version"
+msgid "Local Version"
 msgstr ""
 
 #: tmp_strings.xml:206(string)
-msgid "Deleted"
+msgid "Remote Version"
 msgstr ""
 
 #: tmp_strings.xml:207(string)
-msgid "Create\\nCopy"
+msgid "Deleted"
 msgstr ""
 
 #: tmp_strings.xml:208(string)
+msgid "Create\\nCopy"
+msgstr ""
+
+#: tmp_strings.xml:209(string)
 msgid "%1$s (old)"
 msgstr ""
 
-#: tmp_strings.xml:211(string)
+#: tmp_strings.xml:212(string)
 msgid "Authorization with %1$s successful."
 msgstr ""
 
-#: tmp_strings.xml:212(string)
+#: tmp_strings.xml:213(string)
 msgid "Authorization with %1$s failed. Maybe try again?"
 msgstr ""
 
-#: tmp_strings.xml:213(string)
+#: tmp_strings.xml:214(string)
 msgid "Note deleted from %1$s successfully."
 msgstr ""
 
-#: tmp_strings.xml:214(string)
+#: tmp_strings.xml:215(string)
 msgid "Note sent to %1$s successfully."
 msgstr ""
 
-#: tmp_strings.xml:215(string)
+#: tmp_strings.xml:216(string)
 msgid "Note received from %1$s successfully."
 msgstr ""
 
-#: tmp_strings.xml:216(string)
+#: tmp_strings.xml:217(string)
 msgid "Error deleting note from %1$s."
 msgstr ""
 
-#: tmp_strings.xml:217(string)
+#: tmp_strings.xml:218(string)
 msgid "Error sending note to %1$s."
 msgstr ""
 
-#: tmp_strings.xml:218(string)
+#: tmp_strings.xml:219(string)
 msgid "Error receiving note from %1$s."
 msgstr ""
 
-#: tmp_strings.xml:219(string)
+#: tmp_strings.xml:220(string)
 msgid "Error parsing response from %1$s."
 msgstr ""
 
-#: tmp_strings.xml:220(string)
+#: tmp_strings.xml:221(string)
 msgid "Error connecting to %1$s. You probably need to authenticate in \"Settings\"."
 msgstr ""
 
-#: tmp_strings.xml:221(string)
+#: tmp_strings.xml:222(string)
 msgid "Notes deleted from %1$s successfully."
 msgstr ""
 
-#: tmp_strings.xml:222(string)
+#: tmp_strings.xml:223(string)
 msgid "Sync with %1$s cancelled."
 msgstr ""
 
 #. context menu
-#: tmp_strings.xml:226(string)
+#: tmp_strings.xml:227(string)
 msgid "Edit Tags"
 msgstr ""
 
-#: tmp_strings.xml:227(string)
+#: tmp_strings.xml:228(string)
 msgid "Revert"
 msgstr ""
 
-#: tmp_strings.xml:228(string)
+#: tmp_strings.xml:229(string)
 msgid "Note '%1$s' Tags"
 msgstr ""
 
-#: tmp_strings.xml:229(string)
+#: tmp_strings.xml:230(string)
 msgid "Edit the tags below, separating with commas"
 msgstr ""
 
 #. revert notes
-#: tmp_strings.xml:233(string)
+#: tmp_strings.xml:234(string)
 msgid "Revert All"
 msgstr ""
 
-#: tmp_strings.xml:234(string)
+#: tmp_strings.xml:235(string)
 msgid "Revert Notes"
 msgstr ""
 
-#: tmp_strings.xml:235(string)
+#: tmp_strings.xml:236(string)
 msgid "This will revert your local notes to whatever versions exist on the remote service. Are you sure you want to do this?"
 msgstr ""
 
-#: tmp_strings.xml:236(string)
+#: tmp_strings.xml:237(string)
 msgid "Revert Note"
 msgstr ""
 
-#: tmp_strings.xml:237(string)
+#: tmp_strings.xml:238(string)
 msgid "This will revert a local note to whatever version exist on the remote service. Are you sure you want to do this?"
 msgstr ""
 
 #. backup notes
-#: tmp_strings.xml:241(string)
+#: tmp_strings.xml:242(string)
 msgid "Backup Notes"
 msgstr ""
 
-#: tmp_strings.xml:242(string)
+#: tmp_strings.xml:243(string)
 msgid "Copy all local notes to SD Card"
 msgstr ""
 
-#: tmp_strings.xml:243(string)
+#: tmp_strings.xml:244(string)
 msgid "Backup Notes?"
 msgstr ""
 
-#: tmp_strings.xml:244(string)
+#: tmp_strings.xml:245(string)
 msgid "Copy all local notes to SD Card? This may overwrite existing notes on the SD Card."
 msgstr ""
 
-#: tmp_strings.xml:245(string)
+#: tmp_strings.xml:246(string)
 msgid "Restore Notes"
 msgstr ""
 
-#: tmp_strings.xml:246(string)
+#: tmp_strings.xml:247(string)
 msgid "Pull all notes from SD Card"
 msgstr ""
 
-#: tmp_strings.xml:247(string)
+#: tmp_strings.xml:248(string)
 msgid "Restore Notes?"
 msgstr ""
 
-#: tmp_strings.xml:248(string)
+#: tmp_strings.xml:249(string)
 msgid "Pull all notes from SD Card? This may overwrite your existing notes."
 msgstr ""
 
-#: tmp_strings.xml:249(string)
+#: tmp_strings.xml:250(string)
 msgid "Notes backed up to SD card successfully."
 msgstr ""
 
-#: tmp_strings.xml:250(string)
+#: tmp_strings.xml:251(string)
 msgid "Notes restored from SD card successfully."
 msgstr ""
 
-#: tmp_strings.xml:251(string)
+#: tmp_strings.xml:252(string)
 msgid "Notes cleared successfully."
 msgstr ""
 
 #. send and receive notes
-#: tmp_strings.xml:255(string)
+#: tmp_strings.xml:256(string)
 msgid "Choose Send Method"
 msgstr ""
 
-#: tmp_strings.xml:256(string)
+#: tmp_strings.xml:257(string)
 msgid "How would you like to send the note?"
 msgstr ""
 
-#: tmp_strings.xml:257(string)
+#: tmp_strings.xml:258(string)
 msgid "As Text"
 msgstr ""
 
-#: tmp_strings.xml:258(string)
+#: tmp_strings.xml:259(string)
 msgid "As File"
 msgstr ""
 
-#: tmp_strings.xml:259(string)
+#: tmp_strings.xml:260(string)
 msgid "There was a conflict importing the note \"%1$s\". The note already exists in the database. Please choose an action to resolve the conflict. You may edit either note before choosing, or view the difference by clicking on the labels below."
 msgstr ""
 
-#: tmp_strings.xml:260(string)
+#: tmp_strings.xml:261(string)
 msgid "Cancel\\nImport"
 msgstr ""
 
-#: tmp_strings.xml:263(string)
+#: tmp_strings.xml:264(string)
 msgid "Tomdroid's First Note"
 msgstr ""
 
 #. This string is just some marked-down HTML... 
 #. 		=text= makes <size:large>text</size:large> 
 #. 		@text is for list-items.
-#: tmp_strings.xml:270(string)
+#: tmp_strings.xml:271(string)
 msgid "Welcome to Tomdroid!\\n\\nYou have no notes here yet. To get started, set your Synchronization preferences under Settings. There are two synchronization options described below.\\n\\n=Online Synchronization=\\nOnline Synchronization is what you are looking for if you want to sync to Tomboy-Online, Ubuntu One, your own Snowy server or any server supporting the Tomboy Web REST API.\\n\\nTo use it, set Sync Service to Online Synchronization in preferences then provide a Server URL. Here are some of the public ones:\\n@Tomboy Online - https://edge.tomboy-online.org/\\n@Ubuntu One - https://one.ubuntu.com/notes\\n\\nOnce set, hit the Sync logo on Tomdroid's top bar to synchronize your notes.\\n\\nNote: you might want to back up your Tomboy notes before syncing, since this app is still under development and may corrupt your Tomboy notes. The notes can be found in ~/.local/share/tomboy/ on Linux.\\n\\n=SD Card=\\nPut your Tomboy notes (*.note) on your SD Card under tomdroid/. The notes can be found in ~/.local/share/tomboy/ on Linux. Once the notes are copied, set Sync Service to SD Card in preferences then hit the Sync logo on Tomdroid's top bar.\\n\\nSee http://live.gnome.org/Tomboy/Directories for the notes' location on other platforms.\\n\\nAlso, Tomdroid is always looking for new contributors. If you are interested join the tomdroid-dev team on launchpad: http://launchpad.net/~tomdroid-dev.\\n\\nLastly, if you encounter any issue, please report it at: https://bugs.launchpad.net/tomdroid"
 msgstr ""
 
 #. 30 chars max
-#: tmp_strings.xml:277(string)
+#: tmp_strings.xml:278(string)
 msgid "Tomdroid notes"
 msgstr ""
 
 #. 4000 chars max
-#: tmp_strings.xml:279(string)
+#: tmp_strings.xml:280(string)
 msgid "A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\\n\\n* Note format compatibility with Tomboy\\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\\n* SD Card importation\\n* Open source!"
 msgstr ""
 
 #. 80 chars max
-#: tmp_strings.xml:282(string)
+#: tmp_strings.xml:283(string)
 msgid "Note-taking application with online synchronization compatible with Tomboy"
 msgstr ""
 
 #. 500 chars max
-#: tmp_strings.xml:285(string)
+#: tmp_strings.xml:286(string)
 msgid "0.6 \\\"Small World\\\" release\\n* Create home-screen shortcuts to notes\\n* Specify a folder to use for SD Card sync\\n* Reload current note after sync\\n* A lot of new translations: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\\n* Several bugfixes\\n"
 msgstr ""
 
 #. Launchpad Translation String
-#: tmp_strings.xml:288(string)
+#: tmp_strings.xml:289(string)
 msgid "translator-credits"
 msgstr ""
 

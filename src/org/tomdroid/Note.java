@@ -158,9 +158,10 @@ public class Note {
 	
 	// sets change date to now
 	public void setLastChangeDate() {
-		Time lastChangeDate = new Time();
-		lastChangeDate.setToNow();
-		this.lastChangeDate = lastChangeDate;
+		Time now = new Time();
+		now.setToNow();
+		String time = now.format3339(false);
+		setLastChangeDate(time);
 	}
 	
 	public void setLastChangeDate(Time lastChangeDate) {

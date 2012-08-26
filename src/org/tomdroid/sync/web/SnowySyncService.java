@@ -235,7 +235,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						// get notes list with content to find changes
 						
 						TLog.v(TAG, "contacting " + notesUrl);
-						
+						sendMessage(SYNC_CONNECTED);
 						rawResponse = auth.get(notesUrl + "?include_notes=true");
 						if(cancelled) {
 							doCancel();

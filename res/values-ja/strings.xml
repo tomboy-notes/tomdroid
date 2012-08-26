@@ -188,6 +188,7 @@
 
 	<string name="syncing">%1$s と同期中</string>
 	<string name="syncing_connect">サービスに接続しています...</string>
+	<string name="gettings_notes">getting list of remote notes…</string>
 	<string name="syncing_local">ローカルのメモを更新しています...</string>
 	<string name="syncing_remote">リモートのメモを更新しています...</string>
 	<string name="sync_conflict_title">メモが競合しました</string>

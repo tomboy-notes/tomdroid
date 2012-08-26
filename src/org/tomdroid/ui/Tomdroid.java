@@ -102,8 +102,7 @@ public class Tomdroid extends ActionBarListActivity {
 	private static final int DIALOG_SYNC_ERRORS = 10;
 	private static final int DIALOG_SEND_CHOOSE = 11;
 	private static final int DIALOG_VIEW_TAGS = 12;
-	private static final int DIALOG_SYNCING = 13;
-	private static final int DIALOG_NOT_FOUND_SHORTCUT = 14;
+	private static final int DIALOG_NOT_FOUND_SHORTCUT = 13;
 
 	private static String dialogString;
 	private static Note dialogNote;
@@ -111,6 +110,9 @@ public class Tomdroid extends ActionBarListActivity {
 	private static int dialogInt;
 	private static int dialogInt2;
 	private EditText dialogInput;
+
+	public int syncTotalNotes;
+	public int syncProcessedNotes;
 	
 	// config parameters
 	public static String	NOTES_PATH				= null;
@@ -500,10 +502,9 @@ public class Tomdroid extends ActionBarListActivity {
 			((ServiceAuth) currentService).getAuthUri(serverUri, handler);
 		}
 		else {
+			syncProcessedNotes = 0;
+			syncTotalNotes = 0;
 			dialogString = getString(R.string.syncing_connect);
-			dialogBoolean = false;
-			dialogInt = 0;
-			dialogInt2 = 0;
 	        showDialog(DIALOG_SYNC);
 	        SyncManager.getInstance().startSynchronization(push); // push by default
 		}
@@ -619,7 +620,7 @@ public class Tomdroid extends ActionBarListActivity {
 	    super.onCreateDialog (id);
 	    final Activity activity = this;
 		AlertDialog alertDialog;
-		ProgressDialog progressDialog = new ProgressDialog(this);
+		final ProgressDialog progressDialog = new ProgressDialog(this);
 		SyncService currentService = SyncManager.getInstance().getCurrentService();
 		String serviceDescription = currentService.getDescription();
     	final AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -627,40 +628,18 @@ public class Tomdroid extends ActionBarListActivity {
 		switch(id) {
 		    case DIALOG_SYNC:
 				progressDialog.setIndeterminate(true);
-				progressDialog.setProgress(0);
-				progressDialog.setMax(0);
 				progressDialog.setTitle(String.format(getString(R.string.syncing),serviceDescription));
 				progressDialog.setMessage(dialogString);
-				progressDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+				progressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
 	    			
-					public void onDismiss(DialogInterface dialog) {
+					public void onCancel(DialogInterface dialog) {
 						SyncManager.getInstance().cancel();
 					}
 					
 				});
 				progressDialog.setButton(ProgressDialog.BUTTON_NEGATIVE, getString(R.string.cancel), new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
-						dismissDialog(DIALOG_SYNC);
-					}
-				});
-		    	return progressDialog;
-		    case DIALOG_SYNCING:
-				progressDialog.setIndeterminate(false);
-				progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-				progressDialog.setProgress(0);
-				progressDialog.setMax(0);
-				progressDialog.setTitle(String.format(getString(R.string.syncing),serviceDescription));
-				progressDialog.setMessage(dialogString);
-				progressDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-	    			
-					public void onDismiss(DialogInterface dialog) {
-						SyncManager.getInstance().cancel();
-					}
-					
-				});
-				progressDialog.setButton(ProgressDialog.BUTTON_NEGATIVE, getString(R.string.cancel), new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
-						dismissDialog(DIALOG_SYNC);
+						progressDialog.cancel();
 					}
 				});
 		    	return progressDialog;
@@ -813,27 +792,17 @@ public class Tomdroid extends ActionBarListActivity {
 	    final Activity activity = this;
 	    switch(id) {
 	    	case DIALOG_SYNC:
-				((ProgressDialog) dialog).setProgress(0);
 				SyncService currentService = SyncManager.getInstance().getCurrentService();
 				String serviceDescription = currentService.getDescription();
 	    		((ProgressDialog) dialog).setTitle(String.format(getString(R.string.syncing),serviceDescription));
-	    		((ProgressDialog) dialog).setOnDismissListener(new DialogInterface.OnDismissListener() {
+	    		((ProgressDialog) dialog).setMessage(dialogString);
+	    		((ProgressDialog) dialog).setOnCancelListener(new DialogInterface.OnCancelListener() {
 	    			
-					public void onDismiss(DialogInterface dialog) {
+					public void onCancel(DialogInterface dialog) {
 						SyncManager.getInstance().cancel();
 					}
 					
 				});
-	    		break;
-	    	case DIALOG_SYNCING:
-	    		((ProgressDialog) dialog).setMessage(dialogString);
-	    		if(!dialogBoolean) {
-					((ProgressDialog) dialog).setProgress(((ProgressDialog) dialog).getProgress()+dialogInt);
-					if(((ProgressDialog) dialog).getProgress() >= ((ProgressDialog) dialog).getMax())
-						syncMessageHandler.sendEmptyMessage(SyncService.PARSING_COMPLETE);
-	    		}
-				else
-	    			((ProgressDialog) dialog).setMax(dialogInt2);
 	    		break;
 		    case DIALOG_NOT_FOUND_SHORTCUT:
 		        final Intent removeIntent = new NoteViewShortcutsHelper(this).getRemoveShortcutIntent(dialogString, uri);
@@ -907,7 +876,7 @@ public class Tomdroid extends ActionBarListActivity {
 		    		public void onClick(DialogInterface dialog, int whichButton) {
 		    			String value = dialogInput.getText().toString();
 			    		dialogNote.setTags(value);
-						dialogNote.setLastChangeDate();
+			    		dialogNote.setLastChangeDate();
 						NoteManager.putNote(activity, dialogNote);
 						dismissDialog(DIALOG_VIEW_TAGS);
 		    		}
@@ -1059,22 +1028,20 @@ public class Tomdroid extends ActionBarListActivity {
 				case SyncService.LATEST_REVISION:
 					latestRevision = msg.arg1;
 					break;
-				case SyncService.BEGIN_PROGRESS:
-					removeDialog(DIALOG_SYNC);
-					dialogInt = 0;
-					dialogInt2 = msg.arg1;
-					dialogBoolean = true;
-					dialogString = getString(R.string.syncing_local);
-					showDialog(DIALOG_SYNCING);
+				case SyncService.SYNC_CONNECTED:
+					dialogString = getString(R.string.gettings_notes);
+					showDialog(DIALOG_SYNC);
 					break;
-					
+				case SyncService.BEGIN_PROGRESS:
+					syncTotalNotes = msg.arg1;
+					syncProcessedNotes = 0;
+					dialogString = getString(R.string.syncing_local);
+					showDialog(DIALOG_SYNC);
+					break;
 				case SyncService.SYNC_PROGRESS:
-					if(msg.arg1 == 90) {
-						dialogInt = 0;
-						dialogInt2 = 0;
-						dialogBoolean = true;
+					if(msg.arg1 == 90 && syncProcessedNotes < syncTotalNotes) {
 						dialogString = getString(R.string.syncing_remote);						
-						showDialog(DIALOG_SYNCING);
+						showDialog(DIALOG_SYNC);
 					}
 					break;
 				case SyncService.NOTE_DELETED:
@@ -1140,14 +1107,17 @@ public class Tomdroid extends ActionBarListActivity {
 	
 			}
 			if(increment > 0) {
-				dialogInt = increment;
-				dialogInt2 = 0;
-				dialogBoolean = true;
-				dialogString = getString(R.string.syncing_connect);
-				showDialog(DIALOG_SYNCING);
+				syncProcessedNotes += increment;
+				if(syncTotalNotes > 0 && syncProcessedNotes >= syncTotalNotes && !SyncManager.getInstance().getCurrentService().isSyncable()) {
+					sendEmptyMessage(SyncService.PARSING_COMPLETE);
+					return;
+				}
 			}
+			if(syncTotalNotes > 0 && syncProcessedNotes >= syncTotalNotes)
+				dismiss = true;
 			if(dismiss)
-				dismissDialog(DIALOG_SYNCING);
+				dismissDialog(DIALOG_SYNC);
+			TLog.i(TAG, "processed notes: {0} of {1}", syncProcessedNotes, syncTotalNotes);
 		}
 	}
 

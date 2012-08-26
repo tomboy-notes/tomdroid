@@ -188,6 +188,7 @@
 
 	<string name="syncing">正在同步 %1$s</string>
 	<string name="syncing_connect">正在连接到服务...</string>
+	<string name="gettings_notes">getting list of remote notes…</string>
 	<string name="syncing_local">正在更新本地便笺...</string>
 	<string name="syncing_remote">正在更新远程便笺...</string>
 	<string name="sync_conflict_title">便笺冲突</string>

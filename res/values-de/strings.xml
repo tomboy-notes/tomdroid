@@ -188,6 +188,7 @@
 
 	<string name="syncing">Synchronisiere mit %1$s</string>
 	<string name="syncing_connect">Verbinde zu service</string>
+	<string name="gettings_notes">getting list of remote notes…</string>
 	<string name="syncing_local">Aktualisieren der Notizen...</string>
 	<string name="syncing_remote">Aktualisiere Notizen...</string>
 	<string name="sync_conflict_title">Notizkonflikt</string>

@@ -87,6 +87,7 @@ public abstract class SyncService {
 	public final static int REMOTE_NOTES_DELETED = 22;
 	public final static int SYNC_CANCELLED = 23;
 	public final static int LATEST_REVISION = 24;
+	public final static int SYNC_CONNECTED = 25;
 	
 	public SyncService(Activity activity, Handler handler) {
 		
