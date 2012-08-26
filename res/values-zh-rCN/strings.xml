@@ -191,9 +191,9 @@
 	<string name="syncing_local">正在更新本地便笺...</string>
 	<string name="syncing_remote">正在更新远程便笺...</string>
 	<string name="sync_conflict_title">便笺冲突</string>
-	<string name="sync_conflict_message">同步“%1$s”时发生冲突。请选择解决冲突的动作。您可在选择前编辑便笺，或点击下方的标签查看差别。</string>
-	<string name="sync_conflict_deleted">There was a conflict syncing the note "%1$s" (local version was deleted).  Please choose from one of the actions below.</string>
-	<string name="sync_conflict_titles_message">There was a conflict syncing the note "%1$s".  A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="sync_conflict_message">There was a conflict syncing the note \'%1$s\'.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="sync_conflict_deleted">There was a conflict syncing the note \'%1$s\' (local version was deleted).  Please choose from one of the actions below.</string>
+	<string name="sync_conflict_titles_message">There was a conflict syncing the note \'%1$s\'.  A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
 	<string name="overwrite_remote">覆盖\n远程</string>
 	<string name="overwrite_local">覆盖\n本地</string>
 	<string name="delete_remote">Delete\nRemote</string>
@@ -220,10 +220,16 @@
 	<string name="messageSyncConnectingFailed">连接到 %1$s 出错。您可能需要在“设置”里面进行授权。</string>
 	<string name="messageRemoteNotesDeleted">从 %1$s 删除便笺成功。</string>
 	<string name="messageSyncCancelled">%1$s 同步已取消。</string>
-				
+
+	<!-- context menu -->
+	
+	<string name="editTags">Edit Tags</string>
+	<string name="contextRevert">反转</string>
+	<string name="note_x_tags">Note \'%1$s\' Tags</string>
+	<string name="edit_tags">Edit the tags below, separating with commas</string>
+			
 	<!-- revert notes -->
 	
-	<string name="contextRevert">反转</string>
 	<string name="menuRevert">反转全部</string>
 	<string name="revert_notes">反转便笺</string>
 	<string name="revert_notes_message">This will revert your local notes to whatever versions exist on the remote service.  Are you sure you want to do this?</string>

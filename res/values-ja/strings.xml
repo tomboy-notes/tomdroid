@@ -191,9 +191,9 @@
 	<string name="syncing_local">ローカルのメモを更新しています...</string>
 	<string name="syncing_remote">リモートのメモを更新しています...</string>
 	<string name="sync_conflict_title">メモが競合しました</string>
-	<string name="sync_conflict_message">メモ "%1$s" の同期中に競合が発生しました。競合を解決するための処理を選択してください。選択前にどちらかのメモを編集するか、下のラベルをクリックして差分を表示することができます。</string>
-	<string name="sync_conflict_deleted">メモ "%1$s" の同期中に競合が発生しました(ローカルの版が削除されています)。競合を解決するための処理を以下から選択してください。</string>
-	<string name="sync_conflict_titles_message">メモ "%1$s" の同期中に競合が発生しました。このタイトルのメモは既にデータベースに存在します。競合を解決するための処理を選択してください。選択前にどちらかのメモを編集するか、下のラベルをクリックして差分を表示することができます。</string>
+	<string name="sync_conflict_message">There was a conflict syncing the note \'%1$s\'.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="sync_conflict_deleted">There was a conflict syncing the note \'%1$s\' (local version was deleted).  Please choose from one of the actions below.</string>
+	<string name="sync_conflict_titles_message">There was a conflict syncing the note \'%1$s\'.  A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
 	<string name="overwrite_remote">リモートの\n上書き</string>
 	<string name="overwrite_local">ローカルの\n上書き</string>
 	<string name="delete_remote">Delete\nRemote</string>
@@ -220,10 +220,16 @@
 	<string name="messageSyncConnectingFailed">%1$s への接続中にエラーが発生しました。おそらく「設定」で認証する必要があります。</string>
 	<string name="messageRemoteNotesDeleted">%1$s からのメモの削除に成功しました。</string>
 	<string name="messageSyncCancelled">%1$s との同期がキャンセルされました。</string>
-				
+
+	<!-- context menu -->
+	
+	<string name="editTags">Edit Tags</string>
+	<string name="contextRevert">元に戻す</string>
+	<string name="note_x_tags">Note \'%1$s\' Tags</string>
+	<string name="edit_tags">Edit the tags below, separating with commas</string>
+			
 	<!-- revert notes -->
 	
-	<string name="contextRevert">元に戻す</string>
 	<string name="menuRevert">すべて元に戻す</string>
 	<string name="revert_notes">すべてのメモを元に戻す</string>
 	<string name="revert_notes_message">この操作はローカルのすべてのメモをリモートサービスにある版に戻します。本当に実行してもよろしいですか？</string>

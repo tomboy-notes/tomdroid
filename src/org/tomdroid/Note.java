@@ -155,7 +155,14 @@ public class Note {
 	public Time getLastChangeDate() {
 		return lastChangeDate;
 	}
-
+	
+	// sets change date to now
+	public void setLastChangeDate() {
+		Time lastChangeDate = new Time();
+		lastChangeDate.setToNow();
+		this.lastChangeDate = lastChangeDate;
+	}
+	
 	public void setLastChangeDate(Time lastChangeDate) {
 		this.lastChangeDate = lastChangeDate;
 	}

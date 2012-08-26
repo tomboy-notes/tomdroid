@@ -129,7 +129,7 @@ public class NoteManager {
 			note.setTitle(noteTitle);
 			note.setXmlContent(stripTitleFromContent(noteContent, noteTitle));
 			note.setLastChangeDate(noteChangeDate);
-			note.addTag(noteTags);
+			note.setTags(noteTags);
 			note.setGuid(noteGUID);
 			note.setDbId(noteDbid);
 		}

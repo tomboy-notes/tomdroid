@@ -3,6 +3,7 @@
     <item android:title="@string/view" android:id="@+id/view"/>
     <item android:title="@string/edit" android:id="@+id/edit"/>
     <item android:title="@string/delete" android:id="@+id/delete"/>
+    <item android:title="@string/editTags" android:id="@+id/tags"/>
     <item android:title="@string/contextRevert" android:id="@+id/revert"/>
     <item android:title="@string/send" android:id="@+id/menu_send"/>
     <item android:title="@string/createShortcut" android:id="@+id/create_shortcut"/>

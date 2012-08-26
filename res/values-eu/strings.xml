@@ -191,9 +191,9 @@
 	<string name="syncing_local">ohar lokalak eguneratzen…</string>
 	<string name="syncing_remote">urruneko oharrak eguneratzen…</string>
 	<string name="sync_conflict_title">Ohar-gatazka</string>
-	<string name="sync_conflict_message">Gatazka bat gertatu da "%1$s" oharra sinkronizatzean. Mesedez aukeratu gatazka konpontzeko ekintza bat. Bi oharretako edozein edita dezakezu aukeratu aurretik edo desberdintasunak ikusi beheko etiketetan klik eginez.</string>
-	<string name="sync_conflict_deleted">Gatazka bat gertatu da "%1$s" oharra sinkronizatzean (bertsio lokala ezabatu da). Mesedez aukeratu beheko ekintzetako bat.</string>
-	<string name="sync_conflict_titles_message">Gatazka bat gertatu da "%1$s" oharra sinkronizatzean. Izenburu berdineko ohar bat existitzen da dagoeneko datu-basean. Mesedez aukeratu gatazka konpontzeko ekintza bat. Bi oharretako edozein edita dezakezu aukeratu aurretik edo desberdintasunak ikusi beheko etiketetan klik eginez.</string>
+	<string name="sync_conflict_message">There was a conflict syncing the note \'%1$s\'.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="sync_conflict_deleted">There was a conflict syncing the note \'%1$s\' (local version was deleted).  Please choose from one of the actions below.</string>
+	<string name="sync_conflict_titles_message">There was a conflict syncing the note \'%1$s\'.  A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
 	<string name="overwrite_remote">Gainidatzi\nurrunekoa</string>
 	<string name="overwrite_local">Gainidatzi\nlokala</string>
 	<string name="delete_remote">Delete\nRemote</string>
@@ -220,10 +220,16 @@
 	<string name="messageSyncConnectingFailed">Errorea %1$s-(e)ra konektatzean. Segur aski "Ezarpenak"-en autentifikatu beharko duzu.</string>
 	<string name="messageRemoteNotesDeleted">Oharrak behar bezala ezabatu dira %1$s-(e)tik.</string>
 	<string name="messageSyncCancelled">%1$s-(r)ekin sinkronizatzea ezeztatuta.</string>
-				
+
+	<!-- context menu -->
+	
+	<string name="editTags">Edit Tags</string>
+	<string name="contextRevert">Leheneratu</string>
+	<string name="note_x_tags">Note \'%1$s\' Tags</string>
+	<string name="edit_tags">Edit the tags below, separating with commas</string>
+			
 	<!-- revert notes -->
 	
-	<string name="contextRevert">Leheneratu</string>
 	<string name="menuRevert">Leheneratu guztia</string>
 	<string name="revert_notes">Leheneratu oharrak</string>
 	<string name="revert_notes_message">Honek zure ohar lokalak urruneko zerbitzuan dagoen bertsiora leheneratuko ditu. Ziur zaude hau egin nahi duzula?</string>

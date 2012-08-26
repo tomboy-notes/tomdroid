@@ -191,9 +191,9 @@
 	<string name="syncing_local">helyi jegyzetek frissítése...</string>
 	<string name="syncing_remote">távoli jegyzetek frissítése...</string>
 	<string name="sync_conflict_title">Jegyzetütközés</string>
-	<string name="sync_conflict_message">Konfliktus történt a "%1$s" jegyzet szinkronizálása során. Kérem válasszon az alábbiak közül a konfliktus feloldásához. Mindkét jegyzetet szerkesztheti a választás előtt, vagy megnézheti a külömbségeket az alábbi címkékre kattintva.</string>
-	<string name="sync_conflict_deleted">Jegyzetütközés történt a "%1$s" jegyzet szinkronizálása során.  (helyi változat törölve lett) Kérlek válassz az alábbi lehetőségek közül!</string>
-	<string name="sync_conflict_titles_message">There was a conflict syncing the note "%1$s".  A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="sync_conflict_message">There was a conflict syncing the note \'%1$s\'.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="sync_conflict_deleted">There was a conflict syncing the note \'%1$s\' (local version was deleted).  Please choose from one of the actions below.</string>
+	<string name="sync_conflict_titles_message">There was a conflict syncing the note \'%1$s\'.  A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
 	<string name="overwrite_remote">Felülírás\nTávoli</string>
 	<string name="overwrite_local">Felülírás\nHelyi</string>
 	<string name="delete_remote">Delete\nRemote</string>
@@ -220,10 +220,16 @@
 	<string name="messageSyncConnectingFailed">Hiba csatlakozás során ehez: %1$s. Valószínűleg kell az azonosítás a "Beállítások"-ban.</string>
 	<string name="messageRemoteNotesDeleted">A jegyzetek sikeresem törölve erről: %1$s</string>
 	<string name="messageSyncCancelled">A szinkronizálás ezzel %1$s törölve.</string>
-				
+
+	<!-- context menu -->
+	
+	<string name="editTags">Edit Tags</string>
+	<string name="contextRevert">Visszavonás</string>
+	<string name="note_x_tags">Note \'%1$s\' Tags</string>
+	<string name="edit_tags">Edit the tags below, separating with commas</string>
+			
 	<!-- revert notes -->
 	
-	<string name="contextRevert">Visszavonás</string>
 	<string name="menuRevert">Mindent visszavon</string>
 	<string name="revert_notes">Jegyzetek visszavonása</string>
 	<string name="revert_notes_message">Ez vissza fogja állítani a helyi jegyzeteket bármilyen állapotukban is vannak azok a távoli szolgáltatón. Biztos, hogy ezt akarja tenni?</string>

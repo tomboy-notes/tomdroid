@@ -191,9 +191,9 @@
 	<string name="syncing_local">s\'estan actualitzant les notes locals...</string>
 	<string name="syncing_remote">s\'estan actualitzant les notes remotes...</string>
 	<string name="sync_conflict_title">S\'ha produït un conflicte amb la nota</string>
-	<string name="sync_conflict_message">S\'ha produït un conflicte al sincronitzar la nota "%1$s". Trieu una acció per a resoldre\'l. Podeu editar la nota abans de triar l\'acció o veure les diferències clicant en les etiquetes inferiors.</string>
-	<string name="sync_conflict_deleted">S\'ha produït un conflicte al sincronitzar la nota "%1$s" (la versió local ha estat eliminada). Trieu una de les accions següents.</string>
-	<string name="sync_conflict_titles_message">S\'ha produït un conflicte al sincronitzar la nota "%1$s". Ja existeix una nota amb el mateix títol a la base de dades. Trieu una acció per a resoldre\'l. Podeu editar la nota abans de triar l\'acció o veure les diferències clicant en les etiquetes inferiors.</string>
+	<string name="sync_conflict_message">There was a conflict syncing the note \'%1$s\'.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="sync_conflict_deleted">There was a conflict syncing the note \'%1$s\' (local version was deleted).  Please choose from one of the actions below.</string>
+	<string name="sync_conflict_titles_message">There was a conflict syncing the note \'%1$s\'.  A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
 	<string name="overwrite_remote">Sobreescriu\nRemot</string>
 	<string name="overwrite_local">Sobreescriu\nLocal</string>
 	<string name="delete_remote">Delete\nRemote</string>
@@ -220,10 +220,16 @@
 	<string name="messageSyncConnectingFailed">S\'ha produït un error al connectar a %1$s. És possible que us hagueu d\'autenticar a "Paràmetres".</string>
 	<string name="messageRemoteNotesDeleted">La nota ha estat eliminada a %1$s correctament.</string>
 	<string name="messageSyncCancelled">S\'ha cancel·lat la sincronització amb %1$s.</string>
-				
+
+	<!-- context menu -->
+	
+	<string name="editTags">Edit Tags</string>
+	<string name="contextRevert">Desfés</string>
+	<string name="note_x_tags">Note \'%1$s\' Tags</string>
+	<string name="edit_tags">Edit the tags below, separating with commas</string>
+			
 	<!-- revert notes -->
 	
-	<string name="contextRevert">Desfés</string>
 	<string name="menuRevert">Desfes-ho tot</string>
 	<string name="revert_notes">Desfés les notes</string>
 	<string name="revert_notes_message">Aquesta acció modificarà les vostres notes locals i les tornarà a la versió existent al servei remot. Esteu segurs que ho voleu fer?</string>

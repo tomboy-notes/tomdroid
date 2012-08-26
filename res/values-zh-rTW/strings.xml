@@ -191,9 +191,9 @@
 	<string name="syncing_local">更新本地筆記...</string>
 	<string name="syncing_remote">更新遠端筆記...</string>
 	<string name="sync_conflict_title">筆記發生衝突</string>
-	<string name="sync_conflict_message">同步“%1$s”筆記有一個衝突。請選擇一個行動來解決衝突。您可以在選擇之前編輯筆記，或點擊下面的標籤來查看不同。</string>
-	<string name="sync_conflict_deleted">同步“%1$s”筆記有衝突(本地版本已經刪除)。請選擇下面的操作之一。</string>
-	<string name="sync_conflict_titles_message">同步“%1$s”筆記有一個衝突。一樣標題的筆記已經存在於資料庫中。請選擇一個行動來解決衝突。您可以在選擇之前編輯筆記，或點擊下面的標籤來查看不同。</string>
+	<string name="sync_conflict_message">There was a conflict syncing the note \'%1$s\'.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="sync_conflict_deleted">There was a conflict syncing the note \'%1$s\' (local version was deleted).  Please choose from one of the actions below.</string>
+	<string name="sync_conflict_titles_message">There was a conflict syncing the note \'%1$s\'.  A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
 	<string name="overwrite_remote">覆蓋\n遠端</string>
 	<string name="overwrite_local">覆蓋\n本地</string>
 	<string name="delete_remote">Delete\nRemote</string>
@@ -220,10 +220,16 @@
 	<string name="messageSyncConnectingFailed">連接到%1$s出現錯誤。您可能需要在“設定”中進行身份驗證。</string>
 	<string name="messageRemoteNotesDeleted">筆記成功地從%1$s刪除</string>
 	<string name="messageSyncCancelled">與%1$s同步取消了。</string>
-				
+
+	<!-- context menu -->
+	
+	<string name="editTags">Edit Tags</string>
+	<string name="contextRevert">恢復</string>
+	<string name="note_x_tags">Note \'%1$s\' Tags</string>
+	<string name="edit_tags">Edit the tags below, separating with commas</string>
+			
 	<!-- revert notes -->
 	
-	<string name="contextRevert">恢復</string>
 	<string name="menuRevert">恢復所有的</string>
 	<string name="revert_notes">恢復筆記</string>
 	<string name="revert_notes_message">這將恢復您的本地筆記為存在遠端服務上的任何版本。您確定您想這樣做嗎？</string>

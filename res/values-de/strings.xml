@@ -191,9 +191,9 @@
 	<string name="syncing_local">Aktualisieren der Notizen...</string>
 	<string name="syncing_remote">Aktualisiere Notizen...</string>
 	<string name="sync_conflict_title">Notizkonflikt</string>
-	<string name="sync_conflict_message">There was a conflict syncing the note "%1$s".  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
-	<string name="sync_conflict_deleted">Es ist ein Fehler beim synchronisieren der Notiz "%1$s" aufgetreten (die lokale Version wurde entfernt). Bitte wählen Sie eine der angeführten Optionen aus.</string>
-	<string name="sync_conflict_titles_message">There was a conflict syncing the note "%1$s".  A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="sync_conflict_message">There was a conflict syncing the note \'%1$s\'.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="sync_conflict_deleted">There was a conflict syncing the note \'%1$s\' (local version was deleted).  Please choose from one of the actions below.</string>
+	<string name="sync_conflict_titles_message">There was a conflict syncing the note \'%1$s\'.  A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
 	<string name="overwrite_remote">Ersetze\nam Server</string>
 	<string name="overwrite_local">Ersetze\nlokal</string>
 	<string name="delete_remote">Delete\nRemote</string>
@@ -220,10 +220,16 @@
 	<string name="messageSyncConnectingFailed">Fehler beim Verbinden zu %1$s. Möglicherweise müssen Sie sich erst über die "Einstellungen" authentifizieren.</string>
 	<string name="messageRemoteNotesDeleted">Notizen erfolgreich von %1$s gelöscht.</string>
 	<string name="messageSyncCancelled">Synchronisation mit %1$s abgebrochen.</string>
-				
+
+	<!-- context menu -->
+	
+	<string name="editTags">Edit Tags</string>
+	<string name="contextRevert">Zurücksetzen</string>
+	<string name="note_x_tags">Note \'%1$s\' Tags</string>
+	<string name="edit_tags">Edit the tags below, separating with commas</string>
+			
 	<!-- revert notes -->
 	
-	<string name="contextRevert">Zurücksetzen</string>
 	<string name="menuRevert">Alles Rückgangig machen</string>
 	<string name="revert_notes">Notizen zurücksetzen.</string>
 	<string name="revert_notes_message">Hiermit werden alle Notizen auf die am Server gespeicherten Versionen zurückgesetzt. Wollen Sie fortfahren?</string>

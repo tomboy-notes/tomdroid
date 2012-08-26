@@ -191,9 +191,9 @@
 	<string name="syncing_local">a atualizar notas locais...</string>
 	<string name="syncing_remote">a atualizar notas remotas</string>
 	<string name="sync_conflict_title">Conflitos</string>
-	<string name="sync_conflict_message">There was a conflict syncing the note "%1$s".  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
-	<string name="sync_conflict_deleted">Ocorreu um erro ao sincronizar a nota "%1$s". A versão local foi eliminada. Escolha uma das ações possíveis abaixo.</string>
-	<string name="sync_conflict_titles_message">There was a conflict syncing the note "%1$s".  A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="sync_conflict_message">There was a conflict syncing the note \'%1$s\'.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="sync_conflict_deleted">There was a conflict syncing the note \'%1$s\' (local version was deleted).  Please choose from one of the actions below.</string>
+	<string name="sync_conflict_titles_message">There was a conflict syncing the note \'%1$s\'.  A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
 	<string name="overwrite_remote">Overwrite\nRemote</string>
 	<string name="overwrite_local">Overwrite\nLocal</string>
 	<string name="delete_remote">Delete\nRemote</string>
@@ -220,10 +220,16 @@
 	<string name="messageSyncConnectingFailed">Erro ao ligar a %1$s. É provável que tenha que se autenticar nas "Definições".</string>
 	<string name="messageRemoteNotesDeleted">Nota eliminada de %1$s.</string>
 	<string name="messageSyncCancelled">Sincronização com %1$s cancelada.</string>
-				
+
+	<!-- context menu -->
+	
+	<string name="editTags">Edit Tags</string>
+	<string name="contextRevert">Reverter</string>
+	<string name="note_x_tags">Note \'%1$s\' Tags</string>
+	<string name="edit_tags">Edit the tags below, separating with commas</string>
+			
 	<!-- revert notes -->
 	
-	<string name="contextRevert">Reverter</string>
 	<string name="menuRevert">Reverter tudo</string>
 	<string name="revert_notes">Reverter notas</string>
 	<string name="revert_notes_message">Está prestes a reverter as notas locais para aquelas que existem no serviço remoto. Tem a certeza que o quer fazer?</string>
