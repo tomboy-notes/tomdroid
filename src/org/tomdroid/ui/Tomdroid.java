@@ -154,6 +154,8 @@ public class Tomdroid extends ActionBarListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		syncProgressDialog = new ProgressDialog(this);
+
 		Preferences.init(this, CLEAR_PREFERENCES);
 		context = this;
         main =  View.inflate(this, R.layout.main, null);
@@ -496,7 +498,7 @@ public class Tomdroid extends ActionBarListActivity {
 			((ServiceAuth) currentService).getAuthUri(serverUri, handler);
 		}
 		else {
-	        
+	    	initSyncDialog();
 	        showDialog(DIALOG_SYNC);
 	        SyncManager.getInstance().startSynchronization(push); // push by default
 		}
@@ -610,29 +612,11 @@ public class Tomdroid extends ActionBarListActivity {
 		AlertDialog alertDialog;
 	    switch(id) {
 		    case DIALOG_SYNC:
-				SyncService currentService = SyncManager.getInstance().getCurrentService();
-				String serviceDescription = currentService.getDescription();
-				syncProgressDialog = new ProgressDialog(this);
-				syncProgressDialog.setTitle(String.format(getString(R.string.syncing),serviceDescription));
-				syncProgressDialog.setMessage(getString(R.string.syncing_connect));
-				syncProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-				syncProgressDialog.setButton(ProgressDialog.BUTTON_NEGATIVE, getString(R.string.cancel), new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
-						syncProgressDialog.cancel();
-					}
-				});
-				syncProgressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-
-					public void onCancel(DialogInterface dialog) {
-						SyncManager.getInstance().cancel();
-					}
-					
-				});
-				syncProgressDialog.setMax(0);
-		        syncProgressDialog.setIndeterminate(true);
-		        return syncProgressDialog;
+		    	ProgressDialog dialog = syncProgressDialog; 
+		        return dialog;
 		    case DIALOG_SYNC_PROGRESS_UPDATE:
-		    	return syncProgressDialog;
+		    	ProgressDialog sdialog = syncProgressDialog; 
+		        return sdialog;
 		    case DIALOG_ABOUT:
 				// grab version info
 				String ver;
@@ -793,6 +777,27 @@ public class Tomdroid extends ActionBarListActivity {
 		return alertDialog;
 	}
 
+	private void initSyncDialog() {
+		SyncService currentService = SyncManager.getInstance().getCurrentService();
+		String serviceDescription = currentService.getDescription();
+		syncProgressDialog.setTitle(String.format(getString(R.string.syncing),serviceDescription));
+		syncProgressDialog.setMessage(getString(R.string.syncing_connect));
+		syncProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+		syncProgressDialog.setButton(ProgressDialog.BUTTON_NEGATIVE, getString(R.string.cancel), new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				syncProgressDialog.cancel();
+			}
+		});
+		syncProgressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+
+			public void onCancel(DialogInterface dialog) {
+				SyncManager.getInstance().cancel();
+			}
+			
+		});
+        syncProgressDialog.setIndeterminate(true);
+	}
+	
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
