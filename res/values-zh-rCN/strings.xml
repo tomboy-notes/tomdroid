@@ -196,7 +196,7 @@
 	<string name="sync_conflict_titles_message">There was a conflict syncing the note "%1$s".  A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
 	<string name="overwrite_remote">覆盖\n远程</string>
 	<string name="overwrite_local">覆盖\n本地</string>
-	<string name="delete_remote">删除远程</string>
+	<string name="delete_remote">Delete\nRemote</string>
 	<string name="diff_label">文件间的差别</string>
 	<string name="diff_titles">-- 标题差别 --</string>
 	<string name="diff_content">-- 内容差别 --</string>

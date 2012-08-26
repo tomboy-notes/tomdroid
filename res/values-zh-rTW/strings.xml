@@ -196,7 +196,7 @@
 	<string name="sync_conflict_titles_message">同步“%1$s”筆記有一個衝突。一樣標題的筆記已經存在於資料庫中。請選擇一個行動來解決衝突。您可以在選擇之前編輯筆記，或點擊下面的標籤來查看不同。</string>
 	<string name="overwrite_remote">覆蓋\n遠端</string>
 	<string name="overwrite_local">覆蓋\n本地</string>
-	<string name="delete_remote">刪除遠端</string>
+	<string name="delete_remote">Delete\nRemote</string>
 	<string name="diff_label">檔案之間的差異</string>
 	<string name="diff_titles">-- 標題差異 --</string>
 	<string name="diff_content">-- 內容差異 --</string>

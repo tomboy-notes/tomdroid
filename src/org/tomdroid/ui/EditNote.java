@@ -457,7 +457,6 @@ public class EditNote extends ActionBarActivity {
 	private boolean updateNoteContent(boolean xml) {
 
 		SpannableStringBuilder newNoteContent = new SpannableStringBuilder();
-		// TODO: probably should remove the whole XML viewing function - I don't think there is any need for it except debugging
 		if(xml) {
 			// parse XML
 			String xmlContent = "<note-content version=\"1.0\">"+this.content.getText().toString()+"</note-content>";

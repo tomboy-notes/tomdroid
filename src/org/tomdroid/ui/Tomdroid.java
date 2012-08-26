@@ -617,6 +617,13 @@ public class Tomdroid extends ActionBarListActivity {
 		    case DIALOG_SYNC_PROGRESS_UPDATE:
 		    	ProgressDialog sdialog = syncProgressDialog; 
 		        return sdialog;
+		    case DIALOG_AUTH_PROGRESS:
+		    	authProgressDialog = new ProgressDialog(this);
+		    	authProgressDialog.setTitle("");
+		    	authProgressDialog.setMessage(getString(R.string.prefSyncCompleteAuth));
+		    	authProgressDialog.setIndeterminate(true);
+		    	authProgressDialog.setCancelable(false);
+		        return authProgressDialog;
 		    case DIALOG_ABOUT:
 				// grab version info
 				String ver;
@@ -691,13 +698,6 @@ public class Tomdroid extends ActionBarListActivity {
 		        .setNegativeButton(R.string.no, null)
 		        .create();
 				break;
-		    case DIALOG_AUTH_PROGRESS:
-		    	authProgressDialog = new ProgressDialog(this);
-		    	authProgressDialog.setTitle("");
-		    	authProgressDialog.setMessage(getString(R.string.prefSyncCompleteAuth));
-		    	authProgressDialog.setIndeterminate(true);
-		    	authProgressDialog.setCancelable(false);
-		        return authProgressDialog;
 		    case DIALOG_CONNECT_FAILED:
 				alertDialog = new AlertDialog.Builder(this)
 				.setMessage(getString(R.string.prefSyncConnectionFailed))
@@ -783,6 +783,8 @@ public class Tomdroid extends ActionBarListActivity {
 		syncProgressDialog.setTitle(String.format(getString(R.string.syncing),serviceDescription));
 		syncProgressDialog.setMessage(getString(R.string.syncing_connect));
 		syncProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+		syncProgressDialog.setProgress(0);
+		syncProgressDialog.setMax(0);
 		syncProgressDialog.setButton(ProgressDialog.BUTTON_NEGATIVE, getString(R.string.cancel), new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
 				syncProgressDialog.cancel();

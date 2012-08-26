@@ -196,7 +196,7 @@
 	<string name="sync_conflict_titles_message">メモ "%1$s" の同期中に競合が発生しました。このタイトルのメモは既にデータベースに存在します。競合を解決するための処理を選択してください。選択前にどちらかのメモを編集するか、下のラベルをクリックして差分を表示することができます。</string>
 	<string name="overwrite_remote">リモートの\n上書き</string>
 	<string name="overwrite_local">ローカルの\n上書き</string>
-	<string name="delete_remote">リモートの削除</string>
+	<string name="delete_remote">Delete\nRemote</string>
 	<string name="diff_label">ファイル間の差分</string>
 	<string name="diff_titles">-- タイトルの差分 --</string>
 	<string name="diff_content">-- 内容の差分 --</string>

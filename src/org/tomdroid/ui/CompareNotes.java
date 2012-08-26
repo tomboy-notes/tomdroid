@@ -101,7 +101,7 @@ public class CompareNotes extends ActionBarActivity {
 		syncProgressDialog = new ProgressDialog(this);
 		syncProgressDialog.setTitle(String.format(getString(R.string.syncing),serviceDescription));
 		syncProgressDialog.setMessage(getString(R.string.syncing_connect));
-        syncProgressDialog.setCancelable(false);
+        syncProgressDialog.setCancelable(true);
         syncProgressDialog.setIndeterminate(true);
 		
 		final Bundle extras = this.getIntent().getExtras();

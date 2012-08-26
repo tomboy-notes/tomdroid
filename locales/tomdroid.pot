@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-08-26 08:06+0530\n"
+"POT-Creation-Date: 2012-08-26 12:07+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -548,7 +548,7 @@ msgid "Overwrite\\nLocal"
 msgstr ""
 
 #: tmp_strings.xml:199(string)
-msgid "Delete Remote"
+msgid "Delete\\nRemote"
 msgstr ""
 
 #: tmp_strings.xml:200(string)

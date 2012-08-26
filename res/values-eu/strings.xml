@@ -196,7 +196,7 @@
 	<string name="sync_conflict_titles_message">Gatazka bat gertatu da "%1$s" oharra sinkronizatzean. Izenburu berdineko ohar bat existitzen da dagoeneko datu-basean. Mesedez aukeratu gatazka konpontzeko ekintza bat. Bi oharretako edozein edita dezakezu aukeratu aurretik edo desberdintasunak ikusi beheko etiketetan klik eginez.</string>
 	<string name="overwrite_remote">Gainidatzi\nurrunekoa</string>
 	<string name="overwrite_local">Gainidatzi\nlokala</string>
-	<string name="delete_remote">Ezabatu urrunekoa</string>
+	<string name="delete_remote">Delete\nRemote</string>
 	<string name="diff_label">Fitxategien arteko desberdintasunak</string>
 	<string name="diff_titles">-- Izenburuko desberdintasunak --</string>
 	<string name="diff_content">-- Edukiko desberdintasunak --</string>
