@@ -76,10 +76,10 @@ public class Receive extends ActionBarActivity {
 	    String type = intent.getType();
 
 		TLog.v(TAG, "Receiving note of type {0}",type);
-		TLog.d(TAG, "File path: {0}",intent.getData().getPath());
 		TLog.d(TAG, "Action type: {0}",action);
 	    
-    	if(intent.getData().getPath().contains(".note")) {
+    	if(intent.getData() != null && intent.getData().getPath().contains(".note")) {
+    		TLog.d(TAG, "File path: {0}",intent.getData().getPath());
     		TLog.w(TAG, "receiving note as XML file");
     		useSendXML(intent);
     	}

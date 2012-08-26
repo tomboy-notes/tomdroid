@@ -556,14 +556,14 @@ public class Tomdroid extends ActionBarListActivity {
 				this.revertNote(note.getGuid());
 				break;
 			case R.id.delete:
-				TLog.i(TAG, "Deleting note with guid: {0}", note.getGuid());
+				TLog.i(TAG, "Deleting note with guid: {0}", dialogNote.getGuid());
 				dialogString = dialogNote.getGuid();
 				dialogInt = notePosition;
 				showDialog(DIALOG_DELETE_NOTE);
 				return true;
 			case R.id.create_shortcut:
                 final NoteViewShortcutsHelper helper = new NoteViewShortcutsHelper(this);
-                sendBroadcast(helper.getBroadcastableCreateShortcutIntent(intentUri, note.getTitle()));
+                sendBroadcast(helper.getBroadcastableCreateShortcutIntent(intentUri, dialogNote.getTitle()));
                 break;
             default:
 				break;
