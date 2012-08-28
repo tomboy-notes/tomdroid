@@ -54,6 +54,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -217,194 +218,6 @@ public class Tomdroid extends ActionBarListActivity {
 			showNoteInPane(0);
 		}
 	}
-	private void updateTextAttributes() {
-		float baseSize = Float.parseFloat(Preferences.getString(Preferences.Key.BASE_TEXT_SIZE));
-		content.setTextSize(baseSize);
-		title.setTextSize(baseSize*1.3f);
-
-		title.setTextColor(Color.BLUE);
-		title.setPaintFlags(title.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-		title.setBackgroundColor(0xffffffff);
-
-		content.setBackgroundColor(0xffffffff);
-		content.setTextColor(Color.DKGRAY);
-	}
-	private void showNoteInPane(int position) {
-		if(rightPane == null)
-			return;
-
-        title.setText("");
-        content.setText("");
-		
-     // save index and top position
-
-        int index = getListView().getFirstVisiblePosition();
-        View v = getListView().getChildAt(0);
-        int top = (v == null) ? 0 : v.getTop();
-
-        adapter = NoteManager.getListAdapter(this, position);
-		setListAdapter(adapter);
-
-    // restore
-	
-		getListView().setSelectionFromTop(index, top);
-		
-		if(position >= adapter.getCount())
-			position = 0;
-		
-		Cursor item = (Cursor) adapter.getItem(position);
-		if (item == null || item.getCount() == 0) {
-            TLog.d(TAG, "Index {0} not found in list", position);
-			return;
-		}
-		TLog.d(TAG, "Getting note {0}", position);
-
-		long noteId = item.getInt(item.getColumnIndexOrThrow(Note.ID));	
-		uri = Uri.parse(CONTENT_URI + "/" + noteId);
-
-        note = NoteManager.getNote(this, uri);
-		TLog.v(TAG, "Note guid: {0}", note.getGuid());
-
-        if(note != null) {
-        	TLog.d(TAG, "note {0} found", position);
-            noteContent = new NoteContentBuilder().setCaller(noteContentHandler).setInputSource(note.getXmlContent()).setTitle(note.getTitle()).build();
-    		lastIndex = position;
-        } else {
-            TLog.d(TAG, "The note {0} doesn't exist", uri);
-		    final boolean proposeShortcutRemoval;
-		    final boolean calledFromShortcut = getIntent().getBooleanExtra(CALLED_FROM_SHORTCUT_EXTRA, false);
-		    final String shortcutName = getIntent().getStringExtra(SHORTCUT_NAME);
-		    proposeShortcutRemoval = calledFromShortcut && uri != null && shortcutName != null;
-		
-		    if (proposeShortcutRemoval) {
-		    	dialogString = shortcutName;
-	            showDialog(DIALOG_NOT_FOUND_SHORTCUT);
-		    }
-		    else
-	            showDialog(DIALOG_NOT_FOUND);
-
-        }
-	}
-	private void showNote(boolean xml) {
-		
-		if(xml) {
-			content.setText(note.getXmlContent());
-			title.setText((CharSequence) note.getTitle());
-			return;
-		}
-
-		// show the note (spannable makes the TextView able to output styled text)
-		content.setText(noteContent, TextView.BufferType.SPANNABLE);
-
-		// add links to stuff that is understood by Android except phone numbers because it's too aggressive
-		// TODO this is SLOWWWW!!!!
-		Linkify.addLinks(content, Linkify.EMAIL_ADDRESSES|Linkify.WEB_URLS|Linkify.MAP_ADDRESSES);
-
-		// Custom phone number linkifier (fixes lp:512204)
-		Linkify.addLinks(content, LinkifyPhone.PHONE_PATTERN, "tel:", LinkifyPhone.sPhoneNumberMatchFilter, Linkify.sPhoneNumberTransformFilter);
-
-		// This will create a link every time a note title is found in the text.
-		// The pattern contains a very dumb (title1)|(title2) escaped correctly
-		// Then we transform the url from the note name to the note id to avoid characters that mess up with the URI (ex: ?)
-		
-		Pattern pattern = buildNoteLinkifyPattern();
-		
-		if(pattern != null)
-			Linkify.addLinks(content,
-							 buildNoteLinkifyPattern(),
-							 Tomdroid.CONTENT_URI+"/",
-							 null,
-							 noteTitleTransformFilter);
-
-		title.setText((CharSequence) note.getTitle());
-
-	}
-	
-	private void addCommonNoteNotFoundDialogElements(final AlertDialog.Builder builder) {
-	    builder.setMessage(getString(R.string.messageNoteNotFound))
-	            .setTitle(getString(R.string.titleNoteNotFound))
-	            .setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
-	                public void onClick(DialogInterface dialog, int which) {
-	                    dialog.dismiss();
-	                    finish();
-	                }
-	            });
-	}	
-	
-	private Handler noteContentHandler = new Handler() {
-	
-		@Override
-		public void handleMessage(Message msg) {
-	
-			//parsed ok - show
-			if(msg.what == NoteContentBuilder.PARSE_OK) {
-				showNote(false);
-	
-			//parsed not ok - error
-			} else if(msg.what == NoteContentBuilder.PARSE_ERROR) {
-	
-				showDialog(DIALOG_PARSE_ERROR);
-	    	}
-		}
-	};
-	
-	/**
-	 * Builds a regular expression pattern that will match any of the note title currently in the collection.
-	 * Useful for the Linkify to create the links to the notes.
-	 * @return regexp pattern
-	 */
-	private Pattern buildNoteLinkifyPattern()  {
-	
-		StringBuilder sb = new StringBuilder();
-		Cursor cursor = NoteManager.getTitles(this);
-	
-		// cursor must not be null and must return more than 0 entry
-		if (!(cursor == null || cursor.getCount() == 0)) {
-	
-			String title;
-	
-			cursor.moveToFirst();
-	
-			do {
-				title = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
-				if(title.length() == 0)
-					continue;
-				// Pattern.quote() here make sure that special characters in the note's title are properly escaped
-				sb.append("("+Pattern.quote(title)+")|");
-	
-			} while (cursor.moveToNext());
-			
-			// if only empty titles, return
-			if (sb.length() == 0)
-				return null;
-			
-			// get rid of the last | that is not needed (I know, its ugly.. better idea?)
-			String pt = sb.substring(0, sb.length()-1);
-	
-			// return a compiled match pattern
-			return Pattern.compile(pt);
-	
-		} else {
-	
-			// TODO send an error to the user
-			TLog.d(TAG, "Cursor returned null or 0 notes");
-		}
-	
-		return null;
-	}
-	
-	// custom transform filter that takes the note's title part of the URI and translate it into the note id
-	// this was done to avoid problems with invalid characters in URI (ex: ? is the query separator but could be in a note title)
-	private TransformFilter noteTitleTransformFilter = new TransformFilter() {
-	
-		public String transformUrl(Matcher m, String str) {
-	
-			int id = NoteManager.getNoteId(Tomdroid.this, str);
-	
-			// return something like content://org.tomdroid.notes/notes/3
-			return Tomdroid.CONTENT_URI.toString()+"/"+id;
-		}
-	};
 
 	@TargetApi(11)
 	@Override
@@ -458,68 +271,7 @@ public class Tomdroid extends ActionBarListActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
-	@SuppressWarnings("deprecation")
-	private void startSyncing(boolean push) {
 
-		String serverUri = Preferences.getString(Preferences.Key.SYNC_SERVER);
-		SyncService currentService = SyncManager.getInstance().getCurrentService();
-		
-		if (currentService.needsAuth()) {
-	
-			// service needs authentication
-			TLog.i(TAG, "Creating dialog");
-
-			showDialog(DIALOG_AUTH_PROGRESS);
-	
-			Handler handler = new Handler() {
-	
-				@Override
-				public void handleMessage(Message msg) {
-	
-					boolean wasSuccessful = false;
-					Uri authorizationUri = (Uri) msg.obj;
-					if (authorizationUri != null) {
-	
-						Intent i = new Intent(Intent.ACTION_VIEW, authorizationUri);
-						startActivity(i);
-						wasSuccessful = true;
-	
-					} else {
-						// Auth failed, don't update the value
-						wasSuccessful = false;
-					}
-	
-					if (authProgressDialog != null)
-						authProgressDialog.dismiss();
-	
-					if (wasSuccessful) {
-						resetLocalDatabase();
-					} else {
-						showDialog(DIALOG_CONNECT_FAILED);
-					}
-				}
-			};
-
-			((ServiceAuth) currentService).getAuthUri(serverUri, handler);
-		}
-		else {
-			syncProcessedNotes = 0;
-			syncTotalNotes = 0;
-			dialogString = getString(R.string.syncing_connect);
-	        showDialog(DIALOG_SYNC);
-	        SyncManager.getInstance().startSynchronization(push); // push by default
-		}
-	}
-	
-	//TODO use LocalStorage wrapper from two-way-sync branch when it get's merged
-	private void resetLocalDatabase() {
-		getContentResolver().delete(Tomdroid.CONTENT_URI, null, null);
-		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, 0);
-		
-		// first explanatory note will be deleted on sync
-		//NoteManager.putNote(this, FirstNote.createFirstNote());
-	}
 	
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
@@ -903,6 +655,283 @@ public class Tomdroid extends ActionBarListActivity {
 		}
 	}
 	
+	// called when rotating screen
+	@Override
+	public void onConfigurationChanged(Configuration newConfig)
+	{
+	    super.onConfigurationChanged(newConfig);
+        main =  View.inflate(this, R.layout.main, null);
+        setContentView(main);
+
+		// set the view shown when the list is empty
+		listEmptyView = (TextView) findViewById(R.id.list_empty);
+		getListView().setEmptyView(listEmptyView);
+		
+		registerForContextMenu(findViewById(android.R.id.list));
+
+		// add note to pane for tablet
+		rightPane = (LinearLayout) findViewById(R.id.right_pane);
+		
+		if(rightPane != null) {
+			content = (TextView) findViewById(R.id.content);
+			title = (TextView) findViewById(R.id.title);
+			updateTextAttributes();
+			showNoteInPane(lastIndex);
+		}
+	}
+
+	private void updateTextAttributes() {
+		float baseSize = Float.parseFloat(Preferences.getString(Preferences.Key.BASE_TEXT_SIZE));
+		content.setTextSize(baseSize);
+		title.setTextSize(baseSize*1.3f);
+
+		title.setTextColor(Color.BLUE);
+		title.setPaintFlags(title.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+		title.setBackgroundColor(0xffffffff);
+
+		content.setBackgroundColor(0xffffffff);
+		content.setTextColor(Color.DKGRAY);
+	}
+	private void showNoteInPane(int position) {
+		if(rightPane == null)
+			return;
+
+        title.setText("");
+        content.setText("");
+		
+     // save index and top position
+
+        int index = getListView().getFirstVisiblePosition();
+        View v = getListView().getChildAt(0);
+        int top = (v == null) ? 0 : v.getTop();
+
+        adapter = NoteManager.getListAdapter(this, position);
+		setListAdapter(adapter);
+
+    // restore
+	
+		getListView().setSelectionFromTop(index, top);
+		
+		if(position >= adapter.getCount())
+			position = 0;
+		
+		Cursor item = (Cursor) adapter.getItem(position);
+		if (item == null || item.getCount() == 0) {
+            TLog.d(TAG, "Index {0} not found in list", position);
+			return;
+		}
+		TLog.d(TAG, "Getting note {0}", position);
+
+		long noteId = item.getInt(item.getColumnIndexOrThrow(Note.ID));	
+		uri = Uri.parse(CONTENT_URI + "/" + noteId);
+
+        note = NoteManager.getNote(this, uri);
+		TLog.v(TAG, "Note guid: {0}", note.getGuid());
+
+        if(note != null) {
+        	TLog.d(TAG, "note {0} found", position);
+            noteContent = new NoteContentBuilder().setCaller(noteContentHandler).setInputSource(note.getXmlContent()).setTitle(note.getTitle()).build();
+    		lastIndex = position;
+        } else {
+            TLog.d(TAG, "The note {0} doesn't exist", uri);
+		    final boolean proposeShortcutRemoval;
+		    final boolean calledFromShortcut = getIntent().getBooleanExtra(CALLED_FROM_SHORTCUT_EXTRA, false);
+		    final String shortcutName = getIntent().getStringExtra(SHORTCUT_NAME);
+		    proposeShortcutRemoval = calledFromShortcut && uri != null && shortcutName != null;
+		
+		    if (proposeShortcutRemoval) {
+		    	dialogString = shortcutName;
+	            showDialog(DIALOG_NOT_FOUND_SHORTCUT);
+		    }
+		    else
+	            showDialog(DIALOG_NOT_FOUND);
+
+        }
+	}
+	private void showNote(boolean xml) {
+		
+		if(xml) {
+			content.setText(note.getXmlContent());
+			title.setText((CharSequence) note.getTitle());
+			return;
+		}
+
+		// show the note (spannable makes the TextView able to output styled text)
+		content.setText(noteContent, TextView.BufferType.SPANNABLE);
+
+		// add links to stuff that is understood by Android except phone numbers because it's too aggressive
+		// TODO this is SLOWWWW!!!!
+		Linkify.addLinks(content, Linkify.EMAIL_ADDRESSES|Linkify.WEB_URLS|Linkify.MAP_ADDRESSES);
+
+		// Custom phone number linkifier (fixes lp:512204)
+		Linkify.addLinks(content, LinkifyPhone.PHONE_PATTERN, "tel:", LinkifyPhone.sPhoneNumberMatchFilter, Linkify.sPhoneNumberTransformFilter);
+
+		// This will create a link every time a note title is found in the text.
+		// The pattern contains a very dumb (title1)|(title2) escaped correctly
+		// Then we transform the url from the note name to the note id to avoid characters that mess up with the URI (ex: ?)
+		
+		Pattern pattern = buildNoteLinkifyPattern();
+		
+		if(pattern != null)
+			Linkify.addLinks(content,
+							 buildNoteLinkifyPattern(),
+							 Tomdroid.CONTENT_URI+"/",
+							 null,
+							 noteTitleTransformFilter);
+
+		title.setText((CharSequence) note.getTitle());
+
+	}
+	
+	private void addCommonNoteNotFoundDialogElements(final AlertDialog.Builder builder) {
+	    builder.setMessage(getString(R.string.messageNoteNotFound))
+	            .setTitle(getString(R.string.titleNoteNotFound))
+	            .setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
+	                public void onClick(DialogInterface dialog, int which) {
+	                    dialog.dismiss();
+	                    finish();
+	                }
+	            });
+	}	
+	
+	private Handler noteContentHandler = new Handler() {
+	
+		@Override
+		public void handleMessage(Message msg) {
+	
+			//parsed ok - show
+			if(msg.what == NoteContentBuilder.PARSE_OK) {
+				showNote(false);
+	
+			//parsed not ok - error
+			} else if(msg.what == NoteContentBuilder.PARSE_ERROR) {
+	
+				showDialog(DIALOG_PARSE_ERROR);
+	    	}
+		}
+	};
+	
+	/**
+	 * Builds a regular expression pattern that will match any of the note title currently in the collection.
+	 * Useful for the Linkify to create the links to the notes.
+	 * @return regexp pattern
+	 */
+	private Pattern buildNoteLinkifyPattern()  {
+	
+		StringBuilder sb = new StringBuilder();
+		Cursor cursor = NoteManager.getTitles(this);
+	
+		// cursor must not be null and must return more than 0 entry
+		if (!(cursor == null || cursor.getCount() == 0)) {
+	
+			String title;
+	
+			cursor.moveToFirst();
+	
+			do {
+				title = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
+				if(title.length() == 0)
+					continue;
+				// Pattern.quote() here make sure that special characters in the note's title are properly escaped
+				sb.append("("+Pattern.quote(title)+")|");
+	
+			} while (cursor.moveToNext());
+			
+			// if only empty titles, return
+			if (sb.length() == 0)
+				return null;
+			
+			// get rid of the last | that is not needed (I know, its ugly.. better idea?)
+			String pt = sb.substring(0, sb.length()-1);
+	
+			// return a compiled match pattern
+			return Pattern.compile(pt);
+	
+		} else {
+	
+			// TODO send an error to the user
+			TLog.d(TAG, "Cursor returned null or 0 notes");
+		}
+	
+		return null;
+	}
+	
+	// custom transform filter that takes the note's title part of the URI and translate it into the note id
+	// this was done to avoid problems with invalid characters in URI (ex: ? is the query separator but could be in a note title)
+	private TransformFilter noteTitleTransformFilter = new TransformFilter() {
+	
+		public String transformUrl(Matcher m, String str) {
+	
+			int id = NoteManager.getNoteId(Tomdroid.this, str);
+	
+			// return something like content://org.tomdroid.notes/notes/3
+			return Tomdroid.CONTENT_URI.toString()+"/"+id;
+		}
+	};
+
+	
+	@SuppressWarnings("deprecation")
+	private void startSyncing(boolean push) {
+
+		String serverUri = Preferences.getString(Preferences.Key.SYNC_SERVER);
+		SyncService currentService = SyncManager.getInstance().getCurrentService();
+		
+		if (currentService.needsAuth()) {
+	
+			// service needs authentication
+			TLog.i(TAG, "Creating dialog");
+
+			showDialog(DIALOG_AUTH_PROGRESS);
+	
+			Handler handler = new Handler() {
+	
+				@Override
+				public void handleMessage(Message msg) {
+	
+					boolean wasSuccessful = false;
+					Uri authorizationUri = (Uri) msg.obj;
+					if (authorizationUri != null) {
+	
+						Intent i = new Intent(Intent.ACTION_VIEW, authorizationUri);
+						startActivity(i);
+						wasSuccessful = true;
+	
+					} else {
+						// Auth failed, don't update the value
+						wasSuccessful = false;
+					}
+	
+					if (authProgressDialog != null)
+						authProgressDialog.dismiss();
+	
+					if (wasSuccessful) {
+						resetLocalDatabase();
+					} else {
+						showDialog(DIALOG_CONNECT_FAILED);
+					}
+				}
+			};
+
+			((ServiceAuth) currentService).getAuthUri(serverUri, handler);
+		}
+		else {
+			syncProcessedNotes = 0;
+			syncTotalNotes = 0;
+			dialogString = getString(R.string.syncing_connect);
+	        showDialog(DIALOG_SYNC);
+	        SyncManager.getInstance().startSynchronization(push); // push by default
+		}
+	}
+	
+	//TODO use LocalStorage wrapper from two-way-sync branch when it get's merged
+	private void resetLocalDatabase() {
+		getContentResolver().delete(Tomdroid.CONTENT_URI, null, null);
+		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, 0);
+		
+		// first explanatory note will be deleted on sync
+		//NoteManager.putNote(this, FirstNote.createFirstNote());
+	}
+
 	public void ViewNote(long noteId) {
 		Uri intentUri = getNoteIntentUri(noteId);
 		Intent i = new Intent(Intent.ACTION_VIEW, intentUri, this, ViewNote.class);
