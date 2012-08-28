@@ -529,7 +529,7 @@ public class Tomdroid extends ActionBarListActivity {
 		    	.setView(dialogInput)
 		    	.setNegativeButton(R.string.btnCancel, new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) {
-						dismissDialog(DIALOG_VIEW_TAGS);
+						removeDialog(DIALOG_VIEW_TAGS);
 					}
 		    	})
 		    	.setPositiveButton(R.string.btnOk, null)
@@ -632,7 +632,7 @@ public class Tomdroid extends ActionBarListActivity {
 			    		dialogNote.setTags(value);
 			    		dialogNote.setLastChangeDate();
 						NoteManager.putNote(activity, dialogNote);
-						dismissDialog(DIALOG_VIEW_TAGS);
+						removeDialog(DIALOG_VIEW_TAGS);
 		    		}
 		    	});
 		    	break;
@@ -1147,7 +1147,7 @@ public class Tomdroid extends ActionBarListActivity {
 			if(syncTotalNotes > 0 && syncProcessedNotes >= syncTotalNotes)
 				dismiss = true;
 			if(dismiss)
-				dismissDialog(DIALOG_SYNC);
+				removeDialog(DIALOG_SYNC);
 			TLog.i(TAG, "processed notes: {0} of {1}", syncProcessedNotes, syncTotalNotes);
 		}
 	}
@@ -1174,7 +1174,7 @@ public class Tomdroid extends ActionBarListActivity {
 		SyncService currentService = SyncManager.getInstance().getCurrentService();
 		currentService.finishSync(false);
 		
-		dismissDialog(DIALOG_SYNC);
+		removeDialog(DIALOG_SYNC);
 		
 		if(rightPane != null)
 			showNoteInPane(lastIndex);
