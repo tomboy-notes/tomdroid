@@ -242,6 +242,9 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 							return; 
 						}
 						response = new JSONObject(rawResponse);
+						latestRevision = (int)response.getLong("latest-sync-revision");
+						sendMessage(LATEST_REVISION,latestRevision,0);
+
 						JSONArray notes = response.getJSONArray("notes");
 						setSyncProgress(50);
 
@@ -332,12 +335,14 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 		}		
 		final String userRef = Preferences
 				.getString(Preferences.Key.SYNC_SERVER_USER_API);
-
+		
+		final long newRevision = Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION) + 1;
+				
 		syncInThread(new Runnable() {
 			public void run() {
 				OAuthConnection auth = getAuthConnection();
 				try {
-					TLog.v(TAG, "pushing {0} notes to remote service",notes.size());
+					TLog.v(TAG, "pushing {0} notes to remote service, sending rev #{1}",notes.size(), newRevision);
 					String rawResponse = auth.get(userRef);
 					if(cancelled) {
 						doCancel();
@@ -347,7 +352,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						TLog.v(TAG, "creating JSON");
 
 						JSONObject data = new JSONObject();
-						data.put("latest-sync-revision",Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION) + 1);
+						data.put("latest-sync-revision", newRevision);
 						JSONArray Jnotes = new JSONArray();
 						for(Note note : notes) {
 							JSONObject Jnote = new JSONObject();
@@ -384,6 +389,8 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 								data.toString()));
 
 						TLog.v(TAG, "put response: {0}", response.toString());
+						latestRevision = (int)response.getLong("latest-sync-revision");
+						sendMessage(LATEST_REVISION,latestRevision,0);
 
 					} catch (JSONException e) {
 						TLog.e(TAG, e, "Problem parsing the server response");
@@ -446,10 +453,11 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 								data.toString()));
 
 						TLog.v(TAG, "put response: {0}", response.toString());
+						latestRevision = (int)response.getLong("latest-sync-revision");
+						sendMessage(LATEST_REVISION,latestRevision,0);
 
 						Preferences.putLong(
-								Preferences.Key.LATEST_SYNC_REVISION,
-								response.getLong("latest-sync-revision"));
+								Preferences.Key.LATEST_SYNC_REVISION,latestRevision);
 					} catch (JSONException e) {
 						TLog.e(TAG, e, "Problem parsing the server response");
 						sendMessage(NOTE_PUSH_ERROR,
