@@ -166,6 +166,8 @@ public class Tomdroid extends ActionBarListActivity {
 		Preferences.init(this, CLEAR_PREFERENCES);
 		context = this;
 		dialogInput = new EditText(this);
+		SyncManager.setActivity(this);
+		SyncManager.setHandler(this.syncMessageHandler);
 		
         main =  View.inflate(this, R.layout.main, null);
 		
