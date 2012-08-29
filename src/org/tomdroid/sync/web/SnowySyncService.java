@@ -53,7 +53,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 
 	private static final String TAG = "SnowySyncService";
 	private String lastGUID;
-	private int latestRevision;
+	private int latestRemoteRevision;
 
 	public SnowySyncService(Activity activity, Handler handler) {
 		super(activity, handler);
@@ -175,7 +175,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 			public void run() {
 
 				OAuthConnection auth = getAuthConnection();
-				latestRevision = (int)Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION);
+				latestRemoteRevision = (int)Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION);
 
 				try {
 					TLog.v(TAG, "contacting " + userRef);
@@ -206,13 +206,13 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						
 						setSyncProgress(35);
 
-						latestRevision = (int)response.getLong("latest-sync-revision");
-						sendMessage(LATEST_REVISION,latestRevision,0);
+						latestRemoteRevision = (int)response.getLong("latest-sync-revision");
+						sendMessage(LATEST_REVISION,latestRemoteRevision,0);
 						TLog.d(TAG, "old latest sync revision: {0}, remote latest sync revision: {1}", latestSyncRevision, response.getLong("latest-sync-revision"));
 
 						Cursor newLocalNotes = NoteManager.getNewNotes(activity); 
 						
-						if (latestRevision <= latestSyncRevision && newLocalNotes.getCount() == 0) { // same sync revision + no new local notes = no need to sync
+						if (latestRemoteRevision <= latestSyncRevision && newLocalNotes.getCount() == 0) { // same sync revision + no new local notes = no need to sync
 							TLog.v(TAG, "old sync revision on server, cancelling");
 							finishSync(true);
 							return;
@@ -220,7 +220,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 
 						// don't get notes if older revision - only pushing notes
 						
-						if (push && response.getLong("latest-sync-revision") <= latestSyncRevision) {
+						if (push && latestRemoteRevision <= latestSyncRevision) {
 							TLog.v(TAG, "old sync revision on server, pushing new notes");
 							
 							JSONArray notes = response.getJSONArray("notes");
@@ -242,8 +242,8 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 							return; 
 						}
 						response = new JSONObject(rawResponse);
-						latestRevision = (int)response.getLong("latest-sync-revision");
-						sendMessage(LATEST_REVISION,latestRevision,0);
+						latestRemoteRevision = (int)response.getLong("latest-sync-revision");
+						sendMessage(LATEST_REVISION,latestRemoteRevision,0);
 
 						JSONArray notes = response.getJSONArray("notes");
 						setSyncProgress(50);
@@ -389,8 +389,8 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 								data.toString()));
 
 						TLog.v(TAG, "put response: {0}", response.toString());
-						latestRevision = (int)response.getLong("latest-sync-revision");
-						sendMessage(LATEST_REVISION,latestRevision,0);
+						latestRemoteRevision = (int)response.getLong("latest-sync-revision");
+						sendMessage(LATEST_REVISION,latestRemoteRevision,0);
 
 					} catch (JSONException e) {
 						TLog.e(TAG, e, "Problem parsing the server response");
@@ -453,11 +453,11 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 								data.toString()));
 
 						TLog.v(TAG, "put response: {0}", response.toString());
-						latestRevision = (int)response.getLong("latest-sync-revision");
-						sendMessage(LATEST_REVISION,latestRevision,0);
+						latestRemoteRevision = (int)response.getLong("latest-sync-revision");
+						sendMessage(LATEST_REVISION,latestRemoteRevision,0);
 
 						Preferences.putLong(
-								Preferences.Key.LATEST_SYNC_REVISION,latestRevision);
+								Preferences.Key.LATEST_SYNC_REVISION,latestRemoteRevision);
 					} catch (JSONException e) {
 						TLog.e(TAG, e, "Problem parsing the server response");
 						sendMessage(NOTE_PUSH_ERROR,
@@ -652,8 +652,8 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						
 						// reset latest sync date so we can push our notes again
 						
-						latestRevision = (int)response.getLong("latest-sync-revision");
-						Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, latestRevision);
+						latestRemoteRevision = (int)response.getLong("latest-sync-revision");
+						Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, latestRemoteRevision);
 						Preferences.putString(Preferences.Key.LATEST_SYNC_DATE,new Time().format3339(false));
 						
 					} catch (JSONException e) {

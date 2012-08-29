@@ -678,6 +678,10 @@ public class Tomdroid extends ActionBarListActivity {
 			updateTextAttributes();
 			showNoteInPane(lastIndex);
 		}
+		else {
+			adapter = NoteManager.getListAdapter(this);
+			setListAdapter(adapter);
+		}
 	}
 
 	private void updateTextAttributes() {

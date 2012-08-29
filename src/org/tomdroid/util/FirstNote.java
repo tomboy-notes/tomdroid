@@ -55,8 +55,8 @@ public class FirstNote {
 		// reconstitute HTML in note content 
 		
 		String content = activity.getString(R.string.firstNoteContent);
-		content = content.replaceAll("(?<=\n)=(.+)=(?=\n)", "<size:large>$1</size:large>")
-				.replaceAll("(?<=\n)@(.+)(?=\n)", "<list-item dir=\"ltr\">$1</list-item>")
+		content = content.replaceAll("(?m)^=(.+)=$", "<size:large>$1</size:large>")
+				.replaceAll("(?m)^@(.+)$", "<list-item dir=\"ltr\">$1</list-item>")
 				.replaceAll("/list-item>\n<list-item", "/list-item><list-item")
 				.replaceAll("(<list-item.+</list-item>)", "<list>$1</list>")
 				.replaceAll("/list-item><list-item", "/list-item>\n<list-item");
