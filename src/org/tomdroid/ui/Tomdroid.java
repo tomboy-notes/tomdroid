@@ -398,6 +398,9 @@ public class Tomdroid extends ActionBarListActivity {
 			if(!creating)
 				showNoteInPane(lastIndex);
 		}
+		else 
+			updateNotesList(query, lastIndex);
+		
 		creating = false;
 	}
 
