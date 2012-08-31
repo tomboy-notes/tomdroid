@@ -161,6 +161,8 @@ public class NoteListCursorAdapter extends SimpleCursorAdapter {
         	note_title.setText(title);
             if(tags.contains("system:deleted"))
             	note_title.setPaintFlags(note_title.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            else
+            	note_title.setPaintFlags(note_title.getPaintFlags() & ~Paint.STRIKE_THRU_TEXT_FLAG);
         }
         TextView note_modified = (TextView) v.findViewById(R.id.note_date);
         if (note_modified != null) {
