@@ -172,10 +172,11 @@
 	<string name="prefDisplay">Kijelző beállításai</string>
 	<string name="prefBaseSize">Alap betűméret</string>
 	<string name="prefSync">Szinkronizálás</string>
-	<string name="prefMisc">Kül. lehetőségek</string>
 	<string name="prefTools">Eszközök</string>
 	<string name="prefAutoSaveTitle">Jegyzet automatikus mentése</string>
 	<string name="prefAutoSave">Menti a jegyzeteket a szerkesztőből való kilépéskor.</string>
+	<string name="prefDeletedNotesTitle">Show Deleted Notes</string>
+	<string name="prefDeletedNotes">If checked, will show deleted notes in notes list.</string>
 	<string name="prefNoteTemplatesTitle">Jegyzet sablonok megtekintése</string>
 	<string name="prefNoteTemplates">Ha bejelölöd, megmutatja a jegyzet sablonokat is a jegyzetek listában</string>
 	<string name="deleteAllNotesTitle">Jegyzetek törlése</string>
@@ -228,7 +229,8 @@
 	<string name="contextRevert">Visszavonás</string>
 	<string name="note_x_tags">Note \'%1$s\' Tags</string>
 	<string name="edit_tags">Edit the tags below, separating with commas</string>
-			
+	<string name="undelete">Undelete Note</string>
+				
 	<!-- revert notes -->
 	
 	<string name="menuRevert">Mindent visszavon</string>

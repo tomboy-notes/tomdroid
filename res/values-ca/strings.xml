@@ -172,10 +172,11 @@
 	<string name="prefDisplay">Preferències de visualització</string>
 	<string name="prefBaseSize">Mida base del text</string>
 	<string name="prefSync">Sincronizació</string>
-	<string name="prefMisc">Altres opcions</string>
 	<string name="prefTools">Eines</string>
 	<string name="prefAutoSaveTitle">Guarda automàticament la nota</string>
 	<string name="prefAutoSave">Guarda les notes automàticament al sortir de l\'editor.</string>
+	<string name="prefDeletedNotesTitle">Show Deleted Notes</string>
+	<string name="prefDeletedNotes">If checked, will show deleted notes in notes list.</string>
 	<string name="prefNoteTemplatesTitle">Mostra les plantilles de notes</string>
 	<string name="prefNoteTemplates">Si està marcat, es mostraran les plantilles en la llista de notes.</string>
 	<string name="deleteAllNotesTitle">Elimina les notes</string>
@@ -228,7 +229,8 @@
 	<string name="contextRevert">Desfés</string>
 	<string name="note_x_tags">Note \'%1$s\' Tags</string>
 	<string name="edit_tags">Edit the tags below, separating with commas</string>
-			
+	<string name="undelete">Undelete Note</string>
+				
 	<!-- revert notes -->
 	
 	<string name="menuRevert">Desfes-ho tot</string>

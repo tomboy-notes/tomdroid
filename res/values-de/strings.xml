@@ -172,10 +172,11 @@
 	<string name="prefDisplay">Anzeige-Einstellungen</string>
 	<string name="prefBaseSize">Normale Zeichengröße</string>
 	<string name="prefSync">Synchronisation</string>
-	<string name="prefMisc">Sonstige Optionen</string>
 	<string name="prefTools">Werkzeuge</string>
 	<string name="prefAutoSaveTitle">Automatisches Speichern</string>
 	<string name="prefAutoSave">Notizen beim Verlassen automatisch speichern</string>
+	<string name="prefDeletedNotesTitle">Show Deleted Notes</string>
+	<string name="prefDeletedNotes">If checked, will show deleted notes in notes list.</string>
 	<string name="prefNoteTemplatesTitle">Zeige Notiz-Vorlagen</string>
 	<string name="prefNoteTemplates">Zeige Notizvorlagen in der Notizliste an.</string>
 	<string name="deleteAllNotesTitle">Notizen löschen</string>
@@ -228,7 +229,8 @@
 	<string name="contextRevert">Zurücksetzen</string>
 	<string name="note_x_tags">Note \'%1$s\' Tags</string>
 	<string name="edit_tags">Edit the tags below, separating with commas</string>
-			
+	<string name="undelete">Undelete Note</string>
+				
 	<!-- revert notes -->
 	
 	<string name="menuRevert">Alles Rückgangig machen</string>

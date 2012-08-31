@@ -172,10 +172,11 @@
 	<string name="prefDisplay">Bistaratzeko hobespenak</string>
 	<string name="prefBaseSize">Oinarrizko letra-tamaina</string>
 	<string name="prefSync">Sinkronizazioa</string>
-	<string name="prefMisc">Askotariko aukerak</string>
 	<string name="prefTools">Tresnak</string>
 	<string name="prefAutoSaveTitle">Gorde automatikoki oharra</string>
 	<string name="prefAutoSave">Editoretik irtetean oharrak automatikoki gordetzen ditu.</string>
+	<string name="prefDeletedNotesTitle">Show Deleted Notes</string>
+	<string name="prefDeletedNotes">If checked, will show deleted notes in notes list.</string>
 	<string name="prefNoteTemplatesTitle">Erakutsi oharren txantiloiak</string>
 	<string name="prefNoteTemplates">Hautatuz gero oharren txantiloiak erakutsiko ditu oharren zerrendan.</string>
 	<string name="deleteAllNotesTitle">Garbitu oharrak</string>
@@ -228,7 +229,8 @@
 	<string name="contextRevert">Leheneratu</string>
 	<string name="note_x_tags">Note \'%1$s\' Tags</string>
 	<string name="edit_tags">Edit the tags below, separating with commas</string>
-			
+	<string name="undelete">Undelete Note</string>
+				
 	<!-- revert notes -->
 	
 	<string name="menuRevert">Leheneratu guztia</string>

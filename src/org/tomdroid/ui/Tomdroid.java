@@ -37,11 +37,13 @@ import org.tomdroid.sync.SyncService;
 import org.tomdroid.util.ErrorList;
 import org.tomdroid.ui.actionbar.ActionBarListActivity;
 import org.tomdroid.util.FirstNote;
+import org.tomdroid.util.Honeycomb;
 import org.tomdroid.util.LinkifyPhone;
 import org.tomdroid.util.NewNote;
 import org.tomdroid.util.NoteContentBuilder;
 import org.tomdroid.util.NoteViewShortcutsHelper;
 import org.tomdroid.util.Preferences;
+import org.tomdroid.util.SearchSuggestionProvider;
 import org.tomdroid.util.Send;
 import org.tomdroid.util.TLog;
 
@@ -50,6 +52,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.app.SearchManager;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -59,10 +62,12 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.SearchRecentSuggestions;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.format.Time;
@@ -111,6 +116,7 @@ public class Tomdroid extends ActionBarListActivity {
 	private static int dialogInt;
 	private static int dialogInt2;
 	private EditText dialogInput;
+	private int dialogPosition;
 
 	public int syncTotalNotes;
 	public int syncProcessedNotes;
@@ -158,6 +164,11 @@ public class Tomdroid extends ActionBarListActivity {
 	private int lastIndex = 0;
 	public MenuItem syncMenuItem;
 	public static Tomdroid context;
+
+	// for searches
+	
+	private Intent intent;
+	private String query;
 	
 	/** Called when the activity is created. */
 	@Override
@@ -190,9 +201,22 @@ public class Tomdroid extends ActionBarListActivity {
 
 		}
 		
-		// adapter that binds the ListView UI to the notes in the note manager
-		adapter = NoteManager.getListAdapter(this);
-		setListAdapter(adapter);
+		this.intent = getIntent();
+
+	    if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+		    //adds query to search history suggestions
+
+	    	query = intent.getStringExtra(SearchManager.QUERY);
+	    	
+	    	//adds query to search history suggestions
+
+	        SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
+	                SearchSuggestionProvider.AUTHORITY, SearchSuggestionProvider.MODE);
+	        suggestions.saveRecentQuery(query, null);
+		}
+	    
+	    // set list adapter
+	    updateNotesList(query, -1);
 
 		// set the view shown when the list is empty
 		listEmptyView = (TextView) findViewById(R.id.list_empty);
@@ -277,7 +301,18 @@ public class Tomdroid extends ActionBarListActivity {
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
 		MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.main_longclick, menu);
+
+		long noteId = ((AdapterContextMenuInfo)menuInfo).id;
+		dialogPosition = ((AdapterContextMenuInfo)menuInfo).position;
+
+		Uri intentUri = Uri.parse(Tomdroid.CONTENT_URI+"/"+noteId);
+        dialogNote = NoteManager.getNote(this, intentUri);
+        
+        if(dialogNote.getTags().contains("system:deleted"))
+        	inflater.inflate(R.menu.main_longclick_deleted, menu);
+        else
+        	inflater.inflate(R.menu.main_longclick, menu);
+        
 	    menu.setHeaderTitle(getString(R.string.noteOptions));
 		super.onCreateContextMenu(menu, v, menuInfo);
 	}
@@ -286,10 +321,8 @@ public class Tomdroid extends ActionBarListActivity {
 	public boolean onContextItemSelected(MenuItem item) {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo)item.getMenuInfo();
 		long noteId = info.id;
-		int notePosition = info.position;
 
 		Uri intentUri = Uri.parse(Tomdroid.CONTENT_URI+"/"+noteId);
-        dialogNote = NoteManager.getNote(this, intentUri);
 
         switch (item.getItemId()) {
             case R.id.menu_send:
@@ -303,17 +336,18 @@ public class Tomdroid extends ActionBarListActivity {
 				this.startEditNote(noteId);
 				break;
 			case R.id.tags:
-				TLog.i(TAG, "Showing tags for note: {0}", dialogNote.getTitle());
 				showDialog(DIALOG_VIEW_TAGS);
 				break;
 			case R.id.revert:
 				this.revertNote(note.getGuid());
 				break;
 			case R.id.delete:
-				TLog.i(TAG, "Deleting note with guid: {0}", dialogNote.getGuid());
 				dialogString = dialogNote.getGuid();
-				dialogInt = notePosition;
+				dialogInt = dialogPosition;
 				showDialog(DIALOG_DELETE_NOTE);
+				return true;
+			case R.id.undelete:
+				undeleteNote(dialogNote);
 				return true;
 			case R.id.create_shortcut:
                 final NoteViewShortcutsHelper helper = new NoteViewShortcutsHelper(this);
@@ -663,7 +697,11 @@ public class Tomdroid extends ActionBarListActivity {
         main =  View.inflate(this, R.layout.main, null);
         setContentView(main);
 
-		// set the view shown when the list is empty
+        if (Integer.parseInt(Build.VERSION.SDK) >= 11) {
+            Honeycomb.invalidateOptionsMenuWrapper(this); 
+        }
+        
+        // set the view shown when the list is empty
 		listEmptyView = (TextView) findViewById(R.id.list_empty);
 		getListView().setEmptyView(listEmptyView);
 		
@@ -678,12 +716,16 @@ public class Tomdroid extends ActionBarListActivity {
 			updateTextAttributes();
 			showNoteInPane(lastIndex);
 		}
-		else {
-			adapter = NoteManager.getListAdapter(this);
-			setListAdapter(adapter);
-		}
+		else
+			updateNotesList(query,-1);
 	}
 
+	private void updateNotesList(String aquery, int aposition) {
+	    // adapter that binds the ListView UI to the notes in the note manager
+		adapter = NoteManager.getListAdapter(this, aquery, rightPane != null ? aposition : -1);
+		setListAdapter(adapter);		
+	}
+	
 	private void updateTextAttributes() {
 		float baseSize = Float.parseFloat(Preferences.getString(Preferences.Key.BASE_TEXT_SIZE));
 		content.setTextSize(baseSize);
@@ -709,8 +751,7 @@ public class Tomdroid extends ActionBarListActivity {
         View v = getListView().getChildAt(0);
         int top = (v == null) ? 0 : v.getTop();
 
-        adapter = NoteManager.getListAdapter(this, position);
-		setListAdapter(adapter);
+        updateNotesList(query, position);
 
     // restore
 	
@@ -962,8 +1003,7 @@ public class Tomdroid extends ActionBarListActivity {
 		
 		// recreate listAdapter
 		
-		adapter = NoteManager.getListAdapter(this);
-		setListAdapter(adapter);
+		updateNotesList(query, 0);
 
 		// show new note and update list
 
@@ -981,6 +1021,11 @@ public class Tomdroid extends ActionBarListActivity {
 		showNoteInPane(position);
 	}
 	
+	private void undeleteNote(Note anote) {
+		NoteManager.undeleteNote(this, anote);
+		updateNotesList(query,lastIndex);
+	}
+		
 	@SuppressWarnings("deprecation")
 	private void revertNote(final String guid) {
 		dialogString = guid;

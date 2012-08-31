@@ -37,6 +37,7 @@ public class Preferences {
 		SYNC_SERVER ("sync_server", "https://one.ubuntu.com/notes"),
 		SD_LOCATION ("sd_location", "tomdroid"),
 		INCLUDE_NOTE_TEMPLATES("include_note_templates", false),
+		INCLUDE_DELETED_NOTES("include_deleted_notes", false),
 		DEL_ALL_NOTES("del_all_notes", ""),
 		DEL_REMOTE_NOTES("del_remote_notes", ""),
 		BACKUP_NOTES("backup_notes", ""),

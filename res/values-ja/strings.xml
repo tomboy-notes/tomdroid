@@ -172,10 +172,11 @@
 	<string name="prefDisplay">表示設定</string>
 	<string name="prefBaseSize">基本フォントサイズ</string>
 	<string name="prefSync">同期</string>
-	<string name="prefMisc">その他のオプション</string>
 	<string name="prefTools">ツール</string>
 	<string name="prefAutoSaveTitle">メモの自動保存</string>
 	<string name="prefAutoSave">編集終了時にメモを自動的に保存します。</string>
+	<string name="prefDeletedNotesTitle">Show Deleted Notes</string>
+	<string name="prefDeletedNotes">If checked, will show deleted notes in notes list.</string>
 	<string name="prefNoteTemplatesTitle">メモのテンプレートを表示</string>
 	<string name="prefNoteTemplates">チェックすると、メモのリスト中にメモのテンプレートが表示されます。</string>
 	<string name="deleteAllNotesTitle">メモの全消去</string>
@@ -228,7 +229,8 @@
 	<string name="contextRevert">元に戻す</string>
 	<string name="note_x_tags">Note \'%1$s\' Tags</string>
 	<string name="edit_tags">Edit the tags below, separating with commas</string>
-			
+	<string name="undelete">Undelete Note</string>
+				
 	<!-- revert notes -->
 	
 	<string name="menuRevert">すべて元に戻す</string>

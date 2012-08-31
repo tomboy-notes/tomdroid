@@ -114,6 +114,7 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 		delNotes = (Preference)findPreference(Preferences.Key.DEL_ALL_NOTES.getName());
 		delRemoteNotes = (Preference)findPreference(Preferences.Key.DEL_REMOTE_NOTES.getName());
 		backupNotes = (Preference)findPreference(Preferences.Key.BACKUP_NOTES.getName());
+		
 		// Set the default values if nothing exists
 		setDefaults();
 		

@@ -172,10 +172,11 @@
 	<string name="prefDisplay">显示首选项</string>
 	<string name="prefBaseSize">基本字体大小</string>
 	<string name="prefSync">同步</string>
-	<string name="prefMisc">杂项设置</string>
 	<string name="prefTools">工具</string>
 	<string name="prefAutoSaveTitle">自动保存便笺</string>
 	<string name="prefAutoSave">退出编辑器时自动保存便笺。</string>
+	<string name="prefDeletedNotesTitle">Show Deleted Notes</string>
+	<string name="prefDeletedNotes">If checked, will show deleted notes in notes list.</string>
 	<string name="prefNoteTemplatesTitle">显示便笺模板</string>
 	<string name="prefNoteTemplates">如已勾选，将在便笺列表中显示便笺模板。</string>
 	<string name="deleteAllNotesTitle">清除便笺</string>
@@ -228,7 +229,8 @@
 	<string name="contextRevert">反转</string>
 	<string name="note_x_tags">Note \'%1$s\' Tags</string>
 	<string name="edit_tags">Edit the tags below, separating with commas</string>
-			
+	<string name="undelete">Undelete Note</string>
+				
 	<!-- revert notes -->
 	
 	<string name="menuRevert">反转全部</string>

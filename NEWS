@@ -18,6 +18,8 @@ Tomdroid <version-code> - "<version-name>" released on <release-date>
 * added ability to receive text-shares from other notes (lp:1039104)
 * added ability to send and receive note files
 * made First Note translatable
+* moved search function to main activity (allowing two-pane landscape view in results)
+* added option to show deleted notes in list
 * fixed bug lp:1039703 Tomdroid crashes when rotating the device during synchronisation
 * fixed bug lp:1039824 Crash when rotate on Revert All
 * fixed bug lp:1039814 Crash on Backup Notes

@@ -172,10 +172,11 @@
 	<string name="prefDisplay">Display Preferences</string>
 	<string name="prefBaseSize">Base Font Size</string>
 	<string name="prefSync">Synchronization</string>
-	<string name="prefMisc">Misc. Options</string>
 	<string name="prefTools">Tools</string>
 	<string name="prefAutoSaveTitle">Auto Save Note</string>
 	<string name="prefAutoSave">Save notes automatically on exiting editor.</string>
+	<string name="prefDeletedNotesTitle">Show Deleted Notes</string>
+	<string name="prefDeletedNotes">If checked, will show deleted notes in notes list.</string>
 	<string name="prefNoteTemplatesTitle">Show Note Templates</string>
 	<string name="prefNoteTemplates">If checked, will show note templates in notes list.</string>
 	<string name="deleteAllNotesTitle">Clear Notes</string>
@@ -228,7 +229,8 @@
 	<string name="contextRevert">Revert</string>
 	<string name="note_x_tags">Note \'%1$s\' Tags</string>
 	<string name="edit_tags">Edit the tags below, separating with commas</string>
-			
+	<string name="undelete">Undelete Note</string>
+				
 	<!-- revert notes -->
 	
 	<string name="menuRevert">Revert All</string>

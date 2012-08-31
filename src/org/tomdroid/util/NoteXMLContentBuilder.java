@@ -284,11 +284,8 @@ public class NoteXMLContentBuilder implements Runnable {
 						tagsToOpen.add(elementName); // add for comparing with later ones
 					}
 				}
-				TLog.e(TAG, "Open tags: {0}",TextUtils.join(",",openTags));
-				TLog.e(TAG, "Close tags: {0}",TextUtils.join(",",closeTags));
 
 			    noteXMLContent += addTags(currPos == maxPos); 
-				TLog.d(TAG, "XML so far: {0}",noteXMLContent);
 
 			}
 		} catch (Exception e) {
@@ -305,7 +302,6 @@ public class NoteXMLContentBuilder implements Runnable {
 			}
 		}
 		
-		TLog.d(TAG, "Final XML: {0}",noteXMLContent);
 		
 		warnHandler(successful);
 	}
@@ -319,12 +315,10 @@ public class NoteXMLContentBuilder implements Runnable {
 				if(closeTags.get(closeTags.size()-1).equals(tag)) { // match, close tag
 					closeTags.remove(closeTags.size()-1);
 					openTags.remove(openTags.size()-1);
-					TLog.d(TAG, "Closed matched tag: {0}","</"+tag+">");
 				}
 				else { // mismatch, close for reopening, reiterate for closing
 					openTags.remove(openTags.size()-1);
 					tagsToOpen.add(tag);
-					TLog.d(TAG, "Closed mismatched tag: {0}","</"+tag+">");
 					tags += addTags(end);
 				}
 			}
@@ -335,7 +329,6 @@ public class NoteXMLContentBuilder implements Runnable {
 					continue;
 				tags+="<"+tag+">";
 				openTags.add(tag);
-				TLog.d(TAG, "Opened tag: {0}","<"+tag+">");
 			}
 		}
 		tagsToOpen.clear();

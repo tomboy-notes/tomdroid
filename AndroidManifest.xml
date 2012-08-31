@@ -40,7 +40,12 @@
         	</intent-filter>
         	<!-- enable the search dialog to send searches to SearchableActivity -->
         	<meta-data android:name="android.app.default_searchable"
-                   android:value=".ui.Search" />
+                   android:value=".ui.Tomdroid" />
+			<intent-filter>
+				<action android:name="android.intent.action.SEARCH" />
+			</intent-filter>
+			<meta-data	android:name="android.app.searchable"
+						android:resource="@xml/searchable"/>
         </activity>
     
 		<activity android:name=".ui.ViewNote"
@@ -89,19 +94,10 @@
 				/>
 			</intent-filter>
 		</activity>
-		<activity android:name=".ui.Search"
-       		  android:theme="@style/LightTheme"
-       		  android:label="@string/search_title"
-	          android:launchMode="singleTop">
-			<intent-filter>
-				<action android:name="android.intent.action.SEARCH" />
-			</intent-filter>
-			<meta-data	android:name="android.app.searchable"
-						android:resource="@xml/searchable"/>
-		</activity>
-		<provider	android:name=".util.SearchSuggestionProvider"
-					android:authorities="org.tomdroid.util.SearchSuggestionProvider"
-        />
+		<provider	
+		    android:name=".util.SearchSuggestionProvider"
+			android:authorities="org.tomdroid.util.SearchSuggestionProvider"
+			/>
 		
 		<provider android:name="NoteProvider"
             android:authorities="org.tomdroid.notes"

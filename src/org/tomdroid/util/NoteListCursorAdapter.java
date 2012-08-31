@@ -28,8 +28,13 @@ import java.util.Date;
 import org.tomdroid.Note;
 import org.tomdroid.R;
 
+import android.R.style;
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Paint;
+import android.graphics.Typeface;
+import android.text.Html;
+import android.text.Spanned;
 import android.text.format.DateUtils;
 import android.text.format.Time;
 import android.view.LayoutInflater;
@@ -53,6 +58,7 @@ public class NoteListCursorAdapter extends SimpleCursorAdapter {
     private DateFormat localeTimeFormat;
     
     private int selectedIndex;
+
 
     public NoteListCursorAdapter (Context context, int layout, Cursor c, String[] from, int[] to, int selectedIndex) {
         super(context, layout, c, from, to);
@@ -118,8 +124,12 @@ public class NoteListCursorAdapter extends SimpleCursorAdapter {
 
         int nameCol = c.getColumnIndex(Note.TITLE);
         int modifiedCol = c.getColumnIndex(Note.MODIFIED_DATE);
+        int tagCol = c.getColumnIndex(Note.TAGS);
         
         String title = c.getString(nameCol);
+        String tags = c.getString(tagCol);
+        
+        TLog.i(TAG, "tags: {0}", tags);
         
         //Format last modified dates to be similar to desktop Tomboy
         //TODO this is messy - must be a better way than having 3 separate date types
@@ -149,6 +159,8 @@ public class NoteListCursorAdapter extends SimpleCursorAdapter {
         TextView note_title = (TextView) v.findViewById(R.id.note_title);
         if (note_title != null) {
         	note_title.setText(title);
+            if(tags.contains("system:deleted"))
+            	note_title.setPaintFlags(note_title.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         }
         TextView note_modified = (TextView) v.findViewById(R.id.note_date);
         if (note_modified != null) {

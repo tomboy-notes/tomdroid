@@ -27,7 +27,17 @@
 						android:title="@string/prefBaseSize"
 						android:shouldDisableView="true"
 						android:singleLine="true"/>
-   	</PreferenceCategory>	                        
+        <CheckBoxPreference
+                android:key="include_note_templates"
+                android:title="@string/prefNoteTemplatesTitle"
+                android:summary="@string/prefNoteTemplates" 
+                android:defaultValue="False" />
+        <CheckBoxPreference
+                android:key="include_deleted_notes"
+                android:title="@string/prefDeletedNotesTitle"
+                android:summary="@string/prefDeletedNotes" 
+                android:defaultValue="False" />
+    </PreferenceCategory>	                        
 	<PreferenceCategory android:title="@string/prefSync">
 		
 		<ListPreference android:title="@string/prefSyncService"
@@ -44,13 +54,6 @@
 				android:positiveButtonText="@string/btnOk"
 				android:shouldDisableView="true"
 				android:singleLine="true"/>
-	</PreferenceCategory>
-	<PreferenceCategory android:title="@string/prefMisc">
-        <CheckBoxPreference
-                android:key="include_note_templates"
-                android:title="@string/prefNoteTemplatesTitle"
-                android:summary="@string/prefNoteTemplates" 
-                android:defaultValue="False" />
 	</PreferenceCategory>
 	<PreferenceCategory android:title="@string/prefTools">
         <Preference

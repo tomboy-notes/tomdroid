@@ -212,6 +212,16 @@ public class NoteManager {
 		TLog.d(TAG, "New note values: TITLE:{0} GUID:{1} TAGS:{2}", note.getTitle(), note.getGuid(), note.getTags());
 		return uri;
 	}
+
+	// this function removes a "deleted" tag
+	public static void undeleteNote(Activity activity, Note note)
+	{
+		note.removeTag("system:deleted");
+		Time now = new Time();
+		now.setToNow();
+		note.setLastChangeDate(now);
+		putNote(activity,note);
+	}
 	
 	// this function just adds a "deleted" tag, to allow remote delete when syncing
 	public static void deleteNote(Activity activity, Note note)
@@ -323,7 +333,14 @@ public class NoteManager {
 	public static ListAdapter getListAdapter(Activity activity, String querys, int selectedIndex) {
 		
 		boolean includeNotebookTemplates = Preferences.getBoolean(Preferences.Key.INCLUDE_NOTE_TEMPLATES);
-
+		boolean includeDeletedNotes = Preferences.getBoolean(Preferences.Key.INCLUDE_DELETED_NOTES);
+		
+		int optionalQueries = 0;
+		if(!includeNotebookTemplates)
+			optionalQueries++;
+		if(!includeDeletedNotes)
+			optionalQueries++;
+		
 		String[] qargs = null;
 		String where = "";
 		int count = 0;
@@ -331,20 +348,22 @@ public class NoteManager {
 		if (querys != null ) {
 			// sql statements to search notes
 			String[] query = querys.split(" ");
-			qargs = new String[query.length*2+(!includeNotebookTemplates?2:1)];
+			qargs = new String[query.length*2+optionalQueries];
 			for (String string : query) {
 				qargs[count++] = "%"+string+"%"; 
 				qargs[count++] = "%"+string+"%"; 
-				where = where + "("+Note.TITLE+" LIKE ? OR "+Note.NOTE_CONTENT+" LIKE ?) AND ";
+				where = where + (where.length() > 0? " AND ":"")+"("+Note.TITLE+" LIKE ? OR "+Note.NOTE_CONTENT+" LIKE ?)";
 			}	
 		}
-		else {
-			qargs = new String[(!includeNotebookTemplates?2:1)];
+		else
+			qargs = new String[optionalQueries];
+		
+		if (!includeDeletedNotes) {
+			where += (where.length() > 0? " AND ":"")+"(" + Note.TAGS + " NOT LIKE ?)";
+			qargs[count++] = "%system:deleted%";
 		}
-		where += "(" + Note.TAGS + " NOT LIKE ?)";
-		qargs[count++] = "%system:deleted%";
 		if (!includeNotebookTemplates) {
-			where += " AND (" + Note.TAGS + " NOT LIKE ?)";
+			where += (where.length() > 0? " AND ":"")+"(" + Note.TAGS + " NOT LIKE ?)";
 			qargs[count++] = "%system:template%";
 		}
 

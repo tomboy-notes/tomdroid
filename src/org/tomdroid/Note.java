@@ -127,6 +127,17 @@ public class Note {
 		else
 			this.tags = tag;
 	}
+	
+	public void removeTag(String tag) {
+		
+		String[] taga = TextUtils.split(this.tags, ",");
+		String newTags = "";
+		for(String atag : taga){
+			if(!atag.equals(tag))
+				newTags += atag;
+		}
+		this.tags = newTags;
+	}
 
 	public String getUrl() {
 		return url;
