@@ -204,12 +204,10 @@ public class Tomdroid extends ActionBarListActivity {
 		this.intent = getIntent();
 
 	    if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-		    //adds query to search history suggestions
-
+	    	this.setTitle(getString(R.string.app_name) + " - " + getString(R.string.SearchResultTitle));
 	    	query = intent.getStringExtra(SearchManager.QUERY);
 	    	
 	    	//adds query to search history suggestions
-
 	        SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
 	                SearchSuggestionProvider.AUTHORITY, SearchSuggestionProvider.MODE);
 	        suggestions.saveRecentQuery(query, null);
