@@ -35,6 +35,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.format.Time;
+import android.text.util.Linkify.TransformFilter;
 import android.widget.ListAdapter;
 import android.widget.Toast;
 
@@ -543,4 +544,50 @@ public class NoteManager {
 		return noteTitle;
 	}
 
+	
+	/**
+	 * Builds a regular expression pattern that will match any of the note title currently in the collection.
+	 * Useful for the Linkify to create the links to the notes.
+	 * @return regexp pattern
+	 */
+	public static Pattern buildNoteLinkifyPattern(Activity activity)  {
+	
+		StringBuilder sb = new StringBuilder();
+		Cursor cursor = getTitles(activity);
+	
+		// cursor must not be null and must return more than 0 entry
+		if (!(cursor == null || cursor.getCount() == 0)) {
+	
+			String title;
+	
+			cursor.moveToFirst();
+	
+			do {
+				title = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
+				if(title.length() == 0)
+					continue;
+				// Pattern.quote() here make sure that special characters in the note's title are properly escaped
+				sb.append("("+Pattern.quote(title)+")|");
+	
+			} while (cursor.moveToNext());
+			
+			// if only empty titles, return
+			if (sb.length() == 0)
+				return null;
+			
+			// get rid of the last | that is not needed (I know, its ugly.. better idea?)
+			String pt = sb.substring(0, sb.length()-1);
+	
+			// return a compiled match pattern
+			return Pattern.compile(pt);
+	
+		} else {
+	
+			// TODO send an error to the user
+			TLog.d(TAG, "Cursor returned null or 0 notes");
+		}
+	
+		return null;
+	}
+	
 }

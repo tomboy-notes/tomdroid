@@ -816,14 +816,14 @@ public class Tomdroid extends ActionBarListActivity {
 		// The pattern contains a very dumb (title1)|(title2) escaped correctly
 		// Then we transform the url from the note name to the note id to avoid characters that mess up with the URI (ex: ?)
 		
-		Pattern pattern = buildNoteLinkifyPattern();
+		Pattern pattern = NoteManager.buildNoteLinkifyPattern(this);
 		
 		if(pattern != null)
 			Linkify.addLinks(content,
-							 buildNoteLinkifyPattern(),
-							 Tomdroid.CONTENT_URI+"/",
-							 null,
-							 noteTitleTransformFilter);
+						NoteManager.buildNoteLinkifyPattern(this),
+						 Tomdroid.CONTENT_URI+"/",
+						 null,
+						 noteTitleTransformFilter);
 
 		title.setText((CharSequence) note.getTitle());
 
@@ -856,55 +856,10 @@ public class Tomdroid extends ActionBarListActivity {
 	    	}
 		}
 	};
-	
-	/**
-	 * Builds a regular expression pattern that will match any of the note title currently in the collection.
-	 * Useful for the Linkify to create the links to the notes.
-	 * @return regexp pattern
-	 */
-	private Pattern buildNoteLinkifyPattern()  {
-	
-		StringBuilder sb = new StringBuilder();
-		Cursor cursor = NoteManager.getTitles(this);
-	
-		// cursor must not be null and must return more than 0 entry
-		if (!(cursor == null || cursor.getCount() == 0)) {
-	
-			String title;
-	
-			cursor.moveToFirst();
-	
-			do {
-				title = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
-				if(title.length() == 0)
-					continue;
-				// Pattern.quote() here make sure that special characters in the note's title are properly escaped
-				sb.append("("+Pattern.quote(title)+")|");
-	
-			} while (cursor.moveToNext());
-			
-			// if only empty titles, return
-			if (sb.length() == 0)
-				return null;
-			
-			// get rid of the last | that is not needed (I know, its ugly.. better idea?)
-			String pt = sb.substring(0, sb.length()-1);
-	
-			// return a compiled match pattern
-			return Pattern.compile(pt);
-	
-		} else {
-	
-			// TODO send an error to the user
-			TLog.d(TAG, "Cursor returned null or 0 notes");
-		}
-	
-		return null;
-	}
-	
+
 	// custom transform filter that takes the note's title part of the URI and translate it into the note id
 	// this was done to avoid problems with invalid characters in URI (ex: ? is the query separator but could be in a note title)
-	private TransformFilter noteTitleTransformFilter = new TransformFilter() {
+	public TransformFilter noteTitleTransformFilter = new TransformFilter() {
 	
 		public String transformUrl(Matcher m, String str) {
 	
@@ -914,7 +869,6 @@ public class Tomdroid extends ActionBarListActivity {
 			return Tomdroid.CONTENT_URI.toString()+"/"+id;
 		}
 	};
-
 	
 	@SuppressWarnings("deprecation")
 	private void startSyncing(boolean push) {
