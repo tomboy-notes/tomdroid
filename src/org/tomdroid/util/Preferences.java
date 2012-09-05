@@ -41,6 +41,7 @@ public class Preferences {
 		DEL_ALL_NOTES("del_all_notes", ""),
 		DEL_REMOTE_NOTES("del_remote_notes", ""),
 		BACKUP_NOTES("backup_notes", ""),
+		AUTO_BACKUP_NOTES("auto_backup_notes", ""),
 		RESTORE_NOTES("restore_notes", ""),
 		CLEAR_SEARCH_HISTORY ("clearSearchHistory", ""),
 		ACCESS_TOKEN ("access_token", ""),

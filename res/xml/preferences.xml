@@ -61,6 +61,10 @@
                 android:summary="@string/backupPref"
                 android:key="backup_notes" />
         <Preference
+                android:title="@string/autoBackupPrefTitle"
+                android:summary="@string/autoBackupPref"
+                android:key="auto_backup_notes" />
+        <Preference
                 android:title="@string/deleteAllNotesTitle"
                 android:summary="@string/deleteAllNotes"
                 android:key="del_all_notes" />

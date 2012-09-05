@@ -242,7 +242,7 @@ public class SdCardSyncService extends SyncService {
 		}
 	}
 
-	private String readFile(File file, char[] buffer) throws IOException {
+	private static String readFile(File file, char[] buffer) throws IOException {
 		StringBuilder out = new StringBuilder();
 		
 		int read;
@@ -291,7 +291,7 @@ public class SdCardSyncService extends SyncService {
 	}
 	
 	// actually pushes a note to sdcard, with optional subdirectory (e.g. backup)
-	private int doPushNote(Note note, String subdirectory) {
+	private static int doPushNote(Note note, String subdirectory) {
 
 		Note rnote = new Note();
 		try {
@@ -447,7 +447,7 @@ public class SdCardSyncService extends SyncService {
 	}
 
 	// auto backup function on save
-	public void backupNote(Note note) {
+	public static void backupNote(Note note) {
 		doPushNote(note,"bkp");
 	}
 	
