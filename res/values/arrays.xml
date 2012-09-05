@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="first_note_array">
+		<item>@string/firstnote1</item>
+		<item>@string/firstnote2</item>
+		<item>@string/firstnote3</item>
+		<item>@string/firstnote4</item>
+		<item>@string/firstnote5</item>
+		<item>@string/firstnote6</item>
+		<item>@string/firstnote7</item>
+		<item>@string/firstnote8</item>
+		<item>@string/firstnote9</item>
+		<item>@string/firstnote10</item>
+		<item>@string/firstnote11</item>
+		<item>@string/firstnote12</item>
+		<item>@string/firstnote13</item>
+		<item>@string/firstnote14</item>
+		<item>@string/firstnote15</item>
+		<item>@string/firstnote16</item>
+		<item>@string/firstnote17</item>
+		<item>@string/firstnote18</item>
+		<item>@string/firstnote19</item>
+		<item>@string/firstnote20</item>
+		<item>@string/firstnote21</item>
+		<item>@string/firstnote22</item>
+		<item>@string/firstnote23</item>
+	</string-array>
+</resources>

@@ -83,10 +83,12 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 	private Preference clearSearchHistory = null;
 	private Preference backupNotes = null;
 	private Preference delRemoteNotes = null;
+	private Preference autoBackup = null;
 
 	private Activity activity;
 
 	private Handler	 preferencesMessageHandler	= new PreferencesMessageHandler(this);
+
 
 	private static ProgressDialog syncProgressDialog;
 
@@ -114,6 +116,7 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 		delNotes = (Preference)findPreference(Preferences.Key.DEL_ALL_NOTES.getName());
 		delRemoteNotes = (Preference)findPreference(Preferences.Key.DEL_REMOTE_NOTES.getName());
 		backupNotes = (Preference)findPreference(Preferences.Key.BACKUP_NOTES.getName());
+		autoBackup = (Preference)findPreference(Preferences.Key.AUTO_BACKUP_NOTES.getName());
 		
 		// Set the default values if nothing exists
 		setDefaults();
@@ -314,7 +317,8 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 
 	private void setServer(String syncServiceKey) {
 
-		SyncService service = SyncManager.getInstance().getService(syncServiceKey);
+		SyncManager.getInstance();
+		SyncService service = SyncManager.getService(syncServiceKey);
 
 		if (service == null)
 			return;
@@ -322,6 +326,7 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 		syncServer.setEnabled(service.needsServer());
 		syncService.setSummary(service.getDescription());
 		backupNotes.setEnabled(!service.needsLocation()); // if not using sd card, allow backup
+		autoBackup.setEnabled(!service.needsLocation()); // if not using sd card, allow backup
 		sdLocation.setSummary(Tomdroid.NOTES_PATH);
 	}
 		

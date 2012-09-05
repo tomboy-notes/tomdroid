@@ -272,7 +272,29 @@
 		=text= makes <size:large>text</size:large> 
 		@text is for list-items. 
 	--> 
-	<string name="firstNoteContent">Welcome to Tomdroid!\n\nYou have no notes here yet. To get started, set your Synchronization preferences under Settings. There are two synchronization options described below.\n\n=Online Synchronization=\nOnline Synchronization is what you are looking for if you want to sync to Tomboy-Online, Ubuntu One, your own Snowy server or any server supporting the Tomboy Web REST API.\n\nTo use it, set Sync Service to Online Synchronization in preferences then  provide a Server URL. Here are some of the public ones:\n@Tomboy Online - https://edge.tomboy-online.org/\n@Ubuntu One - https://one.ubuntu.com/notes\n\nOnce set, hit the Sync logo on Tomdroid\'s top bar to synchronize your notes.\n\nNote: you might want to back up your Tomboy notes before syncing, since this app is still under development and may corrupt your Tomboy notes.  The notes can be found in ~/.local/share/tomboy/ on Linux.\n\n=SD Card=\nPut your Tomboy notes (*.note) on your SD Card under tomdroid/. The notes can be found in ~/.local/share/tomboy/ on Linux. Once the notes are copied, set Sync Service to SD Card in preferences then hit the Sync logo on Tomdroid\'s top bar.\n\nSee http://live.gnome.org/Tomboy/Directories for the notes\' location on other platforms.\n\nAlso, Tomdroid is always looking for new contributors. If you are interested join the tomdroid-dev team on launchpad: http://launchpad.net/~tomdroid-dev.\n\nLastly, if you encounter any issue, please report it at: https://bugs.launchpad.net/tomdroid</string>
+	<string name="firstnote1">Welcome to Tomdroid!</string>
+	<string name="firstnote2"></string>
+	<string name="firstnote3">You have no notes here yet. To get started, set your Synchronization preferences under Settings. There are two synchronization options described below.</string>
+	<string name="firstnote4"></string>
+	<string name="firstnote5">=Online Synchronization=</string>
+	<string name="firstnote6">Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, Ubuntu One, your own Snowy server or any server supporting the Tomboy Web REST API.</string>
+	<string name="firstnote7"></string>
+	<string name="firstnote8">To use it, set Sync Service to Online Synchronization in preferences then  provide a Server URL. Here are some of the public ones:</string>
+	<string name="firstnote9">\@Tomboy Online - https://edge.tomboy-online.org/</string>
+	<string name="firstnote10">\@Ubuntu One - https://one.ubuntu.com/notes</string>
+	<string name="firstnote11"></string>
+	<string name="firstnote12">Once set, hit the Sync logo on Tomdroid\'s top bar to synchronize your notes.</string>
+	<string name="firstnote13"></string>
+	<string name="firstnote14">Note: you might want to back up your Tomboy notes before syncing, since this app is still under development and may corrupt your Tomboy notes.  The notes can be found in ~/.local/share/tomboy/ on Linux.</string>
+	<string name="firstnote15"></string>
+	<string name="firstnote16">=SD Card=</string>
+	<string name="firstnote17">Put your Tomboy notes (*.note) on your SD Card under tomdroid/. The notes can be found in ~/.local/share/tomboy/ on Linux. Once the notes are copied, set Sync Service to SD Card in preferences then hit the Sync logo on Tomdroid\'s top bar.</string>
+	<string name="firstnote18"></string>
+	<string name="firstnote19">See http://live.gnome.org/Tomboy/Directories for the notes\' location on other platforms.</string>
+	<string name="firstnote20"></string>
+	<string name="firstnote21">Also, Tomdroid is always looking for new contributors. If you are interested join the tomdroid-dev team on launchpad: http://launchpad.net/~tomdroid-dev.</string>
+	<string name="firstnote22"></string>
+	<string name="firstnote23">Lastly, if you encounter any issue, please report it at: https://bugs.launchpad.net/tomdroid</string>
 			
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
