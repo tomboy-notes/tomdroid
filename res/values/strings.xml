@@ -184,7 +184,11 @@
 	<string name="deleteRemoteNotesTitle">Delete Remote Notes</string>
 	<string name="deleteRemoteNotes">Delete all notes from remote service</string>
 	<string name="illegalTextSize">Illegal text size chosen. Please choose a number.</string>
-
+	<string name="backupPrefTitle">Backup Notes</string>
+	<string name="backupPref">Copy all local notes to SD Card</string>
+	<string name="autoBackupPrefTitle">Auto-Backup</string>
+	<string name="autoBackupPref">Copy local note to SD Card on save</string>
+		
 	<!-- syncNotes -->
 
 	<string name="syncing">Syncing with %1$s</string>
@@ -241,8 +245,6 @@
 
 	<!-- backup notes -->
 	
-	<string name="backupPrefTitle">Backup Notes</string>
-	<string name="backupPref">Copy all local notes to SD Card</string>
 	<string name="backup_notes_title">Backup Notes?</string>
 	<string name="backup_notes">Copy all local notes to SD Card?  This may overwrite existing notes on the SD Card.</string>
 	<string name="restorePrefTitle">Restore Notes</string>

@@ -286,12 +286,8 @@ public class SdCardSyncService extends SyncService {
 			sendMessage(NOTE_PUSHED);
 	}
 
-	private int doPushNote(Note note) {
-		return doPushNote(note, null);
-	}
-	
 	// actually pushes a note to sdcard, with optional subdirectory (e.g. backup)
-	private static int doPushNote(Note note, String subdirectory) {
+	private static int doPushNote(Note note) {
 
 		Note rnote = new Note();
 		try {
@@ -308,17 +304,7 @@ public class SdCardSyncService extends SyncService {
 				return NO_SD_CARD;
 			}
 			
-			if(subdirectory != null) {
-				path = new File(Tomdroid.NOTES_PATH + "/" + subdirectory);
-				
-				if (!path.exists())
-					path.mkdir();
-				
-				TLog.i(TAG, "Path {0} exists: {1}", path, path.exists());
-				
-			}
-			
-			path = new File(path.getAbsolutePath() + "/"+note.getGuid() + ".note");
+			path = new File(Tomdroid.NOTES_PATH + "/"+note.getGuid() + ".note");
 	
 			note.createDate = note.getLastChangeDate();
 			note.cursorPos = 0;
@@ -448,7 +434,7 @@ public class SdCardSyncService extends SyncService {
 
 	// auto backup function on save
 	public static void backupNote(Note note) {
-		doPushNote(note,"bkp");
+		doPushNote(note);
 	}
 	
 	@Override

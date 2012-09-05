@@ -60,7 +60,7 @@
                 android:title="@string/backupPrefTitle"
                 android:summary="@string/backupPref"
                 android:key="backup_notes" />
-        <Preference
+        <CheckBoxPreference
                 android:title="@string/autoBackupPrefTitle"
                 android:summary="@string/autoBackupPref"
                 android:key="auto_backup_notes" />
