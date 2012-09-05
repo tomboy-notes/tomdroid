@@ -564,8 +564,6 @@ public abstract class SyncService {
 
 	// new methods to T Edit
 	
-	protected abstract void pushNote(Note note);
-	protected abstract void deleteNote(String guid);
 	protected abstract void pullNote(String guid);
 
 	public abstract void finishSync(boolean refresh);

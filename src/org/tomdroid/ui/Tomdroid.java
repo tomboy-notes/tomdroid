@@ -1101,18 +1101,19 @@ public class Tomdroid extends ActionBarListActivity {
 					break;
 														
 				case SyncService.NOTE_DELETE_ERROR:
-					increment = 1;
-					//Toast.makeText(activity, activity.getString(R.string.messageSyncNoteDeleteError), Toast.LENGTH_SHORT).show();
+					dismiss = true;
+					Toast.makeText(activity, activity.getString(R.string.messageSyncNoteDeleteError), Toast.LENGTH_SHORT).show();
 					break;
 	
 				case SyncService.NOTE_PUSH_ERROR:
-					increment = 1;
-					//Toast.makeText(activity, activity.getString(R.string.messageSyncNotePushError), Toast.LENGTH_SHORT).show();
+					dismiss = true;
+					Toast.makeText(activity, activity.getString(R.string.messageSyncNotePushError), Toast.LENGTH_SHORT).show();
 					break;
 				case SyncService.NOTE_PULL_ERROR:
+					dismiss = true;
 					message = getString(R.string.messageSyncNotePullError);
 					message = String.format(message,serviceDescription);
-					//Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 					break;
 
 				case SyncService.NOTES_PUSHED: // multiple notes pushed
@@ -1143,7 +1144,7 @@ public class Tomdroid extends ActionBarListActivity {
 			}
 			if(increment > 0) {
 				syncProcessedNotes += increment;
-				if(syncTotalNotes > 0 && syncProcessedNotes >= syncTotalNotes && !SyncManager.getInstance().getCurrentService().isSyncable()) {
+				if(syncTotalNotes > 0 && syncProcessedNotes >= syncTotalNotes) {
 					sendEmptyMessage(SyncService.PARSING_COMPLETE);
 					return;
 				}
@@ -1157,8 +1158,13 @@ public class Tomdroid extends ActionBarListActivity {
 	}
 
 	protected void  onActivityResult (int requestCode, int resultCode, Intent  data) {
-		TLog.d(TAG, "onActivityResult called");
-		syncMessageHandler.sendEmptyMessage(SyncService.INCREMENT_PROGRESS);
+		TLog.d(TAG, "onActivityResult called with result {0}", resultCode);
+		if(resultCode == Activity.RESULT_OK)
+			syncMessageHandler.sendEmptyMessage(SyncService.INCREMENT_PROGRESS);
+		else if (data.hasExtra("revision"))
+			latestRevision = data.getIntExtra("revision", latestRevision);
+		else if (data.hasExtra("error"))
+			syncMessageHandler.sendEmptyMessage(data.getIntExtra("error", SyncService.NOTE_PUSH_ERROR));
 	}
 	
 	public void finishSync() {

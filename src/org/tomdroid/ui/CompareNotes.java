@@ -35,6 +35,7 @@ import org.tomdroid.NoteManager;
 import org.tomdroid.R;
 import org.tomdroid.R.string;
 import org.tomdroid.sync.SyncManager;
+import org.tomdroid.sync.SyncService;
 import org.tomdroid.ui.actionbar.ActionBarActivity;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.TLog;
@@ -181,7 +182,7 @@ public class CompareNotes extends ActionBarActivity {
 				localBtn.setText(getString(R.string.btnCancelImport));
 				localBtn.setOnClickListener( new View.OnClickListener() {
 					public void onClick(View v) {
-						finishForResult();
+						finishForResult(new Intent());
 					}
 		        });
 			}
@@ -230,7 +231,7 @@ public class CompareNotes extends ActionBarActivity {
 					
 					if(noRemote) {
 						TLog.v(TAG, "compared notes have same content and titles, showing note");
-						finishForResult();
+						finishForResult(new Intent());
 					}
 					else
 						finish();
@@ -413,7 +414,7 @@ public class CompareNotes extends ActionBarActivity {
 		uri = NoteManager.putNote(CompareNotes.this, remoteNote);
 
 		if(noRemote) {
-			finishForResult();
+			finishForResult(new Intent());
 		}
 		else {
 			ArrayList<Note> notes = new ArrayList<Note>();
@@ -470,7 +471,7 @@ public class CompareNotes extends ActionBarActivity {
 			uri = NoteManager.putNote(CompareNotes.this, localNote);
 
 			if(noRemote) {
-				finishForResult();
+				finishForResult(new Intent());
 			}
 			else {
 				notes.add(localNote);
@@ -500,7 +501,18 @@ public class CompareNotes extends ActionBarActivity {
 		
 		@Override
         public void handleMessage(Message msg) {
-			finish();
+			TLog.v(TAG, "syncMessageHandler message: {0}", msg.what);
+			Intent data = new Intent();
+			if(msg.what == SyncService.NOTES_PUSHED) {
+				
+			}
+			else if(msg.what == SyncService.LATEST_REVISION) {
+				data.putExtra("revision",msg.arg1);
+			}
+			else { // error 
+				data.putExtra("error",msg.what);
+			}
+			finishForResult(data);
 		}
     };
     
@@ -542,9 +554,8 @@ public class CompareNotes extends ActionBarActivity {
 		
 	}
 	
-	private void finishForResult(){
-		// if we are receiving a note file, return the 
-		Intent data = new Intent();
+	private void finishForResult(Intent data){
+		// if we are receiving a note file, return the uri
 		data.putExtra("uri", uri.toString());
 		if (getParent() == null) {
 		    setResult(Activity.RESULT_OK, data);

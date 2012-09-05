@@ -69,7 +69,6 @@ public class NoteManager {
 
 	// gets a note from the content provider, based on guid
 	public static Note getNoteByGuid(Activity activity, String guid) {
-		TLog.i(TAG, "Getting note with guid: {0}", guid);
 
 		Uri notes = Tomdroid.CONTENT_URI;
 		
@@ -210,7 +209,6 @@ public class NoteManager {
 		}
 		
 		note = getNote(activity, uri);
-		TLog.d(TAG, "New note values: TITLE:{0} GUID:{1} TAGS:{2}", note.getTitle(), note.getGuid(), note.getTags());
 		return uri;
 	}
 

@@ -53,7 +53,8 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 
 	private static final String TAG = "SnowySyncService";
 	private String lastGUID;
-	private int latestRemoteRevision;
+	private long latestLocalRevision = -1;
+	private long latestSyncRevision = -1;
 
 	public SnowySyncService(Activity activity, Handler handler) {
 		super(activity, handler);
@@ -172,10 +173,11 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 
 		syncInThread(new Runnable() {
 
+
 			public void run() {
 
 				OAuthConnection auth = getAuthConnection();
-				latestRemoteRevision = (int)Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION);
+				latestLocalRevision = (int)Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION);
 
 				try {
 					TLog.v(TAG, "contacting " + userRef);
@@ -201,18 +203,17 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						rawResponse = auth.get(notesUrl);
 						response = new JSONObject(rawResponse);
 						
-						long latestSyncRevision = (Long)Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION);
-						
+						latestSyncRevision = (Long)Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION);
 						
 						setSyncProgress(35);
 
-						latestRemoteRevision = (int)response.getLong("latest-sync-revision");
-						sendMessage(LATEST_REVISION,latestRemoteRevision,0);
+						latestLocalRevision = response.getLong("latest-sync-revision");
+						sendMessage(LATEST_REVISION,(int)latestLocalRevision,0);
 						TLog.d(TAG, "old latest sync revision: {0}, remote latest sync revision: {1}", latestSyncRevision, response.getLong("latest-sync-revision"));
 
 						Cursor newLocalNotes = NoteManager.getNewNotes(activity); 
 						
-						if (latestRemoteRevision <= latestSyncRevision && newLocalNotes.getCount() == 0) { // same sync revision + no new local notes = no need to sync
+						if (latestLocalRevision <= latestSyncRevision && newLocalNotes.getCount() == 0) { // same sync revision + no new local notes = no need to sync
 							TLog.v(TAG, "old sync revision on server, cancelling");
 							finishSync(true);
 							return;
@@ -220,7 +221,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 
 						// don't get notes if older revision - only pushing notes
 						
-						if (push && latestRemoteRevision <= latestSyncRevision) {
+						if (push && latestLocalRevision <= latestSyncRevision) {
 							TLog.v(TAG, "old sync revision on server, pushing new notes");
 							
 							JSONArray notes = response.getJSONArray("notes");
@@ -242,8 +243,8 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 							return; 
 						}
 						response = new JSONObject(rawResponse);
-						latestRemoteRevision = (int)response.getLong("latest-sync-revision");
-						sendMessage(LATEST_REVISION,latestRemoteRevision,0);
+						latestLocalRevision = response.getLong("latest-sync-revision");
+						sendMessage(LATEST_REVISION,(int)latestLocalRevision,0);
 
 						JSONArray notes = response.getJSONArray("notes");
 						setSyncProgress(50);
@@ -336,7 +337,12 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 		final String userRef = Preferences
 				.getString(Preferences.Key.SYNC_SERVER_USER_API);
 		
-		final long newRevision = Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION) + 1;
+		final long newRevision;
+		
+		if(latestSyncRevision < Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION))
+			newRevision = Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION)+1;
+		else
+			newRevision = latestSyncRevision+1;
 				
 		syncInThread(new Runnable() {
 			public void run() {
@@ -389,153 +395,27 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 								data.toString()));
 
 						TLog.v(TAG, "put response: {0}", response.toString());
-						latestRemoteRevision = (int)response.getLong("latest-sync-revision");
-						sendMessage(LATEST_REVISION,latestRemoteRevision,0);
+						latestLocalRevision = response.getLong("latest-sync-revision");
+						sendMessage(LATEST_REVISION,(int)latestLocalRevision,0);
 
 					} catch (JSONException e) {
 						TLog.e(TAG, e, "Problem parsing the server response");
 						sendMessage(NOTE_PUSH_ERROR,
 								ErrorList.createErrorWithContents(
 										"JSON parsing", "json", e, rawResponse));
-
+						setSyncProgress(100);
 						return;
 					}
 				} catch (java.net.UnknownHostException e) {
 					TLog.e(TAG, "Internet connection not available");
 					sendMessage(NO_INTERNET);
+					setSyncProgress(100);
 					return;
 				}
 				// send number of notes pushed, to increment respectively
 				sendMessage(NOTES_PUSHED,notes.size(),0);
 			}
 
-		});
-	}
-	
-	@Override
-	protected void pushNote(final Note note) {
-		final String userRef = Preferences
-				.getString(Preferences.Key.SYNC_SERVER_USER_API);
-
-		syncInThread(new Runnable() {
-			public void run() {
-				OAuthConnection auth = getAuthConnection();
-				try {
-					TLog.v(TAG, "putting note to server");
-					String rawResponse = auth.get(userRef);
-					try {
-						TLog.v(TAG, "creating JSON");
-
-						JSONObject data = new JSONObject();
-						data.put(
-								"latest-sync-revision",
-								Preferences
-										.getLong(Preferences.Key.LATEST_SYNC_REVISION) + 1);
-						JSONArray Jnotes = new JSONArray();
-						JSONObject Jnote = new JSONObject();
-						Jnote.put("guid", note.getGuid());
-						Jnote.put("title", note.getTitle());
-						Jnote.put("note-content", note.getXmlContent());
-						Jnote.put("note-content-version", "0.1");
-						Jnote.put("last-change-date", note.getLastChangeDate()
-								.format3339(false));
-						Jnotes.put(Jnote);
-						data.put("note-changes", Jnotes);
-
-						JSONObject response = new JSONObject(rawResponse);
-
-						String notesUrl = response.getJSONObject("notes-ref")
-								.getString("api-ref");
-
-						TLog.v(TAG, "put url: {0}", notesUrl);
-
-						response = new JSONObject(auth.put(notesUrl,
-								data.toString()));
-
-						TLog.v(TAG, "put response: {0}", response.toString());
-						latestRemoteRevision = (int)response.getLong("latest-sync-revision");
-						sendMessage(LATEST_REVISION,latestRemoteRevision,0);
-
-						Preferences.putLong(
-								Preferences.Key.LATEST_SYNC_REVISION,latestRemoteRevision);
-					} catch (JSONException e) {
-						TLog.e(TAG, e, "Problem parsing the server response");
-						sendMessage(NOTE_PUSH_ERROR,
-								ErrorList.createErrorWithContents(
-										"JSON parsing", "json", e, rawResponse));
-
-						return;
-					}
-				} catch (java.net.UnknownHostException e) {
-					TLog.e(TAG, "Internet connection not available");
-					sendMessage(NO_INTERNET);
-					return;
-				}
-				sendMessage(NOTE_PUSHED);
-			}
-		});
-	}
-
-	@Override
-	protected void deleteNote(final String guid) {
-
-		syncInThread(new Runnable() {
-			public void run() {
-				OAuthConnection auth = getAuthConnection();
-				try {
-					TLog.v(TAG, "deleting note on server");
-					String userRef = Preferences
-							.getString(Preferences.Key.SYNC_SERVER_USER_API);
-					String rawResponse = auth.get(userRef);
-
-					try {
-						JSONObject data = new JSONObject();
-						data.put(
-								"latest-sync-revision",
-								Preferences
-										.getLong(Preferences.Key.LATEST_SYNC_REVISION) + 1);
-
-						JSONArray notesJ = new JSONArray();
-
-						JSONObject noteJ = new JSONObject();
-						noteJ.put("guid", guid);
-						noteJ.put("command", "delete");
-
-						notesJ.put(noteJ);
-						data.put("note-changes", notesJ);
-
-						JSONObject response = new JSONObject(rawResponse);
-
-						TLog.v(TAG, "request data: {0}", rawResponse);
-
-						String notesUrl = response.getJSONObject("notes-ref")
-								.getString("api-ref");
-
-						response = new JSONObject(auth.put(notesUrl,
-								data.toString()));
-
-						TLog.v(TAG, "delete response: {0}", response.toString());
-						Preferences.putLong(
-								Preferences.Key.LATEST_SYNC_REVISION,
-								response.getLong("latest-sync-revision"));
-					} catch (JSONException e) {
-						TLog.e(TAG, e, "Problem parsing the server response");
-						sendMessage(NOTE_DELETE_ERROR,
-								ErrorList.createErrorWithContents(
-										"JSON parsing", "json", e, rawResponse));
-						return;
-					}
-				} catch (java.net.UnknownHostException e) {
-					TLog.e(TAG, "Internet connection not available");
-					sendMessage(NO_INTERNET);
-					return;
-				}
-				sendMessage(NOTE_DELETED);
-				if (guid.equals(lastGUID)) {
-					TLog.d(TAG, "note is last to sync");
-					finishSync(true);
-				}
-			}
 		});
 	}
 
@@ -600,7 +480,14 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 		TLog.v(TAG, "Deleting Snowy notes");
 
 		final String userRef = Preferences.getString(Preferences.Key.SYNC_SERVER_USER_API);
-
+		
+		final long newRevision;
+		
+		if(latestSyncRevision > latestLocalRevision)
+			newRevision = latestSyncRevision+1;
+		else
+			newRevision = latestLocalRevision+1;
+		
 		syncInThread(new Runnable() {
 
 			public void run() {
@@ -635,7 +522,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						TLog.v(TAG, "creating JSON");
 
 						JSONObject data = new JSONObject();
-						data.put("latest-sync-revision",Preferences.getLong(Preferences.Key.LATEST_SYNC_REVISION) + 1);
+						data.put("latest-sync-revision",newRevision);
 						JSONArray Jnotes = new JSONArray();
 						for(String guid : guidList) {
 							JSONObject Jnote = new JSONObject();
@@ -652,8 +539,8 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						
 						// reset latest sync date so we can push our notes again
 						
-						latestRemoteRevision = (int)response.getLong("latest-sync-revision");
-						Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, latestRemoteRevision);
+						latestLocalRevision = (int)response.getLong("latest-sync-revision");
+						Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, latestLocalRevision);
 						Preferences.putString(Preferences.Key.LATEST_SYNC_DATE,new Time().format3339(false));
 						
 					} catch (JSONException e) {

@@ -99,16 +99,6 @@ public class SyncManager {
 
 	// new methods to TEdit
 	
-	public void pushNote(Note note) {
-		SyncService service = getCurrentService();
-		service.pushNote(note);
-	}
-	
-	public void deleteNote(String guid) {
-		SyncService service = getCurrentService();
-		service.deleteNote(guid);		
-	}
-	
 	public void pullNote(String guid) {
 		SyncService service = getCurrentService();
 		service.pullNote(guid);		

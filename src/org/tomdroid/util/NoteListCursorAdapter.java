@@ -129,8 +129,6 @@ public class NoteListCursorAdapter extends SimpleCursorAdapter {
         String title = c.getString(nameCol);
         String tags = c.getString(tagCol);
         
-        TLog.i(TAG, "tags: {0}", tags);
-        
         //Format last modified dates to be similar to desktop Tomboy
         //TODO this is messy - must be a better way than having 3 separate date types
         Time lastModified = new Time();

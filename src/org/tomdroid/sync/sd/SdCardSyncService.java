@@ -275,8 +275,7 @@ public class SdCardSyncService extends SyncService {
 	}
 
 	// this function is a shell to allow backup function to push as well but send a different message... may not be necessary any more...
-	@Override
-	protected void pushNote(Note note){
+	private void pushNote(Note note){
 		TLog.v(TAG, "pushing note to sdcard");
 		
 		int message = doPushNote(note);
@@ -286,9 +285,13 @@ public class SdCardSyncService extends SyncService {
 		else
 			sendMessage(NOTE_PUSHED);
 	}
-	
-	// actually pushes a note to sdcard
+
 	private int doPushNote(Note note) {
+		return doPushNote(note, null);
+	}
+	
+	// actually pushes a note to sdcard, with optional subdirectory (e.g. backup)
+	private int doPushNote(Note note, String subdirectory) {
 
 		Note rnote = new Note();
 		try {
@@ -305,7 +308,17 @@ public class SdCardSyncService extends SyncService {
 				return NO_SD_CARD;
 			}
 			
-			path = new File(Tomdroid.NOTES_PATH + "/"+note.getGuid() + ".note");
+			if(subdirectory != null) {
+				path = new File(Tomdroid.NOTES_PATH + "/" + subdirectory);
+				
+				if (!path.exists())
+					path.mkdir();
+				
+				TLog.i(TAG, "Path {0} exists: {1}", path, path.exists());
+				
+			}
+			
+			path = new File(path.getAbsolutePath() + "/"+note.getGuid() + ".note");
 	
 			note.createDate = note.getLastChangeDate();
 			note.cursorPos = 0;
@@ -383,8 +396,7 @@ public class SdCardSyncService extends SyncService {
 		return 0;
 	}
 
-	@Override
-	protected void deleteNote(String guid){
+	private void deleteNote(String guid){
 		try {
 			File path = new File(Tomdroid.NOTES_PATH + "/" + guid + ".note");
 			path.delete();
@@ -434,6 +446,11 @@ public class SdCardSyncService extends SyncService {
 		sendMessage(NOTES_BACKED_UP);
 	}
 
+	// auto backup function on save
+	public void backupNote(Note note) {
+		doPushNote(note,"bkp");
+	}
+	
 	@Override
 	public void finishSync(boolean refresh) {
 		setSyncProgress(100);
