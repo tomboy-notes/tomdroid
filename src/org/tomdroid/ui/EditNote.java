@@ -35,6 +35,7 @@ import javax.xml.parsers.SAXParserFactory;
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
+import org.tomdroid.sync.SyncManager;
 import org.tomdroid.sync.sd.SdCardSyncService;
 import org.tomdroid.ui.actionbar.ActionBarActivity;
 import org.tomdroid.util.LinkifyPhone;
@@ -469,7 +470,7 @@ public class EditNote extends ActionBarActivity {
 		String time = now.format3339(false);
 		note.setLastChangeDate(time);
 		NoteManager.putNote( this, note);
-		if(Preferences.getBoolean(Preferences.Key.AUTO_BACKUP_NOTES)) {
+		if(!SyncManager.getInstance().getCurrentService().needsLocation() && Preferences.getBoolean(Preferences.Key.AUTO_BACKUP_NOTES)) {
 			TLog.v(TAG, "backing note up");
 			SdCardSyncService.backupNote(note);
 		}
