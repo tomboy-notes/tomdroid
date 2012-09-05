@@ -469,8 +469,10 @@ public class EditNote extends ActionBarActivity {
 		String time = now.format3339(false);
 		note.setLastChangeDate(time);
 		NoteManager.putNote( this, note);
-		if(Preferences.getBoolean(Preferences.Key.AUTO_BACKUP_NOTES))
+		if(Preferences.getBoolean(Preferences.Key.AUTO_BACKUP_NOTES)) {
+			TLog.v(TAG, "backing note up");
 			SdCardSyncService.backupNote(note);
+		}
 		textChanged = false;
 		NewNote.neverSaved = false;
 

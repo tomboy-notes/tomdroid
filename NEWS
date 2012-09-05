@@ -17,6 +17,7 @@ Tomdroid <version-code> - "<version-name>" released on <release-date>
 * added GMail-style two-color pane and selector
 * added ability to receive text-shares from other notes (lp:1039104)
 * added ability to send and receive note files
+* added auto-backup to SD Card preference
 * made First Note translatable
 * moved search function to main activity (allowing two-pane landscape view in results)
 * added option to show deleted notes in list
