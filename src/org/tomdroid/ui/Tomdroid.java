@@ -177,7 +177,6 @@ public class Tomdroid extends ActionBarListActivity {
 
 		Preferences.init(this, CLEAR_PREFERENCES);
 		context = this;
-		dialogInput = new EditText(this);
 		SyncManager.setActivity(this);
 		SyncManager.setHandler(this.syncMessageHandler);
 		
@@ -557,7 +556,7 @@ public class Tomdroid extends ActionBarListActivity {
 				.setNegativeButton(getString(R.string.btnSendAsText), null)
 				.create();
 		    case DIALOG_VIEW_TAGS:
-		    	final EditText input = new EditText(this);
+		    	dialogInput = new EditText(this);
 		    	return new AlertDialog.Builder(activity)
 		    	.setMessage(getString(R.string.edit_tags))
 		    	.setTitle(String.format(getString(R.string.note_x_tags),dialogNote.getTitle()))
