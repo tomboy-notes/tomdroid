@@ -270,7 +270,7 @@
 	<!-- 
 		This string is just some marked-down HTML... 
 		=text= makes <size:large>text</size:large> 
-		@text is for list-items. 
+		-text is for list-items. 
 	--> 
 	<string name="firstnote1">Welcome to Tomdroid!</string>
 	<string name="firstnote2"></string>
@@ -280,8 +280,8 @@
 	<string name="firstnote6">Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, Ubuntu One, your own Snowy server or any server supporting the Tomboy Web REST API.</string>
 	<string name="firstnote7"></string>
 	<string name="firstnote8">To use it, set Sync Service to Online Synchronization in preferences then  provide a Server URL. Here are some of the public ones:</string>
-	<string name="firstnote9">\@Tomboy Online - https://edge.tomboy-online.org/</string>
-	<string name="firstnote10">\@Ubuntu One - https://one.ubuntu.com/notes</string>
+	<string name="firstnote9">-Tomboy Online - https://edge.tomboy-online.org/</string>
+	<string name="firstnote10">-Ubuntu One - https://one.ubuntu.com/notes</string>
 	<string name="firstnote11"></string>
 	<string name="firstnote12">Once set, hit the Sync logo on Tomdroid\'s top bar to synchronize your notes.</string>
 	<string name="firstnote13"></string>

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-09-05 19:08+0530\n"
+"POT-Creation-Date: 2012-09-06 07:51+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -769,7 +769,7 @@ msgstr ""
 
 #. This string is just some marked-down HTML... 
 #. 		=text= makes <size:large>text</size:large> 
-#. 		@text is for list-items.
+#. 		-text is for list-items.
 #: tmp_strings.xml:275(string)
 msgid "Welcome to Tomdroid!"
 msgstr ""
@@ -791,11 +791,11 @@ msgid "To use it, set Sync Service to Online Synchronization in preferences then
 msgstr ""
 
 #: tmp_strings.xml:283(string)
-msgid "\\@Tomboy Online - https://edge.tomboy-online.org/"
+msgid "-Tomboy Online - https://edge.tomboy-online.org/"
 msgstr ""
 
 #: tmp_strings.xml:284(string)
-msgid "\\@Ubuntu One - https://one.ubuntu.com/notes"
+msgid "-Ubuntu One - https://one.ubuntu.com/notes"
 msgstr ""
 
 #: tmp_strings.xml:286(string)

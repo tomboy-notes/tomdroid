@@ -57,7 +57,7 @@ public class FirstNote {
 		String[] contentarray = activity.getResources().getStringArray(R.array.first_note_array);
 		String content = TextUtils.join("\n", contentarray);
 		content = content.replaceAll("(?m)^=(.+)=$", "<size:large>$1</size:large>")
-				.replaceAll("(?m)^@(.+)$", "<list-item dir=\"ltr\">$1</list-item>")
+				.replaceAll("(?m)^-(.+)$", "<list-item dir=\"ltr\">$1</list-item>")
 				.replaceAll("/list-item>\n<list-item", "/list-item><list-item")
 				.replaceAll("(<list-item.+</list-item>)", "<list>$1</list>")
 				.replaceAll("/list-item><list-item", "/list-item>\n<list-item");
