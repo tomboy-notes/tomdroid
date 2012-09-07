@@ -1129,12 +1129,8 @@ public class Tomdroid extends ActionBarListActivity {
 
 	protected void  onActivityResult (int requestCode, int resultCode, Intent  data) {
 		TLog.d(TAG, "onActivityResult called with result {0}", resultCode);
-		if(resultCode == Activity.RESULT_OK) {
-			SyncService currentService = SyncManager.getInstance().getCurrentService();
-			currentService.resolvedConflict(requestCode);			
-		}
-		else if (data.hasExtra("error"))
-			syncMessageHandler.sendEmptyMessage(data.getIntExtra("error", SyncService.NOTE_PUSH_ERROR));
+		SyncService currentService = SyncManager.getInstance().getCurrentService();
+		currentService.resolvedConflict(requestCode);			
 	}
 	
 	public void finishSync() {

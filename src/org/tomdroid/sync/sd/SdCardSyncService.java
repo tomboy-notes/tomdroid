@@ -26,6 +26,7 @@ package org.tomdroid.sync.sd;
 
 import android.app.Activity;
 import android.os.Handler;
+import android.text.format.Time;
 import android.util.TimeFormatException;
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
@@ -33,6 +34,7 @@ import org.tomdroid.R;
 import org.tomdroid.sync.SyncService;
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.ErrorList;
+import org.tomdroid.util.Preferences;
 import org.tomdroid.util.TLog;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
@@ -274,6 +276,7 @@ public class SdCardSyncService extends SyncService {
 			else
 				pushNote(note);
 		}
+		finishSync(true);
 	}
 
 	// this function is a shell to allow backup function to push as well but send a different message... may not be necessary any more...
@@ -282,10 +285,7 @@ public class SdCardSyncService extends SyncService {
 		
 		int message = doPushNote(note);
 
-		if(message > 0)
-			sendMessage(message);
-		else
-			sendMessage(NOTE_PUSHED);
+		sendMessage(message);
 	}
 
 	// actually pushes a note to sdcard, with optional subdirectory (e.g. backup)
@@ -381,7 +381,7 @@ public class SdCardSyncService extends SyncService {
 			TLog.e(TAG, "push to sd card didn't work");
 			return NOTE_PUSH_ERROR;
 		}
-		return 0;
+		return NOTE_PUSHED;
 	}
 
 	private void deleteNote(String guid){
@@ -441,7 +441,17 @@ public class SdCardSyncService extends SyncService {
 	
 	@Override
 	public void finishSync(boolean refresh) {
+		// delete leftover local notes
+		NoteManager.purgeDeletedNotes(activity);
+		
+		Time now = new Time();
+		now.setToNow();
+		String nowString = now.format3339(false);
+		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, nowString);
+
 		setSyncProgress(100);
+		if (refresh)
+			sendMessage(PARSING_COMPLETE);
 	}
 
 	@Override

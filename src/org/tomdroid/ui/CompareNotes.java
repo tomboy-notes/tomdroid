@@ -439,6 +439,7 @@ public class CompareNotes extends ActionBarActivity {
 
 		// this will delete the note, since it already has the "system:deleted" tag
 		pushNote(localNote);
+		finish();
 	}
 
 	private void pullNote(Note note) {

@@ -456,6 +456,7 @@ public abstract class SyncService {
 		else {
 			// notify service that local syncing is complete, so it can update sync revision to remote
 			localSyncComplete();
+			setSyncProgress(90);
 
 			// if one-way sync, delete pushable notes, else push
 			if(!push)
@@ -463,7 +464,6 @@ public abstract class SyncService {
 			else
 				pushNotes(pushableNotes);
 			
-			setSyncProgress(90);
 		} 
 	}
 
