@@ -28,7 +28,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.net.Uri;
@@ -36,7 +35,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.SpannableStringBuilder;
+import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
+import android.text.util.Linkify.MatchFilter;
 import android.text.util.Linkify.TransformFilter;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -47,7 +48,6 @@ import android.widget.Toast;
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
-import org.tomdroid.sync.SyncManager;
 import org.tomdroid.ui.actionbar.ActionBarActivity;
 import org.tomdroid.util.LinkifyPhone;
 import org.tomdroid.util.NoteContentBuilder;
@@ -55,6 +55,7 @@ import org.tomdroid.util.NoteViewShortcutsHelper;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.Send;
 import org.tomdroid.util.TLog;
+import org.tomdroid.xml.LinkInternalSpan;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -228,7 +229,15 @@ public class ViewNote extends ActionBarActivity {
         .show();
 	}
 
-	private void showNote() {
+	private void showNote(boolean xml) {
+		if(xml) {
+			content.setText(note.getXmlContent());
+			title.setText((CharSequence) note.getTitle());
+			this.setTitle(this.getTitle() + " - XML");
+			return;
+		}
+		LinkInternalSpan[] links = noteContent.getSpans(0, noteContent.length(), LinkInternalSpan.class);
+		MatchFilter noteLinkMatchFilter = LinkInternalSpan.getNoteLinkMatchFilter(noteContent, links);
 
 		// show the note (spannable makes the TextView able to output styled text)
 		content.setText(noteContent, TextView.BufferType.SPANNABLE);
@@ -243,17 +252,20 @@ public class ViewNote extends ActionBarActivity {
 		// This will create a link every time a note title is found in the text.
 		// The pattern contains a very dumb (title1)|(title2) escaped correctly
 		// Then we transform the url from the note name to the note id to avoid characters that mess up with the URI (ex: ?)
-		Pattern pattern = NoteManager.buildNoteLinkifyPattern(this);
+		Pattern pattern = NoteManager.buildNoteLinkifyPattern(this,note.getTitle());
 
-		if(pattern != null)
+		if(pattern != null) {
 			Linkify.addLinks(
 				content,
-				NoteManager.buildNoteLinkifyPattern(this),
+				pattern,
 				Tomdroid.CONTENT_URI+"/",
-				null,
+				noteLinkMatchFilter,
 				noteTitleTransformFilter
 			);
 
+			content.setMovementMethod(LinkMovementMethod.getInstance());
+		}
+		title.setText((CharSequence) note.getTitle());
 	}
 
 	private Handler noteContentHandler = new Handler() {
@@ -263,7 +275,7 @@ public class ViewNote extends ActionBarActivity {
 
 			//parsed ok - show
 			if(msg.what == NoteContentBuilder.PARSE_OK) {
-				showNote();
+				showNote(false);
 
 			//parsed not ok - error
 			} else if(msg.what == NoteContentBuilder.PARSE_ERROR) {
@@ -274,7 +286,7 @@ public class ViewNote extends ActionBarActivity {
 					.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
 						public void onClick(DialogInterface dialog, int which) {
 							dialog.dismiss();
-							finish();
+							showNote(false);
 						}})
 					.show();
         	}

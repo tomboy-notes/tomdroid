@@ -45,6 +45,7 @@ import org.tomdroid.util.Preferences;
 import org.tomdroid.util.Send;
 import org.tomdroid.util.NoteXMLContentBuilder;
 import org.tomdroid.util.TLog;
+import org.tomdroid.xml.LinkInternalSpan;
 import org.tomdroid.xml.NoteContentHandler;
 import org.xml.sax.InputSource;
 
@@ -65,12 +66,14 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
 import android.text.format.Time;
+import android.text.method.LinkMovementMethod;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StrikethroughSpan;
 import android.text.style.StyleSpan;
 import android.text.style.TypefaceSpan;
 import android.text.util.Linkify;
+import android.text.util.Linkify.MatchFilter;
 import android.text.util.Linkify.TransformFilter;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -317,33 +320,42 @@ public class EditNote extends ActionBarActivity {
 		if(xml) {
 
 			formatBar.setVisibility(View.GONE);
-			
 			content.setText(note.getXmlContent());
+			title.setText((CharSequence) note.getTitle());
+			this.setTitle(this.getTitle() + " - XML");
 			xmlOn = true;
 			return;
 		}
 
+		LinkInternalSpan[] links = noteContent.getSpans(0, noteContent.length(), LinkInternalSpan.class);
+		MatchFilter noteLinkMatchFilter = LinkInternalSpan.getNoteLinkMatchFilter(noteContent, links);
+
 		// show the note (spannable makes the TextView able to output styled text)
 		content.setText(noteContent, TextView.BufferType.SPANNABLE);
-		
+
 		// add links to stuff that is understood by Android except phone numbers because it's too aggressive
 		// TODO this is SLOWWWW!!!!
 		Linkify.addLinks(content, Linkify.EMAIL_ADDRESSES|Linkify.WEB_URLS|Linkify.MAP_ADDRESSES);
-		
+
 		// Custom phone number linkifier (fixes lp:512204)
 		Linkify.addLinks(content, LinkifyPhone.PHONE_PATTERN, "tel:", LinkifyPhone.sPhoneNumberMatchFilter, Linkify.sPhoneNumberTransformFilter);
-		
+
 		// This will create a link every time a note title is found in the text.
 		// The pattern contains a very dumb (title1)|(title2) escaped correctly
 		// Then we transform the url from the note name to the note id to avoid characters that mess up with the URI (ex: ?)
-		Pattern pattern = NoteManager.buildNoteLinkifyPattern(this);
-		
-		if(pattern != null)
-			Linkify.addLinks(content,
-					NoteManager.buildNoteLinkifyPattern(this),
-					Tomdroid.CONTENT_URI+"/",
-					null,
-					noteTitleTransformFilter);
+		Pattern pattern = NoteManager.buildNoteLinkifyPattern(this, note.getTitle());
+
+		if(pattern != null) {
+			Linkify.addLinks(
+				content,
+				pattern,
+				Tomdroid.CONTENT_URI+"/",
+				noteLinkMatchFilter,
+				noteTitleTransformFilter
+			);
+
+		}
+		title.setText((CharSequence) note.getTitle());
 	}
 	
 	private Handler noteXMLParseHandler = new Handler() {

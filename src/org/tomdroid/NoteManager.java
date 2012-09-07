@@ -416,8 +416,8 @@ public class NoteManager {
 		int id = 0;
 		
 		// get the notes ids
-		String[] whereArgs = { title };
-		Cursor cursor = activity.managedQuery(Tomdroid.CONTENT_URI, ID_PROJECTION, Note.TITLE+"=?", whereArgs, null);
+		String[] whereArgs = { title.toUpperCase() };
+		Cursor cursor = activity.managedQuery(Tomdroid.CONTENT_URI, ID_PROJECTION, "UPPER("+Note.TITLE+")=?", whereArgs, null);
 		
 		// cursor must not be null and must return more than 0 entry 
 		if (!(cursor == null || cursor.getCount() == 0)) {
@@ -548,7 +548,7 @@ public class NoteManager {
 	 * Useful for the Linkify to create the links to the notes.
 	 * @return regexp pattern
 	 */
-	public static Pattern buildNoteLinkifyPattern(Activity activity)  {
+	public static Pattern buildNoteLinkifyPattern(Activity activity, String noteTitle)  {
 	
 		StringBuilder sb = new StringBuilder();
 		Cursor cursor = getTitles(activity);
@@ -562,7 +562,7 @@ public class NoteManager {
 	
 			do {
 				title = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
-				if(title.length() == 0)
+				if(title.length() == 0 || title.equals(noteTitle))
 					continue;
 				// Pattern.quote() here make sure that special characters in the note's title are properly escaped
 				sb.append("("+Pattern.quote(title)+")|");
@@ -577,7 +577,7 @@ public class NoteManager {
 			String pt = sb.substring(0, sb.length()-1);
 	
 			// return a compiled match pattern
-			return Pattern.compile(pt);
+			return Pattern.compile(pt, Pattern.CASE_INSENSITIVE);
 	
 		} else {
 	

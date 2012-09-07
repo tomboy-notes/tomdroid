@@ -29,6 +29,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import org.tomdroid.Note;
+import org.tomdroid.xml.LinkInternalSpan;
 
 import android.graphics.Typeface;
 import android.os.Handler;
@@ -171,6 +172,10 @@ public class NoteXMLContentBuilder implements Runnable {
 						{
 							LeadingMarginSpan.Standard margin = (LeadingMarginSpan.Standard) span;
 							currentMargin = margin.getLeadingMargin(true);
+						}
+						else if( span instanceof LinkInternalSpan )
+						{
+							elementName = "link:internal";
 						}
 						else if( span instanceof BulletSpan )
 						{

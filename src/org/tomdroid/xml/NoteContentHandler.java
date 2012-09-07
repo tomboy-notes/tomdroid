@@ -59,6 +59,7 @@ public class NoteContentHandler extends DefaultHandler {
 	private boolean inSizeSmallTag = false;
 	private boolean inSizeLargeTag = false;
 	private boolean inSizeHugeTag = false;
+	private boolean inLinkInternalTag = false;
 	private int inListLevel = 0;
 	private boolean inListItem = false;
 	
@@ -73,6 +74,7 @@ public class NoteContentHandler extends DefaultHandler {
 	private final static String SMALL = "size:small";
 	private final static String LARGE = "size:large";
 	private final static String HUGE = "size:huge";
+	private final static String LINK_INTERNAL = "link:internal";
 	// Bullet list-related
 	private final static String LIST = "list";
 	private final static String LIST_ITEM = "list-item";
@@ -94,6 +96,8 @@ public class NoteContentHandler extends DefaultHandler {
 	private int largeEndPos = -1;
 	private int hugeStartPos = -1;
 	private int hugeEndPos = -1;
+	private int linkinternalStartPos = -1;
+	private int linkinternalEndPos = -1;
 	private ArrayList<Integer> listItemStartPos = new ArrayList<Integer>(0);
 	private ArrayList<Integer> listItemEndPos = new ArrayList<Integer>(0);
 	private ArrayList<Boolean> listItemIsEmpty =  new ArrayList<Boolean>(0);
@@ -135,6 +139,8 @@ public class NoteContentHandler extends DefaultHandler {
 				inSizeLargeTag = true;
 			} else if (name.equals(HUGE)) {
 				inSizeHugeTag = true;
+			} else if (name.equals(LINK_INTERNAL)) {
+				inLinkInternalTag = true;
 			} else if (name.equals(LIST)) {
 				inListLevel++;
 			} else if (name.equals(LIST_ITEM)) {
@@ -242,6 +248,14 @@ public class NoteContentHandler extends DefaultHandler {
 				hugeStartPos = -1;
 				hugeEndPos = -1;
 
+			} else if (name.equals(LINK_INTERNAL)) {
+				if(linkinternalStartPos == linkinternalEndPos) return;
+				inLinkInternalTag = false;
+				// apply style and reset position keepers
+				ssb.setSpan(new LinkInternalSpan(ssb.toString().substring(linkinternalStartPos, linkinternalEndPos)), linkinternalStartPos, linkinternalEndPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+				linkinternalStartPos = -1;
+				linkinternalEndPos = -1;
+
 			} else if (name.equals(LIST)) {
 				inListLevel--;
 			} else if (name.equals(LIST_ITEM)) {
@@ -346,6 +360,14 @@ public class NoteContentHandler extends DefaultHandler {
 				}
 				// no matter what, if we are still in the tag, end is now further
 				hugeEndPos = strLenEnd;
+			}
+			if (inLinkInternalTag) {
+				// if tag is not equal to 0 then we are already in it: no need to reset it's position again 
+				if (linkinternalStartPos == -1) {
+					linkinternalStartPos = strLenStart;
+				}
+				// no matter what, if we are still in the tag, end is now further
+				linkinternalEndPos = strLenEnd;
 			}
 			if (inListItem) {
 				// this list item is not empty, so we mark it as such. We keep track of this to avoid any

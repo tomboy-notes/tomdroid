@@ -46,6 +46,7 @@ import org.tomdroid.util.Preferences;
 import org.tomdroid.util.SearchSuggestionProvider;
 import org.tomdroid.util.Send;
 import org.tomdroid.util.TLog;
+import org.tomdroid.xml.LinkInternalSpan;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -71,7 +72,9 @@ import android.provider.SearchRecentSuggestions;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.format.Time;
+import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
+import android.text.util.Linkify.MatchFilter;
 import android.text.util.Linkify.TransformFilter;
 import android.view.*;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -797,8 +800,12 @@ public class Tomdroid extends ActionBarListActivity {
 		if(xml) {
 			content.setText(note.getXmlContent());
 			title.setText((CharSequence) note.getTitle());
+			this.setTitle(this.getTitle() + " - XML");
 			return;
 		}
+
+		LinkInternalSpan[] links = noteContent.getSpans(0, noteContent.length(), LinkInternalSpan.class);
+		MatchFilter noteLinkMatchFilter = LinkInternalSpan.getNoteLinkMatchFilter(noteContent, links);
 
 		// show the note (spannable makes the TextView able to output styled text)
 		content.setText(noteContent, TextView.BufferType.SPANNABLE);
@@ -813,18 +820,20 @@ public class Tomdroid extends ActionBarListActivity {
 		// This will create a link every time a note title is found in the text.
 		// The pattern contains a very dumb (title1)|(title2) escaped correctly
 		// Then we transform the url from the note name to the note id to avoid characters that mess up with the URI (ex: ?)
-		
-		Pattern pattern = NoteManager.buildNoteLinkifyPattern(this);
-		
-		if(pattern != null)
-			Linkify.addLinks(content,
-						NoteManager.buildNoteLinkifyPattern(this),
-						 Tomdroid.CONTENT_URI+"/",
-						 null,
-						 noteTitleTransformFilter);
+		Pattern pattern = NoteManager.buildNoteLinkifyPattern(this, note.getTitle());
 
+		if(pattern != null) {
+			Linkify.addLinks(
+				content,
+				pattern,
+				Tomdroid.CONTENT_URI+"/",
+				noteLinkMatchFilter,
+				noteTitleTransformFilter
+			);
+
+			content.setMovementMethod(LinkMovementMethod.getInstance());
+		}
 		title.setText((CharSequence) note.getTitle());
-
 	}
 	
 	private void addCommonNoteNotFoundDialogElements(final AlertDialog.Builder builder) {
