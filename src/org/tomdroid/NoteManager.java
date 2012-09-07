@@ -529,7 +529,7 @@ public class NoteManager {
 				if(atitle.length() == 0)
 					continue;
 				
-				if(atitle.equals(noteTitle)) {
+				if(atitle.equalsIgnoreCase(noteTitle)) {
 					if(inc == 1)  // first match, matching "Note", set to "Note 2"
 						noteTitle = noteTitle + " 2";
 					else // later match, matching "Note X", set to "Note X+1"
