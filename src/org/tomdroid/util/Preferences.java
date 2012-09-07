@@ -26,15 +26,23 @@ package org.tomdroid.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.text.format.Time;
 
 public class Preferences {
 	
 	public enum Key {
-		SYNC_SERVICE ("sync_service", "sdcard"),
+		SYNC_SERVICE ("sync_service", "tomboy-web"),
 		SYNC_SERVER_ROOT_API ("sync_server_root_api", ""),
 		SYNC_SERVER_USER_API ("sync_server_user_api", ""),
 		SYNC_SERVER ("sync_server", "https://one.ubuntu.com/notes"),
 		SD_LOCATION ("sd_location", "tomdroid"),
+		INCLUDE_NOTE_TEMPLATES("include_note_templates", false),
+		INCLUDE_DELETED_NOTES("include_deleted_notes", false),
+		DEL_ALL_NOTES("del_all_notes", ""),
+		DEL_REMOTE_NOTES("del_remote_notes", ""),
+		BACKUP_NOTES("backup_notes", ""),
+		AUTO_BACKUP_NOTES("auto_backup_notes", false),
+		RESTORE_NOTES("restore_notes", ""),
 		CLEAR_SEARCH_HISTORY ("clearSearchHistory", ""),
 		ACCESS_TOKEN ("access_token", ""),
 		ACCESS_TOKEN_SECRET ("access_token_secret", ""),
@@ -45,9 +53,11 @@ public class Preferences {
 		ACCESS_TOKEN_URL ("access_token_url", ""),
 		REQUEST_TOKEN_URL ("request_token_url", ""),
 		LATEST_SYNC_REVISION ("latest_sync_revision", 0L),
+		LATEST_SYNC_DATE ("latest_sync_date", (new Time()).format3339(false)), // will be used to tell whether we have newer notes
 		SORT_ORDER ("sort_order", "sort_date"),
-		FIRST_RUN ("first_run", true);
-		
+		FIRST_RUN ("first_run", true),
+		BASE_TEXT_SIZE("base_text_size","18");
+
 		private String name = "";
 		private Object defaultValue = "";
 		
@@ -78,7 +88,6 @@ public class Preferences {
 	}
 	
 	public static String getString(Key key) {
-		
 		return client.getString(key.getName(), (String) key.getDefault());
 	}
 	

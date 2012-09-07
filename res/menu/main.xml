@@ -23,19 +23,43 @@
 -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+   	<item 
+		android:icon="@android:drawable/ic_menu_add"
+		android:title="@string/menuNew"
+       	android:showAsAction="always"
+        android:orderInCategory="2"
+		android:id="@+id/menuNew"/>
+   	<item 
+		android:icon="@drawable/ic_menu_sync"
+		android:title="@string/menuSync"
+       	android:showAsAction="always"
+        android:orderInCategory="2"
+		android:id="@+id/menuSync"/>
+
+   	<item 
+		android:icon="@android:drawable/ic_menu_revert"
+		android:title="@string/menuRevert"
+		android:id="@+id/menuRevert"/>
+   		
 	<item 
-			android:icon="@android:drawable/ic_menu_search"
-			android:title="@string/menuSearch"
-			android:id="@+id/menuSearch"/>
+		android:icon="@android:drawable/ic_menu_search"
+		android:title="@string/menuSearch"
+		android:showAsAction="ifRoom"
+        android:orderInCategory="1"
+		android:id="@+id/menuSearch"/>
+	
+	<item 
+		android:icon="@android:drawable/ic_menu_info_details"
+		android:title="@string/menuAbout"
+       	android:showAsAction="never"
+        android:orderInCategory="3"
+		android:id="@+id/menuAbout"/>
 
 	<item 
-			android:icon="@android:drawable/ic_menu_info_details"
-			android:title="@string/menuAbout"
-			android:id="@+id/menuAbout"/>
-
-	<item 
-			android:icon="@android:drawable/ic_menu_preferences"
-			android:title="@string/menuPrefs"
-			android:id="@+id/menuPrefs"/>
+		android:icon="@android:drawable/ic_menu_preferences"
+		android:title="@string/menuPrefs"
+       	android:showAsAction="never"
+        android:orderInCategory="4"
+		android:id="@+id/menuPrefs"/>
 
 </menu>

@@ -1,0 +1,783 @@
+# Chinese (Traditional) translation for tomdroid
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the tomdroid package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: tomdroid\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2012-08-20 14:41+0530\n"
+"PO-Revision-Date: 2012-08-21 13:28+0000\n"
+"Last-Translator: taijuin lee <Unknown>\n"
+"Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2012-08-21 14:52+0000\n"
+"X-Generator: Launchpad (build 15810)\n"
+
+#. application details
+#: tmp_strings.xml:27(string)
+msgid "Tomdroid"
+msgstr "Tomdroid"
+
+#: tmp_strings.xml:28(string)
+msgid ""
+"Tomboy compatible wikiwiki note-taking application that can take notes."
+msgstr "相容於Tomboy的高效做筆記應用程式。"
+
+#: tmp_strings.xml:29(string)
+msgid "Olivier Bilodeau"
+msgstr "Olivier Bilodeau"
+
+#. main.xml
+#: tmp_strings.xml:32(string)
+msgid "Please wait while the notes load.."
+msgstr "當筆記載入時請稍候.."
+
+#: tmp_strings.xml:33(string)
+msgid "There are no notes in Tomdroid's database."
+msgstr "沒有筆記在Tomdroid的資料庫中。"
+
+#: tmp_strings.xml:35(string)
+msgid "Sync"
+msgstr "同步"
+
+#: tmp_strings.xml:36(string)
+msgid "Settings"
+msgstr "設定"
+
+#: tmp_strings.xml:37(string)
+msgid "About"
+msgstr "關於"
+
+#: tmp_strings.xml:38(string)
+msgid "Warning"
+msgstr "警告"
+
+#: tmp_strings.xml:39(string)
+msgid "About Tomdroid"
+msgstr "關於 Tomdroid"
+
+#: tmp_strings.xml:40(string)
+msgid ""
+"Welcome to Tomdroid.\\n\\nPlease note that this is beta quality software and "
+"that it contains known problems.\\n\\nWe are well aware of these issues and "
+"intend to work on them quickly but I also wanted to get something out and "
+"tested as quickly as possible.\\n\\nIf you would like to contribute, help at "
+"all levels would be appreciated. Hop on board on launchpad.net/tomdroid and "
+"contact us!\\n"
+msgstr ""
+
+#: tmp_strings.xml:41(string)
+msgid "%1$s\\n\\nAuthor: %2$s\\nVersion: %3$s\\nLicensed under the GPLv3"
+msgstr "%1$s\\n\\n作者：%2$s\\n版本：%3$s\\n授權於GPLv3之下"
+
+#. TODO aren't these available somewhere else? like in the SDK? //
+#: tmp_strings.xml:44(string)
+msgid "OK"
+msgstr "確定"
+
+#: tmp_strings.xml:45(string) tmp_strings.xml:207(string)
+msgid "Cancel"
+msgstr "取消"
+
+#: tmp_strings.xml:46(string) tmp_strings.xml:206(string)
+msgid "Close"
+msgstr "關閉"
+
+#: tmp_strings.xml:47(string)
+msgid "Project page"
+msgstr "項目頁面"
+
+#: tmp_strings.xml:48(string) tmp_strings.xml:136(string)
+msgid "Save"
+msgstr "儲存"
+
+#. note-view.xml
+#: tmp_strings.xml:51(string)
+msgid "Please wait while note loads…"
+msgstr "當筆記本載入時請稍候..."
+
+#: tmp_strings.xml:53(string)
+msgid "Service"
+msgstr "服務"
+
+#: tmp_strings.xml:54(string)
+msgid "Server"
+msgstr "伺服器"
+
+#: tmp_strings.xml:55(string)
+msgid "SD Card"
+msgstr "SD卡"
+
+#: tmp_strings.xml:56(string)
+msgid "Online Synchronisation"
+msgstr "線上同步"
+
+#: tmp_strings.xml:57(string)
+msgid "Authenticate"
+msgstr "驗證"
+
+#: tmp_strings.xml:58(string)
+msgid "Location on SD Card"
+msgstr "SD卡上的位置"
+
+#: tmp_strings.xml:59(string)
+msgid ""
+"The folder \\\"%1$s\\\" does not exist yet. Please connect your device to "
+"the computer, create the folder and fill it with *.note files."
+msgstr "該資料夾「%1$s」不存在。請連接您的裝置到電腦上，建立該資料夾並放置帶有「*.note」的檔案。"
+
+#: tmp_strings.xml:60(string)
+msgid "\\\"%1$s\\\" is not a valid folder location. Please try again!"
+msgstr "「%1$s」不是一個有效的資料夾。請再試一次！"
+
+#: tmp_strings.xml:61(string)
+msgid "\\\"%1$s\\\" is not a valid entry. Please try again!"
+msgstr "「%1$s」不是有效的。請再試一次！"
+
+#: tmp_strings.xml:62(string)
+msgid "Completing authentication. Please wait…"
+msgstr "正在完成驗證。請稍候..."
+
+#: tmp_strings.xml:63(string)
+msgid ""
+"The connection to the server has failed, please check that the address you "
+"entered is correct."
+msgstr "連接至伺服器失敗，請檢查您輸入的地址是正確的。"
+
+#: tmp_strings.xml:64(string)
+msgid "The server address changed but the new value is empty"
+msgstr "伺服器地址更改，但新的值是空的"
+
+#: tmp_strings.xml:66(string)
+msgid "Choose the sync service to use"
+msgstr "選擇要使用的同步服務"
+
+#: tmp_strings.xml:67(string)
+msgid "Synchronization with %1$s is complete."
+msgstr "與%1$s同步完成。"
+
+#: tmp_strings.xml:68(string)
+msgid "No notes found on %1$s."
+msgstr "在%1$s沒找到筆記。"
+
+#: tmp_strings.xml:69(string)
+msgid "You are not connected to the Internet."
+msgstr "您沒有連接到網際網路。"
+
+#: tmp_strings.xml:70(string)
+msgid "Sync already in progress"
+msgstr "同步已經在進行"
+
+#: tmp_strings.xml:71(string)
+msgid ""
+"There was an error trying to parse your note collection. If you are able to "
+"replicate the problem, please contact us!"
+msgstr "嘗試分析您的筆記集時出現一個錯誤。如果您能夠複製這個問題，請與我們聯繫！"
+
+#: tmp_strings.xml:72(string)
+msgid "Error"
+msgstr "錯誤"
+
+#: tmp_strings.xml:73(string)
+msgid "No Such Note"
+msgstr "沒有這樣的筆記"
+
+#: tmp_strings.xml:74(string)
+msgid ""
+"The requested note could not be found. Maybe it was deleted or removed "
+"through synchronization."
+msgstr "要求的筆記無法找到。也許它已被刪除或透過同步而移除。"
+
+#: tmp_strings.xml:75(string)
+msgid "Error parsing note."
+msgstr "錯誤解析記錄。"
+
+#: tmp_strings.xml:76(string)
+msgid "Could not save note."
+msgstr "無法儲存筆記。"
+
+#: tmp_strings.xml:77(string)
+msgid "SDCard storage not found."
+msgstr "沒有找到SD卡存放。"
+
+#. NoteSorting
+#: tmp_strings.xml:80(string)
+msgid "Change Sort"
+msgstr "更改排序"
+
+#: tmp_strings.xml:81(string)
+msgid "Choose the default sorting"
+msgstr "選擇預設的排序"
+
+#: tmp_strings.xml:82(string)
+msgid "Default sort"
+msgstr "預設排序"
+
+#. NotebookFiltering
+#: tmp_strings.xml:85(string)
+msgid "Filter"
+msgstr "篩選器"
+
+#: tmp_strings.xml:86(string)
+msgid "There are no notebooks in the database."
+msgstr "在資料庫中沒有筆記簿。"
+
+#: tmp_strings.xml:87(string)
+msgid "All notebooks"
+msgstr "所有的筆記簿"
+
+#. List Longpress Menu
+#: tmp_strings.xml:90(string)
+msgid "View"
+msgstr "檢視"
+
+#: tmp_strings.xml:91(string)
+msgid "Note Options"
+msgstr "筆記選項"
+
+#: tmp_strings.xml:92(string)
+msgid "Send"
+msgstr "送出"
+
+#. Search
+#: tmp_strings.xml:95(string)
+msgid "Search Notes"
+msgstr "搜尋筆記"
+
+#: tmp_strings.xml:96(string)
+msgid "Text in your notes"
+msgstr "在您筆記中的文字"
+
+#: tmp_strings.xml:97(string)
+msgid "No notes found for \\\"%s\\\""
+msgstr "沒有找到符合「%s」的筆記"
+
+#: tmp_strings.xml:98(string)
+msgid "Search"
+msgstr "搜尋"
+
+#: tmp_strings.xml:99(string)
+msgid "Search Results:"
+msgstr "搜尋結果："
+
+#: tmp_strings.xml:100(string)
+msgid "Clear search history"
+msgstr "清除搜尋歷史記錄"
+
+#: tmp_strings.xml:101(string)
+msgid "Remove all the searches you have performed"
+msgstr "刪除所有您已經執行的搜尋"
+
+#: tmp_strings.xml:102(string)
+msgid "Search history has been cleared."
+msgstr "搜尋歷史記錄已被清除。"
+
+#. Date
+#: tmp_strings.xml:105(string)
+msgid "Modified:"
+msgstr "修改時間："
+
+#: tmp_strings.xml:106(string)
+msgid "Today"
+msgstr "今天"
+
+#: tmp_strings.xml:107(string)
+msgid "Yesterday"
+msgstr "昨天"
+
+#. Shortcuts handling
+#: tmp_strings.xml:110(string)
+msgid "Choose a Note"
+msgstr "選擇一個筆記"
+
+#: tmp_strings.xml:111(string)
+msgid "Tomdroid Note"
+msgstr "Tomdroid 筆記"
+
+#: tmp_strings.xml:112(string)
+msgid "Remove shortcut"
+msgstr "移除捷徑"
+
+#: tmp_strings.xml:113(string)
+msgid "Create shortcut"
+msgstr "建立捷徑"
+
+#. deleteNote
+#: tmp_strings.xml:118(string)
+msgid "Delete"
+msgstr "刪除"
+
+#: tmp_strings.xml:119(string)
+msgid "Delete Note"
+msgstr "刪除筆記"
+
+#: tmp_strings.xml:120(string)
+msgid "Are you sure you want to delete this note?"
+msgstr "您確定要刪除這份筆記嗎？"
+
+#: tmp_strings.xml:121(string)
+msgid "Yes"
+msgstr "是的"
+
+#: tmp_strings.xml:122(string)
+msgid "No"
+msgstr "不是"
+
+#: tmp_strings.xml:123(string) tmp_strings.xml:178(string)
+msgid "Clear Notes"
+msgstr "清除筆記"
+
+#: tmp_strings.xml:124(string)
+msgid "Are you sure you want to clear the notes database?"
+msgstr "您確定要清除筆記資料庫嗎？"
+
+#: tmp_strings.xml:125(string) tmp_strings.xml:180(string)
+msgid "Delete Remote Notes"
+msgstr "刪除遠端筆記"
+
+#: tmp_strings.xml:126(string)
+msgid "Are you sure you want to delete all notes from the remote service?"
+msgstr "您確定要從遠端服務刪除所有筆記嗎？"
+
+#. newNote
+#: tmp_strings.xml:129(string)
+msgid "New"
+msgstr "新增"
+
+#: tmp_strings.xml:130(string)
+msgid "New Note"
+msgstr "新增筆記"
+
+#: tmp_strings.xml:131(string)
+msgid "Enter title here"
+msgstr "在這裡輸入標題"
+
+#: tmp_strings.xml:132(string)
+msgid "Enter note here"
+msgstr "在這裡輸入筆記"
+
+#. editNote
+#: tmp_strings.xml:135(string)
+msgid "Edit"
+msgstr "編輯"
+
+#: tmp_strings.xml:137(string)
+msgid "Discard"
+msgstr "丟棄"
+
+#: tmp_strings.xml:138(string)
+msgid "Back"
+msgstr "返回"
+
+#: tmp_strings.xml:139(string)
+msgid "B"
+msgstr "B"
+
+#: tmp_strings.xml:140(string)
+msgid "i"
+msgstr "i"
+
+#: tmp_strings.xml:141(strike)
+msgid "S"
+msgstr "S"
+
+#: tmp_strings.xml:142(string)
+msgid "monospace"
+msgstr "monospace"
+
+#: tmp_strings.xml:143(string)
+msgid "highlight"
+msgstr "突顯"
+
+#: tmp_strings.xml:144(string)
+msgid "size"
+msgstr "大小"
+
+#: tmp_strings.xml:145(string)
+msgid "XML"
+msgstr "XML"
+
+#: tmp_strings.xml:146(string)
+msgid "Text"
+msgstr "文字"
+
+#: tmp_strings.xml:147(string)
+msgid "Error parsing note"
+msgstr "解析筆記錯誤"
+
+#: tmp_strings.xml:148(string)
+msgid "There was an error parsing the note. Please check your XML."
+msgstr "出現解析筆記錯誤。請檢查您的 XML 。"
+
+#: tmp_strings.xml:149(string)
+msgid "Note saved locally."
+msgstr "筆記，儲存在本地。"
+
+#: tmp_strings.xml:150(string)
+msgid "Note deleted locally."
+msgstr "筆記在本地被刪除。"
+
+#: tmp_strings.xml:151(string)
+msgid "Select text size"
+msgstr "選擇文字大小"
+
+#: tmp_strings.xml:152(string)
+msgid "Small"
+msgstr "小型"
+
+#: tmp_strings.xml:153(string)
+msgid "Normal"
+msgstr "一般"
+
+#: tmp_strings.xml:154(string)
+msgid "Large"
+msgstr "大型"
+
+#: tmp_strings.xml:155(string)
+msgid "Huge"
+msgstr "特大"
+
+#: tmp_strings.xml:156(string)
+msgid ""
+"Do you really want to discard your changes and revert the note to the last "
+"saved version?"
+msgstr "您真的要放棄您的更改，並恢復到最後儲存版本的筆記嗎？"
+
+#: tmp_strings.xml:157(string)
+msgid "Discard Changes?"
+msgstr "放棄變更？"
+
+#: tmp_strings.xml:158(b)
+msgid "&gt;"
+msgstr ""
+
+#: tmp_strings.xml:159(b)
+msgid "&lt;"
+msgstr ""
+
+#. New Titles
+#: tmp_strings.xml:162(string)
+msgid "Tomdroid - View Note"
+msgstr "Tomdroid - 檢視筆記"
+
+#: tmp_strings.xml:163(string)
+msgid "Tomdroid - Edit Note"
+msgstr "Tomdroid - 編輯筆記"
+
+#: tmp_strings.xml:164(string)
+msgid "Tomdroid - Search Results"
+msgstr "Tomdroid - 搜尋結果"
+
+#: tmp_strings.xml:165(string)
+msgid "Tomdroid - Shortcuts"
+msgstr "Tomdroid - 捷徑"
+
+#: tmp_strings.xml:166(string)
+msgid "Tomdroid - Settings"
+msgstr "Tomdroid - 設定"
+
+#. new prefs
+#: tmp_strings.xml:169(string)
+msgid "Display Preferences"
+msgstr "顯示偏好設定"
+
+#: tmp_strings.xml:170(string)
+msgid "Base Font Size"
+msgstr "基本字體大小"
+
+#: tmp_strings.xml:171(string)
+msgid "Synchronization"
+msgstr "同步"
+
+#: tmp_strings.xml:172(string)
+msgid "Misc. Options"
+msgstr "其他選項"
+
+#: tmp_strings.xml:173(string)
+msgid "Tools"
+msgstr "工具"
+
+#: tmp_strings.xml:174(string)
+msgid "Auto Save Note"
+msgstr "自動儲存筆記"
+
+#: tmp_strings.xml:175(string)
+msgid "Save notes automatically on exiting editor."
+msgstr "在退出編輯器上自動儲存筆記。"
+
+#: tmp_strings.xml:176(string)
+msgid "Show Note Templates"
+msgstr "顯示筆記範本"
+
+#: tmp_strings.xml:177(string)
+msgid "If checked, will show note templates in notes list."
+msgstr "如果勾選，將顯示筆記範本在筆記清單中。"
+
+#: tmp_strings.xml:179(string)
+msgid "Clear all notes from local database"
+msgstr "從本地資料庫中清除所有筆記"
+
+#: tmp_strings.xml:181(string)
+msgid "Delete all notes from remote service"
+msgstr "從遠端服務中刪除所有筆記"
+
+#: tmp_strings.xml:182(string)
+msgid "Illegal text size chosen. Please choose a number."
+msgstr "所選的文字大小不合法。請選擇一個號碼。"
+
+#. syncNotes
+#: tmp_strings.xml:186(string)
+msgid "Syncing with %1$s"
+msgstr "與%1$s同步"
+
+#: tmp_strings.xml:187(string)
+msgid "connecting to service…"
+msgstr "連接到遠端服務..."
+
+#: tmp_strings.xml:188(string)
+msgid "updating local notes…"
+msgstr "更新本地筆記..."
+
+#: tmp_strings.xml:189(string)
+msgid "updating remote notes…"
+msgstr "更新遠端筆記..."
+
+#: tmp_strings.xml:190(string)
+msgid "Note Conflict"
+msgstr "筆記發生衝突"
+
+#: tmp_strings.xml:191(string)
+msgid ""
+"There was a conflict syncing the note \"%1$s\". Please choose an action to "
+"resolve the conflict. You may edit either note before choosing, or view the "
+"difference by clicking on the labels below."
+msgstr "同步“%1$s”筆記有一個衝突。請選擇一個行動來解決衝突。您可以在選擇之前編輯筆記，或點擊下面的標籤來查看不同。"
+
+#: tmp_strings.xml:192(string)
+msgid ""
+"There was a conflict syncing the note \"%1$s\" (local version was deleted). "
+"Please choose from one of the actions below."
+msgstr "同步“%1$s”筆記有衝突(本地版本已經刪除)。請選擇下面的操作之一。"
+
+#: tmp_strings.xml:193(string)
+msgid ""
+"There was a conflict syncing the note \"%1$s\". A note with that title "
+"already exists in the database. Please choose an action to resolve the "
+"conflict. You may edit either note before choosing, or view the difference "
+"by clicking on the labels below."
+msgstr ""
+"同步“%1$s”筆記有一個衝突。一樣標題的筆記已經存在於資料庫中。請選擇一個行動來解決衝突。您可以在選擇之前編輯筆記，或點擊下面的標籤來查看不同。"
+
+#: tmp_strings.xml:194(string)
+msgid "Overwrite\\nRemote"
+msgstr "覆蓋\\n遠端"
+
+#: tmp_strings.xml:195(string)
+msgid "Overwrite\\nLocal"
+msgstr "覆蓋\\n本地"
+
+#: tmp_strings.xml:196(string)
+msgid "Delete Remote"
+msgstr "刪除遠端"
+
+#: tmp_strings.xml:197(string)
+msgid "Difference Between Files"
+msgstr "檔案之間的差異"
+
+#: tmp_strings.xml:198(string)
+msgid "-- Title Differences --"
+msgstr "-- 標題差異 --"
+
+#: tmp_strings.xml:199(string)
+msgid "-- Content Differences --"
+msgstr "-- 內容差異 --"
+
+#: tmp_strings.xml:200(string)
+msgid "Line %1$s:"
+msgstr ""
+
+#: tmp_strings.xml:201(string)
+msgid "Local Version"
+msgstr "本地版本"
+
+#: tmp_strings.xml:202(string)
+msgid "Remote Version"
+msgstr "遠端版本"
+
+#: tmp_strings.xml:203(string)
+msgid "Deleted"
+msgstr "已刪除"
+
+#: tmp_strings.xml:204(string)
+msgid "Create\\nCopy"
+msgstr "建立\\n複製"
+
+#: tmp_strings.xml:205(string)
+msgid "%1$s (old)"
+msgstr "%1$s (舊的)"
+
+#: tmp_strings.xml:208(string)
+msgid "Authorization with %1$s successful."
+msgstr "驗證%1$s成功"
+
+#: tmp_strings.xml:209(string)
+msgid "Authorization with %1$s failed. Maybe try again?"
+msgstr "驗證%1$s失敗。再試一次嗎？"
+
+#: tmp_strings.xml:210(string)
+msgid "Note deleted from %1$s successfully."
+msgstr "筆記成功地從%1$s刪除"
+
+#: tmp_strings.xml:211(string)
+msgid "Note sent to %1$s successfully."
+msgstr "筆記成功地傳送到%1$s。"
+
+#: tmp_strings.xml:212(string)
+msgid "Note received from %1$s successfully."
+msgstr "筆記成功地從%1$s接收到。"
+
+#: tmp_strings.xml:213(string)
+msgid "Error deleting note from %1$s."
+msgstr "從%1$s刪除筆記出現錯誤。"
+
+#: tmp_strings.xml:214(string)
+msgid "Error sending note to %1$s."
+msgstr "傳送筆記到%1$s出現錯誤。"
+
+#: tmp_strings.xml:215(string)
+msgid "Error receiving note from %1$s."
+msgstr "從%1$s接收筆記出現錯誤。"
+
+#: tmp_strings.xml:216(string)
+msgid "Error parsing response from %1$s."
+msgstr "從%1$s解析的回應出現錯誤。"
+
+#: tmp_strings.xml:217(string)
+msgid ""
+"Error connecting to %1$s. You probably need to authenticate in \"Settings\"."
+msgstr "連接到%1$s出現錯誤。您可能需要在“設定”中進行身份驗證。"
+
+#: tmp_strings.xml:218(string)
+msgid "Notes deleted from %1$s successfully."
+msgstr "筆記成功地從%1$s刪除"
+
+#: tmp_strings.xml:219(string)
+msgid "Sync with %1$s cancelled."
+msgstr "與%1$s同步取消了。"
+
+#. revert notes
+#: tmp_strings.xml:223(string)
+msgid "Revert"
+msgstr "恢復"
+
+#: tmp_strings.xml:224(string)
+msgid "Revert All"
+msgstr "恢復所有的"
+
+#: tmp_strings.xml:225(string)
+msgid "Revert Notes"
+msgstr "恢復筆記"
+
+#: tmp_strings.xml:226(string)
+msgid ""
+"This will revert your local notes to whatever versions exist on the remote "
+"service. Are you sure you want to do this?"
+msgstr "這將恢復您的本地筆記為存在遠端服務上的任何版本。您確定您想這樣做嗎？"
+
+#: tmp_strings.xml:227(string)
+msgid "Revert Note"
+msgstr "恢復筆記"
+
+#: tmp_strings.xml:228(string)
+msgid ""
+"This will revert a local note to whatever version exist on the remote "
+"service. Are you sure you want to do this?"
+msgstr "這將恢復一個本地筆記為存在遠端服務上的任何版本。您確定您想這樣做嗎？"
+
+#. backup notes
+#: tmp_strings.xml:232(string)
+msgid "Backup Notes"
+msgstr "備份筆記"
+
+#: tmp_strings.xml:233(string)
+msgid "Copy all local notes to SD Card"
+msgstr "複製所有本地筆記到SD卡"
+
+#: tmp_strings.xml:234(string)
+msgid "Backup Notes?"
+msgstr "要備份筆記嗎？"
+
+#: tmp_strings.xml:235(string)
+msgid ""
+"Copy all local notes to SD Card? This may overwrite existing notes on the SD "
+"Card."
+msgstr "複製所有本地筆記到SD卡？這可能會覆蓋現有在SD卡上的筆記。"
+
+#: tmp_strings.xml:236(string)
+msgid "Restore Notes"
+msgstr "恢復筆記"
+
+#: tmp_strings.xml:237(string)
+msgid "Pull all notes from SD Card"
+msgstr "從SD卡撤出所有筆記"
+
+#: tmp_strings.xml:238(string)
+msgid "Restore Notes?"
+msgstr "要恢復筆記嗎？"
+
+#: tmp_strings.xml:239(string)
+msgid "Pull all notes from SD Card? This may overwrite your existing notes."
+msgstr "從SD卡撤出所有筆記嗎？這可能會覆蓋您存在的筆記。"
+
+#: tmp_strings.xml:240(string)
+msgid "Notes backed up to SD card successfully."
+msgstr "筆記成功地備份到SD卡。"
+
+#: tmp_strings.xml:241(string)
+msgid "Notes restored from SD card successfully."
+msgstr "從SD卡成功地恢復筆記"
+
+#: tmp_strings.xml:242(string)
+msgid "Notes cleared successfully."
+msgstr "筆記成功清除。"
+
+#. 30 chars max
+#: tmp_strings.xml:249(string)
+msgid "Tomdroid notes"
+msgstr "Tomdroid筆記"
+
+#. 4000 chars max
+#: tmp_strings.xml:251(string)
+msgid ""
+"A Tomboy client for Android. Tomboy is a desktop note-taking app using a "
+"wikiwiki approach and a simple user interface.\\n\\n* Note format "
+"compatibility with Tomboy\\n* Online note synchronization with Snowy, Tomboy "
+"Online or Ubuntu One\\n* SD Card importation\\n* Open source!"
+msgstr ""
+"一個用於Android的Tomboy客戶端。Tomboy是一個桌面做筆記應用程式，它使用一個高效的方法和一個簡單的使用者介面。\\n\\n* "
+"筆記格式相容於Tomboy\\n* 線上筆記同步用Snowy，Tomboy Online或Ubuntu One\\n* SD卡輸入\\n * 開放原始碼！"
+
+#. 80 chars max
+#: tmp_strings.xml:254(string)
+msgid ""
+"Note-taking application with online synchronization compatible with Tomboy"
+msgstr "用線上同步相容於Tomboy的作筆記應用程式"
+
+#. 500 chars max
+#: tmp_strings.xml:257(string)
+msgid ""
+"* Search notes and system integrated search\\n* Context menu\\n* Several "
+"usability improvements\\n* Higher quality icons\\n* Several bug fixes\\n* "
+"German translation\\n"
+msgstr ""
+
+#. Launchpad Translation String
+#: tmp_strings.xml:260(string)
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  taijuin lee https://launchpad.net/~taijuin"

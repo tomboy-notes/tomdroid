@@ -23,14 +23,15 @@
  */
 package org.tomdroid;
 
+import android.net.Uri;
 import android.os.Handler;
 import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.text.format.Time;
 import android.util.TimeFormatException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.tomdroid.util.NoteContentBuilder;
-import org.tomdroid.util.TLog;
 import org.tomdroid.util.XmlUtils;
 
 import java.util.regex.Matcher;
@@ -48,14 +49,10 @@ public class Note {
 	public static final String TAGS = "tags";
 	public static final String NOTE_CONTENT = "content";
 	
-	// Logging info
-	private static final String TAG = "Note";
-	
 	// Notes constants
-	// TODO this is a weird yellow that was usable for the android emulator, I must confirm this for real usage
-	public static final int NOTE_HIGHLIGHT_COLOR = 0xFFFFFF77;
+	public static final int NOTE_HIGHLIGHT_COLOR = 0x99FFFF00; // lowered alpha to show cursor
 	public static final String NOTE_MONOSPACE_TYPEFACE = "monospace";
-	public static final float NOTE_SIZE_SMALL_FACTOR = 1.0f;
+	public static final float NOTE_SIZE_SMALL_FACTOR = 0.8f;
 	public static final float NOTE_SIZE_LARGE_FACTOR = 1.5f;
 	public static final float NOTE_SIZE_HUGE_FACTOR = 1.8f;
 	
@@ -65,12 +62,26 @@ public class Note {
 	private String url;
 	private String fileName;
 	private String title;
-	private String tags;
+	private String tags = "";
 	private Time lastChangeDate;
 	private int dbId;
+
+	// Unused members (for SD Card)
+	
+	public Time createDate = new Time();
+	public int cursorPos = 0;
+	public int height = 0;
+	public int width = 0;
+	public int X = -1;
+	public int Y = -1;
+
+	
 	// TODO before guid were of the UUID object type, now they are simple strings 
 	// but at some point we probably need to validate their uniqueness (per note collection or universe-wide?) 
 	private String guid;
+	
+	// this is to tell the sync service to update the last date after pushing this note
+	public boolean lastSync = false;
 	
 	// Date converter pattern (remove extra sub milliseconds from datetime string)
 	// ex: will strip 3020 in 2010-01-23T12:07:38.7743020-05:00
@@ -89,7 +100,8 @@ public class Note {
 		setTitle(XmlUtils.unescape(json.optString("title")));
 		setGuid(json.optString("guid"));
 		setLastChangeDate(json.optString("last-change-date"));
-		setXmlContent(json.optString("note-content"));
+		String newXMLContent = json.optString("note-content");
+		setXmlContent(newXMLContent);
 		JSONArray jtags = json.optJSONArray("tags");
 		String tag;
 		tags = new String();
@@ -100,9 +112,31 @@ public class Note {
 			}
 		}
 	}
-	
+
 	public String getTags() {
 		return tags;
+	}
+	
+	public void setTags(String tags) {
+		this.tags = tags;
+	}
+	
+	public void addTag(String tag) {
+		if(tags.length() > 0)
+			this.tags = this.tags+","+tag;
+		else
+			this.tags = tag;
+	}
+	
+	public void removeTag(String tag) {
+		
+		String[] taga = TextUtils.split(this.tags, ",");
+		String newTags = "";
+		for(String atag : taga){
+			if(!atag.equals(tag))
+				newTags += atag;
+		}
+		this.tags = newTags;
 	}
 
 	public String getUrl() {
@@ -132,7 +166,15 @@ public class Note {
 	public Time getLastChangeDate() {
 		return lastChangeDate;
 	}
-
+	
+	// sets change date to now
+	public void setLastChangeDate() {
+		Time now = new Time();
+		now.setToNow();
+		String time = now.format3339(false);
+		setLastChangeDate(time);
+	}
+	
 	public void setLastChangeDate(Time lastChangeDate) {
 		this.lastChangeDate = lastChangeDate;
 	}
@@ -144,9 +186,9 @@ public class Note {
 		// Tomboy's (C# library) format: 2010-01-23T12:07:38.7743020-05:00
 		Matcher m = dateCleaner.matcher(lastChangeDateStr);
 		if (m.find()) {
-			TLog.d(TAG, "I had to clean out extra sub-milliseconds from the date");
+			//TLog.d(TAG, "I had to clean out extra sub-milliseconds from the date");
 			lastChangeDateStr = m.group(1)+m.group(2);
-			TLog.v(TAG, "new date: {0}", lastChangeDateStr);
+			//TLog.v(TAG, "new date: {0}", lastChangeDateStr);
 		}
 		
 		lastChangeDate = new Time();
@@ -173,7 +215,7 @@ public class Note {
 	public SpannableStringBuilder getNoteContent(Handler handler) {
 		
 		// TODO not sure this is the right place to do this
-		noteContent = new NoteContentBuilder().setCaller(handler).setInputSource(xmlContent).build();
+		noteContent = new NoteContentBuilder().setCaller(handler).setInputSource(xmlContent).setTitle(this.getTitle()).build();
 		return noteContent;
 	}
 	
@@ -189,6 +231,37 @@ public class Note {
 	public String toString() {
 
 		return new String("Note: "+ getTitle() + " (" + getLastChangeDate() + ")");
+	}
+	
+	// gets full xml to be exported as .note file
+	public String getXmlFileString() {
+		
+		String tagString = "";
+
+		if(tags.length()>0) {
+			String[] tagsA = tags.split(",");
+			tagString = "\n\t<tags>";
+			for(String atag : tagsA) {
+				tagString += "\n\t\t<tag>"+atag+"</tag>"; 
+			}
+			tagString += "\n\t</tags>"; 
+		}
+
+		// TODO: create-date
+		String fileString = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<note version=\"0.3\" xmlns:link=\"http://beatniksoftware.com/tomboy/link\" xmlns:size=\"http://beatniksoftware.com/tomboy/size\" xmlns=\"http://beatniksoftware.com/tomboy\">\n\t<title>"
+				+getTitle().replace("&", "&amp;")+"</title>\n\t<text xml:space=\"preserve\"><note-content version=\"0.1\">"
+				+getTitle().replace("&", "&amp;")+"\n\n" // added for compatibility
+				+getXmlContent()+"</note-content></text>\n\t<last-change-date>"
+				+getLastChangeDate().format3339(false)+"</last-change-date>\n\t<last-metadata-change-date>"
+				+getLastChangeDate().format3339(false)+"</last-metadata-change-date>\n\t<create-date>"
+				+createDate.format3339(false)+"</create-date>\n\t<cursor-position>"
+				+cursorPos+"</cursor-position>\n\t<width>"
+				+width+"</width>\n\t<height>"
+				+height+"</height>\n\t<x>"
+				+X+"</x>\n\t<y>"
+				+Y+"</y>"
+				+tagString+"\n\t<open-on-startup>False</open-on-startup>\n</note>\n";
+		return fileString;
 	}
 	
 }

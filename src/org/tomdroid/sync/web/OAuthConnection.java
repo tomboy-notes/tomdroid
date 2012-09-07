@@ -211,6 +211,8 @@ public class OAuthConnection extends WebConnection {
 		
 		try {
 			JSONObject response = new JSONObject(get(rootApi));
+			TLog.d(TAG, "Request: {0}", rootApi);
+		
 			// append a slash to the url, else the signature will fail
 			userApi = response.getJSONObject("user-ref").getString("api-ref");
 		} catch (JSONException e) {
@@ -257,7 +259,7 @@ public class OAuthConnection extends WebConnection {
 		return parseResponse(response);
 	}
 	
-	private void saveConfiguration() {
+	public void saveConfiguration() {
 		
 		Preferences.putString(Preferences.Key.ACCESS_TOKEN, accessToken);
 		Preferences.putString(Preferences.Key.ACCESS_TOKEN_SECRET, accessTokenSecret);

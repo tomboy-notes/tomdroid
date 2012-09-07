@@ -23,12 +23,14 @@
  */
 package org.tomdroid.ui;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
-import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -38,14 +40,18 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
-import android.preference.PreferenceActivity;
 import android.provider.SearchRecentSuggestions;
+import android.text.format.Time;
+import android.view.MenuItem;
+import android.view.Window;
+import android.webkit.URLUtil;
 import android.widget.Toast;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
-import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.sync.SyncService;
+import org.tomdroid.sync.web.OAuthConnection;
+import org.tomdroid.ui.actionbar.ActionBarPreferenceActivity;
 import org.tomdroid.util.FirstNote;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.SearchSuggestionProvider;
@@ -54,33 +60,69 @@ import org.tomdroid.util.TLog;
 import java.io.File;
 import java.util.ArrayList;
 
-public class PreferencesActivity extends PreferenceActivity {
+public class PreferencesActivity extends ActionBarPreferenceActivity {
 	
 	private static final String TAG = "PreferencesActivity";
 	
+    private static final int DIALOG_SYNC = 0;
+    private static final int DIALOG_DELETE = 1;
+    private static final int DIALOG_DEL_REMOTE = 2;
+    private static final int DIALOG_BACKUP = 3;
+    private static final int DIALOG_CONNECT_FAILED = 4;
+    private static final int DIALOG_FOLDER_ERROR = 5;
+    private static final int DIALOG_INVALID_ENTRY = 6;
+    
+    private String dialogString;
+	
 	// TODO: put the various preferences in fields and figure out what to do on activity suspend/resume
+	private EditTextPreference baseSize = null;
 	private EditTextPreference syncServer = null;
 	private ListPreference syncService = null;
 	private EditTextPreference sdLocation = null;
+	private Preference delNotes = null;
 	private Preference clearSearchHistory = null;
+	private Preference backupNotes = null;
+	private Preference delRemoteNotes = null;
+	private Preference autoBackup = null;
+
+	private Activity activity;
+
+	private Handler	 preferencesMessageHandler	= new PreferencesMessageHandler(this);
+
+
+	private static ProgressDialog syncProgressDialog;
+
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		if (Build.VERSION.SDK_INT < 11)
+			requestWindowFeature(Window.FEATURE_CUSTOM_TITLE); // added for actionbarcompat
 		
 		super.onCreate(savedInstanceState);
+		
+		this.activity = this;
+		SyncManager.setActivity(this);
+		SyncManager.setHandler(this.preferencesMessageHandler);
+		
 		addPreferencesFromResource(R.xml.preferences);
 		
 		// Fill the Preferences fields
+		baseSize = (EditTextPreference)findPreference(Preferences.Key.BASE_TEXT_SIZE.getName());
 		syncServer = (EditTextPreference)findPreference(Preferences.Key.SYNC_SERVER.getName());
 		syncService = (ListPreference)findPreference(Preferences.Key.SYNC_SERVICE.getName());
 		sdLocation = (EditTextPreference)findPreference(Preferences.Key.SD_LOCATION.getName());
 		clearSearchHistory = (Preference)findPreference(Preferences.Key.CLEAR_SEARCH_HISTORY.getName());
+		delNotes = (Preference)findPreference(Preferences.Key.DEL_ALL_NOTES.getName());
+		delRemoteNotes = (Preference)findPreference(Preferences.Key.DEL_REMOTE_NOTES.getName());
+		backupNotes = (Preference)findPreference(Preferences.Key.BACKUP_NOTES.getName());
+		autoBackup = (Preference)findPreference(Preferences.Key.AUTO_BACKUP_NOTES.getName());
 		
 		// Set the default values if nothing exists
-		this.setDefaults();
+		setDefaults();
 		
 		// Fill the services combo list
-		this.fillServices();
+		fillLists();
 		
 		// Enable or disable the server field depending on the selected sync service
 		setServer(syncService.getValue());
@@ -100,7 +142,7 @@ public class PreferencesActivity extends PreferenceActivity {
 			}
 		});
 		
-		// Re-authenticate if the sync server changes
+		// force reauthentication if the sync server changes
 		syncServer.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 
 			public boolean onPreferenceChange(Preference preference,
@@ -112,8 +154,17 @@ public class PreferencesActivity extends PreferenceActivity {
 							Toast.LENGTH_SHORT).show();
 					return false;
 				}
-			    
-				authenticate((String) serverUri);
+				
+				if (!URLUtil.isValidUrl(serverUri.toString())){
+					noValidEntry(serverUri.toString());
+					return false;
+				}
+				syncServer.setSummary((String)serverUri);
+				
+				// TODO is this necessary? hasn't it changed already?
+				Preferences.putString(Preferences.Key.SYNC_SERVER, (String)serverUri);
+
+				reauthenticate();
 				return true;
 			}
 			
@@ -127,8 +178,8 @@ public class PreferencesActivity extends PreferenceActivity {
 				if (locationUri.equals(Preferences.getString(Preferences.Key.SD_LOCATION))) { 
 					return false;
 				}
-				if (locationUri.toString().contains("\n")) { 
-					noValidLocation(locationUri.toString());
+				if ((locationUri.toString().contains("\t")) || (locationUri.toString().contains("\n"))) { 
+					noValidEntry(locationUri.toString());
 					return false;
 				}
 				
@@ -167,58 +218,63 @@ public class PreferencesActivity extends PreferenceActivity {
 	        	return true;
 	        }
 	    });
-	}
-	
-	private void authenticate(String serverUri) {
 
-		// update the value before doing anything
-		Preferences.putString(Preferences.Key.SYNC_SERVER, serverUri);
-
-		SyncService currentService = SyncManager.getInstance().getCurrentService();
-
-		if (!currentService.needsAuth()) {
-			return;
-		}
-
-		// service needs authentication
-		TLog.i(TAG, "Creating dialog");
-
-		final ProgressDialog authProgress = ProgressDialog.show(this, "",
-				getString(R.string.prefSyncCompleteAuth), true, false);
-
-		Handler handler = new Handler() {
-
-			@Override
-			public void handleMessage(Message msg) {
-
-				boolean wasSuccsessful = false;
-				Uri authorizationUri = (Uri) msg.obj;
-				if (authorizationUri != null) {
-
-					Intent i = new Intent(Intent.ACTION_VIEW, authorizationUri);
-					startActivity(i);
-					wasSuccsessful = true;
-
-				} else {
-					// Auth failed, don't update the value
-					wasSuccsessful = false;
+		baseSize.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+			
+			public boolean onPreferenceChange(Preference preference, Object newValue) {
+				try {
+					Float.parseFloat((String)newValue);
+					Preferences.putString(Preferences.Key.BASE_TEXT_SIZE, (String)newValue);
 				}
-
-				if (authProgress != null)
-					authProgress.dismiss();
-
-				if (wasSuccsessful) {
-					resetLocalDatabase();
-				} else {
-					connectionFailed();
+				catch(Exception e) {
+		        	Toast.makeText(getBaseContext(),
+	                        getString(R.string.illegalTextSize),
+	                        Toast.LENGTH_LONG).show();
+		        	TLog.e(TAG, "Illegal text size in preferences");
+		        	return false;
 				}
+				baseSize.setSummary((String)newValue);
+				return true;
 			}
-		};
+		});
 
-		((ServiceAuth) currentService).getAuthUri(serverUri, handler);
+		delNotes.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			
+	        public boolean onPreferenceClick(Preference preference) {
+	        	showDialog(DIALOG_DELETE);
+				return true;
+			}
+		});
+
+		delRemoteNotes.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			
+	        public boolean onPreferenceClick(Preference preference) {
+	        	showDialog(DIALOG_DEL_REMOTE);
+				return true;
+			}
+		});
+		
+		
+		backupNotes.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			
+	        public boolean onPreferenceClick(Preference preference) {
+	        	showDialog(DIALOG_BACKUP);
+
+				return true;
+			}
+		});		
+	}
+
+	private void reauthenticate() {
+
+		// don't do anything, we'll authenticate on sync instead
+		// save empty config, wiping old config
+		
+		OAuthConnection auth = new OAuthConnection();
+		auth.saveConfiguration();
 	}
 	
-	private void fillServices()
+	private void fillLists()
 	{
 		ArrayList<SyncService> availableServices = SyncManager.getInstance().getServices();
 		CharSequence[] entries = new CharSequence[availableServices.size()];
@@ -231,6 +287,7 @@ public class PreferencesActivity extends PreferenceActivity {
 		
 		syncService.setEntries(entries);
 		syncService.setEntryValues(entryValues);
+
 	}
 	
 	private void setDefaults()
@@ -239,6 +296,7 @@ public class PreferencesActivity extends PreferenceActivity {
 		syncServer.setDefaultValue(defaultServer);
 		if(syncServer.getText() == null)
 			syncServer.setText(defaultServer);
+		syncServer.setSummary(Preferences.getString(Preferences.Key.SYNC_SERVER));
 
 		String defaultService = (String)Preferences.Key.SYNC_SERVICE.getDefault();
 		syncService.setDefaultValue(defaultService);
@@ -249,60 +307,55 @@ public class PreferencesActivity extends PreferenceActivity {
 		sdLocation.setDefaultValue(defaultLocation);
 		if(sdLocation.getText() == null)
 			sdLocation.setText(defaultLocation);
-	
+
+		String defaultSize = (String)Preferences.Key.BASE_TEXT_SIZE.getDefault();
+		baseSize.setDefaultValue(defaultSize);
+		baseSize.setSummary(Preferences.getString(Preferences.Key.BASE_TEXT_SIZE));
+		if(baseSize.getText() == null)
+			baseSize.setText(defaultSize);
 	}
 
 	private void setServer(String syncServiceKey) {
 
-		SyncService service = SyncManager.getInstance().getService(syncServiceKey);
+		SyncManager.getInstance();
+		SyncService service = SyncManager.getService(syncServiceKey);
 
 		if (service == null)
 			return;
 
 		syncServer.setEnabled(service.needsServer());
 		syncService.setSummary(service.getDescription());
-		sdLocation.setEnabled(service.needsLocation());
+		backupNotes.setEnabled(!service.needsLocation()); // if not using sd card, allow backup
+		autoBackup.setEnabled(!service.needsLocation()); // if not using sd card, allow backup
 		sdLocation.setSummary(Tomdroid.NOTES_PATH);
 	}
 		
-	private void connectionFailed() {
-		new AlertDialog.Builder(this)
-			.setMessage(getString(R.string.prefSyncConnectionFailed))
-			.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) {
-					dialog.dismiss();
-				}})
-			.show();
-	}
-	
 	private void folderNotExisting(String path) {
-		new AlertDialog.Builder(this)
-			.setMessage(String.format(getString(R.string.prefFolderCreated), path))
-			.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) {
-					dialog.dismiss();
-				}})
-			.show();
+		dialogString = String.format(getString(R.string.prefFolderCreated), path);
+		showDialog(DIALOG_FOLDER_ERROR);
 	}
 	
-	private void noValidLocation(String path) {
-		new AlertDialog.Builder(this)
-			.setMessage(String.format(getString(R.string.prefNoValidLocation), path))
-			.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) {
-					dialog.dismiss();
-				}})
-			.show();
+	private void noValidEntry(String entry) {
+		dialogString = String.format(getString(R.string.prefNoValidEntry), entry);
+		showDialog(DIALOG_FOLDER_ERROR);
 	}
 
 	//TODO use LocalStorage wrapper from two-way-sync branch when it get's merged
 	private void resetLocalDatabase() {
 		getContentResolver().delete(Tomdroid.CONTENT_URI, null, null);
 		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, 0);
+		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, new Time().format3339(false));
 		
 		// add a first explanatory note
-		// TODO this will be problematic with two-way sync
-		NoteManager.putNote(this, FirstNote.createFirstNote());
+		NoteManager.putNote(this, FirstNote.createFirstNote(this));
+		
+		String text = getString(R.string.messageDatabaseReset);
+		Toast.makeText(activity, text, Toast.LENGTH_SHORT).show();
+	}
+	
+	private void resetRemoteService() {
+		showDialog(DIALOG_SYNC);
+		SyncManager.getInstance().getCurrentService().deleteAllNotes();
 	}
 	
 	/**
@@ -314,16 +367,163 @@ public class PreferencesActivity extends PreferenceActivity {
 		setServer(syncServiceKey);
 		
 		// TODO this should be refactored further, notice that setServer performs the same operations 
-		SyncService service = SyncManager.getInstance().getService(syncServiceKey);
 		
-		if (service == null)
+		SyncManager.getInstance();
+		if (SyncManager.getService(syncServiceKey) == null)
 			return;
+		
+		// not resetting database, since now we may have new notes, and want to move them from one service to another, etc.
+		
+		// reset last sync date, so we can push local notes to the service - to pull instead, we have "revert all"
+		
+		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, new Time().format3339(false));
+		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, 0);
 
-		// reset if no-auth required
-		// I believe it's done this way because if needsAuth the database is reset when they successfully auth for the first time
-		// TODO we should graphically warn the user that his database is about to be dropped
-		if (!service.needsAuth()){
-		    resetLocalDatabase();
+	}
+
+	public class PreferencesMessageHandler extends Handler {
+		
+		private Activity activity;
+		
+		public PreferencesMessageHandler(Activity activity) {
+			this.activity = activity;
 		}
+	
+		@Override
+		public void handleMessage(Message msg) {
+	
+			String serviceDescription = SyncManager.getInstance().getCurrentService().getDescription();
+			String text = "";
+
+			TLog.d(TAG, "PreferencesMessageHandler message: {0}",msg.what);
+
+			switch (msg.what) {
+				case SyncService.REMOTE_NOTES_DELETED:
+					text = getString(R.string.messageRemoteNotesDeleted);
+					text = String.format(text,serviceDescription);
+					Toast.makeText(activity, text, Toast.LENGTH_SHORT).show();
+					break;
+				case SyncService.NOTES_BACKED_UP:
+					text = getString(R.string.messageNotesBackedUp);
+					Toast.makeText(activity, text, Toast.LENGTH_SHORT).show();
+					break;
+				case SyncService.NOTES_RESTORED:
+					text = getString(R.string.messageNotesRestored);
+					Toast.makeText(activity, text, Toast.LENGTH_SHORT).show();
+					break;
+			}
+			syncProgressDialog.dismiss();
+		}
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if(item.getItemId() == android.R.id.home) {
+	        	// app icon in action bar clicked; go home
+                Intent intent = new Intent(this, Tomdroid.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            	return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+	
+	protected Dialog onCreateDialog(int id) {
+	    Dialog dialog;
+    	AlertDialog alertDialog; 
+	    switch(id) {
+		    case DIALOG_SYNC:
+				String serviceDescription = SyncManager.getInstance().getCurrentService().getDescription();
+				syncProgressDialog = new ProgressDialog(this);
+				syncProgressDialog.setTitle(String.format(getString(R.string.syncing),serviceDescription));
+				syncProgressDialog.setMessage(getString(R.string.syncing_connect));
+				syncProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+				syncProgressDialog.setButton(ProgressDialog.BUTTON_NEGATIVE, getString(R.string.cancel), new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						syncProgressDialog.cancel();
+					}
+				});
+				syncProgressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+
+					public void onCancel(DialogInterface dialog) {
+						SyncManager.getInstance().cancel();
+					}
+					
+				});
+		        syncProgressDialog.setIndeterminate(true);
+		        return syncProgressDialog;
+		    case DIALOG_DELETE:
+		    	alertDialog = new AlertDialog.Builder(this)
+		        .setIcon(android.R.drawable.ic_dialog_alert)
+		        .setTitle(R.string.delete_all)
+		        .setMessage(R.string.delete_all_message)
+		        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+
+		            public void onClick(DialogInterface dialog, int which) {
+		            	resetLocalDatabase();
+		           }
+
+		        })
+		        .setNegativeButton(R.string.no, null)
+		        .create();
+		        return alertDialog;
+
+		    case DIALOG_DEL_REMOTE:
+				alertDialog = new AlertDialog.Builder(this)
+		        .setIcon(android.R.drawable.ic_dialog_alert)
+		        .setTitle(R.string.delete_remote_notes)
+		        .setMessage(R.string.delete_remote_notes_message)
+		        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+
+		            public void onClick(DialogInterface dialog, int which) {
+		            	resetRemoteService();
+		           }
+
+		        })
+		        .setNegativeButton(R.string.no, null)
+		        .create();
+				return alertDialog;
+				
+		    case DIALOG_BACKUP:
+				alertDialog = new AlertDialog.Builder(activity)
+		        .setIcon(android.R.drawable.ic_dialog_alert)
+		        .setTitle(R.string.backup_notes_title)
+		        .setMessage(R.string.backup_notes)
+		        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+
+		            public void onClick(DialogInterface dialog, int which) {
+		        		showDialog(DIALOG_SYNC);
+		            	SyncManager.getService("sdcard").backupNotes();
+		           }
+
+		        })
+		        .setNegativeButton(R.string.no, null)
+		        .create();
+				return alertDialog;
+		    case DIALOG_CONNECT_FAILED:
+				alertDialog = new AlertDialog.Builder(this)
+				.setMessage(getString(R.string.prefSyncConnectionFailed))
+				.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+					}})
+				.create();
+				return alertDialog;
+				
+		    case DIALOG_FOLDER_ERROR:
+		    case DIALOG_INVALID_ENTRY:
+				alertDialog = new AlertDialog.Builder(this)
+				.setTitle(getString(R.string.error))
+				.setMessage(dialogString)
+				.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+					}})
+				.create();
+				return alertDialog;
+		    default:
+		        dialog = null;
+		    }
+	    return dialog;
 	}
 }

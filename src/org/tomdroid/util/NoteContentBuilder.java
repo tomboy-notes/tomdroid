@@ -25,6 +25,7 @@ package org.tomdroid.util;
 import android.os.Handler;
 import android.os.Message;
 import android.text.SpannableStringBuilder;
+
 import org.tomdroid.xml.NoteContentHandler;
 import org.xml.sax.InputSource;
 
@@ -32,7 +33,7 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.StringReader;
 
-public class NoteContentBuilder implements Runnable {
+public class NoteContentBuilder {
 	
 	public static final int PARSE_OK = 0;
 	public static final int PARSE_ERROR = 1;
@@ -45,8 +46,10 @@ public class NoteContentBuilder implements Runnable {
 	private final String TAG = "NoteContentBuilder";
 	
 	// thread related
-	private Thread runner;
+	private Runnable runner;
 	private Handler parentHandler;
+	private String subjectName;
+	private String noteContentString;
 	
 	public NoteContentBuilder () {}
 	
@@ -56,46 +59,63 @@ public class NoteContentBuilder implements Runnable {
 		return this;
 	}
 	
+	/**
+	 * Allows you to give a string that will be appended to errors in order to make them more useful.
+	 * You'll probably want to set it to the Note's title.
+	 * @param title
+	 * @return this (builder pattern) 
+	 */
+	public NoteContentBuilder setTitle(String title) {
+		
+		subjectName = title;
+		return this;
+	}
+	
 	public NoteContentBuilder setInputSource(String nc) {
 		
-		String noteContent = "<note-content>"+nc+"</note-content>";
-		noteContentIs = new InputSource(new StringReader(noteContent));
+		noteContentString = "<note-content>"+nc+"</note-content>";
+		noteContentIs = new InputSource(new StringReader(noteContentString));
 		return this;
 	}
 	
 	public SpannableStringBuilder build() {
 		
-		runner = new Thread(this);
-		runner.start();		
+		runner = new Runnable() {
+			
+			public void run() {
+				
+				
+				boolean successful = true;
+				
+				try {
+					// Parsing
+			    	// XML 
+			    	// Get a SAXParser from the SAXPArserFactory
+			        SAXParserFactory spf = SAXParserFactory.newInstance();
+
+			        // trashing the namespaces but keep prefixes (since we don't have the xml header)
+			        spf.setFeature("http://xml.org/sax/features/namespaces", false);
+			        spf.setFeature("http://xml.org/sax/features/namespace-prefixes", true);
+			        SAXParser sp = spf.newSAXParser();
+
+					TLog.v(TAG, "parsing note {0}", subjectName);
+					
+			        sp.parse(noteContentIs, new NoteContentHandler(noteContent));
+				} catch (Exception e) {
+					e.printStackTrace();
+					// TODO handle error in a more granular way
+					TLog.e(TAG, "There was an error parsing the note {0}", noteContentString);
+					successful = false;
+				}
+				
+				warnHandler(successful);
+			}
+		};
+		Thread thread = new Thread(runner);
+		thread.start();
 		return noteContent;
 	}
-	
-	public void run() {
-		
-		boolean successful = true;
-		
-		try {
-			// Parsing
-	    	// XML 
-	    	// Get a SAXParser from the SAXPArserFactory
-	        SAXParserFactory spf = SAXParserFactory.newInstance();
 
-	        // trashing the namespaces but keep prefixes (since we don't have the xml header)
-	        spf.setFeature("http://xml.org/sax/features/namespaces", false);
-	        spf.setFeature("http://xml.org/sax/features/namespace-prefixes", true);
-	        SAXParser sp = spf.newSAXParser();
-
-			TLog.v(TAG, "parsing note");
-	        sp.parse(noteContentIs, new NoteContentHandler(noteContent));
-		} catch (Exception e) {
-			e.printStackTrace();
-			// TODO handle error in a more granular way
-			TLog.e(TAG, "There was an error parsing the note.");
-			successful = false;
-		}
-		
-		warnHandler(successful);
-	}
 	
     private void warnHandler(boolean successful) {
 		

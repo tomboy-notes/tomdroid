@@ -25,106 +25,288 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Tomdroid是一种与Tomboy兼容的、使用wikiwiki方法的记笔记应用，但至今为止还不能记笔记。</string>
+	<string name="app_desc">Tomboy 兼容便笺应用 wikiwiki。</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
-	<string name="strListEmptyWaiting">笔记在加载中，请稍候</string>
-	<string name="strListEmptyNoNotes">Tomdroid的数据库里没有笔记。</string>
+	<string name="strListEmptyWaiting">便笺正在加载，请稍后..</string>
+	<string name="strListEmptyNoNotes">Tomdroid 的数据库里没有便笺。</string>
 	
 	<string name="menuSync">同步</string>
 	<string name="menuPrefs">设置</string>
-	<string name="menuAbout">有关</string>
+	<string name="menuAbout">关于</string>
 	<string name="titleWelcome">警告</string>
-	<string name="titleAbout">关于Tomdroid</string>
-	<string name="strWelcome">欢迎你用Tomdroid。\n\n请注意，软件还在发展中，还含了已知的问题，比如它还无法编辑笔记。\n\n我们意识到这些问题，并试图快点解决它们。\n\n如果你想作出贡献，我们欢迎各种帮助。为了联系我们，快参加launchpad.net/tomdroid!\n</string>
-	<string name="strAbout">%1$s\n\n作者: %2$s\n版本: %3$s\n领有GPLv3的许可证</string>
+	<string name="titleAbout">关于 Tomdroid</string>
+	<string name="strWelcome">欢迎使用 Tomdroid。\n\n请注意此软件仍在测试阶段且一定会有已知的问题。\n\n我们都知道这些问题也打算尽快修复，我也是想努力解决并尽快测试。\n\n如果您要为此做些贡献，欢迎之至。可到 launchpad.net/tomdroid 吼一下联系我们！\n</string>
+	<string name="strAbout">%1$s\n\n作者: %2$s\n版本: %3$s\n遵照 GPLv3 许可</string>
 	
 	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
 	<string name="btnOk">确认</string>
 	<string name="btnCancel">取消</string>
 	<string name="btnClose">关闭</string>
-	<string name="btnProjectPage">项目页</string>
+	<string name="btnProjectPage">项目主页</string>
+	<string name="btnSavetoSD">保存</string>
 	
 	<!-- note-view.xml -->
-	<string name="strWait">笔记在加载中，请稍候</string>
+	<string name="strWait">便笺加载中请稍等...</string>
 	
-	<string name="prefSync">同步</string>
 	<string name="prefSyncService">服务</string>
 	<string name="prefSyncServer">服务器</string>
-	<string name="prefSDCard">SD卡</string>
-	<string name="prefTomboyWeb">网上同步</string>
+	<string name="prefSDCard">SD 卡</string>
+	<string name="prefTomboyWeb">Online Synchronization</string>
 	<string name="prefAuthenticate">认证</string>
-	<string name="prefLocation">Location on SD Card</string>
-	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
-	<string name="prefNoValidLocation">\"%1$s\" is no valid folder location. Please try again!</string>
-	
-	<string name="prefSyncCompleteAuth">完成认证。请稍候...</string>
+	<string name="prefLocation">在 SD 卡上的位置</string>
+	<string name="prefFolderCreated">文件夹“%1$s”不存在。请连接您的设备到计算机，创建文件夹并载入 *.note 文件。</string>
+	<string name="prefNoValidLocation">“%1$s”是无效的文件夹地址。请重试！</string>
+	<string name="prefNoValidEntry">“%1$s”是无效的条目。请重试！</string>
+	<string name="prefSyncCompleteAuth">正在完成授权。请稍等...</string>
 	<string name="prefSyncConnectionFailed">与服务器的连接失败了，请检查您输入的网址是否正确。</string>
-	<string name="prefServerEmpty">您没有输入服务器的网址。变化被保存。</string>
-	
+	<string name="prefServerEmpty">服务器地址已更改，但新值为空</string>
+			
 	<string name="titleSyncService">请选择想使用的同步服务</string>
 	<string name="messageSyncComplete">与%1$s的同步完成。</string>
-	<string name="messageSyncNoNote">No notes found on %1$s.</string>
+	<string name="messageSyncNoNote">在 %1$s 中未发现便笺。</string>
 	<string name="messageSyncNoConnection">现在没有上网。</string>
 	<string name="messageSyncAlreadyInProgress">同步已经在进行中</string>
 	<string name="messageSyncError">在搜索笔记的时候出现了错误。如果再次出现这样的错误请联系我们！</string>
 	<string name="error">错误</string>
-	<string name="titleNoteNotFound">No Such Note</string>
-	<string name="messageNoteNotFound">The requested note could not be found. Maybe it was deleted or removed through synchronization.</string>
+	<string name="titleNoteNotFound">没有这样的便笺</string>
+	<string name="messageNoteNotFound">未找到请求的便笺。或许它已通过同步被删除或移除。</string>
+	<string name="messageErrorNoteParsing">解析便笺错误。</string>
+	<string name="messageCouldNotSave">无法保存便笺。</string>
+	<string name="messageNoSDCard">未找到 SD 卡存储。</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">Change Sort</string>
-	<string name="titleDefaultSorting">选择常规的顺序</string>
-	<string name="prefDefaultSorting">常规的顺序</string>
+	<string name="menuSort">更改排序</string>
+	<string name="titleDefaultSorting">选择默认顺序</string>
+	<string name="prefDefaultSorting">默认顺序</string>
 	
 	<!-- NotebookFiltering -->
 	<string name="menuFilterNotebook">过滤</string>
-	<string name="strListEmptyNoNotebooks">数据库里没有笔记本。</string>
-	<string name="allNotebooksFilter">所有的笔记本</string>
+	<string name="strListEmptyNoNotebooks">数据库里没有便笺。</string>
+	<string name="allNotebooksFilter">所有便笺本</string>
 	
 	<!-- List Longpress Menu -->
 	<string name="view">查看</string>
-	<string name="noteOptions">笔记选项</string>
+	<string name="noteOptions">便笺选项</string>
 	<string name="send">发送</string>
 	
 	<!--  Search -->
-	<string name="search_hint">搜索笔记</string>
-	<string name="search_description">笔记的内容</string>
-	<string name="strNoResults">没找到有关\"%s\"的笔记</string>
+	<string name="search_hint">搜索便笺</string>
+	<string name="search_description">便笺内容</string>
+	<string name="strNoResults">没找到有关“%s”的便笺</string>
 	<string name="menuSearch">搜索</string>
-	<string name="prefSearch">搜索选项</string>
 	<string name="SearchResultTitle">搜索结果</string>
 	<string name="clearSearchHistoryTitle">删除搜索历史</string>
 	<string name="clearSearchHistory">删除所有的搜索</string>
 	<string name="deletedSearchHistory">搜索历史被删除了</string>
 	
 	<!-- Date -->
-	<string name="textModified">修改于：</string>
+	<string name="textModified">修改时间：</string>
 	<string name="textToday">今天</string>
 	<string name="textYexterday">昨天</string>
 
 	<!-- Shortcuts handling -->
-	<string name="shortcuts_view_caption">Choose a Note</string>
-	<string name="shortcut_menu_item_caption">Tomdroid Note</string>
-	<string name="btnRemoveShortcut">Remove shortcut</string>
-	<string name="createShortcut">Create shortcut</string>
+	<string name="shortcuts_view_caption">选择便笺</string>
+	<string name="shortcut_menu_item_caption">Tomdroid 便笺</string>
+	<string name="btnRemoveShortcut">移除快捷方式</string>
+	<string name="createShortcut">创建快捷方式</string>
+
+	<!-- stuff new to edit -->
+
+	<!-- deleteNote -->
+	<string name="delete">删除</string>
+	<string name="delete_note">删除便笺</string>
+	<string name="delete_message">您确认要删除这条便笺吗？</string>
+	<string name="yes">确认</string>
+	<string name="no">取消</string>
+	<string name="delete_all">清除便笺</string>
+	<string name="delete_all_message">您确定要清除便笺数据库？</string>
+	<string name="delete_remote_notes">删除远程便笺</string>
+	<string name="delete_remote_notes_message">您确定要从远程服务删除全部便笺吗？</string>
+				
+	<!-- newNote -->
+	<string name="menuNew">添加</string>
+	<string name="NewNoteTitle">新便笺</string>
+	<string name="NewNoteTitleHint">在此输入标题</string>
+	<string name="NewNoteBodyHint">在此输入便笺</string>
+			
+	<!-- editNote -->
+	<string name="edit">编辑</string>
+	<string name="save">保存</string>
+	<string name="discard">去掉</string>
+	<string name="back">返回</string>
+	<!-- B stands for bold (in format bar) -->
+	<string name="bold">B</string>
+	<!-- i stands for italic (in format bar) -->
+	<string name="italic">i</string>
+	<!-- S stands for strike through (in format bar) -->
+	<string name="strike"><strike>S</strike></string>
+	<string name="mono">等宽字体</string>
+	<string name="highlight">高亮</string>
+	<string name="size">大小</string>
+	<string name="xml">XML</string>
+	<string name="text">文本</string>
+	<string name="titleErrorParsingXML">解析便笺错误</string>
+	<string name="messageErrorParsingXML">解析便笺发生错误。请检查您的 XML。</string>
+	<string name="messageNoteSaved">便笺已本地保存。</string>
+	<string name="messageNoteDeleted">便笺已从本地删除。</string>
+	<string name="messageSelectSize">选择文本大小</string>
+	<string name="small">小</string>
+	<string name="normal">普通</string>
+	<string name="large">大</string>
+	<string name="huge">巨大</string>
+	<string name="messageDiscardChanges">您要丢弃更改并将便笺恢复到最近保存的版本吗？</string>
+	<string name="titleDiscardChanges">丢弃更改？</string>
+	<string name="gt"><b>&gt;</b></string>
+	<string name="lt"><b>&lt;</b></string>
+			
+	<!-- New Titles -->
+	<string name="view_title">Tomdroid - 查看便笺</string>
+	<string name="edit_title">Tomdroid - 便笺便笺</string>
+	<string name="search_title">Tomdroid - 搜索结果</string>
+	<string name="shortcut_title">Tomdroid - 快捷</string>
+	<string name="pref_title">Tomdroid - 设置</string>
+			
+	<!-- new prefs -->
+	<string name="prefDisplay">显示首选项</string>
+	<string name="prefBaseSize">基本字体大小</string>
+	<string name="prefSync">同步</string>
+	<string name="prefTools">工具</string>
+	<string name="prefAutoSaveTitle">自动保存便笺</string>
+	<string name="prefAutoSave">退出编辑器时自动保存便笺。</string>
+	<string name="prefDeletedNotesTitle">Show Deleted Notes</string>
+	<string name="prefDeletedNotes">If checked, will show deleted notes in notes list.</string>
+	<string name="prefNoteTemplatesTitle">显示便笺模板</string>
+	<string name="prefNoteTemplates">如已勾选，将在便笺列表中显示便笺模板。</string>
+	<string name="deleteAllNotesTitle">清除便笺</string>
+	<string name="deleteAllNotes">从本地数据库中清除全部便笺</string>
+	<string name="deleteRemoteNotesTitle">删除远程便笺</string>
+	<string name="deleteRemoteNotes">从远程服务删除全部便笺</string>
+	<string name="illegalTextSize">非法文本大小。请选择一个数字。</string>
+	<string name="backupPrefTitle">做备份</string>
+	<string name="backupPref">复制全部便笺到 SD 卡</string>
+	<string name="autoBackupPrefTitle">Auto-Backup</string>
+	<string name="autoBackupPref">Copy local note to SD Card on save</string>
+		
+	<!-- syncNotes -->
+
+	<string name="syncing">正在同步 %1$s</string>
+	<string name="syncing_connect">正在连接到服务...</string>
+	<string name="gettings_notes">getting list of remote notes…</string>
+	<string name="syncing_local">正在更新本地便笺...</string>
+	<string name="syncing_remote">正在更新远程便笺...</string>
+	<string name="sync_conflict_title">便笺冲突</string>
+	<string name="sync_conflict_message">There was a conflict syncing the note \'%1$s\'.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="sync_conflict_deleted">There was a conflict syncing the note \'%1$s\' (local version was deleted).  Please choose from one of the actions below.</string>
+	<string name="sync_conflict_titles_message">There was a conflict syncing the note \'%1$s\'.  A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="overwrite_remote">覆盖\n远程</string>
+	<string name="overwrite_local">覆盖\n本地</string>
+	<string name="delete_remote">Delete\nRemote</string>
+	<string name="diff_label">文件间的差别</string>
+	<string name="diff_titles">-- 标题差别 --</string>
+	<string name="diff_content">-- 内容差别 --</string>
+	<string name="line_x">行 %1$s：</string>
+	<string name="local_label">本地版本</string>
+	<string name="remote_label">远程版本</string>
+	<string name="deleted">已删除</string>
+	<string name="copy">创建\n复制</string>
+	<string name="old">%1$s (旧)</string>
+	<string name="close">关闭</string>
+	<string name="cancel">取消</string>
+	<string name="messageAuthComplete">%1$s 授权成功。</string>
+	<string name="messageAuthFailed">%1$s 授权失败。重试？</string>
+	<string name="messageSyncNoteDeleted">便笺成功从 %1$s 删除。</string>
+	<string name="messageSyncNotePushed">便笺成功发送到 %1$s。</string>
+	<string name="messageSyncNotePulled">从 %1$s 接收便笺成功。</string>
+	<string name="messageSyncNoteDeleteError">从 %1$s 删除便笺出错。</string>
+	<string name="messageSyncNotePushError">发送便笺到 %1$s 出错。</string>
+	<string name="messageSyncNotePullError">从 %1$s 接收便笺出错。</string>
+	<string name="messageSyncParseFailed">解析 %1$s 响应出错。</string>
+	<string name="messageSyncConnectingFailed">连接到 %1$s 出错。您可能需要在“设置”里面进行授权。</string>
+	<string name="messageRemoteNotesDeleted">从 %1$s 删除便笺成功。</string>
+	<string name="messageSyncCancelled">%1$s 同步已取消。</string>
+
+	<!-- context menu -->
 	
+	<string name="editTags">Edit Tags</string>
+	<string name="contextRevert">反转</string>
+	<string name="note_x_tags">Note \'%1$s\' Tags</string>
+	<string name="edit_tags">Edit the tags below, separating with commas</string>
+	<string name="undelete">Undelete Note</string>
+				
+	<!-- revert notes -->
+	
+	<string name="menuRevert">反转全部</string>
+	<string name="revert_notes">反转便笺</string>
+	<string name="revert_notes_message">This will revert your local notes to whatever versions exist on the remote service.  Are you sure you want to do this?</string>
+	<string name="revert_note">反转便笺</string>
+	<string name="revert_note_message">This will revert a local note to whatever version exist on the remote service.  Are you sure you want to do this?</string>
+
+	<!-- backup notes -->
+	
+	<string name="backup_notes_title">要做备份吗？</string>
+	<string name="backup_notes">复制所有的本地便笺到 SD 卡？这可能会覆盖 SD 卡上已有的便笺。</string>
+	<string name="restorePrefTitle">恢复便笺</string>
+	<string name="restorePref">拉取 SD 卡上的全部便笺</string>
+	<string name="restore_notes_title">要恢复便笺吗？</string>
+	<string name="restore_notes">拉取 SD 卡上的全部便笺？这可能会覆盖您已有的便笺。</string>
+	<string name="messageNotesBackedUp">便笺成功备份到 SD 卡。</string>
+	<string name="messageNotesRestored">从 SD 卡恢复便笺成功。</string>
+	<string name="messageDatabaseReset">便笺清除成功。</string>
+
+	<!-- send and receive notes -->
+	
+	<string name="sendChoiceTitle">Choose Send Method</string>
+	<string name="sendChoice">How would you like to send the note?</string>
+	<string name="btnSendAsText">As Text</string>
+	<string name="btnSendAsFile">As File</string>
+	<string name="sync_conflict_import_message">There was a conflict importing the note "%1$s".  The note already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="btnCancelImport">Cancel\nImport</string>
+			
+		
+	<string name="firstNoteTitle">Tomdroid\'s First Note</string>
+	
+	<string-array name="firstNoteContent">
+		<item>Welcome to Tomdroid!\n</item>
+		<item>You have no notes here yet. To get started, set your Synchronization preferences under Settings. There are two synchronization options described below.\n</item>
+	    <!-- =text= makes <size:large>text</size:large> --> 
+		<item>=Online Synchronization=</item>
+		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, Ubuntu One, your own Snowy server or any server supporting the Tomboy Web REST API.\n</item>
+		<item>To use it, set Sync Service to Online Synchronization in preferences then  provide a Server URL. Here are some of the public ones:</item>
+		<!-- -text is for list-items. --> 
+		<item>-Tomboy Online - https://edge.tomboy-online.org/</item>
+		<!-- -text is for list-items. --> 
+		<item>-Ubuntu One - https://one.ubuntu.com/notes\n</item>
+		<item>Once set, hit the Sync logo on Tomdroid\'s top bar to synchronize your notes.\n</item>
+		<item>Note: you might want to back up your Tomboy notes before syncing, since this app is still under development and may corrupt your Tomboy notes.  The notes can be found in ~/.local/share/tomboy/ on Linux.\n</item>
+		<!-- =text= makes <size:large>text</size:large> --> 
+		<item>=SD Card=</item>
+		<item>Put your Tomboy notes (*.note) on your SD Card under tomdroid/. The notes can be found in ~/.local/share/tomboy/ on Linux. Once the notes are copied, set Sync Service to SD Card in preferences then hit the Sync logo on Tomdroid\'s top bar.\n</item>
+		<item>See http://live.gnome.org/Tomboy/Directories for the notes\' location on other platforms.\n</item>
+		<item>Also, Tomdroid is always looking for new contributors. If you are interested join the tomdroid-dev team on launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
+		<item>Lastly, if you encounter any issue, please report it at: https://bugs.launchpad.net/tomdroid</item>
+	</string-array>
+			
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
 	I\'ve put it in here so that it\'ll get translated by translators.
 	-->
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid 笔记</string>
-	<!-- 325 chars max -->
-	<string name="market_description">Tomdroid是一种与Tomboy兼容的记笔记应用，提供给使用Android软件的机器。Tomboy是一种在桌面用的、使用wikiwiki方法的、有着方便的用户接口的记笔记应用。\n\n请注意：目前还不能编辑笔记。\n\n* 请注意与Tomboy兼容的笔记格式。Tomboy\n* Tomdroid用Snowy、Tomboy  Online 或 Ubuntu One 以便在网上与Tomboy同步\n* 通过SD卡也可以进口笔记。\n* Tomdroid是开源软件！</string>
+	<!-- 4000 chars max -->
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
 	
 	<!-- 80 chars max -->
-	<string name="market_promotext">与Tomboy兼容的、可在网上同步的记笔记应用</string>
-	
-	
+	<string name="market_promotext">兼容 Tomboy 并支持在线同步的便笺应用</string>
+
+	<!-- 500 chars max -->
+        <string name="market_recent_changes">0.6 \"Small World\" release\n* Create home-screen shortcuts to notes\n* Specify a folder to use for SD Card sync\n* Reload current note after sync\n* A lot of new translations: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n* Several bugfixes\n</string>
+
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
-  Stefan Hammer https://launchpad.net/~j-4</string>
-	
+  Isabel Heger https://launchpad.net/~isabel-h1
+  Stefan Hammer https://launchpad.net/~j-4
+  Wang Dianjin https://launchpad.net/~tuhaihe
+  mozillazg https://launchpad.net/~mozillazg</string>
 </resources>

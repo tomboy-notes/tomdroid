@@ -22,29 +22,59 @@
  along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-	                        
+	<PreferenceCategory android:title="@string/prefDisplay">
+   		<EditTextPreference android:key="base_text_size"
+						android:title="@string/prefBaseSize"
+						android:shouldDisableView="true"
+						android:singleLine="true"/>
+        <CheckBoxPreference
+                android:key="include_note_templates"
+                android:title="@string/prefNoteTemplatesTitle"
+                android:summary="@string/prefNoteTemplates" 
+                android:defaultValue="False" />
+        <CheckBoxPreference
+                android:key="include_deleted_notes"
+                android:title="@string/prefDeletedNotesTitle"
+                android:summary="@string/prefDeletedNotes" 
+                android:defaultValue="False" />
+    </PreferenceCategory>	                        
 	<PreferenceCategory android:title="@string/prefSync">
 		
 		<ListPreference android:title="@string/prefSyncService"
-						android:dialogTitle="@string/titleSyncService"
-						android:key="sync_service" 
-						android:defaultValue="tomboy-web"/>
+				android:dialogTitle="@string/titleSyncService"
+				android:key="sync_service" 
+				android:defaultValue="tomboy-web"/>
 						
 		<EditTextPreference android:key="sync_server"
-							android:title="@string/prefSyncServer"
-							android:positiveButtonText="@string/prefAuthenticate"
-							android:shouldDisableView="true"/>
-		
+				android:title="@string/prefSyncServer"
+				android:shouldDisableView="true"
+				android:singleLine="true"/>
 		<EditTextPreference android:key="sd_location"
-							android:title="@string/prefLocation"
-							android:positiveButtonText="@string/btnOk"
-							android:shouldDisableView="true"/>
+				android:title="@string/prefLocation"
+				android:positiveButtonText="@string/btnOk"
+				android:shouldDisableView="true"
+				android:singleLine="true"/>
 	</PreferenceCategory>
-	<PreferenceCategory android:title="@string/prefSearch">
+	<PreferenceCategory android:title="@string/prefTools">
+        <Preference
+                android:title="@string/backupPrefTitle"
+                android:summary="@string/backupPref"
+                android:key="backup_notes" />
+        <CheckBoxPreference
+                android:title="@string/autoBackupPrefTitle"
+                android:summary="@string/autoBackupPref"
+                android:key="auto_backup_notes" />
+        <Preference
+                android:title="@string/deleteAllNotesTitle"
+                android:summary="@string/deleteAllNotes"
+                android:key="del_all_notes" />
+		<Preference
+                android:title="@string/deleteRemoteNotesTitle"
+                android:summary="@string/deleteRemoteNotes"
+                android:key="del_remote_notes" />
 		<Preference
                 android:title="@string/clearSearchHistoryTitle"
                 android:summary="@string/clearSearchHistory"
                 android:key="clearSearchHistory" />
 	</PreferenceCategory>
-	
 </PreferenceScreen>

@@ -27,15 +27,15 @@ import java.util.ArrayList;
 import org.tomdroid.sync.sd.SdCardSyncService;
 import org.tomdroid.sync.web.SnowySyncService;
 import org.tomdroid.util.Preferences;
+import org.tomdroid.Note;
 
 import android.app.Activity;
 import android.os.Handler;
 
 public class SyncManager {
 	
-	private static final String TAG = "SyncManager";
-	
-	private ArrayList<SyncService> services = new ArrayList<SyncService>();
+	private static ArrayList<SyncService> services = new ArrayList<SyncService>();
+	private SyncService service;
 	
 	public SyncManager() {
 		createServices();
@@ -45,7 +45,7 @@ public class SyncManager {
 		return services;
 	}
 	
-	public SyncService getService(String name) {
+	public static SyncService getService(String name) {
 		
 		for (int i = 0; i < services.size(); i++) {
 			SyncService service = services.get(i);			
@@ -56,10 +56,11 @@ public class SyncManager {
 		return null;
 	}
 	
-	public void startSynchronization() {
+	public void startSynchronization(boolean push) {
 		
-		SyncService service = getCurrentService();
-		service.startSynchronization();
+		service = getCurrentService();
+		service.setCancelled(false);
+		service.startSynchronization(push);
 	}
 	
 	public SyncService getCurrentService() {
@@ -94,5 +95,16 @@ public class SyncManager {
 		
 		services.add(new SnowySyncService(activity, handler));
 		services.add(new SdCardSyncService(activity, handler));
+	}
+
+	// new methods to TEdit
+	
+	public void pullNote(String guid) {
+		SyncService service = getCurrentService();
+		service.pullNote(guid);		
+	}
+
+	public void cancel() {
+		service.setCancelled(true);
 	}
 }

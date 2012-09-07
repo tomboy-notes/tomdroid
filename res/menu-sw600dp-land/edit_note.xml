@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ Tomdroid
+ Tomboy on Android
+ http://www.launchpad.net/tomdroid
+
+ Copyright 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
+ Copyright 2011 Stefan Hammer <j.4@gmx.at>
+ 
+ This file is part of Tomdroid.
+ 
+ Tomdroid is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Tomdroid is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<item android:id="@+id/edit_note_save"
+		android:icon="@android:drawable/ic_menu_save"
+		android:title="@string/save"
+		android:showAsAction="ifRoom|withText"
+		android:orderInCategory="1"
+		/>
+
+    <item android:id="@+id/edit_note_discard"
+          android:icon="@android:drawable/ic_menu_close_clear_cancel"
+          android:title="@string/discard"
+          android:showAsAction="ifRoom|withText"
+          android:orderInCategory="2"
+          />
+<!--
+     <item android:id="@+id/edit_note_xml"
+          android:title="@string/xml"
+          android:icon="@drawable/xml"
+          />
+ -->
+<!-- 
+    <item android:title="@string/send"
+          android:id="@+id/edit_note_send"
+          android:showAsAction="ifRoom|withText"
+          android:icon="@android:drawable/ic_menu_share"
+          android:orderInCategory="3"
+          />
+     -->
+    <item 
+          android:icon="@android:drawable/ic_menu_preferences"
+          android:title="@string/menuPrefs"
+          android:id="@+id/menuPrefs"
+          android:showAsAction="never"
+          android:orderInCategory="4"
+          />  
+</menu>

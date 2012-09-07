@@ -22,40 +22,45 @@
  along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		android:layout_width="fill_parent"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:id="@+id/compare_parent"
+	android:orientation="vertical"
+	>
+	
+	<ScrollView
+	   	android:layout_width="fill_parent"
 		android:layout_height="fill_parent"
-		android:orientation="vertical"
-    	>
-<include android:id="@+id/actionbar" layout="@layout/actionbar" />
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-			android:id="@+id/textScroller"
-			android:layout_width="fill_parent"
-			android:layout_height="fill_parent"
-			android:background="#ffffffff"
-			>			
-	<LinearLayout 
-		android:id="@+id/LinearLayout01" 
-		android:orientation="vertical"
-	    android:layout_width="fill_parent"
-	    android:layout_height="fill_parent">
-	    
-		<!-- <TextView 
-			android:id="@+id/title" 
-			android:layout_width="fill_parent" 
+		android:overScrollMode="always"
+		android:fillViewport="true"
+		android:background="#ffffffff"
+		>
+		<LinearLayout
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:padding="10dip"
-			android:textStyle="bold" />-->
-		
-		<TextView 
-				  xmlns:android="http://schemas.android.com/apk/res/android"
-				  android:id="@+id/content"
-				  android:layout_width="fill_parent" 
-				  android:layout_height="wrap_content"
-				  android:singleLine="false"
-				  android:text="@string/strWait"
-				  android:padding="10dip"
-				  android:textColor="#ffb8bcb8" />
-	</LinearLayout>
-</ScrollView>
+			android:id="@+id/view_parent"
+			android:orientation="vertical"
+			>
+			<TextView 
+			  android:id="@+id/title"
+			  android:layout_width="match_parent" 
+			  android:layout_height="wrap_content"
+			  android:padding="10dip"
+			  android:singleLine="true"
+			  android:text=""
+			  android:textColor="#ffb8bcb8"
+			  />
+			<TextView
+				android:id="@+id/content"
+				android:layout_width="match_parent"
+				android:layout_height="fill_parent"
+				android:padding="10dp"
+				android:text="@string/strWait"
+				android:textIsSelectable="true"
+				android:scrollHorizontally="false"
+				android:textColor="#ffb8bcb8"
+				android:fadingEdgeLength="0dp" 
+				/>
+		</LinearLayout>
+	</ScrollView>
 </LinearLayout>

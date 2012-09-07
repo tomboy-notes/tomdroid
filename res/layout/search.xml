@@ -28,13 +28,9 @@
 		android:orientation="vertical"
     	>
     	
-	<include android:id="@+id/actionbar" layout="@layout/actionbar" />
-    
     <ListView android:id="@android:id/android:list"
 			android:layout_width="fill_parent"
 			android:layout_height="fill_parent"
-			android:divider="#FFCCCCCC"
-			android:dividerHeight="1px"
               />
               
   	<TextView android:id="@+id/no_results"

@@ -1,6 +1,6 @@
 ﻿Tomdroid NEWS
 
-Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
+Copyright 2008, 2009, 2010, 2011, 2012 Olivier Bilodeau <olivier@bottomlesspit.org>
 
 Project hosting: https://launchpad.net/tomdroid/
 
@@ -12,11 +12,95 @@ Join it at: https://launchpad.net/~tomdroid-dev
 For more details and developer visible changes see the ChangeLog
 
 -------------------------------------------------------------------------------
-Versoin 0.?? released on ??
+Tomdroid <version-code> - "<version-name>" released on <release-date>
+
+* added GMail-style two-color pane and selector
+* added ability to receive text-shares from other notes (lp:1039104)
+* added ability to send and receive note files
+* added auto-backup to SD Card preference
+* made First Note translatable
+* moved search function to main activity (allowing two-pane landscape view in results)
+* added option to show deleted notes in list
+* fixed bug lp:1039703 Tomdroid crashes when rotating the device during synchronisation
+* fixed bug lp:1039824 Crash when rotate on Revert All
+* fixed bug lp:1039814 Crash on Backup Notes
+* fixed bug lp:1039671 Crash when the server URL that includes "illegal characters"
+* fixed bug lp:1040333 Crash on Revert
+* fixed bug lp:1040338 Crash on Cancel
+* fixed bug lp:1040389 Share/Send from chrome or play crash
+* fixed bug lp:1040551 Tomdroid two-way sync to SD card messes up titles
+* fixed bug lp:1041792 Error is occured on text decoration in beta Edit
+
+-------------------------------------------------------------------------------
+Tomdroid 0.7.1 beta - "Fast paced" released on 2012-08-21
+
+* Actionbar for all versions of Android
+* Converted format bar to sliding drawer
+* Added progress bar and toast notifications to preferences
+* Cosmetic improvements and bug fixes with conflict resolution
+* Added cancel button to sync
+* Fixed revert all for deleted notes
+* Added routine to avoid full sync if server revision is old (only push changed notes)
+* Set note content entry type to "sentence caps"
+* Usability and cosmetic improvements (lp:1038118, lp:1038352)
+* fixed bug lp:1038115 (beta) do not scroll list to top after deleting a note
+* fixed bug lp:1038119 (beta) syncing is not smart :)
+* fixed bug lp:1038352 tapping on blank area should go to end of line
+* fixed bug lp:1038769 Typo in the string #41
+* fixed bug lp:1038968 NullPointerException on SD Card sync with notes causing parse error
+
+-------------------------------------------------------------------------------
+Version 0.6.1 - "Polyglot" released on <releaseDate>
+
+* New translations: bs, el, eo, fa, fi, nb, si, ta
+* Updated translations: ar, ca, cs, da, de, en-rGB, es, eu, fo, fr, gd, hi, hu, it, ja, ko, ms, pl, pt-rBR, pt, ru, sv, te, tr, ug, uk, zh-rCN, zh
+
+-------------------------------------------------------------------------------
+Tomdroid 0.7 beta - "House of Fun" - Editing and Two-Way Sync!
+
+Editing Features:
+* Rich text editor for editing and formatting notes (credit: http://code.google.com/p/android-richtexteditor/)
+* Ability to create new notes
+* Ability to delete local notes (lp:657563)
+* Automatic renaming of notes on duplicate title (as Note 1, Note 2, etc.)
+* Note saved automatically on pause
+* Ability to revert changes
+
+Sync Features:
+* Two-way sync by default, one-way "pull" sync via "Revert" button (lp:549647)
+* Note conflict resolution screen when notes are of different date and both older or newer than last sync date
+* Automatic authentication - if you use Ubuntu One, pressing "Sync" on first launch is enough to authenticate and sync
+* updating progress bar with information on current task, number of notes
+* Ability to cancel sync via button (lp:592946)
+* switching sync services/servers doesn't clear notes database anymore
+* switching sync servers clears authentication, doesn't authenticate (see "Automatic authentication", above)
+
+UI Tweaks:
+* moved Tomdroid toolbar into native ActionBar with compatibility for older APKS (https://blueprints.launchpad.net/tomdroid/+spec/actionbar-redesign)
+* added option to change from light to dark themes
+* added basic tablet integration (https://blueprints.launchpad.net/tomdroid/+spec/tablet-ui)
+
+Preference Tweaks
+* Added preference for changing base font size
+* Added preference button for backing up notes to SD card (when using online sync)
+* Added preference button for removing all notes from remote service
+* added option to hide/show note templates
+* added option to clear local notes database (useful if switching sync services)
+
+Misc:
+* fixed SQL query should use "?" (lp:880322)
+
+-------------------------------------------------------------------------------
+Version 0.6.0 - "Small World" released on 2012-08-16
+
+* Fix crash when authenticating a server URL containing line breaks (Stefan Hammer, lp:902855)
+* SD card synchronisation now removes deleted messages from Database (Stefan Hammer, lp:533933 )
 * Can specify folder for SD Card Sync (ie: dropbox) (Stefan Hammer, lp:837119)
 * Creating home-screen shortcuts to notes is now possible (Piotr Adamski, 
   lp:882703)
 * Reload current Note after sync (Stefan Hammer, lp:675117)
+* Under the hood changes (Piotr Adamski)
+* Switched to the Launchpad Translation Platform (Stefan Hammer)
 * Tons of new translations by the awesome Translators on Launchpad:
    ar: Youssef Habri
    ast: ASTUR2000
@@ -45,10 +129,6 @@ Versoin 0.?? released on ??
    ug: Sahran
    uk: Mirzaeva Asalle
    zh: Isabel Heger
-* Switched to the Launchpad Translation Platform (Stefan Hammer)
-* New Japanese translation (Koichi Akabe)
-* New Polish translation (Piotr Adamski)
-* Under the hood changes (Piotr Adamski)
 
 -------------------------------------------------------------------------------
 Version 0.5.0 - "long delayed because of fatherhood release" released on 2011-09-05
