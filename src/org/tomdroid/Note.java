@@ -23,7 +23,6 @@
  */
 package org.tomdroid;
 
-import android.net.Uri;
 import android.os.Handler;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -34,10 +33,11 @@ import org.json.JSONObject;
 import org.tomdroid.util.NoteContentBuilder;
 import org.tomdroid.util.XmlUtils;
 
+import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Note {
+public class Note implements Serializable {
 
 	// Static references to fields (used in Bundles, ContentResolvers, etc.)
 	public static final String ID = "_id";
@@ -63,12 +63,12 @@ public class Note {
 	private String fileName;
 	private String title;
 	private String tags = "";
-	private Time lastChangeDate;
+	private String lastChangeDate;
 	private int dbId;
 
 	// Unused members (for SD Card)
 	
-	public Time createDate = new Time();
+	public String createDate = new Time().format3339(false);
 	public int cursorPos = 0;
 	public int height = 0;
 	public int width = 0;
@@ -164,7 +164,9 @@ public class Note {
 	}
 
 	public Time getLastChangeDate() {
-		return lastChangeDate;
+		Time time = new Time();
+		time.parse3339(lastChangeDate);
+		return time;
 	}
 	
 	// sets change date to now
@@ -175,8 +177,8 @@ public class Note {
 		setLastChangeDate(time);
 	}
 	
-	public void setLastChangeDate(Time lastChangeDate) {
-		this.lastChangeDate = lastChangeDate;
+	public void setLastChangeDate(Time lastChangeDateTime) {
+		this.lastChangeDate = lastChangeDateTime.format3339(false);
 	}
 	
 	public void setLastChangeDate(String lastChangeDateStr) throws TimeFormatException {
@@ -191,10 +193,24 @@ public class Note {
 			//TLog.v(TAG, "new date: {0}", lastChangeDateStr);
 		}
 		
-		lastChangeDate = new Time();
-		lastChangeDate.parse3339(lastChangeDateStr);
+		this.lastChangeDate = lastChangeDateStr;
 	}	
 
+	public void setCreateDate(String createDateStr) throws TimeFormatException {
+		
+		// regexp out the sub-milliseconds from tomboy's datetime format
+		// Normal RFC 3339 format: 2008-10-13T16:00:00.000-07:00
+		// Tomboy's (C# library) format: 2010-01-23T12:07:38.7743020-05:00
+		Matcher m = dateCleaner.matcher(createDateStr);
+		if (m.find()) {
+			//TLog.d(TAG, "I had to clean out extra sub-milliseconds from the date");
+			createDateStr = m.group(1)+m.group(2);
+			//TLog.v(TAG, "new date: {0}", lastChangeDateStr);
+		}
+		
+		this.createDate = createDateStr;
+	}
+	
 	public int getDbId() {
 		return dbId;
 	}
@@ -254,7 +270,7 @@ public class Note {
 				+getXmlContent()+"</note-content></text>\n\t<last-change-date>"
 				+getLastChangeDate().format3339(false)+"</last-change-date>\n\t<last-metadata-change-date>"
 				+getLastChangeDate().format3339(false)+"</last-metadata-change-date>\n\t<create-date>"
-				+createDate.format3339(false)+"</create-date>\n\t<cursor-position>"
+				+createDate+"</create-date>\n\t<cursor-position>"
 				+cursorPos+"</cursor-position>\n\t<width>"
 				+width+"</width>\n\t<height>"
 				+height+"</height>\n\t<x>"
@@ -263,5 +279,5 @@ public class Note {
 				+tagString+"\n\t<open-on-startup>False</open-on-startup>\n</note>\n";
 		return fileString;
 	}
-	
+
 }

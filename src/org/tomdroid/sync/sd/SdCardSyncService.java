@@ -84,10 +84,12 @@ public class SdCardSyncService extends SyncService {
 	}
 
 	@Override
-	protected void sync(boolean push) {
+	protected void getNotesForSync(boolean push) {
 
 		setSyncProgress(0);
-
+		
+		this.push = push;
+		
 		// start loading local notes
 		TLog.v(TAG, "Loading local notes");
 		
@@ -116,7 +118,7 @@ public class SdCardSyncService extends SyncService {
 		// If there are no notes, just start the sync
 		if (fileList == null || fileList.length == 0) {
 			TLog.i(TAG, "There are no notes in {0}", path);
-			syncNotes(syncableNotes, push);
+			prepareSyncableNotes(syncableNotes);
 			return;
 		}
 		
@@ -237,7 +239,7 @@ public class SdCardSyncService extends SyncService {
 		
 		private void onWorkDone(){
 			if (isLast) {
-				syncNotes(syncableNotes, push);
+				prepareSyncableNotes(syncableNotes);
 			}
 		}
 	}
@@ -306,7 +308,7 @@ public class SdCardSyncService extends SyncService {
 			
 			path = new File(Tomdroid.NOTES_PATH + "/"+note.getGuid() + ".note");
 	
-			note.createDate = note.getLastChangeDate();
+			note.createDate = note.getLastChangeDate().format3339(false);
 			note.cursorPos = 0;
 			note.width = 0;
 			note.height = 0;
@@ -459,5 +461,9 @@ public class SdCardSyncService extends SyncService {
 		}
 		TLog.d(TAG, "notes deleted from SD Card");
 		sendMessage(REMOTE_NOTES_DELETED);
+	}
+
+	@Override
+	protected void localSyncComplete() {
 	}
 }

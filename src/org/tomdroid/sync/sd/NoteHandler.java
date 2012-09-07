@@ -135,7 +135,7 @@ public class NoteHandler extends DefaultHandler {
 		else if (localName.equals(CREATE_DATE)) {
 			inCreateDateTag = false;
 			if(createDate.length() > 0)
-				note.createDate.parse3339(createDate.toString());
+				note.setCreateDate(createDate.toString());
 		}
 		else if (localName.equals(NOTE_C)) {
 			inCursorTag = false;

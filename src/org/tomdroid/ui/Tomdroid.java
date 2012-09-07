@@ -147,7 +147,6 @@ public class Tomdroid extends ActionBarListActivity {
 	private Handler	 syncMessageHandler	= new SyncMessageHandler(this);
 	
 	// sync variables
-	private int latestRevision;
 	private boolean creating = true;
 	private static ProgressDialog authProgressDialog;
 	
@@ -1000,9 +999,7 @@ public class Tomdroid extends ActionBarListActivity {
 			SyncService currentService = SyncManager.getInstance().getCurrentService();
 			String serviceDescription = currentService.getDescription();
 			String message = "";
-			int increment = 0;
 			boolean dismiss = false;
-			TLog.d(TAG, "SyncMessageHandler message: {0}",msg.what);
 
 			switch (msg.what) {
 				case SyncService.AUTH_COMPLETE:
@@ -1059,9 +1056,6 @@ public class Tomdroid extends ActionBarListActivity {
 					Toast.makeText(activity, activity.getString(R.string.messageNoSDCard),
 							Toast.LENGTH_SHORT).show();
 					break;
-				case SyncService.LATEST_REVISION:
-					latestRevision = msg.arg1;
-					break;
 				case SyncService.SYNC_CONNECTED:
 					dialogString = getString(R.string.gettings_notes);
 					showDialog(DIALOG_SYNC);
@@ -1073,20 +1067,18 @@ public class Tomdroid extends ActionBarListActivity {
 					showDialog(DIALOG_SYNC);
 					break;
 				case SyncService.SYNC_PROGRESS:
-					if(msg.arg1 == 90 && syncProcessedNotes < syncTotalNotes) {
+					if(msg.arg1 == 90) {
 						dialogString = getString(R.string.syncing_remote);						
 						showDialog(DIALOG_SYNC);
 					}
 					break;
 				case SyncService.NOTE_DELETED:
-					increment = 1;
 					message = getString(R.string.messageSyncNoteDeleted);
 					message = String.format(message,serviceDescription);
 					//Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 					break;
 	
 				case SyncService.NOTE_PUSHED:
-					increment = 1;
 					message = getString(R.string.messageSyncNotePushed);
 					message = String.format(message,serviceDescription);
 					//Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
@@ -1096,7 +1088,6 @@ public class Tomdroid extends ActionBarListActivity {
 					message = getString(R.string.messageSyncNotePulled);
 					message = String.format(message,serviceDescription);
 					//Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
-					increment = 1;
 					break;
 														
 				case SyncService.NOTE_DELETE_ERROR:
@@ -1114,14 +1105,6 @@ public class Tomdroid extends ActionBarListActivity {
 					message = String.format(message,serviceDescription);
 					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 					break;
-
-				case SyncService.NOTES_PUSHED: // multiple notes pushed
-					increment = msg.arg1;
-					break;
-					
-				case SyncService.INCREMENT_PROGRESS:
-					increment = 1;
-					break;
 				case SyncService.IN_PROGRESS:
 					Toast.makeText(activity, activity.getString(R.string.messageSyncAlreadyInProgress), Toast.LENGTH_SHORT).show();
 					dismiss = true;
@@ -1136,52 +1119,26 @@ public class Tomdroid extends ActionBarListActivity {
 					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 					break;
 				default:
-					TLog.i(TAG, "handler called with an unknown message");
-					dismiss = true;
 					break;
 	
 			}
-			if(increment > 0) {
-				syncProcessedNotes += increment;
-				if(syncTotalNotes > 0 && syncProcessedNotes >= syncTotalNotes) {
-					sendEmptyMessage(SyncService.PARSING_COMPLETE);
-					return;
-				}
-			}
-			if(syncTotalNotes > 0 && syncProcessedNotes >= syncTotalNotes)
-				dismiss = true;
 			if(dismiss)
 				removeDialog(DIALOG_SYNC);
-			TLog.i(TAG, "processed notes: {0} of {1}", syncProcessedNotes, syncTotalNotes);
 		}
 	}
 
 	protected void  onActivityResult (int requestCode, int resultCode, Intent  data) {
 		TLog.d(TAG, "onActivityResult called with result {0}", resultCode);
-		if(resultCode == Activity.RESULT_OK)
-			syncMessageHandler.sendEmptyMessage(SyncService.INCREMENT_PROGRESS);
-		else if (data.hasExtra("revision"))
-			latestRevision = data.getIntExtra("revision", latestRevision);
+		if(resultCode == Activity.RESULT_OK) {
+			SyncService currentService = SyncManager.getInstance().getCurrentService();
+			currentService.resolvedConflict(requestCode);			
+		}
 		else if (data.hasExtra("error"))
 			syncMessageHandler.sendEmptyMessage(data.getIntExtra("error", SyncService.NOTE_PUSH_ERROR));
 	}
 	
 	public void finishSync() {
-		TLog.v(TAG, "Finishing Sync; latest revision: {0}", latestRevision);
-		
-		Time now = new Time();
-		now.setToNow();
-		String nowString = now.format3339(false);
-		
-	// delete leftover local notes
-		
-		NoteManager.purgeDeletedNotes(this);
-
-		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, nowString);
-		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, latestRevision);
-		
-		SyncService currentService = SyncManager.getInstance().getCurrentService();
-		currentService.finishSync(false);
+		TLog.v(TAG, "Finishing Sync");
 		
 		removeDialog(DIALOG_SYNC);
 		
