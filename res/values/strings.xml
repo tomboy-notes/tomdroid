@@ -80,6 +80,11 @@
 	<string name="menuSort">Change Sort</string>
 	<string name="titleDefaultSorting">Choose the default sorting</string>
 	<string name="prefDefaultSorting">Default sort</string>
+	<string name="prefSorting">Sorting</string>
+	<string name="prefSortDate">Date Modified</string>
+	<string name="prefSortTitle">Note Title</string>
+	<string name="sortByDate">Sort by Date</string>
+	<string name="sortByTitle">Sort by Title</string>
 	
 	<!-- NotebookFiltering -->
 	<string name="menuFilterNotebook">Filter</string>

@@ -35,6 +35,12 @@
        	android:showAsAction="always"
         android:orderInCategory="2"
 		android:id="@+id/menuSync"/>
+   	<item 
+		android:icon="@drawable/ic_menu_sort_datemodified"
+		android:title="@string/sortByDate"
+       	android:showAsAction="always"
+        android:orderInCategory="2"
+		android:id="@+id/menuSort"/>
 
    	<item 
 		android:icon="@android:drawable/ic_menu_revert"
