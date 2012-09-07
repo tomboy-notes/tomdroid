@@ -249,6 +249,7 @@ public class NoteContentHandler extends DefaultHandler {
 				hugeEndPos = -1;
 
 			} else if (name.equals(LINK_INTERNAL)) {
+				if(linkinternalStartPos == linkinternalEndPos) return;
 				inLinkInternalTag = false;
 				// apply style and reset position keepers
 				ssb.setSpan(new LinkInternalSpan(ssb.toString().substring(linkinternalStartPos, linkinternalEndPos)), linkinternalStartPos, linkinternalEndPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
