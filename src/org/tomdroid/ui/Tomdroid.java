@@ -150,9 +150,6 @@ public class Tomdroid extends ActionBarListActivity {
 	// UI feedback handler
 	private Handler	 syncMessageHandler	= new SyncMessageHandler(this);
 
-	// to remember sort order on this activity
-	private String mainSortOrder;
-
 	// sync variables
 	private boolean creating = true;
 	private static ProgressDialog authProgressDialog;
@@ -219,7 +216,6 @@ public class Tomdroid extends ActionBarListActivity {
 		}
 	    
 		String defaultSortOrder = Preferences.getString(Preferences.Key.SORT_ORDER);
-		mainSortOrder = defaultSortOrder;
 		NoteManager.setSortOrder(defaultSortOrder);
 		
 	    // set list adapter
@@ -258,6 +254,15 @@ public class Tomdroid extends ActionBarListActivity {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.main, menu);
 
+    	String sortOrder = NoteManager.getSortOrder();
+		if(sortOrder == null) {
+			menu.findItem(R.id.menuSort).setTitle(R.string.sortByTitle);
+		} else if(sortOrder.equals("sort_title")) {
+			menu.findItem(R.id.menuSort).setTitle(R.string.sortByDate);
+		} else {
+			menu.findItem(R.id.menuSort).setTitle(R.string.sortByTitle);
+		}
+
         // Calling super after populating the menu is necessary here to ensure that the
        	// action bar helpers have a chance to handle this event.
 		return super.onCreateOptionsMenu(menu);
@@ -277,7 +282,12 @@ public class Tomdroid extends ActionBarListActivity {
 				newNote();
 				return true;
 			case R.id.menuSort:
-				mainSortOrder = NoteManager.toggleSortOrder();
+				String sortOrder = NoteManager.toggleSortOrder();
+				if(sortOrder.equals("sort_title")) {
+					item.setTitle(R.string.sortByDate);
+				} else {
+					item.setTitle(R.string.sortByTitle);
+				}
 				updateNotesList(query, -1);
 				return true;
 			case R.id.menuRevert:

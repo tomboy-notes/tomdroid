@@ -36,7 +36,7 @@
         android:orderInCategory="2"
 		android:id="@+id/menuSync"/>
    	<item 
-		android:icon="@drawable/ic_menu_sort_datemodified"
+		android:icon="@android:drawable/ic_menu_sort_by_size"
 		android:title="@string/sortByDate"
        	android:showAsAction="always"
         android:orderInCategory="2"
