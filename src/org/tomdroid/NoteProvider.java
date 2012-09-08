@@ -51,11 +51,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
+import android.text.Html;
 import android.text.TextUtils;
 import org.tomdroid.ui.Tomdroid;
+import org.tomdroid.util.StringConverter;
 import org.tomdroid.util.TLog;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class NoteProvider extends ContentProvider {
@@ -64,7 +68,7 @@ public class NoteProvider extends ContentProvider {
 	// --	
 	private static final String DATABASE_NAME = "tomdroid-notes.db";
 	private static final String DB_TABLE_NOTES = "notes";
-	private static final int DB_VERSION = 3;
+	private static final int DB_VERSION = 4;
 	private static final String DEFAULT_SORT_ORDER = Note.MODIFIED_DATE + " DESC";
 	
     private static HashMap<String, String> notesProjectionMap;
@@ -77,6 +81,14 @@ public class NoteProvider extends ContentProvider {
     
     // Logging info
     private static final String TAG = "NoteProvider";
+       
+    // List of each version's columns
+	private static final String[][] COLUMNS_VERSION = {
+		{ Note.TITLE, Note.FILE, Note.MODIFIED_DATE },
+		{ Note.GUID, Note.TITLE, Note.FILE, Note.NOTE_CONTENT, Note.MODIFIED_DATE },
+		{ Note.GUID, Note.TITLE, Note.FILE, Note.NOTE_CONTENT, Note.MODIFIED_DATE, Note.TAGS },
+		{ Note.GUID, Note.TITLE, Note.FILE, Note.NOTE_CONTENT, Note.NOTE_CONTENT_PLAIN, Note.MODIFIED_DATE, Note.TAGS }
+	};
 
     /**
      * This class helps open, create, and upgrade the database file.
@@ -95,6 +107,7 @@ public class NoteProvider extends ContentProvider {
                     + Note.TITLE + " TEXT,"
                     + Note.FILE + " TEXT,"
                     + Note.NOTE_CONTENT + " TEXT,"
+                    + Note.NOTE_CONTENT_PLAIN + " TEXT,"
                     + Note.MODIFIED_DATE + " STRING,"
                     + Note.TAGS + " STRING"
                     + ");");
@@ -102,10 +115,51 @@ public class NoteProvider extends ContentProvider {
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        	TLog.d(TAG, "Upgrading database from version {0} to {1}, which will destroy all old data",
+        	TLog.d(TAG, "Upgrading database from version {0} to {1}",
                     oldVersion, newVersion);
+        	Cursor notesCursor;
+        	ArrayList<Map<String, String>> db_list = new ArrayList<Map<String, String>>();
+        	notesCursor = db.query(DB_TABLE_NOTES, COLUMNS_VERSION[oldVersion - 1], null, null, null, null, null);
+        	notesCursor.moveToFirst();
+
+        	if (oldVersion == 1) {
+        		// GUID and NOTE_CONTENT are not saved.
+        		TLog.d(TAG, "Database version {0} is not supported to update, all old datas will be destroyed", oldVersion);
+        		db.execSQL("DROP TABLE IF EXISTS notes");
+        		onCreate(db);
+        		return;
+        	}
+
+			// Get old datas from the SQL
+			while(!notesCursor.isAfterLast()) {
+				Map<String, String> row = new HashMap<String, String>();
+				for(int i = 0; i < COLUMNS_VERSION[oldVersion - 1].length; i++) {
+					row.put(COLUMNS_VERSION[oldVersion - 1][i], notesCursor.getString(i));
+				}
+
+				// create new columns
+				if (oldVersion <= 2) {
+					row.put(Note.TAGS, "");
+				}
+				if (oldVersion <= 3) {
+					row.put(Note.NOTE_CONTENT_PLAIN, StringConverter.encode(Html.fromHtml(row.get(Note.TITLE) + "\n" + row.get(Note.NOTE_CONTENT)).toString()));
+				}
+
+				db_list.add(row);
+				notesCursor.moveToNext();
+			}
+
             db.execSQL("DROP TABLE IF EXISTS notes");
             onCreate(db);
+
+			// put rows to the database
+			ContentValues row = new ContentValues();
+			for(int i = 0; i < db_list.size(); i++) {
+				for(int j = 0; j < COLUMNS_VERSION[newVersion - 1].length; j++) {
+					row.put(COLUMNS_VERSION[newVersion - 1][j], db_list.get(i).get(COLUMNS_VERSION[newVersion - 1][j]));
+				}
+				db.insert(DB_TABLE_NOTES, null, row);
+			}
         }
     }
 
@@ -291,6 +345,7 @@ public class NoteProvider extends ContentProvider {
         notesProjectionMap.put(Note.TITLE, Note.TITLE);
         notesProjectionMap.put(Note.FILE, Note.FILE);
         notesProjectionMap.put(Note.NOTE_CONTENT, Note.NOTE_CONTENT);
+        notesProjectionMap.put(Note.NOTE_CONTENT_PLAIN, Note.NOTE_CONTENT_PLAIN);
         notesProjectionMap.put(Note.TAGS, Note.TAGS);
         notesProjectionMap.put(Note.MODIFIED_DATE, Note.MODIFIED_DATE);
     }

@@ -48,6 +48,7 @@ public class Note implements Serializable {
 	public static final String FILE = "file";
 	public static final String TAGS = "tags";
 	public static final String NOTE_CONTENT = "content";
+	public static final String NOTE_CONTENT_PLAIN = "content_plain";
 	
 	// Notes constants
 	public static final int NOTE_HIGHLIGHT_COLOR = 0x99FFFF00; // lowered alpha to show cursor
