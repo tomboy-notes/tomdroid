@@ -448,6 +448,10 @@ public abstract class SyncService {
 			doCancel();
 			return; 
 		}
+
+	// deal with deleteable notes
+		
+		deleteNotes(deleteableNotes);
 		
 	// deal with notes not in remote service - push or delete
 		
@@ -459,19 +463,20 @@ public abstract class SyncService {
 			setSyncProgress(90);
 
 			// if one-way sync, delete pushable notes, else push
-			if(!push)
-				deleteNonRemoteNotes(pushableNotes);
+			if(!push) {
+				deleteNotes(pushableNotes);
+				finishSync(true);
+			}
 			else
 				pushNotes(pushableNotes);
 			
 		} 
 	}
 
-	protected void deleteNonRemoteNotes(ArrayList<Note> notes) {
+	protected void deleteNotes(ArrayList<Note> notes) {
 		
 		for(Note note : notes)
 			NoteManager.deleteNote(this.activity, note.getDbId());
-		finishSync(true);
 	}
 
 	/**
