@@ -168,7 +168,7 @@ public class Tomdroid extends ActionBarListActivity {
 	private Note note;
 	private SpannableStringBuilder noteContent;
 	private Uri uri;
-	private int lastIndex = 0;
+	private int lastIndex = -1;
 	public MenuItem syncMenuItem;
 	public static Tomdroid context;
 
@@ -292,7 +292,7 @@ public class Tomdroid extends ActionBarListActivity {
 				} else {
 					item.setTitle(R.string.sortByTitle);
 				}
-				updateNotesList(query, -1);
+				updateNotesList(query, lastIndex);
 				return true;
 			case R.id.menuRevert:
 				showDialog(DIALOG_REVERT_ALL);
