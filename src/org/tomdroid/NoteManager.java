@@ -560,21 +560,25 @@ public class NoteManager {
 	
 			cursor.moveToFirst();
 	
+			ArrayList<String> titles = new ArrayList<String>();
+			
 			do {
 				title = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
 				if(title.length() == 0 || title.equals(noteTitle))
 					continue;
 				// Pattern.quote() here make sure that special characters in the note's title are properly escaped
-				sb.append("("+Pattern.quote(title)+")|");
+				titles.add("("+Pattern.quote(title)+")");
 	
 			} while (cursor.moveToNext());
 			
 			// if only empty titles, return
-			if (sb.length() == 0)
+			if (titles.size() == 0)
 				return null;
 			
-			// get rid of the last | that is not needed (I know, its ugly.. better idea?)
-			String pt = sb.substring(0, sb.length()-1);
+			// sort titles to give priority to long titles 
+			String[] titlearray = titles.toArray(new String[0]);
+			Arrays.sort(titlearray, new StringLengthComparator());
+			String pt = TextUtils.join("|", titlearray);
 	
 			// return a compiled match pattern
 			return Pattern.compile(pt, Pattern.CASE_INSENSITIVE);
@@ -588,4 +592,10 @@ public class NoteManager {
 		return null;
 	}
 	
+	public static class StringLengthComparator implements Comparator<String>{
+		public int compare(String str1, String str2) {
+			return ((String)str2).length() - ((String)str1).length();
+		}
+	}
+
 }
