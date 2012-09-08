@@ -39,12 +39,10 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
-import org.tomdroid.sync.SyncService;
 import org.tomdroid.sync.sd.NoteHandler;
 import org.tomdroid.ui.CompareNotes;
 import org.tomdroid.ui.EditNote;
 import org.tomdroid.ui.Tomdroid;
-import org.tomdroid.ui.ViewNote;
 import org.tomdroid.ui.actionbar.ActionBarActivity;
 import org.tomdroid.xml.NoteContentHandler;
 import org.xml.sax.InputSource;
@@ -78,74 +76,81 @@ public class Receive extends ActionBarActivity {
 		TLog.v(TAG, "Receiving note of type {0}",type);
 		TLog.d(TAG, "Action type: {0}",action);
 	    
-    	if(intent.getData() != null && intent.getData().getPath().contains(".note")) {
-    		TLog.d(TAG, "File path: {0}",intent.getData().getPath());
-    		TLog.w(TAG, "receiving note as XML file");
-    		useSendXML(intent);
+    	if(intent.getData() != null) {
+    		TLog.d(TAG, "Receiving file from path: {0}",intent.getData().getPath());
+			File file = new File(intent.getData().getPath());
+			final char[] buffer = new char[0x1000];
+			
+			// Try reading the file first
+			String contents = "";
+			try {
+				contents = readFile(file,buffer);
+			} catch (IOException e) {
+				e.printStackTrace();
+				TLog.w(TAG, "Something went wrong trying to read the note");
+				finish();
+			}
+			
+			useSendFile(file, contents);
     	}
     	else if (Intent.ACTION_SEND.equals(action) && type != null && "text/plain".equals(type)) {
     		TLog.v(TAG, "receiving note as plain text");
-            useSendText(intent); // use the text being sent
+    	    String sharedContent = intent.getStringExtra(Intent.EXTRA_TEXT);
+    	    String sharedTitle = intent.getStringExtra(Intent.EXTRA_SUBJECT);
+            useSendText(sharedContent, sharedTitle); // use the text being sent
         }
 	}
-	void useSendXML(Intent intent) {
+	void useSendFile(File file, String contents) {
 		Note remoteNote = new Note();
-		File file = new File(intent.getData().getPath());
-		final char[] buffer = new char[0x1000];
-		
-		remoteNote.setFileName(file.getAbsolutePath());
-		// the note guid is not stored in the xml but in the filename
-		remoteNote.setGuid(file.getName().replace(".note", ""));
 
-		// Try reading the file first
-		String contents = "";
-		try {
-			contents = readFile(file,buffer);
-		} catch (IOException e) {
-			e.printStackTrace();
-			TLog.w(TAG, "Something went wrong trying to read the note");
-			finish();
-		}
+		if(file.getPath().endsWith(".note") && contents.startsWith("<?xml")) { // xml note file
+			
+			try {
+				// Parsing
+		    	// XML 
+		    	// Get a SAXParser from the SAXPArserFactory
+		        SAXParserFactory spf = SAXParserFactory.newInstance();
+		        SAXParser sp = spf.newSAXParser();
 		
-		try {
-			// Parsing
-	    	// XML 
-	    	// Get a SAXParser from the SAXPArserFactory
-	        SAXParserFactory spf = SAXParserFactory.newInstance();
-	        SAXParser sp = spf.newSAXParser();
+		        // Get the XMLReader of the SAXParser we created
+		        XMLReader xr = sp.getXMLReader();
 	
-	        // Get the XMLReader of the SAXParser we created
-	        XMLReader xr = sp.getXMLReader();
+		        // Create a new ContentHandler, send it this note to fill and apply it to the XML-Reader
+		        NoteHandler xmlHandler = new NoteHandler(remoteNote);
+		        xr.setContentHandler(xmlHandler);
+	
+		        // Create the proper input source
+		        StringReader sr = new StringReader(contents);
+		        InputSource is = new InputSource(sr);
+		        
+				TLog.d(TAG, "parsing note");
+				xr.parse(is);
+	
+			// TODO wrap and throw a new exception here
+			} catch (Exception e) {
+				e.printStackTrace();
+				if(e instanceof TimeFormatException) TLog.e(TAG, "Problem parsing the note's date and time");
+				finish();
+			}
+			// the note guid is not stored in the xml but in the filename
+			remoteNote.setGuid(file.getName().replace(".note", ""));
+			Pattern note_content = Pattern.compile("<note-content[^>]+>(.*)<\\/note-content>", Pattern.CASE_INSENSITIVE+Pattern.DOTALL);
 
-	        // Create a new ContentHandler, send it this note to fill and apply it to the XML-Reader
-	        NoteHandler xmlHandler = new NoteHandler(remoteNote);
-	        xr.setContentHandler(xmlHandler);
-
-	        // Create the proper input source
-	        StringReader sr = new StringReader(contents);
-	        InputSource is = new InputSource(sr);
-	        
-			TLog.d(TAG, "parsing note. filename: {0}", file.getName());
-			xr.parse(is);
-
-		// TODO wrap and throw a new exception here
-		} catch (Exception e) {
-			e.printStackTrace();
-			if(e instanceof TimeFormatException) TLog.e(TAG, "Problem parsing the note's date and time");
-			finish();
+			// FIXME here we are re-reading the whole note just to grab note-content out, there is probably a better way to do this (I'm talking to you xmlpull.org!)
+			Matcher m = note_content.matcher(contents);
+			if (m.find()) {
+				remoteNote.setXmlContent(NoteManager.stripTitleFromContent(m.group(1),remoteNote.getTitle()));
+			} else {
+				TLog.w(TAG, "Something went wrong trying to grab the note-content out of a note");
+				return;
+			}
+		}
+		else { // ordinary text file
+			remoteNote = NewNote.createNewNote(this, file.getName().replaceFirst("\\.[^.]+$", ""), XmlUtils.escape(contents));
 		}
 
-		Pattern note_content = Pattern.compile("<note-content[^>]+>(.*)<\\/note-content>", Pattern.CASE_INSENSITIVE+Pattern.DOTALL);
+		remoteNote.setFileName(file.getAbsolutePath());
 
-		// FIXME here we are re-reading the whole note just to grab note-content out, there is probably a better way to do this (I'm talking to you xmlpull.org!)
-		Matcher m = note_content.matcher(contents);
-		if (m.find()) {
-			remoteNote.setXmlContent(NoteManager.stripTitleFromContent(m.group(1),remoteNote.getTitle()));
-		} else {
-			TLog.w(TAG, "Something went wrong trying to grab the note-content out of a note");
-			return;
-		}
-		
 		// check and see if the note already exists; if so, send to conflict resolver
 		Note localNote = NoteManager.getNoteByGuid(this, remoteNote.getGuid()); 
 		
@@ -186,9 +191,7 @@ public class Receive extends ActionBarActivity {
 		finish();		
 	}
 
-	void useSendText(Intent intent) {
-	    String sharedContent = intent.getStringExtra(Intent.EXTRA_TEXT);
-	    String sharedTitle = intent.getStringExtra(Intent.EXTRA_SUBJECT);
+	void useSendText(String sharedContent, String sharedTitle) {
 	    
 	    if (sharedContent != null) {
 			// parse XML

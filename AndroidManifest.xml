@@ -89,7 +89,7 @@
 		        <category android:name="android.intent.category.BROWSABLE" />
 				<data android:scheme="file" />
 				<data android:host="*" />
-				<data android:pathPattern=".*\\.note" />
+				<data android:pathPattern=".*" />
   				<data android:mimeType="*/*" 
 				/>
 			</intent-filter>

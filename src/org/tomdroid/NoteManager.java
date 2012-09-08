@@ -34,6 +34,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.format.Time;
 import android.text.util.Linkify.TransformFilter;
 import android.widget.ListAdapter;
@@ -44,6 +45,7 @@ import org.tomdroid.ui.CompareNotes;
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.NoteListCursorAdapter;
 import org.tomdroid.util.Preferences;
+import org.tomdroid.util.StringConverter;
 import org.tomdroid.util.TLog;
 import org.tomdroid.util.XmlUtils;
 
@@ -192,16 +194,21 @@ public class NoteManager {
                 whereArgs,
                 null);
 		activity.startManagingCursor(managedCursor);
+
+		String title = note.getTitle();
+		String xmlContent = note.getXmlContent();
+		String plainContent = StringConverter.encode(Html.fromHtml(title + "\n" + xmlContent).toString());
 		
 		// Preparing the values to be either inserted or updated
 		// depending on the result of the previous query
 		ContentValues values = new ContentValues();
-		values.put(Note.TITLE, note.getTitle());
+		values.put(Note.TITLE, title);
 		values.put(Note.FILE, note.getFileName());
 		values.put(Note.GUID, note.getGuid().toString());
 		// Notice that we store the date in UTC because sqlite doesn't handle RFC3339 timezone information
 		values.put(Note.MODIFIED_DATE, note.getLastChangeDate().format3339(false));
-		values.put(Note.NOTE_CONTENT, note.getXmlContent());
+		values.put(Note.NOTE_CONTENT, xmlContent);
+		values.put(Note.NOTE_CONTENT_PLAIN, plainContent);
 		values.put(Note.TAGS, note.getTags());
 		
 		Uri uri = null;
@@ -363,11 +370,10 @@ public class NoteManager {
 		if (querys != null ) {
 			// sql statements to search notes
 			String[] query = querys.split(" ");
-			qargs = new String[query.length*2+optionalQueries];
+			qargs = new String[query.length+optionalQueries];
 			for (String string : query) {
-				qargs[count++] = "%"+string+"%"; 
-				qargs[count++] = "%"+string+"%"; 
-				where = where + (where.length() > 0? " AND ":"")+"("+Note.TITLE+" LIKE ? OR "+Note.NOTE_CONTENT+" LIKE ?)";
+				qargs[count++] = "%"+StringConverter.encode(string)+"%"; 
+				where = where + (where.length() > 0? " AND ":"")+"("+Note.NOTE_CONTENT_PLAIN+" LIKE ?)";
 			}	
 		}
 		else
