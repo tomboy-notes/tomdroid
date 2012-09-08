@@ -78,6 +78,7 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 	private EditTextPreference baseSize = null;
 	private EditTextPreference syncServer = null;
 	private ListPreference syncService = null;
+	private ListPreference sortOrder = null;
 	private EditTextPreference sdLocation = null;
 	private Preference delNotes = null;
 	private Preference clearSearchHistory = null;
@@ -111,6 +112,7 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 		baseSize = (EditTextPreference)findPreference(Preferences.Key.BASE_TEXT_SIZE.getName());
 		syncServer = (EditTextPreference)findPreference(Preferences.Key.SYNC_SERVER.getName());
 		syncService = (ListPreference)findPreference(Preferences.Key.SYNC_SERVICE.getName());
+		sortOrder = (ListPreference)findPreference(Preferences.Key.SORT_ORDER.getName());
 		sdLocation = (EditTextPreference)findPreference(Preferences.Key.SD_LOCATION.getName());
 		clearSearchHistory = (Preference)findPreference(Preferences.Key.CLEAR_SEARCH_HISTORY.getName());
 		delNotes = (Preference)findPreference(Preferences.Key.DEL_ALL_NOTES.getName());
@@ -122,7 +124,10 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 		setDefaults();
 		
 		// Fill the services combo list
-		fillLists();
+		fillServices();
+		
+		// Fill the services combo list
+		fillSortOrders();
 		
 		// Enable or disable the server field depending on the selected sync service
 		setServer(syncService.getValue());
@@ -137,6 +142,22 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 					TLog.d(TAG, "preference change triggered");
 					
 					syncServiceChanged(selectedSyncServiceKey);
+				}
+				return true;
+			}
+		});
+ 		
+		// set order by date-modified or title
+		sortOrder.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+			
+			public boolean onPreferenceChange(Preference preference, Object newValue) {
+				String selectedOrder = (String)newValue;
+				
+				// did the selection change?
+				if (!sortOrder.getValue().contentEquals(selectedOrder)) {
+					TLog.d(TAG, "preference change triggered");
+
+					Preferences.putString(Preferences.Key.SORT_ORDER, selectedOrder);
 				}
 				return true;
 			}
@@ -274,7 +295,7 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 		auth.saveConfiguration();
 	}
 	
-	private void fillLists()
+	private void fillServices()
 	{
 		ArrayList<SyncService> availableServices = SyncManager.getInstance().getServices();
 		CharSequence[] entries = new CharSequence[availableServices.size()];
@@ -290,6 +311,16 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 
 	}
 	
+	private void fillSortOrders()
+	{
+		final CharSequence[] entries = new CharSequence[] {getString(R.string.prefSortDate), getString(R.string.prefSortTitle)};
+		final CharSequence[] entryValues = new CharSequence[] {"sort_date", "sort_title"};
+		
+		sortOrder.setEntries(entries);
+		sortOrder.setEntryValues(entryValues);
+
+	}
+	
 	private void setDefaults()
 	{
 		String defaultServer = (String)Preferences.Key.SYNC_SERVER.getDefault();
@@ -302,6 +333,11 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 		syncService.setDefaultValue(defaultService);
 		if(syncService.getValue() == null)
 			syncService.setValue(defaultService);
+		
+		String defaultOrder = (String)Preferences.Key.SORT_ORDER.getDefault();
+		sortOrder.setDefaultValue(defaultOrder);
+		if(sortOrder.getValue() == null)
+			sortOrder.setValue(defaultOrder);
 		
 		String defaultLocation = (String)Preferences.Key.SD_LOCATION.getDefault();
 		sdLocation.setDefaultValue(defaultLocation);

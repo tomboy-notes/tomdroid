@@ -55,6 +55,11 @@
 				android:shouldDisableView="true"
 				android:singleLine="true"/>
 	</PreferenceCategory>
+	<PreferenceCategory android:title="@string/prefSorting">
+		<ListPreference android:title="@string/prefDefaultSorting"
+						android:dialogTitle="@string/titleDefaultSorting"
+						android:key="sort_order"/>
+	</PreferenceCategory>
 	<PreferenceCategory android:title="@string/prefTools">
         <Preference
                 android:title="@string/backupPrefTitle"

@@ -53,6 +53,7 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.text.TextUtils;
 import org.tomdroid.ui.Tomdroid;
+import org.tomdroid.util.Preferences;
 import org.tomdroid.util.TLog;
 
 import java.util.HashMap;
@@ -65,7 +66,6 @@ public class NoteProvider extends ContentProvider {
 	private static final String DATABASE_NAME = "tomdroid-notes.db";
 	private static final String DB_TABLE_NOTES = "notes";
 	private static final int DB_VERSION = 3;
-	private static final String DEFAULT_SORT_ORDER = Note.MODIFIED_DATE + " DESC";
 	
     private static HashMap<String, String> notesProjectionMap;
 
@@ -148,7 +148,13 @@ public class NoteProvider extends ContentProvider {
         // If no sort order is specified use the default
         String orderBy;
         if (TextUtils.isEmpty(sortOrder)) {
-            orderBy = DEFAULT_SORT_ORDER;
+      	    String defaultSortOrder;
+    	    defaultSortOrder = Preferences.getString(Preferences.Key.SORT_ORDER);
+    	    if(defaultSortOrder.equals("sort_title")) {
+    	        orderBy = Note.TITLE + " ASC";
+    	    } else {
+    	        orderBy = Note.MODIFIED_DATE + " DESC";
+    	    }
         } else {
             orderBy = sortOrder;
         }

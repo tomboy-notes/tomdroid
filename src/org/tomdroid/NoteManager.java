@@ -66,6 +66,24 @@ public class NoteManager {
 	
 	// static properties
 	private static final String TAG = "NoteManager";
+ 	
+	private static String sortOrder;
+
+	// column name for sortOrder
+	private static String sortOrderBy;
+
+	public static void setSortOrder(String orderBy) {
+		sortOrderBy = orderBy;
+		if(orderBy.equals("sort_title")) {
+			sortOrder = Note.TITLE + " ASC";
+		} else {
+			sortOrder = Note.MODIFIED_DATE + " DESC";
+		}
+	}
+
+	public static String getSortOrder() {
+		return sortOrderBy;
+	}
 
 	// gets a note from the content provider, based on guid
 	public static Note getNoteByGuid(Activity activity, String guid) {
@@ -279,12 +297,10 @@ public class NoteManager {
 		// get a cursor representing all notes from the NoteProvider
 		Uri notes = Tomdroid.CONTENT_URI;
 		String where = "("+Note.TAGS + " NOT LIKE '%" + "system:deleted" + "%')";
-		String orderBy;
 		if (!includeNotebookTemplates) {
 			where += " AND (" + Note.TAGS + " NOT LIKE '%" + "system:template" + "%')";
 		}
-		orderBy = Note.MODIFIED_DATE + " DESC";
-		return activity.managedQuery(notes, LIST_PROJECTION, where, null, orderBy);		
+		return activity.managedQuery(notes, LIST_PROJECTION, where, null, sortOrder);		
 	}
 
 	// this function gets all non-deleted notes as notes in an array
@@ -374,7 +390,7 @@ public class NoteManager {
 				LIST_PROJECTION,  
 				where,
 				qargs,
-                null);
+				sortOrder);
 		activity.startManagingCursor(notesCursor);
 		
 		// set up an adapter binding the TITLE field of the cursor to the list item
@@ -588,4 +604,16 @@ public class NoteManager {
 		return null;
 	}
 	
+	public static String toggleSortOrder() {
+		String orderBy = getSortOrder();
+		if(orderBy == null) {
+			orderBy = "sort_title";
+		} else if(orderBy.equals("sort_title")) {
+			orderBy = "sort_date";
+		} else {
+			orderBy = "sort_title";
+		}
+		setSortOrder(orderBy);
+		return orderBy;
+	}
 }

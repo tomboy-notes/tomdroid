@@ -35,6 +35,7 @@ import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.sync.SyncService;
 import org.tomdroid.util.ErrorList;
+import org.tomdroid.ui.actionbar.ActionBarActivity;
 import org.tomdroid.ui.actionbar.ActionBarListActivity;
 import org.tomdroid.util.FirstNote;
 import org.tomdroid.util.Honeycomb;
@@ -148,7 +149,7 @@ public class Tomdroid extends ActionBarListActivity {
 
 	// UI feedback handler
 	private Handler	 syncMessageHandler	= new SyncMessageHandler(this);
-	
+
 	// sync variables
 	private boolean creating = true;
 	private static ProgressDialog authProgressDialog;
@@ -214,6 +215,9 @@ public class Tomdroid extends ActionBarListActivity {
 	        suggestions.saveRecentQuery(query, null);
 		}
 	    
+		String defaultSortOrder = Preferences.getString(Preferences.Key.SORT_ORDER);
+		NoteManager.setSortOrder(defaultSortOrder);
+		
 	    // set list adapter
 	    updateNotesList(query, -1);
 
@@ -250,6 +254,15 @@ public class Tomdroid extends ActionBarListActivity {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.main, menu);
 
+    	String sortOrder = NoteManager.getSortOrder();
+		if(sortOrder == null) {
+			menu.findItem(R.id.menuSort).setTitle(R.string.sortByTitle);
+		} else if(sortOrder.equals("sort_title")) {
+			menu.findItem(R.id.menuSort).setTitle(R.string.sortByDate);
+		} else {
+			menu.findItem(R.id.menuSort).setTitle(R.string.sortByTitle);
+		}
+
         // Calling super after populating the menu is necessary here to ensure that the
        	// action bar helpers have a chance to handle this event.
 		return super.onCreateOptionsMenu(menu);
@@ -267,6 +280,15 @@ public class Tomdroid extends ActionBarListActivity {
 				return true;
 			case R.id.menuNew:
 				newNote();
+				return true;
+			case R.id.menuSort:
+				String sortOrder = NoteManager.toggleSortOrder();
+				if(sortOrder.equals("sort_title")) {
+					item.setTitle(R.string.sortByDate);
+				} else {
+					item.setTitle(R.string.sortByTitle);
+				}
+				updateNotesList(query, -1);
 				return true;
 			case R.id.menuRevert:
 				showDialog(DIALOG_REVERT_ALL);

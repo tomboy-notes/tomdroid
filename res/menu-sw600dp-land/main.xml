@@ -48,6 +48,12 @@
        	android:showAsAction="always|withText"
         android:orderInCategory="4"
 		android:id="@+id/menuSync"/>
+   	<item 
+		android:icon="@android:drawable/ic_menu_sort_by_size"
+		android:title="@string/sortByDate"
+       	android:showAsAction="always|withText"
+        android:orderInCategory="5"
+		android:id="@+id/menuSort"/>
 	<item 
 		android:icon="@android:drawable/ic_menu_revert"
 		android:title="@string/menuRevert"
@@ -56,21 +62,21 @@
 		android:icon="@android:drawable/ic_menu_search"
 		android:title="@string/menuSearch"
         android:showAsAction="ifRoom|withText"
-        android:orderInCategory="5"
+        android:orderInCategory="6"
 		android:id="@+id/menuSearch"/>
 
 	<item 
 		android:icon="@android:drawable/ic_menu_info_details"
 		android:title="@string/menuAbout"
        	android:showAsAction="never|withText"
-        android:orderInCategory="6"
+        android:orderInCategory="7"
 		android:id="@+id/menuAbout"/>
 
 	<item 
 		android:icon="@android:drawable/ic_menu_preferences"
 		android:title="@string/menuPrefs"
        	android:showAsAction="never|withText"
-        android:orderInCategory="7"
+        android:orderInCategory="8"
 		android:id="@+id/menuPrefs"/>
 
 </menu>
