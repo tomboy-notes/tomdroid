@@ -550,7 +550,6 @@ public class NoteManager {
 	 */
 	public static Pattern buildNoteLinkifyPattern(Activity activity, String noteTitle)  {
 	
-		StringBuilder sb = new StringBuilder();
 		Cursor cursor = getTitles(activity);
 	
 		// cursor must not be null and must return more than 0 entry
