@@ -80,6 +80,11 @@
 	<string name="menuSort">Ŝanĝi ordigon</string>
 	<string name="titleDefaultSorting">Elektu la aprioran ordigon</string>
 	<string name="prefDefaultSorting">Agriora ordigo</string>
+	<string name="prefSorting">Sorting</string>
+	<string name="prefSortDate">Date Modified</string>
+	<string name="prefSortTitle">Note Title</string>
+	<string name="sortByDate">Sort by Date</string>
+	<string name="sortByTitle">Sort by Title</string>
 	
 	<!-- NotebookFiltering -->
 	<string name="menuFilterNotebook">Filtrigi</string>
@@ -227,14 +232,15 @@
 	<string name="messageRemoteNotesDeleted">Notes deleted from %1$s successfully.</string>
 	<string name="messageSyncCancelled">Sync with %1$s cancelled.</string>
 
-	<!-- context menu -->
+	<!-- menu items -->
 	
 	<string name="editTags">Edit Tags</string>
 	<string name="contextRevert">Revert</string>
 	<string name="note_x_tags">Note \'%1$s\' Tags</string>
 	<string name="edit_tags">Edit the tags below, separating with commas</string>
 	<string name="undelete">Undelete Note</string>
-				
+	<string name="menuImport">Import Note</string>
+					
 	<!-- revert notes -->
 	
 	<string name="menuRevert">Revert All</string>

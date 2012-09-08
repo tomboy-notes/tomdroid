@@ -80,6 +80,11 @@
 	<string name="menuSort">更改排序</string>
 	<string name="titleDefaultSorting">選擇預設的排序</string>
 	<string name="prefDefaultSorting">預設排序</string>
+	<string name="prefSorting">Sorting</string>
+	<string name="prefSortDate">Date Modified</string>
+	<string name="prefSortTitle">Note Title</string>
+	<string name="sortByDate">Sort by Date</string>
+	<string name="sortByTitle">Sort by Title</string>
 	
 	<!-- NotebookFiltering -->
 	<string name="menuFilterNotebook">篩選器</string>
@@ -227,14 +232,15 @@
 	<string name="messageRemoteNotesDeleted">筆記成功地從%1$s刪除</string>
 	<string name="messageSyncCancelled">與%1$s同步取消了。</string>
 
-	<!-- context menu -->
+	<!-- menu items -->
 	
 	<string name="editTags">Edit Tags</string>
 	<string name="contextRevert">恢復</string>
 	<string name="note_x_tags">Note \'%1$s\' Tags</string>
 	<string name="edit_tags">Edit the tags below, separating with commas</string>
 	<string name="undelete">Undelete Note</string>
-				
+	<string name="menuImport">Import Note</string>
+					
 	<!-- revert notes -->
 	
 	<string name="menuRevert">恢復所有的</string>

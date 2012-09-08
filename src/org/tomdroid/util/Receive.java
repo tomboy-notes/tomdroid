@@ -99,6 +99,10 @@ public class Receive extends ActionBarActivity {
     	    String sharedTitle = intent.getStringExtra(Intent.EXTRA_SUBJECT);
             useSendText(sharedContent, sharedTitle); // use the text being sent
         }
+    	else {
+    		TLog.v(TAG, "received invalid note");
+			finish();
+    	}
 	}
 	void useSendFile(File file, String contents) {
 		Note remoteNote = new Note();
@@ -179,7 +183,6 @@ public class Receive extends ActionBarActivity {
 		}
 		
 		// note doesn't exist, just give it a new title if necessary
-		
 		remoteNote.setTitle(NoteManager.validateNoteTitle(this, remoteNote.getTitle(), remoteNote.getGuid()));
 		
     	// add to content provider
@@ -187,6 +190,7 @@ public class Receive extends ActionBarActivity {
 		
 		// view new note
 		Intent i = new Intent(Intent.ACTION_VIEW, uri, this, Tomdroid.class);
+		i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(i);
 		finish();		
 	}
@@ -281,6 +285,7 @@ public class Receive extends ActionBarActivity {
 		
 		// view new note
 		Intent i = new Intent(Intent.ACTION_VIEW, uri, this, Tomdroid.class);
+		i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(i);
 		finish();
 	}

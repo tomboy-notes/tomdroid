@@ -80,6 +80,11 @@
 	<string name="menuSort">Ordenació</string>
 	<string name="titleDefaultSorting">Trieu l\'ordenació per defecte</string>
 	<string name="prefDefaultSorting">Ordenació per defecte</string>
+	<string name="prefSorting">Sorting</string>
+	<string name="prefSortDate">Date Modified</string>
+	<string name="prefSortTitle">Note Title</string>
+	<string name="sortByDate">Sort by Date</string>
+	<string name="sortByTitle">Sort by Title</string>
 	
 	<!-- NotebookFiltering -->
 	<string name="menuFilterNotebook">Filtra</string>
@@ -227,14 +232,15 @@
 	<string name="messageRemoteNotesDeleted">La nota ha estat eliminada a %1$s correctament.</string>
 	<string name="messageSyncCancelled">S\'ha cancel·lat la sincronització amb %1$s.</string>
 
-	<!-- context menu -->
+	<!-- menu items -->
 	
 	<string name="editTags">Edit Tags</string>
 	<string name="contextRevert">Desfés</string>
 	<string name="note_x_tags">Note \'%1$s\' Tags</string>
 	<string name="edit_tags">Edit the tags below, separating with commas</string>
 	<string name="undelete">Undelete Note</string>
-				
+	<string name="menuImport">Import Note</string>
+					
 	<!-- revert notes -->
 	
 	<string name="menuRevert">Desfes-ho tot</string>

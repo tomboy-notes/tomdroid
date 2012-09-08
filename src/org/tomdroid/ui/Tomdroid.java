@@ -24,6 +24,7 @@
  */
 package org.tomdroid.ui;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -44,10 +45,13 @@ import org.tomdroid.util.NewNote;
 import org.tomdroid.util.NoteContentBuilder;
 import org.tomdroid.util.NoteViewShortcutsHelper;
 import org.tomdroid.util.Preferences;
+import org.tomdroid.util.Receive;
 import org.tomdroid.util.SearchSuggestionProvider;
 import org.tomdroid.util.Send;
 import org.tomdroid.util.TLog;
 import org.tomdroid.xml.LinkInternalSpan;
+
+import com.kaloer.filepicker.FilePickerActivity;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -124,7 +128,7 @@ public class Tomdroid extends ActionBarListActivity {
 
 	public int syncTotalNotes;
 	public int syncProcessedNotes;
-	
+
 	// config parameters
 	public static String	NOTES_PATH				= null;
 	
@@ -313,6 +317,24 @@ public class Tomdroid extends ActionBarListActivity {
 					showDialog(DIALOG_DELETE_NOTE);
 				}
 				return true;
+			case R.id.menuImport:
+				// Create a new Intent for the file picker activity
+				Intent intent = new Intent(this, FilePickerActivity.class);
+				
+				// Set the initial directory to be the sdcard
+				//intent.putExtra(FilePickerActivity.EXTRA_FILE_PATH, Environment.getExternalStorageDirectory());
+				
+				// Show hidden files
+				//intent.putExtra(FilePickerActivity.EXTRA_SHOW_HIDDEN_FILES, true);
+				
+				// Only make .png files visible
+				//ArrayList<String> extensions = new ArrayList<String>();
+				//extensions.add(".png");
+				//intent.putExtra(FilePickerActivity.EXTRA_ACCEPTED_FILE_EXTENSIONS, extensions);
+				
+				// Start the activity
+				startActivityForResult(intent, 5718);
+				return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -374,7 +396,7 @@ public class Tomdroid extends ActionBarListActivity {
                 final NoteViewShortcutsHelper helper = new NoteViewShortcutsHelper(this);
                 sendBroadcast(helper.getBroadcastableCreateShortcutIntent(intentUri, dialogNote.getTitle()));
                 break;
-            default:
+			default:
 				break;
 		}
 		
@@ -1160,8 +1182,20 @@ public class Tomdroid extends ActionBarListActivity {
 
 	protected void  onActivityResult (int requestCode, int resultCode, Intent  data) {
 		TLog.d(TAG, "onActivityResult called with result {0}", resultCode);
-		SyncService currentService = SyncManager.getInstance().getCurrentService();
-		currentService.resolvedConflict(requestCode);			
+		
+		// returning from file picker
+		if(data.hasExtra(FilePickerActivity.EXTRA_FILE_PATH)) {
+			// Get the file path
+			File f = new File(data.getStringExtra(FilePickerActivity.EXTRA_FILE_PATH));
+			Uri noteUri = Uri.fromFile(f);
+			Intent intent = new Intent(this, Receive.class);
+			intent.setData(noteUri);
+			startActivity(intent);
+		}
+		else { // returning from sync conflict
+			SyncService currentService = SyncManager.getInstance().getCurrentService();
+			currentService.resolvedConflict(requestCode);			
+		}
 	}
 	
 	public void finishSync() {

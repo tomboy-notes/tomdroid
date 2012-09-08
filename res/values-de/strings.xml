@@ -80,6 +80,11 @@
 	<string name="menuSort">Reihenfolge ändern</string>
 	<string name="titleDefaultSorting">Wähle die Standardreihenfolge</string>
 	<string name="prefDefaultSorting">Standardreihenfolge</string>
+	<string name="prefSorting">Sorting</string>
+	<string name="prefSortDate">Date Modified</string>
+	<string name="prefSortTitle">Note Title</string>
+	<string name="sortByDate">Sort by Date</string>
+	<string name="sortByTitle">Sort by Title</string>
 	
 	<!-- NotebookFiltering -->
 	<string name="menuFilterNotebook">Filter</string>
@@ -227,14 +232,15 @@
 	<string name="messageRemoteNotesDeleted">Notizen erfolgreich von %1$s gelöscht.</string>
 	<string name="messageSyncCancelled">Synchronisation mit %1$s abgebrochen.</string>
 
-	<!-- context menu -->
+	<!-- menu items -->
 	
 	<string name="editTags">Edit Tags</string>
 	<string name="contextRevert">Zurücksetzen</string>
 	<string name="note_x_tags">Note \'%1$s\' Tags</string>
 	<string name="edit_tags">Edit the tags below, separating with commas</string>
 	<string name="undelete">Undelete Note</string>
-				
+	<string name="menuImport">Import Note</string>
+					
 	<!-- revert notes -->
 	
 	<string name="menuRevert">Alles Rückgangig machen</string>

@@ -80,6 +80,11 @@
 	<string name="menuSort">Rendezés módosítása</string>
 	<string name="titleDefaultSorting">Alapértelmezett rendezés választása</string>
 	<string name="prefDefaultSorting">Alapértelmezett rendezés</string>
+	<string name="prefSorting">Sorting</string>
+	<string name="prefSortDate">Date Modified</string>
+	<string name="prefSortTitle">Note Title</string>
+	<string name="sortByDate">Sort by Date</string>
+	<string name="sortByTitle">Sort by Title</string>
 	
 	<!-- NotebookFiltering -->
 	<string name="menuFilterNotebook">Szűrő</string>
@@ -227,14 +232,15 @@
 	<string name="messageRemoteNotesDeleted">A jegyzetek sikeresem törölve erről: %1$s</string>
 	<string name="messageSyncCancelled">A szinkronizálás ezzel %1$s törölve.</string>
 
-	<!-- context menu -->
+	<!-- menu items -->
 	
 	<string name="editTags">Edit Tags</string>
 	<string name="contextRevert">Visszavonás</string>
 	<string name="note_x_tags">Note \'%1$s\' Tags</string>
 	<string name="edit_tags">Edit the tags below, separating with commas</string>
 	<string name="undelete">Undelete Note</string>
-				
+	<string name="menuImport">Import Note</string>
+					
 	<!-- revert notes -->
 	
 	<string name="menuRevert">Mindent visszavon</string>
