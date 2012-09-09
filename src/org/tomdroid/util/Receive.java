@@ -39,6 +39,7 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
+import org.tomdroid.R;
 import org.tomdroid.sync.sd.NoteHandler;
 import org.tomdroid.ui.CompareNotes;
 import org.tomdroid.ui.EditNote;
@@ -59,11 +60,15 @@ import android.os.Message;
 import android.text.SpannableStringBuilder;
 import android.text.format.Time;
 import android.util.TimeFormatException;
+import android.widget.Toast;
 
 public class Receive extends ActionBarActivity {
 	
 	// Logging info
 	private static final String TAG = "ReceiveActivity";
+
+	// don't import files bigger than this 
+	private long MAX_FILE_SIZE = 1048576; // 1MB 
 
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -79,19 +84,28 @@ public class Receive extends ActionBarActivity {
     	if(intent.getData() != null) {
     		TLog.d(TAG, "Receiving file from path: {0}",intent.getData().getPath());
 			File file = new File(intent.getData().getPath());
-			final char[] buffer = new char[0x1000];
-			
-			// Try reading the file first
-			String contents = "";
-			try {
-				contents = readFile(file,buffer);
-			} catch (IOException e) {
-				e.printStackTrace();
-				TLog.w(TAG, "Something went wrong trying to read the note");
+
+			if(file.length() > MAX_FILE_SIZE ) {
+	    		Toast.makeText(this, getString(R.string.messageFileTooBig), Toast.LENGTH_SHORT).show();
 				finish();
 			}
-			
-			useSendFile(file, contents);
+			else {
+				
+				final char[] buffer = new char[0x1000];
+				
+				// Try reading the file first
+				String contents = "";
+				try {
+	
+					contents = readFile(file,buffer);
+				} catch (IOException e) {
+					e.printStackTrace();
+					TLog.w(TAG, "Something went wrong trying to read the note");
+					finish();
+				}
+				
+				useSendFile(file, contents);
+			}
     	}
     	else if (Intent.ACTION_SEND.equals(action) && type != null && "text/plain".equals(type)) {
     		TLog.v(TAG, "receiving note as plain text");

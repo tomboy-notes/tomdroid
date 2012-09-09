@@ -280,7 +280,10 @@
 	<string name="btnSendAsFile">As File</string>
 	<string name="sync_conflict_import_message">There was a conflict importing the note "%1$s".  The note already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
 	<string name="btnCancelImport">Cancel\nImport</string>
-			
+	<string name="messageFileTooBig">File exceeds maximum import size - are you sure it is plain text?</string>
+	<string name="filePickerTitle">Tomdroid - Import Note</string>
+	<string name="noFiles">No files or directories</string>
+	<string name="chooseFile">Choose a file below that is either a Tomboy note file (which will be imported) or a plain text file (which will create a new note)</string>
 		
 	<string name="firstNoteTitle">Tomdroid\'s First Note</string>
 	

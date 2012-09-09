@@ -24,6 +24,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.tomdroid.R;
+import org.tomdroid.ui.actionbar.ActionBarListActivity;
 
 import android.app.ListActivity;
 import android.content.Context;
@@ -38,7 +39,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class FilePickerActivity extends ListActivity {
+public class FilePickerActivity extends ActionBarListActivity {
 	
 	/**
 	 * The file path
