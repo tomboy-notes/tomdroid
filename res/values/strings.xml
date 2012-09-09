@@ -78,9 +78,9 @@
 	
 	<!-- NoteSorting -->
 	<string name="menuSort">Change Sort</string>
-	<string name="titleDefaultSorting">Choose the default sorting</string>
-	<string name="prefDefaultSorting">Default sort</string>
-	<string name="prefSorting">Sorting</string>
+	<string name="titleDefaultSorting">Choose default sorting method</string>
+	<string name="prefDefaultSortingTitle">Default Sort Method</string>
+	<string name="prefSorting">Sort By:</string>
 	<string name="prefSortDate">Date Modified</string>
 	<string name="prefSortTitle">Note Title</string>
 	<string name="sortByDate">Sort by Date</string>
@@ -193,7 +193,18 @@
 	<string name="backupPref">Copy all local notes to SD Card</string>
 	<string name="autoBackupPrefTitle">Auto-Backup</string>
 	<string name="autoBackupPref">Copy local note to SD Card on save</string>
-		
+	<string name="prefLinks">Hyperlink Preferences</string>
+	<string name="prefLinkTitlesTitle">Link Titles</string>
+	<string name="prefLinkTitles">link to other note titles</string>
+	<string name="prefLinkUrlsTitle">Link Web Addresses"</string>
+	<string name="prefLinkUrls">e.g. "www.google.com"</string>
+	<string name="prefLinkEmailsTitle">Link Emails</string>
+	<string name="prefLinkEmails">e.g. name@address.com</string>
+	<string name="prefLinkPhonesTitle">Link Telephone Numbers</string>
+	<string name="prefLinkPhones">link telephone numbers to phone app</string>
+	<string name="prefLinkAddressesTitle">Link Map Addresses</string>
+	<string name="prefLinkAddresses">link to addresses to maps application</string>
+			
 	<!-- syncNotes -->
 
 	<string name="syncing">Syncing with %1$s</string>

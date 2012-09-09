@@ -76,6 +76,7 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 	
 	// TODO: put the various preferences in fields and figure out what to do on activity suspend/resume
 	private EditTextPreference baseSize = null;
+	private ListPreference defaultSort = null;
 	private EditTextPreference syncServer = null;
 	private ListPreference syncService = null;
 	private ListPreference sortOrder = null;
@@ -89,6 +90,7 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 	private Activity activity;
 
 	private Handler	 preferencesMessageHandler	= new PreferencesMessageHandler(this);
+
 
 
 	private static ProgressDialog syncProgressDialog;
@@ -110,6 +112,7 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 		
 		// Fill the Preferences fields
 		baseSize = (EditTextPreference)findPreference(Preferences.Key.BASE_TEXT_SIZE.getName());
+		defaultSort = (ListPreference)findPreference(Preferences.Key.SORT_ORDER.getName());
 		syncServer = (EditTextPreference)findPreference(Preferences.Key.SYNC_SERVER.getName());
 		syncService = (ListPreference)findPreference(Preferences.Key.SYNC_SERVICE.getName());
 		sortOrder = (ListPreference)findPreference(Preferences.Key.SORT_ORDER.getName());
@@ -258,7 +261,17 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 				return true;
 			}
 		});
-
+		defaultSort.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+			
+			public boolean onPreferenceChange(Preference preference, Object newValue) {
+				String value = (String) newValue;
+				if(value == "sort_title")
+					defaultSort.setSummary(getString(R.string.sortByTitle));
+				else
+					defaultSort.setSummary(getString(R.string.sortByDate));
+				return true;
+			}
+		});
 		delNotes.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 			
 	        public boolean onPreferenceClick(Preference preference) {
@@ -349,6 +362,12 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 		baseSize.setSummary(Preferences.getString(Preferences.Key.BASE_TEXT_SIZE));
 		if(baseSize.getText() == null)
 			baseSize.setText(defaultSize);
+		
+		String sortString = Preferences.getString(Preferences.Key.SORT_ORDER);
+		if(sortString == "sort_title")
+			defaultSort.setSummary(getString(R.string.sortByTitle));
+		else
+			defaultSort.setSummary(getString(R.string.sortByDate));
 	}
 
 	private void setServer(String syncServiceKey) {

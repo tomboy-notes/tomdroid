@@ -37,9 +37,11 @@
                 android:title="@string/prefDeletedNotesTitle"
                 android:summary="@string/prefDeletedNotes" 
                 android:defaultValue="False" />
+		<ListPreference android:title="@string/prefDefaultSortingTitle"
+				android:dialogTitle="@string/titleDefaultSorting"
+				android:key="sort_order"/>        
     </PreferenceCategory>	                        
 	<PreferenceCategory android:title="@string/prefSync">
-		
 		<ListPreference android:title="@string/prefSyncService"
 				android:dialogTitle="@string/titleSyncService"
 				android:key="sync_service" 
@@ -55,11 +57,33 @@
 				android:shouldDisableView="true"
 				android:singleLine="true"/>
 	</PreferenceCategory>
-	<PreferenceCategory android:title="@string/prefSorting">
-		<ListPreference android:title="@string/prefDefaultSorting"
-						android:dialogTitle="@string/titleDefaultSorting"
-						android:key="sort_order"/>
-	</PreferenceCategory>
+	<PreferenceCategory android:title="@string/prefLinks">
+        <CheckBoxPreference
+                android:key="link_titles"
+                android:title="@string/prefLinkTitlesTitle"
+                android:summary="@string/prefLinkTitles" 
+                android:defaultValue="True" />
+        <CheckBoxPreference
+                android:key="link_urls"
+                android:title="@string/prefLinkUrlsTitle"
+                android:summary="@string/prefLinkUrls" 
+                android:defaultValue="True" />
+        <CheckBoxPreference
+                android:key="link_emails"
+                android:title="@string/prefLinkEmailsTitle"
+                android:summary="@string/prefLinkEmails" 
+                android:defaultValue="True" />
+        <CheckBoxPreference
+                android:key="link_phones"
+                android:title="@string/prefLinkPhonesTitle"
+                android:summary="@string/prefLinkPhones" 
+                android:defaultValue="True" />
+        <CheckBoxPreference
+                android:key="link_addresses"
+                android:title="@string/prefLinkAddressesTitle"
+                android:summary="@string/prefLinkAddresses" 
+                android:defaultValue="True" />
+    </PreferenceCategory>
 	<PreferenceCategory android:title="@string/prefTools">
         <Preference
                 android:title="@string/backupPrefTitle"
