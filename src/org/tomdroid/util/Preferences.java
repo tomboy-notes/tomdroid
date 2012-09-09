@@ -36,6 +36,7 @@ public class Preferences {
 		SYNC_SERVER_USER_API ("sync_server_user_api", ""),
 		SYNC_SERVER ("sync_server", "https://one.ubuntu.com/notes"),
 		SD_LOCATION ("sd_location", "tomdroid"),
+		LAST_FILE_LOCATION ("last_file_location", "/"),
 		INCLUDE_NOTE_TEMPLATES("include_note_templates", false),
 		INCLUDE_DELETED_NOTES("include_deleted_notes", false),
 		LINK_TITLES("link_titles", true),
