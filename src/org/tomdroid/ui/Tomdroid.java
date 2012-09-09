@@ -26,7 +26,6 @@ package org.tomdroid.ui;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -51,6 +50,7 @@ import org.tomdroid.util.SearchSuggestionProvider;
 import org.tomdroid.util.Send;
 import org.tomdroid.util.TLog;
 import org.tomdroid.xml.LinkInternalSpan;
+
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -60,9 +60,7 @@ import android.app.SearchManager;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -117,7 +115,6 @@ public class Tomdroid extends ActionBarListActivity {
 	private static final int DIALOG_SEND_CHOOSE = 11;
 	private static final int DIALOG_VIEW_TAGS = 12;
 	private static final int DIALOG_NOT_FOUND_SHORTCUT = 13;
-	private static final int DIALOG_FILE_MANAGER = 14;
 
 	private static String dialogString;
 	private static Note dialogNote;
@@ -126,7 +123,6 @@ public class Tomdroid extends ActionBarListActivity {
 	private static int dialogInt2;
 	private EditText dialogInput;
 	private int dialogPosition;
-	private static final int OI_REQUEST_CODE = 123456789;
 
 	public int syncTotalNotes;
 	public int syncProcessedNotes;
@@ -321,17 +317,21 @@ public class Tomdroid extends ActionBarListActivity {
 				return true;
 			case R.id.menuImport:
 				// Create a new Intent for the file picker activity
-				Intent intent = new Intent("org.openintents.action.PICK_FILE");
-				final PackageManager packageManager = context.getPackageManager();
-				List<ResolveInfo> list =
-						 packageManager.queryIntentActivities(intent,
-						 PackageManager.MATCH_DEFAULT_ONLY);
-				if(list.size() > 0) {
-					startActivityForResult(intent, OI_REQUEST_CODE);
-				}
-				else {
-					showDialog(DIALOG_FILE_MANAGER);
-				}
+				Intent intent = new Intent(this, FilePickerActivity.class);
+				
+				// Set the initial directory to be the sdcard
+				//intent.putExtra(FilePickerActivity.EXTRA_FILE_PATH, Environment.getExternalStorageDirectory());
+				
+				// Show hidden files
+				//intent.putExtra(FilePickerActivity.EXTRA_SHOW_HIDDEN_FILES, true);
+				
+				// Only make .png files visible
+				//ArrayList<String> extensions = new ArrayList<String>();
+				//extensions.add(".png");
+				//intent.putExtra(FilePickerActivity.EXTRA_ACCEPTED_FILE_EXTENSIONS, extensions);
+				
+				// Start the activity
+				startActivityForResult(intent, 5718);
 				return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -442,7 +442,7 @@ public class Tomdroid extends ActionBarListActivity {
 				showNoteInPane(lastIndex);
 		}
 		else 
-			updateNotesList(query, -1);
+			updateNotesList(query, lastIndex);
 		
 		creating = false;
 	}
@@ -612,19 +612,6 @@ public class Tomdroid extends ActionBarListActivity {
 		    	})
 		    	.setPositiveButton(R.string.btnOk, null)
 		    	.create();
-		    case DIALOG_FILE_MANAGER:
-                return new AlertDialog.Builder(activity)
-				.setTitle(getString(R.string.installFileManagerTitle))
-				.setMessage(getString(R.string.installFileManager))
-		        .setPositiveButton(android.R.string.ok,new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int whichButton) {
-						Uri marketUri = Uri.parse("market://details?id=org.openintents.filemanager");
-						Intent marketIntent = new Intent(Intent.ACTION_VIEW, marketUri);
-						startActivity(marketIntent);
-					}
-		    	})
-				.setNegativeButton(android.R.string.cancel, null)
-				.create();
 		    default:
 		    	alertDialog = null;
 		    }
@@ -1208,13 +1195,15 @@ public class Tomdroid extends ActionBarListActivity {
 		TLog.d(TAG, "onActivityResult called with result {0}", resultCode);
 		
 		// returning from file picker
-		if(data != null && data.getData() != null && requestCode == OI_REQUEST_CODE) {
-			Uri fileUri = data.getData();
+		if(data != null && data.hasExtra(FilePickerActivity.EXTRA_FILE_PATH)) {
+			// Get the file path
+			File f = new File(data.getStringExtra(FilePickerActivity.EXTRA_FILE_PATH));
+			Uri noteUri = Uri.fromFile(f);
 			Intent intent = new Intent(this, Receive.class);
-			intent.setData(fileUri);
+			intent.setData(noteUri);
 			startActivity(intent);
 		}
-		else if(resultCode == Activity.RESULT_OK) { // returning from sync conflict
+		else { // returning from sync conflict
 			SyncService currentService = SyncManager.getInstance().getCurrentService();
 			currentService.resolvedConflict(requestCode);			
 		}
