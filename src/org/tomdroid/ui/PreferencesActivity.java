@@ -79,7 +79,6 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 	private ListPreference defaultSort = null;
 	private EditTextPreference syncServer = null;
 	private ListPreference syncService = null;
-	private ListPreference sortOrder = null;
 	private EditTextPreference sdLocation = null;
 	private Preference delNotes = null;
 	private Preference clearSearchHistory = null;
@@ -115,7 +114,6 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 		defaultSort = (ListPreference)findPreference(Preferences.Key.SORT_ORDER.getName());
 		syncServer = (EditTextPreference)findPreference(Preferences.Key.SYNC_SERVER.getName());
 		syncService = (ListPreference)findPreference(Preferences.Key.SYNC_SERVICE.getName());
-		sortOrder = (ListPreference)findPreference(Preferences.Key.SORT_ORDER.getName());
 		sdLocation = (EditTextPreference)findPreference(Preferences.Key.SD_LOCATION.getName());
 		clearSearchHistory = (Preference)findPreference(Preferences.Key.CLEAR_SEARCH_HISTORY.getName());
 		delNotes = (Preference)findPreference(Preferences.Key.DEL_ALL_NOTES.getName());
@@ -150,22 +148,6 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 			}
 		});
  		
-		// set order by date-modified or title
-		sortOrder.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
-			
-			public boolean onPreferenceChange(Preference preference, Object newValue) {
-				String selectedOrder = (String)newValue;
-				
-				// did the selection change?
-				if (!sortOrder.getValue().contentEquals(selectedOrder)) {
-					TLog.d(TAG, "preference change triggered");
-
-					Preferences.putString(Preferences.Key.SORT_ORDER, selectedOrder);
-				}
-				return true;
-			}
-		});
-		
 		// force reauthentication if the sync server changes
 		syncServer.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 
@@ -265,7 +247,7 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 			
 			public boolean onPreferenceChange(Preference preference, Object newValue) {
 				String value = (String) newValue;
-				if(value == "sort_title")
+				if(value.equals("sort_title"))
 					defaultSort.setSummary(getString(R.string.sortByTitle));
 				else
 					defaultSort.setSummary(getString(R.string.sortByDate));
@@ -329,8 +311,8 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 		final CharSequence[] entries = new CharSequence[] {getString(R.string.prefSortDate), getString(R.string.prefSortTitle)};
 		final CharSequence[] entryValues = new CharSequence[] {"sort_date", "sort_title"};
 		
-		sortOrder.setEntries(entries);
-		sortOrder.setEntryValues(entryValues);
+		defaultSort.setEntries(entries);
+		defaultSort.setEntryValues(entryValues);
 
 	}
 	
@@ -347,11 +329,6 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 		if(syncService.getValue() == null)
 			syncService.setValue(defaultService);
 		
-		String defaultOrder = (String)Preferences.Key.SORT_ORDER.getDefault();
-		sortOrder.setDefaultValue(defaultOrder);
-		if(sortOrder.getValue() == null)
-			sortOrder.setValue(defaultOrder);
-		
 		String defaultLocation = (String)Preferences.Key.SD_LOCATION.getDefault();
 		sdLocation.setDefaultValue(defaultLocation);
 		if(sdLocation.getText() == null)
@@ -363,8 +340,12 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 		if(baseSize.getText() == null)
 			baseSize.setText(defaultSize);
 		
-		String sortString = Preferences.getString(Preferences.Key.SORT_ORDER);
-		if(sortString == "sort_title")
+		String defaultOrder = (String)Preferences.Key.SORT_ORDER.getDefault();
+		String sortOrder = Preferences.getString(Preferences.Key.SORT_ORDER);
+		defaultSort.setDefaultValue(defaultOrder);
+		if(defaultSort.getValue() == null)
+			defaultSort.setValue(defaultOrder);
+		if(sortOrder.equals("sort_title"))
 			defaultSort.setSummary(getString(R.string.sortByTitle));
 		else
 			defaultSort.setSummary(getString(R.string.sortByDate));
