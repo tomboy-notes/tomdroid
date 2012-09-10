@@ -51,7 +51,7 @@
    	<item 
 		android:icon="@android:drawable/ic_menu_sort_by_size"
 		android:title="@string/sortByDate"
-       	android:showAsAction="always|withText"
+       	android:showAsAction="ifRoom|withText"
         android:orderInCategory="5"
 		android:id="@+id/menuSort"/>
 	<item 
