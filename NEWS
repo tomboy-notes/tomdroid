@@ -33,6 +33,7 @@ Tomdroid <version-code> - "<version-name>" released on <release-date>
 * fixed bug lp:1040389 Share/Send from chrome or play crash
 * fixed bug lp:1040551 Tomdroid two-way sync to SD card messes up titles
 * fixed bug lp:1041792 Error is occured on text decoration in beta Edit
+* fixed bug lp:1049026 Error, when note starts with illegal xml character
 
 -------------------------------------------------------------------------------
 Tomdroid 0.7.1 beta - "Fast paced" released on 2012-08-21
