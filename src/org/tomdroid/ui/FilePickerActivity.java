@@ -90,6 +90,10 @@ public class FilePickerActivity extends ActionBarListActivity {
 		((ViewGroup)getListView().getParent()).addView(emptyView);
 		getListView().setEmptyView(emptyView);
 		
+		TextView listHeader = new TextView(this);
+		listHeader.setText(R.string.chooseFile);
+		getListView().addHeaderView(listHeader);
+		
 		// Set initial directory
 		mDirectory = new File(Preferences.getString(Preferences.Key.LAST_FILE_PATH));
 		refreshNavButtons();

@@ -9,25 +9,19 @@
         android:orientation="vertical" 
         android:gravity="center_horizontal" 
         android:layout_width="fill_parent">
-        <TextView 
-            android:text="@string/chooseFile" 
-            android:layout_width="wrap_content" 
-            android:layout_height="wrap_content"
-            android:textSize="22dp"
-            android:padding="5dp"
-            android:id="@+id/txtHeader">
-        </TextView>
-	    <View
-		    android:layout_width="fill_parent" 
-		    android:layout_height="1dp"
-		    android:background="#DDDDDD"
-	        />
-        <LinearLayout 
-		    android:id="@+id/navButtons"
+        <HorizontalScrollView
 		    android:layout_width="fill_parent" 
 		    android:layout_height="wrap_content"
-		    android:orientation="horizontal"
-			/>
+		    >
+	        <LinearLayout
+	            android:paddingTop="4dp"
+			    android:id="@+id/navButtons"
+			    android:layout_width="wrap_content" 
+			    android:layout_height="wrap_content"
+			    android:orientation="horizontal"
+			    android:layout_gravity="left"
+				/>
+		</HorizontalScrollView>
 	    <View
 		    android:layout_width="fill_parent" 
 		    android:layout_height="1dp"
@@ -42,7 +36,6 @@
                 android:layout_height="fill_parent" 
                 android:layout_width="fill_parent" 
                 android:id="@+id/android:list" 
-                android:scrollbars="none">
-            </ListView>
+            />
     </LinearLayout>
 </LinearLayout>
