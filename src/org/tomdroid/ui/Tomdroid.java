@@ -234,6 +234,7 @@ public class Tomdroid extends ActionBarListActivity {
 
 		if(getIntent().getData() != null) {
 			uri = getIntent().getData();
+			getIntent().setData(null);
 			Intent i = new Intent(Intent.ACTION_VIEW, uri, this, ViewNote.class);
 			startActivity(i);
 		}
