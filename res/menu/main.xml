@@ -38,15 +38,9 @@
    	<item 
 		android:icon="@android:drawable/ic_menu_sort_by_size"
 		android:title="@string/sortByDate"
-       	android:showAsAction="always"
+       	android:showAsAction="ifRoom"
         android:orderInCategory="2"
 		android:id="@+id/menuSort"/>
-
-   	<item 
-		android:icon="@android:drawable/ic_menu_revert"
-		android:title="@string/menuRevert"
-		android:id="@+id/menuRevert"/>
-   		
 	<item 
 		android:icon="@android:drawable/ic_menu_search"
 		android:title="@string/menuSearch"
@@ -58,7 +52,13 @@
 		android:icon="@android:drawable/ic_menu_upload"
        	android:showAsAction="never"
         android:orderInCategory="3"
-		android:id="@+id/menuImport"/>	
+		android:id="@+id/menuImport"/>
+	<item 
+		android:icon="@android:drawable/ic_menu_revert"
+		android:title="@string/menuRevert"
+		android:showAsAction="never"
+        android:orderInCategory="3"
+		android:id="@+id/menuRevert"/>
 	<item 
 		android:title="@string/menuAbout"
 		android:icon="@android:drawable/ic_menu_info_details"

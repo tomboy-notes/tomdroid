@@ -275,6 +275,14 @@ public class Tomdroid extends ActionBarListActivity {
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item) {
 		switch (item.getItemId()) {
+        	case android.R.id.home:
+        		if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+        			// app icon in action bar clicked in search results; go home
+        			Intent intent = new Intent(this, Tomdroid.class);
+        			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        			startActivity(intent);
+        		}
+        		return true;
 			case R.id.menuAbout:
 				showDialog(DIALOG_ABOUT);
 				return true;
