@@ -794,6 +794,9 @@ public class Tomdroid extends ActionBarListActivity {
 	private void showNoteInPane(int position) {
 		if(rightPane == null)
 			return;
+		
+		if(position == -1)
+			position = 0;
 
         title.setText("");
         content.setText("");
