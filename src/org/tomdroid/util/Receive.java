@@ -73,6 +73,9 @@ public class Receive extends ActionBarActivity {
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		// init preferences
+		Preferences.init(this, Tomdroid.CLEAR_PREFERENCES);
+
 		// set intent, action, MIME type
 	    Intent intent = getIntent();
 	    String action = intent.getAction();
