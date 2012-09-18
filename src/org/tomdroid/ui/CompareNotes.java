@@ -24,7 +24,6 @@
  */
 package org.tomdroid.ui;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.UUID;
 import java.util.regex.Matcher;

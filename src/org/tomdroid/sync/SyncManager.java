@@ -27,8 +27,6 @@ import java.util.ArrayList;
 import org.tomdroid.sync.sd.SdCardSyncService;
 import org.tomdroid.sync.web.SnowySyncService;
 import org.tomdroid.util.Preferences;
-import org.tomdroid.Note;
-
 import android.app.Activity;
 import android.os.Handler;
 

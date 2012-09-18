@@ -28,13 +28,9 @@ import java.util.Date;
 import org.tomdroid.Note;
 import org.tomdroid.R;
 
-import android.R.style;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Paint;
-import android.graphics.Typeface;
-import android.text.Html;
-import android.text.Spanned;
 import android.text.format.DateUtils;
 import android.text.format.Time;
 import android.view.LayoutInflater;

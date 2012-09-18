@@ -28,9 +28,6 @@ import org.tomdroid.R;
 import android.app.Activity;
 import android.text.TextUtils;
 
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
-
 /**
  * Creates an introductory note object 
  * @author Olivier Bilodeau <olivier@bottomlesspit.org>

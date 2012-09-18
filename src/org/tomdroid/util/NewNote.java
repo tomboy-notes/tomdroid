@@ -25,7 +25,6 @@ package org.tomdroid.util;
 import org.tomdroid.Note;
 import java.util.UUID;
 import android.content.Context;
-import android.text.format.Time;
 
 
 /**
