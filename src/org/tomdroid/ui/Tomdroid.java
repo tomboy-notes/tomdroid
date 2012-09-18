@@ -232,7 +232,9 @@ public class Tomdroid extends ActionBarListActivity {
 		// add note to pane for tablet
 		rightPane = (LinearLayout) findViewById(R.id.right_pane);
 
-		if(getIntent().getData() != null) {
+		// check if receiving note
+		
+		if(getIntent().hasExtra("view_note")) {
 			uri = getIntent().getData();
 			getIntent().setData(null);
 			Intent i = new Intent(Intent.ACTION_VIEW, uri, this, ViewNote.class);

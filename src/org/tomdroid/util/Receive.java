@@ -204,6 +204,7 @@ public class Receive extends ActionBarActivity {
 		
 		// view new note
 		Intent i = new Intent(Intent.ACTION_VIEW, uri, this, Tomdroid.class);
+		i.putExtra("view_note", true);
 		i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(i);
 		finish();		
@@ -299,6 +300,7 @@ public class Receive extends ActionBarActivity {
 		
 		// view new note
 		Intent i = new Intent(Intent.ACTION_VIEW, uri, this, Tomdroid.class);
+		i.putExtra("view_note", true);
 		i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(i);
 		finish();
