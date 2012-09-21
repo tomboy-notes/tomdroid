@@ -29,7 +29,7 @@
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
-	<string name="strListEmptyWaiting">Please wait while the notes load..</string>
+	<string name="strListEmptyWaiting">Please wait while the notes load…</string>
 	<string name="strListEmptyNoNotes">There are no notes in Tomdroid\'s database.</string>
 	
 	<string name="menuSync">Sync</string>

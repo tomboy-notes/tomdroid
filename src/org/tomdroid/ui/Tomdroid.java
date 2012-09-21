@@ -218,18 +218,12 @@ public class Tomdroid extends ActionBarListActivity {
 		
 	    // set list adapter
 	    updateNotesList(query, -1);
-
-		// set the view shown when the list is empty
-		listEmptyView = (TextView) findViewById(R.id.list_empty);
-		getListView().setEmptyView(listEmptyView);
-		
-		registerForContextMenu(findViewById(android.R.id.list));
-
+	    
 		// add note to pane for tablet
 		rightPane = (LinearLayout) findViewById(R.id.right_pane);
+		registerForContextMenu(findViewById(android.R.id.list));
 
 		// check if receiving note
-		
 		if(getIntent().hasExtra("view_note")) {
 			uri = getIntent().getData();
 			getIntent().setData(null);
@@ -245,6 +239,9 @@ public class Tomdroid extends ActionBarListActivity {
 			updateTextAttributes();
 			showNoteInPane(0);
 		}
+		
+		// set the view shown when the list is empty
+		updateEmptyList(query);
 	}
 
 	@TargetApi(11)
@@ -442,7 +439,6 @@ public class Tomdroid extends ActionBarListActivity {
 		SyncManager.setHandler(this.syncMessageHandler);
 		
 		// tablet refresh
-		
 		if(rightPane != null) {
 			updateTextAttributes();
 			if(!creating)
@@ -451,6 +447,8 @@ public class Tomdroid extends ActionBarListActivity {
 		else 
 			updateNotesList(query, lastIndex);
 		
+		// set the view shown when the list is empty
+		updateEmptyList(query);
 		creating = false;
 	}
 
@@ -751,10 +749,6 @@ public class Tomdroid extends ActionBarListActivity {
         if (Integer.parseInt(Build.VERSION.SDK) >= 11) {
             Honeycomb.invalidateOptionsMenuWrapper(this); 
         }
-        
-        // set the view shown when the list is empty
-		listEmptyView = (TextView) findViewById(R.id.list_empty);
-		getListView().setEmptyView(listEmptyView);
 		
 		registerForContextMenu(findViewById(android.R.id.list));
 
@@ -769,12 +763,36 @@ public class Tomdroid extends ActionBarListActivity {
 		}
 		else
 			updateNotesList(query,-1);
+		
+		// set the view shown when the list is empty
+		updateEmptyList(query);
 	}
 
 	private void updateNotesList(String aquery, int aposition) {
 	    // adapter that binds the ListView UI to the notes in the note manager
 		adapter = NoteManager.getListAdapter(this, aquery, rightPane != null ? aposition : -1);
-		setListAdapter(adapter);		
+		setListAdapter(adapter);
+	}
+	
+	private void updateEmptyList(String aquery) {
+		// set the view shown when the list is empty
+		listEmptyView = (TextView) findViewById(R.id.list_empty);
+		if (rightPane == null) {
+			if (aquery != null) {
+				listEmptyView.setText(getString(R.string.strNoResults, aquery)); }
+			else if (adapter.getCount() != 0) {
+				listEmptyView.setText(getString(R.string.strListEmptyWaiting)); }
+			else {
+				listEmptyView.setText(getString(R.string.strListEmptyNoNotes)); }
+		} else {
+			if (aquery != null) {
+				title.setText(getString(R.string.strNoResults, aquery)); }
+			else if (adapter.getCount() != 0) {
+				title.setText(getString(R.string.strListEmptyWaiting)); }
+			else {
+				title.setText(getString(R.string.strListEmptyNoNotes)); }
+		}
+		getListView().setEmptyView(listEmptyView);
 	}
 	
 	private void updateTextAttributes() {
