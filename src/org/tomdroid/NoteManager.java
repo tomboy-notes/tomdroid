@@ -93,6 +93,7 @@ public class NoteManager {
                 null);
 		activity.startManagingCursor(cursor);
 		if (cursor == null || cursor.getCount() == 0) {
+			cursor.close();
 			return null;
 		}
 		else {
@@ -111,6 +112,7 @@ public class NoteManager {
 			note.addTag(noteTags);
 			note.setGuid(noteGUID);
 			note.setDbId(noteDbid);
+			cursor.close();
 			return note;
 		}
 	}
@@ -142,7 +144,7 @@ public class NoteManager {
 			note.setGuid(noteGUID);
 			note.setDbId(noteDbid);
 		}
-		
+		cursor.close();
 		return note;
 	}
 
@@ -221,7 +223,7 @@ public class NoteManager {
 
 			TLog.v(TAG, "Note updated in content provider: TITLE:{0} GUID:{1} TAGS:{2}", note.getTitle(), note.getGuid(), note.getTags());
 		}
-		
+		managedCursor.close();
 		note = getNote(activity, uri);
 		return uri;
 	}

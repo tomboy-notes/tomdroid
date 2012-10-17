@@ -247,6 +247,8 @@ public abstract class SyncService {
 						}
 					} while (cursor.moveToNext());
 				}
+				cursor.close();
+				
 				if(localNote == null)
 					pullableNotes.add(remoteNote);
 				else { // compare two different notes with same title

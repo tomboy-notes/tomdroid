@@ -132,9 +132,6 @@ public class Tomdroid extends ActionBarListActivity {
 	// Logging info
 	private static final String	TAG					= "Tomdroid";
 
-	// Logging should be disabled for release builds
-	public static final boolean	LOGGING_ENABLED		= false;
-
 	public static Uri getNoteIntentUri(long noteId) {
         return Uri.parse(CONTENT_URI + "/" + noteId);
     }

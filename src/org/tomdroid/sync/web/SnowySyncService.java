@@ -257,7 +257,9 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 							doCancel();
 							return; 
 						}						
-
+						
+						// close cursor
+						newLocalNotes.close();
 						prepareSyncableNotes(notesList);
 						
 					} catch (JSONException e) {
