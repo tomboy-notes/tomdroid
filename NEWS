@@ -12,7 +12,7 @@ Join it at: https://launchpad.net/~tomdroid-dev
 For more details and developer visible changes see the ChangeLog
 
 -------------------------------------------------------------------------------
-Tomdroid <version-code> - "<version-name>" released on <release-date>
+Tomdroid 0.7.2 beta - "For the Love of Monkey" released on 2012-10-17
 
 * added GMail-style two-color pane and selector
 * added ability to receive text-shares from other notes (lp:1039104)
