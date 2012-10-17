@@ -25,8 +25,6 @@
 package org.tomdroid.ui;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -37,7 +35,6 @@ import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.sync.SyncService;
 import org.tomdroid.util.ErrorList;
-import org.tomdroid.ui.actionbar.ActionBarActivity;
 import org.tomdroid.ui.actionbar.ActionBarListActivity;
 import org.tomdroid.util.FirstNote;
 import org.tomdroid.util.Honeycomb;
@@ -51,6 +48,7 @@ import org.tomdroid.util.SearchSuggestionProvider;
 import org.tomdroid.util.Send;
 import org.tomdroid.util.TLog;
 import org.tomdroid.xml.LinkInternalSpan;
+
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -60,9 +58,7 @@ import android.app.SearchManager;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -77,14 +73,12 @@ import android.provider.SearchRecentSuggestions;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.format.Time;
-import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
 import android.text.util.Linkify.MatchFilter;
 import android.text.util.Linkify.TransformFilter;
 import android.view.*;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView.AdapterContextMenuInfo;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
@@ -117,7 +111,6 @@ public class Tomdroid extends ActionBarListActivity {
 	private static final int DIALOG_SEND_CHOOSE = 11;
 	private static final int DIALOG_VIEW_TAGS = 12;
 	private static final int DIALOG_NOT_FOUND_SHORTCUT = 13;
-	private static final int DIALOG_FILE_MANAGER = 14;
 
 	private static String dialogString;
 	private static Note dialogNote;
@@ -126,7 +119,6 @@ public class Tomdroid extends ActionBarListActivity {
 	private static int dialogInt2;
 	private EditText dialogInput;
 	private int dialogPosition;
-	private static final int OI_REQUEST_CODE = 123456789;
 
 	public int syncTotalNotes;
 	public int syncProcessedNotes;
@@ -226,18 +218,15 @@ public class Tomdroid extends ActionBarListActivity {
 		
 	    // set list adapter
 	    updateNotesList(query, -1);
-
-		// set the view shown when the list is empty
-		listEmptyView = (TextView) findViewById(R.id.list_empty);
-		getListView().setEmptyView(listEmptyView);
-		
-		registerForContextMenu(findViewById(android.R.id.list));
-
+	    
 		// add note to pane for tablet
 		rightPane = (LinearLayout) findViewById(R.id.right_pane);
+		registerForContextMenu(findViewById(android.R.id.list));
 
-		if(getIntent().getData() != null) {
+		// check if receiving note
+		if(getIntent().hasExtra("view_note")) {
 			uri = getIntent().getData();
+			getIntent().setData(null);
 			Intent i = new Intent(Intent.ACTION_VIEW, uri, this, ViewNote.class);
 			startActivity(i);
 		}
@@ -250,6 +239,9 @@ public class Tomdroid extends ActionBarListActivity {
 			updateTextAttributes();
 			showNoteInPane(0);
 		}
+		
+		// set the view shown when the list is empty
+		updateEmptyList(query);
 	}
 
 	@TargetApi(11)
@@ -329,17 +321,21 @@ public class Tomdroid extends ActionBarListActivity {
 				return true;
 			case R.id.menuImport:
 				// Create a new Intent for the file picker activity
-				Intent intent = new Intent("org.openintents.action.PICK_FILE");
-				final PackageManager packageManager = context.getPackageManager();
-				List<ResolveInfo> list =
-						 packageManager.queryIntentActivities(intent,
-						 PackageManager.MATCH_DEFAULT_ONLY);
-				if(list.size() > 0) {
-					startActivityForResult(intent, OI_REQUEST_CODE);
-				}
-				else {
-					showDialog(DIALOG_FILE_MANAGER);
-				}
+				Intent intent = new Intent(this, FilePickerActivity.class);
+				
+				// Set the initial directory to be the sdcard
+				//intent.putExtra(FilePickerActivity.EXTRA_FILE_PATH, Environment.getExternalStorageDirectory());
+				
+				// Show hidden files
+				//intent.putExtra(FilePickerActivity.EXTRA_SHOW_HIDDEN_FILES, true);
+				
+				// Only make .png files visible
+				//ArrayList<String> extensions = new ArrayList<String>();
+				//extensions.add(".png");
+				//intent.putExtra(FilePickerActivity.EXTRA_ACCEPTED_FILE_EXTENSIONS, extensions);
+				
+				// Start the activity
+				startActivityForResult(intent, 5718);
 				return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -443,15 +439,16 @@ public class Tomdroid extends ActionBarListActivity {
 		SyncManager.setHandler(this.syncMessageHandler);
 		
 		// tablet refresh
-		
 		if(rightPane != null) {
 			updateTextAttributes();
 			if(!creating)
 				showNoteInPane(lastIndex);
 		}
 		else 
-			updateNotesList(query, -1);
+			updateNotesList(query, lastIndex);
 		
+		// set the view shown when the list is empty
+		updateEmptyList(query);
 		creating = false;
 	}
 
@@ -620,19 +617,6 @@ public class Tomdroid extends ActionBarListActivity {
 		    	})
 		    	.setPositiveButton(R.string.btnOk, null)
 		    	.create();
-		    case DIALOG_FILE_MANAGER:
-                return new AlertDialog.Builder(activity)
-				.setTitle(getString(R.string.installFileManagerTitle))
-				.setMessage(getString(R.string.installFileManager))
-		        .setPositiveButton(android.R.string.ok,new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int whichButton) {
-						Uri marketUri = Uri.parse("market://details?id=org.openintents.filemanager");
-						Intent marketIntent = new Intent(Intent.ACTION_VIEW, marketUri);
-						startActivity(marketIntent);
-					}
-		    	})
-				.setNegativeButton(android.R.string.cancel, null)
-				.create();
 		    default:
 		    	alertDialog = null;
 		    }
@@ -765,10 +749,6 @@ public class Tomdroid extends ActionBarListActivity {
         if (Integer.parseInt(Build.VERSION.SDK) >= 11) {
             Honeycomb.invalidateOptionsMenuWrapper(this); 
         }
-        
-        // set the view shown when the list is empty
-		listEmptyView = (TextView) findViewById(R.id.list_empty);
-		getListView().setEmptyView(listEmptyView);
 		
 		registerForContextMenu(findViewById(android.R.id.list));
 
@@ -783,12 +763,36 @@ public class Tomdroid extends ActionBarListActivity {
 		}
 		else
 			updateNotesList(query,-1);
+		
+		// set the view shown when the list is empty
+		updateEmptyList(query);
 	}
 
 	private void updateNotesList(String aquery, int aposition) {
 	    // adapter that binds the ListView UI to the notes in the note manager
 		adapter = NoteManager.getListAdapter(this, aquery, rightPane != null ? aposition : -1);
-		setListAdapter(adapter);		
+		setListAdapter(adapter);
+	}
+	
+	private void updateEmptyList(String aquery) {
+		// set the view shown when the list is empty
+		listEmptyView = (TextView) findViewById(R.id.list_empty);
+		if (rightPane == null) {
+			if (aquery != null) {
+				listEmptyView.setText(getString(R.string.strNoResults, aquery)); }
+			else if (adapter.getCount() != 0) {
+				listEmptyView.setText(getString(R.string.strListEmptyWaiting)); }
+			else {
+				listEmptyView.setText(getString(R.string.strListEmptyNoNotes)); }
+		} else {
+			if (aquery != null) {
+				title.setText(getString(R.string.strNoResults, aquery)); }
+			else if (adapter.getCount() != 0) {
+				title.setText(getString(R.string.strListEmptyWaiting)); }
+			else {
+				title.setText(getString(R.string.strListEmptyNoNotes)); }
+		}
+		getListView().setEmptyView(listEmptyView);
 	}
 	
 	private void updateTextAttributes() {
@@ -806,6 +810,9 @@ public class Tomdroid extends ActionBarListActivity {
 	private void showNoteInPane(int position) {
 		if(rightPane == null)
 			return;
+		
+		if(position == -1)
+			position = 0;
 
         title.setText("");
         content.setText("");
@@ -1216,13 +1223,15 @@ public class Tomdroid extends ActionBarListActivity {
 		TLog.d(TAG, "onActivityResult called with result {0}", resultCode);
 		
 		// returning from file picker
-		if(data != null && data.getData() != null && requestCode == OI_REQUEST_CODE) {
-			Uri fileUri = data.getData();
+		if(data != null && data.hasExtra(FilePickerActivity.EXTRA_FILE_PATH)) {
+			// Get the file path
+			File f = new File(data.getStringExtra(FilePickerActivity.EXTRA_FILE_PATH));
+			Uri noteUri = Uri.fromFile(f);
 			Intent intent = new Intent(this, Receive.class);
-			intent.setData(fileUri);
+			intent.setData(noteUri);
 			startActivity(intent);
 		}
-		else if(resultCode == Activity.RESULT_OK) { // returning from sync conflict
+		else { // returning from sync conflict
 			SyncService currentService = SyncManager.getInstance().getCurrentService();
 			currentService.resolvedConflict(requestCode);			
 		}

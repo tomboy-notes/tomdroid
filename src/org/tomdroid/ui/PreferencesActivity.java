@@ -167,6 +167,7 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 				}
 				syncServer.setSummary((String)serverUri);
 				
+				// TODO is this necessary? hasn't it changed already?
 				Preferences.putString(Preferences.Key.SYNC_SERVER, (String)serverUri);
 
 				reauthenticate();
@@ -246,7 +247,7 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 			
 			public boolean onPreferenceChange(Preference preference, Object newValue) {
 				String value = (String) newValue;
-				if(value == "sort_title")
+				if(value.equals("sort_title"))
 					defaultSort.setSummary(getString(R.string.sortByTitle));
 				else
 					defaultSort.setSummary(getString(R.string.sortByDate));
@@ -328,7 +329,6 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 		if(syncService.getValue() == null)
 			syncService.setValue(defaultService);
 		
-		
 		String defaultLocation = (String)Preferences.Key.SD_LOCATION.getDefault();
 		sdLocation.setDefaultValue(defaultLocation);
 		if(sdLocation.getText() == null)
@@ -339,13 +339,13 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 		baseSize.setSummary(Preferences.getString(Preferences.Key.BASE_TEXT_SIZE));
 		if(baseSize.getText() == null)
 			baseSize.setText(defaultSize);
-
+		
 		String defaultOrder = (String)Preferences.Key.SORT_ORDER.getDefault();
+		String sortOrder = Preferences.getString(Preferences.Key.SORT_ORDER);
 		defaultSort.setDefaultValue(defaultOrder);
 		if(defaultSort.getValue() == null)
 			defaultSort.setValue(defaultOrder);
-		String sortString = Preferences.getString(Preferences.Key.SORT_ORDER);
-		if(sortString.equals("sort_title"))
+		if(sortOrder.equals("sort_title"))
 			defaultSort.setSummary(getString(R.string.sortByTitle));
 		else
 			defaultSort.setSummary(getString(R.string.sortByDate));

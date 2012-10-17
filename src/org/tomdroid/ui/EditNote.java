@@ -24,8 +24,6 @@
 package org.tomdroid.ui;
 
 import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -42,7 +40,6 @@ import org.tomdroid.util.LinkifyPhone;
 import org.tomdroid.util.NewNote;
 import org.tomdroid.util.NoteContentBuilder;
 import org.tomdroid.util.Preferences;
-import org.tomdroid.util.Send;
 import org.tomdroid.util.NoteXMLContentBuilder;
 import org.tomdroid.util.TLog;
 import org.tomdroid.xml.LinkInternalSpan;
@@ -53,7 +50,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
-import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.net.Uri;
@@ -66,7 +62,6 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
 import android.text.format.Time;
-import android.text.method.LinkMovementMethod;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StrikethroughSpan;

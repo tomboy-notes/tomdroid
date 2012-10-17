@@ -28,5 +28,13 @@
 	<ListView android:id="@android:id/list"
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"/>
+	
+	<TextView android:id="@+id/list_empty"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:singleLine="false"
+            android:textSize="25dip"
+			android:padding="30dip"
+            />
 
 </LinearLayout>

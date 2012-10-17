@@ -25,23 +25,13 @@
 package org.tomdroid;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.content.ContentResolver;
 import android.content.ContentValues;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Bundle;
 import android.text.Html;
 import android.text.format.Time;
-import android.text.util.Linkify.TransformFilter;
 import android.widget.ListAdapter;
-import android.widget.Toast;
-
-import org.tomdroid.sync.SyncManager;
-import org.tomdroid.ui.CompareNotes;
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.NoteListCursorAdapter;
 import org.tomdroid.util.Preferences;
@@ -51,7 +41,6 @@ import org.tomdroid.util.XmlUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
