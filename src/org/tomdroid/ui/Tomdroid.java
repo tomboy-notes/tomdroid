@@ -159,7 +159,12 @@ public class Tomdroid extends ActionBarListActivity {
 	private Note note;
 	private SpannableStringBuilder noteContent;
 	private Uri uri;
+	// for storing the scroll-position of the list
+	// TODO clean up the position storage code. it should be easier to store the position on pause and recover it
+	// TODO on resume. Now everything is separated for splitview and listview
 	private int lastIndex = -1;
+	private int listIndex = 0;
+	private int topPosition = 0;
 	public MenuItem syncMenuItem;
 	public static Tomdroid context;
 
@@ -235,6 +240,8 @@ public class Tomdroid extends ActionBarListActivity {
 			// this we will call on resume as well.
 			updateTextAttributes();
 			showNoteInPane(0);
+		} else {
+			getListView().setSelectionFromTop(listIndex, topPosition);
 		}
 		
 		// set the view shown when the list is empty
@@ -279,6 +286,7 @@ public class Tomdroid extends ActionBarListActivity {
 				showDialog(DIALOG_ABOUT);
 				return true;
 			case R.id.menuSync:
+				saveListPosition();
 				startSyncing(true);
 				return true;
 			case R.id.menuNew:
@@ -402,6 +410,12 @@ public class Tomdroid extends ActionBarListActivity {
 		return super.onContextItemSelected(item);
 	}
 
+	@Override 
+	protected void onPause() {
+		super.onPause();
+		saveListPosition();
+	}
+	
 	public void onResume() {
 		super.onResume();
 		Intent intent = this.getIntent();
@@ -441,8 +455,10 @@ public class Tomdroid extends ActionBarListActivity {
 			if(!creating)
 				showNoteInPane(lastIndex);
 		}
-		else 
+		else {
 			updateNotesList(query, lastIndex);
+			getListView().setSelectionFromTop(listIndex, topPosition);
+		}
 		
 		// set the view shown when the list is empty
 		updateEmptyList(query);
@@ -726,12 +742,14 @@ public class Tomdroid extends ActionBarListActivity {
 			if(position == lastIndex) // same index, edit
 				this.startEditNote();
 			else
+				saveListPosition();
 				showNoteInPane(position);
 		}
 		else {
 			Cursor item = (Cursor) adapter.getItem(position);
 			long noteId = item.getInt(item.getColumnIndexOrThrow(Note.ID));
-				this.ViewNote(noteId);
+			lastIndex = position;
+			this.ViewNote(noteId);
 		}
 	}
 	
@@ -758,8 +776,10 @@ public class Tomdroid extends ActionBarListActivity {
 			updateTextAttributes();
 			showNoteInPane(lastIndex);
 		}
-		else
+		else {
 			updateNotesList(query,-1);
+			getListView().setSelectionFromTop(listIndex, topPosition);
+		}
 		
 		// set the view shown when the list is empty
 		updateEmptyList(query);
@@ -804,6 +824,15 @@ public class Tomdroid extends ActionBarListActivity {
 		content.setBackgroundColor(0xffffffff);
 		content.setTextColor(Color.DKGRAY);
 	}
+	
+	private void saveListPosition() {
+	     // save index and top position
+        listIndex = getListView().getFirstVisiblePosition();
+        View v = getListView().getChildAt(0);
+        topPosition = v.getTop();
+        
+	}
+	
 	private void showNoteInPane(int position) {
 		if(rightPane == null)
 			return;
@@ -813,18 +842,16 @@ public class Tomdroid extends ActionBarListActivity {
 
         title.setText("");
         content.setText("");
-		
-     // save index and top position
-
-        int index = getListView().getFirstVisiblePosition();
-        View v = getListView().getChildAt(0);
-        int top = (v == null) ? 0 : v.getTop();
 
         updateNotesList(query, position);
-
-    // restore
 	
-		getListView().setSelectionFromTop(index, top);
+	    // restore position of the selected list-item
+        int height = getApplicationContext().getResources().getDisplayMetrics().heightPixels;
+        // if the ofset of the selected list-item is too big -> display in the middle
+        if (topPosition > height)
+        	getListView().setSelectionFromTop(listIndex, 0);
+        // otherwise display with the right ofset
+		getListView().setSelectionFromTop(listIndex, topPosition);
 		
 		if(position >= adapter.getCount())
 			position = 0;
@@ -1037,26 +1064,12 @@ public class Tomdroid extends ActionBarListActivity {
 	}
 
 	public void newNote() {
-		
 		// add a new note
-		
 		Note note = NewNote.createNewNote(this, "", "");
 		Uri uri = NoteManager.putNote(this, note);
-		
-		// recreate listAdapter
-		
-		updateNotesList(query, 0);
-
-		// show new note and update list
-
-		showNoteInPane(0);
-		
 		// view new note
-		
 		Intent i = new Intent(Intent.ACTION_VIEW, uri, this, EditNote.class);
 		startActivity(i);
-
-		
 	}
 	private void deleteNote(String guid, int position) {
 		NoteManager.deleteNote(this, guid);
@@ -1241,5 +1254,7 @@ public class Tomdroid extends ActionBarListActivity {
 		
 		if(rightPane != null)
 			showNoteInPane(lastIndex);
+		else
+			getListView().setSelectionFromTop(listIndex, topPosition);
 	}
 }
