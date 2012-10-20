@@ -108,7 +108,7 @@ public class Tomdroid extends ActionBarListActivity {
 	private static final int DIALOG_DELETE_NOTE = 8;
 	private static final int DIALOG_REVERT_NOTE = 9;
 	private static final int DIALOG_SYNC_ERRORS = 10;
-	private static final int DIALOG_SEND_CHOOSE = 11;
+	static final int DIALOG_SEND_CHOOSE = 11;
 	private static final int DIALOG_VIEW_TAGS = 12;
 	private static final int DIALOG_NOT_FOUND_SHORTCUT = 13;
 
@@ -1181,12 +1181,16 @@ public class Tomdroid extends ActionBarListActivity {
 														
 				case SyncService.NOTE_DELETE_ERROR:
 					dismiss = true;
-					Toast.makeText(activity, activity.getString(R.string.messageSyncNoteDeleteError), Toast.LENGTH_SHORT).show();
+					message = getString(R.string.messageSyncNoteDeleteError);
+					message = String.format(message,serviceDescription);
+					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 					break;
 	
 				case SyncService.NOTE_PUSH_ERROR:
 					dismiss = true;
-					Toast.makeText(activity, activity.getString(R.string.messageSyncNotePushError), Toast.LENGTH_SHORT).show();
+					message = getString(R.string.messageSyncNotePushError);
+					message = String.format(message,serviceDescription);
+					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 					break;
 				case SyncService.NOTE_PULL_ERROR:
 					dismiss = true;

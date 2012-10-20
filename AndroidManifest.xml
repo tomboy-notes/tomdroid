@@ -90,7 +90,7 @@
 				<data android:scheme="file" />
 				<data android:host="*" />
 				<data android:pathPattern=".*" />
-  				<data android:mimeType="*/*" 
+  				<data android:mimeType="text/plain" 
 				/>
 			</intent-filter>
 		</activity>

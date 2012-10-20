@@ -15,6 +15,8 @@ For more details and developer visible changes see the ChangeLog
 Tomdroid <version-code> - <version-name> released on <release-date>
 
 * fixed bug lp:1068681 Tomdroid should just show up in the "open file with" Android dialouge when the extension is *.note 
+* fixed bug lp:1068689 Share menu button in the NoteView does not show "send as text or as file" dialouge 
+* fixed bug lp:1068684  Toast message is shoing "Error sending note to %1$s."  
 
 -------------------------------------------------------------------------------
 Tomdroid 0.7.2 beta - "For the Love of Monkey" released on 2012-10-17
