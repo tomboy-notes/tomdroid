@@ -99,8 +99,8 @@ public class FilePickerActivity extends ActionBarListActivity {
 		mAdapter = new FilePickerListAdapter(this, mFiles);
 		setListAdapter(mAdapter);
 		
-		// Initialize the extensions array to allow any file extensions
-		acceptedFileExtensions = new String[] {};
+		// Initialize the extensions array to allow notes and explicit text files
+		acceptedFileExtensions = new String[] {"txt","note"};
 		
 		// Get intent extras
 		if(getIntent().hasExtra(EXTRA_FILE_PATH)) {

@@ -12,6 +12,11 @@ Join it at: https://launchpad.net/~tomdroid-dev
 For more details and developer visible changes see the ChangeLog
 
 -------------------------------------------------------------------------------
+Tomdroid <version-code> - <version-name> released on <release-date>
+
+* fixed bug lp:1068681 Tomdroid should just show up in the "open file with" Android dialouge when the extension is *.note 
+
+-------------------------------------------------------------------------------
 Tomdroid 0.7.2 beta - "For the Love of Monkey" released on 2012-10-17
 
 * added GMail-style two-color pane and selector
