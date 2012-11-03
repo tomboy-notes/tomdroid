@@ -58,7 +58,7 @@ public class Preferences {
 		AUTHORIZE_URL ("authorize_url", ""),
 		ACCESS_TOKEN_URL ("access_token_url", ""),
 		REQUEST_TOKEN_URL ("request_token_url", ""),
-		LATEST_SYNC_REVISION ("latest_sync_revision", 0L),
+		LATEST_SYNC_REVISION ("latest_sync_revision", -1L),
 		LATEST_SYNC_DATE ("latest_sync_date", (new Time()).format3339(false)), // will be used to tell whether we have newer notes
 		SORT_ORDER ("sort_order", "sort_date"),
 		FIRST_RUN ("first_run", true),
