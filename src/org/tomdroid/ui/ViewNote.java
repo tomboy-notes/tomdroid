@@ -25,8 +25,11 @@ package org.tomdroid.ui;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -35,18 +38,22 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.SpannableStringBuilder;
+import android.text.format.Time;
 import android.text.util.Linkify;
 import android.text.util.Linkify.MatchFilter;
 import android.text.util.Linkify.TransformFilter;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
+import org.tomdroid.sync.SyncManager;
+import org.tomdroid.sync.SyncService;
 import org.tomdroid.ui.actionbar.ActionBarActivity;
 import org.tomdroid.util.LinkifyPhone;
 import org.tomdroid.util.NoteContentBuilder;
@@ -196,8 +203,8 @@ public class ViewNote extends ActionBarActivity {
 			case R.id.menuPrefs:
 				startActivity(new Intent(this, PreferencesActivity.class));
 				return true;
-			case R.id.view_note_send:
-				(new Send(this, uri, false)).send();
+            case R.id.view_note_send:
+            	showDialog(Tomdroid.DIALOG_SEND_CHOOSE);
 				return true;
 			case R.id.view_note_edit:
 				startEditNote();
@@ -209,6 +216,44 @@ public class ViewNote extends ActionBarActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
+	@Override
+	protected Dialog onCreateDialog(int id) {
+		TLog.i(TAG, "id: {0}, Tomdroid: {1}", id, Tomdroid.DIALOG_SEND_CHOOSE);
+	    super.onCreateDialog (id);
+		switch(id) {
+		    case Tomdroid.DIALOG_SEND_CHOOSE:
+                return new AlertDialog.Builder(this)
+				.setMessage(getString(R.string.sendChoice))
+				.setTitle(getString(R.string.sendChoiceTitle))
+		        .setPositiveButton(getString(R.string.btnSendAsFile), null)
+				.setNegativeButton(getString(R.string.btnSendAsText), null)
+				.create();
+		    default:
+		    	return null;
+	    }
+	}
+	@Override
+	protected void onPrepareDialog(int id, final Dialog dialog) {
+	    super.onPrepareDialog (id, dialog);
+	    final Activity activity = this;
+	    switch(id) {
+		    case Tomdroid.DIALOG_SEND_CHOOSE:
+                final Uri intentUri = uri;
+		    	((AlertDialog) dialog).setButton(Dialog.BUTTON_POSITIVE, getString(R.string.btnSendAsFile), new OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						(new Send(activity, intentUri, true)).send();
+
+					}
+				});
+		    	((AlertDialog) dialog).setButton(Dialog.BUTTON_NEGATIVE, getString(R.string.btnSendAsText), new OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) { 
+		                (new Send(activity, intentUri, false)).send();
+					}
+				});
+			    break;
+	    }
+	}
+	
 	private void deleteNote() {
 		final Activity activity = this;
 		new AlertDialog.Builder(this)
