@@ -14,6 +14,7 @@ For more details and developer visible changes see the ChangeLog
 -------------------------------------------------------------------------------
 Tomdroid <version-code> - <version-name> released on <release-date>
 
+* fixed bug lp:1074661 Opening *.note file results in unparsed raw xml code and the uuid as title (when opened from GMail)
 * fixed bug lp:1068681 Tomdroid should just show up in the "open file with" Android dialogue when the extension is *.note 
 * fixed bug lp:1068689 Share menu button in the NoteView does not show "send as text or as file" dialogue 
 * fixed bug lp:1068684 Toast message is showing "Error sending note to %1$s."  
