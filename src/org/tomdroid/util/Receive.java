@@ -124,7 +124,7 @@ public class Receive extends ActionBarActivity {
 	void useSendFile(File file, String contents) {
 		Note remoteNote = new Note();
 
-		if(file.getPath().endsWith(".note") && contents.startsWith("<?xml")) { // xml note file
+		if(contents.startsWith("<?xml") && (contents.endsWith("</note>\n") || contents.endsWith("</note>"))) { // xml note file
 			
 			try {
 				// Parsing
