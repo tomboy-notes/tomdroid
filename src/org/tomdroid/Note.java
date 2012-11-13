@@ -189,7 +189,7 @@ public class Note implements Serializable {
 		Time time = new Time();
 		// quick and dirty bugfix for synchronisation with Rainy server (have to send create Date)
 		//TODO: we should store the createDate in the note!
-		time.set(1, 1, 2000);
+		time.set(946681200000L);
 		return time;
 	}
 	
