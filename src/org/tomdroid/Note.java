@@ -31,9 +31,13 @@ import android.util.TimeFormatException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.tomdroid.util.NoteContentBuilder;
+import org.tomdroid.util.TLog;
 import org.tomdroid.util.XmlUtils;
 
 import java.io.Serializable;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -90,6 +94,17 @@ public class Note implements Serializable {
 			"(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3})" +	// matches: 2010-01-23T12:07:38.774
 			".+" + 														// matches what we are getting rid of
 			"([-\\+]\\d{2}:\\d{2})");									// matches timezone (-xx:xx or +xx:xx)
+
+	
+	// Date converter to Tomboy Time-Format (add extra milliseconds to datetime string and add colon to time format)
+	// ex: generated tomddroid_time: 2000-02-01T01:00:00.0000000+01:00
+	public String toTomboyFormat(Time time) throws TimeFormatException {
+		String timeFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSSZ";
+		SimpleDateFormat sdf = new SimpleDateFormat(timeFormat, Locale.US);
+		String tomdroid_time = sdf.format(new Date(time.toMillis(false)));
+		tomdroid_time = tomdroid_time.substring(0,tomdroid_time.length()-2) + ":" + tomdroid_time.substring(tomdroid_time.length()-2);
+		return tomdroid_time;
+	}
 	
 	public Note() {
 		tags = new String();
@@ -170,6 +185,14 @@ public class Note implements Serializable {
 		return time;
 	}
 	
+	public Time getCreateDate() {
+		Time time = new Time();
+		// quick and dirty bugfix for synchronisation with Rainy server (have to send create Date)
+		//TODO: we should store the createDate in the note!
+		time.set(1, 1, 2000);
+		return time;
+	}
+	
 	// sets change date to now
 	public void setLastChangeDate() {
 		Time now = new Time();
@@ -185,8 +208,8 @@ public class Note implements Serializable {
 	public void setLastChangeDate(String lastChangeDateStr) throws TimeFormatException {
 		
 		// regexp out the sub-milliseconds from tomboy's datetime format
-		// Normal RFC 3339 format: 2008-10-13T16:00:00.000-07:00
-		// Tomboy's (C# library) format: 2010-01-23T12:07:38.7743020-05:00
+		// Normal RFC 3339 format: 			2008-10-13T16:00:00.000-07:00
+		// Tomboy's (C# library) format: 	2010-01-23T12:07:38.7743020-05:00
 		Matcher m = dateCleaner.matcher(lastChangeDateStr);
 		if (m.find()) {
 			//TLog.d(TAG, "I had to clean out extra sub-milliseconds from the date");
@@ -200,8 +223,8 @@ public class Note implements Serializable {
 	public void setCreateDate(String createDateStr) throws TimeFormatException {
 		
 		// regexp out the sub-milliseconds from tomboy's datetime format
-		// Normal RFC 3339 format: 2008-10-13T16:00:00.000-07:00
-		// Tomboy's (C# library) format: 2010-01-23T12:07:38.7743020-05:00
+		// Normal RFC 3339 format: 			2008-10-13T16:00:00.000-07:00
+		// Tomboy's (C# library) format: 	2010-01-23T12:07:38.7743020-05:00
 		Matcher m = dateCleaner.matcher(createDateStr);
 		if (m.find()) {
 			//TLog.d(TAG, "I had to clean out extra sub-milliseconds from the date");
@@ -269,9 +292,9 @@ public class Note implements Serializable {
 				+getTitle().replace("&", "&amp;")+"</title>\n\t<text xml:space=\"preserve\"><note-content version=\"0.1\">"
 				+getTitle().replace("&", "&amp;")+"\n\n" // added for compatibility
 				+getXmlContent()+"</note-content></text>\n\t<last-change-date>"
-				+getLastChangeDate().format3339(false)+"</last-change-date>\n\t<last-metadata-change-date>"
-				+getLastChangeDate().format3339(false)+"</last-metadata-change-date>\n\t<create-date>"
-				+createDate+"</create-date>\n\t<cursor-position>"
+				+toTomboyFormat(getLastChangeDate())+"</last-change-date>\n\t<last-metadata-change-date>"
+				+toTomboyFormat(getLastChangeDate())+"</last-metadata-change-date>\n\t<create-date>"
+				+toTomboyFormat(getCreateDate())+"</create-date>\n\t<cursor-position>"
 				+cursorPos+"</cursor-position>\n\t<width>"
 				+width+"</width>\n\t<height>"
 				+height+"</height>\n\t<x>"
