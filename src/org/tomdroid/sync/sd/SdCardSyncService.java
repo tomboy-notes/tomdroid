@@ -308,7 +308,7 @@ public class SdCardSyncService extends SyncService {
 			
 			path = new File(Tomdroid.NOTES_PATH + "/"+note.getGuid() + ".note");
 	
-			note.createDate = note.getLastChangeDate().format3339(false);
+			note.createDate = note.toTomboyFormat(note.getLastChangeDate());
 			note.cursorPos = 0;
 			note.width = 0;
 			note.height = 0;
