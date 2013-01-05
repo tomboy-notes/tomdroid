@@ -1,0 +1,15 @@
+http://developer.android.com/sdk/installing/bundle.html
+
+Once everything is installed. If you are a CLI type of person, plug in your android device and do:
+
+  $ adb logcat
+
+Otherwise you can get the logcat out of DDMS (D<something> Device Manager...) accessible from the Eclipse IDE.
+
+On Windows you might need a USB driver from google or your phone vendor: http://developer.android.com/sdk/win-usb.html
+
+On OS X or Linux you might need a udev entry: http://developer.android.com/tools/device.html
+
+logcat - http://developer.android.com/tools/help/logcat.html
+
+Might seem complicated but it's not that bad actually. Do not hesitate to ask for further indications. Cheers!
