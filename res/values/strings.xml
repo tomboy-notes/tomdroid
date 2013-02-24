@@ -265,7 +265,6 @@
 	<string name="backup_notes_title">Backup Notes?</string>
 	<string name="backup_notes">Copy all local notes to SD Card?  This may overwrite existing notes on the SD Card.</string>
 	<string name="restorePrefTitle">Restore Notes</string>
-	<string name="restorePref">Pull all notes from SD Card</string>
 	<string name="restore_notes_title">Restore Notes?</string>
 	<string name="restore_notes">Pull all notes from SD Card?  This may overwrite your existing notes.</string>
 	<string name="messageNotesBackedUp">Notes backed up to SD card successfully.</string>
