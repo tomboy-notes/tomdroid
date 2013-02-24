@@ -379,7 +379,7 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 	//TODO use LocalStorage wrapper from two-way-sync branch when it get's merged
 	private void resetLocalDatabase() {
 		getContentResolver().delete(Tomdroid.CONTENT_URI, null, null);
-		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, 0);
+		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, (Long)Preferences.Key.LATEST_SYNC_REVISION.getDefault());
 		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, new Time().format3339(false));
 		
 		// add a first explanatory note
@@ -413,7 +413,7 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 		// reset last sync date, so we can push local notes to the service - to pull instead, we have "revert all"
 		
 		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, new Time().format3339(false));
-		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, 0);
+		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, (Long)Preferences.Key.LATEST_SYNC_REVISION.getDefault());
 
 	}
 

@@ -553,7 +553,7 @@ public class Tomdroid extends ActionBarListActivity {
 		    	.setPositiveButton(getString(R.string.yes), new OnClickListener() {
 
 		            public void onClick(DialogInterface dialog, int which) {
-		        		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, 0);
+		        		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, (Long)Preferences.Key.LATEST_SYNC_REVISION.getDefault());
 		        		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, new Time().format3339(false));
 		            	startSyncing(false);
 		           }
@@ -651,7 +651,7 @@ public class Tomdroid extends ActionBarListActivity {
 		    	((AlertDialog) dialog).setButton(Dialog.BUTTON_POSITIVE, getString(R.string.yes), new OnClickListener() {
 
 		            public void onClick(DialogInterface dialog, int which) {
-		        		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, 0);
+		            	Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, (Long)Preferences.Key.LATEST_SYNC_REVISION.getDefault());
 		        		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, new Time().format3339(false));
 		            	startSyncing(false);
 		           }
@@ -1013,7 +1013,7 @@ public class Tomdroid extends ActionBarListActivity {
 	//TODO use LocalStorage wrapper from two-way-sync branch when it get's merged
 	private void resetLocalDatabase() {
 		getContentResolver().delete(Tomdroid.CONTENT_URI, null, null);
-		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, 0);
+		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, (Long)Preferences.Key.LATEST_SYNC_REVISION.getDefault());
 		
 		// first explanatory note will be deleted on sync
 		//NoteManager.putNote(this, FirstNote.createFirstNote());

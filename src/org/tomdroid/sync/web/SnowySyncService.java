@@ -371,9 +371,9 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 								Jnote.put("title", note.getTitle());
 								Jnote.put("note-content", note.getXmlContent());
 								Jnote.put("note-content-version", "0.1");
-								Jnote.put("last-change-date", note.getLastChangeDate().format3339(false));
-								Jnote.put("create-date", note.getCreateDate().format3339(false));
-								Jnote.put("last-metadata-change-date", note.getLastChangeDate().format3339(false));  // TODO: is this different?
+								Jnote.put("last-change-date", note.toTomboyFormat(note.getLastChangeDate()));
+								Jnote.put("create-date", note.toTomboyFormat(note.getCreateDate()));
+								Jnote.put("last-metadata-change-date", note.toTomboyFormat(note.getLastChangeDate()));  // TODO: is this different?
 							}
 							Jnotes.put(Jnote);
 						}
