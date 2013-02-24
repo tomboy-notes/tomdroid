@@ -304,7 +304,7 @@
 		<item>=SD Card=</item>
 		<item>Put your Tomboy notes (*.note) on your SD Card under tomdroid/. The notes can be found in ~/.local/share/tomboy/ on Linux. Once the notes are copied, set Sync Service to SD Card in preferences then hit the Sync logo on Tomdroid\'s top bar.\n</item>
 		<item>See http://live.gnome.org/Tomboy/Directories for the notes\' location on other platforms.\n</item>
-		<item>Also, Tomdroid is always looking for new contributors. If you are interested join the tomdroid-dev team on launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
+		<item>Also, Tomdroid is always looking for new contributors. If you are interested join the tomdroid-dev team on Launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
 		<item>Lastly, if you encounter any issue, please report it at: https://bugs.launchpad.net/tomdroid</item>
 	</string-array>
 			
