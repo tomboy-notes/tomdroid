@@ -499,6 +499,7 @@ public class EditNote extends ActionBarActivity {
 
 		Toast.makeText(this, getString(R.string.messageNoteSaved), Toast.LENGTH_SHORT).show();
 		TLog.v(TAG, "note saved");
+		showNote(false);	// redraw the note, do not show XML
 	}
 
 	private void discardNoteContent() {
