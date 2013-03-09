@@ -204,7 +204,12 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 				Tomdroid.NOTES_PATH = path.toString();
 				sdLocation.setSummary(Tomdroid.NOTES_PATH);
 
-				resetLocalDatabase();
+				// if sync service is sd-card -> needsLocation == true, then reset sync values
+				// latst sync revision to -1 and date to 1970 to force  a complete sync
+				if (SyncManager.getService(syncService.getValue()).needsLocation()) {
+					Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, (Long)Preferences.Key.LATEST_SYNC_REVISION.getDefault());
+					Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, new Time().format3339(false));
+				}
 				return true;
 			}
 		});
@@ -409,7 +414,6 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 			return;
 		
 		// not resetting database, since now we may have new notes, and want to move them from one service to another, etc.
-		
 		// reset last sync date, so we can push local notes to the service - to pull instead, we have "revert all"
 		
 		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, new Time().format3339(false));

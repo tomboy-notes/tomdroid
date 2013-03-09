@@ -553,8 +553,7 @@ public class Tomdroid extends ActionBarListActivity {
 		    	.setPositiveButton(getString(R.string.yes), new OnClickListener() {
 
 		            public void onClick(DialogInterface dialog, int which) {
-		        		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, (Long)Preferences.Key.LATEST_SYNC_REVISION.getDefault());
-		        		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, new Time().format3339(false));
+		            	resetSyncValues();
 		            	startSyncing(false);
 		           }
 
@@ -651,8 +650,7 @@ public class Tomdroid extends ActionBarListActivity {
 		    	((AlertDialog) dialog).setButton(Dialog.BUTTON_POSITIVE, getString(R.string.yes), new OnClickListener() {
 
 		            public void onClick(DialogInterface dialog, int which) {
-		            	Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, (Long)Preferences.Key.LATEST_SYNC_REVISION.getDefault());
-		        		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, new Time().format3339(false));
+		            	resetSyncValues();
 		            	startSyncing(false);
 		           }
 
@@ -974,28 +972,22 @@ public class Tomdroid extends ActionBarListActivity {
 	
 				@Override
 				public void handleMessage(Message msg) {
-	
-					boolean wasSuccessful = false;
+
 					Uri authorizationUri = (Uri) msg.obj;
 					if (authorizationUri != null) {
+						
+						resetSyncValues();
 	
 						Intent i = new Intent(Intent.ACTION_VIEW, authorizationUri);
 						startActivity(i);
-						wasSuccessful = true;
 	
 					} else {
 						// Auth failed, don't update the value
-						wasSuccessful = false;
+						showDialog(DIALOG_CONNECT_FAILED);
 					}
 	
 					if (authProgressDialog != null)
 						authProgressDialog.dismiss();
-	
-					if (wasSuccessful) {
-						resetLocalDatabase();
-					} else {
-						showDialog(DIALOG_CONNECT_FAILED);
-					}
 				}
 			};
 
@@ -1010,13 +1002,9 @@ public class Tomdroid extends ActionBarListActivity {
 		}
 	}
 	
-	//TODO use LocalStorage wrapper from two-way-sync branch when it get's merged
-	private void resetLocalDatabase() {
-		getContentResolver().delete(Tomdroid.CONTENT_URI, null, null);
+	private void resetSyncValues() {
 		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, (Long)Preferences.Key.LATEST_SYNC_REVISION.getDefault());
-		
-		// first explanatory note will be deleted on sync
-		//NoteManager.putNote(this, FirstNote.createFirstNote());
+		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, new Time().format3339(false));
 	}
 
 	public void ViewNote(long noteId) {

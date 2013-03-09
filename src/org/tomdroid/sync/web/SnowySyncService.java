@@ -210,7 +210,9 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 
 						Cursor newLocalNotes = NoteManager.getNewNotes(activity); 
 						
-						if (latestRemoteRevision <= latestLocalRevision && newLocalNotes.getCount() == 0) { // same sync revision + no new local notes = no need to sync
+						// same sync revision + no new local notes = no need to sync
+						
+						if (latestRemoteRevision <= latestLocalRevision && newLocalNotes.getCount() == 0) {
 							TLog.v(TAG, "old sync revision on server, cancelling");
 							finishSync(true);
 							return;
