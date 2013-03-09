@@ -474,24 +474,23 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 	    switch(id) {
 		    case DIALOG_SYNC:
 				String serviceDescription = SyncManager.getInstance().getCurrentService().getDescription();
-				syncProgressDialog = new ProgressDialog(this);
-				syncProgressDialog.setTitle(String.format(getString(R.string.syncing),serviceDescription));
-				syncProgressDialog.setMessage(getString(R.string.syncing_connect));
-				syncProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-				syncProgressDialog.setButton(ProgressDialog.BUTTON_NEGATIVE, getString(R.string.cancel), new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
-						syncProgressDialog.cancel();
-					}
-				});
-				syncProgressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-
+		    	syncProgressDialog = new ProgressDialog(this);
+		    	syncProgressDialog.setIndeterminate(true);
+		    	syncProgressDialog.setTitle(String.format(getString(R.string.syncing),serviceDescription));
+		    	syncProgressDialog.setMessage(getString(R.string.syncing_connect));
+		    	syncProgressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+	    			
 					public void onCancel(DialogInterface dialog) {
 						SyncManager.getInstance().cancel();
 					}
 					
 				});
-		        syncProgressDialog.setIndeterminate(true);
-		        return syncProgressDialog;
+		    	syncProgressDialog.setButton(ProgressDialog.BUTTON_NEGATIVE, getString(R.string.cancel), new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						syncProgressDialog.cancel();
+					}
+				});
+		    	return syncProgressDialog;
 		    case DIALOG_DELETE:
 		    	alertDialog = new AlertDialog.Builder(this)
 		        .setIcon(android.R.drawable.ic_dialog_alert)
