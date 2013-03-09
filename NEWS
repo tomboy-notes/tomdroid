@@ -14,6 +14,7 @@ For more details and developer visible changes see the ChangeLog
 -------------------------------------------------------------------------------
 Tomdroid <version-code> - <version-name> released on <release-date>
 
+* fixed bug lp:1051932 &amp; gets replaced with &amp;amp; on clicking save button
 * fixed bug lp:1064149 Tomdroid Sync fails, datetime_format error
 * fixed bug lp:1074894 NotesList -> Longpress -> Revert -> CRASH!
 * fixed bug lp:1074661 Opening *.note file results in unparsed raw xml code and the uuid as title (when opened from GMail)
