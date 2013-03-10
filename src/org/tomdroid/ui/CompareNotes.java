@@ -64,6 +64,7 @@ public class CompareNotes extends ActionBarActivity {
 	private Note remoteNote;
 	private int dateDiff;
 	private boolean noRemote;
+	private float baseSize = Float.parseFloat(Preferences.getString(Preferences.Key.BASE_TEXT_SIZE));
 
 	@Override	
 	public void onCreate(Bundle savedInstanceState) {	
@@ -118,7 +119,11 @@ public class CompareNotes extends ActionBarActivity {
 		Button remoteBtn = (Button)findViewById(R.id.remoteButton);
 		Button copyBtn = (Button)findViewById(R.id.copyButton);
 		
-		TextView messageView = (TextView)findViewById(R.id.message);
+		final TextView descriptionView = (TextView)findViewById(R.id.description);
+		final TextView messageView = (TextView)findViewById(R.id.message);
+		descriptionView.setTextSize(baseSize*1.3f);
+		descriptionView.setTextColor(Color.RED);
+		messageView.setTextSize(baseSize);
 		
 		final ToggleButton diffLabel = (ToggleButton)findViewById(R.id.diff_label);
 		final ToggleButton localLabel = (ToggleButton)findViewById(R.id.local_label);
@@ -128,6 +133,7 @@ public class CompareNotes extends ActionBarActivity {
 		final EditText remoteTitle = (EditText)findViewById(R.id.remote_title);
 		
 		final TextView diffView = (TextView)findViewById(R.id.diff);
+		diffView.setTextSize(baseSize);
 		final EditText localEdit = (EditText)findViewById(R.id.local);
 		final EditText remoteEdit = (EditText)findViewById(R.id.remote);
 
@@ -300,7 +306,8 @@ public class CompareNotes extends ActionBarActivity {
 			localEdit.setText(localNote.getXmlContent());
 		}
 		
-		messageView.setText(String.format(message,localNote.getTitle()));
+		descriptionView.setText(String.format(getString(R.string.sync_conflict_description),localNote.getTitle()));
+		messageView.setText(message);
 		remoteTitle.setText(extras.getString("title"));
 		remoteEdit.setText(extras.getString("content"));
 
@@ -323,22 +330,26 @@ public class CompareNotes extends ActionBarActivity {
 		// collapse notes
 		collapseNote(localTitle, localEdit, true);
 		collapseNote(remoteTitle, remoteEdit, true);
+		collapseDescription(descriptionView, messageView, false);
 		diffView.setVisibility(View.GONE);
 
 		diffLabel.setOnClickListener( new View.OnClickListener() {
 			public void onClick(View v) {
 				diffView.setVisibility(diffLabel.isChecked()?View.VISIBLE:View.GONE);
+				collapseDescription(descriptionView, messageView, (diffLabel.isChecked() || localLabel.isChecked() || remoteLabel.isChecked()));
 			}
         });	
 		
 		localLabel.setOnClickListener( new View.OnClickListener() {
 			public void onClick(View v) {
 				collapseNote(localTitle, localEdit, !localLabel.isChecked());
+				collapseDescription(descriptionView, messageView, (diffLabel.isChecked() || localLabel.isChecked() || remoteLabel.isChecked()));
 			}
         });	
 		remoteLabel.setOnClickListener( new View.OnClickListener() {
 			public void onClick(View v) {
 				collapseNote(remoteTitle, remoteEdit, !remoteLabel.isChecked());
+				collapseDescription(descriptionView, messageView, (diffLabel.isChecked() || localLabel.isChecked() || remoteLabel.isChecked()));
 			}
         });	
 	}
@@ -455,7 +466,6 @@ public class CompareNotes extends ActionBarActivity {
 
 	
 	private void updateTextAttributes(EditText title, EditText content) {
-		float baseSize = Float.parseFloat(Preferences.getString(Preferences.Key.BASE_TEXT_SIZE));
 		content.setTextSize(baseSize);
 		title.setTextSize(baseSize*1.3f);
 
@@ -475,6 +485,18 @@ public class CompareNotes extends ActionBarActivity {
 		else {
 			title.setVisibility(View.VISIBLE);
 			content.setVisibility(View.VISIBLE);
+		}
+		
+	}
+	
+	private void collapseDescription(TextView description, TextView message, boolean collapse) {
+		if(collapse) {
+			description.setVisibility(View.GONE);
+			message.setVisibility(View.GONE);
+		}
+		else {
+			description.setVisibility(View.VISIBLE);
+			message.setVisibility(View.VISIBLE);
 		}
 		
 	}
