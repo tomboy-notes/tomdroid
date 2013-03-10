@@ -199,8 +199,9 @@ public class Receive extends ActionBarActivity {
 			return;
 		}
 		
-		// note doesn't exist, just give it a new title if necessary
+		// note doesn't exist, just give it a new title if necessary and set changedate to now
 		remoteNote.setTitle(NoteManager.validateNoteTitle(this, remoteNote.getTitle(), remoteNote.getGuid()));
+		remoteNote.setLastChangeDate();
 		
     	// add to content provider
 		Uri uri = NoteManager.putNote(this, remoteNote);
@@ -303,7 +304,9 @@ public class Receive extends ActionBarActivity {
 		
 		// view new note
 		Intent i = new Intent(Intent.ACTION_VIEW, uri, this, Tomdroid.class);
-		i.putExtra("view_note", true);
+		if (uri != null) {
+			i.putExtra("view_note", true);
+		}
 		i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(i);
 		finish();

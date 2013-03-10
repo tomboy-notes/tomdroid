@@ -31,7 +31,6 @@ import android.util.TimeFormatException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.tomdroid.util.NoteContentBuilder;
-import org.tomdroid.util.TLog;
 import org.tomdroid.util.XmlUtils;
 
 import java.io.Serializable;
