@@ -291,7 +291,8 @@ public class Tomdroid extends ActionBarListActivity {
 				} else {
 					item.setTitle(R.string.sortByTitle);
 				}
-				updateNotesList(query, lastIndex);
+				updateNotesList(query, 0);
+				showNoteInPane(0);
 				return true;
 			case R.id.menuRevert:
 				showDialog(DIALOG_REVERT_ALL);
@@ -767,6 +768,7 @@ public class Tomdroid extends ActionBarListActivity {
 	    // adapter that binds the ListView UI to the notes in the note manager
 		adapter = NoteManager.getListAdapter(this, aquery, rightPane != null ? aposition : -1);
 		setListAdapter(adapter);
+		
 	}
 	
 	private void updateEmptyList(String aquery) {

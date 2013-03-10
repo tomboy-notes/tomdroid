@@ -144,9 +144,9 @@
 				android:drawableTop="@drawable/mono"
 				android:contentDescription="@string/mono"
 	            />		
-			<ToggleButton
+			<Button
 				android:id="@+id/size"
-				android:background="@drawable/button_toggle"
+				android:background="@drawable/button"
 	            android:layout_width="36dp"  
 	            android:layout_height="match_parent"
 				android:textOn=""

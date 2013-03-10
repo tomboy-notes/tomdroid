@@ -842,7 +842,7 @@ public class EditNote extends ActionBarActivity {
             } 
         });
         
-		final ToggleButton sizeButton = (ToggleButton)findViewById(R.id.size);
+		final Button sizeButton = (Button)findViewById(R.id.size);
 		
 		sizeButton.setOnClickListener(new Button.OnClickListener() {
 
