@@ -14,6 +14,7 @@ For more details and developer visible changes see the ChangeLog
 -------------------------------------------------------------------------------
 Tomdroid <version-code> - <version-name> released on <release-date>
 
+* fixed bug lp:1070787 Note Title should be more obvious in Conflict resolving dialogue
 * It is now possible to change sync-method, sync-server, folder location without loosing any notes!
 * fixed bug lp:1051932 &amp; gets replaced with &amp;amp; on clicking save button
 * fixed bug lp:1064149 Tomdroid Sync fails, datetime_format error
