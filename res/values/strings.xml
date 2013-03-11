@@ -234,7 +234,7 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkAddressesTitle">Link Map Addresses</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkAddresses">link to addresses to maps app</string>
+	<string name="prefLinkAddresses">link addresses to maps app</string>
 			
 	<!-- syncNotes -->
 
