@@ -74,30 +74,14 @@
         		<category android:name="android.intent.category.DEFAULT" />
         		<data android:mimeType="text/plain" />
     		</intent-filter>
-		    <!-- To receive note files from mail clients -->
-			<intent-filter>
-				<action android:name="android.intent.action.VIEW" />
-				<category android:name="android.intent.category.BROWSABLE" />
-				<category android:name="android.intent.category.DEFAULT" />
-				<data android:scheme="https" />
-				<data android:host="*" />
-				<data android:pathPattern=".*\\.note" />
-			</intent-filter>
-        	<intent-filter>
-				<action android:name="android.intent.action.VIEW" />
-				<category android:name="android.intent.category.BROWSABLE" />
-				<category android:name="android.intent.category.DEFAULT" />
-				<data android:scheme="http" />
-				<data android:host="*" />
-				<data android:pathPattern=".*\\.note" />
-			</intent-filter>
-			<!-- To receive note files from file browser -->
+			<!-- To receive note files from file browser (open all .note files) -->
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW" />
 				<category android:name="android.intent.category.DEFAULT" />
 		        <category android:name="android.intent.category.BROWSABLE" />
 				<data android:scheme="file" />
 				<data android:host="*" />
+				<data android:port="*" />
   				<data android:mimeType="*/*" />
 				<data android:pathPattern=".*\\.note" />
 			</intent-filter>
@@ -107,15 +91,18 @@
 		        <category android:name="android.intent.category.BROWSABLE" />
 				<data android:scheme="content" />
 				<data android:host="*" />
+				<data android:port="*" />
   				<data android:mimeType="*/*" />
 				<data android:pathPattern=".*\\.note" />
 			</intent-filter>
+			<!-- To open all text files (open all text files) -->
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW" />
 				<category android:name="android.intent.category.DEFAULT" />
 		        <category android:name="android.intent.category.BROWSABLE" />
 				<data android:scheme="content" />
 				<data android:host="*" />
+				<data android:port="*" />
 				<data android:pathPattern=".*" />
   				<data android:mimeType="text/*" />
 			</intent-filter>
@@ -125,8 +112,28 @@
 		        <category android:name="android.intent.category.BROWSABLE" />
 				<data android:scheme="file" />
 				<data android:host="*" />
+				<data android:port="*" />
 				<data android:pathPattern=".*" />
   				<data android:mimeType="text/*" />
+			</intent-filter>
+			<!-- To receive note files from mail client (open with application/note mimetype) -->
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+		        <category android:name="android.intent.category.BROWSABLE" />
+				<data android:scheme="file" />
+				<data android:host="*" />
+				<data android:port="*" />
+  				<data android:mimeType="application/note" />
+			</intent-filter>
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+		        <category android:name="android.intent.category.BROWSABLE" />
+				<data android:scheme="content" />
+				<data android:host="*" />
+				<data android:port="*" />
+  				<data android:mimeType="application/note" />
 			</intent-filter>
 		</activity>
 		<provider	

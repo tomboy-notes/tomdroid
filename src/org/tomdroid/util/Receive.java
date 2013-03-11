@@ -27,6 +27,7 @@ package org.tomdroid.util;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
@@ -84,7 +85,7 @@ public class Receive extends ActionBarActivity {
 		TLog.v(TAG, "Receiving note of type {0}",type);
 		TLog.d(TAG, "Action type: {0}",action);
 	    
-    	if(intent.getData() != null) {
+		if (intent.getData() != null) {
     		TLog.d(TAG, "Receiving file from path: {0}",intent.getData().getPath());
 			File file = new File(intent.getData().getPath());
 
@@ -99,15 +100,28 @@ public class Receive extends ActionBarActivity {
 				// Try reading the file first
 				String contents = "";
 				try {
-	
+					
+					// read as file
 					contents = readFile(file,buffer);
+					useSendFile(file, contents);
 				} catch (IOException e) {
-					e.printStackTrace();
-					TLog.w(TAG, "Something went wrong trying to read the note");
-					finish();
+					try {
+						
+						// if previous fails, read as input stream
+						InputStream input = getContentResolver().openInputStream(intent.getData());
+						contents = readFile(file,buffer, input);
+						useSendFile(file, contents);
+						
+					} catch (IOException e1) {
+						
+						// if both fails, print stacktrace, make user warning and exit
+						e1.printStackTrace();
+						e.printStackTrace();
+						TLog.w(TAG, "Something went wrong trying to read the note");
+						Toast.makeText(this, getString(R.string.messageFileNotReadable), Toast.LENGTH_SHORT).show();
+						finish();
+					}
 				}
-				
-				useSendFile(file, contents);
 			}
     	}
     	else if (Intent.ACTION_SEND.equals(action) && type != null && "text/plain".equals(type)) {
@@ -124,7 +138,7 @@ public class Receive extends ActionBarActivity {
 	void useSendFile(File file, String contents) {
 		Note remoteNote = new Note();
 
-		if(contents.startsWith("<?xml")) { // xml note file
+		if(contents.startsWith("<?xml") && file.getPath().endsWith(".note")) { // xml note file
 			
 			try {
 				// Parsing
@@ -279,11 +293,17 @@ public class Receive extends ActionBarActivity {
         	}
 		}
 	};
+	
 	private String readFile(File file, char[] buffer) throws IOException {
+		return readFile(file, buffer, new FileInputStream(file));
+	}
+	
+	
+	private String readFile(File file, char[] buffer, InputStream input) throws IOException {
 		StringBuilder out = new StringBuilder();
 		
 		int read;
-		Reader reader = new InputStreamReader(new FileInputStream(file), "UTF-8");
+		Reader reader = new InputStreamReader(input, "UTF-8");
 		
 		do {
 		  read = reader.read(buffer, 0, buffer.length);

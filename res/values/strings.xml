@@ -338,6 +338,7 @@
 	<!-- Button (keep short!) -->
 	<string name="btnCancelImport">Cancel\nImport</string>
 	<string name="messageFileTooBig">File exceeds maximum import size - are you sure it is plain text?</string>
+	<string name="messageFileNotReadable">Cannot read the note file.</string>
 	<string name="noFiles">No files or directories</string>
 	<string name="chooseFile">Choose a file below that is either a Tomboy note file (which will be imported) or a plain text file (which will create a new note):</string>
 	<!-- Title of first Note -->
