@@ -118,9 +118,9 @@ public abstract class WebConnection {
 		
 		try {
 			// Execute the request
-			HttpResponse response = httpclient.execute(request);
 			TLog.i(TAG, "Sending http-header: {0}: {1}", "X-Tomboy-Client", Tomdroid.HTTP_HEADER);
-			response.addHeader("X-Tomboy-Client", Tomdroid.HTTP_HEADER);
+			request.addHeader("X-Tomboy-Client", Tomdroid.HTTP_HEADER);
+			HttpResponse response = httpclient.execute(request);
 			return response;
 			
 		}catch (UnknownHostException e){

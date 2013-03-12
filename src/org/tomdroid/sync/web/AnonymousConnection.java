@@ -30,7 +30,6 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.tomdroid.ui.Tomdroid;
-import org.tomdroid.util.TLog;
 
 public class AnonymousConnection extends WebConnection {
 
@@ -39,6 +38,7 @@ public class AnonymousConnection extends WebConnection {
 	{
 		// Prepare a request object
 		HttpGet httpGet = new HttpGet(uri);
+		httpGet.addHeader("X-Tomboy-Client", Tomdroid.HTTP_HEADER);
 		HttpResponse response = execute(httpGet);
 		return parseResponse(response);
 	}
