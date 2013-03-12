@@ -36,6 +36,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.tomdroid.ui.Tomdroid;
@@ -81,12 +82,16 @@ public class OAuthConnection extends WebConnection {
 	
 	private OAuthProvider getProvider() {
 		
+		// use our http client that accepts self-signed certificates
+		DefaultHttpClient httpclient = MySSLSocketFactory.getNewHttpClient();
+		
 		// Use the provider bundled with signpost, the android libs are buggy
 		// See: http://code.google.com/p/oauth-signpost/issues/detail?id=20
 		OAuthProvider provider = new CommonsHttpOAuthProvider(
 				requestTokenUrl,
 				accessTokenUrl,
-				authorizeUrl);
+				authorizeUrl,
+				httpclient);
 		provider.setOAuth10a(oauth10a);
 		
 		return provider;
@@ -233,6 +238,7 @@ public class OAuthConnection extends WebConnection {
 		
 		// Prepare a request object
 		HttpGet httpGet = new HttpGet(uri);
+		httpGet.addHeader("X-Tomboy-Client", Tomdroid.HTTP_HEADER);
 		sign(httpGet);
 		HttpResponse response = execute(httpGet);
 		return parseResponse(response);

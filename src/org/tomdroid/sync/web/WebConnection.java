@@ -114,7 +114,7 @@ public abstract class WebConnection {
 	
 	protected HttpResponse execute(HttpUriRequest request) throws UnknownHostException {
 		
-		DefaultHttpClient httpclient = new DefaultHttpClient();
+		DefaultHttpClient httpclient = MySSLSocketFactory.getNewHttpClient();
 		
 		try {
 			// Execute the request

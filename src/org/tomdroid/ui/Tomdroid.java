@@ -761,7 +761,7 @@ public class Tomdroid extends ActionBarListActivity {
         main =  View.inflate(this, R.layout.main, null);
         setContentView(main);
 
-        if (Integer.parseInt(Build.VERSION.SDK) >= 11) {
+        if (Build.VERSION.SDK_INT >= 11) {
             Honeycomb.invalidateOptionsMenuWrapper(this); 
         }
 		
