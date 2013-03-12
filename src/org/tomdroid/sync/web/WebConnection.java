@@ -27,6 +27,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.TLog;
 
 import java.io.BufferedReader;
@@ -118,6 +119,8 @@ public abstract class WebConnection {
 		try {
 			// Execute the request
 			HttpResponse response = httpclient.execute(request);
+			TLog.i(TAG, "Sending http-header: {0}: {1}", "X-Tomboy-Client", Tomdroid.HTTP_HEADER);
+			response.addHeader("X-Tomboy-Client", Tomdroid.HTTP_HEADER);
 			return response;
 			
 		}catch (UnknownHostException e){

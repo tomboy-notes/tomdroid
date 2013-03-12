@@ -38,6 +38,7 @@ import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.TLog;
 
@@ -233,7 +234,7 @@ public class OAuthConnection extends WebConnection {
 		// Prepare a request object
 		HttpGet httpGet = new HttpGet(uri);
 		sign(httpGet);
-		HttpResponse response = execute(httpGet);		
+		HttpResponse response = execute(httpGet);
 		return parseResponse(response);
 	}
 	
@@ -252,6 +253,7 @@ public class OAuthConnection extends WebConnection {
 		}
 		
 		httpPut.setHeader("Content-Type", "application/json");
+		httpPut.addHeader("X-Tomboy-Client", Tomdroid.HTTP_HEADER);
 		sign(httpPut);
 		
 		// Do not handle redirects, we need to sign the request again as the old signature will be invalid
