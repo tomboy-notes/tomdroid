@@ -14,6 +14,7 @@ For more details and developer visible changes see the ChangeLog
 -------------------------------------------------------------------------------
 Tomdroid <version-code> - <version-name> released on <release-date>
 
+* fixed bug lp:1120488 Please add custom HTTP header to syncing requests (for Rainy sync)
 * fixed strings related bugs: lp:1068772, lp:1068761, lp:1068791, lp:1068760
 * fixed bug lp:1070787 Note Title should be more obvious in Conflict resolving dialogue
 * It is now possible to change sync-method, sync-server, folder location without loosing any notes!
