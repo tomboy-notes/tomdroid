@@ -99,7 +99,7 @@
 	<string name="menuSearch">Procurar</string>
 	<string name="prefSearch">Opções de procura</string>
 	<string name="SearchResultTitle">Resultados da procura:</string>
-	<string name="clearSearchHistoryTitle">Apagar histórico de procura</string>
+	<string name="clearSearchHistoryTitle">Limpar histórico de procura</string>
 	<string name="clearSearchHistory">Remover todas as procuras efetuadas</string>
 	<string name="deletedSearchHistory">O histórico de notas foi apagado</string>
 	
@@ -127,7 +127,7 @@
 	<string name="market_promotext">Aplicação para criar notas e sincronização online compatível com o Tomboy.</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">* Procura de notas e integração de sistemas\n* Menu de contexto\n* Diversas correções\n* Melhoras nos ícones\n* Diversos erros corrigidos\n* Tradução alemã\n</string>
+        <string name="market_recent_changes">Versão 0.6 \"Small World\"\n* Criar atalhos no ecrã para as notas\n* Indicação da pasta a utilizar na sincronização do cartão SD\n* Carregamento de notas após sincronização\n* Atualização de traduções: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n* Diversas correções\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

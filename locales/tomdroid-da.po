@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tomdroid\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-08-18 12:40+0200\n"
+"POT-Creation-Date: 2012-08-22 17:22+0200\n"
 "PO-Revision-Date: 2012-07-30 20:48+0000\n"
 "Last-Translator: Mads Boserup Lauritsen <madsbola@gmail.com>\n"
 "Language-Team: Danish <da@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-08-19 21:32+0000\n"
-"X-Generator: Launchpad (build 15810)\n"
+"X-Launchpad-Export-Date: 2013-03-13 13:12+0000\n"
+"X-Generator: Launchpad (build 16532)\n"
 
 #. application details
 #: tmp_strings.xml:27(string)
@@ -41,23 +41,27 @@ msgstr "Vent venligst imens noterne hentes"
 msgid "There are no notes in Tomdroid's database."
 msgstr "Der er ingen noter i Tomdroids database"
 
-#: tmp_strings.xml:35(string)
+#. Menu entry with icon
+#: tmp_strings.xml:36(string)
 msgid "Sync"
 msgstr "Synkroniser"
 
-#: tmp_strings.xml:36(string)
+#. Menu entry with icon
+#: tmp_strings.xml:38(string)
 msgid "Settings"
 msgstr "Indstillinger"
 
-#: tmp_strings.xml:37(string)
+#. Menu entry with icon
+#: tmp_strings.xml:40(string)
 msgid "About"
 msgstr "Om"
 
-#: tmp_strings.xml:38(string)
+#. Title of an alert box
+#: tmp_strings.xml:42(string)
 msgid "Warning"
 msgstr "Advarsel"
 
-#: tmp_strings.xml:39(string)
+#: tmp_strings.xml:43(string)
 msgid "About Tomdroid"
 msgstr "Om Tomdroid"
 
@@ -77,25 +81,29 @@ msgstr ""
 "som muligt.\\n\\nHvis du vil bidrage, er hjælp på alle niveauer velkommen. "
 "Hop om bord på launchpad.net/tomdroid og kontakt os!\\n"
 
-#: tmp_strings.xml:41(string)
+#. \n\n are linebreaks, %1$s etc are the name of the Author, the version and the license name
+#: tmp_strings.xml:47(string)
 msgid "%1$s\\n\\nAuthor: %2$s\\nVersion: %3$s\\nLicensed under the GPLv3"
 msgstr ""
 "%1$s\\n\\Forfatter: %2$s\\nVersion: %3$s\\nGivet i lincens under GPLv3"
 
-#. TODO aren't these available somewhere else? like in the SDK? //
-#: tmp_strings.xml:44(string)
+#. positive Button
+#: tmp_strings.xml:50(string)
 msgid "OK"
 msgstr "OK"
 
-#: tmp_strings.xml:45(string) tmp_strings.xml:209(string)
+#. negative Button
+#: tmp_strings.xml:52(string) tmp_strings.xml:274(string)
 msgid "Cancel"
 msgstr "Annuler"
 
-#: tmp_strings.xml:46(string) tmp_strings.xml:208(string)
+#. Button
+#: tmp_strings.xml:54(string) tmp_strings.xml:273(string)
 msgid "Close"
 msgstr "Afslut"
 
-#: tmp_strings.xml:47(string)
+#. Button
+#: tmp_strings.xml:56(string)
 msgid "Project page"
 msgstr "Projektside"
 
@@ -108,35 +116,37 @@ msgstr "Gem til SD-kort"
 msgid "Please wait while note loads..."
 msgstr "Vent venligst imens noterne hentes"
 
-#: tmp_strings.xml:173(string)
+#. subheader in settings
+#: tmp_strings.xml:199(string)
 msgid "Synchronization"
 msgstr "Synkronisering"
 
-#: tmp_strings.xml:53(string)
+#: tmp_strings.xml:62(string)
 msgid "Service"
 msgstr "Tjeneste"
 
-#: tmp_strings.xml:54(string)
+#: tmp_strings.xml:63(string)
 msgid "Server"
 msgstr "Server"
 
-#: tmp_strings.xml:55(string)
+#: tmp_strings.xml:64(string)
 msgid "SD Card"
 msgstr "SD-kort"
 
-#: tmp_strings.xml:57(string)
+#: tmp_strings.xml:65(string)
 msgid "Online Synchronization"
 msgstr "Online synkronisering"
 
-#: tmp_strings.xml:57(string)
+#: tmp_strings.xml:66(string)
 msgid "Authenticate"
 msgstr "Godkend"
 
-#: tmp_strings.xml:58(string)
+#: tmp_strings.xml:67(string)
 msgid "Location on SD Card"
 msgstr "Placering på SD-kort"
 
-#: tmp_strings.xml:59(string)
+#. %1$s will be repaced by the folder name eg /tomdroid
+#: tmp_strings.xml:69(string)
 msgid ""
 "The folder \\\"%1$s\\\" does not exist yet. Please connect your device to "
 "the computer, create the folder and fill it with *.note files."
@@ -152,7 +162,7 @@ msgstr "\\\"%1$s\\\" indeholder ugyldige bogstaver.\\n Forsøg venligst igen!"
 msgid "Completing authentication. Please wait..."
 msgstr "Færdiggør godkendelse. Vent venligst..."
 
-#: tmp_strings.xml:63(string)
+#: tmp_strings.xml:75(string)
 msgid ""
 "The connection to the server has failed, please check that the address you "
 "entered is correct."
@@ -160,47 +170,51 @@ msgstr ""
 "Forbindelsen til serveren mislykkedes. Tjek venligst,  at du har indtastet "
 "den rigtige adresse."
 
-#: tmp_strings.xml:64(string)
+#: tmp_strings.xml:76(string)
 msgid "The server address changed but the new value is empty"
 msgstr "Serverens adresse er skiftet, men den nye adresse er tom"
 
-#: tmp_strings.xml:66(string)
+#: tmp_strings.xml:78(string)
 msgid "Choose the sync service to use"
 msgstr "Vælg hvilken synkroniseringsmetode, der skal bruges"
 
-#: tmp_strings.xml:67(string)
+#. %1$s will be replaced with "Online Synchronisation", "SD Card",...
+#: tmp_strings.xml:80(string)
 msgid "Synchronization with %1$s is complete."
 msgstr "Synkronisering er %1$s færdig."
 
-#: tmp_strings.xml:68(string)
+#. %1$s will be replaced with "SD Card",...
+#: tmp_strings.xml:82(string)
 msgid "No notes found on %1$s."
 msgstr "Ingen noter fundet i %1$s."
 
-#: tmp_strings.xml:69(string)
+#: tmp_strings.xml:83(string)
 msgid "You are not connected to the Internet."
 msgstr "Du er ikke forbundet til internettet."
 
-#: tmp_strings.xml:70(string)
+#: tmp_strings.xml:84(string)
 msgid "Sync already in progress"
 msgstr "Synkronisering er allerede i gang."
 
-#: tmp_strings.xml:71(string)
+#: tmp_strings.xml:85(string)
 msgid ""
 "There was an error trying to parse your note collection. If you are able to "
 "replicate the problem, please contact us!"
 msgstr ""
-"Der er sket en fejl ved hentningen af dine noter. Hvis du har mulighed for "
-"at genskabe fejlen bedes du kontakte os!"
+"Der er sket en fejl ved fortolkningen af dine noter. Hvis du har mulighed "
+"for at genskabe fejlen bedes du kontakte os!"
 
-#: tmp_strings.xml:72(string)
+#. Altert box header
+#: tmp_strings.xml:87(string)
 msgid "Error"
 msgstr "Fejl"
 
-#: tmp_strings.xml:73(string)
+#. Altert box header
+#: tmp_strings.xml:89(string)
 msgid "No Such Note"
 msgstr "Noten findes ikke"
 
-#: tmp_strings.xml:74(string)
+#: tmp_strings.xml:90(string)
 msgid ""
 "The requested note could not be found. Maybe it was deleted or removed "
 "through synchronization."
@@ -238,45 +252,47 @@ msgid "Default sort"
 msgstr "Standardsortering"
 
 #. NotebookFiltering
-#: tmp_strings.xml:85(string)
+#: tmp_strings.xml:105(string)
 msgid "Filter"
 msgstr "Filter"
 
-#: tmp_strings.xml:86(string)
+#: tmp_strings.xml:106(string)
 msgid "There are no notebooks in the database."
 msgstr "Der er ingen notesbøger i databasen"
 
-#: tmp_strings.xml:87(string)
+#: tmp_strings.xml:107(string)
 msgid "All notebooks"
 msgstr "Alle notesbøger"
 
 #. List Longpress Menu
-#: tmp_strings.xml:90(string)
+#: tmp_strings.xml:110(string)
 msgid "View"
 msgstr "Vis"
 
-#: tmp_strings.xml:91(string)
+#: tmp_strings.xml:111(string)
 msgid "Note Options"
 msgstr "Indstillinger for note"
 
-#: tmp_strings.xml:92(string)
+#: tmp_strings.xml:112(string)
 msgid "Send"
 msgstr "Send"
 
-#. Search
-#: tmp_strings.xml:95(string)
+#. Text in input field for search
+#: tmp_strings.xml:116(string)
 msgid "Search Notes"
 msgstr "Søg i noter"
 
-#: tmp_strings.xml:96(string)
+#. Preferences Field in global search to include notes
+#: tmp_strings.xml:118(string)
 msgid "Text in your notes"
 msgstr "Tast dine noter ind"
 
-#: tmp_strings.xml:97(string)
+#. %s will be replaced with the search string
+#: tmp_strings.xml:120(string)
 msgid "No notes found for \\\"%s\\\""
 msgstr "Ingen note fundet for \\\"%s\\\""
 
-#: tmp_strings.xml:98(string)
+#: tmp_strings.xml:121(string)
 msgid "Search"
 msgstr "Søg"
 
@@ -284,54 +300,54 @@ msgstr "Søg"
 msgid "Search Options"
 msgstr "Søgeindstillinger"
 
-#: tmp_strings.xml:99(string)
+#: tmp_strings.xml:122(string)
 msgid "Search Results:"
 msgstr "Søgeresultater:"
 
-#: tmp_strings.xml:100(string)
+#: tmp_strings.xml:123(string)
 msgid "Clear search history"
 msgstr "Slet søgehistorik"
 
-#: tmp_strings.xml:101(string)
+#: tmp_strings.xml:124(string)
 msgid "Remove all the searches you have performed"
 msgstr "Fjern alle de søgninger du har udført"
 
-#: tmp_strings.xml:102(string)
+#: tmp_strings.xml:125(string)
 msgid "Search history has been cleared."
 msgstr "Søgehistorik er blevet slettet"
 
 #. Date
-#: tmp_strings.xml:105(string)
+#: tmp_strings.xml:128(string)
 msgid "Modified:"
 msgstr "Ændret:"
 
-#: tmp_strings.xml:106(string)
+#: tmp_strings.xml:129(string)
 msgid "Today"
 msgstr "I dag"
 
-#: tmp_strings.xml:107(string)
+#: tmp_strings.xml:130(string)
 msgid "Yesterday"
 msgstr "I går"
 
-#. Shortcuts handling
-#: tmp_strings.xml:110(string)
+#. Header when picking a note for a new shortcut
+#: tmp_strings.xml:134(string)
 msgid "Choose a Note"
 msgstr "Vælg en note"
 
-#: tmp_strings.xml:111(string)
+#: tmp_strings.xml:135(string)
 msgid "Tomdroid Note"
 msgstr "Tomdroid note"
 
-#: tmp_strings.xml:112(string)
+#: tmp_strings.xml:136(string)
 msgid "Remove shortcut"
 msgstr "Fjern genvej"
 
-#: tmp_strings.xml:113(string)
+#: tmp_strings.xml:137(string)
 msgid "Create shortcut"
 msgstr "Opret genvej"
 
 #. 30 chars max
-#: tmp_strings.xml:251(string)
+#: tmp_strings.xml:375(string)
 msgid "Tomdroid notes"
 msgstr "Tomdroid noter"
 
@@ -351,22 +367,33 @@ msgstr ""
 "Import fra SD-kort\\n* Open Source!"
 
 #. 80 chars max
-#: tmp_strings.xml:256(string)
+#: tmp_strings.xml:321(string)
 msgid ""
 "Note-taking application with online synchronization compatible with Tomboy"
 msgstr "Notes-app med online synkronisering og kompatibelt med Tomboy"
 
 #. 500 chars max
-#: tmp_strings.xml:259(string)
+#: tmp_strings.xml:383(string)
 msgid ""
-"* Search notes and system integrated search\\n* Context menu\\n* Several "
-"usability improvements\\n* Higher quality icons\\n* Several bug fixes\\n* "
-"German translation\\n"
+"0.6 \\\"Small World\\\" release\\n* Create home-screen shortcuts to notes\\"
+"n* Specify a folder to use for SD Card sync\\n* Reload current note after "
+"sync\\n* A lot of new translations: ar, bs, ca, cs, da, de, el, en-rGB, eo, "
+"es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, "
+"si, sv, ta, te, tr, ug, uk, zh, zh-rCN\\n* Several bugfixes\\n"
 msgstr ""
+"0.6 \\\"Small World\\\" udgave\\n \r\n"
+"* Opret hjem-skærm genveje til noter\\n \r\n"
+"* Angiv en mappe der skal bruges til SD kort sync\\n\r\n"
+"* Genindlæs aktuelle note efter synkronisering\\n \r\n"
+"* En masse nye oversættelser: ar, bs , ca, cs, da, de, el, en-RGB, eo, es, "
+"eu, FA, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, PL, PT, pt -RBR, ru, si, "
+"sv, ta, te, tr, ug, uk, zh, zh-rCN\\n \r\n"
+"* Adskillige fejlrettelser\\n"
 
 #. Launchpad Translation String
-#: tmp_strings.xml:262(string)
+#: tmp_strings.xml:386(string)
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
+"  David Nielsen https://launchpad.net/~davidnielsen\n"
 "  Mads Boserup Lauritsen https://launchpad.net/~madsbola"

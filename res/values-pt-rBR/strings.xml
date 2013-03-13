@@ -127,7 +127,7 @@
 	<string name="market_promotext">Aplicação de notas com sincronização online compatível com Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">* Search notes and system integrated search\n* Context menu\n* Several usability improvements\n* Higher quality icons\n* Several bug fixes\n* German translation\n</string>
+        <string name="market_recent_changes">0.6 \"Mundo Pequeno\" liberar\n* Criar ataho para as notas na área de trabalho\n* Especifique uma pasta para usar a sincronização para o Cartão de Memória\n* Atualizar nota atual após a sincronização\n* Várias novas traduções: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n* Várias correções de Bugs\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

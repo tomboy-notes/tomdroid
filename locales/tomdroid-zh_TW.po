@@ -1,0 +1,367 @@
+# Chinese (Traditional) translation for tomdroid
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the tomdroid package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: tomdroid\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2012-08-22 17:22+0200\n"
+"PO-Revision-Date: 2012-08-20 11:39+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2013-03-13 13:12+0000\n"
+"X-Generator: Launchpad (build 16532)\n"
+
+#. application details
+#: tmp_strings.xml:27(string)
+msgid "Tomdroid"
+msgstr "Tomdroid"
+
+#: tmp_strings.xml:28(string)
+msgid ""
+"Tomboy compatible wikiwiki note-taking application that can't take notes yet."
+msgstr ""
+
+#: tmp_strings.xml:29(string)
+msgid "Olivier Bilodeau"
+msgstr "Olivier Bilodeau"
+
+#. main.xml
+#: tmp_strings.xml:32(string)
+msgid "Please wait while the notes load.."
+msgstr "當筆記載入時請稍候.."
+
+#: tmp_strings.xml:33(string)
+msgid "There are no notes in Tomdroid's database."
+msgstr "沒有筆記在Tomdroid的資料庫中。"
+
+#. Menu entry with icon
+#: tmp_strings.xml:36(string)
+msgid "Sync"
+msgstr "同步"
+
+#. Menu entry with icon
+#: tmp_strings.xml:38(string)
+msgid "Settings"
+msgstr "設定"
+
+#. Menu entry with icon
+#: tmp_strings.xml:40(string)
+msgid "About"
+msgstr "關於"
+
+#. Title of an alert box
+#: tmp_strings.xml:42(string)
+msgid "Warning"
+msgstr "警告"
+
+#: tmp_strings.xml:43(string)
+msgid "About Tomdroid"
+msgstr "關於 Tomdroid"
+
+#: tmp_strings.xml:40(string)
+msgid ""
+"Welcome to Tomdroid.\\n\\nPlease note that this is beta quality software and "
+"that it contains known problems, like its inability to edit notes.\\n\\nWe "
+"are well aware of these issues and intend to work on them quickly but I also "
+"wanted to get something out and tested as quickly as possible.\\n\\nIf you "
+"would like to contribute, help at all levels would be appreciated. Hop on "
+"board on launchpad.net/tomdroid and contact us!\\n"
+msgstr ""
+
+#. \n\n are linebreaks, %1$s etc are the name of the Author, the version and the license name
+#: tmp_strings.xml:47(string)
+msgid "%1$s\\n\\nAuthor: %2$s\\nVersion: %3$s\\nLicensed under the GPLv3"
+msgstr "%1$s\\n\\n作者：%2$s\\n版本：%3$s\\n授權於GPLv3之下"
+
+#. positive Button
+#: tmp_strings.xml:50(string)
+msgid "OK"
+msgstr "確定"
+
+#. negative Button
+#: tmp_strings.xml:52(string) tmp_strings.xml:274(string)
+msgid "Cancel"
+msgstr "取消"
+
+#. Button
+#: tmp_strings.xml:54(string) tmp_strings.xml:273(string)
+msgid "Close"
+msgstr "關閉"
+
+#. Button
+#: tmp_strings.xml:56(string)
+msgid "Project page"
+msgstr "項目頁面"
+
+#: tmp_strings.xml:48(string)
+msgid "Save to SD card"
+msgstr ""
+
+#. note-view.xml
+#: tmp_strings.xml:51(string)
+msgid "Please wait while note loads..."
+msgstr ""
+
+#. subheader in settings
+#: tmp_strings.xml:199(string)
+msgid "Synchronization"
+msgstr "同步"
+
+#: tmp_strings.xml:62(string)
+msgid "Service"
+msgstr "服務"
+
+#: tmp_strings.xml:63(string)
+msgid "Server"
+msgstr "伺服器"
+
+#: tmp_strings.xml:64(string)
+msgid "SD Card"
+msgstr "SD卡"
+
+#: tmp_strings.xml:65(string)
+msgid "Online Synchronization"
+msgstr "線上同步化"
+
+#: tmp_strings.xml:66(string)
+msgid "Authenticate"
+msgstr "驗證"
+
+#: tmp_strings.xml:67(string)
+msgid "Location on SD Card"
+msgstr "SD卡上的位置"
+
+#. %1$s will be repaced by the folder name eg /tomdroid
+#: tmp_strings.xml:69(string)
+msgid ""
+"The folder \\\"%1$s\\\" does not exist yet. Please connect your device to "
+"the computer, create the folder and fill it with *.note files."
+msgstr "該資料夾「%1$s」不存在。請連接您的裝置到電腦上，建立該資料夾並放置帶有「*.note」的檔案。"
+
+#: tmp_strings.xml:61(string)
+msgid "\\\"%1$s\\\" contains invalid characters.\\nPlease try again!"
+msgstr ""
+
+#: tmp_strings.xml:63(string)
+msgid "Completing authentication. Please wait..."
+msgstr ""
+
+#: tmp_strings.xml:75(string)
+msgid ""
+"The connection to the server has failed, please check that the address you "
+"entered is correct."
+msgstr "連接至伺服器失敗，請檢查您輸入的地址是正確的。"
+
+#: tmp_strings.xml:76(string)
+msgid "The server address changed but the new value is empty"
+msgstr "伺服器地址更改，但新的值是空的"
+
+#: tmp_strings.xml:78(string)
+msgid "Choose the sync service to use"
+msgstr "選擇要使用的同步服務"
+
+#. %1$s will be replaced with "Online Synchronisation", "SD Card",...
+#: tmp_strings.xml:80(string)
+msgid "Synchronization with %1$s is complete."
+msgstr "與%1$s同步完成。"
+
+#. %1$s will be replaced with "SD Card",...
+#: tmp_strings.xml:82(string)
+msgid "No notes found on %1$s."
+msgstr "在%1$s沒找到筆記。"
+
+#: tmp_strings.xml:83(string)
+msgid "You are not connected to the Internet."
+msgstr "您沒有連接到網際網路。"
+
+#: tmp_strings.xml:84(string)
+msgid "Sync already in progress"
+msgstr "同步已經在進行"
+
+#: tmp_strings.xml:85(string)
+msgid ""
+"There was an error trying to parse your note collection. If you are able to "
+"replicate the problem, please contact us!"
+msgstr "嘗試分析您的筆記集時出現一個錯誤。如果您能夠複製這個問題，請與我們聯繫！"
+
+#. Altert box header
+#: tmp_strings.xml:87(string)
+msgid "Error"
+msgstr "錯誤"
+
+#. Altert box header
+#: tmp_strings.xml:89(string)
+msgid "No Such Note"
+msgstr "沒有這樣的筆記"
+
+#: tmp_strings.xml:90(string)
+msgid ""
+"The requested note could not be found. Maybe it was deleted or removed "
+"through synchronization."
+msgstr "要求的筆記無法找到。也許它已被刪除或透過同步而移除。"
+
+#: tmp_strings.xml:76(string)
+msgid ""
+"The requested note could not be parsed. If you are able to replicate the "
+"problem, please contact us!"
+msgstr ""
+
+#: tmp_strings.xml:77(string)
+msgid "Could not save the errors, please check your SD card."
+msgstr ""
+
+#: tmp_strings.xml:78(string)
+msgid "SD card not found."
+msgstr ""
+
+#. NoteSorting
+#: tmp_strings.xml:80(string)
+msgid "Change Sort"
+msgstr "更改排序"
+
+#: tmp_strings.xml:81(string)
+msgid "Choose the default sorting"
+msgstr "選擇預設的排序"
+
+#: tmp_strings.xml:82(string)
+msgid "Default sort"
+msgstr "預設排序"
+
+#. NotebookFiltering
+#: tmp_strings.xml:105(string)
+msgid "Filter"
+msgstr "篩選器"
+
+#: tmp_strings.xml:106(string)
+msgid "There are no notebooks in the database."
+msgstr "在資料庫中沒有筆記簿。"
+
+#: tmp_strings.xml:107(string)
+msgid "All notebooks"
+msgstr "所有的筆記簿"
+
+#. List Longpress Menu
+#: tmp_strings.xml:110(string)
+msgid "View"
+msgstr "檢視"
+
+#: tmp_strings.xml:111(string)
+msgid "Note Options"
+msgstr "筆記選項"
+
+#: tmp_strings.xml:112(string)
+msgid "Send"
+msgstr "送出"
+
+#. Text in input field for search
+#: tmp_strings.xml:116(string)
+msgid "Search Notes"
+msgstr "搜尋筆記"
+
+#. Preferences Field in global search to include notes
+#: tmp_strings.xml:118(string)
+msgid "Text in your notes"
+msgstr "在您筆記中的文字"
+
+#. %s will be replaced with the search string
+#: tmp_strings.xml:120(string)
+msgid "No notes found for \\\"%s\\\""
+msgstr "沒有找到符合「%s」的筆記"
+
+#: tmp_strings.xml:121(string)
+msgid "Search"
+msgstr "搜尋"
+
+#: tmp_strings.xml:100(string)
+msgid "Search Options"
+msgstr ""
+
+#: tmp_strings.xml:122(string)
+msgid "Search Results:"
+msgstr "搜尋結果："
+
+#: tmp_strings.xml:123(string)
+msgid "Clear search history"
+msgstr "清除搜尋歷史記錄"
+
+#: tmp_strings.xml:124(string)
+msgid "Remove all the searches you have performed"
+msgstr "刪除所有您已經執行的搜尋"
+
+#: tmp_strings.xml:125(string)
+msgid "Search history has been cleared."
+msgstr "搜尋歷史記錄已被清除。"
+
+#. Date
+#: tmp_strings.xml:128(string)
+msgid "Modified:"
+msgstr "修改時間："
+
+#: tmp_strings.xml:129(string)
+msgid "Today"
+msgstr "今天"
+
+#: tmp_strings.xml:130(string)
+msgid "Yesterday"
+msgstr "昨天"
+
+#. Header when picking a note for a new shortcut
+#: tmp_strings.xml:134(string)
+msgid "Choose a Note"
+msgstr "選擇一個筆記"
+
+#: tmp_strings.xml:135(string)
+msgid "Tomdroid Note"
+msgstr "Tomdroid 筆記"
+
+#: tmp_strings.xml:136(string)
+msgid "Remove shortcut"
+msgstr "移除捷徑"
+
+#: tmp_strings.xml:137(string)
+msgid "Create shortcut"
+msgstr "建立捷徑"
+
+#. 30 chars max
+#: tmp_strings.xml:375(string)
+msgid "Tomdroid notes"
+msgstr "Tomdroid筆記"
+
+#. 4000 chars max
+#: tmp_strings.xml:124(string)
+msgid ""
+"A Tomboy client for Android. Tomboy is a desktop note-taking app using a "
+"wikiwiki approach and a simple user interface.\\n\\nNOTE: It is a READ-ONLY "
+"client for now.\\n\\n* Note format compatibility with Tomboy\\n* Online note "
+"synchronization with Snowy, Tomboy Online or Ubuntu One\\n* SD Card "
+"importation\\n* Open source!"
+msgstr ""
+
+#. 80 chars max
+#: tmp_strings.xml:321(string)
+msgid ""
+"Note-taking application with online synchronization compatible with Tomboy"
+msgstr "用線上同步相容於Tomboy的做筆記應用程式"
+
+#. 500 chars max
+#: tmp_strings.xml:383(string)
+msgid ""
+"0.6 \\\"Small World\\\" release\\n* Create home-screen shortcuts to notes\\"
+"n* Specify a folder to use for SD Card sync\\n* Reload current note after "
+"sync\\n* A lot of new translations: ar, bs, ca, cs, da, de, el, en-rGB, eo, "
+"es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, "
+"si, sv, ta, te, tr, ug, uk, zh, zh-rCN\\n* Several bugfixes\\n"
+msgstr ""
+
+#. Launchpad Translation String
+#: tmp_strings.xml:386(string)
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  taijuin lee https://launchpad.net/~taijuin"

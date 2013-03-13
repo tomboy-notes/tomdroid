@@ -30,7 +30,7 @@
 	
 	<!-- main.xml -->
 	<string name="strListEmptyWaiting">Odota, kun muistiinpanot latautuvat...</string>
-	<string name="strListEmptyNoNotes">There are no notes in Tomdroid\'s database.</string>
+	<string name="strListEmptyNoNotes">Ei muistiinpanoja Tomdroidin tietokannassa.</string>
 	
 	<string name="menuSync">Synkronoi</string>
 	<string name="menuPrefs">Asetukset</string>
@@ -54,7 +54,7 @@
 	<string name="prefSyncService">Palvelu</string>
 	<string name="prefSyncServer">Palvelin</string>
 	<string name="prefSDCard">SD-kortti</string>
-	<string name="prefTomboyWeb">Online Synchronization</string>
+	<string name="prefTomboyWeb">Verkkosynkronointi.</string>
 	<string name="prefAuthenticate">Tunnistaudu</string>
 	<string name="prefLocation">Sijainti SD-kortilla</string>
 	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
@@ -65,8 +65,8 @@
 	<string name="prefServerEmpty">The server address changed but the new value is empty</string>
 	
 	<string name="titleSyncService">Valitse käytettävä synkronointipalvelu</string>
-	<string name="messageSyncComplete">Synchronization with %1$s is complete.</string>
-	<string name="messageSyncNoNote">No notes found on %1$s.</string>
+	<string name="messageSyncComplete">Synkronointi %1$s -prosenttisesti valmis.</string>
+	<string name="messageSyncNoNote">Ei muistiinpanoja kohteessa %1$s.</string>
 	<string name="messageSyncNoConnection">Et ole yhteydessä internetiin.</string>
 	<string name="messageSyncAlreadyInProgress">Synkronointi on jo meneillään</string>
 	<string name="messageSyncError">There was an error trying to parse your note collection. If you are able to replicate the problem, please contact us!</string>
@@ -78,24 +78,24 @@
 	<string name="messageNoSDCard">SD card not found.</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">Change Sort</string>
-	<string name="titleDefaultSorting">Choose the default sorting</string>
-	<string name="prefDefaultSorting">Default sort</string>
+	<string name="menuSort">Lajittelujärjestys</string>
+	<string name="titleDefaultSorting">Valitse lajittelujärjestys</string>
+	<string name="prefDefaultSorting">Lajittelutapa</string>
 	
 	<!-- NotebookFiltering -->
-	<string name="menuFilterNotebook">Filter</string>
+	<string name="menuFilterNotebook">Suodin</string>
 	<string name="strListEmptyNoNotebooks">There are no notebooks in the database.</string>
-	<string name="allNotebooksFilter">All notebooks</string>
+	<string name="allNotebooksFilter">Kaikki muistikirjat</string>
 	
 	<!-- List Longpress Menu -->
-	<string name="view">View</string>
-	<string name="noteOptions">Note Options</string>
+	<string name="view">Näytä</string>
+	<string name="noteOptions">Muistiinpanojen asetukset</string>
 	<string name="send">Lähetä</string>
 	
 	<!--  Search -->
-	<string name="search_hint">Search Notes</string>
+	<string name="search_hint">Hae muistiinpanoista</string>
 	<string name="search_description">Text in your notes</string>
-	<string name="strNoResults">No notes found for \"%s\"</string>
+	<string name="strNoResults">Muistioita ei löydy kohteesta \"%s\"</string>
 	<string name="menuSearch">Hae</string>
 	<string name="prefSearch">Hakuasetukset</string>
 	<string name="SearchResultTitle">Hakutulokset:</string>
@@ -109,17 +109,17 @@
 	<string name="textYexterday">Eilen</string>
 
 	<!-- Shortcuts handling -->
-	<string name="shortcuts_view_caption">Choose a Note</string>
-	<string name="shortcut_menu_item_caption">Tomdroid Note</string>
-	<string name="btnRemoveShortcut">Remove shortcut</string>
-	<string name="createShortcut">Create shortcut</string>
+	<string name="shortcuts_view_caption">Valitse muistiinpano</string>
+	<string name="shortcut_menu_item_caption">Tomdroid Muistiinpanot</string>
+	<string name="btnRemoveShortcut">Poista pikakuvake</string>
+	<string name="createShortcut">Luo pikakuvake</string>
 	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
 	I\'ve put it in here so that it\'ll get translated by translators.
 	-->
 	<!-- 30 chars max -->
-	<string name="market_title">Tomdroid notes</string>
+	<string name="market_title">Tomdroid muistiot</string>
 	<!-- 4000 chars max -->
 	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\nNOTE: It is a READ-ONLY client for now.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
 	
@@ -127,10 +127,11 @@
 	<string name="market_promotext">Note-taking application with online synchronization compatible with Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">* Search notes and system integrated search\n* Context menu\n* Several usability improvements\n* Higher quality icons\n* Several bug fixes\n* German translation\n</string>
+        <string name="market_recent_changes">0.6 \"Small World\" release\n* Create home-screen shortcuts to notes\n* Specify a folder to use for SD Card sync\n* Reload current note after sync\n* A lot of new translations: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n* Several bugfixes\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
+  Eetu Aalto https://launchpad.net/~eetu-aalto
   Jiri Grönroos https://launchpad.net/~jiri-gronroos
   Juhani Numminen https://launchpad.net/~jsonic</string>
 	

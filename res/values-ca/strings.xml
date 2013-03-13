@@ -33,7 +33,7 @@
 	<string name="strListEmptyNoNotes">No hi ha cap nota a la base de dades del Tomdroid.</string>
 	
 	<string name="menuSync">Sincronitza</string>
-	<string name="menuPrefs">Paràmetres</string>
+	<string name="menuPrefs">Preferències</string>
 	<string name="menuAbout">Quant a</string>
 	<string name="titleWelcome">Avís</string>
 	<string name="titleAbout">Quant al Tomdroid</string>
@@ -41,7 +41,7 @@
 	<string name="strAbout">%1$s\n\nAutor: %2$s\nVersió: %3$s\nLlicenciat sota la GPLv3</string>
 	
 	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
-	<string name="btnOk">Accepta</string>
+	<string name="btnOk">D\'acord</string>
 	<string name="btnCancel">Cancel·la</string>
 	<string name="btnClose">Tanca</string>
 	<string name="btnProjectPage">Pàgina del projecte</string>
@@ -64,12 +64,12 @@
 	<string name="prefSyncConnectionFailed">La connexió amb el servidor ha fallat. Comproveu que l\'adreça que heu indicat és correcta.</string>
 	<string name="prefServerEmpty">L\'adreça del servidor ha canviat, però el nou valor és buit</string>
 	
-	<string name="titleSyncService">Trieu el servei de sincronització que es farà servir</string>
+	<string name="titleSyncService">Trieu el servei de sincronització que voleu utilitzar</string>
 	<string name="messageSyncComplete">S\'ha completat la sincronització amb %1$s</string>
 	<string name="messageSyncNoNote">No s\'han trobat notes a %1$s.</string>
-	<string name="messageSyncNoConnection">No esteu connectats a Internet</string>
+	<string name="messageSyncNoConnection">No esteu connectat a Internet</string>
 	<string name="messageSyncAlreadyInProgress">La sincronització ja està en marxa</string>
-	<string name="messageSyncError">Hi ha algun error per analitzar la vostra col·lecció de notes. Si sou capaços de reproduir el problema contacteu amb nosaltres!</string>
+	<string name="messageSyncError">S\'ha produït un error en analitzar la vostra col·lecció de notes. Si sou capaços de reproduir el problema contacteu amb nosaltres!</string>
 	<string name="error">Error</string>
 	<string name="titleNoteNotFound">No hi ha cap nota</string>
 	<string name="messageNoteNotFound">No s\'ha trobat la nota sol·licitada. Potser ha estat eliminada durant la sincronització.</string>
@@ -127,7 +127,7 @@
 	<string name="market_promotext">Aplicació per prendre notes amb sincronització compatible amb el Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">* Cercador de notes i integració amb el cercador del sistema \n* Menú contextual\n* Diverses millores en la usabilitat\n* Icones de més qualitat\n* Correcció de diversos errors\n* Traducció a l\'alemany\n</string>
+        <string name="market_recent_changes">0.6 \"Small World\" release\n* Create home-screen shortcuts to notes\n* Specify a folder to use for SD Card sync\n* Reload current note after sync\n* A lot of new translations: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n* Several bugfixes\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

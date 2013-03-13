@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ Tomdroid
+ Tomboy on Android
+ http://www.launchpad.net/tomdroid
+
+ Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
+ 
+ This file is part of Tomdroid.
+ 
+ Tomdroid is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Tomdroid is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources>
+	
+	<!-- application details -->
+	<string name="app_name">Tomdroid</string>
+	<string name="app_desc">Tomboy compatible wikiwiki note-taking application that can\'t take notes yet.</string>
+	<string name="author">Olivier Bilodeau</string>
+	
+	<!-- main.xml -->
+	<string name="strListEmptyWaiting">Please wait while the notes load..</string>
+	<string name="strListEmptyNoNotes">Няма бележки в базата данни на Tomdroid.</string>
+	
+	<string name="menuSync">Синхронизиране</string>
+	<string name="menuPrefs">Настройки</string>
+	<string name="menuAbout">Относно</string>
+	<string name="titleWelcome">Предупреждение</string>
+	<string name="titleAbout">Относно Tomdroid</string>
+	<string name="strWelcome">Welcome to Tomdroid.\n\nPlease note that this is beta quality software and that it contains known problems, like its inability to edit notes.\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something out and tested as quickly as possible.\n\nIf you would like to contribute, help at all levels would be appreciated. Hop on board on launchpad.net/tomdroid and contact us!\n</string>
+	<string name="strAbout">%1$s\n\nАвтор: %2$s\nВерсия: %3$s\nЛицензирано под GPLv3</string>
+	
+	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
+	<string name="btnOk">Приемане</string>
+	<string name="btnCancel">Отмяна</string>
+	<string name="btnClose">Затваряне</string>
+	<string name="btnProjectPage">Страница на проекта</string>
+	<string name="btnSavetoSD">Запазване в SD карта</string>
+	
+	<!-- note-view.xml -->
+	<string name="strWait">Моля, почакайте докато се зареди бележката...</string>
+	
+	<string name="prefSync">Синхронизация</string>
+	<string name="prefSyncService">Услуга</string>
+	<string name="prefSyncServer">Сървър</string>
+	<string name="prefSDCard">SD карта</string>
+	<string name="prefTomboyWeb">Синхронизиране онлайн</string>
+	<string name="prefAuthenticate">Идентифициране</string>
+	<string name="prefLocation">Местоположение на SD карта</string>
+	<string name="prefFolderCreated">Директорията \"%1$s\" все още не съществува. Моля, свържете вашето устройство към компютъра, създайте директорията и я попълнете с *.note файлове.</string>
+	<string name="prefNoValidEntry">\"%1$s\" съдържа невалидни символи.\nМоля, опитайте отново!</string>
+	
+	<string name="prefSyncCompleteAuth">Завършване на удостоверяване. Моля, почакайта...</string>
+	<string name="prefSyncConnectionFailed">Връзката със сървъра прекъсна. Моля, проверете валидността на въведеният адрес.</string>
+	<string name="prefServerEmpty">Адресът на сървъра е променен, но новата стойност е празна</string>
+	
+	<string name="titleSyncService">Изберете услугата за синхронизация</string>
+	<string name="messageSyncComplete">Синхронизацията с %1$s е завършена.</string>
+	<string name="messageSyncNoNote">Не са намерени бележки на %1$s.</string>
+	<string name="messageSyncNoConnection">Не сте свързани с интернет.</string>
+	<string name="messageSyncAlreadyInProgress">Синхронизирането вече е в ход</string>
+	<string name="messageSyncError">Възникна грешка при опита за прочитане на вашата колекция от бележки. Ако можете да откриете проблема, моля, свържете се с нас!</string>
+	<string name="error">Грешка</string>
+	<string name="titleNoteNotFound">Няма такава бележка</string>
+	<string name="messageNoteNotFound">Заявената бележка не може да бъде намерена. Може би е била изтрита или премахната по време на синхронизация.</string>
+	<string name="messageErrorNoteParsing">Заявената бележка не може да бъде прочетена. Ако сте способни да отстраните проблема, моля, свържете се с нас!</string>	
+	<string name="messageCouldNotSave">Не могат да се запишат грешките. Моля, проверете вашата SD карта.</string>
+	<string name="messageNoSDCard">Не е намерена SD карта.</string>
+	
+	<!-- NoteSorting -->
+	<string name="menuSort">Промяна на сортиране</string>
+	<string name="titleDefaultSorting">Choose the default sorting</string>
+	<string name="prefDefaultSorting">Default sort</string>
+	
+	<!-- NotebookFiltering -->
+	<string name="menuFilterNotebook">Филтриране</string>
+	<string name="strListEmptyNoNotebooks">Няма бележници в базата данни.</string>
+	<string name="allNotebooksFilter">Всички бележници</string>
+	
+	<!-- List Longpress Menu -->
+	<string name="view">Преглед</string>
+	<string name="noteOptions">Опции на бележка</string>
+	<string name="send">Изпращане</string>
+	
+	<!--  Search -->
+	<string name="search_hint">Търсене в бележки</string>
+	<string name="search_description">Търсене във вашите бележки</string>
+	<string name="strNoResults">Не са намерени бележки за \"%s\"</string>
+	<string name="menuSearch">Търсене</string>
+	<string name="prefSearch">Настройки на търсенето</string>
+	<string name="SearchResultTitle">Резултати от търсенето:</string>
+	<string name="clearSearchHistoryTitle">Изчистване на историята на търсене</string>
+	<string name="clearSearchHistory">Премахване на всички търсения, които сте изпълнявали</string>
+	<string name="deletedSearchHistory">Историята на търсенето беше изчистена.</string>
+	
+	<!-- Date -->
+	<string name="textModified">Последна промяна:</string>
+	<string name="textToday">Днес</string>
+	<string name="textYexterday">Вчера</string>
+
+	<!-- Shortcuts handling -->
+	<string name="shortcuts_view_caption">Избиране на бележка</string>
+	<string name="shortcut_menu_item_caption">Бележка на Tomdroid</string>
+	<string name="btnRemoveShortcut">Премахване на кратък път</string>
+	<string name="createShortcut">Създаване на пряк път</string>
+	
+	<!-- 
+	Information that goes into the Android Market Application Listing. 
+	I\'ve put it in here so that it\'ll get translated by translators.
+	-->
+	<!-- 30 chars max -->
+	<string name="market_title">Tomdroid бележки</string>
+	<!-- 4000 chars max -->
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\nNOTE: It is a READ-ONLY client for now.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
+	
+	<!-- 80 chars max -->
+	<string name="market_promotext">Приложение за водене на записки с онлайн синхронизация, съвместимо с Tomboy</string>
+
+	<!-- 500 chars max -->
+        <string name="market_recent_changes">версия 0.6 \"Малък Свят\"\n* Зъздаване на кратки пътища до бележките на началния екран\n* Посочване на папка за синхронизация на SD картата\n* Презареждане на текущата бележка след синхронизация\n* Доста нови преводи: ar, bg, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n* Няколко бъгове\n</string>
+
+	<!-- Launchpad Translation String -->
+	<string name="about_translators">Launchpad Contributions:
+  Blagovest Petrov https://launchpad.net/~eniac-bg</string>
+	
+</resources>

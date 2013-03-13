@@ -127,7 +127,7 @@
 	<string name="market_promotext">Lineako sinkronizazioadun oharrak hartzeko aplikazioa, Tomboyrekin bateragarria</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">* Search notes and system integrated search\n* Context menu\n* Several usability improvements\n* Higher quality icons\n* Several bug fixes\n* German translation\n</string>
+        <string name="market_recent_changes">0.6 \"Small World\" argitalpena\n* Sortu oharrentzako mahaigaineko lasterbideak\n* Zehaztu karpeta bat SD txartelarekin sinkronizatzeko\n* Birkargatu uneko oharra sinkronizatu ondoren\n* Hainbat itzulpen berri: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n* Zenbait errore-konponketa\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

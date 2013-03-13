@@ -69,7 +69,7 @@
 	<string name="messageSyncNoNote">Ingen noter fundet i %1$s.</string>
 	<string name="messageSyncNoConnection">Du er ikke forbundet til internettet.</string>
 	<string name="messageSyncAlreadyInProgress">Synkronisering er allerede i gang.</string>
-	<string name="messageSyncError">Der er sket en fejl ved hentningen af dine noter. Hvis du har mulighed for at genskabe fejlen bedes du kontakte os!</string>
+	<string name="messageSyncError">Der er sket en fejl ved fortolkningen af dine noter. Hvis du har mulighed for at genskabe fejlen bedes du kontakte os!</string>
 	<string name="error">Fejl</string>
 	<string name="titleNoteNotFound">Noten findes ikke</string>
 	<string name="messageNoteNotFound">Den ønskede note er ikke fundet. Måske er den blevet slettet eller flyttet i synkroniseringsprocessen.</string>
@@ -127,10 +127,16 @@
 	<string name="market_promotext">Notes-app med online synkronisering og kompatibelt med Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">* Search notes and system integrated search\n* Context menu\n* Several usability improvements\n* Higher quality icons\n* Several bug fixes\n* German translation\n</string>
+        <string name="market_recent_changes">0.6 \"Small World\" udgave\n 
+* Opret hjem-skærm genveje til noter\n 
+* Angiv en mappe der skal bruges til SD kort sync\n
+* Genindlæs aktuelle note efter synkronisering\n 
+* En masse nye oversættelser: ar, bs , ca, cs, da, de, el, en-RGB, eo, es, eu, FA, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, PL, PT, pt -RBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n 
+* Adskillige fejlrettelser\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
+  David Nielsen https://launchpad.net/~davidnielsen
   Mads Boserup Lauritsen https://launchpad.net/~madsbola</string>
 	
 </resources>

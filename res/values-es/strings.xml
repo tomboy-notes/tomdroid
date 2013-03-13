@@ -71,7 +71,7 @@
 	<string name="messageSyncAlreadyInProgress">La sincronización ya está en curso</string>
 	<string name="messageSyncError">Se ha producido un error al procesar las notas. Si es capaz de volver a generar este mensaje, póngase en contacto con nosotros.</string>
 	<string name="error">Error</string>
-	<string name="titleNoteNotFound">Sin notas.</string>
+	<string name="titleNoteNotFound">No existe tal nota</string>
 	<string name="messageNoteNotFound">No se encuentra la nota solicitada. Puede que haya sido borrada por el proceso de sincronización.</string>
 	<string name="messageErrorNoteParsing">No se puede leer correctamente la nota solicitada. Si sabe reproducir el problema, póngase en contacto con nosotros.</string>	
 	<string name="messageCouldNotSave">No se pueden guardar los errores, revise su tarjeta SD.</string>
@@ -127,7 +127,7 @@
 	<string name="market_promotext">Aplicación de notas con sincronización en línea compatible con Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">* Search notes and system integrated search\n* Context menu\n* Several usability improvements\n* Higher quality icons\n* Several bug fixes\n* German translation\n</string>
+        <string name="market_recent_changes">0.6 \"Mundo Pequeño\" lanzada\n* Crear lanzadores de pantalla de inicio a notas\n* Especifique una carpeta a usar para la sincronización de la Tarjeta SD\n* Recargar nota actual después de sincronizar\n* Una gran cantidad de nuevas traducciones: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n* Varios bugfixes\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
@@ -137,6 +137,7 @@
   Clemens Niesner https://launchpad.net/~pop-ffe
   Isabel Heger https://launchpad.net/~isabel-h1
   JoLiSh https://launchpad.net/~jolish
+  Jorge Luis Granda https://launchpad.net/~costeelation
   João Santana https://launchpad.net/~joaosantana
   Stefan Hammer https://launchpad.net/~j-4</string>
 	

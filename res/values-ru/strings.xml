@@ -53,10 +53,10 @@
 	<string name="prefSync">Синхронизация</string>
 	<string name="prefSyncService">Сервис</string>
 	<string name="prefSyncServer">Сервер</string>
-	<string name="prefSDCard">SD Card</string>
+	<string name="prefSDCard">SD карта</string>
 	<string name="prefTomboyWeb">Онлайн синхронизация</string>
 	<string name="prefAuthenticate">Аутентификация</string>
-	<string name="prefLocation">Местоположение на SD карте</string>
+	<string name="prefLocation">Расположенно на SD карте</string>
 	<string name="prefFolderCreated">Папка \"%1$s\" ещё не существует. Пожалуйста, подсоедините Ваше устройство к компьютеру, создайте папку и заполните её *.note файлами.</string>
 	<string name="prefNoValidEntry">\"%1$s\" содержит неверные символы.\n Пожалуйста, попробуйте снова!</string>
 	
@@ -64,32 +64,32 @@
 	<string name="prefSyncConnectionFailed">Подключение к серверу не удалось, проверьте правильность введенного вами адреса.</string>
 	<string name="prefServerEmpty">Адрес сервера изменен, но новое значение пустое</string>
 	
-	<string name="titleSyncService">Выберите сервис синхронизации для использования</string>
+	<string name="titleSyncService">Выберите Сервис Синхронизации для использования</string>
 	<string name="messageSyncComplete">Синхронизация с %1$s завершена.</string>
 	<string name="messageSyncNoNote">Не найдено записей в %1$s.</string>
 	<string name="messageSyncNoConnection">Вы не подключены к Интернету.</string>
 	<string name="messageSyncAlreadyInProgress">Синхронизация уже выполняется</string>
 	<string name="messageSyncError">Произошла ошибка при попытке разбора вашей коллекции заметок. Если вы можете воспроизвести эту проблему, пожалуйста, свяжитесь с нами!</string>
 	<string name="error">Ошибка</string>
-	<string name="titleNoteNotFound">НетТакой Заметки</string>
+	<string name="titleNoteNotFound">Нет такой заметки</string>
 	<string name="messageNoteNotFound">Запрашиваемая заметка не может быть найдена. Может быть она была удалена или перемещена во время синхронизации.</string>
 	<string name="messageErrorNoteParsing">Запрашиваемая заметка не может быть проанализирована. Если Вы сможете её скопировать, пожалуйста, свяжитесь с нами!</string>	
 	<string name="messageCouldNotSave">Невозможно сохранить ошибки, пожалуйста проверьте вашу SD карту.</string>
 	<string name="messageNoSDCard">SD карта не найдена.</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">Изменить Вид</string>
+	<string name="menuSort">Изменить метод сортировки.</string>
 	<string name="titleDefaultSorting">Выберите стандартный метод сортировки</string>
 	<string name="prefDefaultSorting">Стандартный метод сортировки</string>
 	
 	<!-- NotebookFiltering -->
 	<string name="menuFilterNotebook">Фильтр</string>
-	<string name="strListEmptyNoNotebooks">В базе данных нет сборников заметок</string>
-	<string name="allNotebooksFilter">Все сборники  заметок</string>
+	<string name="strListEmptyNoNotebooks">В базе данных нет блокнотов.</string>
+	<string name="allNotebooksFilter">Все блокноты</string>
 	
 	<!-- List Longpress Menu -->
 	<string name="view">Просмотреть</string>
-	<string name="noteOptions">Настройки заметки</string>
+	<string name="noteOptions">Настройки заметок</string>
 	<string name="send">Отправить</string>
 	
 	<!--  Search -->
@@ -127,7 +127,7 @@
 	<string name="market_promotext">Приложение для хранения заметок с возможностью онлайн синхронизации с Tomdroid</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">* Search notes and system integrated search\n* Context menu\n* Several usability improvements\n* Higher quality icons\n* Several bug fixes\n* German translation\n</string>
+        <string name="market_recent_changes">0.6 \"Small World\" release\n* Create home-screen shortcuts to notes\n* Specify a folder to use for SD Card sync\n* Reload current note after sync\n* A lot of new translations: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n* Several bugfixes\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
@@ -136,6 +136,7 @@
   Bernhard Hauer https://launchpad.net/~bernhard-hauer1
   Ivan Akulov https://launchpad.net/~gxoptg
   Stefan Hammer https://launchpad.net/~j-4
-  Vyacheslav Sharmanov https://launchpad.net/~vsharmanov</string>
+  Vyacheslav Sharmanov https://launchpad.net/~vsharmanov
+  Устин https://launchpad.net/~ustinershovskiy</string>
 	
 </resources>

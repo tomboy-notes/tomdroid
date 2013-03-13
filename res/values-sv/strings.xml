@@ -54,31 +54,31 @@
 	<string name="prefSyncService">Tjänst</string>
 	<string name="prefSyncServer">Server</string>
 	<string name="prefSDCard">SD-kort</string>
-	<string name="prefTomboyWeb">Direktansluten synkronisering</string>
+	<string name="prefTomboyWeb">Onlinesynkronisering</string>
 	<string name="prefAuthenticate">Autentisera</string>
 	<string name="prefLocation">Plats på SD-kort</string>
-	<string name="prefFolderCreated">Katalogen \"%1$s\" finns inte än. Vänligen anslut din enhet till datorn, skapa katalogen och fyll den med *.note filer.</string>
+	<string name="prefFolderCreated">Mappen \"%1$s\" finns inte än. Vänligen anslut din enhet till datorn, skapa mappen och fyll den med *.note-filer.</string>
 	<string name="prefNoValidEntry">\"%1$s\" innehåller otillåtna tecken.\nVänligen försök igen!</string>
 	
 	<string name="prefSyncCompleteAuth">Slutför autentisering. Vänligen vänta...</string>
-	<string name="prefSyncConnectionFailed">Anslutningen till servern har gått fel, vänligen kontrollera att adressen du skrev in stämmer.</string>
+	<string name="prefSyncConnectionFailed">Anslutningen till servern har misslyckats, vänligen kontrollera att adressen du skrev in stämmer.</string>
 	<string name="prefServerEmpty">Serverns adress har ändrats men det nya värdet är tomt</string>
 	
 	<string name="titleSyncService">Välj synkroniseringstjänst</string>
 	<string name="messageSyncComplete">Synkronisering med %1$s är klar.</string>
-	<string name="messageSyncNoNote">Inga anteckningar funna på %1$s.</string>
+	<string name="messageSyncNoNote">Inga anteckningar hittades på %1$s.</string>
 	<string name="messageSyncNoConnection">Du är inte ansluten till Internet.</string>
 	<string name="messageSyncAlreadyInProgress">Synkronisering pågår redan</string>
-	<string name="messageSyncError">Det uppstod ett fel vid tolkningen av din anteckningssamling. Vänligen kontakta oss ifall du lyckas återskapa felet!</string>
+	<string name="messageSyncError">Det uppstod ett fel vid analysen av din anteckningssamling. Vänligen kontakta oss ifall du lyckas återskapa felet!</string>
 	<string name="error">Fel</string>
-	<string name="titleNoteNotFound">Inga Sådana Anteckningar</string>
-	<string name="messageNoteNotFound">Den efterfrågade anteckningen kan inte hittas. Den kanske har raderats eller flyttats via synkronisering.</string>
+	<string name="titleNoteNotFound">Det finns ingen sådan anteckning</string>
+	<string name="messageNoteNotFound">Den efterfrågade anteckningen kan inte hittas. Den kanske har tagits bort eller flyttats vid synkronisering.</string>
 	<string name="messageErrorNoteParsing">Den efterfrågade anteckningen kunde inte tolkas. Om du kan återskapa felet, vänligen kontakta oss!</string>	
 	<string name="messageCouldNotSave">Kan inte spara felen, kontrollera ditt SD-kort.</string>
 	<string name="messageNoSDCard">SD-koret kan inte hittas.</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">Ändra Sortering</string>
+	<string name="menuSort">Ändra sortering</string>
 	<string name="titleDefaultSorting">Välj standardsortering</string>
 	<string name="prefDefaultSorting">Standardsortering</string>
 	
@@ -89,18 +89,18 @@
 	
 	<!-- List Longpress Menu -->
 	<string name="view">Visa</string>
-	<string name="noteOptions">Anteckningsval</string>
+	<string name="noteOptions">Anteckningsalternativ</string>
 	<string name="send">Skicka</string>
 	
 	<!--  Search -->
-	<string name="search_hint">Sök Anteckningar</string>
+	<string name="search_hint">Sök anteckningar</string>
 	<string name="search_description">Text i dina anteckningar</string>
-	<string name="strNoResults">Inga anteckningar funna för \"%s\"</string>
+	<string name="strNoResults">Inga anteckningar hittades för \"%s\"</string>
 	<string name="menuSearch">Sök</string>
 	<string name="prefSearch">Sökalternativ</string>
 	<string name="SearchResultTitle">Sökresultat:</string>
 	<string name="clearSearchHistoryTitle">Rensa sökhistoriken</string>
-	<string name="clearSearchHistory">Plocka bort alla sökningar du har gjort</string>
+	<string name="clearSearchHistory">Ta bort alla sökningar du har gjort</string>
 	<string name="deletedSearchHistory">Sökhistoriken har tömts.</string>
 	
 	<!-- Date -->
@@ -110,7 +110,7 @@
 
 	<!-- Shortcuts handling -->
 	<string name="shortcuts_view_caption">Välj en anteckning</string>
-	<string name="shortcut_menu_item_caption">Tomdroid Anteckning</string>
+	<string name="shortcut_menu_item_caption">Tomdroid-anteckning</string>
 	<string name="btnRemoveShortcut">Ta bort genväg</string>
 	<string name="createShortcut">Skapa genväg</string>
 	
@@ -119,19 +119,20 @@
 	I\'ve put it in here so that it\'ll get translated by translators.
 	-->
 	<!-- 30 chars max -->
-	<string name="market_title">Tomdroid anteckningar</string>
+	<string name="market_title">Tomdroid-anteckningar</string>
 	<!-- 4000 chars max -->
 	<string name="market_description">En Tomboy-klient för Android. Tomboy är en anteckningsapp för skrivbordet som använder sig av ett wikiwiki-grepp och ett enkelt gränssnitt.\n\nOBS: Endast läsåtkomst än så länge.\n\n* Formatkompatibel med Tomboy\n* Synkronisering med Snowy, Tomboy Online eller Ubuntu One\n* Import från SD-kort\n* Öppen källkod!</string>
 	
 	<!-- 80 chars max -->
-	<string name="market_promotext">Anteckningsblock med online-synkronisering som är kompatibel med Tomboy</string>
+	<string name="market_promotext">Anteckningsblock med onlinesynkronisering som är kompatibel med Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">* Search notes and system integrated search\n* Context menu\n* Several usability improvements\n* Higher quality icons\n* Several bug fixes\n* German translation\n</string>
+        <string name="market_recent_changes">0.6, utgåvan \"Small World\"\n* Skapa startsidegenvägar till anteckningar\n* Välj en mapp att använda till SD-kortsynkronisering\n* Uppdatera aktuell anteckning efter synkronisering\n* Massor av nya översättningar: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n* Ett flertal buggfixar\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
   Daniel Ruus https://launchpad.net/~daniel-ruus
+  Mikael Hiort af Ornäs https://launchpad.net/~lakritslemmel
   Stefan Hammer https://launchpad.net/~j-4
   stoft https://launchpad.net/~rasmus-larsson</string>
 	

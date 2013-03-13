@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ Tomdroid
+ Tomboy on Android
+ http://www.launchpad.net/tomdroid
+
+ Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
+ 
+ This file is part of Tomdroid.
+ 
+ Tomdroid is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Tomdroid is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources>
+	
+	<!-- application details -->
+	<string name="app_name">Томадроид</string>
+	<string name="app_desc">Tomboy compatible wikiwiki note-taking application that can\'t take notes yet.</string>
+	<string name="author">Olivier Bilodeau</string>
+	
+	<!-- main.xml -->
+	<string name="strListEmptyWaiting">Please wait while the notes load..</string>
+	<string name="strListEmptyNoNotes">Нема белешки у остави података Томадроида</string>
+	
+	<string name="menuSync">Усклађивање</string>
+	<string name="menuPrefs">Поставке</string>
+	<string name="menuAbout">О програму</string>
+	<string name="titleWelcome">Упозорење</string>
+	<string name="titleAbout">О Томадроиду</string>
+	<string name="strWelcome">Welcome to Tomdroid.\n\nPlease note that this is beta quality software and that it contains known problems, like its inability to edit notes.\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something out and tested as quickly as possible.\n\nIf you would like to contribute, help at all levels would be appreciated. Hop on board on launchpad.net/tomdroid and contact us!\n</string>
+	<string name="strAbout">%1$s\n\nАутор: %2$s\nИздање: %3$s\nОбјављено под  GPLv3</string>
+	
+	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
+	<string name="btnOk">У реду</string>
+	<string name="btnCancel">Откажи</string>
+	<string name="btnClose">Затвори</string>
+	<string name="btnProjectPage">Страница пројекта</string>
+	<string name="btnSavetoSD">Save to SD card</string>
+	
+	<!-- note-view.xml -->
+	<string name="strWait">Please wait while note loads...</string>
+	
+	<string name="prefSync">Усклађивање</string>
+	<string name="prefSyncService">Услуга</string>
+	<string name="prefSyncServer">Служитељ</string>
+	<string name="prefSDCard">СД картица</string>
+	<string name="prefTomboyWeb">Усклађивање преко мреже</string>
+	<string name="prefAuthenticate">Потврди идентитет</string>
+	<string name="prefLocation">Путања на СД картици</string>
+	<string name="prefFolderCreated">Фасцикла „%1$s“ још увек није направљена. Молим, повежите Ваш урђај са рачунаром, направите фасциклу и испуните је *.note датотекама.</string>
+	<string name="prefNoValidEntry">\"%1$s\" contains invalid characters.\nPlease try again!</string>
+	
+	<string name="prefSyncCompleteAuth">Completing authentication. Please wait...</string>
+	<string name="prefSyncConnectionFailed">Веза са служитељем није успела, молим, проверите да ли је адреса коју сте унели исправна.</string>
+	<string name="prefServerEmpty">Адреса служитеља је измењена, али, нова вредност је празна</string>
+	
+	<string name="titleSyncService">Изаберите која услуга усклађивања ће се користити</string>
+	<string name="messageSyncComplete">Усклађивање са %1$s је завршено.</string>
+	<string name="messageSyncNoNote">Нисам пронашао ни једну белешку у %1$s.</string>
+	<string name="messageSyncNoConnection">Нисте повезани на интернет.</string>
+	<string name="messageSyncAlreadyInProgress">Усклађивање је већ у току</string>
+	<string name="messageSyncError">Десила се грешка при покушају расчлањивања збирке белешки. Ако сте у могућности да опишете проблем, молим, обратите нам се!</string>
+	<string name="error">Грешка</string>
+	<string name="titleNoteNotFound">Не постоји таква белешка</string>
+	<string name="messageNoteNotFound">Нисам успео да пронађем затражену белешку. Можда је обрисана или је уклоњена кроз усклађивање.</string>
+	<string name="messageErrorNoteParsing">The requested note could not be parsed. If you are able to replicate the problem, please contact us!</string>	
+	<string name="messageCouldNotSave">Could not save the errors, please check your SD card.</string>
+	<string name="messageNoSDCard">SD card not found.</string>
+	
+	<!-- NoteSorting -->
+	<string name="menuSort">Промени начин распоређивања</string>
+	<string name="titleDefaultSorting">Choose the default sorting</string>
+	<string name="prefDefaultSorting">Default sort</string>
+	
+	<!-- NotebookFiltering -->
+	<string name="menuFilterNotebook">Услов</string>
+	<string name="strListEmptyNoNotebooks">Нема бележница у остави података.</string>
+	<string name="allNotebooksFilter">Све бележнице</string>
+	
+	<!-- List Longpress Menu -->
+	<string name="view">Преглед</string>
+	<string name="noteOptions">Могућности белешке</string>
+	<string name="send">Пошаљи</string>
+	
+	<!--  Search -->
+	<string name="search_hint">Тражи белешке</string>
+	<string name="search_description">Текст у бележници</string>
+	<string name="strNoResults">Нисам нашао белешку за „%s“</string>
+	<string name="menuSearch">Претражи</string>
+	<string name="prefSearch">Search Options</string>
+	<string name="SearchResultTitle">Излаз претраге:</string>
+	<string name="clearSearchHistoryTitle">Очисти историјат претраге</string>
+	<string name="clearSearchHistory">Уклони све извршене претраге</string>
+	<string name="deletedSearchHistory">Историја претраге је очишћена.</string>
+	
+	<!-- Date -->
+	<string name="textModified">Измењена:</string>
+	<string name="textToday">Данас</string>
+	<string name="textYexterday">Јуче</string>
+
+	<!-- Shortcuts handling -->
+	<string name="shortcuts_view_caption">Изаберите белешку</string>
+	<string name="shortcut_menu_item_caption">Томадроид белешка</string>
+	<string name="btnRemoveShortcut">Уклони пречицу</string>
+	<string name="createShortcut">Направи пречицу</string>
+	
+	<!-- 
+	Information that goes into the Android Market Application Listing. 
+	I\'ve put it in here so that it\'ll get translated by translators.
+	-->
+	<!-- 30 chars max -->
+	<string name="market_title">Томадроидове белешке</string>
+	<!-- 4000 chars max -->
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\nNOTE: It is a READ-ONLY client for now.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
+	
+	<!-- 80 chars max -->
+	<string name="market_promotext">Програм за хватање бележака са усаглашавањем преко мреже сагласан са Томицом</string>
+
+	<!-- 500 chars max -->
+        <string name="market_recent_changes">0.6 \„Мали свет“ издање\n* Стварање пречица са почетног екрана до бележнице\n* Одређивање фасцикле која ће се користити за усаглашавање\n* Много нових превода: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n* Неколико поправака грешака\n</string>
+
+	<!-- Launchpad Translation String -->
+	<string name="about_translators">Launchpad Contributions:
+  Саша Петровић https://launchpad.net/~salepetronije</string>
+	
+</resources>

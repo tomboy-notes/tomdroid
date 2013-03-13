@@ -127,12 +127,12 @@
 	<string name="market_promotext">Notiz-Programm mit online Synchronisation zu Tomboy.</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">* Notizen durchsuchen\n* Kontextmenü\n* Verschiedene Usabilityverbesserungen\n* Höherqualitative Icons\n* Bug Fixes\n* Deutsche *bersetzung</string>
+        <string name="market_recent_changes">0.6 \"Small World\" Release\n* Erstelle Desktop-Lesezeichen zu Notizen\n* Wähle selbst den Ordner für die SD-Karten-Synchronsiation\n* Nach dem Synchronisieren aktualisiere aktuelle Notiz\n* Support für viele neue Sprachen: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n* Weitere Fehlerbehebungen\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
   Ghenrik https://launchpad.net/~ghenrik-deactivatedaccount
-  Stefan Hammer https://launchpad.net/~j-4
-  mili https://launchpad.net/~mili-f</string>
+  Phillip Sz https://launchpad.net/~phillip-sz
+  Stefan Hammer https://launchpad.net/~j-4</string>
 	
 </resources>

@@ -42,7 +42,7 @@
 	
 	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
 	<string name="btnOk">OK</string>
-	<string name="btnCancel">Mégse</string>
+	<string name="btnCancel">Mégsem</string>
 	<string name="btnClose">Bezárás</string>
 	<string name="btnProjectPage">A projekt oldala</string>
 	<string name="btnSavetoSD">Mentés SD kártyára</string>
@@ -53,23 +53,23 @@
 	<string name="prefSync">Szinkronizálás</string>
 	<string name="prefSyncService">Szolgáltatás</string>
 	<string name="prefSyncServer">Kiszolgáló</string>
-	<string name="prefSDCard">SD Kártya</string>
+	<string name="prefSDCard">SD kártya</string>
 	<string name="prefTomboyWeb">Online szinkronizálás</string>
 	<string name="prefAuthenticate">Hitelesítés</string>
 	<string name="prefLocation">Hely az SD kártyán</string>
-	<string name="prefFolderCreated">A mappa \"%1$s\"még nem létezik. Kérem csatlakoztassa készülékét a számítógéphez, hozza létre a mappát, és töltse fel *.note fájlokkal.</string>
+	<string name="prefFolderCreated">\"%1$s\" nevű mappa még nem létezik. Kérem csatlakoztassa készülékét a számítógéphez, hozza létre a mappát, és töltse fel *.note fájlokkal.</string>
 	<string name="prefNoValidEntry">\"%1$s\" érvénytelen karaktereket tartalmaz.\nKérem, próbálja újra!</string>
 	
 	<string name="prefSyncCompleteAuth">Hitelesítés folyamatban. Várjon türelemmel...</string>
 	<string name="prefSyncConnectionFailed">Nem sikerült kapcsolódni a szerverhez. Ellenőrizze, hogy helyes címet adott-e meg.</string>
 	<string name="prefServerEmpty">A szerver címe megváltozott,  de nincs helyette megadva semmi</string>
 	
-	<string name="titleSyncService">Szinkronizálási kiszolgáló választása</string>
+	<string name="titleSyncService">Szinkronizáló szolgáltatás kiválasztása</string>
 	<string name="messageSyncComplete">Szinkronizálás kész ezzel: %1$</string>
 	<string name="messageSyncNoNote">Nem találhatóak jegyzetek ezen: %1$s.</string>
 	<string name="messageSyncNoConnection">Nincs internetkapcsolat.</string>
 	<string name="messageSyncAlreadyInProgress">A szinkronizálás már folyamatban van</string>
-	<string name="messageSyncError">Hiba történt a jegyzetek betöltése közben. Ha tudja jelenteni a problémát, kérjük, tegye meg!</string>
+	<string name="messageSyncError">There was an error trying to parse your note collection. If you are able to replicate the problem, please contact us!</string>
 	<string name="error">Hiba</string>
 	<string name="titleNoteNotFound">Nincs ilyen jegyzet</string>
 	<string name="messageNoteNotFound">A kért jegyzet nem található. Lehetséges, hogy törölve lett, vagy el lett távolítva a szinkronizáció során.</string>
@@ -84,8 +84,8 @@
 	
 	<!-- NotebookFiltering -->
 	<string name="menuFilterNotebook">Szűrő</string>
-	<string name="strListEmptyNoNotebooks">Nem található notebook az adatbázisban.</string>
-	<string name="allNotebooksFilter">Az összes notebook</string>
+	<string name="strListEmptyNoNotebooks">Az adatbázisban nem található jegyzetfüzet.</string>
+	<string name="allNotebooksFilter">Összes jegyzetfüzet</string>
 	
 	<!-- List Longpress Menu -->
 	<string name="view">Nézet</string>
@@ -98,13 +98,13 @@
 	<string name="strNoResults">Nem található jegyzet erre: \"%s\"</string>
 	<string name="menuSearch">Keresés</string>
 	<string name="prefSearch">Keresési beállítások</string>
-	<string name="SearchResultTitle">A keresés eredménye:</string>
+	<string name="SearchResultTitle">Keresési eredmények:</string>
 	<string name="clearSearchHistoryTitle">Keresési előzmények törlése</string>
 	<string name="clearSearchHistory">Az előzőleg végrehajtott keresések törlése</string>
 	<string name="deletedSearchHistory">Keresési előzmények törölve.</string>
 	
 	<!-- Date -->
-	<string name="textModified">Módosítva:</string>
+	<string name="textModified">Utolsó módosítás:</string>
 	<string name="textToday">Ma</string>
 	<string name="textYexterday">Tegnap</string>
 
@@ -127,11 +127,12 @@
 	<string name="market_promotext">Jegyzetfüzet-alkalmazás Tomboy-kompatibilis online szinkronizációval</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">* Jegyzetkeresés és rendszerintegrált keresés\n* Összefüggés menü\n* Néhány használhatósági fejlesztés\n* Jobb minőségű ikonok\n* Néhány hibajavítás\n* Német fordítás\n* Magyar fordítás\n*</string>
+        <string name="market_recent_changes">0.6 \"Small World\" release\n* Create home-screen shortcuts to notes\n* Specify a folder to use for SD Card sync\n* Reload current note after sync\n* A lot of new translations: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n* Several bugfixes\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
   Horváth Zoltán https://launchpad.net/~veszett-kutya76
-  Péter Trombitás https://launchpad.net/~trombipeti</string>
+  Péter Trombitás https://launchpad.net/~trombipeti
+  Szabó L. B. https://launchpad.net/~szabo-lajos-balazs</string>
 	
 </resources>

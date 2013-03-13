@@ -45,7 +45,7 @@
 	<string name="btnCancel">キャンセル</string>
 	<string name="btnClose">閉じる</string>
 	<string name="btnProjectPage">ホームページ</string>
-	<string name="btnSavetoSD">Save to SD card</string>
+	<string name="btnSavetoSD">SDカードに保存</string>
 	
 	<!-- note-view.xml -->
 	<string name="strWait">メモが読み込まれるまでお待ちください...</string>
@@ -58,7 +58,7 @@
 	<string name="prefAuthenticate">認証</string>
 	<string name="prefLocation">SDカード上の場所</string>
 	<string name="prefFolderCreated">フォルダー \"%1$s\" は、まだ存在しません。デバイスをコンピューターに接続し、フォルダーを作成して *.note ファイルを入れてください。</string>
-	<string name="prefNoValidEntry">\"%1$s\" contains invalid characters.\nPlease try again!</string>
+	<string name="prefNoValidEntry">\"%1$s\" は無効な文字を含んでいます。\nもう一度試してください！</string>
 	
 	<string name="prefSyncCompleteAuth">認証処理中です。お待ちください...</string>
 	<string name="prefSyncConnectionFailed">サーバーへの接続に失敗しました。入力したアドレスが正しいかどうか確認してください。</string>
@@ -71,14 +71,14 @@
 	<string name="messageSyncAlreadyInProgress">同期は既に進行しています</string>
 	<string name="messageSyncError">メモコレクションの変換中にエラーが発生しました。再現可能な場合は私たちに連絡してください！</string>
 	<string name="error">エラー</string>
-	<string name="titleNoteNotFound">No Such Note</string>
-	<string name="messageNoteNotFound">The requested note could not be found. Maybe it was deleted or removed through synchronization.</string>
-	<string name="messageErrorNoteParsing">The requested note could not be parsed. If you are able to replicate the problem, please contact us!</string>	
-	<string name="messageCouldNotSave">Could not save the errors, please check your SD card.</string>
-	<string name="messageNoSDCard">SD card not found.</string>
+	<string name="titleNoteNotFound">そのようなメモはありません</string>
+	<string name="messageNoteNotFound">要求されたメモは見つかりませんでした。おそらく、同期の際に移動もしくは削除されました。</string>
+	<string name="messageErrorNoteParsing">要求されたメモを解析できませんでした。問題を再現可能な場合は私たちに連絡してください！</string>	
+	<string name="messageCouldNotSave">エラーを記録することができませんでした。SDカードを確認してください。</string>
+	<string name="messageNoSDCard">SDカードが見つかりませんでした。</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">Change Sort</string>
+	<string name="menuSort">ソートの変更</string>
 	<string name="titleDefaultSorting">デフォルトのソートの選択</string>
 	<string name="prefDefaultSorting">デフォルトのソート</string>
 	
@@ -109,9 +109,9 @@
 	<string name="textYexterday">昨日</string>
 
 	<!-- Shortcuts handling -->
-	<string name="shortcuts_view_caption">Choose a Note</string>
-	<string name="shortcut_menu_item_caption">Tomdroid Note</string>
-	<string name="btnRemoveShortcut">Remove shortcut</string>
+	<string name="shortcuts_view_caption">メモを選択</string>
+	<string name="shortcut_menu_item_caption">Tomdroid メモ</string>
+	<string name="btnRemoveShortcut">ショートカットを削除</string>
 	<string name="createShortcut">ショートカットを作成</string>
 	
 	<!-- 
@@ -127,7 +127,7 @@
 	<string name="market_promotext">Tomboyと互換性のある、オンラインで同期するメモ帳アプリケーション</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">* Search notes and system integrated search\n* Context menu\n* Several usability improvements\n* Higher quality icons\n* Several bug fixes\n* German translation\n</string>
+        <string name="market_recent_changes">0.6 \"Small World\" リリース\n* ホーム画面へのメモのショートカットの作成\n* SDカード同期に使用するフォルダーの指定\n* 同期後の表示中のメモの更新\n* 新たに多数の言語に対応: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n* いくつかのバグ修正\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

@@ -35,7 +35,7 @@
 	<string name="menuSync">Synchronisation</string>
 	<string name="menuPrefs">Préférences</string>
 	<string name="menuAbout">À propos</string>
-	<string name="titleWelcome">Attention</string>
+	<string name="titleWelcome">Avertissement</string>
 	<string name="titleAbout">À propos de Tomdroid</string>
 	<string name="strWelcome">Bienvenue sur Tomdroid.\n\nVeuillez noter que l\'application est en phase bêta et qu\'elle contient des problèmes connus, comme l\'incapacité d\'éditer une note.\n\nNous sommes bien au courant de ces problèmes et nous avons l\'intention de travailler là dessus rapidement mais je veux aussi développer et tester l\'application aussi vite que possible.\n\nSi vous voulez contribuer, de l\'aide à tous les niveaux sera appréciée. Allez sur launchpad.net/tomdroid et contactez nous!\n</string>
 	<string name="strAbout">%1$s\n\nAuteur: %2$s\nVersion: %3$s\nLicense sous GPLv3</string>
@@ -69,7 +69,7 @@
 	<string name="messageSyncNoNote">Pas de notes trouvées sur le %1$s.</string>
 	<string name="messageSyncNoConnection">Aucune connection à Internet</string>
 	<string name="messageSyncAlreadyInProgress">Synchronisation déjà en cours</string>
-	<string name="messageSyncError">Il y avait une erreur lors de la syncrhonisation. Si vous pouvez reproduire le problème, contactez-nous !</string>
+	<string name="messageSyncError">Il y avait une erreur lors de la synchronisation. Si vous pouvez reproduire le problème, contactez-nous !</string>
 	<string name="error">Erreur</string>
 	<string name="titleNoteNotFound">Pas de note correspondante</string>
 	<string name="messageNoteNotFound">La note demandée n\'a pu être trouvée. Peut-être qu\'elle a été supprimée ou retirée par le biais de la synchronisation.</string>
@@ -124,14 +124,18 @@
 	<string name="market_description">Client Android pour Tomboy. Tomboy est un logiciel de prise de notes wikiwiki avec une interface usager simple.\n\nNOTE: LECTURE SEULE pour l\'instant\n\n* Format de note compatible avec Tomboy\n* Synchronisation en ligne avec Snowy, Tomboy Online et Ubuntu One\n* Importation de la carte SD\n* Logiciel libre!</string>
 	
 	<!-- 80 chars max -->
-	<string name="market_promotext">Appli de prise de notes avec synchronisation en ligne compatible avec Tomboy</string>
+	<string name="market_promotext">Application de prise de note avec synchronisation en ligne compatible Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">* Search notes and system integrated search\n* Context menu\n* Several usability improvements\n* Higher quality icons\n* Several bug fixes\n* German translation\n</string>
+        <string name="market_recent_changes">version 0.6 \"Small World\"\n* Créer des raccourcies sur le bureau faire les notes\n* Spécifier un dossier à utiliser pour la synchronisation de la carte SD\n* Recharger la note courante après la syncrhonisation\n* De nombreuses traductions : ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n* Diverses corrections de bugs\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
+  Benjamin Nicita https://launchpad.net/~ilfirin-talyon
+  Clément Fauchereau https://launchpad.net/~clementfauchereau
+  Florent (LSc) https://launchpad.net/~lorkscorguar
   François Laurent https://launchpad.net/~francois.laurent
+  Hélion du Mas des Bourboux https://launchpad.net/~helion331990
   Isabel Heger https://launchpad.net/~isabel-h1
   Léo POUGHON https://launchpad.net/~leo-poughon
   Stefan Hammer https://launchpad.net/~j-4</string>

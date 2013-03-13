@@ -1,0 +1,367 @@
+# Latin translation for tomdroid
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the tomdroid package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: tomdroid\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2012-08-22 17:22+0200\n"
+"PO-Revision-Date: 2013-01-29 19:53+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Latin <la@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2013-03-13 13:12+0000\n"
+"X-Generator: Launchpad (build 16532)\n"
+
+#. application details
+#: tmp_strings.xml:27(string)
+msgid "Tomdroid"
+msgstr "Tomdroida"
+
+#: tmp_strings.xml:28(string)
+msgid ""
+"Tomboy compatible wikiwiki note-taking application that can't take notes yet."
+msgstr ""
+
+#: tmp_strings.xml:29(string)
+msgid "Olivier Bilodeau"
+msgstr "Oliverus Curator-Sigillorum"
+
+#. main.xml
+#: tmp_strings.xml:32(string)
+msgid "Please wait while the notes load.."
+msgstr ""
+
+#: tmp_strings.xml:33(string)
+msgid "There are no notes in Tomdroid's database."
+msgstr ""
+
+#. Menu entry with icon
+#: tmp_strings.xml:36(string)
+msgid "Sync"
+msgstr ""
+
+#. Menu entry with icon
+#: tmp_strings.xml:38(string)
+msgid "Settings"
+msgstr "Praepositiones"
+
+#. Menu entry with icon
+#: tmp_strings.xml:40(string)
+msgid "About"
+msgstr "De programma"
+
+#. Title of an alert box
+#: tmp_strings.xml:42(string)
+msgid "Warning"
+msgstr ""
+
+#: tmp_strings.xml:43(string)
+msgid "About Tomdroid"
+msgstr "De Tomdroida"
+
+#: tmp_strings.xml:40(string)
+msgid ""
+"Welcome to Tomdroid.\\n\\nPlease note that this is beta quality software and "
+"that it contains known problems, like its inability to edit notes.\\n\\nWe "
+"are well aware of these issues and intend to work on them quickly but I also "
+"wanted to get something out and tested as quickly as possible.\\n\\nIf you "
+"would like to contribute, help at all levels would be appreciated. Hop on "
+"board on launchpad.net/tomdroid and contact us!\\n"
+msgstr ""
+
+#. \n\n are linebreaks, %1$s etc are the name of the Author, the version and the license name
+#: tmp_strings.xml:47(string)
+msgid "%1$s\\n\\nAuthor: %2$s\\nVersion: %3$s\\nLicensed under the GPLv3"
+msgstr ""
+
+#. positive Button
+#: tmp_strings.xml:50(string)
+msgid "OK"
+msgstr "Bene"
+
+#. negative Button
+#: tmp_strings.xml:52(string) tmp_strings.xml:274(string)
+msgid "Cancel"
+msgstr "Interrumpere"
+
+#. Button
+#: tmp_strings.xml:54(string) tmp_strings.xml:273(string)
+msgid "Close"
+msgstr "Claudere"
+
+#. Button
+#: tmp_strings.xml:56(string)
+msgid "Project page"
+msgstr ""
+
+#: tmp_strings.xml:48(string)
+msgid "Save to SD card"
+msgstr ""
+
+#. note-view.xml
+#: tmp_strings.xml:51(string)
+msgid "Please wait while note loads..."
+msgstr ""
+
+#. subheader in settings
+#: tmp_strings.xml:199(string)
+msgid "Synchronization"
+msgstr ""
+
+#: tmp_strings.xml:62(string)
+msgid "Service"
+msgstr "Officium"
+
+#: tmp_strings.xml:63(string)
+msgid "Server"
+msgstr ""
+
+#: tmp_strings.xml:64(string)
+msgid "SD Card"
+msgstr ""
+
+#: tmp_strings.xml:65(string)
+msgid "Online Synchronization"
+msgstr ""
+
+#: tmp_strings.xml:66(string)
+msgid "Authenticate"
+msgstr ""
+
+#: tmp_strings.xml:67(string)
+msgid "Location on SD Card"
+msgstr ""
+
+#. %1$s will be repaced by the folder name eg /tomdroid
+#: tmp_strings.xml:69(string)
+msgid ""
+"The folder \\\"%1$s\\\" does not exist yet. Please connect your device to "
+"the computer, create the folder and fill it with *.note files."
+msgstr ""
+
+#: tmp_strings.xml:61(string)
+msgid "\\\"%1$s\\\" contains invalid characters.\\nPlease try again!"
+msgstr ""
+
+#: tmp_strings.xml:63(string)
+msgid "Completing authentication. Please wait..."
+msgstr ""
+
+#: tmp_strings.xml:75(string)
+msgid ""
+"The connection to the server has failed, please check that the address you "
+"entered is correct."
+msgstr ""
+
+#: tmp_strings.xml:76(string)
+msgid "The server address changed but the new value is empty"
+msgstr ""
+
+#: tmp_strings.xml:78(string)
+msgid "Choose the sync service to use"
+msgstr ""
+
+#. %1$s will be replaced with "Online Synchronisation", "SD Card",...
+#: tmp_strings.xml:80(string)
+msgid "Synchronization with %1$s is complete."
+msgstr ""
+
+#. %1$s will be replaced with "SD Card",...
+#: tmp_strings.xml:82(string)
+msgid "No notes found on %1$s."
+msgstr ""
+
+#: tmp_strings.xml:83(string)
+msgid "You are not connected to the Internet."
+msgstr ""
+
+#: tmp_strings.xml:84(string)
+msgid "Sync already in progress"
+msgstr ""
+
+#: tmp_strings.xml:85(string)
+msgid ""
+"There was an error trying to parse your note collection. If you are able to "
+"replicate the problem, please contact us!"
+msgstr ""
+
+#. Altert box header
+#: tmp_strings.xml:87(string)
+msgid "Error"
+msgstr ""
+
+#. Altert box header
+#: tmp_strings.xml:89(string)
+msgid "No Such Note"
+msgstr ""
+
+#: tmp_strings.xml:90(string)
+msgid ""
+"The requested note could not be found. Maybe it was deleted or removed "
+"through synchronization."
+msgstr ""
+
+#: tmp_strings.xml:76(string)
+msgid ""
+"The requested note could not be parsed. If you are able to replicate the "
+"problem, please contact us!"
+msgstr ""
+
+#: tmp_strings.xml:77(string)
+msgid "Could not save the errors, please check your SD card."
+msgstr ""
+
+#: tmp_strings.xml:78(string)
+msgid "SD card not found."
+msgstr ""
+
+#. NoteSorting
+#: tmp_strings.xml:80(string)
+msgid "Change Sort"
+msgstr ""
+
+#: tmp_strings.xml:81(string)
+msgid "Choose the default sorting"
+msgstr ""
+
+#: tmp_strings.xml:82(string)
+msgid "Default sort"
+msgstr ""
+
+#. NotebookFiltering
+#: tmp_strings.xml:105(string)
+msgid "Filter"
+msgstr ""
+
+#: tmp_strings.xml:106(string)
+msgid "There are no notebooks in the database."
+msgstr ""
+
+#: tmp_strings.xml:107(string)
+msgid "All notebooks"
+msgstr ""
+
+#. List Longpress Menu
+#: tmp_strings.xml:110(string)
+msgid "View"
+msgstr ""
+
+#: tmp_strings.xml:111(string)
+msgid "Note Options"
+msgstr ""
+
+#: tmp_strings.xml:112(string)
+msgid "Send"
+msgstr ""
+
+#. Text in input field for search
+#: tmp_strings.xml:116(string)
+msgid "Search Notes"
+msgstr ""
+
+#. Preferences Field in global search to include notes
+#: tmp_strings.xml:118(string)
+msgid "Text in your notes"
+msgstr ""
+
+#. %s will be replaced with the search string
+#: tmp_strings.xml:120(string)
+msgid "No notes found for \\\"%s\\\""
+msgstr ""
+
+#: tmp_strings.xml:121(string)
+msgid "Search"
+msgstr ""
+
+#: tmp_strings.xml:100(string)
+msgid "Search Options"
+msgstr ""
+
+#: tmp_strings.xml:122(string)
+msgid "Search Results:"
+msgstr ""
+
+#: tmp_strings.xml:123(string)
+msgid "Clear search history"
+msgstr ""
+
+#: tmp_strings.xml:124(string)
+msgid "Remove all the searches you have performed"
+msgstr ""
+
+#: tmp_strings.xml:125(string)
+msgid "Search history has been cleared."
+msgstr ""
+
+#. Date
+#: tmp_strings.xml:128(string)
+msgid "Modified:"
+msgstr ""
+
+#: tmp_strings.xml:129(string)
+msgid "Today"
+msgstr ""
+
+#: tmp_strings.xml:130(string)
+msgid "Yesterday"
+msgstr ""
+
+#. Header when picking a note for a new shortcut
+#: tmp_strings.xml:134(string)
+msgid "Choose a Note"
+msgstr ""
+
+#: tmp_strings.xml:135(string)
+msgid "Tomdroid Note"
+msgstr ""
+
+#: tmp_strings.xml:136(string)
+msgid "Remove shortcut"
+msgstr ""
+
+#: tmp_strings.xml:137(string)
+msgid "Create shortcut"
+msgstr ""
+
+#. 30 chars max
+#: tmp_strings.xml:375(string)
+msgid "Tomdroid notes"
+msgstr ""
+
+#. 4000 chars max
+#: tmp_strings.xml:124(string)
+msgid ""
+"A Tomboy client for Android. Tomboy is a desktop note-taking app using a "
+"wikiwiki approach and a simple user interface.\\n\\nNOTE: It is a READ-ONLY "
+"client for now.\\n\\n* Note format compatibility with Tomboy\\n* Online note "
+"synchronization with Snowy, Tomboy Online or Ubuntu One\\n* SD Card "
+"importation\\n* Open source!"
+msgstr ""
+
+#. 80 chars max
+#: tmp_strings.xml:321(string)
+msgid ""
+"Note-taking application with online synchronization compatible with Tomboy"
+msgstr ""
+
+#. 500 chars max
+#: tmp_strings.xml:383(string)
+msgid ""
+"0.6 \\\"Small World\\\" release\\n* Create home-screen shortcuts to notes\\"
+"n* Specify a folder to use for SD Card sync\\n* Reload current note after "
+"sync\\n* A lot of new translations: ar, bs, ca, cs, da, de, el, en-rGB, eo, "
+"es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, "
+"si, sv, ta, te, tr, ug, uk, zh, zh-rCN\\n* Several bugfixes\\n"
+msgstr ""
+
+#. Launchpad Translation String
+#: tmp_strings.xml:386(string)
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  Mikael Hiort af Ornäs https://launchpad.net/~lakritslemmel"

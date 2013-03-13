@@ -32,10 +32,10 @@
 	<string name="strListEmptyWaiting">Proszę czekać na załadowanie notatek...</string>
 	<string name="strListEmptyNoNotes">Brak notatek w bazie danych Tomdroid.</string>
 	
-	<string name="menuSync">Synchronizacja</string>
+	<string name="menuSync">Synchronizowanie</string>
 	<string name="menuPrefs">Ustawienia</string>
-	<string name="menuAbout">O aplikacji</string>
-	<string name="titleWelcome">Ostrzeżenie</string>
+	<string name="menuAbout">O programie</string>
+	<string name="titleWelcome">Uwaga</string>
 	<string name="titleAbout">O Tomdroid</string>
 	<string name="strWelcome">Witaj w Tomdroid.\n\nJest to aplikacja w wersji beta, charakteryzująca się znanymi problemami jak, choćby, brak możliwości edytowania notatek.\n\nJesteśmy świadomi tych braków i pracujemy nad nimi w miarę możliwości. Jednocześnie udostępniamy aplikację w takim kształcie by testować ją możliwe szybko.\n\nKażda pomoc jest cenna. Jeśli chciałbyś pomóc, wejdź na https://www.launchpad.net/tomdroid/ i skontaktuj się z nami.\n</string>
 	<string name="strAbout">%1$s\n\nAutor: %2$s\nWersja: %3$s\nLicencja: GPLv3</string>
@@ -127,12 +127,13 @@
 	<string name="market_promotext">Notatnik ze zdalną synchronizacją, kompatybilny z programem Tomboy.</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">* Search notes and system integrated search\n* Context menu\n* Several usability improvements\n* Higher quality icons\n* Several bug fixes\n* German translation\n</string>
+        <string name="market_recent_changes">0.6 \"Small World\" release\n* Create home-screen shortcuts to notes\n* Specify a folder to use for SD Card sync\n* Reload current note after sync\n* A lot of new translations: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n* Several bugfixes\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
   Account Deactivated https://launchpad.net/~accountdeactivated
   Antoni Kudelski https://launchpad.net/~antoni-kudelski
+  Dawid Kalicki https://launchpad.net/~dvdk15
   Piotr Adamski https://launchpad.net/~mcveat
   Piotr Wawrzyniak https://launchpad.net/~wawrzino
   Stefan Hammer https://launchpad.net/~j-4

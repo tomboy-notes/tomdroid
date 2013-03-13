@@ -32,7 +32,7 @@
 	<string name="strListEmptyWaiting">Notlar yüklenirken lütfen bekleyin...</string>
 	<string name="strListEmptyNoNotes">Tomdroid\'in veritabanında hiç not yok.</string>
 	
-	<string name="menuSync">Eşitle</string>
+	<string name="menuSync">Senkronize et</string>
 	<string name="menuPrefs">Ayarlar</string>
 	<string name="menuAbout">Hakkında</string>
 	<string name="titleWelcome">Uyarı</string>
@@ -64,7 +64,7 @@
 	<string name="prefSyncConnectionFailed">Sunucu bağlantısı başarısız oldu, lütfen girdiğiniz adresin doğruluğunu denetleyin.</string>
 	<string name="prefServerEmpty">Sunucu adresi değişti fakat yeni değer boş</string>
 	
-	<string name="titleSyncService">Kullanılacak eşitleme hizmetini seçin</string>
+	<string name="titleSyncService">Senkronize edeceğiniz servisi seçin.</string>
 	<string name="messageSyncComplete">%1$s ile eşitleme tamamlandı.</string>
 	<string name="messageSyncNoNote">%1$s üzerinde hiç not bulunamadı.</string>
 	<string name="messageSyncNoConnection">İnternet\'e bağlı değilsiniz.</string>
@@ -88,7 +88,7 @@
 	<string name="allNotebooksFilter">Tüm not defterleri</string>
 	
 	<!-- List Longpress Menu -->
-	<string name="view">Göster</string>
+	<string name="view">Görünüm</string>
 	<string name="noteOptions">Not Seçenekleri</string>
 	<string name="send">Gönder</string>
 	
@@ -127,12 +127,13 @@
 	<string name="market_promotext">Tomboy ile uyumlu, çevrimiçi eşitlemeli not alma uygulaması</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">* Search notes and system integrated search\n* Context menu\n* Several usability improvements\n* Higher quality icons\n* Several bug fixes\n* German translation\n</string>
+        <string name="market_recent_changes">0.6 \"Küçük Dünya\" Çıktı\n* Notlara ulaşmak için ana ekran kısayolu yarat\n* SD CArd senkronizasyonu özelleştirme\n* Senkronizasyon sonrası güncel notları yenileyebilme\n* Yeni dillerimiz mevcuttur: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te,TR, ug, uk, zh, zh-rCN\n* Hatalar düzeltildi.\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
   Mesut Yaver https://launchpad.net/~afg-mesut
   Stefan Hammer https://launchpad.net/~j-4
+  baris ozcan https://launchpad.net/~brsozcan
   kulkke https://launchpad.net/~kulkke</string>
 	
 </resources>
