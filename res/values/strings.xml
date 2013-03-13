@@ -166,6 +166,9 @@
 	<string name="italic">i</string>
 	<!-- S stands for strike through (in format bar) -->
 	<string name="strike"><strike>S</strike></string>
+	<string name="mono">monospace</string>
+	<string name="highlight">highlight</string>
+	<string name="size">size</string>
 	<string name="titleErrorParsingXML">Error parsing note</string>
 	<string name="messageErrorParsingXML">There was an error parsing the note. Please check your XML.</string>
 	<string name="messageNoteSaved">Note saved locally.</string>

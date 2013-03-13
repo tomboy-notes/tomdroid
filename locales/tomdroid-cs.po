@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tomdroid\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-08-20 14:41+0530\n"
-"PO-Revision-Date: 2012-08-18 13:36+0000\n"
-"Last-Translator: Jan Dolejš <jackdown3csr@gmail.com>\n"
+"POT-Creation-Date: 2013-03-12 01:01+0100\n"
+"PO-Revision-Date: 2013-02-20 19:40+0000\n"
+"Last-Translator: Michal Cerman <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-08-21 14:52+0000\n"
-"X-Generator: Launchpad (build 15810)\n"
+"X-Launchpad-Export-Date: 2013-03-13 14:01+0000\n"
+"X-Generator: Launchpad (build 16532)\n"
 
 #. application details
 #: tmp_strings.xml:27(string)
@@ -23,44 +23,48 @@ msgid "Tomdroid"
 msgstr "Tomdroid"
 
 #: tmp_strings.xml:28(string)
-msgid ""
-"Tomboy compatible wikiwiki note-taking application that can take notes."
+msgid "Tomboy compatible wikiwiki note-taking app that can take notes."
 msgstr ""
 
 #: tmp_strings.xml:29(string)
 msgid "Olivier Bilodeau"
-msgstr ""
+msgstr "Olivier Bilodeau"
 
 #. main.xml
 #: tmp_strings.xml:32(string)
-msgid "Please wait while the notes load.."
-msgstr ""
+msgid "Please wait while the notes load…"
+msgstr "Čekejte prosím, načítám poznámky..."
 
 #: tmp_strings.xml:33(string)
 msgid "There are no notes in Tomdroid's database."
-msgstr ""
+msgstr "V databázi Tomdroidu nejsou žádné poznámky."
 
-#: tmp_strings.xml:35(string)
+#. Menu entry with icon
+#: tmp_strings.xml:36(string)
 msgid "Sync"
 msgstr "Synchronizovat"
 
-#: tmp_strings.xml:36(string)
+#. Menu entry with icon
+#: tmp_strings.xml:38(string)
 msgid "Settings"
 msgstr "Nastavení"
 
-#: tmp_strings.xml:37(string)
+#. Menu entry with icon
+#: tmp_strings.xml:40(string)
 msgid "About"
 msgstr "O aplikaci"
 
-#: tmp_strings.xml:38(string)
+#. Title of an alert box
+#: tmp_strings.xml:42(string)
 msgid "Warning"
-msgstr "Varování"
+msgstr "Upozornění"
 
-#: tmp_strings.xml:39(string)
+#: tmp_strings.xml:43(string)
 msgid "About Tomdroid"
 msgstr "O programu Tomdroid"
 
-#: tmp_strings.xml:40(string)
+#. First start alert box
+#: tmp_strings.xml:45(string)
 msgid ""
 "Welcome to Tomdroid.\\n\\nPlease note that this is beta quality software and "
 "that it contains known problems.\\n\\nWe are well aware of these issues and "
@@ -69,712 +73,1037 @@ msgid ""
 "all levels would be appreciated. Hop on board on launchpad.net/tomdroid and "
 "contact us!\\n"
 msgstr ""
+"Vítejte v aplikaci Tomdroid.\\n\\nBerte prosím na vědomí, že toto je beta "
+"verze aplikace a obsahuje nám známé problémy.\\n\\nO těchto problémech dobře "
+"víme a pracujeme na nich, chtěli jsme však rychle vydat alespoň nějakou "
+"verzi a co nejrychleji ji otestovat.\\n\\nPokud byste se rádi podíleli na "
+"spolupráci, jakákoliv pomoc je vítána. Naskočte na palubu na "
+"launchpad.net/tomdroid a kontaktujte nás!\\n"
 
-#: tmp_strings.xml:41(string)
+#. \n\n are linebreaks, %1$s etc are the name of the Author, the version and the license name
+#: tmp_strings.xml:47(string)
 msgid "%1$s\\n\\nAuthor: %2$s\\nVersion: %3$s\\nLicensed under the GPLv3"
-msgstr ""
+msgstr "%1$s\\n\\nAutor: %2$s\\nVerze: %3$s\\nLicencováno pod GPLv3"
 
-#. TODO aren't these available somewhere else? like in the SDK? //
-#: tmp_strings.xml:44(string)
+#. positive Button
+#: tmp_strings.xml:50(string)
 msgid "OK"
 msgstr "OK"
 
-#: tmp_strings.xml:45(string) tmp_strings.xml:207(string)
+#. negative Button
+#: tmp_strings.xml:52(string) tmp_strings.xml:274(string)
 msgid "Cancel"
 msgstr "Zrušit"
 
-#: tmp_strings.xml:46(string) tmp_strings.xml:206(string)
+#. Button
+#: tmp_strings.xml:54(string) tmp_strings.xml:273(string)
 msgid "Close"
 msgstr "Zavřít"
 
-#: tmp_strings.xml:47(string)
+#. Button
+#: tmp_strings.xml:56(string)
 msgid "Project page"
-msgstr ""
+msgstr "Stránky projektu"
 
-#: tmp_strings.xml:48(string) tmp_strings.xml:136(string)
+#: tmp_strings.xml:57(string) tmp_strings.xml:160(string)
 msgid "Save"
-msgstr ""
+msgstr "Uložit"
 
 #. note-view.xml
-#: tmp_strings.xml:51(string)
+#: tmp_strings.xml:60(string)
 msgid "Please wait while note loads…"
-msgstr ""
+msgstr "Počkejte prosím na nahrání poznámky..."
 
-#: tmp_strings.xml:53(string)
+#: tmp_strings.xml:62(string)
 msgid "Service"
-msgstr ""
+msgstr "Služba"
 
-#: tmp_strings.xml:54(string)
+#: tmp_strings.xml:63(string)
 msgid "Server"
 msgstr "Server"
 
-#: tmp_strings.xml:55(string)
+#: tmp_strings.xml:64(string)
 msgid "SD Card"
-msgstr ""
+msgstr "SD karta"
 
-#: tmp_strings.xml:56(string)
-msgid "Online Synchronisation"
-msgstr ""
+#: tmp_strings.xml:65(string)
+msgid "Online Synchronization"
+msgstr "Online synchronizace"
 
-#: tmp_strings.xml:57(string)
+#: tmp_strings.xml:66(string)
 msgid "Authenticate"
-msgstr ""
+msgstr "Autentizovat"
 
-#: tmp_strings.xml:58(string)
+#: tmp_strings.xml:67(string)
 msgid "Location on SD Card"
-msgstr ""
+msgstr "Umístění na SD kartě"
 
-#: tmp_strings.xml:59(string)
+#. %1$s will be repaced by the folder name eg /tomdroid
+#: tmp_strings.xml:69(string)
 msgid ""
 "The folder \\\"%1$s\\\" does not exist yet. Please connect your device to "
 "the computer, create the folder and fill it with *.note files."
 msgstr ""
+"Složka \\\"%1$s\\\" zatím neexistuje. Připojte prosím vaše zařízení k "
+"počítači, vytvořte tuto složku a vložte do ní soubory s příponou *.note."
 
-#: tmp_strings.xml:60(string)
+#. %1$s will be repaced by the folder name eg /testfolder
+#: tmp_strings.xml:71(string)
 msgid "\\\"%1$s\\\" is not a valid folder location. Please try again!"
-msgstr ""
+msgstr "\\\"%1$s\\\" není platné umístění složky. Zkuste to prosím znovu!"
 
-#: tmp_strings.xml:61(string)
+#. %1$s will be replaced with an text entry the user had done
+#: tmp_strings.xml:73(string)
 msgid "\\\"%1$s\\\" is not a valid entry. Please try again!"
-msgstr ""
+msgstr "\\\"%1$s\\\" není platné zadání. Zkuste to prosím znovu!"
 
-#: tmp_strings.xml:62(string)
+#: tmp_strings.xml:74(string)
 msgid "Completing authentication. Please wait…"
-msgstr ""
+msgstr "Provádím autentifikaci. Čekejte prosím…"
 
-#: tmp_strings.xml:63(string)
+#: tmp_strings.xml:75(string)
 msgid ""
 "The connection to the server has failed, please check that the address you "
 "entered is correct."
 msgstr ""
+"Připojení k serveru selhalo, zkontrolujte prosím, zda je zadaná adresa "
+"platná."
 
-#: tmp_strings.xml:64(string)
+#: tmp_strings.xml:76(string)
 msgid "The server address changed but the new value is empty"
-msgstr ""
+msgstr "Adresa serveru byla změněna, ale nová hodnota je prázdná."
 
-#: tmp_strings.xml:66(string)
+#: tmp_strings.xml:78(string)
 msgid "Choose the sync service to use"
-msgstr ""
+msgstr "Vyberte synchronizační službu, která má být použita"
 
-#: tmp_strings.xml:67(string)
+#. %1$s will be replaced with "Online Synchronisation", "SD Card",...
+#: tmp_strings.xml:80(string)
 msgid "Synchronization with %1$s is complete."
-msgstr ""
+msgstr "Synchronizace s %1$s je dokončena."
 
-#: tmp_strings.xml:68(string)
+#. %1$s will be replaced with "SD Card",...
+#: tmp_strings.xml:82(string)
 msgid "No notes found on %1$s."
-msgstr ""
+msgstr "Na %1$s nebyly nalezeny žádné poznámky."
 
-#: tmp_strings.xml:69(string)
+#: tmp_strings.xml:83(string)
 msgid "You are not connected to the Internet."
-msgstr ""
+msgstr "Nejste připojeni k internetu."
 
-#: tmp_strings.xml:70(string)
+#: tmp_strings.xml:84(string)
 msgid "Sync already in progress"
-msgstr ""
+msgstr "Synchronizace již probíhá."
 
-#: tmp_strings.xml:71(string)
+#: tmp_strings.xml:85(string)
 msgid ""
 "There was an error trying to parse your note collection. If you are able to "
 "replicate the problem, please contact us!"
 msgstr ""
+"V průběhu analýzy vaší kolekce poznámek nastala chyba. Pokud jste schopni "
+"replikovat problém, kontaktujte nás prosím!"
 
-#: tmp_strings.xml:72(string)
+#. Altert box header
+#: tmp_strings.xml:87(string)
 msgid "Error"
-msgstr ""
+msgstr "Chyba"
 
-#: tmp_strings.xml:73(string)
+#. Altert box header
+#: tmp_strings.xml:89(string)
 msgid "No Such Note"
-msgstr ""
+msgstr "Poznámka neexistuje."
 
-#: tmp_strings.xml:74(string)
+#: tmp_strings.xml:90(string)
 msgid ""
 "The requested note could not be found. Maybe it was deleted or removed "
 "through synchronization."
 msgstr ""
-
-#: tmp_strings.xml:75(string)
-msgid "Error parsing note."
-msgstr ""
-
-#: tmp_strings.xml:76(string)
-msgid "Could not save note."
-msgstr ""
-
-#: tmp_strings.xml:77(string)
-msgid "SDCard storage not found."
-msgstr ""
-
-#. NoteSorting
-#: tmp_strings.xml:80(string)
-msgid "Change Sort"
-msgstr ""
-
-#: tmp_strings.xml:81(string)
-msgid "Choose the default sorting"
-msgstr ""
-
-#: tmp_strings.xml:82(string)
-msgid "Default sort"
-msgstr ""
-
-#. NotebookFiltering
-#: tmp_strings.xml:85(string)
-msgid "Filter"
-msgstr ""
-
-#: tmp_strings.xml:86(string)
-msgid "There are no notebooks in the database."
-msgstr ""
-
-#: tmp_strings.xml:87(string)
-msgid "All notebooks"
-msgstr ""
-
-#. List Longpress Menu
-#: tmp_strings.xml:90(string)
-msgid "View"
-msgstr ""
+"Požadovaná poznámka nebyla nalezena. Možná byla smazána nebo odstraněna při "
+"synchronizaci."
 
 #: tmp_strings.xml:91(string)
-msgid "Note Options"
-msgstr ""
+msgid "Error parsing note."
+msgstr "Chyba při čtení poznámky."
 
 #: tmp_strings.xml:92(string)
-msgid "Send"
-msgstr ""
+msgid "Could not save note."
+msgstr "Poznámku nebylo možné uložit."
 
-#. Search
-#: tmp_strings.xml:95(string)
-msgid "Search Notes"
-msgstr ""
+#: tmp_strings.xml:93(string)
+msgid "SDCard storage not found."
+msgstr "Uložiště SD karty nebylo nalezeno."
 
+#. NoteSorting
 #: tmp_strings.xml:96(string)
-msgid "Text in your notes"
-msgstr ""
+msgid "Choose default sorting method"
+msgstr "Vyberte výchozí metodu pro řazení"
 
 #: tmp_strings.xml:97(string)
-msgid "No notes found for \\\"%s\\\""
-msgstr ""
+msgid "Default Sort Method"
+msgstr "Výchozí metoda pro řazení"
 
 #: tmp_strings.xml:98(string)
-msgid "Search"
-msgstr ""
+msgid "Sort By:"
+msgstr "Seřadit podle:"
 
 #: tmp_strings.xml:99(string)
-msgid "Search Results:"
-msgstr ""
+msgid "Date Modified"
+msgstr "Datum změny"
 
 #: tmp_strings.xml:100(string)
-msgid "Clear search history"
-msgstr ""
+msgid "Note Title"
+msgstr "Nadpis poznámky"
 
 #: tmp_strings.xml:101(string)
-msgid "Remove all the searches you have performed"
-msgstr ""
+msgid "Sort by Date"
+msgstr "Seřadit podle data"
 
 #: tmp_strings.xml:102(string)
-msgid "Search history has been cleared."
-msgstr ""
+msgid "Sort by Title"
+msgstr "Seřadit podle nadpisu"
 
-#. Date
+#. NotebookFiltering
 #: tmp_strings.xml:105(string)
-msgid "Modified:"
-msgstr ""
+msgid "Filter"
+msgstr "Filtr"
 
 #: tmp_strings.xml:106(string)
-msgid "Today"
-msgstr ""
+msgid "There are no notebooks in the database."
+msgstr "V databázi nejsou žádné zápisníky."
 
 #: tmp_strings.xml:107(string)
-msgid "Yesterday"
-msgstr ""
+msgid "All notebooks"
+msgstr "Všechny zápisníky"
 
-#. Shortcuts handling
+#. List Longpress Menu
 #: tmp_strings.xml:110(string)
-msgid "Choose a Note"
-msgstr ""
+msgid "View"
+msgstr "Zobrazit"
 
 #: tmp_strings.xml:111(string)
-msgid "Tomdroid Note"
-msgstr ""
+msgid "Note Options"
+msgstr "Možnosti poznámky"
 
 #: tmp_strings.xml:112(string)
-msgid "Remove shortcut"
-msgstr ""
+msgid "Send"
+msgstr "Odeslat"
 
-#: tmp_strings.xml:113(string)
-msgid "Create shortcut"
-msgstr ""
+#. Text in input field for search
+#: tmp_strings.xml:116(string)
+msgid "Search Notes"
+msgstr "Vyhledat v poznámkách"
 
-#. deleteNote
+#. Preferences Field in global search to include notes
 #: tmp_strings.xml:118(string)
-msgid "Delete"
-msgstr ""
+msgid "Text in your notes"
+msgstr "Text v poznámce"
 
-#: tmp_strings.xml:119(string)
-msgid "Delete Note"
-msgstr ""
-
+#. %s will be replaced with the search string
 #: tmp_strings.xml:120(string)
-msgid "Are you sure you want to delete this note?"
-msgstr ""
+msgid "No notes found for \\\"%s\\\""
+msgstr "Nenalezeny žádné poznámky pro \\\"%s\\\""
 
 #: tmp_strings.xml:121(string)
-msgid "Yes"
-msgstr ""
+msgid "Search"
+msgstr "Hledat"
 
 #: tmp_strings.xml:122(string)
-msgid "No"
-msgstr ""
+msgid "Search Results:"
+msgstr "Výsledky hledání:"
 
-#: tmp_strings.xml:123(string) tmp_strings.xml:178(string)
-msgid "Clear Notes"
-msgstr ""
+#: tmp_strings.xml:123(string)
+msgid "Clear search history"
+msgstr "Vyčistit historii hledání"
 
 #: tmp_strings.xml:124(string)
-msgid "Are you sure you want to clear the notes database?"
-msgstr ""
+msgid "Remove all the searches you have performed"
+msgstr "Odstranit všechna provedená hledání"
 
-#: tmp_strings.xml:125(string) tmp_strings.xml:180(string)
-msgid "Delete Remote Notes"
-msgstr ""
+#: tmp_strings.xml:125(string)
+msgid "Search history has been cleared."
+msgstr "Historie hledání byla smazána."
 
-#: tmp_strings.xml:126(string)
-msgid "Are you sure you want to delete all notes from the remote service?"
-msgstr ""
+#. Date
+#: tmp_strings.xml:128(string)
+msgid "Modified:"
+msgstr "Změněno:"
 
-#. newNote
 #: tmp_strings.xml:129(string)
-msgid "New"
-msgstr ""
+msgid "Today"
+msgstr "Dnes"
 
 #: tmp_strings.xml:130(string)
-msgid "New Note"
-msgstr ""
+msgid "Yesterday"
+msgstr "Včera"
 
-#: tmp_strings.xml:131(string)
-msgid "Enter title here"
-msgstr ""
+#. Header when picking a note for a new shortcut
+#: tmp_strings.xml:134(string)
+msgid "Choose a Note"
+msgstr "Vyberte poznámku"
 
-#: tmp_strings.xml:132(string)
-msgid "Enter note here"
-msgstr ""
-
-#. editNote
 #: tmp_strings.xml:135(string)
-msgid "Edit"
-msgstr ""
+msgid "Tomdroid Note"
+msgstr "Tomdroid poznámka"
+
+#: tmp_strings.xml:136(string)
+msgid "Remove shortcut"
+msgstr "Odstranit zkratku"
 
 #: tmp_strings.xml:137(string)
-msgid "Discard"
-msgstr ""
+msgid "Create shortcut"
+msgstr "Vytvořit zkratku"
 
-#: tmp_strings.xml:138(string)
-msgid "Back"
-msgstr ""
-
-#: tmp_strings.xml:139(string)
-msgid "B"
-msgstr ""
-
-#: tmp_strings.xml:140(string)
-msgid "i"
-msgstr ""
-
-#: tmp_strings.xml:141(strike)
-msgid "S"
-msgstr ""
-
+#. deleteNote
 #: tmp_strings.xml:142(string)
-msgid "monospace"
-msgstr ""
+msgid "Delete"
+msgstr "Smazat"
 
 #: tmp_strings.xml:143(string)
-msgid "highlight"
-msgstr ""
+msgid "Delete Note"
+msgstr "Smazat poznámku"
 
 #: tmp_strings.xml:144(string)
-msgid "size"
-msgstr ""
+msgid "Are you sure you want to delete this note?"
+msgstr "Opravdu chcete smazat tuto poznámku?"
 
 #: tmp_strings.xml:145(string)
-msgid "XML"
-msgstr ""
+msgid "Yes"
+msgstr "Ano"
 
 #: tmp_strings.xml:146(string)
-msgid "Text"
-msgstr ""
+msgid "No"
+msgstr "Ne"
 
-#: tmp_strings.xml:147(string)
-msgid "Error parsing note"
-msgstr ""
+#: tmp_strings.xml:147(string) tmp_strings.xml:207(string)
+msgid "Clear Notes"
+msgstr "Odstranit poznámky"
 
 #: tmp_strings.xml:148(string)
-msgid "There was an error parsing the note. Please check your XML."
-msgstr ""
+msgid "Are you sure you want to clear the notes database?"
+msgstr "Opravdu chcete odstranit všechny poznámky v databázi?"
 
-#: tmp_strings.xml:149(string)
-msgid "Note saved locally."
-msgstr ""
+#: tmp_strings.xml:149(string) tmp_strings.xml:209(string)
+msgid "Delete Remote Notes"
+msgstr "Odstranit vzdálené poznámky"
 
 #: tmp_strings.xml:150(string)
-msgid "Note deleted locally."
-msgstr ""
+msgid "Are you sure you want to delete all notes from the remote service?"
+msgstr "Opravdu chcete odstranit všechny poznámky ze vzdálené služby?"
 
-#: tmp_strings.xml:151(string)
-msgid "Select text size"
-msgstr ""
-
-#: tmp_strings.xml:152(string)
-msgid "Small"
-msgstr ""
-
+#. newNote
 #: tmp_strings.xml:153(string)
-msgid "Normal"
-msgstr ""
+msgid "New"
+msgstr "Nový"
 
 #: tmp_strings.xml:154(string)
-msgid "Large"
-msgstr ""
+msgid "New Note"
+msgstr "Nová poznámka"
 
 #: tmp_strings.xml:155(string)
-msgid "Huge"
-msgstr ""
+msgid "Enter title here"
+msgstr "Zde napište nadpis"
 
 #: tmp_strings.xml:156(string)
+msgid "Enter note here"
+msgstr "Zde napište poznámku"
+
+#. editNote
+#: tmp_strings.xml:159(string)
+msgid "Edit"
+msgstr "Upravit"
+
+#: tmp_strings.xml:161(string)
+msgid "Discard"
+msgstr "Zrušit"
+
+#: tmp_strings.xml:162(string)
+msgid "Back"
+msgstr "Zpět"
+
+#. B stands for bold (in format bar)
+#: tmp_strings.xml:164(string)
+msgid "B"
+msgstr "B"
+
+#. i stands for italic (in format bar)
+#: tmp_strings.xml:166(string)
+msgid "i"
+msgstr "i"
+
+#: tmp_strings.xml:168(strike)
+msgid "S"
+msgstr "S"
+
+#: tmp_strings.xml:169(string)
+msgid "Error parsing note"
+msgstr "Chyba při načítání poznámky"
+
+#: tmp_strings.xml:170(string)
+msgid "There was an error parsing the note. Please check your XML."
+msgstr "Nastala chyba při načítání poznámky. Zkontrolujte prosím vaše XML."
+
+#: tmp_strings.xml:171(string)
+msgid "Note saved locally."
+msgstr "Poznámka uložena lokálně."
+
+#: tmp_strings.xml:172(string)
+msgid "Note deleted locally."
+msgstr "Poznámka smazána lokálně."
+
+#: tmp_strings.xml:173(string)
+msgid "Select text size"
+msgstr "Vyberte velikost písma"
+
+#: tmp_strings.xml:174(string)
+msgid "Small"
+msgstr "Malé"
+
+#: tmp_strings.xml:175(string)
+msgid "Normal"
+msgstr "Normální"
+
+#: tmp_strings.xml:176(string)
+msgid "Large"
+msgstr "Velké"
+
+#: tmp_strings.xml:177(string)
+msgid "Huge"
+msgstr "Obrovské"
+
+#: tmp_strings.xml:178(string)
 msgid ""
 "Do you really want to discard your changes and revert the note to the last "
 "saved version?"
 msgstr ""
-
-#: tmp_strings.xml:157(string)
-msgid "Discard Changes?"
-msgstr ""
-
-#: tmp_strings.xml:158(b)
-msgid "&gt;"
-msgstr ""
-
-#: tmp_strings.xml:159(b)
-msgid "&lt;"
-msgstr ""
-
-#. New Titles
-#: tmp_strings.xml:162(string)
-msgid "Tomdroid - View Note"
-msgstr ""
-
-#: tmp_strings.xml:163(string)
-msgid "Tomdroid - Edit Note"
-msgstr ""
-
-#: tmp_strings.xml:164(string)
-msgid "Tomdroid - Search Results"
-msgstr ""
-
-#: tmp_strings.xml:165(string)
-msgid "Tomdroid - Shortcuts"
-msgstr ""
-
-#: tmp_strings.xml:166(string)
-msgid "Tomdroid - Settings"
-msgstr ""
-
-#. new prefs
-#: tmp_strings.xml:169(string)
-msgid "Display Preferences"
-msgstr ""
-
-#: tmp_strings.xml:170(string)
-msgid "Base Font Size"
-msgstr ""
-
-#: tmp_strings.xml:171(string)
-msgid "Synchronization"
-msgstr "Synchronizace"
-
-#: tmp_strings.xml:172(string)
-msgid "Misc. Options"
-msgstr ""
-
-#: tmp_strings.xml:173(string)
-msgid "Tools"
-msgstr ""
-
-#: tmp_strings.xml:174(string)
-msgid "Auto Save Note"
-msgstr ""
-
-#: tmp_strings.xml:175(string)
-msgid "Save notes automatically on exiting editor."
-msgstr ""
-
-#: tmp_strings.xml:176(string)
-msgid "Show Note Templates"
-msgstr ""
-
-#: tmp_strings.xml:177(string)
-msgid "If checked, will show note templates in notes list."
-msgstr ""
+"Opravdu chcete zrušit provedené změny a vrátit se k poslední uložené verzi "
+"poznámky?"
 
 #: tmp_strings.xml:179(string)
-msgid "Clear all notes from local database"
-msgstr ""
+msgid "Discard Changes?"
+msgstr "Zrušit změny?"
 
-#: tmp_strings.xml:181(string)
-msgid "Delete all notes from remote service"
-msgstr ""
+#: tmp_strings.xml:181(b)
+msgid "&gt;"
+msgstr "&gt;"
 
-#: tmp_strings.xml:182(string)
-msgid "Illegal text size chosen. Please choose a number."
-msgstr ""
+#: tmp_strings.xml:183(b)
+msgid "&lt;"
+msgstr "&lt;"
 
-#. syncNotes
+#. New Titles
 #: tmp_strings.xml:186(string)
-msgid "Syncing with %1$s"
-msgstr ""
+msgid "Tomdroid - View Note"
+msgstr "Tomdroid - Zobrazit poznámku"
 
 #: tmp_strings.xml:187(string)
-msgid "connecting to service…"
-msgstr ""
+msgid "Tomdroid - Edit Note"
+msgstr "Tomdroid - Upravit poznámku"
 
 #: tmp_strings.xml:188(string)
-msgid "updating local notes…"
-msgstr ""
+msgid "Tomdroid - Search Results"
+msgstr "Tomdroid - Výsledky hledání"
 
 #: tmp_strings.xml:189(string)
-msgid "updating remote notes…"
-msgstr ""
+msgid "Tomdroid - Shortcuts"
+msgstr "Tomdroid - Zkratky"
 
 #: tmp_strings.xml:190(string)
-msgid "Note Conflict"
-msgstr ""
+msgid "Tomdroid - Settings"
+msgstr "Tomdroid - Nastavení"
 
 #: tmp_strings.xml:191(string)
-msgid ""
-"There was a conflict syncing the note \"%1$s\". Please choose an action to "
-"resolve the conflict. You may edit either note before choosing, or view the "
-"difference by clicking on the labels below."
+msgid "Tomdroid - Note Conflict"
 msgstr ""
 
 #: tmp_strings.xml:192(string)
-msgid ""
-"There was a conflict syncing the note \"%1$s\" (local version was deleted). "
-"Please choose from one of the actions below."
-msgstr ""
+msgid "Tomdroid - Import Note"
+msgstr "Tomdroid - Importovat poznámku"
 
-#: tmp_strings.xml:193(string)
-msgid ""
-"There was a conflict syncing the note \"%1$s\". A note with that title "
-"already exists in the database. Please choose an action to resolve the "
-"conflict. You may edit either note before choosing, or view the difference "
-"by clicking on the labels below."
-msgstr ""
-
-#: tmp_strings.xml:194(string)
-msgid "Overwrite\\nRemote"
-msgstr ""
-
-#: tmp_strings.xml:195(string)
-msgid "Overwrite\\nLocal"
-msgstr ""
-
+#. subheader in settings
 #: tmp_strings.xml:196(string)
-msgid "Delete Remote"
-msgstr ""
+msgid "Display Preferences"
+msgstr "Zobrazit nastavení"
 
 #: tmp_strings.xml:197(string)
-msgid "Difference Between Files"
-msgstr ""
+msgid "Base Font Size"
+msgstr "Základní velikost písma"
 
-#: tmp_strings.xml:198(string)
-msgid "-- Title Differences --"
-msgstr ""
-
+#. subheader in settings
 #: tmp_strings.xml:199(string)
-msgid "-- Content Differences --"
-msgstr ""
+msgid "Synchronization"
+msgstr "Synchronizace"
 
-#: tmp_strings.xml:200(string)
-msgid "Line %1$s:"
-msgstr ""
-
+#. subheader in settings
 #: tmp_strings.xml:201(string)
-msgid "Local Version"
-msgstr ""
+msgid "Tools"
+msgstr "Nástroje"
 
 #: tmp_strings.xml:202(string)
-msgid "Remote Version"
-msgstr ""
+msgid "Save notes automatically on exiting editor."
+msgstr "Ukládat poznámky automaticky při ukončení editoru."
 
 #: tmp_strings.xml:203(string)
-msgid "Deleted"
-msgstr ""
+msgid "Show Deleted Notes"
+msgstr "Zobrazit smazané poznámky"
 
 #: tmp_strings.xml:204(string)
-msgid "Create\\nCopy"
-msgstr ""
+msgid "If checked, will show deleted notes in notes list."
+msgstr "Zaškrtněte pro zobrazení smazaných poznámek v seznamu poznámek."
 
 #: tmp_strings.xml:205(string)
-msgid "%1$s (old)"
-msgstr ""
+msgid "Show Note Templates"
+msgstr "Zobrazit šablony poznámek"
+
+#: tmp_strings.xml:206(string)
+msgid "If checked, will show note templates in notes list."
+msgstr "Zaškrtněte pro zobrazení šablon poznámek v seznamu poznámek."
 
 #: tmp_strings.xml:208(string)
-msgid "Authorization with %1$s successful."
-msgstr ""
-
-#: tmp_strings.xml:209(string)
-msgid "Authorization with %1$s failed. Maybe try again?"
-msgstr ""
+msgid "Clear all notes from local database"
+msgstr "Odstranit všechny poznámky z lokální databáze"
 
 #: tmp_strings.xml:210(string)
-msgid "Note deleted from %1$s successfully."
-msgstr ""
+msgid "Delete all notes from remote service"
+msgstr "Odstranit všechny poznámky ze vzdálené databáze."
 
 #: tmp_strings.xml:211(string)
-msgid "Note sent to %1$s successfully."
-msgstr ""
+msgid "Illegal text size chosen. Please choose a number."
+msgstr "Vybrána nepovolená velikost textu. Vyberte prosím číslo."
 
 #: tmp_strings.xml:212(string)
-msgid "Note received from %1$s successfully."
-msgstr ""
+msgid "Backup Notes"
+msgstr "Zálohovat poznámky"
 
 #: tmp_strings.xml:213(string)
-msgid "Error deleting note from %1$s."
-msgstr ""
+msgid "Copy all local notes to SD Card"
+msgstr "Zkopírovat všechny lokální poznámky na SD kartu"
 
 #: tmp_strings.xml:214(string)
-msgid "Error sending note to %1$s."
-msgstr ""
+msgid "Auto-Backup"
+msgstr "Automatická záloha"
 
 #: tmp_strings.xml:215(string)
-msgid "Error receiving note from %1$s."
-msgstr ""
+msgid "Copy local note to SD Card on save"
+msgstr "Zkopírovat lokální poznámku na SD kartu při uložení"
 
-#: tmp_strings.xml:216(string)
-msgid "Error parsing response from %1$s."
-msgstr ""
-
+#. subheader in settings
 #: tmp_strings.xml:217(string)
+msgid "Hyperlink Preferences"
+msgstr "Nastavení odkazu"
+
+#. Checkbox in settings
+#: tmp_strings.xml:219(string)
+msgid "Link Titles"
+msgstr "Nadpisy obsahu"
+
+#. Description for checkbox in settings
+#: tmp_strings.xml:221(string)
+msgid "link to other note titles"
+msgstr "odkaz na další nadpisy poznámky"
+
+#. Checkbox in settings
+#: tmp_strings.xml:223(string)
+msgid "Link Web Addresses\""
+msgstr "Odkazovat na webové adresy\""
+
+#. Description for checkbox in settings
+#: tmp_strings.xml:225(string)
+msgid "e.g. \"www.google.com\""
+msgstr "např. \"www.google.com\""
+
+#. Checkbox in settings
+#: tmp_strings.xml:227(string)
+msgid "Link Emails"
+msgstr "Odkazovat na emaily"
+
+#. Description for checkbox in settings
+#: tmp_strings.xml:229(string)
+msgid "e.g. name@address.com"
+msgstr "např. jmeno@adresa.cz"
+
+#. Checkbox in settings
+#: tmp_strings.xml:231(string)
+msgid "Link Telephone Numbers"
+msgstr "Odkazovat na telefonní čísla"
+
+#. Description for checkbox in settings
+#: tmp_strings.xml:233(string)
+msgid "link telephone numbers to phone app"
+msgstr "odkazovat telefonní čísla do aplikace telefonu"
+
+#. Checkbox in settings
+#: tmp_strings.xml:235(string)
+msgid "Link Map Addresses"
+msgstr "Odkazovat adresy v mapě"
+
+#. Description for checkbox in settings
+#: tmp_strings.xml:237(string)
+msgid "link addresses to maps app"
+msgstr ""
+
+#. %1$s will be replaced with "Online Synchronisation", "SD card",...
+#: tmp_strings.xml:242(string)
+msgid "Syncing with %1$s"
+msgstr "Synchronizovat s %1$s"
+
+#: tmp_strings.xml:243(string)
+msgid "connecting to service…"
+msgstr "připojuji se ke službě…"
+
+#: tmp_strings.xml:244(string)
+msgid "getting list of remote notes…"
+msgstr "načítám seznam vzdálených poznámek…"
+
+#: tmp_strings.xml:245(string)
+msgid "updating local notes…"
+msgstr "aktualizuji lokální poznámky…"
+
+#: tmp_strings.xml:246(string)
+msgid "updating remote notes…"
+msgstr "aktualizuju vzdálené poznámky…"
+
+#: tmp_strings.xml:247(string)
+msgid "There was a conflict syncing the note '%1$s'"
+msgstr ""
+
+#: tmp_strings.xml:248(string)
+msgid ""
+"Please choose an action to resolve the conflict. You may edit either note "
+"before choosing, or view the difference by clicking on the labels below."
+msgstr ""
+
+#: tmp_strings.xml:249(string)
+msgid ""
+"The local version was already deleted. Please choose from one of the actions "
+"below."
+msgstr ""
+
+#: tmp_strings.xml:250(string)
+msgid ""
+"A note with that title already exists in the database. Please choose an "
+"action to resolve the conflict. You may edit either note before choosing, or "
+"view the difference by clicking on the labels below."
+msgstr ""
+
+#. Button (keep short!)
+#: tmp_strings.xml:252(string)
+msgid "Overwrite\\nRemote"
+msgstr "Přepsat\\nvzdálené"
+
+#. Button (keep short!)
+#: tmp_strings.xml:254(string)
+msgid "Overwrite\\nLocal"
+msgstr "Přepsat\\nvzdálené"
+
+#. Button (keep short!)
+#: tmp_strings.xml:256(string)
+msgid "Delete\\nRemote"
+msgstr "Smazat\\nVzdálené"
+
+#. Button (keep short!)
+#: tmp_strings.xml:258(string)
+msgid "Create\\nCopy"
+msgstr "Vytvořit\\nkopii"
+
+#. subheader in Conflict Dialouge (keep short!)
+#: tmp_strings.xml:260(string)
+msgid "Difference Between Files"
+msgstr "Rozdíly mezi soubory"
+
+#: tmp_strings.xml:261(string)
+msgid "-- Title Differences --"
+msgstr "-- Rozdíly mezi nadpisy --"
+
+#: tmp_strings.xml:262(string)
+msgid "-- Content Differences --"
+msgstr "-- Rozdíly mezi obsahem --"
+
+#. %1$s will be replaced with a number.
+#: tmp_strings.xml:264(string)
+msgid "Line %1$s:"
+msgstr "Čára %1$s:"
+
+#. subheader in Conflict Dialouge (keep short!)
+#: tmp_strings.xml:266(string)
+msgid "Local Version"
+msgstr "Lokální verze"
+
+#. subheader in Conflict Dialouge (keep short!)
+#: tmp_strings.xml:268(string)
+msgid "Remote Version"
+msgstr "Vzdálená verze"
+
+#: tmp_strings.xml:269(string)
+msgid "Deleted"
+msgstr "Smazáno"
+
+#. %1$s will be replaced with a note title.
+#: tmp_strings.xml:272(string)
+msgid "%1$s (old)"
+msgstr "%1$s (starý)"
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:276(string)
+msgid "Authorization with %1$s successful."
+msgstr "Autorizace s %1$s proběhla úspěšně."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:278(string)
+msgid "Authorization with %1$s failed. Try again later!"
+msgstr ""
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:280(string)
+msgid "Note deleted from %1$s successfully."
+msgstr "Poznámka z %1$s byla smazána."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:282(string)
+msgid "Note sent to %1$s successfully."
+msgstr "Poznámka byla odeslána do %1$s."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:284(string)
+msgid "Note received from %1$s successfully."
+msgstr "Poznámka z %1$s byla přijata."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:286(string)
+msgid "Error deleting note from %1$s."
+msgstr "Chyba při odstraňování poznámky z %1$s."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:288(string)
+msgid "Error sending note to %1$s."
+msgstr "Chyba při posílání poznámky do %1$s."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:290(string)
+msgid "Error receiving note from %1$s."
+msgstr "Chyba při přijímání poznámky od %1$s."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:292(string)
+msgid "Error parsing response from %1$s."
+msgstr "Chyba při načítání odpovědi od %1$s."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:294(string)
 msgid ""
 "Error connecting to %1$s. You probably need to authenticate in \"Settings\"."
 msgstr ""
+"Chyba při připojování k %1$s. Pravděpodobně je potřeba autentizace v "
+"\"Nastavení\"."
 
-#: tmp_strings.xml:218(string)
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:296(string)
 msgid "Notes deleted from %1$s successfully."
-msgstr ""
+msgstr "Poznámky z %1$s byly smazány."
 
-#: tmp_strings.xml:219(string)
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:298(string)
 msgid "Sync with %1$s cancelled."
-msgstr ""
+msgstr "Synchronizace s %1$s byla zrušena."
 
-#. revert notes
-#: tmp_strings.xml:223(string)
+#. menu items
+#: tmp_strings.xml:302(string)
+msgid "Edit Tags"
+msgstr "Upravit štítky"
+
+#: tmp_strings.xml:303(string)
 msgid "Revert"
-msgstr ""
+msgstr "Vrátit"
 
-#: tmp_strings.xml:224(string)
+#. %1$s will be replaced with note-tag names
+#: tmp_strings.xml:305(string)
+msgid "Note '%1$s' Tags"
+msgstr "Poznámka '%1$s' štítky"
+
+#: tmp_strings.xml:306(string)
+msgid "Edit the tags below, separating with commas"
+msgstr "Upravit štítky oddělené mezerami"
+
+#: tmp_strings.xml:307(string)
+msgid "Undelete Note"
+msgstr "Vrátit odstranění poznámky"
+
+#. menu item with icon
+#: tmp_strings.xml:309(string)
+msgid "Import Note"
+msgstr "Importovat poznámku"
+
+#. menu item with icon
+#: tmp_strings.xml:314(string)
 msgid "Revert All"
-msgstr ""
+msgstr "Vrátit vše"
 
-#: tmp_strings.xml:225(string)
+#: tmp_strings.xml:315(string)
 msgid "Revert Notes"
-msgstr ""
+msgstr "Vrátit poznámky"
 
-#: tmp_strings.xml:226(string)
+#: tmp_strings.xml:316(string)
 msgid ""
 "This will revert your local notes to whatever versions exist on the remote "
 "service. Are you sure you want to do this?"
 msgstr ""
+"Tímto vrátíte vaše lokální poznámky na jakékoliv verze existující na "
+"vzdálené službě. Opravdu to chcete?"
 
-#: tmp_strings.xml:227(string)
+#: tmp_strings.xml:317(string)
 msgid "Revert Note"
-msgstr ""
+msgstr "Vrátit poznámku"
 
-#: tmp_strings.xml:228(string)
+#: tmp_strings.xml:318(string)
 msgid ""
 "This will revert a local note to whatever version exist on the remote "
 "service. Are you sure you want to do this?"
 msgstr ""
+"Tímto vrátíte vaši lokální poznámku na jakoukoliv verzi existující na "
+"vzdálené službě. Opravdu to chcete?"
 
 #. backup notes
-#: tmp_strings.xml:232(string)
-msgid "Backup Notes"
-msgstr ""
-
-#: tmp_strings.xml:233(string)
-msgid "Copy all local notes to SD Card"
-msgstr ""
-
-#: tmp_strings.xml:234(string)
+#: tmp_strings.xml:322(string)
 msgid "Backup Notes?"
-msgstr ""
+msgstr "Zálohovat poznámky?"
 
-#: tmp_strings.xml:235(string)
+#: tmp_strings.xml:323(string)
 msgid ""
 "Copy all local notes to SD Card? This may overwrite existing notes on the SD "
 "Card."
 msgstr ""
+"Zkopírovat všechny lokální poznámky na SD kartu? Může dojít k přepsání "
+"existujících poznámek na SD kartě."
 
-#: tmp_strings.xml:236(string)
+#: tmp_strings.xml:324(string)
 msgid "Restore Notes"
-msgstr ""
+msgstr "Obnovit poznámky"
 
-#: tmp_strings.xml:237(string)
-msgid "Pull all notes from SD Card"
-msgstr ""
-
-#: tmp_strings.xml:238(string)
+#: tmp_strings.xml:325(string)
 msgid "Restore Notes?"
-msgstr ""
+msgstr "Obnovit poznámky?"
 
-#: tmp_strings.xml:239(string)
+#: tmp_strings.xml:326(string)
 msgid "Pull all notes from SD Card? This may overwrite your existing notes."
 msgstr ""
+"Nahrát všechy poznámky z SD karty? Může dojít k přepsání existujících "
+"poznámek."
 
-#: tmp_strings.xml:240(string)
+#: tmp_strings.xml:327(string)
 msgid "Notes backed up to SD card successfully."
-msgstr ""
+msgstr "Poznámky byly zálohovány na SD kartu."
 
-#: tmp_strings.xml:241(string)
+#: tmp_strings.xml:328(string)
 msgid "Notes restored from SD card successfully."
+msgstr "Poznámky byly obnoveny z SD karty."
+
+#: tmp_strings.xml:329(string)
+msgid "Notes cleared successfully."
+msgstr "Poznámky byly odstraněny."
+
+#. send and receive notes
+#: tmp_strings.xml:333(string)
+msgid "Choose Send Method"
+msgstr "Vyberte metodu poslání"
+
+#: tmp_strings.xml:334(string)
+msgid "How would you like to send the note?"
+msgstr "Jak poslat poznámku?"
+
+#: tmp_strings.xml:335(string)
+msgid "As Text"
+msgstr "Jako text"
+
+#: tmp_strings.xml:336(string)
+msgid "As File"
+msgstr "Jako soubor"
+
+#: tmp_strings.xml:337(string)
+msgid ""
+"The note already exists in the database. Please choose an action to resolve "
+"the conflict. You may edit either note before choosing, or view the "
+"difference by clicking on the labels below."
 msgstr ""
 
-#: tmp_strings.xml:242(string)
-msgid "Notes cleared successfully."
+#. Button (keep short!)
+#: tmp_strings.xml:339(string)
+msgid "Cancel\\nImport"
+msgstr "Zrušit\\nimport"
+
+#: tmp_strings.xml:340(string)
+msgid "File exceeds maximum import size - are you sure it is plain text?"
 msgstr ""
+"Soubor přesahuje maximální velikost pro import - jste si jistí, že je to "
+"plain text?"
+
+#: tmp_strings.xml:341(string)
+msgid "Cannot read the note file."
+msgstr ""
+
+#: tmp_strings.xml:342(string)
+msgid "No files or directories"
+msgstr "Žádné soubory nebo složky"
+
+#: tmp_strings.xml:343(string)
+msgid ""
+"Choose a file below that is either a Tomboy note file (which will be "
+"imported) or a plain text file (which will create a new note):"
+msgstr ""
+"Vyberte soubor níže, který je buď poznámka Tomboy (bude importována) nebo "
+"plain text soubor (bude vytvořen jako nová poznámka):"
+
+#. Title of first Note
+#: tmp_strings.xml:345(string)
+msgid "Tomdroid's First Note"
+msgstr "První poznámka Tomdroidu"
+
+#: tmp_strings.xml:348(item)
+msgid "Welcome to Tomdroid!\\n"
+msgstr "Vítejte v Tomdroidu!\\n"
+
+#: tmp_strings.xml:349(item)
+msgid ""
+"You have no notes here yet. To get started, set your Synchronization "
+"preferences under Settings. There are two synchronization options described "
+"below.\\n"
+msgstr ""
+"Nemáte zde zatím žádné poznámky. Začněte nastavením synchronizace v "
+"NastaveníNíže jsou popsány dvě synchronizační možnosti.\\n"
+
+#: tmp_strings.xml:350(item)
+msgid "=Online Synchronization="
+msgstr "=Online synchronizace="
+
+#. =text= makes <size:large>text</size:large>
+#: tmp_strings.xml:352(item)
+msgid ""
+"Online Synchronization is what you are looking for if you want to sync to "
+"Tomboy-Online, Ubuntu One, your own Rainy/Snowy server or any server "
+"supporting the Tomboy Web REST API.\\n"
+msgstr ""
+
+#: tmp_strings.xml:353(item)
+msgid ""
+"To use it, set Sync Service to Online Synchronization in preferences then "
+"provide a Server URL. Here are some of the public ones:"
+msgstr ""
+"Pro použití nastavte synchronizační službu na online synchronizaci in "
+"možnostech, pak nastavte URL serveru. Zde je několik veřejných:"
+
+#. -text is for list-items.
+#: tmp_strings.xml:355(item)
+msgid "-Tomboy Online - https://edge.tomboy-online.org/"
+msgstr "-Tomboy Online - https://edge.tomboy-online.org/"
+
+#. -text is for list-items.
+#: tmp_strings.xml:357(item)
+msgid "-Ubuntu One - https://one.ubuntu.com/notes"
+msgstr ""
+
+#. -text is for list-items.
+#: tmp_strings.xml:359(item)
+msgid ""
+"-rainy.notesync.org - https://notesync.org:8080/[username]/[password]/\\n"
+msgstr ""
+
+#: tmp_strings.xml:360(item)
+msgid ""
+"Once set, hit the Sync logo on Tomdroid's top bar to synchronize your "
+"notes.\\n"
+msgstr ""
+"Jakmile je nastaveno, klikněte na synchronizační logo na liště nahoře pro "
+"synchronizaci vašich poznámek.\\n"
+
+#: tmp_strings.xml:361(item)
+msgid ""
+"Note: you might want to back up your Tomboy notes before syncing, since this "
+"app is still under development and may corrupt your Tomboy notes.\\n"
+msgstr ""
+
+#: tmp_strings.xml:362(item)
+msgid ""
+"Please see http://live.gnome.org/Tomboy/Directories for the location of the "
+"*.note files on all platforms.\\n"
+msgstr ""
+
+#. =text= makes <size:large>text</size:large>
+#: tmp_strings.xml:364(item)
+msgid "=SD Card="
+msgstr "=SD karta="
+
+#: tmp_strings.xml:365(item)
+msgid ""
+"Put your Tomboy notes (*.note) on your SD Card under tomdroid/. Once the "
+"notes are copied, set Sync Service to SD Card in preferences then hit the "
+"Sync logo on Tomdroid's top bar.\\n"
+msgstr ""
+
+#: tmp_strings.xml:366(item)
+msgid ""
+"Also, Tomdroid is always looking for new contributors. If you are interested "
+"join the tomdroid-dev team on Launchpad: http://launchpad.net/~tomdroid-"
+"dev.\\n"
+msgstr ""
+
+#: tmp_strings.xml:367(item)
+msgid ""
+"Lastly, if you encounter any issue, please report it at: "
+"https://bugs.launchpad.net/tomdroid"
+msgstr ""
+"Pokud naleznete jakýkoliv problém, oznamte ho prosím na: "
+"https://bugs.launchpad.net/tomdroid"
 
 #. 30 chars max
-#: tmp_strings.xml:249(string)
+#: tmp_strings.xml:375(string)
 msgid "Tomdroid notes"
-msgstr ""
+msgstr "Tomdroid poznámky"
 
 #. 4000 chars max
-#: tmp_strings.xml:251(string)
+#: tmp_strings.xml:377(string)
 msgid ""
 "A Tomboy client for Android. Tomboy is a desktop note-taking app using a "
 "wikiwiki approach and a simple user interface.\\n\\n* Note format "
 "compatibility with Tomboy\\n* Online note synchronization with Snowy, Tomboy "
 "Online or Ubuntu One\\n* SD Card importation\\n* Open source!"
 msgstr ""
+"Tomdroid klient pro Android. Tomboy je desktopová aplikace pro poznámky "
+"používající wikiwiki přístup a jednoduché uživatelské rozhraní.\\n\\n* Je "
+"kompatibilní s Tomboy\\n* Online poznámkovou synchronizací se Snowy, Tomboy "
+"Online a Ubuntu One\\n* SD Card importation\\n* Open source!"
 
 #. 80 chars max
-#: tmp_strings.xml:254(string)
-msgid ""
-"Note-taking application with online synchronization compatible with Tomboy"
+#: tmp_strings.xml:380(string)
+msgid "Note-taking app with online synchronization compatible with Tomboy"
 msgstr ""
 
 #. 500 chars max
-#: tmp_strings.xml:257(string)
+#: tmp_strings.xml:383(string)
 msgid ""
-"* Search notes and system integrated search\\n* Context menu\\n* Several "
-"usability improvements\\n* Higher quality icons\\n* Several bug fixes\\n* "
-"German translation\\n"
+"0.6 \\\"Small World\\\" release\\n* Create home-screen shortcuts to notes\\"
+"n* Specify a folder to use for SD Card sync\\n* Reload current note after "
+"sync\\n* A lot of new translations: ar, bs, ca, cs, da, de, el, en-rGB, eo, "
+"es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, "
+"si, sv, ta, te, tr, ug, uk, zh, zh-rCN\\n* Several bugfixes\\n"
 msgstr ""
+"0.6 \\\"Small World\\\" release\\n* Vytvoří zástupce poznámek na domovské "
+"obrazovce\\n* Vyberte složku pro použití synchronizace s SD kartou\\n* "
+"Aktualizovat aktuální poznámku po synchronizaci\\n* Mnoho nových překladů: "
+"ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, "
+"it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-"
+"rCN\\n* Několik opravených chyb\\n"
 
 #. Launchpad Translation String
-#: tmp_strings.xml:260(string)
+#: tmp_strings.xml:386(string)
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
-"  Jan Dolejš https://launchpad.net/~jackdown3csr"
+"  Jan Dolejš https://launchpad.net/~jackdown3csr\n"
+"  Michal Cerman https://launchpad.net/~micer"
+
+#~ msgid "Change Sort"
+#~ msgstr "Změnit řazení"
+
+#~ msgid ""
+#~ "Note-taking application with online synchronization compatible with Tomboy"
+#~ msgstr ""
+#~ "Aplikace pro ukládání poznámek s online synchronizací kompatibilní s "
+#~ "aplikací Tomboy."

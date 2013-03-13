@@ -25,273 +25,346 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Tomboy compatible wikiwiki note-taking application that can take notes.</string>
+	<string name="app_desc">Tomboy compatible wikiwiki note-taking app that can take notes.</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
-	<string name="strListEmptyWaiting">Please wait while the notes load..</string>
-	<string name="strListEmptyNoNotes">There are no notes in Tomdroid\'s database.</string>
+	<string name="strListEmptyWaiting">Čekejte prosím, načítám poznámky...</string>
+	<string name="strListEmptyNoNotes">V databázi Tomdroidu nejsou žádné poznámky.</string>
 	
+	<!-- Menu entry with icon -->
 	<string name="menuSync">Synchronizovat</string>
+	<!-- Menu entry with icon -->
 	<string name="menuPrefs">Nastavení</string>
+	<!-- Menu entry with icon -->
 	<string name="menuAbout">O aplikaci</string>
-	<string name="titleWelcome">Varování</string>
+	<!-- Title of an alert box -->
+	<string name="titleWelcome">Upozornění</string>
 	<string name="titleAbout">O programu Tomdroid</string>
-	<string name="strWelcome">Welcome to Tomdroid.\n\nPlease note that this is beta quality software and that it contains known problems.\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something out and tested as quickly as possible.\n\nIf you would like to contribute, help at all levels would be appreciated. Hop on board on launchpad.net/tomdroid and contact us!\n</string>
-	<string name="strAbout">%1$s\n\nAuthor: %2$s\nVersion: %3$s\nLicensed under the GPLv3</string>
+	<!-- First start alert box -->
+	<string name="strWelcome">Vítejte v aplikaci Tomdroid.\n\nBerte prosím na vědomí, že toto je beta verze aplikace a obsahuje nám známé problémy.\n\nO těchto problémech dobře víme a pracujeme na nich, chtěli jsme však rychle vydat alespoň nějakou verzi a co nejrychleji ji otestovat.\n\nPokud byste se rádi podíleli na spolupráci, jakákoliv pomoc je vítána. Naskočte na palubu na launchpad.net/tomdroid a kontaktujte nás!\n</string>
+	<!-- \n\n are linebreaks, %1$s etc are the name of the Author, the version and the license name -->
+	<string name="strAbout">%1$s\n\nAutor: %2$s\nVerze: %3$s\nLicencováno pod GPLv3</string>
 	
-	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
+	<!-- positive Button -->
 	<string name="btnOk">OK</string>
+	<!-- negative Button -->
 	<string name="btnCancel">Zrušit</string>
+	<!-- Button -->
 	<string name="btnClose">Zavřít</string>
-	<string name="btnProjectPage">Project page</string>
-	<string name="btnSavetoSD">Save</string>
+	<!-- Button -->
+	<string name="btnProjectPage">Stránky projektu</string>
+	<string name="btnSavetoSD">Uložit</string>
 	
 	<!-- note-view.xml -->
-	<string name="strWait">Please wait while note loads…</string>
+	<string name="strWait">Počkejte prosím na nahrání poznámky...</string>
 	
-	<string name="prefSyncService">Service</string>
+	<string name="prefSyncService">Služba</string>
 	<string name="prefSyncServer">Server</string>
-	<string name="prefSDCard">SD Card</string>
-	<string name="prefTomboyWeb">Online Synchronization</string>
-	<string name="prefAuthenticate">Authenticate</string>
-	<string name="prefLocation">Location on SD Card</string>
-	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
-	<string name="prefNoValidLocation">\"%1$s\" is not a valid folder location. Please try again!</string>
-	<string name="prefNoValidEntry">\"%1$s\" is not a valid entry. Please try again!</string>
-	<string name="prefSyncCompleteAuth">Completing authentication. Please wait…</string>
-	<string name="prefSyncConnectionFailed">The connection to the server has failed, please check that the address you entered is correct.</string>
-	<string name="prefServerEmpty">The server address changed but the new value is empty</string>
+	<string name="prefSDCard">SD karta</string>
+	<string name="prefTomboyWeb">Online synchronizace</string>
+	<string name="prefAuthenticate">Autentizovat</string>
+	<string name="prefLocation">Umístění na SD kartě</string>
+	<!-- %1$s will be repaced by the folder name eg /tomdroid -->
+	<string name="prefFolderCreated">Složka \"%1$s\" zatím neexistuje. Připojte prosím vaše zařízení k počítači, vytvořte tuto složku a vložte do ní soubory s příponou *.note.</string>
+	<!-- %1$s will be repaced by the folder name eg /testfolder -->
+	<string name="prefNoValidLocation">\"%1$s\" není platné umístění složky. Zkuste to prosím znovu!</string>
+	<!-- %1$s will be replaced with an text entry the user had done -->
+	<string name="prefNoValidEntry">\"%1$s\" není platné zadání. Zkuste to prosím znovu!</string>
+	<string name="prefSyncCompleteAuth">Provádím autentifikaci. Čekejte prosím…</string>
+	<string name="prefSyncConnectionFailed">Připojení k serveru selhalo, zkontrolujte prosím, zda je zadaná adresa platná.</string>
+	<string name="prefServerEmpty">Adresa serveru byla změněna, ale nová hodnota je prázdná.</string>
 			
-	<string name="titleSyncService">Choose the sync service to use</string>
-	<string name="messageSyncComplete">Synchronization with %1$s is complete.</string>
-	<string name="messageSyncNoNote">No notes found on %1$s.</string>
-	<string name="messageSyncNoConnection">You are not connected to the Internet.</string>
-	<string name="messageSyncAlreadyInProgress">Sync already in progress</string>
-	<string name="messageSyncError">There was an error trying to parse your note collection. If you are able to replicate the problem, please contact us!</string>
-	<string name="error">Error</string>
-	<string name="titleNoteNotFound">No Such Note</string>
-	<string name="messageNoteNotFound">The requested note could not be found. Maybe it was deleted or removed through synchronization.</string>
-	<string name="messageErrorNoteParsing">Error parsing note.</string>
-	<string name="messageCouldNotSave">Could not save note.</string>
-	<string name="messageNoSDCard">SDCard storage not found.</string>
+	<string name="titleSyncService">Vyberte synchronizační službu, která má být použita</string>
+	<!-- %1$s will be replaced with "Online Synchronisation", "SD Card",...-->
+	<string name="messageSyncComplete">Synchronizace s %1$s je dokončena.</string>
+	<!-- %1$s will be replaced with "SD Card",... -->
+	<string name="messageSyncNoNote">Na %1$s nebyly nalezeny žádné poznámky.</string>
+	<string name="messageSyncNoConnection">Nejste připojeni k internetu.</string>
+	<string name="messageSyncAlreadyInProgress">Synchronizace již probíhá.</string>
+	<string name="messageSyncError">V průběhu analýzy vaší kolekce poznámek nastala chyba. Pokud jste schopni replikovat problém, kontaktujte nás prosím!</string>
+	<!-- Altert box header -->
+	<string name="error">Chyba</string>
+	<!-- Altert box header -->
+	<string name="titleNoteNotFound">Poznámka neexistuje.</string>
+	<string name="messageNoteNotFound">Požadovaná poznámka nebyla nalezena. Možná byla smazána nebo odstraněna při synchronizaci.</string>
+	<string name="messageErrorNoteParsing">Chyba při čtení poznámky.</string>
+	<string name="messageCouldNotSave">Poznámku nebylo možné uložit.</string>
+	<string name="messageNoSDCard">Uložiště SD karty nebylo nalezeno.</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">Change Sort</string>
-	<string name="titleDefaultSorting">Choose the default sorting</string>
-	<string name="prefDefaultSorting">Default sort</string>
-	<string name="prefSorting">Sorting</string>
-	<string name="prefSortDate">Date Modified</string>
-	<string name="prefSortTitle">Note Title</string>
-	<string name="sortByDate">Sort by Date</string>
-	<string name="sortByTitle">Sort by Title</string>
+	<string name="titleDefaultSorting">Vyberte výchozí metodu pro řazení</string>
+	<string name="prefDefaultSortingTitle">Výchozí metoda pro řazení</string>
+	<string name="prefSorting">Seřadit podle:</string>
+	<string name="prefSortDate">Datum změny</string>
+	<string name="prefSortTitle">Nadpis poznámky</string>
+	<string name="sortByDate">Seřadit podle data</string>
+	<string name="sortByTitle">Seřadit podle nadpisu</string>
 	
 	<!-- NotebookFiltering -->
-	<string name="menuFilterNotebook">Filter</string>
-	<string name="strListEmptyNoNotebooks">There are no notebooks in the database.</string>
-	<string name="allNotebooksFilter">All notebooks</string>
+	<string name="menuFilterNotebook">Filtr</string>
+	<string name="strListEmptyNoNotebooks">V databázi nejsou žádné zápisníky.</string>
+	<string name="allNotebooksFilter">Všechny zápisníky</string>
 	
 	<!-- List Longpress Menu -->
-	<string name="view">View</string>
-	<string name="noteOptions">Note Options</string>
-	<string name="send">Send</string>
+	<string name="view">Zobrazit</string>
+	<string name="noteOptions">Možnosti poznámky</string>
+	<string name="send">Odeslat</string>
 	
 	<!--  Search -->
-	<string name="search_hint">Search Notes</string>
-	<string name="search_description">Text in your notes</string>
-	<string name="strNoResults">No notes found for \"%s\"</string>
-	<string name="menuSearch">Search</string>
-	<string name="SearchResultTitle">Search Results:</string>
-	<string name="clearSearchHistoryTitle">Clear search history</string>
-	<string name="clearSearchHistory">Remove all the searches you have performed</string>
-	<string name="deletedSearchHistory">Search history has been cleared.</string>
+	<!-- Text in input field for search -->
+	<string name="search_hint">Vyhledat v poznámkách</string>
+	<!-- Preferences Field in global search to include notes -->
+	<string name="search_description">Text v poznámce</string>
+	<!-- %s will be replaced with the search string -->
+	<string name="strNoResults">Nenalezeny žádné poznámky pro \"%s\"</string>
+	<string name="menuSearch">Hledat</string>
+	<string name="SearchResultTitle">Výsledky hledání:</string>
+	<string name="clearSearchHistoryTitle">Vyčistit historii hledání</string>
+	<string name="clearSearchHistory">Odstranit všechna provedená hledání</string>
+	<string name="deletedSearchHistory">Historie hledání byla smazána.</string>
 	
 	<!-- Date -->
-	<string name="textModified">Modified:</string>
-	<string name="textToday">Today</string>
-	<string name="textYexterday">Yesterday</string>
+	<string name="textModified">Změněno:</string>
+	<string name="textToday">Dnes</string>
+	<string name="textYexterday">Včera</string>
 
 	<!-- Shortcuts handling -->
-	<string name="shortcuts_view_caption">Choose a Note</string>
-	<string name="shortcut_menu_item_caption">Tomdroid Note</string>
-	<string name="btnRemoveShortcut">Remove shortcut</string>
-	<string name="createShortcut">Create shortcut</string>
+	<!-- Header when picking a note for a new shortcut -->
+	<string name="shortcuts_view_caption">Vyberte poznámku</string>
+	<string name="shortcut_menu_item_caption">Tomdroid poznámka</string>
+	<string name="btnRemoveShortcut">Odstranit zkratku</string>
+	<string name="createShortcut">Vytvořit zkratku</string>
 
 	<!-- stuff new to edit -->
 
 	<!-- deleteNote -->
-	<string name="delete">Delete</string>
-	<string name="delete_note">Delete Note</string>
-	<string name="delete_message">Are you sure you want to delete this note?</string>
-	<string name="yes">Yes</string>
-	<string name="no">No</string>
-	<string name="delete_all">Clear Notes</string>
-	<string name="delete_all_message">Are you sure you want to clear the notes database?</string>
-	<string name="delete_remote_notes">Delete Remote Notes</string>
-	<string name="delete_remote_notes_message">Are you sure you want to delete all notes from the remote service?</string>
+	<string name="delete">Smazat</string>
+	<string name="delete_note">Smazat poznámku</string>
+	<string name="delete_message">Opravdu chcete smazat tuto poznámku?</string>
+	<string name="yes">Ano</string>
+	<string name="no">Ne</string>
+	<string name="delete_all">Odstranit poznámky</string>
+	<string name="delete_all_message">Opravdu chcete odstranit všechny poznámky v databázi?</string>
+	<string name="delete_remote_notes">Odstranit vzdálené poznámky</string>
+	<string name="delete_remote_notes_message">Opravdu chcete odstranit všechny poznámky ze vzdálené služby?</string>
 				
 	<!-- newNote -->
-	<string name="menuNew">New</string>
-	<string name="NewNoteTitle">New Note</string>
-	<string name="NewNoteTitleHint">Enter title here</string>
-	<string name="NewNoteBodyHint">Enter note here</string>
+	<string name="menuNew">Nový</string>
+	<string name="NewNoteTitle">Nová poznámka</string>
+	<string name="NewNoteTitleHint">Zde napište nadpis</string>
+	<string name="NewNoteBodyHint">Zde napište poznámku</string>
 			
 	<!-- editNote -->
-	<string name="edit">Edit</string>
-	<string name="save">Save</string>
-	<string name="discard">Discard</string>
-	<string name="back">Back</string>
+	<string name="edit">Upravit</string>
+	<string name="save">Uložit</string>
+	<string name="discard">Zrušit</string>
+	<string name="back">Zpět</string>
 	<!-- B stands for bold (in format bar) -->
 	<string name="bold">B</string>
 	<!-- i stands for italic (in format bar) -->
 	<string name="italic">i</string>
 	<!-- S stands for strike through (in format bar) -->
 	<string name="strike"><strike>S</strike></string>
-	<string name="mono">monospace</string>
-	<string name="highlight">highlight</string>
-	<string name="size">size</string>
-	<string name="xml">XML</string>
-	<string name="text">Text</string>
-	<string name="titleErrorParsingXML">Error parsing note</string>
-	<string name="messageErrorParsingXML">There was an error parsing the note. Please check your XML.</string>
-	<string name="messageNoteSaved">Note saved locally.</string>
-	<string name="messageNoteDeleted">Note deleted locally.</string>
-	<string name="messageSelectSize">Select text size</string>
-	<string name="small">Small</string>
-	<string name="normal">Normal</string>
-	<string name="large">Large</string>
-	<string name="huge">Huge</string>
-	<string name="messageDiscardChanges">Do you really want to discard your changes and revert the note to the last saved version?</string>
-	<string name="titleDiscardChanges">Discard Changes?</string>
+	<string name="titleErrorParsingXML">Chyba při načítání poznámky</string>
+	<string name="messageErrorParsingXML">Nastala chyba při načítání poznámky. Zkontrolujte prosím vaše XML.</string>
+	<string name="messageNoteSaved">Poznámka uložena lokálně.</string>
+	<string name="messageNoteDeleted">Poznámka smazána lokálně.</string>
+	<string name="messageSelectSize">Vyberte velikost písma</string>
+	<string name="small">Malé</string>
+	<string name="normal">Normální</string>
+	<string name="large">Velké</string>
+	<string name="huge">Obrovské</string>
+	<string name="messageDiscardChanges">Opravdu chcete zrušit provedené změny a vrátit se k poslední uložené verzi poznámky?</string>
+	<string name="titleDiscardChanges">Zrušit změny?</string>
+	<!-- this is the > symbol, do not change -->
 	<string name="gt"><b>&gt;</b></string>
+	<!-- this is the < symbol, do not change -->
 	<string name="lt"><b>&lt;</b></string>
 			
 	<!-- New Titles -->
-	<string name="view_title">Tomdroid - View Note</string>
-	<string name="edit_title">Tomdroid - Edit Note</string>
-	<string name="search_title">Tomdroid - Search Results</string>
-	<string name="shortcut_title">Tomdroid - Shortcuts</string>
-	<string name="pref_title">Tomdroid - Settings</string>
+	<string name="view_title">Tomdroid - Zobrazit poznámku</string>
+	<string name="edit_title">Tomdroid - Upravit poznámku</string>
+	<string name="search_title">Tomdroid - Výsledky hledání</string>
+	<string name="shortcut_title">Tomdroid - Zkratky</string>
+	<string name="pref_title">Tomdroid - Nastavení</string>
+	<string name="compare_title">Tomdroid - Note Conflict</string>
+	<string name="filePickerTitle">Tomdroid - Importovat poznámku</string>
 			
 	<!-- new prefs -->
-	<string name="prefDisplay">Display Preferences</string>
-	<string name="prefBaseSize">Base Font Size</string>
+	<!-- subheader in settings -->
+	<string name="prefDisplay">Zobrazit nastavení</string>
+	<string name="prefBaseSize">Základní velikost písma</string>
+	<!-- subheader in settings -->
 	<string name="prefSync">Synchronizace</string>
-	<string name="prefTools">Tools</string>
-	<string name="prefAutoSaveTitle">Auto Save Note</string>
-	<string name="prefAutoSave">Save notes automatically on exiting editor.</string>
-	<string name="prefDeletedNotesTitle">Show Deleted Notes</string>
-	<string name="prefDeletedNotes">If checked, will show deleted notes in notes list.</string>
-	<string name="prefNoteTemplatesTitle">Show Note Templates</string>
-	<string name="prefNoteTemplates">If checked, will show note templates in notes list.</string>
-	<string name="deleteAllNotesTitle">Clear Notes</string>
-	<string name="deleteAllNotes">Clear all notes from local database</string>
-	<string name="deleteRemoteNotesTitle">Delete Remote Notes</string>
-	<string name="deleteRemoteNotes">Delete all notes from remote service</string>
-	<string name="illegalTextSize">Illegal text size chosen. Please choose a number.</string>
-	<string name="backupPrefTitle">Backup Notes</string>
-	<string name="backupPref">Copy all local notes to SD Card</string>
-	<string name="autoBackupPrefTitle">Auto-Backup</string>
-	<string name="autoBackupPref">Copy local note to SD Card on save</string>
-		
+	<!-- subheader in settings -->
+	<string name="prefTools">Nástroje</string>
+	<string name="prefAutoSave">Ukládat poznámky automaticky při ukončení editoru.</string>
+	<string name="prefDeletedNotesTitle">Zobrazit smazané poznámky</string>
+	<string name="prefDeletedNotes">Zaškrtněte pro zobrazení smazaných poznámek v seznamu poznámek.</string>
+	<string name="prefNoteTemplatesTitle">Zobrazit šablony poznámek</string>
+	<string name="prefNoteTemplates">Zaškrtněte pro zobrazení šablon poznámek v seznamu poznámek.</string>
+	<string name="deleteAllNotesTitle">Odstranit poznámky</string>
+	<string name="deleteAllNotes">Odstranit všechny poznámky z lokální databáze</string>
+	<string name="deleteRemoteNotesTitle">Odstranit vzdálené poznámky</string>
+	<string name="deleteRemoteNotes">Odstranit všechny poznámky ze vzdálené databáze.</string>
+	<string name="illegalTextSize">Vybrána nepovolená velikost textu. Vyberte prosím číslo.</string>
+	<string name="backupPrefTitle">Zálohovat poznámky</string>
+	<string name="backupPref">Zkopírovat všechny lokální poznámky na SD kartu</string>
+	<string name="autoBackupPrefTitle">Automatická záloha</string>
+	<string name="autoBackupPref">Zkopírovat lokální poznámku na SD kartu při uložení</string>
+	<!-- subheader in settings -->
+	<string name="prefLinks">Nastavení odkazu</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkTitlesTitle">Nadpisy obsahu</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkTitles">odkaz na další nadpisy poznámky</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkUrlsTitle">Odkazovat na webové adresy"</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkUrls">např. "www.google.com"</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkEmailsTitle">Odkazovat na emaily</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkEmails">např. jmeno@adresa.cz</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkPhonesTitle">Odkazovat na telefonní čísla</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkPhones">odkazovat telefonní čísla do aplikace telefonu</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkAddressesTitle">Odkazovat adresy v mapě</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkAddresses">link addresses to maps app</string>
+			
 	<!-- syncNotes -->
 
-	<string name="syncing">Syncing with %1$s</string>
-	<string name="syncing_connect">connecting to service…</string>
-	<string name="gettings_notes">getting list of remote notes…</string>
-	<string name="syncing_local">updating local notes…</string>
-	<string name="syncing_remote">updating remote notes…</string>
-	<string name="sync_conflict_title">Note Conflict</string>
-	<string name="sync_conflict_message">There was a conflict syncing the note \'%1$s\'.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
-	<string name="sync_conflict_deleted">There was a conflict syncing the note \'%1$s\' (local version was deleted).  Please choose from one of the actions below.</string>
-	<string name="sync_conflict_titles_message">There was a conflict syncing the note \'%1$s\'.  A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
-	<string name="overwrite_remote">Overwrite\nRemote</string>
-	<string name="overwrite_local">Overwrite\nLocal</string>
-	<string name="delete_remote">Delete\nRemote</string>
-	<string name="diff_label">Difference Between Files</string>
-	<string name="diff_titles">-- Title Differences --</string>
-	<string name="diff_content">-- Content Differences --</string>
-	<string name="line_x">Line %1$s:</string>
-	<string name="local_label">Local Version</string>
-	<string name="remote_label">Remote Version</string>
-	<string name="deleted">Deleted</string>
-	<string name="copy">Create\nCopy</string>
-	<string name="old">%1$s (old)</string>
+	<!-- %1$s will be replaced with "Online Synchronisation", "SD card",... -->
+	<string name="syncing">Synchronizovat s %1$s</string>
+	<string name="syncing_connect">připojuji se ke službě…</string>
+	<string name="gettings_notes">načítám seznam vzdálených poznámek…</string>
+	<string name="syncing_local">aktualizuji lokální poznámky…</string>
+	<string name="syncing_remote">aktualizuju vzdálené poznámky…</string>
+	<string name="sync_conflict_description">There was a conflict syncing the note \'%1$s\'</string>
+	<string name="sync_conflict_message">Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="sync_conflict_deleted">The local version was already deleted.  Please choose from one of the actions below.</string>
+	<string name="sync_conflict_titles_message">A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<!-- Button (keep short!) -->
+	<string name="overwrite_remote">Přepsat\nvzdálené</string>
+	<!-- Button (keep short!) -->
+	<string name="overwrite_local">Přepsat\nvzdálené</string>
+	<!-- Button (keep short!) -->
+	<string name="delete_remote">Smazat\nVzdálené</string>
+	<!-- Button (keep short!) -->
+	<string name="copy">Vytvořit\nkopii</string>
+	<!-- subheader in Conflict Dialouge (keep short!) -->
+	<string name="diff_label">Rozdíly mezi soubory</string>
+	<string name="diff_titles">-- Rozdíly mezi nadpisy --</string>
+	<string name="diff_content">-- Rozdíly mezi obsahem --</string>
+	<!-- %1$s will be replaced with a number. -->
+	<string name="line_x">Čára %1$s:</string>
+	<!-- subheader in Conflict Dialouge (keep short!) -->
+	<string name="local_label">Lokální verze</string>
+	<!-- subheader in Conflict Dialouge (keep short!) -->
+	<string name="remote_label">Vzdálená verze</string>
+	<string name="deleted">Smazáno</string>
+	
+	<!-- %1$s will be replaced with a note title. -->
+	<string name="old">%1$s (starý)</string>
 	<string name="close">Zavřít</string>
 	<string name="cancel">Zrušit</string>
-	<string name="messageAuthComplete">Authorization with %1$s successful.</string>
-	<string name="messageAuthFailed">Authorization with %1$s failed.  Maybe try again?</string>
-	<string name="messageSyncNoteDeleted">Note deleted from %1$s successfully.</string>
-	<string name="messageSyncNotePushed">Note sent to %1$s successfully.</string>
-	<string name="messageSyncNotePulled">Note received from %1$s successfully.</string>
-	<string name="messageSyncNoteDeleteError">Error deleting note from %1$s.</string>
-	<string name="messageSyncNotePushError">Error sending note to %1$s.</string>
-	<string name="messageSyncNotePullError">Error receiving note from %1$s.</string>
-	<string name="messageSyncParseFailed">Error parsing response from %1$s.</string>
-	<string name="messageSyncConnectingFailed">Error connecting to %1$s.  You probably need to authenticate in "Settings".</string>
-	<string name="messageRemoteNotesDeleted">Notes deleted from %1$s successfully.</string>
-	<string name="messageSyncCancelled">Sync with %1$s cancelled.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageAuthComplete">Autorizace s %1$s proběhla úspěšně.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageAuthFailed">Authorization with %1$s failed. Try again later!</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNoteDeleted">Poznámka z %1$s byla smazána.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNotePushed">Poznámka byla odeslána do %1$s.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNotePulled">Poznámka z %1$s byla přijata.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNoteDeleteError">Chyba při odstraňování poznámky z %1$s.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNotePushError">Chyba při posílání poznámky do %1$s.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNotePullError">Chyba při přijímání poznámky od %1$s.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncParseFailed">Chyba při načítání odpovědi od %1$s.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncConnectingFailed">Chyba při připojování k %1$s. Pravděpodobně je potřeba autentizace v "Nastavení".</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageRemoteNotesDeleted">Poznámky z %1$s byly smazány.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncCancelled">Synchronizace s %1$s byla zrušena.</string>
 
 	<!-- menu items -->
 	
-	<string name="editTags">Edit Tags</string>
-	<string name="contextRevert">Revert</string>
-	<string name="note_x_tags">Note \'%1$s\' Tags</string>
-	<string name="edit_tags">Edit the tags below, separating with commas</string>
-	<string name="undelete">Undelete Note</string>
-	<string name="menuImport">Import Note</string>
+	<string name="editTags">Upravit štítky</string>
+	<string name="contextRevert">Vrátit</string>
+	<!-- %1$s will be replaced with note-tag names -->
+	<string name="note_x_tags">Poznámka \'%1$s\' štítky</string>
+	<string name="edit_tags">Upravit štítky oddělené mezerami</string>
+	<string name="undelete">Vrátit odstranění poznámky</string>
+	<!-- menu item with icon -->
+	<string name="menuImport">Importovat poznámku</string>
 					
 	<!-- revert notes -->
 	
-	<string name="menuRevert">Revert All</string>
-	<string name="revert_notes">Revert Notes</string>
-	<string name="revert_notes_message">This will revert your local notes to whatever versions exist on the remote service.  Are you sure you want to do this?</string>
-	<string name="revert_note">Revert Note</string>
-	<string name="revert_note_message">This will revert a local note to whatever version exist on the remote service.  Are you sure you want to do this?</string>
+	<!-- menu item with icon -->
+	<string name="menuRevert">Vrátit vše</string>
+	<string name="revert_notes">Vrátit poznámky</string>
+	<string name="revert_notes_message">Tímto vrátíte vaše lokální poznámky na jakékoliv verze existující na vzdálené službě. Opravdu to chcete?</string>
+	<string name="revert_note">Vrátit poznámku</string>
+	<string name="revert_note_message">Tímto vrátíte vaši lokální poznámku na jakoukoliv verzi existující na vzdálené službě. Opravdu to chcete?</string>
 
 	<!-- backup notes -->
 	
-	<string name="backup_notes_title">Backup Notes?</string>
-	<string name="backup_notes">Copy all local notes to SD Card?  This may overwrite existing notes on the SD Card.</string>
-	<string name="restorePrefTitle">Restore Notes</string>
-	<string name="restorePref">Pull all notes from SD Card</string>
-	<string name="restore_notes_title">Restore Notes?</string>
-	<string name="restore_notes">Pull all notes from SD Card?  This may overwrite your existing notes.</string>
-	<string name="messageNotesBackedUp">Notes backed up to SD card successfully.</string>
-	<string name="messageNotesRestored">Notes restored from SD card successfully.</string>
-	<string name="messageDatabaseReset">Notes cleared successfully.</string>
+	<string name="backup_notes_title">Zálohovat poznámky?</string>
+	<string name="backup_notes">Zkopírovat všechny lokální poznámky na SD kartu? Může dojít k přepsání existujících poznámek na SD kartě.</string>
+	<string name="restorePrefTitle">Obnovit poznámky</string>
+	<string name="restore_notes_title">Obnovit poznámky?</string>
+	<string name="restore_notes">Nahrát všechy poznámky z SD karty? Může dojít k přepsání existujících poznámek.</string>
+	<string name="messageNotesBackedUp">Poznámky byly zálohovány na SD kartu.</string>
+	<string name="messageNotesRestored">Poznámky byly obnoveny z SD karty.</string>
+	<string name="messageDatabaseReset">Poznámky byly odstraněny.</string>
 
 	<!-- send and receive notes -->
 	
-	<string name="sendChoiceTitle">Choose Send Method</string>
-	<string name="sendChoice">How would you like to send the note?</string>
-	<string name="btnSendAsText">As Text</string>
-	<string name="btnSendAsFile">As File</string>
-	<string name="sync_conflict_import_message">There was a conflict importing the note "%1$s".  The note already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
-	<string name="btnCancelImport">Cancel\nImport</string>
-			
-		
-	<string name="firstNoteTitle">Tomdroid\'s First Note</string>
+	<string name="sendChoiceTitle">Vyberte metodu poslání</string>
+	<string name="sendChoice">Jak poslat poznámku?</string>
+	<string name="btnSendAsText">Jako text</string>
+	<string name="btnSendAsFile">Jako soubor</string>
+	<string name="sync_conflict_import_message">The note already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<!-- Button (keep short!) -->
+	<string name="btnCancelImport">Zrušit\nimport</string>
+	<string name="messageFileTooBig">Soubor přesahuje maximální velikost pro import - jste si jistí, že je to plain text?</string>
+	<string name="messageFileNotReadable">Cannot read the note file.</string>
+	<string name="noFiles">Žádné soubory nebo složky</string>
+	<string name="chooseFile">Vyberte soubor níže, který je buď poznámka Tomboy (bude importována) nebo plain text soubor (bude vytvořen jako nová poznámka):</string>
+	<!-- Title of first Note -->
+	<string name="firstNoteTitle">První poznámka Tomdroidu</string>
 	
 	<string-array name="firstNoteContent">
-		<item>Welcome to Tomdroid!\n</item>
-		<item>You have no notes here yet. To get started, set your Synchronization preferences under Settings. There are two synchronization options described below.\n</item>
-	    <!-- =text= makes <size:large>text</size:large> --> 
-		<item>=Online Synchronization=</item>
-		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, Ubuntu One, your own Snowy server or any server supporting the Tomboy Web REST API.\n</item>
-		<item>To use it, set Sync Service to Online Synchronization in preferences then  provide a Server URL. Here are some of the public ones:</item>
+		<item>Vítejte v Tomdroidu!\n</item>
+		<item>Nemáte zde zatím žádné poznámky. Začněte nastavením synchronizace v NastaveníNíže jsou popsány dvě synchronizační možnosti.\n</item>
+		<item>=Online synchronizace=</item>
+		<!-- =text= makes <size:large>text</size:large> -->
+		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, Ubuntu One, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
+		<item>Pro použití nastavte synchronizační službu na online synchronizaci in možnostech, pak nastavte URL serveru. Zde je několik veřejných:</item>
 		<!-- -text is for list-items. --> 
 		<item>-Tomboy Online - https://edge.tomboy-online.org/</item>
 		<!-- -text is for list-items. --> 
-		<item>-Ubuntu One - https://one.ubuntu.com/notes\n</item>
-		<item>Once set, hit the Sync logo on Tomdroid\'s top bar to synchronize your notes.\n</item>
-		<item>Note: you might want to back up your Tomboy notes before syncing, since this app is still under development and may corrupt your Tomboy notes.  The notes can be found in ~/.local/share/tomboy/ on Linux.\n</item>
+		<item>-Ubuntu One - https://one.ubuntu.com/notes</item>
+		<!-- -text is for list-items. --> 
+		<item>-rainy.notesync.org - https://notesync.org:8080/[username]/[password]/\n</item>
+		<item>Jakmile je nastaveno, klikněte na synchronizační logo na liště nahoře pro synchronizaci vašich poznámek.\n</item>
+		<item>Note: you might want to back up your Tomboy notes before syncing, since this app is still under development and may corrupt your Tomboy notes.\n</item>
+		<item>Please see http://live.gnome.org/Tomboy/Directories for the location of the *.note files on all platforms.\n</item>
 		<!-- =text= makes <size:large>text</size:large> --> 
-		<item>=SD Card=</item>
-		<item>Put your Tomboy notes (*.note) on your SD Card under tomdroid/. The notes can be found in ~/.local/share/tomboy/ on Linux. Once the notes are copied, set Sync Service to SD Card in preferences then hit the Sync logo on Tomdroid\'s top bar.\n</item>
-		<item>See http://live.gnome.org/Tomboy/Directories for the notes\' location on other platforms.\n</item>
-		<item>Also, Tomdroid is always looking for new contributors. If you are interested join the tomdroid-dev team on launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
-		<item>Lastly, if you encounter any issue, please report it at: https://bugs.launchpad.net/tomdroid</item>
+		<item>=SD karta=</item>
+		<item>Put your Tomboy notes (*.note) on your SD Card under tomdroid/. Once the notes are copied, set Sync Service to SD Card in preferences then hit the Sync logo on Tomdroid\'s top bar.\n</item>
+		<item>Also, Tomdroid is always looking for new contributors. If you are interested join the tomdroid-dev team on Launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
+		<item>Pokud naleznete jakýkoliv problém, oznamte ho prosím na: https://bugs.launchpad.net/tomdroid</item>
 	</string-array>
 			
 	<!-- 
@@ -299,17 +372,18 @@
 	I\'ve put it in here so that it\'ll get translated by translators.
 	-->
 	<!-- 30 chars max -->
-	<string name="market_title">Tomdroid notes</string>
+	<string name="market_title">Tomdroid poznámky</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
+	<string name="market_description">Tomdroid klient pro Android. Tomboy je desktopová aplikace pro poznámky používající wikiwiki přístup a jednoduché uživatelské rozhraní.\n\n* Je kompatibilní s Tomboy\n* Online poznámkovou synchronizací se Snowy, Tomboy Online a Ubuntu One\n* SD Card importation\n* Open source!</string>
 	
 	<!-- 80 chars max -->
-	<string name="market_promotext">Note-taking application with online synchronization compatible with Tomboy</string>
+	<string name="market_promotext">Note-taking app with online synchronization compatible with Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.6 \"Small World\" release\n* Create home-screen shortcuts to notes\n* Specify a folder to use for SD Card sync\n* Reload current note after sync\n* A lot of new translations: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n* Several bugfixes\n</string>
+        <string name="market_recent_changes">0.6 \"Small World\" release\n* Vytvoří zástupce poznámek na domovské obrazovce\n* Vyberte složku pro použití synchronizace s SD kartou\n* Aktualizovat aktuální poznámku po synchronizaci\n* Mnoho nových překladů: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n* Několik opravených chyb\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
-  Jan Dolejš https://launchpad.net/~jackdown3csr</string>
+  Jan Dolejš https://launchpad.net/~jackdown3csr
+  Michal Cerman https://launchpad.net/~micer</string>
 </resources>

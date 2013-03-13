@@ -74,7 +74,9 @@ Tomdroid 0.7.1 beta - "Fast paced" released on 2012-08-21
 -------------------------------------------------------------------------------
 Version 0.6.1 - "Polyglot" released on <releaseDate>
 
-* New translations: bs, el, eo, fa, fi, nb, si, ta
+* fixed lp:1132389 Tomdroid 0.6.0 Crash on Rotation in Authentication
+* fixed lp:1153289 Accept self signed SSL certificates to be able to sync securely with Rainy
+* New translations: bs, el, eo, fa, fi, nb, si, ta, bg, et, gl, id, la, ml, nl, sr, zh-rTW
 * Updated translations: ar, ca, cs, da, de, en-rGB, es, eu, fo, fr, gd, hi, hu, it, ja, ko, ms, pl, pt-rBR, pt, ru, sv, te, tr, ug, uk, zh-rCN, zh
 
 -------------------------------------------------------------------------------

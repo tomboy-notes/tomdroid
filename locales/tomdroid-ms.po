@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tomdroid\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-08-20 14:41+0530\n"
-"PO-Revision-Date: 2012-08-18 13:36+0000\n"
-"Last-Translator: Stefan Hammer <Unknown>\n"
+"POT-Creation-Date: 2013-03-12 01:01+0100\n"
+"PO-Revision-Date: 2012-10-26 01:39+0000\n"
+"Last-Translator: abuyop <Unknown>\n"
 "Language-Team: Malay <ms@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-08-21 14:52+0000\n"
-"X-Generator: Launchpad (build 15810)\n"
+"X-Launchpad-Export-Date: 2013-03-13 14:00+0000\n"
+"X-Generator: Launchpad (build 16532)\n"
 
 #. application details
 #: tmp_strings.xml:27(string)
@@ -23,8 +23,7 @@ msgid "Tomdroid"
 msgstr "Tomdroid"
 
 #: tmp_strings.xml:28(string)
-msgid ""
-"Tomboy compatible wikiwiki note-taking application that can take notes."
+msgid "Tomboy compatible wikiwiki note-taking app that can take notes."
 msgstr ""
 
 #: tmp_strings.xml:29(string)
@@ -33,34 +32,39 @@ msgstr "Olivier Bilodeau"
 
 #. main.xml
 #: tmp_strings.xml:32(string)
-msgid "Please wait while the notes load.."
-msgstr "Tunggu sebentar ketika nota dimuatkan.."
+msgid "Please wait while the notes load…"
+msgstr "Tunggu sebentar semasa memuatkan nota..."
 
 #: tmp_strings.xml:33(string)
 msgid "There are no notes in Tomdroid's database."
 msgstr "Tiada nota didalam pengkalan data Tomdroid."
 
-#: tmp_strings.xml:35(string)
+#. Menu entry with icon
+#: tmp_strings.xml:36(string)
 msgid "Sync"
 msgstr "Segerak"
 
-#: tmp_strings.xml:36(string)
+#. Menu entry with icon
+#: tmp_strings.xml:38(string)
 msgid "Settings"
 msgstr "Tetapan"
 
-#: tmp_strings.xml:37(string)
+#. Menu entry with icon
+#: tmp_strings.xml:40(string)
 msgid "About"
 msgstr "Perihal"
 
-#: tmp_strings.xml:38(string)
+#. Title of an alert box
+#: tmp_strings.xml:42(string)
 msgid "Warning"
 msgstr "Amaran"
 
-#: tmp_strings.xml:39(string)
+#: tmp_strings.xml:43(string)
 msgid "About Tomdroid"
 msgstr "Perihal Tomdroid"
 
-#: tmp_strings.xml:40(string)
+#. First start alert box
+#: tmp_strings.xml:45(string)
 msgid ""
 "Welcome to Tomdroid.\\n\\nPlease note that this is beta quality software and "
 "that it contains known problems.\\n\\nWe are well aware of these issues and "
@@ -69,62 +73,72 @@ msgid ""
 "all levels would be appreciated. Hop on board on launchpad.net/tomdroid and "
 "contact us!\\n"
 msgstr ""
+"Selamat datang ke Tomdroid.\\n\\nPerhatian, ini adalah perisian berkualiti "
+"beta yang mana ia mengandungi masalah.\\n\\nKami menyedari isu ini dan akan "
+"menyelesaikannya secepat mungkin tetapi saya juga mahukannya diuji secepat "
+"yang boleh.\\n\\nJika anda ingin memberi sumbangan, apa jua bantuan amat "
+"diharapkan. Sila lawati launchpad.net/Tomdroid dan hubungi kami!\\n"
 
-#: tmp_strings.xml:41(string)
+#. \n\n are linebreaks, %1$s etc are the name of the Author, the version and the license name
+#: tmp_strings.xml:47(string)
 msgid "%1$s\\n\\nAuthor: %2$s\\nVersion: %3$s\\nLicensed under the GPLv3"
 msgstr "%1$s\\n\\Pengarang: %2$s\\nVersi: %3$s\\nDilesen dibawah GPLv3"
 
-#. TODO aren't these available somewhere else? like in the SDK? //
-#: tmp_strings.xml:44(string)
+#. positive Button
+#: tmp_strings.xml:50(string)
 msgid "OK"
 msgstr "OK"
 
-#: tmp_strings.xml:45(string) tmp_strings.xml:207(string)
+#. negative Button
+#: tmp_strings.xml:52(string) tmp_strings.xml:274(string)
 msgid "Cancel"
 msgstr "Batal"
 
-#: tmp_strings.xml:46(string) tmp_strings.xml:206(string)
+#. Button
+#: tmp_strings.xml:54(string) tmp_strings.xml:273(string)
 msgid "Close"
 msgstr "Tutup"
 
-#: tmp_strings.xml:47(string)
+#. Button
+#: tmp_strings.xml:56(string)
 msgid "Project page"
 msgstr "Halaman projek"
 
-#: tmp_strings.xml:48(string) tmp_strings.xml:136(string)
+#: tmp_strings.xml:57(string) tmp_strings.xml:160(string)
 msgid "Save"
-msgstr ""
+msgstr "Simpan"
 
 #. note-view.xml
-#: tmp_strings.xml:51(string)
+#: tmp_strings.xml:60(string)
 msgid "Please wait while note loads…"
-msgstr ""
+msgstr "Tunggu sebentar semasa nota dimuatkan…"
 
-#: tmp_strings.xml:53(string)
+#: tmp_strings.xml:62(string)
 msgid "Service"
 msgstr "Perkhidmatan"
 
-#: tmp_strings.xml:54(string)
+#: tmp_strings.xml:63(string)
 msgid "Server"
 msgstr "Pelayan"
 
-#: tmp_strings.xml:55(string)
+#: tmp_strings.xml:64(string)
 msgid "SD Card"
 msgstr "Kad SD"
 
-#: tmp_strings.xml:56(string)
-msgid "Online Synchronisation"
-msgstr ""
+#: tmp_strings.xml:65(string)
+msgid "Online Synchronization"
+msgstr "Penyegerakan Atas Talian"
 
-#: tmp_strings.xml:57(string)
+#: tmp_strings.xml:66(string)
 msgid "Authenticate"
 msgstr "Sahihkan"
 
-#: tmp_strings.xml:58(string)
+#: tmp_strings.xml:67(string)
 msgid "Location on SD Card"
 msgstr "Lokasi pada Kad SD"
 
-#: tmp_strings.xml:59(string)
+#. %1$s will be repaced by the folder name eg /tomdroid
+#: tmp_strings.xml:69(string)
 msgid ""
 "The folder \\\"%1$s\\\" does not exist yet. Please connect your device to "
 "the computer, create the folder and fill it with *.note files."
@@ -132,19 +146,21 @@ msgstr ""
 "Folder  \\\"%1$s\\\" tidak wujud lagi. Sila sambung peranti anda ke "
 "komputer, cipta folder dan isi ia dengan fail *.note."
 
-#: tmp_strings.xml:60(string)
+#. %1$s will be repaced by the folder name eg /testfolder
+#: tmp_strings.xml:71(string)
 msgid "\\\"%1$s\\\" is not a valid folder location. Please try again!"
-msgstr ""
+msgstr "\\\"%1$s\\\" bukanlah lokasi folder yang sah. Sila cuba lagi!"
 
-#: tmp_strings.xml:61(string)
+#. %1$s will be replaced with an text entry the user had done
+#: tmp_strings.xml:73(string)
 msgid "\\\"%1$s\\\" is not a valid entry. Please try again!"
-msgstr ""
+msgstr "\\\"%1$s\\\" bukanlah masukan yang sah. Sila cuba lagi!"
 
-#: tmp_strings.xml:62(string)
+#: tmp_strings.xml:74(string)
 msgid "Completing authentication. Please wait…"
-msgstr ""
+msgstr "Menyelesaikan pengesahihan. Tunggu sebentar..."
 
-#: tmp_strings.xml:63(string)
+#: tmp_strings.xml:75(string)
 msgid ""
 "The connection to the server has failed, please check that the address you "
 "entered is correct."
@@ -152,31 +168,33 @@ msgstr ""
 "Sambungan ke pelayan mengalami kegagalan, sila semak alamat yang anda "
 "masukkan adalah betul."
 
-#: tmp_strings.xml:64(string)
+#: tmp_strings.xml:76(string)
 msgid "The server address changed but the new value is empty"
 msgstr "Alamat pelayan berubah tetapi nilai barunya kosong"
 
-#: tmp_strings.xml:66(string)
+#: tmp_strings.xml:78(string)
 msgid "Choose the sync service to use"
 msgstr "Pilih perkhidmatan segerak yang hendak digunakan"
 
-#: tmp_strings.xml:67(string)
+#. %1$s will be replaced with "Online Synchronisation", "SD Card",...
+#: tmp_strings.xml:80(string)
 msgid "Synchronization with %1$s is complete."
 msgstr "Penyegerakan dengan %1$s selesai."
 
-#: tmp_strings.xml:68(string)
+#. %1$s will be replaced with "SD Card",...
+#: tmp_strings.xml:82(string)
 msgid "No notes found on %1$s."
 msgstr "Tiada nota ditemui dalam %1$s."
 
-#: tmp_strings.xml:69(string)
+#: tmp_strings.xml:83(string)
 msgid "You are not connected to the Internet."
 msgstr "Anda tidak bersambung dengan Internet."
 
-#: tmp_strings.xml:70(string)
+#: tmp_strings.xml:84(string)
 msgid "Sync already in progress"
 msgstr "Segerak didalam proses."
 
-#: tmp_strings.xml:71(string)
+#: tmp_strings.xml:85(string)
 msgid ""
 "There was an error trying to parse your note collection. If you are able to "
 "replicate the problem, please contact us!"
@@ -184,15 +202,17 @@ msgstr ""
 "Terdapat ralat semasa cuba menghurai koleksi nota anda. Jika anda boleh "
 "replikakan masalah, sila hubungi kami!"
 
-#: tmp_strings.xml:72(string)
+#. Altert box header
+#: tmp_strings.xml:87(string)
 msgid "Error"
 msgstr "Ralat"
 
-#: tmp_strings.xml:73(string)
+#. Altert box header
+#: tmp_strings.xml:89(string)
 msgid "No Such Note"
 msgstr "Tiada Nota Sebegitu"
 
-#: tmp_strings.xml:74(string)
+#: tmp_strings.xml:90(string)
 msgid ""
 "The requested note could not be found. Maybe it was deleted or removed "
 "through synchronization."
@@ -200,592 +220,897 @@ msgstr ""
 "Nota dipinta tidak dapat ditemui. Mungkin ia telah dipadam atau dibuang "
 "melalui penyegerakan."
 
-#: tmp_strings.xml:75(string)
+#: tmp_strings.xml:91(string)
 msgid "Error parsing note."
-msgstr ""
+msgstr "Ralat menghurai nota."
 
-#: tmp_strings.xml:76(string)
+#: tmp_strings.xml:92(string)
 msgid "Could not save note."
-msgstr ""
+msgstr "Tidak dapat simpan nota."
 
-#: tmp_strings.xml:77(string)
+#: tmp_strings.xml:93(string)
 msgid "SDCard storage not found."
-msgstr ""
+msgstr "Storan Kad SD tidak ditemui."
 
 #. NoteSorting
-#: tmp_strings.xml:80(string)
-msgid "Change Sort"
-msgstr "Ubah Isih"
+#: tmp_strings.xml:96(string)
+msgid "Choose default sorting method"
+msgstr "Pilih kaedah pengisihan lalai"
 
-#: tmp_strings.xml:81(string)
-msgid "Choose the default sorting"
-msgstr "Pilihan pengisihan lalai"
+#: tmp_strings.xml:97(string)
+msgid "Default Sort Method"
+msgstr "Kaedah Isih Lalai"
 
-#: tmp_strings.xml:82(string)
-msgid "Default sort"
-msgstr "Isihan lalai"
+#: tmp_strings.xml:98(string)
+msgid "Sort By:"
+msgstr "Isih Mengikut:"
+
+#: tmp_strings.xml:99(string)
+msgid "Date Modified"
+msgstr "Tarikh Diubahsuai"
+
+#: tmp_strings.xml:100(string)
+msgid "Note Title"
+msgstr "Tajuk Nota"
+
+#: tmp_strings.xml:101(string)
+msgid "Sort by Date"
+msgstr "Isi berdasarkan Tarikh"
+
+#: tmp_strings.xml:102(string)
+msgid "Sort by Title"
+msgstr "Isi berdasarkan Tajuk"
 
 #. NotebookFiltering
-#: tmp_strings.xml:85(string)
+#: tmp_strings.xml:105(string)
 msgid "Filter"
 msgstr "Penapis"
 
-#: tmp_strings.xml:86(string)
+#: tmp_strings.xml:106(string)
 msgid "There are no notebooks in the database."
 msgstr "Tiada buku nota didalam pengkalan data."
 
-#: tmp_strings.xml:87(string)
+#: tmp_strings.xml:107(string)
 msgid "All notebooks"
 msgstr "Semua buku nota"
 
 #. List Longpress Menu
-#: tmp_strings.xml:90(string)
+#: tmp_strings.xml:110(string)
 msgid "View"
 msgstr "Papar"
 
-#: tmp_strings.xml:91(string)
+#: tmp_strings.xml:111(string)
 msgid "Note Options"
 msgstr "Pilihan Nota"
 
-#: tmp_strings.xml:92(string)
+#: tmp_strings.xml:112(string)
 msgid "Send"
 msgstr "Hantar"
 
-#. Search
-#: tmp_strings.xml:95(string)
+#. Text in input field for search
+#: tmp_strings.xml:116(string)
 msgid "Search Notes"
 msgstr "Gelintar Nota"
 
-#: tmp_strings.xml:96(string)
+#. Preferences Field in global search to include notes
+#: tmp_strings.xml:118(string)
 msgid "Text in your notes"
 msgstr "Teks dalam nota anda"
 
-#: tmp_strings.xml:97(string)
+#. %s will be replaced with the search string
+#: tmp_strings.xml:120(string)
 msgid "No notes found for \\\"%s\\\""
 msgstr "Tiada nota ditemui untuk \\\"%s\\\""
 
-#: tmp_strings.xml:98(string)
+#: tmp_strings.xml:121(string)
 msgid "Search"
 msgstr "Gelintar"
 
-#: tmp_strings.xml:99(string)
+#: tmp_strings.xml:122(string)
 msgid "Search Results:"
 msgstr "Keputusan Gelintar:"
 
-#: tmp_strings.xml:100(string)
+#: tmp_strings.xml:123(string)
 msgid "Clear search history"
 msgstr "Kosongkan sejarah gelintar"
 
-#: tmp_strings.xml:101(string)
+#: tmp_strings.xml:124(string)
 msgid "Remove all the searches you have performed"
 msgstr "Buang semua penggelintaran yang anda telah lakukan"
 
-#: tmp_strings.xml:102(string)
+#: tmp_strings.xml:125(string)
 msgid "Search history has been cleared."
 msgstr "Sejarah gelintar telah dikosongkan."
 
 #. Date
-#: tmp_strings.xml:105(string)
+#: tmp_strings.xml:128(string)
 msgid "Modified:"
 msgstr "Diubahsuai:"
 
-#: tmp_strings.xml:106(string)
+#: tmp_strings.xml:129(string)
 msgid "Today"
 msgstr "Hari Ini"
 
-#: tmp_strings.xml:107(string)
+#: tmp_strings.xml:130(string)
 msgid "Yesterday"
 msgstr "Semalam"
 
-#. Shortcuts handling
-#: tmp_strings.xml:110(string)
+#. Header when picking a note for a new shortcut
+#: tmp_strings.xml:134(string)
 msgid "Choose a Note"
 msgstr "Pilih satu Nota"
 
-#: tmp_strings.xml:111(string)
+#: tmp_strings.xml:135(string)
 msgid "Tomdroid Note"
 msgstr "Nota Tomdroid"
 
-#: tmp_strings.xml:112(string)
+#: tmp_strings.xml:136(string)
 msgid "Remove shortcut"
 msgstr "Buang pintasan"
 
-#: tmp_strings.xml:113(string)
+#: tmp_strings.xml:137(string)
 msgid "Create shortcut"
 msgstr "Cipta pintasan"
 
 #. deleteNote
-#: tmp_strings.xml:118(string)
-msgid "Delete"
-msgstr ""
-
-#: tmp_strings.xml:119(string)
-msgid "Delete Note"
-msgstr ""
-
-#: tmp_strings.xml:120(string)
-msgid "Are you sure you want to delete this note?"
-msgstr ""
-
-#: tmp_strings.xml:121(string)
-msgid "Yes"
-msgstr ""
-
-#: tmp_strings.xml:122(string)
-msgid "No"
-msgstr ""
-
-#: tmp_strings.xml:123(string) tmp_strings.xml:178(string)
-msgid "Clear Notes"
-msgstr ""
-
-#: tmp_strings.xml:124(string)
-msgid "Are you sure you want to clear the notes database?"
-msgstr ""
-
-#: tmp_strings.xml:125(string) tmp_strings.xml:180(string)
-msgid "Delete Remote Notes"
-msgstr ""
-
-#: tmp_strings.xml:126(string)
-msgid "Are you sure you want to delete all notes from the remote service?"
-msgstr ""
-
-#. newNote
-#: tmp_strings.xml:129(string)
-msgid "New"
-msgstr ""
-
-#: tmp_strings.xml:130(string)
-msgid "New Note"
-msgstr ""
-
-#: tmp_strings.xml:131(string)
-msgid "Enter title here"
-msgstr ""
-
-#: tmp_strings.xml:132(string)
-msgid "Enter note here"
-msgstr ""
-
-#. editNote
-#: tmp_strings.xml:135(string)
-msgid "Edit"
-msgstr ""
-
-#: tmp_strings.xml:137(string)
-msgid "Discard"
-msgstr ""
-
-#: tmp_strings.xml:138(string)
-msgid "Back"
-msgstr ""
-
-#: tmp_strings.xml:139(string)
-msgid "B"
-msgstr ""
-
-#: tmp_strings.xml:140(string)
-msgid "i"
-msgstr ""
-
-#: tmp_strings.xml:141(strike)
-msgid "S"
-msgstr ""
-
 #: tmp_strings.xml:142(string)
-msgid "monospace"
-msgstr ""
+msgid "Delete"
+msgstr "Padam"
 
 #: tmp_strings.xml:143(string)
-msgid "highlight"
-msgstr ""
+msgid "Delete Note"
+msgstr "Padam Nota"
 
 #: tmp_strings.xml:144(string)
-msgid "size"
-msgstr ""
+msgid "Are you sure you want to delete this note?"
+msgstr "Anda pasti hendak padam nota ini?"
 
 #: tmp_strings.xml:145(string)
-msgid "XML"
-msgstr ""
+msgid "Yes"
+msgstr "Ya"
 
 #: tmp_strings.xml:146(string)
-msgid "Text"
-msgstr ""
+msgid "No"
+msgstr "Tidak"
 
-#: tmp_strings.xml:147(string)
-msgid "Error parsing note"
-msgstr ""
+#: tmp_strings.xml:147(string) tmp_strings.xml:207(string)
+msgid "Clear Notes"
+msgstr "Kosongkan Nota"
 
 #: tmp_strings.xml:148(string)
-msgid "There was an error parsing the note. Please check your XML."
-msgstr ""
+msgid "Are you sure you want to clear the notes database?"
+msgstr "Anda pasti hendak kosongkan pangkalan data nota?"
 
-#: tmp_strings.xml:149(string)
-msgid "Note saved locally."
-msgstr ""
+#: tmp_strings.xml:149(string) tmp_strings.xml:209(string)
+msgid "Delete Remote Notes"
+msgstr "Padam Nota Jauh"
 
 #: tmp_strings.xml:150(string)
-msgid "Note deleted locally."
-msgstr ""
+msgid "Are you sure you want to delete all notes from the remote service?"
+msgstr "Anda pasti hendak padam semua nota dari perkhidmatan jauh?"
 
-#: tmp_strings.xml:151(string)
-msgid "Select text size"
-msgstr ""
-
-#: tmp_strings.xml:152(string)
-msgid "Small"
-msgstr ""
-
+#. newNote
 #: tmp_strings.xml:153(string)
-msgid "Normal"
-msgstr ""
+msgid "New"
+msgstr "Baru"
 
 #: tmp_strings.xml:154(string)
-msgid "Large"
-msgstr ""
+msgid "New Note"
+msgstr "Nota Baru"
 
 #: tmp_strings.xml:155(string)
-msgid "Huge"
-msgstr ""
+msgid "Enter title here"
+msgstr "Masukkan tajuk disini"
 
 #: tmp_strings.xml:156(string)
+msgid "Enter note here"
+msgstr "Masukkan nota disini"
+
+#. editNote
+#: tmp_strings.xml:159(string)
+msgid "Edit"
+msgstr "Sunting"
+
+#: tmp_strings.xml:161(string)
+msgid "Discard"
+msgstr "Singkir"
+
+#: tmp_strings.xml:162(string)
+msgid "Back"
+msgstr "Undur"
+
+#. B stands for bold (in format bar)
+#: tmp_strings.xml:164(string)
+msgid "B"
+msgstr "B"
+
+#. i stands for italic (in format bar)
+#: tmp_strings.xml:166(string)
+msgid "i"
+msgstr "i"
+
+#: tmp_strings.xml:168(strike)
+msgid "S"
+msgstr "S"
+
+#: tmp_strings.xml:169(string)
+msgid "Error parsing note"
+msgstr "Ralat menghurai nota"
+
+#: tmp_strings.xml:170(string)
+msgid "There was an error parsing the note. Please check your XML."
+msgstr "Terdapat ralat menghurai nota. Sila semak XML anda."
+
+#: tmp_strings.xml:171(string)
+msgid "Note saved locally."
+msgstr "Nota disimpan secara setempat."
+
+#: tmp_strings.xml:172(string)
+msgid "Note deleted locally."
+msgstr "Nota dipadam secara setempat."
+
+#: tmp_strings.xml:173(string)
+msgid "Select text size"
+msgstr "Pilih saiz teks"
+
+#: tmp_strings.xml:174(string)
+msgid "Small"
+msgstr "Kecil"
+
+#: tmp_strings.xml:175(string)
+msgid "Normal"
+msgstr "Biasa"
+
+#: tmp_strings.xml:176(string)
+msgid "Large"
+msgstr "Besar"
+
+#: tmp_strings.xml:177(string)
+msgid "Huge"
+msgstr "Sangat Besar"
+
+#: tmp_strings.xml:178(string)
 msgid ""
 "Do you really want to discard your changes and revert the note to the last "
 "saved version?"
 msgstr ""
-
-#: tmp_strings.xml:157(string)
-msgid "Discard Changes?"
-msgstr ""
-
-#: tmp_strings.xml:158(b)
-msgid "&gt;"
-msgstr ""
-
-#: tmp_strings.xml:159(b)
-msgid "&lt;"
-msgstr ""
-
-#. New Titles
-#: tmp_strings.xml:162(string)
-msgid "Tomdroid - View Note"
-msgstr ""
-
-#: tmp_strings.xml:163(string)
-msgid "Tomdroid - Edit Note"
-msgstr ""
-
-#: tmp_strings.xml:164(string)
-msgid "Tomdroid - Search Results"
-msgstr ""
-
-#: tmp_strings.xml:165(string)
-msgid "Tomdroid - Shortcuts"
-msgstr ""
-
-#: tmp_strings.xml:166(string)
-msgid "Tomdroid - Settings"
-msgstr ""
-
-#. new prefs
-#: tmp_strings.xml:169(string)
-msgid "Display Preferences"
-msgstr ""
-
-#: tmp_strings.xml:170(string)
-msgid "Base Font Size"
-msgstr ""
-
-#: tmp_strings.xml:171(string)
-msgid "Synchronization"
-msgstr "Penyegerakan"
-
-#: tmp_strings.xml:172(string)
-msgid "Misc. Options"
-msgstr ""
-
-#: tmp_strings.xml:173(string)
-msgid "Tools"
-msgstr ""
-
-#: tmp_strings.xml:174(string)
-msgid "Auto Save Note"
-msgstr ""
-
-#: tmp_strings.xml:175(string)
-msgid "Save notes automatically on exiting editor."
-msgstr ""
-
-#: tmp_strings.xml:176(string)
-msgid "Show Note Templates"
-msgstr ""
-
-#: tmp_strings.xml:177(string)
-msgid "If checked, will show note templates in notes list."
-msgstr ""
+"Anda pasti hendak singkirkan perubahan yang anda buat dan kembali kepada "
+"nota versi terakhir disimpan?"
 
 #: tmp_strings.xml:179(string)
-msgid "Clear all notes from local database"
-msgstr ""
+msgid "Discard Changes?"
+msgstr "Singkir Perubahan?"
 
-#: tmp_strings.xml:181(string)
-msgid "Delete all notes from remote service"
-msgstr ""
+#: tmp_strings.xml:181(b)
+msgid "&gt;"
+msgstr "&gt;"
 
-#: tmp_strings.xml:182(string)
-msgid "Illegal text size chosen. Please choose a number."
-msgstr ""
+#: tmp_strings.xml:183(b)
+msgid "&lt;"
+msgstr "&lt;"
 
-#. syncNotes
+#. New Titles
 #: tmp_strings.xml:186(string)
-msgid "Syncing with %1$s"
-msgstr ""
+msgid "Tomdroid - View Note"
+msgstr "Tomdroid - Lihat Nota"
 
 #: tmp_strings.xml:187(string)
-msgid "connecting to service…"
-msgstr ""
+msgid "Tomdroid - Edit Note"
+msgstr "Tomdroid - SuntingNota"
 
 #: tmp_strings.xml:188(string)
-msgid "updating local notes…"
-msgstr ""
+msgid "Tomdroid - Search Results"
+msgstr "Tomdroid - Keputusan Gelintar"
 
 #: tmp_strings.xml:189(string)
-msgid "updating remote notes…"
-msgstr ""
+msgid "Tomdroid - Shortcuts"
+msgstr "Tomdroid - Pintasan"
 
 #: tmp_strings.xml:190(string)
-msgid "Note Conflict"
-msgstr ""
+msgid "Tomdroid - Settings"
+msgstr "Tomdroid - Tetapan"
 
 #: tmp_strings.xml:191(string)
-msgid ""
-"There was a conflict syncing the note \"%1$s\". Please choose an action to "
-"resolve the conflict. You may edit either note before choosing, or view the "
-"difference by clicking on the labels below."
+msgid "Tomdroid - Note Conflict"
 msgstr ""
 
 #: tmp_strings.xml:192(string)
-msgid ""
-"There was a conflict syncing the note \"%1$s\" (local version was deleted). "
-"Please choose from one of the actions below."
-msgstr ""
+msgid "Tomdroid - Import Note"
+msgstr "Tomdroid - Import Nota"
 
-#: tmp_strings.xml:193(string)
-msgid ""
-"There was a conflict syncing the note \"%1$s\". A note with that title "
-"already exists in the database. Please choose an action to resolve the "
-"conflict. You may edit either note before choosing, or view the difference "
-"by clicking on the labels below."
-msgstr ""
-
-#: tmp_strings.xml:194(string)
-msgid "Overwrite\\nRemote"
-msgstr ""
-
-#: tmp_strings.xml:195(string)
-msgid "Overwrite\\nLocal"
-msgstr ""
-
+#. subheader in settings
 #: tmp_strings.xml:196(string)
-msgid "Delete Remote"
-msgstr ""
+msgid "Display Preferences"
+msgstr "Keutamaan Paparan"
 
 #: tmp_strings.xml:197(string)
-msgid "Difference Between Files"
-msgstr ""
+msgid "Base Font Size"
+msgstr "Saiz Fon Dasar"
 
-#: tmp_strings.xml:198(string)
-msgid "-- Title Differences --"
-msgstr ""
-
+#. subheader in settings
 #: tmp_strings.xml:199(string)
-msgid "-- Content Differences --"
-msgstr ""
+msgid "Synchronization"
+msgstr "Penyegerakan"
 
-#: tmp_strings.xml:200(string)
-msgid "Line %1$s:"
-msgstr ""
-
+#. subheader in settings
 #: tmp_strings.xml:201(string)
-msgid "Local Version"
-msgstr ""
+msgid "Tools"
+msgstr "Alatan"
 
 #: tmp_strings.xml:202(string)
-msgid "Remote Version"
-msgstr ""
+msgid "Save notes automatically on exiting editor."
+msgstr "Simpan nota secara automatik bila tutup penyunting."
 
 #: tmp_strings.xml:203(string)
-msgid "Deleted"
-msgstr ""
+msgid "Show Deleted Notes"
+msgstr "Papar Nota Dipadam"
 
 #: tmp_strings.xml:204(string)
-msgid "Create\\nCopy"
-msgstr ""
+msgid "If checked, will show deleted notes in notes list."
+msgstr "Jika ditanda, akan papar nota dipadam dalam senarai nota."
 
 #: tmp_strings.xml:205(string)
-msgid "%1$s (old)"
-msgstr ""
+msgid "Show Note Templates"
+msgstr "Papar Templat Nota"
+
+#: tmp_strings.xml:206(string)
+msgid "If checked, will show note templates in notes list."
+msgstr "Jika ditanda, akan papar templat nota dalam senarai nota."
 
 #: tmp_strings.xml:208(string)
-msgid "Authorization with %1$s successful."
-msgstr ""
-
-#: tmp_strings.xml:209(string)
-msgid "Authorization with %1$s failed. Maybe try again?"
-msgstr ""
+msgid "Clear all notes from local database"
+msgstr "Kosongkan semua nota dari pangkalan setempat"
 
 #: tmp_strings.xml:210(string)
-msgid "Note deleted from %1$s successfully."
-msgstr ""
+msgid "Delete all notes from remote service"
+msgstr "Padam semua nota dari perkhidmatan jauh"
 
 #: tmp_strings.xml:211(string)
-msgid "Note sent to %1$s successfully."
-msgstr ""
+msgid "Illegal text size chosen. Please choose a number."
+msgstr "Saiz teks tidak sah dipilih. Sila pilih nombor."
 
 #: tmp_strings.xml:212(string)
-msgid "Note received from %1$s successfully."
-msgstr ""
+msgid "Backup Notes"
+msgstr "Sandar Nota"
 
 #: tmp_strings.xml:213(string)
-msgid "Error deleting note from %1$s."
-msgstr ""
+msgid "Copy all local notes to SD Card"
+msgstr "Salin semua nota setempat ke Kad SD"
 
 #: tmp_strings.xml:214(string)
-msgid "Error sending note to %1$s."
-msgstr ""
+msgid "Auto-Backup"
+msgstr "Sandar-Sendiri"
 
 #: tmp_strings.xml:215(string)
-msgid "Error receiving note from %1$s."
-msgstr ""
+msgid "Copy local note to SD Card on save"
+msgstr "Salin nota setempat ke Kad SD bila simpan"
 
-#: tmp_strings.xml:216(string)
-msgid "Error parsing response from %1$s."
-msgstr ""
-
+#. subheader in settings
 #: tmp_strings.xml:217(string)
+msgid "Hyperlink Preferences"
+msgstr "Keutamaan Hiperpautan"
+
+#. Checkbox in settings
+#: tmp_strings.xml:219(string)
+msgid "Link Titles"
+msgstr "Tajuk Pautan"
+
+#. Description for checkbox in settings
+#: tmp_strings.xml:221(string)
+msgid "link to other note titles"
+msgstr "Paut ke tajuk nota lain"
+
+#. Checkbox in settings
+#: tmp_strings.xml:223(string)
+msgid "Link Web Addresses\""
+msgstr "Alamat Sesawang Pautan"
+
+#. Description for checkbox in settings
+#: tmp_strings.xml:225(string)
+msgid "e.g. \"www.google.com\""
+msgstr "cth. \"www.google.com\""
+
+#. Checkbox in settings
+#: tmp_strings.xml:227(string)
+msgid "Link Emails"
+msgstr "Emel Pautan"
+
+#. Description for checkbox in settings
+#: tmp_strings.xml:229(string)
+msgid "e.g. name@address.com"
+msgstr "cth. nama@alamat.com"
+
+#. Checkbox in settings
+#: tmp_strings.xml:231(string)
+msgid "Link Telephone Numbers"
+msgstr "Nombor Telefon Pautan"
+
+#. Description for checkbox in settings
+#: tmp_strings.xml:233(string)
+msgid "link telephone numbers to phone app"
+msgstr "paut nombor telefin ke aplikasi telefon"
+
+#. Checkbox in settings
+#: tmp_strings.xml:235(string)
+msgid "Link Map Addresses"
+msgstr "Alamat Peta Pautan"
+
+#. Description for checkbox in settings
+#: tmp_strings.xml:237(string)
+msgid "link addresses to maps app"
+msgstr ""
+
+#. %1$s will be replaced with "Online Synchronisation", "SD card",...
+#: tmp_strings.xml:242(string)
+msgid "Syncing with %1$s"
+msgstr "Menyegerak dengan %1$s"
+
+#: tmp_strings.xml:243(string)
+msgid "connecting to service…"
+msgstr "menyambung ke perkhidmatan..."
+
+#: tmp_strings.xml:244(string)
+msgid "getting list of remote notes…"
+msgstr "mendapatkan senarai nota jauh..."
+
+#: tmp_strings.xml:245(string)
+msgid "updating local notes…"
+msgstr "mengemaskini nota setempat..."
+
+#: tmp_strings.xml:246(string)
+msgid "updating remote notes…"
+msgstr "mengemaskini nota jauh..."
+
+#: tmp_strings.xml:247(string)
+msgid "There was a conflict syncing the note '%1$s'"
+msgstr ""
+
+#: tmp_strings.xml:248(string)
+msgid ""
+"Please choose an action to resolve the conflict. You may edit either note "
+"before choosing, or view the difference by clicking on the labels below."
+msgstr ""
+
+#: tmp_strings.xml:249(string)
+msgid ""
+"The local version was already deleted. Please choose from one of the actions "
+"below."
+msgstr ""
+
+#: tmp_strings.xml:250(string)
+msgid ""
+"A note with that title already exists in the database. Please choose an "
+"action to resolve the conflict. You may edit either note before choosing, or "
+"view the difference by clicking on the labels below."
+msgstr ""
+
+#. Button (keep short!)
+#: tmp_strings.xml:252(string)
+msgid "Overwrite\\nRemote"
+msgstr "Tulis-ganti\\nBuang"
+
+#. Button (keep short!)
+#: tmp_strings.xml:254(string)
+msgid "Overwrite\\nLocal"
+msgstr "Tulis-ganti\\nSetempat"
+
+#. Button (keep short!)
+#: tmp_strings.xml:256(string)
+msgid "Delete\\nRemote"
+msgstr "Padam\\njauh"
+
+#. Button (keep short!)
+#: tmp_strings.xml:258(string)
+msgid "Create\\nCopy"
+msgstr "Cipta\\nSalin"
+
+#. subheader in Conflict Dialouge (keep short!)
+#: tmp_strings.xml:260(string)
+msgid "Difference Between Files"
+msgstr "Perbezaan Diantara Fail"
+
+#: tmp_strings.xml:261(string)
+msgid "-- Title Differences --"
+msgstr "-- Perbezaan Tajuk --"
+
+#: tmp_strings.xml:262(string)
+msgid "-- Content Differences --"
+msgstr "-- Perbezaan Kandungan --"
+
+#. %1$s will be replaced with a number.
+#: tmp_strings.xml:264(string)
+msgid "Line %1$s:"
+msgstr "Baris %1$s:"
+
+#. subheader in Conflict Dialouge (keep short!)
+#: tmp_strings.xml:266(string)
+msgid "Local Version"
+msgstr "Veris Setempat"
+
+#. subheader in Conflict Dialouge (keep short!)
+#: tmp_strings.xml:268(string)
+msgid "Remote Version"
+msgstr "Versi Jauh"
+
+#: tmp_strings.xml:269(string)
+msgid "Deleted"
+msgstr "Dipadam"
+
+#. %1$s will be replaced with a note title.
+#: tmp_strings.xml:272(string)
+msgid "%1$s (old)"
+msgstr "%1$s (lama)"
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:276(string)
+msgid "Authorization with %1$s successful."
+msgstr "Keizinan dengan %1$s berjaya."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:278(string)
+msgid "Authorization with %1$s failed. Try again later!"
+msgstr ""
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:280(string)
+msgid "Note deleted from %1$s successfully."
+msgstr "Nota dipadam dari %1$s telah berjaya."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:282(string)
+msgid "Note sent to %1$s successfully."
+msgstr "Nota dihantar ke %1$s telah berjaya."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:284(string)
+msgid "Note received from %1$s successfully."
+msgstr "Nota diterima dari %1$s telah berjaya."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:286(string)
+msgid "Error deleting note from %1$s."
+msgstr "Ralat memadam nota dari %1$s."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:288(string)
+msgid "Error sending note to %1$s."
+msgstr "Nota dihantar ke %1$s telah berjaya."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:290(string)
+msgid "Error receiving note from %1$s."
+msgstr "Ralat menerima nota dari %1$s."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:292(string)
+msgid "Error parsing response from %1$s."
+msgstr "Ralat menghurai balasan dari %1$s."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:294(string)
 msgid ""
 "Error connecting to %1$s. You probably need to authenticate in \"Settings\"."
-msgstr ""
+msgstr "Ralat menyambung ke %1$s. Anda perlu sahihkan dalam \"Tetapan\"."
 
-#: tmp_strings.xml:218(string)
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:296(string)
 msgid "Notes deleted from %1$s successfully."
-msgstr ""
+msgstr "Nota dipadam dari %1$s telah berjaya."
 
-#: tmp_strings.xml:219(string)
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:298(string)
 msgid "Sync with %1$s cancelled."
-msgstr ""
+msgstr "Segerak dengan %1$s dibatalkan."
 
-#. revert notes
-#: tmp_strings.xml:223(string)
+#. menu items
+#: tmp_strings.xml:302(string)
+msgid "Edit Tags"
+msgstr "Sunting Tag"
+
+#: tmp_strings.xml:303(string)
 msgid "Revert"
-msgstr ""
+msgstr "Kembali"
 
-#: tmp_strings.xml:224(string)
+#. %1$s will be replaced with note-tag names
+#: tmp_strings.xml:305(string)
+msgid "Note '%1$s' Tags"
+msgstr "Tag Nota '%1$s'"
+
+#: tmp_strings.xml:306(string)
+msgid "Edit the tags below, separating with commas"
+msgstr "Sunting tag dibawah, dipisah dengan tanda koma"
+
+#: tmp_strings.xml:307(string)
+msgid "Undelete Note"
+msgstr "Nota Tidak Dipadam"
+
+#. menu item with icon
+#: tmp_strings.xml:309(string)
+msgid "Import Note"
+msgstr "Import Nota"
+
+#. menu item with icon
+#: tmp_strings.xml:314(string)
 msgid "Revert All"
-msgstr ""
+msgstr "Kembali Semua"
 
-#: tmp_strings.xml:225(string)
+#: tmp_strings.xml:315(string)
 msgid "Revert Notes"
-msgstr ""
+msgstr "Kembalikan Nota"
 
-#: tmp_strings.xml:226(string)
+#: tmp_strings.xml:316(string)
 msgid ""
 "This will revert your local notes to whatever versions exist on the remote "
 "service. Are you sure you want to do this?"
 msgstr ""
+"Ia akan kembalikan nota setempat anda kepada apa jua versi yang wujud dalam "
+"perkhidmatan jauh. Anda pasti hendak buat?"
 
-#: tmp_strings.xml:227(string)
+#: tmp_strings.xml:317(string)
 msgid "Revert Note"
-msgstr ""
+msgstr "Kembalikan Nota"
 
-#: tmp_strings.xml:228(string)
+#: tmp_strings.xml:318(string)
 msgid ""
 "This will revert a local note to whatever version exist on the remote "
 "service. Are you sure you want to do this?"
 msgstr ""
+"Ia akan kembalikan nota setempat kepada apa jua versi yang wujud dalam "
+"perkhidmatan jauh. Anda pasti hendak buat?"
 
 #. backup notes
-#: tmp_strings.xml:232(string)
-msgid "Backup Notes"
-msgstr ""
-
-#: tmp_strings.xml:233(string)
-msgid "Copy all local notes to SD Card"
-msgstr ""
-
-#: tmp_strings.xml:234(string)
+#: tmp_strings.xml:322(string)
 msgid "Backup Notes?"
-msgstr ""
+msgstr "Sandar Nota?"
 
-#: tmp_strings.xml:235(string)
+#: tmp_strings.xml:323(string)
 msgid ""
 "Copy all local notes to SD Card? This may overwrite existing notes on the SD "
 "Card."
 msgstr ""
+"Salin semua nota setempat ke Kad SD? Ia akan tulis-ganti nota sedia ada "
+"dalam Kad SD."
 
-#: tmp_strings.xml:236(string)
+#: tmp_strings.xml:324(string)
 msgid "Restore Notes"
-msgstr ""
+msgstr "Pulih Nota"
 
-#: tmp_strings.xml:237(string)
-msgid "Pull all notes from SD Card"
-msgstr ""
-
-#: tmp_strings.xml:238(string)
+#: tmp_strings.xml:325(string)
 msgid "Restore Notes?"
-msgstr ""
+msgstr "Pulih Nota?"
 
-#: tmp_strings.xml:239(string)
+#: tmp_strings.xml:326(string)
 msgid "Pull all notes from SD Card? This may overwrite your existing notes."
 msgstr ""
+"Letak semua nota dari Kad SD? Ia akan tulis-ganti nota sedia ada anda."
 
-#: tmp_strings.xml:240(string)
+#: tmp_strings.xml:327(string)
 msgid "Notes backed up to SD card successfully."
-msgstr ""
+msgstr "Nota disandar ke kad SD telah berjaya."
 
-#: tmp_strings.xml:241(string)
+#: tmp_strings.xml:328(string)
 msgid "Notes restored from SD card successfully."
+msgstr "Nota dipulih dari kad SD telah berjaya."
+
+#: tmp_strings.xml:329(string)
+msgid "Notes cleared successfully."
+msgstr "Nota dikosongkan dengan jayanya."
+
+#. send and receive notes
+#: tmp_strings.xml:333(string)
+msgid "Choose Send Method"
+msgstr "Pilih Kaedah Hantar"
+
+#: tmp_strings.xml:334(string)
+msgid "How would you like to send the note?"
+msgstr "Bagaimana anda hendak hantarkan nota?"
+
+#: tmp_strings.xml:335(string)
+msgid "As Text"
+msgstr "Sebagai Teks"
+
+#: tmp_strings.xml:336(string)
+msgid "As File"
+msgstr "Sebagai Fail"
+
+#: tmp_strings.xml:337(string)
+msgid ""
+"The note already exists in the database. Please choose an action to resolve "
+"the conflict. You may edit either note before choosing, or view the "
+"difference by clicking on the labels below."
 msgstr ""
 
-#: tmp_strings.xml:242(string)
-msgid "Notes cleared successfully."
+#. Button (keep short!)
+#: tmp_strings.xml:339(string)
+msgid "Cancel\\nImport"
+msgstr "Batal\\nImport"
+
+#: tmp_strings.xml:340(string)
+msgid "File exceeds maximum import size - are you sure it is plain text?"
 msgstr ""
+"Fail melebihi saiz import maksimum - anda pasti ia adalah teks biasa?"
+
+#: tmp_strings.xml:341(string)
+msgid "Cannot read the note file."
+msgstr ""
+
+#: tmp_strings.xml:342(string)
+msgid "No files or directories"
+msgstr "Tiada fail atau direktori"
+
+#: tmp_strings.xml:343(string)
+msgid ""
+"Choose a file below that is either a Tomboy note file (which will be "
+"imported) or a plain text file (which will create a new note):"
+msgstr ""
+"Pilih fail dibawah sama ada fail Nota Tomboy (yang akan diimportkan) atau "
+"fail teks biasa (yang akan cipta nota baru):"
+
+#. Title of first Note
+#: tmp_strings.xml:345(string)
+msgid "Tomdroid's First Note"
+msgstr "Nota Pertama Tomdroid"
+
+#: tmp_strings.xml:348(item)
+msgid "Welcome to Tomdroid!\\n"
+msgstr "Selamat Datang ke Tomdroid!\\n"
+
+#: tmp_strings.xml:349(item)
+msgid ""
+"You have no notes here yet. To get started, set your Synchronization "
+"preferences under Settings. There are two synchronization options described "
+"below.\\n"
+msgstr ""
+"Anda tidak mempunyai nota disini. Untuk mula, tetapkan keutamaan "
+"Penyegerakan anda dibawah Tetapam. Terdapat dua pilihan penyegerakan yang "
+"diterangkan dibawah."
+
+#: tmp_strings.xml:350(item)
+msgid "=Online Synchronization="
+msgstr "=Penyegerakan Atas Talian="
+
+#. =text= makes <size:large>text</size:large>
+#: tmp_strings.xml:352(item)
+msgid ""
+"Online Synchronization is what you are looking for if you want to sync to "
+"Tomboy-Online, Ubuntu One, your own Rainy/Snowy server or any server "
+"supporting the Tomboy Web REST API.\\n"
+msgstr ""
+
+#: tmp_strings.xml:353(item)
+msgid ""
+"To use it, set Sync Service to Online Synchronization in preferences then "
+"provide a Server URL. Here are some of the public ones:"
+msgstr ""
+"Untuk gunakannya, tetapkan Perkhidmatan kepada Penyegerakan Atas Talian "
+"dalam keutmamaan kemudian sediakan URL Pelayan. Disini terdapat beberapa "
+"pelayan awam:"
+
+#. -text is for list-items.
+#: tmp_strings.xml:355(item)
+msgid "-Tomboy Online - https://edge.tomboy-online.org/"
+msgstr "-Tomboy Atas Talian - https://edge.tomboy-online.org/"
+
+#. -text is for list-items.
+#: tmp_strings.xml:357(item)
+msgid "-Ubuntu One - https://one.ubuntu.com/notes"
+msgstr ""
+
+#. -text is for list-items.
+#: tmp_strings.xml:359(item)
+msgid ""
+"-rainy.notesync.org - https://notesync.org:8080/[username]/[password]/\\n"
+msgstr ""
+
+#: tmp_strings.xml:360(item)
+msgid ""
+"Once set, hit the Sync logo on Tomdroid's top bar to synchronize your "
+"notes.\\n"
+msgstr ""
+"Bila sudah ditetapkan, tekan logo segerak pada palang atas Tomdroid untuk "
+"segerakam nota anda.\\n"
+
+#: tmp_strings.xml:361(item)
+msgid ""
+"Note: you might want to back up your Tomboy notes before syncing, since this "
+"app is still under development and may corrupt your Tomboy notes.\\n"
+msgstr ""
+
+#: tmp_strings.xml:362(item)
+msgid ""
+"Please see http://live.gnome.org/Tomboy/Directories for the location of the "
+"*.note files on all platforms.\\n"
+msgstr ""
+
+#. =text= makes <size:large>text</size:large>
+#: tmp_strings.xml:364(item)
+msgid "=SD Card="
+msgstr "=Kad SD="
+
+#: tmp_strings.xml:365(item)
+msgid ""
+"Put your Tomboy notes (*.note) on your SD Card under tomdroid/. Once the "
+"notes are copied, set Sync Service to SD Card in preferences then hit the "
+"Sync logo on Tomdroid's top bar.\\n"
+msgstr ""
+
+#: tmp_strings.xml:366(item)
+msgid ""
+"Also, Tomdroid is always looking for new contributors. If you are interested "
+"join the tomdroid-dev team on Launchpad: http://launchpad.net/~tomdroid-"
+"dev.\\n"
+msgstr ""
+
+#: tmp_strings.xml:367(item)
+msgid ""
+"Lastly, if you encounter any issue, please report it at: "
+"https://bugs.launchpad.net/tomdroid"
+msgstr ""
+"AKhir sekali, jika anda mengalami sebarang masalah, sila laporkannya di: "
+"https://bugs.launchpad.net/tomdroid"
 
 #. 30 chars max
-#: tmp_strings.xml:249(string)
+#: tmp_strings.xml:375(string)
 msgid "Tomdroid notes"
 msgstr "Nota Tomdroid"
 
 #. 4000 chars max
-#: tmp_strings.xml:251(string)
+#: tmp_strings.xml:377(string)
 msgid ""
 "A Tomboy client for Android. Tomboy is a desktop note-taking app using a "
 "wikiwiki approach and a simple user interface.\\n\\n* Note format "
 "compatibility with Tomboy\\n* Online note synchronization with Snowy, Tomboy "
 "Online or Ubuntu One\\n* SD Card importation\\n* Open source!"
 msgstr ""
+"Merupakan klien Tomboy untuk Android. Tomboy adalah aplikasi mengambil-nota "
+"menggunakan pendekatan wikiwiki dan merupakan antaramuka pengguna yang "
+"ringkas.\\n\\n* Format nota serasi dengan Tomboy\\n* Penyegerakan atas-"
+"talian nota dengan Snowy, TOmboy Online atau Ubuntu One\\n* Pengimportan Kad "
+"SD\\n* Sumber Terbuka!"
 
 #. 80 chars max
-#: tmp_strings.xml:254(string)
-msgid ""
-"Note-taking application with online synchronization compatible with Tomboy"
+#: tmp_strings.xml:380(string)
+msgid "Note-taking app with online synchronization compatible with Tomboy"
 msgstr ""
-"Aplikasi pengambilan-nota dengan penyegerakan atas talian yang serasi dengan "
-"Tomboy"
 
 #. 500 chars max
-#: tmp_strings.xml:257(string)
+#: tmp_strings.xml:383(string)
 msgid ""
-"* Search notes and system integrated search\\n* Context menu\\n* Several "
-"usability improvements\\n* Higher quality icons\\n* Several bug fixes\\n* "
-"German translation\\n"
+"0.6 \\\"Small World\\\" release\\n* Create home-screen shortcuts to notes\\"
+"n* Specify a folder to use for SD Card sync\\n* Reload current note after "
+"sync\\n* A lot of new translations: ar, bs, ca, cs, da, de, el, en-rGB, eo, "
+"es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, "
+"si, sv, ta, te, tr, ug, uk, zh, zh-rCN\\n* Several bugfixes\\n"
 msgstr ""
+"0.6 \\Keluaran \"Dunia Kecil\\\"\\n* Cipta pintasan skrin-rumah dalam nota\\"
+"n* Nyatakan folder untuk diguna pada segerak SD\\n* Muat semula nota semasa "
+"selepas segerak\\n* Terdapat banyak terjemahan baru: ar, bs, ca, cs, da, de, "
+"el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, "
+"pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\\n* Beberapa "
+"pembaikan pepijat\\n"
 
 #. Launchpad Translation String
-#: tmp_strings.xml:260(string)
+#: tmp_strings.xml:386(string)
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
 "  Stefan Hammer https://launchpad.net/~j-4\n"
 "  abuyop https://launchpad.net/~abuyop"
+
+#~ msgid "Please wait while the notes load.."
+#~ msgstr "Tunggu sebentar ketika nota dimuatkan.."
+
+#~ msgid "Choose the default sorting"
+#~ msgstr "Pilihan pengisihan lalai"
+
+#~ msgid "Default sort"
+#~ msgstr "Isihan lalai"
+
+#~ msgid ""
+#~ "Note-taking application with online synchronization compatible with Tomboy"
+#~ msgstr ""
+#~ "Aplikasi pengambilan-nota dengan penyegerakan atas talian yang serasi dengan "
+#~ "Tomboy"
+
+#~ msgid "Change Sort"
+#~ msgstr "Ubah Isih"
