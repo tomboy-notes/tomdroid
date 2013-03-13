@@ -29,6 +29,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
+import org.tomdroid.ui.Tomdroid;
 
 public class AnonymousConnection extends WebConnection {
 
@@ -37,6 +38,7 @@ public class AnonymousConnection extends WebConnection {
 	{
 		// Prepare a request object
 		HttpGet httpGet = new HttpGet(uri);
+		httpGet.addHeader("X-Tomboy-Client", Tomdroid.HTTP_HEADER);
 		HttpResponse response = execute(httpGet);
 		return parseResponse(response);
 	}
@@ -56,6 +58,7 @@ public class AnonymousConnection extends WebConnection {
 		}
 		
 		httpPut.setHeader("Content-Type", "application/json");
+		httpPut.addHeader("X-Tomboy-Client", Tomdroid.HTTP_HEADER);
 		HttpResponse response = execute(httpPut);
 		return parseResponse(response);
 	}

@@ -42,9 +42,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -67,6 +70,9 @@ public class Tomdroid extends ListActivity {
 	public static final String	CONTENT_TYPE		= "vnd.android.cursor.dir/vnd.tomdroid.note";
 	public static final String	CONTENT_ITEM_TYPE	= "vnd.android.cursor.item/vnd.tomdroid.note";
 	public static final String	PROJECT_HOMEPAGE	= "http://www.launchpad.net/tomdroid/";
+	
+	// default httpheader for sync -> will be updated with version etc OnCreate()
+    public static String HTTP_HEADER				= "Tomdroid";
 
 	// config parameters
 	public static String	NOTES_PATH				= null;
@@ -99,6 +105,18 @@ public class Tomdroid extends ListActivity {
 		// get the Path to the notes-folder from Preferences
 		NOTES_PATH = Environment.getExternalStorageDirectory()
 				+ "/" + Preferences.getString(Preferences.Key.SD_LOCATION) + "/";
+		
+		// generate the http header we want to send on syncing
+		getPackageManager();
+		try {
+			PackageInfo pi = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_META_DATA);
+			HTTP_HEADER = String.format("%1$s v%2$s, build %3$s, Android v%4$s, %5$s/%6$s", 
+					pi.packageName, pi.versionName, pi.versionCode, Build.VERSION.RELEASE, Build.PRODUCT, Build.MODEL);
+		} catch (NameNotFoundException e) {
+			e.printStackTrace();
+			HTTP_HEADER = "Tomdroid vunknown, build unknown, Android unknown, unknown/unknown";
+		}
+		TLog.i(TAG, "Generated http-header: {0}: {1}", "X-Tomboy-Client", Tomdroid.HTTP_HEADER);
 		
 		// did we already show the warning and got destroyed by android's activity killer?
 		if (Preferences.getBoolean(Preferences.Key.FIRST_RUN)) {
