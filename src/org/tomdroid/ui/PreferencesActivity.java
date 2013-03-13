@@ -153,25 +153,17 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 
 			public boolean onPreferenceChange(Preference preference,
 					Object serverUri) {
+				String newURL = serverUri.toString();
+				boolean retval = true;
 				
-				if (serverUri == null) {
-					Toast.makeText(PreferencesActivity.this,
-							getString(R.string.prefServerEmpty),
-							Toast.LENGTH_SHORT).show();
-					return false;
+				if ( !URLUtil.isValidUrl(newURL) || newURL.indexOf(' ') != -1 ) {
+					noValidEntry(newURL);
+					retval = false;
+				} else {
+					syncServer.setSummary(newURL);
+					reauthenticate();
 				}
-				
-				if (!URLUtil.isValidUrl(serverUri.toString())){
-					noValidEntry(serverUri.toString());
-					return false;
-				}
-				syncServer.setSummary((String)serverUri);
-				
-				// TODO is this necessary? hasn't it changed already?
-				Preferences.putString(Preferences.Key.SYNC_SERVER, (String)serverUri);
-
-				reauthenticate();
-				return true;
+				return retval;
 			}
 			
 		});
@@ -181,36 +173,39 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 
 			public boolean onPreferenceChange(Preference preference, Object locationUri) {
 
+				boolean retval = true;
+				// if it is the same, return false. this is important as we would reset the sync-values later
 				if (locationUri.equals(Preferences.getString(Preferences.Key.SD_LOCATION))) { 
-					return false;
+					retval =  false;
 				}
-				if ((locationUri.toString().contains("\t")) || (locationUri.toString().contains("\n"))) { 
+				else if ((locationUri.toString().contains("\t")) || (locationUri.toString().contains("\n"))) { 
 					noValidEntry(locationUri.toString());
-					return false;
+					retval =  false;
 				}
-				
-				File path = new File(Environment.getExternalStorageDirectory()
-						+ "/" + locationUri + "/");
-
-				if(!path.exists()) {
-					TLog.w(TAG, "Folder {0} does not exist.", path);
-					folderNotExisting(path.toString());
-					return false;
+				else {
+					File path = new File(Environment.getExternalStorageDirectory()
+							+ "/" + locationUri + "/");
+	
+					if(!path.exists()) {
+						TLog.w(TAG, "Folder {0} does not exist.", path);
+						folderNotExisting(path.toString());
+						retval =  false;
+					} else {
+					
+						TLog.d(TAG, "Changed Folder to: " + path.toString());
+		
+						Tomdroid.NOTES_PATH = path.toString();
+						sdLocation.setSummary(Tomdroid.NOTES_PATH);
+		
+						// if sync service is sd-card -> needsLocation == true, then reset sync values
+						// last sync revision to -1 and date to 1970 to force  a complete sync
+						if (SyncManager.getService(syncService.getValue()).needsLocation()) {
+							Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, (Long)Preferences.Key.LATEST_SYNC_REVISION.getDefault());
+							Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, new Time().format3339(false));
+						}
+					}
 				}
-				
-				Preferences.putString(Preferences.Key.SD_LOCATION, locationUri.toString());
-				TLog.d(TAG, "Changed Folder to: " + path.toString());
-
-				Tomdroid.NOTES_PATH = path.toString();
-				sdLocation.setSummary(Tomdroid.NOTES_PATH);
-
-				// if sync service is sd-card -> needsLocation == true, then reset sync values
-				// latst sync revision to -1 and date to 1970 to force  a complete sync
-				if (SyncManager.getService(syncService.getValue()).needsLocation()) {
-					Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, (Long)Preferences.Key.LATEST_SYNC_REVISION.getDefault());
-					Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, new Time().format3339(false));
-				}
-				return true;
+				return retval;
 			}
 		});
 		
@@ -373,11 +368,13 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 		
 	private void folderNotExisting(String path) {
 		dialogString = String.format(getString(R.string.prefFolderCreated), path);
+		removeDialog(DIALOG_FOLDER_ERROR);
 		showDialog(DIALOG_FOLDER_ERROR);
 	}
 	
 	private void noValidEntry(String entry) {
 		dialogString = String.format(getString(R.string.prefNoValidEntry), entry);
+		removeDialog(DIALOG_FOLDER_ERROR);
 		showDialog(DIALOG_FOLDER_ERROR);
 	}
 
