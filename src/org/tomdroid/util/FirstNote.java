@@ -23,9 +23,10 @@
 package org.tomdroid.util;
 
 import org.tomdroid.Note;
+import org.tomdroid.R;
 
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
+import android.app.Activity;
+import android.text.TextUtils;
 
 /**
  * Creates an introductory note object 
@@ -37,30 +38,30 @@ public class FirstNote {
 	// Logging info
 	private static final String	TAG = "FirstNote";
 	
-	public static Note createFirstNote() {
+	public static Note createFirstNote(Activity activity) {
 		TLog.v(TAG, "Creating first note");
 		
 		Note note = new Note();
 		
-		note.setTitle("Tomdroid's first note");
-		// FIXME as soon as we can create notes, make sure GUID is unique! 
+		note.setTitle(activity.getString(R.string.firstNoteTitle));
+		// FIXME as soon as we can create notes, make sure GUID is unique! - we are referencing this UUID elsewhere, don't forget to check! 
 		note.setGuid("8f837a99-c920-4501-b303-6a39af57a714");
 		note.setLastChangeDate("2010-10-09T16:50:12.219-04:00");
-		note.setXmlContent(getString("FirstNote.Content"));
+		
+		
+		// reconstitute HTML in note content 
+
+		String[] contentarray = activity.getResources().getStringArray(R.array.firstNoteContent);
+		String content = TextUtils.join("\n", contentarray);
+		
+		content = content.replaceAll("(?m)^=(.+)=$", "<size:large>$1</size:large>")
+				.replaceAll("(?m)^-(.+)$", "<list-item dir=\"ltr\">$1</list-item>")
+				.replaceAll("/list-item>\n<list-item", "/list-item><list-item")
+				.replaceAll("(<list-item.+</list-item>)", "<list>$1</list>")
+				.replaceAll("/list-item><list-item", "/list-item>\n<list-item");
+		
+		note.setXmlContent(content);
 		
 		return note;
 	}
-
-	// I bundled the note's content to avoid the hassle of Java strings (escaping quotes and the lack of multi-line support)
-	private static final String BUNDLE_NAME = "org.tomdroid.util.FirstNote";
-	private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME);
-
-	private static String getString(String key) {
-		try {
-			return RESOURCE_BUNDLE.getString(key);
-		} catch (MissingResourceException e) {
-			return '!' + key + '!';
-		}
-	}
-
 }

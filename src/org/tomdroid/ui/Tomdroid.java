@@ -123,7 +123,7 @@ public class Tomdroid extends ListActivity {
 			TLog.i(TAG, "Tomdroid is first run.");
 			
 			// add a first explanatory note
-			NoteManager.putNote(this, FirstNote.createFirstNote());
+			NoteManager.putNote(this, FirstNote.createFirstNote(this));
 			
 			// Warn that this is a "will eat your babies" release
 			new AlertDialog.Builder(this).setMessage(getString(R.string.strWelcome)).setTitle(
