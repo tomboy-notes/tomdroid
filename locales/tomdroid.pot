@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-03-13 14:37+0100\n"
+"POT-Creation-Date: 2013-03-15 00:06+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -287,28 +287,93 @@ msgstr ""
 msgid "Create shortcut"
 msgstr ""
 
+#. Title of first Note
+#: tmp_strings.xml:117(string)
+msgid "Tomdroid's First Note"
+msgstr ""
+
+#: tmp_strings.xml:120(item)
+msgid "Welcome to Tomdroid!\\n"
+msgstr ""
+
+#: tmp_strings.xml:121(item)
+msgid "You have no notes here yet. To get started, set your Synchronization preferences under Settings. There are two synchronization options described below.\\n"
+msgstr ""
+
+#: tmp_strings.xml:122(item)
+msgid "=Online Synchronization="
+msgstr ""
+
+#. =text= makes <size:large>text</size:large>
+#: tmp_strings.xml:124(item)
+msgid "Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\\n"
+msgstr ""
+
+#: tmp_strings.xml:125(item)
+msgid "To use it, set Sync Service to Online Synchronization in preferences then provide a Server URL. Here are some of the public ones:"
+msgstr ""
+
+#. -text is for list-items.
+#: tmp_strings.xml:127(item)
+msgid "-Tomboy Online - https://edge.tomboy-online.org/"
+msgstr ""
+
+#. -text is for list-items.
+#: tmp_strings.xml:129(item)
+msgid "-rainy.notesync.org\\n"
+msgstr ""
+
+#: tmp_strings.xml:130(item)
+msgid "Once set, hit the Sync logo on Tomdroid's top bar to synchronize your notes.\\n"
+msgstr ""
+
+#: tmp_strings.xml:131(item)
+msgid "Note: you might want to back up your Tomboy notes before syncing, since this app is still under development and may corrupt your Tomboy notes.\\n"
+msgstr ""
+
+#: tmp_strings.xml:132(item)
+msgid "Please see http://live.gnome.org/Tomboy/Directories for the location of the *.note files on all platforms.\\n"
+msgstr ""
+
+#. =text= makes <size:large>text</size:large>
+#: tmp_strings.xml:134(item)
+msgid "=SD Card="
+msgstr ""
+
+#: tmp_strings.xml:135(item)
+msgid "Put your Tomboy notes (*.note) on your SD Card under tomdroid/. Once the notes are copied, set Sync Service to SD Card in preferences then hit the Sync logo on Tomdroid's top bar.\\n"
+msgstr ""
+
+#: tmp_strings.xml:136(item)
+msgid "Also, Tomdroid is always looking for new contributors. If you are interested join the tomdroid-dev team on Launchpad: http://launchpad.net/~tomdroid-dev.\\n"
+msgstr ""
+
+#: tmp_strings.xml:137(item)
+msgid "Lastly, if you encounter any issue, please report it at: https://bugs.launchpad.net/tomdroid"
+msgstr ""
+
 #. 30 chars max
-#: tmp_strings.xml:122(string)
+#: tmp_strings.xml:144(string)
 msgid "Tomdroid notes"
 msgstr ""
 
 #. 4000 chars max
-#: tmp_strings.xml:124(string)
-msgid "A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\\n\\nNOTE: It is a READ-ONLY client for now.\\n\\n* Note format compatibility with Tomboy\\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\\n* SD Card importation\\n* Open source!"
+#: tmp_strings.xml:146(string)
+msgid "A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\\n\\nNOTE: It is a READ-ONLY client for now.\\n\\n* Note format compatibility with Tomboy\\n* Online note synchronization with Rainy, Snowy or Tomboy Online\\n* SD Card importation\\n* Open source!"
 msgstr ""
 
 #. 80 chars max
-#: tmp_strings.xml:127(string)
+#: tmp_strings.xml:149(string)
 msgid "Note-taking application with online synchronization compatible with Tomboy"
 msgstr ""
 
 #. 500 chars max
-#: tmp_strings.xml:130(string)
-msgid "0.6 \\\"Small World\\\" release\\n* Create home-screen shortcuts to notes\\n* Specify a folder to use for SD Card sync\\n* Reload current note after sync\\n* A lot of new translations: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\\n* Several bugfixes\\n"
+#: tmp_strings.xml:152(string)
+msgid "0.6.1 \\\"Polyglot\\\" release\\n* Added support for SSL sync with Rainy (www.notesync.org)\\n* New translations: bs, el, eo, fa, fi, nb, si, ta, bg, et, gl, id, la, ml, nl, sr, zh-rTW\\n* Updated translations: ar, ca, cs, da, de, en-rGB, es, eu, fo, fr, gd, hi, hu, it, ja, ko, ms, pl, pt-rBR, pt, ru, sv, te, tr, ug, uk, zh-rCN, zh\\n* Several bugfixes\\n"
 msgstr ""
 
 #. Launchpad Translation String
-#: tmp_strings.xml:133(string)
+#: tmp_strings.xml:155(string)
 msgid "translator-credits"
 msgstr ""
 
