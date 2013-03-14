@@ -113,7 +113,29 @@
 	<string name="shortcut_menu_item_caption">Tomdroid-anteckning</string>
 	<string name="btnRemoveShortcut">Ta bort genväg</string>
 	<string name="createShortcut">Skapa genväg</string>
+	<!-- Title of first Note -->
+	<string name="firstNoteTitle">Tomdroids första anteckning</string>
 	
+	<string-array name="firstNoteContent">
+		<item>Välkommen till Tomdroid!\n</item>
+		<item>Du har inga anteckningar här ännu. För att komma igång måste du ange dina synkroniseringsinställningar under Inställningar. Det finns två synkroniseringsalternativ, som beskrivs nedan.\n</item>
+		<item>=Onlinesynkronisering=</item>
+		<!-- =text= makes <size:large>text</size:large> -->
+		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
+		<item>För att använda det, ställ in synkroniseringstjänsten till Onlinesynkronisering i inställningarna och ange en serveradress. Här är några av de offentliga servrarna:</item>
+		<!-- -text is for list-items. --> 
+		<item>-Tomboy Online - https://edge.tomboy-online.org/</item>
+		<!-- -text is for list-items. --> 
+		<item>-rainy.notesync.org\n</item>
+		<item>När allt är inställt, klicka på synkroniseringsikonen i Tomdroids verktygsfält för att synkronisera dina anteckningar.\n</item>
+		<item>Obs: vi rekommenderar att du säkerhetskopierar dina Tomboy-anteckningar innan synkronisering, eftersom det här programmet fortfarande är under utveckling och kan skada dina anteckningsfiler.\n</item>
+		<item>Gå till http://live.gnome.org/Tomboy/Directories för platsinformation om *.note-filer på alla plattformar.\n</item>
+		<!-- =text= makes <size:large>text</size:large> --> 
+		<item>=SD-kort=</item>
+		<item>Lägg dina Tomboy-anteckningar (*.note) på ditt SD-kort under "tomdroid/". När anteckningarna har kopierats anger du inställningen Synkroniseringstjänst till "SD-kort" och klickar på synkroniseringsikonen i Tomdroids verktygsfält.\n</item>
+		<item>Tomdroid söker ständigt efter nya medarbetare. Om du är intresserad kan du ansluta dig till Tomdroids utvecklingsgrupp på Launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
+		<item>Sist, men inte minst. Om du stöter på något problem, var vänlig och rapportera det på: https://bugs.launchpad.net/tomdroid</item>
+	</string-array>
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
 	I\'ve put it in here so that it\'ll get translated by translators.
@@ -121,13 +143,13 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid-anteckningar</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">En Tomboy-klient för Android. Tomboy är en anteckningsapp för skrivbordet som använder sig av ett wikiwiki-grepp och ett enkelt gränssnitt.\n\nOBS: Endast läsåtkomst än så länge.\n\n* Formatkompatibel med Tomboy\n* Synkronisering med Snowy, Tomboy Online eller Ubuntu One\n* Import från SD-kort\n* Öppen källkod!</string>
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\nNOTE: It is a READ-ONLY client for now.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Open source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Anteckningsblock med onlinesynkronisering som är kompatibel med Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.6, utgåvan \"Small World\"\n* Skapa startsidegenvägar till anteckningar\n* Välj en mapp att använda till SD-kortsynkronisering\n* Uppdatera aktuell anteckning efter synkronisering\n* Massor av nya översättningar: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n* Ett flertal buggfixar\n</string>
+        <string name="market_recent_changes">0.6.1 \"Polyglot\" release\n* Added support for SSL sync with Rainy (www.notesync.org)\n* New translations: bs, el, eo, fa, fi, nb, si, ta, bg, et, gl, id, la, ml, nl, sr, zh-rTW\n* Updated translations: ar, ca, cs, da, de, en-rGB, es, eu, fo, fr, gd, hi, hu, it, ja, ko, ms, pl, pt-rBR, pt, ru, sv, te, tr, ug, uk, zh-rCN, zh\n* Several bugfixes\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

@@ -113,7 +113,29 @@
 	<string name="shortcut_menu_item_caption">Tomdroid Note</string>
 	<string name="btnRemoveShortcut">Remover atalho</string>
 	<string name="createShortcut">Criar atalho</string>
+	<!-- Title of first Note -->
+	<string name="firstNoteTitle">Primeira nota do Tomdroid</string>
 	
+	<string-array name="firstNoteContent">
+		<item>Bem-vindo ao Tomdroid!\n</item>
+		<item>Você não tem notas aqui ainda. Para começar, ajuste suas preferências de Sincronização em Configurações. Existem duas opções de sincronização descritas abaixo.\n</item>
+		<item>=Sincronização Online=</item>
+		<!-- =text= makes <size:large>text</size:large> -->
+		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
+		<item>Para usá-lo, ajuste o Serviço de Sincronização para Sincronização Online em preferências então providencie uma URL de Servidor. Aqui estão alguns públicos:</item>
+		<!-- -text is for list-items. --> 
+		<item>-Tomboy Online - https://edge.tomboy-online.org/</item>
+		<!-- -text is for list-items. --> 
+		<item>-rainy.notesync.org\n</item>
+		<item>Quando ajustado, clique no logotipo de Sincronização na barra superior do Tomdroid para sincronizar suas notas.\n</item>
+		<item>Nota: Você pode querer fazer backup de suas notas do Tomboy antes de sincronizar, pois este aplicativo ainda está em desenvolvimento e pode corromper suas notas Tomboy.\n</item>
+		<item>Consulte http://live.gnome.org/Tomboy/Diretórios para o localização do *.note arquivos em todas as plataformas.\n</item>
+		<!-- =text= makes <size:large>text</size:large> --> 
+		<item>=Cartão SD=</item>
+		<item>Coloque suas notas Tomboy (*.note) em seu cartão SD em Tomdroid/. Uma vez que as notas são copiadas, defina o serviço de sincronização para o cartão SD nas preferências, em seguida, aperte no logotipo Sync na barra superior do Tomdroid.\n</item>
+		<item>Além disso, Tomdroid está sempre procurando por novos colaboradores. Se você está interessado em se juntar à equipe tomdroid-dev no Launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
+		<item>Por fim, se encontrar qualquer problema, por favor relate-o em: https://bugs.launchpad.net/tomdroid</item>
+	</string-array>
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
 	I\'ve put it in here so that it\'ll get translated by translators.
@@ -121,13 +143,13 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid notas</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">Um cliente Tomboy para Android. Tomboy é uma app de notas de dektop usando uma abordagem wikiwiki e uma interface de usuário simples.\n\nNOTA: Este é um cliente de LEITURA por agora.\n\n*Compatibilidade do formato de notas com Tomboy\n* Sincronização de notas online com Snowy, Tombpoy Online e Ubuntu One\n* Importação do Cartão SD\n* Open source!</string>
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\nNOTE: It is a READ-ONLY client for now.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Open source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Aplicação de notas com sincronização online compatível com Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.6 \"Mundo Pequeno\" liberar\n* Criar ataho para as notas na área de trabalho\n* Especifique uma pasta para usar a sincronização para o Cartão de Memória\n* Atualizar nota atual após a sincronização\n* Várias novas traduções: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n* Várias correções de Bugs\n</string>
+        <string name="market_recent_changes">0.6.1 \"Polyglot\" release\n* Added support for SSL sync with Rainy (www.notesync.org)\n* New translations: bs, el, eo, fa, fi, nb, si, ta, bg, et, gl, id, la, ml, nl, sr, zh-rTW\n* Updated translations: ar, ca, cs, da, de, en-rGB, es, eu, fo, fr, gd, hi, hu, it, ja, ko, ms, pl, pt-rBR, pt, ru, sv, te, tr, ug, uk, zh-rCN, zh\n* Several bugfixes\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

@@ -113,7 +113,29 @@
 	<string name="shortcut_menu_item_caption">Томадроид белешка</string>
 	<string name="btnRemoveShortcut">Уклони пречицу</string>
 	<string name="createShortcut">Направи пречицу</string>
+	<!-- Title of first Note -->
+	<string name="firstNoteTitle">Томадроидова прва белешка</string>
 	
+	<string-array name="firstNoteContent">
+		<item>Добродошли код Томадроида!\n</item>
+		<item>Овде још увек немате белешке. Да би почели, подесите својства усаглашавања у поставкама. Постоје две могућности усаглашавања описане испод.\n</item>
+		<item>=Усклађивање преко мреже=</item>
+		<!-- =text= makes <size:large>text</size:large> -->
+		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
+		<item>Да би га користили, поставите услугу усаглашавања на усаглашавање преко мреже у поставкама, а онда подесите адресу служитеља. Ево неких јавних:</item>
+		<!-- -text is for list-items. --> 
+		<item>-Томица на мрежи  - https://edge.tomboy-online.org/</item>
+		<!-- -text is for list-items. --> 
+		<item>-rainy.notesync.org\n</item>
+		<item>Када се подеси, притисните знак усаглашавања на Томадроидовој горњој траци за усаглашавање Ваших бележака.\n</item>
+		<item>Примедба: Можда желите да направите резервни умножак пре усклађивања, пошто је ова апликација још увек у развоју, и могла би искварити Ваше Томичине белешке.\n</item>
+		<item>Молим, погледајте  http://live.gnome.org/Tomboy/Directories да би знали путању *.note датотека на свим платформама.\n</item>
+		<!-- =text= makes <size:large>text</size:large> --> 
+		<item>=СД картица=</item>
+		<item>Поставите белешке (*.note) на СД картицу у tomdroid/.  Када се белешке умноже, поставите услугу усклађивања на СД картицу у поставкама, затим притисните знак усклађивања на горњој траци Томадроида.\n</item>
+		<item>Такође, Томадроид стално тражи нове доприносиоце. Ако вас занима придружите се Томадроидовој развојној дружини на Лансирној рампи: http://launchpad.net/~tomdroid-dev.\n</item>
+		<item>Најзад, ако наиђете на потешкоће, молим, пријавите их на: https://bugs.launchpad.net/tomdroid</item>
+	</string-array>
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
 	I\'ve put it in here so that it\'ll get translated by translators.
@@ -121,13 +143,13 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Томадроидове белешке</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\nNOTE: It is a READ-ONLY client for now.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\nNOTE: It is a READ-ONLY client for now.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Open source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Програм за хватање бележака са усаглашавањем преко мреже сагласан са Томицом</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.6 \„Мали свет“ издање\n* Стварање пречица са почетног екрана до бележнице\n* Одређивање фасцикле која ће се користити за усаглашавање\n* Много нових превода: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n* Неколико поправака грешака\n</string>
+        <string name="market_recent_changes">0.6.1 \"Polyglot\" release\n* Added support for SSL sync with Rainy (www.notesync.org)\n* New translations: bs, el, eo, fa, fi, nb, si, ta, bg, et, gl, id, la, ml, nl, sr, zh-rTW\n* Updated translations: ar, ca, cs, da, de, en-rGB, es, eu, fo, fr, gd, hi, hu, it, ja, ko, ms, pl, pt-rBR, pt, ru, sv, te, tr, ug, uk, zh-rCN, zh\n* Several bugfixes\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

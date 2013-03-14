@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tomdroid\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-08-22 17:22+0200\n"
+"POT-Creation-Date: 2013-03-15 00:06+0100\n"
 "PO-Revision-Date: 2012-08-25 11:45+0000\n"
 "Last-Translator: Koichi Akabe <vbkaisetsu@gmail.com>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-03-13 13:12+0000\n"
+"X-Launchpad-Export-Date: 2013-03-14 23:16+0000\n"
 "X-Generator: Launchpad (build 16532)\n"
 
 #. application details
@@ -40,27 +40,23 @@ msgstr "メモが読み込まれるまでお待ちください..."
 msgid "There are no notes in Tomdroid's database."
 msgstr "Tomdroidデータベースにメモはありません。"
 
-#. Menu entry with icon
-#: tmp_strings.xml:36(string)
+#: tmp_strings.xml:35(string)
 msgid "Sync"
 msgstr "同期"
 
-#. Menu entry with icon
-#: tmp_strings.xml:38(string)
+#: tmp_strings.xml:36(string)
 msgid "Settings"
 msgstr "設定"
 
-#. Menu entry with icon
-#: tmp_strings.xml:40(string)
+#: tmp_strings.xml:37(string)
 msgid "About"
 msgstr "情報"
 
-#. Title of an alert box
-#: tmp_strings.xml:42(string)
+#: tmp_strings.xml:38(string)
 msgid "Warning"
 msgstr "注意"
 
-#: tmp_strings.xml:43(string)
+#: tmp_strings.xml:39(string)
 msgid "About Tomdroid"
 msgstr "Tomdroidについて"
 
@@ -79,28 +75,24 @@ msgstr ""
 "nもし貢献してくれるのであれば、どのようなことであっても歓迎します。launchpad.net/tomdroid "
 "にアクセスし、私たちに連絡を入れてください！\\n"
 
-#. \n\n are linebreaks, %1$s etc are the name of the Author, the version and the license name
-#: tmp_strings.xml:47(string)
+#: tmp_strings.xml:41(string)
 msgid "%1$s\\n\\nAuthor: %2$s\\nVersion: %3$s\\nLicensed under the GPLv3"
 msgstr "%1$s\\n\\n開発者: %2$s\\nバージョン: %3$s\\nライセンス: GPLv3"
 
-#. positive Button
-#: tmp_strings.xml:50(string)
+#. TODO aren't these available somewhere else? like in the SDK? //
+#: tmp_strings.xml:44(string)
 msgid "OK"
 msgstr "OK"
 
-#. negative Button
-#: tmp_strings.xml:52(string) tmp_strings.xml:274(string)
+#: tmp_strings.xml:45(string)
 msgid "Cancel"
 msgstr "キャンセル"
 
-#. Button
-#: tmp_strings.xml:54(string) tmp_strings.xml:273(string)
+#: tmp_strings.xml:46(string)
 msgid "Close"
 msgstr "閉じる"
 
-#. Button
-#: tmp_strings.xml:56(string)
+#: tmp_strings.xml:47(string)
 msgid "Project page"
 msgstr "ホームページ"
 
@@ -113,37 +105,35 @@ msgstr "SDカードに保存"
 msgid "Please wait while note loads..."
 msgstr "メモが読み込まれるまでお待ちください..."
 
-#. subheader in settings
-#: tmp_strings.xml:199(string)
+#: tmp_strings.xml:53(string)
 msgid "Synchronization"
 msgstr "同期"
 
-#: tmp_strings.xml:62(string)
+#: tmp_strings.xml:54(string)
 msgid "Service"
 msgstr "サービス"
 
-#: tmp_strings.xml:63(string)
+#: tmp_strings.xml:55(string)
 msgid "Server"
 msgstr "サーバー"
 
-#: tmp_strings.xml:64(string)
+#: tmp_strings.xml:56(string)
 msgid "SD Card"
 msgstr "SDカード"
 
-#: tmp_strings.xml:65(string)
+#: tmp_strings.xml:57(string)
 msgid "Online Synchronization"
 msgstr "オンライン同期"
 
-#: tmp_strings.xml:66(string)
+#: tmp_strings.xml:58(string)
 msgid "Authenticate"
 msgstr "認証"
 
-#: tmp_strings.xml:67(string)
+#: tmp_strings.xml:59(string)
 msgid "Location on SD Card"
 msgstr "SDカード上の場所"
 
-#. %1$s will be repaced by the folder name eg /tomdroid
-#: tmp_strings.xml:69(string)
+#: tmp_strings.xml:60(string)
 msgid ""
 "The folder \\\"%1$s\\\" does not exist yet. Please connect your device to "
 "the computer, create the folder and fill it with *.note files."
@@ -159,55 +149,51 @@ msgstr "\\\"%1$s\\\" は無効な文字を含んでいます。\\nもう一度�
 msgid "Completing authentication. Please wait..."
 msgstr "認証処理中です。お待ちください..."
 
-#: tmp_strings.xml:75(string)
+#: tmp_strings.xml:64(string)
 msgid ""
 "The connection to the server has failed, please check that the address you "
 "entered is correct."
 msgstr "サーバーへの接続に失敗しました。入力したアドレスが正しいかどうか確認してください。"
 
-#: tmp_strings.xml:76(string)
+#: tmp_strings.xml:65(string)
 msgid "The server address changed but the new value is empty"
 msgstr "サーバーのアドレスが変更されましたが、新しい値は空です。"
 
-#: tmp_strings.xml:78(string)
+#: tmp_strings.xml:67(string)
 msgid "Choose the sync service to use"
 msgstr "同期サービスを選択してください"
 
-#. %1$s will be replaced with "Online Synchronisation", "SD Card",...
-#: tmp_strings.xml:80(string)
+#: tmp_strings.xml:68(string)
 msgid "Synchronization with %1$s is complete."
 msgstr "%1$s との同期が完了しました。"
 
-#. %1$s will be replaced with "SD Card",...
-#: tmp_strings.xml:82(string)
+#: tmp_strings.xml:69(string)
 msgid "No notes found on %1$s."
 msgstr "%1$s ではメモが見つかりません。"
 
-#: tmp_strings.xml:83(string)
+#: tmp_strings.xml:70(string)
 msgid "You are not connected to the Internet."
 msgstr "インターネットに接続していません。"
 
-#: tmp_strings.xml:84(string)
+#: tmp_strings.xml:71(string)
 msgid "Sync already in progress"
 msgstr "同期は既に進行しています"
 
-#: tmp_strings.xml:85(string)
+#: tmp_strings.xml:72(string)
 msgid ""
 "There was an error trying to parse your note collection. If you are able to "
 "replicate the problem, please contact us!"
 msgstr "メモコレクションの変換中にエラーが発生しました。再現可能な場合は私たちに連絡してください！"
 
-#. Altert box header
-#: tmp_strings.xml:87(string)
+#: tmp_strings.xml:73(string)
 msgid "Error"
 msgstr "エラー"
 
-#. Altert box header
-#: tmp_strings.xml:89(string)
+#: tmp_strings.xml:74(string)
 msgid "No Such Note"
 msgstr "そのようなメモはありません"
 
-#: tmp_strings.xml:90(string)
+#: tmp_strings.xml:75(string)
 msgid ""
 "The requested note could not be found. Maybe it was deleted or removed "
 "through synchronization."
@@ -228,60 +214,58 @@ msgid "SD card not found."
 msgstr "SDカードが見つかりませんでした。"
 
 #. NoteSorting
-#: tmp_strings.xml:80(string)
+#: tmp_strings.xml:81(string)
 msgid "Change Sort"
 msgstr "ソートの変更"
 
-#: tmp_strings.xml:81(string)
+#: tmp_strings.xml:82(string)
 msgid "Choose the default sorting"
 msgstr "デフォルトのソートの選択"
 
-#: tmp_strings.xml:82(string)
+#: tmp_strings.xml:83(string)
 msgid "Default sort"
 msgstr "デフォルトのソート"
 
 #. NotebookFiltering
-#: tmp_strings.xml:105(string)
+#: tmp_strings.xml:86(string)
 msgid "Filter"
 msgstr "フィルター"
 
-#: tmp_strings.xml:106(string)
+#: tmp_strings.xml:87(string)
 msgid "There are no notebooks in the database."
 msgstr "データベースにメモ帳はありません。"
 
-#: tmp_strings.xml:107(string)
+#: tmp_strings.xml:88(string)
 msgid "All notebooks"
 msgstr "すべてのメモ帳"
 
 #. List Longpress Menu
-#: tmp_strings.xml:110(string)
+#: tmp_strings.xml:91(string)
 msgid "View"
 msgstr "表示"
 
-#: tmp_strings.xml:111(string)
+#: tmp_strings.xml:92(string)
 msgid "Note Options"
 msgstr "メモのオプション"
 
-#: tmp_strings.xml:112(string)
+#: tmp_strings.xml:93(string)
 msgid "Send"
 msgstr "送信"
 
-#. Text in input field for search
-#: tmp_strings.xml:116(string)
+#. Search
+#: tmp_strings.xml:96(string)
 msgid "Search Notes"
 msgstr "メモを検索"
 
-#. Preferences Field in global search to include notes
-#: tmp_strings.xml:118(string)
+#: tmp_strings.xml:97(string)
 msgid "Text in your notes"
 msgstr "メモのテキスト"
 
-#. %s will be replaced with the search string
-#: tmp_strings.xml:120(string)
+#: tmp_strings.xml:98(string)
 msgid "No notes found for \\\"%s\\\""
 msgstr "\\\"%s\\\" に一致するメモは見つかりませんでした"
 
-#: tmp_strings.xml:121(string)
+#: tmp_strings.xml:99(string)
 msgid "Search"
 msgstr "検索"
 
@@ -289,95 +273,198 @@ msgstr "検索"
 msgid "Search Options"
 msgstr "検索オプション"
 
-#: tmp_strings.xml:122(string)
+#: tmp_strings.xml:101(string)
 msgid "Search Results:"
 msgstr "検索結果:"
 
-#: tmp_strings.xml:123(string)
+#: tmp_strings.xml:102(string)
 msgid "Clear search history"
 msgstr "検索履歴の消去"
 
-#: tmp_strings.xml:124(string)
+#: tmp_strings.xml:103(string)
 msgid "Remove all the searches you have performed"
 msgstr "今までのすべての検索履歴を削除します"
 
-#: tmp_strings.xml:125(string)
+#: tmp_strings.xml:104(string)
 msgid "Search history has been cleared."
 msgstr "検索履歴が消去されました。"
 
 #. Date
-#: tmp_strings.xml:128(string)
+#: tmp_strings.xml:107(string)
 msgid "Modified:"
 msgstr "更新日時:"
 
-#: tmp_strings.xml:129(string)
+#: tmp_strings.xml:108(string)
 msgid "Today"
 msgstr "今日"
 
-#: tmp_strings.xml:130(string)
+#: tmp_strings.xml:109(string)
 msgid "Yesterday"
 msgstr "昨日"
 
-#. Header when picking a note for a new shortcut
-#: tmp_strings.xml:134(string)
+#. Shortcuts handling
+#: tmp_strings.xml:112(string)
 msgid "Choose a Note"
 msgstr "メモを選択"
 
-#: tmp_strings.xml:135(string)
+#: tmp_strings.xml:113(string)
 msgid "Tomdroid Note"
 msgstr "Tomdroid メモ"
 
-#: tmp_strings.xml:136(string)
+#: tmp_strings.xml:114(string)
 msgid "Remove shortcut"
 msgstr "ショートカットを削除"
 
-#: tmp_strings.xml:137(string)
+#: tmp_strings.xml:115(string)
 msgid "Create shortcut"
 msgstr "ショートカットを作成"
 
+#. Title of first Note
+#: tmp_strings.xml:117(string)
+msgid "Tomdroid's First Note"
+msgstr "Tomdroidの最初のメモ"
+
+#: tmp_strings.xml:120(item)
+msgid "Welcome to Tomdroid!\\n"
+msgstr "Tomdroid へようこそ！\\n"
+
+#: tmp_strings.xml:121(item)
+msgid ""
+"You have no notes here yet. To get started, set your Synchronization "
+"preferences under Settings. There are two synchronization options described "
+"below.\\n"
+msgstr "まだメモはありません。始めるには、設定項目の同期設定を行なってください。以下で説明する2つの同期オプションがあります。\\n"
+
+#: tmp_strings.xml:122(item)
+msgid "=Online Synchronization="
+msgstr "=オンライン同期="
+
+#. =text= makes <size:large>text</size:large>
+#: tmp_strings.xml:124(item)
+msgid ""
+"Online Synchronization is what you are looking for if you want to sync to "
+"Tomboy-Online, your own Rainy/Snowy server or any server supporting the "
+"Tomboy Web REST API.\\n"
+msgstr ""
+
+#: tmp_strings.xml:125(item)
+msgid ""
+"To use it, set Sync Service to Online Synchronization in preferences then "
+"provide a Server URL. Here are some of the public ones:"
+msgstr "これを利用するには、設定項目の同期サービスをオンライン同期にし、サーバーのURLを指定します。以下に一般的なものをいくつか示します:"
+
+#. -text is for list-items.
+#: tmp_strings.xml:127(item)
+msgid "-Tomboy Online - https://edge.tomboy-online.org/"
+msgstr "-Tomboy Online - https://edge.tomboy-online.org/"
+
+#. -text is for list-items.
+#: tmp_strings.xml:129(item)
+msgid "-rainy.notesync.org\\n"
+msgstr ""
+
+#: tmp_strings.xml:130(item)
+msgid ""
+"Once set, hit the Sync logo on Tomdroid's top bar to synchronize your "
+"notes.\\n"
+msgstr "設定したら、Tomboy 上部のバーの同期ロゴをタッチしてメモを同期します。\\n"
+
+#: tmp_strings.xml:131(item)
+msgid ""
+"Note: you might want to back up your Tomboy notes before syncing, since this "
+"app is still under development and may corrupt your Tomboy notes.\\n"
+msgstr ""
+
+#: tmp_strings.xml:132(item)
+msgid ""
+"Please see http://live.gnome.org/Tomboy/Directories for the location of the "
+"*.note files on all platforms.\\n"
+msgstr ""
+
+#. =text= makes <size:large>text</size:large>
+#: tmp_strings.xml:134(item)
+msgid "=SD Card="
+msgstr "=SDカード="
+
+#: tmp_strings.xml:135(item)
+msgid ""
+"Put your Tomboy notes (*.note) on your SD Card under tomdroid/. Once the "
+"notes are copied, set Sync Service to SD Card in preferences then hit the "
+"Sync logo on Tomdroid's top bar.\\n"
+msgstr ""
+
+#: tmp_strings.xml:136(item)
+msgid ""
+"Also, Tomdroid is always looking for new contributors. If you are interested "
+"join the tomdroid-dev team on Launchpad: http://launchpad.net/~tomdroid-"
+"dev.\\n"
+msgstr ""
+
+#: tmp_strings.xml:137(item)
+msgid ""
+"Lastly, if you encounter any issue, please report it at: "
+"https://bugs.launchpad.net/tomdroid"
+msgstr "最後に、何らかの問題に遭遇した場合は、以下に報告をお願いします: https://bugs.launchpad.net/tomdroid"
+
 #. 30 chars max
-#: tmp_strings.xml:375(string)
+#: tmp_strings.xml:144(string)
 msgid "Tomdroid notes"
 msgstr "Tomdroid メモ"
 
 #. 4000 chars max
-#: tmp_strings.xml:124(string)
+#: tmp_strings.xml:146(string)
 msgid ""
 "A Tomboy client for Android. Tomboy is a desktop note-taking app using a "
 "wikiwiki approach and a simple user interface.\\n\\nNOTE: It is a READ-ONLY "
 "client for now.\\n\\n* Note format compatibility with Tomboy\\n* Online note "
-"synchronization with Snowy, Tomboy Online or Ubuntu One\\n* SD Card "
-"importation\\n* Open source!"
+"synchronization with Rainy, Snowy or Tomboy Online\\n* SD Card importation\\"
+"n* Open source!"
 msgstr ""
-"Android向けのTomboyクライアントです。Tomboyはデスクトップでメモを書くためのアプリで、wikiwiki形式でシンプルなユーザーインターフ"
-"ェイスを備えています。\\n\\n注意: これは現在、読み込み専用のクライアントです。\\n\\n* Tomboyと互換性のあるメモ形式\\n* "
-"Snowy、Tomboy Online、Ubuntu One とのオンラインでのメモの同期\\n* SDカードからの取り込み\\n* オープンソース！"
 
 #. 80 chars max
-#: tmp_strings.xml:321(string)
+#: tmp_strings.xml:149(string)
 msgid ""
 "Note-taking application with online synchronization compatible with Tomboy"
 msgstr "Tomboyと互換性のある、オンラインで同期するメモ帳アプリケーション"
 
 #. 500 chars max
-#: tmp_strings.xml:383(string)
+#: tmp_strings.xml:152(string)
 msgid ""
-"0.6 \\\"Small World\\\" release\\n* Create home-screen shortcuts to notes\\"
-"n* Specify a folder to use for SD Card sync\\n* Reload current note after "
-"sync\\n* A lot of new translations: ar, bs, ca, cs, da, de, el, en-rGB, eo, "
-"es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, "
-"si, sv, ta, te, tr, ug, uk, zh, zh-rCN\\n* Several bugfixes\\n"
+"0.6.1 \\\"Polyglot\\\" release\\n* Added support for SSL sync with Rainy "
+"(www.notesync.org)\\n* New translations: bs, el, eo, fa, fi, nb, si, ta, bg, "
+"et, gl, id, la, ml, nl, sr, zh-rTW\\n* Updated translations: ar, ca, cs, da, "
+"de, en-rGB, es, eu, fo, fr, gd, hi, hu, it, ja, ko, ms, pl, pt-rBR, pt, ru, "
+"sv, te, tr, ug, uk, zh-rCN, zh\\n* Several bugfixes\\n"
 msgstr ""
-"0.6 \\\"Small World\\\" リリース\\n* ホーム画面へのメモのショートカットの作成\\n* "
-"SDカード同期に使用するフォルダーの指定\\n* 同期後の表示中のメモの更新\\n* 新たに多数の言語に対応: ar, bs, ca, cs, da, "
-"de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, "
-"pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\\n* いくつかのバグ修正\\n"
 
 #. Launchpad Translation String
-#: tmp_strings.xml:386(string)
+#: tmp_strings.xml:155(string)
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
 "  Koichi Akabe https://launchpad.net/~vbkaisetsu\n"
 "  Stefan Hammer https://launchpad.net/~j-4\n"
 "  vine_user https://launchpad.net/~vineuser"
+
+#~ msgid ""
+#~ "A Tomboy client for Android. Tomboy is a desktop note-taking app using a "
+#~ "wikiwiki approach and a simple user interface.\\n\\nNOTE: It is a READ-ONLY "
+#~ "client for now.\\n\\n* Note format compatibility with Tomboy\\n* Online note "
+#~ "synchronization with Snowy, Tomboy Online or Ubuntu One\\n* SD Card "
+#~ "importation\\n* Open source!"
+#~ msgstr ""
+#~ "Android向けのTomboyクライアントです。Tomboyはデスクトップでメモを書くためのアプリで、wikiwiki形式でシンプルなユーザーインターフ"
+#~ "ェイスを備えています。\\n\\n注意: これは現在、読み込み専用のクライアントです。\\n\\n* Tomboyと互換性のあるメモ形式\\n* "
+#~ "Snowy、Tomboy Online、Ubuntu One とのオンラインでのメモの同期\\n* SDカードからの取り込み\\n* オープンソース！"
+
+#~ msgid ""
+#~ "0.6 \\\"Small World\\\" release\\n* Create home-screen shortcuts to notes\\"
+#~ "n* Specify a folder to use for SD Card sync\\n* Reload current note after "
+#~ "sync\\n* A lot of new translations: ar, bs, ca, cs, da, de, el, en-rGB, eo, "
+#~ "es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, "
+#~ "si, sv, ta, te, tr, ug, uk, zh, zh-rCN\\n* Several bugfixes\\n"
+#~ msgstr ""
+#~ "0.6 \\\"Small World\\\" リリース\\n* ホーム画面へのメモのショートカットの作成\\n* "
+#~ "SDカード同期に使用するフォルダーの指定\\n* 同期後の表示中のメモの更新\\n* 新たに多数の言語に対応: ar, bs, ca, cs, da, "
+#~ "de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, "
+#~ "pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\\n* いくつかのバグ修正\\n"

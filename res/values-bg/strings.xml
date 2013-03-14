@@ -113,7 +113,29 @@
 	<string name="shortcut_menu_item_caption">Бележка на Tomdroid</string>
 	<string name="btnRemoveShortcut">Премахване на кратък път</string>
 	<string name="createShortcut">Създаване на пряк път</string>
+	<!-- Title of first Note -->
+	<string name="firstNoteTitle">ПЪрвата бележка на Tomdroid</string>
 	
+	<string-array name="firstNoteContent">
+		<item>Добре дошли в Tomdroid!\n</item>
+		<item>Все още нямате бележки. За да започнете, изберете машите предпочитания за Синхронизация от Настройки. Има две опции за синхронизация описани по- долу.\n</item>
+		<item>=Онлайн синхронизация=</item>
+		<!-- =text= makes <size:large>text</size:large> -->
+		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
+		<item>За да го използвате, изберете "синхронизираща услуга към онлайн синхронизация" от предпочитанията и поставете URL на сървъра. Тези са някои от публичните:</item>
+		<!-- -text is for list-items. --> 
+		<item>-Tomboy Онлайн - https://edge.tomboy-online.org/</item>
+		<!-- -text is for list-items. --> 
+		<item>-rainy.notesync.org\n</item>
+		<item>Веднъж зададено, натиснете логото за синхронизация на горната лента на Tomdroid, за да синхронизирате вашите бележки.\n</item>
+		<item>Note: you might want to back up your Tomboy notes before syncing, since this app is still under development and may corrupt your Tomboy notes.\n</item>
+		<item>Please see http://live.gnome.org/Tomboy/Directories for the location of the *.note files on all platforms.\n</item>
+		<!-- =text= makes <size:large>text</size:large> --> 
+		<item>=SD Карта=</item>
+		<item>Put your Tomboy notes (*.note) on your SD Card under tomdroid/. Once the notes are copied, set Sync Service to SD Card in preferences then hit the Sync logo on Tomdroid\'s top bar.\n</item>
+		<item>Also, Tomdroid is always looking for new contributors. If you are interested join the tomdroid-dev team on Launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
+		<item>В заключение, ако срещнете някакъв проблем, моля, докладвайте го на: https://bugs.launchpad.net/tomdroid</item>
+	</string-array>
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
 	I\'ve put it in here so that it\'ll get translated by translators.
@@ -121,13 +143,13 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid бележки</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\nNOTE: It is a READ-ONLY client for now.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\nNOTE: It is a READ-ONLY client for now.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Open source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Приложение за водене на записки с онлайн синхронизация, съвместимо с Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">версия 0.6 \"Малък Свят\"\n* Зъздаване на кратки пътища до бележките на началния екран\n* Посочване на папка за синхронизация на SD картата\n* Презареждане на текущата бележка след синхронизация\n* Доста нови преводи: ar, bg, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n* Няколко бъгове\n</string>
+        <string name="market_recent_changes">0.6.1 \"Polyglot\" release\n* Added support for SSL sync with Rainy (www.notesync.org)\n* New translations: bs, el, eo, fa, fi, nb, si, ta, bg, et, gl, id, la, ml, nl, sr, zh-rTW\n* Updated translations: ar, ca, cs, da, de, en-rGB, es, eu, fo, fr, gd, hi, hu, it, ja, ko, ms, pl, pt-rBR, pt, ru, sv, te, tr, ug, uk, zh-rCN, zh\n* Several bugfixes\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

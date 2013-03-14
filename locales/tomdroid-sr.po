@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tomdroid\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-08-22 17:22+0200\n"
+"POT-Creation-Date: 2013-03-15 00:06+0100\n"
 "PO-Revision-Date: 2013-01-14 13:38+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Serbian <sr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-03-13 13:12+0000\n"
+"X-Launchpad-Export-Date: 2013-03-14 23:16+0000\n"
 "X-Generator: Launchpad (build 16532)\n"
 
 #. application details
@@ -40,27 +40,23 @@ msgstr ""
 msgid "There are no notes in Tomdroid's database."
 msgstr "Нема белешки у остави података Томадроида"
 
-#. Menu entry with icon
-#: tmp_strings.xml:36(string)
+#: tmp_strings.xml:35(string)
 msgid "Sync"
 msgstr "Усклађивање"
 
-#. Menu entry with icon
-#: tmp_strings.xml:38(string)
+#: tmp_strings.xml:36(string)
 msgid "Settings"
 msgstr "Поставке"
 
-#. Menu entry with icon
-#: tmp_strings.xml:40(string)
+#: tmp_strings.xml:37(string)
 msgid "About"
 msgstr "О програму"
 
-#. Title of an alert box
-#: tmp_strings.xml:42(string)
+#: tmp_strings.xml:38(string)
 msgid "Warning"
 msgstr "Упозорење"
 
-#: tmp_strings.xml:43(string)
+#: tmp_strings.xml:39(string)
 msgid "About Tomdroid"
 msgstr "О Томадроиду"
 
@@ -74,28 +70,24 @@ msgid ""
 "board on launchpad.net/tomdroid and contact us!\\n"
 msgstr ""
 
-#. \n\n are linebreaks, %1$s etc are the name of the Author, the version and the license name
-#: tmp_strings.xml:47(string)
+#: tmp_strings.xml:41(string)
 msgid "%1$s\\n\\nAuthor: %2$s\\nVersion: %3$s\\nLicensed under the GPLv3"
 msgstr "%1$s\\n\\nАутор: %2$s\\nИздање: %3$s\\nОбјављено под  GPLv3"
 
-#. positive Button
-#: tmp_strings.xml:50(string)
+#. TODO aren't these available somewhere else? like in the SDK? //
+#: tmp_strings.xml:44(string)
 msgid "OK"
 msgstr "У реду"
 
-#. negative Button
-#: tmp_strings.xml:52(string) tmp_strings.xml:274(string)
+#: tmp_strings.xml:45(string)
 msgid "Cancel"
 msgstr "Откажи"
 
-#. Button
-#: tmp_strings.xml:54(string) tmp_strings.xml:273(string)
+#: tmp_strings.xml:46(string)
 msgid "Close"
 msgstr "Затвори"
 
-#. Button
-#: tmp_strings.xml:56(string)
+#: tmp_strings.xml:47(string)
 msgid "Project page"
 msgstr "Страница пројекта"
 
@@ -108,37 +100,35 @@ msgstr ""
 msgid "Please wait while note loads..."
 msgstr ""
 
-#. subheader in settings
-#: tmp_strings.xml:199(string)
+#: tmp_strings.xml:53(string)
 msgid "Synchronization"
 msgstr "Усклађивање"
 
-#: tmp_strings.xml:62(string)
+#: tmp_strings.xml:54(string)
 msgid "Service"
 msgstr "Услуга"
 
-#: tmp_strings.xml:63(string)
+#: tmp_strings.xml:55(string)
 msgid "Server"
 msgstr "Служитељ"
 
-#: tmp_strings.xml:64(string)
+#: tmp_strings.xml:56(string)
 msgid "SD Card"
 msgstr "СД картица"
 
-#: tmp_strings.xml:65(string)
+#: tmp_strings.xml:57(string)
 msgid "Online Synchronization"
 msgstr "Усклађивање преко мреже"
 
-#: tmp_strings.xml:66(string)
+#: tmp_strings.xml:58(string)
 msgid "Authenticate"
 msgstr "Потврди идентитет"
 
-#: tmp_strings.xml:67(string)
+#: tmp_strings.xml:59(string)
 msgid "Location on SD Card"
 msgstr "Путања на СД картици"
 
-#. %1$s will be repaced by the folder name eg /tomdroid
-#: tmp_strings.xml:69(string)
+#: tmp_strings.xml:60(string)
 msgid ""
 "The folder \\\"%1$s\\\" does not exist yet. Please connect your device to "
 "the computer, create the folder and fill it with *.note files."
@@ -154,7 +144,7 @@ msgstr ""
 msgid "Completing authentication. Please wait..."
 msgstr ""
 
-#: tmp_strings.xml:75(string)
+#: tmp_strings.xml:64(string)
 msgid ""
 "The connection to the server has failed, please check that the address you "
 "entered is correct."
@@ -162,33 +152,31 @@ msgstr ""
 "Веза са служитељем није успела, молим, проверите да ли је адреса коју сте "
 "унели исправна."
 
-#: tmp_strings.xml:76(string)
+#: tmp_strings.xml:65(string)
 msgid "The server address changed but the new value is empty"
 msgstr "Адреса служитеља је измењена, али, нова вредност је празна"
 
-#: tmp_strings.xml:78(string)
+#: tmp_strings.xml:67(string)
 msgid "Choose the sync service to use"
 msgstr "Изаберите која услуга усклађивања ће се користити"
 
-#. %1$s will be replaced with "Online Synchronisation", "SD Card",...
-#: tmp_strings.xml:80(string)
+#: tmp_strings.xml:68(string)
 msgid "Synchronization with %1$s is complete."
 msgstr "Усклађивање са %1$s је завршено."
 
-#. %1$s will be replaced with "SD Card",...
-#: tmp_strings.xml:82(string)
+#: tmp_strings.xml:69(string)
 msgid "No notes found on %1$s."
 msgstr "Нисам пронашао ни једну белешку у %1$s."
 
-#: tmp_strings.xml:83(string)
+#: tmp_strings.xml:70(string)
 msgid "You are not connected to the Internet."
 msgstr "Нисте повезани на интернет."
 
-#: tmp_strings.xml:84(string)
+#: tmp_strings.xml:71(string)
 msgid "Sync already in progress"
 msgstr "Усклађивање је већ у току"
 
-#: tmp_strings.xml:85(string)
+#: tmp_strings.xml:72(string)
 msgid ""
 "There was an error trying to parse your note collection. If you are able to "
 "replicate the problem, please contact us!"
@@ -196,17 +184,15 @@ msgstr ""
 "Десила се грешка при покушају расчлањивања збирке белешки. Ако сте у "
 "могућности да опишете проблем, молим, обратите нам се!"
 
-#. Altert box header
-#: tmp_strings.xml:87(string)
+#: tmp_strings.xml:73(string)
 msgid "Error"
 msgstr "Грешка"
 
-#. Altert box header
-#: tmp_strings.xml:89(string)
+#: tmp_strings.xml:74(string)
 msgid "No Such Note"
 msgstr "Не постоји таква белешка"
 
-#: tmp_strings.xml:90(string)
+#: tmp_strings.xml:75(string)
 msgid ""
 "The requested note could not be found. Maybe it was deleted or removed "
 "through synchronization."
@@ -229,60 +215,58 @@ msgid "SD card not found."
 msgstr ""
 
 #. NoteSorting
-#: tmp_strings.xml:80(string)
+#: tmp_strings.xml:81(string)
 msgid "Change Sort"
 msgstr "Промени начин распоређивања"
 
-#: tmp_strings.xml:81(string)
+#: tmp_strings.xml:82(string)
 msgid "Choose the default sorting"
 msgstr ""
 
-#: tmp_strings.xml:82(string)
+#: tmp_strings.xml:83(string)
 msgid "Default sort"
 msgstr ""
 
 #. NotebookFiltering
-#: tmp_strings.xml:105(string)
+#: tmp_strings.xml:86(string)
 msgid "Filter"
 msgstr "Услов"
 
-#: tmp_strings.xml:106(string)
+#: tmp_strings.xml:87(string)
 msgid "There are no notebooks in the database."
 msgstr "Нема бележница у остави података."
 
-#: tmp_strings.xml:107(string)
+#: tmp_strings.xml:88(string)
 msgid "All notebooks"
 msgstr "Све бележнице"
 
 #. List Longpress Menu
-#: tmp_strings.xml:110(string)
+#: tmp_strings.xml:91(string)
 msgid "View"
 msgstr "Преглед"
 
-#: tmp_strings.xml:111(string)
+#: tmp_strings.xml:92(string)
 msgid "Note Options"
 msgstr "Могућности белешке"
 
-#: tmp_strings.xml:112(string)
+#: tmp_strings.xml:93(string)
 msgid "Send"
 msgstr "Пошаљи"
 
-#. Text in input field for search
-#: tmp_strings.xml:116(string)
+#. Search
+#: tmp_strings.xml:96(string)
 msgid "Search Notes"
 msgstr "Тражи белешке"
 
-#. Preferences Field in global search to include notes
-#: tmp_strings.xml:118(string)
+#: tmp_strings.xml:97(string)
 msgid "Text in your notes"
 msgstr "Текст у бележници"
 
-#. %s will be replaced with the search string
-#: tmp_strings.xml:120(string)
+#: tmp_strings.xml:98(string)
 msgid "No notes found for \\\"%s\\\""
 msgstr "Нисам нашао белешку за „%s“"
 
-#: tmp_strings.xml:121(string)
+#: tmp_strings.xml:99(string)
 msgid "Search"
 msgstr "Претражи"
 
@@ -290,92 +274,206 @@ msgstr "Претражи"
 msgid "Search Options"
 msgstr ""
 
-#: tmp_strings.xml:122(string)
+#: tmp_strings.xml:101(string)
 msgid "Search Results:"
 msgstr "Излаз претраге:"
 
-#: tmp_strings.xml:123(string)
+#: tmp_strings.xml:102(string)
 msgid "Clear search history"
 msgstr "Очисти историјат претраге"
 
-#: tmp_strings.xml:124(string)
+#: tmp_strings.xml:103(string)
 msgid "Remove all the searches you have performed"
 msgstr "Уклони све извршене претраге"
 
-#: tmp_strings.xml:125(string)
+#: tmp_strings.xml:104(string)
 msgid "Search history has been cleared."
 msgstr "Историја претраге је очишћена."
 
 #. Date
-#: tmp_strings.xml:128(string)
+#: tmp_strings.xml:107(string)
 msgid "Modified:"
 msgstr "Измењена:"
 
-#: tmp_strings.xml:129(string)
+#: tmp_strings.xml:108(string)
 msgid "Today"
 msgstr "Данас"
 
-#: tmp_strings.xml:130(string)
+#: tmp_strings.xml:109(string)
 msgid "Yesterday"
 msgstr "Јуче"
 
-#. Header when picking a note for a new shortcut
-#: tmp_strings.xml:134(string)
+#. Shortcuts handling
+#: tmp_strings.xml:112(string)
 msgid "Choose a Note"
 msgstr "Изаберите белешку"
 
-#: tmp_strings.xml:135(string)
+#: tmp_strings.xml:113(string)
 msgid "Tomdroid Note"
 msgstr "Томадроид белешка"
 
-#: tmp_strings.xml:136(string)
+#: tmp_strings.xml:114(string)
 msgid "Remove shortcut"
 msgstr "Уклони пречицу"
 
-#: tmp_strings.xml:137(string)
+#: tmp_strings.xml:115(string)
 msgid "Create shortcut"
 msgstr "Направи пречицу"
 
+#. Title of first Note
+#: tmp_strings.xml:117(string)
+msgid "Tomdroid's First Note"
+msgstr "Томадроидова прва белешка"
+
+#: tmp_strings.xml:120(item)
+msgid "Welcome to Tomdroid!\\n"
+msgstr "Добродошли код Томадроида!\\n"
+
+#: tmp_strings.xml:121(item)
+msgid ""
+"You have no notes here yet. To get started, set your Synchronization "
+"preferences under Settings. There are two synchronization options described "
+"below.\\n"
+msgstr ""
+"Овде још увек немате белешке. Да би почели, подесите својства усаглашавања у "
+"поставкама. Постоје две могућности усаглашавања описане испод.\\n"
+
+#: tmp_strings.xml:122(item)
+msgid "=Online Synchronization="
+msgstr "=Усклађивање преко мреже="
+
+#. =text= makes <size:large>text</size:large>
+#: tmp_strings.xml:124(item)
+msgid ""
+"Online Synchronization is what you are looking for if you want to sync to "
+"Tomboy-Online, your own Rainy/Snowy server or any server supporting the "
+"Tomboy Web REST API.\\n"
+msgstr ""
+
+#: tmp_strings.xml:125(item)
+msgid ""
+"To use it, set Sync Service to Online Synchronization in preferences then "
+"provide a Server URL. Here are some of the public ones:"
+msgstr ""
+"Да би га користили, поставите услугу усаглашавања на усаглашавање преко "
+"мреже у поставкама, а онда подесите адресу служитеља. Ево неких јавних:"
+
+#. -text is for list-items.
+#: tmp_strings.xml:127(item)
+msgid "-Tomboy Online - https://edge.tomboy-online.org/"
+msgstr "-Томица на мрежи  - https://edge.tomboy-online.org/"
+
+#. -text is for list-items.
+#: tmp_strings.xml:129(item)
+msgid "-rainy.notesync.org\\n"
+msgstr ""
+
+#: tmp_strings.xml:130(item)
+msgid ""
+"Once set, hit the Sync logo on Tomdroid's top bar to synchronize your "
+"notes.\\n"
+msgstr ""
+"Када се подеси, притисните знак усаглашавања на Томадроидовој горњој траци "
+"за усаглашавање Ваших бележака.\\n"
+
+#: tmp_strings.xml:131(item)
+msgid ""
+"Note: you might want to back up your Tomboy notes before syncing, since this "
+"app is still under development and may corrupt your Tomboy notes.\\n"
+msgstr ""
+"Примедба: Можда желите да направите резервни умножак пре усклађивања, пошто "
+"је ова апликација још увек у развоју, и могла би искварити Ваше Томичине "
+"белешке.\\n"
+
+#: tmp_strings.xml:132(item)
+msgid ""
+"Please see http://live.gnome.org/Tomboy/Directories for the location of the "
+"*.note files on all platforms.\\n"
+msgstr ""
+"Молим, погледајте  http://live.gnome.org/Tomboy/Directories да би знали "
+"путању *.note датотека на свим платформама.\\n"
+
+#. =text= makes <size:large>text</size:large>
+#: tmp_strings.xml:134(item)
+msgid "=SD Card="
+msgstr "=СД картица="
+
+#: tmp_strings.xml:135(item)
+msgid ""
+"Put your Tomboy notes (*.note) on your SD Card under tomdroid/. Once the "
+"notes are copied, set Sync Service to SD Card in preferences then hit the "
+"Sync logo on Tomdroid's top bar.\\n"
+msgstr ""
+"Поставите белешке (*.note) на СД картицу у tomdroid/.  Када се белешке "
+"умноже, поставите услугу усклађивања на СД картицу у поставкама, затим "
+"притисните знак усклађивања на горњој траци Томадроида.\\n"
+
+#: tmp_strings.xml:136(item)
+msgid ""
+"Also, Tomdroid is always looking for new contributors. If you are interested "
+"join the tomdroid-dev team on Launchpad: http://launchpad.net/~tomdroid-"
+"dev.\\n"
+msgstr ""
+"Такође, Томадроид стално тражи нове доприносиоце. Ако вас занима придружите "
+"се Томадроидовој развојној дружини на Лансирној рампи: "
+"http://launchpad.net/~tomdroid-dev.\\n"
+
+#: tmp_strings.xml:137(item)
+msgid ""
+"Lastly, if you encounter any issue, please report it at: "
+"https://bugs.launchpad.net/tomdroid"
+msgstr ""
+"Најзад, ако наиђете на потешкоће, молим, пријавите их на: "
+"https://bugs.launchpad.net/tomdroid"
+
 #. 30 chars max
-#: tmp_strings.xml:375(string)
+#: tmp_strings.xml:144(string)
 msgid "Tomdroid notes"
 msgstr "Томадроидове белешке"
 
 #. 4000 chars max
-#: tmp_strings.xml:124(string)
+#: tmp_strings.xml:146(string)
 msgid ""
 "A Tomboy client for Android. Tomboy is a desktop note-taking app using a "
 "wikiwiki approach and a simple user interface.\\n\\nNOTE: It is a READ-ONLY "
 "client for now.\\n\\n* Note format compatibility with Tomboy\\n* Online note "
-"synchronization with Snowy, Tomboy Online or Ubuntu One\\n* SD Card "
-"importation\\n* Open source!"
+"synchronization with Rainy, Snowy or Tomboy Online\\n* SD Card importation\\"
+"n* Open source!"
 msgstr ""
 
 #. 80 chars max
-#: tmp_strings.xml:321(string)
+#: tmp_strings.xml:149(string)
 msgid ""
 "Note-taking application with online synchronization compatible with Tomboy"
 msgstr ""
 "Програм за хватање бележака са усаглашавањем преко мреже сагласан са Томицом"
 
 #. 500 chars max
-#: tmp_strings.xml:383(string)
+#: tmp_strings.xml:152(string)
 msgid ""
-"0.6 \\\"Small World\\\" release\\n* Create home-screen shortcuts to notes\\"
-"n* Specify a folder to use for SD Card sync\\n* Reload current note after "
-"sync\\n* A lot of new translations: ar, bs, ca, cs, da, de, el, en-rGB, eo, "
-"es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, "
-"si, sv, ta, te, tr, ug, uk, zh, zh-rCN\\n* Several bugfixes\\n"
+"0.6.1 \\\"Polyglot\\\" release\\n* Added support for SSL sync with Rainy "
+"(www.notesync.org)\\n* New translations: bs, el, eo, fa, fi, nb, si, ta, bg, "
+"et, gl, id, la, ml, nl, sr, zh-rTW\\n* Updated translations: ar, ca, cs, da, "
+"de, en-rGB, es, eu, fo, fr, gd, hi, hu, it, ja, ko, ms, pl, pt-rBR, pt, ru, "
+"sv, te, tr, ug, uk, zh-rCN, zh\\n* Several bugfixes\\n"
 msgstr ""
-"0.6 \\„Мали свет“ издање\\n* Стварање пречица са почетног екрана до "
-"бележнице\\n* Одређивање фасцикле која ће се користити за усаглашавање\\n* "
-"Много нових превода: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, "
-"fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, "
-"tr, ug, uk, zh, zh-rCN\\n* Неколико поправака грешака\\n"
 
 #. Launchpad Translation String
-#: tmp_strings.xml:386(string)
+#: tmp_strings.xml:155(string)
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
 "  Саша Петровић https://launchpad.net/~salepetronije"
+
+#~ msgid ""
+#~ "0.6 \\\"Small World\\\" release\\n* Create home-screen shortcuts to notes\\"
+#~ "n* Specify a folder to use for SD Card sync\\n* Reload current note after "
+#~ "sync\\n* A lot of new translations: ar, bs, ca, cs, da, de, el, en-rGB, eo, "
+#~ "es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, "
+#~ "si, sv, ta, te, tr, ug, uk, zh, zh-rCN\\n* Several bugfixes\\n"
+#~ msgstr ""
+#~ "0.6 \\„Мали свет“ издање\\n* Стварање пречица са почетног екрана до "
+#~ "бележнице\\n* Одређивање фасцикле која ће се користити за усаглашавање\\n* "
+#~ "Много нових превода: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, "
+#~ "fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, "
+#~ "tr, ug, uk, zh, zh-rCN\\n* Неколико поправака грешака\\n"
