@@ -8,7 +8,7 @@ Testing
 - Test with public sdcard image all the bug notes to spot regressions
 
 Preparing the release
-- Increment version number in AndroidManifest.xml (android:versionCode and android:versionName), doc/user/README
+- Increment version number in AndroidManifest.xml (android:versionCode and android:versionName), README
 - Make sure TODO is up-to-date
 - Update the NEWS file
 - Make sure README is accurate

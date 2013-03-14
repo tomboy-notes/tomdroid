@@ -1,3 +1,312 @@
+2013-03-14  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/sync/SyncManager.java:
+
+	readded syncmanager tag which was lost
+
+2013-03-14  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/util/FirstNote.properties:
+	* NEWS:
+	* res/values/strings.xml:
+	* src/org/tomdroid/sync/SyncManager.java:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/FirstNote.java:
+	* src/org/tomdroid/util/Preferences.java:
+
+	removed all the ubuntu one strings and URLs as they are not valid any more.
+
+2013-03-14  Stefan Hammer  <j.4@gmx.at>
+
+	* NEWS:
+
+	update NEWS
+
+2013-03-14  Stefan Hammer  <j.4@gmx.at>
+
+	* .classpath:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+
+	backported fix for bug #1134866 and bug #982749 from beta branch
+
+2013-03-13  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid-bg.po:
+	* locales/tomdroid-et.po:
+	* locales/tomdroid-gl.po:
+	* locales/tomdroid-id.po:
+	* locales/tomdroid-la.po:
+	* locales/tomdroid-ml.po:
+	* locales/tomdroid-nl.po:
+	* locales/tomdroid-sr.po:
+	* locales/tomdroid-zh_TW.po:
+	* res/values-bg:
+	* res/values-bg/strings.xml:
+	* res/values-et:
+	* res/values-et/strings.xml:
+	* res/values-gl:
+	* res/values-gl/strings.xml:
+	* res/values-id:
+	* res/values-id/strings.xml:
+	* res/values-la:
+	* res/values-la/strings.xml:
+	* res/values-ml:
+	* res/values-ml/strings.xml:
+	* res/values-nl:
+	* res/values-nl/strings.xml:
+	* res/values-sr:
+	* res/values-sr/strings.xml:
+	* res/values-zh-rTW:
+	* res/values-zh-rTW/strings.xml:
+	* AUTHORS:
+	* NEWS:
+	* locales/tomdroid-ar.po:
+	* locales/tomdroid-bs.po:
+	* locales/tomdroid-ca.po:
+	* locales/tomdroid-cs.po:
+	* locales/tomdroid-da.po:
+	* locales/tomdroid-de.po:
+	* locales/tomdroid-el.po:
+	* locales/tomdroid-en_GB.po:
+	* locales/tomdroid-eo.po:
+	* locales/tomdroid-es.po:
+	* locales/tomdroid-eu.po:
+	* locales/tomdroid-fa.po:
+	* locales/tomdroid-fi.po:
+	* locales/tomdroid-fo.po:
+	* locales/tomdroid-fr.po:
+	* locales/tomdroid-gd.po:
+	* locales/tomdroid-hi.po:
+	* locales/tomdroid-hu.po:
+	* locales/tomdroid-it.po:
+	* locales/tomdroid-ja.po:
+	* locales/tomdroid-ko.po:
+	* locales/tomdroid-ms.po:
+	* locales/tomdroid-nb.po:
+	* locales/tomdroid-pl.po:
+	* locales/tomdroid-pt.po:
+	* locales/tomdroid-pt_BR.po:
+	* locales/tomdroid-ru.po:
+	* locales/tomdroid-si.po:
+	* locales/tomdroid-sv.po:
+	* locales/tomdroid-ta.po:
+	* locales/tomdroid-te.po:
+	* locales/tomdroid-tr.po:
+	* locales/tomdroid-ug.po:
+	* locales/tomdroid-uk.po:
+	* locales/tomdroid-zh.po:
+	* locales/tomdroid-zh_CN.po:
+	* locales/tomdroid.pot:
+	* res/values-ar/strings.xml:
+	* res/values-bs/strings.xml:
+	* res/values-ca/strings.xml:
+	* res/values-cs/strings.xml:
+	* res/values-da/strings.xml:
+	* res/values-de/strings.xml:
+	* res/values-el/strings.xml:
+	* res/values-en-rGB/strings.xml:
+	* res/values-eo/strings.xml:
+	* res/values-es/strings.xml:
+	* res/values-eu/strings.xml:
+	* res/values-fa/strings.xml:
+	* res/values-fi/strings.xml:
+	* res/values-fo/strings.xml:
+	* res/values-fr/strings.xml:
+	* res/values-gd/strings.xml:
+	* res/values-hi/strings.xml:
+	* res/values-hu/strings.xml:
+	* res/values-it/strings.xml:
+	* res/values-ja/strings.xml:
+	* res/values-ko/strings.xml:
+	* res/values-ms/strings.xml:
+	* res/values-nb/strings.xml:
+	* res/values-pl/strings.xml:
+	* res/values-pt-rBR/strings.xml:
+	* res/values-pt/strings.xml:
+	* res/values-ru/strings.xml:
+	* res/values-si/strings.xml:
+	* res/values-sv/strings.xml:
+	* res/values-ta/strings.xml:
+	* res/values-te/strings.xml:
+	* res/values-tr/strings.xml:
+	* res/values-ug/strings.xml:
+	* res/values-uk/strings.xml:
+	* res/values-zh-rCN/strings.xml:
+	* res/values-zh/strings.xml:
+
+	Update NEWS, translations
+
+2013-03-13  Stefan Hammer  <j.4@gmx.at>
+
+	* AndroidManifest.xml:
+
+	fix lp:1132389 
+
+2013-03-13  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/sync/web/MySSLSocketFactory.java:
+	* src/org/tomdroid/sync/web/AnonymousConnection.java:
+	* src/org/tomdroid/sync/web/OAuthConnection.java:
+	* src/org/tomdroid/sync/web/WebConnection.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	fix lp:1153289 Accept self signed SSL certificates to be able to sync securely with Rainy
+
+2013-01-05  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* doc/gather-logs.txt:
+
+	doc: added logcat instructions
+	
+	We repeat them quite often.
+
+2012-08-22  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid.pot:
+
+	Make translations available on launchpad with running bash androidxml2po.bash -e
+
+2012-08-21  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* res/values/strings.xml:
+
+	updated market release news text in preparation for next release
+
+2012-08-21  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* NEWS:
+
+	updated NEWS for upcoming 0.6.1
+
+2012-08-21  Stefan Hammer  <j.4@gmx.at>
+
+	* data/market-screenshots/0.5 - search.png:
+	* data/market-screenshots/0.5 - welcome-dialog.png:
+	* data/market-screenshots/0.5 - note-list.png:
+	* data/market-screenshots/0.5 - note-options.png:
+	* data/market-screenshots/0.5 - note-view.png:
+	* data/market-screenshots/0.5 - preferences.png:
+
+	Push new screenshots with the SKD tool.
+
+2012-08-20  Stefan Hammer  <j.4@gmx.at>
+
+	* data/market-screenshots/0.5 - note-list.png:
+	* data/market-screenshots/0.5 - note-options.png:
+	* data/market-screenshots/0.5 - note-view.png:
+	* data/market-screenshots/0.5 - preferences.png:
+	* locales/tomdroid-bs.po:
+	* locales/tomdroid-el.po:
+	* locales/tomdroid-eo.po:
+	* locales/tomdroid-fa.po:
+	* locales/tomdroid-fi.po:
+	* locales/tomdroid-nb.po:
+	* locales/tomdroid-si.po:
+	* locales/tomdroid-ta.po:
+	* res/values-bs:
+	* res/values-bs/strings.xml:
+	* res/values-el:
+	* res/values-el/strings.xml:
+	* res/values-eo:
+	* res/values-eo/strings.xml:
+	* res/values-fa:
+	* res/values-fa/strings.xml:
+	* res/values-fi:
+	* res/values-fi/strings.xml:
+	* res/values-nb:
+	* res/values-nb/strings.xml:
+	* res/values-si:
+	* res/values-si/strings.xml:
+	* res/values-ta:
+	* res/values-ta/strings.xml:
+
+	add missing translations and screenshots for 0.5 and 0.6 release
+
+2012-08-19  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid-ar.po:
+	* locales/tomdroid-ca.po:
+	* locales/tomdroid-cs.po:
+	* locales/tomdroid-da.po:
+	* locales/tomdroid-de.po:
+	* locales/tomdroid-en_GB.po:
+	* locales/tomdroid-es.po:
+	* locales/tomdroid-eu.po:
+	* locales/tomdroid-fo.po:
+	* locales/tomdroid-fr.po:
+	* locales/tomdroid-gd.po:
+	* locales/tomdroid-hi.po:
+	* locales/tomdroid-hu.po:
+	* locales/tomdroid-it.po:
+	* locales/tomdroid-ja.po:
+	* locales/tomdroid-ko.po:
+	* locales/tomdroid-ms.po:
+	* locales/tomdroid-pl.po:
+	* locales/tomdroid-pt.po:
+	* locales/tomdroid-pt_BR.po:
+	* locales/tomdroid-ru.po:
+	* locales/tomdroid-sv.po:
+	* locales/tomdroid-te.po:
+	* locales/tomdroid-tr.po:
+	* locales/tomdroid-ug.po:
+	* locales/tomdroid-uk.po:
+	* locales/tomdroid-zh.po:
+	* locales/tomdroid-zh_CN.po:
+	* locales/tomdroid.pot:
+	* res/values-ar/strings.xml:
+	* res/values-ca/strings.xml:
+	* res/values-cs/strings.xml:
+	* res/values-da/strings.xml:
+	* res/values-de/strings.xml:
+	* res/values-en-rGB/strings.xml:
+	* res/values-es/strings.xml:
+	* res/values-eu/strings.xml:
+	* res/values-fo/strings.xml:
+	* res/values-fr/strings.xml:
+	* res/values-gd/strings.xml:
+	* res/values-hi/strings.xml:
+	* res/values-hu/strings.xml:
+	* res/values-it/strings.xml:
+	* res/values-ja/strings.xml:
+	* res/values-ko/strings.xml:
+	* res/values-ms/strings.xml:
+	* res/values-pl/strings.xml:
+	* res/values-pt-rBR/strings.xml:
+	* res/values-pt/strings.xml:
+	* res/values-ru/strings.xml:
+	* res/values-sv/strings.xml:
+	* res/values-te/strings.xml:
+	* res/values-tr/strings.xml:
+	* res/values-ug/strings.xml:
+	* res/values-uk/strings.xml:
+	* res/values-zh-rCN/strings.xml:
+	* res/values-zh/strings.xml:
+
+	import translations from launchpad and export pot file.
+
+2012-08-18  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid.pot:
+	* util/xml2po/README:
+
+	updated translations for launchpad
+
+2012-08-16  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* NEWS:
+
+	changed my mind on release name
+	
+	could've been misinterpreted as it ruin my (Olivier) life which isn't the case at all
+
+2012-08-16  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* AUTHORS:
+	* ChangeLog:
+
+	generated author and changelog metadata
+
 2012-08-16  Olivier Bilodeau  <olivier@bottomlesspit.org>
 
 	* AUTHORS:
