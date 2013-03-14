@@ -40,6 +40,7 @@ import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.provider.SearchRecentSuggestions;
+import android.webkit.URLUtil;
 import android.widget.Toast;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
@@ -105,20 +106,17 @@ public class PreferencesActivity extends PreferenceActivity {
 
 			public boolean onPreferenceChange(Preference preference,
 					Object serverUri) {
+				String newURL = serverUri.toString();
+				boolean retval = true;
 				
-				if (serverUri == null) {
-					Toast.makeText(PreferencesActivity.this,
-							getString(R.string.prefServerEmpty),
-							Toast.LENGTH_SHORT).show();
-					return false;
+				if ( !URLUtil.isValidUrl(newURL) || newURL.indexOf(' ') != -1 ) {
+					noValidEntry(newURL);
+					retval = false;
+				} else {
+					syncServer.setSummary(newURL);
+					authenticate((String) serverUri);
 				}
-				if ((serverUri.toString().contains("\t")) || (serverUri.toString().contains(" ")) || (serverUri.toString().contains("\n"))){
-					noValidEntry(serverUri.toString());
-					return false;
-				}
-			    
-				authenticate((String) serverUri);
-				return true;
+				return retval;
 			}
 			
 		});
@@ -128,31 +126,35 @@ public class PreferencesActivity extends PreferenceActivity {
 
 			public boolean onPreferenceChange(Preference preference, Object locationUri) {
 
+				boolean retval = true;
+				// if it is the same, return false. this is important as we would reset the sync-values later
 				if (locationUri.equals(Preferences.getString(Preferences.Key.SD_LOCATION))) { 
-					return false;
+					retval =  false;
 				}
-				if ((locationUri.toString().contains("\t")) || (locationUri.toString().contains("\n"))) { 
+				else if ((locationUri.toString().contains("\t")) || (locationUri.toString().contains("\n"))) { 
 					noValidEntry(locationUri.toString());
-					return false;
+					retval =  false;
 				}
+				else {
 				
-				File path = new File(Environment.getExternalStorageDirectory()
-						+ "/" + locationUri + "/");
+					File path = new File(Environment.getExternalStorageDirectory()
+							+ "/" + locationUri + "/");
+	
+					if(!path.exists()) {
+						TLog.w(TAG, "Folder {0} does not exist.", path);
+						folderNotExisting(path.toString());
+						return false;
+					}
+					
+					Preferences.putString(Preferences.Key.SD_LOCATION, locationUri.toString());
+					TLog.d(TAG, "Changed Folder to: " + path.toString());
+	
+					Tomdroid.NOTES_PATH = path.toString();
+					sdLocation.setSummary(Tomdroid.NOTES_PATH);
 
-				if(!path.exists()) {
-					TLog.w(TAG, "Folder {0} does not exist.", path);
-					folderNotExisting(path.toString());
-					return false;
+					resetLocalDatabase();
 				}
-				
-				Preferences.putString(Preferences.Key.SD_LOCATION, locationUri.toString());
-				TLog.d(TAG, "Changed Folder to: " + path.toString());
-
-				Tomdroid.NOTES_PATH = path.toString();
-				sdLocation.setSummary(Tomdroid.NOTES_PATH);
-
-				resetLocalDatabase();
-				return true;
+				return retval;
 			}
 		});
 		
