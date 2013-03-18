@@ -33,6 +33,8 @@ import android.view.MenuInflater;
  */
 public abstract class ActionBarHelper {
     protected Activity mActivity;
+    
+    protected boolean showHomeButtonEnabled = true;
 
     /**
      * Factory method for creating {@link ActionBarHelper} objects for a
@@ -93,5 +95,9 @@ public abstract class ActionBarHelper {
      */
     public MenuInflater getMenuInflater(MenuInflater superMenuInflater) {
         return superMenuInflater;
+    }
+    
+    public void setHomeButtonEnabled(boolean state) {
+    	showHomeButtonEnabled = state;
     }
 }

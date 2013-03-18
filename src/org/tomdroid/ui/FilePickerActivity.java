@@ -76,6 +76,9 @@ public class FilePickerActivity extends ActionBarListActivity {
 		View contentView =  View.inflate(this, R.layout.file_picker_content_view, null);
         setContentView(contentView);
         
+		// Disable the tomdroid icon home button
+		setHomeButtonEnabled(false);
+        
         navButtons = (LinearLayout) contentView.findViewById(R.id.navButtons);
         
 		// Set the view to be shown if the list is empty

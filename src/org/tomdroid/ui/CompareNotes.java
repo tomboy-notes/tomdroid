@@ -78,6 +78,8 @@ public class CompareNotes extends ActionBarActivity {
 		TLog.v(TAG, "starting CompareNotes");
 		
 		setContentView(R.layout.note_compare);
+		// Disable the tomdroid icon home button
+		setHomeButtonEnabled(false);
 		
 		final Bundle extras = this.getIntent().getExtras();
 

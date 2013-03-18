@@ -35,6 +35,7 @@ import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.sync.SyncService;
 import org.tomdroid.util.ErrorList;
+import org.tomdroid.ui.actionbar.ActionBarHelperBase;
 import org.tomdroid.ui.actionbar.ActionBarListActivity;
 import org.tomdroid.util.FirstNote;
 import org.tomdroid.util.Honeycomb;
@@ -49,7 +50,9 @@ import org.tomdroid.util.Send;
 import org.tomdroid.util.TLog;
 import org.tomdroid.xml.LinkInternalSpan;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -174,6 +177,7 @@ public class Tomdroid extends ActionBarListActivity {
 	private String query;
 	
 	/** Called when the activity is created. */
+	@SuppressLint("NewApi")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -218,7 +222,7 @@ public class Tomdroid extends ActionBarListActivity {
 		}
 		
 		this.intent = getIntent();
-
+		
 	    if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
 	    	this.setTitle(getString(R.string.app_name) + " - " + getString(R.string.SearchResultTitle));
 	    	query = intent.getStringExtra(SearchManager.QUERY);
@@ -227,6 +231,9 @@ public class Tomdroid extends ActionBarListActivity {
 	        SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
 	                SearchSuggestionProvider.AUTHORITY, SearchSuggestionProvider.MODE);
 	        suggestions.saveRecentQuery(query, null);
+		} else {
+			// if main view -> disable the tomdroid icon home button
+			setHomeButtonEnabled(false);
 		}
 	    
 		String defaultSortOrder = Preferences.getString(Preferences.Key.SORT_ORDER);

@@ -98,7 +98,12 @@ public class ActionBarHelperBase extends ActionBarHelper {
         SimpleMenu tempMenu = new SimpleMenu(mActivity);
         SimpleMenuItem homeItem = new SimpleMenuItem(
                 tempMenu, android.R.id.home, 0, mActivity.getString(R.string.app_name));
-        homeItem.setIcon(R.drawable.icon);
+        if (showHomeButtonEnabled) {
+        	homeItem.setIcon(R.drawable.action_icon_up);
+        } else {
+        	homeItem.setIcon(R.drawable.action_icon);
+        }
+        
         addActionItemCompatFromMenuItem(homeItem);
 
         // Add title text
@@ -187,6 +192,13 @@ public class ActionBarHelperBase extends ActionBarHelper {
                                 ? R.dimen.actionbar_compat_button_home_width
                                 : R.dimen.actionbar_compat_button_width),
                 ViewGroup.LayoutParams.FILL_PARENT));
+        // home icon should be disabled in main view
+        if (itemId == android.R.id.home && !showHomeButtonEnabled) {
+        	actionButton.setClickable(false);
+        	actionButton.setFocusable(false);
+        	actionButton.setEnabled(false);
+        }
+        
         if (itemId == R.id.menuSync) {
             actionButton.setId(R.id.actionbar_compat_item_refresh);
         }

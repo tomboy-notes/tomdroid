@@ -81,4 +81,8 @@ public abstract class ActionBarListActivity extends ListActivity {
         mActionBarHelper.onTitleChanged(title, color);
         super.onTitleChanged(title, color);
     }
+    
+    public void setHomeButtonEnabled(boolean state) {
+        mActionBarHelper.setHomeButtonEnabled(state);
+    }
 }

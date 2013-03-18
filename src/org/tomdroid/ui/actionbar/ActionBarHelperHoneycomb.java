@@ -18,8 +18,10 @@ package org.tomdroid.ui.actionbar;
 
 import org.tomdroid.R;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,14 +38,22 @@ public class ActionBarHelperHoneycomb extends ActionBarHelper {
     protected ActionBarHelperHoneycomb(Activity activity) {
         super(activity);
     }
-
+    
+    @SuppressLint("NewApi")
+	@Override
+    public void onPostCreate(Bundle savedInstanceState) {
+        mActivity.getActionBar().setHomeButtonEnabled(showHomeButtonEnabled);
+        mActivity.getActionBar().setDisplayHomeAsUpEnabled(showHomeButtonEnabled);	
+    }
+    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         mOptionsMenu = menu;
         return super.onCreateOptionsMenu(menu);
     }
 
-    @Override
+    @SuppressLint("NewApi")
+	@Override
     public void setRefreshActionItemState(boolean refreshing) {
         // On Honeycomb, we can set the state of the refresh button by giving it a custom
         // action view.

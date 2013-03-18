@@ -47,6 +47,8 @@ public class ShortcutActivity extends ActionBarListActivity {
         Preferences.init(this, Tomdroid.CLEAR_PREFERENCES);
         TLog.d(TAG, "creating shortcut...");
         setContentView(R.layout.shortcuts_list);
+		// Disable the tomdroid icon home button
+		setHomeButtonEnabled(false);
         setTitle(R.string.shortcuts_view_caption);
         adapter = NoteManager.getListAdapter(this);
         setListAdapter(adapter);
