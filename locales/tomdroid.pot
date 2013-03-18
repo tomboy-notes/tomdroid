@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-03-15 00:06+0100\n"
+"POT-Creation-Date: 2013-03-18 23:46+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -359,21 +359,21 @@ msgstr ""
 
 #. 4000 chars max
 #: tmp_strings.xml:146(string)
-msgid "A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\\n\\nNOTE: It is a READ-ONLY client for now.\\n\\n* Note format compatibility with Tomboy\\n* Online note synchronization with Rainy, Snowy or Tomboy Online\\n* SD Card importation\\n* Open source!"
+msgid "A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\\n\\nNOTE: It is a READ-ONLY client for now.\\n\\n* Note format compatibility with Tomboy\\n* Online note synchronization with Rainy, Snowy or Tomboy Online\\n* SD Card importation\\n * Home screen shortcuts\\n* Open source!"
 msgstr ""
 
 #. 80 chars max
-#: tmp_strings.xml:149(string)
+#: tmp_strings.xml:150(string)
 msgid "Note-taking application with online synchronization compatible with Tomboy"
 msgstr ""
 
 #. 500 chars max
-#: tmp_strings.xml:152(string)
-msgid "0.6.1 \\\"Polyglot\\\" release\\n* Added support for SSL sync with Rainy (www.notesync.org)\\n* New translations: bs, el, eo, fa, fi, nb, si, ta, bg, et, gl, id, la, ml, nl, sr, zh-rTW\\n* Updated translations: ar, ca, cs, da, de, en-rGB, es, eu, fo, fr, gd, hi, hu, it, ja, ko, ms, pl, pt-rBR, pt, ru, sv, te, tr, ug, uk, zh-rCN, zh\\n* Several bugfixes\\n"
+#: tmp_strings.xml:153(string)
+msgid "0.6.1 \\\"Polyglot\\\" release\\n* Added support for SSL sync with Rainy (www.notesync.org)\\n* Added home screen shortcuts\\n* New translations: bs, el, eo, fa, fi, nb, si, ta, bg, et, gl, id, la, ml, nl, sr, zh-rTW\\n* Updated translations: ar, ca, cs, da, de, en-rGB, es, eu, fo, fr, gd, hi, hu, it, ja, ko, ms, pl, pt-rBR, pt, ru, sv, te, tr, ug, uk, zh-rCN, zh\\n* Several bugfixes\\n"
 msgstr ""
 
 #. Launchpad Translation String
-#: tmp_strings.xml:155(string)
+#: tmp_strings.xml:156(string)
 msgid "translator-credits"
 msgstr ""
 
