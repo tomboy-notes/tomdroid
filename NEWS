@@ -12,7 +12,7 @@ Join it at: https://launchpad.net/~tomdroid-dev
 For more details and developer visible changes see the ChangeLog
 
 -------------------------------------------------------------------------------
-Version 0.6.1 - "Polyglot" released on 2013-03-14
+Version 0.6.1 - "Polyglot" released on 2013-03-18
 
 * Backported fix for lp:1134866 and lp:982749 from beta branch
 * fixed lp:1132389 Tomdroid 0.6.0 Crash on Rotation in Authentication
