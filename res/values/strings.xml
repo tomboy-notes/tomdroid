@@ -221,7 +221,7 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkTitlesTitle">Link Titles</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkTitles">link to other note titles</string>
+	<string name="prefLinkTitles">Link to other note titles</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkUrlsTitle">Link Web Addresses"</string>
 	<!-- Description for checkbox in settings -->
@@ -233,11 +233,11 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkPhonesTitle">Link Telephone Numbers</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkPhones">link telephone numbers to phone app</string>
+	<string name="prefLinkPhones">Link telephone numbers to phone app</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkAddressesTitle">Link Map Addresses</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkAddresses">link addresses to maps app</string>
+	<string name="prefLinkAddresses">Link addresses to maps app</string>
 			
 	<!-- syncNotes -->
 

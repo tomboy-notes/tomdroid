@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-03-13 15:09+0100\n"
+"POT-Creation-Date: 2013-03-30 17:55+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -570,7 +570,7 @@ msgstr ""
 
 #. Description for checkbox in settings
 #: tmp_strings.xml:224(string)
-msgid "link to other note titles"
+msgid "Link to other note titles"
 msgstr ""
 
 #. Checkbox in settings
@@ -600,7 +600,7 @@ msgstr ""
 
 #. Description for checkbox in settings
 #: tmp_strings.xml:236(string)
-msgid "link telephone numbers to phone app"
+msgid "Link telephone numbers to phone app"
 msgstr ""
 
 #. Checkbox in settings
@@ -610,7 +610,7 @@ msgstr ""
 
 #. Description for checkbox in settings
 #: tmp_strings.xml:240(string)
-msgid "link addresses to maps app"
+msgid "Link addresses to maps app"
 msgstr ""
 
 #. %1$s will be replaced with "Online Synchronisation", "SD card",...
