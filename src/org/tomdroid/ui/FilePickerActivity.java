@@ -34,6 +34,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -75,9 +78,8 @@ public class FilePickerActivity extends ActionBarListActivity {
 
 		View contentView =  View.inflate(this, R.layout.file_picker_content_view, null);
         setContentView(contentView);
-        
-		// Disable the tomdroid icon home button
-		setHomeButtonEnabled(false);
+		
+		Preferences.init(this, Tomdroid.CLEAR_PREFERENCES);
         
         navButtons = (LinearLayout) contentView.findViewById(R.id.navButtons);
         
@@ -89,7 +91,7 @@ public class FilePickerActivity extends ActionBarListActivity {
 		
 		TextView listHeader = new TextView(this);
 		listHeader.setText(R.string.chooseFile);
-		getListView().addHeaderView(listHeader);
+		getListView().addHeaderView(listHeader, null, false);
 		
 		// Set initial directory
 		mDirectory = new File(Preferences.getString(Preferences.Key.LAST_FILE_PATH));
@@ -116,6 +118,26 @@ public class FilePickerActivity extends ActionBarListActivity {
 			ArrayList<String> collection = getIntent().getStringArrayListExtra(EXTRA_ACCEPTED_FILE_EXTENSIONS);
 			acceptedFileExtensions = (String[]) collection.toArray(new String[collection.size()]);
 		}
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+        // Calling super after populating the menu is necessary here to ensure that the
+        // action bar helpers have a chance to handle this event.
+		return super.onCreateOptionsMenu(menu);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+	        case android.R.id.home:
+	        	// app icon in action bar clicked; go home
+                Intent intent = new Intent(this, Tomdroid.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            	return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 	
 	@Override
