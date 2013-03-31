@@ -9,6 +9,7 @@ import java.io.OutputStreamWriter;
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.ui.Tomdroid;
+import org.tomdroid.xml.NoteContentBuilder;
 
 import android.app.Activity;
 import android.content.Intent;

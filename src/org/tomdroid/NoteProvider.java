@@ -55,8 +55,8 @@ import android.text.Html;
 import android.text.TextUtils;
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.Preferences;
-import org.tomdroid.util.StringConverter;
 import org.tomdroid.util.TLog;
+import org.tomdroid.xml.XmlUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -142,7 +142,7 @@ public class NoteProvider extends ContentProvider {
 					row.put(Note.TAGS, "");
 				}
 				if (oldVersion <= 3) {
-					row.put(Note.NOTE_CONTENT_PLAIN, StringConverter.encode(Html.fromHtml(row.get(Note.TITLE) + "\n" + row.get(Note.NOTE_CONTENT)).toString()));
+					row.put(Note.NOTE_CONTENT_PLAIN, XmlUtils.escape(Html.fromHtml(row.get(Note.TITLE) + "\n" + row.get(Note.NOTE_CONTENT)).toString()));
 				}
 
 				db_list.add(row);

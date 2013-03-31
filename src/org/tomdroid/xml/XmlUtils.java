@@ -20,7 +20,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.tomdroid.util;
+package org.tomdroid.xml;
 
 public class XmlUtils {
 	

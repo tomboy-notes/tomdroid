@@ -39,7 +39,7 @@
  * limitations under the License.
  */
 
-package org.tomdroid.util;
+package org.tomdroid.xml;
 
 import java.util.regex.Pattern;
 

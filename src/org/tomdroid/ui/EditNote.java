@@ -36,14 +36,14 @@ import org.tomdroid.R;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.sync.sd.SdCardSyncService;
 import org.tomdroid.ui.actionbar.ActionBarActivity;
-import org.tomdroid.util.LinkifyPhone;
 import org.tomdroid.util.NewNote;
-import org.tomdroid.util.NoteContentBuilder;
 import org.tomdroid.util.Preferences;
-import org.tomdroid.util.NoteXMLContentBuilder;
 import org.tomdroid.util.TLog;
 import org.tomdroid.xml.LinkInternalSpan;
+import org.tomdroid.xml.LinkifyPhone;
+import org.tomdroid.xml.NoteContentBuilder;
 import org.tomdroid.xml.NoteContentHandler;
+import org.tomdroid.xml.NoteXMLContentBuilder;
 import org.xml.sax.InputSource;
 
 import android.app.AlertDialog;

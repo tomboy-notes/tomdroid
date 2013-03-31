@@ -47,6 +47,8 @@ import org.tomdroid.ui.EditNote;
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.ui.actionbar.ActionBarActivity;
 import org.tomdroid.xml.NoteContentHandler;
+import org.tomdroid.xml.NoteXMLContentBuilder;
+import org.tomdroid.xml.XmlUtils;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 

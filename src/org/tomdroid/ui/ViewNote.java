@@ -49,13 +49,13 @@ import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
 import org.tomdroid.ui.actionbar.ActionBarActivity;
-import org.tomdroid.util.LinkifyPhone;
-import org.tomdroid.util.NoteContentBuilder;
 import org.tomdroid.util.NoteViewShortcutsHelper;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.Send;
 import org.tomdroid.util.TLog;
 import org.tomdroid.xml.LinkInternalSpan;
+import org.tomdroid.xml.LinkifyPhone;
+import org.tomdroid.xml.NoteContentBuilder;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -30,8 +30,8 @@ import android.text.format.Time;
 import android.util.TimeFormatException;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.tomdroid.util.NoteContentBuilder;
-import org.tomdroid.util.XmlUtils;
+import org.tomdroid.xml.NoteContentBuilder;
+import org.tomdroid.xml.XmlUtils;
 
 import java.io.Serializable;
 import java.sql.Date;

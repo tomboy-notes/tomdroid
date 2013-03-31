@@ -20,13 +20,13 @@
  * You should have received a copy of the GNU General Public License
  * along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.tomdroid.util;
+package org.tomdroid.xml;
 
 import android.os.Handler;
 import android.os.Message;
 import android.text.SpannableStringBuilder;
 
-import org.tomdroid.xml.NoteContentHandler;
+import org.tomdroid.util.TLog;
 import org.xml.sax.InputSource;
 
 import javax.xml.parsers.SAXParser;

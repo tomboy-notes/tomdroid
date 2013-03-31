@@ -35,9 +35,8 @@ import android.widget.ListAdapter;
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.NoteListCursorAdapter;
 import org.tomdroid.util.Preferences;
-import org.tomdroid.util.StringConverter;
 import org.tomdroid.util.TLog;
-import org.tomdroid.util.XmlUtils;
+import org.tomdroid.xml.XmlUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -188,7 +187,7 @@ public class NoteManager {
 
 		String title = note.getTitle();
 		String xmlContent = note.getXmlContent();
-		String plainContent = StringConverter.encode(Html.fromHtml(title + "\n" + xmlContent).toString());
+		String plainContent = XmlUtils.escape(Html.fromHtml(title + "\n" + xmlContent).toString());
 		
 		// Preparing the values to be either inserted or updated
 		// depending on the result of the previous query
@@ -363,7 +362,7 @@ public class NoteManager {
 			String[] query = querys.split(" ");
 			qargs = new String[query.length+optionalQueries];
 			for (String string : query) {
-				qargs[count++] = "%"+StringConverter.encode(string)+"%"; 
+				qargs[count++] = "%"+XmlUtils.escape(string)+"%"; 
 				where = where + (where.length() > 0? " AND ":"")+"("+Note.NOTE_CONTENT_PLAIN+" LIKE ?)";
 			}	
 		}

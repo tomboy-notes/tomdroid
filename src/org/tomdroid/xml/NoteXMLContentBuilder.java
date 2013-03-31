@@ -20,7 +20,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.tomdroid.util;
+package org.tomdroid.xml;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -29,7 +29,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import org.tomdroid.Note;
-import org.tomdroid.xml.LinkInternalSpan;
+import org.tomdroid.util.TLog;
 
 import android.graphics.Typeface;
 import android.os.Handler;
@@ -197,7 +197,7 @@ public class NoteXMLContentBuilder implements Runnable {
 								if( currPos > 0 )
 								{
 									LeadingMarginSpan.Standard[] prevMargins = noteContent.getSpans( currPos-1, currPos-1, LeadingMarginSpan.Standard.class );
-									if( prevMargins.length>1 ) throw new Exception("Multiple margins at "+new Integer(currPos-1).toString() );
+									if( prevMargins.length>1 ) throw new Exception("Multiple margins at "+Integer.valueOf(currPos-1).toString() );
 									for( LeadingMarginSpan.Standard prevMargin: prevMargins ) 
 										prevListLevel = prevMargin.getLeadingMargin(true) / marginFactor;
 								}
@@ -211,7 +211,7 @@ public class NoteXMLContentBuilder implements Runnable {
 								if( currPos < noteContent.length() )
 								{
 									LeadingMarginSpan.Standard[] nextMargins = noteContent.getSpans( currPos+1, currPos+1, LeadingMarginSpan.Standard.class );
-									if( nextMargins.length>1 ) throw new Exception("Multiple margins at "+new Integer(currPos+1).toString() );;
+									if( nextMargins.length>1 ) throw new Exception("Multiple margins at "+Integer.valueOf(currPos+1).toString() );;
 									for( LeadingMarginSpan.Standard nextMargin: nextMargins )
 										nextListLevel = nextMargin.getLeadingMargin(true) / marginFactor;
 									// force writing of missing list end tags before non-list content:
