@@ -156,6 +156,7 @@ public class Tomdroid extends ActionBarListActivity {
 	// sync variables
 	private boolean creating = true;
 	private static ProgressDialog authProgressDialog;
+	private static boolean onCreate_SyncOnStart = true;
 	
 	// UI for tablet
 	private LinearLayout rightPane;
@@ -265,6 +266,13 @@ public class Tomdroid extends ActionBarListActivity {
 		
 		// set the view shown when the list is empty
 		updateEmptyList(query);
+		
+		// Syncing if SyncOnStart (pref) set AND onCreate_SyncOnStart set false for syncing only on startup
+		if (Preferences.getBoolean(Preferences.Key.SYNC_ON_START) && onCreate_SyncOnStart) {
+			startSyncing(true);
+			onCreate_SyncOnStart = false;
+			TLog.i(TAG, "SyncOnStart activated");	
+		}
 	}
 
 	@TargetApi(11)
