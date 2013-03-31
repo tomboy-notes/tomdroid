@@ -157,6 +157,10 @@ public class Tomdroid extends ActionBarListActivity {
 	private boolean creating = true;
 	private static ProgressDialog authProgressDialog;
 	
+	// remember that we already run onCreate before. If app is pushed out of memory, this variable will be true again
+	// It is set to false at the very end of onCreate (needed eg to sync just one time on appstart!)
+	private static boolean first_onCreate_run = true;
+	
 	// UI for tablet
 	private LinearLayout rightPane;
 	private TextView content;
@@ -265,6 +269,15 @@ public class Tomdroid extends ActionBarListActivity {
 		
 		// set the view shown when the list is empty
 		updateEmptyList(query);
+		
+		// Syncing if SyncOnStart (pref) set AND onCreate_SyncOnStart set false for syncing only on startup
+		if (Preferences.getBoolean(Preferences.Key.SYNC_ON_START) && first_onCreate_run) {
+			startSyncing(true);
+			TLog.i(TAG, "SyncOnStart activated");	
+		}
+		
+		// we already run onCreate now!
+		first_onCreate_run = false;
 	}
 
 	@TargetApi(11)

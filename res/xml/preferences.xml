@@ -56,6 +56,11 @@
 				android:positiveButtonText="@string/btnOk"
 				android:shouldDisableView="true"
 				android:singleLine="true"/>
+		 <CheckBoxPreference
+                android:key="sync_on_start"
+                android:title="@string/prefSyncOnStart"
+                android:summary="@string/prefDescSyncOnStart" 
+                android:defaultValue="False" />
 	</PreferenceCategory>
 	<PreferenceCategory android:title="@string/prefLinks">
         <CheckBoxPreference

@@ -65,6 +65,8 @@
 	<string name="prefTomboyWeb">Online Synchronization</string>
 	<string name="prefAuthenticate">Authenticate</string>
 	<string name="prefLocation">Location on SD Card</string>
+	<string name="prefSyncOnStart">Autosync on Startup</string>
+	<string name="prefDescSyncOnStart">Synchronise your notes on appstart</string>
 	<!-- %1$s will be repaced by the folder name eg /tomdroid -->
 	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
 	<!-- %1$s will be repaced by the folder name eg /testfolder -->
