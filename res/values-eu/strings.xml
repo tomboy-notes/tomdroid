@@ -65,6 +65,8 @@
 	<string name="prefTomboyWeb">Lineako sinkronizazioa</string>
 	<string name="prefAuthenticate">Autentifikatu</string>
 	<string name="prefLocation">SD txarteleko kokalekua</string>
+	<string name="prefSyncOnStart">Autosync on Startup</string>
+	<string name="prefDescSyncOnStart">Synchronise your notes on appstart</string>
 	<!-- %1$s will be repaced by the folder name eg /tomdroid -->
 	<string name="prefFolderCreated">\"%1$s\" karpeta ez da existitzen oraindik. Mesedez, konektatu zure gailua ordenagailura, sortu karpeta eta bete *.note fitxategiekin.</string>
 	<!-- %1$s will be repaced by the folder name eg /testfolder -->
@@ -166,6 +168,9 @@
 	<string name="italic">e</string>
 	<!-- S stands for strike through (in format bar) -->
 	<string name="strike"><strike>M</strike></string>
+	<string name="mono">monospace</string>
+	<string name="highlight">highlight</string>
+	<string name="size">size</string>
 	<string name="titleErrorParsingXML">Errorea oharra analizatzean</string>
 	<string name="messageErrorParsingXML">Errore bat gertatu da oharra analizatzean. Mesedez egiaztatu zure XMLa.</string>
 	<string name="messageNoteSaved">Oharra lokalki gordeta.</string>
@@ -218,7 +223,7 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkTitlesTitle">Link Titles</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkTitles">link to other note titles</string>
+	<string name="prefLinkTitles">Link to other note titles</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkUrlsTitle">Link Web Addresses"</string>
 	<!-- Description for checkbox in settings -->
@@ -230,11 +235,11 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkPhonesTitle">Link Telephone Numbers</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkPhones">link telephone numbers to phone app</string>
+	<string name="prefLinkPhones">Link telephone numbers to phone app</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkAddressesTitle">Link Map Addresses</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkAddresses">link addresses to maps app</string>
+	<string name="prefLinkAddresses">Link addresses to maps app</string>
 			
 	<!-- syncNotes -->
 
@@ -341,6 +346,7 @@
 	<string name="messageFileNotReadable">Cannot read the note file.</string>
 	<string name="noFiles">No files or directories</string>
 	<string name="chooseFile">Choose a file below that is either a Tomboy note file (which will be imported) or a plain text file (which will create a new note):</string>
+
 	<!-- Title of first Note -->
 	<string name="firstNoteTitle">Tomdroid-en lehen oharra</string>
 	
@@ -349,12 +355,10 @@
 		<item>You have no notes here yet. To get started, set your Synchronization preferences under Settings. There are two synchronization options described below.\n</item>
 		<item>=Online Synchronization=</item>
 		<!-- =text= makes <size:large>text</size:large> -->
-		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, Ubuntu One, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
+		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
 		<item>To use it, set Sync Service to Online Synchronization in preferences then  provide a Server URL. Here are some of the public ones:</item>
 		<!-- -text is for list-items. --> 
 		<item>-Tomboy Online - https://edge.tomboy-online.org/</item>
-		<!-- -text is for list-items. --> 
-		<item>-Ubuntu One - https://one.ubuntu.com/notes</item>
 		<!-- -text is for list-items. --> 
 		<item>-rainy.notesync.org - https://notesync.org:8080/[username]/[password]/\n</item>
 		<item>Once set, hit the Sync logo on Tomdroid\'s top bar to synchronize your notes.\n</item>
@@ -366,7 +370,7 @@
 		<item>Also, Tomdroid is always looking for new contributors. If you are interested join the tomdroid-dev team on Launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
 		<item>Lastly, if you encounter any issue, please report it at: https://bugs.launchpad.net/tomdroid</item>
 	</string-array>
-			
+	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
 	I\'ve put it in here so that it\'ll get translated by translators.
@@ -374,13 +378,13 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid oharrak</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">Androiderako Tomboy bezero bat. Tomboy oharrak hartzeko mahaigaineko erabiltzaile-interfaze sinplea duen wiki erako aplikazio bat da.\n\n* Tomboy-rekin bateragarria den ohar-formatua\n* Snowy, Tomboy Online edo Ubuntu One-ekin oharrak linean sinkronizatzeko aukera\n* SD txarteletik inportatzeko aukera\n* Kode irekikoa!</string>
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Open source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Note-taking app with online synchronization compatible with Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.6 \"Small World\" argitalpena\n* Sortu oharrentzako mahaigaineko lasterbideak\n* Zehaztu karpeta bat SD txartelarekin sinkronizatzeko\n* Birkargatu uneko oharra sinkronizatu ondoren\n* Hainbat itzulpen berri: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n* Zenbait errore-konponketa\n</string>
+        <string name="market_recent_changes">0.8.0 \"NAME\" release\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

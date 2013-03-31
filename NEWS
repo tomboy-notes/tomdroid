@@ -73,14 +73,6 @@ Tomdroid 0.7.1 beta - "Fast paced" released on 2012-08-21
 * fixed bug lp:1038968 NullPointerException on SD Card sync with notes causing parse error
 
 -------------------------------------------------------------------------------
-Version 0.6.1 - "Polyglot" released on <releaseDate>
-
-* fixed lp:1132389 Tomdroid 0.6.0 Crash on Rotation in Authentication
-* fixed lp:1153289 Accept self signed SSL certificates to be able to sync securely with Rainy
-* New translations: bs, el, eo, fa, fi, nb, si, ta, bg, et, gl, id, la, ml, nl, sr, zh-rTW
-* Updated translations: ar, ca, cs, da, de, en-rGB, es, eu, fo, fr, gd, hi, hu, it, ja, ko, ms, pl, pt-rBR, pt, ru, sv, te, tr, ug, uk, zh-rCN, zh
-
--------------------------------------------------------------------------------
 Tomdroid 0.7 beta - "House of Fun" - Editing and Two-Way Sync!
 
 Editing Features:
@@ -114,6 +106,15 @@ Preference Tweaks
 
 Misc:
 * fixed SQL query should use "?" (lp:880322)
+
+-------------------------------------------------------------------------------
+Version 0.6.1 - "Polyglot" released on 2013-03-18
+
+* Backported fix for lp:1134866 and lp:982749 from beta branch
+* fixed lp:1132389 Tomdroid 0.6.0 Crash on Rotation in Authentication
+* fixed lp:1153289 Accept self signed SSL certificates to be able to sync securely with Rainy (www.notesync.org)
+* New translations: bs, el, eo, fa, fi, nb, si, ta, bg, et, gl, id, la, ml, nl, sr, zh-rTW
+* Updated translations: ar, ca, cs, da, de, en-rGB, es, eu, fo, fr, gd, hi, hu, it, ja, ko, ms, pl, pt-rBR, pt, ru, sv, te, tr, ug, uk, zh-rCN, zh
 
 -------------------------------------------------------------------------------
 Version 0.6.0 - "Small World" released on 2012-08-16

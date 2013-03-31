@@ -65,6 +65,8 @@
 	<string name="prefTomboyWeb">Синхронизиране онлайн</string>
 	<string name="prefAuthenticate">Идентифициране</string>
 	<string name="prefLocation">Местоположение на SD карта</string>
+	<string name="prefSyncOnStart">Autosync on Startup</string>
+	<string name="prefDescSyncOnStart">Synchronise your notes on appstart</string>
 	<!-- %1$s will be repaced by the folder name eg /tomdroid -->
 	<string name="prefFolderCreated">Директорията \"%1$s\" все още не съществува. Моля, свържете вашето устройство към компютъра, създайте директорията и я попълнете с *.note файлове.</string>
 	<!-- %1$s will be repaced by the folder name eg /testfolder -->
@@ -166,6 +168,9 @@
 	<string name="italic">i</string>
 	<!-- S stands for strike through (in format bar) -->
 	<string name="strike"><strike>S</strike></string>
+	<string name="mono">равноширок</string>
+	<string name="highlight">подчертай</string>
+	<string name="size">размер</string>
 	<string name="titleErrorParsingXML">Грешка при прочитане на бележка</string>
 	<string name="messageErrorParsingXML">Възникна грешка при прочитане на бележката. Моля, проверете вашият XML.</string>
 	<string name="messageNoteSaved">Бележката е записана локално.</string>
@@ -218,7 +223,7 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkTitlesTitle">Заглавия на връзките</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkTitles">връзка към заглавията на друга бележка</string>
+	<string name="prefLinkTitles">Link to other note titles</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkUrlsTitle">Връзка към уеб адреси"</string>
 	<!-- Description for checkbox in settings -->
@@ -230,11 +235,11 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkPhonesTitle">Връзка към телефонни номера</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkPhones">свързване на телефонни номера към приложението за телефон</string>
+	<string name="prefLinkPhones">Link telephone numbers to phone app</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkAddressesTitle">Връзки към адреси на карти</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkAddresses">link addresses to maps app</string>
+	<string name="prefLinkAddresses">Link addresses to maps app</string>
 			
 	<!-- syncNotes -->
 
@@ -341,6 +346,7 @@
 	<string name="messageFileNotReadable">Cannot read the note file.</string>
 	<string name="noFiles">Няма файлове или директории</string>
 	<string name="chooseFile">Изберете файл, който е файл за бележка на Tomboy (който ще бъде внесен) или обикновен тектови файл (който ще създаде нова бележка):</string>
+
 	<!-- Title of first Note -->
 	<string name="firstNoteTitle">ПЪрвата бележка на Tomdroid</string>
 	
@@ -349,12 +355,10 @@
 		<item>Все още нямате бележки. За да започнете, изберете машите предпочитания за Синхронизация от Настройки. Има две опции за синхронизация описани по- долу.\n</item>
 		<item>=Онлайн синхронизация=</item>
 		<!-- =text= makes <size:large>text</size:large> -->
-		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, Ubuntu One, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
+		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
 		<item>За да го използвате, изберете "синхронизираща услуга към онлайн синхронизация" от предпочитанията и поставете URL на сървъра. Тези са някои от публичните:</item>
 		<!-- -text is for list-items. --> 
 		<item>-Tomboy Онлайн - https://edge.tomboy-online.org/</item>
-		<!-- -text is for list-items. --> 
-		<item>-Ubuntu One - https://one.ubuntu.com/notes</item>
 		<!-- -text is for list-items. --> 
 		<item>-rainy.notesync.org - https://notesync.org:8080/[username]/[password]/\n</item>
 		<item>Веднъж зададено, натиснете логото за синхронизация на горната лента на Tomdroid, за да синхронизирате вашите бележки.\n</item>
@@ -366,7 +370,7 @@
 		<item>Also, Tomdroid is always looking for new contributors. If you are interested join the tomdroid-dev team on Launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
 		<item>В заключение, ако срещнете някакъв проблем, моля, докладвайте го на: https://bugs.launchpad.net/tomdroid</item>
 	</string-array>
-			
+	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
 	I\'ve put it in here so that it\'ll get translated by translators.
@@ -374,13 +378,13 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid бележки</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Open source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Note-taking app with online synchronization compatible with Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">версия 0.6 \"Малък Свят\"\n* Зъздаване на кратки пътища до бележките на началния екран\n* Посочване на папка за синхронизация на SD картата\n* Презареждане на текущата бележка след синхронизация\n* Доста нови преводи: ar, bg, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n* Няколко бъгове\n</string>
+        <string name="market_recent_changes">0.8.0 \"NAME\" release\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

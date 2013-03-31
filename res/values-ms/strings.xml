@@ -65,6 +65,8 @@
 	<string name="prefTomboyWeb">Penyegerakan Atas Talian</string>
 	<string name="prefAuthenticate">Sahihkan</string>
 	<string name="prefLocation">Lokasi pada Kad SD</string>
+	<string name="prefSyncOnStart">Autosync on Startup</string>
+	<string name="prefDescSyncOnStart">Synchronise your notes on appstart</string>
 	<!-- %1$s will be repaced by the folder name eg /tomdroid -->
 	<string name="prefFolderCreated">Folder  \"%1$s\" tidak wujud lagi. Sila sambung peranti anda ke komputer, cipta folder dan isi ia dengan fail *.note.</string>
 	<!-- %1$s will be repaced by the folder name eg /testfolder -->
@@ -166,6 +168,9 @@
 	<string name="italic">i</string>
 	<!-- S stands for strike through (in format bar) -->
 	<string name="strike"><strike>S</strike></string>
+	<string name="mono">monospace</string>
+	<string name="highlight">highlight</string>
+	<string name="size">size</string>
 	<string name="titleErrorParsingXML">Ralat menghurai nota</string>
 	<string name="messageErrorParsingXML">Terdapat ralat menghurai nota. Sila semak XML anda.</string>
 	<string name="messageNoteSaved">Nota disimpan secara setempat.</string>
@@ -218,7 +223,7 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkTitlesTitle">Tajuk Pautan</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkTitles">Paut ke tajuk nota lain</string>
+	<string name="prefLinkTitles">Link to other note titles</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkUrlsTitle">Alamat Sesawang Pautan</string>
 	<!-- Description for checkbox in settings -->
@@ -230,11 +235,11 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkPhonesTitle">Nombor Telefon Pautan</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkPhones">paut nombor telefin ke aplikasi telefon</string>
+	<string name="prefLinkPhones">Link telephone numbers to phone app</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkAddressesTitle">Alamat Peta Pautan</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkAddresses">link addresses to maps app</string>
+	<string name="prefLinkAddresses">Link addresses to maps app</string>
 			
 	<!-- syncNotes -->
 
@@ -341,6 +346,7 @@
 	<string name="messageFileNotReadable">Cannot read the note file.</string>
 	<string name="noFiles">Tiada fail atau direktori</string>
 	<string name="chooseFile">Pilih fail dibawah sama ada fail Nota Tomboy (yang akan diimportkan) atau fail teks biasa (yang akan cipta nota baru):</string>
+
 	<!-- Title of first Note -->
 	<string name="firstNoteTitle">Nota Pertama Tomdroid</string>
 	
@@ -349,12 +355,10 @@
 		<item>Anda tidak mempunyai nota disini. Untuk mula, tetapkan keutamaan Penyegerakan anda dibawah Tetapam. Terdapat dua pilihan penyegerakan yang diterangkan dibawah.</item>
 		<item>=Penyegerakan Atas Talian=</item>
 		<!-- =text= makes <size:large>text</size:large> -->
-		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, Ubuntu One, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
+		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
 		<item>Untuk gunakannya, tetapkan Perkhidmatan kepada Penyegerakan Atas Talian dalam keutmamaan kemudian sediakan URL Pelayan. Disini terdapat beberapa pelayan awam:</item>
 		<!-- -text is for list-items. --> 
 		<item>-Tomboy Atas Talian - https://edge.tomboy-online.org/</item>
-		<!-- -text is for list-items. --> 
-		<item>-Ubuntu One - https://one.ubuntu.com/notes</item>
 		<!-- -text is for list-items. --> 
 		<item>-rainy.notesync.org - https://notesync.org:8080/[username]/[password]/\n</item>
 		<item>Bila sudah ditetapkan, tekan logo segerak pada palang atas Tomdroid untuk segerakam nota anda.\n</item>
@@ -366,7 +370,7 @@
 		<item>Also, Tomdroid is always looking for new contributors. If you are interested join the tomdroid-dev team on Launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
 		<item>AKhir sekali, jika anda mengalami sebarang masalah, sila laporkannya di: https://bugs.launchpad.net/tomdroid</item>
 	</string-array>
-			
+	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
 	I\'ve put it in here so that it\'ll get translated by translators.
@@ -374,13 +378,13 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Nota Tomdroid</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">Merupakan klien Tomboy untuk Android. Tomboy adalah aplikasi mengambil-nota menggunakan pendekatan wikiwiki dan merupakan antaramuka pengguna yang ringkas.\n\n* Format nota serasi dengan Tomboy\n* Penyegerakan atas-talian nota dengan Snowy, TOmboy Online atau Ubuntu One\n* Pengimportan Kad SD\n* Sumber Terbuka!</string>
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Open source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Note-taking app with online synchronization compatible with Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.6 \Keluaran "Dunia Kecil\"\n* Cipta pintasan skrin-rumah dalam nota\n* Nyatakan folder untuk diguna pada segerak SD\n* Muat semula nota semasa selepas segerak\n* Terdapat banyak terjemahan baru: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n* Beberapa pembaikan pepijat\n</string>
+        <string name="market_recent_changes">0.8.0 \"NAME\" release\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

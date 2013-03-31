@@ -68,6 +68,8 @@ Nous somme au courant de ses problèmes et nous avons l\'intention de les résou
 	<string name="prefTomboyWeb">Synchronisation en ligne</string>
 	<string name="prefAuthenticate">Authentification</string>
 	<string name="prefLocation">Emplacement sur carte SD</string>
+	<string name="prefSyncOnStart">Autosync on Startup</string>
+	<string name="prefDescSyncOnStart">Synchronise your notes on appstart</string>
 	<!-- %1$s will be repaced by the folder name eg /tomdroid -->
 	<string name="prefFolderCreated">Le dossier « %1$s » n\'existe pas encore. Connectez votre appareil à l\'ordinateur, créer le dossier et le remplir avec les fichiers *. note.</string>
 	<!-- %1$s will be repaced by the folder name eg /testfolder -->
@@ -169,6 +171,9 @@ Nous somme au courant de ses problèmes et nous avons l\'intention de les résou
 	<string name="italic">i</string>
 	<!-- S stands for strike through (in format bar) -->
 	<string name="strike"><strike>S</strike></string>
+	<string name="mono">monospace</string>
+	<string name="highlight">highlight</string>
+	<string name="size">size</string>
 	<string name="titleErrorParsingXML">Erreur transcription de la note</string>
 	<string name="messageErrorParsingXML">Il y a une erreur dans la transcription de la note. Veuillez vérifier votre XML</string>
 	<string name="messageNoteSaved">Note enregistrée localement</string>
@@ -221,7 +226,7 @@ Nous somme au courant de ses problèmes et nous avons l\'intention de les résou
 	<!-- Checkbox in settings -->
 	<string name="prefLinkTitlesTitle">Lien titre</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkTitles">Lier à un autre titre de note</string>
+	<string name="prefLinkTitles">Link to other note titles</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkUrlsTitle">lien adresse web</string>
 	<!-- Description for checkbox in settings -->
@@ -233,11 +238,11 @@ Nous somme au courant de ses problèmes et nous avons l\'intention de les résou
 	<!-- Checkbox in settings -->
 	<string name="prefLinkPhonesTitle">lien numéro de téléphone</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkPhones">Merttre un lien sur les numéros de téléphone pour appeler directement</string>
+	<string name="prefLinkPhones">Link telephone numbers to phone app</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkAddressesTitle">lien adresse géographique</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkAddresses">link addresses to maps app</string>
+	<string name="prefLinkAddresses">Link addresses to maps app</string>
 			
 	<!-- syncNotes -->
 
@@ -344,6 +349,7 @@ Nous somme au courant de ses problèmes et nous avons l\'intention de les résou
 	<string name="messageFileNotReadable">Cannot read the note file.</string>
 	<string name="noFiles">No files or directories</string>
 	<string name="chooseFile">Choose a file below that is either a Tomboy note file (which will be imported) or a plain text file (which will create a new note):</string>
+
 	<!-- Title of first Note -->
 	<string name="firstNoteTitle">Tomdroid\'s First Note</string>
 	
@@ -352,12 +358,10 @@ Nous somme au courant de ses problèmes et nous avons l\'intention de les résou
 		<item>You have no notes here yet. To get started, set your Synchronization preferences under Settings. There are two synchronization options described below.\n</item>
 		<item>=Online Synchronization=</item>
 		<!-- =text= makes <size:large>text</size:large> -->
-		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, Ubuntu One, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
+		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
 		<item>To use it, set Sync Service to Online Synchronization in preferences then  provide a Server URL. Here are some of the public ones:</item>
 		<!-- -text is for list-items. --> 
 		<item>-Tomboy en ligne- https://edge.tomboy-onligne.org/</item>
-		<!-- -text is for list-items. --> 
-		<item>-Ubuntu One - https://one.ubuntu.com/notes</item>
 		<!-- -text is for list-items. --> 
 		<item>-rainy.notesync.org - https://notesync.org:8080/[username]/[password]/\n</item>
 		<item>Once set, hit the Sync logo on Tomdroid\'s top bar to synchronize your notes.\n</item>
@@ -369,7 +373,7 @@ Nous somme au courant de ses problèmes et nous avons l\'intention de les résou
 		<item>Also, Tomdroid is always looking for new contributors. If you are interested join the tomdroid-dev team on Launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
 		<item>Lastly, if you encounter any issue, please report it at: https://bugs.launchpad.net/tomdroid</item>
 	</string-array>
-			
+	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
 	I\'ve put it in here so that it\'ll get translated by translators.
@@ -377,13 +381,13 @@ Nous somme au courant de ses problèmes et nous avons l\'intention de les résou
 	<!-- 30 chars max -->
 	<string name="market_title">Notes Tomdroid</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Open source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Note-taking app with online synchronization compatible with Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">version 0.6 \"Small World\"\n* Créer des raccourcies sur le bureau faire les notes\n* Spécifier un dossier à utiliser pour la synchronisation de la carte SD\n* Recharger la note courante après la syncrhonisation\n* De nombreuses traductions : ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n* Diverses corrections de bugs\n</string>
+        <string name="market_recent_changes">0.8.0 \"NAME\" release\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

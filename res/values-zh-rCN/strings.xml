@@ -65,6 +65,8 @@
 	<string name="prefTomboyWeb">在线同步</string>
 	<string name="prefAuthenticate">认证</string>
 	<string name="prefLocation">在 SD 卡上的位置</string>
+	<string name="prefSyncOnStart">Autosync on Startup</string>
+	<string name="prefDescSyncOnStart">Synchronise your notes on appstart</string>
 	<!-- %1$s will be repaced by the folder name eg /tomdroid -->
 	<string name="prefFolderCreated">文件夹“%1$s”不存在。请连接您的设备到计算机，创建文件夹并载入 *.note 文件。</string>
 	<!-- %1$s will be repaced by the folder name eg /testfolder -->
@@ -166,6 +168,9 @@
 	<string name="italic">i</string>
 	<!-- S stands for strike through (in format bar) -->
 	<string name="strike"><strike>S</strike></string>
+	<string name="mono">monospace</string>
+	<string name="highlight">highlight</string>
+	<string name="size">size</string>
 	<string name="titleErrorParsingXML">解析便笺错误</string>
 	<string name="messageErrorParsingXML">解析便笺发生错误。请检查您的 XML。</string>
 	<string name="messageNoteSaved">便笺已本地保存。</string>
@@ -218,7 +223,7 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkTitlesTitle">Link Titles</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkTitles">link to other note titles</string>
+	<string name="prefLinkTitles">Link to other note titles</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkUrlsTitle">Link Web Addresses"</string>
 	<!-- Description for checkbox in settings -->
@@ -230,11 +235,11 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkPhonesTitle">Link Telephone Numbers</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkPhones">link telephone numbers to phone app</string>
+	<string name="prefLinkPhones">Link telephone numbers to phone app</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkAddressesTitle">Link Map Addresses</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkAddresses">link addresses to maps app</string>
+	<string name="prefLinkAddresses">Link addresses to maps app</string>
 			
 	<!-- syncNotes -->
 
@@ -341,6 +346,7 @@
 	<string name="messageFileNotReadable">Cannot read the note file.</string>
 	<string name="noFiles">No files or directories</string>
 	<string name="chooseFile">Choose a file below that is either a Tomboy note file (which will be imported) or a plain text file (which will create a new note):</string>
+
 	<!-- Title of first Note -->
 	<string name="firstNoteTitle">Tomdroid 第一个便笺</string>
 	
@@ -349,12 +355,10 @@
 		<item>您现在还没有便笺。可在“设置”下设置同步首选项。如下描述，有两种同步选项。\n</item>
 		<item>=在线同步=</item>
 		<!-- =text= makes <size:large>text</size:large> -->
-		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, Ubuntu One, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
+		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
 		<item>要使用该功能，可在首选项里将同步服务设为在线同步，并提供一个服务器 URL。下面是部分公共服务器：</item>
 		<!-- -text is for list-items. --> 
 		<item>-Tomboy 网页版 - https://edge.tomboy-online.org/</item>
-		<!-- -text is for list-items. --> 
-		<item>-Ubuntu One - https://one.ubuntu.com/notes</item>
 		<!-- -text is for list-items. --> 
 		<item>-rainy.notesync.org - https://notesync.org:8080/[username]/[password]/\n</item>
 		<item>一旦设置，点击 Tomdroid 顶部处的同步标志就可以同步您的便笺。\n</item>
@@ -366,7 +370,7 @@
 		<item>Also, Tomdroid is always looking for new contributors. If you are interested join the tomdroid-dev team on Launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
 		<item>最后，如果您遇到任何问题，请将其报告至 https://bugs.launchpad.net/tomdroid</item>
 	</string-array>
-			
+	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
 	I\'ve put it in here so that it\'ll get translated by translators.
@@ -374,13 +378,13 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid 笔记</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Snowy, Tomboy Online or Ubuntu One\n* SD Card importation\n* Open source!</string>
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Open source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Note-taking app with online synchronization compatible with Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.6 \"Small World\" release\n* Create home-screen shortcuts to notes\n* Specify a folder to use for SD Card sync\n* Reload current note after sync\n* A lot of new translations: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n* Several bugfixes\n</string>
+        <string name="market_recent_changes">0.8.0 \"NAME\" release\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

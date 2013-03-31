@@ -65,6 +65,8 @@
 	<string name="prefTomboyWeb">Online synkronisering</string>
 	<string name="prefAuthenticate">Godkend</string>
 	<string name="prefLocation">Placering på SD-kort</string>
+	<string name="prefSyncOnStart">Autosync on Startup</string>
+	<string name="prefDescSyncOnStart">Synchronise your notes on appstart</string>
 	<!-- %1$s will be repaced by the folder name eg /tomdroid -->
 	<string name="prefFolderCreated">Mappen \"%1$s\" eksisterer ikke endnu. Forbind venligst din enhed til computeren, opret en mappe og læg dine *.note filer i den.</string>
 	<!-- %1$s will be repaced by the folder name eg /testfolder -->
@@ -166,6 +168,9 @@
 	<string name="italic">k</string>
 	<!-- S stands for strike through (in format bar) -->
 	<string name="strike"><strike>g</strike></string>
+	<string name="mono">monospace</string>
+	<string name="highlight">highlight</string>
+	<string name="size">size</string>
 	<string name="titleErrorParsingXML">Fejl ved fortolkning af note</string>
 	<string name="messageErrorParsingXML">Der skete en fejl ved fortolkningen af noten. Kontroller venligst din XML-struktur</string>
 	<string name="messageNoteSaved">Noten er gemt lokalt.</string>
@@ -218,7 +223,7 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkTitlesTitle">Link titler</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkTitles">Link til andre note titler</string>
+	<string name="prefLinkTitles">Link to other note titles</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkUrlsTitle">Link webadresser"</string>
 	<!-- Description for checkbox in settings -->
@@ -230,11 +235,11 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkPhonesTitle">Link telefonnumre</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkPhones">link telefonnumre til telefon applikation</string>
+	<string name="prefLinkPhones">Link telephone numbers to phone app</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkAddressesTitle">Link kortadresser</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkAddresses">link addresses to maps app</string>
+	<string name="prefLinkAddresses">Link addresses to maps app</string>
 			
 	<!-- syncNotes -->
 
@@ -341,6 +346,7 @@
 	<string name="messageFileNotReadable">Cannot read the note file.</string>
 	<string name="noFiles">Ingen filer eller direktorier</string>
 	<string name="chooseFile">Vælg en fil nedenfor der er enten en Tomboy note fil (som vil blive importeret) eller en almindelig tekstfil (som vil oprette en ny note):</string>
+
 	<!-- Title of first Note -->
 	<string name="firstNoteTitle">Tomdroid\'s første note</string>
 	
@@ -349,12 +355,10 @@
 		<item>Du har ingen noter her endnu. For at komme i gang skal du indstille dine synkronisering præferencer under Indstillinger. Der er to synkroniseringsindstillinger beskrevet nedenfor.\n</item>
 		<item>=Online synkronisering=</item>
 		<!-- =text= makes <size:large>text</size:large> -->
-		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, Ubuntu One, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
+		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
 		<item>For at bruge den, skal du indstille Sync Service til Online Synkronisering i præferencerne og derefter indtaste en Server URL. Her er nogle af de offentlige muligheder:</item>
 		<!-- -text is for list-items. --> 
 		<item>-Tomboy Online - https://edge.tomboy-online.org/</item>
-		<!-- -text is for list-items. --> 
-		<item>-Ubuntu One - https://one.ubuntu.com/notes</item>
 		<!-- -text is for list-items. --> 
 		<item>-rainy.notesync.org - https://notesync.org:8080/[username]/[password]/\n</item>
 		<item>Når de er indstillet, klik på Sync logoet i Tomdroid\'s top bar for at synkronisere dine noter.\n</item>
@@ -366,7 +370,7 @@
 		<item>Also, Tomdroid is always looking for new contributors. If you are interested join the tomdroid-dev team on Launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
 		<item>Endeligt, hvis du oplever problemer, være venlig at rapportere dem her: https://bugs.launchpad.net/tomdroid</item>
 	</string-array>
-			
+	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
 	I\'ve put it in here so that it\'ll get translated by translators.
@@ -374,22 +378,13 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid noter</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">En Tomboy klient til Android. Tomboy er en desktop notetagning applikation som benytter en WikiWiki metode og en enkelt brugergrænseflade.\n\n 
-* Kompatibilitet med Tomboy\'s note format\n 
-* Online note synkronisering med Snowy, Tomboy Online eller Ubuntu One\n 
-* SD Card import\n 
-* Open source!</string>
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Open source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Note-taking app with online synchronization compatible with Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.6 \"Small World\" udgave\n 
-* Opret hjem-skærm genveje til noter\n 
-* Angiv en mappe der skal bruges til SD kort sync\n
-* Genindlæs aktuelle note efter synkronisering\n 
-* En masse nye oversættelser: ar, bs , ca, cs, da, de, el, en-RGB, eo, es, eu, FA, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, PL, PT, pt -RBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n 
-* Adskillige fejlrettelser\n</string>
+        <string name="market_recent_changes">0.8.0 \"NAME\" release\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

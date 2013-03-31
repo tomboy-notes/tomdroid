@@ -65,6 +65,8 @@
 	<string name="prefTomboyWeb">Onlinesynkronisering</string>
 	<string name="prefAuthenticate">Autentisera</string>
 	<string name="prefLocation">Plats på SD-kort</string>
+	<string name="prefSyncOnStart">Autosync on Startup</string>
+	<string name="prefDescSyncOnStart">Synchronise your notes on appstart</string>
 	<!-- %1$s will be repaced by the folder name eg /tomdroid -->
 	<string name="prefFolderCreated">Mappen \"%1$s\" finns inte än. Vänligen anslut din enhet till datorn, skapa mappen och fyll den med *.note-filer.</string>
 	<!-- %1$s will be repaced by the folder name eg /testfolder -->
@@ -126,7 +128,7 @@
 	
 	<!-- Date -->
 	<string name="textModified">Ändrad:</string>
-	<string name="textToday">I dag</string>
+	<string name="textToday">Idag</string>
 	<string name="textYexterday">Igår</string>
 
 	<!-- Shortcuts handling -->
@@ -166,6 +168,9 @@
 	<string name="italic">i</string>
 	<!-- S stands for strike through (in format bar) -->
 	<string name="strike"><strike>S</strike></string>
+	<string name="mono">fast breddsteg</string>
+	<string name="highlight">färgmarkera</string>
+	<string name="size">storlek</string>
 	<string name="titleErrorParsingXML">Ett fel uppstod när anteckningen analyserades</string>
 	<string name="messageErrorParsingXML">Ett fel uppstod när anteckningen analyserades. Kontrollera din XML.</string>
 	<string name="messageNoteSaved">Anteckning lagrad lokalt.</string>
@@ -230,11 +235,11 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkPhonesTitle">Länka telefonnummer</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkPhones">Länka telefonnummer till telefonapp</string>
+	<string name="prefLinkPhones">Länka telefonnummer till telefonprogram</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkAddressesTitle">Länka kartadresser</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkAddresses">länkadresser till kartprogram</string>
+	<string name="prefLinkAddresses">Länka adresser till kartprogram</string>
 			
 	<!-- syncNotes -->
 
@@ -341,6 +346,7 @@
 	<string name="messageFileNotReadable">Det gick inte att läsa anteckningsfilen.</string>
 	<string name="noFiles">Inga filer eller mappar</string>
 	<string name="chooseFile">Välj en fil nedan som antingen är en Tomboy-anteckningsfil (importera en anteckning) eller en oformaterad textfil (skapa en ny anteckning):</string>
+
 	<!-- Title of first Note -->
 	<string name="firstNoteTitle">Tomdroids första anteckning</string>
 	
@@ -349,12 +355,10 @@
 		<item>Du har inga anteckningar här ännu. För att komma igång måste du ange dina synkroniseringsinställningar under Inställningar. Det finns två synkroniseringsalternativ, som beskrivs nedan.\n</item>
 		<item>=Onlinesynkronisering=</item>
 		<!-- =text= makes <size:large>text</size:large> -->
-		<item>Onlinesynkronisering är till för dig som vill synkronisera med Tomboy-Online, Ubuntu One, din egen Rainy/Snowy-server eller en annan server som stöder Tomboys API Web REST.\n</item>
+		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
 		<item>För att använda det, ställ in synkroniseringstjänsten till Onlinesynkronisering i inställningarna och ange en serveradress. Här är några av de offentliga servrarna:</item>
 		<!-- -text is for list-items. --> 
 		<item>-Tomboy Online - https://edge.tomboy-online.org/</item>
-		<!-- -text is for list-items. --> 
-		<item>-Ubuntu One - https://one.ubuntu.com/notes</item>
 		<!-- -text is for list-items. --> 
 		<item>-rainy.notesync.org - https://notesync.org:8080/[användarnamn]/[lösenord]/\n</item>
 		<item>När allt är inställt, klicka på synkroniseringsikonen i Tomdroids verktygsfält för att synkronisera dina anteckningar.\n</item>
@@ -366,7 +370,7 @@
 		<item>Tomdroid söker ständigt efter nya medarbetare. Om du är intresserad kan du ansluta dig till Tomdroids utvecklingsgrupp på Launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
 		<item>Sist, men inte minst. Om du stöter på något problem, var vänlig och rapportera det på: https://bugs.launchpad.net/tomdroid</item>
 	</string-array>
-			
+	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
 	I\'ve put it in here so that it\'ll get translated by translators.
@@ -374,13 +378,13 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid-anteckningar</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">En Tomboy-klient för Android. Tomboy är ett skrivbordsprogram för att ta anteckningar, med wikiinriktning och ett enkelt användargränssnitt.\n\n* Anteckningsformatskompatibilitet med Tomboy\n* Onlinesynkronisering av anteckningar, med Snowy, Tomboy Online eller Ubuntu One\n* Importera anteckningar från SD-kort\n* Öppen källkod!</string>
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Open source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Program för att ta anteckningar, med onlinesynkronisering och kompatibelt med Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.6, utgåvan \"Small World\"\n* Skapa startsidegenvägar till anteckningar\n* Välj en mapp att använda till SD-kortsynkronisering\n* Uppdatera aktuell anteckning efter synkronisering\n* Massor av nya översättningar: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n* Ett flertal buggfixar\n</string>
+        <string name="market_recent_changes">0.8.0 \"NAME\" release\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

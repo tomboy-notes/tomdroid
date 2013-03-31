@@ -1,3 +1,445 @@
+2013-03-31  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid.pot:
+
+	updated pot file for translations
+
+2013-03-31  Stefan Hammer  <j.4@gmx.at>
+
+	* AUTHORS:
+	* NEWS:
+	* res/values/strings.xml:
+	* res/xml/preferences.xml:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/Preferences.java:
+
+	mergd bugfix for bug #1038353 by mili. thanks for your help!
+
+2013-03-31  mili  <mili@gmx.at>
+
+	* res/values/strings.xml:
+	* res/xml/preferences.xml:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/Preferences.java:
+
+	SyncOnStart added bug #1038353
+
+2013-03-30  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid.pot:
+	* res/values/strings.xml:
+
+	Change descriptions of link-preferences to begin with captial letter
+
+2013-03-30  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/ui/FilePickerActivity.java:
+
+	fix bug #1158806 and bug #1158804
+
+2013-03-18  Stefan Hammer  <j.4@gmx.at>
+
+	* res/drawable-hdpi/action_icon.png:
+	* res/drawable-hdpi/action_icon_up.png:
+	* res/drawable-ldpi/action_icon.png:
+	* res/drawable-ldpi/action_icon_up.png:
+	* res/drawable-mdpi/action_icon.png:
+	* res/drawable-mdpi/action_icon_up.png:
+	* res/drawable-xhdpi/action_icon.png:
+	* res/drawable-xhdpi/action_icon_up.png:
+	* res/layout/main.xml:
+	* src/org/tomdroid/ui/CompareNotes.java:
+	* src/org/tomdroid/ui/FilePickerActivity.java:
+	* src/org/tomdroid/ui/ShortcutActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarActivity.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarHelper.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarHelperBase.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarHelperHoneycomb.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarHelperICS.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarListActivity.java:
+
+	fix lp:1149319 now there is a return arrow left from the actionbar home icon if it is enabled and it is disabled in the home activity and others.
+
+2013-03-13  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+
+	fixed bug #1134866 and bug #982749. both bugs were in the url validation of the server-url preference. now no spaces are allowed any more and bad urls are not saved.
+
+2013-03-13  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid-bg.po:
+	* locales/tomdroid-et.po:
+	* locales/tomdroid-gl.po:
+	* locales/tomdroid-id.po:
+	* locales/tomdroid-la.po:
+	* locales/tomdroid-ml.po:
+	* locales/tomdroid-nl.po:
+	* locales/tomdroid-sr.po:
+	* res/values-bg:
+	* res/values-bg/strings.xml:
+	* res/values-et:
+	* res/values-et/strings.xml:
+	* res/values-gl:
+	* res/values-gl/strings.xml:
+	* res/values-id:
+	* res/values-id/strings.xml:
+	* res/values-la:
+	* res/values-la/strings.xml:
+	* res/values-ml:
+	* res/values-ml/strings.xml:
+	* res/values-nl:
+	* res/values-nl/strings.xml:
+	* res/values-sr:
+	* res/values-sr/strings.xml:
+	* AUTHORS:
+	* NEWS:
+	* locales/tomdroid-ar.po:
+	* locales/tomdroid-bs.po:
+	* locales/tomdroid-ca.po:
+	* locales/tomdroid-cs.po:
+	* locales/tomdroid-da.po:
+	* locales/tomdroid-de.po:
+	* locales/tomdroid-el.po:
+	* locales/tomdroid-en_GB.po:
+	* locales/tomdroid-eo.po:
+	* locales/tomdroid-es.po:
+	* locales/tomdroid-eu.po:
+	* locales/tomdroid-fa.po:
+	* locales/tomdroid-fi.po:
+	* locales/tomdroid-fo.po:
+	* locales/tomdroid-fr.po:
+	* locales/tomdroid-gd.po:
+	* locales/tomdroid-hi.po:
+	* locales/tomdroid-hu.po:
+	* locales/tomdroid-it.po:
+	* locales/tomdroid-ja.po:
+	* locales/tomdroid-ko.po:
+	* locales/tomdroid-ms.po:
+	* locales/tomdroid-nb.po:
+	* locales/tomdroid-pl.po:
+	* locales/tomdroid-pt.po:
+	* locales/tomdroid-pt_BR.po:
+	* locales/tomdroid-ru.po:
+	* locales/tomdroid-si.po:
+	* locales/tomdroid-sv.po:
+	* locales/tomdroid-ta.po:
+	* locales/tomdroid-te.po:
+	* locales/tomdroid-tr.po:
+	* locales/tomdroid-ug.po:
+	* locales/tomdroid-uk.po:
+	* locales/tomdroid-zh.po:
+	* locales/tomdroid-zh_CN.po:
+	* locales/tomdroid-zh_TW.po:
+	* locales/tomdroid.pot:
+	* res/values-ar/strings.xml:
+	* res/values-bs/strings.xml:
+	* res/values-ca/strings.xml:
+	* res/values-cs/strings.xml:
+	* res/values-da/strings.xml:
+	* res/values-de/strings.xml:
+	* res/values-el/strings.xml:
+	* res/values-en-rGB/strings.xml:
+	* res/values-eo/strings.xml:
+	* res/values-es/strings.xml:
+	* res/values-eu/strings.xml:
+	* res/values-fa/strings.xml:
+	* res/values-fi/strings.xml:
+	* res/values-fo/strings.xml:
+	* res/values-fr/strings.xml:
+	* res/values-gd/strings.xml:
+	* res/values-hi/strings.xml:
+	* res/values-hu/strings.xml:
+	* res/values-it/strings.xml:
+	* res/values-ja/strings.xml:
+	* res/values-ko/strings.xml:
+	* res/values-ms/strings.xml:
+	* res/values-nb/strings.xml:
+	* res/values-pl/strings.xml:
+	* res/values-pt-rBR/strings.xml:
+	* res/values-pt/strings.xml:
+	* res/values-ru/strings.xml:
+	* res/values-si/strings.xml:
+	* res/values-sv/strings.xml:
+	* res/values-ta/strings.xml:
+	* res/values-te/strings.xml:
+	* res/values-tr/strings.xml:
+	* res/values-ug/strings.xml:
+	* res/values-uk/strings.xml:
+	* res/values-zh-rCN/strings.xml:
+	* res/values-zh-rTW/strings.xml:
+	* res/values-zh/strings.xml:
+	* res/values/strings.xml:
+
+	Update translations, merge news from 0.6.0 and re-add deleted strings.
+
+2013-03-13  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/sync/web/MySSLSocketFactory.java:
+	* src/org/tomdroid/sync/web/OAuthConnection.java:
+	* src/org/tomdroid/sync/web/WebConnection.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	Add support for self-signed SSL certificates. lp:1153289  We still need to show the certificate to the user to verify it and save it afterwards. For now this is a quick hack to support the Rainy server
+
+2013-03-12  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/sync/web/AnonymousConnection.java:
+	* src/org/tomdroid/sync/web/WebConnection.java:
+
+	Timo corrected some mistakes i made adding the http header.
+
+2013-03-12  Stefan Hammer  <j.4@gmx.at>
+
+	* NEWS:
+
+	update NEWS
+
+2013-03-12  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/sync/web/AnonymousConnection.java:
+	* src/org/tomdroid/sync/web/OAuthConnection.java:
+	* src/org/tomdroid/sync/web/WebConnection.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	fix bug lp:1120488 
+
+2013-03-12  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid.pot:
+
+	update translations
+
+2013-03-11  Stefan Hammer  <j.4@gmx.at>
+
+	* res/values/strings.xml:
+
+	fixed grammar in string
+
+2013-03-11  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/util/Receive.java:
+
+	just check for the beginning, otherwise attachments are handled as text.
+
+2013-03-11  Stefan Hammer  <j.4@gmx.at>
+
+	* AndroidManifest.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/util/Receive.java:
+
+	Now it is really possible to open mail attachments. this was horrible. could not find out that mimetype is acutally application/note and that viewing from attachments had to be received differently.
+
+2013-03-10  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid.pot:
+	* util/xml2po/README:
+
+	exported xml to po and added dependencies of xml2po script to README.
+
+2013-03-10  Stefan Hammer  <j.4@gmx.at>
+
+	* res/drawable/button.xml:
+	* NEWS:
+	* res/drawable/button_toggle.xml:
+	* res/layout/note_edit.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	fix several small issues and the string related bugs. eg translation comments, refernces to locations,...
+
+2013-03-10  Stefan Hammer  <j.4@gmx.at>
+
+	* NEWS:
+
+	update news
+
+2013-03-10  Stefan Hammer  <j.4@gmx.at>
+
+	* res/layout/note_compare.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/CompareNotes.java:
+
+	fix Bug #1070787 Note Title should be more obvious in Conflict resolving dialogue
+
+2013-03-10  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+	* src/org/tomdroid/util/Receive.java:
+
+	fix note not found on import if note is already present. further, raise changedate on import, otherwise it won't be synced.
+
+2013-03-10  Stefan Hammer  <j.4@gmx.at>
+
+	* AndroidManifest.xml:
+	* src/org/tomdroid/util/Receive.java:
+
+	now it is possible to open a .note file from mail, gmail, etc.
+
+2013-03-09  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+
+	fixed Bug #1071732 Delete Remote Notes still uses the fancy porgress dialogue incomartible to older Android versions.
+
+2013-03-09  Stefan Hammer  <j.4@gmx.at>
+
+	* NEWS:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	It is now possible to change sync-method, sync-server, folder location without loosing any notes
+
+2013-03-09  Stefan Hammer  <j.4@gmx.at>
+
+	* AUTHORS:
+	* NEWS:
+	* src/org/tomdroid/ui/EditNote.java:
+
+	merged fix for Bug #1051932 by Michael Cerman. Thanks
+
+2013-03-02  Michal Cerman  <michalcerman@gmail.com>
+
+	* src/org/tomdroid/ui/EditNote.java:
+
+	Fixed the bug #1051932(&amp; gets replaced with &amp;amp; on clicking save button). The note is now redrawn after the save process.
+
+2013-02-24  Stefan Hammer  <j.4@gmx.at>
+
+	* res/values/strings.xml:
+
+	fix bug #1068785
+
+2013-02-24  Stefan Hammer  <j.4@gmx.at>
+
+	* res/values/strings.xml:
+
+	fix bug #1068793
+
+2013-02-24  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	Fixed bug #1074676 and changed chreate date to 1.1.2000 (dirty fix until we store this on in the db)
+
+2013-01-05  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* doc/gather-logs.txt:
+
+	doc: added logcat instructions
+	
+	We repeat them quite often.
+
+2012-11-13  Stefan Hammer  <j.4@gmx.at>
+
+	* NEWS:
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+
+	fixed bug lp:1064149 Tomdroid Sync fails, datetime_format error
+
+2012-11-13  Stefan Hammer  <j.4@gmx.at>
+
+	* sdcard.img:
+	* src/org/tomdroid/Note.java:
+
+	revert sd, set create-date to 2000
+
+2012-11-13  Stefan Hammer  <j.4@gmx.at>
+
+	* sdcard.img:
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+
+	trying to fix time format bugs: Bug #1064149 and#1074676
+
+2012-11-04  Stefan Hammer  <j.4@gmx.at>
+
+	* NEWS:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	fix lp:1074894 NotesList -> Longpress -> Revert -> CRASH
+
+2012-11-04  Stefan Hammer  <j.4@gmx.at>
+
+	* NEWS:
+
+	update NEWS
+
+2012-11-04  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/util/Receive.java:
+
+	fix bug #1074661 where note files opened with gmail are not parsed as xml.
+
+2012-11-03  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/util/Preferences.java:
+
+	probably fixes bug #1074676. waiting for test to verify this. however, fix does not break anything. good sign :-)
+
+2012-11-03  Stefan Hammer  <j.4@gmx.at>
+
+	* AndroidManifest.xml:
+	* NEWS:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/FilePickerActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+
+	merge tomdroid-dev branch
+
+2012-11-03  noahy  <noahy57@gmail.com>
+
+	* NEWS:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+
+	fixed lp:1074602
+
+2012-10-20  noahy  <noahy57@gmail.com>
+
+	* AndroidManifest.xml:
+	* NEWS:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+
+	fixed lp:1068684
+	fixed lp:1068689
+	revert to open only text files from file explorer
+
+2012-10-20  noahy  <noahy57@gmail.com>
+
+	* NEWS:
+	* src/org/tomdroid/ui/FilePickerActivity.java:
+
+	fixed lp:1068681
+
+2012-10-17  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/TLog.java:
+
+	fix bug #1051294. closing cursers after every lookup.
+
+2012-10-17  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* AUTHORS:
+	* ChangeLog:
+	* src/org/tomdroid/util/TLog.java:
+
+	author, changelog and debugging prepped for release
+
 2012-10-17  Olivier Bilodeau  <olivier@bottomlesspit.org>
 
 	* doc/user:

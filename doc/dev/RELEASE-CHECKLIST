@@ -17,7 +17,6 @@ Preparing the release
 - Make sure AUTHORS is accurate (grep '<.*@.*>' ChangeLog | awk '// {print $2,$3,$4}'  | sort | uniq)
 
 Releasing on launchpad
-- android:debuggable="false" in AndroidManifest.xml
 - Disable logging (set org.tomdroid.util.TLog.LOGGING_ENABLED to false)
 - Export an unsigned apk
 - Sign the apk

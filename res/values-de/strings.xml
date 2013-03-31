@@ -25,11 +25,11 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Tomboy compatible wikiwiki note-taking app that can take notes.</string>
+	<string name="app_desc">Tomboy, kompatibel mit wiki Notizen-App, kann Notizen machen.</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
-	<string name="strListEmptyWaiting">Bitte warten sie während die Notizen geladen werden ...</string>
+	<string name="strListEmptyWaiting">Bitte warten sie, während die Notizen geladen werden ...</string>
 	<string name="strListEmptyNoNotes">Es sind keine Notizen in Tomdroids Datenbank vorhanden.</string>
 	
 	<!-- Menu entry with icon -->
@@ -65,6 +65,8 @@
 	<string name="prefTomboyWeb">Online-Synchronisation</string>
 	<string name="prefAuthenticate">Authentifizieren</string>
 	<string name="prefLocation">Ort auf der SD-Karte</string>
+	<string name="prefSyncOnStart">Autosync on Startup</string>
+	<string name="prefDescSyncOnStart">Synchronise your notes on appstart</string>
 	<!-- %1$s will be repaced by the folder name eg /tomdroid -->
 	<string name="prefFolderCreated">Der Ordner \"%1$s\" existiert noch nicht. Bitte verbinde dein Gerät mit dem Computer, erstelle den Ordner und befüllt ihn mit *.note Dateien.</string>
 	<!-- %1$s will be repaced by the folder name eg /testfolder -->
@@ -98,7 +100,7 @@
 	<string name="prefSorting">Sortieren nach:</string>
 	<string name="prefSortDate">Geändert am</string>
 	<string name="prefSortTitle">Notiztitel</string>
-	<string name="sortByDate">Sortiere nach Datum</string>
+	<string name="sortByDate">Nach Datum sortieren</string>
 	<string name="sortByTitle">Nach Titel sortieren</string>
 	
 	<!-- NotebookFiltering -->
@@ -166,6 +168,9 @@
 	<string name="italic">i</string>
 	<!-- S stands for strike through (in format bar) -->
 	<string name="strike"><strike>S</strike></string>
+	<string name="mono">Feste Zeichenbreite</string>
+	<string name="highlight">hervorheben</string>
+	<string name="size">Größe</string>
 	<string name="titleErrorParsingXML">Fehler beim Erstellen der Notiz</string>
 	<string name="messageErrorParsingXML">Es ist ein Fehler beim Erstellen der Notiz aufgetreten. Bitte überprüfe den XML-Code.</string>
 	<string name="messageNoteSaved">Notiz wurde lokal gespeichert.</string>
@@ -188,7 +193,7 @@
 	<string name="search_title">Tomdroid - Suchergebnisse</string>
 	<string name="shortcut_title">Tomdroid - Verknüpfungen</string>
 	<string name="pref_title">Tomdroid - Einstellungen</string>
-	<string name="compare_title">Tomdroid - Note Conflict</string>
+	<string name="compare_title">Tomdroid - Notizenkonflikt</string>
 	<string name="filePickerTitle">Tomdroid - Notitzen importieren</string>
 			
 	<!-- new prefs -->
@@ -218,7 +223,7 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkTitlesTitle">Titel verknüpfen</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkTitles">mit anderer Notiz verknüpfen</string>
+	<string name="prefLinkTitles">Link to other note titles</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkUrlsTitle">Internet-Adressen verknüpfen</string>
 	<!-- Description for checkbox in settings -->
@@ -230,11 +235,11 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkPhonesTitle">Telefonnummern verknüpfen</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkPhones">Telefonnummern mit der Telefon-App verknüpfen</string>
+	<string name="prefLinkPhones">Link telephone numbers to phone app</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkAddressesTitle">Verknüpfen mit Adresse</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkAddresses">link addresses to maps app</string>
+	<string name="prefLinkAddresses">Link addresses to maps app</string>
 			
 	<!-- syncNotes -->
 
@@ -244,9 +249,9 @@
 	<string name="gettings_notes">Empfange Liste der Notizen am Server...</string>
 	<string name="syncing_local">Aktualisieren der Notizen...</string>
 	<string name="syncing_remote">Aktualisiere Notizen...</string>
-	<string name="sync_conflict_description">There was a conflict syncing the note \'%1$s\'</string>
+	<string name="sync_conflict_description">Es gab einen Konflikt während der Synchronisation der Notiz \'%1$s\'</string>
 	<string name="sync_conflict_message">Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
-	<string name="sync_conflict_deleted">The local version was already deleted.  Please choose from one of the actions below.</string>
+	<string name="sync_conflict_deleted">Die lokale Version ist bereits gelöscht. Bitte wähle eine der folgenden Aktionen.</string>
 	<string name="sync_conflict_titles_message">A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
 	<!-- Button (keep short!) -->
 	<string name="overwrite_remote">Ersetze\nam Server</string>
@@ -338,9 +343,10 @@
 	<!-- Button (keep short!) -->
 	<string name="btnCancelImport">Import\nabbrechen</string>
 	<string name="messageFileTooBig">Die Datei überschreitet die maximale Importgröße - Sind Sie sicher, dass es ausschließlich Klartext ist?</string>
-	<string name="messageFileNotReadable">Cannot read the note file.</string>
+	<string name="messageFileNotReadable">Kann die Notizdatei nicht lesen.</string>
 	<string name="noFiles">Keine Dateien oder Verzeichnisse</string>
 	<string name="chooseFile">Wählen Sie eine Datei, die entweder eine Tomboy Notizdatei ist (welche importiert wird) oder eine Klartext-Datei (was eine neue Notiz erzeugt):</string>
+
 	<!-- Title of first Note -->
 	<string name="firstNoteTitle">Tomdroids erste Notiz</string>
 	
@@ -349,12 +355,10 @@
 		<item>Sie haben hier keine Notizen. Am Anfang bitte die Synchronisationsoptionen unter Einstellungen anpassen. Es gibt zwei unten beschriebene Synchronisationsoptionen.\n</item>
 		<item>=Online-Synchronisierung=</item>
 		<!-- =text= makes <size:large>text</size:large> -->
-		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, Ubuntu One, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
+		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
 		<item>Um dies zu verwenden, stellen Sie den Synchronisations-Service in den Einstellungen auf Online-Synchronisation und geben Sie eine Server-URL an. Hier sind einige öffentliche:</item>
 		<!-- -text is for list-items. --> 
 		<item>-Tomboy Online - https://edge.tomboy-online.org/</item>
-		<!-- -text is for list-items. --> 
-		<item>-Ubuntu One - https://one.ubuntu.com/notes</item>
 		<!-- -text is for list-items. --> 
 		<item>-rainy.notesync.org - https://notesync.org:8080/[username]/[password]/\n</item>
 		<item>Einmal eingestellt, drücken Sie auf das Synchronisations-Logo an der Oberseite von Tomboy, um Ihre Notizen zu synchronisieren.\n</item>
@@ -366,7 +370,7 @@
 		<item>Also, Tomdroid is always looking for new contributors. If you are interested join the tomdroid-dev team on Launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
 		<item>Zuletzt: Wenn Sie eine Fehler finden, berichten Sie diesen bitte auf: https://bugs.launchpad.net/tomdroid</item>
 	</string-array>
-			
+	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
 	I\'ve put it in here so that it\'ll get translated by translators.
@@ -374,14 +378,13 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid Notizen</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">Ein übersichtlicher Tomboy Client für Android. 
-Tomdroid ist ein nützliches Notizprogramm mit einfacher, intuitiver Bedienung, welches den wikiwiki Ansatz verfolgt. \n\n* Formatkompatibilität mit Tomboy\n* Online Notizsynchronisation mit Snowy, Tomboy online oder Ubuntu One möglich\* Import/Export der Notizen von SD-Karte möglich\n* Open Source!</string>
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Open source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Note-taking app with online synchronization compatible with Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.6 \"Small World\" Release\n* Erstelle Desktop-Lesezeichen zu Notizen\n* Wähle selbst den Ordner für die SD-Karten-Synchronsiation\n* Nach dem Synchronisieren aktualisiere aktuelle Notiz\n* Support für viele neue Sprachen: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n* Weitere Fehlerbehebungen\n</string>
+        <string name="market_recent_changes">0.8.0 \"NAME\" release\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

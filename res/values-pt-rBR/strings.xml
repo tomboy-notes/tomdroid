@@ -25,7 +25,7 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Tomboy compatible wikiwiki note-taking app that can take notes.</string>
+	<string name="app_desc">Tomboy é compatível com o aplicativo WikiWiki de anotações que podem tomar notas.</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
@@ -65,6 +65,8 @@
 	<string name="prefTomboyWeb">Sincronização on-line</string>
 	<string name="prefAuthenticate">Autenticar</string>
 	<string name="prefLocation">Local no cartão SD</string>
+	<string name="prefSyncOnStart">Autosync on Startup</string>
+	<string name="prefDescSyncOnStart">Synchronise your notes on appstart</string>
 	<!-- %1$s will be repaced by the folder name eg /tomdroid -->
 	<string name="prefFolderCreated">A pasta \“%1$s\“ não existe ainda. Por favor, conecte seu dispositivo ao computador, crie a pasta e a preencha com arquivos *.note.</string>
 	<!-- %1$s will be repaced by the folder name eg /testfolder -->
@@ -166,6 +168,9 @@
 	<string name="italic">i</string>
 	<!-- S stands for strike through (in format bar) -->
 	<string name="strike"><strike>S</strike></string>
+	<string name="mono">mono espaçada</string>
+	<string name="highlight">destacar</string>
+	<string name="size">tamanho</string>
 	<string name="titleErrorParsingXML">Erro de processamento da nota</string>
 	<string name="messageErrorParsingXML">Houve um erro ao processar a nota. Por favor confira seu XML.</string>
 	<string name="messageNoteSaved">Nota salva localmente.</string>
@@ -188,7 +193,7 @@
 	<string name="search_title">Tomdroid - Resultados da pesquisa</string>
 	<string name="shortcut_title">Tomdroid - Atalhos</string>
 	<string name="pref_title">Tomdroid - Configurações</string>
-	<string name="compare_title">Tomdroid - Note Conflict</string>
+	<string name="compare_title">Tomdroid - Conflito de Nota</string>
 	<string name="filePickerTitle">Tomdroid - Importar Nota</string>
 			
 	<!-- new prefs -->
@@ -218,7 +223,7 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkTitlesTitle">Ligar Títulos</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkTitles">link para outros títulos de notas</string>
+	<string name="prefLinkTitles">Link to other note titles</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkUrlsTitle">Link de Endereços Web"</string>
 	<!-- Description for checkbox in settings -->
@@ -230,11 +235,11 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkPhonesTitle">Link de Números de Telefone</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkPhones">link de números de telefone para aplicativo do telefone</string>
+	<string name="prefLinkPhones">Link telephone numbers to phone app</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkAddressesTitle">Link de Mapas de Endereços</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkAddresses">link addresses to maps app</string>
+	<string name="prefLinkAddresses">Link addresses to maps app</string>
 			
 	<!-- syncNotes -->
 
@@ -244,10 +249,10 @@
 	<string name="gettings_notes">obtendo lista de notas remotas...</string>
 	<string name="syncing_local">atualizando notas locais...</string>
 	<string name="syncing_remote">atualizando notas remotas...</string>
-	<string name="sync_conflict_description">There was a conflict syncing the note \'%1$s\'</string>
-	<string name="sync_conflict_message">Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
-	<string name="sync_conflict_deleted">The local version was already deleted.  Please choose from one of the actions below.</string>
-	<string name="sync_conflict_titles_message">A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="sync_conflict_description">Houve um conflito de sincronização da nota \'%1$s\'</string>
+	<string name="sync_conflict_message">Por favor, escolha uma ação para resolver o conflito. Você pode editar qualquer nota antes de escolher, ou ver a diferença clicando nas etiquetas abaixo.</string>
+	<string name="sync_conflict_deleted">A versão local já foi excluída. Por favor, escolha uma das ações a seguir.</string>
+	<string name="sync_conflict_titles_message">Uma nota com o título já existe no banco de dados. Por favor escolha uma ação para resolver o conflito. Você pode editar qualquer nota antes de escolher, ou ver a diferença clicando nas etiquetas abaixo.</string>
 	<!-- Button (keep short!) -->
 	<string name="overwrite_remote">Sobrescrever\nRemota</string>
 	<!-- Button (keep short!) -->
@@ -275,7 +280,7 @@
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
 	<string name="messageAuthComplete">Autorização em %1$s bem sucedida.</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
-	<string name="messageAuthFailed">Authorization with %1$s failed. Try again later!</string>
+	<string name="messageAuthFailed">Autorização com %1$s falhou. Tente novamente mais tarde!</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
 	<string name="messageSyncNoteDeleted">Nota deletada de %1$s com sucesso.</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
@@ -334,13 +339,14 @@
 	<string name="sendChoice">Como gostaria de enviar a nota?</string>
 	<string name="btnSendAsText">Como Texto</string>
 	<string name="btnSendAsFile">Como Arquivo</string>
-	<string name="sync_conflict_import_message">The note already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="sync_conflict_import_message">A nota já existe na base de dados. Por favor, escolha uma ação para resolver o conflito. Você pode editar qualquer nota antes de escolher, ou ver a diferença clicando nas etiquetas abaixo.</string>
 	<!-- Button (keep short!) -->
 	<string name="btnCancelImport">Cancelar\nImportar</string>
 	<string name="messageFileTooBig">O arquivo excede o tamanho de importação máximo - tem certeza que é de texto puro?</string>
-	<string name="messageFileNotReadable">Cannot read the note file.</string>
+	<string name="messageFileNotReadable">Não é possível ler o arquivo de nota.</string>
 	<string name="noFiles">Sem arquivos ou diretórios</string>
 	<string name="chooseFile">Escolha um arquivo abaixo que seja um arquivo de nota do Tomboy (quer será importada) ou um arquivo de texto puro (quer criará uma nova nota):</string>
+
 	<!-- Title of first Note -->
 	<string name="firstNoteTitle">Primeira nota do Tomdroid</string>
 	
@@ -349,24 +355,22 @@
 		<item>Você não tem notas aqui ainda. Para começar, ajuste suas preferências de Sincronização em Configurações. Existem duas opções de sincronização descritas abaixo.\n</item>
 		<item>=Sincronização Online=</item>
 		<!-- =text= makes <size:large>text</size:large> -->
-		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, Ubuntu One, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
+		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
 		<item>Para usá-lo, ajuste o Serviço de Sincronização para Sincronização Online em preferências então providencie uma URL de Servidor. Aqui estão alguns públicos:</item>
 		<!-- -text is for list-items. --> 
 		<item>-Tomboy Online - https://edge.tomboy-online.org/</item>
 		<!-- -text is for list-items. --> 
-		<item>-Ubuntu One - https://one.ubuntu.com/notes</item>
-		<!-- -text is for list-items. --> 
-		<item>-rainy.notesync.org - https://notesync.org:8080/[username]/[password]/\n</item>
+		<item>-rainy.notesync.org - https://notesync.org:8080/[usuario]/[senha]/\n</item>
 		<item>Quando ajustado, clique no logotipo de Sincronização na barra superior do Tomdroid para sincronizar suas notas.\n</item>
-		<item>Note: you might want to back up your Tomboy notes before syncing, since this app is still under development and may corrupt your Tomboy notes.\n</item>
-		<item>Please see http://live.gnome.org/Tomboy/Directories for the location of the *.note files on all platforms.\n</item>
+		<item>Nota: Você pode querer fazer backup de suas notas do Tomboy antes de sincronizar, pois este aplicativo ainda está em desenvolvimento e pode corromper suas notas Tomboy.\n</item>
+		<item>Consulte http://live.gnome.org/Tomboy/Diretórios para o localização do *.note arquivos em todas as plataformas.\n</item>
 		<!-- =text= makes <size:large>text</size:large> --> 
 		<item>=Cartão SD=</item>
-		<item>Put your Tomboy notes (*.note) on your SD Card under tomdroid/. Once the notes are copied, set Sync Service to SD Card in preferences then hit the Sync logo on Tomdroid\'s top bar.\n</item>
-		<item>Also, Tomdroid is always looking for new contributors. If you are interested join the tomdroid-dev team on Launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
+		<item>Coloque suas notas Tomboy (*.note) em seu cartão SD em Tomdroid/. Uma vez que as notas são copiadas, defina o serviço de sincronização para o cartão SD nas preferências, em seguida, aperte no logotipo Sync na barra superior do Tomdroid.\n</item>
+		<item>Além disso, Tomdroid está sempre procurando por novos colaboradores. Se você está interessado em se juntar à equipe tomdroid-dev no Launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
 		<item>Por fim, se encontrar qualquer problema, por favor relate-o em: https://bugs.launchpad.net/tomdroid</item>
 	</string-array>
-			
+	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
 	I\'ve put it in here so that it\'ll get translated by translators.
@@ -374,13 +378,13 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid notas</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">Um cliente Tomboy para Android. Tomboy é um aplicativo de notas para desktop usando abordagem wikiwiki e interface de usuário simples.\n\n* Note a compatibilidade de formato da sincronização de notas online do Tomboy\n* com Snowy, Tomboy Online ou Ubuntu One\n* importação para cartão SD\n* Open source!</string>
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Open source!</string>
 	
 	<!-- 80 chars max -->
-	<string name="market_promotext">Note-taking app with online synchronization compatible with Tomboy</string>
+	<string name="market_promotext">Anotações do aplicativo com sincronização online compatível com Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.6 \"Mundo Pequeno\" liberar\n* Criar ataho para as notas na área de trabalho\n* Especifique uma pasta para usar a sincronização para o Cartão de Memória\n* Atualizar nota atual após a sincronização\n* Várias novas traduções: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n* Várias correções de Bugs\n</string>
+        <string name="market_recent_changes">0.8.0 \"NAME\" release\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
@@ -388,6 +392,7 @@
   João Santana https://launchpad.net/~joaosantana
   Paulo Márcio da Hora https://launchpad.net/~paulohora
   Rafael Leandro https://launchpad.net/~crf-rafa
+  Romoaldo Cordeiro https://launchpad.net/~romoaldo-cordeiro
   Stefan Hammer https://launchpad.net/~j-4
   Tarcisio Oliveira https://launchpad.net/~tarcisio
   eniomarconcini https://launchpad.net/~eniorm</string>

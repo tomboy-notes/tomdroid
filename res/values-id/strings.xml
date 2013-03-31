@@ -65,6 +65,8 @@
 	<string name="prefTomboyWeb">Sikronisasi Online</string>
 	<string name="prefAuthenticate">Otentikasi</string>
 	<string name="prefLocation">Lokasi di SD Card</string>
+	<string name="prefSyncOnStart">Autosync on Startup</string>
+	<string name="prefDescSyncOnStart">Synchronise your notes on appstart</string>
 	<!-- %1$s will be repaced by the folder name eg /tomdroid -->
 	<string name="prefFolderCreated">Folder \"%1$s\" belum ada. Silakan menghubungkan perangkat Anda ke komputer, membuat folder dan mengisinya dengan file * catatan..</string>
 	<!-- %1$s will be repaced by the folder name eg /testfolder -->
@@ -166,6 +168,9 @@
 	<string name="italic">i</string>
 	<!-- S stands for strike through (in format bar) -->
 	<string name="strike"><strike>S</strike></string>
+	<string name="mono">monospace</string>
+	<string name="highlight">menyoroti</string>
+	<string name="size">Ukuran</string>
 	<string name="titleErrorParsingXML">Kesalahan parsing catatan</string>
 	<string name="messageErrorParsingXML">Ada kesalahan parsing catatan. Silakan periksa XML Anda.</string>
 	<string name="messageNoteSaved">Simpan catatan di lokal.</string>
@@ -188,7 +193,7 @@
 	<string name="search_title">Tomdroid - Hasil Pencarian</string>
 	<string name="shortcut_title">Tomdroid - Shortcut</string>
 	<string name="pref_title">Tomdroid - Pengaturan</string>
-	<string name="compare_title">Tomdroid - Note Conflict</string>
+	<string name="compare_title">Tomdroid - Catatan Konflik</string>
 	<string name="filePickerTitle">Tomdroid - Impor Catatan</string>
 			
 	<!-- new prefs -->
@@ -218,7 +223,7 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkTitlesTitle">Judul Tautan</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkTitles">Tautan ke judul catatan</string>
+	<string name="prefLinkTitles">Link to other note titles</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkUrlsTitle">Tautan Alamat Web</string>
 	<!-- Description for checkbox in settings -->
@@ -230,11 +235,11 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkPhonesTitle">Tautan nomor telepone</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkPhones">Tautan nomor telepone ke aplikasi telepon</string>
+	<string name="prefLinkPhones">Link telephone numbers to phone app</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkAddressesTitle">Tautan alamat peta</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkAddresses">link addresses to maps app</string>
+	<string name="prefLinkAddresses">Link addresses to maps app</string>
 			
 	<!-- syncNotes -->
 
@@ -244,10 +249,10 @@
 	<string name="gettings_notes">mendapatkan daftar catatan jarak jauh ...</string>
 	<string name="syncing_local">memperbarui catatan lokal ...</string>
 	<string name="syncing_remote">memperbarui catatan jarak jauh ...</string>
-	<string name="sync_conflict_description">There was a conflict syncing the note \'%1$s\'</string>
-	<string name="sync_conflict_message">Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
-	<string name="sync_conflict_deleted">The local version was already deleted.  Please choose from one of the actions below.</string>
-	<string name="sync_conflict_titles_message">A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="sync_conflict_description">Ada konflik sinkronisasi catatan \'%1$s\'</string>
+	<string name="sync_conflict_message">Silakan pilih tindakan untuk menyelesaikan konflik. Anda dapat mengedit catatan baik sebelum memilih, atau melihat perbedaannya dengan mengklik pada label di bawah ini.</string>
+	<string name="sync_conflict_deleted">Versi lokal sudah dihapus. Silakan pilih salah satu dari tindakan di bawah.</string>
+	<string name="sync_conflict_titles_message">Sebuah catatan dengan judul yang sudah ada dalam database. Silakan pilih tindakan untuk menyelesaikan konflik. Anda dapat mengedit catatan baik sebelum memilih, atau melihat perbedaannya dengan mengklik pada label di bawah ini.</string>
 	<!-- Button (keep short!) -->
 	<string name="overwrite_remote">Timpa\nRemote</string>
 	<!-- Button (keep short!) -->
@@ -275,7 +280,7 @@
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
 	<string name="messageAuthComplete">Otorisasi dengan sukses %1$s.</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
-	<string name="messageAuthFailed">Authorization with %1$s failed. Try again later!</string>
+	<string name="messageAuthFailed">Otorisasi dengan %1$s gagal. Coba lagi nanti!</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
 	<string name="messageSyncNoteDeleted">Catatan dihapus dari %1$s berhasil.</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
@@ -334,13 +339,14 @@
 	<string name="sendChoice">Bagaimana Anda ingin mengirim catatan?</string>
 	<string name="btnSendAsText">sebagai Teks</string>
 	<string name="btnSendAsFile">sebagai Berkas</string>
-	<string name="sync_conflict_import_message">The note already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="sync_conflict_import_message">Catatan sudah ada dalam database. Silakan pilih tindakan untuk menyelesaikan konflik. Anda dapat mengedit catatan baik sebelum memilih, atau melihat perbedaannya dengan mengklik pada label di bawah ini.</string>
 	<!-- Button (keep short!) -->
 	<string name="btnCancelImport">Batal\nImpor</string>
 	<string name="messageFileTooBig">Berkas melebihi ukuran maksimum impor - apakah Anda yakin itu adalah teks biasa?</string>
-	<string name="messageFileNotReadable">Cannot read the note file.</string>
+	<string name="messageFileNotReadable">Tidak dapat membaca file catatan.</string>
 	<string name="noFiles">Tidak ada berkas atau direktori</string>
 	<string name="chooseFile">Pilih berkas di bawah ini yang berupa catatan Tomboy (yang akan diimpor) atau berkas teks biasa (yang akan membuat catatan baru):</string>
+
 	<!-- Title of first Note -->
 	<string name="firstNoteTitle">Catatan Pertama Tomdroid</string>
 	
@@ -349,24 +355,22 @@
 		<item>Anda tidak memiliki catatan di sini. Untuk memulai, menetapkan preferensi Sinkronisasi Anda di bawah Setelan. Ada dua pilihan sinkronisasi dijelaskan di bawah ini.\n</item>
 		<item>=Sinkronisasi Online=</item>
 		<!-- =text= makes <size:large>text</size:large> -->
-		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, Ubuntu One, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
+		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
 		<item>Untuk menggunakannya, atur Layanan untuk Sinkronisasi Online di preferensi kemudian memberikan URL Server. Berikut adalah beberapa yang umum:</item>
 		<!-- -text is for list-items. --> 
 		<item>-Tomboy Online - https://edge.tomboy-online.org/</item>
 		<!-- -text is for list-items. --> 
-		<item>-Ubuntu One - https://one.ubuntu.com/notes</item>
-		<!-- -text is for list-items. --> 
 		<item>-rainy.notesync.org - https://notesync.org:8080/[username]/[password]/\n</item>
 		<item>Setelah ditetapkan, tekan logo Sinkronisasi pada bar di atas Tomdroid untuk menyinkronkan catatan Anda.\n</item>
-		<item>Note: you might want to back up your Tomboy notes before syncing, since this app is still under development and may corrupt your Tomboy notes.\n</item>
-		<item>Please see http://live.gnome.org/Tomboy/Directories for the location of the *.note files on all platforms.\n</item>
+		<item>Catatan: Anda mungkin ingin membuat cadangan catatan Tomboy Anda sebelum syncing, karena aplikasi ini masih dalam pengembangan dan dapat merusak catatan Tomboy Anda.\n</item>
+		<item>Silakan lihat http://live.gnome.org/Tomboy/Directories untuk lokasi *.note file pada semua platform.\n</item>
 		<!-- =text= makes <size:large>text</size:large> --> 
 		<item>=SD Card=</item>
-		<item>Put your Tomboy notes (*.note) on your SD Card under tomdroid/. Once the notes are copied, set Sync Service to SD Card in preferences then hit the Sync logo on Tomdroid\'s top bar.\n</item>
-		<item>Also, Tomdroid is always looking for new contributors. If you are interested join the tomdroid-dev team on Launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
+		<item>Masukan catatan Tomboy Anda (*.note) pada SD Card Anda di bawah tomdroid/. Setelah catatan yang disalin, mengatur Layanan Sync ke SD Card dalam preferensi lalu tekan logo Sync pada bar di atas Tomdroid ini.\n</item>
+		<item>Juga, Tomdroid selalu mencari kontributor baru. Jika Anda tertarik bergabung dengan tim tomdroid-dev di Launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
 		<item>Terakhir, jika Anda menemukan masalah apapun, tolong laporkan pada: https://bugs.launchpad.net/tomdroid</item>
 	</string-array>
-			
+	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
 	I\'ve put it in here so that it\'ll get translated by translators.
@@ -374,13 +378,13 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Catatan Tomdroid</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">Tomboy klien untuk Android. Tomboy adalah aplikasi mencatat desktop dengan menggunakan pendekatan wikiwiki dan antarmuka pengguna yang sederhana.\n\n* Catatan Format kompatibilitas dengan Tomboy\n* catatan sinkronisasi online dengan Snowy, Tomboy Online atau Ubuntu One\n* SD Card importation\n* Open source!</string>
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Open source!</string>
 	
 	<!-- 80 chars max -->
-	<string name="market_promotext">Note-taking app with online synchronization compatible with Tomboy</string>
+	<string name="market_promotext">Mencatat aplikasi dengan sinkronisasi online yang kompatibel dengan Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.6 \"Small World\" release\n* Create home-screen shortcuts to notes\n* Specify a folder to use for SD Card sync\n* Reload current note after sync\n* A lot of new translations: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n* Several bugfixes\n</string>
+        <string name="market_recent_changes">0.8.0 \"NAME\" release\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

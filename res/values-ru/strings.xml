@@ -65,6 +65,8 @@
 	<string name="prefTomboyWeb">Онлайн синхронизация</string>
 	<string name="prefAuthenticate">Аутентификация</string>
 	<string name="prefLocation">Расположенно на SD карте</string>
+	<string name="prefSyncOnStart">Autosync on Startup</string>
+	<string name="prefDescSyncOnStart">Synchronise your notes on appstart</string>
 	<!-- %1$s will be repaced by the folder name eg /tomdroid -->
 	<string name="prefFolderCreated">Папка \"%1$s\" ещё не существует. Пожалуйста, подсоедините Ваше устройство к компьютеру, создайте папку и заполните её *.note файлами.</string>
 	<!-- %1$s will be repaced by the folder name eg /testfolder -->
@@ -166,6 +168,9 @@
 	<string name="italic">i</string>
 	<!-- S stands for strike through (in format bar) -->
 	<string name="strike"><strike>S</strike></string>
+	<string name="mono">monospace</string>
+	<string name="highlight">highlight</string>
+	<string name="size">size</string>
 	<string name="titleErrorParsingXML">Ошибка анализа заметки</string>
 	<string name="messageErrorParsingXML">При анализе заметки имела место ошибка. Пожалуйста, ознакомьтесь с XML.</string>
 	<string name="messageNoteSaved">Заметка сохраннена в локальной базе данных.</string>
@@ -218,7 +223,7 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkTitlesTitle">Названия заметок</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkTitles">Создавать ссылки на другие заметки</string>
+	<string name="prefLinkTitles">Link to other note titles</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkUrlsTitle">Создавать сслки для web-адресов</string>
 	<!-- Description for checkbox in settings -->
@@ -230,11 +235,11 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkPhonesTitle">Создавать ссылки для телефонных адресов</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkPhones">создавать ссылки для звонка по номеру</string>
+	<string name="prefLinkPhones">Link telephone numbers to phone app</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkAddressesTitle">Содавать ссылки для адресов</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkAddresses">link addresses to maps app</string>
+	<string name="prefLinkAddresses">Link addresses to maps app</string>
 			
 	<!-- syncNotes -->
 
@@ -341,6 +346,7 @@
 	<string name="messageFileNotReadable">Cannot read the note file.</string>
 	<string name="noFiles">Не найден файл или папка</string>
 	<string name="chooseFile">Выберите файл ниже, который будет импортирован (как Tomboy-заметка) или текстовый файл (из которого будет создана новая заметка):</string>
+
 	<!-- Title of first Note -->
 	<string name="firstNoteTitle">Первая заметка Tomdroid</string>
 	
@@ -349,12 +355,10 @@
 		<item>У пока нет заметок. Чтобы приступить к работе, задайте настройки синхронизации в меню Настройки. Есть две опции синхронизации, описанные ниже.\n</item>
 		<item>=Онлайн синхронизация=</item>
 		<!-- =text= makes <size:large>text</size:large> -->
-		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, Ubuntu One, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
+		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
 		<item>Чтобы использовать его, выберите Сервис Синхронизации в пункте Онлайн Синхронизация в настройках, указав URL-адрес сервера. Вот некоторые из них:</item>
 		<!-- -text is for list-items. --> 
 		<item>-Tomboy Online - https://edge.tomboy-online.org/</item>
-		<!-- -text is for list-items. --> 
-		<item>-Ubuntu One - https://one.ubuntu.com/notes</item>
 		<!-- -text is for list-items. --> 
 		<item>-rainy.notesync.org - https://notesync.org:8080/[username]/[password]/\n</item>
 		<item>После установки, нажмите кнопку Синхронизация на верхней панели Tomdroid для синхронизации заметок.\n</item>
@@ -366,7 +370,7 @@
 		<item>Also, Tomdroid is always looking for new contributors. If you are interested join the tomdroid-dev team on Launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
 		<item>Наконец, если у вас возникнут проблемы, пожалуйста, сообщите об этом по адресу: https://bugs.launchpad.net/tomdroid</item>
 	</string-array>
-			
+	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
 	I\'ve put it in here so that it\'ll get translated by translators.
@@ -374,13 +378,13 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Заметки Tomdroid</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">Это tomboy-клиент для Android. Tomboy - приложение для вашего ПК, позволяющее создавать заметки, которое сочетает wiki-стиль и простой пользовательский интерфейс.\n\n* Формат заметок совместим с Tomboy\n* Онлайн-синхронизация заметок с Snowy, Tomboy Online или Ubuntu One\n* Импорт с SD-карты\n* Это открытый исходный код!</string>
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Open source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Note-taking app with online synchronization compatible with Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.6 \"Small World\" release\n* Create home-screen shortcuts to notes\n* Specify a folder to use for SD Card sync\n* Reload current note after sync\n* A lot of new translations: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, sv, ta, te, tr, ug, uk, zh, zh-rCN\n* Several bugfixes\n</string>
+        <string name="market_recent_changes">0.8.0 \"NAME\" release\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
