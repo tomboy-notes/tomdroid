@@ -35,9 +35,9 @@ public class XmlUtils {
 		return input
 			.replace("&", "&amp;")
 			.replace("<", "&lt;")
-			.replace(">", "&gt;");
-			//.replace("\"", "&quot;")
-			//.replace("\'", "&apos;");
+			.replace(">", "&gt;")
+			.replace("\"", "&quot;")
+			.replace("\'", "&apos;");
 	}
 	
 	/**
@@ -51,8 +51,8 @@ public class XmlUtils {
 		return input
 			.replace("&amp;", "&")
 			.replace("&lt;", "<")
-			.replace("&gt;", ">");
-			//.replace("&quot;", "\"")
-			//.replace("&apos;", "\'");
+			.replace("&gt;", ">")
+			.replace("&quot;", "\"")
+			.replace("&apos;", "\'");
 	}
 }

@@ -40,6 +40,7 @@ import org.tomdroid.sync.SyncService;
 import org.tomdroid.util.ErrorList;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.TLog;
+import org.tomdroid.xml.XmlUtils;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -370,7 +371,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 							if(note.getTags().contains("system:deleted")) // deleted note
 								Jnote.put("command","delete");
 							else { // changed note
-								Jnote.put("title", note.getTitle());
+								Jnote.put("title", XmlUtils.escape(note.getTitle()));
 								Jnote.put("note-content", note.getXmlContent());
 								Jnote.put("note-content-version", "0.1");
 								Jnote.put("last-change-date", note.toTomboyFormat(note.getLastChangeDate()));
