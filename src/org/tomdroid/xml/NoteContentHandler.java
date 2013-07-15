@@ -263,20 +263,21 @@ public class NoteContentHandler extends DefaultHandler {
 				// if this list item is "empty" then we don't need to try rendering anything.
 				if (!inListItem && listItemIsEmpty.get(inListLevel-1))
 				{
-					listItemStartPos.set(inListLevel-1, new Integer(0));
-					listItemEndPos.set(inListLevel-1, new Integer(0));
-					listItemIsEmpty.set(inListLevel-1, new Boolean(true));
+					listItemStartPos.set(inListLevel-1, Integer.valueOf(0));
+					listItemEndPos.set(inListLevel-1, Integer.valueOf(0));
+					listItemIsEmpty.set(inListLevel-1, Boolean.valueOf(true));
 					
 					return;					
 				}
 				// here, we apply margin and create a bullet span. Plus, we need to reset position keepers.
 				// TODO new sexier bullets?
 				// Show a leading margin that is as wide as the nested level we are in
+				// Do NOT change the leading margin here (with value 30), it will ruin NoteXMLContentBuilder.java!
 				ssb.setSpan(new LeadingMarginSpan.Standard(30*inListLevel), listItemStartPos.get(inListLevel-1), listItemEndPos.get(inListLevel-1), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-				ssb.setSpan(new BulletSpan(), listItemStartPos.get(inListLevel-1), listItemEndPos.get(inListLevel-1), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-				listItemStartPos.set(inListLevel-1, new Integer(0));
-				listItemEndPos.set(inListLevel-1, new Integer(0));
-				listItemIsEmpty.set(inListLevel-1, new Boolean(true));
+				ssb.setSpan(new BulletSpan(Integer.valueOf(6)), listItemStartPos.get(inListLevel-1), listItemEndPos.get(inListLevel-1), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+				listItemStartPos.set(inListLevel-1, Integer.valueOf(0));
+				listItemEndPos.set(inListLevel-1, Integer.valueOf(0));
+				listItemIsEmpty.set(inListLevel-1, Boolean.valueOf(true));
 				
 				inListItem = false;
 			}

@@ -171,14 +171,14 @@ public class NoteXMLContentBuilder implements Runnable {
 								elementName = "size:huge";
 							}
 						}
+						else if( span instanceof LinkInternalSpan )
+						{
+							elementName = "link:internal";
+						}
 						else if( span instanceof LeadingMarginSpan.Standard )
 						{
 							LeadingMarginSpan.Standard margin = (LeadingMarginSpan.Standard) span;
 							currentMargin = margin.getLeadingMargin(true);
-						}
-						else if( span instanceof LinkInternalSpan )
-						{
-							elementName = "link:internal";
 						}
 						else if( span instanceof BulletSpan )
 						{

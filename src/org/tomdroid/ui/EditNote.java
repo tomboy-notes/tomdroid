@@ -377,13 +377,10 @@ public class EditNote extends ActionBarActivity {
 
 			//parsed not ok - error
 			} else if(msg.what == NoteContentBuilder.PARSE_ERROR) {
-				
-				// TODO put this String in a translatable resource
 				new AlertDialog.Builder(EditNote.this)
-					.setMessage("The requested note could not be parsed. If you see this error " +
-								" and you are able to replicate it, please file a bug!")
-					.setTitle("Error")
-					.setNeutralButton("Ok", new OnClickListener() {
+				.setMessage(getString(R.string.messageErrorParsingXML))
+				.setTitle(getString(R.string.titleErrorParsingXML))
+				.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
 						public void onClick(DialogInterface dialog, int which) {
 							dialog.dismiss();
 							showNote(true);
@@ -402,13 +399,10 @@ public class EditNote extends ActionBarActivity {
 			if(msg.what == NoteXMLContentBuilder.PARSE_OK) {
 			//parsed not ok - error
 			} else if(msg.what == NoteXMLContentBuilder.PARSE_ERROR) {
-				
-				// TODO put this String in a translatable resource
 				new AlertDialog.Builder(EditNote.this)
-					.setMessage("The requested note could not be parsed. If you see this error " +
-								" and you are able to replicate it, please file a bug!")
-					.setTitle("Error")
-					.setNeutralButton("Ok", new OnClickListener() {
+					.setMessage(getString(R.string.messageErrorParsingXML))
+					.setTitle(getString(R.string.titleErrorParsingXML))
+					.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
 						public void onClick(DialogInterface dialog, int which) {
 							dialog.dismiss();
 							finish();
@@ -469,6 +463,7 @@ public class EditNote extends ActionBarActivity {
 		//note.setXmlContent("<note-content version=\"0.1\">"+note.getTitle()+"\n\n"+newXmlContent+"</note-content>");
 		note.setXmlContent(newXmlContent);
 		noteContent = note.getNoteContent(noteXMLWriteHandler);
+		textChanged = true;
 		return true;
 	}
 	
@@ -559,7 +554,6 @@ public class EditNote extends ActionBarActivity {
             		if (!exists){
             			str.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             		}
-        			textChanged = true;
         			updateNoteContent(xmlOn);
             		boldButton.setChecked(false);
             	}
@@ -602,7 +596,6 @@ public class EditNote extends ActionBarActivity {
             			str.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             		}
             		
-        			textChanged = true;
             		updateNoteContent(xmlOn);
 	          		italicButton.setChecked(false);
             	}
@@ -642,7 +635,7 @@ public class EditNote extends ActionBarActivity {
             		if (!exists){
             			str.setSpan(new StrikethroughSpan(), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             		}
-        			textChanged = true;
+        			
             		updateNoteContent(xmlOn);
             		strikeoutButton.setChecked(false);
             	}
@@ -683,7 +676,6 @@ public class EditNote extends ActionBarActivity {
             			str.setSpan(new BackgroundColorSpan(Note.NOTE_HIGHLIGHT_COLOR), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             		}
             		
-        			textChanged = true;
         			updateNoteContent(xmlOn);
             		highButton.setChecked(false);
             	}
@@ -726,7 +718,6 @@ public class EditNote extends ActionBarActivity {
             			str.setSpan(new TypefaceSpan(Note.NOTE_MONOSPACE_TYPEFACE), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             		}
             		
-        			textChanged = true;
         			updateNoteContent(xmlOn);
             		monoButton.setChecked(false);
             	}
@@ -774,11 +765,9 @@ public class EditNote extends ActionBarActivity {
                 		StyleSpan[] ss = s.getSpans(styleStart, position, StyleSpan.class);
                 		
                 		for (int i = 0; i < ss.length; i++) {
-                			if (ss[i].getStyle() == android.graphics.Typeface.ITALIC){
-                    			if (ss[i].getStyle() == android.graphics.Typeface.ITALIC){
-                    				s.removeSpan(ss[i]);
-                    			}
-                			}
+                    		if (ss[i].getStyle() == android.graphics.Typeface.ITALIC){
+                    			s.removeSpan(ss[i]);
+                    		}
                         }
                 		s.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), styleStart, position, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 	}
@@ -883,7 +872,7 @@ public class EditNote extends ActionBarActivity {
 		builder.show();
 	}
 
-	public void changeSize() 
+	private void changeSize() 
 	{
         if (sselectionStart > sselectionEnd){
         	int temp = sselectionEnd;
@@ -924,9 +913,9 @@ public class EditNote extends ActionBarActivity {
         	if(size != 1.0f) {
         		str.setSpan(new RelativeSizeSpan(size), sselectionStart, sselectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         	}
-			textChanged = true;
+			
 			updateNoteContent(xmlOn);
 			size = 1.0f;
     	}
-    }	
+    }
 }
