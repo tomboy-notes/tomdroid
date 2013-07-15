@@ -318,7 +318,7 @@ public class Receive extends ActionBarActivity {
 		reader.close();
 		return out.toString();
 	}
-	protected void  onActivityResult (int requestCode, int resultCode, Intent  data) {
+	protected void  onActivityResult (int requestCode, int resultCode, Intent data) {
 		TLog.d(TAG, "onActivityResult called");
 		Uri uri = null;
 		if(data != null && data.hasExtra("uri"))

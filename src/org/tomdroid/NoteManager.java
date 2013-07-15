@@ -27,6 +27,7 @@ package org.tomdroid;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.text.Html;
@@ -163,6 +164,11 @@ public class NoteManager {
                 null);
 		activity.startManagingCursor(cursor);
 		return (cursor != null && cursor.getCount() != 0);
+	}
+	
+	public static Uri getUriByGuid (Activity activity,  String guid) {
+		Uri uri = Uri.parse(Tomdroid.CONTENT_URI+"/"+getNoteIdByGUID(activity, guid));
+		return uri;
 	}
 	
 	// puts a note in the content provider

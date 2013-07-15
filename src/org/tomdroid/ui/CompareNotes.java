@@ -46,6 +46,7 @@ import android.content.ContentValues;
 import android.content.Intent;	
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.net.Uri;
 import android.os.Bundle;	
 import android.text.Html;
 import android.text.TextUtils;
@@ -204,7 +205,10 @@ public class CompareNotes extends ActionBarActivity {
 					
 					if(noRemote) {
 						TLog.v(TAG, "compared notes have same content and titles, showing note");
-						finishForResult(new Intent());
+						Uri uri = NoteManager.getUriByGuid(this, localNote.getGuid());
+						Intent returnIntent = new Intent();
+						returnIntent.putExtra("uri", uri.toString());
+						finishForResult(returnIntent);
 					}
 					else // do nothing
 						finish();
@@ -417,7 +421,10 @@ public class CompareNotes extends ActionBarActivity {
 				remoteNote.addTag("system:deleted");
 				
 				if(noRemote) {
-					finishForResult(new Intent());
+					Uri uri = NoteManager.getUriByGuid(this, localNote.getGuid());
+					Intent returnIntent = new Intent();
+					returnIntent.putExtra("uri", uri.toString());
+					finishForResult(returnIntent);
 					return;
 				}
 				
@@ -436,13 +443,24 @@ public class CompareNotes extends ActionBarActivity {
 					pushNote(remoteNote);
 			}
 		}
-		else { // just readd and push modified localNote
+		else { // just read and push modified localNote
 			pullNote(localNote);
 
 			if(!noRemote) 
 				pushNote(localNote);
 		}
-		finishForResult(new Intent());
+		// if noRemote, show the imported note afterwards!
+		Intent returnIntent = new Intent();
+		if (noRemote) {
+			Uri uri = null;
+			if (choseLocal) {
+				uri = NoteManager.getUriByGuid(this, localNote.getGuid());
+			} else {
+				uri = NoteManager.getUriByGuid(this, remoteNote.getGuid());
+			}
+			returnIntent.putExtra("uri", uri.toString());
+		}
+		finishForResult(returnIntent);
 	}
 
 	// local is deleted, delete remote as well
@@ -455,17 +473,29 @@ public class CompareNotes extends ActionBarActivity {
 	}
 
 	private void pullNote(Note note) {
-		SyncManager.getInstance().getCurrentService().addPullable(note);
+		if (noRemote) {
+			note.setLastChangeDate();
+			NoteManager.putNote(this, note);
+		} else {
+			SyncManager.getInstance().getCurrentService().addPullable(note);
+		}
 	}
 
 	private void pushNote(Note note) {
-		SyncManager.getInstance().getCurrentService().addPushable(note);
+		if (noRemote) {
+			// do nothing as we have no server in noRemote mode!
+		} else {
+			SyncManager.getInstance().getCurrentService().addPushable(note);
+		}
 	}
 	
 	private void deleteNote(Note note) {
-		SyncManager.getInstance().getCurrentService().addDeleteable(note);
+		if (noRemote) {
+			NoteManager.deleteNote(this, note);
+		} else {
+			SyncManager.getInstance().getCurrentService().addDeleteable(note);
+		}
 	}
-
 	
 	private void updateTextAttributes(EditText title, EditText content) {
 		content.setTextSize(baseSize);
