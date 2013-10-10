@@ -1,0 +1,20 @@
+package org.tomdroid.util;
+
+public enum TagType { 	
+	ROOT,
+	LIST,
+	LIST_ITEM,
+	BOLD,
+	ITALIC,
+	HIGHLIGHT,
+	LINK,
+	LINK_INTERNAL,
+	TEXT,
+	STRIKETHROUGH,
+	MONOSPACE,
+	SIZE_SMALL,
+	SIZE_LARGE,
+	SIZE_HUGE,
+	MARGIN,
+	OTHER
+}
