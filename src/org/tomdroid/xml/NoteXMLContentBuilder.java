@@ -89,13 +89,14 @@ public class NoteXMLContentBuilder implements Runnable {
 			
 			// build TagTree
 			TagNode root = new TagNode();
+			root.setType(TagType.ROOT);
 			root.start = 0;
 			root.end = noteContent.length();
 			List<TagType> tabuList = new LinkedList<TagType>();
 			appendTree(root, root.start, root.end, tabuList);
 			
 			// add List nodes instead of margin nodes
-			fixListNodes(root);
+			//fixListNodes(root);
 			
 			// convert TagTree to String
 			noteXMLContent = writeXML (root);
@@ -110,10 +111,15 @@ public class NoteXMLContentBuilder implements Runnable {
 		warnHandler(successful);
 	}
 	
-	private void appendTree(TagNode parentNode, int start, int end, List<TagType> tabuList) {
-		List<TagNode> siblingNodes = findSiblingNodes(tabuList, start, end);
+	private void appendTree(TagNode parentNode, int start, int end, List<TagType> tabuList) throws Exception {
 				
 		int previousEnd = start;
+		int previousListLevel = 0;
+		TagNode parentListNode = parentNode;
+		if (parentListNode == null) throw new Exception();
+		
+		List<TagNode> siblingNodes = findSiblingNodes(tabuList, start, end);
+		
 		for (TagNode sibling : siblingNodes) {
 			int siblingStart = sibling.start;
 			int siblingEnd = sibling.end;
@@ -123,17 +129,66 @@ public class NoteXMLContentBuilder implements Runnable {
 				parentNode.add(textNode);
 				TLog.v(TAG, "Added a text-node before a span in the tree: {0}, ({1}/{2})", 
 						textNode.text, textNode.start, textNode.end);
+				previousListLevel = 0;
+				parentListNode = parentNode;
 			}
 			
-			parentNode.add(sibling);
-			TLog.v(TAG, "Added a span-node in the tree: {0}, ({1}/{2})", 
-					sibling.tagType.toString(), sibling.start, sibling.end);
-			tabuList.add(sibling.tagType);
+			// do some magic to add list tags
+			if (sibling.getType().equals(TagType.MARGIN)) {
+				
+				int listLeveldiff = sibling.listLevel - previousListLevel;
+				previousListLevel = sibling.listLevel;
+				
+				if (listLeveldiff > 0) {
+					// add a new nested list in form of a list node
+					for (int i = 0; i < listLeveldiff; i++) {
+						// if lists are nested, we need a list-item node in between
+						if (parentListNode.getType().equals(TagType.LIST)) {
+							TagNode listItem = new TagNode();
+							listItem.setType(TagType.LIST_ITEM);
+							
+							parentListNode.add(listItem);						
+							parentListNode = listItem;
+							TLog.v(TAG, "Added a list-node in the tree: {0}, ({1}/{2})", 
+									parentListNode.getType().toString(), sibling.start, sibling.end);
+						}
+						
+						TagNode listNode = new TagNode();
+						listNode.setType(TagType.LIST);
+						
+						parentListNode.add(listNode);	
+						parentListNode = listNode;
+						TLog.v(TAG, "Added a list-node in the tree: {0}, ({1}/{2})", 
+								parentListNode.getType().toString(), sibling.start, sibling.end);
+					}
+				} else if (listLeveldiff < 0) {
+					// go up in list-levels
+					for (int i = 0; i > listLeveldiff; i--) {
+						TagNode parent = parentListNode.getParent();
+						if (parent.getType().equals(TagType.LIST_ITEM)) {
+							i++;
+						}
+						parentListNode = parent;
+					}
+				}
+				
+				tabuList.add(sibling.getType());
+				
+				// recursion starts here
+				appendTree(parentListNode, siblingStart, siblingEnd, tabuList);
+				
+			} else {
 			
-			// recursion starts here
-			appendTree(sibling, siblingStart, siblingEnd, tabuList);
+				parentNode.add(sibling);
+				TLog.v(TAG, "Added a span-node in the tree: {0}, ({1}/{2})", 
+						sibling.getType().toString(), sibling.start, sibling.end);
+				tabuList.add(sibling.getType());
+				
+				// recursion starts here
+				appendTree(sibling, siblingStart, siblingEnd, tabuList);
+			}
 			
-			tabuList.remove(sibling.tagType);
+			tabuList.remove(sibling.getType());
 			previousEnd = sibling.end;
 		}
 		
@@ -183,8 +238,8 @@ public class NoteXMLContentBuilder implements Runnable {
 		// get first span
 		for (Object span : spans) {
 			TagNode node = getNode(span);
-			if (!node.tagType.equals(TagType.OTHER)
-					&& !tabuList.contains(node.tagType)) {
+			if (!node.getType().equals(TagType.OTHER)
+					&& !tabuList.contains(node.getType())) {
 				if ( node.start < min) {
 					min = node.start;
 				}
@@ -194,8 +249,8 @@ public class NoteXMLContentBuilder implements Runnable {
 		// in case of multiple spans at this position find the outermost one
 		for (Object span : noteContent.getSpans(min, min, Object.class)) {
 			TagNode node = getNode(span);
-			if (!node.tagType.equals(TagType.OTHER) 
-					&& !tabuList.contains(node.tagType)
+			if (!node.getType().equals(TagType.OTHER) 
+					&& !tabuList.contains(node.getType())
 					&& node.start == min ) {
 				if ( node.end > max ) {
 					max = node.end;
@@ -209,7 +264,7 @@ public class NoteXMLContentBuilder implements Runnable {
 
 	private TagNode getTextNode (int start, int end) {
 		TagNode node = new TagNode();
-		node.tagType = TagType.TEXT;
+		node.setType(TagType.TEXT);
 		String text = noteContent.subSequence(start, end).toString();
 		node.text = text;
 		node.start = start;
@@ -226,16 +281,16 @@ public class NoteXMLContentBuilder implements Runnable {
 			StyleSpan style = (StyleSpan) span;
 			if( (style.getStyle()&Typeface.BOLD)>0 )
 			{
-				node.tagType = TagType.BOLD;
+				node.setType(TagType.BOLD);
 			}
 			if( (style.getStyle()&Typeface.ITALIC)>0 )
 			{
-				node.tagType = TagType.ITALIC;
+				node.setType(TagType.ITALIC);
 			}
 		}
 		else if( span instanceof StrikethroughSpan )
 		{
-			node.tagType = TagType.STRIKETHROUGH;
+			node.setType(TagType.STRIKETHROUGH);
 		}
 
 		else if( span instanceof BackgroundColorSpan )
@@ -243,7 +298,7 @@ public class NoteXMLContentBuilder implements Runnable {
 			BackgroundColorSpan bgcolor = (BackgroundColorSpan) span;
 			if( bgcolor.getBackgroundColor()==Note.NOTE_HIGHLIGHT_COLOR )
 			{
-				node.tagType = TagType.HIGHLIGHT;
+				node.setType(TagType.HIGHLIGHT);
 			}
 		}
 		else if( span instanceof TypefaceSpan )
@@ -251,7 +306,7 @@ public class NoteXMLContentBuilder implements Runnable {
 			TypefaceSpan typeface = (TypefaceSpan) span;
 			if( typeface.getFamily()==Note.NOTE_MONOSPACE_TYPEFACE )
 			{
-				node.tagType = TagType.MONOSPACE;
+				node.setType(TagType.MONOSPACE);
 			}
 		}
 		else if( span instanceof RelativeSizeSpan )
@@ -259,35 +314,35 @@ public class NoteXMLContentBuilder implements Runnable {
 			RelativeSizeSpan size = (RelativeSizeSpan) span;
 			if( size.getSizeChange()==Note.NOTE_SIZE_SMALL_FACTOR )
 			{
-				node.tagType = TagType.SIZE_SMALL;
+				node.setType(TagType.SIZE_SMALL);
 			}
 			else if( size.getSizeChange()==Note.NOTE_SIZE_LARGE_FACTOR )
 			{
-				node.tagType = TagType.SIZE_LARGE;
+				node.setType(TagType.SIZE_LARGE);
 			}
 			else if( size.getSizeChange()==Note.NOTE_SIZE_HUGE_FACTOR )
 			{
-				node.tagType = TagType.SIZE_HUGE;
+				node.setType(TagType.SIZE_HUGE);
 			}
 		}
 		else if( span instanceof LinkInternalSpan )
 		{
-			node.tagType = TagType.LINK_INTERNAL;
+			node.setType(TagType.LINK_INTERNAL);
 		}
 		else if( span instanceof LeadingMarginSpan.Standard )
 		{
 			LeadingMarginSpan.Standard margin = (LeadingMarginSpan.Standard) span;
 			int currentMargin = margin.getLeadingMargin(true);
-			node.tagType = TagType.MARGIN;
+			node.setType(TagType.MARGIN);
 			int marginFactor = 30;
 			node.listLevel = currentMargin / marginFactor;
 		}
 		else if( span instanceof BulletSpan )
 		{
-			node.tagType = TagType.LIST_ITEM;
+			node.setType(TagType.LIST_ITEM);
 		}
 		else {
-			node.tagType = TagType.OTHER;
+			node.setType(TagType.OTHER);
 		}
 		
 		return node;
@@ -299,7 +354,7 @@ public class NoteXMLContentBuilder implements Runnable {
 		TagNode parentListNode = node;
 		
 		for (TagNode marginNode : node.getChildren()) {
-			if (marginNode.tagType.equals(TagType.MARGIN)) {
+			if (marginNode.getType().equals(TagType.MARGIN)) {
 				
 				int listLeveldiff = marginNode.listLevel - previousListLevel;
 				previousListLevel = marginNode.listLevel;
@@ -308,7 +363,7 @@ public class NoteXMLContentBuilder implements Runnable {
 					// add a new nested list in form of a list node
 					for (int i = 0; i < listLeveldiff; i++) {
 						TagNode listNode = new TagNode();
-						listNode.tagType = TagType.LIST;
+						listNode.setType(TagType.LIST);
 						
 						parentListNode.add(listNode);
 						parentListNode = listNode;
@@ -354,11 +409,11 @@ public class NoteXMLContentBuilder implements Runnable {
 		
 		for (TagNode child : children){
 			try {
-				if (child.tagType.equals(TagType.TEXT)) {
+				if (child.getType().equals(TagType.TEXT)) {
 					serializer.text(child.text);
 				} else {
 					serializer.startTag("", child.getTagName());
-					if (child.tagType.equals(TagType.LIST_ITEM)) {
+					if (child.getType().equals(TagType.LIST_ITEM)) {
 						serializer.attribute("", "dir", "ltr");
 					}
 					// recursion starts here

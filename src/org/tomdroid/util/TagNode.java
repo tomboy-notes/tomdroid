@@ -6,7 +6,7 @@ import java.util.List;
 public class TagNode {
 	
 	private List<TagNode> children = new LinkedList<TagNode>();
-	public TagType tagType;
+	private TagType tagType;
 	public String text = "";
 	public int start;
 	public int end;
@@ -21,6 +21,14 @@ public class TagNode {
 	public void remove (TagNode node) {
 		this.children.remove(node);
 		node.parent = null;
+	}
+	
+	public void setType (TagType tagType) {
+		this.tagType = tagType;
+	}
+	
+	public TagType getType () {
+		return this.tagType;
 	}
 	
 	public TagNode[] getChildren() {

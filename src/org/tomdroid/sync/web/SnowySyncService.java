@@ -449,7 +449,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						String notesUrl = response.getJSONObject("notes-ref")
 								.getString("api-ref");
 
-						TLog.v(TAG, "contacting " + notesUrl + "/" + guid);
+						TLog.v(TAG, "contacting " + notesUrl + guid);
 
 						rawResponse = auth.get(notesUrl + guid
 								+ "?include_notes=true");
