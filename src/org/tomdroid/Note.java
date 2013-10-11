@@ -205,18 +205,27 @@ public class Note implements Serializable {
 
 	public Time getLastChangeDate() {
 		Time time = new Time();
+		if (lastChangeDate == null) {
+			lastChangeDate = new Time().format3339(false);
+		}
 		time.parse3339(lastChangeDate);
 		return time;
 	}
 	
 	public Time getLastMetadataChangeDate() {
 		Time time = new Time();
+		if (lastMetadataChangeDate == null) {
+			lastMetadataChangeDate = new Time().format3339(false);
+		}
 		time.parse3339(lastMetadataChangeDate);
 		return time;
 	}
 	
 	public Time getCreateDate() {
 		Time time = new Time();
+		if (createDate == null) {
+			createDate = new Time().format3339(false);
+		}
 		time.parse3339(createDate);
 		return time;
 	}

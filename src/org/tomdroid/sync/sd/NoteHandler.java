@@ -49,6 +49,7 @@ public class NoteHandler extends DefaultHandler {
 	// -- Tomboy's notes XML tags names --
 	private final static String TITLE = "title";
 	private final static String LAST_CHANGE_DATE = "last-change-date";
+	private final static String LAST_METADATA_CHANGE_DATE = "last-metadata-change-date";
 	private final static String NOTE_CONTENT = "note-content";
 	private final static String CREATE_DATE = "create-date";
 	private final static String NOTE_C = "cursor-position";
@@ -57,10 +58,15 @@ public class NoteHandler extends DefaultHandler {
 	private final static String NOTE_X = "x";
 	private final static String NOTE_Y = "y";
 	private final static String NOTE_TAG = "tag";
+	private final static String SELECTION_BOUND_POS = "selection-bound-position";
+	private final static String CURSOR_POS = "cursor-position";
+	private final static String OPEN_ON_STARTUP = "open-on-startup";
+	private final static String PINNED = "pinned";
 	
 	// Buffers for parsed elements
 	private StringBuilder title = new StringBuilder();
 	private StringBuilder lastChangeDate = new StringBuilder();
+	private StringBuilder lastMetadataChangeDate = new StringBuilder();
 	private StringBuilder noteContent = new StringBuilder();
 	private StringBuilder createDate = new StringBuilder();
 	private StringBuilder cursorPos = new StringBuilder();
@@ -68,6 +74,9 @@ public class NoteHandler extends DefaultHandler {
 	private StringBuilder height = new StringBuilder();
 	private StringBuilder X = new StringBuilder();
 	private StringBuilder Y = new StringBuilder();
+	private StringBuilder pinned = new StringBuilder();
+	private StringBuilder selectionBoundPos = new StringBuilder();
+	private StringBuilder openOnStartup = new StringBuilder();
 	private StringBuilder tag = new StringBuilder();
 	
 	// link to model 
