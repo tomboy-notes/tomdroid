@@ -37,8 +37,7 @@ public class NoteManagerTest extends ActivityUnitTestCase<Tomdroid> {
 				"'guid': '002e91a2-2e34-4e2d-bf88-21def49a7704', " +
 				"'last-change-date': '2009-04-19T21:29:23.2197340-07:00', " +
 				"'tags': ['tag1', 'tag2']}");
-		Note n = new Note();
-		n.fromJSON(note);
+		Note n = new Note(note);
 		NoteManager.putNote(a, n);
 		
 		// Add a notebook template to the content manager.
@@ -47,8 +46,7 @@ public class NoteManagerTest extends ActivityUnitTestCase<Tomdroid> {
 				"'guid': '992e91a2-2e34-4e2d-bf88-21def49a7712', " +
 				"'last-change-date': '2009-04-19T21:29:23.2197340-07:00', " +
 				"'tags': ['system:template', 'tag2']}");
-		Note t = new Note();
-		t.fromJSON(template);
+		Note t = new Note(template);
 		NoteManager.putNote(a, t);
 	}
 		

@@ -16,8 +16,7 @@ public class NoteTest extends TestCase {
 				"'guid': '002e91a2-2e34-4e2d-bf88-21def49a7705', " +
 				"'last-change-date': '2009-04-19T21:29:23.2197340-07:00', " +
 				"'tags': ['tag1', 'tag2']}");
-		Note n = new Note();
-		n.fromJSON(json);
+		Note n = new Note(json);
 		Assert.assertEquals("foo", n.getTitle());	
 		Assert.assertEquals("002e91a2-2e34-4e2d-bf88-21def49a7705", n.getGuid().toString());
 		Assert.assertEquals("bar", n.getXmlContent());	
@@ -29,8 +28,7 @@ public class NoteTest extends TestCase {
 				"{'title': 'foo', 'note-content': 'bar', " +
 				"'guid': '002e91a2-2e34-4e2d-bf88-21def49a7705', " +
 				"'last-change-date': '2009-04-19T21:29:23.2197340-07:00'}");
-		Note n = new Note();
-		n.fromJSON(json);
+		Note n = new Note(json);
 		Assert.assertEquals("foo", n.getTitle());
 		Assert.assertEquals("", n.getTags());
 	}
