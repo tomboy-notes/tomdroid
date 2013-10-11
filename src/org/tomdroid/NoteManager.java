@@ -47,7 +47,10 @@ import java.util.regex.Pattern;
 @SuppressWarnings("deprecation")
 public class NoteManager {
 	
-	public static final String[] FULL_PROJECTION = { Note.ID, Note.TITLE, Note.FILE, Note.NOTE_CONTENT, Note.MODIFIED_DATE, Note.GUID, Note.TAGS };
+	public static final String[] FULL_PROJECTION = { Note.GUID, Note.TITLE, Note.FILE, Note.NOTE_CONTENT, 
+		Note.CREATED_DATE, Note.MODIFIED_DATE, Note.MODIFIED_METADATA_DATE, Note.TAGS,
+		Note.OPEN_ON_STARTUP, Note.PINNED, Note.CURSOR_POSITION, Note.SELECTION_BOUND_POSITION,
+		Note.WINDOW_HEIGHT, Note.WINDOW_WIDTH, Note.WINDOW_X, Note.WINDOW_Y };
 	public static final String[] LIST_PROJECTION = { Note.ID, Note.TITLE, Note.MODIFIED_DATE, Note.TAGS };
 	public static final String[] DATE_PROJECTION = { Note.ID, Note.GUID, Note.MODIFIED_DATE };
 	public static final String[] TITLE_PROJECTION = { Note.TITLE, Note.GUID };

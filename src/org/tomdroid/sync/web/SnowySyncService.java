@@ -455,7 +455,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 								+ "?include_notes=true");
 
 						response = new JSONObject(rawResponse);
-						JSONArray notes = response.getJSONArray("notes");
+						JSONArray notes = response.getJSONArray("note");
 						JSONObject jsonNote = notes.getJSONObject(0);
 
 						TLog.v(TAG, "parsing remote note");
