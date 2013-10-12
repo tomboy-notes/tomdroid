@@ -52,6 +52,7 @@ import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -520,6 +521,46 @@ public class EditNote extends ActionBarActivity {
 				})
 			.show();
 	}
+	
+	// generic function which does the magic as soon as a style-toggle button is clicked.
+	private void toggleButtonOnClick (ToggleButton button, Object span) {
+		
+		int selectionStart = content.getSelectionStart();
+		styleStart = selectionStart;
+		int selectionEnd = content.getSelectionEnd();
+		
+		if (selectionStart > selectionEnd){
+			int temp = selectionEnd;
+			selectionEnd = selectionStart;
+			selectionStart = temp;
+		}
+		
+		if (selectionEnd > selectionStart)
+		{
+			boolean exists = false;
+			
+			Spannable str = content.getText();
+			if (span instanceof StyleSpan) {
+				StyleSpan[] ss = str.getSpans(selectionStart, selectionEnd, StyleSpan.class);
+				int style = ((StyleSpan) span).getStyle();
+				
+				for (StyleSpan oldSpan : ss) {
+					if (oldSpan.getStyle() == style) {
+						str.removeSpan(oldSpan);
+						exists = true;
+					}
+				}
+			}
+			
+			if (!exists){
+				str.setSpan(span , selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			}
+			updateNoteContent(xmlOn);
+			button.setChecked(false);
+		}
+		else
+			cursorLoc = selectionStart;
+	}
 
 	private void addFormatListeners()
 	{
@@ -529,40 +570,8 @@ public class EditNote extends ActionBarActivity {
 		boldButton.setOnClickListener(new Button.OnClickListener() {
 
 			public void onClick(View v) {
-		    	
-            	int selectionStart = content.getSelectionStart();
-            	
-            	styleStart = selectionStart;
-            	
-            	int selectionEnd = content.getSelectionEnd();
-            	
-            	if (selectionStart > selectionEnd){
-            		int temp = selectionEnd;
-            		selectionEnd = selectionStart;
-            		selectionStart = temp;
-            	}
-            	
-            	if (selectionEnd > selectionStart)
-            	{
-            		Spannable str = content.getText();
-            		StyleSpan[] ss = str.getSpans(selectionStart, selectionEnd, StyleSpan.class);
-            		
-            		boolean exists = false;
-            		for (int i = 0; i < ss.length; i++) {
-            			if (ss[i].getStyle() == android.graphics.Typeface.BOLD){
-            				str.removeSpan(ss[i]);
-            				exists = true;
-            			}
-                    }
-            		
-            		if (!exists){
-            			str.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            		}
-        			updateNoteContent(xmlOn);
-            		boldButton.setChecked(false);
-            	}
-            	else
-            		cursorLoc = selectionStart;
+				Object span = new StyleSpan(android.graphics.Typeface.BOLD);
+				toggleButtonOnClick (boldButton, span);
             }
 		});
 		

@@ -193,6 +193,7 @@ public class CompareNotes extends ActionBarActivity {
 					if(extras.getInt("datediff") < 0) { // local older
 						TLog.v(TAG, "compared notes have same content and titles, pulling newer remote");
 						pullNote(remoteNote);
+						finish();
 					}
 					else if(extras.getInt("datediff") == 0 || noRemote) {
 						TLog.v(TAG, "compared notes have same content and titles, same date, doing nothing");
@@ -200,7 +201,7 @@ public class CompareNotes extends ActionBarActivity {
 					else {
 						TLog.v(TAG, "compared notes have same content and titles, pushing newer local");
 						pushNote(localNote);
-						return;
+						finish();
 					}
 					
 					if(noRemote) {
