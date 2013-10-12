@@ -100,7 +100,13 @@ public class NoteXMLContentBuilder implements Runnable {
 		boolean successful = true;
 		
 		try {
-						
+			
+			// error finding
+			Object[] allSpans = noteContent.getSpans(0, noteContent.length(), Object.class);
+			for (Object span : allSpans) {
+				TLog.v(TAG, "({0}/{1}) {2}", noteContent.getSpanStart(span), noteContent.getSpanEnd(span), span.getClass().toString());
+			}
+			
 			// build TagTree first to get a Tree-Representation of our Spans
 			TagNode root = new TagNode();
 			root.setType(TagType.ROOT);
@@ -287,12 +293,12 @@ public class NoteXMLContentBuilder implements Runnable {
 		List<TagNode> candidates = new LinkedList<TagNode>();
 		
 		// in case of multiple spans at this position find the outermost (longest) one
-		for (Object span : noteContent.getSpans(min, min, Object.class)) {
+		for (Object span : spans) {
 			TagNode node = getNode(span);
 			if (!node.getType().equals(TagType.OTHER) 
 					&& !tabuList.contains(node.getType())
 					&& node.start == min ) {
-				if ( node.end > max ) {
+				if ( node.end >= max ) {
 					max = node.end;
 					returnNode = node;
 					candidates.add(node);
@@ -301,9 +307,16 @@ public class NoteXMLContentBuilder implements Runnable {
 			
 		}
 		
-		// check if margin span is as long as others, if yes - it must be returned first!
+		// check if bullet span (=list-item) is as long as others, if yes - it must be returned second!
 		for (TagNode node : candidates) {
 			if (node.end == max && node.getType() == TagType.LIST_ITEM) {
+				returnNode = node;
+			}
+		}
+		
+		// check if margin span (=list) is as long as others, if yes - it must be returned very first!
+		for (TagNode node : candidates) {
+			if (node.end == max && node.getType() == TagType.MARGIN) {
 				returnNode = node;
 			}
 		}
