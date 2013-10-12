@@ -47,22 +47,11 @@ public class Note implements Serializable {
 	public static final String GUID = "guid";
 	public static final String TITLE = "title";
 	public static final String MODIFIED_DATE = "modified_date";
-	public static final String MODIFIED_METADATA_DATE = "modified_metadata_date";
-	public static final String CREATED_DATE = "created_date";
 	public static final String URL = "url";
 	public static final String FILE = "file";
 	public static final String TAGS = "tags";
 	public static final String NOTE_CONTENT = "content";
 	public static final String NOTE_CONTENT_PLAIN = "content_plain";
-	
-	public static final String CURSOR_POSITION = "cursor_position";
-	public static final String SELECTION_BOUND_POSITION = "selection_bound_position";
-	public static final String WINDOW_WIDTH = "window_width";
-	public static final String WINDOW_HEIGHT = "window_height";
-	public static final String WINDOW_X = "window_x";
-	public static final String WINDOW_Y = "window_y";
-	public static final String OPEN_ON_STARTUP = "open_on_startup";
-	public static final String PINNED = "pinned";
 	
 	// Notes constants
 	public static final int NOTE_HIGHLIGHT_COLOR = 0x99FFFF00; // lowered alpha to show cursor
@@ -79,20 +68,17 @@ public class Note implements Serializable {
 	private String title;
 	private String tags = "";
 	private String lastChangeDate;
-	private String createDate;
-	private String lastMetadataChangeDate;
 	private int dbId;
 
 	// Unused members (for SD Card)
 	
+	public String createDate = new Time().format3339(false);
 	public int cursorPos = 0;
-	public int selectionBoundPos = 0;
 	public int height = 0;
 	public int width = 0;
 	public int X = -1;
 	public int Y = -1;
-	public Boolean openOnStartup = false;
-	public Boolean pinned = false;
+
 	
 	// TODO before guid were of the UUID object type, now they are simple strings 
 	// but at some point we probably need to validate their uniqueness (per note collection or universe-wide?) 
@@ -123,14 +109,12 @@ public class Note implements Serializable {
 		tags = new String();
 	}
 	
-	public void fromJSON (JSONObject json) {
+	public Note(JSONObject json) {
 		
 		// These methods return an empty string if the key is not found
 		setTitle(XmlUtils.unescape(json.optString("title")));
 		setGuid(json.optString("guid"));
 		setLastChangeDate(json.optString("last-change-date"));
-		setLastMetadataChangeDate(json.optString("last-metadata-change-date"));
-		setCreateDate(json.optString("create-date"));
 		String newXMLContent = json.optString("note-content");
 		setXmlContent(newXMLContent);
 		JSONArray jtags = json.optJSONArray("tags");
@@ -142,15 +126,6 @@ public class Note implements Serializable {
 				tags += tag + ",";
 			}
 		}
-		
-		this.width = json.optInt("width");
-		this.height = json.optInt("height");
-		this.X = json.optInt("x");
-		this.Y = json.optInt("y");
-		this.cursorPos = json.optInt("cursor-position");
-		this.openOnStartup = json.optBoolean("open-on-startup");
-		this.pinned = json.optBoolean("pinned");
-		this.selectionBoundPos = json.optInt("selection-bound-position");
 	}
 
 	public String getTags() {
@@ -205,28 +180,15 @@ public class Note implements Serializable {
 
 	public Time getLastChangeDate() {
 		Time time = new Time();
-		if (lastChangeDate == null) {
-			lastChangeDate = new Time().format3339(false);
-		}
 		time.parse3339(lastChangeDate);
-		return time;
-	}
-	
-	public Time getLastMetadataChangeDate() {
-		Time time = new Time();
-		if (lastMetadataChangeDate == null) {
-			lastMetadataChangeDate = new Time().format3339(false);
-		}
-		time.parse3339(lastMetadataChangeDate);
 		return time;
 	}
 	
 	public Time getCreateDate() {
 		Time time = new Time();
-		if (createDate == null) {
-			createDate = new Time().format3339(false);
-		}
-		time.parse3339(createDate);
+		// quick and dirty bugfix for synchronisation with Rainy server (have to send create Date)
+		//TODO: we should store the createDate in the note!
+		time.set(946681200000L);
 		return time;
 	}
 	
@@ -255,46 +217,7 @@ public class Note implements Serializable {
 		}
 		
 		this.lastChangeDate = lastChangeDateStr;
-	}
-	
-	// sets metadata change date to now
-	public void setLastMetadataChangeDate() {
-		Time now = new Time();
-		now.setToNow();
-		String time = now.format3339(false);
-		setLastMetadataChangeDate(time);
-	}
-	
-	public void setLastMetadataChangeDate(Time lastMetadataChangeDateTime) {
-		this.lastMetadataChangeDate = lastMetadataChangeDateTime.format3339(false);
-	}
-	
-	public void setLastMetadataChangeDate(String lastMetadataChangeDateStr) throws TimeFormatException {
-		
-		// regexp out the sub-milliseconds from tomboy's datetime format
-		// Normal RFC 3339 format: 			2008-10-13T16:00:00.000-07:00
-		// Tomboy's (C# library) format: 	2010-01-23T12:07:38.7743020-05:00
-		Matcher m = dateCleaner.matcher(lastMetadataChangeDateStr);
-		if (m.find()) {
-			//TLog.d(TAG, "I had to clean out extra sub-milliseconds from the date");
-			lastMetadataChangeDateStr = m.group(1)+m.group(2);
-			//TLog.v(TAG, "new date: {0}", lastChangeDateStr);
-		}
-		
-		this.lastMetadataChangeDate = lastMetadataChangeDateStr;
-	}
-	
-	// sets create date to now
-	public void setCreateDate() {
-		Time now = new Time();
-		now.setToNow();
-		String time = now.format3339(false);
-		setCreateDate(time);
-	}
-	
-	public void setCreateDate(Time createDate) {
-		this.createDate = createDate.format3339(false);
-	}
+	}	
 
 	public void setCreateDate(String createDateStr) throws TimeFormatException {
 		
@@ -363,22 +286,20 @@ public class Note implements Serializable {
 			tagString += "\n\t</tags>"; 
 		}
 
+		// TODO: create-date
 		String fileString = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<note version=\"0.3\" xmlns:link=\"http://beatniksoftware.com/tomboy/link\" xmlns:size=\"http://beatniksoftware.com/tomboy/size\" xmlns=\"http://beatniksoftware.com/tomboy\">\n\t<title>"
 				+getTitle().replace("&", "&amp;")+"</title>\n\t<text xml:space=\"preserve\"><note-content version=\"0.1\">"
 				+getTitle().replace("&", "&amp;")+"\n\n" // added for compatibility
 				+getXmlContent()+"</note-content></text>\n\t<last-change-date>"
 				+toTomboyFormat(getLastChangeDate())+"</last-change-date>\n\t<last-metadata-change-date>"
-				+toTomboyFormat(getLastMetadataChangeDate())+"</last-metadata-change-date>\n\t<create-date>"
+				+toTomboyFormat(getLastChangeDate())+"</last-metadata-change-date>\n\t<create-date>"
 				+toTomboyFormat(getCreateDate())+"</create-date>\n\t<cursor-position>"
-				+cursorPos+"</cursor-position>\n\t<selection-bound-position>"
-				+selectionBoundPos+"</selection-bound-position>\n\t<width>"
+				+cursorPos+"</cursor-position>\n\t<width>"
 				+width+"</width>\n\t<height>"
 				+height+"</height>\n\t<x>"
 				+X+"</x>\n\t<y>"
 				+Y+"</y>"
-				+tagString+"\n\t<pinned>"
-				+pinned+"</pinned>\n\t<open-on-startup>"
-				+openOnStartup.toString()+"</open-on-startup>\n</note>\n";
+				+tagString+"\n\t<open-on-startup>False</open-on-startup>\n</note>\n";
 		return fileString;
 	}
 

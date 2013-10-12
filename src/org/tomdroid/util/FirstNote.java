@@ -46,9 +46,7 @@ public class FirstNote {
 		note.setTitle(activity.getString(R.string.firstNoteTitle));
 		// FIXME as soon as we can create notes, make sure GUID is unique! - we are referencing this UUID elsewhere, don't forget to check! 
 		note.setGuid("8f837a99-c920-4501-b303-6a39af57a714");
-		note.setLastChangeDate();
-		note.setCreateDate();
-		note.setLastMetadataChangeDate();
+		note.setLastChangeDate("2010-10-09T16:50:12.219-04:00");
 		
 		
 		// reconstitute HTML in note content 
