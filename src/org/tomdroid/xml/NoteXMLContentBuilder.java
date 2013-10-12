@@ -36,6 +36,7 @@ import org.xmlpull.v1.XmlSerializer;
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.BulletSpan;
@@ -99,7 +100,7 @@ public class NoteXMLContentBuilder implements Runnable {
 		boolean successful = true;
 		
 		try {
-			
+						
 			// build TagTree first to get a Tree-Representation of our Spans
 			TagNode root = new TagNode();
 			root.setType(TagType.ROOT);
@@ -283,6 +284,8 @@ public class NoteXMLContentBuilder implements Runnable {
 			}
 		}
 		
+		List<TagNode> candidates = new LinkedList<TagNode>();
+		
 		// in case of multiple spans at this position find the outermost (longest) one
 		for (Object span : noteContent.getSpans(min, min, Object.class)) {
 			TagNode node = getNode(span);
@@ -292,10 +295,19 @@ public class NoteXMLContentBuilder implements Runnable {
 				if ( node.end > max ) {
 					max = node.end;
 					returnNode = node;
+					candidates.add(node);
 				}
 			}
 			
 		}
+		
+		// check if margin span is as long as others, if yes - it must be returned first!
+		for (TagNode node : candidates) {
+			if (node.end == max && node.getType() == TagType.LIST_ITEM) {
+				returnNode = node;
+			}
+		}
+		
 		return returnNode;
 	}
 
