@@ -98,6 +98,7 @@ public class Tomdroid extends ActionBarListActivity {
 	public static final String	CONTENT_ITEM_TYPE	= "vnd.android.cursor.item/vnd.tomdroid.note";
 	public static final String	PROJECT_HOMEPAGE	= "http://www.launchpad.net/tomdroid/";
 	public static final String CALLED_FROM_SHORTCUT_EXTRA = "org.tomdroid.CALLED_FROM_SHORTCUT";
+    public static final String IS_NEW_NOTE_EXTRA = "org.tomdroid.IS_NEW_NOTE";
 	public static final String SHORTCUT_NAME 		= "org.tomdroid.SHORTCUT_NAME";
 	
     private static final int DIALOG_SYNC = 0;
@@ -1081,6 +1082,7 @@ public class Tomdroid extends ActionBarListActivity {
 		// view new note
 		
 		Intent i = new Intent(Intent.ACTION_VIEW, uri, this, EditNote.class);
+	    i.putExtra(IS_NEW_NOTE_EXTRA, true);
 		startActivity(i);
 
 		

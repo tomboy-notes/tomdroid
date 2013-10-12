@@ -115,6 +115,8 @@ public class EditNote extends ActionBarActivity {
 	private boolean discardChanges = false;
 	// force close without onDestroy() function when note not existing!
 	private boolean forceClose = false;
+	// indicates whether the note was ever saved before (to be able to discard brand new notes)
+	private boolean neverSaved = true;
 	
 	// TODO extract methods in here
 	@Override
@@ -141,6 +143,8 @@ public class EditNote extends ActionBarActivity {
 		    	}
 		    }
 		});
+		
+		neverSaved = getIntent().getBooleanExtra(Tomdroid.IS_NEW_NOTE_EXTRA, false);
 		
         uri = getIntent().getData();
 	}
@@ -211,9 +215,9 @@ public class EditNote extends ActionBarActivity {
     	if (uri != null) {
         	if(!discardChanges && textChanged) // changed and not discarding changes
        			saveNote();
-        	else if (discardChanges && NewNote.neverSaved)
+        	else if (discardChanges && neverSaved)
         		NoteManager.deleteNote(this, note);
-        		NewNote.neverSaved = false;
+        		neverSaved = false;
         }
     	super.onPause();
     }
@@ -490,7 +494,7 @@ public class EditNote extends ActionBarActivity {
 			SdCardSyncService.backupNote(note);
 		}
 		textChanged = false;
-		NewNote.neverSaved = false;
+		neverSaved = false;
 
 		Toast.makeText(this, getString(R.string.messageNoteSaved), Toast.LENGTH_SHORT).show();
 		TLog.v(TAG, "note saved");
