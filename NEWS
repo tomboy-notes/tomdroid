@@ -1,7 +1,6 @@
 ﻿Tomdroid NEWS
 
 Copyright 2008, 2009, 2010, 2011, 2012 Olivier Bilodeau <olivier@bottomlesspit.org>
-Copyright 2013 Stefan Hammer <j.4@gmx.at>
 
 Project hosting: https://launchpad.net/tomdroid/
 
@@ -13,9 +12,8 @@ Join it at: https://launchpad.net/~tomdroid-dev
 For more details and developer visible changes see the ChangeLog
 
 -------------------------------------------------------------------------------
-Tomdroid 0.7.3 - "Almost there!" released on <release-date>
+Tomdroid <version-code> - <version-name> released on <release-date>
 
-* fixed bug lp:1067604 Parser crash resulting in note corruption while editing bullet lists
 * added option to automatically sync on startup (lp:1038353)
 * fixed bug lp:1120488 Please add custom HTTP header to syncing requests (for Rainy sync)
 * fixed strings related bugs: lp:1068772, lp:1068761, lp:1068791, lp:1068760

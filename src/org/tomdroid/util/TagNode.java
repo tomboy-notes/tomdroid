@@ -1,34 +1,8 @@
-/*
- * Tomdroid
- * Tomboy on Android
- * http://www.launchpad.net/tomdroid
- * 
- * Copyright 2013 Stefan Hammer <j-4@gmx.at>
- * Copyright 2013 Timo Dörr <timo@latecrew.de>
- * 
- * This file is part of Tomdroid.
- * 
- * Tomdroid is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * Tomdroid is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 package org.tomdroid.util;
 
 import java.util.LinkedList;
 import java.util.List;
 
-// this class was created to be able to convert a spannable string to XML
-// a TagNode holds all the information necessary to create a XML tag from the Tree. 
 public class TagNode {
 	
 	private List<TagNode> children = new LinkedList<TagNode>();
@@ -42,6 +16,11 @@ public class TagNode {
 	public void add (TagNode node) {
 		this.children.add(node);
 		node.parent = this;
+	}
+	
+	public void remove (TagNode node) {
+		this.children.remove(node);
+		node.parent = null;
 	}
 	
 	public void setType (TagType tagType) {
@@ -59,6 +38,21 @@ public class TagNode {
 	public TagNode getParent() {
 		return this.parent;
 	}
+
+	public boolean equals(TagNode t) {
+		return t.start == this.start && t.end == this.end && t.tagType == this.tagType;
+	}
+	
+	public static void moveTo(TagNode node, TagNode from, TagNode to) {
+		from.remove(node);
+		to.add(node);
+	}
+	
+	public static void moveChildren(TagNode from, TagNode to) {
+		for (TagNode child : from.getChildren()) {
+			TagNode.moveTo(child, from, to);
+		}
+	}
 	
 	public String getTagName() throws Exception {
 		if (this.tagType.equals(TagType.BOLD)) return "bold";
@@ -73,6 +67,8 @@ public class TagNode {
 		else if (this.tagType.equals(TagType.SIZE_HUGE)) return "size:huge";
 		else if (this.tagType.equals(TagType.LIST)) return "list";
 		else if (this.tagType.equals(TagType.LIST_ITEM)) return "list-item";
+		// TODO remove if code is working correctly
+		else if (this.tagType.equals(TagType.MARGIN)) return "margin";
 		else throw new Exception();
 	}
 }

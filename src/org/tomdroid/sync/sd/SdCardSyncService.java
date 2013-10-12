@@ -307,13 +307,6 @@ public class SdCardSyncService extends SyncService {
 			}
 			
 			path = new File(Tomdroid.NOTES_PATH + "/"+note.getGuid() + ".note");
-	
-			note.createDate = note.toTomboyFormat(note.getLastChangeDate());
-			note.cursorPos = 0;
-			note.width = 0;
-			note.height = 0;
-			note.X = -1;
-			note.Y = -1;
 			
 			if (path.exists()) { // update existing note
 	
@@ -355,15 +348,6 @@ public class SdCardSyncService extends SyncService {
 					if(e instanceof TimeFormatException) TLog.e(TAG, "Problem parsing the note's date and time");
 					return PARSING_FAILED;
 				}
-	
-				note.createDate = rnote.createDate;
-				note.cursorPos = rnote.cursorPos;
-				note.width = rnote.width;
-				note.height = rnote.height;
-				note.X = rnote.X;		
-				note.Y = rnote.Y;
-				
-				note.setTags(rnote.getTags());
 			}
 			
 			String xmlOutput = note.getXmlFileString();

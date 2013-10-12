@@ -47,7 +47,10 @@ import java.util.regex.Pattern;
 @SuppressWarnings("deprecation")
 public class NoteManager {
 	
-	public static final String[] FULL_PROJECTION = { Note.ID, Note.TITLE, Note.FILE, Note.NOTE_CONTENT, Note.MODIFIED_DATE, Note.GUID, Note.TAGS };
+	public static final String[] FULL_PROJECTION = { Note.ID, Note.GUID, Note.TITLE, Note.FILE, Note.NOTE_CONTENT, 
+		Note.CREATED_DATE, Note.MODIFIED_DATE, Note.MODIFIED_METADATA_DATE, Note.TAGS,
+		Note.OPEN_ON_STARTUP, Note.PINNED, Note.CURSOR_POSITION, Note.SELECTION_BOUND_POSITION,
+		Note.WINDOW_HEIGHT, Note.WINDOW_WIDTH, Note.WINDOW_X, Note.WINDOW_Y };
 	public static final String[] LIST_PROJECTION = { Note.ID, Note.TITLE, Note.MODIFIED_DATE, Note.TAGS };
 	public static final String[] DATE_PROJECTION = { Note.ID, Note.GUID, Note.MODIFIED_DATE };
 	public static final String[] TITLE_PROJECTION = { Note.TITLE, Note.GUID };
@@ -98,20 +101,7 @@ public class NoteManager {
 		}
 		else {
 			cursor.moveToFirst();
-			String noteContent = cursor.getString(cursor.getColumnIndexOrThrow(Note.NOTE_CONTENT));
-			String noteTitle = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
-			String noteChangeDate = cursor.getString(cursor.getColumnIndexOrThrow(Note.MODIFIED_DATE));
-			String noteTags = cursor.getString(cursor.getColumnIndexOrThrow(Note.TAGS));
-			String noteGUID = cursor.getString(cursor.getColumnIndexOrThrow(Note.GUID));
-			int noteDbid = cursor.getInt(cursor.getColumnIndexOrThrow(Note.ID));
-			
-			Note note = new Note();
-			note.setTitle(noteTitle);
-			note.setXmlContent(stripTitleFromContent(noteContent, noteTitle));
-			note.setLastChangeDate(noteChangeDate);
-			note.addTag(noteTags);
-			note.setGuid(noteGUID);
-			note.setDbId(noteDbid);
+			Note note = getNoteByCursor(cursor);
 			cursor.close();
 			return note;
 		}
@@ -129,23 +119,59 @@ public class NoteManager {
 			
 			// create the note from the cursor
 			cursor.moveToFirst();
-			String noteContent = cursor.getString(cursor.getColumnIndexOrThrow(Note.NOTE_CONTENT));
-			String noteTitle = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
-			String noteChangeDate = cursor.getString(cursor.getColumnIndexOrThrow(Note.MODIFIED_DATE));
-			String noteTags = cursor.getString(cursor.getColumnIndexOrThrow(Note.TAGS));
-			String noteGUID = cursor.getString(cursor.getColumnIndexOrThrow(Note.GUID));
-			int noteDbid = cursor.getInt(cursor.getColumnIndexOrThrow(Note.ID));
-			
-			note = new Note();
-			note.setTitle(noteTitle);
-			note.setXmlContent(stripTitleFromContent(noteContent, noteTitle));
-			note.setLastChangeDate(noteChangeDate);
-			note.setTags(noteTags);
-			note.setGuid(noteGUID);
-			note.setDbId(noteDbid);
+			note = getNoteByCursor(cursor);
 		}
 		cursor.close();
 		return note;
+	}
+	
+	// gets a note from the current database cursor
+	private static Note getNoteByCursor(Cursor cursor) {
+		
+		String noteContent = cursor.getString(cursor.getColumnIndexOrThrow(Note.NOTE_CONTENT));
+		String noteTitle = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
+		String noteCreateDate = cursor.getString(cursor.getColumnIndexOrThrow(Note.CREATED_DATE));
+		String noteChangeDate = cursor.getString(cursor.getColumnIndexOrThrow(Note.MODIFIED_DATE));
+		String noteMetadataChangeDate = cursor.getString(cursor.getColumnIndexOrThrow(Note.MODIFIED_METADATA_DATE));
+		String noteTags = cursor.getString(cursor.getColumnIndexOrThrow(Note.TAGS));
+		String noteGUID = cursor.getString(cursor.getColumnIndexOrThrow(Note.GUID));
+		int noteDbid = cursor.getInt(cursor.getColumnIndexOrThrow(Note.ID));
+		int cursorPos = cursor.getInt(cursor.getColumnIndexOrThrow(Note.CURSOR_POSITION));
+		int selectionBoundPos = cursor.getInt(cursor.getColumnIndexOrThrow(Note.SELECTION_BOUND_POSITION));
+		int height = cursor.getInt(cursor.getColumnIndexOrThrow(Note.WINDOW_HEIGHT));
+		int width = cursor.getInt(cursor.getColumnIndexOrThrow(Note.WINDOW_WIDTH));
+		int x = cursor.getInt(cursor.getColumnIndexOrThrow(Note.WINDOW_X));
+		int y = cursor.getInt(cursor.getColumnIndexOrThrow(Note.WINDOW_Y));
+		Boolean openStartup = stringToBoolean(cursor.getString(cursor.getColumnIndexOrThrow(Note.OPEN_ON_STARTUP)));
+		Boolean pinned = stringToBoolean(cursor.getString(cursor.getColumnIndexOrThrow(Note.PINNED)));
+		
+		Note note = new Note();
+		note.setTitle(noteTitle);
+		note.setXmlContent(stripTitleFromContent(noteContent, noteTitle));
+		note.setCreateDate(noteCreateDate);
+		note.setLastChangeDate(noteChangeDate);
+		note.setLastMetadataChangeDate(noteMetadataChangeDate);
+		note.addTag(noteTags);
+		note.setGuid(noteGUID);
+		note.setDbId(noteDbid);
+		note.cursorPos = cursorPos;
+		note.selectionBoundPos = selectionBoundPos;
+		note.height = height;
+		note.width = width;
+		note.X = x;
+		note.Y = y;
+		note.openOnStartup = openStartup;
+		note.pinned = pinned;
+		
+		return note;
+	}
+	
+	private static boolean stringToBoolean (String string) {
+		if (string.equals("true")) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	// check in a note exists in the content provider
@@ -202,10 +228,20 @@ public class NoteManager {
 		values.put(Note.FILE, note.getFileName());
 		values.put(Note.GUID, note.getGuid().toString());
 		// Notice that we store the date in UTC because sqlite doesn't handle RFC3339 timezone information
+		values.put(Note.CREATED_DATE, note.getCreateDate().format3339(false));
 		values.put(Note.MODIFIED_DATE, note.getLastChangeDate().format3339(false));
+		values.put(Note.MODIFIED_METADATA_DATE, note.getLastMetadataChangeDate().format3339(false));
 		values.put(Note.NOTE_CONTENT, xmlContent);
 		values.put(Note.NOTE_CONTENT_PLAIN, plainContent);
 		values.put(Note.TAGS, note.getTags());
+		values.put(Note.SELECTION_BOUND_POSITION, note.selectionBoundPos);
+		values.put(Note.CURSOR_POSITION, note.cursorPos);
+		values.put(Note.WINDOW_HEIGHT, note.height);
+		values.put(Note.WINDOW_WIDTH, note.width);
+		values.put(Note.WINDOW_X, note.X);
+		values.put(Note.WINDOW_Y, note.Y);
+		values.put(Note.OPEN_ON_STARTUP, note.openOnStartup.toString());
+		values.put(Note.PINNED, note.pinned.toString());
 		
 		Uri uri = null;
 		
@@ -326,21 +362,8 @@ public class NoteManager {
 		cursor.moveToFirst();
 		int key = 0;
 
-		while(!cursor.isAfterLast()) {
-			String noteContent = cursor.getString(cursor.getColumnIndexOrThrow(Note.NOTE_CONTENT));
-			String noteTitle = cursor.getString(cursor.getColumnIndexOrThrow(Note.TITLE));
-			String noteChangeDate = cursor.getString(cursor.getColumnIndexOrThrow(Note.MODIFIED_DATE));
-			String noteTags = cursor.getString(cursor.getColumnIndexOrThrow(Note.TAGS));
-			String noteGUID = cursor.getString(cursor.getColumnIndexOrThrow(Note.GUID));
-			int noteDbid = cursor.getInt(cursor.getColumnIndexOrThrow(Note.ID));
-			
-			Note note = new Note();
-			note.setTitle(noteTitle);
-			note.setXmlContent(stripTitleFromContent(noteContent, noteTitle));
-			note.setLastChangeDate(noteChangeDate);
-			note.addTag(noteTags);
-			note.setGuid(noteGUID);
-			note.setDbId(noteDbid);
+		while(!cursor.isAfterLast()) {			
+			Note note = getNoteByCursor(cursor);
 			notes[key++] = note;
 			cursor.moveToNext();
 		}

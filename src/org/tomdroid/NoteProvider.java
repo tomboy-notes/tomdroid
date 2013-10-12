@@ -69,7 +69,7 @@ public class NoteProvider extends ContentProvider {
 	// --	
 	private static final String DATABASE_NAME = "tomdroid-notes.db";
 	private static final String DB_TABLE_NOTES = "notes";
-	private static final int DB_VERSION = 4;
+	private static final int DB_VERSION = 5;
 	
     private static HashMap<String, String> notesProjectionMap;
 
@@ -87,7 +87,11 @@ public class NoteProvider extends ContentProvider {
 		{ Note.TITLE, Note.FILE, Note.MODIFIED_DATE },
 		{ Note.GUID, Note.TITLE, Note.FILE, Note.NOTE_CONTENT, Note.MODIFIED_DATE },
 		{ Note.GUID, Note.TITLE, Note.FILE, Note.NOTE_CONTENT, Note.MODIFIED_DATE, Note.TAGS },
-		{ Note.GUID, Note.TITLE, Note.FILE, Note.NOTE_CONTENT, Note.NOTE_CONTENT_PLAIN, Note.MODIFIED_DATE, Note.TAGS }
+		{ Note.GUID, Note.TITLE, Note.FILE, Note.NOTE_CONTENT, Note.NOTE_CONTENT_PLAIN, Note.MODIFIED_DATE, Note.TAGS },
+		{ Note.GUID, Note.TITLE, Note.FILE, Note.NOTE_CONTENT, Note.NOTE_CONTENT_PLAIN, 
+			Note.CREATED_DATE, Note.MODIFIED_DATE, Note.MODIFIED_METADATA_DATE, Note.TAGS,
+			Note.OPEN_ON_STARTUP, Note.PINNED, Note.CURSOR_POSITION, Note.SELECTION_BOUND_POSITION,
+			Note.WINDOW_HEIGHT, Note.WINDOW_WIDTH, Note.WINDOW_X, Note.WINDOW_Y}
 	};
 
     /**
@@ -101,16 +105,27 @@ public class NoteProvider extends ContentProvider {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            db.execSQL("CREATE TABLE " + DB_TABLE_NOTES	 + " ("
+        	String tableLayout = "CREATE TABLE " + DB_TABLE_NOTES	 + " ("
                     + Note.ID + " INTEGER PRIMARY KEY,"
                     + Note.GUID + " TEXT,"
                     + Note.TITLE + " TEXT,"
                     + Note.FILE + " TEXT,"
                     + Note.NOTE_CONTENT + " TEXT,"
                     + Note.NOTE_CONTENT_PLAIN + " TEXT,"
+                    + Note.CREATED_DATE + " STRING,"
                     + Note.MODIFIED_DATE + " STRING,"
-                    + Note.TAGS + " STRING"
-                    + ");");
+                    + Note.MODIFIED_METADATA_DATE + " STRING,"
+                    + Note.TAGS + " STRING,"
+                    + Note.OPEN_ON_STARTUP + " STRING,"
+                    + Note.PINNED + " STRING,"
+                    + Note.CURSOR_POSITION + " INT,"
+                    + Note.SELECTION_BOUND_POSITION + " INT,"
+                    + Note.WINDOW_HEIGHT + " INT,"
+                    + Note.WINDOW_WIDTH + " INT,"
+                    + Note.WINDOW_X + " INT,"
+                    + Note.WINDOW_Y + " INT"
+                    + ");";
+            db.execSQL(tableLayout);
         }
 
         @Override
@@ -143,6 +158,18 @@ public class NoteProvider extends ContentProvider {
 				}
 				if (oldVersion <= 3) {
 					row.put(Note.NOTE_CONTENT_PLAIN, XmlUtils.escape(Html.fromHtml(row.get(Note.TITLE) + "\n" + row.get(Note.NOTE_CONTENT)).toString()));
+				}
+				if (oldVersion <= 4) {
+					row.put(Note.CREATED_DATE, row.get(Note.MODIFIED_DATE));
+					row.put(Note.MODIFIED_METADATA_DATE, row.get(Note.MODIFIED_DATE));
+					row.put(Note.SELECTION_BOUND_POSITION, "0");
+					row.put(Note.CURSOR_POSITION, "0");
+					row.put(Note.WINDOW_HEIGHT, "0");
+					row.put(Note.WINDOW_WIDTH, "0");
+					row.put(Note.WINDOW_X, "-1");
+					row.put(Note.WINDOW_Y, "-1");
+					row.put(Note.OPEN_ON_STARTUP, "false");
+					row.put(Note.PINNED, "false");
 				}
 
 				db_list.add(row);
@@ -263,6 +290,11 @@ public class NoteProvider extends ContentProvider {
             values.put(Note.MODIFIED_DATE, now);
         }
         
+        // Make sure that the fields are all set
+        if (values.containsKey(Note.CREATED_DATE) == false) {
+            values.put(Note.CREATED_DATE, now);
+        }
+        
         // The guid is the unique identifier for a note so it has to be set.
         if (values.containsKey(Note.GUID) == false) {
         	values.put(Note.GUID, UUID.randomUUID().toString());
@@ -354,5 +386,15 @@ public class NoteProvider extends ContentProvider {
         notesProjectionMap.put(Note.NOTE_CONTENT_PLAIN, Note.NOTE_CONTENT_PLAIN);
         notesProjectionMap.put(Note.TAGS, Note.TAGS);
         notesProjectionMap.put(Note.MODIFIED_DATE, Note.MODIFIED_DATE);
+        notesProjectionMap.put(Note.CREATED_DATE, Note.CREATED_DATE);
+        notesProjectionMap.put(Note.MODIFIED_METADATA_DATE, Note.MODIFIED_METADATA_DATE);
+        notesProjectionMap.put(Note.SELECTION_BOUND_POSITION, Note.SELECTION_BOUND_POSITION);
+        notesProjectionMap.put(Note.CURSOR_POSITION, Note.CURSOR_POSITION);
+        notesProjectionMap.put(Note.WINDOW_HEIGHT, Note.WINDOW_HEIGHT);
+        notesProjectionMap.put(Note.WINDOW_WIDTH, Note.WINDOW_WIDTH);
+        notesProjectionMap.put(Note.WINDOW_X, Note.WINDOW_X);
+        notesProjectionMap.put(Note.WINDOW_Y, Note.WINDOW_Y);
+        notesProjectionMap.put(Note.OPEN_ON_STARTUP, Note.OPEN_ON_STARTUP);
+        notesProjectionMap.put(Note.PINNED, Note.PINNED);
     }
 }

@@ -3,8 +3,7 @@
  * Tomboy on Android
  * http://www.launchpad.net/tomdroid
  * 
- * Copyright 2013 Stefan Hammer <j-4@gmx.at>
- * Copyright 2013 Timo Dörr <timo@latecrew.de>
+ * Copyright 2008, 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>
  * 
  * This file is part of Tomdroid.
  * 
@@ -46,18 +45,6 @@ import android.text.style.StyleSpan;
 import android.text.style.TypefaceSpan;
 import android.util.Xml;
 
-/**
- * Converts a SpannableStringBuilder to a XML String
- * The method uses a Graph-Theoretical approach to get a proper XML parsing.
- * 
- * At first the spans are converted into tree-nodes (from out to in and from beginning to end).
- * The obtained tree is then converted to XML using a Breadth First Search with a standard XML serializer.
- * 
- * A little bit of magic is needed to convert the margin spans to list nodes. This is done
- * within the main recursion.
- * Text fragments between spans are also converted to nodes within the main loop. This is done with
- * a simple end == newstart check before and after inserting a node.
- */
 public class NoteXMLContentBuilder implements Runnable {
 	
 	public static final int PARSE_OK = 0;
@@ -100,64 +87,53 @@ public class NoteXMLContentBuilder implements Runnable {
 		
 		try {
 			
-			// build TagTree first to get a Tree-Representation of our Spans
+			// build TagTree
 			TagNode root = new TagNode();
 			root.setType(TagType.ROOT);
 			root.start = 0;
 			root.end = noteContent.length();
-			
-			// keep track of the tags we are in already (not to find the same ones again,
-			// which only happens if start and end is equal to the parents)
 			List<TagType> tabuList = new LinkedList<TagType>();
-			
-			// build the Tree here (starts a recursion from the root)
 			appendTree(root, root.start, root.end, tabuList);
+			
+			// add List nodes instead of margin nodes
+			//fixListNodes(root);
 			
 			// convert TagTree to String
 			noteXMLContent = writeXML (root);
-			TLog.v(TAG, "Built XMLContent: {0}", noteXMLContent);
+			TLog.d(TAG, "Build XMLContent: {0}", noteXMLContent);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+			// TODO handle error in a more granular way
 			TLog.e(TAG, "There was an error parsing the note.");
 			successful = false;
 		}
 		warnHandler(successful);
 	}
 	
-	// main recursion to build the tree out of spans (Nodes are defined in TagNode.java)
 	private void appendTree(TagNode parentNode, int start, int end, List<TagType> tabuList) throws Exception {
 				
-		// its necessary to remember previous span end to be able to find text in between
 		int previousEnd = start;
-		// also need to remember listlevel and the current parent node (within lists)
 		int previousListLevel = 0;
 		TagNode parentListNode = parentNode;
+		if (parentListNode == null) throw new Exception();
 		
-		// get all spans next to each other (sorted from beginning to end)
-		// do NOT include nested spans!
 		List<TagNode> siblingNodes = findSiblingNodes(tabuList, start, end);
 		
 		for (TagNode sibling : siblingNodes) {
 			int siblingStart = sibling.start;
 			int siblingEnd = sibling.end;
 			
-			// if there is text within spans, add a text-node to the tree
 			if (previousEnd != siblingStart) {
 				TagNode textNode = getTextNode(previousEnd, siblingStart);
 				parentNode.add(textNode);
 				TLog.v(TAG, "Added a text-node before a span in the tree: {0}, ({1}/{2})", 
 						textNode.text, textNode.start, textNode.end);
-				
-				// if there is plain text between two lists, reset listlevel and listparent
-				// otherwise lists will be merged together and the text moved to the end
 				previousListLevel = 0;
 				parentListNode = parentNode;
 			}
 			
 			// do some magic to add list tags
-			// searches for margin-spans and converts them to the right amount of list nodes
-			// and list-item nodes. 
 			if (sibling.getType().equals(TagType.MARGIN)) {
 				
 				int listLeveldiff = sibling.listLevel - previousListLevel;
@@ -196,34 +172,26 @@ public class NoteXMLContentBuilder implements Runnable {
 					}
 				}
 				
-				// update exclusion list
 				tabuList.add(sibling.getType());
 				
-				// recursion for lists starts here
+				// recursion starts here
 				appendTree(parentListNode, siblingStart, siblingEnd, tabuList);
 				
 			} else {
-				
-				// add current span as a node to the tree.
+			
 				parentNode.add(sibling);
 				TLog.v(TAG, "Added a span-node in the tree: {0}, ({1}/{2})", 
 						sibling.getType().toString(), sibling.start, sibling.end);
-				
-				// add the tag we saw already in this tree-branch to the exclusion list
-				// necessary to find different spans with equal length just once.
 				tabuList.add(sibling.getType());
 				
-				// main recursion starts here (lets go one step down!)
+				// recursion starts here
 				appendTree(sibling, siblingStart, siblingEnd, tabuList);
 			}
 			
-			// remove the tag of this recursion again as the next sibling is allowed to use the tag again
 			tabuList.remove(sibling.getType());
-			// update span end
 			previousEnd = sibling.end;
 		}
 		
-		// if there is a text between the previous end and the next start add a text-node again!
 		if (previousEnd != end) {
 			TagNode textNode = getTextNode(previousEnd, end);
 			parentNode.add(textNode);
@@ -233,7 +201,6 @@ public class NoteXMLContentBuilder implements Runnable {
 		
 	}
 	
-	// function to get all spans within a certain range (span-start and -end must be inside this range)
 	private Object[] getSpansInRange (int start, int end) {
 		Object[] allSpans = noteContent.getSpans(start, end, Object.class);
 		List<Object> rangeSpans = new LinkedList<Object>();
@@ -249,8 +216,6 @@ public class NoteXMLContentBuilder implements Runnable {
 		return rangeSpans.toArray();
 	}
 
-	// function to get all neighbouring spans (excluding nested ones) within a certain range
-	// Also excludes spans mentioned in the tabuList
 	private List<TagNode> findSiblingNodes(List<TagType> tabuList, int start, int end) {
 		List<TagNode> nodes = new LinkedList<TagNode>();
 		
@@ -265,8 +230,6 @@ public class NoteXMLContentBuilder implements Runnable {
 		return nodes;
 	}
 	
-	// function to find the first and biggest span in a certain range
-	// span-start must be closest to cursorStart and from those, find the longest (outermost)
 	private TagNode findFirstNode (Object[] spans, List<TagType> tabuList, int cursorStart, int cursorEnd) {
 		int min = cursorEnd;
 		int max = cursorStart;
@@ -283,7 +246,7 @@ public class NoteXMLContentBuilder implements Runnable {
 			}
 		}
 		
-		// in case of multiple spans at this position find the outermost (longest) one
+		// in case of multiple spans at this position find the outermost one
 		for (Object span : noteContent.getSpans(min, min, Object.class)) {
 			TagNode node = getNode(span);
 			if (!node.getType().equals(TagType.OTHER) 
@@ -299,7 +262,6 @@ public class NoteXMLContentBuilder implements Runnable {
 		return returnNode;
 	}
 
-	// returns a text node using the characters between start and end
 	private TagNode getTextNode (int start, int end) {
 		TagNode node = new TagNode();
 		node.setType(TagType.TEXT);
@@ -310,7 +272,6 @@ public class NoteXMLContentBuilder implements Runnable {
 		return node;
 	}
 	
-	// returns a tag node using the information of the span
 	private TagNode getNode (Object span) {
 		TagNode node = new TagNode();
 		node.start = noteContent.getSpanStart(span);
@@ -387,28 +348,61 @@ public class NoteXMLContentBuilder implements Runnable {
 		return node;
 	}
 	
-	// Function which starts the conversion from our Tagtree to XML using the XML Serializer
-	// returns the whole note content as XML string
-	private String writeXML (TagNode root) {
+	private void fixListNodes(TagNode node) {
 		
+		int previousListLevel = 0;
+		TagNode parentListNode = node;
+		
+		for (TagNode marginNode : node.getChildren()) {
+			if (marginNode.getType().equals(TagType.MARGIN)) {
+				
+				int listLeveldiff = marginNode.listLevel - previousListLevel;
+				previousListLevel = marginNode.listLevel;
+				
+				if (listLeveldiff > 0) {
+					// add a new nested list in form of a list node
+					for (int i = 0; i < listLeveldiff; i++) {
+						TagNode listNode = new TagNode();
+						listNode.setType(TagType.LIST);
+						
+						parentListNode.add(listNode);
+						parentListNode = listNode;
+					}
+				} else if (listLeveldiff < 0) {
+					// go up in list-levels
+					for (int i = 0; i > listLeveldiff; i--) {
+						TagNode parent = parentListNode.getParent();
+						parentListNode = parent;
+					}
+				}
+				// move all children to new parentListNode
+				TagNode.moveChildren(marginNode, parentListNode);
+				// remove marginNode
+				node.remove(marginNode);
+			} else {
+				fixListNodes(marginNode);
+			}
+		}
+	}
+	
+	private String writeXML (TagNode root) {
 		XmlSerializer serializer = Xml.newSerializer();
 		StringWriter writer = new StringWriter();
 		try {
 			serializer.setOutput(writer);
+			//serializer.startDocument("UTF-8", true);
 			
-			// start a recursion here to walk through the tree
 			appendXml(root, serializer);
 			
 			serializer.endDocument();
 			return writer.toString();
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
 	}
 	
-	// Recursion function to walk through the tag-tree and create the right XML tags
+	
 	private void appendXml(TagNode node, XmlSerializer serializer){
 
 		TagNode[] children = node.getChildren();

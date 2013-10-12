@@ -253,8 +253,11 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 
 						ArrayList<Note> notesList = new ArrayList<Note>();
 
-						for (int i = 0; i < notes.length(); i++)
-							notesList.add(new Note(notes.getJSONObject(i)));
+						for (int i = 0; i < notes.length(); i++) {
+							Note note = new Note();
+							note.fromJSON(notes.getJSONObject(i));
+							notesList.add(note);
+						}
 
 						if(cancelled) {
 							doCancel();
@@ -455,12 +458,14 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 								+ "?include_notes=true");
 
 						response = new JSONObject(rawResponse);
-						JSONArray notes = response.getJSONArray("notes");
+						JSONArray notes = response.getJSONArray("note");
 						JSONObject jsonNote = notes.getJSONObject(0);
 
 						TLog.v(TAG, "parsing remote note");
 
-						insertNote(new Note(jsonNote));
+						Note note = new Note();
+						note.fromJSON(jsonNote);
+						insertNote(note);
 
 					} catch (JSONException e) {
 						TLog.e(TAG, e, "Problem parsing the server response");
