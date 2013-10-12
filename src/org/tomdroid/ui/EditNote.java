@@ -550,6 +550,27 @@ public class EditNote extends ActionBarActivity {
 						exists = true;
 					}
 				}
+			} else if (span instanceof StrikethroughSpan) {
+				StrikethroughSpan[] ss = str.getSpans(selectionStart, selectionEnd, StrikethroughSpan.class);
+				for (StrikethroughSpan oldSpan : ss) {
+					str.removeSpan(oldSpan);
+					exists = true;
+				}
+			} else if (span instanceof BackgroundColorSpan) {
+				BackgroundColorSpan[] ss = str.getSpans(selectionStart, selectionEnd, BackgroundColorSpan.class);
+				for (BackgroundColorSpan oldSpan : ss) {
+					str.removeSpan(oldSpan);
+					exists = true;
+				}
+			} else if (span instanceof TypefaceSpan) {
+				TypefaceSpan[] ss = str.getSpans(selectionStart, selectionEnd, TypefaceSpan.class);
+				String family = ((TypefaceSpan) span).getFamily();
+				for (TypefaceSpan oldSpan : ss) {
+					if (oldSpan.getFamily() == family){
+						str.removeSpan(oldSpan);
+						exists = true;
+					}
+				}
 			}
 			
 			if (!exists){
@@ -579,81 +600,19 @@ public class EditNote extends ActionBarActivity {
 		
 		italicButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-            	            	
-            	int selectionStart = content.getSelectionStart();
-            	
-            	styleStart = selectionStart;
-            	
-            	int selectionEnd = content.getSelectionEnd();
-            	
-            	if (selectionStart > selectionEnd){
-            		int temp = selectionEnd;
-            		selectionEnd = selectionStart;
-            		selectionStart = temp;
-            	}
-            	
-            	if (selectionEnd > selectionStart)
-            	{
-            		Spannable str = content.getText();
-            		StyleSpan[] ss = str.getSpans(selectionStart, selectionEnd, StyleSpan.class);
-            		
-            		boolean exists = false;
-            		for (int i = 0; i < ss.length; i++) {
-            			if (ss[i].getStyle() == android.graphics.Typeface.ITALIC){
-            				str.removeSpan(ss[i]);
-            				exists = true;
-            			}
-                    }
-            		
-            		if (!exists){
-            			str.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            		}
-            		
-            		updateNoteContent(xmlOn);
-	          		italicButton.setChecked(false);
-            	}
-            	else
-            		cursorLoc = selectionStart;
+            	    
+            	Object span = new StyleSpan(android.graphics.Typeface.ITALIC);
+				toggleButtonOnClick (italicButton, span);
             }
 		});
 		
 		final ToggleButton strikeoutButton = (ToggleButton) findViewById(R.id.strike);   
-        
+		
 		strikeoutButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-            	 
-            	int selectionStart = content.getSelectionStart();
             	
-            	styleStart = selectionStart;
-            	
-            	int selectionEnd = content.getSelectionEnd();
-            	
-            	if (selectionStart > selectionEnd){
-            		int temp = selectionEnd;
-            		selectionEnd = selectionStart;
-            		selectionStart = temp;
-            	}
-            	
-            	if (selectionEnd > selectionStart)
-            	{
-            		Spannable str = content.getText();
-            		StrikethroughSpan[] ss = str.getSpans(selectionStart, selectionEnd, StrikethroughSpan.class);
-            		
-            		boolean exists = false;
-            		for (int i = 0; i < ss.length; i++) {
-            				str.removeSpan(ss[i]);
-            				exists = true;
-                    }
-            		
-            		if (!exists){
-            			str.setSpan(new StrikethroughSpan(), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            		}
-        			
-            		updateNoteContent(xmlOn);
-            		strikeoutButton.setChecked(false);
-            	}
-            	else
-            		cursorLoc = selectionStart;
+            	Object span = new StrikethroughSpan();
+				toggleButtonOnClick (strikeoutButton, span);
             }
         });
 		
@@ -662,38 +621,8 @@ public class EditNote extends ActionBarActivity {
 		highButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
             	            	
-            	int selectionStart = content.getSelectionStart();
-            	
-            	styleStart = selectionStart;
-            	
-            	int selectionEnd = content.getSelectionEnd();
-            	
-            	if (selectionStart > selectionEnd){
-            		int temp = selectionEnd;
-            		selectionEnd = selectionStart;
-            		selectionStart = temp;
-            	}
-            	
-            	if (selectionEnd > selectionStart)
-            	{
-            		Spannable str = content.getText();
-            		BackgroundColorSpan[] ss = str.getSpans(selectionStart, selectionEnd, BackgroundColorSpan.class);
-            		
-            		boolean exists = false;
-            		for (int i = 0; i < ss.length; i++) {
-        				str.removeSpan(ss[i]);
-        				exists = true;
-                    }
-            		
-            		if (!exists){
-            			str.setSpan(new BackgroundColorSpan(Note.NOTE_HIGHLIGHT_COLOR), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            		}
-            		
-        			updateNoteContent(xmlOn);
-            		highButton.setChecked(false);
-            	}
-            	else
-            		cursorLoc = selectionStart;
+            	Object span = new BackgroundColorSpan(Note.NOTE_HIGHLIGHT_COLOR);
+				toggleButtonOnClick (highButton, span);
             }
 		});
 		
@@ -701,41 +630,9 @@ public class EditNote extends ActionBarActivity {
 		
 		monoButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-            	            	
-            	int selectionStart = content.getSelectionStart();
             	
-            	styleStart = selectionStart;
-            	
-            	int selectionEnd = content.getSelectionEnd();
-            	
-            	if (selectionStart > selectionEnd){
-            		int temp = selectionEnd;
-            		selectionEnd = selectionStart;
-            		selectionStart = temp;
-            	}
-            	
-            	if (selectionEnd > selectionStart)
-            	{
-            		Spannable str = content.getText();
-            		TypefaceSpan[] ss = str.getSpans(selectionStart, selectionEnd, TypefaceSpan.class);
-            		
-            		boolean exists = false;
-            		for (int i = 0; i < ss.length; i++) {
-            			if (ss[i].getFamily()==Note.NOTE_MONOSPACE_TYPEFACE){
-            				str.removeSpan(ss[i]);
-            				exists = true;
-            			}
-                    }
-            		
-            		if (!exists){
-            			str.setSpan(new TypefaceSpan(Note.NOTE_MONOSPACE_TYPEFACE), selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            		}
-            		
-        			updateNoteContent(xmlOn);
-            		monoButton.setChecked(false);
-            	}
-            	else
-            		cursorLoc = selectionStart;
+            	Object span = new TypefaceSpan(Note.NOTE_MONOSPACE_TYPEFACE);
+				toggleButtonOnClick (monoButton, span);
             }
 		});
         
@@ -746,7 +643,6 @@ public class EditNote extends ActionBarActivity {
             	textChanged = true;
  
             	//add style as the user types if a toggle button is enabled
-            	
             	int position = Selection.getSelectionStart(content.getText());
             	
         		if (position < 0){
