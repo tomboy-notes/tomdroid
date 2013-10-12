@@ -455,7 +455,14 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 								+ "?include_notes=true");
 
 						response = new JSONObject(rawResponse);
-						JSONArray notes = response.getJSONArray("notes");
+						JSONArray notes = new JSONArray();
+						// Specifications say to look in the notes array if we receive many notes
+						// However, if we request one single note, it is saved in the "note" array instead.
+						try {
+							notes = response.getJSONArray("notes");
+						} catch (JSONException e) {
+							notes = response.getJSONArray("note");
+						}
 						JSONObject jsonNote = notes.getJSONObject(0);
 
 						TLog.v(TAG, "parsing remote note");
