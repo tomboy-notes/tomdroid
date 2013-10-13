@@ -32,7 +32,7 @@ import java.util.List;
 public class TagNode {
 	
 	private List<TagNode> children = new LinkedList<TagNode>();
-	private TagType tagType;
+	private TagType tagType = TagType.OTHER;
 	public String text = "";
 	// for debugging
 	//public String type = "";

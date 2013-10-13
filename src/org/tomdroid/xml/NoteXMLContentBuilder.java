@@ -382,6 +382,7 @@ public class NoteXMLContentBuilder implements Runnable {
 		TagNode fakeNode = new TagNode();
 		fakeNode.start = 0;
 		fakeNode.end = firstMarginStart;
+		fakeNode.setType(TagType.OTHER);
 		// now we need a empty blacklist (as we want to cut anything that crosses our lists
 		blackList.clear();
 		cutOverlappingSpans(fakeNode, blackList);
