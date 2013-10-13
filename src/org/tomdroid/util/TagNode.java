@@ -34,6 +34,8 @@ public class TagNode {
 	private List<TagNode> children = new LinkedList<TagNode>();
 	private TagType tagType;
 	public String text = "";
+	// for debugging
+	//public String type = "";
 	public int start;
 	public int end;
 	public int listLevel;
@@ -46,6 +48,7 @@ public class TagNode {
 	
 	public void setType (TagType tagType) {
 		this.tagType = tagType;
+		//this.type = tagType.toString();
 	}
 	
 	public TagType getType () {

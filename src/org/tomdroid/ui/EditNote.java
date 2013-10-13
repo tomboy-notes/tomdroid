@@ -759,6 +759,22 @@ public class EditNote extends ActionBarActivity {
         		}
         		
         		cursorLoc = Selection.getSelectionStart(content.getText());
+        	
+        		// TODO recognice a "* " and create a margin and bullet span!
+//        		// Recognise "\n * " pattern and create bullet from it
+//        		if (position == 2) {
+//        			TLog.d(TAG, content.getText().subSequence(position-2, position).toString());
+//        			if (content.getText().subSequence(position-2, position).toString().equals("* ")) {
+//        				TLog.d(TAG, "Found new list pattern!");
+//        			} 
+//        		} else if (position > 2) {
+//        			TLog.d(TAG, content.getText().subSequence(position-3, position).toString());
+//        			if (content.getText().subSequence(position-3, position).toString().equals("\n* ")) {
+//        				TLog.d(TAG, "Found new list pattern!");
+//        			}
+//        		}
+        		
+        		
             } 
             public void beforeTextChanged(CharSequence s, int start, int count, int after) { 
                     //unused

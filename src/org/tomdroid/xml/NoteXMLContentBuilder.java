@@ -37,6 +37,7 @@ import android.graphics.Typeface;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Html;
+import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.BulletSpan;
@@ -100,13 +101,7 @@ public class NoteXMLContentBuilder implements Runnable {
 		boolean successful = true;
 		
 		try {
-			
-			// error finding
-			Object[] allSpans = noteContent.getSpans(0, noteContent.length(), Object.class);
-			for (Object span : allSpans) {
-				TLog.v(TAG, "({0}/{1}) {2}", noteContent.getSpanStart(span), noteContent.getSpanEnd(span), span.getClass().toString());
-			}
-			
+					
 			// build TagTree first to get a Tree-Representation of our Spans
 			TagNode root = new TagNode();
 			root.setType(TagType.ROOT);
@@ -115,10 +110,20 @@ public class NoteXMLContentBuilder implements Runnable {
 			
 			// keep track of the tags we are in already (not to find the same ones again,
 			// which only happens if start and end is equal to the parents)
-			List<TagType> tabuList = new LinkedList<TagType>();
+			List<TagType> blackList = new LinkedList<TagType>();
+			
+			// First cut all spans crossing list-items and lists into parts, so that they appear nested
+			// within the list-item
+			cutAllSpansCrossingLists();
+			
+			// error finding
+			Object[] allSpans = noteContent.getSpans(0, noteContent.length(), Object.class);
+			for (Object span : allSpans) {
+				TLog.v(TAG, "({0}/{1}) {2}", noteContent.getSpanStart(span), noteContent.getSpanEnd(span), span.getClass().toString());
+			}
 			
 			// build the Tree here (starts a recursion from the root)
-			appendTree(root, root.start, root.end, tabuList);
+			appendTree(root, root.start, root.end, blackList);
 			
 			// convert TagTree to String
 			noteXMLContent = writeXML (root);
@@ -133,7 +138,7 @@ public class NoteXMLContentBuilder implements Runnable {
 	}
 	
 	// main recursion to build the tree out of spans (Nodes are defined in TagNode.java)
-	private void appendTree(TagNode parentNode, int start, int end, List<TagType> tabuList) throws Exception {
+	private void appendTree(TagNode parentNode, int start, int end, List<TagType> blackList) throws Exception {
 				
 		// its necessary to remember previous span end to be able to find text in between
 		int previousEnd = start;
@@ -143,7 +148,7 @@ public class NoteXMLContentBuilder implements Runnable {
 		
 		// get all spans next to each other (sorted from beginning to end)
 		// do NOT include nested spans!
-		List<TagNode> siblingNodes = findSiblingNodes(tabuList, start, end);
+		List<TagNode> siblingNodes = findSiblingNodes(blackList, start, end);
 		
 		for (TagNode sibling : siblingNodes) {
 			int siblingStart = sibling.start;
@@ -204,10 +209,10 @@ public class NoteXMLContentBuilder implements Runnable {
 				}
 				
 				// update exclusion list
-				tabuList.add(sibling.getType());
+				blackList.add(sibling.getType());
 				
 				// recursion for lists starts here
-				appendTree(parentListNode, siblingStart, siblingEnd, tabuList);
+				appendTree(parentListNode, siblingStart, siblingEnd, blackList);
 				
 			} else {
 				
@@ -218,14 +223,14 @@ public class NoteXMLContentBuilder implements Runnable {
 				
 				// add the tag we saw already in this tree-branch to the exclusion list
 				// necessary to find different spans with equal length just once.
-				tabuList.add(sibling.getType());
+				blackList.add(sibling.getType());
 				
 				// main recursion starts here (lets go one step down!)
-				appendTree(sibling, siblingStart, siblingEnd, tabuList);
+				appendTree(sibling, siblingStart, siblingEnd, blackList);
 			}
 			
 			// remove the tag of this recursion again as the next sibling is allowed to use the tag again
-			tabuList.remove(sibling.getType());
+			blackList.remove(sibling.getType());
 			// update span end
 			previousEnd = sibling.end;
 		}
@@ -255,18 +260,20 @@ public class NoteXMLContentBuilder implements Runnable {
 		}
 		return rangeSpans.toArray();
 	}
-
+	
 	// function to get all neighbouring spans (excluding nested ones) within a certain range
-	// Also excludes spans mentioned in the tabuList
-	private List<TagNode> findSiblingNodes(List<TagType> tabuList, int start, int end) {
+	// Also excludes spans mentioned in the blackList
+	private List<TagNode> findSiblingNodes(List<TagType> blackList, int start, int end) {
 		List<TagNode> nodes = new LinkedList<TagNode>();
 		
 		for (Object[] allSpans = getSpansInRange(start, end); 
 				allSpans.length > 0; 
 				allSpans = getSpansInRange(start, end)) {
-			TagNode node = findFirstNode(allSpans, tabuList, start, end);
+			TagNode node = findFirstNode(allSpans, blackList, start, end);
 			if (node == null) break;
 			nodes.add(node);
+			// if a span starts within this one and ends outside, we need to cut it into pieces!
+			cutOverlappingSpans(node, blackList);
 			start = node.end;
 		}
 		return nodes;
@@ -274,7 +281,7 @@ public class NoteXMLContentBuilder implements Runnable {
 	
 	// function to find the first and biggest span in a certain range
 	// span-start must be closest to cursorStart and from those, find the longest (outermost)
-	private TagNode findFirstNode (Object[] spans, List<TagType> tabuList, int cursorStart, int cursorEnd) {
+	private TagNode findFirstNode (Object[] spans, List<TagType> blackList, int cursorStart, int cursorEnd) {
 		int min = cursorEnd;
 		int max = cursorStart;
 		TagNode returnNode = null;
@@ -283,7 +290,7 @@ public class NoteXMLContentBuilder implements Runnable {
 		for (Object span : spans) {
 			TagNode node = getNode(span);
 			if (!node.getType().equals(TagType.OTHER)
-					&& !tabuList.contains(node.getType())) {
+					&& !blackList.contains(node.getType())) {
 				if ( node.start < min) {
 					min = node.start;
 				}
@@ -296,7 +303,7 @@ public class NoteXMLContentBuilder implements Runnable {
 		for (Object span : spans) {
 			TagNode node = getNode(span);
 			if (!node.getType().equals(TagType.OTHER) 
-					&& !tabuList.contains(node.getType())
+					&& !blackList.contains(node.getType())
 					&& node.start == min ) {
 				if ( node.end >= max ) {
 					max = node.end;
@@ -304,7 +311,6 @@ public class NoteXMLContentBuilder implements Runnable {
 					candidates.add(node);
 				}
 			}
-			
 		}
 		
 		// check if bullet span (=list-item) is as long as others, if yes - it must be returned second!
@@ -322,6 +328,97 @@ public class NoteXMLContentBuilder implements Runnable {
 		}
 		
 		return returnNode;
+	}
+	
+	// cut overlapping spans into two spans. one is nested and the other one is a sibling then.
+	private void cutOverlappingSpans (TagNode currentNode, List<TagType> blackList) {
+		int begin = currentNode.start;
+		int end = currentNode.end;
+		
+		// get all spans from the beginning of the currentNode to end and filter it to avoid cutting
+		// OTHER tag and blackList tags
+		Object[] spans = getSpansInRange(begin, noteContent.length());
+		for (Object span : spans) {
+			if (noteContent.getSpanStart(span) < end && noteContent.getSpanEnd(span) > end) {
+				TagNode overlappingNode = getNode(span);
+				if (overlappingNode != null 
+						&& !blackList.contains(overlappingNode.getType())
+						&& !overlappingNode.getType().equals(TagType.OTHER)) {
+					// actually "split" the span into two pieces
+					int oldBegin = noteContent.getSpanStart(span);
+					int oldEnd = noteContent.getSpanEnd(span);
+					noteContent.setSpan(span, oldBegin, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+					Object newSpan = duplicateSpan(span);
+					noteContent.setSpan(newSpan, end, oldEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+				}
+			}
+		}
+	}
+	
+	// function that cuts all spans which cross a margin-span end into two pieces.
+	// (And any span starting before and reaching into a list at margin-span start)
+	private void cutAllSpansCrossingLists () {
+		
+		// create a pseudo-list including everything except for margins
+		List<TagType> blackList = new LinkedList<TagType>();
+		for (TagType value : TagType.values()) {
+			if (!value.equals(TagType.MARGIN))
+				blackList.add(value);
+		}
+		
+		// get all margin-spans (as all other siblings are black-listed by blackList
+		List<TagNode> marginSiblings = findSiblingNodes(blackList, 0, noteContent.length());
+		
+		// if a span starts before a list and ends within a list, we need to do create  a
+		// fake node and use this one to cut overlapping spans at the list-begin
+		int firstMarginStart = noteContent.length();
+		// calculate the start of the first list item
+		for(TagNode marginNode : marginSiblings) {
+			if (marginNode.start < firstMarginStart) {
+				firstMarginStart = marginNode.start;
+			}
+		}
+		
+		TagNode fakeNode = new TagNode();
+		fakeNode.start = 0;
+		fakeNode.end = firstMarginStart;
+		// now we need a empty blacklist (as we want to cut anything that crosses our lists
+		blackList.clear();
+		cutOverlappingSpans(fakeNode, blackList);
+		
+		// get all margin-spans and cut all other overlapping spans at its borders
+		for(TagNode marginNode : marginSiblings) {
+			cutOverlappingSpans(marginNode, blackList);
+		}
+	}
+	
+	// function that analyses a span and creates a identical new one (to be able to cut a span into 2)
+	private Object duplicateSpan(Object span) {
+		
+		if (span instanceof StyleSpan) {
+			int style = ((StyleSpan) span).getStyle();
+			StyleSpan newSpan = new StyleSpan(style);
+			return newSpan;
+		} else if (span instanceof StrikethroughSpan) {
+			StrikethroughSpan newSpan = new StrikethroughSpan();
+			return newSpan;
+		} else if (span instanceof BackgroundColorSpan) {
+			int color = ((BackgroundColorSpan) span).getBackgroundColor();
+			BackgroundColorSpan newSpan = new BackgroundColorSpan(color);
+			return newSpan;
+		} else if (span instanceof TypefaceSpan) {
+			String family = ((TypefaceSpan) span).getFamily();
+			TypefaceSpan newSpan = new TypefaceSpan(family);
+			return newSpan;
+		} else if (span instanceof RelativeSizeSpan ) {
+			float size = ((RelativeSizeSpan) span).getSizeChange();
+			RelativeSizeSpan newSpan = new RelativeSizeSpan(size);
+			return newSpan;
+		} else {
+			Object newSpan = null;
+			return newSpan;
+		}
+		
 	}
 
 	// returns a text node using the characters between start and end

@@ -209,7 +209,7 @@ public class Tomdroid extends ActionBarListActivity {
 			e.printStackTrace();
 			HTTP_HEADER = "Tomdroid vunknown, build unknown, Android unknown, unknown/unknown";
 		}
-		TLog.i(TAG, "Generated http-header: {0}: {1}", "X-Tomboy-Client", Tomdroid.HTTP_HEADER);
+		TLog.v(TAG, "Generated http-header: {0}: {1}", "X-Tomboy-Client", Tomdroid.HTTP_HEADER);
 		
 		
 		// did we already show the warning and got destroyed by android's activity killer?
