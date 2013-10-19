@@ -55,6 +55,7 @@ public class Note implements Serializable {
 	
 	// Notes constants
 	public static final int NOTE_HIGHLIGHT_COLOR = 0x99FFFF00; // lowered alpha to show cursor
+	public static final int NOTE_BULLET_INTENT_FACTOR = 30;			// intent factor of bullet lists
 	public static final String NOTE_MONOSPACE_TYPEFACE = "monospace";
 	public static final float NOTE_SIZE_SMALL_FACTOR = 0.8f;
 	public static final float NOTE_SIZE_LARGE_FACTOR = 1.5f;

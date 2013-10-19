@@ -496,8 +496,7 @@ public class NoteXMLContentBuilder implements Runnable {
 			LeadingMarginSpan.Standard margin = (LeadingMarginSpan.Standard) span;
 			int currentMargin = margin.getLeadingMargin(true);
 			node.setType(TagType.MARGIN);
-			int marginFactor = 30;
-			node.listLevel = currentMargin / marginFactor;
+			node.listLevel = currentMargin / Note.NOTE_BULLET_INTENT_FACTOR;
 		}
 		else if( span instanceof BulletSpan )
 		{

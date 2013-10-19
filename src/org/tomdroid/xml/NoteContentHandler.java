@@ -150,18 +150,18 @@ public class NoteContentHandler extends DefaultHandler {
 				// is empty until characters() gets called and proves otherwise.
 				
 				if (listItemIsEmpty.size() < inListLevel) {
-					listItemIsEmpty.add(new Boolean(true));
+					listItemIsEmpty.add(Boolean.valueOf(true));
 				}
 				// if listItem's position not already in tracking array, add it.
 				// Otherwise if the start position equals 0 then set
 				if (listItemStartPos.size() < inListLevel) {
-					listItemStartPos.add(new Integer(ssb.length()));
+					listItemStartPos.add(Integer.valueOf(ssb.length()));
 				} else if (listItemStartPos.get(inListLevel-1) == 0) { 
-					listItemStartPos.set(inListLevel-1, new Integer(ssb.length()));					
+					listItemStartPos.set(inListLevel-1, Integer.valueOf(ssb.length()));					
 				}
 				// no matter what, we track the end (we add if array not big enough or set otherwise) 
 				if (listItemEndPos.size() < inListLevel) {
-					listItemEndPos.add(new Integer(ssb.length()));
+					listItemEndPos.add(Integer.valueOf(ssb.length()));
 				} else {
 					listItemEndPos.set(inListLevel-1, ssb.length());					
 				}
@@ -272,9 +272,10 @@ public class NoteContentHandler extends DefaultHandler {
 				// here, we apply margin and create a bullet span. Plus, we need to reset position keepers.
 				// TODO new sexier bullets?
 				// Show a leading margin that is as wide as the nested level we are in
-				// Do NOT change the leading margin here (with value 30), it will ruin NoteXMLContentBuilder.java!
-				ssb.setSpan(new LeadingMarginSpan.Standard(30*inListLevel), listItemStartPos.get(inListLevel-1), listItemEndPos.get(inListLevel-1), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-				ssb.setSpan(new BulletSpan(Integer.valueOf(6)), listItemStartPos.get(inListLevel-1), listItemEndPos.get(inListLevel-1), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+				LeadingMarginSpan.Standard ms = new LeadingMarginSpan.Standard(Note.NOTE_BULLET_INTENT_FACTOR*inListLevel);
+				ssb.setSpan(ms, listItemStartPos.get(inListLevel-1), listItemEndPos.get(inListLevel-1), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);		
+				BulletSpan bs = new BulletSpan(Integer.valueOf(6));
+				ssb.setSpan(bs, listItemStartPos.get(inListLevel-1), listItemEndPos.get(inListLevel-1), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 				listItemStartPos.set(inListLevel-1, Integer.valueOf(0));
 				listItemEndPos.set(inListLevel-1, Integer.valueOf(0));
 				listItemIsEmpty.set(inListLevel-1, Boolean.valueOf(true));
@@ -373,7 +374,7 @@ public class NoteContentHandler extends DefaultHandler {
 			if (inListItem) {
 				// this list item is not empty, so we mark it as such. We keep track of this to avoid any
 				// problems with list items nested like this: <item><item><item>Content!</item></item></item>
-				listItemIsEmpty.set(inListLevel-1, new Boolean(false));
+				listItemIsEmpty.set(inListLevel-1, Boolean.valueOf(false));
 				
 				// no matter what, if we are still in the tag, end is now further
 				listItemEndPos.set(inListLevel-1, strLenEnd);					

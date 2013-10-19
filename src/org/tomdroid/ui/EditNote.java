@@ -64,6 +64,8 @@ import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
 import android.text.format.Time;
 import android.text.style.BackgroundColorSpan;
+import android.text.style.BulletSpan;
+import android.text.style.LeadingMarginSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StrikethroughSpan;
 import android.text.style.StyleSpan;
@@ -118,6 +120,10 @@ public class EditNote extends ActionBarActivity {
 	private boolean forceClose = false;
 	// indicates whether the note was ever saved before (to be able to discard brand new notes)
 	private boolean neverSaved = true;
+	
+	// remember if we are writing a BulletSpan at the moment
+	private boolean inBulletSpan = false;
+	private int listLevel = 1;
 	
 	// TODO extract methods in here
 	@Override
@@ -702,7 +708,21 @@ public class EditNote extends ActionBarActivity {
 						else{
 							styleStart = position - 1;
 						}
+						
 					}
+        			
+        			// check if we are expanding a Bullet span at the end of a line and set the boolean variable accordingly
+        			if (!inBulletSpan && !(s.subSequence(position-1, position).toString().equals("\n"))) {
+	        			BulletSpan[] bulletSpans = s.getSpans(position, position, BulletSpan.class);
+	        			if (bulletSpans.length > 0) {
+	        				int bulletEnd = s.getSpanEnd(bulletSpans[0]);
+	        				if (bulletEnd == position) {
+	        					int bulletStart = s.getSpanStart(bulletSpans[0]);
+	        					styleStart = bulletStart;
+	        					inBulletSpan = true;
+	        				}
+	        			}
+        			}
         			
                 	if (boldButton.isChecked()){  
                 		StyleSpan[] ss = s.getSpans(styleStart, position, StyleSpan.class);
@@ -756,37 +776,50 @@ public class EditNote extends ActionBarActivity {
                 		}
                 		s.setSpan(new RelativeSizeSpan(size), styleStart, position, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 	}
+                	if (inBulletSpan) {
+                		LeadingMarginSpan[] ms = s.getSpans(styleStart, position, LeadingMarginSpan.class);
+                		for (int i = 0; i < ms.length; i++) {
+                			if( ms[i] instanceof LeadingMarginSpan.Standard ) {
+                				listLevel = ms[i].getLeadingMargin(true) / Note.NOTE_BULLET_INTENT_FACTOR;
+                			}
+                			s.removeSpan(ms[i]);
+                		}
+                		
+                		s.setSpan(new LeadingMarginSpan.Standard(Note.NOTE_BULLET_INTENT_FACTOR*listLevel), styleStart, position, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                		s.setSpan(new BulletSpan(Integer.valueOf(6)), styleStart, position, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                	}
         		}
         		
+        		// Recognise a \n to end a bullet span and start a new one
+        		if (position > 0 && inBulletSpan && content.getText().subSequence(position-1, position).toString().equals("\n")) {
+        			inBulletSpan = false;
+        		}
+
+        		// Recognise "\n * " pattern and create bullet from it
+        		if (((position == 3) && (content.getText().subSequence(position-3, position-1).toString().equals("* "))) ||
+        		((position > 3) && (content.getText().subSequence(position-4, position-1).toString().equals("\n* ")))) {
+    				TLog.d(TAG, "Found new list pattern!");
+    				s.replace(position-3, position-1, "");
+    				position = Selection.getSelectionStart(content.getText());
+    				styleStart = position-1;
+    				s.setSpan(new LeadingMarginSpan.Standard(Note.NOTE_BULLET_INTENT_FACTOR*listLevel), styleStart, position, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            		s.setSpan(new BulletSpan(Integer.valueOf(6)), styleStart, position, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+    				inBulletSpan = true;
+    			}
+        		
         		cursorLoc = Selection.getSelectionStart(content.getText());
-        	
-        		// TODO recognice a "* " and create a margin and bullet span!
-//        		// Recognise "\n * " pattern and create bullet from it
-//        		if (position == 2) {
-//        			TLog.d(TAG, content.getText().subSequence(position-2, position).toString());
-//        			if (content.getText().subSequence(position-2, position).toString().equals("* ")) {
-//        				TLog.d(TAG, "Found new list pattern!");
-//        			} 
-//        		} else if (position > 2) {
-//        			TLog.d(TAG, content.getText().subSequence(position-3, position).toString());
-//        			if (content.getText().subSequence(position-3, position).toString().equals("\n* ")) {
-//        				TLog.d(TAG, "Found new list pattern!");
-//        			}
-//        		}
-        		
-        		
             } 
             public void beforeTextChanged(CharSequence s, int start, int count, int after) { 
-                    //unused
+            	//unused
             } 
-            public void onTextChanged(CharSequence s, int start, int before, int count) { 
-                    //unused
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            	//unused
             } 
         });
 
         // set text as changed to force auto save if preferred
         
-        title.addTextChangedListener(new TextWatcher() { 
+        title.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
             	textChanged = true;
             } 

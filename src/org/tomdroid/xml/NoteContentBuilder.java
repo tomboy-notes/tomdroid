@@ -101,6 +101,12 @@ public class NoteContentBuilder {
 					TLog.v(TAG, "parsing note {0}", subjectName);
 					
 			        sp.parse(noteContentIs, new NoteContentHandler(noteContent));
+			        
+					// error finding
+					Object[] allSpans = noteContent.getSpans(0, noteContent.length(), Object.class);
+					for (Object span : allSpans) {
+						TLog.v(TAG, "({0}/{1}) {2}", noteContent.getSpanStart(span), noteContent.getSpanEnd(span), span.getClass().toString());
+					}
 				} catch (Exception e) {
 					e.printStackTrace();
 					// TODO handle error in a more granular way
@@ -113,6 +119,7 @@ public class NoteContentBuilder {
 		};
 		Thread thread = new Thread(runner);
 		thread.start();
+				
 		return noteContent;
 	}
 
