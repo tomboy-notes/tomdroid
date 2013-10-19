@@ -65,11 +65,14 @@ public class CompareNotes extends ActionBarActivity {
 	private Note remoteNote;
 	private int dateDiff;
 	private boolean noRemote;
-	private float baseSize = Float.parseFloat(Preferences.getString(Preferences.Key.BASE_TEXT_SIZE));
+	private float baseSize;;
 
 	@Override	
 	public void onCreate(Bundle savedInstanceState) {	
 		super.onCreate(savedInstanceState);	
+		
+		Preferences.init(this, Tomdroid.CLEAR_PREFERENCES);
+		baseSize = Float.parseFloat(Preferences.getString(Preferences.Key.BASE_TEXT_SIZE));
 		
 		if(!this.getIntent().hasExtra("datediff")) {
 			TLog.v(TAG, "no date diff");
