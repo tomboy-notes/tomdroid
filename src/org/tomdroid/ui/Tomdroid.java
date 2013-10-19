@@ -6,6 +6,7 @@
  * Copyright 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
  * Copyright 2009, Benoit Garret <benoit.garret_launchpad@gadz.org>
  * Copyright 2010, Rodja Trappe <mail@rodja.net>
+ * Copyright 2013 Stefan Hammer <j.4@gmx.at>
  * 
  * This file is part of Tomdroid.
  * 

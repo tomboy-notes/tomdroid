@@ -4,7 +4,7 @@
  * http://www.launchpad.net/tomdroid
  * 
  * Copyright 2012, 2010, 2011, 2012 Olivier Bilodeau <olivier@bottomlesspit.org>
- * Copyright 2012 Stefan Hammer <j.4@gmx.at>
+ * Copyright 2012, 2013 Stefan Hammer <j.4@gmx.at>
  * 
  * This file is part of Tomdroid.
  * 

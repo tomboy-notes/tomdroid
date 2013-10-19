@@ -1,3 +1,733 @@
+2013-10-19  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid-en_AU.po:
+	* locales/tomdroid-hr.po:
+	* locales/tomdroid-is.po:
+	* locales/tomdroid-jv.po:
+	* locales/tomdroid-vi.po:
+	* res/values-en-rAU:
+	* res/values-en-rAU/strings.xml:
+	* res/values-hr:
+	* res/values-hr/strings.xml:
+	* res/values-is:
+	* res/values-is/strings.xml:
+	* res/values-jv:
+	* res/values-jv/strings.xml:
+	* res/values-vi:
+	* res/values-vi/strings.xml:
+	* locales/tomdroid-ar.po:
+	* locales/tomdroid-bg.po:
+	* locales/tomdroid-bs.po:
+	* locales/tomdroid-ca.po:
+	* locales/tomdroid-cs.po:
+	* locales/tomdroid-da.po:
+	* locales/tomdroid-de.po:
+	* locales/tomdroid-el.po:
+	* locales/tomdroid-en_GB.po:
+	* locales/tomdroid-eo.po:
+	* locales/tomdroid-es.po:
+	* locales/tomdroid-et.po:
+	* locales/tomdroid-eu.po:
+	* locales/tomdroid-fa.po:
+	* locales/tomdroid-fi.po:
+	* locales/tomdroid-fo.po:
+	* locales/tomdroid-fr.po:
+	* locales/tomdroid-gd.po:
+	* locales/tomdroid-gl.po:
+	* locales/tomdroid-hi.po:
+	* locales/tomdroid-hu.po:
+	* locales/tomdroid-id.po:
+	* locales/tomdroid-it.po:
+	* locales/tomdroid-ja.po:
+	* locales/tomdroid-ko.po:
+	* locales/tomdroid-la.po:
+	* locales/tomdroid-ml.po:
+	* locales/tomdroid-ms.po:
+	* locales/tomdroid-nb.po:
+	* locales/tomdroid-nl.po:
+	* locales/tomdroid-pl.po:
+	* locales/tomdroid-pt.po:
+	* locales/tomdroid-pt_BR.po:
+	* locales/tomdroid-ru.po:
+	* locales/tomdroid-si.po:
+	* locales/tomdroid-sr.po:
+	* locales/tomdroid-sv.po:
+	* locales/tomdroid-ta.po:
+	* locales/tomdroid-te.po:
+	* locales/tomdroid-tr.po:
+	* locales/tomdroid-ug.po:
+	* locales/tomdroid-uk.po:
+	* locales/tomdroid-zh.po:
+	* locales/tomdroid-zh_CN.po:
+	* locales/tomdroid-zh_TW.po:
+	* locales/tomdroid.pot:
+	* res/values-ar/strings.xml:
+	* res/values-cs/strings.xml:
+	* res/values-da/strings.xml:
+	* res/values-de/strings.xml:
+	* res/values-en-rGB/strings.xml:
+	* res/values-es/strings.xml:
+	* res/values-fr/strings.xml:
+	* res/values-gd/strings.xml:
+	* res/values-gl/strings.xml:
+	* res/values-id/strings.xml:
+	* res/values-it/strings.xml:
+	* res/values-ja/strings.xml:
+	* res/values-nl/strings.xml:
+	* res/values-pl/strings.xml:
+	* res/values-pt/strings.xml:
+	* res/values-ru/strings.xml:
+	* res/values-si/strings.xml:
+	* res/values-sr/strings.xml:
+	* res/values-sv/strings.xml:
+	* res/values-tr/strings.xml:
+	* res/values-uk/strings.xml:
+	* res/values-zh-rCN/strings.xml:
+	* src/org/tomdroid/util/Receive.java:
+
+	updated the translation files
+
+2013-10-19  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/ui/CompareNotes.java:
+
+	fix crasher in CompareNotes. preferences were not initialized again.
+
+2013-10-19  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/xml/NoteContentBuilder.java:
+	* src/org/tomdroid/xml/NoteContentHandler.java:
+	* src/org/tomdroid/xml/NoteXMLContentBuilder.java:
+
+	Squeezed in a simple method to create new bullets. the whole editview class needs a rewriting. we need to remember the startposition of all different kinds of spans and need to check where we landed as soon as the cursor gets moved around. but for now, this should be fine and work without crashes and data loss
+
+2013-10-13  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/util/TagNode.java:
+	* src/org/tomdroid/xml/NoteXMLContentBuilder.java:
+
+	fix nullpointer exception in xmlcontentbuilder
+
+2013-10-13  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/TagNode.java:
+	* src/org/tomdroid/xml/NoteXMLContentBuilder.java:
+
+	Now we are able to convert any spans from EditView into a valid xml. including crossing spans, nested spans, lists,...
+
+2013-10-12  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+
+	Could not revert a single note any more as we did not follow the sync specifications correctly
+
+2013-10-12  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/xml/NoteXMLContentBuilder.java:
+
+	fix a parsing issue with bullet lists
+
+2013-10-12  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/xml/NoteXMLContentBuilder.java:
+
+	cleaned up the ontextchangelistener in editNote to be able to add new features and remove unexpected behaviour when changing styles
+
+2013-10-12  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/ui/EditNote.java:
+
+	moved ontogglebutton events from stylebar to generic function in order to add more awesome to it.
+
+2013-10-12  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/ui/CompareNotes.java:
+	* src/org/tomdroid/ui/EditNote.java:
+
+	fix bug lp:1155646 where empty conflict dialogue appears and does not go away.
+
+2013-10-12  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/NewNote.java:
+
+	remove global variable for the discarding of brand new notes as it is ugly
+
+2013-10-12  Stefan Hammer  <j.4@gmx.at>
+
+	* AUTHORS:
+	* NEWS:
+	* src/org/tomdroid/util/TagNode.java:
+	* src/org/tomdroid/util/TagType.java:
+	* src/org/tomdroid/xml/NoteXMLContentBuilder.java:
+
+	Added a lot of documentation to our new algorithm to make it understandable and maintainable. updated AUTHORS and ChangeLog
+
+2013-10-11  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/NoteProvider.java:
+	* src/org/tomdroid/sync/sd/NoteHandler.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/util/FirstNote.java:
+	* tests/org/tomdroid/NoteManagerTest.java:
+	* tests/org/tomdroid/NoteTest.java:
+
+	revert to 513 and keep newest changes in extra branch for testing
+
+2013-10-11  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/NoteProvider.java:
+	* src/org/tomdroid/sync/sd/NoteHandler.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/util/FirstNote.java:
+	* tests/org/tomdroid/NoteManagerTest.java:
+	* tests/org/tomdroid/NoteTest.java:
+
+	continue to add fields in database to remember everything we parse from a xml note or websync to be able to write it out on export
+
+2013-10-11  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/NoteProvider.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+
+	started to add missing database fields
+
+2013-10-11  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/util/TagNode.java:
+	* src/org/tomdroid/xml/NoteXMLContentBuilder.java:
+
+	Finished the new NoteXMLContentBuilder... from spannable strings to xml now owrks perfekt!
+
+2013-10-10  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/util/TagNode.java:
+	* src/org/tomdroid/util/TagType.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/xml/NoteXMLContentBuilder.java:
+
+	notexmlcontentbuilder rewritten as a graph problem to be more robust and bugfree. fix bug in snowysyncservice.
+
+2013-10-07  Stefan Hammer  <j.4@gmx.at>
+
+	* build.gradle:
+	* gradle:
+	* gradle/wrapper:
+	* gradle/wrapper/gradle-wrapper.jar:
+	* gradle/wrapper/gradle-wrapper.properties:
+	* gradlew:
+	* gradlew.bat:
+	* .classpath:
+
+	generated gradle project files for Android Studio
+
+2013-07-16  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/ui/CompareNotes.java:
+	* src/org/tomdroid/util/Receive.java:
+
+	fix bug lp:1153214 where the receive function tried to fill a SyncService array. now the note is locally changed/added by NoteManager. Further i added a getUribyGuid function to NoteManager for conveniently showing notes when clicking on note files.
+
+2013-07-15  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/xml/NoteContentHandler.java:
+	* src/org/tomdroid/xml/NoteXMLContentBuilder.java:
+
+	several small changes: move strings to translatable source, remove unnecessary boolean changes and made public variables private for security reasons (suggested by eclipse)
+
+2013-05-19  Stefan Hammer  <j.4@gmx.at>
+
+	* .classpath:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/xml/XmlUtils.java:
+
+	fix bug #1164889 where single and double quotes are not escaped in note title on sync.
+
+2013-03-31  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/xml/LinkifyPhone.java:
+	* src/org/tomdroid/xml/NoteContentBuilder.java:
+	* src/org/tomdroid/xml/NoteXMLContentBuilder.java:
+	* src/org/tomdroid/xml/XmlUtils.java:
+	* src/org/tomdroid/util/LinkifyPhone.java:
+	* src/org/tomdroid/util/NoteContentBuilder.java:
+	* src/org/tomdroid/util/NoteXMLContentBuilder.java:
+	* src/org/tomdroid/util/StringConverter.java:
+	* src/org/tomdroid/util/XmlUtils.java:
+	* res/menu/edit_note.xml:
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/NoteProvider.java:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/FilePickerActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+	* src/org/tomdroid/util/Receive.java:
+	* src/org/tomdroid/util/Send.java:
+
+	fix bug #1068691 and remove stringconverter in favour of xmlutils. further sort classes needed for xml parsing and writing from utils into org.tomdroid.xml. I hope everyone agrees with this change.
+
+2013-03-31  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid-bg.po:
+	* locales/tomdroid-et.po:
+	* locales/tomdroid-gl.po:
+	* locales/tomdroid-id.po:
+	* locales/tomdroid-la.po:
+	* locales/tomdroid-ml.po:
+	* locales/tomdroid-nl.po:
+	* locales/tomdroid-sr.po:
+	* locales/tomdroid-zh_TW.po:
+	* res/values-bg:
+	* res/values-bg/strings.xml:
+	* res/values-et:
+	* res/values-et/strings.xml:
+	* res/values-gl:
+	* res/values-gl/strings.xml:
+	* res/values-id:
+	* res/values-id/strings.xml:
+	* res/values-la:
+	* res/values-la/strings.xml:
+	* res/values-ml:
+	* res/values-ml/strings.xml:
+	* res/values-nl:
+	* res/values-nl/strings.xml:
+	* res/values-sr:
+	* res/values-sr/strings.xml:
+	* res/values-zh-rTW:
+	* res/values-zh-rTW/strings.xml:
+	* src/org/tomdroid/sync/web/MySSLSocketFactory.java:
+	* locales/tomdroid-bg.po:
+	* locales/tomdroid-et.po:
+	* locales/tomdroid-gl.po:
+	* locales/tomdroid-id.po:
+	* locales/tomdroid-la.po:
+	* locales/tomdroid-ml.po:
+	* locales/tomdroid-nl.po:
+	* locales/tomdroid-sr.po:
+	* locales/tomdroid-zh_TW.po:
+	* res/values-bg:
+	* res/values-bg/strings.xml:
+	* res/values-et:
+	* res/values-et/strings.xml:
+	* res/values-gl:
+	* res/values-gl/strings.xml:
+	* res/values-id:
+	* res/values-id/strings.xml:
+	* res/values-la:
+	* res/values-la/strings.xml:
+	* res/values-ml:
+	* res/values-ml/strings.xml:
+	* res/values-nl:
+	* res/values-nl/strings.xml:
+	* res/values-sr:
+	* res/values-sr/strings.xml:
+	* res/values-zh-rTW:
+	* res/values-zh-rTW/strings.xml:
+	* src/org/tomdroid/sync/web/MySSLSocketFactory.java:
+	* AUTHORS:
+	* AndroidManifest.xml:
+	* ChangeLog:
+	* NEWS:
+	* doc/dev/RELEASE-CHECKLIST:
+	* locales/tomdroid-ar.po:
+	* locales/tomdroid-bs.po:
+	* locales/tomdroid-ca.po:
+	* locales/tomdroid-cs.po:
+	* locales/tomdroid-da.po:
+	* locales/tomdroid-de.po:
+	* locales/tomdroid-el.po:
+	* locales/tomdroid-en_GB.po:
+	* locales/tomdroid-eo.po:
+	* locales/tomdroid-es.po:
+	* locales/tomdroid-eu.po:
+	* locales/tomdroid-fa.po:
+	* locales/tomdroid-fi.po:
+	* locales/tomdroid-fo.po:
+	* locales/tomdroid-fr.po:
+	* locales/tomdroid-gd.po:
+	* locales/tomdroid-hi.po:
+	* locales/tomdroid-hu.po:
+	* locales/tomdroid-it.po:
+	* locales/tomdroid-ja.po:
+	* locales/tomdroid-ko.po:
+	* locales/tomdroid-ms.po:
+	* locales/tomdroid-nb.po:
+	* locales/tomdroid-pl.po:
+	* locales/tomdroid-pt.po:
+	* locales/tomdroid-pt_BR.po:
+	* locales/tomdroid-ru.po:
+	* locales/tomdroid-si.po:
+	* locales/tomdroid-sv.po:
+	* locales/tomdroid-ta.po:
+	* locales/tomdroid-te.po:
+	* locales/tomdroid-tr.po:
+	* locales/tomdroid-ug.po:
+	* locales/tomdroid-uk.po:
+	* locales/tomdroid-zh.po:
+	* locales/tomdroid-zh_CN.po:
+	* locales/tomdroid.pot:
+	* res/values-ar/strings.xml:
+	* res/values-bs/strings.xml:
+	* res/values-ca/strings.xml:
+	* res/values-cs/strings.xml:
+	* res/values-da/strings.xml:
+	* res/values-de/strings.xml:
+	* res/values-el/strings.xml:
+	* res/values-en-rGB/strings.xml:
+	* res/values-eo/strings.xml:
+	* res/values-es/strings.xml:
+	* res/values-eu/strings.xml:
+	* res/values-fa/strings.xml:
+	* res/values-fi/strings.xml:
+	* res/values-fo/strings.xml:
+	* res/values-fr/strings.xml:
+	* res/values-gd/strings.xml:
+	* res/values-hi/strings.xml:
+	* res/values-hu/strings.xml:
+	* res/values-it/strings.xml:
+	* res/values-ja/strings.xml:
+	* res/values-ko/strings.xml:
+	* res/values-ms/strings.xml:
+	* res/values-nb/strings.xml:
+	* res/values-pl/strings.xml:
+	* res/values-pt-rBR/strings.xml:
+	* res/values-pt/strings.xml:
+	* res/values-ru/strings.xml:
+	* res/values-si/strings.xml:
+	* res/values-sv/strings.xml:
+	* res/values-ta/strings.xml:
+	* res/values-te/strings.xml:
+	* res/values-tr/strings.xml:
+	* res/values-ug/strings.xml:
+	* res/values-uk/strings.xml:
+	* res/values-zh-rCN/strings.xml:
+	* res/values-zh/strings.xml:
+	* res/values/strings.xml:
+	* res/xml/preferences.xml:
+	* src/org/tomdroid/util/Preferences.java:
+
+	merged changes from stable version including removal of ubuntu one parts, added default sync service to sdcard as we have no default sync url. updated translations.
+
+2013-03-18  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid.pot:
+	* res/values/strings.xml:
+
+	update market description to the newest version
+
+2013-03-18  Stefan Hammer  <j.4@gmx.at>
+
+	release 0.6.1 polyglot
+
+2013-03-18  Stefan Hammer  <j.4@gmx.at>
+
+	* NEWS:
+
+	change release date
+
+2013-03-15  Stefan Hammer  <j.4@gmx.at>
+
+	* doc/dev/RELEASE-CHECKLIST:
+
+	logging is not neccesary in manifest any more
+
+2013-03-15  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid-ar.po:
+	* locales/tomdroid-bg.po:
+	* locales/tomdroid-bs.po:
+	* locales/tomdroid-ca.po:
+	* locales/tomdroid-cs.po:
+	* locales/tomdroid-da.po:
+	* locales/tomdroid-de.po:
+	* locales/tomdroid-el.po:
+	* locales/tomdroid-en_GB.po:
+	* locales/tomdroid-eo.po:
+	* locales/tomdroid-es.po:
+	* locales/tomdroid-et.po:
+	* locales/tomdroid-eu.po:
+	* locales/tomdroid-fa.po:
+	* locales/tomdroid-fi.po:
+	* locales/tomdroid-fo.po:
+	* locales/tomdroid-fr.po:
+	* locales/tomdroid-gd.po:
+	* locales/tomdroid-gl.po:
+	* locales/tomdroid-hi.po:
+	* locales/tomdroid-hu.po:
+	* locales/tomdroid-id.po:
+	* locales/tomdroid-it.po:
+	* locales/tomdroid-ja.po:
+	* locales/tomdroid-ko.po:
+	* locales/tomdroid-la.po:
+	* locales/tomdroid-ml.po:
+	* locales/tomdroid-ms.po:
+	* locales/tomdroid-nb.po:
+	* locales/tomdroid-nl.po:
+	* locales/tomdroid-pl.po:
+	* locales/tomdroid-pt.po:
+	* locales/tomdroid-pt_BR.po:
+	* locales/tomdroid-ru.po:
+	* locales/tomdroid-si.po:
+	* locales/tomdroid-sr.po:
+	* locales/tomdroid-sv.po:
+	* locales/tomdroid-ta.po:
+	* locales/tomdroid-te.po:
+	* locales/tomdroid-tr.po:
+	* locales/tomdroid-ug.po:
+	* locales/tomdroid-uk.po:
+	* locales/tomdroid-zh.po:
+	* locales/tomdroid-zh_CN.po:
+	* locales/tomdroid-zh_TW.po:
+	* res/values-ar/strings.xml:
+	* res/values-bg/strings.xml:
+	* res/values-bs/strings.xml:
+	* res/values-ca/strings.xml:
+	* res/values-cs/strings.xml:
+	* res/values-da/strings.xml:
+	* res/values-de/strings.xml:
+	* res/values-el/strings.xml:
+	* res/values-en-rGB/strings.xml:
+	* res/values-eo/strings.xml:
+	* res/values-es/strings.xml:
+	* res/values-et/strings.xml:
+	* res/values-eu/strings.xml:
+	* res/values-fa/strings.xml:
+	* res/values-fi/strings.xml:
+	* res/values-fo/strings.xml:
+	* res/values-fr/strings.xml:
+	* res/values-gd/strings.xml:
+	* res/values-gl/strings.xml:
+	* res/values-hi/strings.xml:
+	* res/values-hu/strings.xml:
+	* res/values-id/strings.xml:
+	* res/values-it/strings.xml:
+	* res/values-ja/strings.xml:
+	* res/values-ko/strings.xml:
+	* res/values-la/strings.xml:
+	* res/values-ml/strings.xml:
+	* res/values-ms/strings.xml:
+	* res/values-nb/strings.xml:
+	* res/values-nl/strings.xml:
+	* res/values-pl/strings.xml:
+	* res/values-pt-rBR/strings.xml:
+	* res/values-pt/strings.xml:
+	* res/values-ru/strings.xml:
+	* res/values-si/strings.xml:
+	* res/values-sr/strings.xml:
+	* res/values-sv/strings.xml:
+	* res/values-ta/strings.xml:
+	* res/values-te/strings.xml:
+	* res/values-tr/strings.xml:
+	* res/values-ug/strings.xml:
+	* res/values-uk/strings.xml:
+	* res/values-zh-rCN/strings.xml:
+	* res/values-zh-rTW/strings.xml:
+	* res/values-zh/strings.xml:
+
+	a last update of the translations
+
+2013-03-15  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid.pot:
+
+	push new string changes to .pot file otherwise eclipse complains about untranslated strings
+
+2013-03-14  Stefan Hammer  <j.4@gmx.at>
+
+	* AndroidManifest.xml:
+	* ChangeLog:
+	* README:
+	* doc/dev/RELEASE-CHECKLIST:
+
+	RELESE: now i am half through the release checklist.
+
+2013-03-14  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/sync/SyncManager.java:
+
+	readded syncmanager tag which was lost
+
+2013-03-14  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/util/FirstNote.properties:
+	* NEWS:
+	* res/values/strings.xml:
+	* src/org/tomdroid/sync/SyncManager.java:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/FirstNote.java:
+	* src/org/tomdroid/util/Preferences.java:
+
+	removed all the ubuntu one strings and URLs as they are not valid any more.
+
+2013-03-14  Stefan Hammer  <j.4@gmx.at>
+
+	* NEWS:
+
+	update NEWS
+
+2013-03-14  Stefan Hammer  <j.4@gmx.at>
+
+	* .classpath:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+
+	backported fix for bug #1134866 and bug #982749 from beta branch
+
+2013-03-13  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid-bg.po:
+	* locales/tomdroid-et.po:
+	* locales/tomdroid-gl.po:
+	* locales/tomdroid-id.po:
+	* locales/tomdroid-la.po:
+	* locales/tomdroid-ml.po:
+	* locales/tomdroid-nl.po:
+	* locales/tomdroid-sr.po:
+	* locales/tomdroid-zh_TW.po:
+	* res/values-bg:
+	* res/values-bg/strings.xml:
+	* res/values-et:
+	* res/values-et/strings.xml:
+	* res/values-gl:
+	* res/values-gl/strings.xml:
+	* res/values-id:
+	* res/values-id/strings.xml:
+	* res/values-la:
+	* res/values-la/strings.xml:
+	* res/values-ml:
+	* res/values-ml/strings.xml:
+	* res/values-nl:
+	* res/values-nl/strings.xml:
+	* res/values-sr:
+	* res/values-sr/strings.xml:
+	* res/values-zh-rTW:
+	* res/values-zh-rTW/strings.xml:
+	* AUTHORS:
+	* NEWS:
+	* locales/tomdroid-ar.po:
+	* locales/tomdroid-bs.po:
+	* locales/tomdroid-ca.po:
+	* locales/tomdroid-cs.po:
+	* locales/tomdroid-da.po:
+	* locales/tomdroid-de.po:
+	* locales/tomdroid-el.po:
+	* locales/tomdroid-en_GB.po:
+	* locales/tomdroid-eo.po:
+	* locales/tomdroid-es.po:
+	* locales/tomdroid-eu.po:
+	* locales/tomdroid-fa.po:
+	* locales/tomdroid-fi.po:
+	* locales/tomdroid-fo.po:
+	* locales/tomdroid-fr.po:
+	* locales/tomdroid-gd.po:
+	* locales/tomdroid-hi.po:
+	* locales/tomdroid-hu.po:
+	* locales/tomdroid-it.po:
+	* locales/tomdroid-ja.po:
+	* locales/tomdroid-ko.po:
+	* locales/tomdroid-ms.po:
+	* locales/tomdroid-nb.po:
+	* locales/tomdroid-pl.po:
+	* locales/tomdroid-pt.po:
+	* locales/tomdroid-pt_BR.po:
+	* locales/tomdroid-ru.po:
+	* locales/tomdroid-si.po:
+	* locales/tomdroid-sv.po:
+	* locales/tomdroid-ta.po:
+	* locales/tomdroid-te.po:
+	* locales/tomdroid-tr.po:
+	* locales/tomdroid-ug.po:
+	* locales/tomdroid-uk.po:
+	* locales/tomdroid-zh.po:
+	* locales/tomdroid-zh_CN.po:
+	* locales/tomdroid.pot:
+	* res/values-ar/strings.xml:
+	* res/values-bs/strings.xml:
+	* res/values-ca/strings.xml:
+	* res/values-cs/strings.xml:
+	* res/values-da/strings.xml:
+	* res/values-de/strings.xml:
+	* res/values-el/strings.xml:
+	* res/values-en-rGB/strings.xml:
+	* res/values-eo/strings.xml:
+	* res/values-es/strings.xml:
+	* res/values-eu/strings.xml:
+	* res/values-fa/strings.xml:
+	* res/values-fi/strings.xml:
+	* res/values-fo/strings.xml:
+	* res/values-fr/strings.xml:
+	* res/values-gd/strings.xml:
+	* res/values-hi/strings.xml:
+	* res/values-hu/strings.xml:
+	* res/values-it/strings.xml:
+	* res/values-ja/strings.xml:
+	* res/values-ko/strings.xml:
+	* res/values-ms/strings.xml:
+	* res/values-nb/strings.xml:
+	* res/values-pl/strings.xml:
+	* res/values-pt-rBR/strings.xml:
+	* res/values-pt/strings.xml:
+	* res/values-ru/strings.xml:
+	* res/values-si/strings.xml:
+	* res/values-sv/strings.xml:
+	* res/values-ta/strings.xml:
+	* res/values-te/strings.xml:
+	* res/values-tr/strings.xml:
+	* res/values-ug/strings.xml:
+	* res/values-uk/strings.xml:
+	* res/values-zh-rCN/strings.xml:
+	* res/values-zh/strings.xml:
+
+	Update NEWS, translations
+
+2013-03-13  Stefan Hammer  <j.4@gmx.at>
+
+	* AndroidManifest.xml:
+
+	fix lp:1132389 
+
+2013-03-13  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/sync/web/MySSLSocketFactory.java:
+	* src/org/tomdroid/sync/web/AnonymousConnection.java:
+	* src/org/tomdroid/sync/web/OAuthConnection.java:
+	* src/org/tomdroid/sync/web/WebConnection.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	fix lp:1153289 Accept self signed SSL certificates to be able to sync securely with Rainy
+
+2013-01-05  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* doc/gather-logs.txt:
+
+	doc: added logcat instructions
+	
+	We repeat them quite often.
+
+2012-08-22  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid.pot:
+
+	Make translations available on launchpad with running bash androidxml2po.bash -e
+
 2013-03-31  Stefan Hammer  <j.4@gmx.at>
 
 	* locales/tomdroid.pot:

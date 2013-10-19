@@ -15,6 +15,11 @@ For more details and developer visible changes see the ChangeLog
 -------------------------------------------------------------------------------
 Tomdroid 0.7.3 - "Almost there!" released on <release-date>
 
+* updated translations: new languages are Croatian, Icelandic, Javanese, Vietnamese and English (Australia)!
+* fixed even more bugs, complete list on: https://launchpad.net/tomdroid/+milestone/0.7.3
+* fixed bug lp:1155646 Sometimes a empty Conflict Dialoug appears upon sync
+* fixed bug lp:1232624 Suddenly started to crash everytime it syncs with Rainy
+* Complete rewrite of the note-content to XML handler
 * fixed bug lp:1067604 Parser crash resulting in note corruption while editing bullet lists
 * added option to automatically sync on startup (lp:1038353)
 * fixed bug lp:1120488 Please add custom HTTP header to syncing requests (for Rainy sync)

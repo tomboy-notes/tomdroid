@@ -2,7 +2,7 @@ Make sure to do this before every release:
 
 Testing
 - Download Translations from Launchpad and convert them to xml (described in util/xml2po/README)
-- Test all functionality and selected translations on emulator 1.5 (base), 2.3 (most common) and 4.0 (latest)
+- Test all functionality and selected translations on emulator 1.6 (base), 2.3 (still common) and 4.3 (latest)
 - Test with "Immediately destroy activities" debug setting
 - Test all text inputs with virtual keyboard
 - Test with public sdcard image all the bug notes to spot regressions

@@ -5,6 +5,7 @@
  * 
  * Copyright 2008, 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>
  * Copyright 2009, Benoit Garret <benoit.garret_launchpad@gadz.org>
+ * Copyright 2013 Stefan Hammer <j.4@gmx.at>
  * 
  * This file is part of Tomdroid.
  * 
@@ -798,7 +799,6 @@ public class EditNote extends ActionBarActivity {
         		// Recognise "\n * " pattern and create bullet from it
         		if (((position == 3) && (content.getText().subSequence(position-3, position-1).toString().equals("* "))) ||
         		((position > 3) && (content.getText().subSequence(position-4, position-1).toString().equals("\n* ")))) {
-    				TLog.d(TAG, "Found new list pattern!");
     				s.replace(position-3, position-1, "");
     				position = Selection.getSelectionStart(content.getText());
     				styleStart = position-1;
