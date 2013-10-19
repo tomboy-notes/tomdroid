@@ -25,11 +25,11 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Tomboy compatible wikiwiki note-taking app that can take notes.</string>
+	<string name="app_desc">Tomboy wikiwiki kompatibel pengambilan catatan aplikasi yang dapat mengambil catatan.</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
-	<string name="strListEmptyWaiting">Harap tunggu sementara untuk catatan ...</string>
+	<string name="strListEmptyWaiting">Harap tunggu sejenak  ...</string>
 	<string name="strListEmptyNoNotes">Tidak ada catatan dalam database Tomdroid.</string>
 	
 	<!-- Menu entry with icon -->
@@ -65,8 +65,8 @@
 	<string name="prefTomboyWeb">Sikronisasi Online</string>
 	<string name="prefAuthenticate">Otentikasi</string>
 	<string name="prefLocation">Lokasi di SD Card</string>
-	<string name="prefSyncOnStart">Autosync on Startup</string>
-	<string name="prefDescSyncOnStart">Synchronise your notes on appstart</string>
+	<string name="prefSyncOnStart">Autosync pada Startup</string>
+	<string name="prefDescSyncOnStart">Mensinkronisasi catatan anda pada appstart</string>
 	<!-- %1$s will be repaced by the folder name eg /tomdroid -->
 	<string name="prefFolderCreated">Folder \"%1$s\" belum ada. Silakan menghubungkan perangkat Anda ke komputer, membuat folder dan mengisinya dengan file * catatan..</string>
 	<!-- %1$s will be repaced by the folder name eg /testfolder -->
@@ -223,7 +223,7 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkTitlesTitle">Judul Tautan</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkTitles">Link to other note titles</string>
+	<string name="prefLinkTitles">Link ke judul catatan lain</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkUrlsTitle">Tautan Alamat Web</string>
 	<!-- Description for checkbox in settings -->
@@ -235,11 +235,11 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkPhonesTitle">Tautan nomor telepone</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkPhones">Link telephone numbers to phone app</string>
+	<string name="prefLinkPhones">Link nomor telepon ke aplikasi telepon</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkAddressesTitle">Tautan alamat peta</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkAddresses">Link addresses to maps app</string>
+	<string name="prefLinkAddresses">Alamat link ke peta app</string>
 			
 	<!-- syncNotes -->
 
@@ -355,7 +355,7 @@
 		<item>Anda tidak memiliki catatan di sini. Untuk memulai, menetapkan preferensi Sinkronisasi Anda di bawah Setelan. Ada dua pilihan sinkronisasi dijelaskan di bawah ini.\n</item>
 		<item>=Sinkronisasi Online=</item>
 		<!-- =text= makes <size:large>text</size:large> -->
-		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
+		<item>Singkronisasi Online adalah apa yang anda cari jika anda ingin mensingkronisasi Tomboy-Online, server Berhujan/Bersalju server yang mendukung Tomboy Web REST API.\n</item>
 		<item>Untuk menggunakannya, atur Layanan untuk Sinkronisasi Online di preferensi kemudian memberikan URL Server. Berikut adalah beberapa yang umum:</item>
 		<!-- -text is for list-items. --> 
 		<item>-Tomboy Online - https://edge.tomboy-online.org/</item>
@@ -378,15 +378,17 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Catatan Tomdroid</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Open source!</string>
+	<string name="market_description">Sebuah klien Tomboy untuk Android. Tomboy adalah aplikasi catatan desktop dengan pendekatan wikiwiki dan antarmuka pengguna yang sederhana.\n\n* Format catatan yang kompatibel dengan Tomboy\n* Singkronisasi catatan online dengan Rainy, Snowy, atau Tomboy Online\n* Importasi kartu SD\n* Pintasan layar beranda\n*Sumber Terbuka!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Mencatat aplikasi dengan sinkronisasi online yang kompatibel dengan Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.8.0 \"NAME\" release\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\n</string>
+        <string name="market_recent_changes">0.8.0 \"NAMA\" melepaskan\n* TAMBAH DAFTAR FITUR. JANGAN TRANSLATE.\n</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
+  Mohammed Fiqhi Triansha https://launchpad.net/~fiqhiskaneltkj-3
+  Trisno Pamuji https://launchpad.net/~tri.snowman
   dhardiputra https://launchpad.net/~dhardiputra</string>
 </resources>

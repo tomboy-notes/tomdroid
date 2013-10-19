@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tomdroid\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-03-31 17:29+0200\n"
+"POT-Creation-Date: 2013-03-31 18:06+0200\n"
 "PO-Revision-Date: 2012-12-22 22:01+0000\n"
 "Last-Translator: Vistaus <vistausss@gmail.com>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-03-31 16:08+0000\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Launchpad-Export-Date: 2013-10-19 17:56+0000\n"
+"X-Generator: Launchpad (build 16807)\n"
 
 #. application details
 #: tmp_strings.xml:27(string)
@@ -974,15 +974,15 @@ msgstr ""
 "wordt):"
 
 #. Title of first Note
-#: tmp_strings.xml:350(string)
+#: tmp_strings.xml:351(string)
 msgid "Tomdroid's First Note"
 msgstr "Tomdroid's Eerste Notitie"
 
-#: tmp_strings.xml:353(item)
+#: tmp_strings.xml:354(item)
 msgid "Welcome to Tomdroid!\\n"
 msgstr "Welkom in Tomdroid!\\n"
 
-#: tmp_strings.xml:354(item)
+#: tmp_strings.xml:355(item)
 msgid ""
 "You have no notes here yet. To get started, set your Synchronization "
 "preferences under Settings. There are two synchronization options described "
@@ -992,19 +992,19 @@ msgstr ""
 "voorkeuren in onder Instellingen. Hieronder worden de twee synchronisatie "
 "opties beschreven."
 
-#: tmp_strings.xml:355(item)
+#: tmp_strings.xml:356(item)
 msgid "=Online Synchronization="
 msgstr "=Online Synchronisatie="
 
 #. =text= makes <size:large>text</size:large>
-#: tmp_strings.xml:357(item)
+#: tmp_strings.xml:358(item)
 msgid ""
 "Online Synchronization is what you are looking for if you want to sync to "
-"Tomboy-Online, Ubuntu One, your own Rainy/Snowy server or any server "
-"supporting the Tomboy Web REST API.\\n"
+"Tomboy-Online, your own Rainy/Snowy server or any server supporting the "
+"Tomboy Web REST API.\\n"
 msgstr ""
 
-#: tmp_strings.xml:358(item)
+#: tmp_strings.xml:359(item)
 msgid ""
 "To use it, set Sync Service to Online Synchronization in preferences then "
 "provide a Server URL. Here are some of the public ones:"
@@ -1014,22 +1014,17 @@ msgstr ""
 "openbare adressen:"
 
 #. -text is for list-items.
-#: tmp_strings.xml:360(item)
+#: tmp_strings.xml:361(item)
 msgid "-Tomboy Online - https://edge.tomboy-online.org/"
 msgstr "-Tomboy Online - https://edge.tomboy-online.org/"
 
 #. -text is for list-items.
-#: tmp_strings.xml:362(item)
-msgid "-Ubuntu One - https://one.ubuntu.com/notes"
-msgstr ""
-
-#. -text is for list-items.
-#: tmp_strings.xml:364(item)
+#: tmp_strings.xml:363(item)
 msgid ""
 "-rainy.notesync.org - https://notesync.org:8080/[username]/[password]/\\n"
 msgstr ""
 
-#: tmp_strings.xml:365(item)
+#: tmp_strings.xml:364(item)
 msgid ""
 "Once set, hit the Sync logo on Tomdroid's top bar to synchronize your "
 "notes.\\n"
@@ -1037,38 +1032,38 @@ msgstr ""
 "Als dit is ingesteld kunt U op het Synchronisatie-logo op Tomdroid's "
 "bovenste balk drukken om uw notities te synchroniseren.\\n"
 
-#: tmp_strings.xml:366(item)
+#: tmp_strings.xml:365(item)
 msgid ""
 "Note: you might want to back up your Tomboy notes before syncing, since this "
 "app is still under development and may corrupt your Tomboy notes.\\n"
 msgstr ""
 
-#: tmp_strings.xml:367(item)
+#: tmp_strings.xml:366(item)
 msgid ""
 "Please see http://live.gnome.org/Tomboy/Directories for the location of the "
 "*.note files on all platforms.\\n"
 msgstr ""
 
 #. =text= makes <size:large>text</size:large>
-#: tmp_strings.xml:369(item)
+#: tmp_strings.xml:368(item)
 msgid "=SD Card="
 msgstr "=SD-kaart="
 
-#: tmp_strings.xml:370(item)
+#: tmp_strings.xml:369(item)
 msgid ""
 "Put your Tomboy notes (*.note) on your SD Card under tomdroid/. Once the "
 "notes are copied, set Sync Service to SD Card in preferences then hit the "
 "Sync logo on Tomdroid's top bar.\\n"
 msgstr ""
 
-#: tmp_strings.xml:371(item)
+#: tmp_strings.xml:370(item)
 msgid ""
 "Also, Tomdroid is always looking for new contributors. If you are interested "
 "join the tomdroid-dev team on Launchpad: http://launchpad.net/~tomdroid-"
 "dev.\\n"
 msgstr ""
 
-#: tmp_strings.xml:372(item)
+#: tmp_strings.xml:371(item)
 msgid ""
 "Lastly, if you encounter any issue, please report it at: "
 "https://bugs.launchpad.net/tomdroid"
@@ -1077,44 +1072,37 @@ msgstr ""
 "https://bugs.launchpad.net/tomdroid"
 
 #. 30 chars max
-#: tmp_strings.xml:380(string)
+#: tmp_strings.xml:379(string)
 msgid "Tomdroid notes"
 msgstr "Tomdroid notities"
 
 #. 4000 chars max
-#: tmp_strings.xml:382(string)
+#: tmp_strings.xml:381(string)
 msgid ""
 "A Tomboy client for Android. Tomboy is a desktop note-taking app using a "
 "wikiwiki approach and a simple user interface.\\n\\n* Note format "
-"compatibility with Tomboy\\n* Online note synchronization with Snowy, Tomboy "
-"Online or Ubuntu One\\n* SD Card importation\\n* Open source!"
-msgstr ""
-"Een Tomboy cliënt voor Android. Tomboy is een desktop notitieapplicatie met "
-"een wikiwiki-aanpak en een simpele gebruikersinterface.\\n\\n* Notitie-"
-"formaat compatibel met Tomboy\\n* Online notitie-synchronisatie met Snowy, "
-"Tomboy Online of Ubuntu One\\n* Kan ook van SD-kaart importeren\\n* Open "
+"compatibility with Tomboy\\n* Online note synchronization with Rainy, Snowy "
+"or Tomboy Online\\n* SD Card importation\\n* Home screen shortcuts\\n* Open "
 "source!"
+msgstr ""
 
 #. 80 chars max
-#: tmp_strings.xml:385(string)
+#: tmp_strings.xml:384(string)
 msgid "Note-taking app with online synchronization compatible with Tomboy"
 msgstr ""
 
 #. 500 chars max
-#: tmp_strings.xml:388(string)
+#: tmp_strings.xml:387(string)
 msgid ""
-"0.6 \\\"Small World\\\" release\\n* Create home-screen shortcuts to notes\\"
-"n* Specify a folder to use for SD Card sync\\n* Reload current note after "
-"sync\\n* A lot of new translations: ar, bs, ca, cs, da, de, el, en-rGB, eo, "
-"es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, "
-"si, sv, ta, te, tr, ug, uk, zh, zh-rCN\\n* Several bugfixes\\n"
+"0.8.0 \\\"NAME\\\" release\\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\\n"
 msgstr ""
 
 #. Launchpad Translation String
-#: tmp_strings.xml:391(string)
+#: tmp_strings.xml:390(string)
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
+"  Dragnadh https://launchpad.net/~dragnadh\n"
 "  Frits van Bommel https://launchpad.net/~fvbommel\n"
 "  Vistaus https://launchpad.net/~djmusic121"
 

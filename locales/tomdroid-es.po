@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tomdroid\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-03-31 17:29+0200\n"
-"PO-Revision-Date: 2013-01-21 02:35+0000\n"
+"POT-Creation-Date: 2013-03-31 18:06+0200\n"
+"PO-Revision-Date: 2013-05-04 10:20+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitoschido@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-03-31 16:08+0000\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Launchpad-Export-Date: 2013-10-19 17:56+0000\n"
+"X-Generator: Launchpad (build 16807)\n"
 
 #. application details
 #: tmp_strings.xml:27(string)
@@ -25,6 +25,7 @@ msgstr "Tomdroid"
 #: tmp_strings.xml:28(string)
 msgid "Tomboy compatible wikiwiki note-taking app that can take notes."
 msgstr ""
+"Aplicación Tomboy compatible con wikiwiki note-taking que puede tomar notas."
 
 #: tmp_strings.xml:29(string)
 msgid "Olivier Bilodeau"
@@ -140,11 +141,11 @@ msgstr "Ubicación en la tarjeta SD"
 
 #: tmp_strings.xml:68(string)
 msgid "Autosync on Startup"
-msgstr ""
+msgstr "Sincronización automática al arrancar"
 
 #: tmp_strings.xml:69(string)
 msgid "Synchronise your notes on appstart"
-msgstr ""
+msgstr "Sincroniza tus notas al iniciar"
 
 #. %1$s will be repaced by the folder name eg /tomdroid
 #: tmp_strings.xml:71(string)
@@ -447,15 +448,15 @@ msgstr "S"
 
 #: tmp_strings.xml:171(string)
 msgid "monospace"
-msgstr ""
+msgstr "monoespaciada"
 
 #: tmp_strings.xml:172(string)
 msgid "highlight"
-msgstr ""
+msgstr "resaltar"
 
 #: tmp_strings.xml:173(string)
 msgid "size"
-msgstr ""
+msgstr "tamaño"
 
 #: tmp_strings.xml:174(string)
 msgid "Error parsing note"
@@ -536,7 +537,7 @@ msgstr "Tomdroid - Configuración"
 
 #: tmp_strings.xml:196(string)
 msgid "Tomdroid - Note Conflict"
-msgstr ""
+msgstr "Tomdroid - Nota de Conflicto"
 
 #: tmp_strings.xml:197(string)
 msgid "Tomdroid - Import Note"
@@ -625,7 +626,7 @@ msgstr "Vincular Títulos"
 #. Description for checkbox in settings
 #: tmp_strings.xml:226(string)
 msgid "Link to other note titles"
-msgstr ""
+msgstr "Vincular con otros titulos de nota"
 
 #. Checkbox in settings
 #: tmp_strings.xml:228(string)
@@ -655,7 +656,7 @@ msgstr "Vincular Números Telefónicos"
 #. Description for checkbox in settings
 #: tmp_strings.xml:238(string)
 msgid "Link telephone numbers to phone app"
-msgstr ""
+msgstr "Vincular numeros de teléfono con la aplicación del teléfono"
 
 #. Checkbox in settings
 #: tmp_strings.xml:240(string)
@@ -665,7 +666,7 @@ msgstr "Enlace a Direcciones del Mapa"
 #. Description for checkbox in settings
 #: tmp_strings.xml:242(string)
 msgid "Link addresses to maps app"
-msgstr ""
+msgstr "Vincular las direcciones con la aplicación de mapas"
 
 #. %1$s will be replaced with "Online Synchronisation", "SD card",...
 #: tmp_strings.xml:247(string)
@@ -690,19 +691,24 @@ msgstr "actualizando las notas remotas…"
 
 #: tmp_strings.xml:252(string)
 msgid "There was a conflict syncing the note '%1$s'"
-msgstr ""
+msgstr "Hubo un conflicto al sincronizar la nota «%1$s»"
 
 #: tmp_strings.xml:253(string)
 msgid ""
 "Please choose an action to resolve the conflict. You may edit either note "
 "before choosing, or view the difference by clicking on the labels below."
 msgstr ""
+"Por favor, elija una acción para resolver el conflicto. Puedes editar "
+"cualquiera de ambas notas antes de decidir, o ver la diferencia haciendo "
+"clic en en las etiquetas siguientes."
 
 #: tmp_strings.xml:254(string)
 msgid ""
 "The local version was already deleted. Please choose from one of the actions "
 "below."
 msgstr ""
+"La versión local fue eliminada. Por favor, elija una de las siguientes "
+"acciones."
 
 #: tmp_strings.xml:255(string)
 msgid ""
@@ -710,6 +716,10 @@ msgid ""
 "action to resolve the conflict. You may edit either note before choosing, or "
 "view the difference by clicking on the labels below."
 msgstr ""
+"Una nota con ese titulo existe actualmente en la base de dato. Por favor, "
+"elija una acción para resolver el conflicto. Puedes editar cualquiera de "
+"ambas notas antes de decidir, o ver la diferencia haciendo clic en en las "
+"etiquetas siguientes."
 
 #. Button (keep short!)
 #: tmp_strings.xml:257(string)
@@ -776,7 +786,7 @@ msgstr "Autorización con %1$s éxito."
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
 #: tmp_strings.xml:283(string)
 msgid "Authorization with %1$s failed. Try again later!"
-msgstr ""
+msgstr "Falló la autorización con %1$s. Inténtelo de nuevo más tarde!!"
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
 #: tmp_strings.xml:285(string)
@@ -949,6 +959,9 @@ msgid ""
 "the conflict. You may edit either note before choosing, or view the "
 "difference by clicking on the labels below."
 msgstr ""
+"La nota existe actualmente en la base de dato. Por favor, elija una acción "
+"para resolver el conflicto. Puedes editar cualquiera de ambas notas antes de "
+"decidir, o ver la diferencia haciendo clic en en las etiquetas siguientes."
 
 #. Button (keep short!)
 #: tmp_strings.xml:344(string)
@@ -963,7 +976,7 @@ msgstr ""
 
 #: tmp_strings.xml:346(string)
 msgid "Cannot read the note file."
-msgstr ""
+msgstr "No se pudo leer el archivo de nota."
 
 #: tmp_strings.xml:347(string)
 msgid "No files or directories"
@@ -978,15 +991,15 @@ msgstr ""
 "importado) o un archivo de texto plano (lo que creará una nueva nota):"
 
 #. Title of first Note
-#: tmp_strings.xml:350(string)
+#: tmp_strings.xml:351(string)
 msgid "Tomdroid's First Note"
 msgstr "Primera Nota de Tomdroid"
 
-#: tmp_strings.xml:353(item)
+#: tmp_strings.xml:354(item)
 msgid "Welcome to Tomdroid!\\n"
 msgstr "Bienvenido a Tomdroid!\\n"
 
-#: tmp_strings.xml:354(item)
+#: tmp_strings.xml:355(item)
 msgid ""
 "You have no notes here yet. To get started, set your Synchronization "
 "preferences under Settings. There are two synchronization options described "
@@ -996,19 +1009,21 @@ msgstr ""
 "preferencias de sincronización. Hay dos opciones de sincronización que se "
 "describen a continuación.\\n"
 
-#: tmp_strings.xml:355(item)
+#: tmp_strings.xml:356(item)
 msgid "=Online Synchronization="
 msgstr "=Sincronización en línea="
 
 #. =text= makes <size:large>text</size:large>
-#: tmp_strings.xml:357(item)
+#: tmp_strings.xml:358(item)
 msgid ""
 "Online Synchronization is what you are looking for if you want to sync to "
-"Tomboy-Online, Ubuntu One, your own Rainy/Snowy server or any server "
-"supporting the Tomboy Web REST API.\\n"
+"Tomboy-Online, your own Rainy/Snowy server or any server supporting the "
+"Tomboy Web REST API.\\n"
 msgstr ""
+"Si buscas sincronizar Tomdroid en línea necesitarás tu propio servidor "
+"Rainy/Snowy o algún otro con soporte para Tomdroid Web REST API. \\n"
 
-#: tmp_strings.xml:358(item)
+#: tmp_strings.xml:359(item)
 msgid ""
 "To use it, set Sync Service to Online Synchronization in preferences then "
 "provide a Server URL. Here are some of the public ones:"
@@ -1018,22 +1033,18 @@ msgstr ""
 "públicas:"
 
 #. -text is for list-items.
-#: tmp_strings.xml:360(item)
+#: tmp_strings.xml:361(item)
 msgid "-Tomboy Online - https://edge.tomboy-online.org/"
 msgstr "-Tomboy Online - https://edge.tomboy-online.org/"
 
 #. -text is for list-items.
-#: tmp_strings.xml:362(item)
-msgid "-Ubuntu One - https://one.ubuntu.com/notes"
-msgstr ""
-
-#. -text is for list-items.
-#: tmp_strings.xml:364(item)
+#: tmp_strings.xml:363(item)
 msgid ""
 "-rainy.notesync.org - https://notesync.org:8080/[username]/[password]/\\n"
 msgstr ""
+"-rainy.notesync.org - https://notesync.org:8080/[username]/[password]/\\n"
 
-#: tmp_strings.xml:365(item)
+#: tmp_strings.xml:364(item)
 msgid ""
 "Once set, hit the Sync logo on Tomdroid's top bar to synchronize your "
 "notes.\\n"
@@ -1041,38 +1052,49 @@ msgstr ""
 "Una vez configurado, pulse el logo Sync en la barra superior Tomdroid para "
 "sincronizar sus notas. \\n"
 
-#: tmp_strings.xml:366(item)
+#: tmp_strings.xml:365(item)
 msgid ""
 "Note: you might want to back up your Tomboy notes before syncing, since this "
 "app is still under development and may corrupt your Tomboy notes.\\n"
 msgstr ""
+"Nota: Quizás quieras sincronizar tus notas en Tomdroid antes de sincronizar, "
+"como esta app aún está en desarrollo puede que ser corrompan algunos datos"
 
-#: tmp_strings.xml:367(item)
+#: tmp_strings.xml:366(item)
 msgid ""
 "Please see http://live.gnome.org/Tomboy/Directories for the location of the "
 "*.note files on all platforms.\\n"
 msgstr ""
+"Por favor, visita http://live.gnome.org/Tomboy/Directories para encontrar "
+"los ficheros *.note de todas las plataformas.\\n"
 
 #. =text= makes <size:large>text</size:large>
-#: tmp_strings.xml:369(item)
+#: tmp_strings.xml:368(item)
 msgid "=SD Card="
 msgstr "=SD Card="
 
-#: tmp_strings.xml:370(item)
+#: tmp_strings.xml:369(item)
 msgid ""
 "Put your Tomboy notes (*.note) on your SD Card under tomdroid/. Once the "
 "notes are copied, set Sync Service to SD Card in preferences then hit the "
 "Sync logo on Tomdroid's top bar.\\n"
 msgstr ""
+"Coloca tus notas de Tomdroid (*.note) en el directorio /tomdroid de tu "
+"tarjeta SD. Una vez que las notas se copien, selecciona en Preferencias el "
+"Servicio de Sincronización con la tarjeta SD y después pulsa sobre el logo "
+"de Sincronización de la barra superior de Tomdroid.\\n"
 
-#: tmp_strings.xml:371(item)
+#: tmp_strings.xml:370(item)
 msgid ""
 "Also, Tomdroid is always looking for new contributors. If you are interested "
 "join the tomdroid-dev team on Launchpad: http://launchpad.net/~tomdroid-"
 "dev.\\n"
 msgstr ""
+"Además, Tomdroid está buscando colaboradores en todo momento. Si estás "
+"interesado en entrar en el equipo de desarrollo dentro de Launchpad, visita "
+"http://launchpad.net/~tomdroid-dev.\\n"
 
-#: tmp_strings.xml:372(item)
+#: tmp_strings.xml:371(item)
 msgid ""
 "Lastly, if you encounter any issue, please report it at: "
 "https://bugs.launchpad.net/tomdroid"
@@ -1081,47 +1103,38 @@ msgstr ""
 "https://bugs.launchpad.net/tomdroid"
 
 #. 30 chars max
-#: tmp_strings.xml:380(string)
+#: tmp_strings.xml:379(string)
 msgid "Tomdroid notes"
 msgstr "Notas de Tomdroid"
 
 #. 4000 chars max
-#: tmp_strings.xml:382(string)
+#: tmp_strings.xml:381(string)
 msgid ""
 "A Tomboy client for Android. Tomboy is a desktop note-taking app using a "
 "wikiwiki approach and a simple user interface.\\n\\n* Note format "
-"compatibility with Tomboy\\n* Online note synchronization with Snowy, Tomboy "
-"Online or Ubuntu One\\n* SD Card importation\\n* Open source!"
+"compatibility with Tomboy\\n* Online note synchronization with Rainy, Snowy "
+"or Tomboy Online\\n* SD Card importation\\n* Home screen shortcuts\\n* Open "
+"source!"
 msgstr ""
-"Un cliente Tomboy para Android. Tomboy es una aplicacion tomadora de notas "
-"de escritorio usando unenfoque wikiwiki y una interfaz de usuario sencilla.\\"
-"n\\n* Compatibilidad con formato de notas Tomboy\\n* Sincronización de notas "
-"Online on Snowy, Tomboy Online o Ubuntu One\\n* Importación de Tarjetas SD\\"
-"n* Codigo Abierto!"
+"Un cliente de Tomboy para Android. Tomboy es una aplicación note-taking de "
+"escritorio usando un enfoque wikiwiki y una interfaz de usuario simple.\\n\\"
+"n* Compatibilidad de formato de Nota con Tomboy\\n* Sincronización online de "
+"nota con Rainy, Snowy o Tomboy Online\\n* Importación SD Card\\n* Accesos "
+"directos de la pantalla principal\\n* Open source!"
 
 #. 80 chars max
-#: tmp_strings.xml:385(string)
+#: tmp_strings.xml:384(string)
 msgid "Note-taking app with online synchronization compatible with Tomboy"
-msgstr ""
+msgstr "Aplicación note-taking con sincronización compatible con Tomboy"
 
 #. 500 chars max
-#: tmp_strings.xml:388(string)
+#: tmp_strings.xml:387(string)
 msgid ""
-"0.6 \\\"Small World\\\" release\\n* Create home-screen shortcuts to notes\\"
-"n* Specify a folder to use for SD Card sync\\n* Reload current note after "
-"sync\\n* A lot of new translations: ar, bs, ca, cs, da, de, el, en-rGB, eo, "
-"es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, "
-"si, sv, ta, te, tr, ug, uk, zh, zh-rCN\\n* Several bugfixes\\n"
+"0.8.0 \\\"NAME\\\" release\\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\\n"
 msgstr ""
-"0.6 \\\"Mundo Pequeño\\\" lanzada\\n* Crear lanzadores de pantalla de inicio "
-"a notas\\n* Especifique una carpeta a usar para la sincronización de la "
-"Tarjeta SD\\n* Recargar nota actual después de sincronizar\\n* Una gran "
-"cantidad de nuevas traducciones: ar, bs, ca, cs, da, de, el, en-rGB, eo, es, "
-"eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, si, "
-"sv, ta, te, tr, ug, uk, zh, zh-rCN\\n* Varios bugfixes\\n"
 
 #. Launchpad Translation String
-#: tmp_strings.xml:391(string)
+#: tmp_strings.xml:390(string)
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
@@ -1135,6 +1148,8 @@ msgstr ""
 "  Jorge Luis Granda https://launchpad.net/~costeelation\n"
 "  João Santana https://launchpad.net/~joaosantana\n"
 "  KH41N https://launchpad.net/~kh41n\n"
+"  Lucio https://launchpad.net/~lucio-martinez\n"
+"  Roberto DzAl https://launchpad.net/~roberdzal\n"
 "  Stefan Hammer https://launchpad.net/~j-4"
 
 #~ msgid "Please wait while the notes load.."

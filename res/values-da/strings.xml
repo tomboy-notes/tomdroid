@@ -65,8 +65,8 @@
 	<string name="prefTomboyWeb">Online synkronisering</string>
 	<string name="prefAuthenticate">Godkend</string>
 	<string name="prefLocation">Placering på SD-kort</string>
-	<string name="prefSyncOnStart">Autosync on Startup</string>
-	<string name="prefDescSyncOnStart">Synchronise your notes on appstart</string>
+	<string name="prefSyncOnStart">Synkroniser automatisk ved opstart</string>
+	<string name="prefDescSyncOnStart">Synkroniser dine noter ved opstart af applikationen</string>
 	<!-- %1$s will be repaced by the folder name eg /tomdroid -->
 	<string name="prefFolderCreated">Mappen \"%1$s\" eksisterer ikke endnu. Forbind venligst din enhed til computeren, opret en mappe og læg dine *.note filer i den.</string>
 	<!-- %1$s will be repaced by the folder name eg /testfolder -->
@@ -168,8 +168,8 @@
 	<string name="italic">k</string>
 	<!-- S stands for strike through (in format bar) -->
 	<string name="strike"><strike>g</strike></string>
-	<string name="mono">monospace</string>
-	<string name="highlight">highlight</string>
+	<string name="mono">fast bredde</string>
+	<string name="highlight">fremhæv</string>
 	<string name="size">size</string>
 	<string name="titleErrorParsingXML">Fejl ved fortolkning af note</string>
 	<string name="messageErrorParsingXML">Der skete en fejl ved fortolkningen af noten. Kontroller venligst din XML-struktur</string>
@@ -193,7 +193,7 @@
 	<string name="search_title">Tomdroid - Søgeresultater</string>
 	<string name="shortcut_title">Tomdroid - Genveje</string>
 	<string name="pref_title">Tomdroid - Indstillinger</string>
-	<string name="compare_title">Tomdroid - Note Conflict</string>
+	<string name="compare_title">Tomdroid - Note konflikt</string>
 	<string name="filePickerTitle">Tomdroid - Importer note</string>
 			
 	<!-- new prefs -->
@@ -235,11 +235,11 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkPhonesTitle">Link telefonnumre</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkPhones">Link telephone numbers to phone app</string>
+	<string name="prefLinkPhones">Link telefonnumre til telefon applikation</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkAddressesTitle">Link kortadresser</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkAddresses">Link addresses to maps app</string>
+	<string name="prefLinkAddresses">Link addresser til kort applikation</string>
 			
 	<!-- syncNotes -->
 
@@ -249,10 +249,10 @@
 	<string name="gettings_notes">modtager liste for noter på serveren</string>
 	<string name="syncing_local">Opdaterer lokale noter...</string>
 	<string name="syncing_remote">updatere noter på serveren</string>
-	<string name="sync_conflict_description">There was a conflict syncing the note \'%1$s\'</string>
+	<string name="sync_conflict_description">Der var en konflikt under synkronisering af noten \'%1$s\'</string>
 	<string name="sync_conflict_message">Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
-	<string name="sync_conflict_deleted">The local version was already deleted.  Please choose from one of the actions below.</string>
-	<string name="sync_conflict_titles_message">A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="sync_conflict_deleted">Den lokale version er allerede slettet. Vælg venligst en af handlingerne nedenfor.</string>
+	<string name="sync_conflict_titles_message">En note med den titel eksisterer allerede i databasen. Vælg venligst en handling til at løse konflikten. Du kan redigere en af noterne før valg, eller vise forskellen ved at klikke på mærkaterne nedenfor.</string>
 	<!-- Button (keep short!) -->
 	<string name="overwrite_remote">Overskriv\nServerens</string>
 	<!-- Button (keep short!) -->
@@ -280,7 +280,7 @@
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
 	<string name="messageAuthComplete">Autorisation med %1$s lykkedes.</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
-	<string name="messageAuthFailed">Authorization with %1$s failed. Try again later!</string>
+	<string name="messageAuthFailed">Autorisering med %1$s fejlede. Prøv igen senere!</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
 	<string name="messageSyncNoteDeleted">Det lykkedes at slettet note fra %1$s</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
@@ -339,11 +339,11 @@
 	<string name="sendChoice">Hvordan vil du sende noten?</string>
 	<string name="btnSendAsText">Som tekst</string>
 	<string name="btnSendAsFile">Som fil</string>
-	<string name="sync_conflict_import_message">The note already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="sync_conflict_import_message">Noten eksisterer allerede i databasen. Vælg venligst en handling til at løse konflikten. Du kan redigere en af noterne før valg, eller vise forskellen ved at klikke på mærkaterne nedenfor.</string>
 	<!-- Button (keep short!) -->
 	<string name="btnCancelImport">Afbryd\nImport</string>
 	<string name="messageFileTooBig">File overskrider den maksimale import størrelse - er du sikker på at det er almindelig tekst?</string>
-	<string name="messageFileNotReadable">Cannot read the note file.</string>
+	<string name="messageFileNotReadable">Kan ikke læse note filen.</string>
 	<string name="noFiles">Ingen filer eller direktorier</string>
 	<string name="chooseFile">Vælg en fil nedenfor der er enten en Tomboy note fil (som vil blive importeret) eller en almindelig tekstfil (som vil oprette en ny note):</string>
 
@@ -355,7 +355,7 @@
 		<item>Du har ingen noter her endnu. For at komme i gang skal du indstille dine synkronisering præferencer under Indstillinger. Der er to synkroniseringsindstillinger beskrevet nedenfor.\n</item>
 		<item>=Online synkronisering=</item>
 		<!-- =text= makes <size:large>text</size:large> -->
-		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
+		<item>Online Synkronisering er, hvad du leder efter, hvis du ønsker at synkronisere til Tomboy-Online, din egen Rainy/Snowy server eller anden server, der understøtter Tomboy Web REST API. \n</item>
 		<item>For at bruge den, skal du indstille Sync Service til Online Synkronisering i præferencerne og derefter indtaste en Server URL. Her er nogle af de offentlige muligheder:</item>
 		<!-- -text is for list-items. --> 
 		<item>-Tomboy Online - https://edge.tomboy-online.org/</item>
@@ -381,7 +381,7 @@
 	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Open source!</string>
 	
 	<!-- 80 chars max -->
-	<string name="market_promotext">Note-taking app with online synchronization compatible with Tomboy</string>
+	<string name="market_promotext">Notatskrivning app med online synkronisering kompatibel med Tomboy</string>
 
 	<!-- 500 chars max -->
         <string name="market_recent_changes">0.8.0 \"NAME\" release\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\n</string>
@@ -389,5 +389,6 @@
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
   David Nielsen https://launchpad.net/~davidnielsen
-  Mads Boserup Lauritsen https://launchpad.net/~madsbola</string>
+  Mads Boserup Lauritsen https://launchpad.net/~madsbola
+  Mads Dyrmann Larsen https://launchpad.net/~madsdyrmannlarsen</string>
 </resources>

@@ -355,7 +355,7 @@
 		<item>まだメモはありません。始めるには、設定項目の同期設定を行なってください。以下で説明する2つの同期オプションがあります。\n</item>
 		<item>=オンライン同期=</item>
 		<!-- =text= makes <size:large>text</size:large> -->
-		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
+		<item>Tomboy-Online やご自身の Reiny/Snowy サーバー、もしくは Tomboy Web REST API に対応したあらゆるサーバーと動機したい場合、オンライン同期を利用できます。\n</item>
 		<item>これを利用するには、設定項目の同期サービスをオンライン同期にし、サーバーのURLを指定します。以下に一般的なものをいくつか示します:</item>
 		<!-- -text is for list-items. --> 
 		<item>-Tomboy Online - https://edge.tomboy-online.org/</item>

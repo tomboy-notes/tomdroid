@@ -65,8 +65,8 @@
 	<string name="prefTomboyWeb">Onlinesynkronisering</string>
 	<string name="prefAuthenticate">Autentisera</string>
 	<string name="prefLocation">Plats på SD-kort</string>
-	<string name="prefSyncOnStart">Autosync on Startup</string>
-	<string name="prefDescSyncOnStart">Synchronise your notes on appstart</string>
+	<string name="prefSyncOnStart">Synkronisera automatiskt vid programstart</string>
+	<string name="prefDescSyncOnStart">Synkronisera dina anteckningar vid programstart</string>
 	<!-- %1$s will be repaced by the folder name eg /tomdroid -->
 	<string name="prefFolderCreated">Mappen \"%1$s\" finns inte än. Vänligen anslut din enhet till datorn, skapa mappen och fyll den med *.note-filer.</string>
 	<!-- %1$s will be repaced by the folder name eg /testfolder -->
@@ -355,7 +355,7 @@
 		<item>Du har inga anteckningar här ännu. För att komma igång måste du ange dina synkroniseringsinställningar under Inställningar. Det finns två synkroniseringsalternativ, som beskrivs nedan.\n</item>
 		<item>=Onlinesynkronisering=</item>
 		<!-- =text= makes <size:large>text</size:large> -->
-		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
+		<item>Onlinesynkronisering är till för dig som vill synkronisera med Tomboy-Online, din egen Rainy/Snowy-server eller en annan server som stöder Tomboys API Web REST.\n</item>
 		<item>För att använda det, ställ in synkroniseringstjänsten till Onlinesynkronisering i inställningarna och ange en serveradress. Här är några av de offentliga servrarna:</item>
 		<!-- -text is for list-items. --> 
 		<item>-Tomboy Online - https://edge.tomboy-online.org/</item>
@@ -378,7 +378,7 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid-anteckningar</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Open source!</string>
+	<string name="market_description">En Tomboy-klient för Android. Tomboy är ett skrivbordsprogram för att t a anteckningar. Det har wikiinriktning och ett enkelt användargränssnitt.\n\n* Anteckningsfilformat kompatibelt med Tomboy\n* Anteckningssynkronisering via nätet med Rainy, Snowy eller Tomboy Online\n* Import av information från SD-kort\n* Startskärmsgenvägar\n* Öppen källkod!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Program för att ta anteckningar, med onlinesynkronisering och kompatibelt med Tomboy</string>

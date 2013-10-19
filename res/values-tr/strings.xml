@@ -25,7 +25,7 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Tomboy compatible wikiwiki note-taking app that can take notes.</string>
+	<string name="app_desc">Not alabilen Tomboy uyumlu wikiwiki not alma uygulaması.</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
@@ -33,7 +33,7 @@
 	<string name="strListEmptyNoNotes">Tomdroid\'in veritabanında hiç not yok.</string>
 	
 	<!-- Menu entry with icon -->
-	<string name="menuSync">Senkronize et</string>
+	<string name="menuSync">Eşitle</string>
 	<!-- Menu entry with icon -->
 	<string name="menuPrefs">Ayarlar</string>
 	<!-- Menu entry with icon -->
@@ -65,8 +65,8 @@
 	<string name="prefTomboyWeb">Çevrimiçi Eşitleme</string>
 	<string name="prefAuthenticate">Kimlik Doğrula</string>
 	<string name="prefLocation">SD Karttaki konum</string>
-	<string name="prefSyncOnStart">Autosync on Startup</string>
-	<string name="prefDescSyncOnStart">Synchronise your notes on appstart</string>
+	<string name="prefSyncOnStart">Başlangıçta otomatik eşitle</string>
+	<string name="prefDescSyncOnStart">Uygulama başladığında notlarınızı eşitleyin</string>
 	<!-- %1$s will be repaced by the folder name eg /tomdroid -->
 	<string name="prefFolderCreated">\"%1$s\" klasörü henüz mevcut değil. Lütfen cihazınızı bilgisayara bağlayın, klasörü oluşturun ve *.note dosyalarıyla doldurun.</string>
 	<!-- %1$s will be repaced by the folder name eg /testfolder -->
@@ -77,7 +77,7 @@
 	<string name="prefSyncConnectionFailed">Sunucu bağlantısı başarısız oldu, lütfen girdiğiniz adresin doğruluğunu denetleyin.</string>
 	<string name="prefServerEmpty">Sunucu adresi değişti fakat yeni değer boş</string>
 			
-	<string name="titleSyncService">Senkronize edeceğiniz servisi seçin.</string>
+	<string name="titleSyncService">Eşitleyeceğiniz hizmeti seçin.</string>
 	<!-- %1$s will be replaced with "Online Synchronisation", "SD Card",...-->
 	<string name="messageSyncComplete">%1$s ile eşitleme tamamlandı.</string>
 	<!-- %1$s will be replaced with "SD Card",... -->
@@ -168,9 +168,9 @@
 	<string name="italic">i</string>
 	<!-- S stands for strike through (in format bar) -->
 	<string name="strike"><strike>S</strike></string>
-	<string name="mono">monospace</string>
-	<string name="highlight">highlight</string>
-	<string name="size">size</string>
+	<string name="mono">eşaralıklı</string>
+	<string name="highlight">vurgula</string>
+	<string name="size">boyut</string>
 	<string name="titleErrorParsingXML">Not ayrıştırma hatası</string>
 	<string name="messageErrorParsingXML">Not ayrıştırma hatası aldınız. Kayıtlı XML\'i kontrol ediniz.</string>
 	<string name="messageNoteSaved">Not hafızaya kaydedildi.</string>
@@ -193,7 +193,7 @@
 	<string name="search_title">Tomdroid - Arama Sonuçları</string>
 	<string name="shortcut_title">Tomdroid - Kısayollar</string>
 	<string name="pref_title">Tomdroid - Ayarlar</string>
-	<string name="compare_title">Tomdroid - Note Conflict</string>
+	<string name="compare_title">Tomdroid - Not Çakışması</string>
 	<string name="filePickerTitle">Tomdroid - Alınan Not</string>
 			
 	<!-- new prefs -->
@@ -223,7 +223,7 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkTitlesTitle">Link Başlığı</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkTitles">Link to other note titles</string>
+	<string name="prefLinkTitles">Diğer not başlıklarına bağlantı</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkUrlsTitle">Web Adresi Linki</string>
 	<!-- Description for checkbox in settings -->
@@ -235,24 +235,24 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkPhonesTitle">Telefon Numarası Linki</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkPhones">Link telephone numbers to phone app</string>
+	<string name="prefLinkPhones">Telefon numaralarını telefon uygulamasına bağla</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkAddressesTitle">Harita Konumu Linki</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkAddresses">Link addresses to maps app</string>
+	<string name="prefLinkAddresses">Adresleri harita uygulamasına bağla</string>
 			
 	<!-- syncNotes -->
 
 	<!-- %1$s will be replaced with "Online Synchronisation", "SD card",... -->
-	<string name="syncing">%1$s ile senkronize ediliyor.</string>
-	<string name="syncing_connect">Servise bağlanılıyor...</string>
+	<string name="syncing">%1$s ile eşitleniyor</string>
+	<string name="syncing_connect">Hizmete bağlanılıyor...</string>
 	<string name="gettings_notes">Uzak cihazlardan lise alınıyor...</string>
 	<string name="syncing_local">Yerel notlar güncelleniyor...</string>
 	<string name="syncing_remote">Uzak cihazlardaki notlar güncelleniyor...</string>
-	<string name="sync_conflict_description">There was a conflict syncing the note \'%1$s\'</string>
-	<string name="sync_conflict_message">Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
-	<string name="sync_conflict_deleted">The local version was already deleted.  Please choose from one of the actions below.</string>
-	<string name="sync_conflict_titles_message">A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="sync_conflict_description">\'%1$s\' notu eşitlenirken bir çakışma oluştu</string>
+	<string name="sync_conflict_message">Lütfen çakışmayı çözmek için bir eylem seçin. Notu seçmeden önce düzenleyebilir ve aşağıdaki etiketleri kullanarak farklılıkları görebilirsiniz.</string>
+	<string name="sync_conflict_deleted">Yerel sürüm zaten silinmiş. Lütfen aşağıdaki eylemlerden birini seçin.</string>
+	<string name="sync_conflict_titles_message">Bu başlıkta başka bir not zaten veritabanında mevcut. Lütfen çakışmayı çözmek için bir eylem seçin. Notu seçmeden önce düzenleyebilir ve aşağıdaki etiketleri kullanarak farklılıkları görebilirsiniz.</string>
 	<!-- Button (keep short!) -->
 	<string name="overwrite_remote">Üzerine Yaz\n Uzaktaki cihaza</string>
 	<!-- Button (keep short!) -->
@@ -280,7 +280,7 @@
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
 	<string name="messageAuthComplete">%1$s ile kimlik doğrulama başarılı.</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
-	<string name="messageAuthFailed">Authorization with %1$s failed. Try again later!</string>
+	<string name="messageAuthFailed">%1$s kimlik doğrulaması başarısız. Daha sonra tekrar deneyin!</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
 	<string name="messageSyncNoteDeleted">%1$s bulunan not başarıyla silindi.</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
@@ -300,7 +300,7 @@
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
 	<string name="messageRemoteNotesDeleted">%1$s \'dan not başarıyla silindi.</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
-	<string name="messageSyncCancelled">%1$s ile senkronizasyon iptal edildi.</string>
+	<string name="messageSyncCancelled">%1$s ile eşitleme iptal edildi.</string>
 
 	<!-- menu items -->
 	
@@ -339,11 +339,11 @@
 	<string name="sendChoice">Notu nasıl göndermek isterdiniz?</string>
 	<string name="btnSendAsText">Metin şeklinde</string>
 	<string name="btnSendAsFile">Dosya şeklinde</string>
-	<string name="sync_conflict_import_message">The note already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="sync_conflict_import_message">Bu not zaten veritabanında mevcut. Lütfen çakışmayı çözmek için bir eylem seçin. Notu seçmeden önce düzenleyebilir ve aşağıdaki etiketleri kullanarak farklılıkları görebilirsiniz.</string>
 	<!-- Button (keep short!) -->
 	<string name="btnCancelImport">İptal\n Almaktan</string>
 	<string name="messageFileTooBig">Dosya alma limiti aşan bir dosya talep ediyorsunuz. İçinde sadece metin olduğundan emin misiniz?</string>
-	<string name="messageFileNotReadable">Cannot read the note file.</string>
+	<string name="messageFileNotReadable">Not dosyası okunamıyor.</string>
 	<string name="noFiles">Dosya ya da dizin yok</string>
 	<string name="chooseFile">Aşağıdaki dosyalardan birisini seçin. Bunlar Tomboy not dosyası( dışarıdan alınabilir) ya da sadece metin içeren dosyalar( Yeni Not ile yaratabilirsiniz) olabilir.</string>
 
@@ -352,22 +352,22 @@
 	
 	<string-array name="firstNoteContent">
 		<item>Tomdroid\'e Hoşgeldiniz!\n</item>
-		<item>Burada henüz bir notunuz yok. Başlamak için, ayarların içinde bulunan senkronizasyon ayarlarından size uygun olanı seçin. 2 adet senkronizasyon seçeneği mevcuttur.\n</item>
-		<item>= Çevrimiçi Seknronizasyon=</item>
+		<item>Burada henüz bir notunuz yok. Başlamak için, ayarların içinde bulunan eşitleme ayarlarından size uygun olanı seçin. 2 adet senkronizasyon seçeneği mevcuttur.\n</item>
+		<item>= Çevrimiçi Eşitleme=</item>
 		<!-- =text= makes <size:large>text</size:large> -->
-		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
-		<item>Çevrimiçi Senkronizasyon seçeneğinden Senkronizasyon Servisini kullanın ardından da Sunucu URL\'nizi girin. Burada herkesin kullanabildiği bir kaç sunucu var:</item>
+		<item>Eğer Tomboy-Çevrimiçi\'ye, kendi Rainy/Snowy sunucunuza veya Tomboy Web REST API\'ı destekleyen herhangi bir sunucuya eşitleme yapmak istiyorsanız Çevrimiçi Eşzamanlama, tam olarak aradığınız şeydir.\n</item>
+		<item>Çevrimiçi Eşitleme seçeneğinden Eşitleme Hizmetini kullanın, ardından da Sunucu URL\'nizi girin. Herkesin kullanabildiği birkaç sunucu:</item>
 		<!-- -text is for list-items. --> 
 		<item>-Tomboy Online - https://edge.tomboy-online.org/</item>
 		<!-- -text is for list-items. --> 
-		<item>-rainy.notesync.org - https://notesync.org:8080/[username]/[password]/\n</item>
-		<item>Başlamadan önce, Tomdroid üst sekmesinde bulunan Senkron simgesine tıklayarak notlarınızı senkronize edebilirsiniz.</item>
-		<item>Note: you might want to back up your Tomboy notes before syncing, since this app is still under development and may corrupt your Tomboy notes.\n</item>
-		<item>Please see http://live.gnome.org/Tomboy/Directories for the location of the *.note files on all platforms.\n</item>
+		<item>-rainy.notesync.org - https://notesync.org:8080/[kullanıcıadı]/[parola]/\n</item>
+		<item>Başlamadan önce, Tomdroid üst çubuğunda bulunan Eşitleme simgesine tıklayarak notlarınızı eşitleyebilirsiniz.\n</item>
+		<item>Not: Bu uygulama hala geliştirme aşamasında olduğundan ve Tomboy notlarınız zarar görebileceğinden, eşitlemeden önce Tomboy notlarınızı yedeklemek isteyebilirsiniz.</item>
+		<item>Tüm platformlardaki *.note dosyalarının konumunu içi http://live.gnome.org/Tomboy/Directories sayfasına bakın.\n</item>
 		<!-- =text= makes <size:large>text</size:large> --> 
 		<item>= SD Card=</item>
-		<item>Put your Tomboy notes (*.note) on your SD Card under tomdroid/. Once the notes are copied, set Sync Service to SD Card in preferences then hit the Sync logo on Tomdroid\'s top bar.\n</item>
-		<item>Also, Tomdroid is always looking for new contributors. If you are interested join the tomdroid-dev team on Launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
+		<item>Tomboy notlarınızı (*.note), SD Kartınızın tomdroid/ dizini altına koyun. Notlar kopyalandıktan sonra, Tercihler içerisinden Eşitleme Hizmetini SD Kart olarak ayarlayın ve Tomdroid\'in üst çubuğundaki Eşitleme logosuna dokunun.\n</item>
+		<item>Ayrıca, Tomdroid her zaman yeni katkıcılara ihtiyaç duyar. Eğer tomdroid-dev takımına ilgi duyuyorsanız, Launchpad\'de bize katılın: http://launchpad.net/~tomdroid-dev.\n</item>
 		<item>Son olarak, herhangi bir sorunla karşılaştığınızda , lütfen https://bugs.launchpad.net/tomdroid bu siteye rapor edin ki biz de geliştirmeye yardımcı olalım.</item>
 	</string-array>
 	
@@ -378,10 +378,10 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid notları</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Open source!</string>
+	<string name="market_description">Android için bir Tomboy istemcisi. Tomboy, wikiwiki yaklaşımı kullanan ve basit bir kullanıcı arayüzüne sahip masaüstü not alma uygulamasıdır.\n\n* Tomboy ile not biçim uyumluluğu\n* Rainy, Snowy veya Tomboy Çevrimiçi ile çevrimiçi not eşitleme\n* SD Karttan içe aktarma\n* Ana ekran kısayolları\n* Açık kaynak!</string>
 	
 	<!-- 80 chars max -->
-	<string name="market_promotext">Note-taking app with online synchronization compatible with Tomboy</string>
+	<string name="market_promotext">Tomboy ile uyumlu çevrimiçi eşitleme özellikli not alma uygulaması</string>
 
 	<!-- 500 chars max -->
         <string name="market_recent_changes">0.8.0 \"NAME\" release\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\n</string>
@@ -390,6 +390,7 @@
 	<string name="about_translators">Launchpad Contributions:
   Mesut Yaver https://launchpad.net/~afg-mesut
   Stefan Hammer https://launchpad.net/~j-4
+  Volkan Gezer https://launchpad.net/~volkangezer
   baris ozcan https://launchpad.net/~brsozcan
   kulkke https://launchpad.net/~kulkke
   zeugma https://launchpad.net/~sunder67</string>

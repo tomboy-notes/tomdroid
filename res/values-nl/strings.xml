@@ -388,6 +388,7 @@
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
+  Dragnadh https://launchpad.net/~dragnadh
   Frits van Bommel https://launchpad.net/~fvbommel
   Vistaus https://launchpad.net/~djmusic121</string>
 </resources>

@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tomdroid\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-03-31 17:29+0200\n"
-"PO-Revision-Date: 2012-08-18 13:36+0000\n"
-"Last-Translator: Asalle Kim <Asaly12@ukr.net>\n"
+"POT-Creation-Date: 2013-03-31 18:06+0200\n"
+"PO-Revision-Date: 2013-04-11 11:21+0000\n"
+"Last-Translator: Roman Koshkin <mar2008m@rambler.ru>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-03-31 16:08+0000\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Launchpad-Export-Date: 2013-10-19 17:56+0000\n"
+"X-Generator: Launchpad (build 16807)\n"
 
 #. application details
 #: tmp_strings.xml:27(string)
@@ -33,7 +33,7 @@ msgstr "Olivier Bilodeau"
 #. main.xml
 #: tmp_strings.xml:32(string)
 msgid "Please wait while the notes load…"
-msgstr ""
+msgstr "Будь ласка, почекайте поки замітки завантажаться ..."
 
 #: tmp_strings.xml:33(string)
 msgid "There are no notes in Tomdroid's database."
@@ -73,6 +73,12 @@ msgid ""
 "all levels would be appreciated. Hop on board on launchpad.net/tomdroid and "
 "contact us!\\n"
 msgstr ""
+"Ласкаво просимо в Tomdroid.\\n\\nБудь ласка, візьміть до уваги, що це beta-"
+"версія і в ній є помилки.\\n\\nМи інформовані про про них і працюємо над "
+"якнайшвидшим усунення, однак також я хотів би отримувати відгуки про "
+"тестування настільки швидко, наскільки це можливо.\\n\\nЯкщо Ви хочете "
+"внести свій внесок, то він буде цінний в будь-якому вигляді. Зв'яжіться з "
+"нами на launchpad.net/tomdroid\\n"
 
 #. \n\n are linebreaks, %1$s etc are the name of the Author, the version and the license name
 #: tmp_strings.xml:47(string)
@@ -101,12 +107,12 @@ msgstr "Сторінка проекту"
 
 #: tmp_strings.xml:57(string) tmp_strings.xml:162(string)
 msgid "Save"
-msgstr ""
+msgstr "Зберегти"
 
 #. note-view.xml
 #: tmp_strings.xml:60(string)
 msgid "Please wait while note loads…"
-msgstr ""
+msgstr "Будь ласка зачекайте, поки замітки завантажаться..."
 
 #: tmp_strings.xml:62(string)
 msgid "Service"
@@ -134,11 +140,11 @@ msgstr "Розташування на SD Карті"
 
 #: tmp_strings.xml:68(string)
 msgid "Autosync on Startup"
-msgstr ""
+msgstr "Автоматична синхронізація при запуску"
 
 #: tmp_strings.xml:69(string)
 msgid "Synchronise your notes on appstart"
-msgstr ""
+msgstr "Синхронізувати нотатки при запуску програми"
 
 #. %1$s will be repaced by the folder name eg /tomdroid
 #: tmp_strings.xml:71(string)
@@ -152,16 +158,16 @@ msgstr ""
 #. %1$s will be repaced by the folder name eg /testfolder
 #: tmp_strings.xml:73(string)
 msgid "\\\"%1$s\\\" is not a valid folder location. Please try again!"
-msgstr ""
+msgstr "\\\"%1$s\\\" не правильна адреса папки. Будь ласка, спробуйте знову!"
 
 #. %1$s will be replaced with an text entry the user had done
 #: tmp_strings.xml:75(string)
 msgid "\\\"%1$s\\\" is not a valid entry. Please try again!"
-msgstr ""
+msgstr "\\\"%1$s\\\" не правильний ввід. Будь ласка, спробуйте знову!"
 
 #: tmp_strings.xml:76(string)
 msgid "Completing authentication. Please wait…"
-msgstr ""
+msgstr "Здійснюється авторизація. Будь ласка, почекайте..."
 
 #: tmp_strings.xml:77(string)
 msgid ""
@@ -225,44 +231,44 @@ msgstr ""
 
 #: tmp_strings.xml:93(string)
 msgid "Error parsing note."
-msgstr ""
+msgstr "Помилка аналізу замітки."
 
 #: tmp_strings.xml:94(string)
 msgid "Could not save note."
-msgstr ""
+msgstr "Не вдалося зберегти замітку."
 
 #: tmp_strings.xml:95(string)
 msgid "SDCard storage not found."
-msgstr ""
+msgstr "SD карта не виявлена."
 
 #. NoteSorting
 #: tmp_strings.xml:98(string)
 msgid "Choose default sorting method"
-msgstr ""
+msgstr "Виберіть метод сортування заміток за замовчуванням"
 
 #: tmp_strings.xml:99(string)
 msgid "Default Sort Method"
-msgstr ""
+msgstr "Метод сортування заміток за замовчуванням"
 
 #: tmp_strings.xml:100(string)
 msgid "Sort By:"
-msgstr ""
+msgstr "Упорядкувати по:"
 
 #: tmp_strings.xml:101(string)
 msgid "Date Modified"
-msgstr ""
+msgstr "Остання зміна"
 
 #: tmp_strings.xml:102(string)
 msgid "Note Title"
-msgstr ""
+msgstr "Тема Замітки"
 
 #: tmp_strings.xml:103(string)
 msgid "Sort by Date"
-msgstr ""
+msgstr "Сортувати за датою"
 
 #: tmp_strings.xml:104(string)
 msgid "Sort by Title"
-msgstr ""
+msgstr "Упорядкувати по заголовкам"
 
 #. NotebookFiltering
 #: tmp_strings.xml:107(string)
@@ -345,7 +351,7 @@ msgstr "Оберіть запис"
 
 #: tmp_strings.xml:137(string)
 msgid "Tomdroid Note"
-msgstr ""
+msgstr "Замітка Tomdroid"
 
 #: tmp_strings.xml:138(string)
 msgid "Remove shortcut"
@@ -358,187 +364,190 @@ msgstr "Створити посилання"
 #. deleteNote
 #: tmp_strings.xml:144(string)
 msgid "Delete"
-msgstr ""
+msgstr "Видалити"
 
 #: tmp_strings.xml:145(string)
 msgid "Delete Note"
-msgstr ""
+msgstr "Видалити замітку"
 
 #: tmp_strings.xml:146(string)
 msgid "Are you sure you want to delete this note?"
-msgstr ""
+msgstr "Ви дійсно хочете видалити цю замітку?"
 
 #: tmp_strings.xml:147(string)
 msgid "Yes"
-msgstr ""
+msgstr "Так"
 
 #: tmp_strings.xml:148(string)
 msgid "No"
-msgstr ""
+msgstr "Ні"
 
 #: tmp_strings.xml:149(string) tmp_strings.xml:212(string)
 msgid "Clear Notes"
-msgstr ""
+msgstr "Видалення замітокВидалити нотатки на віддаленому сервісі"
 
 #: tmp_strings.xml:150(string)
 msgid "Are you sure you want to clear the notes database?"
-msgstr ""
+msgstr "Ви впевнені, що хочете видалити замітки в базі даних?"
 
 #: tmp_strings.xml:151(string) tmp_strings.xml:214(string)
 msgid "Delete Remote Notes"
-msgstr ""
+msgstr "Видалити  замітки на віддаленому сервісі"
 
 #: tmp_strings.xml:152(string)
 msgid "Are you sure you want to delete all notes from the remote service?"
-msgstr ""
+msgstr "Ви впевнені, що хочете видалити усі замітки на віддаленому сервісі?"
 
 #. newNote
 #: tmp_strings.xml:155(string)
 msgid "New"
-msgstr ""
+msgstr "Новий"
 
 #: tmp_strings.xml:156(string)
 msgid "New Note"
-msgstr ""
+msgstr "Нова  замітка"
 
 #: tmp_strings.xml:157(string)
 msgid "Enter title here"
-msgstr ""
+msgstr "Введіть тут заголовок"
 
 #: tmp_strings.xml:158(string)
 msgid "Enter note here"
-msgstr ""
+msgstr "Опишіть тут замітку"
 
 #. editNote
 #: tmp_strings.xml:161(string)
 msgid "Edit"
-msgstr ""
+msgstr "Редагувати"
 
 #: tmp_strings.xml:163(string)
 msgid "Discard"
-msgstr ""
+msgstr "Скасувати"
 
 #: tmp_strings.xml:164(string)
 msgid "Back"
-msgstr ""
+msgstr "Назад"
 
 #. B stands for bold (in format bar)
 #: tmp_strings.xml:166(string)
 msgid "B"
-msgstr ""
+msgstr "B"
 
 #. i stands for italic (in format bar)
 #: tmp_strings.xml:168(string)
 msgid "i"
-msgstr ""
+msgstr "i"
 
 #: tmp_strings.xml:170(strike)
 msgid "S"
-msgstr ""
+msgstr "S"
 
 #: tmp_strings.xml:171(string)
 msgid "monospace"
-msgstr ""
+msgstr "моноширинный"
 
 #: tmp_strings.xml:172(string)
 msgid "highlight"
-msgstr ""
+msgstr "підсвічування"
 
 #: tmp_strings.xml:173(string)
 msgid "size"
-msgstr ""
+msgstr "розмір"
 
 #: tmp_strings.xml:174(string)
 msgid "Error parsing note"
-msgstr ""
+msgstr "Помилка аналізу замітки"
 
 #: tmp_strings.xml:175(string)
 msgid "There was an error parsing the note. Please check your XML."
 msgstr ""
+"При аналізі замітки мала місце помилка. Будь ласка, ознайомтеся з XML."
 
 #: tmp_strings.xml:176(string)
 msgid "Note saved locally."
-msgstr ""
+msgstr "Замітка збережена в локальній базі даних."
 
 #: tmp_strings.xml:177(string)
 msgid "Note deleted locally."
-msgstr ""
+msgstr "Замітка видалена з локальної бази даних."
 
 #: tmp_strings.xml:178(string)
 msgid "Select text size"
-msgstr ""
+msgstr "Виберіть розмір тексту."
 
 #: tmp_strings.xml:179(string)
 msgid "Small"
-msgstr ""
+msgstr "Малий"
 
 #: tmp_strings.xml:180(string)
 msgid "Normal"
-msgstr ""
+msgstr "Нормальний"
 
 #: tmp_strings.xml:181(string)
 msgid "Large"
-msgstr ""
+msgstr "Великий"
 
 #: tmp_strings.xml:182(string)
 msgid "Huge"
-msgstr ""
+msgstr "Величезний"
 
 #: tmp_strings.xml:183(string)
 msgid ""
 "Do you really want to discard your changes and revert the note to the last "
 "saved version?"
 msgstr ""
+"Ви дійсно хочете скасувати зміни і відкотитися до останньої збереженої "
+"версії замітки?"
 
 #: tmp_strings.xml:184(string)
 msgid "Discard Changes?"
-msgstr ""
+msgstr "Відхилити зміни?"
 
 #: tmp_strings.xml:186(b)
 msgid "&gt;"
-msgstr ""
+msgstr "&gt;"
 
 #: tmp_strings.xml:188(b)
 msgid "&lt;"
-msgstr ""
+msgstr "&lt;"
 
 #. New Titles
 #: tmp_strings.xml:191(string)
 msgid "Tomdroid - View Note"
-msgstr ""
+msgstr "Tomdroid - Перегляд замітки"
 
 #: tmp_strings.xml:192(string)
 msgid "Tomdroid - Edit Note"
-msgstr ""
+msgstr "Tomdroid - Редагування заміткиё"
 
 #: tmp_strings.xml:193(string)
 msgid "Tomdroid - Search Results"
-msgstr ""
+msgstr "Tomdroid - Результат пошуку"
 
 #: tmp_strings.xml:194(string)
 msgid "Tomdroid - Shortcuts"
-msgstr ""
+msgstr "Tomdroid - Ярлики"
 
 #: tmp_strings.xml:195(string)
 msgid "Tomdroid - Settings"
-msgstr ""
+msgstr "Tomdroid - Налаштування"
 
 #: tmp_strings.xml:196(string)
 msgid "Tomdroid - Note Conflict"
-msgstr ""
+msgstr "Tomdroid - Конфлікт заміток"
 
 #: tmp_strings.xml:197(string)
 msgid "Tomdroid - Import Note"
-msgstr ""
+msgstr "Tomdroid - Імпорт заміток"
 
 #. subheader in settings
 #: tmp_strings.xml:201(string)
 msgid "Display Preferences"
-msgstr ""
+msgstr "Параметри  відображення"
 
 #: tmp_strings.xml:202(string)
 msgid "Base Font Size"
-msgstr ""
+msgstr "Базовий розмір шрифту"
 
 #. subheader in settings
 #: tmp_strings.xml:204(string)
@@ -548,105 +557,105 @@ msgstr "Синхронізація"
 #. subheader in settings
 #: tmp_strings.xml:206(string)
 msgid "Tools"
-msgstr ""
+msgstr "Інструменти"
 
 #: tmp_strings.xml:207(string)
 msgid "Save notes automatically on exiting editor."
-msgstr ""
+msgstr "Автоматично зберігати замітку при закритті редактора."
 
 #: tmp_strings.xml:208(string)
 msgid "Show Deleted Notes"
-msgstr ""
+msgstr "Показати віддалені замітки"
 
 #: tmp_strings.xml:209(string)
 msgid "If checked, will show deleted notes in notes list."
-msgstr ""
+msgstr "Якщо включено, то будуть відображатися віддалені замітки в списку"
 
 #: tmp_strings.xml:210(string)
 msgid "Show Note Templates"
-msgstr ""
+msgstr "Показувати шаблони заміток"
 
 #: tmp_strings.xml:211(string)
 msgid "If checked, will show note templates in notes list."
-msgstr ""
+msgstr "Якщо включено, то шаблони заміток відображатися в списку заміток."
 
 #: tmp_strings.xml:213(string)
 msgid "Clear all notes from local database"
-msgstr ""
+msgstr "Видалити всі замітки з локальної бази даних"
 
 #: tmp_strings.xml:215(string)
 msgid "Delete all notes from remote service"
-msgstr ""
+msgstr "Видалити всі замітки на віддаленому сервісі"
 
 #: tmp_strings.xml:216(string)
 msgid "Illegal text size chosen. Please choose a number."
-msgstr ""
+msgstr "Неправильний вибір розміру шрифту. Будь ласка, введіть число."
 
 #: tmp_strings.xml:217(string)
 msgid "Backup Notes"
-msgstr ""
+msgstr "Резервне копіювання заміток"
 
 #: tmp_strings.xml:218(string)
 msgid "Copy all local notes to SD Card"
-msgstr ""
+msgstr "Копіювати всі замітки на устройсвах на SD карту"
 
 #: tmp_strings.xml:219(string)
 msgid "Auto-Backup"
-msgstr ""
+msgstr "Автоматичне резервне копіювання"
 
 #: tmp_strings.xml:220(string)
 msgid "Copy local note to SD Card on save"
-msgstr ""
+msgstr "Копіювання локальних заміток на SD-карту для збереження"
 
 #. subheader in settings
 #: tmp_strings.xml:222(string)
 msgid "Hyperlink Preferences"
-msgstr ""
+msgstr "Налаштування Гіперпосилань"
 
 #. Checkbox in settings
 #: tmp_strings.xml:224(string)
 msgid "Link Titles"
-msgstr ""
+msgstr "Назви Лінків"
 
 #. Description for checkbox in settings
 #: tmp_strings.xml:226(string)
 msgid "Link to other note titles"
-msgstr ""
+msgstr "Посилання на інші назви записів"
 
 #. Checkbox in settings
 #: tmp_strings.xml:228(string)
 msgid "Link Web Addresses\""
-msgstr ""
+msgstr "Створювати посилання для web-адресів"
 
 #. Description for checkbox in settings
 #: tmp_strings.xml:230(string)
 msgid "e.g. \"www.google.com\""
-msgstr ""
+msgstr "наприклад \"www.google.com\""
 
 #. Checkbox in settings
 #: tmp_strings.xml:232(string)
 msgid "Link Emails"
-msgstr ""
+msgstr "Посилання для Email-адреси"
 
 #. Description for checkbox in settings
 #: tmp_strings.xml:234(string)
 msgid "e.g. name@address.com"
-msgstr ""
+msgstr "наприклад name@address.com"
 
 #. Checkbox in settings
 #: tmp_strings.xml:236(string)
 msgid "Link Telephone Numbers"
-msgstr ""
+msgstr "Створювати посилання для телефонних адрес"
 
 #. Description for checkbox in settings
 #: tmp_strings.xml:238(string)
 msgid "Link telephone numbers to phone app"
-msgstr ""
+msgstr "Посилання телефонних номерів для телефонних додатків"
 
 #. Checkbox in settings
 #: tmp_strings.xml:240(string)
 msgid "Link Map Addresses"
-msgstr ""
+msgstr "Створювати посилання для адреси"
 
 #. Description for checkbox in settings
 #: tmp_strings.xml:242(string)
@@ -656,39 +665,42 @@ msgstr ""
 #. %1$s will be replaced with "Online Synchronisation", "SD card",...
 #: tmp_strings.xml:247(string)
 msgid "Syncing with %1$s"
-msgstr ""
+msgstr "Синхронізація %1$s"
 
 #: tmp_strings.xml:248(string)
 msgid "connecting to service…"
-msgstr ""
+msgstr "з'єднання з сервісом..."
 
 #: tmp_strings.xml:249(string)
 msgid "getting list of remote notes…"
-msgstr ""
+msgstr "Отримання списку заміток з віддаленого сервісу..."
 
 #: tmp_strings.xml:250(string)
 msgid "updating local notes…"
-msgstr ""
+msgstr "Оновлення локальних заміток..."
 
 #: tmp_strings.xml:251(string)
 msgid "updating remote notes…"
-msgstr ""
+msgstr "Оновлення заміток на віддаленому сервісі..."
 
 #: tmp_strings.xml:252(string)
 msgid "There was a conflict syncing the note '%1$s'"
-msgstr ""
+msgstr "Стався конфлікт синхронізації записі '%1$s'"
 
 #: tmp_strings.xml:253(string)
 msgid ""
 "Please choose an action to resolve the conflict. You may edit either note "
 "before choosing, or view the difference by clicking on the labels below."
 msgstr ""
+"Будь ласка, виберіть дію з врегулювання конфлікту. Ви можете або редагувати "
+"запис, перед вибором або переглянути різницю, натиснувши на ярлику нижче."
 
 #: tmp_strings.xml:254(string)
 msgid ""
 "The local version was already deleted. Please choose from one of the actions "
 "below."
 msgstr ""
+"Локальна версія вже була вилучена. Будь ласка, виберіть одну з дій нижче."
 
 #: tmp_strings.xml:255(string)
 msgid ""
@@ -696,228 +708,241 @@ msgid ""
 "action to resolve the conflict. You may edit either note before choosing, or "
 "view the difference by clicking on the labels below."
 msgstr ""
+"Запис з такою назвою вже існує в базі даних. Будь ласка, виберіть дію з "
+"врегулювання конфлікту. Ви можете або редагувати записку, перед вибором або "
+"переглянути різницю, натиснувши на ярлику нижче."
 
 #. Button (keep short!)
 #: tmp_strings.xml:257(string)
 msgid "Overwrite\\nRemote"
-msgstr ""
+msgstr "Перезаписати\\nверсію на віддаленому сервісі"
 
 #. Button (keep short!)
 #: tmp_strings.xml:259(string)
 msgid "Overwrite\\nLocal"
-msgstr ""
+msgstr "Перезаписати\\nлокальную версію"
 
 #. Button (keep short!)
 #: tmp_strings.xml:261(string)
 msgid "Delete\\nRemote"
-msgstr ""
+msgstr "Видалити\\nВерсія на віддаленому сервісі"
 
 #. Button (keep short!)
 #: tmp_strings.xml:263(string)
 msgid "Create\\nCopy"
-msgstr ""
+msgstr "Створити\\nКопіровать"
 
 #. subheader in Conflict Dialouge (keep short!)
 #: tmp_strings.xml:265(string)
 msgid "Difference Between Files"
-msgstr ""
+msgstr "Відмінності між файлами"
 
 #: tmp_strings.xml:266(string)
 msgid "-- Title Differences --"
-msgstr ""
+msgstr "--Відмінності в заголовку--"
 
 #: tmp_strings.xml:267(string)
 msgid "-- Content Differences --"
-msgstr ""
+msgstr "--Відмінності в змісті--"
 
 #. %1$s will be replaced with a number.
 #: tmp_strings.xml:269(string)
 msgid "Line %1$s:"
-msgstr ""
+msgstr "Рядок %1$s:"
 
 #. subheader in Conflict Dialouge (keep short!)
 #: tmp_strings.xml:271(string)
 msgid "Local Version"
-msgstr ""
+msgstr "Локальна версія"
 
 #. subheader in Conflict Dialouge (keep short!)
 #: tmp_strings.xml:273(string)
 msgid "Remote Version"
-msgstr ""
+msgstr "Версія на віддаленому сервісі"
 
 #: tmp_strings.xml:274(string)
 msgid "Deleted"
-msgstr ""
+msgstr "Вилучено"
 
 #. %1$s will be replaced with a note title.
 #: tmp_strings.xml:277(string)
 msgid "%1$s (old)"
-msgstr ""
+msgstr "%1$s (стара версія)"
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
 #: tmp_strings.xml:281(string)
 msgid "Authorization with %1$s successful."
-msgstr ""
+msgstr "Авторизація через %1$s здійснена."
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
 #: tmp_strings.xml:283(string)
 msgid "Authorization with %1$s failed. Try again later!"
-msgstr ""
+msgstr "Авторизація на сайті %1$s не вдалося. Спробуйте пізніше!"
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
 #: tmp_strings.xml:285(string)
 msgid "Note deleted from %1$s successfully."
-msgstr ""
+msgstr "Замітка видалена з %1$s."
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
 #: tmp_strings.xml:287(string)
 msgid "Note sent to %1$s successfully."
-msgstr ""
+msgstr "Замітка відправлена ​​через %1$s."
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
 #: tmp_strings.xml:289(string)
 msgid "Note received from %1$s successfully."
-msgstr ""
+msgstr "Отримано замітка з %1$s."
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
 #: tmp_strings.xml:291(string)
 msgid "Error deleting note from %1$s."
-msgstr ""
+msgstr "Помилка видалення замітки з %1$s."
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
 #: tmp_strings.xml:293(string)
 msgid "Error sending note to %1$s."
-msgstr ""
+msgstr "Помилка відправки замітки через %1$s."
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
 #: tmp_strings.xml:295(string)
 msgid "Error receiving note from %1$s."
-msgstr ""
+msgstr "Помилка прийому замітки з %1$s."
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
 #: tmp_strings.xml:297(string)
 msgid "Error parsing response from %1$s."
-msgstr ""
+msgstr "Помилка при розборі відповіді від %1$s."
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
 #: tmp_strings.xml:299(string)
 msgid ""
 "Error connecting to %1$s. You probably need to authenticate in \"Settings\"."
 msgstr ""
+"Помилка підключення до %1$s. Вам, напевно, потрібно перевірити авторизацію в "
+"\"Налаштуваннях\"."
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
 #: tmp_strings.xml:301(string)
 msgid "Notes deleted from %1$s successfully."
-msgstr ""
+msgstr "Замітка видалена з %1$s."
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
 #: tmp_strings.xml:303(string)
 msgid "Sync with %1$s cancelled."
-msgstr ""
+msgstr "Синхронізація з %1$s скасована."
 
 #. menu items
 #: tmp_strings.xml:307(string)
 msgid "Edit Tags"
-msgstr ""
+msgstr "Редагувати  теги"
 
 #: tmp_strings.xml:308(string)
 msgid "Revert"
-msgstr ""
+msgstr "Відкотити"
 
 #. %1$s will be replaced with note-tag names
 #: tmp_strings.xml:310(string)
 msgid "Note '%1$s' Tags"
-msgstr ""
+msgstr "Замітка '%1$s' тепер з тегом"
 
 #: tmp_strings.xml:311(string)
 msgid "Edit the tags below, separating with commas"
-msgstr ""
+msgstr "Редагувати теги нижче, розділяючи комами"
 
 #: tmp_strings.xml:312(string)
 msgid "Undelete Note"
-msgstr ""
+msgstr "Воссстановіть замітку"
 
 #. menu item with icon
 #: tmp_strings.xml:314(string)
 msgid "Import Note"
-msgstr ""
+msgstr "Імпорт Замітки"
 
 #. menu item with icon
 #: tmp_strings.xml:319(string)
 msgid "Revert All"
-msgstr ""
+msgstr "Відкотити всі"
 
 #: tmp_strings.xml:320(string)
 msgid "Revert Notes"
-msgstr ""
+msgstr "Відкотити замітки"
 
 #: tmp_strings.xml:321(string)
 msgid ""
 "This will revert your local notes to whatever versions exist on the remote "
 "service. Are you sure you want to do this?"
 msgstr ""
+"Це відкотить Ваші замітки на устройсвах до версії, що існує на віддаленому "
+"сервісі. Ви впевнені, що хочете це зробити?"
 
 #: tmp_strings.xml:322(string)
 msgid "Revert Note"
-msgstr ""
+msgstr "Відкат замітки"
 
 #: tmp_strings.xml:323(string)
 msgid ""
 "This will revert a local note to whatever version exist on the remote "
 "service. Are you sure you want to do this?"
 msgstr ""
+"Це відкотить вашу замітку на устройсвах до версії, що існує на віддаленому "
+"сервісі. Ви впевнені, що хочете це зробити?"
 
 #. backup notes
 #: tmp_strings.xml:327(string)
 msgid "Backup Notes?"
-msgstr ""
+msgstr "Виконати резервне копіювання заміток?"
 
 #: tmp_strings.xml:328(string)
 msgid ""
 "Copy all local notes to SD Card? This may overwrite existing notes on the SD "
 "Card."
 msgstr ""
+"Скопіювати всі замітки на пристрої в SD-карту? Вони можуть замістити існуючі "
+"замітки на SD-карті."
 
 #: tmp_strings.xml:329(string)
 msgid "Restore Notes"
-msgstr ""
+msgstr "Відновлення заміток з резервоной копії"
 
 #: tmp_strings.xml:330(string)
 msgid "Restore Notes?"
-msgstr ""
+msgstr "Відновити заміток з резервоной копії?"
 
 #: tmp_strings.xml:331(string)
 msgid "Pull all notes from SD Card? This may overwrite your existing notes."
 msgstr ""
+"Витягнути всі записи з SD-карти? Вони можуть замістити замітки в пам'яті "
+"пристрою."
 
 #: tmp_strings.xml:332(string)
 msgid "Notes backed up to SD card successfully."
-msgstr ""
+msgstr "Резервне копіювання на SD-карту успішно виконано."
 
 #: tmp_strings.xml:333(string)
 msgid "Notes restored from SD card successfully."
-msgstr ""
+msgstr "Відновлення заміток з резервної копії на SD-карті успішно виконано."
 
 #: tmp_strings.xml:334(string)
 msgid "Notes cleared successfully."
-msgstr ""
+msgstr "Очищення заміток успішно виконана."
 
 #. send and receive notes
 #: tmp_strings.xml:338(string)
 msgid "Choose Send Method"
-msgstr ""
+msgstr "Виберіть метод надсилання"
 
 #: tmp_strings.xml:339(string)
 msgid "How would you like to send the note?"
-msgstr ""
+msgstr "Як би вихотелі передати замітку?"
 
 #: tmp_strings.xml:340(string)
 msgid "As Text"
-msgstr ""
+msgstr "Як текстове повідомлення"
 
 #: tmp_strings.xml:341(string)
 msgid "As File"
-msgstr ""
+msgstr "Як файл"
 
 #: tmp_strings.xml:342(string)
 msgid ""
@@ -925,160 +950,177 @@ msgid ""
 "the conflict. You may edit either note before choosing, or view the "
 "difference by clicking on the labels below."
 msgstr ""
+"Записка вже існує в базі даних. Будь ласка, виберіть дії по врегулюванню "
+"конфлікту. Ви можете або редагувати записку перед вибором або переглянути "
+"різницю, натиснувши на ярлику нижче."
 
 #. Button (keep short!)
 #: tmp_strings.xml:344(string)
 msgid "Cancel\\nImport"
-msgstr ""
+msgstr "Скасування\\nІмпорт"
 
 #: tmp_strings.xml:345(string)
 msgid "File exceeds maximum import size - are you sure it is plain text?"
 msgstr ""
+"Файл перевищує максимально можливий розмір імпорту - Ви впевнені, що це "
+"звичайний текст?"
 
 #: tmp_strings.xml:346(string)
 msgid "Cannot read the note file."
-msgstr ""
+msgstr "Неможливо прочитати файл запису."
 
 #: tmp_strings.xml:347(string)
 msgid "No files or directories"
-msgstr ""
+msgstr "Не знайдений файл або папка"
 
 #: tmp_strings.xml:348(string)
 msgid ""
 "Choose a file below that is either a Tomboy note file (which will be "
 "imported) or a plain text file (which will create a new note):"
 msgstr ""
+"Виберіть файл нижче, який буде імпортований (як Tomboy-замітка) або "
+"текстовий файл (з якого буде створена нова замітка):"
 
 #. Title of first Note
-#: tmp_strings.xml:350(string)
+#: tmp_strings.xml:351(string)
 msgid "Tomdroid's First Note"
-msgstr ""
-
-#: tmp_strings.xml:353(item)
-msgid "Welcome to Tomdroid!\\n"
-msgstr ""
+msgstr "Перша замітка Tomdroid"
 
 #: tmp_strings.xml:354(item)
+msgid "Welcome to Tomdroid!\\n"
+msgstr "Ласкаво просимо в Tomdroid!\\n"
+
+#: tmp_strings.xml:355(item)
 msgid ""
 "You have no notes here yet. To get started, set your Synchronization "
 "preferences under Settings. There are two synchronization options described "
 "below.\\n"
 msgstr ""
+"У Вас поки немає заміток. Щоб приступити до роботи, задайте настройки "
+"синхронізації в меню Установки. Є дві опції синхронізації, описані нижче.\\n"
 
-#: tmp_strings.xml:355(item)
+#: tmp_strings.xml:356(item)
 msgid "=Online Synchronization="
-msgstr ""
+msgstr "=Онлайн синхронізація="
 
 #. =text= makes <size:large>text</size:large>
-#: tmp_strings.xml:357(item)
+#: tmp_strings.xml:358(item)
 msgid ""
 "Online Synchronization is what you are looking for if you want to sync to "
-"Tomboy-Online, Ubuntu One, your own Rainy/Snowy server or any server "
-"supporting the Tomboy Web REST API.\\n"
+"Tomboy-Online, your own Rainy/Snowy server or any server supporting the "
+"Tomboy Web REST API.\\n"
 msgstr ""
 
-#: tmp_strings.xml:358(item)
+#: tmp_strings.xml:359(item)
 msgid ""
 "To use it, set Sync Service to Online Synchronization in preferences then "
 "provide a Server URL. Here are some of the public ones:"
 msgstr ""
+"Щоб використовувати його, виберіть Сервіс Синхронізації в пункті Онлайн "
+"Синхронізація в настройках, вказавши URL-адресу сервера. Ось деякі з них:"
 
 #. -text is for list-items.
-#: tmp_strings.xml:360(item)
+#: tmp_strings.xml:361(item)
 msgid "-Tomboy Online - https://edge.tomboy-online.org/"
-msgstr ""
+msgstr "-Tomboy сайт - https://edge.tomboy-online.org/"
 
 #. -text is for list-items.
-#: tmp_strings.xml:362(item)
-msgid "-Ubuntu One - https://one.ubuntu.com/notes"
-msgstr ""
-
-#. -text is for list-items.
-#: tmp_strings.xml:364(item)
+#: tmp_strings.xml:363(item)
 msgid ""
 "-rainy.notesync.org - https://notesync.org:8080/[username]/[password]/\\n"
 msgstr ""
+"-rainy.notesync.org - https://notesync.org:8080/[ім'я "
+"користувача]/[пароль]/\\n"
 
-#: tmp_strings.xml:365(item)
+#: tmp_strings.xml:364(item)
 msgid ""
 "Once set, hit the Sync logo on Tomdroid's top bar to synchronize your "
 "notes.\\n"
 msgstr ""
+"Після установки, натисніть кнопку Синхронізація на верхній панелі Tomdroid "
+"для синхронізації нотаток.\\n"
 
-#: tmp_strings.xml:366(item)
+#: tmp_strings.xml:365(item)
 msgid ""
 "Note: you might want to back up your Tomboy notes before syncing, since this "
 "app is still under development and may corrupt your Tomboy notes.\\n"
 msgstr ""
+"Примітка: Ви можете створити резервну копію замітки Tomboy перед "
+"синхронізацією. Так як це додаток знаходиться в стадії розробки, то можливе "
+"пошкодження Ваших нотаток.\\n"
 
-#: tmp_strings.xml:367(item)
+#: tmp_strings.xml:366(item)
 msgid ""
 "Please see http://live.gnome.org/Tomboy/Directories for the location of the "
 "*.note files on all platforms.\\n"
 msgstr ""
+"Будь ласка, ознайомтеся з http://live.gnome.org/Tomboy/Directories перед "
+"розміщенням *. Зверніть увагу, файли на всіх платформах.\\n"
 
 #. =text= makes <size:large>text</size:large>
-#: tmp_strings.xml:369(item)
+#: tmp_strings.xml:368(item)
 msgid "=SD Card="
-msgstr ""
+msgstr "=SD-Карта="
 
-#: tmp_strings.xml:370(item)
+#: tmp_strings.xml:369(item)
 msgid ""
 "Put your Tomboy notes (*.note) on your SD Card under tomdroid/. Once the "
 "notes are copied, set Sync Service to SD Card in preferences then hit the "
 "Sync logo on Tomdroid's top bar.\\n"
 msgstr ""
 
-#: tmp_strings.xml:371(item)
+#: tmp_strings.xml:370(item)
 msgid ""
 "Also, Tomdroid is always looking for new contributors. If you are interested "
 "join the tomdroid-dev team on Launchpad: http://launchpad.net/~tomdroid-"
 "dev.\\n"
 msgstr ""
+"Крім того, Tomdroid завжди шукає нових учасників. Приєднуйтесь до tomdroid-"
+"dev команді на Launchpad: http://launchpad.net/~tomdroid-dev.\\n"
 
-#: tmp_strings.xml:372(item)
+#: tmp_strings.xml:371(item)
 msgid ""
 "Lastly, if you encounter any issue, please report it at: "
 "https://bugs.launchpad.net/tomdroid"
 msgstr ""
+"Нарешті, якщо у Вас виникнуть проблеми, будь ласка, повідомте про це за "
+"адресою: https://bugs.launchpad.net/tomdroid"
 
 #. 30 chars max
-#: tmp_strings.xml:380(string)
+#: tmp_strings.xml:379(string)
 msgid "Tomdroid notes"
-msgstr ""
+msgstr "Нотатки Tomdroid"
 
 #. 4000 chars max
-#: tmp_strings.xml:382(string)
+#: tmp_strings.xml:381(string)
 msgid ""
 "A Tomboy client for Android. Tomboy is a desktop note-taking app using a "
 "wikiwiki approach and a simple user interface.\\n\\n* Note format "
-"compatibility with Tomboy\\n* Online note synchronization with Snowy, Tomboy "
-"Online or Ubuntu One\\n* SD Card importation\\n* Open source!"
+"compatibility with Tomboy\\n* Online note synchronization with Rainy, Snowy "
+"or Tomboy Online\\n* SD Card importation\\n* Home screen shortcuts\\n* Open "
+"source!"
 msgstr ""
 
 #. 80 chars max
-#: tmp_strings.xml:385(string)
+#: tmp_strings.xml:384(string)
 msgid "Note-taking app with online synchronization compatible with Tomboy"
 msgstr ""
 
 #. 500 chars max
-#: tmp_strings.xml:388(string)
+#: tmp_strings.xml:387(string)
 msgid ""
-"0.6 \\\"Small World\\\" release\\n* Create home-screen shortcuts to notes\\"
-"n* Specify a folder to use for SD Card sync\\n* Reload current note after "
-"sync\\n* A lot of new translations: ar, bs, ca, cs, da, de, el, en-rGB, eo, "
-"es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, "
-"si, sv, ta, te, tr, ug, uk, zh, zh-rCN\\n* Several bugfixes\\n"
+"0.8.0 \\\"NAME\\\" release\\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\\n"
 msgstr ""
 
 #. Launchpad Translation String
-#: tmp_strings.xml:391(string)
+#: tmp_strings.xml:390(string)
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
 "  ALEXua https://launchpad.net/~fotimail\n"
 "  Asalle Kim https://launchpad.net/~asaly12\n"
-"  Maxim Nosovets https://launchpad.net/~nosovetz"
+"  Maxim Nosovets https://launchpad.net/~nosovetz\n"
+"  Roman Koshkin https://launchpad.net/~mar2008m"
 
 #~ msgid "Please wait while the notes load.."
 #~ msgstr "Будь ласка, почекайте поки нотатки завантажаться"

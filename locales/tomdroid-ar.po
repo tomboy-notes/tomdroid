@@ -7,20 +7,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tomdroid\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-03-31 17:29+0200\n"
-"PO-Revision-Date: 2012-08-18 13:36+0000\n"
-"Last-Translator: Stefan Hammer <Unknown>\n"
+"POT-Creation-Date: 2013-03-31 18:06+0200\n"
+"PO-Revision-Date: 2013-10-14 21:44+0000\n"
+"Last-Translator: abdXelrhman <abdXelrhman@gmail.com>\n"
 "Language-Team: Arabic <ar@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-03-31 16:08+0000\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Launchpad-Export-Date: 2013-10-19 17:56+0000\n"
+"X-Generator: Launchpad (build 16807)\n"
 
 #. application details
 #: tmp_strings.xml:27(string)
 msgid "Tomdroid"
-msgstr "Tomdroid"
+msgstr "توم درويد"
 
 #: tmp_strings.xml:28(string)
 msgid "Tomboy compatible wikiwiki note-taking app that can take notes."
@@ -33,11 +33,11 @@ msgstr "Olivier Bilodeau"
 #. main.xml
 #: tmp_strings.xml:32(string)
 msgid "Please wait while the notes load…"
-msgstr ""
+msgstr "برجاء اﻹنتظار لحين إنتهاء تحميل الملاحظات..."
 
 #: tmp_strings.xml:33(string)
 msgid "There are no notes in Tomdroid's database."
-msgstr "لا توجد ملاحظات في قاعدة البيانات Tomdroid."
+msgstr "لا توجد ملاحظات في قاعدة البيانات توم درويد."
 
 #. Menu entry with icon
 #: tmp_strings.xml:36(string)
@@ -52,7 +52,7 @@ msgstr "الإعدادات"
 #. Menu entry with icon
 #: tmp_strings.xml:40(string)
 msgid "About"
-msgstr "حول البرنامج"
+msgstr "حول"
 
 #. Title of an alert box
 #: tmp_strings.xml:42(string)
@@ -61,7 +61,7 @@ msgstr "تحذير"
 
 #: tmp_strings.xml:43(string)
 msgid "About Tomdroid"
-msgstr "عن Tomdroid"
+msgstr "حول توم درويد"
 
 #. First start alert box
 #: tmp_strings.xml:45(string)
@@ -77,7 +77,9 @@ msgstr ""
 #. \n\n are linebreaks, %1$s etc are the name of the Author, the version and the license name
 #: tmp_strings.xml:47(string)
 msgid "%1$s\\n\\nAuthor: %2$s\\nVersion: %3$s\\nLicensed under the GPLv3"
-msgstr "%1$s\\n\\nالكاتب: %2$s\\nالاصدار: %3$s\\nتحت رخصة GPLv3"
+msgstr ""
+"%1$s\\n\\nالكاتب: %2$s\\nاﻹصدار: %3$s\\nمُرخص تحت اﻹصدار الثالث من رخصه جنو "
+"العموميه العامه"
 
 #. positive Button
 #: tmp_strings.xml:50(string)
@@ -87,21 +89,21 @@ msgstr "حسناً"
 #. negative Button
 #: tmp_strings.xml:52(string) tmp_strings.xml:279(string)
 msgid "Cancel"
-msgstr "إلغاء"
+msgstr "إلغ"
 
 #. Button
 #: tmp_strings.xml:54(string) tmp_strings.xml:278(string)
 msgid "Close"
-msgstr "إغلاق"
+msgstr "اغلق"
 
 #. Button
 #: tmp_strings.xml:56(string)
 msgid "Project page"
-msgstr "صفحة المشروع"
+msgstr "صفحه المشروع على الشبكه العنكبوتيه"
 
 #: tmp_strings.xml:57(string) tmp_strings.xml:162(string)
 msgid "Save"
-msgstr ""
+msgstr "إحفظ"
 
 #. note-view.xml
 #: tmp_strings.xml:60(string)
@@ -110,11 +112,11 @@ msgstr ""
 
 #: tmp_strings.xml:62(string)
 msgid "Service"
-msgstr "خدمة"
+msgstr "خدمه"
 
 #: tmp_strings.xml:63(string)
 msgid "Server"
-msgstr "خادم"
+msgstr "الخادم"
 
 #: tmp_strings.xml:64(string)
 msgid "SD Card"
@@ -122,11 +124,11 @@ msgstr "SD Card"
 
 #: tmp_strings.xml:65(string)
 msgid "Online Synchronization"
-msgstr "التزامن عبر الإنترنت"
+msgstr "التزامن عبر الشبكه العنكبوتيه"
 
 #: tmp_strings.xml:66(string)
 msgid "Authenticate"
-msgstr "توثيق"
+msgstr ""
 
 #: tmp_strings.xml:67(string)
 msgid "Location on SD Card"
@@ -134,11 +136,11 @@ msgstr "تحديد المكان في بطاقة SD"
 
 #: tmp_strings.xml:68(string)
 msgid "Autosync on Startup"
-msgstr ""
+msgstr "تزامن تلقائى مع بدايه التشغيل"
 
 #: tmp_strings.xml:69(string)
 msgid "Synchronise your notes on appstart"
-msgstr ""
+msgstr "زامن مُلاحظاتك مع بدايه تشغيل البرنامج"
 
 #. %1$s will be repaced by the folder name eg /tomdroid
 #: tmp_strings.xml:71(string)
@@ -165,15 +167,15 @@ msgstr ""
 msgid ""
 "The connection to the server has failed, please check that the address you "
 "entered is correct."
-msgstr "الاتصال بالخادم قد فشل ، يرجى التحقق من العنوان الذي أدخلته ."
+msgstr "فشل اﻹتصال بالخادم ، برجاء التحقق من صحه العنوان الذى ادخلته."
 
 #: tmp_strings.xml:78(string)
 msgid "The server address changed but the new value is empty"
-msgstr "تغيير عنوان الخادم لكن القيمة الجديدة فارغة"
+msgstr "تغير عنوان الخادم ولكن القيمه الجديده فارغه"
 
 #: tmp_strings.xml:80(string)
 msgid "Choose the sync service to use"
-msgstr "اختيار خدمة مزامنة للاستخدام"
+msgstr "إختر خدمه المزامنه لبدأ إستخدامها"
 
 #. %1$s will be replaced with "Online Synchronisation", "SD Card",...
 #: tmp_strings.xml:82(string)
@@ -183,23 +185,23 @@ msgstr "التزامن مع %1$ اكتمل."
 #. %1$s will be replaced with "SD Card",...
 #: tmp_strings.xml:84(string)
 msgid "No notes found on %1$s."
-msgstr ""
+msgstr "تعذر إيجاد ملاحظات على %1$s."
 
 #: tmp_strings.xml:85(string)
 msgid "You are not connected to the Internet."
-msgstr "أنت غير متصل بإنترنت."
+msgstr "انت غير مُتَصِل بالشبكه العنكبوتيه"
 
 #: tmp_strings.xml:86(string)
 msgid "Sync already in progress"
-msgstr "التزامن بالفعل في التقدم"
+msgstr "يجرى التزامن بالفعل"
 
 #: tmp_strings.xml:87(string)
 msgid ""
 "There was an error trying to parse your note collection. If you are able to "
 "replicate the problem, please contact us!"
 msgstr ""
-"كان هناك خطأ في محاولة لتحليل مجموعة المدكرات الخاصة بك. إذا لاحظت تكرار "
-"للمشكلة ، الرجاء الاتصال بنا!"
+"حدث خطأ اثناء محاوله تحليل مجموعه مذكراتك. إذا تمكنت من إعاده تكرار هذا "
+"الخطأ فبرجاء اﻹتصال بنا!"
 
 #. Altert box header
 #: tmp_strings.xml:89(string)
@@ -209,21 +211,23 @@ msgstr "خطأ"
 #. Altert box header
 #: tmp_strings.xml:91(string)
 msgid "No Such Note"
-msgstr ""
+msgstr "هذه المُلاحظه غير موجوده"
 
 #: tmp_strings.xml:92(string)
 msgid ""
 "The requested note could not be found. Maybe it was deleted or removed "
 "through synchronization."
 msgstr ""
+"تعذر إيجاد المُلاحظه المطلوبه. ربما تكون حُذِقَت او اُزِيلَت اثناء عمليه "
+"المزامنه"
 
 #: tmp_strings.xml:93(string)
 msgid "Error parsing note."
-msgstr ""
+msgstr "خطأ اثناء تحليل المُلاحظه"
 
 #: tmp_strings.xml:94(string)
 msgid "Could not save note."
-msgstr ""
+msgstr "تعذر حفظ المُلاحَظه"
 
 #: tmp_strings.xml:95(string)
 msgid "SDCard storage not found."
@@ -240,54 +244,54 @@ msgstr ""
 
 #: tmp_strings.xml:100(string)
 msgid "Sort By:"
-msgstr ""
+msgstr "فرز بواسطه:"
 
 #: tmp_strings.xml:101(string)
 msgid "Date Modified"
-msgstr ""
+msgstr "تاريخ التعديل"
 
 #: tmp_strings.xml:102(string)
 msgid "Note Title"
-msgstr ""
+msgstr "عنوان المُلاحظه"
 
 #: tmp_strings.xml:103(string)
 msgid "Sort by Date"
-msgstr ""
+msgstr "فرز حسب التاريخ"
 
 #: tmp_strings.xml:104(string)
 msgid "Sort by Title"
-msgstr ""
+msgstr "فرز حسب اﻹسم"
 
 #. NotebookFiltering
 #: tmp_strings.xml:107(string)
 msgid "Filter"
-msgstr "مرشح"
+msgstr "مُرَشِح"
 
 #: tmp_strings.xml:108(string)
 msgid "There are no notebooks in the database."
-msgstr "لا توجد دفاتر الملاحظات في قاعدة البيانات."
+msgstr "تعذر إيجاد دفاتر فى قاعده البيانات."
 
 #: tmp_strings.xml:109(string)
 msgid "All notebooks"
-msgstr "جميع دفاتر الملاحظات"
+msgstr "جميع الدفاتر"
 
 #. List Longpress Menu
 #: tmp_strings.xml:112(string)
 msgid "View"
-msgstr "عرض"
+msgstr "إعرض"
 
 #: tmp_strings.xml:113(string)
 msgid "Note Options"
-msgstr "خيارات الملاحظة"
+msgstr "خيارات المُلاحظه"
 
 #: tmp_strings.xml:114(string)
 msgid "Send"
-msgstr "إرسال"
+msgstr "ارسل"
 
 #. Text in input field for search
 #: tmp_strings.xml:118(string)
 msgid "Search Notes"
-msgstr "بحث الملاحظات"
+msgstr "إستخدم هذه الخانه للبحث فى المُلاحظات"
 
 #. Preferences Field in global search to include notes
 #: tmp_strings.xml:120(string)
@@ -297,32 +301,32 @@ msgstr "نص في ملاحظاتك"
 #. %s will be replaced with the search string
 #: tmp_strings.xml:122(string)
 msgid "No notes found for \\\"%s\\\""
-msgstr "لم يفلح بحثك عن \\\"%s\\\" في إجاد اي ملاحظة"
+msgstr "تعذر إيجاد اى ملاحظات تتطابق مع كلمه البحث \\\"%s\\\""
 
 #: tmp_strings.xml:123(string)
 msgid "Search"
-msgstr "بحث"
+msgstr "إبحث عن"
 
 #: tmp_strings.xml:124(string)
 msgid "Search Results:"
-msgstr "نتائج البحث:"
+msgstr ""
 
 #: tmp_strings.xml:125(string)
 msgid "Clear search history"
-msgstr "مسح تأريخ البحث"
+msgstr "إمسح تاريخ البحث"
 
 #: tmp_strings.xml:126(string)
 msgid "Remove all the searches you have performed"
-msgstr "إزالة كافة عمليات البحث التي اجريتها"
+msgstr "ازل كافه عمليات البحث التى اجريتها"
 
 #: tmp_strings.xml:127(string)
 msgid "Search history has been cleared."
-msgstr "تم مسح تأريخ البحث."
+msgstr "مُسِحَ تاريخ البحث بنجاح."
 
 #. Date
 #: tmp_strings.xml:130(string)
 msgid "Modified:"
-msgstr "تعديل"
+msgstr ""
 
 #: tmp_strings.xml:131(string)
 msgid "Today"
@@ -330,12 +334,12 @@ msgstr "اليوم"
 
 #: tmp_strings.xml:132(string)
 msgid "Yesterday"
-msgstr "أمس"
+msgstr "الامس"
 
 #. Header when picking a note for a new shortcut
 #: tmp_strings.xml:136(string)
 msgid "Choose a Note"
-msgstr ""
+msgstr "إختر احد المُلاحظات"
 
 #: tmp_strings.xml:137(string)
 msgid "Tomdroid Note"
@@ -343,40 +347,40 @@ msgstr ""
 
 #: tmp_strings.xml:138(string)
 msgid "Remove shortcut"
-msgstr ""
+msgstr "ازل اﻹختصار"
 
 #: tmp_strings.xml:139(string)
 msgid "Create shortcut"
-msgstr ""
+msgstr "انشئ إختصاراً"
 
 #. deleteNote
 #: tmp_strings.xml:144(string)
 msgid "Delete"
-msgstr ""
+msgstr "إحذف"
 
 #: tmp_strings.xml:145(string)
 msgid "Delete Note"
-msgstr ""
+msgstr "إحذف المُلاحظه"
 
 #: tmp_strings.xml:146(string)
 msgid "Are you sure you want to delete this note?"
-msgstr ""
+msgstr "أمتأكد من رغبتك فى حذف هذه المُلاحظه ؟"
 
 #: tmp_strings.xml:147(string)
 msgid "Yes"
-msgstr ""
+msgstr "حسناً"
 
 #: tmp_strings.xml:148(string)
 msgid "No"
-msgstr ""
+msgstr "لا"
 
 #: tmp_strings.xml:149(string) tmp_strings.xml:212(string)
 msgid "Clear Notes"
-msgstr ""
+msgstr "إمح المُلاحظات"
 
 #: tmp_strings.xml:150(string)
 msgid "Are you sure you want to clear the notes database?"
-msgstr ""
+msgstr "أمتأكد من رغبتك فى محو قاعده بيانات المُلاحظات؟"
 
 #: tmp_strings.xml:151(string) tmp_strings.xml:214(string)
 msgid "Delete Remote Notes"
@@ -389,11 +393,11 @@ msgstr ""
 #. newNote
 #: tmp_strings.xml:155(string)
 msgid "New"
-msgstr ""
+msgstr "مُلاحظه جديده"
 
 #: tmp_strings.xml:156(string)
 msgid "New Note"
-msgstr ""
+msgstr "مُلاحظه جديده"
 
 #: tmp_strings.xml:157(string)
 msgid "Enter title here"
@@ -410,21 +414,21 @@ msgstr ""
 
 #: tmp_strings.xml:163(string)
 msgid "Discard"
-msgstr ""
+msgstr "اهمل"
 
 #: tmp_strings.xml:164(string)
 msgid "Back"
-msgstr ""
+msgstr "عوده"
 
 #. B stands for bold (in format bar)
 #: tmp_strings.xml:166(string)
 msgid "B"
-msgstr ""
+msgstr "سَ"
 
 #. i stands for italic (in format bar)
 #: tmp_strings.xml:168(string)
 msgid "i"
-msgstr ""
+msgstr "مَ"
 
 #: tmp_strings.xml:170(strike)
 msgid "S"
@@ -440,7 +444,7 @@ msgstr ""
 
 #: tmp_strings.xml:173(string)
 msgid "size"
-msgstr ""
+msgstr "الحجم"
 
 #: tmp_strings.xml:174(string)
 msgid "Error parsing note"
@@ -452,7 +456,7 @@ msgstr ""
 
 #: tmp_strings.xml:176(string)
 msgid "Note saved locally."
-msgstr ""
+msgstr "حُفِظَت المُلاحظه محلياً."
 
 #: tmp_strings.xml:177(string)
 msgid "Note deleted locally."
@@ -460,33 +464,35 @@ msgstr ""
 
 #: tmp_strings.xml:178(string)
 msgid "Select text size"
-msgstr ""
+msgstr "حدد حجم الخط"
 
 #: tmp_strings.xml:179(string)
 msgid "Small"
-msgstr ""
+msgstr "صغير"
 
 #: tmp_strings.xml:180(string)
 msgid "Normal"
-msgstr ""
+msgstr "عادى"
 
 #: tmp_strings.xml:181(string)
 msgid "Large"
-msgstr ""
+msgstr "كبير"
 
 #: tmp_strings.xml:182(string)
 msgid "Huge"
-msgstr ""
+msgstr "ضخم"
 
 #: tmp_strings.xml:183(string)
 msgid ""
 "Do you really want to discard your changes and revert the note to the last "
 "saved version?"
 msgstr ""
+"أمتأكد من رغبتك فى إهمال التغييرات الجديده وإسترجاع اخر حاله حفظ لهذه "
+"المُلاحظه ؟"
 
 #: tmp_strings.xml:184(string)
 msgid "Discard Changes?"
-msgstr ""
+msgstr "أمتأكد من رغبتك فى إهمال التغيرات الجديده؟"
 
 #: tmp_strings.xml:186(b)
 msgid "&gt;"
@@ -528,7 +534,7 @@ msgstr ""
 #. subheader in settings
 #: tmp_strings.xml:201(string)
 msgid "Display Preferences"
-msgstr ""
+msgstr "إعدادات العرض"
 
 #: tmp_strings.xml:202(string)
 msgid "Base Font Size"
@@ -537,12 +543,12 @@ msgstr ""
 #. subheader in settings
 #: tmp_strings.xml:204(string)
 msgid "Synchronization"
-msgstr "المزامنة"
+msgstr "المزامنه"
 
 #. subheader in settings
 #: tmp_strings.xml:206(string)
 msgid "Tools"
-msgstr ""
+msgstr "الادوات"
 
 #: tmp_strings.xml:207(string)
 msgid "Save notes automatically on exiting editor."
@@ -550,23 +556,24 @@ msgstr ""
 
 #: tmp_strings.xml:208(string)
 msgid "Show Deleted Notes"
-msgstr ""
+msgstr "إعرض المُلاحظات المحذوفه"
 
 #: tmp_strings.xml:209(string)
 msgid "If checked, will show deleted notes in notes list."
 msgstr ""
+"إذا فُعِلَ هذا الخيار فستظهر المُلاحظات المحذوفه فى قائمه المُلاحظات."
 
 #: tmp_strings.xml:210(string)
 msgid "Show Note Templates"
-msgstr ""
+msgstr "إعرض قوالب المُلاحظات"
 
 #: tmp_strings.xml:211(string)
 msgid "If checked, will show note templates in notes list."
-msgstr ""
+msgstr "إذا فُعِلَ هذا الخيار فستظهر قوالب المُلاحظات فى قائمه المُلاحظات."
 
 #: tmp_strings.xml:213(string)
 msgid "Clear all notes from local database"
-msgstr ""
+msgstr "إحذف كل المُلاحظات الموجوده فى قاعده بيانات المُلاحظات المحليه"
 
 #: tmp_strings.xml:215(string)
 msgid "Delete all notes from remote service"
@@ -575,10 +582,12 @@ msgstr ""
 #: tmp_strings.xml:216(string)
 msgid "Illegal text size chosen. Please choose a number."
 msgstr ""
+"لقد إخترت قيمه غير صالحه فى خانه حجم الخط. هذه الخانه يجب ان تحتوى على ارقام "
+"فقط"
 
 #: tmp_strings.xml:217(string)
 msgid "Backup Notes"
-msgstr ""
+msgstr "إنسخ المُلاحظات إحتياطياً"
 
 #: tmp_strings.xml:218(string)
 msgid "Copy all local notes to SD Card"
@@ -595,37 +604,37 @@ msgstr ""
 #. subheader in settings
 #: tmp_strings.xml:222(string)
 msgid "Hyperlink Preferences"
-msgstr ""
+msgstr "إعدادات الروابط"
 
 #. Checkbox in settings
 #: tmp_strings.xml:224(string)
 msgid "Link Titles"
-msgstr ""
+msgstr "اربط عنواين المُلاحظات"
 
 #. Description for checkbox in settings
 #: tmp_strings.xml:226(string)
 msgid "Link to other note titles"
-msgstr ""
+msgstr "اربط بعنواين مُلاحظات اخرى"
 
 #. Checkbox in settings
 #: tmp_strings.xml:228(string)
 msgid "Link Web Addresses\""
-msgstr ""
+msgstr "اربط بعنواين على الشبكه العنكبوتيه"
 
 #. Description for checkbox in settings
 #: tmp_strings.xml:230(string)
 msgid "e.g. \"www.google.com\""
-msgstr ""
+msgstr "مثال \"www.google.com.eg\""
 
 #. Checkbox in settings
 #: tmp_strings.xml:232(string)
 msgid "Link Emails"
-msgstr ""
+msgstr "اربط بمُعَرِف بريد إلكترونى"
 
 #. Description for checkbox in settings
 #: tmp_strings.xml:234(string)
 msgid "e.g. name@address.com"
-msgstr ""
+msgstr "مثال \"name@address.com\""
 
 #. Checkbox in settings
 #: tmp_strings.xml:236(string)
@@ -714,20 +723,20 @@ msgstr ""
 #. subheader in Conflict Dialouge (keep short!)
 #: tmp_strings.xml:265(string)
 msgid "Difference Between Files"
-msgstr ""
+msgstr "إعرض الفرق بين الملفات"
 
 #: tmp_strings.xml:266(string)
 msgid "-- Title Differences --"
-msgstr ""
+msgstr "-- فوارق العنوان --"
 
 #: tmp_strings.xml:267(string)
 msgid "-- Content Differences --"
-msgstr ""
+msgstr "-- فوارق المحتوى --"
 
 #. %1$s will be replaced with a number.
 #: tmp_strings.xml:269(string)
 msgid "Line %1$s:"
-msgstr ""
+msgstr "السطر %1$s:"
 
 #. subheader in Conflict Dialouge (keep short!)
 #: tmp_strings.xml:271(string)
@@ -741,7 +750,7 @@ msgstr ""
 
 #: tmp_strings.xml:274(string)
 msgid "Deleted"
-msgstr ""
+msgstr "حُذِفَ بنجاح"
 
 #. %1$s will be replaced with a note title.
 #: tmp_strings.xml:277(string)
@@ -761,32 +770,32 @@ msgstr ""
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
 #: tmp_strings.xml:285(string)
 msgid "Note deleted from %1$s successfully."
-msgstr ""
+msgstr "حُذِفَت المُلاحظه من %1$s بنجاح."
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
 #: tmp_strings.xml:287(string)
 msgid "Note sent to %1$s successfully."
-msgstr ""
+msgstr "اُرسِلَت المُلاحظه الى %1$s بنجاح."
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
 #: tmp_strings.xml:289(string)
 msgid "Note received from %1$s successfully."
-msgstr ""
+msgstr "اُسِتِقبِلَت المُلاحظه من %1$s بنجاح."
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
 #: tmp_strings.xml:291(string)
 msgid "Error deleting note from %1$s."
-msgstr ""
+msgstr "تعذر حذف المُلاحظه من %1$s."
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
 #: tmp_strings.xml:293(string)
 msgid "Error sending note to %1$s."
-msgstr ""
+msgstr "تعذر إرسال المُلاحظه الى %1$s."
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
 #: tmp_strings.xml:295(string)
 msgid "Error receiving note from %1$s."
-msgstr ""
+msgstr "تعذر إستقبال المُلاحظه من %1$s."
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
 #: tmp_strings.xml:297(string)
@@ -802,12 +811,12 @@ msgstr ""
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
 #: tmp_strings.xml:301(string)
 msgid "Notes deleted from %1$s successfully."
-msgstr ""
+msgstr "حُذِفَت المُلاحظات من %1$s بنجاح."
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
 #: tmp_strings.xml:303(string)
 msgid "Sync with %1$s cancelled."
-msgstr ""
+msgstr "اُلغَ التزامن مع %1$s"
 
 #. menu items
 #: tmp_strings.xml:307(string)
@@ -816,7 +825,7 @@ msgstr ""
 
 #: tmp_strings.xml:308(string)
 msgid "Revert"
-msgstr ""
+msgstr "اعكس"
 
 #. %1$s will be replaced with note-tag names
 #: tmp_strings.xml:310(string)
@@ -825,41 +834,45 @@ msgstr ""
 
 #: tmp_strings.xml:311(string)
 msgid "Edit the tags below, separating with commas"
-msgstr ""
+msgstr "حرر الوسوم ادناه ، يمكنك الفصل بينهم باستخدام الفواصل"
 
 #: tmp_strings.xml:312(string)
 msgid "Undelete Note"
-msgstr ""
+msgstr "تراجع عن حذف المُلاحظه"
 
 #. menu item with icon
 #: tmp_strings.xml:314(string)
 msgid "Import Note"
-msgstr ""
+msgstr "إستورد مُلاحظه"
 
 #. menu item with icon
 #: tmp_strings.xml:319(string)
 msgid "Revert All"
-msgstr ""
+msgstr "إعكس الكل"
 
 #: tmp_strings.xml:320(string)
 msgid "Revert Notes"
-msgstr ""
+msgstr "إعكس المُلاحظات"
 
 #: tmp_strings.xml:321(string)
 msgid ""
 "This will revert your local notes to whatever versions exist on the remote "
 "service. Are you sure you want to do this?"
 msgstr ""
+"هذا الخيار سيعكس جميع مُلاحظاتك المحليه الى اياً يكن اﻹصدارات الموجوده منهم "
+"على خوادمنا. أمتأكد من رغبتك بفعل هذا؟"
 
 #: tmp_strings.xml:322(string)
 msgid "Revert Note"
-msgstr ""
+msgstr "إعكس المُلاحظه"
 
 #: tmp_strings.xml:323(string)
 msgid ""
 "This will revert a local note to whatever version exist on the remote "
 "service. Are you sure you want to do this?"
 msgstr ""
+"هذا الخيار سيعكس مُلاحظه محليه الى اياً يكن اﻹصدارا الموجود منها على "
+"خوادمنا. أمتأكد من رغبتك بفعل هذا؟"
 
 #. backup notes
 #: tmp_strings.xml:327(string)
@@ -903,15 +916,15 @@ msgstr ""
 
 #: tmp_strings.xml:339(string)
 msgid "How would you like to send the note?"
-msgstr ""
+msgstr "كيف ترغب بارسال المُلاحظه؟"
 
 #: tmp_strings.xml:340(string)
 msgid "As Text"
-msgstr ""
+msgstr "كـ نص"
 
 #: tmp_strings.xml:341(string)
 msgid "As File"
-msgstr ""
+msgstr "كـ ملف"
 
 #: tmp_strings.xml:342(string)
 msgid ""
@@ -931,7 +944,7 @@ msgstr ""
 
 #: tmp_strings.xml:346(string)
 msgid "Cannot read the note file."
-msgstr ""
+msgstr "تعذر قراءه ملف المُلاحظه."
 
 #: tmp_strings.xml:347(string)
 msgid "No files or directories"
@@ -942,136 +955,145 @@ msgid ""
 "Choose a file below that is either a Tomboy note file (which will be "
 "imported) or a plain text file (which will create a new note):"
 msgstr ""
+"إختر ملف ادناه والذى اما يكون ملف مُلاحظه توم بوى (فى هذه الحاله سَتُدَرَج) "
+"او ملف نصى مُجَرَد (فى هذه الحاله سيُنشَئ مُلاحظه جديده):"
 
 #. Title of first Note
-#: tmp_strings.xml:350(string)
+#: tmp_strings.xml:351(string)
 msgid "Tomdroid's First Note"
-msgstr ""
-
-#: tmp_strings.xml:353(item)
-msgid "Welcome to Tomdroid!\\n"
-msgstr ""
+msgstr "اول مُلاحظات برنامج توم درويد"
 
 #: tmp_strings.xml:354(item)
+msgid "Welcome to Tomdroid!\\n"
+msgstr "مرحباً بك فى برنامج توم درويد!\\n"
+
+#: tmp_strings.xml:355(item)
 msgid ""
 "You have no notes here yet. To get started, set your Synchronization "
 "preferences under Settings. There are two synchronization options described "
 "below.\\n"
 msgstr ""
 
-#: tmp_strings.xml:355(item)
+#: tmp_strings.xml:356(item)
 msgid "=Online Synchronization="
-msgstr ""
+msgstr "=المزامنه عبر الشبكه العنكبوتيه="
 
 #. =text= makes <size:large>text</size:large>
-#: tmp_strings.xml:357(item)
+#: tmp_strings.xml:358(item)
 msgid ""
 "Online Synchronization is what you are looking for if you want to sync to "
-"Tomboy-Online, Ubuntu One, your own Rainy/Snowy server or any server "
-"supporting the Tomboy Web REST API.\\n"
+"Tomboy-Online, your own Rainy/Snowy server or any server supporting the "
+"Tomboy Web REST API.\\n"
 msgstr ""
 
-#: tmp_strings.xml:358(item)
+#: tmp_strings.xml:359(item)
 msgid ""
 "To use it, set Sync Service to Online Synchronization in preferences then "
 "provide a Server URL. Here are some of the public ones:"
 msgstr ""
+"ﻹستخدامها عليك ضبط نوع خدمه المزامنه على المزامنه عبر الشبكه العنكبوتيه فى "
+"اﻹعدادات ثم تزويد البرنامج بمسار مورد منمط \"رابط\" لخادم. اليك بعض العموميه "
+"منهم:"
 
 #. -text is for list-items.
-#: tmp_strings.xml:360(item)
+#: tmp_strings.xml:361(item)
 msgid "-Tomboy Online - https://edge.tomboy-online.org/"
 msgstr ""
 
 #. -text is for list-items.
-#: tmp_strings.xml:362(item)
-msgid "-Ubuntu One - https://one.ubuntu.com/notes"
-msgstr ""
-
-#. -text is for list-items.
-#: tmp_strings.xml:364(item)
+#: tmp_strings.xml:363(item)
 msgid ""
 "-rainy.notesync.org - https://notesync.org:8080/[username]/[password]/\\n"
 msgstr ""
 
-#: tmp_strings.xml:365(item)
+#: tmp_strings.xml:364(item)
 msgid ""
 "Once set, hit the Sync logo on Tomdroid's top bar to synchronize your "
 "notes.\\n"
 msgstr ""
+"بعد الضبط ، انقر على شعار علامه التزامن الموجود فى شريط توم درويد العلوى "
+"لبدأ مزامنه مُلاحظاتك.\\n"
 
-#: tmp_strings.xml:366(item)
+#: tmp_strings.xml:365(item)
 msgid ""
 "Note: you might want to back up your Tomboy notes before syncing, since this "
 "app is still under development and may corrupt your Tomboy notes.\\n"
 msgstr ""
+"يوَصَى بشده بعمل نسخ إحتياطى لجميع مُلاحظاتك قبل بدأ عمليه المزامنه ، حيث ان "
+"توم درويد حالياً مازالت فى مرحله تطويريه وقد يُفِسِد المُلاحظات.\\n"
 
-#: tmp_strings.xml:367(item)
+#: tmp_strings.xml:366(item)
 msgid ""
 "Please see http://live.gnome.org/Tomboy/Directories for the location of the "
 "*.note files on all platforms.\\n"
 msgstr ""
 
 #. =text= makes <size:large>text</size:large>
-#: tmp_strings.xml:369(item)
+#: tmp_strings.xml:368(item)
 msgid "=SD Card="
 msgstr ""
 
-#: tmp_strings.xml:370(item)
+#: tmp_strings.xml:369(item)
 msgid ""
 "Put your Tomboy notes (*.note) on your SD Card under tomdroid/. Once the "
 "notes are copied, set Sync Service to SD Card in preferences then hit the "
 "Sync logo on Tomdroid's top bar.\\n"
 msgstr ""
 
-#: tmp_strings.xml:371(item)
+#: tmp_strings.xml:370(item)
 msgid ""
 "Also, Tomdroid is always looking for new contributors. If you are interested "
 "join the tomdroid-dev team on Launchpad: http://launchpad.net/~tomdroid-"
 "dev.\\n"
 msgstr ""
+"وايضاً ، توم درويد يبحث عن المزيد من المساهمات. إذا كنت ترغب فى المساعده "
+"فبرجاء اﻹنضمام لفريق تطوير توم درويد على منصه اﻹطلاق \"لانش باد\" من خلال: "
+"http://launchpad.net/~tomdroid-dev.\\n"
 
-#: tmp_strings.xml:372(item)
+#: tmp_strings.xml:371(item)
 msgid ""
 "Lastly, if you encounter any issue, please report it at: "
 "https://bugs.launchpad.net/tomdroid"
 msgstr ""
+"واخيراً ، إذا واجهت اى علل فبرجاء إبلاغ الفريق من خلال: "
+"https://bugs.launchpad.net/tomdroid"
 
 #. 30 chars max
-#: tmp_strings.xml:380(string)
+#: tmp_strings.xml:379(string)
 msgid "Tomdroid notes"
-msgstr "ملاحظات Tomdroid"
+msgstr "مُلاحظات توم درويد"
 
 #. 4000 chars max
-#: tmp_strings.xml:382(string)
+#: tmp_strings.xml:381(string)
 msgid ""
 "A Tomboy client for Android. Tomboy is a desktop note-taking app using a "
 "wikiwiki approach and a simple user interface.\\n\\n* Note format "
-"compatibility with Tomboy\\n* Online note synchronization with Snowy, Tomboy "
-"Online or Ubuntu One\\n* SD Card importation\\n* Open source!"
+"compatibility with Tomboy\\n* Online note synchronization with Rainy, Snowy "
+"or Tomboy Online\\n* SD Card importation\\n* Home screen shortcuts\\n* Open "
+"source!"
 msgstr ""
 
 #. 80 chars max
-#: tmp_strings.xml:385(string)
+#: tmp_strings.xml:384(string)
 msgid "Note-taking app with online synchronization compatible with Tomboy"
 msgstr ""
+"برنامج تسجيل مُلاحظات متوافق وتومبوى مع إمكانيه المزامنه عبر الشبكه "
+"العنكبوتيه"
 
 #. 500 chars max
-#: tmp_strings.xml:388(string)
+#: tmp_strings.xml:387(string)
 msgid ""
-"0.6 \\\"Small World\\\" release\\n* Create home-screen shortcuts to notes\\"
-"n* Specify a folder to use for SD Card sync\\n* Reload current note after "
-"sync\\n* A lot of new translations: ar, bs, ca, cs, da, de, el, en-rGB, eo, "
-"es, eu, fa, fi, fo, fr, gd, hi, hu, it, ja, ko, ms, nb, pl, pt, pt-rBR, ru, "
-"si, sv, ta, te, tr, ug, uk, zh, zh-rCN\\n* Several bugfixes\\n"
+"0.8.0 \\\"NAME\\\" release\\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\\n"
 msgstr ""
 
 #. Launchpad Translation String
-#: tmp_strings.xml:391(string)
+#: tmp_strings.xml:390(string)
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
 "  Stefan Hammer https://launchpad.net/~j-4\n"
-"  Youssef Habri https://launchpad.net/~youssef-habri"
+"  Youssef Habri https://launchpad.net/~youssef-habri\n"
+"  abdXelrhman https://launchpad.net/~popo49-abdo"
 
 #~ msgid "Choose the default sorting"
 #~ msgstr "اختيار الفرز الافتراضي"

@@ -65,8 +65,8 @@
 	<string name="prefTomboyWeb">Sincronização online</string>
 	<string name="prefAuthenticate">Autenticar</string>
 	<string name="prefLocation">Local do cartão SD</string>
-	<string name="prefSyncOnStart">Autosync on Startup</string>
-	<string name="prefDescSyncOnStart">Synchronise your notes on appstart</string>
+	<string name="prefSyncOnStart">Sincronizar ao iniciar</string>
+	<string name="prefDescSyncOnStart">Sincronizar notas ao iniciar a aplicação</string>
 	<!-- %1$s will be repaced by the folder name eg /tomdroid -->
 	<string name="prefFolderCreated">A pasta \"%1$s\" ainda não existe. Ligue o dispositivo ao computador, crie a pasta e preencha-a com ficheiros *.note.</string>
 	<!-- %1$s will be repaced by the folder name eg /testfolder -->
@@ -223,7 +223,7 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkTitlesTitle">Associal título</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkTitles">Link to other note titles</string>
+	<string name="prefLinkTitles">Vincular aos outros títulos</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkUrlsTitle">Associar endereços web</string>
 	<!-- Description for checkbox in settings -->
@@ -235,11 +235,11 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkPhonesTitle">Associar n.º de telefone</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkPhones">Link telephone numbers to phone app</string>
+	<string name="prefLinkPhones">Vincular números à aplicação de telefone</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkAddressesTitle">Associar moradas</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkAddresses">Link addresses to maps app</string>
+	<string name="prefLinkAddresses">Vincular endereço aos mapas</string>
 			
 	<!-- syncNotes -->
 
@@ -355,7 +355,7 @@
 		<item>Ainda não existem notas. Para começar, defina as opções de sincronização nas definições. Existem dois métodos de sincronização:</item>
 		<item>=Sincronização online=</item>
 		<!-- =text= makes <size:large>text</size:large> -->
-		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
+		<item>Se estiver à procura de sincronização web, pode sincronizar com o Tomboy-Online, com um servidor Rainy/Snowy ou qualquer outro com suporte à API Tomboy Web REST.</item>
 		<item>Para a utilizar, defina a opção Sincronização online e indique o URL do servidor. Por exemplo:</item>
 		<!-- -text is for list-items. --> 
 		<item>-Tomboy Online - https://edge.tomboy-online.org/</item>
@@ -378,7 +378,7 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Notas Tomdroid</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Open source!</string>
+	<string name="market_description">Um cliente TomBoy para Android. O TomBoy é uma aplicação de notas com uma interface simplificada.\n\nCompatibilidade com o formato de notas TomBoy.\nSincronização web com os serviços Rainy, Snowy ou Tomboy Online.\nImportação de notas no cartão SD.\nAtalho no ecrã.\nUma aplicação livre (OSS).</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Uma aplicação para criação e sincronização de notas compatível com o Tomboy</string>

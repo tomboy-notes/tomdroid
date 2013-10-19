@@ -171,6 +171,8 @@ public class Receive extends ActionBarActivity {
 			}
 			// the note guid is not stored in the xml but in the filename
 			remoteNote.setGuid(file.getName().replace(".note", ""));
+			if (remoteNote.getGuid().toString().equals("RAW"))
+				remoteNote.setGuid(UUID.randomUUID().toString());
 			Pattern note_content = Pattern.compile("<note-content[^>]+>(.*)<\\/note-content>", Pattern.CASE_INSENSITIVE+Pattern.DOTALL);
 
 			// FIXME here we are re-reading the whole note just to grab note-content out, there is probably a better way to do this (I'm talking to you xmlpull.org!)
