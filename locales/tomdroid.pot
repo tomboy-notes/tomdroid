@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-10-24 21:23+0200\n"
+"POT-Creation-Date: 2013-10-24 21:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -980,7 +980,7 @@ msgstr ""
 
 #. 500 chars max
 #: tmp_strings.xml:387(string)
-msgid "* Complete redesign using native Android ActionBar and a tablet view for big screens\\n* Ability to edit formatted notes using a rich-text editor and to create or delete notes\\n* Two-way sync to any Rainy/Snowy server or to the SD card (www.notesync.org)\\n* Note conflict resolution screen when different changes need to be merged\\n* Ability to send and receive note files or text from any app\\n* Added new preferences like default font size, sorting, auto-backup and many more\\n* Updated all translations and added some new translations: bg, en-au, hr, is, jv, vi"
+msgid "* Complete redesign including a tablet view\\n* Ability to create, delete and edit formatted notes\\n* Two-way synchronisation to any Rainy/Snowy server or to the SD card\\n* Note conflict resolution screen when different changes need to be merged\\n* Ability to send and receive note files or text from any app\\n* Added new preferences like default font size, sorting, auto-backup and many more\\n* Updated all translations and added some new translations: bg, en-au, hr, is, jv, vi"
 msgstr ""
 
 #. Launchpad Translation String
