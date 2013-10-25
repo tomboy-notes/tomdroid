@@ -170,6 +170,7 @@
 	<string name="strike"><strike>S</strike></string>
 	<string name="mono">monospace</string>
 	<string name="highlight">highlight</string>
+	<!-- Button label to select font size -->
 	<string name="size">size</string>
 	<string name="titleErrorParsingXML">Error parsing note</string>
 	<string name="messageErrorParsingXML">There was an error parsing the note. Please check your XML.</string>
@@ -384,7 +385,7 @@
 	<string name="market_promotext">Note-taking app with online synchronization compatible with Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">* Complete redesign including a tablet view\n* Ability to create, delete and edit formatted notes\n* Two-way synchronisation to any Rainy/Snowy server or to the SD card\n* Note conflict resolution screen when different changes need to be merged\n* Ability to send and receive note files or text from any app\n* Added new preferences like default font size, sorting, auto-backup and many more\n* Updated all translations and added some new translations: bg, en-au, hr, is, jv, vi</string>
+        <string name="market_recent_changes">* Notes can now be created, edited and deleted\n* Completely redesigned for both tablets and phones\n* Sync your notes with compatible web-services or to your SD card\n* Send and receive note files or text from any app\n* More configurable than before\n* Available in even more languages\n\n And much more, for a complete list of changes please see https://launchpad.net/tomdroid/+announcements</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">
