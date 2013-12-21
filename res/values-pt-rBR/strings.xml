@@ -25,7 +25,7 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Tomboy é compatível com o aplicativo WikiWiki de anotações que podem tomar notas.</string>
+	<string name="app_desc">Aplicativo de anotações estilo wiki compatível com Tomboy.</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
@@ -65,8 +65,8 @@
 	<string name="prefTomboyWeb">Sincronização on-line</string>
 	<string name="prefAuthenticate">Autenticar</string>
 	<string name="prefLocation">Local no cartão SD</string>
-	<string name="prefSyncOnStart">Autosync on Startup</string>
-	<string name="prefDescSyncOnStart">Synchronise your notes on appstart</string>
+	<string name="prefSyncOnStart">Sincronização Automática na Inicialização</string>
+	<string name="prefDescSyncOnStart">Sincronizar suas anotações ao iniciar o aplicativo</string>
 	<!-- %1$s will be repaced by the folder name eg /tomdroid -->
 	<string name="prefFolderCreated">A pasta \“%1$s\“ não existe ainda. Por favor, conecte seu dispositivo ao computador, crie a pasta e a preencha com arquivos *.note.</string>
 	<!-- %1$s will be repaced by the folder name eg /testfolder -->
@@ -170,6 +170,7 @@
 	<string name="strike"><strike>S</strike></string>
 	<string name="mono">mono espaçada</string>
 	<string name="highlight">destacar</string>
+	<!-- Button label to select font size -->
 	<string name="size">tamanho</string>
 	<string name="titleErrorParsingXML">Erro de processamento da nota</string>
 	<string name="messageErrorParsingXML">Houve um erro ao processar a nota. Por favor confira seu XML.</string>
@@ -223,7 +224,7 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkTitlesTitle">Ligar Títulos</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkTitles">Link to other note titles</string>
+	<string name="prefLinkTitles">Lincar a outro titulo de nota</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkUrlsTitle">Link de Endereços Web"</string>
 	<!-- Description for checkbox in settings -->
@@ -235,11 +236,11 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkPhonesTitle">Link de Números de Telefone</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkPhones">Link telephone numbers to phone app</string>
+	<string name="prefLinkPhones">Vincular o número do telefone ao aplicativo</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkAddressesTitle">Link de Mapas de Endereços</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkAddresses">Link addresses to maps app</string>
+	<string name="prefLinkAddresses">Lincar endereços ao apicativos de mapas</string>
 			
 	<!-- syncNotes -->
 
@@ -355,7 +356,7 @@
 		<item>Você não tem notas aqui ainda. Para começar, ajuste suas preferências de Sincronização em Configurações. Existem duas opções de sincronização descritas abaixo.\n</item>
 		<item>=Sincronização Online=</item>
 		<!-- =text= makes <size:large>text</size:large> -->
-		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
+		<item>Sincronização Online é o que você procura se quer sincronizar com o Tomboy-Online, seu próprio servidor Rainy/Snowy ou qualquer servidor que suporta o Tomboy Web REST API.\n</item>
 		<item>Para usá-lo, ajuste o Serviço de Sincronização para Sincronização Online em preferências então providencie uma URL de Servidor. Aqui estão alguns públicos:</item>
 		<!-- -text is for list-items. --> 
 		<item>-Tomboy Online - https://edge.tomboy-online.org/</item>
@@ -378,13 +379,13 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid notas</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Open source!</string>
+	<string name="market_description">Um cliente Tomboy para Android. Tomboy é um aplicativo de anotações para desktop que usa uma abordagem de wiki e uma interface simples.\n\n* Formato de anotação compatível com Tomboy\n* Sincronização online de anotações com Rainy, Snowy ou Tomboy Online\n* Importação de cartão SD\n* Atalhos na tela Inicial\n* Envia e recebe texto ou notas de qualquer aplicativo\n* Open source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Anotações do aplicativo com sincronização online compatível com Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.8.0 \"NAME\" release\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\n</string>
+        <string name="market_recent_changes">* Notes can now be created, edited and deleted\n* Completely redesigned for both tablets and phones\n* Sync your notes with compatible web-services or to your SD card\n* Send and receive note files or text from any app\n* More configurable than before\n* Available in even more languages\n\n And much more, for a complete list of changes please see https://launchpad.net/tomdroid/+announcements</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

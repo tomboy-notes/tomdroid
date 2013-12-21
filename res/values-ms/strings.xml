@@ -25,7 +25,7 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Tomboy compatible wikiwiki note-taking app that can take notes.</string>
+	<string name="app_desc">Apl pengambilan nota wikiwiki serasi Tomboy</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
@@ -65,8 +65,8 @@
 	<string name="prefTomboyWeb">Penyegerakan Atas Talian</string>
 	<string name="prefAuthenticate">Sahihkan</string>
 	<string name="prefLocation">Lokasi pada Kad SD</string>
-	<string name="prefSyncOnStart">Autosync on Startup</string>
-	<string name="prefDescSyncOnStart">Synchronise your notes on appstart</string>
+	<string name="prefSyncOnStart">Segerak Sendiri semasa Permulaan</string>
+	<string name="prefDescSyncOnStart">Segerak nota anda pada appstart</string>
 	<!-- %1$s will be repaced by the folder name eg /tomdroid -->
 	<string name="prefFolderCreated">Folder  \"%1$s\" tidak wujud lagi. Sila sambung peranti anda ke komputer, cipta folder dan isi ia dengan fail *.note.</string>
 	<!-- %1$s will be repaced by the folder name eg /testfolder -->
@@ -169,8 +169,9 @@
 	<!-- S stands for strike through (in format bar) -->
 	<string name="strike"><strike>S</strike></string>
 	<string name="mono">monospace</string>
-	<string name="highlight">highlight</string>
-	<string name="size">size</string>
+	<string name="highlight">sorot</string>
+	<!-- Button label to select font size -->
+	<string name="size">saiz</string>
 	<string name="titleErrorParsingXML">Ralat menghurai nota</string>
 	<string name="messageErrorParsingXML">Terdapat ralat menghurai nota. Sila semak XML anda.</string>
 	<string name="messageNoteSaved">Nota disimpan secara setempat.</string>
@@ -193,7 +194,7 @@
 	<string name="search_title">Tomdroid - Keputusan Gelintar</string>
 	<string name="shortcut_title">Tomdroid - Pintasan</string>
 	<string name="pref_title">Tomdroid - Tetapan</string>
-	<string name="compare_title">Tomdroid - Note Conflict</string>
+	<string name="compare_title">Tomdroid - Konflik Nota</string>
 	<string name="filePickerTitle">Tomdroid - Import Nota</string>
 			
 	<!-- new prefs -->
@@ -223,7 +224,7 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkTitlesTitle">Tajuk Pautan</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkTitles">Link to other note titles</string>
+	<string name="prefLinkTitles">Paut ke tajuk nota lain</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkUrlsTitle">Alamat Sesawang Pautan</string>
 	<!-- Description for checkbox in settings -->
@@ -235,11 +236,11 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkPhonesTitle">Nombor Telefon Pautan</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkPhones">Link telephone numbers to phone app</string>
+	<string name="prefLinkPhones">Paut nombor telefon ke apl telefon</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkAddressesTitle">Alamat Peta Pautan</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkAddresses">Link addresses to maps app</string>
+	<string name="prefLinkAddresses">Paut alamat ke apl peta</string>
 			
 	<!-- syncNotes -->
 
@@ -249,10 +250,10 @@
 	<string name="gettings_notes">mendapatkan senarai nota jauh...</string>
 	<string name="syncing_local">mengemaskini nota setempat...</string>
 	<string name="syncing_remote">mengemaskini nota jauh...</string>
-	<string name="sync_conflict_description">There was a conflict syncing the note \'%1$s\'</string>
-	<string name="sync_conflict_message">Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
-	<string name="sync_conflict_deleted">The local version was already deleted.  Please choose from one of the actions below.</string>
-	<string name="sync_conflict_titles_message">A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="sync_conflict_description">Terdapat konflik menyegerak nota \'%1$s\'</string>
+	<string name="sync_conflict_message">Sila pilih satu tindakan yang meleraikan konflik. Anda boleh sunting sama ada nota sebelum memilih, atau lihat perbezaan dengan mengklik pada label dibawah.</string>
+	<string name="sync_conflict_deleted">Versi setempat sudah dipadam. Sila pilih dari salah satu tindakan dibawah.</string>
+	<string name="sync_conflict_titles_message">Satu nota dengan tajuk tersebut sudah wujud dalam pangkalan data. Sila pilih tindakan untuk meleraikan konflik. Anda boleh sunting nota sebelum memilih, atau lihat perbezaan dengan mengklik label dibawah.</string>
 	<!-- Button (keep short!) -->
 	<string name="overwrite_remote">Tulis-ganti\nBuang</string>
 	<!-- Button (keep short!) -->
@@ -280,7 +281,7 @@
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
 	<string name="messageAuthComplete">Keizinan dengan %1$s berjaya.</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
-	<string name="messageAuthFailed">Authorization with %1$s failed. Try again later!</string>
+	<string name="messageAuthFailed">Pengesahihan dengan %1$s. Cuba lagi kemudian!</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
 	<string name="messageSyncNoteDeleted">Nota dipadam dari %1$s telah berjaya.</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
@@ -339,11 +340,11 @@
 	<string name="sendChoice">Bagaimana anda hendak hantarkan nota?</string>
 	<string name="btnSendAsText">Sebagai Teks</string>
 	<string name="btnSendAsFile">Sebagai Fail</string>
-	<string name="sync_conflict_import_message">The note already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="sync_conflict_import_message">Satu nota tersebut sudah wujud dalam pangkalan data. Sila pilih tindakan untuk meleraikan konflik. Anda boleh sunting nota sebelum memilih, atau lihat perbezaan dengan mengklik label dibawah.</string>
 	<!-- Button (keep short!) -->
 	<string name="btnCancelImport">Batal\nImport</string>
 	<string name="messageFileTooBig">Fail melebihi saiz import maksimum - anda pasti ia adalah teks biasa?</string>
-	<string name="messageFileNotReadable">Cannot read the note file.</string>
+	<string name="messageFileNotReadable">Tidak dapat baca fail nota.</string>
 	<string name="noFiles">Tiada fail atau direktori</string>
 	<string name="chooseFile">Pilih fail dibawah sama ada fail Nota Tomboy (yang akan diimportkan) atau fail teks biasa (yang akan cipta nota baru):</string>
 
@@ -355,19 +356,19 @@
 		<item>Anda tidak mempunyai nota disini. Untuk mula, tetapkan keutamaan Penyegerakan anda dibawah Tetapam. Terdapat dua pilihan penyegerakan yang diterangkan dibawah.</item>
 		<item>=Penyegerakan Atas Talian=</item>
 		<!-- =text= makes <size:large>text</size:large> -->
-		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
+		<item>Penyegerakan atas talian adalah apa yang anda cari jika anda mahu segerak ke Tomboy-Online, pelayan Rainy/Snowy atau mana-mana pelayan yang menyokong API REST Web Tomboy.\n</item>
 		<item>Untuk gunakannya, tetapkan Perkhidmatan kepada Penyegerakan Atas Talian dalam keutmamaan kemudian sediakan URL Pelayan. Disini terdapat beberapa pelayan awam:</item>
 		<!-- -text is for list-items. --> 
 		<item>-Tomboy Atas Talian - https://edge.tomboy-online.org/</item>
 		<!-- -text is for list-items. --> 
 		<item>-rainy.notesync.org - https://notesync.org:8080/[username]/[password]/\n</item>
 		<item>Bila sudah ditetapkan, tekan logo segerak pada palang atas Tomdroid untuk segerakam nota anda.\n</item>
-		<item>Note: you might want to back up your Tomboy notes before syncing, since this app is still under development and may corrupt your Tomboy notes.\n</item>
-		<item>Please see http://live.gnome.org/Tomboy/Directories for the location of the *.note files on all platforms.\n</item>
+		<item>Perhatian: anda mungkin mahu sandar nota Tomboy anda sebelum menyegerak, kerana aplikasi ini masih dibawah pembangunan dan mungkin merosakkan nota Tomboy.\n</item>
+		<item>Sila rujuk http://live.gnome.org/Tomboy/Directories untuk lokasi fail *.note pada semua platform.\n</item>
 		<!-- =text= makes <size:large>text</size:large> --> 
 		<item>=Kad SD=</item>
-		<item>Put your Tomboy notes (*.note) on your SD Card under tomdroid/. Once the notes are copied, set Sync Service to SD Card in preferences then hit the Sync logo on Tomdroid\'s top bar.\n</item>
-		<item>Also, Tomdroid is always looking for new contributors. If you are interested join the tomdroid-dev team on Launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
+		<item>Letak nota Tomboy anda (*.n0ote) ke dalam Kad CD anda dibawah tomdroid/. Bila nota telah disalin, tetapkan Perkhidmatan Segerak ke Kad SD dalam keutamaan kemudian tekan logo Segerak pada palang atas Tomdroid.\n</item>
+		<item>Juga, Tomdroid juga sentiasa mencari penyumbang baru. Jika anda berminat sertai pasukan tomdroid-dev di Launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
 		<item>AKhir sekali, jika anda mengalami sebarang masalah, sila laporkannya di: https://bugs.launchpad.net/tomdroid</item>
 	</string-array>
 	
@@ -378,13 +379,13 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Nota Tomdroid</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Open source!</string>
+	<string name="market_description">Klien Tomboy untuk Android. Tomboy adalah apl pengambilan-nota dekstop yang menggunakan pendekatan wikiwiki dan antaramuka pengguna yang ringkas.\n\n* Keserasian format nota dengan Tomboy\n* Penyegerakan nota atas-talian dengan Rainy, Snowy atau Tomboy Atas-Talian\n* Pengimportan Kad SD\n* Pintasan skrin rumah\n* Hantar dan terima teks atau fail-nota dari mana-mana aplikasi\n* Bersumber terbuka!</string>
 	
 	<!-- 80 chars max -->
-	<string name="market_promotext">Note-taking app with online synchronization compatible with Tomboy</string>
+	<string name="market_promotext">Apl pengambilang-nota dengan penyegerakan atas-talian yang serasi dengan Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.8.0 \"NAME\" release\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\n</string>
+        <string name="market_recent_changes">* Nota kini boleh dicipta, disunting dan dipadam\n* Direka-semula sepenuhnya untuk kedua-dua tablet dan telefon\n* Segerak nota anda dengan perkhidmatan-sesawang yang serasi atau ke kad SD anda\n* Hantar dan terima fail nota atau teks dari mana-mana aplikasi\n* Lebih berkonfigurasi berbanding sebelum ini\n* Tersedia dalam banyak bahasa\n\n Dan banyak lagi, untuk senarai penuh perubahan sila rujuk https://launchpad.net/tomdroid/+announcements</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

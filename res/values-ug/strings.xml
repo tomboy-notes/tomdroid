@@ -25,12 +25,12 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Tomboy compatible wikiwiki note-taking app that can take notes.</string>
+	<string name="app_desc">Tomboy بىلەن wikiwiki خاتىرە ئەپ ماسلىشىدۇ.</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
-	<string name="strListEmptyWaiting">Please wait while the notes load…</string>
-	<string name="strListEmptyNoNotes">There are no notes in Tomdroid\'s database.</string>
+	<string name="strListEmptyWaiting">خاتىرە يۈكلىنىۋاتىدۇ، سەل كۈتۈڭ...</string>
+	<string name="strListEmptyNoNotes">بۇ Tomdroid نىڭ ساندانىدا خاتىرە يوق.</string>
 	
 	<!-- Menu entry with icon -->
 	<string name="menuSync">قەدەمداشلا</string>
@@ -42,7 +42,7 @@
 	<string name="titleWelcome">ئاگاھلاندۇرۇش</string>
 	<string name="titleAbout">Tomdroid ھەققىدە</string>
 	<!-- First start alert box -->
-	<string name="strWelcome">Welcome to Tomdroid.\n\nPlease note that this is beta quality software and that it contains known problems.\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something out and tested as quickly as possible.\n\nIf you would like to contribute, help at all levels would be appreciated. Hop on board on launchpad.net/tomdroid and contact us!\n</string>
+	<string name="strWelcome">Tomdroid قا مەرھابا.\n\nدىققەت بۇ يۇمشاق دېتال سىناق باسقۇچىدا بولۇپ ئۇنىڭدا مەلۇملۇق مەسىلىلەر بار.\n\nبىزمۇ بۇ مەسىلىلەرنى بىلىمىز ھەم تېز پۇرسەتتە ئوڭشايمىز، مەنمۇ تىرىشىپ بۇ مەسىلىلەرنى ھەل قىلىپ ۋە تېزلىكتە سىنايمەن.\n\nئەگەر سىز بۇنىڭ ئۈچۈن تۆھپە قوشماقچى بولسىڭىز، قارشى ئالىمىز. launchpad.net/tomdroid ئارقىلىق بىز بىلەن ئالاقە قىلىڭ!\n</string>
 	<!-- \n\n are linebreaks, %1$s etc are the name of the Author, the version and the license name -->
 	<string name="strAbout">%1$s\n\nيازغۇچى: %2$s\nنەشرى: %3$s\nبۇ ئەپ GPLv3 ئىجازىتىدە</string>
 	
@@ -54,26 +54,26 @@
 	<string name="btnClose">ياپ</string>
 	<!-- Button -->
 	<string name="btnProjectPage">قۇرۇلۇش بېتى</string>
-	<string name="btnSavetoSD">Save</string>
+	<string name="btnSavetoSD">ساقلا</string>
 	
 	<!-- note-view.xml -->
-	<string name="strWait">Please wait while note loads…</string>
+	<string name="strWait">خاتىرە يۈكلىنىۋاتقاندا سەل كۈتۈڭ…</string>
 	
 	<string name="prefSyncService">مۇلازىمەت</string>
 	<string name="prefSyncServer">مۇلازىمېتىر</string>
 	<string name="prefSDCard">SD كارتا</string>
 	<string name="prefTomboyWeb">توردا قەدەمداش</string>
 	<string name="prefAuthenticate">سالاھىيەت دەلىللەش</string>
-	<string name="prefLocation">Location on SD Card</string>
-	<string name="prefSyncOnStart">Autosync on Startup</string>
-	<string name="prefDescSyncOnStart">Synchronise your notes on appstart</string>
+	<string name="prefLocation">SD كارتىدىكى ئورنى</string>
+	<string name="prefSyncOnStart">قوزغالغاندا ئۆزلۈكىدىن قەدەمداشلا</string>
+	<string name="prefDescSyncOnStart">ئەپ قوزغالغاندا خاتىرىڭىزنى قەدەمداشلايدۇ</string>
 	<!-- %1$s will be repaced by the folder name eg /tomdroid -->
-	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
+	<string name="prefFolderCreated">قىسقۇچ «%1$s» مەۋجۇت ئەمەس. ئۈسكۈنىڭىزنى كومپيۇتېرغا چېتىپ، قىسقۇچ قۇرۇپ *.note ھۆججەتلەرنى يۈكلەڭ.</string>
 	<!-- %1$s will be repaced by the folder name eg /testfolder -->
-	<string name="prefNoValidLocation">\"%1$s\" is not a valid folder location. Please try again!</string>
+	<string name="prefNoValidLocation">بۇ «%1$s» ئىناۋەتلىك قىسقۇچ ئورنى ئەمەس. قايتا سىناڭ!</string>
 	<!-- %1$s will be replaced with an text entry the user had done -->
-	<string name="prefNoValidEntry">\"%1$s\" is not a valid entry. Please try again!</string>
-	<string name="prefSyncCompleteAuth">Completing authentication. Please wait…</string>
+	<string name="prefNoValidEntry">بۇ «%1$s» ئىناۋەتسىز تۈر. قايتا سىناڭ!</string>
+	<string name="prefSyncCompleteAuth">دەلىللەشنى تاماملاۋاتىدۇ. سەل كۈتۈڭ…</string>
 	<string name="prefSyncConnectionFailed">مۇلازىمېتىر بىلەن باغلىنالمىدى، كىرگۈزگەن ئادرېسىڭىزنىڭ توغرىلىقىنى تەكشۈرۈڭ.</string>
 	<string name="prefServerEmpty">مۇلازىمېتىر ئادرېسى ئۆزگىرىپتۇ ئەمما يېڭى قىممەت بوش ئىكەن.</string>
 			
@@ -159,7 +159,7 @@
 			
 	<!-- editNote -->
 	<string name="edit">Edit</string>
-	<string name="save">Save</string>
+	<string name="save">ساقلا</string>
 	<string name="discard">Discard</string>
 	<string name="back">Back</string>
 	<!-- B stands for bold (in format bar) -->
@@ -170,6 +170,7 @@
 	<string name="strike"><strike>S</strike></string>
 	<string name="mono">monospace</string>
 	<string name="highlight">highlight</string>
+	<!-- Button label to select font size -->
 	<string name="size">size</string>
 	<string name="titleErrorParsingXML">Error parsing note</string>
 	<string name="messageErrorParsingXML">There was an error parsing the note. Please check your XML.</string>
@@ -378,13 +379,13 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid notes</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Open source!</string>
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Send and receive text or note-files from any app\n* Open source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Note-taking app with online synchronization compatible with Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.8.0 \"NAME\" release\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\n</string>
+        <string name="market_recent_changes">* Notes can now be created, edited and deleted\n* Completely redesigned for both tablets and phones\n* Sync your notes with compatible web-services or to your SD card\n* Send and receive note files or text from any app\n* More configurable than before\n* Available in even more languages\n\n And much more, for a complete list of changes please see https://launchpad.net/tomdroid/+announcements</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

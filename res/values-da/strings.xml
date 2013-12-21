@@ -25,7 +25,7 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Tomboy compatible wikiwiki note-taking app that can take notes.</string>
+	<string name="app_desc">Tomboy kombatibel wikiwiki note applikation.</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
@@ -170,7 +170,8 @@
 	<string name="strike"><strike>g</strike></string>
 	<string name="mono">fast bredde</string>
 	<string name="highlight">fremhæv</string>
-	<string name="size">size</string>
+	<!-- Button label to select font size -->
+	<string name="size">størrelse</string>
 	<string name="titleErrorParsingXML">Fejl ved fortolkning af note</string>
 	<string name="messageErrorParsingXML">Der skete en fejl ved fortolkningen af noten. Kontroller venligst din XML-struktur</string>
 	<string name="messageNoteSaved">Noten er gemt lokalt.</string>
@@ -223,7 +224,7 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkTitlesTitle">Link titler</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkTitles">Link to other note titles</string>
+	<string name="prefLinkTitles">Link til andre notetitler</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkUrlsTitle">Link webadresser"</string>
 	<!-- Description for checkbox in settings -->
@@ -250,7 +251,7 @@
 	<string name="syncing_local">Opdaterer lokale noter...</string>
 	<string name="syncing_remote">updatere noter på serveren</string>
 	<string name="sync_conflict_description">Der var en konflikt under synkronisering af noten \'%1$s\'</string>
-	<string name="sync_conflict_message">Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="sync_conflict_message">Vælg venligst en handling til løsning af konflikten. Du kan redigere en af noterne før valg, eller vise forskellen ved at klikke på mærkaterne nedenfor.</string>
 	<string name="sync_conflict_deleted">Den lokale version er allerede slettet. Vælg venligst en af handlingerne nedenfor.</string>
 	<string name="sync_conflict_titles_message">En note med den titel eksisterer allerede i databasen. Vælg venligst en handling til at løse konflikten. Du kan redigere en af noterne før valg, eller vise forskellen ved at klikke på mærkaterne nedenfor.</string>
 	<!-- Button (keep short!) -->
@@ -356,18 +357,18 @@
 		<item>=Online synkronisering=</item>
 		<!-- =text= makes <size:large>text</size:large> -->
 		<item>Online Synkronisering er, hvad du leder efter, hvis du ønsker at synkronisere til Tomboy-Online, din egen Rainy/Snowy server eller anden server, der understøtter Tomboy Web REST API. \n</item>
-		<item>For at bruge den, skal du indstille Sync Service til Online Synkronisering i præferencerne og derefter indtaste en Server URL. Her er nogle af de offentlige muligheder:</item>
+		<item>For at bruge den, skal du indstille synkroniseringsmetode til Online Synkronisering i præferencerne og derefter indtaste en Server URL. Her er nogle af de offentlige muligheder:</item>
 		<!-- -text is for list-items. --> 
 		<item>-Tomboy Online - https://edge.tomboy-online.org/</item>
 		<!-- -text is for list-items. --> 
 		<item>-rainy.notesync.org - https://notesync.org:8080/[username]/[password]/\n</item>
 		<item>Når de er indstillet, klik på Sync logoet i Tomdroid\'s top bar for at synkronisere dine noter.\n</item>
-		<item>Note: you might want to back up your Tomboy notes before syncing, since this app is still under development and may corrupt your Tomboy notes.\n</item>
-		<item>Please see http://live.gnome.org/Tomboy/Directories for the location of the *.note files on all platforms.\n</item>
+		<item>Bemærk: Du kunne måske ønske at sikkerhedskopiere dine Tomboy noter inden synkronisering, da denne app stadig er under udvikling, og kan beskadige dine Tomboy noter.\n</item>
+		<item>Se venligst http://live.gnome.org/Tomboy/Directories for placeringen af *.note filerne for alle platforme.\n</item>
 		<!-- =text= makes <size:large>text</size:large> --> 
 		<item>=SD kort=</item>
-		<item>Put your Tomboy notes (*.note) on your SD Card under tomdroid/. Once the notes are copied, set Sync Service to SD Card in preferences then hit the Sync logo on Tomdroid\'s top bar.\n</item>
-		<item>Also, Tomdroid is always looking for new contributors. If you are interested join the tomdroid-dev team on Launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
+		<item>Kom dine Tomboy noter (*.note) på dit SD kort under tomdroid/. Når noterne er kopierede, sæt da Sync Service til SD kort under indstilliger. Tryk derefter på Synkroniser logoet i Tomdroids top bar.\n</item>
+		<item>Tomdroid søger altid nye biddragsydere. Hvis du er interesseret, tilslut dig da tomdroids udviklingsteam på Launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
 		<item>Endeligt, hvis du oplever problemer, være venlig at rapportere dem her: https://bugs.launchpad.net/tomdroid</item>
 	</string-array>
 	
@@ -378,13 +379,13 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid noter</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Open source!</string>
+	<string name="market_description">En Tomboy klient til Android. Tomboy er en note applikation til din computer som benytter wikiwiki funktionalitet og et simpelt bruger interface.\n\n* Kompatibel med Tomboy note formatet\n* Online Synkronisering med Rainy, Snowy eller Tomboy Online\n* SD kort importering\n* Hjemmeskærm genveje\n* Send og modtag tekst eller note filer fra enhver app\n* Open Source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Notatskrivning app med online synkronisering kompatibel med Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.8.0 \"NAME\" release\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\n</string>
+        <string name="market_recent_changes">* Noter kan nu oprettes, redigeres og slettes\n* Fuldstændigt redesignet til både tablets og telefoner\n* Synkroniserer dine noter med kompatible internet tjenester eller til dit SD kort\n* Send og modtag note filer eller tekst fra enhver app\n* Flere indstillingsmuligheder end nogensinde før\n* Tilgængeligt på endnu flere sprog end nogensinde før\n\n* Og meget mere, for en fuldstændig liste af forbedringer se venligst https://launchpad.net/tomdroid/+announcements</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

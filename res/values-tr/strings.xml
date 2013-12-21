@@ -25,7 +25,7 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Not alabilen Tomboy uyumlu wikiwiki not alma uygulaması.</string>
+	<string name="app_desc">Tomboy "wikiwiki not alma" uygulamasıyla uyumludur.</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
@@ -170,6 +170,7 @@
 	<string name="strike"><strike>S</strike></string>
 	<string name="mono">eşaralıklı</string>
 	<string name="highlight">vurgula</string>
+	<!-- Button label to select font size -->
 	<string name="size">boyut</string>
 	<string name="titleErrorParsingXML">Not ayrıştırma hatası</string>
 	<string name="messageErrorParsingXML">Not ayrıştırma hatası aldınız. Kayıtlı XML\'i kontrol ediniz.</string>
@@ -378,13 +379,14 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid notları</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">Android için bir Tomboy istemcisi. Tomboy, wikiwiki yaklaşımı kullanan ve basit bir kullanıcı arayüzüne sahip masaüstü not alma uygulamasıdır.\n\n* Tomboy ile not biçim uyumluluğu\n* Rainy, Snowy veya Tomboy Çevrimiçi ile çevrimiçi not eşitleme\n* SD Karttan içe aktarma\n* Ana ekran kısayolları\n* Açık kaynak!</string>
+	<string name="market_description">Tomboy, Android için geliştirilmiş, "wikiwiki" yaklaşımını kullanan basit bir arayüze sahip masaüstü not programıdır.\n\n* Not formatları Tomboy ile uyumludur\n* "Yağmurlu ve Karlı" serverlarında online not sekronizasyonu imkanı sağlar\n* SD kart\'tan bilgi alabilir\n* Ana ekran kısayolları\n* Herhangi bir uygulamaya not ve metin yollayabilir veya uygulamadan not ve metin alabilir.\n*
+Ve Açık Kaynak!!\n*Tomboy Çeviri Ekibi (Barış Özcan)</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Tomboy ile uyumlu çevrimiçi eşitleme özellikli not alma uygulaması</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.8.0 \"NAME\" release\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\n</string>
+        <string name="market_recent_changes">İstediğiniz gibi not yaratabilir düzenleyebilir ve silebilirsiniz\n* Tablet ve telefonlar için tekrar dizayn edildi\n* Notlarınızı online servislerimize veya SD karta senkronize edip saklayabilirsiniz\n* Herhangi bir uygulamadan metin veya dosya alabilir ya da uygulamaya gönderebilirsiniz\n* Önceki sürümlere göre daha ayarlanabilir \n* Daha fazla dil için uygun\n\n Daha fazlası için lütfen https://launchpad.net/tomdroid/+announcements</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

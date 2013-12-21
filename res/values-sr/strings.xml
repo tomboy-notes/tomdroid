@@ -25,7 +25,7 @@
 	
 	<!-- application details -->
 	<string name="app_name">Томадроид</string>
-	<string name="app_desc">Апликација за хватање белешки сагласна са Томичиним викивики белешкама .</string>
+	<string name="app_desc">Програм за хватање бележака сагласан са Томичиним белешкама.</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
@@ -170,6 +170,7 @@
 	<string name="strike"><strike>S</strike></string>
 	<string name="mono">моноразмак</string>
 	<string name="highlight">истакни</string>
+	<!-- Button label to select font size -->
 	<string name="size">величина</string>
 	<string name="titleErrorParsingXML">Грешка обраде белешке</string>
 	<string name="messageErrorParsingXML">Десила се грешка при обради белешке. Молим, проверите ИксМЛ датотеку.</string>
@@ -378,13 +379,13 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Томадроидове белешке</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">Клијент Томичиних белешки за Андроид. Томичине бечешке су програм за хватање белешки за радне станице који користи вики-вики приступ и једноставно корисничко сучеље.\n\n* Облик белешки је сагласан са Томичиним белешкама\n* Усклађивање преко мреже је могуће са Кишним (Rainy), Снежним (Snowy ), и Томицом на мрежи (Tomboy Online)\n* Увоз са СД картице\n* Пречице на почетном екрану\n* Отвореног извора!</string>
+	<string name="market_description">Ово су Томичине белешке за Андроид. Томица (tomboy) је бележница која користи викивики начин и има једноставно сучеље.\n\n*Облик белешки је сагласан са Томицом\n* Усклађивање преко мреже са Кишним, Снежним и Томицом на мрежи\n* Пречице на почетном екрану\n*Слање и примање текста и датотека белешки из програма\n*Отворени код!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Апликација за хватање белешки са могућношћу усклађивања на мрежи, сагласна са Томичиним белешкама.</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.8.0 \"NAME\" release\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\n</string>
+        <string name="market_recent_changes">* Белешке се могу стварати, уређивати и брисати\n* Потпуно је прилагођен програм за телефоне и таблице\n* Усклађивање са Веб услугама и СД картицом\n* Слање и примање датотека белешки из било ког програма\n* Више могућности подешавања\n* Доступност на више језика\n\n И много више. За потпуни списак измена погледајте https://launchpad.net/tomdroid/+announcements</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

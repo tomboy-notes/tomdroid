@@ -25,7 +25,7 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Aplicación Tomboy compatible con wikiwiki note-taking que puede tomar notas.</string>
+	<string name="app_desc">Aplicación wikiwiki toma-nota compatible con Tomboy</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
@@ -170,6 +170,7 @@
 	<string name="strike"><strike>S</strike></string>
 	<string name="mono">monoespaciada</string>
 	<string name="highlight">resaltar</string>
+	<!-- Button label to select font size -->
 	<string name="size">tamaño</string>
 	<string name="titleErrorParsingXML">Error al analizar la nota</string>
 	<string name="messageErrorParsingXML">Hubo un error analizando la nota. Por favor verifique su XML.</string>
@@ -378,17 +379,17 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Notas de Tomdroid</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">Un cliente de Tomboy para Android. Tomboy es una aplicación note-taking de escritorio usando un enfoque wikiwiki y una interfaz de usuario simple.\n\n* Compatibilidad de formato de Nota con Tomboy\n* Sincronización online de nota con Rainy, Snowy o Tomboy Online\n* Importación SD Card\n* Accesos directos de la pantalla principal\n* Open source!</string>
+	<string name="market_description">Un cliente Tomboy para Android. Tomboy es una aplicación toma-nota usando un enfoque wikiwiki y con una simple interfaz de usuario.\n\n* Formato de nota de compatibilidad con Tomboy\n* Sincronización de nota online con Rainy, Snowy o Tomboy Online\n* Importación desde tarjeta SD\n* Accesos directos de la pantalla principal\n* Enviar y recibir texto o archivos-nota desde cualquier aplicación\n* Código abierto!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Aplicación note-taking con sincronización compatible con Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.8.0 \"NAME\" release\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\n</string>
+        <string name="market_recent_changes">* Las notas pueden ser creadas, editadas y eliminadas\n* Completamente rediseñado para tabletas y teléfonos\n* Sincroniza tus notas con servicios web compatibles o con tu tarjeta SD\n* Envía y recibe archivos nota o texto desde cualquier aplicación\n* Más configurable que antes\n* Disponible en inclusive más lenguajes\n\n Y mucho más. Para una lista completa de los cambios por favor vea https://launchpad.net/tomdroid/+announcements</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
-  Adolfo Jayme Barrientos https://launchpad.net/~fitoschido
+  Adolfo Jayme https://launchpad.net/~fitoschido
   Alberto https://launchpad.net/~albertomi
   Alicia García Adames https://launchpad.net/~aliciagadames
   Clemens Niesner https://launchpad.net/~pop-ffe

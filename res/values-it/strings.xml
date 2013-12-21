@@ -25,7 +25,7 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Tomboy applicazione per prendere note compatibile con wikiwiki.</string>
+	<string name="app_desc">Applicazione per note di tipo wikiwiki compatibile con Tomboy.</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
@@ -170,8 +170,9 @@
 	<string name="strike"><strike>S</strike></string>
 	<string name="mono">spaziatura fissa</string>
 	<string name="highlight">evidenzia</string>
+	<!-- Button label to select font size -->
 	<string name="size">dimensione</string>
-	<string name="titleErrorParsingXML">Error parsing note</string>
+	<string name="titleErrorParsingXML">Errore nell\'analisi della struttura (parsing) della nota.</string>
 	<string name="messageErrorParsingXML">Si è verificato un errore durante il parsing della nota. Controllare il proprio XML.</string>
 	<string name="messageNoteSaved">Nota salvata sul telefono</string>
 	<string name="messageNoteDeleted">Nota eliminata localmente.</string>
@@ -294,7 +295,7 @@
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
 	<string name="messageSyncNotePullError">Errore durante la ricezione della nota da %1$s.</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
-	<string name="messageSyncParseFailed">Error parsing response from %1$s.</string>
+	<string name="messageSyncParseFailed">Errore ricevuto dalla stringa %1$s durante l\'analisi della struttura (parsing) della nota.</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
 	<string name="messageSyncConnectingFailed">Errore nella connessione con %1$s. Probabilmente è necessario autenticarsi in "Setting".</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
@@ -378,18 +379,19 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Note Tomdroid</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">Client Tomboy per Android. Tomboy è un\'applicazione desktop per prendere note, utilizza un approccio di tipo wikiwiki e un\'interfaccia semplice.
-Formato note compatibile con Tomboy.
-Sincronizzazione online con i servizi Rainy, Snowy o Tomboy Online.
-Importazione da SD card.
-Collegamento sulla home.
+	<string name="market_description">Un client Tomboy per Android. Tomboy è una app desktop, che utilizza un approccio di tipo wikiwiki e un\'interfaccia semplificata, per prendere note.
+Formato delle note è compatibile con Tomboy.
+Sincronizzazione online tramite Rainy, Snowy o Tomboy Online.
+Importazione da scheda SD.
+Collegamento per la home.
+Invia e ricevi file di testo o note da qualsiasi app.
 Open Source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Applicazione per prendere note compatibile con Tomboy e con sincronizzazione online.</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.8.0 \"NAME\" release\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\n</string>
+        <string name="market_recent_changes">*Gli appunti adesso possono essere creati, modificati ed eliminati\n* Completamente ridisegnato sia per i tablet che per i smartphone\n* Sincronizza le tue note con i servizi web compatibili o nella carta SD\n* Invia e ricevi file di note o di testo da ogni app\* Più personalizzabile che mai\n* Disponibile in più lingue\n\n Ed ancora più novità, per una lista completa di novità guardate su https://launchpad.net/tomdroid/+announcements</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

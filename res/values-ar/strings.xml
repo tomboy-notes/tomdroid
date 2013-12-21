@@ -25,11 +25,11 @@
 	
 	<!-- application details -->
 	<string name="app_name">توم درويد</string>
-	<string name="app_desc">Tomboy compatible wikiwiki note-taking app that can take notes.</string>
+	<string name="app_desc">برنامج تسجيل مُلاحظات للاندرويد متوافق مع برنامج توم بوى</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
-	<string name="strListEmptyWaiting">برجاء اﻹنتظار لحين إنتهاء تحميل الملاحظات...</string>
+	<string name="strListEmptyWaiting">يُرحى الإنتظار ريثما تُحضر المُلاحظات...</string>
 	<string name="strListEmptyNoNotes">لا توجد ملاحظات في قاعدة البيانات توم درويد.</string>
 	
 	<!-- Menu entry with icon -->
@@ -37,12 +37,12 @@
 	<!-- Menu entry with icon -->
 	<string name="menuPrefs">الإعدادات</string>
 	<!-- Menu entry with icon -->
-	<string name="menuAbout">حول</string>
+	<string name="menuAbout">عن البرنامج</string>
 	<!-- Title of an alert box -->
 	<string name="titleWelcome">تحذير</string>
 	<string name="titleAbout">حول توم درويد</string>
 	<!-- First start alert box -->
-	<string name="strWelcome">Welcome to Tomdroid.\n\nPlease note that this is beta quality software and that it contains known problems.\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something out and tested as quickly as possible.\n\nIf you would like to contribute, help at all levels would be appreciated. Hop on board on launchpad.net/tomdroid and contact us!\n</string>
+	<string name="strWelcome">اهلاً بك فى توم درويد.\n\nيُرجى العلم ان هذا اﻹصدار تطويرى ويحتوى بضع مشاكل.\n\nنحن على درايه بمعظم هذه المشاكل ونعمل عليها ولكننا رغبنا فى إصدار اول إصدار تطويرى باسرع ما يمكن رغم علمنا المسبق بما سيسبب هذا من مشاكل.\n\nإذا رغبت فى المشاركه باى شكل من اﻹشكال فتفضل بزياره منصه اﻹطلاق عبر الرابط launchpad.net/tomdroid وتواصل معنا عبر بريدنا اﻹلكترونى!\n</string>
 	<!-- \n\n are linebreaks, %1$s etc are the name of the Author, the version and the license name -->
 	<string name="strAbout">%1$s\n\nالكاتب: %2$s\nاﻹصدار: %3$s\nمُرخص تحت اﻹصدار الثالث من رخصه جنو العموميه العامه</string>
 	
@@ -51,30 +51,30 @@
 	<!-- negative Button -->
 	<string name="btnCancel">إلغ</string>
 	<!-- Button -->
-	<string name="btnClose">اغلق</string>
+	<string name="btnClose">إلغ</string>
 	<!-- Button -->
-	<string name="btnProjectPage">صفحه المشروع على الشبكه العنكبوتيه</string>
+	<string name="btnProjectPage">صفحه المشروع</string>
 	<string name="btnSavetoSD">إحفظ</string>
 	
 	<!-- note-view.xml -->
-	<string name="strWait">Please wait while note loads…</string>
+	<string name="strWait">يُرحى الإنتظار ريثما تُحضر المُلاحظه...</string>
 	
-	<string name="prefSyncService">خدمه</string>
+	<string name="prefSyncService">خدمة</string>
 	<string name="prefSyncServer">الخادم</string>
 	<string name="prefSDCard">SD Card</string>
-	<string name="prefTomboyWeb">التزامن عبر الشبكه العنكبوتيه</string>
-	<string name="prefAuthenticate">Authenticate</string>
-	<string name="prefLocation">تحديد المكان في بطاقة SD</string>
-	<string name="prefSyncOnStart">تزامن تلقائى مع بدايه التشغيل</string>
-	<string name="prefDescSyncOnStart">زامن مُلاحظاتك مع بدايه تشغيل البرنامج</string>
+	<string name="prefTomboyWeb">المزامنه عبر الشبكه العنكبوتيه</string>
+	<string name="prefAuthenticate">اﻹستيثاق</string>
+	<string name="prefLocation">Location on SD Card</string>
+	<string name="prefSyncOnStart">مزامنة تلقائىة مع بداية التشغيل</string>
+	<string name="prefDescSyncOnStart">زامن مُلاحظاتك مع بداية تشغيل البرنامج</string>
 	<!-- %1$s will be repaced by the folder name eg /tomdroid -->
-	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
+	<string name="prefFolderCreated">تعذر العثور على المُجلد \"%1$s\" . الرجاء توصيل جهازك الخارجي ثم أنشئ مجلد تم ضع فيه ملفات *.note</string>
 	<!-- %1$s will be repaced by the folder name eg /testfolder -->
-	<string name="prefNoValidLocation">\"%1$s\" is not a valid folder location. Please try again!</string>
+	<string name="prefNoValidLocation">\"%1$s\"  ليس مساراً صحيحاً. يُرجى المحاوله من جديد!</string>
 	<!-- %1$s will be replaced with an text entry the user had done -->
-	<string name="prefNoValidEntry">\"%1$s\" is not a valid entry. Please try again!</string>
-	<string name="prefSyncCompleteAuth">Completing authentication. Please wait…</string>
-	<string name="prefSyncConnectionFailed">فشل اﻹتصال بالخادم ، برجاء التحقق من صحه العنوان الذى ادخلته.</string>
+	<string name="prefNoValidEntry">\"%1$s\" ليس مدخلاً صحيحاً. يُرجى المحاوله من جديد!</string>
+	<string name="prefSyncCompleteAuth">يُنِهى الاستيثاق...</string>
+	<string name="prefSyncConnectionFailed">فشل اﻹتصال بالخادم ، يُرجى التحقق من صحه العنوان الذى ادخلته.</string>
 	<string name="prefServerEmpty">تغير عنوان الخادم ولكن القيمه الجديده فارغه</string>
 			
 	<string name="titleSyncService">إختر خدمه المزامنه لبدأ إستخدامها</string>
@@ -84,7 +84,7 @@
 	<string name="messageSyncNoNote">تعذر إيجاد ملاحظات على %1$s.</string>
 	<string name="messageSyncNoConnection">انت غير مُتَصِل بالشبكه العنكبوتيه</string>
 	<string name="messageSyncAlreadyInProgress">يجرى التزامن بالفعل</string>
-	<string name="messageSyncError">حدث خطأ اثناء محاوله تحليل مجموعه مذكراتك. إذا تمكنت من إعاده تكرار هذا الخطأ فبرجاء اﻹتصال بنا!</string>
+	<string name="messageSyncError">حدث خطأ اثناء محاوله تحليل مجموعه مُذكراتك. إذا تمكنت من إعاده تكرار هذا الخطأ فيُرجى اﻹتصال بنا!</string>
 	<!-- Altert box header -->
 	<string name="error">خطأ</string>
 	<!-- Altert box header -->
@@ -97,7 +97,7 @@
 	<!-- NoteSorting -->
 	<string name="titleDefaultSorting">Choose default sorting method</string>
 	<string name="prefDefaultSortingTitle">Default Sort Method</string>
-	<string name="prefSorting">فرز بواسطه:</string>
+	<string name="prefSorting">Sort By:</string>
 	<string name="prefSortDate">تاريخ التعديل</string>
 	<string name="prefSortTitle">عنوان المُلاحظه</string>
 	<string name="sortByDate">فرز حسب التاريخ</string>
@@ -117,24 +117,24 @@
 	<!-- Text in input field for search -->
 	<string name="search_hint">إستخدم هذه الخانه للبحث فى المُلاحظات</string>
 	<!-- Preferences Field in global search to include notes -->
-	<string name="search_description">نص في ملاحظاتك</string>
+	<string name="search_description">Text in your notes</string>
 	<!-- %s will be replaced with the search string -->
 	<string name="strNoResults">تعذر إيجاد اى ملاحظات تتطابق مع كلمه البحث \"%s\"</string>
 	<string name="menuSearch">إبحث عن</string>
-	<string name="SearchResultTitle">Search Results:</string>
+	<string name="SearchResultTitle">نتائج البحث:</string>
 	<string name="clearSearchHistoryTitle">إمسح تاريخ البحث</string>
 	<string name="clearSearchHistory">ازل كافه عمليات البحث التى اجريتها</string>
 	<string name="deletedSearchHistory">مُسِحَ تاريخ البحث بنجاح.</string>
 	
 	<!-- Date -->
-	<string name="textModified">Modified:</string>
+	<string name="textModified">عُدِلَ:</string>
 	<string name="textToday">اليوم</string>
 	<string name="textYexterday">الامس</string>
 
 	<!-- Shortcuts handling -->
 	<!-- Header when picking a note for a new shortcut -->
 	<string name="shortcuts_view_caption">إختر احد المُلاحظات</string>
-	<string name="shortcut_menu_item_caption">Tomdroid Note</string>
+	<string name="shortcut_menu_item_caption">مُلاحظه توم درويد</string>
 	<string name="btnRemoveShortcut">ازل اﻹختصار</string>
 	<string name="createShortcut">انشئ إختصاراً</string>
 
@@ -152,10 +152,10 @@
 	<string name="delete_remote_notes_message">Are you sure you want to delete all notes from the remote service?</string>
 				
 	<!-- newNote -->
-	<string name="menuNew">مُلاحظه جديده</string>
+	<string name="menuNew">New</string>
 	<string name="NewNoteTitle">مُلاحظه جديده</string>
-	<string name="NewNoteTitleHint">Enter title here</string>
-	<string name="NewNoteBodyHint">Enter note here</string>
+	<string name="NewNoteTitleHint">ادخل العنوان هنا</string>
+	<string name="NewNoteBodyHint">ادخل المُلاحظه هنا</string>
 			
 	<!-- editNote -->
 	<string name="edit">Edit</string>
@@ -169,12 +169,13 @@
 	<!-- S stands for strike through (in format bar) -->
 	<string name="strike"><strike>S</strike></string>
 	<string name="mono">monospace</string>
-	<string name="highlight">highlight</string>
+	<string name="highlight">إبراز</string>
+	<!-- Button label to select font size -->
 	<string name="size">الحجم</string>
-	<string name="titleErrorParsingXML">Error parsing note</string>
+	<string name="titleErrorParsingXML">خطأ اثناء تحليل المُلاحظه</string>
 	<string name="messageErrorParsingXML">There was an error parsing the note. Please check your XML.</string>
 	<string name="messageNoteSaved">حُفِظَت المُلاحظه محلياً.</string>
-	<string name="messageNoteDeleted">Note deleted locally.</string>
+	<string name="messageNoteDeleted">حٌذِفَت المُلاحظه محلياً.</string>
 	<string name="messageSelectSize">حدد حجم الخط</string>
 	<string name="small">صغير</string>
 	<string name="normal">عادى</string>
@@ -188,13 +189,13 @@
 	<string name="lt"><b>&lt;</b></string>
 			
 	<!-- New Titles -->
-	<string name="view_title">Tomdroid - View Note</string>
-	<string name="edit_title">Tomdroid - Edit Note</string>
-	<string name="search_title">Tomdroid - Search Results</string>
-	<string name="shortcut_title">Tomdroid - Shortcuts</string>
-	<string name="pref_title">Tomdroid - Settings</string>
+	<string name="view_title">توم درويد - إعرض المُلاحظه</string>
+	<string name="edit_title">توم درويد - حرر المُلاحظه</string>
+	<string name="search_title">توم درويد - نتائج البحث</string>
+	<string name="shortcut_title">توم درويد - اﻹختصارات</string>
+	<string name="pref_title">توم درويد - اﻹعدادات</string>
 	<string name="compare_title">Tomdroid - Note Conflict</string>
-	<string name="filePickerTitle">Tomdroid - Import Note</string>
+	<string name="filePickerTitle">توم درويد - إدخال مُلاحظه</string>
 			
 	<!-- new prefs -->
 	<!-- subheader in settings -->
@@ -204,7 +205,7 @@
 	<string name="prefSync">المزامنه</string>
 	<!-- subheader in settings -->
 	<string name="prefTools">الادوات</string>
-	<string name="prefAutoSave">Save notes automatically on exiting editor.</string>
+	<string name="prefAutoSave">إحفظ المُلاحظات تلقائياً عند الخروج من المُحرر</string>
 	<string name="prefDeletedNotesTitle">إعرض المُلاحظات المحذوفه</string>
 	<string name="prefDeletedNotes">إذا فُعِلَ هذا الخيار فستظهر المُلاحظات المحذوفه فى قائمه المُلاحظات.</string>
 	<string name="prefNoteTemplatesTitle">إعرض قوالب المُلاحظات</string>
@@ -221,19 +222,19 @@
 	<!-- subheader in settings -->
 	<string name="prefLinks">إعدادات الروابط</string>
 	<!-- Checkbox in settings -->
-	<string name="prefLinkTitlesTitle">اربط عنواين المُلاحظات</string>
+	<string name="prefLinkTitlesTitle">إربط عنواين المُلاحظات</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkTitles">اربط بعنواين مُلاحظات اخرى</string>
+	<string name="prefLinkTitles">إربط بعنواين مُلاحظات اخرى</string>
 	<!-- Checkbox in settings -->
-	<string name="prefLinkUrlsTitle">اربط بعنواين على الشبكه العنكبوتيه</string>
+	<string name="prefLinkUrlsTitle">إربط عنواين الشبكه العنكبوتيه</string>
 	<!-- Description for checkbox in settings -->
 	<string name="prefLinkUrls">مثال "www.google.com.eg"</string>
 	<!-- Checkbox in settings -->
-	<string name="prefLinkEmailsTitle">اربط بمُعَرِف بريد إلكترونى</string>
+	<string name="prefLinkEmailsTitle">إربط مُعَرِفات البريد اﻹلكترونى</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkEmails">مثال "name@address.com"</string>
+	<string name="prefLinkEmails">مثال "ahmed2013@address.com"</string>
 	<!-- Checkbox in settings -->
-	<string name="prefLinkPhonesTitle">Link Telephone Numbers</string>
+	<string name="prefLinkPhonesTitle">إربط ارقام الجوالات</string>
 	<!-- Description for checkbox in settings -->
 	<string name="prefLinkPhones">Link telephone numbers to phone app</string>
 	<!-- Checkbox in settings -->
@@ -244,10 +245,10 @@
 	<!-- syncNotes -->
 
 	<!-- %1$s will be replaced with "Online Synchronisation", "SD card",... -->
-	<string name="syncing">Syncing with %1$s</string>
-	<string name="syncing_connect">connecting to service…</string>
+	<string name="syncing">يُزامِن مع %1$s</string>
+	<string name="syncing_connect">يتَصِل بالخدمه...</string>
 	<string name="gettings_notes">getting list of remote notes…</string>
-	<string name="syncing_local">updating local notes…</string>
+	<string name="syncing_local">يُحَدِث المُلاحظات المحليه...</string>
 	<string name="syncing_remote">updating remote notes…</string>
 	<string name="sync_conflict_description">There was a conflict syncing the note \'%1$s\'</string>
 	<string name="sync_conflict_message">Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
@@ -262,7 +263,7 @@
 	<!-- Button (keep short!) -->
 	<string name="copy">Create\nCopy</string>
 	<!-- subheader in Conflict Dialouge (keep short!) -->
-	<string name="diff_label">إعرض الفرق بين الملفات</string>
+	<string name="diff_label">إعرض الفرق بين الملفين</string>
 	<string name="diff_titles">-- فوارق العنوان --</string>
 	<string name="diff_content">-- فوارق المحتوى --</string>
 	<!-- %1$s will be replaced with a number. -->
@@ -275,12 +276,12 @@
 	
 	<!-- %1$s will be replaced with a note title. -->
 	<string name="old">%1$s (old)</string>
-	<string name="close">اغلق</string>
+	<string name="close">إلغ</string>
 	<string name="cancel">إلغ</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
-	<string name="messageAuthComplete">Authorization with %1$s successful.</string>
+	<string name="messageAuthComplete">نجح اﻹسيتثاق مع %1$s.</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
-	<string name="messageAuthFailed">Authorization with %1$s failed. Try again later!</string>
+	<string name="messageAuthFailed">فشل اﻹسيتثاق مع %1$s. حاول مجدداً فى وقت لاحق!</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
 	<string name="messageSyncNoteDeleted">حُذِفَت المُلاحظه من %1$s بنجاح.</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
@@ -304,8 +305,8 @@
 
 	<!-- menu items -->
 	
-	<string name="editTags">Edit Tags</string>
-	<string name="contextRevert">اعكس</string>
+	<string name="editTags">حرر الوسوم</string>
+	<string name="contextRevert">إعكس</string>
 	<!-- %1$s will be replaced with note-tag names -->
 	<string name="note_x_tags">Note \'%1$s\' Tags</string>
 	<string name="edit_tags">حرر الوسوم ادناه ، يمكنك الفصل بينهم باستخدام الفواصل</string>
@@ -324,10 +325,10 @@
 
 	<!-- backup notes -->
 	
-	<string name="backup_notes_title">Backup Notes?</string>
+	<string name="backup_notes_title">اترغب فى نسخ مُلاحظاتك إحتياطياً؟</string>
 	<string name="backup_notes">Copy all local notes to SD Card?  This may overwrite existing notes on the SD Card.</string>
-	<string name="restorePrefTitle">Restore Notes</string>
-	<string name="restore_notes_title">Restore Notes?</string>
+	<string name="restorePrefTitle">إسترجاع المُلاحظات</string>
+	<string name="restore_notes_title">اترغب فى إسترجاع مُلاحظاتك ؟</string>
 	<string name="restore_notes">Pull all notes from SD Card?  This may overwrite your existing notes.</string>
 	<string name="messageNotesBackedUp">Notes backed up to SD card successfully.</string>
 	<string name="messageNotesRestored">Notes restored from SD card successfully.</string>
@@ -335,20 +336,20 @@
 
 	<!-- send and receive notes -->
 	
-	<string name="sendChoiceTitle">Choose Send Method</string>
+	<string name="sendChoiceTitle">إختر منهج اﻹرسال</string>
 	<string name="sendChoice">كيف ترغب بارسال المُلاحظه؟</string>
 	<string name="btnSendAsText">كـ نص</string>
 	<string name="btnSendAsFile">كـ ملف</string>
 	<string name="sync_conflict_import_message">The note already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
 	<!-- Button (keep short!) -->
 	<string name="btnCancelImport">Cancel\nImport</string>
-	<string name="messageFileTooBig">File exceeds maximum import size - are you sure it is plain text?</string>
+	<string name="messageFileTooBig">الملف تجاوز اقصى مساحه ممكنه للتوريد - أمتأكد من انه نص مُجرد ؟</string>
 	<string name="messageFileNotReadable">تعذر قراءه ملف المُلاحظه.</string>
 	<string name="noFiles">No files or directories</string>
-	<string name="chooseFile">إختر ملف ادناه والذى اما يكون ملف مُلاحظه توم بوى (فى هذه الحاله سَتُدَرَج) او ملف نصى مُجَرَد (فى هذه الحاله سيُنشَئ مُلاحظه جديده):</string>
+	<string name="chooseFile">إختر ملفاً والذى يجب ان يكون ملف مُلاحظه توم بوى (فى هذه الحاله سَتُدَرَج) او ملف نصى مُجَرَد (فى هذه الحاله سيُنشَئ مُلاحظه جديده):</string>
 
 	<!-- Title of first Note -->
-	<string name="firstNoteTitle">اول مُلاحظات برنامج توم درويد</string>
+	<string name="firstNoteTitle">اولى مُلاحظات توم درويد</string>
 	
 	<string-array name="firstNoteContent">
 		<item>مرحباً بك فى برنامج توم درويد!\n</item>
@@ -362,13 +363,13 @@
 		<!-- -text is for list-items. --> 
 		<item>-rainy.notesync.org - https://notesync.org:8080/[username]/[password]/\n</item>
 		<item>بعد الضبط ، انقر على شعار علامه التزامن الموجود فى شريط توم درويد العلوى لبدأ مزامنه مُلاحظاتك.\n</item>
-		<item>يوَصَى بشده بعمل نسخ إحتياطى لجميع مُلاحظاتك قبل بدأ عمليه المزامنه ، حيث ان توم درويد حالياً مازالت فى مرحله تطويريه وقد يُفِسِد المُلاحظات.\n</item>
+		<item>يوَصَى بشده بعمل نسخ إحتياطى لجميع مُلاحظاتك قبل بدأ عمليه المزامنه ، حيث ان توم درويد حالياً مازال فى مرحله تطويريه وقد يُفِسِد المُلاحظات.\n</item>
 		<item>Please see http://live.gnome.org/Tomboy/Directories for the location of the *.note files on all platforms.\n</item>
 		<!-- =text= makes <size:large>text</size:large> --> 
 		<item>=SD Card=</item>
 		<item>Put your Tomboy notes (*.note) on your SD Card under tomdroid/. Once the notes are copied, set Sync Service to SD Card in preferences then hit the Sync logo on Tomdroid\'s top bar.\n</item>
-		<item>وايضاً ، توم درويد يبحث عن المزيد من المساهمات. إذا كنت ترغب فى المساعده فبرجاء اﻹنضمام لفريق تطوير توم درويد على منصه اﻹطلاق "لانش باد" من خلال: http://launchpad.net/~tomdroid-dev.\n</item>
-		<item>واخيراً ، إذا واجهت اى علل فبرجاء إبلاغ الفريق من خلال: https://bugs.launchpad.net/tomdroid</item>
+		<item>وايضاً ، توم درويد يبحث عن المزيد من المساهمات. إذا كنت ترغب فى المساعده فيُرجى اﻹنضمام لفريق تطوير توم درويد على منصه اﻹطلاق من خلال : http://launchpad.net/~tomdroid-dev.\n</item>
+		<item>واخيراً ، إذا واجهت اى علل فبرجاء إبلاغ الفريق من خلال : https://bugs.launchpad.net/tomdroid</item>
 	</string-array>
 	
 	<!-- 
@@ -378,13 +379,13 @@
 	<!-- 30 chars max -->
 	<string name="market_title">مُلاحظات توم درويد</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Open source!</string>
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Send and receive text or note-files from any app\n* Open source!</string>
 	
 	<!-- 80 chars max -->
-	<string name="market_promotext">برنامج تسجيل مُلاحظات متوافق وتومبوى مع إمكانيه المزامنه عبر الشبكه العنكبوتيه</string>
+	<string name="market_promotext">برنامج تسجيل مُلاحظات متوافق و توم بوى مع إمكانيه المزامنه عبر الشبكه العنكبوتيه</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.8.0 \"NAME\" release\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\n</string>
+        <string name="market_recent_changes">* Notes can now be created, edited and deleted\n* Completely redesigned for both tablets and phones\n* Sync your notes with compatible web-services or to your SD card\n* Send and receive note files or text from any app\n* More configurable than before\n* Available in even more languages\n\n And much more, for a complete list of changes please see https://launchpad.net/tomdroid/+announcements</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

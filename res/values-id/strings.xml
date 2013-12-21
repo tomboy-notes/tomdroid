@@ -25,7 +25,7 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Tomboy wikiwiki kompatibel pengambilan catatan aplikasi yang dapat mengambil catatan.</string>
+	<string name="app_desc">Tomboy kompatibel dengan wikiwiki aplikasi note-taking.</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
@@ -170,6 +170,7 @@
 	<string name="strike"><strike>S</strike></string>
 	<string name="mono">monospace</string>
 	<string name="highlight">menyoroti</string>
+	<!-- Button label to select font size -->
 	<string name="size">Ukuran</string>
 	<string name="titleErrorParsingXML">Kesalahan parsing catatan</string>
 	<string name="messageErrorParsingXML">Ada kesalahan parsing catatan. Silakan periksa XML Anda.</string>
@@ -378,13 +379,13 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Catatan Tomdroid</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">Sebuah klien Tomboy untuk Android. Tomboy adalah aplikasi catatan desktop dengan pendekatan wikiwiki dan antarmuka pengguna yang sederhana.\n\n* Format catatan yang kompatibel dengan Tomboy\n* Singkronisasi catatan online dengan Rainy, Snowy, atau Tomboy Online\n* Importasi kartu SD\n* Pintasan layar beranda\n*Sumber Terbuka!</string>
+	<string name="market_description">Klien Tomboy untuk Android. Tomboy adalah desktop pengambilan catatan app menggunakan pendekatan wikiwiki dan antarmuka pengguna yang sederhana.\n\n* Format catatan kompatibilitas dengan Tomboy\n* Catatan sinkronisasi online dengan Rainy, Snowy atau Tomboy online\n* SD Card impor\n* Layar awal pintas\n* Mengirim dan menerima pesan teks atau catatan-file dari aplikasi apapun\n* Open source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Mencatat aplikasi dengan sinkronisasi online yang kompatibel dengan Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.8.0 \"NAMA\" melepaskan\n* TAMBAH DAFTAR FITUR. JANGAN TRANSLATE.\n</string>
+        <string name="market_recent_changes">* Catatan kini dapat dibuat, diedit dan dihapus\n* Sepenuhnya didesain ulang untuk kedua tablet dan ponsel\n* Sinkronisasi catatan Anda dengan layanan web yang kompatibel atau ke kartu SD Anda\n* Mengirim dan menerima file catatan atau teks dari aplikasi apapun\n* Dikonfigurasi lebih dari sebelumnya\n* Tersedia dalam bahasa bahkan lebih\n\n Dan banyak lagi, untuk daftar lengkap perubahan silakan lihat https://launchpad.net/tomdroid/+announcements</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

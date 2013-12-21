@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tomdroid\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-03-31 18:06+0200\n"
-"PO-Revision-Date: 2013-06-26 01:27+0000\n"
-"Last-Translator: Tian Jing <1158739473@qq.com>\n"
+"POT-Creation-Date: 2013-10-25 14:49+0200\n"
+"PO-Revision-Date: 2013-11-27 13:02+0000\n"
+"Last-Translator: Isabel Heger <Unknown>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-10-19 17:56+0000\n"
-"X-Generator: Launchpad (build 16807)\n"
+"X-Launchpad-Export-Date: 2013-12-21 09:29+0000\n"
+"X-Generator: Launchpad (build 16872)\n"
 
 #. application details
 #: tmp_strings.xml:27(string)
@@ -23,8 +23,8 @@ msgid "Tomdroid"
 msgstr "Tomdroid"
 
 #: tmp_strings.xml:28(string)
-msgid "Tomboy compatible wikiwiki note-taking app that can take notes."
-msgstr "与 Tomboy 兼容的 wikiwiki 笔记应用程序，可以记录便笺。"
+msgid "Tomboy compatible wikiwiki note-taking app."
+msgstr "Tomboy 兼容 wikiwiki 便笺应用。"
 
 #: tmp_strings.xml:29(string)
 msgid "Olivier Bilodeau"
@@ -88,12 +88,12 @@ msgid "OK"
 msgstr "确认"
 
 #. negative Button
-#: tmp_strings.xml:52(string) tmp_strings.xml:279(string)
+#: tmp_strings.xml:52(string) tmp_strings.xml:280(string)
 msgid "Cancel"
 msgstr "取消"
 
 #. Button
-#: tmp_strings.xml:54(string) tmp_strings.xml:278(string)
+#: tmp_strings.xml:54(string) tmp_strings.xml:279(string)
 msgid "Close"
 msgstr "关闭"
 
@@ -371,7 +371,7 @@ msgstr "确认"
 msgid "No"
 msgstr "取消"
 
-#: tmp_strings.xml:149(string) tmp_strings.xml:212(string)
+#: tmp_strings.xml:149(string) tmp_strings.xml:213(string)
 msgid "Clear Notes"
 msgstr "清除便笺"
 
@@ -379,7 +379,7 @@ msgstr "清除便笺"
 msgid "Are you sure you want to clear the notes database?"
 msgstr "您确定要清除便笺数据库？"
 
-#: tmp_strings.xml:151(string) tmp_strings.xml:214(string)
+#: tmp_strings.xml:151(string) tmp_strings.xml:215(string)
 msgid "Delete Remote Notes"
 msgstr "删除远程便笺"
 
@@ -439,627 +439,636 @@ msgstr "等宽字体"
 msgid "highlight"
 msgstr "高亮"
 
-#: tmp_strings.xml:173(string)
+#. Button label to select font size
+#: tmp_strings.xml:174(string)
 msgid "size"
 msgstr "大小"
 
-#: tmp_strings.xml:174(string)
+#: tmp_strings.xml:175(string)
 msgid "Error parsing note"
 msgstr "解析便笺错误"
 
-#: tmp_strings.xml:175(string)
+#: tmp_strings.xml:176(string)
 msgid "There was an error parsing the note. Please check your XML."
 msgstr "解析便笺发生错误。请检查您的 XML。"
 
-#: tmp_strings.xml:176(string)
+#: tmp_strings.xml:177(string)
 msgid "Note saved locally."
 msgstr "便笺已本地保存。"
 
-#: tmp_strings.xml:177(string)
+#: tmp_strings.xml:178(string)
 msgid "Note deleted locally."
 msgstr "便笺已从本地删除。"
 
-#: tmp_strings.xml:178(string)
+#: tmp_strings.xml:179(string)
 msgid "Select text size"
 msgstr "选择文本大小"
 
-#: tmp_strings.xml:179(string)
+#: tmp_strings.xml:180(string)
 msgid "Small"
 msgstr "小"
 
-#: tmp_strings.xml:180(string)
+#: tmp_strings.xml:181(string)
 msgid "Normal"
 msgstr "普通"
 
-#: tmp_strings.xml:181(string)
+#: tmp_strings.xml:182(string)
 msgid "Large"
 msgstr "大"
 
-#: tmp_strings.xml:182(string)
+#: tmp_strings.xml:183(string)
 msgid "Huge"
 msgstr "巨大"
 
-#: tmp_strings.xml:183(string)
+#: tmp_strings.xml:184(string)
 msgid ""
 "Do you really want to discard your changes and revert the note to the last "
 "saved version?"
 msgstr "您要丢弃更改并将便笺恢复到最近保存的版本吗？"
 
-#: tmp_strings.xml:184(string)
+#: tmp_strings.xml:185(string)
 msgid "Discard Changes?"
 msgstr "丢弃更改？"
 
-#: tmp_strings.xml:186(b)
+#: tmp_strings.xml:187(b)
 msgid "&gt;"
 msgstr "&gt;"
 
-#: tmp_strings.xml:188(b)
+#: tmp_strings.xml:189(b)
 msgid "&lt;"
 msgstr "&lt;"
 
 #. New Titles
-#: tmp_strings.xml:191(string)
+#: tmp_strings.xml:192(string)
 msgid "Tomdroid - View Note"
 msgstr "Tomdroid - 查看便笺"
 
-#: tmp_strings.xml:192(string)
+#: tmp_strings.xml:193(string)
 msgid "Tomdroid - Edit Note"
 msgstr "Tomdroid - 便笺便笺"
 
-#: tmp_strings.xml:193(string)
+#: tmp_strings.xml:194(string)
 msgid "Tomdroid - Search Results"
 msgstr "Tomdroid - 搜索结果"
 
-#: tmp_strings.xml:194(string)
+#: tmp_strings.xml:195(string)
 msgid "Tomdroid - Shortcuts"
 msgstr "Tomdroid - 快捷"
 
-#: tmp_strings.xml:195(string)
+#: tmp_strings.xml:196(string)
 msgid "Tomdroid - Settings"
 msgstr "Tomdroid - 设置"
 
-#: tmp_strings.xml:196(string)
+#: tmp_strings.xml:197(string)
 msgid "Tomdroid - Note Conflict"
 msgstr "Tomdroid - 便笺冲突"
 
-#: tmp_strings.xml:197(string)
+#: tmp_strings.xml:198(string)
 msgid "Tomdroid - Import Note"
 msgstr "Tomdroid - 导入便笺"
 
 #. subheader in settings
-#: tmp_strings.xml:201(string)
+#: tmp_strings.xml:202(string)
 msgid "Display Preferences"
 msgstr "显示首选项"
 
-#: tmp_strings.xml:202(string)
+#: tmp_strings.xml:203(string)
 msgid "Base Font Size"
 msgstr "基本字体大小"
 
 #. subheader in settings
-#: tmp_strings.xml:204(string)
+#: tmp_strings.xml:205(string)
 msgid "Synchronization"
 msgstr "同步"
 
 #. subheader in settings
-#: tmp_strings.xml:206(string)
+#: tmp_strings.xml:207(string)
 msgid "Tools"
 msgstr "工具"
 
-#: tmp_strings.xml:207(string)
+#: tmp_strings.xml:208(string)
 msgid "Save notes automatically on exiting editor."
 msgstr "退出编辑器时自动保存便笺。"
 
-#: tmp_strings.xml:208(string)
+#: tmp_strings.xml:209(string)
 msgid "Show Deleted Notes"
 msgstr "显示已删除的便笺"
 
-#: tmp_strings.xml:209(string)
+#: tmp_strings.xml:210(string)
 msgid "If checked, will show deleted notes in notes list."
 msgstr "如果勾选，则会在便笺列表中显示已删除的便笺。"
 
-#: tmp_strings.xml:210(string)
+#: tmp_strings.xml:211(string)
 msgid "Show Note Templates"
 msgstr "显示便笺模板"
 
-#: tmp_strings.xml:211(string)
+#: tmp_strings.xml:212(string)
 msgid "If checked, will show note templates in notes list."
 msgstr "如已勾选，将在便笺列表中显示便笺模板。"
 
-#: tmp_strings.xml:213(string)
+#: tmp_strings.xml:214(string)
 msgid "Clear all notes from local database"
 msgstr "从本地数据库中清除全部便笺"
 
-#: tmp_strings.xml:215(string)
+#: tmp_strings.xml:216(string)
 msgid "Delete all notes from remote service"
 msgstr "从远程服务删除全部便笺"
 
-#: tmp_strings.xml:216(string)
+#: tmp_strings.xml:217(string)
 msgid "Illegal text size chosen. Please choose a number."
 msgstr "非法文本大小。请选择一个数字。"
 
-#: tmp_strings.xml:217(string)
+#: tmp_strings.xml:218(string)
 msgid "Backup Notes"
 msgstr "做备份"
 
-#: tmp_strings.xml:218(string)
+#: tmp_strings.xml:219(string)
 msgid "Copy all local notes to SD Card"
 msgstr "复制全部便笺到 SD 卡"
 
-#: tmp_strings.xml:219(string)
+#: tmp_strings.xml:220(string)
 msgid "Auto-Backup"
 msgstr "自动备份"
 
-#: tmp_strings.xml:220(string)
+#: tmp_strings.xml:221(string)
 msgid "Copy local note to SD Card on save"
 msgstr "保存时复制本地便笺到 SD卡"
 
 #. subheader in settings
-#: tmp_strings.xml:222(string)
+#: tmp_strings.xml:223(string)
 msgid "Hyperlink Preferences"
 msgstr "超链接首选项"
 
 #. Checkbox in settings
-#: tmp_strings.xml:224(string)
+#: tmp_strings.xml:225(string)
 msgid "Link Titles"
-msgstr ""
+msgstr "链接标题"
 
 #. Description for checkbox in settings
-#: tmp_strings.xml:226(string)
+#: tmp_strings.xml:227(string)
 msgid "Link to other note titles"
-msgstr ""
+msgstr "链接到其他便笺标题"
 
 #. Checkbox in settings
-#: tmp_strings.xml:228(string)
+#: tmp_strings.xml:229(string)
 msgid "Link Web Addresses\""
-msgstr ""
+msgstr "链接网址\""
 
 #. Description for checkbox in settings
-#: tmp_strings.xml:230(string)
+#: tmp_strings.xml:231(string)
 msgid "e.g. \"www.google.com\""
 msgstr "例如 \"www.google.com\""
 
 #. Checkbox in settings
-#: tmp_strings.xml:232(string)
+#: tmp_strings.xml:233(string)
 msgid "Link Emails"
-msgstr ""
+msgstr "链接邮件"
 
 #. Description for checkbox in settings
-#: tmp_strings.xml:234(string)
+#: tmp_strings.xml:235(string)
 msgid "e.g. name@address.com"
-msgstr ""
+msgstr "如 name@address.com"
 
 #. Checkbox in settings
-#: tmp_strings.xml:236(string)
+#: tmp_strings.xml:237(string)
 msgid "Link Telephone Numbers"
-msgstr ""
+msgstr "链接电话号码"
 
 #. Description for checkbox in settings
-#: tmp_strings.xml:238(string)
+#: tmp_strings.xml:239(string)
 msgid "Link telephone numbers to phone app"
-msgstr ""
+msgstr "将电话号码链接到通话应用"
 
 #. Checkbox in settings
-#: tmp_strings.xml:240(string)
+#: tmp_strings.xml:241(string)
 msgid "Link Map Addresses"
-msgstr ""
+msgstr "链接地图"
 
 #. Description for checkbox in settings
-#: tmp_strings.xml:242(string)
+#: tmp_strings.xml:243(string)
 msgid "Link addresses to maps app"
-msgstr ""
+msgstr "将地址链接到地图应用"
 
 #. %1$s will be replaced with "Online Synchronisation", "SD card",...
-#: tmp_strings.xml:247(string)
+#: tmp_strings.xml:248(string)
 msgid "Syncing with %1$s"
 msgstr "正在同步 %1$s"
 
-#: tmp_strings.xml:248(string)
+#: tmp_strings.xml:249(string)
 msgid "connecting to service…"
 msgstr "正在连接到服务..."
 
-#: tmp_strings.xml:249(string)
+#: tmp_strings.xml:250(string)
 msgid "getting list of remote notes…"
 msgstr "正在获取远程便笺列表..."
 
-#: tmp_strings.xml:250(string)
+#: tmp_strings.xml:251(string)
 msgid "updating local notes…"
 msgstr "正在更新本地便笺..."
 
-#: tmp_strings.xml:251(string)
+#: tmp_strings.xml:252(string)
 msgid "updating remote notes…"
 msgstr "正在更新远程便笺..."
 
-#: tmp_strings.xml:252(string)
-msgid "There was a conflict syncing the note '%1$s'"
-msgstr ""
-
 #: tmp_strings.xml:253(string)
-msgid ""
-"Please choose an action to resolve the conflict. You may edit either note "
-"before choosing, or view the difference by clicking on the labels below."
-msgstr ""
+msgid "There was a conflict syncing the note '%1$s'"
+msgstr "同步便笺”%1$s“时发生了冲突"
 
 #: tmp_strings.xml:254(string)
 msgid ""
-"The local version was already deleted. Please choose from one of the actions "
-"below."
-msgstr ""
+"Please choose an action to resolve the conflict. You may edit either note "
+"before choosing, or view the difference by clicking on the labels below."
+msgstr "请选择一项操作来解决该冲突。选择前您可以编辑便笺，或通过点击下方标签查看版本差异。"
 
 #: tmp_strings.xml:255(string)
+msgid ""
+"The local version was already deleted. Please choose from one of the actions "
+"below."
+msgstr "本地版本已被删除。请从下面选择一项操作。"
+
+#: tmp_strings.xml:256(string)
 msgid ""
 "A note with that title already exists in the database. Please choose an "
 "action to resolve the conflict. You may edit either note before choosing, or "
 "view the difference by clicking on the labels below."
-msgstr ""
+msgstr "数据库中已经存在相同标题的便笺。请选择一项操作来解决这个冲突。选择前您可以编辑便笺，或通过点击下方标签查看版本差异。"
 
 #. Button (keep short!)
-#: tmp_strings.xml:257(string)
+#: tmp_strings.xml:258(string)
 msgid "Overwrite\\nRemote"
 msgstr "覆盖\\n远程"
 
 #. Button (keep short!)
-#: tmp_strings.xml:259(string)
+#: tmp_strings.xml:260(string)
 msgid "Overwrite\\nLocal"
 msgstr "覆盖\\n本地"
 
 #. Button (keep short!)
-#: tmp_strings.xml:261(string)
+#: tmp_strings.xml:262(string)
 msgid "Delete\\nRemote"
 msgstr "删除\\n远程"
 
 #. Button (keep short!)
-#: tmp_strings.xml:263(string)
+#: tmp_strings.xml:264(string)
 msgid "Create\\nCopy"
 msgstr "创建\\n复制"
 
 #. subheader in Conflict Dialouge (keep short!)
-#: tmp_strings.xml:265(string)
+#: tmp_strings.xml:266(string)
 msgid "Difference Between Files"
 msgstr "文件间的差别"
 
-#: tmp_strings.xml:266(string)
+#: tmp_strings.xml:267(string)
 msgid "-- Title Differences --"
 msgstr "-- 标题差别 --"
 
-#: tmp_strings.xml:267(string)
+#: tmp_strings.xml:268(string)
 msgid "-- Content Differences --"
 msgstr "-- 内容差别 --"
 
 #. %1$s will be replaced with a number.
-#: tmp_strings.xml:269(string)
+#: tmp_strings.xml:270(string)
 msgid "Line %1$s:"
 msgstr "行 %1$s："
 
 #. subheader in Conflict Dialouge (keep short!)
-#: tmp_strings.xml:271(string)
+#: tmp_strings.xml:272(string)
 msgid "Local Version"
 msgstr "本地版本"
 
 #. subheader in Conflict Dialouge (keep short!)
-#: tmp_strings.xml:273(string)
+#: tmp_strings.xml:274(string)
 msgid "Remote Version"
 msgstr "远程版本"
 
-#: tmp_strings.xml:274(string)
+#: tmp_strings.xml:275(string)
 msgid "Deleted"
 msgstr "已删除"
 
 #. %1$s will be replaced with a note title.
-#: tmp_strings.xml:277(string)
+#: tmp_strings.xml:278(string)
 msgid "%1$s (old)"
 msgstr "%1$s (旧)"
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
-#: tmp_strings.xml:281(string)
+#: tmp_strings.xml:282(string)
 msgid "Authorization with %1$s successful."
 msgstr "%1$s 授权成功。"
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
-#: tmp_strings.xml:283(string)
+#: tmp_strings.xml:284(string)
 msgid "Authorization with %1$s failed. Try again later!"
-msgstr ""
+msgstr "%1$s 认证失败。请稍后重试！"
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
-#: tmp_strings.xml:285(string)
+#: tmp_strings.xml:286(string)
 msgid "Note deleted from %1$s successfully."
 msgstr "便笺成功从 %1$s 删除。"
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
-#: tmp_strings.xml:287(string)
+#: tmp_strings.xml:288(string)
 msgid "Note sent to %1$s successfully."
 msgstr "便笺成功发送到 %1$s。"
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
-#: tmp_strings.xml:289(string)
+#: tmp_strings.xml:290(string)
 msgid "Note received from %1$s successfully."
 msgstr "从 %1$s 接收便笺成功。"
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
-#: tmp_strings.xml:291(string)
+#: tmp_strings.xml:292(string)
 msgid "Error deleting note from %1$s."
 msgstr "从 %1$s 删除便笺出错。"
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
-#: tmp_strings.xml:293(string)
+#: tmp_strings.xml:294(string)
 msgid "Error sending note to %1$s."
 msgstr "发送便笺到 %1$s 出错。"
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
-#: tmp_strings.xml:295(string)
+#: tmp_strings.xml:296(string)
 msgid "Error receiving note from %1$s."
 msgstr "从 %1$s 接收便笺出错。"
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
-#: tmp_strings.xml:297(string)
+#: tmp_strings.xml:298(string)
 msgid "Error parsing response from %1$s."
 msgstr "解析 %1$s 响应出错。"
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
-#: tmp_strings.xml:299(string)
+#: tmp_strings.xml:300(string)
 msgid ""
 "Error connecting to %1$s. You probably need to authenticate in \"Settings\"."
 msgstr "连接到 %1$s 出错。您可能需要在“设置”里面进行授权。"
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
-#: tmp_strings.xml:301(string)
+#: tmp_strings.xml:302(string)
 msgid "Notes deleted from %1$s successfully."
 msgstr "从 %1$s 删除便笺成功。"
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
-#: tmp_strings.xml:303(string)
+#: tmp_strings.xml:304(string)
 msgid "Sync with %1$s cancelled."
 msgstr "%1$s 同步已取消。"
 
 #. menu items
-#: tmp_strings.xml:307(string)
+#: tmp_strings.xml:308(string)
 msgid "Edit Tags"
 msgstr "编辑标签"
 
-#: tmp_strings.xml:308(string)
+#: tmp_strings.xml:309(string)
 msgid "Revert"
 msgstr "反转"
 
 #. %1$s will be replaced with note-tag names
-#: tmp_strings.xml:310(string)
+#: tmp_strings.xml:311(string)
 msgid "Note '%1$s' Tags"
 msgstr "便笺“%1$s”标签"
 
-#: tmp_strings.xml:311(string)
+#: tmp_strings.xml:312(string)
 msgid "Edit the tags below, separating with commas"
 msgstr "编辑下方的标签，用逗号分开"
 
-#: tmp_strings.xml:312(string)
+#: tmp_strings.xml:313(string)
 msgid "Undelete Note"
 msgstr "未删除便笺"
 
 #. menu item with icon
-#: tmp_strings.xml:314(string)
+#: tmp_strings.xml:315(string)
 msgid "Import Note"
 msgstr "导入便笺"
 
 #. menu item with icon
-#: tmp_strings.xml:319(string)
+#: tmp_strings.xml:320(string)
 msgid "Revert All"
 msgstr "反转全部"
 
-#: tmp_strings.xml:320(string)
+#: tmp_strings.xml:321(string)
 msgid "Revert Notes"
 msgstr "反转便笺"
 
-#: tmp_strings.xml:321(string)
+#: tmp_strings.xml:322(string)
 msgid ""
 "This will revert your local notes to whatever versions exist on the remote "
 "service. Are you sure you want to do this?"
-msgstr ""
+msgstr "以在服务器保存的笔记来替代在这个机器保存的所有笔记。你确定吗？"
 
-#: tmp_strings.xml:322(string)
+#: tmp_strings.xml:323(string)
 msgid "Revert Note"
 msgstr "反转便笺"
 
-#: tmp_strings.xml:323(string)
+#: tmp_strings.xml:324(string)
 msgid ""
 "This will revert a local note to whatever version exist on the remote "
 "service. Are you sure you want to do this?"
-msgstr ""
+msgstr "以在服务器保存的笔记来替代在这个机器保存的这本笔记。你确定吗？"
 
 #. backup notes
-#: tmp_strings.xml:327(string)
+#: tmp_strings.xml:328(string)
 msgid "Backup Notes?"
 msgstr "要做备份吗？"
 
-#: tmp_strings.xml:328(string)
+#: tmp_strings.xml:329(string)
 msgid ""
 "Copy all local notes to SD Card? This may overwrite existing notes on the SD "
 "Card."
 msgstr "复制所有的本地便笺到 SD 卡？这可能会覆盖 SD 卡上已有的便笺。"
 
-#: tmp_strings.xml:329(string)
+#: tmp_strings.xml:330(string)
 msgid "Restore Notes"
 msgstr "恢复便笺"
 
-#: tmp_strings.xml:330(string)
+#: tmp_strings.xml:331(string)
 msgid "Restore Notes?"
 msgstr "要恢复便笺吗？"
 
-#: tmp_strings.xml:331(string)
+#: tmp_strings.xml:332(string)
 msgid "Pull all notes from SD Card? This may overwrite your existing notes."
 msgstr "拉取 SD 卡上的全部便笺？这可能会覆盖您已有的便笺。"
 
-#: tmp_strings.xml:332(string)
+#: tmp_strings.xml:333(string)
 msgid "Notes backed up to SD card successfully."
 msgstr "便笺成功备份到 SD 卡。"
 
-#: tmp_strings.xml:333(string)
+#: tmp_strings.xml:334(string)
 msgid "Notes restored from SD card successfully."
 msgstr "从 SD 卡恢复便笺成功。"
 
-#: tmp_strings.xml:334(string)
+#: tmp_strings.xml:335(string)
 msgid "Notes cleared successfully."
 msgstr "便笺清除成功。"
 
 #. send and receive notes
-#: tmp_strings.xml:338(string)
+#: tmp_strings.xml:339(string)
 msgid "Choose Send Method"
 msgstr "选择发送方法"
 
-#: tmp_strings.xml:339(string)
+#: tmp_strings.xml:340(string)
 msgid "How would you like to send the note?"
 msgstr "您要如何发送该便笺？"
 
-#: tmp_strings.xml:340(string)
+#: tmp_strings.xml:341(string)
 msgid "As Text"
 msgstr "以文本形式"
 
-#: tmp_strings.xml:341(string)
+#: tmp_strings.xml:342(string)
 msgid "As File"
 msgstr "以文件形式"
 
-#: tmp_strings.xml:342(string)
+#: tmp_strings.xml:343(string)
 msgid ""
 "The note already exists in the database. Please choose an action to resolve "
 "the conflict. You may edit either note before choosing, or view the "
 "difference by clicking on the labels below."
-msgstr ""
+msgstr "数据库中已存在此便笺。请选择一项操作来解决这个冲突。选择前您可以编辑便笺，或通过点击下方标签查看版本差异。"
 
 #. Button (keep short!)
-#: tmp_strings.xml:344(string)
+#: tmp_strings.xml:345(string)
 msgid "Cancel\\nImport"
 msgstr "取消\\n导入"
 
-#: tmp_strings.xml:345(string)
-msgid "File exceeds maximum import size - are you sure it is plain text?"
-msgstr ""
-
 #: tmp_strings.xml:346(string)
-msgid "Cannot read the note file."
-msgstr ""
+msgid "File exceeds maximum import size - are you sure it is plain text?"
+msgstr "文件大小超出了可导入的最大文件限制 - 您确定这是个富文本文件？"
 
 #: tmp_strings.xml:347(string)
-msgid "No files or directories"
-msgstr ""
+msgid "Cannot read the note file."
+msgstr "无法读取便笺文件。"
 
 #: tmp_strings.xml:348(string)
+msgid "No files or directories"
+msgstr "没有文件或目录"
+
+#: tmp_strings.xml:349(string)
 msgid ""
 "Choose a file below that is either a Tomboy note file (which will be "
 "imported) or a plain text file (which will create a new note):"
-msgstr ""
+msgstr "请选择以下文件之一：笔记文件（输入Tomboy笔记）或文本文件（创造新的笔记）。"
 
 #. Title of first Note
-#: tmp_strings.xml:351(string)
+#: tmp_strings.xml:352(string)
 msgid "Tomdroid's First Note"
 msgstr "Tomdroid 第一个便笺"
 
-#: tmp_strings.xml:354(item)
+#: tmp_strings.xml:355(item)
 msgid "Welcome to Tomdroid!\\n"
 msgstr "欢迎使用 Tomdroid！\\n"
 
-#: tmp_strings.xml:355(item)
+#: tmp_strings.xml:356(item)
 msgid ""
 "You have no notes here yet. To get started, set your Synchronization "
 "preferences under Settings. There are two synchronization options described "
 "below.\\n"
 msgstr "您现在还没有便笺。可在“设置”下设置同步首选项。如下描述，有两种同步选项。\\n"
 
-#: tmp_strings.xml:356(item)
+#: tmp_strings.xml:357(item)
 msgid "=Online Synchronization="
 msgstr "=在线同步="
 
 #. =text= makes <size:large>text</size:large>
-#: tmp_strings.xml:358(item)
+#: tmp_strings.xml:359(item)
 msgid ""
 "Online Synchronization is what you are looking for if you want to sync to "
 "Tomboy-Online, your own Rainy/Snowy server or any server supporting the "
 "Tomboy Web REST API.\\n"
 msgstr ""
 
-#: tmp_strings.xml:359(item)
+#: tmp_strings.xml:360(item)
 msgid ""
 "To use it, set Sync Service to Online Synchronization in preferences then "
 "provide a Server URL. Here are some of the public ones:"
 msgstr "要使用该功能，可在首选项里将同步服务设为在线同步，并提供一个服务器 URL。下面是部分公共服务器："
 
 #. -text is for list-items.
-#: tmp_strings.xml:361(item)
+#: tmp_strings.xml:362(item)
 msgid "-Tomboy Online - https://edge.tomboy-online.org/"
 msgstr "-Tomboy 网页版 - https://edge.tomboy-online.org/"
 
 #. -text is for list-items.
-#: tmp_strings.xml:363(item)
+#: tmp_strings.xml:364(item)
 msgid ""
 "-rainy.notesync.org - https://notesync.org:8080/[username]/[password]/\\n"
-msgstr ""
+msgstr "-rainy.notesync.org - https://notesync.org:8080/[用户名]/[密码]/\\n"
 
-#: tmp_strings.xml:364(item)
+#: tmp_strings.xml:365(item)
 msgid ""
 "Once set, hit the Sync logo on Tomdroid's top bar to synchronize your "
 "notes.\\n"
 msgstr "一旦设置，点击 Tomdroid 顶部处的同步标志就可以同步您的便笺。\\n"
 
-#: tmp_strings.xml:365(item)
+#: tmp_strings.xml:366(item)
 msgid ""
 "Note: you might want to back up your Tomboy notes before syncing, since this "
 "app is still under development and may corrupt your Tomboy notes.\\n"
-msgstr ""
+msgstr "请注意：本应用软件还在发展中，偶尔会出现问题，所以请你经常做备份。\\n"
 
-#: tmp_strings.xml:366(item)
+#: tmp_strings.xml:367(item)
 msgid ""
 "Please see http://live.gnome.org/Tomboy/Directories for the location of the "
 "*.note files on all platforms.\\n"
 msgstr ""
+"为了了解你的笔记文件（*.note）保存的地方，请看看 http://live.gnome.org/Tomboy/Directories。\\n"
 
 #. =text= makes <size:large>text</size:large>
-#: tmp_strings.xml:368(item)
+#: tmp_strings.xml:369(item)
 msgid "=SD Card="
 msgstr "=SD 卡="
 
-#: tmp_strings.xml:369(item)
+#: tmp_strings.xml:370(item)
 msgid ""
 "Put your Tomboy notes (*.note) on your SD Card under tomdroid/. Once the "
 "notes are copied, set Sync Service to SD Card in preferences then hit the "
 "Sync logo on Tomdroid's top bar.\\n"
 msgstr ""
 
-#: tmp_strings.xml:370(item)
+#: tmp_strings.xml:371(item)
 msgid ""
 "Also, Tomdroid is always looking for new contributors. If you are interested "
 "join the tomdroid-dev team on Launchpad: http://launchpad.net/~tomdroid-"
 "dev.\\n"
 msgstr ""
+"Tomdroid还在寻找开发者。如果你愿意为Tomdroid做出贡献的话，请在Launchpad: "
+"http://launchpad.net/~tomdroid-dev 参加Tomdroid的开发者团队。\\n"
 
-#: tmp_strings.xml:371(item)
+#: tmp_strings.xml:372(item)
 msgid ""
 "Lastly, if you encounter any issue, please report it at: "
 "https://bugs.launchpad.net/tomdroid"
 msgstr "最后，如果您遇到任何问题，请将其报告至 https://bugs.launchpad.net/tomdroid"
 
 #. 30 chars max
-#: tmp_strings.xml:379(string)
+#: tmp_strings.xml:380(string)
 msgid "Tomdroid notes"
 msgstr "Tomdroid 笔记"
 
 #. 4000 chars max
-#: tmp_strings.xml:381(string)
+#: tmp_strings.xml:382(string)
 msgid ""
 "A Tomboy client for Android. Tomboy is a desktop note-taking app using a "
 "wikiwiki approach and a simple user interface.\\n\\n* Note format "
 "compatibility with Tomboy\\n* Online note synchronization with Rainy, Snowy "
-"or Tomboy Online\\n* SD Card importation\\n* Home screen shortcuts\\n* Open "
-"source!"
+"or Tomboy Online\\n* SD Card importation\\n* Home screen shortcuts\\n* Send "
+"and receive text or note-files from any app\\n* Open source!"
 msgstr ""
 
 #. 80 chars max
-#: tmp_strings.xml:384(string)
+#: tmp_strings.xml:385(string)
 msgid "Note-taking app with online synchronization compatible with Tomboy"
-msgstr ""
+msgstr "兼容 Tomboy 并支持在线同步的便笺应用"
 
 #. 500 chars max
-#: tmp_strings.xml:387(string)
+#: tmp_strings.xml:388(string)
 msgid ""
-"0.8.0 \\\"NAME\\\" release\\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\\n"
+"* Notes can now be created, edited and deleted\\n* Completely redesigned for "
+"both tablets and phones\\n* Sync your notes with compatible web-services or "
+"to your SD card\\n* Send and receive note files or text from any app\\n* "
+"More configurable than before\\n* Available in even more languages\\n\\n And "
+"much more, for a complete list of changes please see "
+"https://launchpad.net/tomdroid/+announcements"
 msgstr ""
 
 #. Launchpad Translation String
-#: tmp_strings.xml:390(string)
+#: tmp_strings.xml:391(string)
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"

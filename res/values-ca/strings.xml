@@ -25,7 +25,7 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Tomboy compatible wikiwiki note-taking app that can take notes.</string>
+	<string name="app_desc">Tomboy compatible wikiwiki note-taking app.</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
@@ -33,7 +33,7 @@
 	<string name="strListEmptyNoNotes">No hi ha cap nota a la base de dades del Tomdroid.</string>
 	
 	<!-- Menu entry with icon -->
-	<string name="menuSync">Sincronitza</string>
+	<string name="menuSync">Sincronització</string>
 	<!-- Menu entry with icon -->
 	<string name="menuPrefs">Preferències</string>
 	<!-- Menu entry with icon -->
@@ -170,6 +170,7 @@
 	<string name="strike"><strike>S</strike></string>
 	<string name="mono">monospace</string>
 	<string name="highlight">highlight</string>
+	<!-- Button label to select font size -->
 	<string name="size">size</string>
 	<string name="titleErrorParsingXML">Error a l\'analitzar la nota</string>
 	<string name="messageErrorParsingXML">Hi ha un error a l\'analitzar la nota. Reviseu el vostre fitxer XML.</string>
@@ -378,17 +379,17 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Notes del Tomdroid</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Open source!</string>
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Send and receive text or note-files from any app\n* Open source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Note-taking app with online synchronization compatible with Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.8.0 \"NAME\" release\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\n</string>
+        <string name="market_recent_changes">* Notes can now be created, edited and deleted\n* Completely redesigned for both tablets and phones\n* Sync your notes with compatible web-services or to your SD card\n* Send and receive note files or text from any app\n* More configurable than before\n* Available in even more languages\n\n And much more, for a complete list of changes please see https://launchpad.net/tomdroid/+announcements</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
-  Adolfo Jayme Barrientos https://launchpad.net/~fitoschido
+  Adolfo Jayme https://launchpad.net/~fitoschido
   Antonio Vicién Faure https://launchpad.net/~antoniopolonio
   David Planella https://launchpad.net/~dpm
   Stefan Hammer https://launchpad.net/~j-4</string>

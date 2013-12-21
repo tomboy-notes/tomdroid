@@ -25,7 +25,7 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Tomboy compatible wikiwiki note-taking app that can take notes.</string>
+	<string name="app_desc">Tomboy compatible wikiwiki note-taking app.</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
@@ -170,6 +170,7 @@
 	<string name="strike"><strike>S</strike></string>
 	<string name="mono">o stałej szerokości</string>
 	<string name="highlight">wyróżnienie</string>
+	<!-- Button label to select font size -->
 	<string name="size">rozmiar</string>
 	<string name="titleErrorParsingXML">Błąd podczas wczytywania notatki.</string>
 	<string name="messageErrorParsingXML">Wystąpił błąd podczas przetwarzania notatki. Proszę sprawdzić XML.</string>
@@ -254,19 +255,19 @@
 	<string name="sync_conflict_deleted">Lokalna wersja została już usunięta. Proszę wybrać jedną z akcji poniżej.</string>
 	<string name="sync_conflict_titles_message">Notatka z tym tytułem istnieje już w bazie danych. Proszę wybrać akcję, by rozwiązać ten konflikt. Możesz edytować obie notatki przed wybraniem, lub podejrzeć różnice klikając na etykiety poniżej.</string>
 	<!-- Button (keep short!) -->
-	<string name="overwrite_remote">Overwrite\nRemote</string>
+	<string name="overwrite_remote">Nadpisz\nZdalny</string>
 	<!-- Button (keep short!) -->
-	<string name="overwrite_local">Overwrite\nLocal</string>
+	<string name="overwrite_local">Nadpisz\nLokalny</string>
 	<!-- Button (keep short!) -->
-	<string name="delete_remote">Delete\nRemote</string>
+	<string name="delete_remote">Usuń\nZdalny</string>
 	<!-- Button (keep short!) -->
-	<string name="copy">Create\nCopy</string>
+	<string name="copy">Utwórz\nKopiuj</string>
 	<!-- subheader in Conflict Dialouge (keep short!) -->
 	<string name="diff_label">Róznice pomiędzy plikami</string>
 	<string name="diff_titles">-- Różnice w tytule --</string>
 	<string name="diff_content">-- Różnice w zawartości --</string>
 	<!-- %1$s will be replaced with a number. -->
-	<string name="line_x">Line %1$s:</string>
+	<string name="line_x">Linia %1$s:</string>
 	<!-- subheader in Conflict Dialouge (keep short!) -->
 	<string name="local_label">Wersja lokalna</string>
 	<!-- subheader in Conflict Dialouge (keep short!) -->
@@ -294,7 +295,7 @@
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
 	<string name="messageSyncNotePullError">Błąd podczas odbierania notatki z %1$s.</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
-	<string name="messageSyncParseFailed">Error parsing response from %1$s.</string>
+	<string name="messageSyncParseFailed">Błąd podczas przetwarzania odpowiedzi z %1$s.</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
 	<string name="messageSyncConnectingFailed">Błąd połączenia z %1$s. Prawdopodobnie musisz je autoryzować w "Ustawieniach".</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
@@ -305,9 +306,9 @@
 	<!-- menu items -->
 	
 	<string name="editTags">Edytuj tagi</string>
-	<string name="contextRevert">Revert</string>
+	<string name="contextRevert">Przywróć do poprzedniej wersji</string>
 	<!-- %1$s will be replaced with note-tag names -->
-	<string name="note_x_tags">Note \'%1$s\' Tags</string>
+	<string name="note_x_tags">Tagi notatki \'%1$s\'</string>
 	<string name="edit_tags">Edytuj tagi poniżej, oddzielając je przecinkami.</string>
 	<string name="undelete">Cofnij usunięcie notatki</string>
 	<!-- menu item with icon -->
@@ -316,22 +317,22 @@
 	<!-- revert notes -->
 	
 	<!-- menu item with icon -->
-	<string name="menuRevert">Revert All</string>
-	<string name="revert_notes">Revert Notes</string>
-	<string name="revert_notes_message">This will revert your local notes to whatever versions exist on the remote service.  Are you sure you want to do this?</string>
-	<string name="revert_note">Revert Note</string>
-	<string name="revert_note_message">This will revert a local note to whatever version exist on the remote service.  Are you sure you want to do this?</string>
+	<string name="menuRevert">Przywróć wszystko do poprzednich wersji</string>
+	<string name="revert_notes">Przywróć notatki do poprzednich wersji</string>
+	<string name="revert_notes_message">To przywróci Twoje lokalne notatki do ich wersji w zdalnej usłudze. Czy na pewno chcesz to zrobić?</string>
+	<string name="revert_note">Przywróc poprzednią wersję notatki</string>
+	<string name="revert_note_message">To przywróci Twoją lokalną notatkę do jej wersji w zdalnej usłudze. Czy na pewno chcesz to zrobić?</string>
 
 	<!-- backup notes -->
 	
 	<string name="backup_notes_title">Utworzyć kopię zapasową notatek?</string>
-	<string name="backup_notes">Copy all local notes to SD Card?  This may overwrite existing notes on the SD Card.</string>
-	<string name="restorePrefTitle">Restore Notes</string>
-	<string name="restore_notes_title">Restore Notes?</string>
-	<string name="restore_notes">Pull all notes from SD Card?  This may overwrite your existing notes.</string>
+	<string name="backup_notes">Skopiować wszystkie lokalne notatki na kartę SD? Ta czynność może zastąpić notatki już istniejące na karcie SD.</string>
+	<string name="restorePrefTitle">Przywróć notatki</string>
+	<string name="restore_notes_title">Przywrócić notatki?</string>
+	<string name="restore_notes">Pobrać wszystkie notatki z karty SD? To może nadpisać Twoje istniejące notatki.</string>
 	<string name="messageNotesBackedUp">Tworzenie kopii zapasowej notatek na karcie SD zakończone sukcesem.</string>
-	<string name="messageNotesRestored">Notes restored from SD card successfully.</string>
-	<string name="messageDatabaseReset">Notes cleared successfully.</string>
+	<string name="messageNotesRestored">Przywracanie notatek z karty SD zakończone sukcesem.</string>
+	<string name="messageDatabaseReset">Usuwanie notatek zakończone powodzeniem.</string>
 
 	<!-- send and receive notes -->
 	
@@ -341,7 +342,7 @@
 	<string name="btnSendAsFile">Jako plik</string>
 	<string name="sync_conflict_import_message">Notatka z tym tytułem istnieje już w bazie danych. Proszę wybrać akcję, by rozwiązać ten konflikt. Możesz edytować obie notatki przed wybraniem, lub podejrzeć różnice klikając na etykiety poniżej.</string>
 	<!-- Button (keep short!) -->
-	<string name="btnCancelImport">Cancel\nImport</string>
+	<string name="btnCancelImport">Anuluj\nImportowanie</string>
 	<string name="messageFileTooBig">Plik przekracza maksymalny rozmiar importowania - czy jesteś pewny, że to zwykły tekst?</string>
 	<string name="messageFileNotReadable">Nie można odczytać pliku notatki.</string>
 	<string name="noFiles">Brak plików lub katalogów</string>
@@ -378,13 +379,13 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid notes</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Open source!</string>
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Send and receive text or note-files from any app\n* Open source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Aplikacja do notatek z synchronizacją online kompatybilną z Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.8.0 \"NAME\" release\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\n</string>
+        <string name="market_recent_changes">* Notes can now be created, edited and deleted\n* Completely redesigned for both tablets and phones\n* Sync your notes with compatible web-services or to your SD card\n* Send and receive note files or text from any app\n* More configurable than before\n* Available in even more languages\n\n And much more, for a complete list of changes please see https://launchpad.net/tomdroid/+announcements</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

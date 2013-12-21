@@ -25,7 +25,7 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Tomboy compatible wikiwiki note-taking app that can take notes.</string>
+	<string name="app_desc">Tomboy compatible wikiwiki note-taking app.</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
@@ -65,7 +65,7 @@
 	<string name="prefTomboyWeb">Verkkosynkronointi.</string>
 	<string name="prefAuthenticate">Tunnistaudu</string>
 	<string name="prefLocation">Sijainti SD-kortilla</string>
-	<string name="prefSyncOnStart">Autosync on Startup</string>
+	<string name="prefSyncOnStart">Automaattinen synkronointi käynnistettäessä</string>
 	<string name="prefDescSyncOnStart">Synchronise your notes on appstart</string>
 	<!-- %1$s will be repaced by the folder name eg /tomdroid -->
 	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
@@ -95,8 +95,8 @@
 	<string name="messageNoSDCard">SD-kortilla ei ole tilaa.</string>
 	
 	<!-- NoteSorting -->
-	<string name="titleDefaultSorting">Choose default sorting method</string>
-	<string name="prefDefaultSortingTitle">Default Sort Method</string>
+	<string name="titleDefaultSorting">Valitse oletusjärjestelymetodi</string>
+	<string name="prefDefaultSortingTitle">Valitse järjestelämetodi</string>
 	<string name="prefSorting">Sort By:</string>
 	<string name="prefSortDate">Muokkauspäivä</string>
 	<string name="prefSortTitle">Muistiinpanon nimi</string>
@@ -148,7 +148,7 @@
 	<string name="no">En</string>
 	<string name="delete_all">Tyhjennä muistiinpanot</string>
 	<string name="delete_all_message">Haluatko varmasti tyhjentää muistiinpanot tietokannasta?</string>
-	<string name="delete_remote_notes">Delete Remote Notes</string>
+	<string name="delete_remote_notes">Poista etämuistiinpanot</string>
 	<string name="delete_remote_notes_message">Are you sure you want to delete all notes from the remote service?</string>
 				
 	<!-- newNote -->
@@ -169,8 +169,9 @@
 	<!-- S stands for strike through (in format bar) -->
 	<string name="strike"><strike>S</strike></string>
 	<string name="mono">monospace</string>
-	<string name="highlight">highlight</string>
-	<string name="size">size</string>
+	<string name="highlight">korostus</string>
+	<!-- Button label to select font size -->
+	<string name="size">koko</string>
 	<string name="titleErrorParsingXML">Error parsing note</string>
 	<string name="messageErrorParsingXML">There was an error parsing the note. Please check your XML.</string>
 	<string name="messageNoteSaved">Muistiinpano tallenettu paikallisesti.</string>
@@ -194,7 +195,7 @@
 	<string name="shortcut_title">Tomdroid - Pikakuvakkeet</string>
 	<string name="pref_title">Tomdroid - asetukset</string>
 	<string name="compare_title">Tomdroid - Note Conflict</string>
-	<string name="filePickerTitle">Tomdroid - Import Note</string>
+	<string name="filePickerTitle">Tomdroid - tuo muistiinpanoja</string>
 			
 	<!-- new prefs -->
 	<!-- subheader in settings -->
@@ -211,7 +212,7 @@
 	<string name="prefNoteTemplates">If checked, will show note templates in notes list.</string>
 	<string name="deleteAllNotesTitle">Tyhjennä muistiinpanot</string>
 	<string name="deleteAllNotes">Poista kaikki muistiinpanot paikallisesta tietokannasta</string>
-	<string name="deleteRemoteNotesTitle">Delete Remote Notes</string>
+	<string name="deleteRemoteNotesTitle">Poista etämuistiinpanot</string>
 	<string name="deleteRemoteNotes">Delete all notes from remote service</string>
 	<string name="illegalTextSize">Illegal text size chosen. Please choose a number.</string>
 	<string name="backupPrefTitle">Varmuuskopioidut muistiinpanot</string>
@@ -219,7 +220,7 @@
 	<string name="autoBackupPrefTitle">Automaattinen varmuuskopiointi</string>
 	<string name="autoBackupPref">Kopioi paikalliset muistiinpanot SD-kortille</string>
 	<!-- subheader in settings -->
-	<string name="prefLinks">Hyperlink Preferences</string>
+	<string name="prefLinks">Hyperlinkkiasetukset</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkTitlesTitle">Link Titles</string>
 	<!-- Description for checkbox in settings -->
@@ -227,11 +228,11 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkUrlsTitle">Link Web Addresses"</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkUrls">e.g. "www.google.com"</string>
+	<string name="prefLinkUrls">esim. "www.google.fi"</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkEmailsTitle">Link Emails</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkEmails">e.g. name@address.com</string>
+	<string name="prefLinkEmails">esim. nimi@osoite.com</string>
 	<!-- Checkbox in settings -->
 	<string name="prefLinkPhonesTitle">Link Telephone Numbers</string>
 	<!-- Description for checkbox in settings -->
@@ -245,13 +246,13 @@
 
 	<!-- %1$s will be replaced with "Online Synchronisation", "SD card",... -->
 	<string name="syncing">Synkronoitu kohteen %1$s kanssa</string>
-	<string name="syncing_connect">connecting to service…</string>
+	<string name="syncing_connect">yhdistetään palvelimeen...</string>
 	<string name="gettings_notes">getting list of remote notes…</string>
 	<string name="syncing_local">päivitetään paikallisia muistiinpanoja...</string>
 	<string name="syncing_remote">updating remote notes…</string>
-	<string name="sync_conflict_description">There was a conflict syncing the note \'%1$s\'</string>
+	<string name="sync_conflict_description">Ongelma synkronoitaessa muistiinpanoa \'%1$s\'</string>
 	<string name="sync_conflict_message">Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
-	<string name="sync_conflict_deleted">The local version was already deleted.  Please choose from one of the actions below.</string>
+	<string name="sync_conflict_deleted">Paikallinen versio on jo poistettu. Valitse alta jokin toimenpide.</string>
 	<string name="sync_conflict_titles_message">A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
 	<!-- Button (keep short!) -->
 	<string name="overwrite_remote">Overwrite\nRemote</string>
@@ -282,13 +283,13 @@
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
 	<string name="messageAuthFailed">Authorization with %1$s failed. Try again later!</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
-	<string name="messageSyncNoteDeleted">Note deleted from %1$s successfully.</string>
+	<string name="messageSyncNoteDeleted">Muistiinpano kohteesta %1$s poistettu.</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
-	<string name="messageSyncNotePushed">Note sent to %1$s successfully.</string>
+	<string name="messageSyncNotePushed">Muistiinpano lähetetty kohteeseen %1$s.</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
 	<string name="messageSyncNotePulled">Note received from %1$s successfully.</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
-	<string name="messageSyncNoteDeleteError">Error deleting note from %1$s.</string>
+	<string name="messageSyncNoteDeleteError">Virhe poistettaessa muistiinpanoa kohteesta %1$s.</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
 	<string name="messageSyncNotePushError">Virhe muistiinpanojen lähettämisessä kohteeseen %1$s</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
@@ -319,18 +320,18 @@
 	<string name="menuRevert">Palauta kaikki</string>
 	<string name="revert_notes">Palautetut muistiinpanot</string>
 	<string name="revert_notes_message">This will revert your local notes to whatever versions exist on the remote service.  Are you sure you want to do this?</string>
-	<string name="revert_note">Revert Note</string>
-	<string name="revert_note_message">This will revert a local note to whatever version exist on the remote service.  Are you sure you want to do this?</string>
+	<string name="revert_note">Palauta muistiinpano</string>
+	<string name="revert_note_message">Toiminto palautta paikallisen muistiinpanon johonkin etäpalvelun versioon. Haluatko varmasti jatkaa?</string>
 
 	<!-- backup notes -->
 	
 	<string name="backup_notes_title">Varmuuskopioi muistiinpanot?</string>
 	<string name="backup_notes">Haluatko kopioida kaikki paikalliset muistiinpanot SD-kortista? Tämä toiminto poistaa kaikki SD-kortin muistiinpanot.</string>
-	<string name="restorePrefTitle">Restore Notes</string>
-	<string name="restore_notes_title">Restore Notes?</string>
+	<string name="restorePrefTitle">Palauta muistiinpanot</string>
+	<string name="restore_notes_title">Haluatko palauttaa muistiinpanot?</string>
 	<string name="restore_notes">Haluatko siirtää kaikki paikalliset muistiinpanot SD-kortista? Tämä toiminto poistaa kaikki SD-kortin muistiinpanot.</string>
-	<string name="messageNotesBackedUp">Notes backed up to SD card successfully.</string>
-	<string name="messageNotesRestored">Notes restored from SD card successfully.</string>
+	<string name="messageNotesBackedUp">Muistiinpanot varmuuskopiotu SD-kortille.</string>
+	<string name="messageNotesRestored">Muistiinpanot palautettu SD-kortilta.</string>
 	<string name="messageDatabaseReset">Notes cleared successfully.</string>
 
 	<!-- send and receive notes -->
@@ -344,7 +345,7 @@
 	<string name="btnCancelImport">Cancel\nImport</string>
 	<string name="messageFileTooBig">File exceeds maximum import size - are you sure it is plain text?</string>
 	<string name="messageFileNotReadable">Cannot read the note file.</string>
-	<string name="noFiles">No files or directories</string>
+	<string name="noFiles">Ei muistiinpanoja tai kansioita</string>
 	<string name="chooseFile">Choose a file below that is either a Tomboy note file (which will be imported) or a plain text file (which will create a new note):</string>
 
 	<!-- Title of first Note -->
@@ -378,13 +379,13 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid muistiot</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Open source!</string>
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Send and receive text or note-files from any app\n* Open source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Note-taking app with online synchronization compatible with Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.8.0 \"NAME\" release\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\n</string>
+        <string name="market_recent_changes">* Notes can now be created, edited and deleted\n* Completely redesigned for both tablets and phones\n* Sync your notes with compatible web-services or to your SD card\n* Send and receive note files or text from any app\n* More configurable than before\n* Available in even more languages\n\n And much more, for a complete list of changes please see https://launchpad.net/tomdroid/+announcements</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

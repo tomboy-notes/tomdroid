@@ -25,7 +25,7 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">දඟකාර කෙල්ලකට අනුරූප විකිවිකි සටහන - ගන්නා අයදුමට සටහන ගැනීමට හැකිය.</string>
+	<string name="app_desc">Tomboy compatible wikiwiki note-taking app.</string>
 	<string name="author">ඔලිවියර් බිලොඩියු</string>
 	
 	<!-- main.xml -->
@@ -170,6 +170,7 @@
 	<string name="strike"><strike>S</strike></string>
 	<string name="mono">අතර ස්ථාන එකක්</string>
 	<string name="highlight">ඉස්මතු කිරීම</string>
+	<!-- Button label to select font size -->
 	<string name="size">ප්‍රමාණය</string>
 	<string name="titleErrorParsingXML">සටහන දෝෂය විග්‍රහ කරමින් ඇත</string>
 	<string name="messageErrorParsingXML">සටහන විග්‍රහ කිරීමේ දෝෂයක් පවතී. කරුණාකර ඔබේ  XML පරීක්ෂා කරන්න.</string>
@@ -378,16 +379,16 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid සටහන්</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">දඟකාර කෙල්ලක් අනුග්‍රාහකත්වය ඇන්ඩ්රොයිඩ් සඳහා. දඟකාර කෙල්ල යනු මේසය මතුපිට තබන පරිගණක සටහනක් - එම අයදුම විකිවිකි පිළිවෙලක් සහ සරල භාවිත මුහුණතක් භාවිත කර ඇත. \n\n*</string>
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Send and receive text or note-files from any app\n* Open source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">සටහන - යෙදවුම සමඟ මාර්ගගත සමමුහුර්තකරණය දඟකාර කෙල්ල සමඟ සංකීර්ණය</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.8.0 \"නම\" පිටකරන්න\n* ලයිස්තුවේ ලක්ෂණ එකතු කරන්න. තවමත් පරිවර්තනය කර නොමැත.</string>
+        <string name="market_recent_changes">* Notes can now be created, edited and deleted\n* Completely redesigned for both tablets and phones\n* Sync your notes with compatible web-services or to your SD card\n* Send and receive note files or text from any app\n* More configurable than before\n* Available in even more languages\n\n And much more, for a complete list of changes please see https://launchpad.net/tomdroid/+announcements</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
-  Mohamed Rizmi https://launchpad.net/~mrizmi
+  Mohamed Rizmi https://launchpad.net/~mrizmi-deactivatedaccount
   wijesekara kankanamge udayangani https://launchpad.net/~wku1225</string>
 </resources>

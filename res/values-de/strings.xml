@@ -25,7 +25,7 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Tomboy, kompatibel mit wiki Notizen-App, kann Notizen machen.</string>
+	<string name="app_desc">Tomboy kompatible wikiwiki Notizen-App.</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
@@ -170,6 +170,7 @@
 	<string name="strike"><strike>S</strike></string>
 	<string name="mono">Feste Zeichenbreite</string>
 	<string name="highlight">hervorheben</string>
+	<!-- Button label to select font size -->
 	<string name="size">Größe</string>
 	<string name="titleErrorParsingXML">Fehler beim Erstellen der Notiz</string>
 	<string name="messageErrorParsingXML">Es ist ein Fehler beim Erstellen der Notiz aufgetreten. Bitte überprüfe den XML-Code.</string>
@@ -378,13 +379,13 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid Notizen</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">Ein Tomboy Client für Android. Tomboy ist ein Desktop zum aufnehmen von Notizen, welcher eine einfache Wiki-ähnliche Benutzeroberfläche besitzt.\n\n* Das Notizformat ist kompatibel mit Tomboy\n* Online Synchronisation mit Rainy, Snowy, oder Tomboy Online.\n* SD Karten Import\n* Home screen Verknüpfungen\n * Open source!</string>
+	<string name="market_description">Ein Tomboy Client für Android. Tomboy is eine Desktop-App für Notizen, welche eine einfache Benutzeroberfläche und eine wikiwiki-Arbeitsweise verwendet.\n\n* Kompatibilität der Notizen zu Tomboy\n* Online-Synchronisation mit Rainy, Snowy oder Tomboy Online\n* SD-Karten Import\n* Verknüpfung auf dem Startbildschirm\n* Versenden und Empfangen von Text und Notizen zu/von allen Apps\n* Open source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Notizen-App mit Online-Synchronisation, welche kompatibel mit Tomboy ist</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.8.0 \"NAME\" Veröffentlichung\n* Füge eine Liste mit Funktionen hinzu. Übersetze noch nicht.\n</string>
+        <string name="market_recent_changes">* Notizen können nun erstellt, editiert und gelöscht werden\n* Komplett neues Design für sowohl Tablets als auch Handys\n* Synchronisation zu kompatiblen Web-Services oder zur SD-Karte\n* Senden und empfangen von Notiz-Dateien oder Text zu oder von jedem App\n* Mehr Konfigurationsmöglichkeiten als zuvor\n* In noch mehr Sprachen verfügbar\n\n Und vieles mehr, für eine komplette Liste siehe https://launchpad.net/tomdroid/+announcements</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

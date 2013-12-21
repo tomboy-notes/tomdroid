@@ -25,11 +25,11 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Tomboy-совместимое приложения для wikiwiki заметок.</string>
+	<string name="app_desc">Tomboy-совместимое приложение для заметок с wikiwiki разметкой.</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
-	<string name="strListEmptyWaiting">Пожалуйста, подождите пока заметки загрузятся...</string>
+	<string name="strListEmptyWaiting">Пожалуйста, подождите, пока заметки загрузятся…</string>
 	<string name="strListEmptyNoNotes">В базе данных Tomdroid заметок нет.</string>
 	
 	<!-- Menu entry with icon -->
@@ -57,7 +57,7 @@
 	<string name="btnSavetoSD">Сохранить</string>
 	
 	<!-- note-view.xml -->
-	<string name="strWait">Пожалуйста подождите, пока заметки загрузятся...</string>
+	<string name="strWait">Пожалуйста, подождите, пока заметки загрузятся…</string>
 	
 	<string name="prefSyncService">Сервис</string>
 	<string name="prefSyncServer">Сервер</string>
@@ -99,8 +99,8 @@
 	<string name="prefDefaultSortingTitle">Метод сортировки заметок по умолчанию</string>
 	<string name="prefSorting">Упорядочить по:</string>
 	<string name="prefSortDate">Дата изменения</string>
-	<string name="prefSortTitle">Заголовок Заметки</string>
-	<string name="sortByDate">Сортировать по дате</string>
+	<string name="prefSortTitle">Заголовок заметки</string>
+	<string name="sortByDate">Упорядочить по дате</string>
 	<string name="sortByTitle">Упорядочить по заголовкам</string>
 	
 	<!-- NotebookFiltering -->
@@ -123,7 +123,7 @@
 	<string name="menuSearch">Поиск</string>
 	<string name="SearchResultTitle">Результаты поиска:</string>
 	<string name="clearSearchHistoryTitle">Очистить историю поиска</string>
-	<string name="clearSearchHistory">Удалить все совершенные поиски</string>
+	<string name="clearSearchHistory">Очистить историю поиска</string>
 	<string name="deletedSearchHistory">История поиска очищена</string>
 	
 	<!-- Date -->
@@ -133,7 +133,7 @@
 
 	<!-- Shortcuts handling -->
 	<!-- Header when picking a note for a new shortcut -->
-	<string name="shortcuts_view_caption">Выбрать Заметку</string>
+	<string name="shortcuts_view_caption">Выбрать заметку</string>
 	<string name="shortcut_menu_item_caption">Заметка Tomdroid</string>
 	<string name="btnRemoveShortcut">Удалить ярлык</string>
 	<string name="createShortcut">Создать ярлык</string>
@@ -170,6 +170,7 @@
 	<string name="strike"><strike>S</strike></string>
 	<string name="mono">моноширинний</string>
 	<string name="highlight">подсветка</string>
+	<!-- Button label to select font size -->
 	<string name="size">розмер</string>
 	<string name="titleErrorParsingXML">Ошибка анализа заметки</string>
 	<string name="messageErrorParsingXML">При анализе заметки имела место ошибка. Пожалуйста, ознакомьтесь с XML.</string>
@@ -219,27 +220,27 @@
 	<string name="autoBackupPrefTitle">Автоматическое резервное копирование</string>
 	<string name="autoBackupPref">Копирование локальных заметок на SD-карту для сохранения</string>
 	<!-- subheader in settings -->
-	<string name="prefLinks">Настройка Гиперссылок</string>
+	<string name="prefLinks">Параметры гиперссылок</string>
 	<!-- Checkbox in settings -->
-	<string name="prefLinkTitlesTitle">Название ссылки</string>
+	<string name="prefLinkTitlesTitle">Ссылки на заметки</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkTitles">Ссылки на другие названия записей</string>
+	<string name="prefLinkTitles">Создавать ссылки из названий заметок</string>
 	<!-- Checkbox in settings -->
-	<string name="prefLinkUrlsTitle">Создавать ссылки для web-адресов</string>
+	<string name="prefLinkUrlsTitle">Ссылки на Web</string>
 	<!-- Description for checkbox in settings -->
 	<string name="prefLinkUrls">напр. «www.google.com»</string>
 	<!-- Checkbox in settings -->
-	<string name="prefLinkEmailsTitle">Ссылка для Email-адресов</string>
+	<string name="prefLinkEmailsTitle">Ссылки на электронную почту</string>
 	<!-- Description for checkbox in settings -->
 	<string name="prefLinkEmails">напр. «name@address.com»</string>
 	<!-- Checkbox in settings -->
-	<string name="prefLinkPhonesTitle">Создавать ссылки для телефонных адресов</string>
+	<string name="prefLinkPhonesTitle">Ссылки на номера телефонов</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkPhones">Ссылкиа телефонных номеров для телефонных приложений</string>
+	<string name="prefLinkPhones">Создавать ссылки для запуска приложения телефона</string>
 	<!-- Checkbox in settings -->
-	<string name="prefLinkAddressesTitle">Содавать ссылки для адресов</string>
+	<string name="prefLinkAddressesTitle">Ссылки на адреса</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkAddresses">Link addresses to maps app</string>
+	<string name="prefLinkAddresses">Создавать ссылки для запуска приложения карт</string>
 			
 	<!-- syncNotes -->
 
@@ -378,13 +379,13 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Заметки Tomdroid</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">Клиент Tomboy для Android. Tomboy — это приложение для ведения заметок для настольных компьютеров, обладающее простым интерфейсом и использующее разметку wikiwiki.\n\n* Формат заметок совместим с Tomboy\n* Синхронизация через интернет с Rainy, Snowy или Tomboy Online\n* Импорт с SD карты\n* Ярлыки на рабочем столе\n* Открытый исходный код!</string>
+	<string name="market_description">Tomboy это клиент для Android. Tomboy это приложение для  создания заметок, использующий  подход wikiwiki к их созданию и простой интерфейс.\n\n* Формат заметок совместим с Tomboy\n* Онлайн синхронизация с Rainy, Snowy или Tomboy Online\n* Перенос на SD карту\n*  Ярлыки для рабочего стола \n* Посылайте или принимайте текст или файлы из любого приложения \n* Open source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Приложение для написания заметок с онлайн синхронизацией и совместимое с Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.8.0 \"NAME\" release\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\n</string>
+        <string name="market_recent_changes">* Заметки не могут быть созданы, отредактированы или удалены\n* Полностью переработан как для планшетов так и для смартфонов\n* Синхронизируйте свою записи с подходящим веб-сервисом или сохраните на вашу SD карту\n* Посылайте или принимайте заметки из любого приложения\n* Более гибок чем прежде\n* Доступен в еще большем количестве языков\n\n И многое другое, чтобы узнать обо всех изменениях, посетите https://launchpad.net/tomdroid/+announcements</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

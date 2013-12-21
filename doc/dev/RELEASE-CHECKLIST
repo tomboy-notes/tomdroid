@@ -2,13 +2,16 @@ Make sure to do this before every release:
 
 Testing
 - Download Translations from Launchpad and convert them to xml (described in util/xml2po/README)
-- Test all functionality and selected translations on emulator 1.6 (base), 2.3 (still common) and 4.3 (latest)
+- Run Unit Tests
+- Test all functionality and selected translations on emulator 1.6 (base), 2.3 (still common) and 4.4 (latest)
 - Test with "Immediately destroy activities" debug setting
 - Test all text inputs with virtual keyboard
 - Test with public sdcard image all the bug notes to spot regressions
+- Test sharing a note and receiving a note to/from any other app
+- Test creating and deleting shortcuts on homescreen
 
 Preparing the release
-- Increment version number in AndroidManifest.xml (android:versionCode and android:versionName), README
+- Remove "dev" from version number in AndroidManifest.xml (android:versionCode and android:versionName), README
 - Make sure TODO is up-to-date
 - Update the NEWS file
 - Make sure README is accurate
@@ -34,7 +37,7 @@ Releasing on launchpad
 - Put the files on launchpad (SRC, README, APK)
 - Announce on launchpad
 
-Releasing on the market
+Releasing on the Google Play Store / Amazon Appstore
 - Make sure description and all is still accurate. The strings are in res/values/strings.xml (and check for updated translations too)
 - Take screenshots and put them in data/market-screenshots/ and upload them to the market (if relevant)
 - Publish

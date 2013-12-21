@@ -418,7 +418,7 @@ public class SdCardSyncService extends SyncService {
 			return;
 		}
 		
-		path = new File(Tomdroid.NOTES_PATH + guid + ".note");
+		path = new File(Tomdroid.NOTES_PATH + "/" + guid + ".note");
 
 		syncInThread(new Worker(path, false, false));
 		

@@ -25,7 +25,7 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Aplikace kompatibilní s Tomboy, sloužící pro ukládání poznámek ve wiki formátu.</string>
+	<string name="app_desc">Vytváření wiki poznámek kompatibilní s aplikací Tomboy</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
@@ -170,6 +170,7 @@
 	<string name="strike"><strike>S</strike></string>
 	<string name="mono">monospace</string>
 	<string name="highlight">zvýraznit</string>
+	<!-- Button label to select font size -->
 	<string name="size">velikost</string>
 	<string name="titleErrorParsingXML">Chyba při načítání poznámky</string>
 	<string name="messageErrorParsingXML">Nastala chyba při načítání poznámky. Zkontrolujte prosím vaše XML.</string>
@@ -378,13 +379,14 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid poznámky</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">Tomboy klient pro Android. Tomboy je desktopová aplikace pro ukládání poznámek používající wikiwiki styl a jednoduché uživateleské rozhraní.\n\n* Formát poznámek je kompatibilní s Tomboy\n* Online poznámkovou synchronizací s Rainy, Snowy nebo Tomboy Online\n* SD karta import\n* Domovská obrazovka zkratky\n* Open source!</string>
+	<string name="market_description">Pozámky Tomboy v Androidu. Tomboy je dektopová aplikace využívající wiki-přístup a jednoduché uživatelské rozhraní.
+\n\n*Formát poznámek kompatibilní s aplikací Tomboy\n*Online synchronizace se službami Rainy, Snowy a Tomboy Online\n*Import poznámek z SD karty\n*Zástupce na domácí obrazovce\n*Přijímejte a posílejte text nebo poznámky do jakékoli aplikace\n*Open Source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Aplikace pro ukládání poznámek s online synchronizací kompatibilní s aplikací Tomboy.</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.8.0 \"NAME\" release\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\n</string>
+        <string name="market_recent_changes">* Poznámky nyní mohou být vytvářeny, editovány a mazány\n*Optimalizováno pro použití na telefonech i tabletech\n*Synchronizujte poznámky s kompatibilními službamy nebo na SD kartu\n*Přijímejte a odesílejte soubory poznámek nebo text z jakékoli aplikace\n*Více možností nastavení\*Dostupné v ještě více jazycích\n\n A mnoho dalších novinek. Pro kompletní seznam změn navštivte https://launchpad.net/tomdroid/+announcements</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

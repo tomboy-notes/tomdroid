@@ -25,11 +25,11 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Tomboy compatible wikiwiki note-taking app that can take notes.</string>
+	<string name="app_desc">相容於 Tomboy 的高效率做筆記應用程式。</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
-	<string name="strListEmptyWaiting">Please wait while the notes load…</string>
+	<string name="strListEmptyWaiting">當載入筆記時，請稍候...</string>
 	<string name="strListEmptyNoNotes">沒有筆記在Tomdroid的資料庫中。</string>
 	
 	<!-- Menu entry with icon -->
@@ -65,8 +65,8 @@
 	<string name="prefTomboyWeb">線上同步化</string>
 	<string name="prefAuthenticate">驗證</string>
 	<string name="prefLocation">SD卡上的位置</string>
-	<string name="prefSyncOnStart">Autosync on Startup</string>
-	<string name="prefDescSyncOnStart">Synchronise your notes on appstart</string>
+	<string name="prefSyncOnStart">啟動時，自動同步</string>
+	<string name="prefDescSyncOnStart">程式啟動時，同步您的筆記</string>
 	<!-- %1$s will be repaced by the folder name eg /tomdroid -->
 	<string name="prefFolderCreated">該資料夾「%1$s」不存在。請連接您的裝置到電腦上，建立該資料夾並放置帶有「*.note」的檔案。</string>
 	<!-- %1$s will be repaced by the folder name eg /testfolder -->
@@ -95,9 +95,9 @@
 	<string name="messageNoSDCard">沒有找到SD卡存放。</string>
 	
 	<!-- NoteSorting -->
-	<string name="titleDefaultSorting">Choose default sorting method</string>
-	<string name="prefDefaultSortingTitle">Default Sort Method</string>
-	<string name="prefSorting">Sort By:</string>
+	<string name="titleDefaultSorting">選擇預設排序方法</string>
+	<string name="prefDefaultSortingTitle">預設排序方法</string>
+	<string name="prefSorting">排序依據：</string>
 	<string name="prefSortDate">修改日期</string>
 	<string name="prefSortTitle">筆記標題</string>
 	<string name="sortByDate">依日期排序</string>
@@ -168,9 +168,10 @@
 	<string name="italic">i</string>
 	<!-- S stands for strike through (in format bar) -->
 	<string name="strike"><strike>S</strike></string>
-	<string name="mono">monospace</string>
-	<string name="highlight">highlight</string>
-	<string name="size">size</string>
+	<string name="mono">等寬</string>
+	<string name="highlight">突顯</string>
+	<!-- Button label to select font size -->
+	<string name="size">大小</string>
 	<string name="titleErrorParsingXML">解析筆記錯誤</string>
 	<string name="messageErrorParsingXML">出現解析筆記錯誤。請檢查您的 XML 。</string>
 	<string name="messageNoteSaved">筆記，儲存在本地。</string>
@@ -193,8 +194,8 @@
 	<string name="search_title">Tomdroid - 搜尋結果</string>
 	<string name="shortcut_title">Tomdroid - 捷徑</string>
 	<string name="pref_title">Tomdroid - 設定</string>
-	<string name="compare_title">Tomdroid - Note Conflict</string>
-	<string name="filePickerTitle">Tomdroid - Import Note</string>
+	<string name="compare_title">Tomdroid - 筆記衝突</string>
+	<string name="filePickerTitle">Tomdroid - 匯入筆記</string>
 			
 	<!-- new prefs -->
 	<!-- subheader in settings -->
@@ -219,27 +220,27 @@
 	<string name="autoBackupPrefTitle">自動備份</string>
 	<string name="autoBackupPref">複製本地筆記到SD卡上儲存</string>
 	<!-- subheader in settings -->
-	<string name="prefLinks">Hyperlink Preferences</string>
+	<string name="prefLinks">超連結偏好設定</string>
 	<!-- Checkbox in settings -->
-	<string name="prefLinkTitlesTitle">Link Titles</string>
+	<string name="prefLinkTitlesTitle">連結標題</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkTitles">Link to other note titles</string>
+	<string name="prefLinkTitles">連結到其他筆記標題</string>
 	<!-- Checkbox in settings -->
-	<string name="prefLinkUrlsTitle">Link Web Addresses"</string>
+	<string name="prefLinkUrlsTitle">連結網址"</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkUrls">e.g. "www.google.com"</string>
+	<string name="prefLinkUrls">例如 "www.google.com"</string>
 	<!-- Checkbox in settings -->
-	<string name="prefLinkEmailsTitle">Link Emails</string>
+	<string name="prefLinkEmailsTitle">連結電子郵件</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkEmails">e.g. name@address.com</string>
+	<string name="prefLinkEmails">例如 name@address.com</string>
 	<!-- Checkbox in settings -->
-	<string name="prefLinkPhonesTitle">Link Telephone Numbers</string>
+	<string name="prefLinkPhonesTitle">連結電話號碼</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkPhones">Link telephone numbers to phone app</string>
+	<string name="prefLinkPhones">連結電話號碼到手機應用程式</string>
 	<!-- Checkbox in settings -->
-	<string name="prefLinkAddressesTitle">Link Map Addresses</string>
+	<string name="prefLinkAddressesTitle">連結地圖地址</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkAddresses">Link addresses to maps app</string>
+	<string name="prefLinkAddresses">連結地址到地圖應用</string>
 			
 	<!-- syncNotes -->
 
@@ -249,7 +250,7 @@
 	<string name="gettings_notes">獲取遠端筆記的清單...</string>
 	<string name="syncing_local">更新本地筆記...</string>
 	<string name="syncing_remote">更新遠端筆記...</string>
-	<string name="sync_conflict_description">There was a conflict syncing the note \'%1$s\'</string>
+	<string name="sync_conflict_description">同步筆記「%1$s」有衝突</string>
 	<string name="sync_conflict_message">Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
 	<string name="sync_conflict_deleted">The local version was already deleted.  Please choose from one of the actions below.</string>
 	<string name="sync_conflict_titles_message">A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
@@ -378,13 +379,13 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid筆記</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Open source!</string>
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Send and receive text or note-files from any app\n* Open source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Note-taking app with online synchronization compatible with Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.8.0 \"NAME\" release\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\n</string>
+        <string name="market_recent_changes">* Notes can now be created, edited and deleted\n* Completely redesigned for both tablets and phones\n* Sync your notes with compatible web-services or to your SD card\n* Send and receive note files or text from any app\n* More configurable than before\n* Available in even more languages\n\n And much more, for a complete list of changes please see https://launchpad.net/tomdroid/+announcements</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:

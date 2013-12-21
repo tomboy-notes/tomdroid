@@ -288,7 +288,7 @@ public class EditNote extends ActionBarActivity {
 				startActivity(new Intent(this, PreferencesActivity.class));
 				return true;
 			case R.id.edit_note_save:
-				saveNote();
+				finish();
 				return true;
 			case R.id.edit_note_discard:
 				discardNoteContent();
@@ -506,8 +506,8 @@ public class EditNote extends ActionBarActivity {
 
 		Toast.makeText(this, getString(R.string.messageNoteSaved), Toast.LENGTH_SHORT).show();
 		TLog.v(TAG, "note saved");
-		showNote(false);	// redraw the note, do not show XML
-		finish();
+		//showNote(false);	// redraw the note, do not show XML
+		//finish();
 	}
 
 	private void discardNoteContent() {

@@ -25,7 +25,7 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Tomboy-kompatibelt program för att ta anteckningar, med wikiinriktning.</string>
+	<string name="app_desc">Tomboy-kompatibel wiki-baserad anteckningsapp.</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
@@ -170,6 +170,7 @@
 	<string name="strike"><strike>S</strike></string>
 	<string name="mono">fast breddsteg</string>
 	<string name="highlight">färgmarkera</string>
+	<!-- Button label to select font size -->
 	<string name="size">storlek</string>
 	<string name="titleErrorParsingXML">Ett fel uppstod när anteckningen analyserades</string>
 	<string name="messageErrorParsingXML">Ett fel uppstod när anteckningen analyserades. Kontrollera din XML.</string>
@@ -378,13 +379,13 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid-anteckningar</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">En Tomboy-klient för Android. Tomboy är ett skrivbordsprogram för att t a anteckningar. Det har wikiinriktning och ett enkelt användargränssnitt.\n\n* Anteckningsfilformat kompatibelt med Tomboy\n* Anteckningssynkronisering via nätet med Rainy, Snowy eller Tomboy Online\n* Import av information från SD-kort\n* Startskärmsgenvägar\n* Öppen källkod!</string>
+	<string name="market_description">En Tomboy-klient för Android. Tomboy är en anteckningsapp av wiki-typ med ett enkelt användargränssnitt.\n\n* Formatkompatibel med Tomboy\n* Online-synkronisering av anteckningar mot Rainy, Snowy eller Tomboy Online\n* Import från SD-kort\n* Snabblänkar på hemskärmen\n* Skicka/ta emot text eller anteckningsfiler från valfri app\n* Öppen källkod!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Program för att ta anteckningar, med onlinesynkronisering och kompatibelt med Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.8.0 \"NAME\" release\n* ADD LIST OF FEATURES. DO NOT TRANSLATE YET.\n</string>
+        <string name="market_recent_changes">* Anteckningar kan nu skapas, redigeras och tas bort\n* Helt ny formgivning för både pekplattor och telefoner\n* Synkronisera dina anteckningar med kompatibla webbtjänster eller till ditt SD-kort\n* Skicka och ta emot anteckningsfiler eller text från vilken annan app som helst\n* Mer anpassningsbar än tidigare\n* Nu tillgänglig på ännu fler språk …\n\n … m.m. För en fullständig lista över ändringar, gå till https://launchpad.net/tomdroid/+announcements</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
