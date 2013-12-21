@@ -420,9 +420,9 @@ public class Tomdroid extends ActionBarListActivity {
 			case R.id.tags:
 				showDialog(DIALOG_VIEW_TAGS);
 				break;
-			case R.id.revert:
-				this.revertNote(dialogNote.getGuid());
-				break;
+			//case R.id.revert:
+			//	this.revertNote(dialogNote.getGuid());
+			//	break;
 			case R.id.delete:
 				dialogString = dialogNote.getGuid();
 				dialogInt = dialogPosition;
