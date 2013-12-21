@@ -1,5 +1,14 @@
 2013-12-21  Stefan Hammer  <j.4@gmx.at>
 
+	* ChangeLog:
+	* NEWS:
+	* README:
+	* src/org/tomdroid/util/TLog.java:
+
+	reached the releaseing on lauchpad headline in the release checklist.
+
+2013-12-21  Stefan Hammer  <j.4@gmx.at>
+
 	* data/market-screenshots/0.7.4 - note-options-And4.4.png:
 	* res/menu/main_longclick.xml:
 	* res/menu/main_longclick_deleted.xml:
