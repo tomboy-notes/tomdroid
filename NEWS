@@ -13,7 +13,14 @@ Join it at: https://launchpad.net/~tomdroid-dev
 For more details and developer visible changes see the ChangeLog
 
 -------------------------------------------------------------------------------
-Tomdroid 0.7.4 - "<name>" released on <release-date>
+Tomdroid 0.8.0 - "<name>" released on <date>
+
+
+-------------------------------------------------------------------------------
+Tomdroid 0.7.4 - "<name>" released on 2013-12-21
+
+* updated translations: new languages are Occitan, Slovak, Albanian, Sundanese
+* fixed some more minor bugs related to strings and spelling mistakes
 
 -------------------------------------------------------------------------------
 Tomdroid 0.7.3 beta - "Almost there!" released on 2013-10-24

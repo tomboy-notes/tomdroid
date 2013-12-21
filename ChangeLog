@@ -1,3 +1,221 @@
+2013-12-21  Stefan Hammer  <j.4@gmx.at>
+
+	* data/market-screenshots/0.7.4 - note-options-And4.4.png:
+	* res/menu/main_longclick.xml:
+	* res/menu/main_longclick_deleted.xml:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	revert ist not working for sdcard or online sync - disable it for now.
+
+2013-12-21  Stefan Hammer  <j.4@gmx.at>
+
+	* data/market-screenshots/0.7.4 - note-list-And4.4.png:
+	* data/market-screenshots/0.7.4 - note-view-And4.4.png:
+	* data/market-screenshots/0.7.4 - tablet-edit-view.png:
+	* data/market-screenshots/0.7.4 - tablet-view.png:
+	* sdcard.img:
+
+	added 0.7.4 screenshots
+
+2013-12-21  Stefan Hammer  <j.4@gmx.at>
+
+	* data/market-screenshots/0.7.4 - note-options-And4.4.png:
+	* data/market-screenshots/0.7.4 - preferences-And4.4.png:
+	* data/market-screenshots/0.7.4 - welcome-dialog-And4.4.png:
+	* data/market-screenshots/0.7.4- note-edit-And4.4.png:
+	* locales/tomdroid-oc.po:
+	* locales/tomdroid-sk.po:
+	* locales/tomdroid-sq.po:
+	* locales/tomdroid-su.po:
+	* res/values-oc:
+	* res/values-oc/strings.xml:
+	* res/values-sk:
+	* res/values-sk/strings.xml:
+	* res/values-sq:
+	* res/values-sq/strings.xml:
+	* res/values-su:
+	* res/values-su/strings.xml:
+	* AndroidManifest.xml:
+	* doc/dev/RELEASE-CHECKLIST:
+	* locales/tomdroid-ar.po:
+	* locales/tomdroid-bg.po:
+	* locales/tomdroid-bs.po:
+	* locales/tomdroid-ca.po:
+	* locales/tomdroid-cs.po:
+	* locales/tomdroid-da.po:
+	* locales/tomdroid-de.po:
+	* locales/tomdroid-el.po:
+	* locales/tomdroid-en_AU.po:
+	* locales/tomdroid-en_GB.po:
+	* locales/tomdroid-eo.po:
+	* locales/tomdroid-es.po:
+	* locales/tomdroid-et.po:
+	* locales/tomdroid-eu.po:
+	* locales/tomdroid-fa.po:
+	* locales/tomdroid-fi.po:
+	* locales/tomdroid-fo.po:
+	* locales/tomdroid-fr.po:
+	* locales/tomdroid-gd.po:
+	* locales/tomdroid-gl.po:
+	* locales/tomdroid-hi.po:
+	* locales/tomdroid-hr.po:
+	* locales/tomdroid-hu.po:
+	* locales/tomdroid-id.po:
+	* locales/tomdroid-is.po:
+	* locales/tomdroid-it.po:
+	* locales/tomdroid-ja.po:
+	* locales/tomdroid-jv.po:
+	* locales/tomdroid-ko.po:
+	* locales/tomdroid-la.po:
+	* locales/tomdroid-ml.po:
+	* locales/tomdroid-ms.po:
+	* locales/tomdroid-nb.po:
+	* locales/tomdroid-nl.po:
+	* locales/tomdroid-pl.po:
+	* locales/tomdroid-pt.po:
+	* locales/tomdroid-pt_BR.po:
+	* locales/tomdroid-ru.po:
+	* locales/tomdroid-si.po:
+	* locales/tomdroid-sr.po:
+	* locales/tomdroid-sv.po:
+	* locales/tomdroid-ta.po:
+	* locales/tomdroid-te.po:
+	* locales/tomdroid-tr.po:
+	* locales/tomdroid-ug.po:
+	* locales/tomdroid-uk.po:
+	* locales/tomdroid-vi.po:
+	* locales/tomdroid-zh_CN.po:
+	* locales/tomdroid-zh_TW.po:
+	* res/values-ar/strings.xml:
+	* res/values-bg/strings.xml:
+	* res/values-bs/strings.xml:
+	* res/values-ca/strings.xml:
+	* res/values-cs/strings.xml:
+	* res/values-da/strings.xml:
+	* res/values-de/strings.xml:
+	* res/values-el/strings.xml:
+	* res/values-en-rAU/strings.xml:
+	* res/values-en-rGB/strings.xml:
+	* res/values-eo/strings.xml:
+	* res/values-es/strings.xml:
+	* res/values-et/strings.xml:
+	* res/values-eu/strings.xml:
+	* res/values-fa/strings.xml:
+	* res/values-fi/strings.xml:
+	* res/values-fo/strings.xml:
+	* res/values-fr/strings.xml:
+	* res/values-gd/strings.xml:
+	* res/values-gl/strings.xml:
+	* res/values-hi/strings.xml:
+	* res/values-hr/strings.xml:
+	* res/values-hu/strings.xml:
+	* res/values-id/strings.xml:
+	* res/values-is/strings.xml:
+	* res/values-it/strings.xml:
+	* res/values-ja/strings.xml:
+	* res/values-jv/strings.xml:
+	* res/values-ko/strings.xml:
+	* res/values-la/strings.xml:
+	* res/values-ml/strings.xml:
+	* res/values-ms/strings.xml:
+	* res/values-nb/strings.xml:
+	* res/values-nl/strings.xml:
+	* res/values-pl/strings.xml:
+	* res/values-pt-rBR/strings.xml:
+	* res/values-pt/strings.xml:
+	* res/values-ru/strings.xml:
+	* res/values-si/strings.xml:
+	* res/values-sr/strings.xml:
+	* res/values-sv/strings.xml:
+	* res/values-ta/strings.xml:
+	* res/values-te/strings.xml:
+	* res/values-tr/strings.xml:
+	* res/values-ug/strings.xml:
+	* res/values-uk/strings.xml:
+	* res/values-vi/strings.xml:
+	* res/values-zh-rCN/strings.xml:
+	* res/values-zh-rTW/strings.xml:
+	* res/values-zh/strings.xml:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/ui/EditNote.java:
+
+	Preparations for 0.7.4 stable release. fixed small bug when saving a note, updated translations, added things to release checklist
+
+2013-12-16  Stefan Hammer  <j.4@gmx.at>
+
+	* data/icon-launcher/icon-114.png:
+
+	Added an 114x114 icon for the Amazon app store
+
+2013-10-25  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid.pot:
+	* res/values/strings.xml:
+
+	fix play store whats new section according to bug lg:1244445 and lp:1244412
+
+2013-10-24  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid.pot:
+	* res/values/strings.xml:
+
+	fix bug lp 1244409 string changes
+
+2013-10-24  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid.pot:
+	* res/values/strings.xml:
+
+	missed the maximum length of 500 characters for the whats new section
+
+2013-10-24  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid.pot:
+	* res/values/strings.xml:
+
+	Added google play store whats new string to get it translated in time for the stable release
+
+2013-10-24  Stefan Hammer  <j.4@gmx.at>
+
+	* AndroidManifest.xml:
+	* src/org/tomdroid/util/TLog.java:
+
+	now it is time to start working on 0.7.4
+
+2013-10-24  Stefan Hammer  <j.4@gmx.at>
+
+	* doc/dev/RELEASE-CHECKLIST:
+
+	released 0.7.3
+
+2013-10-24  Stefan Hammer  <j.4@gmx.at>
+
+	* .settings/org.eclipse.jdt.ui.prefs:
+	* .settings/org.eclipse.jdt.core.prefs:
+	* NEWS:
+
+	added release date for 0.7.3 beta
+
+2013-10-19  Stefan Hammer  <j.4@gmx.at>
+
+	* AUTHORS:
+	* AndroidManifest.xml:
+	* ChangeLog:
+	* NEWS:
+	* README:
+	* doc/dev/RELEASE-CHECKLIST:
+	* doc/dev/TODO:
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/sync/web/WebConnection.java:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+	* src/org/tomdroid/util/Receive.java:
+	* src/org/tomdroid/util/TLog.java:
+	* src/org/tomdroid/xml/NoteContentHandler.java:
+
+	going through release-todo list to get 0.7.3 done! now updated copyrights, authors, news, readme, changelog,... still need the signed apk from olivier and a release text!
+
 2013-10-19  Stefan Hammer  <j.4@gmx.at>
 
 	* locales/tomdroid-en_AU.po:
