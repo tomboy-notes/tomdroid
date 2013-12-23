@@ -24,6 +24,14 @@ package org.tomdroid.xml;
 
 public class XmlUtils {
 	
+	public static String removeIllegal(String input) {
+		
+		String invalidXMLChars = "[^[\\u0009\\u000A\\u000D][\\u0020-\\uD7FF][\\uE000-\\uFFFD][\\u10000-\\u10FFFF]]";
+		
+		return input
+				.replaceAll(invalidXMLChars, "�");
+	}
+	
 	/**
 	 * Useful to replace the characters forbidden in xml by their escaped counterparts
 	 * Ex: &amp; -> &amp;amp;
@@ -32,6 +40,7 @@ public class XmlUtils {
 	 * @return the escaped string
 	 */
 	public static String escape(String input) {
+		
 		return input
 			.replace("&", "&amp;")
 			.replace("<", "&lt;")

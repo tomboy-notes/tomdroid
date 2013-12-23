@@ -538,7 +538,8 @@ public class NoteXMLContentBuilder implements Runnable {
 		for (TagNode child : children){
 			try {
 				if (child.getType().equals(TagType.TEXT)) {
-					serializer.text(child.text);
+					// remove illegal xml characters!
+					serializer.text(XmlUtils.removeIllegal(child.text));
 				} else {
 					serializer.startTag("", child.getTagName());
 					if (child.getType().equals(TagType.LIST_ITEM)) {
