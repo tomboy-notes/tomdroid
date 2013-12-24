@@ -31,7 +31,7 @@ import static java.text.MessageFormat.format;
  */
 public class TLog {
     // Logging should be disabled for release builds
-    private static final boolean LOGGING_ENABLED = false;
+    private static final boolean LOGGING_ENABLED = true;
 
     public static void v(String tag, Throwable t, String msg, Object... args) {
         if (LOGGING_ENABLED) Log.v(tag, format(msg, args), t);
