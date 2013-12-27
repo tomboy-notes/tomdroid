@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: tomdroid\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-10-25 14:49+0200\n"
-"PO-Revision-Date: 2012-09-01 18:19+0000\n"
+"PO-Revision-Date: 2012-04-10 01:15+0000\n"
 "Last-Translator: Asier Iturralde Sarasola <Unknown>\n"
 "Language-Team: Basque <eu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-12-21 09:29+0000\n"
-"X-Generator: Launchpad (build 16872)\n"
+"X-Launchpad-Export-Date: 2013-12-27 10:28+0000\n"
+"X-Generator: Launchpad (build 16877)\n"
 
 #. application details
 #: tmp_strings.xml:27(string)
@@ -1098,8 +1098,35 @@ msgstr ""
 "  Asier Iturralde Sarasola https://launchpad.net/~asier-iturralde\n"
 "  Stefan Hammer https://launchpad.net/~j-4"
 
+#~ msgid ""
+#~ "Tomboy compatible wikiwiki note-taking application that can't take notes yet."
+#~ msgstr ""
+#~ "Tomboy-rekin bateragarria den oharrak hartzeko wiki aplikazioa, oraingoz "
+#~ "oharrak hartzeko aukerarik ematen ez duena."
+
 #~ msgid "Please wait while the notes load.."
 #~ msgstr "Mesedez, itxaron oharrak kargatu bitartean..."
+
+#~ msgid ""
+#~ "Welcome to Tomdroid.\\n\\nPlease note that this is beta quality software and "
+#~ "that it contains known problems, like its inability to edit notes.\\n\\nWe "
+#~ "are well aware of these issues and intend to work on them quickly but I also "
+#~ "wanted to get something out and tested as quickly as possible.\\n\\nIf you "
+#~ "would like to contribute, help at all levels would be appreciated. Hop on "
+#~ "board on launchpad.net/tomdroid and contact us!\\n"
+#~ msgstr ""
+#~ "Ongietorri Tomdroid-era.\\n\\nMesedez, kontutan izan hau beta kalitateko "
+#~ "softwarea dela eta zenbait arazo ezagun dituela, hala nola, oharrak "
+#~ "editatzeko ezintasuna.\\n\\nArazo hauen jakitun gara eta konpontzen saiatuko "
+#~ "gara baina  aplikazioa lehenbailehen argitaratu eta testatu nahi genuen.\\n\\"
+#~ "nParte hartu nahi baduzu, edozein motatako laguntza eskertuko genuke. Zoaz "
+#~ "launchpad.net/tomdroid-era eta jarri gurekin harremanetan!\\n"
+
+#~ msgid "Please wait while note loads..."
+#~ msgstr "Mesedez, itxaron oharrak kargatu bitartean..."
+
+#~ msgid "Completing authentication. Please wait..."
+#~ msgstr "Autentifikazioa burutzen. Mesedez, itxaron..."
 
 #~ msgid "Choose the default sorting"
 #~ msgstr "Aukeratu ordenatze lehenetsia"
@@ -1107,11 +1134,34 @@ msgstr ""
 #~ msgid "Default sort"
 #~ msgstr "Ordenatze lehenetsia"
 
+#~ msgid "Search Options"
+#~ msgstr "Bilaketa aukerak"
+
 #~ msgid ""
 #~ "Note-taking application with online synchronization compatible with Tomboy"
 #~ msgstr ""
 #~ "Lineako sinkronizazioadun oharrak hartzeko aplikazioa, Tomboyrekin "
 #~ "bateragarria"
+
+#~ msgid "SD card not found."
+#~ msgstr "Ez da SD txartelik aurkitu."
+
+#~ msgid "\\\"%1$s\\\" contains invalid characters.\\nPlease try again!"
+#~ msgstr ""
+#~ "\\\"%1$s\\\"-(e)k baliogabeko karaktereak dauzka.\\nMesedez, saiatu berriz!"
+
+#~ msgid ""
+#~ "The requested note could not be parsed. If you are able to replicate the "
+#~ "problem, please contact us!"
+#~ msgstr ""
+#~ "Eskatutako oharra ezin izan da analizatu. Arazoa errepikatzeko gauza bazara, "
+#~ "jarri gurekin harremanetan!"
+
+#~ msgid "Save to SD card"
+#~ msgstr "Gorde SD txartelean"
+
+#~ msgid "Could not save the errors, please check your SD card."
+#~ msgstr "Ezin izan dira erroreak gorde, mesedez, egiaztatu zure SD txartela."
 
 #~ msgid "Change Sort"
 #~ msgstr "Aldatu ordenatzea"

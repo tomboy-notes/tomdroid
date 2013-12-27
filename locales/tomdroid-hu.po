@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: tomdroid\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-10-25 14:49+0200\n"
-"PO-Revision-Date: 2013-10-25 06:20+0000\n"
-"Last-Translator: Péter Trombitás <trombipeti@gmail.com>\n"
+"PO-Revision-Date: 2012-06-23 06:33+0000\n"
+"Last-Translator: Horváth Zoltán <Unknown>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-12-21 09:29+0000\n"
-"X-Generator: Launchpad (build 16872)\n"
+"X-Launchpad-Export-Date: 2013-12-27 10:28+0000\n"
+"X-Generator: Launchpad (build 16877)\n"
 
 #. application details
 #: tmp_strings.xml:27(string)
@@ -1115,15 +1115,66 @@ msgstr ""
 #~ msgid "Please wait while the notes load.."
 #~ msgstr "Várjon türelemmel, amíg a jegyzetek betöltődnek..."
 
+#~ msgid "Please wait while note loads..."
+#~ msgstr "Várjon türlemmel, amíg a jegyzet betöltődik..."
+
+#~ msgid "Completing authentication. Please wait..."
+#~ msgstr "Hitelesítés folyamatban. Várjon türelemmel..."
+
 #~ msgid "Choose the default sorting"
 #~ msgstr "Alapértelmezett rendezés választása"
 
 #~ msgid "Default sort"
 #~ msgstr "Alapértelmezett rendezés"
 
+#~ msgid "Search Options"
+#~ msgstr "Keresési beállítások"
+
 #~ msgid ""
 #~ "Note-taking application with online synchronization compatible with Tomboy"
 #~ msgstr "Jegyzetfüzet-alkalmazás Tomboy-kompatibilis online szinkronizációval"
+
+#~ msgid ""
+#~ "Welcome to Tomdroid.\\n\\nPlease note that this is beta quality software and "
+#~ "that it contains known problems, like its inability to edit notes.\\n\\nWe "
+#~ "are well aware of these issues and intend to work on them quickly but I also "
+#~ "wanted to get something out and tested as quickly as possible.\\n\\nIf you "
+#~ "would like to contribute, help at all levels would be appreciated. Hop on "
+#~ "board on launchpad.net/tomdroid and contact us!\\n"
+#~ msgstr ""
+#~ "Üdvözli a Tomdroid.\\n\\nVegye figyelembe, hogy ez egy béta minőségű "
+#~ "szoftver, több ismert hibája is van, például, hogy nem tud jegyzetet "
+#~ "szerkeszteni.\\n\\nMind tisztában vagyunk a hibákkal, és amint lehet, "
+#~ "javítjuk őket, de mindenképpen fontos, hogy minél előbb el lehessen kezdeni "
+#~ "a tesztelést.\\n\\nHa szeretne közreműködni, minden jellegű segítség "
+#~ "méltányolva lesz. Vegye fel a kapcsolatot velünk a launchpad.net/tomdroid "
+#~ "oldalon!\\n"
+
+#~ msgid ""
+#~ "Tomboy compatible wikiwiki note-taking application that can't take notes yet."
+#~ msgstr ""
+#~ "Tomboy-kompatibilis wikiwiki jegyzetfüzet-alkalmazás, amely még nem tud "
+#~ "jegyzeteket létrehozni."
+
+#~ msgid "SD card not found."
+#~ msgstr "SD kártya nem található."
+
+#~ msgid "\\\"%1$s\\\" contains invalid characters.\\nPlease try again!"
+#~ msgstr ""
+#~ "\\\"%1$s\\\" érvénytelen karaktereket tartalmaz.\\nKérem, próbálja újra!"
+
+#~ msgid ""
+#~ "The requested note could not be parsed. If you are able to replicate the "
+#~ "problem, please contact us!"
+#~ msgstr ""
+#~ "A kért jegyzet nem értelmezhető. Ha Ön képes megismételni ezt a hibát, "
+#~ "kérjük jelezze felénk!"
+
+#~ msgid "Could not save the errors, please check your SD card."
+#~ msgstr "A hibák nem menthetőek, kérem ellenőrízze az SD kártyáját!"
+
+#~ msgid "Save to SD card"
+#~ msgstr "Mentés SD kártyára"
 
 #~ msgid "Change Sort"
 #~ msgstr "Rendezés módosítása"

@@ -2,22 +2,20 @@
 # Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
 # This file is distributed under the same license as the tomdroid package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
-# Саша Петровић <salepetronije@gmail.com>, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: tomdroid\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-10-25 14:49+0200\n"
-"PO-Revision-Date: 2013-10-26 05:23+0000\n"
-"Last-Translator: Саша Петровић <salepetronije@gmail.com>\n"
-"Language-Team: српски <>\n"
+"PO-Revision-Date: 2013-01-14 13:38+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Serbian <sr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-12-21 09:29+0000\n"
-"X-Generator: Launchpad (build 16872)\n"
-"Language: sr\n"
+"X-Launchpad-Export-Date: 2013-12-27 10:28+0000\n"
+"X-Generator: Launchpad (build 16877)\n"
 
 #. application details
 #: tmp_strings.xml:27(string)
@@ -35,7 +33,7 @@ msgstr "Olivier Bilodeau"
 #. main.xml
 #: tmp_strings.xml:32(string)
 msgid "Please wait while the notes load…"
-msgstr "Молим, сачекајте док се бележница не учита."
+msgstr "Молим, сачекајте док се бележница учита."
 
 #: tmp_strings.xml:33(string)
 msgid "There are no notes in Tomdroid's database."
@@ -84,7 +82,7 @@ msgstr ""
 #. \n\n are linebreaks, %1$s etc are the name of the Author, the version and the license name
 #: tmp_strings.xml:47(string)
 msgid "%1$s\\n\\nAuthor: %2$s\\nVersion: %3$s\\nLicensed under the GPLv3"
-msgstr "%1$s\\n\\nАутор: %2$s\\nИздање: %3$s\\nОбјављено под  GPLv3"
+msgstr "%1$s\\n\\nСтваралац: %2$s\\nИздање: %3$s\\nОбјављено под  GPLv3"
 
 #. positive Button
 #: tmp_strings.xml:50(string)
@@ -113,7 +111,7 @@ msgstr "Сачувај"
 #. note-view.xml
 #: tmp_strings.xml:60(string)
 msgid "Please wait while note loads…"
-msgstr "Молим, сачекајте док се белешка не учита..."
+msgstr "Молим, сачекајте док се белешка учита..."
 
 #: tmp_strings.xml:62(string)
 msgid "Service"
@@ -133,7 +131,7 @@ msgstr "Усклађивање преко мреже"
 
 #: tmp_strings.xml:66(string)
 msgid "Authenticate"
-msgstr "Потврди идентитет"
+msgstr "Пријава"
 
 #: tmp_strings.xml:67(string)
 msgid "Location on SD Card"
@@ -141,7 +139,7 @@ msgstr "Путања на СД картици"
 
 #: tmp_strings.xml:68(string)
 msgid "Autosync on Startup"
-msgstr "Самопокрени усклађивање по покретању"
+msgstr "Самопокрени усклађивање при покретању"
 
 #: tmp_strings.xml:69(string)
 msgid "Synchronise your notes on appstart"
@@ -153,7 +151,7 @@ msgid ""
 "The folder \\\"%1$s\\\" does not exist yet. Please connect your device to "
 "the computer, create the folder and fill it with *.note files."
 msgstr ""
-"Фасцикла „%1$s“ још увек није направљена. Молим, повежите Ваш урђај са "
+"Фасцикла „%1$s“ још увек није направљена. Молим, повежите Ваш уређај са "
 "рачунаром, направите фасциклу и испуните је *.note датотекама."
 
 #. %1$s will be repaced by the folder name eg /testfolder
@@ -168,7 +166,7 @@ msgstr "„%1$s“ није исправна ставка. Молим, поку�
 
 #: tmp_strings.xml:76(string)
 msgid "Completing authentication. Please wait…"
-msgstr "Завршавам препознавање. Моим, сачекајте..."
+msgstr "Завршавам пријаву. Молим, сачекајте..."
 
 #: tmp_strings.xml:77(string)
 msgid ""
@@ -318,7 +316,7 @@ msgstr "Претражи"
 
 #: tmp_strings.xml:124(string)
 msgid "Search Results:"
-msgstr "Излаз претраге:"
+msgstr "Излази претраге:"
 
 #: tmp_strings.xml:125(string)
 msgid "Clear search history"
@@ -389,7 +387,7 @@ msgstr "Очисти бележницу"
 
 #: tmp_strings.xml:150(string)
 msgid "Are you sure you want to clear the notes database?"
-msgstr "Да ли сте сигурни да желите очистити основу података белешки?"
+msgstr "Да ли сте сигурни да желите очистити складиште података белешки?"
 
 #: tmp_strings.xml:151(string) tmp_strings.xml:215(string)
 msgid "Delete Remote Notes"
@@ -446,7 +444,7 @@ msgstr "S"
 
 #: tmp_strings.xml:171(string)
 msgid "monospace"
-msgstr "моноразмак"
+msgstr "једноразмак"
 
 #: tmp_strings.xml:172(string)
 msgid "highlight"
@@ -476,23 +474,23 @@ msgstr "Белешка је избрисана месно."
 
 #: tmp_strings.xml:179(string)
 msgid "Select text size"
-msgstr "Одабрите величина текста"
+msgstr "Одаберите величина текста"
 
 #: tmp_strings.xml:180(string)
 msgid "Small"
-msgstr "мalа"
+msgstr "мали"
 
 #: tmp_strings.xml:181(string)
 msgid "Normal"
-msgstr "обична"
+msgstr "обичан"
 
 #: tmp_strings.xml:182(string)
 msgid "Large"
-msgstr "велика"
+msgstr "велики"
 
 #: tmp_strings.xml:183(string)
 msgid "Huge"
-msgstr "огромна"
+msgstr "огроман"
 
 #: tmp_strings.xml:184(string)
 msgid ""
@@ -503,7 +501,7 @@ msgstr ""
 
 #: tmp_strings.xml:185(string)
 msgid "Discard Changes?"
-msgstr "Одбаци измене?"
+msgstr "Одбацити измене?"
 
 #: tmp_strings.xml:187(b)
 msgid "&gt;"
@@ -536,7 +534,7 @@ msgstr "Томадроид - поставке"
 
 #: tmp_strings.xml:197(string)
 msgid "Tomdroid - Note Conflict"
-msgstr "Сукоб Томдроидових белешки"
+msgstr "Томадроид - сукоб белешки"
 
 #: tmp_strings.xml:198(string)
 msgid "Tomdroid - Import Note"
@@ -583,7 +581,7 @@ msgstr "Ако ј означено, приказиваће обрасце у с�
 
 #: tmp_strings.xml:214(string)
 msgid "Clear all notes from local database"
-msgstr "Очисти све белешке из месне основе података"
+msgstr "Очисти све белешке из месне оставе података"
 
 #: tmp_strings.xml:216(string)
 msgid "Delete all notes from remote service"
@@ -627,7 +625,7 @@ msgstr "Повежи до осталих наслова белешки"
 #. Checkbox in settings
 #: tmp_strings.xml:229(string)
 msgid "Link Web Addresses\""
-msgstr "Направи везу веб адреса"
+msgstr "Направи везу Веб адреса"
 
 #. Description for checkbox in settings
 #: tmp_strings.xml:231(string)
@@ -662,12 +660,12 @@ msgstr "Направи везе до мапа"
 #. Description for checkbox in settings
 #: tmp_strings.xml:243(string)
 msgid "Link addresses to maps app"
-msgstr "ПОвежи адресе са програмима мапа"
+msgstr "Повежи адресе са програмима мапа"
 
 #. %1$s will be replaced with "Online Synchronisation", "SD card",...
 #: tmp_strings.xml:248(string)
 msgid "Syncing with %1$s"
-msgstr "Усаглашавам са %1$s"
+msgstr "Усклађујем са %1$s"
 
 #: tmp_strings.xml:249(string)
 msgid "connecting to service…"
@@ -780,7 +778,7 @@ msgstr "Пријава на %1$s је успешна."
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
 #: tmp_strings.xml:284(string)
 msgid "Authorization with %1$s failed. Try again later!"
-msgstr "Распознавање са %1$s није успело. Покушајте опет касније!"
+msgstr "Пријава на %1$s није успела. Покушајте опет касније!"
 
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
 #: tmp_strings.xml:286(string)
@@ -833,7 +831,7 @@ msgstr "Бележница из %1$s је успешно обрисана."
 #. %1$s will be replaced with "Online Synchronization", "SD Card"...
 #: tmp_strings.xml:304(string)
 msgid "Sync with %1$s cancelled."
-msgstr "Прекинуто је усаглашавање са %1$s."
+msgstr "Прекинуто је усклађивање са %1$s."
 
 #. menu items
 #: tmp_strings.xml:308(string)
@@ -860,7 +858,7 @@ msgstr "Поништи брисање ознака"
 #. menu item with icon
 #: tmp_strings.xml:315(string)
 msgid "Import Note"
-msgstr "Увоз бележака"
+msgstr "Увези белешку"
 
 #. menu item with icon
 #: tmp_strings.xml:320(string)
@@ -910,7 +908,7 @@ msgstr "Врати бележницу из резерве"
 
 #: tmp_strings.xml:331(string)
 msgid "Restore Notes?"
-msgstr "Поврати бележницу?"
+msgstr "Да ли повратити белешке?"
 
 #: tmp_strings.xml:332(string)
 msgid "Pull all notes from SD Card? This may overwrite your existing notes."
@@ -1000,8 +998,8 @@ msgid ""
 "preferences under Settings. There are two synchronization options described "
 "below.\\n"
 msgstr ""
-"Овде још увек немате белешке. Да би почели, подесите својства усаглашавања у "
-"поставкама. Постоје две могућности усаглашавања описане испод.\\n"
+"Овде још увек немате белешке. Да би почели, подесите својства усклађивања у "
+"поставкама. Постоје две могућности усклађивања описане испод.\\n"
 
 #: tmp_strings.xml:357(item)
 msgid "=Online Synchronization="
@@ -1014,7 +1012,7 @@ msgid ""
 "Tomboy-Online, your own Rainy/Snowy server or any server supporting the "
 "Tomboy Web REST API.\\n"
 msgstr ""
-"Треба Вам Услађивање преко мреже ако желите да ускладите белешке са Томицом "
+"Треба Вам услађивање преко мреже ако желите да ускладите белешке са Томицом "
 "на мрежи, својим Rainy/Snowy служитељем или било којим сервером који "
 "подржава Tomboy Web REST API.\\n"
 
@@ -1023,8 +1021,8 @@ msgid ""
 "To use it, set Sync Service to Online Synchronization in preferences then "
 "provide a Server URL. Here are some of the public ones:"
 msgstr ""
-"Да би га користили, поставите услугу усаглашавања на усаглашавање преко "
-"мреже у поставкама, а онда подесите адресу служитеља. Ево неких јавних:"
+"Да би га користили, поставите услугу усклађивања на усклађивање преко мреже "
+"у поставкама, а онда подесите адресу служитеља. Ево неких јавних:"
 
 #. -text is for list-items.
 #: tmp_strings.xml:362(item)
@@ -1043,8 +1041,8 @@ msgid ""
 "Once set, hit the Sync logo on Tomdroid's top bar to synchronize your "
 "notes.\\n"
 msgstr ""
-"Када се подеси, притисните знак усаглашавања на Томадроидовој горњој траци "
-"за усаглашавање Ваших бележака.\\n"
+"Када се подеси, притисните знак усклађивања на Томадроидовој горњој траци за "
+"усаглашавање бележака.\\n"
 
 #: tmp_strings.xml:366(item)
 msgid ""

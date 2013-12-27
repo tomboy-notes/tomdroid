@@ -79,7 +79,7 @@
 			
 	<string name="titleSyncService">إختر خدمه المزامنه لبدأ إستخدامها</string>
 	<!-- %1$s will be replaced with "Online Synchronisation", "SD Card",...-->
-	<string name="messageSyncComplete">التزامن مع %1$ اكتمل.</string>
+	<string name="messageSyncComplete">التزامن مع %1$s اكتمل.</string>
 	<!-- %1$s will be replaced with "SD Card",... -->
 	<string name="messageSyncNoNote">تعذر إيجاد ملاحظات على %1$s.</string>
 	<string name="messageSyncNoConnection">انت غير مُتَصِل بالشبكه العنكبوتيه</string>

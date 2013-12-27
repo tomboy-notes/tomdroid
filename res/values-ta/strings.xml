@@ -79,7 +79,7 @@
 			
 	<string name="titleSyncService">ஒத்திசைவு சேவையை  பயன்படுத்த தேர்வு செய்க</string>
 	<!-- %1$s will be replaced with "Online Synchronisation", "SD Card",...-->
-	<string name="messageSyncComplete">% 1 $ s உடன் ஒருங்கிணைக்க முடிந்தது.</string>
+	<string name="messageSyncComplete">%1$s உடன் ஒருங்கிணைக்க முடிந்தது.</string>
 	<!-- %1$s will be replaced with "SD Card",... -->
 	<string name="messageSyncNoNote">$ கள்% 1 இல் குறிப்புகள் காணப்படவில்லை.</string>
 	<string name="messageSyncNoConnection">நீங்கள் இணைய இணைப்பில்இணைக்கப்படவில்லை</string>

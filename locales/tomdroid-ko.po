@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: tomdroid\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-10-25 14:49+0200\n"
-"PO-Revision-Date: 2012-08-18 13:36+0000\n"
-"Last-Translator: Stefan Hammer <Unknown>\n"
+"PO-Revision-Date: 2012-07-21 12:06+0000\n"
+"Last-Translator: CJPark <pcjpcj2@gmail.com>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-12-21 09:29+0000\n"
-"X-Generator: Launchpad (build 16872)\n"
+"X-Launchpad-Export-Date: 2013-12-27 10:28+0000\n"
+"X-Generator: Launchpad (build 16877)\n"
 
 #. application details
 #: tmp_strings.xml:27(string)
@@ -1072,3 +1072,31 @@ msgstr ""
 
 #~ msgid "Please wait while the notes load.."
 #~ msgstr "노트가 로딩될 때까지 잠시만 기다리세요."
+
+#~ msgid ""
+#~ "Welcome to Tomdroid.\\n\\nPlease note that this is beta quality software and "
+#~ "that it contains known problems, like its inability to edit notes.\\n\\nWe "
+#~ "are well aware of these issues and intend to work on them quickly but I also "
+#~ "wanted to get something out and tested as quickly as possible.\\n\\nIf you "
+#~ "would like to contribute, help at all levels would be appreciated. Hop on "
+#~ "board on launchpad.net/tomdroid and contact us!\\n"
+#~ msgstr ""
+#~ "Tomdroid에 오신 것을 환영합니다.\\n\\n현재 이 애플리케이션은 베타버전이기 때문에 노트를 수정하지 못한다는 점과 같은 문제가 "
+#~ "있습니다.\\n\\n 저희 팀은 그런 문제를 잘 알고 있으며, 기능 개선 작업을 진행 중입니다. 애플리케이션의 이른 출시는 좀 더 많은 "
+#~ "테스트를 거치기 위한 것입니다. \\n\\n 런치패드 Tomdroid팀 (launchpad.net/tomdroid)에서의 모든 기여를 "
+#~ "기다리고 있습니다..\\n"
+
+#~ msgid "Please wait while note loads..."
+#~ msgstr "노트를 로드하는 동안 잠시만 기다려주세요..."
+
+#~ msgid "Save to SD card"
+#~ msgstr "SD 카드에 저장"
+
+#~ msgid "\\\"%1$s\\\" contains invalid characters.\\nPlease try again!"
+#~ msgstr "\\\"%1$s\\\" 은 잘못된 문자를 포함하고 있습니다.\\n다시 시도하세요."
+
+#~ msgid "Completing authentication. Please wait..."
+#~ msgstr "인증을 완료하고 있습니다. 잠시만 기다려 주세요..."
+
+#~ msgid "Search Options"
+#~ msgstr "검색 옵션"

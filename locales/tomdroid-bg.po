@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: tomdroid\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-10-25 14:49+0200\n"
-"PO-Revision-Date: 2013-03-27 14:25+0000\n"
+"PO-Revision-Date: 2012-12-31 12:27+0000\n"
 "Last-Translator: Blagovest Petrov <blagovest@petrovs.info>\n"
 "Language-Team: Bulgarian <bg@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-12-21 09:29+0000\n"
-"X-Generator: Launchpad (build 16872)\n"
+"X-Launchpad-Export-Date: 2013-12-27 10:28+0000\n"
+"X-Generator: Launchpad (build 16877)\n"
 
 #. application details
 #: tmp_strings.xml:27(string)
@@ -1119,3 +1119,31 @@ msgstr ""
 
 #~ msgid "Change Sort"
 #~ msgstr "Промяна на сортиране"
+
+#~ msgid "SD card not found."
+#~ msgstr "Не е намерена SD карта."
+
+#~ msgid "\\\"%1$s\\\" contains invalid characters.\\nPlease try again!"
+#~ msgstr "\\\"%1$s\\\" съдържа невалидни символи.\\nМоля, опитайте отново!"
+
+#~ msgid ""
+#~ "The requested note could not be parsed. If you are able to replicate the "
+#~ "problem, please contact us!"
+#~ msgstr ""
+#~ "Заявената бележка не може да бъде прочетена. Ако сте способни да отстраните "
+#~ "проблема, моля, свържете се с нас!"
+
+#~ msgid "Completing authentication. Please wait..."
+#~ msgstr "Завършване на удостоверяване. Моля, почакайта..."
+
+#~ msgid "Please wait while note loads..."
+#~ msgstr "Моля, почакайте докато се зареди бележката..."
+
+#~ msgid "Could not save the errors, please check your SD card."
+#~ msgstr "Не могат да се запишат грешките. Моля, проверете вашата SD карта."
+
+#~ msgid "Save to SD card"
+#~ msgstr "Запазване в SD карта"
+
+#~ msgid "Search Options"
+#~ msgstr "Настройки на търсенето"

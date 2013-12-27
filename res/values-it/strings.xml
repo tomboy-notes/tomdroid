@@ -379,28 +379,20 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Note Tomdroid</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">Un client Tomboy per Android. Tomboy è una app desktop, che utilizza un approccio di tipo wikiwiki e un\'interfaccia semplificata, per prendere note.
-Formato delle note è compatibile con Tomboy.
-Sincronizzazione online tramite Rainy, Snowy o Tomboy Online.
-Importazione da scheda SD.
-Collegamento per la home.
-Invia e ricevi file di testo o note da qualsiasi app.
-Open Source!</string>
+	<string name="market_description">Un client Tomboy per Android. Tomboy è una app desktop, che utilizza un approccio di tipo wikiwiki e un\'interfaccia semplificata, per prendere note.\n\n* Formato delle note è compatibile con Tomboy.\n* Sincronizzazione online tramite Rainy, Snowy o Tomboy Online.\n* Importazione da scheda SD.\n* Collegamento per la home.\n* Invia e ricevi file di testo o note da qualsiasi app.\n* Open Source!</string>
 	
 	<!-- 80 chars max -->
 	<string name="market_promotext">Applicazione per prendere note compatibile con Tomboy e con sincronizzazione online.</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">*Gli appunti adesso possono essere creati, modificati ed eliminati\n* Completamente ridisegnato sia per i tablet che per i smartphone\n* Sincronizza le tue note con i servizi web compatibili o nella carta SD\n* Invia e ricevi file di note o di testo da ogni app\* Più personalizzabile che mai\n* Disponibile in più lingue\n\n Ed ancora più novità, per una lista completa di novità guardate su https://launchpad.net/tomdroid/+announcements</string>
+        <string name="market_recent_changes">* Gli appunti adesso possono essere creati, modificati ed eliminati\n* Completamente ridisegnato sia per i tablet che per i smartphone\n* Sincronizza le tue note con i servizi web compatibili o nella carta SD\n* Invia e ricevi file di note o di testo da ogni app\* Più personalizzabile che mai\n* Disponibile in più lingue\n\n Ed ancora più novità, per una lista completa di novità guardate su https://launchpad.net/tomdroid/+announcements</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
   Daniel https://launchpad.net/~daniel.kapexhiu
   François Laurent https://launchpad.net/~francois.laurent
-  Giacomo Moretti https://launchpad.net/~giacomo-moretti-it
   Guybrush88 https://launchpad.net/~guybrush
   Isabel Heger https://launchpad.net/~isabel-h1
-  Matteo Costa https://launchpad.net/~mtct-deactivatedaccount
   Michele Galimberti https://launchpad.net/~galimberti-michele
   Rebek94 https://launchpad.net/~rebek94
   Stefan Hammer https://launchpad.net/~j-4

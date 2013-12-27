@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: tomdroid\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-10-25 14:49+0200\n"
-"PO-Revision-Date: 2013-12-01 02:29+0000\n"
+"PO-Revision-Date: 2012-04-10 11:41+0000\n"
 "Last-Translator: Sérgio Marques <Unknown>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-12-21 09:29+0000\n"
-"X-Generator: Launchpad (build 16872)\n"
+"X-Launchpad-Export-Date: 2013-12-27 10:28+0000\n"
+"X-Generator: Launchpad (build 16877)\n"
 
 #. application details
 #: tmp_strings.xml:27(string)
@@ -1139,8 +1139,20 @@ msgstr ""
 "  Stefan Hammer https://launchpad.net/~j-4\n"
 "  Sérgio Marques https://launchpad.net/~sergio+marques"
 
+#~ msgid ""
+#~ "Tomboy compatible wikiwiki note-taking application that can't take notes yet."
+#~ msgstr ""
+#~ "Uma aplicação compatível com o Tomboy que, por enquanto, não dá para criar "
+#~ "notas."
+
 #~ msgid "Please wait while the notes load.."
 #~ msgstr "Aguarde o carregamento das notas..."
+
+#~ msgid "Please wait while note loads..."
+#~ msgstr "Aguarde o carregamento da nota..."
+
+#~ msgid "Completing authentication. Please wait..."
+#~ msgstr "A autenticar. Por favor, aguarde..."
 
 #~ msgid "Choose the default sorting"
 #~ msgstr "Escolha a ordenação"
@@ -1148,8 +1160,45 @@ msgstr ""
 #~ msgid "Default sort"
 #~ msgstr "Padrão"
 
+#~ msgid "Search Options"
+#~ msgstr "Opções de procura"
+
+#~ msgid "\\\"%1$s\\\" contains invalid characters.\\nPlease try again!"
+#~ msgstr "\\\"%1$s\\\" possui caracteres inválidos.\\nTente novamente!"
+
+#~ msgid ""
+#~ "The requested note could not be parsed. If you are able to replicate the "
+#~ "problem, please contact us!"
+#~ msgstr ""
+#~ "A nota indicada não foi processada. Se conseguir reproduzir novamente o "
+#~ "erro, contacte-nos!"
+
+#~ msgid "Could not save the errors, please check your SD card."
+#~ msgstr "Não foi possível gravar os erros. Verifique o cartão SD."
+
+#~ msgid "Save to SD card"
+#~ msgstr "Gravar no cartão SD"
+
+#~ msgid "SD card not found."
+#~ msgstr "Cartão SD não encontrado."
+
 #~ msgid "Change Sort"
 #~ msgstr "Alterar ordenação"
+
+#~ msgid ""
+#~ "Welcome to Tomdroid.\\n\\nPlease note that this is beta quality software and "
+#~ "that it contains known problems, like its inability to edit notes.\\n\\nWe "
+#~ "are well aware of these issues and intend to work on them quickly but I also "
+#~ "wanted to get something out and tested as quickly as possible.\\n\\nIf you "
+#~ "would like to contribute, help at all levels would be appreciated. Hop on "
+#~ "board on launchpad.net/tomdroid and contact us!\\n"
+#~ msgstr ""
+#~ "Bem vindo ao Tomdroid.\\n\\nTenha em atenção que esta é uma versão beta e "
+#~ "que possui diversos erros, como a impossibilidade de editar notas.\\n\\"
+#~ "nTemos conhecimentos das limitações e que as pretendemos resolver, mas ainda "
+#~ "existem outros problemas que pretendemos resolver primeiro.\\n\\nSe quiser "
+#~ "ajudar no desenvolvimento, será bem recebido. Consulte "
+#~ "launchpad.net/tomdroid e contacte-nos!\\n"
 
 #~ msgid ""
 #~ "Note-taking application with online synchronization compatible with Tomboy"

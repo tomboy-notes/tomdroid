@@ -377,7 +377,7 @@
 	I\'ve put it in here so that it\'ll get translated by translators.
 	-->
 	<!-- 30 chars max -->
-	<string name="market_title">Tomdroid-anteckningar</string>
+	<string name="market_title">Tomdroid anteckningar</string>
 	<!-- 4000 chars max -->
 	<string name="market_description">En Tomboy-klient för Android. Tomboy är en anteckningsapp av wiki-typ med ett enkelt användargränssnitt.\n\n* Formatkompatibel med Tomboy\n* Online-synkronisering av anteckningar mot Rainy, Snowy eller Tomboy Online\n* Import från SD-kort\n* Snabblänkar på hemskärmen\n* Skicka/ta emot text eller anteckningsfiler från valfri app\n* Öppen källkod!</string>
 	

@@ -492,10 +492,7 @@ public class EditNote extends ActionBarActivity {
 		title.setText(validTitle);
 		note.setTitle(validTitle);
 
-		Time now = new Time();
-		now.setToNow();
-		String time = now.format3339(false);
-		note.setLastChangeDate(time);
+		note.setLastChangeDate();
 		NoteManager.putNote( this, note);
 		if(!SyncManager.getInstance().getCurrentService().needsLocation() && Preferences.getBoolean(Preferences.Key.AUTO_BACKUP_NOTES)) {
 			TLog.v(TAG, "backing note up");

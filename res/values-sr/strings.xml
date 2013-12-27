@@ -29,7 +29,7 @@
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
-	<string name="strListEmptyWaiting">Молим, сачекајте док се бележница не учита.</string>
+	<string name="strListEmptyWaiting">Молим, сачекајте док се бележница учита.</string>
 	<string name="strListEmptyNoNotes">Нема белешки у остави података Томадроида</string>
 	
 	<!-- Menu entry with icon -->
@@ -44,7 +44,7 @@
 	<!-- First start alert box -->
 	<string name="strWelcome">Добродошли у Томадроид.\n\nМолим, обратите пажњу да је ово мекотворина бета квалитета и да садржи познате потешкоће.\n\nСвесни смо тих појава и намеравамо да радимо на њима брзо, али, желео сам да нешто објавим и опробам што пре.\n\nУколико желите да допринесете, помоћ у неким областима је добродошла. Прискочите на launchpad.net/tomdroid у обратите нам се!\n</string>
 	<!-- \n\n are linebreaks, %1$s etc are the name of the Author, the version and the license name -->
-	<string name="strAbout">%1$s\n\nАутор: %2$s\nИздање: %3$s\nОбјављено под  GPLv3</string>
+	<string name="strAbout">%1$s\n\nСтваралац: %2$s\nИздање: %3$s\nОбјављено под  GPLv3</string>
 	
 	<!-- positive Button -->
 	<string name="btnOk">У реду</string>
@@ -57,23 +57,23 @@
 	<string name="btnSavetoSD">Сачувај</string>
 	
 	<!-- note-view.xml -->
-	<string name="strWait">Молим, сачекајте док се белешка не учита...</string>
+	<string name="strWait">Молим, сачекајте док се белешка учита...</string>
 	
 	<string name="prefSyncService">Услуга</string>
 	<string name="prefSyncServer">Служитељ</string>
 	<string name="prefSDCard">СД картица</string>
 	<string name="prefTomboyWeb">Усклађивање преко мреже</string>
-	<string name="prefAuthenticate">Потврди идентитет</string>
+	<string name="prefAuthenticate">Пријава</string>
 	<string name="prefLocation">Путања на СД картици</string>
-	<string name="prefSyncOnStart">Самопокрени усклађивање по покретању</string>
+	<string name="prefSyncOnStart">Самопокрени усклађивање при покретању</string>
 	<string name="prefDescSyncOnStart">Усклади белешке при покретању апликације</string>
 	<!-- %1$s will be repaced by the folder name eg /tomdroid -->
-	<string name="prefFolderCreated">Фасцикла „%1$s“ још увек није направљена. Молим, повежите Ваш урђај са рачунаром, направите фасциклу и испуните је *.note датотекама.</string>
+	<string name="prefFolderCreated">Фасцикла „%1$s“ још увек није направљена. Молим, повежите Ваш уређај са рачунаром, направите фасциклу и испуните је *.note датотекама.</string>
 	<!-- %1$s will be repaced by the folder name eg /testfolder -->
 	<string name="prefNoValidLocation">„%1$s“ није исправна путања фасцикле. Молим, покушајте поново!</string>
 	<!-- %1$s will be replaced with an text entry the user had done -->
 	<string name="prefNoValidEntry">„%1$s“ није исправна ставка. Молим, покушајте поново!</string>
-	<string name="prefSyncCompleteAuth">Завршавам препознавање. Моим, сачекајте...</string>
+	<string name="prefSyncCompleteAuth">Завршавам пријаву. Молим, сачекајте...</string>
 	<string name="prefSyncConnectionFailed">Веза са служитељем није успела, молим, проверите да ли је адреса коју сте унели исправна.</string>
 	<string name="prefServerEmpty">Адреса служитеља је измењена, али, нова вредност је празна</string>
 			
@@ -121,7 +121,7 @@
 	<!-- %s will be replaced with the search string -->
 	<string name="strNoResults">Нисам нашао белешку за „%s“</string>
 	<string name="menuSearch">Претражи</string>
-	<string name="SearchResultTitle">Излаз претраге:</string>
+	<string name="SearchResultTitle">Излази претраге:</string>
 	<string name="clearSearchHistoryTitle">Очисти историјат претраге</string>
 	<string name="clearSearchHistory">Уклони све извршене претраге</string>
 	<string name="deletedSearchHistory">Историја претраге је очишћена.</string>
@@ -147,7 +147,7 @@
 	<string name="yes">Да</string>
 	<string name="no">Не</string>
 	<string name="delete_all">Очисти бележницу</string>
-	<string name="delete_all_message">Да ли сте сигурни да желите очистити основу података белешки?</string>
+	<string name="delete_all_message">Да ли сте сигурни да желите очистити складиште података белешки?</string>
 	<string name="delete_remote_notes">Обриши удаљене белешке</string>
 	<string name="delete_remote_notes_message">Да ли сте сигурни да желите избрисати све белешке код удаљеног служитеља?</string>
 				
@@ -168,7 +168,7 @@
 	<string name="italic">i</string>
 	<!-- S stands for strike through (in format bar) -->
 	<string name="strike"><strike>S</strike></string>
-	<string name="mono">моноразмак</string>
+	<string name="mono">једноразмак</string>
 	<string name="highlight">истакни</string>
 	<!-- Button label to select font size -->
 	<string name="size">величина</string>
@@ -176,13 +176,13 @@
 	<string name="messageErrorParsingXML">Десила се грешка при обради белешке. Молим, проверите ИксМЛ датотеку.</string>
 	<string name="messageNoteSaved">Белешка је сачувана месно.</string>
 	<string name="messageNoteDeleted">Белешка је избрисана месно.</string>
-	<string name="messageSelectSize">Одабрите величина текста</string>
-	<string name="small">мalа</string>
-	<string name="normal">обична</string>
-	<string name="large">велика</string>
-	<string name="huge">огромна</string>
+	<string name="messageSelectSize">Одаберите величина текста</string>
+	<string name="small">мали</string>
+	<string name="normal">обичан</string>
+	<string name="large">велики</string>
+	<string name="huge">огроман</string>
 	<string name="messageDiscardChanges">Да ли желите опозвати измене и вратити белешку на последње сачувано издање?</string>
-	<string name="titleDiscardChanges">Одбаци измене?</string>
+	<string name="titleDiscardChanges">Одбацити измене?</string>
 	<!-- this is the > symbol, do not change -->
 	<string name="gt"><b>&gt;</b></string>
 	<!-- this is the < symbol, do not change -->
@@ -194,7 +194,7 @@
 	<string name="search_title">Томадроид - излази претраге</string>
 	<string name="shortcut_title">Томадроид - пречице</string>
 	<string name="pref_title">Томадроид - поставке</string>
-	<string name="compare_title">Сукоб Томдроидових белешки</string>
+	<string name="compare_title">Томадроид - сукоб белешки</string>
 	<string name="filePickerTitle">Томадроид - увези белешку</string>
 			
 	<!-- new prefs -->
@@ -211,7 +211,7 @@
 	<string name="prefNoteTemplatesTitle">Приказ образаца белешки</string>
 	<string name="prefNoteTemplates">Ако ј означено, приказиваће обрасце у списку белешки.</string>
 	<string name="deleteAllNotesTitle">Очисти бележницу</string>
-	<string name="deleteAllNotes">Очисти све белешке из месне основе података</string>
+	<string name="deleteAllNotes">Очисти све белешке из месне оставе података</string>
 	<string name="deleteRemoteNotesTitle">Обриши удаљене белешке</string>
 	<string name="deleteRemoteNotes">Обриши све белешке код удаљеног служитеља</string>
 	<string name="illegalTextSize">Изабрана је недозвољена величина текста. Молим, изаберите број.</string>
@@ -226,7 +226,7 @@
 	<!-- Description for checkbox in settings -->
 	<string name="prefLinkTitles">Повежи до осталих наслова белешки</string>
 	<!-- Checkbox in settings -->
-	<string name="prefLinkUrlsTitle">Направи везу веб адреса</string>
+	<string name="prefLinkUrlsTitle">Направи везу Веб адреса</string>
 	<!-- Description for checkbox in settings -->
 	<string name="prefLinkUrls">нпр. „www.google.com“</string>
 	<!-- Checkbox in settings -->
@@ -240,12 +240,12 @@
 	<!-- Checkbox in settings -->
 	<string name="prefLinkAddressesTitle">Направи везе до мапа</string>
 	<!-- Description for checkbox in settings -->
-	<string name="prefLinkAddresses">ПОвежи адресе са програмима мапа</string>
+	<string name="prefLinkAddresses">Повежи адресе са програмима мапа</string>
 			
 	<!-- syncNotes -->
 
 	<!-- %1$s will be replaced with "Online Synchronisation", "SD card",... -->
-	<string name="syncing">Усаглашавам са %1$s</string>
+	<string name="syncing">Усклађујем са %1$s</string>
 	<string name="syncing_connect">повезивање са служитељем...</string>
 	<string name="gettings_notes">добављам списак удаљених бележака...</string>
 	<string name="syncing_local">освежавам месне белешке...</string>
@@ -281,7 +281,7 @@
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
 	<string name="messageAuthComplete">Пријава на %1$s је успешна.</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
-	<string name="messageAuthFailed">Распознавање са %1$s није успело. Покушајте опет касније!</string>
+	<string name="messageAuthFailed">Пријава на %1$s није успела. Покушајте опет касније!</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
 	<string name="messageSyncNoteDeleted">Белешка из %1$s је успешно обрисана.</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
@@ -301,7 +301,7 @@
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
 	<string name="messageRemoteNotesDeleted">Бележница из %1$s је успешно обрисана.</string>
 	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
-	<string name="messageSyncCancelled">Прекинуто је усаглашавање са %1$s.</string>
+	<string name="messageSyncCancelled">Прекинуто је усклађивање са %1$s.</string>
 
 	<!-- menu items -->
 	
@@ -312,7 +312,7 @@
 	<string name="edit_tags">Уредите ознаке испод, раздвајајући их запетама</string>
 	<string name="undelete">Поништи брисање ознака</string>
 	<!-- menu item with icon -->
-	<string name="menuImport">Увоз бележака</string>
+	<string name="menuImport">Увези белешку</string>
 					
 	<!-- revert notes -->
 	
@@ -328,7 +328,7 @@
 	<string name="backup_notes_title">Направи резервни умножак бележнице?</string>
 	<string name="backup_notes">Да ли умножити све месне белешке на СД картицу? То може преписати постојеће белешке са СД картице.</string>
 	<string name="restorePrefTitle">Врати бележницу из резерве</string>
-	<string name="restore_notes_title">Поврати бележницу?</string>
+	<string name="restore_notes_title">Да ли повратити белешке?</string>
 	<string name="restore_notes">Да ли да преузмем све белешке са СД картице? То може избрисати постојеће белешке.</string>
 	<string name="messageNotesBackedUp">Успешно је направљен резервни умножак белешки на СД картицу.</string>
 	<string name="messageNotesRestored">Успешно су повраћене белешке са СД картице.</string>
@@ -353,16 +353,16 @@
 	
 	<string-array name="firstNoteContent">
 		<item>Добродошли код Томадроида!\n</item>
-		<item>Овде још увек немате белешке. Да би почели, подесите својства усаглашавања у поставкама. Постоје две могућности усаглашавања описане испод.\n</item>
+		<item>Овде још увек немате белешке. Да би почели, подесите својства усклађивања у поставкама. Постоје две могућности усклађивања описане испод.\n</item>
 		<item>=Усклађивање преко мреже=</item>
 		<!-- =text= makes <size:large>text</size:large> -->
-		<item>Треба Вам Услађивање преко мреже ако желите да ускладите белешке са Томицом на мрежи, својим Rainy/Snowy служитељем или било којим сервером који подржава Tomboy Web REST API.\n</item>
-		<item>Да би га користили, поставите услугу усаглашавања на усаглашавање преко мреже у поставкама, а онда подесите адресу служитеља. Ево неких јавних:</item>
+		<item>Треба Вам услађивање преко мреже ако желите да ускладите белешке са Томицом на мрежи, својим Rainy/Snowy служитељем или било којим сервером који подржава Tomboy Web REST API.\n</item>
+		<item>Да би га користили, поставите услугу усклађивања на усклађивање преко мреже у поставкама, а онда подесите адресу служитеља. Ево неких јавних:</item>
 		<!-- -text is for list-items. --> 
 		<item>-Томица на мрежи  - https://edge.tomboy-online.org/</item>
 		<!-- -text is for list-items. --> 
 		<item>-rainy.notesync.org - https://notesync.org:8080/[username]/[password]/\n</item>
-		<item>Када се подеси, притисните знак усаглашавања на Томадроидовој горњој траци за усаглашавање Ваших бележака.\n</item>
+		<item>Када се подеси, притисните знак усклађивања на Томадроидовој горњој траци за усаглашавање бележака.\n</item>
 		<item>Примедба: Можда желите да направите резервни умножак пре усклађивања, пошто је ова апликација још увек у развоју, и могла би искварити Ваше Томичине белешке.\n</item>
 		<item>Молим, погледајте  http://live.gnome.org/Tomboy/Directories да би знали путању *.note датотека на свим платформама.\n</item>
 		<!-- =text= makes <size:large>text</size:large> --> 
