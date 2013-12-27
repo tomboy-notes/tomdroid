@@ -217,6 +217,8 @@ public class OAuthConnection extends WebConnection {
 		
 		try {
 			JSONObject response = new JSONObject(get(rootApi));
+			TLog.d(TAG, "Request: {0}", rootApi);
+		
 			// append a slash to the url, else the signature will fail
 			userApi = response.getJSONObject("user-ref").getString("api-ref");
 		} catch (JSONException e) {
@@ -238,7 +240,7 @@ public class OAuthConnection extends WebConnection {
 		HttpGet httpGet = new HttpGet(uri);
 		httpGet.addHeader("X-Tomboy-Client", Tomdroid.HTTP_HEADER);
 		sign(httpGet);
-		HttpResponse response = execute(httpGet);		
+		HttpResponse response = execute(httpGet);
 		return parseResponse(response);
 	}
 	
@@ -265,7 +267,7 @@ public class OAuthConnection extends WebConnection {
 		return parseResponse(response);
 	}
 	
-	private void saveConfiguration() {
+	public void saveConfiguration() {
 		
 		Preferences.putString(Preferences.Key.ACCESS_TOKEN, accessToken);
 		Preferences.putString(Preferences.Key.ACCESS_TOKEN_SECRET, accessTokenSecret);

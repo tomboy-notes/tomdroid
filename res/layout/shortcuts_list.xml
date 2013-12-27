@@ -26,37 +26,9 @@
               android:layout_height="fill_parent"
               android:orientation="vertical"
         >
-
-    <LinearLayout android:layout_width="fill_parent"
-                  android:orientation="horizontal"
-                  android:layout_height="40dip"
-                  android:background="@drawable/actionbar_background">
-        <ImageView
-                android:id="@+id/action_icon"
-                android:layout_width="40dip"
-                android:layout_height="fill_parent"
-                android:scaleType="fitStart"
-                android:padding="0dip"
-                android:src="@drawable/actionbar_icon"
-                android:clickable="true"
-                />
-        <TextView android:id="@+id/shortcuts_view_caption"
-                  android:text="@string/shortcuts_view_caption"
-                  android:layout_width="fill_parent"
-                  android:layout_height="fill_parent"
-                  android:gravity="center"
-                  android:orientation="horizontal"
-                  android:textSize="18dip"
-                  android:textStyle="bold"
-                  android:paddingRight="42dip"/>
-    </LinearLayout>
-
-
     <ListView android:id="@android:id/android:list"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
-              android:divider="#FFCCCCCC"
-              android:dividerHeight="1px"
             />
 
     <TextView android:id="@+id/list_empty"

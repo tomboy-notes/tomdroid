@@ -5,6 +5,7 @@
  * 
  * Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
  * Copyright 2009, Benoit Garret <benoit.garret_launchpad@gadz.org>
+ * Copyright 2013 Stefan Hammer <j.4@gmx.at>
  * 
  * This file is part of Tomdroid.
  * 
@@ -25,18 +26,22 @@ package org.tomdroid;
 
 import android.os.Handler;
 import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.text.format.Time;
 import android.util.TimeFormatException;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.tomdroid.util.NoteContentBuilder;
-import org.tomdroid.util.TLog;
-import org.tomdroid.util.XmlUtils;
+import org.tomdroid.xml.NoteContentBuilder;
+import org.tomdroid.xml.XmlUtils;
 
+import java.io.Serializable;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Note {
+public class Note implements Serializable {
 
 	// Static references to fields (used in Bundles, ContentResolvers, etc.)
 	public static final String ID = "_id";
@@ -47,15 +52,13 @@ public class Note {
 	public static final String FILE = "file";
 	public static final String TAGS = "tags";
 	public static final String NOTE_CONTENT = "content";
-	
-	// Logging info
-	private static final String TAG = "Note";
+	public static final String NOTE_CONTENT_PLAIN = "content_plain";
 	
 	// Notes constants
-	// TODO this is a weird yellow that was usable for the android emulator, I must confirm this for real usage
-	public static final int NOTE_HIGHLIGHT_COLOR = 0xFFFFFF77;
+	public static final int NOTE_HIGHLIGHT_COLOR = 0x99FFFF00; // lowered alpha to show cursor
+	public static final int NOTE_BULLET_INTENT_FACTOR = 30;			// intent factor of bullet lists
 	public static final String NOTE_MONOSPACE_TYPEFACE = "monospace";
-	public static final float NOTE_SIZE_SMALL_FACTOR = 1.0f;
+	public static final float NOTE_SIZE_SMALL_FACTOR = 0.8f;
 	public static final float NOTE_SIZE_LARGE_FACTOR = 1.5f;
 	public static final float NOTE_SIZE_HUGE_FACTOR = 1.8f;
 	
@@ -65,12 +68,26 @@ public class Note {
 	private String url;
 	private String fileName;
 	private String title;
-	private String tags;
-	private Time lastChangeDate;
+	private String tags = "";
+	private String lastChangeDate;
 	private int dbId;
+
+	// Unused members (for SD Card)
+	
+	public String createDate = new Time().format3339(false);
+	public int cursorPos = 0;
+	public int height = 0;
+	public int width = 0;
+	public int X = -1;
+	public int Y = -1;
+
+	
 	// TODO before guid were of the UUID object type, now they are simple strings 
 	// but at some point we probably need to validate their uniqueness (per note collection or universe-wide?) 
 	private String guid;
+	
+	// this is to tell the sync service to update the last date after pushing this note
+	public boolean lastSync = false;
 	
 	// Date converter pattern (remove extra sub milliseconds from datetime string)
 	// ex: will strip 3020 in 2010-01-23T12:07:38.7743020-05:00
@@ -78,6 +95,17 @@ public class Note {
 			"(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3})" +	// matches: 2010-01-23T12:07:38.774
 			".+" + 														// matches what we are getting rid of
 			"([-\\+]\\d{2}:\\d{2})");									// matches timezone (-xx:xx or +xx:xx)
+
+	
+	// Date converter to Tomboy Time-Format (add extra milliseconds to datetime string and add colon to time format)
+	// ex: generated tomddroid_time: 2000-02-01T01:00:00.0000000+01:00
+	public String toTomboyFormat(Time time) throws TimeFormatException {
+		String timeFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSSZ";
+		SimpleDateFormat sdf = new SimpleDateFormat(timeFormat, Locale.US);
+		String tomdroid_time = sdf.format(new Date(time.toMillis(false)));
+		tomdroid_time = tomdroid_time.substring(0,tomdroid_time.length()-2) + ":" + tomdroid_time.substring(tomdroid_time.length()-2);
+		return tomdroid_time;
+	}
 	
 	public Note() {
 		tags = new String();
@@ -89,7 +117,8 @@ public class Note {
 		setTitle(XmlUtils.unescape(json.optString("title")));
 		setGuid(json.optString("guid"));
 		setLastChangeDate(json.optString("last-change-date"));
-		setXmlContent(json.optString("note-content"));
+		String newXMLContent = json.optString("note-content");
+		setXmlContent(newXMLContent);
 		JSONArray jtags = json.optJSONArray("tags");
 		String tag;
 		tags = new String();
@@ -100,9 +129,31 @@ public class Note {
 			}
 		}
 	}
-	
+
 	public String getTags() {
 		return tags;
+	}
+	
+	public void setTags(String tags) {
+		this.tags = tags;
+	}
+	
+	public void addTag(String tag) {
+		if(tags.length() > 0)
+			this.tags = this.tags+","+tag;
+		else
+			this.tags = tag;
+	}
+	
+	public void removeTag(String tag) {
+		
+		String[] taga = TextUtils.split(this.tags, ",");
+		String newTags = "";
+		for(String atag : taga){
+			if(!atag.equals(tag))
+				newTags += atag;
+		}
+		this.tags = newTags;
 	}
 
 	public String getUrl() {
@@ -130,29 +181,61 @@ public class Note {
 	}
 
 	public Time getLastChangeDate() {
-		return lastChangeDate;
+		Time time = new Time();
+		time.parse3339(lastChangeDate);
+		return time;
 	}
-
-	public void setLastChangeDate(Time lastChangeDate) {
-		this.lastChangeDate = lastChangeDate;
+	
+	public Time getCreateDate() {
+		Time time = new Time();
+		// quick and dirty bugfix for synchronisation with Rainy server (have to send create Date)
+		//TODO: we should store the createDate in the note!
+		time.set(946681200000L);
+		return time;
+	}
+	
+	// sets change date to now
+	public void setLastChangeDate() {
+		Time now = new Time();
+		now.setToNow();
+		String time = now.format3339(false);
+		setLastChangeDate(time);
+	}
+	
+	public void setLastChangeDate(Time lastChangeDateTime) {
+		this.lastChangeDate = lastChangeDateTime.format3339(false);
 	}
 	
 	public void setLastChangeDate(String lastChangeDateStr) throws TimeFormatException {
 		
 		// regexp out the sub-milliseconds from tomboy's datetime format
-		// Normal RFC 3339 format: 2008-10-13T16:00:00.000-07:00
-		// Tomboy's (C# library) format: 2010-01-23T12:07:38.7743020-05:00
+		// Normal RFC 3339 format: 			2008-10-13T16:00:00.000-07:00
+		// Tomboy's (C# library) format: 	2010-01-23T12:07:38.7743020-05:00
 		Matcher m = dateCleaner.matcher(lastChangeDateStr);
 		if (m.find()) {
-			TLog.d(TAG, "I had to clean out extra sub-milliseconds from the date");
+			//TLog.d(TAG, "I had to clean out extra sub-milliseconds from the date");
 			lastChangeDateStr = m.group(1)+m.group(2);
-			TLog.v(TAG, "new date: {0}", lastChangeDateStr);
+			//TLog.v(TAG, "new date: {0}", lastChangeDateStr);
 		}
 		
-		lastChangeDate = new Time();
-		lastChangeDate.parse3339(lastChangeDateStr);
+		this.lastChangeDate = lastChangeDateStr;
 	}	
 
+	public void setCreateDate(String createDateStr) throws TimeFormatException {
+		
+		// regexp out the sub-milliseconds from tomboy's datetime format
+		// Normal RFC 3339 format: 			2008-10-13T16:00:00.000-07:00
+		// Tomboy's (C# library) format: 	2010-01-23T12:07:38.7743020-05:00
+		Matcher m = dateCleaner.matcher(createDateStr);
+		if (m.find()) {
+			//TLog.d(TAG, "I had to clean out extra sub-milliseconds from the date");
+			createDateStr = m.group(1)+m.group(2);
+			//TLog.v(TAG, "new date: {0}", lastChangeDateStr);
+		}
+		
+		this.createDate = createDateStr;
+	}
+	
 	public int getDbId() {
 		return dbId;
 	}
@@ -191,4 +274,35 @@ public class Note {
 		return new String("Note: "+ getTitle() + " (" + getLastChangeDate() + ")");
 	}
 	
+	// gets full xml to be exported as .note file
+	public String getXmlFileString() {
+		
+		String tagString = "";
+
+		if(tags.length()>0) {
+			String[] tagsA = tags.split(",");
+			tagString = "\n\t<tags>";
+			for(String atag : tagsA) {
+				tagString += "\n\t\t<tag>"+atag+"</tag>"; 
+			}
+			tagString += "\n\t</tags>"; 
+		}
+
+		// TODO: create-date
+		String fileString = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<note version=\"0.3\" xmlns:link=\"http://beatniksoftware.com/tomboy/link\" xmlns:size=\"http://beatniksoftware.com/tomboy/size\" xmlns=\"http://beatniksoftware.com/tomboy\">\n\t<title>"
+				+getTitle().replace("&", "&amp;")+"</title>\n\t<text xml:space=\"preserve\"><note-content version=\"0.1\">"
+				+getTitle().replace("&", "&amp;")+"\n\n" // added for compatibility
+				+getXmlContent()+"</note-content></text>\n\t<last-change-date>"
+				+toTomboyFormat(getLastChangeDate())+"</last-change-date>\n\t<last-metadata-change-date>"
+				+toTomboyFormat(getLastChangeDate())+"</last-metadata-change-date>\n\t<create-date>"
+				+toTomboyFormat(getCreateDate())+"</create-date>\n\t<cursor-position>"
+				+cursorPos+"</cursor-position>\n\t<width>"
+				+width+"</width>\n\t<height>"
+				+height+"</height>\n\t<x>"
+				+X+"</x>\n\t<y>"
+				+Y+"</y>"
+				+tagString+"\n\t<open-on-startup>False</open-on-startup>\n</note>\n";
+		return fileString;
+	}
+
 }

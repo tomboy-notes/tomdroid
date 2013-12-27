@@ -1,3 +1,791 @@
+2013-12-21  Stefan Hammer  <j.4@gmx.at>
+
+	* ChangeLog:
+	* NEWS:
+	* README:
+	* src/org/tomdroid/util/TLog.java:
+
+	reached the releaseing on lauchpad headline in the release checklist.
+
+2013-12-21  Stefan Hammer  <j.4@gmx.at>
+
+	* data/market-screenshots/0.7.4 - note-options-And4.4.png:
+	* res/menu/main_longclick.xml:
+	* res/menu/main_longclick_deleted.xml:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	revert ist not working for sdcard or online sync - disable it for now.
+
+2013-12-21  Stefan Hammer  <j.4@gmx.at>
+
+	* data/market-screenshots/0.7.4 - note-list-And4.4.png:
+	* data/market-screenshots/0.7.4 - note-view-And4.4.png:
+	* data/market-screenshots/0.7.4 - tablet-edit-view.png:
+	* data/market-screenshots/0.7.4 - tablet-view.png:
+	* sdcard.img:
+
+	added 0.7.4 screenshots
+
+2013-12-21  Stefan Hammer  <j.4@gmx.at>
+
+	* data/market-screenshots/0.7.4 - note-options-And4.4.png:
+	* data/market-screenshots/0.7.4 - preferences-And4.4.png:
+	* data/market-screenshots/0.7.4 - welcome-dialog-And4.4.png:
+	* data/market-screenshots/0.7.4- note-edit-And4.4.png:
+	* locales/tomdroid-oc.po:
+	* locales/tomdroid-sk.po:
+	* locales/tomdroid-sq.po:
+	* locales/tomdroid-su.po:
+	* res/values-oc:
+	* res/values-oc/strings.xml:
+	* res/values-sk:
+	* res/values-sk/strings.xml:
+	* res/values-sq:
+	* res/values-sq/strings.xml:
+	* res/values-su:
+	* res/values-su/strings.xml:
+	* AndroidManifest.xml:
+	* doc/dev/RELEASE-CHECKLIST:
+	* locales/tomdroid-ar.po:
+	* locales/tomdroid-bg.po:
+	* locales/tomdroid-bs.po:
+	* locales/tomdroid-ca.po:
+	* locales/tomdroid-cs.po:
+	* locales/tomdroid-da.po:
+	* locales/tomdroid-de.po:
+	* locales/tomdroid-el.po:
+	* locales/tomdroid-en_AU.po:
+	* locales/tomdroid-en_GB.po:
+	* locales/tomdroid-eo.po:
+	* locales/tomdroid-es.po:
+	* locales/tomdroid-et.po:
+	* locales/tomdroid-eu.po:
+	* locales/tomdroid-fa.po:
+	* locales/tomdroid-fi.po:
+	* locales/tomdroid-fo.po:
+	* locales/tomdroid-fr.po:
+	* locales/tomdroid-gd.po:
+	* locales/tomdroid-gl.po:
+	* locales/tomdroid-hi.po:
+	* locales/tomdroid-hr.po:
+	* locales/tomdroid-hu.po:
+	* locales/tomdroid-id.po:
+	* locales/tomdroid-is.po:
+	* locales/tomdroid-it.po:
+	* locales/tomdroid-ja.po:
+	* locales/tomdroid-jv.po:
+	* locales/tomdroid-ko.po:
+	* locales/tomdroid-la.po:
+	* locales/tomdroid-ml.po:
+	* locales/tomdroid-ms.po:
+	* locales/tomdroid-nb.po:
+	* locales/tomdroid-nl.po:
+	* locales/tomdroid-pl.po:
+	* locales/tomdroid-pt.po:
+	* locales/tomdroid-pt_BR.po:
+	* locales/tomdroid-ru.po:
+	* locales/tomdroid-si.po:
+	* locales/tomdroid-sr.po:
+	* locales/tomdroid-sv.po:
+	* locales/tomdroid-ta.po:
+	* locales/tomdroid-te.po:
+	* locales/tomdroid-tr.po:
+	* locales/tomdroid-ug.po:
+	* locales/tomdroid-uk.po:
+	* locales/tomdroid-vi.po:
+	* locales/tomdroid-zh_CN.po:
+	* locales/tomdroid-zh_TW.po:
+	* res/values-ar/strings.xml:
+	* res/values-bg/strings.xml:
+	* res/values-bs/strings.xml:
+	* res/values-ca/strings.xml:
+	* res/values-cs/strings.xml:
+	* res/values-da/strings.xml:
+	* res/values-de/strings.xml:
+	* res/values-el/strings.xml:
+	* res/values-en-rAU/strings.xml:
+	* res/values-en-rGB/strings.xml:
+	* res/values-eo/strings.xml:
+	* res/values-es/strings.xml:
+	* res/values-et/strings.xml:
+	* res/values-eu/strings.xml:
+	* res/values-fa/strings.xml:
+	* res/values-fi/strings.xml:
+	* res/values-fo/strings.xml:
+	* res/values-fr/strings.xml:
+	* res/values-gd/strings.xml:
+	* res/values-gl/strings.xml:
+	* res/values-hi/strings.xml:
+	* res/values-hr/strings.xml:
+	* res/values-hu/strings.xml:
+	* res/values-id/strings.xml:
+	* res/values-is/strings.xml:
+	* res/values-it/strings.xml:
+	* res/values-ja/strings.xml:
+	* res/values-jv/strings.xml:
+	* res/values-ko/strings.xml:
+	* res/values-la/strings.xml:
+	* res/values-ml/strings.xml:
+	* res/values-ms/strings.xml:
+	* res/values-nb/strings.xml:
+	* res/values-nl/strings.xml:
+	* res/values-pl/strings.xml:
+	* res/values-pt-rBR/strings.xml:
+	* res/values-pt/strings.xml:
+	* res/values-ru/strings.xml:
+	* res/values-si/strings.xml:
+	* res/values-sr/strings.xml:
+	* res/values-sv/strings.xml:
+	* res/values-ta/strings.xml:
+	* res/values-te/strings.xml:
+	* res/values-tr/strings.xml:
+	* res/values-ug/strings.xml:
+	* res/values-uk/strings.xml:
+	* res/values-vi/strings.xml:
+	* res/values-zh-rCN/strings.xml:
+	* res/values-zh-rTW/strings.xml:
+	* res/values-zh/strings.xml:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/ui/EditNote.java:
+
+	Preparations for 0.7.4 stable release. fixed small bug when saving a note, updated translations, added things to release checklist
+
+2013-12-16  Stefan Hammer  <j.4@gmx.at>
+
+	* data/icon-launcher/icon-114.png:
+
+	Added an 114x114 icon for the Amazon app store
+
+2013-10-25  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid.pot:
+	* res/values/strings.xml:
+
+	fix play store whats new section according to bug lg:1244445 and lp:1244412
+
+2013-10-24  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid.pot:
+	* res/values/strings.xml:
+
+	fix bug lp 1244409 string changes
+
+2013-10-24  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid.pot:
+	* res/values/strings.xml:
+
+	missed the maximum length of 500 characters for the whats new section
+
+2013-10-24  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid.pot:
+	* res/values/strings.xml:
+
+	Added google play store whats new string to get it translated in time for the stable release
+
+2013-10-24  Stefan Hammer  <j.4@gmx.at>
+
+	* AndroidManifest.xml:
+	* src/org/tomdroid/util/TLog.java:
+
+	now it is time to start working on 0.7.4
+
+2013-10-24  Stefan Hammer  <j.4@gmx.at>
+
+	* doc/dev/RELEASE-CHECKLIST:
+
+	released 0.7.3
+
+2013-10-24  Stefan Hammer  <j.4@gmx.at>
+
+	* .settings/org.eclipse.jdt.ui.prefs:
+	* .settings/org.eclipse.jdt.core.prefs:
+	* NEWS:
+
+	added release date for 0.7.3 beta
+
+2013-10-19  Stefan Hammer  <j.4@gmx.at>
+
+	* AUTHORS:
+	* AndroidManifest.xml:
+	* ChangeLog:
+	* NEWS:
+	* README:
+	* doc/dev/RELEASE-CHECKLIST:
+	* doc/dev/TODO:
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/sync/web/WebConnection.java:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+	* src/org/tomdroid/util/Receive.java:
+	* src/org/tomdroid/util/TLog.java:
+	* src/org/tomdroid/xml/NoteContentHandler.java:
+
+	going through release-todo list to get 0.7.3 done! now updated copyrights, authors, news, readme, changelog,... still need the signed apk from olivier and a release text!
+
+2013-10-19  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid-en_AU.po:
+	* locales/tomdroid-hr.po:
+	* locales/tomdroid-is.po:
+	* locales/tomdroid-jv.po:
+	* locales/tomdroid-vi.po:
+	* res/values-en-rAU:
+	* res/values-en-rAU/strings.xml:
+	* res/values-hr:
+	* res/values-hr/strings.xml:
+	* res/values-is:
+	* res/values-is/strings.xml:
+	* res/values-jv:
+	* res/values-jv/strings.xml:
+	* res/values-vi:
+	* res/values-vi/strings.xml:
+	* locales/tomdroid-ar.po:
+	* locales/tomdroid-bg.po:
+	* locales/tomdroid-bs.po:
+	* locales/tomdroid-ca.po:
+	* locales/tomdroid-cs.po:
+	* locales/tomdroid-da.po:
+	* locales/tomdroid-de.po:
+	* locales/tomdroid-el.po:
+	* locales/tomdroid-en_GB.po:
+	* locales/tomdroid-eo.po:
+	* locales/tomdroid-es.po:
+	* locales/tomdroid-et.po:
+	* locales/tomdroid-eu.po:
+	* locales/tomdroid-fa.po:
+	* locales/tomdroid-fi.po:
+	* locales/tomdroid-fo.po:
+	* locales/tomdroid-fr.po:
+	* locales/tomdroid-gd.po:
+	* locales/tomdroid-gl.po:
+	* locales/tomdroid-hi.po:
+	* locales/tomdroid-hu.po:
+	* locales/tomdroid-id.po:
+	* locales/tomdroid-it.po:
+	* locales/tomdroid-ja.po:
+	* locales/tomdroid-ko.po:
+	* locales/tomdroid-la.po:
+	* locales/tomdroid-ml.po:
+	* locales/tomdroid-ms.po:
+	* locales/tomdroid-nb.po:
+	* locales/tomdroid-nl.po:
+	* locales/tomdroid-pl.po:
+	* locales/tomdroid-pt.po:
+	* locales/tomdroid-pt_BR.po:
+	* locales/tomdroid-ru.po:
+	* locales/tomdroid-si.po:
+	* locales/tomdroid-sr.po:
+	* locales/tomdroid-sv.po:
+	* locales/tomdroid-ta.po:
+	* locales/tomdroid-te.po:
+	* locales/tomdroid-tr.po:
+	* locales/tomdroid-ug.po:
+	* locales/tomdroid-uk.po:
+	* locales/tomdroid-zh.po:
+	* locales/tomdroid-zh_CN.po:
+	* locales/tomdroid-zh_TW.po:
+	* locales/tomdroid.pot:
+	* res/values-ar/strings.xml:
+	* res/values-cs/strings.xml:
+	* res/values-da/strings.xml:
+	* res/values-de/strings.xml:
+	* res/values-en-rGB/strings.xml:
+	* res/values-es/strings.xml:
+	* res/values-fr/strings.xml:
+	* res/values-gd/strings.xml:
+	* res/values-gl/strings.xml:
+	* res/values-id/strings.xml:
+	* res/values-it/strings.xml:
+	* res/values-ja/strings.xml:
+	* res/values-nl/strings.xml:
+	* res/values-pl/strings.xml:
+	* res/values-pt/strings.xml:
+	* res/values-ru/strings.xml:
+	* res/values-si/strings.xml:
+	* res/values-sr/strings.xml:
+	* res/values-sv/strings.xml:
+	* res/values-tr/strings.xml:
+	* res/values-uk/strings.xml:
+	* res/values-zh-rCN/strings.xml:
+	* src/org/tomdroid/util/Receive.java:
+
+	updated the translation files
+
+2013-10-19  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/ui/CompareNotes.java:
+
+	fix crasher in CompareNotes. preferences were not initialized again.
+
+2013-10-19  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/xml/NoteContentBuilder.java:
+	* src/org/tomdroid/xml/NoteContentHandler.java:
+	* src/org/tomdroid/xml/NoteXMLContentBuilder.java:
+
+	Squeezed in a simple method to create new bullets. the whole editview class needs a rewriting. we need to remember the startposition of all different kinds of spans and need to check where we landed as soon as the cursor gets moved around. but for now, this should be fine and work without crashes and data loss
+
+2013-10-13  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/util/TagNode.java:
+	* src/org/tomdroid/xml/NoteXMLContentBuilder.java:
+
+	fix nullpointer exception in xmlcontentbuilder
+
+2013-10-13  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/TagNode.java:
+	* src/org/tomdroid/xml/NoteXMLContentBuilder.java:
+
+	Now we are able to convert any spans from EditView into a valid xml. including crossing spans, nested spans, lists,...
+
+2013-10-12  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+
+	Could not revert a single note any more as we did not follow the sync specifications correctly
+
+2013-10-12  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/xml/NoteXMLContentBuilder.java:
+
+	fix a parsing issue with bullet lists
+
+2013-10-12  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/xml/NoteXMLContentBuilder.java:
+
+	cleaned up the ontextchangelistener in editNote to be able to add new features and remove unexpected behaviour when changing styles
+
+2013-10-12  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/ui/EditNote.java:
+
+	moved ontogglebutton events from stylebar to generic function in order to add more awesome to it.
+
+2013-10-12  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/ui/CompareNotes.java:
+	* src/org/tomdroid/ui/EditNote.java:
+
+	fix bug lp:1155646 where empty conflict dialogue appears and does not go away.
+
+2013-10-12  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/NewNote.java:
+
+	remove global variable for the discarding of brand new notes as it is ugly
+
+2013-10-12  Stefan Hammer  <j.4@gmx.at>
+
+	* AUTHORS:
+	* NEWS:
+	* src/org/tomdroid/util/TagNode.java:
+	* src/org/tomdroid/util/TagType.java:
+	* src/org/tomdroid/xml/NoteXMLContentBuilder.java:
+
+	Added a lot of documentation to our new algorithm to make it understandable and maintainable. updated AUTHORS and ChangeLog
+
+2013-10-11  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/NoteProvider.java:
+	* src/org/tomdroid/sync/sd/NoteHandler.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/util/FirstNote.java:
+	* tests/org/tomdroid/NoteManagerTest.java:
+	* tests/org/tomdroid/NoteTest.java:
+
+	revert to 513 and keep newest changes in extra branch for testing
+
+2013-10-11  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/NoteProvider.java:
+	* src/org/tomdroid/sync/sd/NoteHandler.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/util/FirstNote.java:
+	* tests/org/tomdroid/NoteManagerTest.java:
+	* tests/org/tomdroid/NoteTest.java:
+
+	continue to add fields in database to remember everything we parse from a xml note or websync to be able to write it out on export
+
+2013-10-11  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/NoteProvider.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+
+	started to add missing database fields
+
+2013-10-11  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/util/TagNode.java:
+	* src/org/tomdroid/xml/NoteXMLContentBuilder.java:
+
+	Finished the new NoteXMLContentBuilder... from spannable strings to xml now owrks perfekt!
+
+2013-10-10  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/util/TagNode.java:
+	* src/org/tomdroid/util/TagType.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/xml/NoteXMLContentBuilder.java:
+
+	notexmlcontentbuilder rewritten as a graph problem to be more robust and bugfree. fix bug in snowysyncservice.
+
+2013-10-07  Stefan Hammer  <j.4@gmx.at>
+
+	* build.gradle:
+	* gradle:
+	* gradle/wrapper:
+	* gradle/wrapper/gradle-wrapper.jar:
+	* gradle/wrapper/gradle-wrapper.properties:
+	* gradlew:
+	* gradlew.bat:
+	* .classpath:
+
+	generated gradle project files for Android Studio
+
+2013-07-16  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/ui/CompareNotes.java:
+	* src/org/tomdroid/util/Receive.java:
+
+	fix bug lp:1153214 where the receive function tried to fill a SyncService array. now the note is locally changed/added by NoteManager. Further i added a getUribyGuid function to NoteManager for conveniently showing notes when clicking on note files.
+
+2013-07-15  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/xml/NoteContentHandler.java:
+	* src/org/tomdroid/xml/NoteXMLContentBuilder.java:
+
+	several small changes: move strings to translatable source, remove unnecessary boolean changes and made public variables private for security reasons (suggested by eclipse)
+
+2013-05-19  Stefan Hammer  <j.4@gmx.at>
+
+	* .classpath:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/xml/XmlUtils.java:
+
+	fix bug #1164889 where single and double quotes are not escaped in note title on sync.
+
+2013-03-31  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/xml/LinkifyPhone.java:
+	* src/org/tomdroid/xml/NoteContentBuilder.java:
+	* src/org/tomdroid/xml/NoteXMLContentBuilder.java:
+	* src/org/tomdroid/xml/XmlUtils.java:
+	* src/org/tomdroid/util/LinkifyPhone.java:
+	* src/org/tomdroid/util/NoteContentBuilder.java:
+	* src/org/tomdroid/util/NoteXMLContentBuilder.java:
+	* src/org/tomdroid/util/StringConverter.java:
+	* src/org/tomdroid/util/XmlUtils.java:
+	* res/menu/edit_note.xml:
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/NoteProvider.java:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/FilePickerActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+	* src/org/tomdroid/util/Receive.java:
+	* src/org/tomdroid/util/Send.java:
+
+	fix bug #1068691 and remove stringconverter in favour of xmlutils. further sort classes needed for xml parsing and writing from utils into org.tomdroid.xml. I hope everyone agrees with this change.
+
+2013-03-31  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid-bg.po:
+	* locales/tomdroid-et.po:
+	* locales/tomdroid-gl.po:
+	* locales/tomdroid-id.po:
+	* locales/tomdroid-la.po:
+	* locales/tomdroid-ml.po:
+	* locales/tomdroid-nl.po:
+	* locales/tomdroid-sr.po:
+	* locales/tomdroid-zh_TW.po:
+	* res/values-bg:
+	* res/values-bg/strings.xml:
+	* res/values-et:
+	* res/values-et/strings.xml:
+	* res/values-gl:
+	* res/values-gl/strings.xml:
+	* res/values-id:
+	* res/values-id/strings.xml:
+	* res/values-la:
+	* res/values-la/strings.xml:
+	* res/values-ml:
+	* res/values-ml/strings.xml:
+	* res/values-nl:
+	* res/values-nl/strings.xml:
+	* res/values-sr:
+	* res/values-sr/strings.xml:
+	* res/values-zh-rTW:
+	* res/values-zh-rTW/strings.xml:
+	* src/org/tomdroid/sync/web/MySSLSocketFactory.java:
+	* locales/tomdroid-bg.po:
+	* locales/tomdroid-et.po:
+	* locales/tomdroid-gl.po:
+	* locales/tomdroid-id.po:
+	* locales/tomdroid-la.po:
+	* locales/tomdroid-ml.po:
+	* locales/tomdroid-nl.po:
+	* locales/tomdroid-sr.po:
+	* locales/tomdroid-zh_TW.po:
+	* res/values-bg:
+	* res/values-bg/strings.xml:
+	* res/values-et:
+	* res/values-et/strings.xml:
+	* res/values-gl:
+	* res/values-gl/strings.xml:
+	* res/values-id:
+	* res/values-id/strings.xml:
+	* res/values-la:
+	* res/values-la/strings.xml:
+	* res/values-ml:
+	* res/values-ml/strings.xml:
+	* res/values-nl:
+	* res/values-nl/strings.xml:
+	* res/values-sr:
+	* res/values-sr/strings.xml:
+	* res/values-zh-rTW:
+	* res/values-zh-rTW/strings.xml:
+	* src/org/tomdroid/sync/web/MySSLSocketFactory.java:
+	* AUTHORS:
+	* AndroidManifest.xml:
+	* ChangeLog:
+	* NEWS:
+	* doc/dev/RELEASE-CHECKLIST:
+	* locales/tomdroid-ar.po:
+	* locales/tomdroid-bs.po:
+	* locales/tomdroid-ca.po:
+	* locales/tomdroid-cs.po:
+	* locales/tomdroid-da.po:
+	* locales/tomdroid-de.po:
+	* locales/tomdroid-el.po:
+	* locales/tomdroid-en_GB.po:
+	* locales/tomdroid-eo.po:
+	* locales/tomdroid-es.po:
+	* locales/tomdroid-eu.po:
+	* locales/tomdroid-fa.po:
+	* locales/tomdroid-fi.po:
+	* locales/tomdroid-fo.po:
+	* locales/tomdroid-fr.po:
+	* locales/tomdroid-gd.po:
+	* locales/tomdroid-hi.po:
+	* locales/tomdroid-hu.po:
+	* locales/tomdroid-it.po:
+	* locales/tomdroid-ja.po:
+	* locales/tomdroid-ko.po:
+	* locales/tomdroid-ms.po:
+	* locales/tomdroid-nb.po:
+	* locales/tomdroid-pl.po:
+	* locales/tomdroid-pt.po:
+	* locales/tomdroid-pt_BR.po:
+	* locales/tomdroid-ru.po:
+	* locales/tomdroid-si.po:
+	* locales/tomdroid-sv.po:
+	* locales/tomdroid-ta.po:
+	* locales/tomdroid-te.po:
+	* locales/tomdroid-tr.po:
+	* locales/tomdroid-ug.po:
+	* locales/tomdroid-uk.po:
+	* locales/tomdroid-zh.po:
+	* locales/tomdroid-zh_CN.po:
+	* locales/tomdroid.pot:
+	* res/values-ar/strings.xml:
+	* res/values-bs/strings.xml:
+	* res/values-ca/strings.xml:
+	* res/values-cs/strings.xml:
+	* res/values-da/strings.xml:
+	* res/values-de/strings.xml:
+	* res/values-el/strings.xml:
+	* res/values-en-rGB/strings.xml:
+	* res/values-eo/strings.xml:
+	* res/values-es/strings.xml:
+	* res/values-eu/strings.xml:
+	* res/values-fa/strings.xml:
+	* res/values-fi/strings.xml:
+	* res/values-fo/strings.xml:
+	* res/values-fr/strings.xml:
+	* res/values-gd/strings.xml:
+	* res/values-hi/strings.xml:
+	* res/values-hu/strings.xml:
+	* res/values-it/strings.xml:
+	* res/values-ja/strings.xml:
+	* res/values-ko/strings.xml:
+	* res/values-ms/strings.xml:
+	* res/values-nb/strings.xml:
+	* res/values-pl/strings.xml:
+	* res/values-pt-rBR/strings.xml:
+	* res/values-pt/strings.xml:
+	* res/values-ru/strings.xml:
+	* res/values-si/strings.xml:
+	* res/values-sv/strings.xml:
+	* res/values-ta/strings.xml:
+	* res/values-te/strings.xml:
+	* res/values-tr/strings.xml:
+	* res/values-ug/strings.xml:
+	* res/values-uk/strings.xml:
+	* res/values-zh-rCN/strings.xml:
+	* res/values-zh/strings.xml:
+	* res/values/strings.xml:
+	* res/xml/preferences.xml:
+	* src/org/tomdroid/util/Preferences.java:
+
+	merged changes from stable version including removal of ubuntu one parts, added default sync service to sdcard as we have no default sync url. updated translations.
+
+2013-03-18  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid.pot:
+	* res/values/strings.xml:
+
+	update market description to the newest version
+
+2013-03-18  Stefan Hammer  <j.4@gmx.at>
+
+	release 0.6.1 polyglot
+
+2013-03-18  Stefan Hammer  <j.4@gmx.at>
+
+	* NEWS:
+
+	change release date
+
+2013-03-15  Stefan Hammer  <j.4@gmx.at>
+
+	* doc/dev/RELEASE-CHECKLIST:
+
+	logging is not neccesary in manifest any more
+
+2013-03-15  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid-ar.po:
+	* locales/tomdroid-bg.po:
+	* locales/tomdroid-bs.po:
+	* locales/tomdroid-ca.po:
+	* locales/tomdroid-cs.po:
+	* locales/tomdroid-da.po:
+	* locales/tomdroid-de.po:
+	* locales/tomdroid-el.po:
+	* locales/tomdroid-en_GB.po:
+	* locales/tomdroid-eo.po:
+	* locales/tomdroid-es.po:
+	* locales/tomdroid-et.po:
+	* locales/tomdroid-eu.po:
+	* locales/tomdroid-fa.po:
+	* locales/tomdroid-fi.po:
+	* locales/tomdroid-fo.po:
+	* locales/tomdroid-fr.po:
+	* locales/tomdroid-gd.po:
+	* locales/tomdroid-gl.po:
+	* locales/tomdroid-hi.po:
+	* locales/tomdroid-hu.po:
+	* locales/tomdroid-id.po:
+	* locales/tomdroid-it.po:
+	* locales/tomdroid-ja.po:
+	* locales/tomdroid-ko.po:
+	* locales/tomdroid-la.po:
+	* locales/tomdroid-ml.po:
+	* locales/tomdroid-ms.po:
+	* locales/tomdroid-nb.po:
+	* locales/tomdroid-nl.po:
+	* locales/tomdroid-pl.po:
+	* locales/tomdroid-pt.po:
+	* locales/tomdroid-pt_BR.po:
+	* locales/tomdroid-ru.po:
+	* locales/tomdroid-si.po:
+	* locales/tomdroid-sr.po:
+	* locales/tomdroid-sv.po:
+	* locales/tomdroid-ta.po:
+	* locales/tomdroid-te.po:
+	* locales/tomdroid-tr.po:
+	* locales/tomdroid-ug.po:
+	* locales/tomdroid-uk.po:
+	* locales/tomdroid-zh.po:
+	* locales/tomdroid-zh_CN.po:
+	* locales/tomdroid-zh_TW.po:
+	* res/values-ar/strings.xml:
+	* res/values-bg/strings.xml:
+	* res/values-bs/strings.xml:
+	* res/values-ca/strings.xml:
+	* res/values-cs/strings.xml:
+	* res/values-da/strings.xml:
+	* res/values-de/strings.xml:
+	* res/values-el/strings.xml:
+	* res/values-en-rGB/strings.xml:
+	* res/values-eo/strings.xml:
+	* res/values-es/strings.xml:
+	* res/values-et/strings.xml:
+	* res/values-eu/strings.xml:
+	* res/values-fa/strings.xml:
+	* res/values-fi/strings.xml:
+	* res/values-fo/strings.xml:
+	* res/values-fr/strings.xml:
+	* res/values-gd/strings.xml:
+	* res/values-gl/strings.xml:
+	* res/values-hi/strings.xml:
+	* res/values-hu/strings.xml:
+	* res/values-id/strings.xml:
+	* res/values-it/strings.xml:
+	* res/values-ja/strings.xml:
+	* res/values-ko/strings.xml:
+	* res/values-la/strings.xml:
+	* res/values-ml/strings.xml:
+	* res/values-ms/strings.xml:
+	* res/values-nb/strings.xml:
+	* res/values-nl/strings.xml:
+	* res/values-pl/strings.xml:
+	* res/values-pt-rBR/strings.xml:
+	* res/values-pt/strings.xml:
+	* res/values-ru/strings.xml:
+	* res/values-si/strings.xml:
+	* res/values-sr/strings.xml:
+	* res/values-sv/strings.xml:
+	* res/values-ta/strings.xml:
+	* res/values-te/strings.xml:
+	* res/values-tr/strings.xml:
+	* res/values-ug/strings.xml:
+	* res/values-uk/strings.xml:
+	* res/values-zh-rCN/strings.xml:
+	* res/values-zh-rTW/strings.xml:
+	* res/values-zh/strings.xml:
+
+	a last update of the translations
+
+2013-03-15  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid.pot:
+
+	push new string changes to .pot file otherwise eclipse complains about untranslated strings
+
+2013-03-14  Stefan Hammer  <j.4@gmx.at>
+
+	* AndroidManifest.xml:
+	* ChangeLog:
+	* README:
+	* doc/dev/RELEASE-CHECKLIST:
+
+	RELESE: now i am half through the release checklist.
+
 2013-03-14  Stefan Hammer  <j.4@gmx.at>
 
 	* src/org/tomdroid/sync/SyncManager.java:
@@ -167,6 +955,2136 @@
 
 	Make translations available on launchpad with running bash androidxml2po.bash -e
 
+2013-03-31  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid.pot:
+
+	updated pot file for translations
+
+2013-03-31  Stefan Hammer  <j.4@gmx.at>
+
+	* AUTHORS:
+	* NEWS:
+	* res/values/strings.xml:
+	* res/xml/preferences.xml:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/Preferences.java:
+
+	mergd bugfix for bug #1038353 by mili. thanks for your help!
+
+2013-03-31  mili  <mili@gmx.at>
+
+	* res/values/strings.xml:
+	* res/xml/preferences.xml:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/Preferences.java:
+
+	SyncOnStart added bug #1038353
+
+2013-03-30  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid.pot:
+	* res/values/strings.xml:
+
+	Change descriptions of link-preferences to begin with captial letter
+
+2013-03-30  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/ui/FilePickerActivity.java:
+
+	fix bug #1158806 and bug #1158804
+
+2013-03-18  Stefan Hammer  <j.4@gmx.at>
+
+	* res/drawable-hdpi/action_icon.png:
+	* res/drawable-hdpi/action_icon_up.png:
+	* res/drawable-ldpi/action_icon.png:
+	* res/drawable-ldpi/action_icon_up.png:
+	* res/drawable-mdpi/action_icon.png:
+	* res/drawable-mdpi/action_icon_up.png:
+	* res/drawable-xhdpi/action_icon.png:
+	* res/drawable-xhdpi/action_icon_up.png:
+	* res/layout/main.xml:
+	* src/org/tomdroid/ui/CompareNotes.java:
+	* src/org/tomdroid/ui/FilePickerActivity.java:
+	* src/org/tomdroid/ui/ShortcutActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarActivity.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarHelper.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarHelperBase.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarHelperHoneycomb.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarHelperICS.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarListActivity.java:
+
+	fix lp:1149319 now there is a return arrow left from the actionbar home icon if it is enabled and it is disabled in the home activity and others.
+
+2013-03-13  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+
+	fixed bug #1134866 and bug #982749. both bugs were in the url validation of the server-url preference. now no spaces are allowed any more and bad urls are not saved.
+
+2013-03-13  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid-bg.po:
+	* locales/tomdroid-et.po:
+	* locales/tomdroid-gl.po:
+	* locales/tomdroid-id.po:
+	* locales/tomdroid-la.po:
+	* locales/tomdroid-ml.po:
+	* locales/tomdroid-nl.po:
+	* locales/tomdroid-sr.po:
+	* res/values-bg:
+	* res/values-bg/strings.xml:
+	* res/values-et:
+	* res/values-et/strings.xml:
+	* res/values-gl:
+	* res/values-gl/strings.xml:
+	* res/values-id:
+	* res/values-id/strings.xml:
+	* res/values-la:
+	* res/values-la/strings.xml:
+	* res/values-ml:
+	* res/values-ml/strings.xml:
+	* res/values-nl:
+	* res/values-nl/strings.xml:
+	* res/values-sr:
+	* res/values-sr/strings.xml:
+	* AUTHORS:
+	* NEWS:
+	* locales/tomdroid-ar.po:
+	* locales/tomdroid-bs.po:
+	* locales/tomdroid-ca.po:
+	* locales/tomdroid-cs.po:
+	* locales/tomdroid-da.po:
+	* locales/tomdroid-de.po:
+	* locales/tomdroid-el.po:
+	* locales/tomdroid-en_GB.po:
+	* locales/tomdroid-eo.po:
+	* locales/tomdroid-es.po:
+	* locales/tomdroid-eu.po:
+	* locales/tomdroid-fa.po:
+	* locales/tomdroid-fi.po:
+	* locales/tomdroid-fo.po:
+	* locales/tomdroid-fr.po:
+	* locales/tomdroid-gd.po:
+	* locales/tomdroid-hi.po:
+	* locales/tomdroid-hu.po:
+	* locales/tomdroid-it.po:
+	* locales/tomdroid-ja.po:
+	* locales/tomdroid-ko.po:
+	* locales/tomdroid-ms.po:
+	* locales/tomdroid-nb.po:
+	* locales/tomdroid-pl.po:
+	* locales/tomdroid-pt.po:
+	* locales/tomdroid-pt_BR.po:
+	* locales/tomdroid-ru.po:
+	* locales/tomdroid-si.po:
+	* locales/tomdroid-sv.po:
+	* locales/tomdroid-ta.po:
+	* locales/tomdroid-te.po:
+	* locales/tomdroid-tr.po:
+	* locales/tomdroid-ug.po:
+	* locales/tomdroid-uk.po:
+	* locales/tomdroid-zh.po:
+	* locales/tomdroid-zh_CN.po:
+	* locales/tomdroid-zh_TW.po:
+	* locales/tomdroid.pot:
+	* res/values-ar/strings.xml:
+	* res/values-bs/strings.xml:
+	* res/values-ca/strings.xml:
+	* res/values-cs/strings.xml:
+	* res/values-da/strings.xml:
+	* res/values-de/strings.xml:
+	* res/values-el/strings.xml:
+	* res/values-en-rGB/strings.xml:
+	* res/values-eo/strings.xml:
+	* res/values-es/strings.xml:
+	* res/values-eu/strings.xml:
+	* res/values-fa/strings.xml:
+	* res/values-fi/strings.xml:
+	* res/values-fo/strings.xml:
+	* res/values-fr/strings.xml:
+	* res/values-gd/strings.xml:
+	* res/values-hi/strings.xml:
+	* res/values-hu/strings.xml:
+	* res/values-it/strings.xml:
+	* res/values-ja/strings.xml:
+	* res/values-ko/strings.xml:
+	* res/values-ms/strings.xml:
+	* res/values-nb/strings.xml:
+	* res/values-pl/strings.xml:
+	* res/values-pt-rBR/strings.xml:
+	* res/values-pt/strings.xml:
+	* res/values-ru/strings.xml:
+	* res/values-si/strings.xml:
+	* res/values-sv/strings.xml:
+	* res/values-ta/strings.xml:
+	* res/values-te/strings.xml:
+	* res/values-tr/strings.xml:
+	* res/values-ug/strings.xml:
+	* res/values-uk/strings.xml:
+	* res/values-zh-rCN/strings.xml:
+	* res/values-zh-rTW/strings.xml:
+	* res/values-zh/strings.xml:
+	* res/values/strings.xml:
+
+	Update translations, merge news from 0.6.0 and re-add deleted strings.
+
+2013-03-13  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/sync/web/MySSLSocketFactory.java:
+	* src/org/tomdroid/sync/web/OAuthConnection.java:
+	* src/org/tomdroid/sync/web/WebConnection.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	Add support for self-signed SSL certificates. lp:1153289  We still need to show the certificate to the user to verify it and save it afterwards. For now this is a quick hack to support the Rainy server
+
+2013-03-12  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/sync/web/AnonymousConnection.java:
+	* src/org/tomdroid/sync/web/WebConnection.java:
+
+	Timo corrected some mistakes i made adding the http header.
+
+2013-03-12  Stefan Hammer  <j.4@gmx.at>
+
+	* NEWS:
+
+	update NEWS
+
+2013-03-12  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/sync/web/AnonymousConnection.java:
+	* src/org/tomdroid/sync/web/OAuthConnection.java:
+	* src/org/tomdroid/sync/web/WebConnection.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	fix bug lp:1120488 
+
+2013-03-12  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid.pot:
+
+	update translations
+
+2013-03-11  Stefan Hammer  <j.4@gmx.at>
+
+	* res/values/strings.xml:
+
+	fixed grammar in string
+
+2013-03-11  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/util/Receive.java:
+
+	just check for the beginning, otherwise attachments are handled as text.
+
+2013-03-11  Stefan Hammer  <j.4@gmx.at>
+
+	* AndroidManifest.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/util/Receive.java:
+
+	Now it is really possible to open mail attachments. this was horrible. could not find out that mimetype is acutally application/note and that viewing from attachments had to be received differently.
+
+2013-03-10  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid.pot:
+	* util/xml2po/README:
+
+	exported xml to po and added dependencies of xml2po script to README.
+
+2013-03-10  Stefan Hammer  <j.4@gmx.at>
+
+	* res/drawable/button.xml:
+	* NEWS:
+	* res/drawable/button_toggle.xml:
+	* res/layout/note_edit.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	fix several small issues and the string related bugs. eg translation comments, refernces to locations,...
+
+2013-03-10  Stefan Hammer  <j.4@gmx.at>
+
+	* NEWS:
+
+	update news
+
+2013-03-10  Stefan Hammer  <j.4@gmx.at>
+
+	* res/layout/note_compare.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/CompareNotes.java:
+
+	fix Bug #1070787 Note Title should be more obvious in Conflict resolving dialogue
+
+2013-03-10  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+	* src/org/tomdroid/util/Receive.java:
+
+	fix note not found on import if note is already present. further, raise changedate on import, otherwise it won't be synced.
+
+2013-03-10  Stefan Hammer  <j.4@gmx.at>
+
+	* AndroidManifest.xml:
+	* src/org/tomdroid/util/Receive.java:
+
+	now it is possible to open a .note file from mail, gmail, etc.
+
+2013-03-09  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+
+	fixed Bug #1071732 Delete Remote Notes still uses the fancy porgress dialogue incomartible to older Android versions.
+
+2013-03-09  Stefan Hammer  <j.4@gmx.at>
+
+	* NEWS:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	It is now possible to change sync-method, sync-server, folder location without loosing any notes
+
+2013-03-09  Stefan Hammer  <j.4@gmx.at>
+
+	* AUTHORS:
+	* NEWS:
+	* src/org/tomdroid/ui/EditNote.java:
+
+	merged fix for Bug #1051932 by Michael Cerman. Thanks
+
+2013-03-02  Michal Cerman  <michalcerman@gmail.com>
+
+	* src/org/tomdroid/ui/EditNote.java:
+
+	Fixed the bug #1051932(&amp; gets replaced with &amp;amp; on clicking save button). The note is now redrawn after the save process.
+
+2013-02-24  Stefan Hammer  <j.4@gmx.at>
+
+	* res/values/strings.xml:
+
+	fix bug #1068785
+
+2013-02-24  Stefan Hammer  <j.4@gmx.at>
+
+	* res/values/strings.xml:
+
+	fix bug #1068793
+
+2013-02-24  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	Fixed bug #1074676 and changed chreate date to 1.1.2000 (dirty fix until we store this on in the db)
+
+2013-01-05  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* doc/gather-logs.txt:
+
+	doc: added logcat instructions
+	
+	We repeat them quite often.
+
+2012-11-13  Stefan Hammer  <j.4@gmx.at>
+
+	* NEWS:
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+
+	fixed bug lp:1064149 Tomdroid Sync fails, datetime_format error
+
+2012-11-13  Stefan Hammer  <j.4@gmx.at>
+
+	* sdcard.img:
+	* src/org/tomdroid/Note.java:
+
+	revert sd, set create-date to 2000
+
+2012-11-13  Stefan Hammer  <j.4@gmx.at>
+
+	* sdcard.img:
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+
+	trying to fix time format bugs: Bug #1064149 and#1074676
+
+2012-11-04  Stefan Hammer  <j.4@gmx.at>
+
+	* NEWS:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	fix lp:1074894 NotesList -> Longpress -> Revert -> CRASH
+
+2012-11-04  Stefan Hammer  <j.4@gmx.at>
+
+	* NEWS:
+
+	update NEWS
+
+2012-11-04  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/util/Receive.java:
+
+	fix bug #1074661 where note files opened with gmail are not parsed as xml.
+
+2012-11-03  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/util/Preferences.java:
+
+	probably fixes bug #1074676. waiting for test to verify this. however, fix does not break anything. good sign :-)
+
+2012-11-03  Stefan Hammer  <j.4@gmx.at>
+
+	* AndroidManifest.xml:
+	* NEWS:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/FilePickerActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+
+	merge tomdroid-dev branch
+
+2012-11-03  noahy  <noahy57@gmail.com>
+
+	* NEWS:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+
+	fixed lp:1074602
+
+2012-10-20  noahy  <noahy57@gmail.com>
+
+	* AndroidManifest.xml:
+	* NEWS:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+
+	fixed lp:1068684
+	fixed lp:1068689
+	revert to open only text files from file explorer
+
+2012-10-20  noahy  <noahy57@gmail.com>
+
+	* NEWS:
+	* src/org/tomdroid/ui/FilePickerActivity.java:
+
+	fixed lp:1068681
+
+2012-10-17  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/TLog.java:
+
+	fix bug #1051294. closing cursers after every lookup.
+
+2012-10-17  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* AUTHORS:
+	* ChangeLog:
+	* src/org/tomdroid/util/TLog.java:
+
+	author, changelog and debugging prepped for release
+
+2012-10-17  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* doc/user:
+	* AndroidManifest.xml:
+	* NEWS:
+	* README:
+	* doc/dev/RELEASE-CHECKLIST:
+
+	0.7.2 release bump
+	
+	bonuses: fixed release documents, removed dead path
+
+2012-10-17  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* res/drawable-hdpi/file.png:
+	* res/drawable-hdpi/folder.png:
+	* res/drawable-ldpi/file.png:
+	* res/drawable-ldpi/folder.png:
+	* res/drawable-mdpi/file.png:
+	* res/drawable-mdpi/folder.png:
+	* res/layout/file_picker_content_view.xml:
+	* res/layout/file_picker_empty_view.xml:
+	* res/layout/file_picker_list_item.xml:
+	* src/org/tomdroid/ui/FilePickerActivity.java:
+	* src/org/tomdroid/util/NavButtonAdapter.java:
+	* res/layout/search.xml:
+	* AndroidManifest.xml:
+	* NEWS:
+	* locales/tomdroid.pot:
+	* res/layout/main.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/sync/SyncManager.java:
+	* src/org/tomdroid/sync/sd/NoteHandler.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/CompareNotes.java:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarHelperHoneycomb.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarHelperICS.java:
+	* src/org/tomdroid/util/FirstNote.java:
+	* src/org/tomdroid/util/NewNote.java:
+	* src/org/tomdroid/util/NoteListCursorAdapter.java:
+	* src/org/tomdroid/util/Preferences.java:
+	* src/org/tomdroid/util/Receive.java:
+	* src/org/tomdroid/util/Send.java:
+
+	merged tomdroid-dev's note-editing.. branch into tomdroid-maint's one
+
+2012-09-21  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid.pot:
+
+	export pot, as i made string changes.
+
+2012-09-21  Stefan Hammer  <j.4@gmx.at>
+
+	* res/layout/search.xml:
+	* NEWS:
+	* res/layout/main.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	fixed bug 1053366. now note-not-found and no-notes-in-database,... are displayed again.
+
+2012-09-18  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/sync/SyncManager.java:
+	* src/org/tomdroid/sync/sd/NoteHandler.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/CompareNotes.java:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/FilePickerActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarHelperHoneycomb.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarHelperICS.java:
+	* src/org/tomdroid/util/FirstNote.java:
+	* src/org/tomdroid/util/NavButtonAdapter.java:
+	* src/org/tomdroid/util/NewNote.java:
+	* src/org/tomdroid/util/NoteListCursorAdapter.java:
+	* src/org/tomdroid/util/Send.java:
+
+	remove unneccesary imports.
+
+2012-09-18  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/util/Receive.java:
+
+	merge
+
+2012-09-17  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/util/Receive.java:
+
+	Fix crasher on import note. Preferences were not initialized -> nullpointer on Preferences.getString
+
+2012-09-18  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/Receive.java:
+
+	fixing lp:1051908
+
+2012-09-14  noahy  <noahy57@gmail.com>
+
+	* NEWS:
+
+	news
+
+2012-09-13  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	fix for lp:1050007
+
+2012-09-11  noahy  <noahy57@gmail.com>
+
+	* res/layout/file_picker_content_view.xml:
+	* src/org/tomdroid/ui/FilePickerActivity.java:
+
+	fixed file picker formatting
+
+2012-09-11  noahy  <noahy57@gmail.com>
+
+	* res/menu-sw600dp-land/main.xml:
+	* res/menu/main.xml:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/NoteXMLContentBuilder.java:
+
+	merges
+
+2012-09-11  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	trying to stop reoccuring viewnote
+
+2012-09-09  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+
+	fixed error in sort order preference
+
+2012-09-09  noahy  <noahy57@gmail.com>
+
+	* res/drawable-hdpi/file.png:
+	* res/drawable-hdpi/folder.png:
+	* res/drawable-ldpi/file.png:
+	* res/drawable-ldpi/folder.png:
+	* res/drawable-mdpi/file.png:
+	* res/drawable-mdpi/folder.png:
+	* res/layout/file_picker_content_view.xml:
+	* res/layout/file_picker_empty_view.xml:
+	* res/layout/file_picker_list_item.xml:
+	* src/org/tomdroid/ui/FilePickerActivity.java:
+	* src/org/tomdroid/util/NavButtonAdapter.java:
+	* AndroidManifest.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/Preferences.java:
+
+	revert to internal file picker
+
+2012-09-11  Stefan Hammer  <j.4@gmx.at>
+
+	* NEWS:
+	* src/org/tomdroid/util/NoteXMLContentBuilder.java:
+
+	merge koichis fix for lp:1049026
+
+2012-09-11  Koichi Akabe  <vbkaisetsu@gmail.com>
+
+	* src/org/tomdroid/util/NoteXMLContentBuilder.java:
+
+	fix checking position on replace illegal XML characters
+
+2012-09-11  Stefan Hammer  <j.4@gmx.at>
+
+	* res/menu-sw600dp-land/main.xml:
+	* res/menu/main.xml:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	show sort-by-button only if there is room (no space on small displays) and as menu to have the text there (below android 2.3 there is no text for buttons in actionbar combat). Further add home menu entry for search results as there was no possibility to go back to list.
+
+2012-09-09  noahy  <noahy57@gmail.com>
+
+	* res/drawable-hdpi/file.png:
+	* res/drawable-hdpi/folder.png:
+	* res/drawable-ldpi/file.png:
+	* res/drawable-ldpi/folder.png:
+	* res/drawable-mdpi/file.png:
+	* res/drawable-mdpi/folder.png:
+	* res/layout/file_picker_content_view.xml:
+	* res/layout/file_picker_empty_view.xml:
+	* res/layout/file_picker_list_item.xml:
+	* src/com:
+	* src/com/kaloer:
+	* src/com/kaloer/filepicker:
+	* src/com/kaloer/filepicker/FilePickerActivity.java:
+	* AndroidManifest.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/Preferences.java:
+
+	removed file picker, using OI as import method
+
+2012-09-09  noahy  <noahy57@gmail.com>
+
+	* res/layout/file_picker_content_view.xml:
+	* AndroidManifest.xml:
+	* res/layout/file_picker_empty_view.xml:
+	* res/values/strings.xml:
+	* src/com/kaloer/filepicker/FilePickerActivity.java:
+	* src/org/tomdroid/util/Receive.java:
+
+	filepicker integration
+
+2012-09-09  noahy  <noahy57@gmail.com>
+
+	* NEWS:
+	* res/values/strings.xml:
+	* res/xml/preferences.xml:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+	* src/org/tomdroid/util/Preferences.java:
+
+	added options to turn off hyperlink matching
+	removed linkmovement method (prevented text selection)
+	moved sort preference into Display Preferences
+
+2012-09-08  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	fixed selection marking on change sort
+
+2012-09-08  noahy  <noahy57@gmail.com>
+
+	* res/drawable-hdpi/file.png:
+	* res/drawable-hdpi/folder.png:
+	* res/drawable-ldpi/file.png:
+	* res/drawable-ldpi/folder.png:
+	* res/drawable-mdpi/file.png:
+	* res/drawable-mdpi/folder.png:
+	* res/layout/file_picker_empty_view.xml:
+	* res/layout/file_picker_list_item.xml:
+	* src/com:
+	* src/com/kaloer:
+	* src/com/kaloer/filepicker:
+	* src/com/kaloer/filepicker/FilePickerActivity.java:
+	* .classpath:
+	* .settings/org.eclipse.jdt.core.prefs:
+	* AndroidManifest.xml:
+	* NEWS:
+	* locales/tomdroid.pot:
+	* res/menu-sw600dp-land/main.xml:
+	* res/menu/main.xml:
+	* res/values-ar/strings.xml:
+	* res/values-bs/strings.xml:
+	* res/values-ca/strings.xml:
+	* res/values-cs/strings.xml:
+	* res/values-da/strings.xml:
+	* res/values-de/strings.xml:
+	* res/values-el/strings.xml:
+	* res/values-en-rGB/strings.xml:
+	* res/values-eo/strings.xml:
+	* res/values-es/strings.xml:
+	* res/values-eu/strings.xml:
+	* res/values-fa/strings.xml:
+	* res/values-fi/strings.xml:
+	* res/values-fo/strings.xml:
+	* res/values-fr/strings.xml:
+	* res/values-gd/strings.xml:
+	* res/values-hi/strings.xml:
+	* res/values-hu/strings.xml:
+	* res/values-it/strings.xml:
+	* res/values-ja/strings.xml:
+	* res/values-ko/strings.xml:
+	* res/values-ms/strings.xml:
+	* res/values-nb/strings.xml:
+	* res/values-pl/strings.xml:
+	* res/values-pt-rBR/strings.xml:
+	* res/values-pt/strings.xml:
+	* res/values-ru/strings.xml:
+	* res/values-si/strings.xml:
+	* res/values-sv/strings.xml:
+	* res/values-ta/strings.xml:
+	* res/values-te/strings.xml:
+	* res/values-tr/strings.xml:
+	* res/values-ug/strings.xml:
+	* res/values-uk/strings.xml:
+	* res/values-zh-rCN/strings.xml:
+	* res/values-zh-rTW/strings.xml:
+	* res/values-zh/strings.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/Receive.java:
+
+	* added file picker to import plain text and note files from within Tomdroid
+
+2012-09-08  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/util/StringConverter.java:
+	* AndroidManifest.xml:
+	* NEWS:
+	* res/menu/main_longclick.xml:
+	* res/menu/main_longclick_deleted.xml:
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/NoteProvider.java:
+	* src/org/tomdroid/util/Receive.java:
+
+	merge search without xml tags, add ability to import plain text
+
+2012-09-08  Koichi Akabe  <vbkaisetsu@gmail.com>
+
+	* src/org/tomdroid/util/StringConverter.java:
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/NoteProvider.java:
+
+	search contents without xml tags
+	escape "%" and "_", which are used as SQL keyword
+
+2012-09-08  noahy  <noahy57@gmail.com>
+
+	* res/menu-sw600dp-land/main.xml:
+	* res/menu/main.xml:
+	* res/values/strings.xml:
+	* res/xml/preferences.xml:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/NoteProvider.java:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	merge - sort button
+
+2012-09-08  Koichi Akabe  <vbkaisetsu@gmail.com>
+
+	* res/drawable-hdpi/ic_menu_sort_datemodified.png:
+	* res/drawable-hdpi/ic_menu_sort_title.png:
+	* res/drawable-ldpi/ic_menu_sort_datemodified.png:
+	* res/drawable-ldpi/ic_menu_sort_title.png:
+	* res/drawable-mdpi/ic_menu_sort_datemodified.png:
+	* res/drawable-mdpi/ic_menu_sort_title.png:
+	* res/menu-sw600dp-land/main.xml:
+	* res/menu/main.xml:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	remove sort icons
+	change title on sorting
+
+2012-09-07  Koichi Akabe  <vbkaisetsu@gmail.com>
+
+	* res/drawable-hdpi/ic_menu_sort_datemodified.png:
+	* res/drawable-hdpi/ic_menu_sort_title.png:
+	* res/drawable-ldpi/ic_menu_sort_datemodified.png:
+	* res/drawable-ldpi/ic_menu_sort_title.png:
+	* res/drawable-mdpi/ic_menu_sort_datemodified.png:
+	* res/drawable-mdpi/ic_menu_sort_title.png:
+	* res/menu-sw600dp-land/main.xml:
+	* res/menu/main.xml:
+	* res/values/strings.xml:
+	* res/xml/preferences.xml:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/NoteProvider.java:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	add sort button
+
+2012-09-08  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/sync/SyncService.java:
+
+	fixed lp:1047257 Deleted note from tomboy not synced (ubuntu 1)
+
+2012-09-07  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/xml/LinkInternalSpan.java:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+	* src/org/tomdroid/util/NoteXMLContentBuilder.java:
+	* src/org/tomdroid/xml/NoteContentHandler.java:
+
+	merge link:internal, fix to avoid linking to self
+
+2012-09-07  Koichi Akabe  <vbkaisetsu@gmail.com>
+
+	* src/org/tomdroid/util/NoteXMLContentBuilder.java:
+	* src/org/tomdroid/xml/NoteContentHandler.java:
+
+	fix behavior on editing note with link:internal
+
+2012-09-07  Koichi Akabe  <vbkaisetsu@gmail.com>
+
+	* data/market-screenshots/0.5 - note-list.png:
+	* data/market-screenshots/0.5 - note-options.png:
+	* data/market-screenshots/0.5 - note-view.png:
+	* data/market-screenshots/0.5 - preferences.png:
+	* data/market-screenshots/0.5 - search.png:
+	* data/market-screenshots/0.5 - welcome-dialog.png:
+	* data/market-screenshots/0.7.1 - note-edit-And4.1.png:
+	* data/market-screenshots/0.7.1 - note-list-And2.3.png:
+	* data/market-screenshots/0.7.1 - note-view-And2.3.png:
+	* data/market-screenshots/0.7.1 - preferences-And2.3.png:
+	* data/market-screenshots/0.7.1 - preferences-And4.1.png:
+	* data/market-screenshots/0.7.1 - search-And4.1.png:
+	* data/market-screenshots/0.7.1 - tablet-view.png:
+	* data/market-screenshots/0.7.1 - welcome-dialog-And4.1.png:
+	* libs/diffutils-1.2.1.jar:
+	* locales/tomdroid-bs.po:
+	* locales/tomdroid-el.po:
+	* locales/tomdroid-eo.po:
+	* locales/tomdroid-fa.po:
+	* locales/tomdroid-fi.po:
+	* locales/tomdroid-nb.po:
+	* locales/tomdroid-si.po:
+	* locales/tomdroid-ta.po:
+	* locales/tomdroid-zh_TW.po:
+	* res/drawable-hdpi/actionbar_shadow.9.png:
+	* res/drawable-hdpi/ic_menu_sync.png:
+	* res/drawable-hdpi/icon.png:
+	* res/drawable-hdpi/text.png:
+	* res/drawable-hdpi/xml.png:
+	* res/drawable-ldpi/actionbar_shadow.9.png:
+	* res/drawable-ldpi/ic_menu_sync.png:
+	* res/drawable-ldpi/icon.png:
+	* res/drawable-ldpi/text.png:
+	* res/drawable-ldpi/xml.png:
+	* res/drawable-mdpi/actionbar_shadow.9.png:
+	* res/drawable-mdpi/ic_menu_sync.png:
+	* res/drawable-mdpi/icon.png:
+	* res/drawable-mdpi/text.png:
+	* res/drawable-mdpi/xml.png:
+	* res/drawable-xhdpi/actionbar_shadow.9.png:
+	* res/drawable-xhdpi/ic_menu_sync.png:
+	* res/drawable-xhdpi/icon.png:
+	* res/drawable-xhdpi/text.png:
+	* res/drawable-xhdpi/xml.png:
+	* res/drawable/actionbar_compat_item.xml:
+	* res/drawable/actionbar_compat_item_focused.xml:
+	* res/drawable/actionbar_compat_item_pressed.xml:
+	* res/drawable/btn_small.9.png:
+	* res/drawable/btn_small_toggle.9.png:
+	* res/drawable/button_toggle.xml:
+	* res/drawable/drop_shadow.xml:
+	* res/drawable/drop_shadow_selected.xml:
+	* res/drawable/drop_shadow_separator.xml:
+	* res/drawable/highlight.png:
+	* res/drawable/mono.png:
+	* res/drawable/size.png:
+	* res/drawable/tray_handle_normal.png:
+	* res/drawable/triangle_selector.xml:
+	* res/drawable/white_triangle.png:
+	* res/layout-sw600dp-land:
+	* res/layout-sw600dp-land/main.xml:
+	* res/layout-v11:
+	* res/layout-v11/actionbar_indeterminate_progress.xml:
+	* res/layout/actionbar_compat.xml:
+	* res/layout/note_compare.xml:
+	* res/layout/note_edit.xml:
+	* res/layout/strings.xml:
+	* res/menu-sw600dp-land:
+	* res/menu-sw600dp-land/edit_note.xml:
+	* res/menu-sw600dp-land/main.xml:
+	* res/menu-sw600dp-land/search.xml:
+	* res/menu-sw600dp-land/view_note.xml:
+	* res/menu/edit_note.xml:
+	* res/menu/main_longclick_deleted.xml:
+	* res/menu/search.xml:
+	* res/values-bs:
+	* res/values-bs/strings.xml:
+	* res/values-el:
+	* res/values-el/strings.xml:
+	* res/values-eo:
+	* res/values-eo/strings.xml:
+	* res/values-fa:
+	* res/values-fa/strings.xml:
+	* res/values-fi:
+	* res/values-fi/strings.xml:
+	* res/values-nb:
+	* res/values-nb/strings.xml:
+	* res/values-si:
+	* res/values-si/strings.xml:
+	* res/values-sw600dp-land:
+	* res/values-sw600dp-land/dimen.xml:
+	* res/values-sw800dp-land:
+	* res/values-sw800dp-land/dimen.xml:
+	* res/values-ta:
+	* res/values-ta/strings.xml:
+	* res/values-v11:
+	* res/values-v11/styles.xml:
+	* res/values-zh-rTW:
+	* res/values-zh-rTW/strings.xml:
+	* res/values/attrs.xml:
+	* res/values/dimen.xml:
+	* res/values/ids.xml:
+	* res/values/styles.xml:
+	* res/xml/sync_provider.xml:
+	* src/org/tomdroid/ui/CompareNotes.java:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/actionbar:
+	* src/org/tomdroid/ui/actionbar/ActionBarActivity.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarHelper.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarHelperBase.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarHelperHoneycomb.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarHelperICS.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarListActivity.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarPreferenceActivity.java:
+	* src/org/tomdroid/ui/actionbar/SimpleMenu.java:
+	* src/org/tomdroid/ui/actionbar/SimpleMenuItem.java:
+	* src/org/tomdroid/util/Honeycomb.java:
+	* src/org/tomdroid/util/NewNote.java:
+	* src/org/tomdroid/util/NoteXMLContentBuilder.java:
+	* src/org/tomdroid/util/Receive.java:
+	* tests/org/tomdroid:
+	* tests/org/tomdroid/NoteManagerTest.java:
+	* tests/org/tomdroid/NoteTest.java:
+	* res/anim:
+	* res/anim/pulse.xml:
+	* res/drawable-hdpi/icon_actionbar_dot.png:
+	* res/drawable-hdpi/icon_actionbar_sync.png:
+	* res/drawable-hdpi/icon_actionbar_sync_background.png:
+	* res/drawable-ldpi/icon_actionbar_dot.png:
+	* res/drawable-ldpi/icon_actionbar_sync.png:
+	* res/drawable-ldpi/icon_actionbar_sync_background.png:
+	* res/drawable-mdpi/icon_actionbar_dot.png:
+	* res/drawable-mdpi/icon_actionbar_sync.png:
+	* res/drawable-mdpi/icon_actionbar_sync_background.png:
+	* res/drawable-xhdpi/icon_actionbar_dot.png:
+	* res/drawable-xhdpi/icon_actionbar_sync.png:
+	* res/drawable-xhdpi/icon_actionbar_sync_background.png:
+	* res/drawable/actionbar_background.png:
+	* res/drawable/actionbar_icon.xml:
+	* res/drawable/icon.png:
+	* res/drawable/icon_focused.png:
+	* res/layout/actionbar.xml:
+	* src/org/tomdroid/ui/Actionbar.java:
+	* src/org/tomdroid/ui/Search.java:
+	* src/org/tomdroid/ui/SyncMessageHandler.java:
+	* src/org/tomdroid/util/FirstNote.properties:
+	* tests/org/tomdroid:
+	* tests/org/tomdroid/NoteManagerTest.java:
+	* tests/org/tomdroid/NoteTest.java:
+	* .bzrignore:
+	* .classpath:
+	* AUTHORS:
+	* AndroidManifest.xml:
+	* ChangeLog:
+	* NEWS:
+	* doc/dev/RELEASE-CHECKLIST:
+	* doc/dev/TODO:
+	* locales/tomdroid-ar.po:
+	* locales/tomdroid-ca.po:
+	* locales/tomdroid-cs.po:
+	* locales/tomdroid-da.po:
+	* locales/tomdroid-de.po:
+	* locales/tomdroid-en_GB.po:
+	* locales/tomdroid-es.po:
+	* locales/tomdroid-eu.po:
+	* locales/tomdroid-fo.po:
+	* locales/tomdroid-fr.po:
+	* locales/tomdroid-gd.po:
+	* locales/tomdroid-hi.po:
+	* locales/tomdroid-hu.po:
+	* locales/tomdroid-it.po:
+	* locales/tomdroid-ja.po:
+	* locales/tomdroid-ko.po:
+	* locales/tomdroid-ms.po:
+	* locales/tomdroid-pl.po:
+	* locales/tomdroid-pt.po:
+	* locales/tomdroid-pt_BR.po:
+	* locales/tomdroid-ru.po:
+	* locales/tomdroid-sv.po:
+	* locales/tomdroid-te.po:
+	* locales/tomdroid-tr.po:
+	* locales/tomdroid-ug.po:
+	* locales/tomdroid-uk.po:
+	* locales/tomdroid-zh.po:
+	* locales/tomdroid-zh_CN.po:
+	* locales/tomdroid.pot:
+	* project.properties:
+	* res/layout/main.xml:
+	* res/layout/main_list_item.xml:
+	* res/layout/note_view.xml:
+	* res/layout/search.xml:
+	* res/layout/shortcuts_list.xml:
+	* res/menu/main.xml:
+	* res/menu/main_longclick.xml:
+	* res/menu/view_note.xml:
+	* res/values-ar/strings.xml:
+	* res/values-ca/strings.xml:
+	* res/values-cs/strings.xml:
+	* res/values-da/strings.xml:
+	* res/values-de/strings.xml:
+	* res/values-en-rGB/strings.xml:
+	* res/values-es/strings.xml:
+	* res/values-eu/strings.xml:
+	* res/values-fo/strings.xml:
+	* res/values-fr/strings.xml:
+	* res/values-gd/strings.xml:
+	* res/values-hi/strings.xml:
+	* res/values-hu/strings.xml:
+	* res/values-it/strings.xml:
+	* res/values-ja/strings.xml:
+	* res/values-ko/strings.xml:
+	* res/values-ms/strings.xml:
+	* res/values-pl/strings.xml:
+	* res/values-pt-rBR/strings.xml:
+	* res/values-pt/strings.xml:
+	* res/values-ru/strings.xml:
+	* res/values-sv/strings.xml:
+	* res/values-te/strings.xml:
+	* res/values-tr/strings.xml:
+	* res/values-ug/strings.xml:
+	* res/values-uk/strings.xml:
+	* res/values-zh-rCN/strings.xml:
+	* res/values-zh/strings.xml:
+	* res/values/strings.xml:
+	* res/xml/preferences.xml:
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/sync/SyncManager.java:
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/sync/sd/NoteHandler.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/sync/web/OAuthConnection.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/ShortcutActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+	* src/org/tomdroid/util/ErrorList.java:
+	* src/org/tomdroid/util/FirstNote.java:
+	* src/org/tomdroid/util/LinkifyPhone.java:
+	* src/org/tomdroid/util/NoteContentBuilder.java:
+	* src/org/tomdroid/util/NoteListCursorAdapter.java:
+	* src/org/tomdroid/util/Preferences.java:
+	* src/org/tomdroid/util/Send.java:
+	* src/org/tomdroid/util/XmlUtils.java:
+	* src/org/tomdroid/xml/NoteContentHandler.java:
+	* util/xml2po/README:
+	* doc/user/README:
+	* README:
+
+	merge with trunk(beta)
+
+2012-04-04  Koichi Akabe  <vbkaisetsu@gmail.com>
+
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+
+	change to get note ids for case-insensitive titles
+
+2012-04-03  Koichi Akabe  <vbkaisetsu@gmail.com>
+
+	* src/org/tomdroid/xml/LinkInternalSpan.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+	* src/org/tomdroid/xml/NoteContentHandler.java:
+
+	separate class LinkInternalSpan to its own file
+
+2012-04-01  Koichi Akabe  <vbkaisetsu@gmail.com>
+
+	* src/org/tomdroid/ui/ViewNote.java:
+	* src/org/tomdroid/xml/NoteContentHandler.java:
+
+	add link:internal tag to create link manually
+	add a function to avoid auto-links are dupulicated with manually created one
+
+2012-09-07  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/NoteManager.java:
+
+	merge with ignore case
+
+2012-09-07  Koichi Akabe  <vbkaisetsu@gmail.com>
+
+	* src/org/tomdroid/NoteManager.java:
+
+	ignore case on validate note title
+
+2012-09-07  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/ui/CompareNotes.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	fixed sync for sdcard
+
+2012-09-07  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/sync/sd/NoteHandler.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/CompareNotes.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	reworked sync to compare before changing any notes; revisioning should be correct now
+
+2012-09-06  noahy  <noahy57@gmail.com>
+
+	* res/values/arrays.xml:
+	* locales/tomdroid.pot:
+	* res/values-ar/strings.xml:
+	* res/values-bs/strings.xml:
+	* res/values-ca/strings.xml:
+	* res/values-cs/strings.xml:
+	* res/values-da/strings.xml:
+	* res/values-de/strings.xml:
+	* res/values-el/strings.xml:
+	* res/values-en-rGB/strings.xml:
+	* res/values-eo/strings.xml:
+	* res/values-es/strings.xml:
+	* res/values-eu/strings.xml:
+	* res/values-fa/strings.xml:
+	* res/values-fi/strings.xml:
+	* res/values-fo/strings.xml:
+	* res/values-fr/strings.xml:
+	* res/values-gd/strings.xml:
+	* res/values-hi/strings.xml:
+	* res/values-hu/strings.xml:
+	* res/values-it/strings.xml:
+	* res/values-ja/strings.xml:
+	* res/values-ko/strings.xml:
+	* res/values-ms/strings.xml:
+	* res/values-nb/strings.xml:
+	* res/values-pl/strings.xml:
+	* res/values-pt-rBR/strings.xml:
+	* res/values-pt/strings.xml:
+	* res/values-ru/strings.xml:
+	* res/values-si/strings.xml:
+	* res/values-sv/strings.xml:
+	* res/values-ta/strings.xml:
+	* res/values-te/strings.xml:
+	* res/values-tr/strings.xml:
+	* res/values-ug/strings.xml:
+	* res/values-uk/strings.xml:
+	* res/values-zh-rCN/strings.xml:
+	* res/values-zh-rTW/strings.xml:
+	* res/values-zh/strings.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/util/FirstNote.java:
+
+	revert to Koichi's solution for first note (merge)
+
+2012-09-05  Koichi Akabe  <vbkaisetsu@gmail.com>
+
+	* src/org/tomdroid/util/FirstNote.java:
+
+	revert to use TextUtils for joining string-array
+
+2012-09-05  Koichi Akabe  <vbkaisetsu@gmail.com>
+
+	* locales/tomdroid.pot:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+
+	merge with trunk
+
+2012-09-05  Koichi Akabe  <vbkaisetsu@gmail.com>
+
+	* locales/tomdroid.pot:
+	* res/values-ar/strings.xml:
+	* res/values-bs/strings.xml:
+	* res/values-ca/strings.xml:
+	* res/values-cs/strings.xml:
+	* res/values-da/strings.xml:
+	* res/values-de/strings.xml:
+	* res/values-el/strings.xml:
+	* res/values-en-rGB/strings.xml:
+	* res/values-eo/strings.xml:
+	* res/values-es/strings.xml:
+	* res/values-eu/strings.xml:
+	* res/values-fa/strings.xml:
+	* res/values-fi/strings.xml:
+	* res/values-fo/strings.xml:
+	* res/values-fr/strings.xml:
+	* res/values-gd/strings.xml:
+	* res/values-hi/strings.xml:
+	* res/values-hu/strings.xml:
+	* res/values-it/strings.xml:
+	* res/values-ja/strings.xml:
+	* res/values-ko/strings.xml:
+	* res/values-ms/strings.xml:
+	* res/values-nb/strings.xml:
+	* res/values-pl/strings.xml:
+	* res/values-pt-rBR/strings.xml:
+	* res/values-pt/strings.xml:
+	* res/values-ru/strings.xml:
+	* res/values-si/strings.xml:
+	* res/values-sv/strings.xml:
+	* res/values-ta/strings.xml:
+	* res/values-te/strings.xml:
+	* res/values-tr/strings.xml:
+	* res/values-ug/strings.xml:
+	* res/values-uk/strings.xml:
+	* res/values-zh-rCN/strings.xml:
+	* res/values-zh-rTW/strings.xml:
+	* res/values-zh/strings.xml:
+	* res/values/strings.xml:
+
+	modified translation comment
+	update translation template
+
+2012-09-05  Koichi Akabe  <vbkaisetsu@gmail.com>
+
+	* res/values/strings.xml:
+	* src/org/tomdroid/util/FirstNote.java:
+
+	split the first note string into items of a string-array
+
+2012-09-06  noahy  <noahy57@gmail.com>
+
+	* locales/tomdroid.pot:
+	* res/values-ar/strings.xml:
+	* res/values-bs/strings.xml:
+	* res/values-ca/strings.xml:
+	* res/values-cs/strings.xml:
+	* res/values-da/strings.xml:
+	* res/values-de/strings.xml:
+	* res/values-el/strings.xml:
+	* res/values-en-rGB/strings.xml:
+	* res/values-eo/strings.xml:
+	* res/values-es/strings.xml:
+	* res/values-eu/strings.xml:
+	* res/values-fa/strings.xml:
+	* res/values-fi/strings.xml:
+	* res/values-fo/strings.xml:
+	* res/values-fr/strings.xml:
+	* res/values-gd/strings.xml:
+	* res/values-hi/strings.xml:
+	* res/values-hu/strings.xml:
+	* res/values-it/strings.xml:
+	* res/values-ja/strings.xml:
+	* res/values-ko/strings.xml:
+	* res/values-ms/strings.xml:
+	* res/values-nb/strings.xml:
+	* res/values-pl/strings.xml:
+	* res/values-pt-rBR/strings.xml:
+	* res/values-pt/strings.xml:
+	* res/values-ru/strings.xml:
+	* res/values-si/strings.xml:
+	* res/values-sv/strings.xml:
+	* res/values-ta/strings.xml:
+	* res/values-te/strings.xml:
+	* res/values-tr/strings.xml:
+	* res/values-ug/strings.xml:
+	* res/values-uk/strings.xml:
+	* res/values-zh-rCN/strings.xml:
+	* res/values-zh-rTW/strings.xml:
+	* res/values-zh/strings.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/util/FirstNote.java:
+
+	first note tweak
+
+2012-09-05  noahy  <noahy57@gmail.com>
+
+	* res/values/arrays.xml:
+	* locales/tomdroid.pot:
+	* res/values-ar/strings.xml:
+	* res/values-bs/strings.xml:
+	* res/values-ca/strings.xml:
+	* res/values-cs/strings.xml:
+	* res/values-da/strings.xml:
+	* res/values-de/strings.xml:
+	* res/values-el/strings.xml:
+	* res/values-en-rGB/strings.xml:
+	* res/values-eo/strings.xml:
+	* res/values-es/strings.xml:
+	* res/values-eu/strings.xml:
+	* res/values-fa/strings.xml:
+	* res/values-fi/strings.xml:
+	* res/values-fo/strings.xml:
+	* res/values-fr/strings.xml:
+	* res/values-gd/strings.xml:
+	* res/values-hi/strings.xml:
+	* res/values-hu/strings.xml:
+	* res/values-it/strings.xml:
+	* res/values-ja/strings.xml:
+	* res/values-ko/strings.xml:
+	* res/values-ms/strings.xml:
+	* res/values-nb/strings.xml:
+	* res/values-pl/strings.xml:
+	* res/values-pt-rBR/strings.xml:
+	* res/values-pt/strings.xml:
+	* res/values-ru/strings.xml:
+	* res/values-si/strings.xml:
+	* res/values-sv/strings.xml:
+	* res/values-ta/strings.xml:
+	* res/values-te/strings.xml:
+	* res/values-tr/strings.xml:
+	* res/values-ug/strings.xml:
+	* res/values-uk/strings.xml:
+	* res/values-zh-rCN/strings.xml:
+	* res/values-zh-rTW/strings.xml:
+	* res/values-zh/strings.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/util/FirstNote.java:
+
+	converted firstnote to array, toggle autobackup visible, string updates
+
+2012-09-05  noahy  <noahy57@gmail.com>
+
+	* NEWS:
+	* src/org/tomdroid/ui/EditNote.java:
+
+	auto backup working
+
+2012-09-05  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/util/Preferences.java:
+
+	auto backup work
+
+2012-09-05  noahy  <noahy57@gmail.com>
+
+	* res/values/strings.xml:
+	* res/xml/preferences.xml:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	merge and auto backup
+
+2012-09-05  Koichi Akabe  <vbkaisetsu@gmail.com>
+
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	allocate dialogInput before creating dialog
+
+2012-09-05  noahy  <noahy57@gmail.com>
+
+	* res/xml/preferences.xml:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/util/Preferences.java:
+
+	adding auto backup
+
+2012-09-05  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/sync/SyncManager.java:
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/CompareNotes.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/NoteListCursorAdapter.java:
+
+	trying to fix sync bugs, may be creating new ones...
+
+2012-09-01  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+
+	moved title link function into NoteManager to avoid repetition
+
+2012-08-31  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	add update on resume to Tomdroid
+
+2012-08-31  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	set title for search activity
+
+2012-08-31  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/util/NoteListCursorAdapter.java:
+
+	fixed paint flags for undeleted notes
+
+2012-08-31  noahy  <noahy57@gmail.com>
+
+	* res/menu/main_longclick_deleted.xml:
+	* src/org/tomdroid/util/Honeycomb.java:
+	* src/org/tomdroid/ui/Search.java:
+	* AndroidManifest.xml:
+	* NEWS:
+	* locales/tomdroid.pot:
+	* res/values-ar/strings.xml:
+	* res/values-bs/strings.xml:
+	* res/values-ca/strings.xml:
+	* res/values-cs/strings.xml:
+	* res/values-da/strings.xml:
+	* res/values-de/strings.xml:
+	* res/values-el/strings.xml:
+	* res/values-en-rGB/strings.xml:
+	* res/values-eo/strings.xml:
+	* res/values-es/strings.xml:
+	* res/values-eu/strings.xml:
+	* res/values-fa/strings.xml:
+	* res/values-fi/strings.xml:
+	* res/values-fo/strings.xml:
+	* res/values-fr/strings.xml:
+	* res/values-gd/strings.xml:
+	* res/values-hi/strings.xml:
+	* res/values-hu/strings.xml:
+	* res/values-it/strings.xml:
+	* res/values-ja/strings.xml:
+	* res/values-ko/strings.xml:
+	* res/values-ms/strings.xml:
+	* res/values-nb/strings.xml:
+	* res/values-pl/strings.xml:
+	* res/values-pt-rBR/strings.xml:
+	* res/values-pt/strings.xml:
+	* res/values-ru/strings.xml:
+	* res/values-si/strings.xml:
+	* res/values-sv/strings.xml:
+	* res/values-ta/strings.xml:
+	* res/values-te/strings.xml:
+	* res/values-tr/strings.xml:
+	* res/values-ug/strings.xml:
+	* res/values-uk/strings.xml:
+	* res/values-zh-rCN/strings.xml:
+	* res/values-zh-rTW/strings.xml:
+	* res/values-zh/strings.xml:
+	* res/values/strings.xml:
+	* res/xml/preferences.xml:
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/NoteListCursorAdapter.java:
+	* src/org/tomdroid/util/NoteXMLContentBuilder.java:
+	* src/org/tomdroid/util/Preferences.java:
+
+	* moved search function to main activity (allowing two-pane landscape view in results)
+	* added option to show deleted notes in list
+
+2012-08-29  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/FirstNote.java:
+
+	fixed list selector remaining on portrait
+
+2012-08-28  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+
+	fixing lp:1042599 Can not sync to ubuntu one
+
+2012-08-28  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	fixed sd card not finishing sync, fc on dismissDialog
+
+2012-08-28  noahy  <noahy57@gmail.com>
+
+	* AndroidManifest.xml:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	fixed rotate to change layout in Tomdroid
+
+2012-08-28  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	fixed first run dialog
+
+2012-08-27  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/Receive.java:
+
+	fixed bug lp:1041931 rev 432 crashes on Longpress in List -> Delete Edit
+	fixed bug lp:1041936 rev 432 crashes on receiving a text-share
+
+2012-08-27  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/util/NoteXMLContentBuilder.java:
+
+	tweaks on xml cross-tagging
+
+2012-08-27  noahy  <noahy57@gmail.com>
+
+	* NEWS:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/NewNote.java:
+	* src/org/tomdroid/util/NoteContentBuilder.java:
+	* src/org/tomdroid/util/NoteXMLContentBuilder.java:
+	* src/org/tomdroid/xml/NoteContentHandler.java:
+
+	fixed xml parser to allow for nested and boundary-crossing spans
+
+2012-08-26  noahy  <noahy57@gmail.com>
+
+	* locales/tomdroid.pot:
+	* res/values-ar/strings.xml:
+	* res/values-bs/strings.xml:
+	* res/values-ca/strings.xml:
+	* res/values-cs/strings.xml:
+	* res/values-da/strings.xml:
+	* res/values-de/strings.xml:
+	* res/values-el/strings.xml:
+	* res/values-en-rGB/strings.xml:
+	* res/values-eo/strings.xml:
+	* res/values-es/strings.xml:
+	* res/values-eu/strings.xml:
+	* res/values-fa/strings.xml:
+	* res/values-fi/strings.xml:
+	* res/values-fo/strings.xml:
+	* res/values-fr/strings.xml:
+	* res/values-gd/strings.xml:
+	* res/values-hi/strings.xml:
+	* res/values-hu/strings.xml:
+	* res/values-it/strings.xml:
+	* res/values-ja/strings.xml:
+	* res/values-ko/strings.xml:
+	* res/values-ms/strings.xml:
+	* res/values-nb/strings.xml:
+	* res/values-pl/strings.xml:
+	* res/values-pt-rBR/strings.xml:
+	* res/values-pt/strings.xml:
+	* res/values-ru/strings.xml:
+	* res/values-si/strings.xml:
+	* res/values-sv/strings.xml:
+	* res/values-ta/strings.xml:
+	* res/values-te/strings.xml:
+	* res/values-tr/strings.xml:
+	* res/values-ug/strings.xml:
+	* res/values-uk/strings.xml:
+	* res/values-zh-rCN/strings.xml:
+	* res/values-zh-rTW/strings.xml:
+	* res/values-zh/strings.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/CompareNotes.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	fixing dialogs
+
+2012-08-26  noahy  <noahy57@gmail.com>
+
+	* locales/tomdroid.pot:
+	* res/menu/main_longclick.xml:
+	* res/values-ar/strings.xml:
+	* res/values-bs/strings.xml:
+	* res/values-ca/strings.xml:
+	* res/values-cs/strings.xml:
+	* res/values-da/strings.xml:
+	* res/values-de/strings.xml:
+	* res/values-el/strings.xml:
+	* res/values-en-rGB/strings.xml:
+	* res/values-eo/strings.xml:
+	* res/values-es/strings.xml:
+	* res/values-eu/strings.xml:
+	* res/values-fa/strings.xml:
+	* res/values-fi/strings.xml:
+	* res/values-fo/strings.xml:
+	* res/values-fr/strings.xml:
+	* res/values-gd/strings.xml:
+	* res/values-hi/strings.xml:
+	* res/values-hu/strings.xml:
+	* res/values-it/strings.xml:
+	* res/values-ja/strings.xml:
+	* res/values-ko/strings.xml:
+	* res/values-ms/strings.xml:
+	* res/values-nb/strings.xml:
+	* res/values-pl/strings.xml:
+	* res/values-pt-rBR/strings.xml:
+	* res/values-pt/strings.xml:
+	* res/values-ru/strings.xml:
+	* res/values-si/strings.xml:
+	* res/values-sv/strings.xml:
+	* res/values-ta/strings.xml:
+	* res/values-te/strings.xml:
+	* res/values-tr/strings.xml:
+	* res/values-ug/strings.xml:
+	* res/values-uk/strings.xml:
+	* res/values-zh-rCN/strings.xml:
+	* res/values-zh-rTW/strings.xml:
+	* res/values-zh/strings.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	fixing dialogs using onPrepareDialog(), added ability to edit tags
+
+2012-08-26  noahy  <noahy57@gmail.com>
+
+	* locales/tomdroid.pot:
+	* res/values-ar/strings.xml:
+	* res/values-bs/strings.xml:
+	* res/values-ca/strings.xml:
+	* res/values-cs/strings.xml:
+	* res/values-da/strings.xml:
+	* res/values-de/strings.xml:
+	* res/values-el/strings.xml:
+	* res/values-en-rGB/strings.xml:
+	* res/values-eo/strings.xml:
+	* res/values-es/strings.xml:
+	* res/values-eu/strings.xml:
+	* res/values-fa/strings.xml:
+	* res/values-fi/strings.xml:
+	* res/values-fo/strings.xml:
+	* res/values-fr/strings.xml:
+	* res/values-gd/strings.xml:
+	* res/values-hi/strings.xml:
+	* res/values-hu/strings.xml:
+	* res/values-it/strings.xml:
+	* res/values-ja/strings.xml:
+	* res/values-ko/strings.xml:
+	* res/values-ms/strings.xml:
+	* res/values-nb/strings.xml:
+	* res/values-pl/strings.xml:
+	* res/values-pt-rBR/strings.xml:
+	* res/values-pt/strings.xml:
+	* res/values-ru/strings.xml:
+	* res/values-si/strings.xml:
+	* res/values-sv/strings.xml:
+	* res/values-ta/strings.xml:
+	* res/values-te/strings.xml:
+	* res/values-tr/strings.xml:
+	* res/values-ug/strings.xml:
+	* res/values-uk/strings.xml:
+	* res/values-zh-rCN/strings.xml:
+	* res/values-zh-rTW/strings.xml:
+	* res/values-zh/strings.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/CompareNotes.java:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	more dialog tweaking
+
+2012-08-26  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	fixing sync dialog on switch service (needs more testing)
+
+2012-08-26  noahy  <noahy57@gmail.com>
+
+	* locales/tomdroid.pot:
+	* res/values-ar/strings.xml:
+	* res/values-bs/strings.xml:
+	* res/values-ca/strings.xml:
+	* res/values-cs/strings.xml:
+	* res/values-da/strings.xml:
+	* res/values-de/strings.xml:
+	* res/values-el/strings.xml:
+	* res/values-en-rGB/strings.xml:
+	* res/values-eo/strings.xml:
+	* res/values-es/strings.xml:
+	* res/values-eu/strings.xml:
+	* res/values-fa/strings.xml:
+	* res/values-fi/strings.xml:
+	* res/values-fo/strings.xml:
+	* res/values-fr/strings.xml:
+	* res/values-gd/strings.xml:
+	* res/values-hi/strings.xml:
+	* res/values-hu/strings.xml:
+	* res/values-it/strings.xml:
+	* res/values-ja/strings.xml:
+	* res/values-ko/strings.xml:
+	* res/values-ms/strings.xml:
+	* res/values-nb/strings.xml:
+	* res/values-pl/strings.xml:
+	* res/values-pt-rBR/strings.xml:
+	* res/values-pt/strings.xml:
+	* res/values-ru/strings.xml:
+	* res/values-si/strings.xml:
+	* res/values-sv/strings.xml:
+	* res/values-ta/strings.xml:
+	* res/values-te/strings.xml:
+	* res/values-tr/strings.xml:
+	* res/values-ug/strings.xml:
+	* res/values-uk/strings.xml:
+	* res/values-zh-rCN/strings.xml:
+	* res/values-zh-rTW/strings.xml:
+	* res/values-zh/strings.xml:
+	* res/values/strings.xml:
+
+	removed another Tomboy Web
+
+2012-08-25  noahy  <noahy57@gmail.com>
+
+	* locales/tomdroid.pot:
+	* res/values-ar/strings.xml:
+	* res/values-bs/strings.xml:
+	* res/values-ca/strings.xml:
+	* res/values-cs/strings.xml:
+	* res/values-da/strings.xml:
+	* res/values-de/strings.xml:
+	* res/values-el/strings.xml:
+	* res/values-en-rGB/strings.xml:
+	* res/values-eo/strings.xml:
+	* res/values-es/strings.xml:
+	* res/values-eu/strings.xml:
+	* res/values-fa/strings.xml:
+	* res/values-fi/strings.xml:
+	* res/values-fo/strings.xml:
+	* res/values-fr/strings.xml:
+	* res/values-gd/strings.xml:
+	* res/values-hi/strings.xml:
+	* res/values-hu/strings.xml:
+	* res/values-it/strings.xml:
+	* res/values-ja/strings.xml:
+	* res/values-ko/strings.xml:
+	* res/values-ms/strings.xml:
+	* res/values-nb/strings.xml:
+	* res/values-pl/strings.xml:
+	* res/values-pt-rBR/strings.xml:
+	* res/values-pt/strings.xml:
+	* res/values-ru/strings.xml:
+	* res/values-si/strings.xml:
+	* res/values-sv/strings.xml:
+	* res/values-ta/strings.xml:
+	* res/values-te/strings.xml:
+	* res/values-tr/strings.xml:
+	* res/values-ug/strings.xml:
+	* res/values-uk/strings.xml:
+	* res/values-zh-rCN/strings.xml:
+	* res/values-zh-rTW/strings.xml:
+	* res/values-zh/strings.xml:
+	* res/values/strings.xml:
+
+	using "synchronization" for consistency
+	updated xml files
+
+2012-08-25  noahy  <noahy57@gmail.com>
+
+	* res/values/strings.xml:
+
+	fixed first note
+
+2012-08-25  noahy  <noahy57@gmail.com>
+
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	removed api 8 showDialog(int, bundle) calls, since we're supporting 6
+
+2012-08-25  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+
+	fixed deleting wrong (deleted) note
+
+2012-08-25  noahy  <noahy57@gmail.com>
+
+	* res/layout/note_edit.xml:
+	* res/layout/note_view.xml:
+
+	reverted padding in note view and edit
+
+2012-08-24  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/util/XmlUtils.java:
+
+	removed escaping of ' and " in XmlUtils (was interferring with titles and Tomboy doesn't escape them)
+
+2012-08-24  noahy  <noahy57@gmail.com>
+
+	* NEWS:
+	* res/values/strings.xml:
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/ui/CompareNotes.java:
+	* src/org/tomdroid/util/Receive.java:
+	* src/org/tomdroid/util/Send.java:
+
+	fixed bug lp:1040551 Tomdroid two-way sync to SD card messes up titles
+
+2012-08-24  noahy  <noahy57@gmail.com>
+
+	* res/menu-sw600dp-land/edit_note.xml:
+	* res/menu-sw600dp-land/main.xml:
+	* res/menu/edit_note.xml:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+	* src/org/tomdroid/util/Send.java:
+
+	fixed send file
+
+2012-08-23  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/util/Send.java:
+
+	fixed sending note
+
+2012-08-23  noahy  <noahy57@gmail.com>
+
+	* AndroidManifest.xml:
+	* NEWS:
+	* res/layout/main_list_item.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/sync/sd/NoteHandler.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/ui/CompareNotes.java:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+	* src/org/tomdroid/util/Receive.java:
+	* src/org/tomdroid/util/Send.java:
+
+	added ability to send note files and import note files as well
+
+2012-08-23  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/util/NewNote.java:
+
+	finnished last task as I found errors.
+
+2012-08-23  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/util/NewNote.java:
+
+	fix unexpected behaviour: when creating a new note and write something, but then pressing dismiss button, note was saved anyways. now note gets deleted on Discard when never saved before.
+
+2012-08-23  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/ui/EditNote.java:
+
+	fix crasher when Note-Not-Found-Dialogue is shown in Editview. onDestroy should not be called in this situation, as there is no note.
+
+2012-08-23  noahy  <noahy57@gmail.com>
+
+	* NEWS:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+
+	* fixed bug lp:1040333 Crash on Revert
+	* fixed bug lp:1040338 Crash on Cancel
+	* fixed bug lp:1040389 Share/Send from chrome or play crash
+
+2012-08-23  Stefan Hammer  <j.4@gmx.at>
+
+	* NEWS:
+
+	updated news accordingly
+
+2012-08-23  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/util/Receive.java:
+	* AndroidManifest.xml:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/NewNote.java:
+
+	Add ability to receive text-shares from other apps. this fixes bug #1039104.
+
+2012-08-22  noahy  <noahy57@gmail.com>
+
+	* locales/tomdroid.pot:
+
+	merge
+
+2012-08-22  Stefan Hammer  <j.4@gmx.at>
+
+	* data/market-screenshots/0.7.1 - tablet-view.png:
+
+	add screenshot of new tablet view.
+
+2012-08-22  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid.pot:
+
+	export for launchpad translations.
+
+2012-08-22  Stefan Hammer  <j.4@gmx.at>
+
+	* res/values/strings.xml:
+
+	Add hints for translators.
+
+2012-08-22  noahy  <noahy57@gmail.com>
+
+	* data/market-screenshots/0.7.1 - tablet-view.png:
+	* locales/tomdroid.pot:
+	* res/values-ar/strings.xml:
+	* res/values-bs/strings.xml:
+	* res/values-ca/strings.xml:
+	* res/values-cs/strings.xml:
+	* res/values-da/strings.xml:
+	* res/values-de/strings.xml:
+	* res/values-el/strings.xml:
+	* res/values-en-rGB/strings.xml:
+	* res/values-eo/strings.xml:
+	* res/values-es/strings.xml:
+	* res/values-eu/strings.xml:
+	* res/values-fa/strings.xml:
+	* res/values-fi/strings.xml:
+	* res/values-fo/strings.xml:
+	* res/values-fr/strings.xml:
+	* res/values-gd/strings.xml:
+	* res/values-hi/strings.xml:
+	* res/values-hu/strings.xml:
+	* res/values-it/strings.xml:
+	* res/values-ja/strings.xml:
+	* res/values-ko/strings.xml:
+	* res/values-ms/strings.xml:
+	* res/values-nb/strings.xml:
+	* res/values-pl/strings.xml:
+	* res/values-pt-rBR/strings.xml:
+	* res/values-pt/strings.xml:
+	* res/values-ru/strings.xml:
+	* res/values-si/strings.xml:
+	* res/values-sv/strings.xml:
+	* res/values-ta/strings.xml:
+	* res/values-te/strings.xml:
+	* res/values-tr/strings.xml:
+	* res/values-ug/strings.xml:
+	* res/values-uk/strings.xml:
+	* res/values-zh-rCN/strings.xml:
+	* res/values-zh-rTW/strings.xml:
+	* res/values-zh/strings.xml:
+	* res/values/strings.xml:
+
+	merge
+
+2012-08-22  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/util/FirstNote.properties:
+	* NEWS:
+	* locales/tomdroid.pot:
+	* res/layout/note_view.xml:
+	* res/values-ar/strings.xml:
+	* res/values-bs/strings.xml:
+	* res/values-ca/strings.xml:
+	* res/values-cs/strings.xml:
+	* res/values-da/strings.xml:
+	* res/values-de/strings.xml:
+	* res/values-el/strings.xml:
+	* res/values-en-rGB/strings.xml:
+	* res/values-eo/strings.xml:
+	* res/values-es/strings.xml:
+	* res/values-eu/strings.xml:
+	* res/values-fa/strings.xml:
+	* res/values-fi/strings.xml:
+	* res/values-fo/strings.xml:
+	* res/values-fr/strings.xml:
+	* res/values-gd/strings.xml:
+	* res/values-hi/strings.xml:
+	* res/values-hu/strings.xml:
+	* res/values-it/strings.xml:
+	* res/values-ja/strings.xml:
+	* res/values-ko/strings.xml:
+	* res/values-ms/strings.xml:
+	* res/values-nb/strings.xml:
+	* res/values-pl/strings.xml:
+	* res/values-pt-rBR/strings.xml:
+	* res/values-pt/strings.xml:
+	* res/values-ru/strings.xml:
+	* res/values-si/strings.xml:
+	* res/values-sv/strings.xml:
+	* res/values-ta/strings.xml:
+	* res/values-te/strings.xml:
+	* res/values-tr/strings.xml:
+	* res/values-ug/strings.xml:
+	* res/values-uk/strings.xml:
+	* res/values-zh-rCN/strings.xml:
+	* res/values-zh-rTW/strings.xml:
+	* res/values-zh/strings.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/FirstNote.java:
+
+	moved first note strings into strings.xml, updated pot file
+
+2012-08-22  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	fix for fc on resume Tomdroid after clearing database
+
+2012-08-22  noahy  <noahy57@gmail.com>
+
+	* res/values-sw600dp-land/dimen.xml:
+	* res/values-sw800dp-land/dimen.xml:
+
+	widened listview
+
+2012-08-22  noahy  <noahy57@gmail.com>
+
+	* res/drawable/drop_shadow.xml:
+	* res/drawable/drop_shadow_selected.xml:
+	* res/drawable/drop_shadow_separator.xml:
+	* res/drawable/triangle_selector.xml:
+	* res/drawable/white_triangle.png:
+	* res/values-sw600dp-land:
+	* res/values-sw600dp-land/dimen.xml:
+	* res/values-sw800dp-land:
+	* res/values-sw800dp-land/dimen.xml:
+	* res/layout-sw800dp-land:
+	* res/layout-sw800dp-land/main.xml:
+	* NEWS:
+	* res/layout-sw600dp-land/main.xml:
+	* res/layout/main_list_item.xml:
+	* res/layout/note_edit.xml:
+	* res/layout/note_view.xml:
+	* res/values/dimen.xml:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/NoteListCursorAdapter.java:
+
+	added gmail-style two-color pane and selector; joined landscape layouts into one, using different dimen files
+
+2012-08-22  noahy  <noahy57@gmail.com>
+
+	* NEWS:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+
+	fixed bug lp:1039671 Crash when the server URL that includes "illegal characters"
+
+2012-08-22  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/util/ErrorList.java:
+
+	cancel save errors if no errors
+
+2012-08-22  noahy  <noahy57@gmail.com>
+
+	* NEWS:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+
+	fixed bug lp:1039814 Crash on Backup Notes
+
+2012-08-22  noahy  <noahy57@gmail.com>
+
+	* NEWS:
+
+	updated NEWS
+
+2012-08-22  noahy  <noahy57@gmail.com>
+
+	* AndroidManifest.xml:
+	* NEWS:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	fixed lp:1039703, lp:1039824 - moved dialogs into showDialog() to allow rotation
+
+2012-08-21  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* AndroidManifest.xml:
+	* NEWS:
+
+	0.7.1 bump
+
+2012-08-21  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* NEWS:
+	* res/values/strings.xml:
+
+	merged latest from stable
+
 2012-08-21  Olivier Bilodeau  <olivier@bottomlesspit.org>
 
 	* res/values/strings.xml:
@@ -178,6 +3096,102 @@
 	* NEWS:
 
 	updated NEWS for upcoming 0.6.1
+
+2012-08-21  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* NEWS:
+
+	typo fix in NEWS
+
+2012-08-21  Stefan Hammer  <j.4@gmx.at>
+
+	* data/market-screenshots/0.7.1 - note-edit-And4.1.png:
+	* data/market-screenshots/0.7.1 - note-list-And2.3.png:
+	* data/market-screenshots/0.7.1 - note-view-And2.3.png:
+	* data/market-screenshots/0.7.1 - preferences-And2.3.png:
+	* data/market-screenshots/0.7.1 - preferences-And4.1.png:
+	* data/market-screenshots/0.7.1 - search-And4.1.png:
+	* data/market-screenshots/0.7.1 - tablet-view.png:
+	* data/market-screenshots/0.7.1 - welcome-dialog-And4.1.png:
+
+	add 0.7.1 screenshots from Android 2.3 and 4.1/tablet
+
+2012-08-21  Stefan Hammer  <j.4@gmx.at>
+
+	* data/market-screenshots/0.5 - note-list.png:
+	* data/market-screenshots/0.5 - note-options.png:
+	* data/market-screenshots/0.5 - note-view.png:
+	* data/market-screenshots/0.5 - preferences.png:
+	* data/market-screenshots/0.5 - search.png:
+	* data/market-screenshots/0.5 - welcome-dialog.png:
+	* locales/tomdroid-bs.po:
+	* locales/tomdroid-el.po:
+	* locales/tomdroid-eo.po:
+	* locales/tomdroid-fa.po:
+	* locales/tomdroid-fi.po:
+	* locales/tomdroid-nb.po:
+	* locales/tomdroid-si.po:
+	* locales/tomdroid-ta.po:
+	* locales/tomdroid-zh_TW.po:
+	* res/values-bs:
+	* res/values-bs/strings.xml:
+	* res/values-el:
+	* res/values-el/strings.xml:
+	* res/values-eo:
+	* res/values-eo/strings.xml:
+	* res/values-fa:
+	* res/values-fa/strings.xml:
+	* res/values-fi:
+	* res/values-fi/strings.xml:
+	* res/values-nb:
+	* res/values-nb/strings.xml:
+	* res/values-si:
+	* res/values-si/strings.xml:
+	* res/values-ta:
+	* res/values-ta/strings.xml:
+	* res/values-zh-rTW:
+	* res/values-zh-rTW/strings.xml:
+	* locales/tomdroid-ar.po:
+	* locales/tomdroid-ca.po:
+	* locales/tomdroid-cs.po:
+	* locales/tomdroid-da.po:
+	* locales/tomdroid-de.po:
+	* locales/tomdroid-en_GB.po:
+	* locales/tomdroid-es.po:
+	* locales/tomdroid-eu.po:
+	* locales/tomdroid-fo.po:
+	* locales/tomdroid-fr.po:
+	* locales/tomdroid-gd.po:
+	* locales/tomdroid-hi.po:
+	* locales/tomdroid-hu.po:
+	* locales/tomdroid-it.po:
+	* locales/tomdroid-ja.po:
+	* locales/tomdroid-ko.po:
+	* locales/tomdroid-ms.po:
+	* locales/tomdroid-pl.po:
+	* locales/tomdroid-pt.po:
+	* locales/tomdroid-pt_BR.po:
+	* locales/tomdroid-ru.po:
+	* locales/tomdroid-sv.po:
+	* locales/tomdroid-te.po:
+	* locales/tomdroid-tr.po:
+	* locales/tomdroid-ug.po:
+	* locales/tomdroid-uk.po:
+	* locales/tomdroid-zh.po:
+	* locales/tomdroid-zh_CN.po:
+	* locales/tomdroid.pot:
+	* res/values-ca/strings.xml:
+	* res/values-de/strings.xml:
+	* res/values-es/strings.xml:
+	* res/values-eu/strings.xml:
+	* res/values-hu/strings.xml:
+	* res/values-it/strings.xml:
+	* res/values-ja/strings.xml:
+	* res/values-pl/strings.xml:
+	* res/values-zh-rCN/strings.xml:
+	* util/xml2po/README:
+
+	merged lp:tomdroid/stable and updated translations from launchpad and pot for launchpad.
 
 2012-08-21  Stefan Hammer  <j.4@gmx.at>
 
@@ -292,6 +3306,852 @@
 
 	updated translations for launchpad
 
+2012-08-21  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+
+	fixed syncing with Tomboy after deleting all remote notes
+
+2012-08-21  noahy  <noahy57@gmail.com>
+
+	* NEWS:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	added changes to NEWS, added progress dialog to preferences
+
+2012-08-21  noahy  <noahy57@gmail.com>
+
+	* NEWS:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	merge changes
+
+2012-08-21  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	reverted fix  which was not working well (removed rightPane.invalidate())
+
+2012-08-20  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	yet another unfortunate merge
+
+2012-08-20  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* NEWS:
+
+	updated NEWS w/ some of the latest changes
+
+2012-08-20  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* NEWS:
+
+	linked NEWS items to bug entries
+
+2012-08-21  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+
+	fixed lp:1038968
+
+2012-08-21  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	moved title change to after note loads, invalidate rightPane as well
+
+2012-08-20  Stefan Hammer  <j.4@gmx.at>
+
+	merged last revision and reverted it.
+
+2012-08-21  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	trying to fix lp:1038118
+
+2012-08-20  Stefan Hammer  <j.4@gmx.at>
+
+	* res/layout/note_edit.xml:
+	* res/layout/note_view.xml:
+
+	fix bug #1038118 with expanding textview. With the same trick for editnote view fixed Bug #1038352.
+
+2012-08-20  noahy  <noahy57@gmail.com>
+
+	* locales/tomdroid.pot:
+	* res/values-ar/strings.xml:
+	* res/values-ca/strings.xml:
+	* res/values-cs/strings.xml:
+	* res/values-da/strings.xml:
+	* res/values-de/strings.xml:
+	* res/values-en-rGB/strings.xml:
+	* res/values-es/strings.xml:
+	* res/values-eu/strings.xml:
+	* res/values-fo/strings.xml:
+	* res/values-fr/strings.xml:
+	* res/values-gd/strings.xml:
+	* res/values-hi/strings.xml:
+	* res/values-hu/strings.xml:
+	* res/values-it/strings.xml:
+	* res/values-ja/strings.xml:
+	* res/values-ko/strings.xml:
+	* res/values-ms/strings.xml:
+	* res/values-pl/strings.xml:
+	* res/values-pt-rBR/strings.xml:
+	* res/values-pt/strings.xml:
+	* res/values-ru/strings.xml:
+	* res/values-sv/strings.xml:
+	* res/values-te/strings.xml:
+	* res/values-tr/strings.xml:
+	* res/values-ug/strings.xml:
+	* res/values-uk/strings.xml:
+	* res/values-zh-rCN/strings.xml:
+	* res/values-zh/strings.xml:
+
+	removed theme pref strings
+
+2012-08-20  noahy  <noahy57@gmail.com>
+
+	* locales/tomdroid-ar.po:
+	* locales/tomdroid-ca.po:
+	* locales/tomdroid-cs.po:
+	* locales/tomdroid-da.po:
+	* locales/tomdroid-de.po:
+	* locales/tomdroid-en_GB.po:
+	* locales/tomdroid-es.po:
+	* locales/tomdroid-eu.po:
+	* locales/tomdroid-fo.po:
+	* locales/tomdroid-fr.po:
+	* locales/tomdroid-gd.po:
+	* locales/tomdroid-hi.po:
+	* locales/tomdroid-hu.po:
+	* locales/tomdroid-it.po:
+	* locales/tomdroid-ja.po:
+	* locales/tomdroid-ko.po:
+	* locales/tomdroid-ms.po:
+	* locales/tomdroid-pl.po:
+	* locales/tomdroid-pt.po:
+	* locales/tomdroid-pt_BR.po:
+	* locales/tomdroid-ru.po:
+	* locales/tomdroid-sv.po:
+	* locales/tomdroid-te.po:
+	* locales/tomdroid-tr.po:
+	* locales/tomdroid-ug.po:
+	* locales/tomdroid-uk.po:
+	* locales/tomdroid-zh.po:
+	* locales/tomdroid-zh_CN.po:
+	* locales/tomdroid.pot:
+	* res/values-ar/strings.xml:
+	* res/values-ca/strings.xml:
+	* res/values-cs/strings.xml:
+	* res/values-da/strings.xml:
+	* res/values-de/strings.xml:
+	* res/values-en-rGB/strings.xml:
+	* res/values-es/strings.xml:
+	* res/values-eu/strings.xml:
+	* res/values-fo/strings.xml:
+	* res/values-fr/strings.xml:
+	* res/values-gd/strings.xml:
+	* res/values-hi/strings.xml:
+	* res/values-hu/strings.xml:
+	* res/values-it/strings.xml:
+	* res/values-ja/strings.xml:
+	* res/values-ko/strings.xml:
+	* res/values-ms/strings.xml:
+	* res/values-pl/strings.xml:
+	* res/values-pt-rBR/strings.xml:
+	* res/values-pt/strings.xml:
+	* res/values-ru/strings.xml:
+	* res/values-sv/strings.xml:
+	* res/values-te/strings.xml:
+	* res/values-tr/strings.xml:
+	* res/values-ug/strings.xml:
+	* res/values-uk/strings.xml:
+	* res/values-zh-rCN/strings.xml:
+	* res/values-zh/strings.xml:
+	* res/values/strings.xml:
+
+	merge translations
+
+2012-08-19  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid-ar.po:
+	* locales/tomdroid-ca.po:
+	* locales/tomdroid-cs.po:
+	* locales/tomdroid-da.po:
+	* locales/tomdroid-de.po:
+	* locales/tomdroid-en_GB.po:
+	* locales/tomdroid-es.po:
+	* locales/tomdroid-eu.po:
+	* locales/tomdroid-fo.po:
+	* locales/tomdroid-fr.po:
+	* locales/tomdroid-gd.po:
+	* locales/tomdroid-hi.po:
+	* locales/tomdroid-hu.po:
+	* locales/tomdroid-it.po:
+	* locales/tomdroid-ja.po:
+	* locales/tomdroid-ko.po:
+	* locales/tomdroid-ms.po:
+	* locales/tomdroid-pl.po:
+	* locales/tomdroid-pt.po:
+	* locales/tomdroid-pt_BR.po:
+	* locales/tomdroid-ru.po:
+	* locales/tomdroid-sv.po:
+	* locales/tomdroid-te.po:
+	* locales/tomdroid-tr.po:
+	* locales/tomdroid-ug.po:
+	* locales/tomdroid-uk.po:
+	* locales/tomdroid-zh.po:
+	* locales/tomdroid-zh_CN.po:
+	* locales/tomdroid.pot:
+	* res/values-ar/strings.xml:
+	* res/values-ca/strings.xml:
+	* res/values-cs/strings.xml:
+	* res/values-da/strings.xml:
+	* res/values-de/strings.xml:
+	* res/values-en-rGB/strings.xml:
+	* res/values-es/strings.xml:
+	* res/values-eu/strings.xml:
+	* res/values-fo/strings.xml:
+	* res/values-fr/strings.xml:
+	* res/values-gd/strings.xml:
+	* res/values-hi/strings.xml:
+	* res/values-hu/strings.xml:
+	* res/values-it/strings.xml:
+	* res/values-ja/strings.xml:
+	* res/values-ko/strings.xml:
+	* res/values-ms/strings.xml:
+	* res/values-pl/strings.xml:
+	* res/values-pt-rBR/strings.xml:
+	* res/values-pt/strings.xml:
+	* res/values-ru/strings.xml:
+	* res/values-sv/strings.xml:
+	* res/values-te/strings.xml:
+	* res/values-tr/strings.xml:
+	* res/values-ug/strings.xml:
+	* res/values-uk/strings.xml:
+	* res/values-zh-rCN/strings.xml:
+	* res/values-zh/strings.xml:
+	* res/values/strings.xml:
+
+	fix bug #1038769, export to pot, import already done translations.
+
+2012-08-20  noahy  <noahy57@gmail.com>
+
+	* locales/tomdroid.pot:
+	* res/values/strings.xml:
+
+	removed strings, updated pot file
+
+2012-08-20  noahy  <noahy57@gmail.com>
+
+	* res/layout/main.xml:
+
+	merge with Stefan (lp:1038633)
+
+2012-08-19  Stefan Hammer  <j.4@gmx.at>
+
+	* res/layout/main.xml:
+
+	had to remoce cachecolorhint to fix bug #1038633 for now.
+
+2012-08-20  noahy  <noahy57@gmail.com>
+
+	* res/layout/note_compare.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/CompareNotes.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	collapsed elements in CompareNotes.java, added test function to Tomdroid.java
+
+2012-08-19  noahy  <noahy57@gmail.com>
+
+	* res/layout/note_compare.xml:
+	* res/values/strings.xml:
+	* res/xml/preferences.xml:
+	* src/org/tomdroid/ui/CompareNotes.java:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/Search.java:
+	* src/org/tomdroid/ui/ShortcutActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+	* src/org/tomdroid/util/Preferences.java:
+
+	fixed note comparison, layout (lp:1038699 ), set light theme for everything
+
+2012-08-19  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	added date and revision reset to "revert all"
+
+2012-08-19  noahy  <noahy57@gmail.com>
+
+	* AndroidManifest.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+
+	fixed resetting local notes
+
+2012-08-19  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/ui/actionbar/ActionBarPreferenceActivity.java:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarHelperBase.java:
+
+	fixed actionbar for prefs (lp:1038635), maybe fixed flickering listview (lp:1038633)
+
+2012-08-19  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/ui/CompareNotes.java:
+	* src/org/tomdroid/ui/SyncDialog.java:
+	* AndroidManifest.xml:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+
+	renamed syncdialog class
+
+2012-08-18  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/SyncDialog.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	fixed sync dialog to integrate with sync properly, show progress, etc.
+
+2012-08-18  noahy  <noahy57@gmail.com>
+
+	* res/layout/note_compare.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/SyncDialog.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	added routine to check for two different notes with same title, run conflict resolution; may have also fixed lp:1038118
+
+2012-08-18  noahy  <noahy57@gmail.com>
+
+	* locales/tomdroid.pot:
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/EditNote.java:
+
+	merge with Stefan
+
+2012-08-18  Stefan Hammer  <j.4@gmx.at>
+
+	* locales/tomdroid.pot:
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/EditNote.java:
+
+	checked strings, changed discard question to yes and no and updated translations.
+
+2012-08-18  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+
+	added cancel to push function
+
+2012-08-18  noahy  <noahy57@gmail.com>
+
+	* res/values/styles.xml:
+
+	compat title reflects dark/light choice
+
+2012-08-18  noahy  <noahy57@gmail.com>
+
+	* AndroidManifest.xml:
+	* NEWS:
+	* res/layout/main.xml:
+	* res/layout/note_edit.xml:
+	* res/menu-sw600dp-land/edit_note.xml:
+	* res/menu/edit_note.xml:
+	* res/values-v11/styles.xml:
+	* res/values/attrs.xml:
+	* res/values/strings.xml:
+	* res/values/styles.xml:
+	* res/xml/preferences.xml:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/Search.java:
+	* src/org/tomdroid/ui/ShortcutActivity.java:
+	* src/org/tomdroid/ui/SyncDialog.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+	* src/org/tomdroid/util/Preferences.java:
+
+	added option to choose light/dark theme, formatbar tweaks
+
+2012-08-18  noahy  <noahy57@gmail.com>
+
+	* res/drawable-hdpi/actionbar_shadow.9.png:
+	* res/drawable-ldpi/actionbar_shadow.9.png:
+	* res/drawable-mdpi/actionbar_shadow.9.png:
+	* res/drawable-xhdpi/actionbar_shadow.9.png:
+	* res/drawable/actionbar_compat_item.xml:
+	* res/drawable/actionbar_compat_item_focused.xml:
+	* res/drawable/actionbar_compat_item_pressed.xml:
+	* res/drawable/tray_handle_normal.png:
+	* res/layout-v11:
+	* res/layout-v11/actionbar_indeterminate_progress.xml:
+	* res/layout/actionbar_compat.xml:
+	* res/menu-sw600dp-land/search.xml:
+	* res/menu/search.xml:
+	* res/values/attrs.xml:
+	* res/values/ids.xml:
+	* src/org/tomdroid/ui/actionbar:
+	* src/org/tomdroid/ui/actionbar/ActionBarActivity.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarHelper.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarHelperBase.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarHelperHoneycomb.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarHelperICS.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarListActivity.java:
+	* src/org/tomdroid/ui/actionbar/SimpleMenu.java:
+	* src/org/tomdroid/ui/actionbar/SimpleMenuItem.java:
+	* res/anim:
+	* res/anim/pulse.xml:
+	* res/drawable-hdpi/btn_small.9.png:
+	* res/drawable-hdpi/btn_small_toggle.9.png:
+	* res/drawable-hdpi/button_toggle.xml:
+	* res/drawable-hdpi/icon_actionbar_dot.png:
+	* res/drawable-hdpi/icon_actionbar_sync.png:
+	* res/drawable-hdpi/icon_actionbar_sync_background.png:
+	* res/drawable-hdpi/icon_focused.png:
+	* res/drawable-ldpi/btn_small.9.png:
+	* res/drawable-ldpi/btn_small_toggle.9.png:
+	* res/drawable-ldpi/button_toggle.xml:
+	* res/drawable-ldpi/icon_actionbar_dot.png:
+	* res/drawable-ldpi/icon_actionbar_sync.png:
+	* res/drawable-ldpi/icon_actionbar_sync_background.png:
+	* res/drawable-ldpi/icon_focused.png:
+	* res/drawable-mdpi/btn_small.9.png:
+	* res/drawable-mdpi/btn_small_toggle.9.png:
+	* res/drawable-mdpi/button_toggle.xml:
+	* res/drawable-mdpi/icon_actionbar_dot.png:
+	* res/drawable-mdpi/icon_actionbar_sync.png:
+	* res/drawable-mdpi/icon_actionbar_sync_background.png:
+	* res/drawable-mdpi/icon_focused.png:
+	* res/drawable-xhdpi/icon_actionbar_dot.png:
+	* res/drawable-xhdpi/icon_actionbar_sync.png:
+	* res/drawable-xhdpi/icon_actionbar_sync_background.png:
+	* res/drawable-xhdpi/icon_focused.png:
+	* res/drawable/actionbar_background.png:
+	* res/drawable/actionbar_icon.xml:
+	* res/drawable/ic_menu_sync.png:
+	* res/drawable/icon.png:
+	* res/drawable/icon_focused.png:
+	* res/drawable/text.png:
+	* res/drawable/xml.png:
+	* AndroidManifest.xml:
+	* res/drawable-hdpi/ic_launcher.png:
+	* res/drawable-hdpi/ic_menu_sync.png:
+	* res/drawable-ldpi/ic_launcher.png:
+	* res/drawable-ldpi/ic_menu_sync.png:
+	* res/drawable-ldpi/icon.png:
+	* res/drawable-mdpi/ic_launcher.png:
+	* res/drawable-mdpi/ic_menu_sync.png:
+	* res/drawable-mdpi/icon.png:
+	* res/drawable-xhdpi/ic_menu_sync.png:
+	* res/layout-sw600dp-land/main.xml:
+	* res/layout-sw800dp-land/main.xml:
+	* res/layout/main.xml:
+	* res/layout/main_list_item.xml:
+	* res/layout/note_edit.xml:
+	* res/layout/search.xml:
+	* res/layout/shortcuts_list.xml:
+	* res/menu-sw600dp-land/edit_note.xml:
+	* res/menu-sw600dp-land/main.xml:
+	* res/menu-sw600dp-land/view_note.xml:
+	* res/menu/edit_note.xml:
+	* res/menu/main.xml:
+	* res/menu/view_note.xml:
+	* res/values/dimen.xml:
+	* res/values/strings.xml:
+	* res/values/styles.xml:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/Search.java:
+	* src/org/tomdroid/ui/ShortcutActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+
+	merged with lp:~tomdroid-dev/tomdroid/note-editing-and-syncing-with-combatActionBar
+
+2012-07-30  Stefan Hammer  <j.4@gmx.at>
+
+	* res/layout-sw600dp-land/right_pane.xml:
+	* res/layout-sw800dp-land/right_pane.xml:
+	* res/layout-sw600dp-land/main.xml:
+	* res/layout-sw800dp-land/main.xml:
+	* res/layout/note_view.xml:
+	* src/org/tomdroid/ui/EditNote.java:
+
+	merged note-editing-and-syncing
+
+2012-07-30  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/ui/EditNote.java:
+
+	merge
+
+2012-07-29  Stefan Hammer  <j.4@gmx.at>
+
+	* res/menu-sw600dp-land/edit_note.xml:
+	* res/menu/edit_note.xml:
+	* res/values/strings.xml:
+	* res/xml/preferences.xml:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/util/Preferences.java:
+
+	merged note-editing-and-syncing
+
+2012-07-29  Stefan Hammer  <j.4@gmx.at>
+
+	merged note-editing-and-syncing
+
+2012-07-29  Stefan Hammer  <j.4@gmx.at>
+
+	* res/layout-sw800dp-land/right_pane.xml:
+	* res/layout-sw600dp-land/right_pane.xml:
+	* res/layout/note_view.xml:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	merge
+
+2012-07-29  Stefan Hammer  <j.4@gmx.at>
+
+	* res/drawable-hdpi/ic_menu_refresh.png:
+	* res/drawable-ldpi/ic_menu_sync.png:
+	* res/drawable-mdpi/ic_menu_sync.png:
+
+	icon update
+
+2012-07-29  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	in main activity click on actionbar icon should do nothing.
+
+2012-07-29  Stefan Hammer  <j.4@gmx.at>
+
+	* AndroidManifest.xml:
+	* src/org/tomdroid/ui/ShortcutActivity.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+
+	merge note-editing-and-syncing branch
+
+2012-07-24  Stefan Hammer  <j.4@gmx.at>
+
+	* AndroidManifest.xml:
+	* res/layout/main.xml:
+	* res/layout/main_list_item.xml:
+	* res/layout/note_edit.xml:
+	* res/layout/note_view.xml:
+	* res/layout/strings.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/Note.java:
+
+	No commit message
+2012-07-24  Stefan Hammer  <j.4@gmx.at>
+
+	* AndroidManifest.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/Search.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+
+	clean up, fix home icon in ActionBar
+
+2012-07-24  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/sync/sd/NoteHandler.java:
+	* src/org/tomdroid/ui/SyncMessageHandler.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+	* src/org/tomdroid/util/NoteXMLContentBuilder.java:
+
+	merge note-editing-and-syncing
+
+2012-07-24  Stefan Hammer  <j.4@gmx.at>
+
+	* res/layout/main_list_item.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/Search.java:
+	* src/org/tomdroid/ui/SyncMessageHandler.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarActivity.java:
+
+	Fix home button in action bar for newAPIs
+
+2012-07-24  Stefan Hammer  <j.4@gmx.at>
+
+	* res/menu-sw600dp-land/search.xml:
+	* src/org/tomdroid/ui/TextSizeDialog.java:
+	* res/menu-sw600dp-land/edit_note.xml:
+	* res/menu-sw600dp-land/main.xml:
+	* res/menu-sw600dp-land/view_note.xml:
+	* res/menu/edit_note.xml:
+	* res/menu/main.xml:
+	* res/menu/view_note.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/Search.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	edited actionbar icons and made a radiobutton list for textsize selector
+
+2012-07-24  Stefan Hammer  <j.4@gmx.at>
+
+	* .bzrignore:
+	* res/layout/note_edit.xml:
+	* res/layout/note_view.xml:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+
+	merged changes from note-editing-and-syncing branch
+
+2012-07-24  Stefan Hammer  <j.4@gmx.at>
+
+	* bin:
+	* .bzrignore:
+	* src/org/tomdroid/ui/SyncMessageHandler.java:
+
+	merged note-editing-and-syncing branch
+
+2012-07-23  Stefan Hammer  <j.4@gmx.at>
+
+	* res/drawable-hdpi/actionbar_shadow.9.png:
+	* res/drawable-hdpi/ic_menu_refresh.png:
+	* res/drawable-ldpi/actionbar_shadow.9.png:
+	* res/drawable-mdpi/actionbar_shadow.9.png:
+	* res/drawable-xhdpi/actionbar_shadow.9.png:
+	* res/drawable/actionbar_compat_item.xml:
+	* res/drawable/actionbar_compat_item_focused.xml:
+	* res/drawable/actionbar_compat_item_pressed.xml:
+	* res/layout-v11:
+	* res/layout-v11/actionbar_indeterminate_progress.xml:
+	* res/layout/actionbar_compat.xml:
+	* res/menu/search.xml:
+	* res/values/attrs.xml:
+	* res/values/ids.xml:
+	* src/org/tomdroid/ui/actionbar:
+	* src/org/tomdroid/ui/actionbar/ActionBarActivity.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarHelper.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarHelperBase.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarHelperHoneycomb.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarHelperICS.java:
+	* src/org/tomdroid/ui/actionbar/ActionBarListActivity.java:
+	* src/org/tomdroid/ui/actionbar/SimpleMenu.java:
+	* src/org/tomdroid/ui/actionbar/SimpleMenuItem.java:
+	* bin:
+	* bin/tomdroid-debug.apk:
+	* res/anim:
+	* res/anim/pulse.xml:
+	* res/drawable-hdpi/btn_small.9.png:
+	* res/drawable-hdpi/btn_small_toggle.9.png:
+	* res/drawable-hdpi/button_toggle.xml:
+	* res/drawable-hdpi/icon_actionbar_dot.png:
+	* res/drawable-hdpi/icon_actionbar_sync.png:
+	* res/drawable-hdpi/icon_actionbar_sync_background.png:
+	* res/drawable-hdpi/icon_focused.png:
+	* res/drawable-ldpi/btn_small.9.png:
+	* res/drawable-ldpi/btn_small_toggle.9.png:
+	* res/drawable-ldpi/button_toggle.xml:
+	* res/drawable-ldpi/icon_actionbar_dot.png:
+	* res/drawable-ldpi/icon_actionbar_sync.png:
+	* res/drawable-ldpi/icon_actionbar_sync_background.png:
+	* res/drawable-ldpi/icon_focused.png:
+	* res/drawable-mdpi/btn_small.9.png:
+	* res/drawable-mdpi/btn_small_toggle.9.png:
+	* res/drawable-mdpi/button_toggle.xml:
+	* res/drawable-mdpi/icon_actionbar_dot.png:
+	* res/drawable-mdpi/icon_actionbar_sync.png:
+	* res/drawable-mdpi/icon_actionbar_sync_background.png:
+	* res/drawable-mdpi/icon_focused.png:
+	* res/drawable-xhdpi/icon_actionbar_dot.png:
+	* res/drawable-xhdpi/icon_actionbar_sync.png:
+	* res/drawable-xhdpi/icon_actionbar_sync_background.png:
+	* res/drawable-xhdpi/icon_focused.png:
+	* res/drawable/actionbar_background.png:
+	* res/drawable/actionbar_icon.xml:
+	* res/drawable/ic_menu_sync.png:
+	* res/drawable/icon.png:
+	* res/drawable/icon_focused.png:
+	* res/drawable/text.png:
+	* res/drawable/xml.png:
+	* AndroidManifest.xml:
+	* res/drawable-hdpi/ic_launcher.png:
+	* res/drawable-hdpi/ic_menu_sync.png:
+	* res/drawable-ldpi/ic_launcher.png:
+	* res/drawable-ldpi/ic_menu_sync.png:
+	* res/drawable-ldpi/icon.png:
+	* res/drawable-mdpi/ic_launcher.png:
+	* res/drawable-mdpi/ic_menu_sync.png:
+	* res/drawable-mdpi/icon.png:
+	* res/drawable-xhdpi/ic_menu_sync.png:
+	* res/layout-sw600dp-land/main.xml:
+	* res/layout-sw800dp-land/main.xml:
+	* res/layout/main.xml:
+	* res/layout/main_list_item.xml:
+	* res/layout/search.xml:
+	* res/layout/shortcuts_list.xml:
+	* res/menu/edit_note.xml:
+	* res/menu/main.xml:
+	* res/menu/view_note.xml:
+	* res/values/dimen.xml:
+	* res/values/styles.xml:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/Search.java:
+	* src/org/tomdroid/ui/ShortcutActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+
+	Implemented ActionBar Compartibility for Android 1.5 to 2.3. First revision with an native Actionbar for all Android versions.
+
+2012-08-18  noahy  <noahy57@gmail.com>
+
+	* res/layout/note_edit.xml:
+	* src/org/tomdroid/ui/EditNote.java:
+
+	new format bar
+
+2012-08-17  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	fixed scroll to top after delete note (lp:1038115)
+
+2012-08-17  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/sync/SyncService.java:
+
+	fixed revert all for deleted notes
+
+2012-08-17  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+
+	added routine to circumvent full sync if snowy server revision is old (only push changed notes)
+
+2012-08-17  noahy  <noahy57@gmail.com>
+
+	* AndroidManifest.xml:
+	* res/layout/note_edit.xml:
+	* res/values-v11/styles.xml:
+	* res/values/styles.xml:
+
+	fixed sentence caps bug leading to single line, added theme to prefs, search
+
+2012-08-17  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/sync/SyncService.java:
+
+	stopped pushing note templates, may be causing problems
+
+2012-08-17  noahy  <noahy57@gmail.com>
+
+	* AndroidManifest.xml:
+	* NEWS:
+
+	merges
+
+2012-08-17  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* NEWS:
+
+	merge
+	
+	conflict on NEWS
+
+2012-08-17  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* AndroidManifest.xml:
+	* NEWS:
+
+	version bump
+	
+	unfortunately late, the release doesn't include the last few commits
+
+2012-08-17  noahy  <noahy57@gmail.com>
+
+	* res/values/strings.xml:
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/ErrorList.java:
+
+	re-added cancel sync if no changes, fixed preferences sync toasts
+
+2012-08-17  noahy  <noahy57@gmail.com>
+
+	* NEWS:
+
+	added sync cancel to NEWS
+
+2012-08-17  noahy  <noahy57@gmail.com>
+
+	* res/layout/note_edit.xml:
+
+	set note content entry to "sentence caps"
+
+2012-08-17  noahy  <noahy57@gmail.com>
+
+	* bin:
+	* bin/tomdroid-debug.apk:
+	* .bzrignore:
+	* AUTHORS:
+	* AndroidManifest.xml:
+	* ChangeLog:
+	* NEWS:
+	* doc/dev/RELEASE-CHECKLIST:
+	* doc/dev/TODO:
+	* res/values-fr/strings.xml:
+	* res/values/strings.xml:
+	* doc/user/README:
+	* README:
+
+	merges
+
+2012-08-16  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* bin:
+	* bin/tomdroid-debug.apk:
+	* .bzrignore:
+
+	don't store binary blobs in the repository
+
+2012-08-16  Olivier Bilodeau  <olivier@bottomlesspit.org>
+
+	* AUTHORS:
+	* AndroidManifest.xml:
+	* ChangeLog:
+	* NEWS:
+	* doc/dev/RELEASE-CHECKLIST:
+	* doc/dev/TODO:
+	* res/values-fr/strings.xml:
+	* res/values/strings.xml:
+	* doc/user/README:
+	* README:
+
+	merged lp:tomdroid
+
 2012-08-16  Olivier Bilodeau  <olivier@bottomlesspit.org>
 
 	* NEWS:
@@ -333,6 +4193,969 @@
 	added the Market's 'recent changes' field as a resource
 	
 	This way we can have it translated by our fantastic community.
+
+2012-08-17  noahy  <noahy57@gmail.com>
+
+	* bin/tomdroid-debug.apk:
+	* res/values/strings.xml:
+	* src/org/tomdroid/sync/SyncManager.java:
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	added ability to cancel sync, reset sync date on switching service
+
+2012-08-17  noahy  <noahy57@gmail.com>
+
+	* NEWS:
+	* bin/tomdroid-debug.apk:
+	* res/values/strings.xml:
+	* res/xml/preferences.xml:
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/Preferences.java:
+
+	made sync bundle all remote updates in one, added ability to clear remote notes
+
+2012-08-16  noahy  <noahy57@gmail.com>
+
+	* NEWS:
+	* bin/tomdroid-debug.apk:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	fixed note unique title function, added auto-delete for blank notes
+
+2012-08-16  noahy  <noahy57@gmail.com>
+
+	* NEWS:
+
+	added NEWS
+
+2012-08-16  noahy  <noahy57@gmail.com>
+
+	* bin/tomdroid-debug.apk:
+	* src/org/tomdroid/ui/EditNote.java:
+
+	delete empty note on revert changes
+
+2012-08-16  noahy  <noahy57@gmail.com>
+
+	* bin/tomdroid-debug.apk:
+	* res/menu-sw600dp-land/edit_note.xml:
+
+	moved save button to menu, revert button to actionbar (save is now automatic)
+
+2012-08-16  noahy  <noahy57@gmail.com>
+
+	* bin/tomdroid-debug.apk:
+	* res/menu/edit_note.xml:
+
+	commented out xml button from menu (probably not useful)
+
+2012-08-15  noahy  <noahy57@gmail.com>
+
+	* bin/tomdroid-debug.apk:
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/EditNote.java:
+
+	fixed empty/duplicate note title - causing problems in sync
+
+2012-08-15  noahy  <noahy57@gmail.com>
+
+	* bin/tomdroid-debug.apk:
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	fixed sync dialog stuck on no notes to sync, changed toast to LENGTH_SHORT
+
+2012-08-15  noahy  <noahy57@gmail.com>
+
+	* bin/tomdroid-debug.apk:
+	* src/org/tomdroid/ui/EditNote.java:
+
+	set textChanged to false on save
+
+2012-08-15  noahy  <noahy57@gmail.com>
+
+	* bin/tomdroid-debug.apk:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/util/FirstNote.properties:
+
+	removed note that changing services will empty notes (it won't now)
+
+2012-08-15  noahy  <noahy57@gmail.com>
+
+	* bin/tomdroid-debug.apk:
+	* src/org/tomdroid/util/FirstNote.properties:
+
+	added missing text to firstnote
+
+2012-08-15  noahy  <noahy57@gmail.com>
+
+	* res/menu/edit_note.xml:
+	* src/org/tomdroid/util/FirstNote.properties:
+
+	moved save to menu, tweak firstnote
+
+2012-08-15  noahy  <noahy57@gmail.com>
+
+	* bin/tomdroid-debug.apk:
+	* res/layout/note_edit.xml:
+	* res/menu-sw600dp-land/edit_note.xml:
+	* res/menu/edit_note.xml:
+	* res/values/strings.xml:
+	* res/xml/preferences.xml:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/sync/web/OAuthConnection.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/SyncDialog.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/FirstNote.java:
+	* src/org/tomdroid/util/FirstNote.properties:
+	* src/org/tomdroid/util/Preferences.java:
+
+	lots of sync fixes, moved authentication to just before syncing, removed some toasts, etc.
+
+2012-08-11  noahy  <noahy57@gmail.com>
+
+	* bin/tomdroid-debug.apk:
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/NewNote.java:
+	* src/org/tomdroid/util/NoteXMLContentBuilder.java:
+
+	fixed note-content tag, fixed xml <>& replacements, fixed sd card backup
+
+2012-08-09  noahy  <noahy57@gmail.com>
+
+	* bin/tomdroid-debug.apk:
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	more progressbar tweaks
+
+2012-08-09  noahy  <noahy57@gmail.com>
+
+	* bin/tomdroid-debug.apk:
+	* res/values/strings.xml:
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	progress bar fixes
+
+2012-08-09  noahy  <noahy57@gmail.com>
+
+	* bin/tomdroid-debug.apk:
+	* res/values/strings.xml:
+	* res/xml/preferences.xml:
+	* src/org/tomdroid/sync/SyncManager.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/util/Preferences.java:
+
+	fixed sync to sd card on no notes, added pref for backup to sd card when using online sync
+
+2012-08-09  noahy  <noahy57@gmail.com>
+
+	* bin/tomdroid-debug.apk:
+	* res/values/strings.xml:
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/SyncDialog.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* tests/org/tomdroid/NoteManagerTest.java:
+
+	radically simplified sync, progress on progress bar...
+
+2012-08-09  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/ui/SyncMessageHandler.java:
+	* bin/tomdroid-debug.apk:
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/Search.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+
+	sync progress dialog
+
+2012-08-06  noahy  <noahy57@gmail.com>
+
+	* bin/tomdroid-debug.apk:
+	* res/layout/note_edit.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/sync/SyncManager.java:
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/SyncDialog.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	reworked sync notification, finishing, refreshing; added slider for formatting bar
+
+2012-08-06  noahy  <noahy57@gmail.com>
+
+	* bin/tomdroid-debug.apk:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/SyncDialog.java:
+	* src/org/tomdroid/ui/SyncMessageHandler.java:
+
+	fixed sync refresh, readded apk
+
+2012-08-06  noahy  <noahy57@gmail.com>
+
+	* libs/diffutils-1.2.1.jar:
+	* res/layout/note_compare.xml:
+	* src/org/tomdroid/ui/SyncDialog.java:
+	* src/org/tomdroid/SyncDialog.java:
+	* .classpath:
+	* AndroidManifest.xml:
+	* res/layout/note_edit.xml:
+	* res/layout/note_view.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/SyncMessageHandler.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/LinkifyPhone.java:
+
+	added diff activity on conflicts
+
+2012-08-05  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+
+	added missing last-sync-date to sdcardsync
+
+2012-08-05  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/ui/SyncMessageHandler.java:
+
+	added refresh
+
+2012-08-03  noahy  <noahy57@gmail.com>
+
+	* res/menu-sw600dp-land/main_longclick.xml:
+	* res/menu-sw600dp-land/main.xml:
+	* res/menu/main.xml:
+	* res/menu/main_longclick.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/sync/SyncManager.java:
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/SyncMessageHandler.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/NoteContentBuilder.java:
+
+	added revert options, xml editing in case the note doesn't parse
+
+2012-08-02  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/SyncDialog.java:
+
+	added SyncDialog file
+
+2012-08-01  noahy  <noahy57@gmail.com>
+
+	* AndroidManifest.xml:
+	* res/values/styles.xml:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/SyncMessageHandler.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/util/Preferences.java:
+
+	added sync dialog on conflict
+
+2012-08-01  noahy  <noahy57@gmail.com>
+
+	* res/values/strings.xml:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	new auto-sync: try to push and pull at the same time, let choose if both are newer than last sync
+
+2012-08-01  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/ui/EditNote.java:
+
+	reverted to fix xml-disappear bug
+
+2012-07-30  Stefan Hammer  <j.4@gmx.at>
+
+	* res/layout-sw600dp-land/right_pane.xml:
+	* res/layout-sw800dp-land/right_pane.xml:
+	* res/layout-sw600dp-land/main.xml:
+	* res/layout-sw800dp-land/main.xml:
+
+	modify xml layouts
+
+2012-07-30  Stefan Hammer  <j.4@gmx.at>
+
+	* res/layout-sw600dp-land/right_pane.xml:
+	* res/layout-sw800dp-land/right_pane.xml:
+	* res/layout/note_view.xml:
+	* src/org/tomdroid/ui/EditNote.java:
+
+	fix xml-button-no-content-bug. the bug was not there during step by step debugging, but only if you run the program. adding a small delay for shownote() fixed it. but there must be a nicer solution.
+
+2012-07-30  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/ui/EditNote.java:
+
+	you can now change the textsize without selecting before. the curser is then the start of the new size. the end is, when you change the size again.
+
+2012-07-30  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/ui/TextSizeDialog.java:
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/EditNote.java:
+
+	choose text size dialog as radiobutton list also in this branch.
+
+2012-07-29  Stefan Hammer  <j.4@gmx.at>
+
+	* res/menu-sw600dp-land/edit_note.xml:
+	* res/menu/edit_note.xml:
+	* res/values/strings.xml:
+	* res/xml/preferences.xml:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/util/Preferences.java:
+
+	Always autosave as it is default in Tomboy and we risk loss of data when the Activity comes into the background eg by a call. therefore remove preferences option and include a discard changes button to revert the changes since the last save.
+
+2012-07-29  Stefan Hammer  <j.4@gmx.at>
+
+	* .bzrignore:
+
+	bzr ignore bin
+
+2012-07-29  Stefan Hammer  <j.4@gmx.at>
+
+	* res/layout-sw800dp-land/right_pane.xml:
+	* res/layout-sw600dp-land/right_pane.xml:
+	* res/layout/note_view.xml:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	consistent look for all versions and tablets.
+
+2012-07-29  Stefan Hammer  <j.4@gmx.at>
+
+	* AndroidManifest.xml:
+	* src/org/tomdroid/ui/ShortcutActivity.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+
+	Fix crash: tomdroid is not in the RAM - call ViewNote from shortcut -crash. same for creating a shortcut: have to call Preferences.init() first. Further, change strings of shortcut activity to meaningfull things.
+
+2012-07-24  Stefan Hammer  <j.4@gmx.at>
+
+	* res/layout/main.xml:
+	* res/layout/main_list_item.xml:
+	* res/layout/note_edit.xml:
+	* res/layout/note_view.xml:
+	* res/layout/strings.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/Note.java:
+
+	clean up and reviewd half of the code
+
+2012-07-24  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/sync/sd/NoteHandler.java:
+	* src/org/tomdroid/ui/SyncMessageHandler.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+	* src/org/tomdroid/util/NoteXMLContentBuilder.java:
+
+	clean imports
+
+2012-07-24  Stefan Hammer  <j.4@gmx.at>
+
+	* res/layout/note_edit.xml:
+	* res/layout/note_view.xml:
+
+	scrolling again
+
+2012-07-24  Stefan Hammer  <j.4@gmx.at>
+
+	* res/layout/note_edit.xml:
+	* res/layout/note_view.xml:
+	* src/org/tomdroid/ui/ViewNote.java:
+
+	make scrolling smoother and insert overscroll animation to noteview and editview.
+
+2012-07-24  Stefan Hammer  <j.4@gmx.at>
+
+	* res/layout/note_edit.xml:
+	* res/layout/note_view.xml:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+
+	made scroll bars and highlighted title consistent with desktop tomboy.
+
+2012-07-24  Stefan Hammer  <j.4@gmx.at>
+
+	* .bzrignore:
+
+	update .bzrignore
+
+2012-07-24  Stefan Hammer  <j.4@gmx.at>
+
+	* bin/tomdroid-debug.apk:
+
+	bzrignore bin/ folder
+
+2012-07-24  Stefan Hammer  <j.4@gmx.at>
+
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	fixed crasher when longpress on listitem and edit. now it really calls editview.
+
+2012-07-24  noahy  <noahy57@gmail.com>
+
+	* bin/tomdroid-debug.apk:
+	* src/org/tomdroid/ui/SyncMessageHandler.java:
+
+	fixed "Syncing..." by restarting activity
+
+2012-07-23  noahy  <noahy57@gmail.com>
+
+	* AndroidManifest.xml:
+	* bin/tomdroid-debug.apk:
+	* res/layout-sw600dp-land/right_pane.xml:
+	* res/layout/note_view.xml:
+	* res/values/strings.xml:
+	* res/xml/preferences.xml:
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+	* src/org/tomdroid/util/NoteXMLContentBuilder.java:
+	* src/org/tomdroid/util/Preferences.java:
+
+	fixed linking, shortcuts, grey bar on list, data loss onPause(), added pref to save onPause(), link to main activity on app icon
+
+2012-07-22  Stefan Hammer  <j.4@gmx.at>
+
+	* AndroidManifest.xml:
+
+	About Dialog was just one liner on Anroid 2.3, changed MainActivity to MyTheme fixed it.
+
+2012-07-23  noahy  <noahy57@gmail.com>
+
+	* tests/org/tomdroid:
+	* tests/org/tomdroid/NoteManagerTest.java:
+	* tests/org/tomdroid/NoteTest.java:
+	* res/layout-sw600dp-land/main.xml:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	readded tests, fixed color problem
+
+2012-07-22  noahy  <noahy57@gmail.com>
+
+	* bin:
+	* bin/tomdroid-debug.apk:
+	* res/layout-sw600dp-land/main.xml:
+	* res/layout/main_list_item.xml:
+	* res/menu-sw600dp-land/main_longclick.xml:
+	* res/menu/main_longclick.xml:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	added "Edit" to context menu, uploaded debug apk for testing
+
+2012-07-22  noahy  <noahy57@gmail.com>
+
+	* res/layout-sw600dp-land/right_pane.xml:
+	* res/values/strings.xml:
+	* res/xml/preferences.xml:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/Search.java:
+	* src/org/tomdroid/ui/ShortcutActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+	* src/org/tomdroid/util/Preferences.java:
+
+	added ability to delete all notes, toggle including note templates, bug fixes for all note titles empty and no notes in list
+
+2012-07-22  noahy  <noahy57@gmail.com>
+
+	* res/layout/note_edit.xml:
+
+	set note height in note_edit to match_parent
+
+2012-07-22  noahy  <noahy57@gmail.com>
+
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/ui/Search.java:
+	* src/org/tomdroid/ui/ShortcutActivity.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+
+	fixed notebook template showing in list (lp Bug #360732)
+
+2012-07-22  noahy  <noahy57@gmail.com>
+
+	* res/layout/main_list_item.xml:
+	* res/layout/note_edit.xml:
+	* src/org/tomdroid/ui/EditNote.java:
+
+	converted highlight and mono to togglebuttons, fixed listview font color
+
+2012-07-22  noahy  <noahy57@gmail.com>
+
+	* AndroidManifest.xml:
+	* res/layout/main_list_item.xml:
+	* res/values-v11/styles.xml:
+
+	fixed 2.3 bug (again)
+
+2012-07-21  noahy  <noahy57@gmail.com>
+
+	* AndroidManifest.xml:
+	* res/layout/note_edit.xml:
+	* res/layout/note_view.xml:
+	* res/values/strings.xml:
+	* res/values/styles.xml:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/SyncMessageHandler.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+
+	bug fixes
+
+2012-07-20  noahy  <noahy57@gmail.com>
+
+	* res/layout/strings.xml:
+	* res/values-v11:
+	* res/values-v11/styles.xml:
+	* res/values/styles.xml:
+	* res/layout/note_edit.xml:
+
+	merged Stefan's changes, upped targetSDK to 10, otherwise it won't build for me
+
+2012-07-20  Stefan Hammer  <j.4@gmx.at>
+
+	* res/layout/note_edit.xml:
+	* res/layout/note_view.xml:
+
+	title was cropped in note-view and edit when using big fonts
+
+2012-07-20  Stefan Hammer  <j.4@gmx.at>
+
+	* AndroidManifest.xml:
+
+	themes for all activities, including search and preferences.
+
+2012-07-20  Stefan Hammer  <j.4@gmx.at>
+
+	* res/values-v11/styles.xml:
+
+	changed to holo.light for consistency.
+
+2012-07-20  Stefan Hammer  <j.4@gmx.at>
+
+	* res/layout/strings.xml:
+	* res/values-v11:
+	* res/values-v11/styles.xml:
+	* res/values/styles.xml:
+
+	No commit message
+2012-07-20  Stefan Hammer  <j.4@gmx.at>
+
+	* AndroidManifest.xml:
+	* res/layout/note_edit.xml:
+
+	Fix Android 2.3 textview only in one line with using Lighttheme an api11 and below. Further mobe content of textedit to top.
+
+2012-07-20  noahy  <noahy57@gmail.com>
+
+	* sdcard.img:
+	* src/org/tomdroid/sync/sd/NoteHandler.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+
+	added tagging to sdcard export
+
+2012-07-20  noahy  <noahy57@gmail.com>
+
+	* res/drawable/mono.png:
+	* res/drawable/size.png:
+	* res/layout-sw600dp-land:
+	* res/layout-sw600dp-land/main.xml:
+	* res/layout-sw600dp-land/right_pane.xml:
+	* res/layout-sw800dp-land:
+	* res/layout-sw800dp-land/main.xml:
+	* res/menu-sw600dp-land:
+	* res/menu-sw600dp-land/edit_note.xml:
+	* res/menu-sw600dp-land/main.xml:
+	* res/menu-sw600dp-land/main_longclick.xml:
+	* res/menu-sw600dp-land/view_note.xml:
+	* res/values/dimen.xml:
+	* AndroidManifest.xml:
+	* res/layout/note_edit.xml:
+	* res/layout/note_view.xml:
+	* res/values/strings.xml:
+	* sdcard.img:
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/sync/SyncManager.java:
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/sync/sd/NoteHandler.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/Search.java:
+	* src/org/tomdroid/ui/SyncMessageHandler.java:
+	* src/org/tomdroid/ui/TextSizeDialog.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+	* src/org/tomdroid/util/NewNote.java:
+	* src/org/tomdroid/util/NoteXMLContentBuilder.java:
+
+	tablet ui, sd card preserve old metadata
+
+2012-07-20  noahy  <noahy57@gmail.com>
+
+	* res/drawable-hdpi/text.png:
+	* res/drawable-hdpi/xml.png:
+	* res/drawable-ldpi/ic_menu_sync.png:
+	* res/drawable-ldpi/text.png:
+	* res/drawable-ldpi/xml.png:
+	* res/drawable-mdpi/ic_menu_sync.png:
+	* res/drawable-mdpi/text.png:
+	* res/drawable-mdpi/xml.png:
+	* res/drawable-xhdpi/ic_menu_sync.png:
+	* res/drawable/btn_small.9.png:
+	* res/drawable/btn_small_toggle.9.png:
+	* res/drawable/button_toggle.xml:
+	* res/drawable/ic_menu_sync.png:
+	* res/drawable/text.png:
+	* res/drawable/xml.png:
+	* src/org/tomdroid/sync/SyncProvider.java:
+	* res/layout/note_edit.xml:
+	* res/layout/note_view.xml:
+	* sdcard.img:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+
+	working with 1.5
+
+2012-07-20  noahy  <noahy57@gmail.com>
+
+	* res/drawable-hdpi/ic_menu_sync.png:
+	* res/drawable-xhdpi/text.png:
+	* res/drawable-xhdpi/xml.png:
+	* res/drawable/highlight.png:
+	* res/xml/sync_provider.xml:
+	* src/org/tomdroid/sync/SyncProvider.java:
+
+	added missing res
+
+2012-07-19  noahy  <noahy57@gmail.com>
+
+	* res/layout/actionbar.xml:
+	* res/layout/actionbar_edit.xml:
+	* res/layout/actionbar_view.xml:
+	* src/org/tomdroid/ui/Actionbar.java:
+	* res/layout/note_edit.xml:
+	* res/layout/note_view.xml:
+	* res/values/strings.xml:
+	* sdcard.img:
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/sync/SyncManager.java:
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/ShortcutActivity.java:
+	* src/org/tomdroid/ui/SyncMessageHandler.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+	* src/org/tomdroid/util/Preferences.java:
+
+	push changes only on sync
+
+2012-07-19  noahy  <noahy57@gmail.com>
+
+	* AndroidManifest.xml:
+	* res/layout/main.xml:
+	* res/layout/note_edit.xml:
+	* res/layout/note_view.xml:
+	* res/layout/search.xml:
+	* res/layout/shortcuts_list.xml:
+	* res/menu/edit_note.xml:
+	* res/menu/main.xml:
+	* res/menu/view_note.xml:
+	* res/values/strings.xml:
+	* res/xml/preferences.xml:
+	* sdcard.img:
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/Search.java:
+	* src/org/tomdroid/ui/SyncMessageHandler.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+	* src/org/tomdroid/util/NoteXMLContentBuilder.java:
+	* src/org/tomdroid/util/Preferences.java:
+
+	fixed xml parser tag mismatch, integrated actionbar, fixed empty title linking, etc.
+
+2012-07-18  noahy  <noahy57@gmail.com>
+
+	* res/layout/actionbar_edit.xml:
+	* res/layout/note_edit.xml:
+	* res/values/strings.xml:
+	* sdcard.img:
+	* src/org/tomdroid/ui/EditNote.java:
+
+	mono, highlight
+
+2012-07-18  noahy  <noahy57@gmail.com>
+
+	* res/layout/actionbar_edit.xml:
+	* res/layout/note_edit.xml:
+	* res/values/strings.xml:
+	* sdcard.img:
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/SyncMessageHandler.java:
+	* src/org/tomdroid/util/NoteXMLContentBuilder.java:
+
+	SD Card sync working
+
+2012-07-18  noahy  <noahy57@gmail.com>
+
+	* AndroidManifest.xml:
+
+	revert minSDK
+
+2012-07-18  noahy  <noahy57@gmail.com>
+
+	* res/values/strings.xml:
+	* src/org/tomdroid/ui/EditNote.java:
+
+	fixed xml switching
+
+2012-07-18  noahy  <noahy57@gmail.com>
+
+	* res/drawable-hdpi/btn_small.9.png:
+	* res/drawable-hdpi/btn_small_toggle.9.png:
+	* res/drawable-hdpi/button_toggle.xml:
+	* res/drawable-ldpi/btn_small.9.png:
+	* res/drawable-ldpi/btn_small_toggle.9.png:
+	* res/drawable-ldpi/button_toggle.xml:
+	* res/drawable-mdpi/btn_small.9.png:
+	* res/drawable-mdpi/btn_small_toggle.9.png:
+	* res/drawable-mdpi/button_toggle.xml:
+	* src/org/tomdroid/ui/TextSizeDialog.java:
+	* src/org/tomdroid/util/NoteXMLContentBuilder.java:
+	* AndroidManifest.xml:
+	* res/layout/actionbar_edit.xml:
+	* res/layout/actionbar_view.xml:
+	* res/layout/note_edit.xml:
+	* res/layout/note_view.xml:
+	* res/values/strings.xml:
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+
+	added rich text
+
+2012-07-18  noahy  <noahy57@gmail.com>
+
+	* res/values-en-rGB/strings.xml:
+	* res/values/strings.xml:
+
+	fixed name
+
+2012-07-17  noahy  <noahy57@gmail.com>
+
+	* src/org/noahy:
+	* tests/org/noahy:
+	* AndroidManifest.xml:
+	* res/layout/actionbar.xml:
+	* res/layout/actionbar_edit.xml:
+	* res/layout/actionbar_view.xml:
+	* res/xml/searchable.xml:
+	* src/org/tomdroid/Note.java:
+	* src/org/tomdroid/NoteManager.java:
+	* src/org/tomdroid/NoteProvider.java:
+	* src/org/tomdroid/sync/ServiceAuth.java:
+	* src/org/tomdroid/sync/SyncManager.java:
+	* src/org/tomdroid/sync/SyncService.java:
+	* src/org/tomdroid/sync/sd/NoteHandler.java:
+	* src/org/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/tomdroid/sync/web/AnonymousConnection.java:
+	* src/org/tomdroid/sync/web/OAuthConnection.java:
+	* src/org/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/tomdroid/sync/web/WebConnection.java:
+	* src/org/tomdroid/ui/Actionbar.java:
+	* src/org/tomdroid/ui/EditNote.java:
+	* src/org/tomdroid/ui/PreferencesActivity.java:
+	* src/org/tomdroid/ui/Search.java:
+	* src/org/tomdroid/ui/ShortcutActivity.java:
+	* src/org/tomdroid/ui/SyncMessageHandler.java:
+	* src/org/tomdroid/ui/Tomdroid.java:
+	* src/org/tomdroid/ui/ViewNote.java:
+	* src/org/tomdroid/util/ErrorList.java:
+	* src/org/tomdroid/util/FirstNote.java:
+	* src/org/tomdroid/util/LinkifyPhone.java:
+	* src/org/tomdroid/util/NewNote.java:
+	* src/org/tomdroid/util/NoteContentBuilder.java:
+	* src/org/tomdroid/util/NoteListCursorAdapter.java:
+	* src/org/tomdroid/util/NoteViewShortcutsHelper.java:
+	* src/org/tomdroid/util/Preferences.java:
+	* src/org/tomdroid/util/SearchSuggestionProvider.java:
+	* src/org/tomdroid/util/Send.java:
+	* src/org/tomdroid/util/TLog.java:
+	* src/org/tomdroid/util/XmlUtils.java:
+	* src/org/tomdroid/xml/NoteContentHandler.java:
+	* src/org/noahy/tomdroid:
+	* src/org/tomdroid:
+
+	reverted to org.tomdroid
+
+2012-07-16  noahy  <noahy57@gmail.com>
+
+	* src/org/noahy/tomdroid/ui/ViewNote.java:
+
+	set text selectable for ICS in viewnote
+
+2012-07-16  noahy  <noahy57@gmail.com>
+
+	* res/values/strings.xml:
+
+	typo
+
+2012-07-16  noahy  <noahy57@gmail.com>
+
+	* src/org/noahy/tomdroid/NoteManager.java:
+	* src/org/noahy/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/noahy/tomdroid/ui/EditNote.java:
+	* src/org/noahy/tomdroid/util/NewNote.java:
+
+	fixed sync in ICS
+
+2012-07-16  noahy  <noahy57@gmail.com>
+
+	* res/drawable-hdpi/icon.png:
+	* res/drawable-hdpi/icon_focused.png:
+	* res/drawable-ldpi/icon.png:
+	* res/drawable-ldpi/icon_focused.png:
+	* res/drawable-mdpi/icon.png:
+	* res/drawable-mdpi/icon_focused.png:
+	* res/drawable-xhdpi/icon.png:
+	* res/drawable-xhdpi/icon_focused.png:
+	* res/layout/actionbar_edit.xml:
+	* res/layout/actionbar_view.xml:
+	* res/layout/note_edit.xml:
+	* res/menu/edit_note.xml:
+	* src/org/noahy/tomdroid/ui/EditNote.java:
+	* src/org/noahy/tomdroid/util/NewNote.java:
+	* res/layout/actionbar.xml:
+	* res/menu/main.xml:
+	* res/menu/main_longclick.xml:
+	* res/values/strings.xml:
+	* src/org/noahy/tomdroid/ui/Tomdroid.java:
+	* src/org/noahy/tomdroid/ui/ViewNote.java:
+
+	added missing files
+
+2012-07-16  noahy  <noahy57@gmail.com>
+
+	* src/org/noahy:
+	* tests/org/tomdroid/NoteManagerTest.java:
+	* tests/org/tomdroid/NoteTest.java:
+	* .classpath:
+	* AndroidManifest.xml:
+	* project.properties:
+	* res/drawable-hdpi/ic_launcher.png:
+	* res/drawable-ldpi/ic_launcher.png:
+	* res/drawable-mdpi/ic_launcher.png:
+	* res/layout/actionbar.xml:
+	* res/layout/main.xml:
+	* res/layout/note_view.xml:
+	* res/menu/main.xml:
+	* res/values-en-rGB/strings.xml:
+	* res/values/strings.xml:
+	* res/xml/searchable.xml:
+	* src/org/noahy/tomdroid/Note.java:
+	* src/org/noahy/tomdroid/NoteManager.java:
+	* src/org/noahy/tomdroid/NoteProvider.java:
+	* src/org/noahy/tomdroid/sync/ServiceAuth.java:
+	* src/org/noahy/tomdroid/sync/SyncManager.java:
+	* src/org/noahy/tomdroid/sync/SyncService.java:
+	* src/org/noahy/tomdroid/sync/sd/NoteHandler.java:
+	* src/org/noahy/tomdroid/sync/sd/SdCardSyncService.java:
+	* src/org/noahy/tomdroid/sync/web/AnonymousConnection.java:
+	* src/org/noahy/tomdroid/sync/web/OAuthConnection.java:
+	* src/org/noahy/tomdroid/sync/web/SnowySyncService.java:
+	* src/org/noahy/tomdroid/sync/web/WebConnection.java:
+	* src/org/noahy/tomdroid/ui/Actionbar.java:
+	* src/org/noahy/tomdroid/ui/PreferencesActivity.java:
+	* src/org/noahy/tomdroid/ui/Search.java:
+	* src/org/noahy/tomdroid/ui/ShortcutActivity.java:
+	* src/org/noahy/tomdroid/ui/SyncMessageHandler.java:
+	* src/org/noahy/tomdroid/ui/Tomdroid.java:
+	* src/org/noahy/tomdroid/ui/ViewNote.java:
+	* src/org/noahy/tomdroid/util/ErrorList.java:
+	* src/org/noahy/tomdroid/util/FirstNote.java:
+	* src/org/noahy/tomdroid/util/LinkifyPhone.java:
+	* src/org/noahy/tomdroid/util/NoteContentBuilder.java:
+	* src/org/noahy/tomdroid/util/NoteListCursorAdapter.java:
+	* src/org/noahy/tomdroid/util/NoteViewShortcutsHelper.java:
+	* src/org/noahy/tomdroid/util/Preferences.java:
+	* src/org/noahy/tomdroid/util/SearchSuggestionProvider.java:
+	* src/org/noahy/tomdroid/util/Send.java:
+	* src/org/noahy/tomdroid/util/TLog.java:
+	* src/org/noahy/tomdroid/util/XmlUtils.java:
+	* src/org/noahy/tomdroid/xml/NoteContentHandler.java:
+	* src/org/tomdroid:
+	* src/org/noahy/tomdroid:
+	* tests/org/tomdroid:
+	* tests/org/noahy:
+
+	editable tomdroid, first commit
 
 2012-04-04  Olivier Bilodeau  <olivier@bottomlesspit.org>
 

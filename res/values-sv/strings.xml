@@ -25,62 +25,83 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Tomboy kompatibel wikiwiki som i nuläget inte kan kan skapa eller ändra existerande anteckningar.</string>
+	<string name="app_desc">Tomboy-kompatibel wiki-baserad anteckningsapp.</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
-	<string name="strListEmptyWaiting">Vänligen vänta medan anteckningarna laddar...</string>
+	<string name="strListEmptyWaiting">Vänta medan anteckningarna läses in…</string>
 	<string name="strListEmptyNoNotes">Det finns inga anteckningar i Tomdroids databas.</string>
 	
+	<!-- Menu entry with icon -->
 	<string name="menuSync">Synkronisera</string>
+	<!-- Menu entry with icon -->
 	<string name="menuPrefs">Inställningar</string>
+	<!-- Menu entry with icon -->
 	<string name="menuAbout">Om</string>
+	<!-- Title of an alert box -->
 	<string name="titleWelcome">Varning</string>
 	<string name="titleAbout">Om Tomdroid</string>
-	<string name="strWelcome">Välkommen till Tomdroid.\n\nVänligen notera att denna mjukvara befinner sig i betastadiet and det finns ett antal kända problem, såsom avsaknaden av möjlighet att redigera anteckningar.\n\nVi är medvetna om dessa problem och planerar att arbeta med dem snarast möjligt, men jag ville få ut nånting snabbt.\n\Om du vill bidra, hjälp på alla nivåer uppskattas. Hoppa ombord på launchpad.net/tomdroid och kontakta oss!\n</string>
+	<!-- First start alert box -->
+	<string name="strWelcome">Välkommen till Tomdroid.\n\nObservera att detta är programvara av betakvalitet och att den innehåller kända buggar.\n\nVi är väl medvetna om dessa problem och avser att åtgärda dem så snabbt vi kan. Men vi ville också ge ut något och få det testat så tidigt  som möjligt.\n\nOm du vill bidra, så tar vi emot hjälp på alla nivåer med öppna armar. Titta in på launchpad.net/tomdroid och kontakta oss!\n</string>
+	<!-- \n\n are linebreaks, %1$s etc are the name of the Author, the version and the license name -->
 	<string name="strAbout">%1$s\n\nUtvecklare: %2$s\nVersion: %3$s\nLicensierad under GPLv3</string>
 	
-	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
+	<!-- positive Button -->
 	<string name="btnOk">OK</string>
+	<!-- negative Button -->
 	<string name="btnCancel">Avbryt</string>
+	<!-- Button -->
 	<string name="btnClose">Stäng</string>
+	<!-- Button -->
 	<string name="btnProjectPage">Projektsida</string>
-	<string name="btnSavetoSD">Spara till SD-kort</string>
+	<string name="btnSavetoSD">Spara</string>
 	
 	<!-- note-view.xml -->
-	<string name="strWait">Vänligen vänta medan anteckningen laddas...</string>
+	<string name="strWait">Vänligen vänta medan anteckningen läses in…</string>
 	
-	<string name="prefSync">Synkronisering</string>
 	<string name="prefSyncService">Tjänst</string>
 	<string name="prefSyncServer">Server</string>
 	<string name="prefSDCard">SD-kort</string>
 	<string name="prefTomboyWeb">Onlinesynkronisering</string>
 	<string name="prefAuthenticate">Autentisera</string>
 	<string name="prefLocation">Plats på SD-kort</string>
+	<string name="prefSyncOnStart">Synkronisera automatiskt vid programstart</string>
+	<string name="prefDescSyncOnStart">Synkronisera dina anteckningar vid programstart</string>
+	<!-- %1$s will be repaced by the folder name eg /tomdroid -->
 	<string name="prefFolderCreated">Mappen \"%1$s\" finns inte än. Vänligen anslut din enhet till datorn, skapa mappen och fyll den med *.note-filer.</string>
-	<string name="prefNoValidEntry">\"%1$s\" innehåller otillåtna tecken.\nVänligen försök igen!</string>
-	
-	<string name="prefSyncCompleteAuth">Slutför autentisering. Vänligen vänta...</string>
+	<!-- %1$s will be repaced by the folder name eg /testfolder -->
+	<string name="prefNoValidLocation">\"%1$s\" är inte en tillåten mappsökväg. Försök igen!</string>
+	<!-- %1$s will be replaced with an text entry the user had done -->
+	<string name="prefNoValidEntry">\"%1$s\" är inte en giltig inmatning. Försök igen!</string>
+	<string name="prefSyncCompleteAuth">Slutför autentisering. Vänligen vänta…</string>
 	<string name="prefSyncConnectionFailed">Anslutningen till servern har misslyckats, vänligen kontrollera att adressen du skrev in stämmer.</string>
 	<string name="prefServerEmpty">Serverns adress har ändrats men det nya värdet är tomt</string>
-	
+			
 	<string name="titleSyncService">Välj synkroniseringstjänst</string>
+	<!-- %1$s will be replaced with "Online Synchronisation", "SD Card",...-->
 	<string name="messageSyncComplete">Synkronisering med %1$s är klar.</string>
+	<!-- %1$s will be replaced with "SD Card",... -->
 	<string name="messageSyncNoNote">Inga anteckningar hittades på %1$s.</string>
 	<string name="messageSyncNoConnection">Du är inte ansluten till Internet.</string>
 	<string name="messageSyncAlreadyInProgress">Synkronisering pågår redan</string>
 	<string name="messageSyncError">Det uppstod ett fel vid analysen av din anteckningssamling. Vänligen kontakta oss ifall du lyckas återskapa felet!</string>
+	<!-- Altert box header -->
 	<string name="error">Fel</string>
+	<!-- Altert box header -->
 	<string name="titleNoteNotFound">Det finns ingen sådan anteckning</string>
 	<string name="messageNoteNotFound">Den efterfrågade anteckningen kan inte hittas. Den kanske har tagits bort eller flyttats vid synkronisering.</string>
-	<string name="messageErrorNoteParsing">Den efterfrågade anteckningen kunde inte tolkas. Om du kan återskapa felet, vänligen kontakta oss!</string>	
-	<string name="messageCouldNotSave">Kan inte spara felen, kontrollera ditt SD-kort.</string>
-	<string name="messageNoSDCard">SD-koret kan inte hittas.</string>
+	<string name="messageErrorNoteParsing">Ett fel uppstod när anteckningen analyserades.</string>
+	<string name="messageCouldNotSave">Det gick inte att spara anteckningen.</string>
+	<string name="messageNoSDCard">Lagringsplatsen för SD-kortet hittades inte.</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">Ändra sortering</string>
-	<string name="titleDefaultSorting">Välj standardsortering</string>
-	<string name="prefDefaultSorting">Standardsortering</string>
+	<string name="titleDefaultSorting">Välj standardsorteringsmetod</string>
+	<string name="prefDefaultSortingTitle">Standardsorteringsmetod</string>
+	<string name="prefSorting">Sortera efter:</string>
+	<string name="prefSortDate">Ändringsdatum</string>
+	<string name="prefSortTitle">Anteckningstitel</string>
+	<string name="sortByDate">Sortera efter datum</string>
+	<string name="sortByTitle">Sortera efter titel</string>
 	
 	<!-- NotebookFiltering -->
 	<string name="menuFilterNotebook">Filter</string>
@@ -93,11 +114,13 @@
 	<string name="send">Skicka</string>
 	
 	<!--  Search -->
+	<!-- Text in input field for search -->
 	<string name="search_hint">Sök anteckningar</string>
+	<!-- Preferences Field in global search to include notes -->
 	<string name="search_description">Text i dina anteckningar</string>
+	<!-- %s will be replaced with the search string -->
 	<string name="strNoResults">Inga anteckningar hittades för \"%s\"</string>
 	<string name="menuSearch">Sök</string>
-	<string name="prefSearch">Sökalternativ</string>
 	<string name="SearchResultTitle">Sökresultat:</string>
 	<string name="clearSearchHistoryTitle">Rensa sökhistoriken</string>
 	<string name="clearSearchHistory">Ta bort alla sökningar du har gjort</string>
@@ -105,14 +128,226 @@
 	
 	<!-- Date -->
 	<string name="textModified">Ändrad:</string>
-	<string name="textToday">I dag</string>
+	<string name="textToday">Idag</string>
 	<string name="textYexterday">Igår</string>
 
 	<!-- Shortcuts handling -->
+	<!-- Header when picking a note for a new shortcut -->
 	<string name="shortcuts_view_caption">Välj en anteckning</string>
 	<string name="shortcut_menu_item_caption">Tomdroid-anteckning</string>
 	<string name="btnRemoveShortcut">Ta bort genväg</string>
 	<string name="createShortcut">Skapa genväg</string>
+
+	<!-- stuff new to edit -->
+
+	<!-- deleteNote -->
+	<string name="delete">Ta bort</string>
+	<string name="delete_note">Ta bort anteckning</string>
+	<string name="delete_message">Är du säker på att du vill ta bort denna anteckning?</string>
+	<string name="yes">Ja</string>
+	<string name="no">Nej</string>
+	<string name="delete_all">Rensa anteckningar</string>
+	<string name="delete_all_message">Är du säker på att du vill rensa databasen för anteckningar?</string>
+	<string name="delete_remote_notes">Ta bort fjärranteckningar</string>
+	<string name="delete_remote_notes_message">Är du säker på att du vill ta bort alla anteckningar från fjärrtjänsten?</string>
+				
+	<!-- newNote -->
+	<string name="menuNew">Ny</string>
+	<string name="NewNoteTitle">Ny anteckning</string>
+	<string name="NewNoteTitleHint">Skriv in titeln här</string>
+	<string name="NewNoteBodyHint">Skriv anteckningen här</string>
+			
+	<!-- editNote -->
+	<string name="edit">Redigera</string>
+	<string name="save">Spara</string>
+	<string name="discard">Kasta</string>
+	<string name="back">Bakåt</string>
+	<!-- B stands for bold (in format bar) -->
+	<string name="bold">B</string>
+	<!-- i stands for italic (in format bar) -->
+	<string name="italic">i</string>
+	<!-- S stands for strike through (in format bar) -->
+	<string name="strike"><strike>S</strike></string>
+	<string name="mono">fast breddsteg</string>
+	<string name="highlight">färgmarkera</string>
+	<!-- Button label to select font size -->
+	<string name="size">storlek</string>
+	<string name="titleErrorParsingXML">Ett fel uppstod när anteckningen analyserades</string>
+	<string name="messageErrorParsingXML">Ett fel uppstod när anteckningen analyserades. Kontrollera din XML.</string>
+	<string name="messageNoteSaved">Anteckning lagrad lokalt.</string>
+	<string name="messageNoteDeleted">Anteckning togs bort lokalt.</string>
+	<string name="messageSelectSize">Välj textstorlek</string>
+	<string name="small">Liten</string>
+	<string name="normal">Normal</string>
+	<string name="large">Stor</string>
+	<string name="huge">Jättestor</string>
+	<string name="messageDiscardChanges">Vill du verkligen förkasta dina ändringar och återställa anteckningen till den senast sparade versionen?</string>
+	<string name="titleDiscardChanges">Förkasta ändringar?</string>
+	<!-- this is the > symbol, do not change -->
+	<string name="gt"><b>&gt;</b></string>
+	<!-- this is the < symbol, do not change -->
+	<string name="lt"><b>&lt;</b></string>
+			
+	<!-- New Titles -->
+	<string name="view_title">Tomdroid - Visa anteckning</string>
+	<string name="edit_title">Tomdroid - Redigera anteckning</string>
+	<string name="search_title">Tomdroid - Sökresultat</string>
+	<string name="shortcut_title">Tomdroid - Genvägar</string>
+	<string name="pref_title">Tomdroid - Inställningar</string>
+	<string name="compare_title">Tomdroid - Anteckningskonflikt</string>
+	<string name="filePickerTitle">Tomdroid - Importera anteckning</string>
+			
+	<!-- new prefs -->
+	<!-- subheader in settings -->
+	<string name="prefDisplay">Visningsinställningar</string>
+	<string name="prefBaseSize">Teckenstorlek</string>
+	<!-- subheader in settings -->
+	<string name="prefSync">Synkronisering</string>
+	<!-- subheader in settings -->
+	<string name="prefTools">Verktyg</string>
+	<string name="prefAutoSave">Spara automatiskt anteckningar när redigeraren stängs.</string>
+	<string name="prefDeletedNotesTitle">Visa borttagna anteckningar</string>
+	<string name="prefDeletedNotes">Om ikryssad visas borttagna anteckningar i anteckningslistan.</string>
+	<string name="prefNoteTemplatesTitle">Visa anteckningsmallar</string>
+	<string name="prefNoteTemplates">Om ikryssad visas mallen i anteckningslistan.</string>
+	<string name="deleteAllNotesTitle">Rensa anteckningar</string>
+	<string name="deleteAllNotes">Rensa alla anteckningar från den lokala databasen</string>
+	<string name="deleteRemoteNotesTitle">Ta bort fjärranteckningar</string>
+	<string name="deleteRemoteNotes">Ta bort alla anteckningar från fjärrtjänst</string>
+	<string name="illegalTextSize">Otillåten textstorlek vald. Vänligen välj ett nummer.</string>
+	<string name="backupPrefTitle">Säkerhetskopiera anteckningar</string>
+	<string name="backupPref">Kopiera alla lokala anteckningar till SD-kortet</string>
+	<string name="autoBackupPrefTitle">Auto-Backup</string>
+	<string name="autoBackupPref">Kopiera lokal anteckning till SD-kortet vid sparande</string>
+	<!-- subheader in settings -->
+	<string name="prefLinks">Hyperlänksinställningar</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkTitlesTitle">Länkrubriker</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkTitles">Länka till andra anteckningstitlar</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkUrlsTitle">Länka webbadresser"</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkUrls">t.ex. "www.google.se"</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkEmailsTitle">Länka e-postadresser</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkEmails">t.ex. namn@adress.se</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkPhonesTitle">Länka telefonnummer</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkPhones">Länka telefonnummer till telefonprogram</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkAddressesTitle">Länka kartadresser</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkAddresses">Länka adresser till kartprogram</string>
+			
+	<!-- syncNotes -->
+
+	<!-- %1$s will be replaced with "Online Synchronisation", "SD card",... -->
+	<string name="syncing">Synkar med %1$s</string>
+	<string name="syncing_connect">ansluter till tjänst...</string>
+	<string name="gettings_notes">hämtar lista över fjärranteckningar…</string>
+	<string name="syncing_local">uppdaterar lokala anteckningar…</string>
+	<string name="syncing_remote">uppdaterar fjärranteckningar…</string>
+	<string name="sync_conflict_description">Det har inträffat en konflikt vid synkronisering av anteckningen "%1$s".</string>
+	<string name="sync_conflict_message">Välj en åtgärd för att lösa konflikten. Du kan redigera en av anteckningarna innan du väljer eller granska skillnaderna genom att klicka på etiketterna nedan.</string>
+	<string name="sync_conflict_deleted">Den lokala versionen har redan tagits bort. Välj en av åtgärderna nedan.</string>
+	<string name="sync_conflict_titles_message">En anteckning med den titeln finns redan i databasen. Välj en åtgärd för att lösa konflikten. Du kan redigera en av anteckningarna innan du väljer eller granska skillnaderna genom att klicka på etiketterna nedan.</string>
+	<!-- Button (keep short!) -->
+	<string name="overwrite_remote">Ersätt\nfjärr</string>
+	<!-- Button (keep short!) -->
+	<string name="overwrite_local">Ersätt\nlokal</string>
+	<!-- Button (keep short!) -->
+	<string name="delete_remote">Ta bort\nfjärr</string>
+	<!-- Button (keep short!) -->
+	<string name="copy">Skapa\nkopia</string>
+	<!-- subheader in Conflict Dialouge (keep short!) -->
+	<string name="diff_label">Skillnader mellan filerna</string>
+	<string name="diff_titles">-- Titelskillnader --</string>
+	<string name="diff_content">-- Innehållsskillnader --</string>
+	<!-- %1$s will be replaced with a number. -->
+	<string name="line_x">Rad %1$s:</string>
+	<!-- subheader in Conflict Dialouge (keep short!) -->
+	<string name="local_label">Lokal version</string>
+	<!-- subheader in Conflict Dialouge (keep short!) -->
+	<string name="remote_label">Fjärrversion</string>
+	<string name="deleted">Borttagen</string>
+	
+	<!-- %1$s will be replaced with a note title. -->
+	<string name="old">%1$s (gammal)</string>
+	<string name="close">Stäng</string>
+	<string name="cancel">Avbryt</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageAuthComplete">Auktoriseringen hos %1$s har slutförts.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageAuthFailed">Det gick inte att auktorisera med %1$s. Försök igen senare!</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNoteDeleted">Anteckningen har tagits bort från %1$s.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNotePushed">Anteckningen har skickats till %1$s.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNotePulled">Anteckningen har tagits emot från %1$s.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNoteDeleteError">Fel vid borttagning av anteckning från %1$s.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNotePushError">Fel vid sändning av anteckning till %1$s.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNotePullError">Fel vid mottagning av anteckning från %1$s.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncParseFailed">Ett fel uppstod när svar från %1$s analyserades.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncConnectingFailed">Ett fel uppstod under anslutning till %1$s. Du behöver antagligen ange autentiseringsinformation i "Inställningar".</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageRemoteNotesDeleted">Anteckningarna har tagits bort från %1$s.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncCancelled">Synkroniseringen med %1$s har avbrutits.</string>
+
+	<!-- menu items -->
+	
+	<string name="editTags">Redigera taggar</string>
+	<string name="contextRevert">Återställ</string>
+	<!-- %1$s will be replaced with note-tag names -->
+	<string name="note_x_tags">Taggar för anteckningen "%1$s"</string>
+	<string name="edit_tags">Redigera taggarna nedan, avgränsa med kommatecken</string>
+	<string name="undelete">Ångra borttagning av anteckning</string>
+	<!-- menu item with icon -->
+	<string name="menuImport">Importera anteckning</string>
+					
+	<!-- revert notes -->
+	
+	<!-- menu item with icon -->
+	<string name="menuRevert">Återställ Alla</string>
+	<string name="revert_notes">Återställ anteckningar</string>
+	<string name="revert_notes_message">Detta kommer att återställa dina lokala anteckningar till de versioner som finns hos fjärrtjänsten. Är du säker på att du vill göra det här?</string>
+	<string name="revert_note">Återställ anteckning</string>
+	<string name="revert_note_message">Detta kommer att återställa en lokal anteckning till den version som finns hos fjärrtjänsten. Är du säker på att du vill göra det här?</string>
+
+	<!-- backup notes -->
+	
+	<string name="backup_notes_title">Säkerhetskopiera anteckningar?</string>
+	<string name="backup_notes">Kopiera alla lokala anteckningar till SD-kortet? Detta kan ersätta befintliga anteckningar på SD-kortet.</string>
+	<string name="restorePrefTitle">Återställ anteckningar</string>
+	<string name="restore_notes_title">Återställa anteckningar?</string>
+	<string name="restore_notes">Hämta alla anteckningar på SD-kortet? Detta kan ersätta dina befintliga anteckningar.</string>
+	<string name="messageNotesBackedUp">Anteckningarna har säkerhetskopierats till SD-kortet.</string>
+	<string name="messageNotesRestored">Anteckningarna har återställts från SD-kortet.</string>
+	<string name="messageDatabaseReset">Anteckningarna har rensats.</string>
+
+	<!-- send and receive notes -->
+	
+	<string name="sendChoiceTitle">Välj sändningsmetod</string>
+	<string name="sendChoice">Hur vill du skicka anteckningen?</string>
+	<string name="btnSendAsText">Som text</string>
+	<string name="btnSendAsFile">Som fil</string>
+	<string name="sync_conflict_import_message">Anteckningen finns redan i databasen. Välj en åtgärd för att lösa konflikten. Du kan redigera en av anteckningarna innan du väljer eller granska skillnaderna genom att klicka på etiketterna nedan.</string>
+	<!-- Button (keep short!) -->
+	<string name="btnCancelImport">Avbryt\nimport</string>
+	<string name="messageFileTooBig">Filen överskrider största tillåtna importstorlek – är du säker på att det är oformaterad text?</string>
+	<string name="messageFileNotReadable">Det gick inte att läsa anteckningsfilen.</string>
+	<string name="noFiles">Inga filer eller mappar</string>
+	<string name="chooseFile">Välj en fil nedan som antingen är en Tomboy-anteckningsfil (importera en anteckning) eller en oformaterad textfil (skapa en ny anteckning):</string>
+
 	<!-- Title of first Note -->
 	<string name="firstNoteTitle">Tomdroids första anteckning</string>
 	
@@ -121,12 +356,12 @@
 		<item>Du har inga anteckningar här ännu. För att komma igång måste du ange dina synkroniseringsinställningar under Inställningar. Det finns två synkroniseringsalternativ, som beskrivs nedan.\n</item>
 		<item>=Onlinesynkronisering=</item>
 		<!-- =text= makes <size:large>text</size:large> -->
-		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
+		<item>Onlinesynkronisering är till för dig som vill synkronisera med Tomboy-Online, din egen Rainy/Snowy-server eller en annan server som stöder Tomboys API Web REST.\n</item>
 		<item>För att använda det, ställ in synkroniseringstjänsten till Onlinesynkronisering i inställningarna och ange en serveradress. Här är några av de offentliga servrarna:</item>
 		<!-- -text is for list-items. --> 
 		<item>-Tomboy Online - https://edge.tomboy-online.org/</item>
 		<!-- -text is for list-items. --> 
-		<item>-rainy.notesync.org\n</item>
+		<item>-rainy.notesync.org - https://notesync.org:8080/[användarnamn]/[lösenord]/\n</item>
 		<item>När allt är inställt, klicka på synkroniseringsikonen i Tomdroids verktygsfält för att synkronisera dina anteckningar.\n</item>
 		<item>Obs: vi rekommenderar att du säkerhetskopierar dina Tomboy-anteckningar innan synkronisering, eftersom det här programmet fortfarande är under utveckling och kan skada dina anteckningsfiler.\n</item>
 		<item>Gå till http://live.gnome.org/Tomboy/Directories för platsinformation om *.note-filer på alla plattformar.\n</item>
@@ -136,6 +371,7 @@
 		<item>Tomdroid söker ständigt efter nya medarbetare. Om du är intresserad kan du ansluta dig till Tomdroids utvecklingsgrupp på Launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
 		<item>Sist, men inte minst. Om du stöter på något problem, var vänlig och rapportera det på: https://bugs.launchpad.net/tomdroid</item>
 	</string-array>
+	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
 	I\'ve put it in here so that it\'ll get translated by translators.
@@ -143,13 +379,13 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid-anteckningar</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\nNOTE: It is a READ-ONLY client for now.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Open source!</string>
+	<string name="market_description">En Tomboy-klient för Android. Tomboy är en anteckningsapp av wiki-typ med ett enkelt användargränssnitt.\n\n* Formatkompatibel med Tomboy\n* Online-synkronisering av anteckningar mot Rainy, Snowy eller Tomboy Online\n* Import från SD-kort\n* Snabblänkar på hemskärmen\n* Skicka/ta emot text eller anteckningsfiler från valfri app\n* Öppen källkod!</string>
 	
 	<!-- 80 chars max -->
-	<string name="market_promotext">Anteckningsblock med onlinesynkronisering som är kompatibel med Tomboy</string>
+	<string name="market_promotext">Program för att ta anteckningar, med onlinesynkronisering och kompatibelt med Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.6.1 \"Polyglot\" release\n* Added support for SSL sync with Rainy (www.notesync.org)\n* New translations: bs, el, eo, fa, fi, nb, si, ta, bg, et, gl, id, la, ml, nl, sr, zh-rTW\n* Updated translations: ar, ca, cs, da, de, en-rGB, es, eu, fo, fr, gd, hi, hu, it, ja, ko, ms, pl, pt-rBR, pt, ru, sv, te, tr, ug, uk, zh-rCN, zh\n* Several bugfixes\n</string>
+        <string name="market_recent_changes">* Anteckningar kan nu skapas, redigeras och tas bort\n* Helt ny formgivning för både pekplattor och telefoner\n* Synkronisera dina anteckningar med kompatibla webbtjänster eller till ditt SD-kort\n* Skicka och ta emot anteckningsfiler eller text från vilken annan app som helst\n* Mer anpassningsbar än tidigare\n* Nu tillgänglig på ännu fler språk …\n\n … m.m. För en fullständig lista över ändringar, gå till https://launchpad.net/tomdroid/+announcements</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
@@ -157,5 +393,4 @@
   Mikael Hiort af Ornäs https://launchpad.net/~lakritslemmel
   Stefan Hammer https://launchpad.net/~j-4
   stoft https://launchpad.net/~rasmus-larsson</string>
-	
 </resources>

@@ -1,6 +1,8 @@
 Tomdroid README:
 ================
 
+* Install dependencies: gnome-doc-utils
+
 * Export tomdroid.pot file for Launchpad, after strings were updates:
 
 	Run following command:

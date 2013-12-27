@@ -4,6 +4,7 @@
  * http://www.launchpad.net/tomdroid
  * 
  * Copyright 2009, Benoit Garret <benoit.garret_launchpad@gadz.org>
+ * Copyright 2013 Stefan Hammer <j.4@gmx.at>
  * 
  * This file is part of Tomdroid.
  * 
@@ -114,7 +115,7 @@ public abstract class WebConnection {
 	
 	protected HttpResponse execute(HttpUriRequest request) throws UnknownHostException {
 		
-DefaultHttpClient httpclient = MySSLSocketFactory.getNewHttpClient();
+		DefaultHttpClient httpclient = MySSLSocketFactory.getNewHttpClient();
 		
 		try {
 			// Execute the request

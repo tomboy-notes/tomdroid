@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tomdroid\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-03-15 00:06+0100\n"
-"PO-Revision-Date: 2012-07-07 08:56+0000\n"
-"Last-Translator: Piotr Wawrzyniak <wawrzino@gmail.com>\n"
+"POT-Creation-Date: 2013-10-25 14:49+0200\n"
+"PO-Revision-Date: 2013-10-26 21:35+0000\n"
+"Last-Translator: december0123 <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-03-14 23:16+0000\n"
-"X-Generator: Launchpad (build 16532)\n"
+"X-Launchpad-Export-Date: 2013-12-21 09:29+0000\n"
+"X-Generator: Launchpad (build 16872)\n"
 
 #. application details
 #: tmp_strings.xml:27(string)
@@ -23,9 +23,8 @@ msgid "Tomdroid"
 msgstr "Tomdroid"
 
 #: tmp_strings.xml:28(string)
-msgid ""
-"Tomboy compatible wikiwiki note-taking application that can't take notes yet."
-msgstr "Notatnik WikiWiki kompatybilny z Tomboy."
+msgid "Tomboy compatible wikiwiki note-taking app."
+msgstr ""
 
 #: tmp_strings.xml:29(string)
 msgid "Olivier Bilodeau"
@@ -33,108 +32,122 @@ msgstr "Olivier Bilodeau"
 
 #. main.xml
 #: tmp_strings.xml:32(string)
-msgid "Please wait while the notes load.."
-msgstr "Proszę czekać na załadowanie notatek..."
+msgid "Please wait while the notes load…"
+msgstr "Proszę czekać na załadowanie notatek…"
 
 #: tmp_strings.xml:33(string)
 msgid "There are no notes in Tomdroid's database."
 msgstr "Brak notatek w bazie danych Tomdroid."
 
-#: tmp_strings.xml:35(string)
+#. Menu entry with icon
+#: tmp_strings.xml:36(string)
 msgid "Sync"
 msgstr "Synchronizowanie"
 
-#: tmp_strings.xml:36(string)
+#. Menu entry with icon
+#: tmp_strings.xml:38(string)
 msgid "Settings"
 msgstr "Ustawienia"
 
-#: tmp_strings.xml:37(string)
+#. Menu entry with icon
+#: tmp_strings.xml:40(string)
 msgid "About"
 msgstr "O programie"
 
-#: tmp_strings.xml:38(string)
+#. Title of an alert box
+#: tmp_strings.xml:42(string)
 msgid "Warning"
 msgstr "Uwaga"
 
-#: tmp_strings.xml:39(string)
+#: tmp_strings.xml:43(string)
 msgid "About Tomdroid"
 msgstr "O Tomdroid"
 
-#: tmp_strings.xml:40(string)
+#. First start alert box
+#: tmp_strings.xml:45(string)
 msgid ""
 "Welcome to Tomdroid.\\n\\nPlease note that this is beta quality software and "
-"that it contains known problems, like its inability to edit notes.\\n\\nWe "
-"are well aware of these issues and intend to work on them quickly but I also "
-"wanted to get something out and tested as quickly as possible.\\n\\nIf you "
-"would like to contribute, help at all levels would be appreciated. Hop on "
-"board on launchpad.net/tomdroid and contact us!\\n"
+"that it contains known problems.\\n\\nWe are well aware of these issues and "
+"intend to work on them quickly but I also wanted to get something out and "
+"tested as quickly as possible.\\n\\nIf you would like to contribute, help at "
+"all levels would be appreciated. Hop on board on launchpad.net/tomdroid and "
+"contact us!\\n"
 msgstr ""
-"Witaj w Tomdroid.\\n\\nJest to aplikacja w wersji beta, charakteryzująca się "
-"znanymi problemami jak, choćby, brak możliwości edytowania notatek.\\n\\"
-"nJesteśmy świadomi tych braków i pracujemy nad nimi w miarę możliwości. "
-"Jednocześnie udostępniamy aplikację w takim kształcie by testować ją możliwe "
-"szybko.\\n\\nKażda pomoc jest cenna. Jeśli chciałbyś pomóc, wejdź na "
-"https://www.launchpad.net/tomdroid/ i skontaktuj się z nami.\\n"
+"Witaj w Tomdroid.\\n\\nProszę pamiętać, że jako wersja beta, program zawiera "
+"pewne błędy.\\n\\nJesteśmy tego świadomomi i pracujemy nad jak najszybszym "
+"ich naprawieniem, ale chceliśmy udostępnić aplikację jak najszybciej, by "
+"mogła zostać przetestowana.\\n\\nJeśli chciałbyś się zaangażować, każda "
+"pomoc będzie bardzo mile widziana. Skontaktuj się z nami na "
+"launchpad.net/tomdroid!\\n"
 
-#: tmp_strings.xml:41(string)
+#. \n\n are linebreaks, %1$s etc are the name of the Author, the version and the license name
+#: tmp_strings.xml:47(string)
 msgid "%1$s\\n\\nAuthor: %2$s\\nVersion: %3$s\\nLicensed under the GPLv3"
 msgstr "%1$s\\n\\nAutor: %2$s\\nWersja: %3$s\\nLicencja: GPLv3"
 
-#. TODO aren't these available somewhere else? like in the SDK? //
-#: tmp_strings.xml:44(string)
+#. positive Button
+#: tmp_strings.xml:50(string)
 msgid "OK"
 msgstr "OK"
 
-#: tmp_strings.xml:45(string)
+#. negative Button
+#: tmp_strings.xml:52(string) tmp_strings.xml:280(string)
 msgid "Cancel"
 msgstr "Anuluj"
 
-#: tmp_strings.xml:46(string)
+#. Button
+#: tmp_strings.xml:54(string) tmp_strings.xml:279(string)
 msgid "Close"
 msgstr "Zamknij"
 
-#: tmp_strings.xml:47(string)
+#. Button
+#: tmp_strings.xml:56(string)
 msgid "Project page"
 msgstr "Strona projektu"
 
-#: tmp_strings.xml:48(string)
-msgid "Save to SD card"
-msgstr "Zapisz na kartę SD"
+#: tmp_strings.xml:57(string) tmp_strings.xml:162(string)
+msgid "Save"
+msgstr "Zapisz"
 
 #. note-view.xml
-#: tmp_strings.xml:51(string)
-msgid "Please wait while note loads..."
-msgstr "Proszę czekać na załadowanie notatek..."
+#: tmp_strings.xml:60(string)
+msgid "Please wait while note loads…"
+msgstr "Proszę czekać na załadowanie notatek…"
 
-#: tmp_strings.xml:53(string)
-msgid "Synchronization"
-msgstr "Synchronizacja"
-
-#: tmp_strings.xml:54(string)
+#: tmp_strings.xml:62(string)
 msgid "Service"
 msgstr "Usługa"
 
-#: tmp_strings.xml:55(string)
+#: tmp_strings.xml:63(string)
 msgid "Server"
 msgstr "Serwer"
 
-#: tmp_strings.xml:56(string)
+#: tmp_strings.xml:64(string)
 msgid "SD Card"
 msgstr "Karta SD"
 
-#: tmp_strings.xml:57(string)
+#: tmp_strings.xml:65(string)
 msgid "Online Synchronization"
 msgstr "Synchronizacja online"
 
-#: tmp_strings.xml:58(string)
+#: tmp_strings.xml:66(string)
 msgid "Authenticate"
 msgstr "Autoryzuj"
 
-#: tmp_strings.xml:59(string)
+#: tmp_strings.xml:67(string)
 msgid "Location on SD Card"
 msgstr "Położenie na karcie SD"
 
-#: tmp_strings.xml:60(string)
+#: tmp_strings.xml:68(string)
+msgid "Autosync on Startup"
+msgstr "Automatyczna synchroinizacja podczas startu"
+
+#: tmp_strings.xml:69(string)
+msgid "Synchronise your notes on appstart"
+msgstr "Synchronizuj swoje notatki przy starcie aplikacji"
+
+#. %1$s will be repaced by the folder name eg /tomdroid
+#: tmp_strings.xml:71(string)
 msgid ""
 "The folder \\\"%1$s\\\" does not exist yet. Please connect your device to "
 "the computer, create the folder and fill it with *.note files."
@@ -142,16 +155,21 @@ msgstr ""
 "Folder \\\"%1$s\\\" jeszcze nie istnieje. Proszę podłącz swoje urządzenie do "
 "komputera, stwórz folder i umieść w nim pliki *.note."
 
-#: tmp_strings.xml:61(string)
-msgid "\\\"%1$s\\\" contains invalid characters.\\nPlease try again!"
-msgstr ""
-"\\\"%1$s\\\" zawiera niedozwolone znaki.\\nProszę spróbować ponownie."
+#. %1$s will be repaced by the folder name eg /testfolder
+#: tmp_strings.xml:73(string)
+msgid "\\\"%1$s\\\" is not a valid folder location. Please try again!"
+msgstr "Ścieżka \\\"%1$s\\\" nie wskazuje katalogu. Spróbuj ponownie!"
 
-#: tmp_strings.xml:63(string)
-msgid "Completing authentication. Please wait..."
-msgstr "Autoryzowanie. Proszę czekać..."
+#. %1$s will be replaced with an text entry the user had done
+#: tmp_strings.xml:75(string)
+msgid "\\\"%1$s\\\" is not a valid entry. Please try again!"
+msgstr "\\\"%1$s\\\" nie jest prawidłową wartością. Spróbuj ponownie!"
 
-#: tmp_strings.xml:64(string)
+#: tmp_strings.xml:76(string)
+msgid "Completing authentication. Please wait…"
+msgstr "Autoryzowanie. Proszę czekać…"
+
+#: tmp_strings.xml:77(string)
 msgid ""
 "The connection to the server has failed, please check that the address you "
 "entered is correct."
@@ -159,31 +177,33 @@ msgstr ""
 "Połączenie z serwerem jest niemożliwe, sprawdź, czy wprowadzony adres jest "
 "poprawny."
 
-#: tmp_strings.xml:65(string)
+#: tmp_strings.xml:78(string)
 msgid "The server address changed but the new value is empty"
 msgstr "Nie wprowadzono adresu serwera"
 
-#: tmp_strings.xml:67(string)
+#: tmp_strings.xml:80(string)
 msgid "Choose the sync service to use"
 msgstr "Wybierz usługę, której chcesz użyć"
 
-#: tmp_strings.xml:68(string)
+#. %1$s will be replaced with "Online Synchronisation", "SD Card",...
+#: tmp_strings.xml:82(string)
 msgid "Synchronization with %1$s is complete."
 msgstr "Zakończono synchronizację z %1$s."
 
-#: tmp_strings.xml:69(string)
+#. %1$s will be replaced with "SD Card",...
+#: tmp_strings.xml:84(string)
 msgid "No notes found on %1$s."
 msgstr "Nie znaleziono notatek na %1$s."
 
-#: tmp_strings.xml:70(string)
+#: tmp_strings.xml:85(string)
 msgid "You are not connected to the Internet."
 msgstr "Brak połączenia z siecią."
 
-#: tmp_strings.xml:71(string)
+#: tmp_strings.xml:86(string)
 msgid "Sync already in progress"
 msgstr "Synchronizacja w trakcie"
 
-#: tmp_strings.xml:72(string)
+#: tmp_strings.xml:87(string)
 msgid ""
 "There was an error trying to parse your note collection. If you are able to "
 "replicate the problem, please contact us!"
@@ -191,15 +211,17 @@ msgstr ""
 "Błąd wczytywania notatek. Jeśli problem się powtarza, proszę skontaktuj się "
 "z nami!"
 
-#: tmp_strings.xml:73(string)
+#. Altert box header
+#: tmp_strings.xml:89(string)
 msgid "Error"
 msgstr "Błąd"
 
-#: tmp_strings.xml:74(string)
+#. Altert box header
+#: tmp_strings.xml:91(string)
 msgid "No Such Note"
 msgstr "Nie ma takiej notatki"
 
-#: tmp_strings.xml:75(string)
+#: tmp_strings.xml:92(string)
 msgid ""
 "The requested note could not be found. Maybe it was deleted or removed "
 "through synchronization."
@@ -207,266 +229,931 @@ msgstr ""
 "Nie odnaleziono notatki. Możliwe, że została usunięta lub przeniesiona "
 "podczas synchronizacji."
 
-#: tmp_strings.xml:76(string)
-msgid ""
-"The requested note could not be parsed. If you are able to replicate the "
-"problem, please contact us!"
-msgstr ""
+#: tmp_strings.xml:93(string)
+msgid "Error parsing note."
+msgstr "Błąd podczas wczytywania notatki."
 
-#: tmp_strings.xml:77(string)
-msgid "Could not save the errors, please check your SD card."
-msgstr "Nie można zapisać błędów. Sprawdź kartę SD."
+#: tmp_strings.xml:94(string)
+msgid "Could not save note."
+msgstr "Zapisanie notatki nie powiodło się."
 
-#: tmp_strings.xml:78(string)
-msgid "SD card not found."
-msgstr "Nie znaleziono karty SD."
+#: tmp_strings.xml:95(string)
+msgid "SDCard storage not found."
+msgstr "Karty SD nie odnaleziono."
 
 #. NoteSorting
-#: tmp_strings.xml:81(string)
-msgid "Change Sort"
-msgstr "Zmień sortowanie"
+#: tmp_strings.xml:98(string)
+msgid "Choose default sorting method"
+msgstr "Wybierz domyślny sposób porządkowania"
 
-#: tmp_strings.xml:82(string)
-msgid "Choose the default sorting"
-msgstr "Wybierz domyślne sortowanie"
+#: tmp_strings.xml:99(string)
+msgid "Default Sort Method"
+msgstr "Domyślny sposób porządkowania"
 
-#: tmp_strings.xml:83(string)
-msgid "Default sort"
-msgstr "Domyślne sortowanie"
+#: tmp_strings.xml:100(string)
+msgid "Sort By:"
+msgstr "Klucz sortowania"
+
+#: tmp_strings.xml:101(string)
+msgid "Date Modified"
+msgstr "Data modyfikacji"
+
+#: tmp_strings.xml:102(string)
+msgid "Note Title"
+msgstr "Tytuł notatki"
+
+#: tmp_strings.xml:103(string)
+msgid "Sort by Date"
+msgstr "Porządkuj według daty"
+
+#: tmp_strings.xml:104(string)
+msgid "Sort by Title"
+msgstr "Porządkuj według tytułu"
 
 #. NotebookFiltering
-#: tmp_strings.xml:86(string)
+#: tmp_strings.xml:107(string)
 msgid "Filter"
 msgstr "Filtr"
 
-#: tmp_strings.xml:87(string)
+#: tmp_strings.xml:108(string)
 msgid "There are no notebooks in the database."
 msgstr "Brak notatników w bazie danych."
 
-#: tmp_strings.xml:88(string)
+#: tmp_strings.xml:109(string)
 msgid "All notebooks"
 msgstr "Wszystkie notatniki"
 
 #. List Longpress Menu
-#: tmp_strings.xml:91(string)
+#: tmp_strings.xml:112(string)
 msgid "View"
 msgstr "Wyświetl"
 
-#: tmp_strings.xml:92(string)
+#: tmp_strings.xml:113(string)
 msgid "Note Options"
 msgstr "Opcje notatek"
 
-#: tmp_strings.xml:93(string)
+#: tmp_strings.xml:114(string)
 msgid "Send"
 msgstr "Wyślij"
 
-#. Search
-#: tmp_strings.xml:96(string)
+#. Text in input field for search
+#: tmp_strings.xml:118(string)
 msgid "Search Notes"
 msgstr "Przeszukaj notatki"
 
-#: tmp_strings.xml:97(string)
+#. Preferences Field in global search to include notes
+#: tmp_strings.xml:120(string)
 msgid "Text in your notes"
 msgstr "Treść notatki"
 
-#: tmp_strings.xml:98(string)
+#. %s will be replaced with the search string
+#: tmp_strings.xml:122(string)
 msgid "No notes found for \\\"%s\\\""
 msgstr "Nie znaleziono notatek zawierających \\\"%s\\\""
 
-#: tmp_strings.xml:99(string)
+#: tmp_strings.xml:123(string)
 msgid "Search"
 msgstr "Szukaj"
 
-#: tmp_strings.xml:100(string)
-msgid "Search Options"
-msgstr "Opcje wyszukiwania"
-
-#: tmp_strings.xml:101(string)
+#: tmp_strings.xml:124(string)
 msgid "Search Results:"
 msgstr "Wyniki wyszukiwania:"
 
-#: tmp_strings.xml:102(string)
+#: tmp_strings.xml:125(string)
 msgid "Clear search history"
 msgstr "Wyczyść historię wyszukiwania"
 
-#: tmp_strings.xml:103(string)
+#: tmp_strings.xml:126(string)
 msgid "Remove all the searches you have performed"
 msgstr "Wyczyść historię swoich wyszukiwań"
 
-#: tmp_strings.xml:104(string)
+#: tmp_strings.xml:127(string)
 msgid "Search history has been cleared."
 msgstr "Historia wyszukiwania została wyczyszczona."
 
 #. Date
-#: tmp_strings.xml:107(string)
+#: tmp_strings.xml:130(string)
 msgid "Modified:"
 msgstr "Data modyfikacji:"
 
-#: tmp_strings.xml:108(string)
+#: tmp_strings.xml:131(string)
 msgid "Today"
 msgstr "Dziś"
 
-#: tmp_strings.xml:109(string)
+#: tmp_strings.xml:132(string)
 msgid "Yesterday"
 msgstr "Wczoraj"
 
-#. Shortcuts handling
-#: tmp_strings.xml:112(string)
+#. Header when picking a note for a new shortcut
+#: tmp_strings.xml:136(string)
 msgid "Choose a Note"
 msgstr "Wybierz notatke"
 
-#: tmp_strings.xml:113(string)
+#: tmp_strings.xml:137(string)
 msgid "Tomdroid Note"
 msgstr "Notatki Tomdroid"
 
-#: tmp_strings.xml:114(string)
+#: tmp_strings.xml:138(string)
 msgid "Remove shortcut"
 msgstr "Usuń skrót"
 
-#: tmp_strings.xml:115(string)
+#: tmp_strings.xml:139(string)
 msgid "Create shortcut"
 msgstr "Utwórz skrót"
 
+#. deleteNote
+#: tmp_strings.xml:144(string)
+msgid "Delete"
+msgstr "Usuń"
+
+#: tmp_strings.xml:145(string)
+msgid "Delete Note"
+msgstr "Usuń notatkę"
+
+#: tmp_strings.xml:146(string)
+msgid "Are you sure you want to delete this note?"
+msgstr "Czy jesteś pewny, że chcesz usunąć tę notatkę?"
+
+#: tmp_strings.xml:147(string)
+msgid "Yes"
+msgstr "Tak"
+
+#: tmp_strings.xml:148(string)
+msgid "No"
+msgstr "Nie"
+
+#: tmp_strings.xml:149(string) tmp_strings.xml:213(string)
+msgid "Clear Notes"
+msgstr "Usuń notatki"
+
+#: tmp_strings.xml:150(string)
+msgid "Are you sure you want to clear the notes database?"
+msgstr "Czy jesteś pewny, że chcesz usunąć notatki z bazy danych?"
+
+#: tmp_strings.xml:151(string) tmp_strings.xml:215(string)
+msgid "Delete Remote Notes"
+msgstr "Skasuj zdalne notatki"
+
+#: tmp_strings.xml:152(string)
+msgid "Are you sure you want to delete all notes from the remote service?"
+msgstr ""
+"Jesteś pewny, że chcesz skasować wszystkie notatki ze zdalnej usługi?"
+
+#. newNote
+#: tmp_strings.xml:155(string)
+msgid "New"
+msgstr "Nowa"
+
+#: tmp_strings.xml:156(string)
+msgid "New Note"
+msgstr "Nowa notatka"
+
+#: tmp_strings.xml:157(string)
+msgid "Enter title here"
+msgstr "Tytuł notatki"
+
+#: tmp_strings.xml:158(string)
+msgid "Enter note here"
+msgstr "Treść notatki"
+
+#. editNote
+#: tmp_strings.xml:161(string)
+msgid "Edit"
+msgstr "Edytuj"
+
+#: tmp_strings.xml:163(string)
+msgid "Discard"
+msgstr "Porzuć"
+
+#: tmp_strings.xml:164(string)
+msgid "Back"
+msgstr "Wróć"
+
+#. B stands for bold (in format bar)
+#: tmp_strings.xml:166(string)
+msgid "B"
+msgstr "B"
+
+#. i stands for italic (in format bar)
+#: tmp_strings.xml:168(string)
+msgid "i"
+msgstr "i"
+
+#: tmp_strings.xml:170(strike)
+msgid "S"
+msgstr "S"
+
+#: tmp_strings.xml:171(string)
+msgid "monospace"
+msgstr "o stałej szerokości"
+
+#: tmp_strings.xml:172(string)
+msgid "highlight"
+msgstr "wyróżnienie"
+
+#. Button label to select font size
+#: tmp_strings.xml:174(string)
+msgid "size"
+msgstr "rozmiar"
+
+#: tmp_strings.xml:175(string)
+msgid "Error parsing note"
+msgstr "Błąd podczas wczytywania notatki."
+
+#: tmp_strings.xml:176(string)
+msgid "There was an error parsing the note. Please check your XML."
+msgstr "Wystąpił błąd podczas przetwarzania notatki. Proszę sprawdzić XML."
+
+#: tmp_strings.xml:177(string)
+msgid "Note saved locally."
+msgstr "Notatka zapisana lokalnie."
+
+#: tmp_strings.xml:178(string)
+msgid "Note deleted locally."
+msgstr "Notatka usunięta lokalnie."
+
+#: tmp_strings.xml:179(string)
+msgid "Select text size"
+msgstr "Wybierz rozmiar tekstu"
+
+#: tmp_strings.xml:180(string)
+msgid "Small"
+msgstr "Mały"
+
+#: tmp_strings.xml:181(string)
+msgid "Normal"
+msgstr "Normalny"
+
+#: tmp_strings.xml:182(string)
+msgid "Large"
+msgstr "Duży"
+
+#: tmp_strings.xml:183(string)
+msgid "Huge"
+msgstr "Olbrzymi"
+
+#: tmp_strings.xml:184(string)
+msgid ""
+"Do you really want to discard your changes and revert the note to the last "
+"saved version?"
+msgstr ""
+"Czy na pewno chcesz odrzucić zmiany i przywrócić notatkę do ostatniej "
+"zapisanej wersji?"
+
+#: tmp_strings.xml:185(string)
+msgid "Discard Changes?"
+msgstr "Porzucić zmiany?"
+
+#: tmp_strings.xml:187(b)
+msgid "&gt;"
+msgstr "&gt;"
+
+#: tmp_strings.xml:189(b)
+msgid "&lt;"
+msgstr "&lt;"
+
+#. New Titles
+#: tmp_strings.xml:192(string)
+msgid "Tomdroid - View Note"
+msgstr "Tomdroid - Notatka"
+
+#: tmp_strings.xml:193(string)
+msgid "Tomdroid - Edit Note"
+msgstr "Tomdroid - Edycja"
+
+#: tmp_strings.xml:194(string)
+msgid "Tomdroid - Search Results"
+msgstr "Tomdroid - Wyniki wyszukiwania"
+
+#: tmp_strings.xml:195(string)
+msgid "Tomdroid - Shortcuts"
+msgstr "Tomdroid - Skróty"
+
+#: tmp_strings.xml:196(string)
+msgid "Tomdroid - Settings"
+msgstr "Tomdroid - Ustawienia"
+
+#: tmp_strings.xml:197(string)
+msgid "Tomdroid - Note Conflict"
+msgstr "Tomdroid - konflikt notatki"
+
+#: tmp_strings.xml:198(string)
+msgid "Tomdroid - Import Note"
+msgstr "Tomdroid - Importuj notatkę"
+
+#. subheader in settings
+#: tmp_strings.xml:202(string)
+msgid "Display Preferences"
+msgstr "Preferencje wyświetlania"
+
+#: tmp_strings.xml:203(string)
+msgid "Base Font Size"
+msgstr "Domyślna wielkość czcionki"
+
+#. subheader in settings
+#: tmp_strings.xml:205(string)
+msgid "Synchronization"
+msgstr "Synchronizacja"
+
+#. subheader in settings
+#: tmp_strings.xml:207(string)
+msgid "Tools"
+msgstr "Narzędzia"
+
+#: tmp_strings.xml:208(string)
+msgid "Save notes automatically on exiting editor."
+msgstr "Automatycznie zapisuj notatki przy wyjściu z edytora."
+
+#: tmp_strings.xml:209(string)
+msgid "Show Deleted Notes"
+msgstr "Pokaż skasowane notatki"
+
+#: tmp_strings.xml:210(string)
+msgid "If checked, will show deleted notes in notes list."
+msgstr "Zaznacz, aby na liście wyświetlić skasowane notatki."
+
+#: tmp_strings.xml:211(string)
+msgid "Show Note Templates"
+msgstr "Pokaż szablony notatek"
+
+#: tmp_strings.xml:212(string)
+msgid "If checked, will show note templates in notes list."
+msgstr "Jeśli zaznaczone, pokazuje szablony na liście notatek"
+
+#: tmp_strings.xml:214(string)
+msgid "Clear all notes from local database"
+msgstr "Usuń wszystkie notatki z bazy danych"
+
+#: tmp_strings.xml:216(string)
+msgid "Delete all notes from remote service"
+msgstr "Skasuj wszystkie notatki ze zdalnej usługi"
+
+#: tmp_strings.xml:217(string)
+msgid "Illegal text size chosen. Please choose a number."
+msgstr "Wybrano nieprawidłowy rozmiar tekstu. Proszę wybrać liczbę."
+
+#: tmp_strings.xml:218(string)
+msgid "Backup Notes"
+msgstr "Kopia zapasowa notatek"
+
+#: tmp_strings.xml:219(string)
+msgid "Copy all local notes to SD Card"
+msgstr "Kopiuj wszystkie lokalne notatki na kartę SD"
+
+#: tmp_strings.xml:220(string)
+msgid "Auto-Backup"
+msgstr "Automatyczna kopia zapasowa"
+
+#: tmp_strings.xml:221(string)
+msgid "Copy local note to SD Card on save"
+msgstr "Skopiuj notatki na kartę SD"
+
+#. subheader in settings
+#: tmp_strings.xml:223(string)
+msgid "Hyperlink Preferences"
+msgstr "Ustawienia odnośników"
+
+#. Checkbox in settings
+#: tmp_strings.xml:225(string)
+msgid "Link Titles"
+msgstr "Linkuj tytuły"
+
+#. Description for checkbox in settings
+#: tmp_strings.xml:227(string)
+msgid "Link to other note titles"
+msgstr "Odnośnik do innych tytułów notatek"
+
+#. Checkbox in settings
+#: tmp_strings.xml:229(string)
+msgid "Link Web Addresses\""
+msgstr "Linkuj Adresy WWW"
+
+#. Description for checkbox in settings
+#: tmp_strings.xml:231(string)
+msgid "e.g. \"www.google.com\""
+msgstr "np. \"www.google.com\""
+
+#. Checkbox in settings
+#: tmp_strings.xml:233(string)
+msgid "Link Emails"
+msgstr "Linkuj emaile"
+
+#. Description for checkbox in settings
+#: tmp_strings.xml:235(string)
+msgid "e.g. name@address.com"
+msgstr "np. imię@adres.com"
+
+#. Checkbox in settings
+#: tmp_strings.xml:237(string)
+msgid "Link Telephone Numbers"
+msgstr "Linkuj numery telefonów"
+
+#. Description for checkbox in settings
+#: tmp_strings.xml:239(string)
+msgid "Link telephone numbers to phone app"
+msgstr "Linkuj numery telefonów do aplikacji telefonu"
+
+#. Checkbox in settings
+#: tmp_strings.xml:241(string)
+msgid "Link Map Addresses"
+msgstr "Linkuj adresy map"
+
+#. Description for checkbox in settings
+#: tmp_strings.xml:243(string)
+msgid "Link addresses to maps app"
+msgstr "Linkuj adresy do aplikacji map"
+
+#. %1$s will be replaced with "Online Synchronisation", "SD card",...
+#: tmp_strings.xml:248(string)
+msgid "Syncing with %1$s"
+msgstr "Synchronizowanie z %1$s"
+
+#: tmp_strings.xml:249(string)
+msgid "connecting to service…"
+msgstr "łączenie z serwisem..."
+
+#: tmp_strings.xml:250(string)
+msgid "getting list of remote notes…"
+msgstr "otrzymywanie listy zdalnych notatek..."
+
+#: tmp_strings.xml:251(string)
+msgid "updating local notes…"
+msgstr "Aktualizuj lokalne notatki..."
+
+#: tmp_strings.xml:252(string)
+msgid "updating remote notes…"
+msgstr "Aktualizuj zdalne notatki...."
+
+#: tmp_strings.xml:253(string)
+msgid "There was a conflict syncing the note '%1$s'"
+msgstr "wystąpił konflikt podczas synchronizacji notatki '%1$s'"
+
+#: tmp_strings.xml:254(string)
+msgid ""
+"Please choose an action to resolve the conflict. You may edit either note "
+"before choosing, or view the difference by clicking on the labels below."
+msgstr ""
+"Wybierz akcję by rozwiązać konflikt. Możesz edytować jedną z notatek przed "
+"wyborem, lub obejrzeć różnice klikając na etykiety poniżej."
+
+#: tmp_strings.xml:255(string)
+msgid ""
+"The local version was already deleted. Please choose from one of the actions "
+"below."
+msgstr ""
+"Lokalna wersja została już usunięta. Proszę wybrać jedną z akcji poniżej."
+
+#: tmp_strings.xml:256(string)
+msgid ""
+"A note with that title already exists in the database. Please choose an "
+"action to resolve the conflict. You may edit either note before choosing, or "
+"view the difference by clicking on the labels below."
+msgstr ""
+"Notatka z tym tytułem istnieje już w bazie danych. Proszę wybrać akcję, by "
+"rozwiązać ten konflikt. Możesz edytować obie notatki przed wybraniem, lub "
+"podejrzeć różnice klikając na etykiety poniżej."
+
+#. Button (keep short!)
+#: tmp_strings.xml:258(string)
+msgid "Overwrite\\nRemote"
+msgstr "Nadpisz\\nZdalny"
+
+#. Button (keep short!)
+#: tmp_strings.xml:260(string)
+msgid "Overwrite\\nLocal"
+msgstr "Nadpisz\\nLokalny"
+
+#. Button (keep short!)
+#: tmp_strings.xml:262(string)
+msgid "Delete\\nRemote"
+msgstr "Usuń\\nZdalny"
+
+#. Button (keep short!)
+#: tmp_strings.xml:264(string)
+msgid "Create\\nCopy"
+msgstr "Utwórz\\nKopiuj"
+
+#. subheader in Conflict Dialouge (keep short!)
+#: tmp_strings.xml:266(string)
+msgid "Difference Between Files"
+msgstr "Róznice pomiędzy plikami"
+
+#: tmp_strings.xml:267(string)
+msgid "-- Title Differences --"
+msgstr "-- Różnice w tytule --"
+
+#: tmp_strings.xml:268(string)
+msgid "-- Content Differences --"
+msgstr "-- Różnice w zawartości --"
+
+#. %1$s will be replaced with a number.
+#: tmp_strings.xml:270(string)
+msgid "Line %1$s:"
+msgstr "Linia %1$s:"
+
+#. subheader in Conflict Dialouge (keep short!)
+#: tmp_strings.xml:272(string)
+msgid "Local Version"
+msgstr "Wersja lokalna"
+
+#. subheader in Conflict Dialouge (keep short!)
+#: tmp_strings.xml:274(string)
+msgid "Remote Version"
+msgstr "Wersja zdalna"
+
+#: tmp_strings.xml:275(string)
+msgid "Deleted"
+msgstr "Usunięto"
+
+#. %1$s will be replaced with a note title.
+#: tmp_strings.xml:278(string)
+msgid "%1$s (old)"
+msgstr "%1$s (stare)"
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:282(string)
+msgid "Authorization with %1$s successful."
+msgstr "Autoryzacja z %1$s zakończona sukcesem."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:284(string)
+msgid "Authorization with %1$s failed. Try again later!"
+msgstr ""
+"Autoryzacja z %1$s zakończona niepowodzeniem. Spróbuj ponownie później!"
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:286(string)
+msgid "Note deleted from %1$s successfully."
+msgstr "Usuwanie notatki z %1$s zakończone sukcesem."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:288(string)
+msgid "Note sent to %1$s successfully."
+msgstr "Wysyłanie notatki do %1$s zakończone sukcesem."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:290(string)
+msgid "Note received from %1$s successfully."
+msgstr "Odbieranie notatki z %1$s zakończone sukcesem."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:292(string)
+msgid "Error deleting note from %1$s."
+msgstr "Błąd podczas usuwania notatki z %1$s."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:294(string)
+msgid "Error sending note to %1$s."
+msgstr "Błąd podczas wysyłania notatki do %1$s."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:296(string)
+msgid "Error receiving note from %1$s."
+msgstr "Błąd podczas odbierania notatki z %1$s."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:298(string)
+msgid "Error parsing response from %1$s."
+msgstr "Błąd podczas przetwarzania odpowiedzi z %1$s."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:300(string)
+msgid ""
+"Error connecting to %1$s. You probably need to authenticate in \"Settings\"."
+msgstr ""
+"Błąd połączenia z %1$s. Prawdopodobnie musisz je autoryzować w "
+"\"Ustawieniach\"."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:302(string)
+msgid "Notes deleted from %1$s successfully."
+msgstr "Usuwanie notatek z %1$s zakończone sukcesem."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:304(string)
+msgid "Sync with %1$s cancelled."
+msgstr "Synchronizacja z %1$s anulowana."
+
+#. menu items
+#: tmp_strings.xml:308(string)
+msgid "Edit Tags"
+msgstr "Edytuj tagi"
+
+#: tmp_strings.xml:309(string)
+msgid "Revert"
+msgstr "Przywróć do poprzedniej wersji"
+
+#. %1$s will be replaced with note-tag names
+#: tmp_strings.xml:311(string)
+msgid "Note '%1$s' Tags"
+msgstr "Tagi notatki '%1$s'"
+
+#: tmp_strings.xml:312(string)
+msgid "Edit the tags below, separating with commas"
+msgstr "Edytuj tagi poniżej, oddzielając je przecinkami."
+
+#: tmp_strings.xml:313(string)
+msgid "Undelete Note"
+msgstr "Cofnij usunięcie notatki"
+
+#. menu item with icon
+#: tmp_strings.xml:315(string)
+msgid "Import Note"
+msgstr "Importuj notatkę"
+
+#. menu item with icon
+#: tmp_strings.xml:320(string)
+msgid "Revert All"
+msgstr "Przywróć wszystko do poprzednich wersji"
+
+#: tmp_strings.xml:321(string)
+msgid "Revert Notes"
+msgstr "Przywróć notatki do poprzednich wersji"
+
+#: tmp_strings.xml:322(string)
+msgid ""
+"This will revert your local notes to whatever versions exist on the remote "
+"service. Are you sure you want to do this?"
+msgstr ""
+"To przywróci Twoje lokalne notatki do ich wersji w zdalnej usłudze. Czy na "
+"pewno chcesz to zrobić?"
+
+#: tmp_strings.xml:323(string)
+msgid "Revert Note"
+msgstr "Przywróc poprzednią wersję notatki"
+
+#: tmp_strings.xml:324(string)
+msgid ""
+"This will revert a local note to whatever version exist on the remote "
+"service. Are you sure you want to do this?"
+msgstr ""
+"To przywróci Twoją lokalną notatkę do jej wersji w zdalnej usłudze. Czy na "
+"pewno chcesz to zrobić?"
+
+#. backup notes
+#: tmp_strings.xml:328(string)
+msgid "Backup Notes?"
+msgstr "Utworzyć kopię zapasową notatek?"
+
+#: tmp_strings.xml:329(string)
+msgid ""
+"Copy all local notes to SD Card? This may overwrite existing notes on the SD "
+"Card."
+msgstr ""
+"Skopiować wszystkie lokalne notatki na kartę SD? Ta czynność może zastąpić "
+"notatki już istniejące na karcie SD."
+
+#: tmp_strings.xml:330(string)
+msgid "Restore Notes"
+msgstr "Przywróć notatki"
+
+#: tmp_strings.xml:331(string)
+msgid "Restore Notes?"
+msgstr "Przywrócić notatki?"
+
+#: tmp_strings.xml:332(string)
+msgid "Pull all notes from SD Card? This may overwrite your existing notes."
+msgstr ""
+"Pobrać wszystkie notatki z karty SD? To może nadpisać Twoje istniejące "
+"notatki."
+
+#: tmp_strings.xml:333(string)
+msgid "Notes backed up to SD card successfully."
+msgstr "Tworzenie kopii zapasowej notatek na karcie SD zakończone sukcesem."
+
+#: tmp_strings.xml:334(string)
+msgid "Notes restored from SD card successfully."
+msgstr "Przywracanie notatek z karty SD zakończone sukcesem."
+
+#: tmp_strings.xml:335(string)
+msgid "Notes cleared successfully."
+msgstr "Usuwanie notatek zakończone powodzeniem."
+
+#. send and receive notes
+#: tmp_strings.xml:339(string)
+msgid "Choose Send Method"
+msgstr "Wybierz sposób wysyłania"
+
+#: tmp_strings.xml:340(string)
+msgid "How would you like to send the note?"
+msgstr "W jaki sposób chciałbyś wysłać notatkę?"
+
+#: tmp_strings.xml:341(string)
+msgid "As Text"
+msgstr "Jako tekst"
+
+#: tmp_strings.xml:342(string)
+msgid "As File"
+msgstr "Jako plik"
+
+#: tmp_strings.xml:343(string)
+msgid ""
+"The note already exists in the database. Please choose an action to resolve "
+"the conflict. You may edit either note before choosing, or view the "
+"difference by clicking on the labels below."
+msgstr ""
+"Notatka z tym tytułem istnieje już w bazie danych. Proszę wybrać akcję, by "
+"rozwiązać ten konflikt. Możesz edytować obie notatki przed wybraniem, lub "
+"podejrzeć różnice klikając na etykiety poniżej."
+
+#. Button (keep short!)
+#: tmp_strings.xml:345(string)
+msgid "Cancel\\nImport"
+msgstr "Anuluj\\nImportowanie"
+
+#: tmp_strings.xml:346(string)
+msgid "File exceeds maximum import size - are you sure it is plain text?"
+msgstr ""
+"Plik przekracza maksymalny rozmiar importowania - czy jesteś pewny, że to "
+"zwykły tekst?"
+
+#: tmp_strings.xml:347(string)
+msgid "Cannot read the note file."
+msgstr "Nie można odczytać pliku notatki."
+
+#: tmp_strings.xml:348(string)
+msgid "No files or directories"
+msgstr "Brak plików lub katalogów"
+
+#: tmp_strings.xml:349(string)
+msgid ""
+"Choose a file below that is either a Tomboy note file (which will be "
+"imported) or a plain text file (which will create a new note):"
+msgstr ""
+"Wybierz plik poniżej, który jest plikiem notatki Tomboy (który zostanie "
+"zaimportowany) lub plikiem ze zwykłym tekstem (co spowoduje utworzenie nowej "
+"notatki):"
+
 #. Title of first Note
-#: tmp_strings.xml:117(string)
+#: tmp_strings.xml:352(string)
 msgid "Tomdroid's First Note"
-msgstr ""
+msgstr "Pierwsza notatka Tomdroid"
 
-#: tmp_strings.xml:120(item)
+#: tmp_strings.xml:355(item)
 msgid "Welcome to Tomdroid!\\n"
-msgstr ""
+msgstr "Witaj w Tomdroid!\\n"
 
-#: tmp_strings.xml:121(item)
+#: tmp_strings.xml:356(item)
 msgid ""
 "You have no notes here yet. To get started, set your Synchronization "
 "preferences under Settings. There are two synchronization options described "
 "below.\\n"
 msgstr ""
+"Nie masz jeszcze żadnych notatek. By rozpocząć, ustaw swoje preferencje "
+"Synchronizacji w Ustawieniach. Istnieją dwie opcje synchronizacji, opisane "
+"poniżej.\\n"
 
-#: tmp_strings.xml:122(item)
+#: tmp_strings.xml:357(item)
 msgid "=Online Synchronization="
-msgstr ""
+msgstr "=Synchronizacha online="
 
 #. =text= makes <size:large>text</size:large>
-#: tmp_strings.xml:124(item)
+#: tmp_strings.xml:359(item)
 msgid ""
 "Online Synchronization is what you are looking for if you want to sync to "
 "Tomboy-Online, your own Rainy/Snowy server or any server supporting the "
 "Tomboy Web REST API.\\n"
 msgstr ""
 
-#: tmp_strings.xml:125(item)
+#: tmp_strings.xml:360(item)
 msgid ""
 "To use it, set Sync Service to Online Synchronization in preferences then "
 "provide a Server URL. Here are some of the public ones:"
 msgstr ""
+"By tego użyć, ustaw usługę synchronizacji na Synchronizację online w "
+"preferencjach, a następnie podaj URL serwera. Tu jest kilka publicznych "
+"serwerów:"
 
 #. -text is for list-items.
-#: tmp_strings.xml:127(item)
+#: tmp_strings.xml:362(item)
 msgid "-Tomboy Online - https://edge.tomboy-online.org/"
 msgstr "-Tomboy Online - https://edge.tomboy-online.org/"
 
 #. -text is for list-items.
-#: tmp_strings.xml:129(item)
-msgid "-rainy.notesync.org\\n"
+#: tmp_strings.xml:364(item)
+msgid ""
+"-rainy.notesync.org - https://notesync.org:8080/[username]/[password]/\\n"
 msgstr ""
 
-#: tmp_strings.xml:130(item)
+#: tmp_strings.xml:365(item)
 msgid ""
 "Once set, hit the Sync logo on Tomdroid's top bar to synchronize your "
 "notes.\\n"
 msgstr ""
+"Po ustawieniu, kliknij logo Synchronizacji na górnym pasku Tomdroid by "
+"zsynchronizować swoje notatki.\\n"
 
-#: tmp_strings.xml:131(item)
+#: tmp_strings.xml:366(item)
 msgid ""
 "Note: you might want to back up your Tomboy notes before syncing, since this "
 "app is still under development and may corrupt your Tomboy notes.\\n"
 msgstr ""
+"Uwaga: zalecane jest zrobić kopię zapasową Twoich notatek z Tomboy przed "
+"synchronizacja, gdyż ta aplikacja jest nadal w fazie rozwoju i może "
+"uszkodzić Twoje notatki z Tomboy.\\n"
 
-#: tmp_strings.xml:132(item)
+#: tmp_strings.xml:367(item)
 msgid ""
 "Please see http://live.gnome.org/Tomboy/Directories for the location of the "
 "*.note files on all platforms.\\n"
 msgstr ""
+"Odwiedź http://live.gnome.org/Tomboy/Directories by poznać lokalizacje "
+"plików *.note na wszystkich platformach.\\n"
 
 #. =text= makes <size:large>text</size:large>
-#: tmp_strings.xml:134(item)
+#: tmp_strings.xml:369(item)
 msgid "=SD Card="
 msgstr "=Karta SD="
 
-#: tmp_strings.xml:135(item)
+#: tmp_strings.xml:370(item)
 msgid ""
 "Put your Tomboy notes (*.note) on your SD Card under tomdroid/. Once the "
 "notes are copied, set Sync Service to SD Card in preferences then hit the "
 "Sync logo on Tomdroid's top bar.\\n"
 msgstr ""
+"Umieść swoje notatki z Tomboy (*.note) na karcie SD w folderze tomdroid/. Po "
+"skopiowaniu notatek, ustaw usługę synchronizacji jako karta SD w "
+"preferencjach i kliknij logo synchronizacji na górnym pasku Tomdroid.\\n"
 
-#: tmp_strings.xml:136(item)
+#: tmp_strings.xml:371(item)
 msgid ""
 "Also, Tomdroid is always looking for new contributors. If you are interested "
 "join the tomdroid-dev team on Launchpad: http://launchpad.net/~tomdroid-"
 "dev.\\n"
 msgstr ""
+"Tomdroid jest także otwarty na wszelką pomoc. Jeśli jesteś zainteresowany, "
+"dołącz do grupy tomdroid-dev na Launchpadzie: http://launchpad.net/~tomdroid-"
+"dev.\\n"
 
-#: tmp_strings.xml:137(item)
+#: tmp_strings.xml:372(item)
 msgid ""
 "Lastly, if you encounter any issue, please report it at: "
 "https://bugs.launchpad.net/tomdroid"
 msgstr ""
+"Jeśli napotkasz jakiś problem z aplikacją, prosimy o zgłoszenie go tutaj: "
+"https://bugs.launchpad.net/tomdroid"
 
 #. 30 chars max
-#: tmp_strings.xml:144(string)
+#: tmp_strings.xml:380(string)
 msgid "Tomdroid notes"
 msgstr "Tomdroid notes"
 
 #. 4000 chars max
-#: tmp_strings.xml:146(string)
+#: tmp_strings.xml:382(string)
 msgid ""
 "A Tomboy client for Android. Tomboy is a desktop note-taking app using a "
-"wikiwiki approach and a simple user interface.\\n\\nNOTE: It is a READ-ONLY "
-"client for now.\\n\\n* Note format compatibility with Tomboy\\n* Online note "
-"synchronization with Rainy, Snowy or Tomboy Online\\n* SD Card importation\\"
-"n* Open source!"
+"wikiwiki approach and a simple user interface.\\n\\n* Note format "
+"compatibility with Tomboy\\n* Online note synchronization with Rainy, Snowy "
+"or Tomboy Online\\n* SD Card importation\\n* Home screen shortcuts\\n* Send "
+"and receive text or note-files from any app\\n* Open source!"
 msgstr ""
 
 #. 80 chars max
-#: tmp_strings.xml:149(string)
-msgid ""
-"Note-taking application with online synchronization compatible with Tomboy"
-msgstr "Notatnik ze zdalną synchronizacją, kompatybilny z programem Tomboy."
+#: tmp_strings.xml:385(string)
+msgid "Note-taking app with online synchronization compatible with Tomboy"
+msgstr "Aplikacja do notatek z synchronizacją online kompatybilną z Tomboy"
 
 #. 500 chars max
-#: tmp_strings.xml:152(string)
+#: tmp_strings.xml:388(string)
 msgid ""
-"0.6.1 \\\"Polyglot\\\" release\\n* Added support for SSL sync with Rainy "
-"(www.notesync.org)\\n* New translations: bs, el, eo, fa, fi, nb, si, ta, bg, "
-"et, gl, id, la, ml, nl, sr, zh-rTW\\n* Updated translations: ar, ca, cs, da, "
-"de, en-rGB, es, eu, fo, fr, gd, hi, hu, it, ja, ko, ms, pl, pt-rBR, pt, ru, "
-"sv, te, tr, ug, uk, zh-rCN, zh\\n* Several bugfixes\\n"
+"* Notes can now be created, edited and deleted\\n* Completely redesigned for "
+"both tablets and phones\\n* Sync your notes with compatible web-services or "
+"to your SD card\\n* Send and receive note files or text from any app\\n* "
+"More configurable than before\\n* Available in even more languages\\n\\n And "
+"much more, for a complete list of changes please see "
+"https://launchpad.net/tomdroid/+announcements"
 msgstr ""
 
 #. Launchpad Translation String
-#: tmp_strings.xml:155(string)
+#: tmp_strings.xml:391(string)
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
 "  Account Deactivated https://launchpad.net/~accountdeactivated\n"
-"  Antoni Kudelski https://launchpad.net/~antoni-kudelski\n"
+"  Adriaen Dot https://launchpad.net/~dotadriaen-deactivatedaccount\n"
+"  Alicia Kwiatkowska https://launchpad.net/~paksumanuli\n"
+"  Antoni Kudelski https://launchpad.net/~antoni-kudelski-deactivatedaccount\n"
 "  Dawid Kalicki https://launchpad.net/~dvdk15\n"
+"  Michal https://launchpad.net/~michalg8\n"
+"  Michał Rzepiński https://launchpad.net/~micou8\n"
 "  Piotr Adamski https://launchpad.net/~mcveat\n"
 "  Piotr Wawrzyniak https://launchpad.net/~wawrzino\n"
 "  Stefan Hammer https://launchpad.net/~j-4\n"
+"  december0123 https://launchpad.net/~december0123\n"
 "  Łukasz Serafinowski https://launchpad.net/~lukasz-serafinowski"
 
+#~ msgid "Please wait while the notes load.."
+#~ msgstr "Proszę czekać na załadowanie notatek..."
+
+#~ msgid "Choose the default sorting"
+#~ msgstr "Wybierz domyślne sortowanie"
+
+#~ msgid "Default sort"
+#~ msgstr "Domyślne sortowanie"
+
 #~ msgid ""
-#~ "A Tomboy client for Android. Tomboy is a desktop note-taking app using a "
-#~ "wikiwiki approach and a simple user interface.\\n\\nNOTE: It is a READ-ONLY "
-#~ "client for now.\\n\\n* Note format compatibility with Tomboy\\n* Online note "
-#~ "synchronization with Snowy, Tomboy Online or Ubuntu One\\n* SD Card "
-#~ "importation\\n* Open source!"
-#~ msgstr ""
-#~ "Klient notatek Tomboy dla Android. Tomboy to prosty i łatwy w użyciu program "
-#~ "do sporządzania notatek na systemy biurkowe.\\n\\nUwaga! Edytowanie notatek "
-#~ "nie jest jeszcze wspierane.\\n\\n* Kompatybilny z formatem notatek Tomboy.\\"
-#~ "n* Synchronizacja notatek z serwisami Snowy, Tomboy Online i Ubuntu One.\\n* "
-#~ "Importowanie notatek z karty SD.\\n* Open Source!"
+#~ "Note-taking application with online synchronization compatible with Tomboy"
+#~ msgstr "Notatnik ze zdalną synchronizacją, kompatybilny z programem Tomboy."
+
+#~ msgid "Change Sort"
+#~ msgstr "Zmień sortowanie"

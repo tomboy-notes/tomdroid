@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ Tomdroid
+ Tomboy on Android
+ http://www.launchpad.net/tomdroid
+
+ Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
+ 
+ This file is part of Tomdroid.
+ 
+ Tomdroid is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Tomdroid is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources>
+	
+	<!-- application details -->
+	<string name="app_name">Tomdroid</string>
+	<string name="app_desc">Tomboy compatible wikiwiki note-taking app.</string>
+	<string name="author">Olivier Bilodeau</string>
+	
+	<!-- main.xml -->
+	<string name="strListEmptyWaiting">Đang tải các ghi chú, xin vui lòng đợi trong giây lát...</string>
+	<string name="strListEmptyNoNotes">Hiện không có ghi chú nào trong cơ sở dữ liệu của chương trình</string>
+	
+	<!-- Menu entry with icon -->
+	<string name="menuSync">Đồng bộ hoá</string>
+	<!-- Menu entry with icon -->
+	<string name="menuPrefs">Thiết lập</string>
+	<!-- Menu entry with icon -->
+	<string name="menuAbout">Dịch bởi Phan Anh</string>
+	<!-- Title of an alert box -->
+	<string name="titleWelcome">Cảnh báo</string>
+	<string name="titleAbout">Thông tin về chương trình</string>
+	<!-- First start alert box -->
+	<string name="strWelcome">Chào mừng đến với Tomdroid.\n\nXin lưu ý rằng đây là phiên bản beta nên sự hoàn thiện vẫn chưa được chỉnh chu theo hướng hoàn thiện.\n\nChúng tôi cần nhắc bạn rằng trong quá trình sử dụng ứng dụng này, có thể xuất hiện những lổi ngoài ý muốn.\n\nKhi có những vấn đề phát sinh, bạn nên gửi các báo cáo lổi về trên launchpad.net/tomdroid và liên hệ với chúng tôi! \n</string>
+	<!-- \n\n are linebreaks, %1$s etc are the name of the Author, the version and the license name -->
+	<string name="strAbout">%1$ s\n\nAuthor: %2$ s\nVersion: %3$s\nGiấy phép dựa theo GPLv3</string>
+	
+	<!-- positive Button -->
+	<string name="btnOk">Đồng ý</string>
+	<!-- negative Button -->
+	<string name="btnCancel">Cancel</string>
+	<!-- Button -->
+	<string name="btnClose">Đóng lại</string>
+	<!-- Button -->
+	<string name="btnProjectPage">Trang dự án</string>
+	<string name="btnSavetoSD">Lưu lại</string>
+	
+	<!-- note-view.xml -->
+	<string name="strWait">Đang tải các ghi chú, xin vui lòng đợi trong giây lát...</string>
+	
+	<string name="prefSyncService">Dịch vụ:</string>
+	<string name="prefSyncServer">Máy chủ</string>
+	<string name="prefSDCard">Thẻ nhớ</string>
+	<string name="prefTomboyWeb">Đồng bộ hóa online</string>
+	<string name="prefAuthenticate">Xác nhận</string>
+	<string name="prefLocation">Vị trí trên thẻ nhớ</string>
+	<string name="prefSyncOnStart">Tự động đồng bộ hóa khi khởi động</string>
+	<string name="prefDescSyncOnStart">Đồng bộ hóa các ghi chú của bạn trên appstart</string>
+	<!-- %1$s will be repaced by the folder name eg /tomdroid -->
+	<string name="prefFolderCreated">Thư mục \"%1$s\" vẫn chưa tồn tại. Vui lòng kết nối thiết bị của bạn với máy tính, tạo thư mục và chuyển vào bên trong các tập tin *.note .</string>
+	<!-- %1$s will be repaced by the folder name eg /testfolder -->
+	<string name="prefNoValidLocation">\"%1$s\" không phải là vị trí thư mục hợp lệ. Xin vui lòng thử lại!</string>
+	<!-- %1$s will be replaced with an text entry the user had done -->
+	<string name="prefNoValidEntry">\"%1$s\" không phải là một mục thông tin hợp lệ. Xin vui lòng thử lại!</string>
+	<string name="prefSyncCompleteAuth">Đang hoàn tất quy trình xác nhận. Xin vui lòng đợi trong giây lát...</string>
+	<string name="prefSyncConnectionFailed">Kết nối tới máy chủ gặp lỗi, hãy kiểm tra lại địa chỉ mà bạn nhập xem có đúng không</string>
+	<string name="prefServerEmpty">Địa chỉ máy chủ thay đổi nhưng giá trị mới hiện đang rỗng</string>
+			
+	<string name="titleSyncService">Chọn dịch vụ đồng bộ để sử dụng</string>
+	<!-- %1$s will be replaced with "Online Synchronisation", "SD Card",...-->
+	<string name="messageSyncComplete">Đồng bộ hóa với %1$ s đã hoàn tất.</string>
+	<!-- %1$s will be replaced with "SD Card",... -->
+	<string name="messageSyncNoNote">Không tìm thấy ghi chú nào trên %1$ s.</string>
+	<string name="messageSyncNoConnection">Bạn vẫn chưa kết nối vào mạng Internet.</string>
+	<string name="messageSyncAlreadyInProgress">Tiến trình đồng bộ đang được tiến hành</string>
+	<string name="messageSyncError">Xảy ra lổi khi phân tích bộ dữ liệu về ghi chú của bạn. Nếu bạn không thể giải quyết vấn đề, hãy liên hệ với chúng tôi!</string>
+	<!-- Altert box header -->
+	<string name="error">Lỗi</string>
+	<!-- Altert box header -->
+	<string name="titleNoteNotFound">Không có ghi chú nào như thế</string>
+	<string name="messageNoteNotFound">Không tìm thấy ghi chú đã yêu cầu. Có thể ghi chú đã bị xóa hoặc loại bỏ trong suốt quá trình đồng bộ hóa.</string>
+	<string name="messageErrorNoteParsing">Lỗi khi thực hiện phân tích ghi chú.</string>
+	<string name="messageCouldNotSave">Không thể lưu lại ghi chú.</string>
+	<string name="messageNoSDCard">Không tìm thấy phần lưu trữ nào trên thẻ nhớ.</string>
+	
+	<!-- NoteSorting -->
+	<string name="titleDefaultSorting">Chọn phương pháp sắp thứ tự mặc định</string>
+	<string name="prefDefaultSortingTitle">Phương pháp sắp thứ tự mặc định</string>
+	<string name="prefSorting">Sắp xếp theo:</string>
+	<string name="prefSortDate">Ngày sửa đổi</string>
+	<string name="prefSortTitle">Tên ghi chú</string>
+	<string name="sortByDate">Sắp xếp theo ngày</string>
+	<string name="sortByTitle">Sắp xếp theo tên</string>
+	
+	<!-- NotebookFiltering -->
+	<string name="menuFilterNotebook">Lọc dữ liệu</string>
+	<string name="strListEmptyNoNotebooks">Không có phần tập ghi chú nào trong cơ sở dữ liệu.</string>
+	<string name="allNotebooksFilter">Tất cả phần ghi chú tổng hợp</string>
+	
+	<!-- List Longpress Menu -->
+	<string name="view">Chế độ hiển thị</string>
+	<string name="noteOptions">Tùy chọn ghi chú</string>
+	<string name="send">Gửi</string>
+	
+	<!--  Search -->
+	<!-- Text in input field for search -->
+	<string name="search_hint">Tìm ghi chú</string>
+	<!-- Preferences Field in global search to include notes -->
+	<string name="search_description">Nội dung trong phần ghi chú của bạn</string>
+	<!-- %s will be replaced with the search string -->
+	<string name="strNoResults">Không tìm thấy ghi chú nào giống \"%s\"</string>
+	<string name="menuSearch">Tìm Kiếm</string>
+	<string name="SearchResultTitle">Kết quả tìm kiếm:</string>
+	<string name="clearSearchHistoryTitle">Clear search history</string>
+	<string name="clearSearchHistory">Remove all the searches you have performed</string>
+	<string name="deletedSearchHistory">Search history has been cleared.</string>
+	
+	<!-- Date -->
+	<string name="textModified">Modified:</string>
+	<string name="textToday">Today</string>
+	<string name="textYexterday">Yesterday</string>
+
+	<!-- Shortcuts handling -->
+	<!-- Header when picking a note for a new shortcut -->
+	<string name="shortcuts_view_caption">Choose a Note</string>
+	<string name="shortcut_menu_item_caption">Tomdroid Note</string>
+	<string name="btnRemoveShortcut">Remove shortcut</string>
+	<string name="createShortcut">Create shortcut</string>
+
+	<!-- stuff new to edit -->
+
+	<!-- deleteNote -->
+	<string name="delete">Delete</string>
+	<string name="delete_note">Delete Note</string>
+	<string name="delete_message">Are you sure you want to delete this note?</string>
+	<string name="yes">Yes</string>
+	<string name="no">No</string>
+	<string name="delete_all">Clear Notes</string>
+	<string name="delete_all_message">Are you sure you want to clear the notes database?</string>
+	<string name="delete_remote_notes">Delete Remote Notes</string>
+	<string name="delete_remote_notes_message">Are you sure you want to delete all notes from the remote service?</string>
+				
+	<!-- newNote -->
+	<string name="menuNew">New</string>
+	<string name="NewNoteTitle">New Note</string>
+	<string name="NewNoteTitleHint">Enter title here</string>
+	<string name="NewNoteBodyHint">Enter note here</string>
+			
+	<!-- editNote -->
+	<string name="edit">Edit</string>
+	<string name="save">Lưu lại</string>
+	<string name="discard">Discard</string>
+	<string name="back">Back</string>
+	<!-- B stands for bold (in format bar) -->
+	<string name="bold">B</string>
+	<!-- i stands for italic (in format bar) -->
+	<string name="italic">i</string>
+	<!-- S stands for strike through (in format bar) -->
+	<string name="strike"><strike>S</strike></string>
+	<string name="mono">monospace</string>
+	<string name="highlight">highlight</string>
+	<!-- Button label to select font size -->
+	<string name="size">size</string>
+	<string name="titleErrorParsingXML">Error parsing note</string>
+	<string name="messageErrorParsingXML">There was an error parsing the note. Please check your XML.</string>
+	<string name="messageNoteSaved">Note saved locally.</string>
+	<string name="messageNoteDeleted">Note deleted locally.</string>
+	<string name="messageSelectSize">Select text size</string>
+	<string name="small">Small</string>
+	<string name="normal">Normal</string>
+	<string name="large">Large</string>
+	<string name="huge">Huge</string>
+	<string name="messageDiscardChanges">Do you really want to discard your changes and revert the note to the last saved version?</string>
+	<string name="titleDiscardChanges">Discard Changes?</string>
+	<!-- this is the > symbol, do not change -->
+	<string name="gt"><b>&gt;</b></string>
+	<!-- this is the < symbol, do not change -->
+	<string name="lt"><b>&lt;</b></string>
+			
+	<!-- New Titles -->
+	<string name="view_title">Tomdroid - View Note</string>
+	<string name="edit_title">Tomdroid - Edit Note</string>
+	<string name="search_title">Tomdroid - Search Results</string>
+	<string name="shortcut_title">Tomdroid - Shortcuts</string>
+	<string name="pref_title">Tomdroid - Settings</string>
+	<string name="compare_title">Tomdroid - Note Conflict</string>
+	<string name="filePickerTitle">Tomdroid - Import Note</string>
+			
+	<!-- new prefs -->
+	<!-- subheader in settings -->
+	<string name="prefDisplay">Display Preferences</string>
+	<string name="prefBaseSize">Base Font Size</string>
+	<!-- subheader in settings -->
+	<string name="prefSync">Synchronization</string>
+	<!-- subheader in settings -->
+	<string name="prefTools">Tools</string>
+	<string name="prefAutoSave">Save notes automatically on exiting editor.</string>
+	<string name="prefDeletedNotesTitle">Show Deleted Notes</string>
+	<string name="prefDeletedNotes">If checked, will show deleted notes in notes list.</string>
+	<string name="prefNoteTemplatesTitle">Show Note Templates</string>
+	<string name="prefNoteTemplates">If checked, will show note templates in notes list.</string>
+	<string name="deleteAllNotesTitle">Clear Notes</string>
+	<string name="deleteAllNotes">Clear all notes from local database</string>
+	<string name="deleteRemoteNotesTitle">Delete Remote Notes</string>
+	<string name="deleteRemoteNotes">Delete all notes from remote service</string>
+	<string name="illegalTextSize">Illegal text size chosen. Please choose a number.</string>
+	<string name="backupPrefTitle">Backup Notes</string>
+	<string name="backupPref">Copy all local notes to SD Card</string>
+	<string name="autoBackupPrefTitle">Auto-Backup</string>
+	<string name="autoBackupPref">Copy local note to SD Card on save</string>
+	<!-- subheader in settings -->
+	<string name="prefLinks">Hyperlink Preferences</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkTitlesTitle">Link Titles</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkTitles">Link to other note titles</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkUrlsTitle">Link Web Addresses"</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkUrls">e.g. "www.google.com"</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkEmailsTitle">Link Emails</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkEmails">e.g. name@address.com</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkPhonesTitle">Link Telephone Numbers</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkPhones">Link telephone numbers to phone app</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkAddressesTitle">Link Map Addresses</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkAddresses">Link addresses to maps app</string>
+			
+	<!-- syncNotes -->
+
+	<!-- %1$s will be replaced with "Online Synchronisation", "SD card",... -->
+	<string name="syncing">Syncing with %1$s</string>
+	<string name="syncing_connect">connecting to service…</string>
+	<string name="gettings_notes">getting list of remote notes…</string>
+	<string name="syncing_local">updating local notes…</string>
+	<string name="syncing_remote">updating remote notes…</string>
+	<string name="sync_conflict_description">There was a conflict syncing the note \'%1$s\'</string>
+	<string name="sync_conflict_message">Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<string name="sync_conflict_deleted">The local version was already deleted.  Please choose from one of the actions below.</string>
+	<string name="sync_conflict_titles_message">A note with that title already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<!-- Button (keep short!) -->
+	<string name="overwrite_remote">Overwrite\nRemote</string>
+	<!-- Button (keep short!) -->
+	<string name="overwrite_local">Overwrite\nLocal</string>
+	<!-- Button (keep short!) -->
+	<string name="delete_remote">Delete\nRemote</string>
+	<!-- Button (keep short!) -->
+	<string name="copy">Create\nCopy</string>
+	<!-- subheader in Conflict Dialouge (keep short!) -->
+	<string name="diff_label">Difference Between Files</string>
+	<string name="diff_titles">-- Title Differences --</string>
+	<string name="diff_content">-- Content Differences --</string>
+	<!-- %1$s will be replaced with a number. -->
+	<string name="line_x">Line %1$s:</string>
+	<!-- subheader in Conflict Dialouge (keep short!) -->
+	<string name="local_label">Local Version</string>
+	<!-- subheader in Conflict Dialouge (keep short!) -->
+	<string name="remote_label">Remote Version</string>
+	<string name="deleted">Deleted</string>
+	
+	<!-- %1$s will be replaced with a note title. -->
+	<string name="old">%1$s (old)</string>
+	<string name="close">Đóng lại</string>
+	<string name="cancel">Cancel</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageAuthComplete">Authorization with %1$s successful.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageAuthFailed">Authorization with %1$s failed. Try again later!</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNoteDeleted">Note deleted from %1$s successfully.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNotePushed">Note sent to %1$s successfully.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNotePulled">Note received from %1$s successfully.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNoteDeleteError">Error deleting note from %1$s.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNotePushError">Error sending note to %1$s.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNotePullError">Error receiving note from %1$s.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncParseFailed">Error parsing response from %1$s.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncConnectingFailed">Error connecting to %1$s.  You probably need to authenticate in "Settings".</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageRemoteNotesDeleted">Notes deleted from %1$s successfully.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncCancelled">Sync with %1$s cancelled.</string>
+
+	<!-- menu items -->
+	
+	<string name="editTags">Edit Tags</string>
+	<string name="contextRevert">Revert</string>
+	<!-- %1$s will be replaced with note-tag names -->
+	<string name="note_x_tags">Note \'%1$s\' Tags</string>
+	<string name="edit_tags">Edit the tags below, separating with commas</string>
+	<string name="undelete">Undelete Note</string>
+	<!-- menu item with icon -->
+	<string name="menuImport">Import Note</string>
+					
+	<!-- revert notes -->
+	
+	<!-- menu item with icon -->
+	<string name="menuRevert">Revert All</string>
+	<string name="revert_notes">Revert Notes</string>
+	<string name="revert_notes_message">This will revert your local notes to whatever versions exist on the remote service.  Are you sure you want to do this?</string>
+	<string name="revert_note">Revert Note</string>
+	<string name="revert_note_message">This will revert a local note to whatever version exist on the remote service.  Are you sure you want to do this?</string>
+
+	<!-- backup notes -->
+	
+	<string name="backup_notes_title">Backup Notes?</string>
+	<string name="backup_notes">Copy all local notes to SD Card?  This may overwrite existing notes on the SD Card.</string>
+	<string name="restorePrefTitle">Restore Notes</string>
+	<string name="restore_notes_title">Restore Notes?</string>
+	<string name="restore_notes">Pull all notes from SD Card?  This may overwrite your existing notes.</string>
+	<string name="messageNotesBackedUp">Notes backed up to SD card successfully.</string>
+	<string name="messageNotesRestored">Notes restored from SD card successfully.</string>
+	<string name="messageDatabaseReset">Notes cleared successfully.</string>
+
+	<!-- send and receive notes -->
+	
+	<string name="sendChoiceTitle">Choose Send Method</string>
+	<string name="sendChoice">How would you like to send the note?</string>
+	<string name="btnSendAsText">As Text</string>
+	<string name="btnSendAsFile">As File</string>
+	<string name="sync_conflict_import_message">The note already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<!-- Button (keep short!) -->
+	<string name="btnCancelImport">Cancel\nImport</string>
+	<string name="messageFileTooBig">File exceeds maximum import size - are you sure it is plain text?</string>
+	<string name="messageFileNotReadable">Cannot read the note file.</string>
+	<string name="noFiles">No files or directories</string>
+	<string name="chooseFile">Choose a file below that is either a Tomboy note file (which will be imported) or a plain text file (which will create a new note):</string>
+
+	<!-- Title of first Note -->
+	<string name="firstNoteTitle">Tomdroid\'s First Note</string>
+	
+	<string-array name="firstNoteContent">
+		<item>Welcome to Tomdroid!\n</item>
+		<item>You have no notes here yet. To get started, set your Synchronization preferences under Settings. There are two synchronization options described below.\n</item>
+		<item>=Online Synchronization=</item>
+		<!-- =text= makes <size:large>text</size:large> -->
+		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
+		<item>To use it, set Sync Service to Online Synchronization in preferences then  provide a Server URL. Here are some of the public ones:</item>
+		<!-- -text is for list-items. --> 
+		<item>-Tomboy Online - https://edge.tomboy-online.org/</item>
+		<!-- -text is for list-items. --> 
+		<item>-rainy.notesync.org - https://notesync.org:8080/[username]/[password]/\n</item>
+		<item>Once set, hit the Sync logo on Tomdroid\'s top bar to synchronize your notes.\n</item>
+		<item>Note: you might want to back up your Tomboy notes before syncing, since this app is still under development and may corrupt your Tomboy notes.\n</item>
+		<item>Please see http://live.gnome.org/Tomboy/Directories for the location of the *.note files on all platforms.\n</item>
+		<!-- =text= makes <size:large>text</size:large> --> 
+		<item>=SD Card=</item>
+		<item>Put your Tomboy notes (*.note) on your SD Card under tomdroid/. Once the notes are copied, set Sync Service to SD Card in preferences then hit the Sync logo on Tomdroid\'s top bar.\n</item>
+		<item>Also, Tomdroid is always looking for new contributors. If you are interested join the tomdroid-dev team on Launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
+		<item>Lastly, if you encounter any issue, please report it at: https://bugs.launchpad.net/tomdroid</item>
+	</string-array>
+	
+	<!-- 
+	Information that goes into the Android Market Application Listing. 
+	I\'ve put it in here so that it\'ll get translated by translators.
+	-->
+	<!-- 30 chars max -->
+	<string name="market_title">Tomdroid notes</string>
+	<!-- 4000 chars max -->
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Send and receive text or note-files from any app\n* Open source!</string>
+	
+	<!-- 80 chars max -->
+	<string name="market_promotext">Note-taking app with online synchronization compatible with Tomboy</string>
+
+	<!-- 500 chars max -->
+        <string name="market_recent_changes">* Notes can now be created, edited and deleted\n* Completely redesigned for both tablets and phones\n* Sync your notes with compatible web-services or to your SD card\n* Send and receive note files or text from any app\n* More configurable than before\n* Available in even more languages\n\n And much more, for a complete list of changes please see https://launchpad.net/tomdroid/+announcements</string>
+
+	<!-- Launchpad Translation String -->
+	<string name="about_translators">Launchpad Contributions:
+  ppanhh https://launchpad.net/~ppanhh</string>
+</resources>

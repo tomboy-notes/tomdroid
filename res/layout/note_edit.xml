@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+ Tomdroid
+ Tomboy on Android
+ http://www.launchpad.net/tomdroid
+
+ Copyright 2008, 2009 Olivier Bilodeau <olivier@bottomlesspit.org>
+ 
+ This file is part of Tomdroid.
+ 
+ Tomdroid is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Tomdroid is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+    	>
+
+	<ScrollView
+		android:id="@+id/content_parent"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+		android:overScrollMode="always"
+		android:fillViewport="true"
+		android:background="#ffffffff"
+		>
+		<LinearLayout 
+			android:id="@+id/edit_parent" 
+			android:orientation="vertical"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    >
+			<EditText 
+				android:id="@+id/title"
+				android:layout_width="match_parent" 
+				android:layout_height="wrap_content"
+				android:singleLine="true"
+				android:inputType="textCapWords"
+				android:hint="@string/NewNoteTitleHint"
+				android:padding="10dip"
+				android:textCursorDrawable="@null"
+				android:textColor="#ffb8bcb8" />
+	   		<EditText 
+				android:id="@+id/content"
+				android:layout_width="match_parent" 
+				android:layout_height="fill_parent"
+				android:gravity="top"
+				android:linksClickable="false"
+				android:hint="@string/NewNoteBodyHint"
+				android:padding="10dip"
+				android:textCursorDrawable="@null"
+				android:scrollHorizontally="false"
+				android:inputType="textMultiLine|textCapSentences"
+				android:singleLine="false"
+				android:textColor="#ffb8bcb8" />
+		</LinearLayout>
+	</ScrollView>
+
+	 <SlidingDrawer
+		android:id="@+id/formatBar"
+		android:layout_width="240dp"
+		android:layout_height="48dp"
+		android:layout_alignParentTop="true"
+		android:layout_alignParentRight="true"
+		android:orientation="horizontal"
+		android:handle="@+id/handle"
+		android:content="@+id/format_bar"
+		android:visibility="gone"
+		>
+
+		<ImageView
+			android:id="@id/handle"
+			android:src="@drawable/tray_handle_normal"
+			android:layout_width="21dp"
+			android:layout_height="match_parent"
+			/>
+		<LinearLayout android:id="@+id/format_bar" 
+			android:orientation="horizontal"
+			android:layout_width="wrap_content" 
+			android:layout_height="match_parent"
+			android:background="#c4c6c4"
+			>
+		
+			<ToggleButton  
+				android:id="@+id/bold"
+				android:background="@drawable/button_toggle"
+				android:layout_width="36dp"  
+				android:layout_height="match_parent"
+				android:textSize="17dip"
+				android:textOn="@string/bold"
+				android:textOff="@string/bold"
+				android:textStyle="bold"
+				android:textColor="#464646" />   
+			                    
+			<ToggleButton
+				android:id="@+id/italic"
+				android:background="@drawable/button_toggle"
+				android:layout_width="36dp"  
+				android:layout_height="match_parent"
+				android:textSize="17dip"
+				android:textOn="@string/italic"
+				android:textOff="@string/italic"
+				android:textStyle="italic"
+				android:textColor="#464646" />
+			             		            
+			<ToggleButton
+				android:id="@+id/strike"
+				android:background="@drawable/button_toggle"
+	            android:layout_width="36dp"  
+	            android:layout_height="match_parent"
+	            android:textSize="17dip"
+	            android:textOn="@string/strike"
+	            android:textOff="@string/strike"
+	            android:textColor="#464646" />				            
+	        <ToggleButton
+				android:id="@+id/highlight"
+				android:background="@drawable/button_toggle"
+	            android:layout_width="36dp"  
+	            android:layout_height="match_parent"
+				android:textOn=""
+				android:textOff=""
+				android:paddingTop="12dp"
+				android:drawableTop="@drawable/highlight"
+				android:contentDescription="@string/highlight"
+	            />
+			<ToggleButton
+				android:id="@+id/mono"
+				android:background="@drawable/button_toggle"
+	            android:layout_width="36dp"  
+	            android:layout_height="match_parent"
+				android:textOn=""
+				android:textOff=""
+				android:paddingTop="12dp"
+				android:drawableTop="@drawable/mono"
+				android:contentDescription="@string/mono"
+	            />		
+			<Button
+				android:id="@+id/size"
+				android:background="@drawable/button"
+	            android:layout_width="36dp"  
+	            android:layout_height="match_parent"
+				android:textOn=""
+				android:textOff=""
+				android:paddingTop="12dp"
+				android:drawableTop="@drawable/size"
+				android:contentDescription="@string/size"
+	            />		
+		</LinearLayout>
+	</SlidingDrawer>
+</RelativeLayout>

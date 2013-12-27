@@ -5,6 +5,7 @@
  * 
  * Copyright 2008, 2009, 2010 Olivier Bilodeau <olivier@bottomlesspit.org>
  * Copyright 2009, Benoit Garret <benoit.garret_launchpad@gadz.org>
+ * Copyright 2013 Stefan Hammer <j.4@gmx.at>
  * 
  * This file is part of Tomdroid.
  * 
@@ -26,6 +27,7 @@ package org.tomdroid.xml;
 import java.util.ArrayList;
 
 import org.tomdroid.Note;
+import org.tomdroid.util.TLog;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -45,6 +47,8 @@ import android.text.style.TypefaceSpan;
  * and formatting the contents in a SpannableStringBuilder
  */
 public class NoteContentHandler extends DefaultHandler {
+
+	private String TAG = "NoteContentHandler";
 	
 	// position keepers
 	private boolean inNoteContentTag = false;
@@ -56,6 +60,7 @@ public class NoteContentHandler extends DefaultHandler {
 	private boolean inSizeSmallTag = false;
 	private boolean inSizeLargeTag = false;
 	private boolean inSizeHugeTag = false;
+	private boolean inLinkInternalTag = false;
 	private int inListLevel = 0;
 	private boolean inListItem = false;
 	
@@ -70,27 +75,30 @@ public class NoteContentHandler extends DefaultHandler {
 	private final static String SMALL = "size:small";
 	private final static String LARGE = "size:large";
 	private final static String HUGE = "size:huge";
+	private final static String LINK_INTERNAL = "link:internal";
 	// Bullet list-related
 	private final static String LIST = "list";
 	private final static String LIST_ITEM = "list-item";
 	
 	// holding state for tags
-	private int boldStartPos;
-	private int boldEndPos;
-	private int italicStartPos;
-	private int italicEndPos;
-	private int strikethroughStartPos;
-	private int strikethroughEndPos;
-	private int highlightStartPos;
-	private int highlightEndPos;
-	private int monospaceStartPos;
-	private int monospaceEndPos;
-	private int smallStartPos;
-	private int smallEndPos;
-	private int largeStartPos;
-	private int largeEndPos;
-	private int hugeStartPos;
-	private int hugeEndPos;
+	private int boldStartPos = -1;
+	private int boldEndPos = -1;
+	private int italicStartPos = -1;
+	private int italicEndPos = -1;
+	private int strikethroughStartPos = -1;
+	private int strikethroughEndPos = -1;
+	private int highlightStartPos = -1;
+	private int highlightEndPos = -1;
+	private int monospaceStartPos = -1;
+	private int monospaceEndPos = -1;
+	private int smallStartPos = -1;
+	private int smallEndPos = -1;
+	private int largeStartPos = -1;
+	private int largeEndPos = -1;
+	private int hugeStartPos = -1;
+	private int hugeEndPos = -1;
+	private int linkinternalStartPos = -1;
+	private int linkinternalEndPos = -1;
 	private ArrayList<Integer> listItemStartPos = new ArrayList<Integer>(0);
 	private ArrayList<Integer> listItemEndPos = new ArrayList<Integer>(0);
 	private ArrayList<Boolean> listItemIsEmpty =  new ArrayList<Boolean>(0);
@@ -132,6 +140,8 @@ public class NoteContentHandler extends DefaultHandler {
 				inSizeLargeTag = true;
 			} else if (name.equals(HUGE)) {
 				inSizeHugeTag = true;
+			} else if (name.equals(LINK_INTERNAL)) {
+				inLinkInternalTag = true;
 			} else if (name.equals(LIST)) {
 				inListLevel++;
 			} else if (name.equals(LIST_ITEM)) {
@@ -141,18 +151,18 @@ public class NoteContentHandler extends DefaultHandler {
 				// is empty until characters() gets called and proves otherwise.
 				
 				if (listItemIsEmpty.size() < inListLevel) {
-					listItemIsEmpty.add(new Boolean(true));
+					listItemIsEmpty.add(Boolean.valueOf(true));
 				}
 				// if listItem's position not already in tracking array, add it.
 				// Otherwise if the start position equals 0 then set
 				if (listItemStartPos.size() < inListLevel) {
-					listItemStartPos.add(new Integer(ssb.length()));
+					listItemStartPos.add(Integer.valueOf(ssb.length()));
 				} else if (listItemStartPos.get(inListLevel-1) == 0) { 
-					listItemStartPos.set(inListLevel-1, new Integer(ssb.length()));					
+					listItemStartPos.set(inListLevel-1, Integer.valueOf(ssb.length()));					
 				}
 				// no matter what, we track the end (we add if array not big enough or set otherwise) 
 				if (listItemEndPos.size() < inListLevel) {
-					listItemEndPos.add(new Integer(ssb.length()));
+					listItemEndPos.add(Integer.valueOf(ssb.length()));
 				} else {
 					listItemEndPos.set(inListLevel-1, ssb.length());					
 				}
@@ -173,60 +183,79 @@ public class NoteContentHandler extends DefaultHandler {
 		// if we are in note-content, keep and convert formatting tags
 		if (inNoteContentTag) {
 			if (name.equals(BOLD)) {
+				if(boldStartPos == boldEndPos) return;
+				//TLog.d(TAG, "Bold span: {0} to {1} is {2}",boldStartPos,boldEndPos, ssb.subSequence(boldStartPos, boldEndPos).toString());
 				inBoldTag = false;
 				// apply style and reset position keepers
 				ssb.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), boldStartPos, boldEndPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-				boldStartPos = 0;
-				boldEndPos = 0;
+				boldStartPos = -1;
+				boldEndPos = -1;
 
 			} else if (name.equals(ITALIC)) {
+				TLog.d(TAG, "Italic span: {0} to {1} is {2}",italicStartPos,italicEndPos, ssb.subSequence(italicStartPos, italicEndPos).toString());
+				if(italicStartPos == italicEndPos) return;
 				inItalicTag = false;
 				// apply style and reset position keepers
 				ssb.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), italicStartPos, italicEndPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-				italicStartPos = 0;
-				italicEndPos = 0;
+				italicStartPos = -1;
+				italicEndPos = -1;
 
 			} else if (name.equals(STRIKETHROUGH)) {
+				if(strikethroughStartPos == strikethroughEndPos)
+					return;
 				inStrikeTag = false;
 				// apply style and reset position keepers
 				ssb.setSpan(new StrikethroughSpan(), strikethroughStartPos, strikethroughEndPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-				strikethroughStartPos = 0;
-				strikethroughEndPos = 0;
+				strikethroughStartPos = -1;
+				strikethroughEndPos = -1;
 
 			} else if (name.equals(HIGHLIGHT)) {
+				if(highlightStartPos == highlightEndPos) return;
 				inHighlighTag = false;
 				// apply style and reset position keepers
 				ssb.setSpan(new BackgroundColorSpan(Note.NOTE_HIGHLIGHT_COLOR), highlightStartPos, highlightEndPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-				highlightStartPos = 0;
-				highlightEndPos = 0;
+				highlightStartPos = -1;
+				highlightEndPos = -1;
 				
 			} else if (name.equals(MONOSPACE)) {
+				if(monospaceStartPos == monospaceEndPos) return;
 				inMonospaceTag = false;
 				// apply style and reset position keepers
 				ssb.setSpan(new TypefaceSpan(Note.NOTE_MONOSPACE_TYPEFACE), monospaceStartPos, monospaceEndPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-				monospaceStartPos = 0;
-				monospaceEndPos = 0;
+				monospaceStartPos = -1;
+				monospaceEndPos = -1;
 
 			} else if (name.equals(SMALL)) {
+				if(smallStartPos == smallEndPos) return;
 				inSizeSmallTag = false;
 				// apply style and reset position keepers
 				ssb.setSpan(new RelativeSizeSpan(Note.NOTE_SIZE_SMALL_FACTOR), smallStartPos, smallEndPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-				smallStartPos = 0;
-				smallEndPos = 0;
+				smallStartPos = -1;
+				smallEndPos = -1;
 				
 			} else if (name.equals(LARGE)) {
+				if(largeStartPos == largeEndPos) return;
 				inSizeLargeTag = false;
 				// apply style and reset position keepers
 				ssb.setSpan(new RelativeSizeSpan(Note.NOTE_SIZE_LARGE_FACTOR), largeStartPos, largeEndPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-				largeStartPos = 0;
-				largeEndPos = 0;
+				largeStartPos = -1;
+				largeEndPos = -1;
 
 			} else if (name.equals(HUGE)) {
+				if(hugeStartPos == hugeEndPos) return;
 				inSizeHugeTag = false;
 				// apply style and reset position keepers
 				ssb.setSpan(new RelativeSizeSpan(Note.NOTE_SIZE_HUGE_FACTOR), hugeStartPos, hugeEndPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-				hugeStartPos = 0;
-				hugeEndPos = 0;
+				hugeStartPos = -1;
+				hugeEndPos = -1;
+
+			} else if (name.equals(LINK_INTERNAL)) {
+				if(linkinternalStartPos == linkinternalEndPos) return;
+				inLinkInternalTag = false;
+				// apply style and reset position keepers
+				ssb.setSpan(new LinkInternalSpan(ssb.toString().substring(linkinternalStartPos, linkinternalEndPos)), linkinternalStartPos, linkinternalEndPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+				linkinternalStartPos = -1;
+				linkinternalEndPos = -1;
 
 			} else if (name.equals(LIST)) {
 				inListLevel--;
@@ -235,20 +264,22 @@ public class NoteContentHandler extends DefaultHandler {
 				// if this list item is "empty" then we don't need to try rendering anything.
 				if (!inListItem && listItemIsEmpty.get(inListLevel-1))
 				{
-					listItemStartPos.set(inListLevel-1, new Integer(0));
-					listItemEndPos.set(inListLevel-1, new Integer(0));
-					listItemIsEmpty.set(inListLevel-1, new Boolean(true));
+					listItemStartPos.set(inListLevel-1, Integer.valueOf(0));
+					listItemEndPos.set(inListLevel-1, Integer.valueOf(0));
+					listItemIsEmpty.set(inListLevel-1, Boolean.valueOf(true));
 					
 					return;					
 				}
 				// here, we apply margin and create a bullet span. Plus, we need to reset position keepers.
 				// TODO new sexier bullets?
 				// Show a leading margin that is as wide as the nested level we are in
-				ssb.setSpan(new LeadingMarginSpan.Standard(30*inListLevel), listItemStartPos.get(inListLevel-1), listItemEndPos.get(inListLevel-1), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-				ssb.setSpan(new BulletSpan(), listItemStartPos.get(inListLevel-1), listItemEndPos.get(inListLevel-1), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-				listItemStartPos.set(inListLevel-1, new Integer(0));
-				listItemEndPos.set(inListLevel-1, new Integer(0));
-				listItemIsEmpty.set(inListLevel-1, new Boolean(true));
+				LeadingMarginSpan.Standard ms = new LeadingMarginSpan.Standard(Note.NOTE_BULLET_INTENT_FACTOR*inListLevel);
+				ssb.setSpan(ms, listItemStartPos.get(inListLevel-1), listItemEndPos.get(inListLevel-1), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);		
+				BulletSpan bs = new BulletSpan(Integer.valueOf(6));
+				ssb.setSpan(bs, listItemStartPos.get(inListLevel-1), listItemEndPos.get(inListLevel-1), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+				listItemStartPos.set(inListLevel-1, Integer.valueOf(0));
+				listItemEndPos.set(inListLevel-1, Integer.valueOf(0));
+				listItemIsEmpty.set(inListLevel-1, Boolean.valueOf(true));
 				
 				inListItem = false;
 			}
@@ -271,7 +302,7 @@ public class NoteContentHandler extends DefaultHandler {
 			// TODO I haven't tested nested tags yet
 			if (inBoldTag) {
 				// if tag is not equal to 0 then we are already in it: no need to reset it's position again 
-				if (boldStartPos == 0) {
+				if (boldStartPos == -1) {
 					boldStartPos = strLenStart;
 				}
 				// no matter what, if we are still in the tag, end is now further
@@ -279,7 +310,7 @@ public class NoteContentHandler extends DefaultHandler {
 			}
 			if (inItalicTag) {
 				// if tag is not equal to 0 then we are already in it: no need to reset it's position again 
-				if (italicStartPos == 0) {
+				if (italicStartPos == -1) {
 					italicStartPos = strLenStart;
 				}
 				// no matter what, if we are still in the tag, end is now further
@@ -287,7 +318,7 @@ public class NoteContentHandler extends DefaultHandler {
 			}
 			if (inStrikeTag) {
 				// if tag is not equal to 0 then we are already in it: no need to reset it's position again 
-				if (strikethroughStartPos == 0) {
+				if (strikethroughStartPos == -1) {
 					strikethroughStartPos = strLenStart;
 				}
 				// no matter what, if we are still in the tag, end is now further
@@ -295,7 +326,7 @@ public class NoteContentHandler extends DefaultHandler {
 			}
 			if (inHighlighTag) {
 				// if tag is not equal to 0 then we are already in it: no need to reset it's position again 
-				if (highlightStartPos == 0) {
+				if (highlightStartPos == -1) {
 					highlightStartPos = strLenStart;
 				}
 				// no matter what, if we are still in the tag, end is now further
@@ -303,7 +334,7 @@ public class NoteContentHandler extends DefaultHandler {
 			}
 			if (inMonospaceTag) {
 				// if tag is not equal to 0 then we are already in it: no need to reset it's position again 
-				if (monospaceStartPos == 0) {
+				if (monospaceStartPos == -1) {
 					monospaceStartPos = strLenStart;
 				}
 				// no matter what, if we are still in the tag, end is now further
@@ -311,7 +342,7 @@ public class NoteContentHandler extends DefaultHandler {
 			}
 			if (inSizeSmallTag) {
 				// if tag is not equal to 0 then we are already in it: no need to reset it's position again 
-				if (smallStartPos == 0) {
+				if (smallStartPos == -1) {
 					smallStartPos = strLenStart;
 				}
 				// no matter what, if we are still in the tag, end is now further
@@ -319,7 +350,7 @@ public class NoteContentHandler extends DefaultHandler {
 			}
 			if (inSizeLargeTag) {
 				// if tag is not equal to 0 then we are already in it: no need to reset it's position again 
-				if (largeStartPos == 0) {
+				if (largeStartPos == -1) {
 					largeStartPos = strLenStart;
 				}
 				// no matter what, if we are still in the tag, end is now further
@@ -327,16 +358,24 @@ public class NoteContentHandler extends DefaultHandler {
 			}
 			if (inSizeHugeTag) {
 				// if tag is not equal to 0 then we are already in it: no need to reset it's position again 
-				if (hugeStartPos == 0) {
+				if (hugeStartPos == -1) {
 					hugeStartPos = strLenStart;
 				}
 				// no matter what, if we are still in the tag, end is now further
 				hugeEndPos = strLenEnd;
 			}
+			if (inLinkInternalTag) {
+				// if tag is not equal to 0 then we are already in it: no need to reset it's position again 
+				if (linkinternalStartPos == -1) {
+					linkinternalStartPos = strLenStart;
+				}
+				// no matter what, if we are still in the tag, end is now further
+				linkinternalEndPos = strLenEnd;
+			}
 			if (inListItem) {
 				// this list item is not empty, so we mark it as such. We keep track of this to avoid any
 				// problems with list items nested like this: <item><item><item>Content!</item></item></item>
-				listItemIsEmpty.set(inListLevel-1, new Boolean(false));
+				listItemIsEmpty.set(inListLevel-1, Boolean.valueOf(false));
 				
 				// no matter what, if we are still in the tag, end is now further
 				listItemEndPos.set(inListLevel-1, strLenEnd);					

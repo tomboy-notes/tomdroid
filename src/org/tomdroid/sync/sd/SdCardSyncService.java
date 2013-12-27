@@ -26,12 +26,15 @@ package org.tomdroid.sync.sd;
 
 import android.app.Activity;
 import android.os.Handler;
+import android.text.format.Time;
 import android.util.TimeFormatException;
 import org.tomdroid.Note;
+import org.tomdroid.NoteManager;
 import org.tomdroid.R;
 import org.tomdroid.sync.SyncService;
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.ErrorList;
+import org.tomdroid.util.Preferences;
 import org.tomdroid.util.TLog;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
@@ -45,11 +48,11 @@ import java.util.regex.Pattern;
 
 public class SdCardSyncService extends SyncService {
 	
-	private int numberOfFilesToSync = 0;
-	
-	// regexp for <note-content..>...</note-content>
 	private static Pattern note_content = Pattern.compile("<note-content[^>]+>(.*)<\\/note-content>", Pattern.CASE_INSENSITIVE+Pattern.DOTALL);
-	
+
+	// list of notes to sync
+	private ArrayList<Note> syncableNotes = new ArrayList<Note>();;
+
 	// logging related
 	private final static String TAG = "SdCardSyncService";
 	
@@ -83,10 +86,12 @@ public class SdCardSyncService extends SyncService {
 	}
 
 	@Override
-	protected void sync() {
+	protected void getNotesForSync(boolean push) {
 
 		setSyncProgress(0);
-
+		
+		this.push = push;
+		
 		// start loading local notes
 		TLog.v(TAG, "Loading local notes");
 		
@@ -106,35 +111,40 @@ public class SdCardSyncService extends SyncService {
 		}
 		
 		File[] fileList = path.listFiles(new NotesFilter());
-		numberOfFilesToSync  = fileList.length;
-		
-		// If there are no notes, warn the UI through an empty message
+
+		if(cancelled) {
+			doCancel();
+			return; 
+		}		
+
+		// If there are no notes, just start the sync
 		if (fileList == null || fileList.length == 0) {
 			TLog.i(TAG, "There are no notes in {0}", path);
-			sendMessage(PARSING_NO_NOTES);
-			setSyncProgress(100);
+			prepareSyncableNotes(syncableNotes);
 			return;
 		}
 		
-		// Delete the notes that are not in the folder any more
-		ArrayList<String> remoteGuids = new ArrayList<String>();
-
-		for (int i = 0; i < fileList.length; i++) {
-			// make a list with all note guids stored in filenames
-			remoteGuids.add(fileList[i].getName().replace(".note", ""));
-		}
-		deleteNotes(remoteGuids);
+	// get all remote notes for sync
 		
 		// every but the last note
 		for(int i = 0; i < fileList.length-1; i++) {
+			if(cancelled) {
+				doCancel();
+				return; 
+			}
 			// TODO better progress reporting from within the workers
 			
 			// give a filename to a thread and ask to parse it
-			syncInThread(new Worker(fileList[i], false));
+			syncInThread(new Worker(fileList[i], false, push));
         }
+
+		if(cancelled) {
+			doCancel();
+			return; 
+		}
 		
-		// last task, warn it so it'll warn UI when done
-		syncInThread(new Worker(fileList[fileList.length-1], true));
+		// last task, warn it so it will know to start sync
+		syncInThread(new Worker(fileList[fileList.length-1], true, push));
 	}
 	
 	/**
@@ -159,10 +169,11 @@ public class SdCardSyncService extends SyncService {
 		private File file;
 		private boolean isLast;
 		final char[] buffer = new char[0x1000];
-		
-		public Worker(File f, boolean isLast) {
+		final boolean push;
+		public Worker(File f, boolean isLast, boolean push) {
 			file = f;
 			this.isLast = isLast;
+			this.push = push;
 		}
 
 		public void run() {
@@ -174,7 +185,7 @@ public class SdCardSyncService extends SyncService {
 			// Try reading the file first
 			String contents = "";
 			try {
-				contents = readFile();
+				contents = readFile(file,buffer);
 			} catch (IOException e) {
 				e.printStackTrace();
 				TLog.w(TAG, "Something went wrong trying to read the note");
@@ -212,14 +223,11 @@ public class SdCardSyncService extends SyncService {
 				onWorkDone();
 				return;
 			}
-
-			// extract the <note-content..>...</note-content>
-			TLog.d(TAG, "retrieving what is inside of note-content");
 			
-			// FIXME here we are re-reading the whole note just to grab note-content out, there is probably a best way to do this (I'm talking to you xmlpull.org!)
+			// FIXME here we are re-reading the whole note just to grab note-content out, there is probably a better way to do this (I'm talking to you xmlpull.org!)
 			Matcher m = note_content.matcher(contents);
 			if (m.find()) {
-				note.setXmlContent(m.group(1));
+				note.setXmlContent(NoteManager.stripTitleFromContent(m.group(1),note.getTitle()));
 			} else {
 				TLog.w(TAG, "Something went wrong trying to grab the note-content out of a note");
 				sendMessage(PARSING_FAILED, ErrorList.createErrorWithContents(note, "Something went wrong trying to grab the note-content out of a note", contents));
@@ -227,35 +235,245 @@ public class SdCardSyncService extends SyncService {
 				return;
 			}
 			
-			insertNote(note);
+			syncableNotes.add(note);
 			onWorkDone();
-		}
-		
-		private String readFile() throws IOException {
-			StringBuilder out = new StringBuilder();
-			
-			int read;
-			Reader reader = new InputStreamReader(new FileInputStream(file), "UTF-8");
-			
-			do {
-			  read = reader.read(buffer, 0, buffer.length);
-			  if (read > 0) {
-			    out.append(buffer, 0, read);
-			  }
-			}
-			while (read >= 0);
-			
-			reader.close();
-			return out.toString();
 		}
 		
 		private void onWorkDone(){
 			if (isLast) {
-				setSyncProgress(100);
-				sendMessage(PARSING_COMPLETE);
+				prepareSyncableNotes(syncableNotes);
 			}
-			else
-				setSyncProgress((int) (getSyncProgress() + 100.0 / numberOfFilesToSync));			
 		}
+	}
+
+	private static String readFile(File file, char[] buffer) throws IOException {
+		StringBuilder out = new StringBuilder();
+		
+		int read;
+		Reader reader = new InputStreamReader(new FileInputStream(file), "UTF-8");
+		
+		do {
+		  read = reader.read(buffer, 0, buffer.length);
+		  if (read > 0) {
+		    out.append(buffer, 0, read);
+		  }
+		}
+		while (read >= 0);
+		
+		reader.close();
+		return out.toString();
+	}
+
+	// this function either deletes or pushes, based on existence of deleted tag
+	@Override
+	public void pushNotes(final ArrayList<Note> notes) {
+		if(notes.size() == 0)
+			return;
+		
+		for (Note note : notes) {
+			if(note.getTags().contains("system:deleted")) // deleted note
+				deleteNote(note.getGuid());
+			else
+				pushNote(note);
+		}
+		finishSync(true);
+	}
+
+	// this function is a shell to allow backup function to push as well but send a different message... may not be necessary any more...
+	private void pushNote(Note note){
+		TLog.v(TAG, "pushing note to sdcard");
+		
+		int message = doPushNote(note);
+
+		sendMessage(message);
+	}
+
+	// actually pushes a note to sdcard, with optional subdirectory (e.g. backup)
+	private static int doPushNote(Note note) {
+
+		Note rnote = new Note();
+		try {
+			File path = new File(Tomdroid.NOTES_PATH);
+			
+			if (!path.exists())
+				path.mkdir();
+			
+			TLog.i(TAG, "Path {0} exists: {1}", path, path.exists());
+			
+			// Check a second time, if not the most likely cause is the volume doesn't exist
+			if(!path.exists()) {
+				TLog.w(TAG, "Couldn't create {0}", path);
+				return NO_SD_CARD;
+			}
+			
+			path = new File(Tomdroid.NOTES_PATH + "/"+note.getGuid() + ".note");
+	
+			note.createDate = note.toTomboyFormat(note.getLastChangeDate());
+			note.cursorPos = 0;
+			note.width = 0;
+			note.height = 0;
+			note.X = -1;
+			note.Y = -1;
+			
+			if (path.exists()) { // update existing note
+	
+				// Try reading the file first
+				String contents = "";
+				try {
+					final char[] buffer = new char[0x1000];
+					contents = readFile(path,buffer);
+				} catch (IOException e) {
+					e.printStackTrace();
+					TLog.w(TAG, "Something went wrong trying to read the note");
+					return PARSING_FAILED;
+				}
+	
+				try {
+					// Parsing
+			    	// XML 
+			    	// Get a SAXParser from the SAXPArserFactory
+			        SAXParserFactory spf = SAXParserFactory.newInstance();
+			        SAXParser sp = spf.newSAXParser();
+			
+			        // Get the XMLReader of the SAXParser we created
+			        XMLReader xr = sp.getXMLReader();
+	
+			        // Create a new ContentHandler, send it this note to fill and apply it to the XML-Reader
+			        NoteHandler xmlHandler = new NoteHandler(rnote);
+			        xr.setContentHandler(xmlHandler);
+	
+			        // Create the proper input source
+			        StringReader sr = new StringReader(contents);
+			        InputSource is = new InputSource(sr);
+			        
+					TLog.d(TAG, "parsing note. filename: {0}", path.getName());
+					xr.parse(is);
+	
+				// TODO wrap and throw a new exception here
+				} catch (Exception e) {
+					e.printStackTrace();
+					if(e instanceof TimeFormatException) TLog.e(TAG, "Problem parsing the note's date and time");
+					return PARSING_FAILED;
+				}
+	
+				note.createDate = rnote.createDate;
+				note.cursorPos = rnote.cursorPos;
+				note.width = rnote.width;
+				note.height = rnote.height;
+				note.X = rnote.X;		
+				note.Y = rnote.Y;
+				
+				note.setTags(rnote.getTags());
+			}
+			
+			String xmlOutput = note.getXmlFileString();
+			
+			path.createNewFile();
+			FileOutputStream fOut = new FileOutputStream(path);
+			OutputStreamWriter myOutWriter = 
+									new OutputStreamWriter(fOut);
+			myOutWriter.append(xmlOutput);
+			myOutWriter.close();
+			fOut.close();	
+	
+		}
+		catch (Exception e) {
+			TLog.e(TAG, "push to sd card didn't work");
+			return NOTE_PUSH_ERROR;
+		}
+		return NOTE_PUSHED;
+	}
+
+	private void deleteNote(String guid){
+		try {
+			File path = new File(Tomdroid.NOTES_PATH + "/" + guid + ".note");
+			path.delete();
+		}
+		catch (Exception e) {
+			TLog.e(TAG, "delete from sd card didn't work");
+			sendMessage(NOTE_DELETE_ERROR);
+			return;
+		}
+		sendMessage(NOTE_DELETED);
+
+	}
+	
+	// pull note used for revert
+	@Override
+	protected void pullNote(String guid) {
+		// start loading local notes
+		TLog.v(TAG, "pulling remote note");
+		
+		File path = new File(Tomdroid.NOTES_PATH);
+		
+		if (!path.exists())
+			path.mkdir();
+		
+		TLog.i(TAG, "Path {0} exists: {1}", path, path.exists());
+		
+		// Check a second time, if not the most likely cause is the volume doesn't exist
+		if(!path.exists()) {
+			TLog.w(TAG, "Couldn't create {0}", path);
+			sendMessage(NO_SD_CARD);
+			return;
+		}
+		
+		path = new File(Tomdroid.NOTES_PATH + "/" + guid + ".note");
+
+		syncInThread(new Worker(path, false, false));
+		
+	}
+	
+	// backup function accessed via preferences
+	@Override
+	public void backupNotes() {
+		Note[] notes = NoteManager.getAllNotesAsNotes(activity, true);
+		if(notes != null && notes.length > 0) 
+			for(Note note : notes)
+				doPushNote(note);
+		sendMessage(NOTES_BACKED_UP);
+	}
+
+	// auto backup function on save
+	public static void backupNote(Note note) {
+		doPushNote(note);
+	}
+	
+	@Override
+	public void finishSync(boolean refresh) {
+		// delete leftover local notes
+		NoteManager.purgeDeletedNotes(activity);
+		
+		Time now = new Time();
+		now.setToNow();
+		String nowString = now.format3339(false);
+		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, nowString);
+
+		setSyncProgress(100);
+		if (refresh)
+			sendMessage(PARSING_COMPLETE);
+	}
+
+	@Override
+	public void deleteAllNotes() {
+		try {
+			File path = new File(Tomdroid.NOTES_PATH);
+			File[] fileList = path.listFiles(new NotesFilter());
+			
+			for(int i = 0; i < fileList.length-1; i++) {
+				fileList[i].delete();
+	        }
+		}
+		catch (Exception e) {
+			TLog.e(TAG, "delete from sd card didn't work");
+			sendMessage(NOTE_DELETE_ERROR);
+			return;
+		}
+		TLog.d(TAG, "notes deleted from SD Card");
+		sendMessage(REMOTE_NOTES_DELETED);
+	}
+
+	@Override
+	protected void localSyncComplete() {
 	}
 }

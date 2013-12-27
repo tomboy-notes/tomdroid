@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ Tomdroid
+ Tomboy on Android
+ http://www.launchpad.net/tomdroid
+
+ Copyright 2009, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
+ 
+ This file is part of Tomdroid.
+ 
+ Tomdroid is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Tomdroid is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+   	<item 
+		android:icon="@android:drawable/ic_menu_add"
+		android:title="@string/menuNew"
+       	android:showAsAction="always|withText"
+        android:orderInCategory="1"
+		android:id="@+id/menuNew"
+		/>
+    <item android:id="@+id/menuEdit"
+		android:icon="@android:drawable/ic_menu_edit"
+		android:title="@string/edit"
+        android:orderInCategory="2"
+		android:showAsAction="ifRoom|withText" 
+		/>
+    <item android:id="@+id/menuDelete"
+          android:icon="@android:drawable/ic_menu_delete"
+          android:title="@string/delete"
+          android:orderInCategory="3"
+          android:showAsAction="ifRoom|withText" 
+          />
+    <item 
+		android:icon="@drawable/ic_menu_sync"
+		android:title="@string/menuSync"
+       	android:showAsAction="always|withText"
+        android:orderInCategory="4"
+		android:id="@+id/menuSync"/>
+   	<item 
+		android:icon="@android:drawable/ic_menu_sort_by_size"
+		android:title="@string/sortByDate"
+       	android:showAsAction="ifRoom|withText"
+        android:orderInCategory="5"
+		android:id="@+id/menuSort"/>
+	<item 
+		android:icon="@android:drawable/ic_menu_revert"
+		android:title="@string/menuRevert"
+		android:id="@+id/menuRevert"/>   	
+	<item 
+		android:icon="@android:drawable/ic_menu_search"
+		android:title="@string/menuSearch"
+        android:showAsAction="ifRoom|withText"
+        android:orderInCategory="6"
+		android:id="@+id/menuSearch"/>
+	<item 
+		android:title="@string/menuImport"
+		android:icon="@android:drawable/ic_menu_upload"
+       	android:showAsAction="never"
+        android:orderInCategory="7"
+		android:id="@+id/menuImport"/>
+	<item 
+		android:icon="@android:drawable/ic_menu_info_details"
+		android:title="@string/menuAbout"
+       	android:showAsAction="never|withText"
+        android:orderInCategory="8"
+		android:id="@+id/menuAbout"/>
+	<item 
+		android:icon="@android:drawable/ic_menu_preferences"
+		android:title="@string/menuPrefs"
+       	android:showAsAction="never|withText"
+        android:orderInCategory="9"
+		android:id="@+id/menuPrefs"/>
+
+</menu>

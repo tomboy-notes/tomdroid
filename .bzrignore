@@ -1,4 +1,4 @@
-bin
+bin/
 src/org/tomdroid/R.java
 sdcard.img.private
 gen/*

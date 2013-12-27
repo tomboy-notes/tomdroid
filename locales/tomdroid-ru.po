@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tomdroid\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-03-15 00:06+0100\n"
-"PO-Revision-Date: 2012-04-07 21:11+0000\n"
-"Last-Translator: Alex Mr.Brightside Demurine <extrimall90@mail.ru>\n"
+"POT-Creation-Date: 2013-10-25 14:49+0200\n"
+"PO-Revision-Date: 2013-10-28 13:34+0000\n"
+"Last-Translator: Валерий Рябошапко <valera@creator.su>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-03-14 23:16+0000\n"
-"X-Generator: Launchpad (build 16532)\n"
+"X-Launchpad-Export-Date: 2013-12-21 09:29+0000\n"
+"X-Generator: Launchpad (build 16872)\n"
 
 #. application details
 #: tmp_strings.xml:27(string)
@@ -23,11 +23,8 @@ msgid "Tomdroid"
 msgstr "Tomdroid"
 
 #: tmp_strings.xml:28(string)
-msgid ""
-"Tomboy compatible wikiwiki note-taking application that can't take notes yet."
-msgstr ""
-"Совместимое с Tomdroid wikiwiki приложение для просмотра заметок, которое "
-"пока не может хранить их"
+msgid "Tomboy compatible wikiwiki note-taking app."
+msgstr "Tomboy-совместимое приложение для заметок с wikiwiki разметкой."
 
 #: tmp_strings.xml:29(string)
 msgid "Olivier Bilodeau"
@@ -35,109 +32,122 @@ msgstr "Olivier Bilodeau"
 
 #. main.xml
 #: tmp_strings.xml:32(string)
-msgid "Please wait while the notes load.."
-msgstr "Пожалуйста, подождите, пока заметки загружаются.."
+msgid "Please wait while the notes load…"
+msgstr "Пожалуйста, подождите, пока заметки загрузятся…"
 
 #: tmp_strings.xml:33(string)
 msgid "There are no notes in Tomdroid's database."
 msgstr "В базе данных Tomdroid заметок нет."
 
-#: tmp_strings.xml:35(string)
+#. Menu entry with icon
+#: tmp_strings.xml:36(string)
 msgid "Sync"
 msgstr "Синхронизация"
 
-#: tmp_strings.xml:36(string)
+#. Menu entry with icon
+#: tmp_strings.xml:38(string)
 msgid "Settings"
 msgstr "Настройки"
 
-#: tmp_strings.xml:37(string)
+#. Menu entry with icon
+#: tmp_strings.xml:40(string)
 msgid "About"
 msgstr "О программе"
 
-#: tmp_strings.xml:38(string)
+#. Title of an alert box
+#: tmp_strings.xml:42(string)
 msgid "Warning"
 msgstr "Внимание"
 
-#: tmp_strings.xml:39(string)
+#: tmp_strings.xml:43(string)
 msgid "About Tomdroid"
 msgstr "О Tomdroid"
 
-#: tmp_strings.xml:40(string)
+#. First start alert box
+#: tmp_strings.xml:45(string)
 msgid ""
 "Welcome to Tomdroid.\\n\\nPlease note that this is beta quality software and "
-"that it contains known problems, like its inability to edit notes.\\n\\nWe "
-"are well aware of these issues and intend to work on them quickly but I also "
-"wanted to get something out and tested as quickly as possible.\\n\\nIf you "
-"would like to contribute, help at all levels would be appreciated. Hop on "
-"board on launchpad.net/tomdroid and contact us!\\n"
+"that it contains known problems.\\n\\nWe are well aware of these issues and "
+"intend to work on them quickly but I also wanted to get something out and "
+"tested as quickly as possible.\\n\\nIf you would like to contribute, help at "
+"all levels would be appreciated. Hop on board on launchpad.net/tomdroid and "
+"contact us!\\n"
 msgstr ""
-"Добро пожаловать в Tombodroid.\\n\\nПожалуйста, заметьте, что это программа "
-"на beta-стадии, и она содержит некоторые известные проблемы (такие как "
-"невозможность редактирования заметок).\\n\\nМы осведомлены об этих проблемах "
-"и планируем исправлять их быстро, но я также хотел бы получать что-то и "
-"тестировать как можно скорее.\\n\\nЕсли вы хотите сделать свой вклад, ваша "
-"помощь на всех уровнях будет оценена. Зайдите на launchpad.net/tomdroid и "
-"свяжитесь с нами!\\n"
+"Добро пожаловать в tomdroid.\\n\\nПожалуйста, учитывайте, что это beta-"
+"версия и в ней есть ошибки.\\n\\nМы осведомлены о них и работаем над их "
+"быстрейшим устранением, однако также я хотел бы получать отзывы о "
+"тестировании настолько быстро, насколько это возможно.\\n\\nЕсли вы хотите "
+"внести свой вклад, то он будет ценен в любом виде. Свяжитесь с нами на "
+"launchpad.net/tomdroid\\n"
 
-#: tmp_strings.xml:41(string)
+#. \n\n are linebreaks, %1$s etc are the name of the Author, the version and the license name
+#: tmp_strings.xml:47(string)
 msgid "%1$s\\n\\nAuthor: %2$s\\nVersion: %3$s\\nLicensed under the GPLv3"
 msgstr "%1$s\\n\\nАвтор: %2$s\\nВерсия: %3$s\\nЛицензия GPLv3"
 
-#. TODO aren't these available somewhere else? like in the SDK? //
-#: tmp_strings.xml:44(string)
+#. positive Button
+#: tmp_strings.xml:50(string)
 msgid "OK"
 msgstr "Ок"
 
-#: tmp_strings.xml:45(string)
+#. negative Button
+#: tmp_strings.xml:52(string) tmp_strings.xml:280(string)
 msgid "Cancel"
 msgstr "Отмена"
 
-#: tmp_strings.xml:46(string)
+#. Button
+#: tmp_strings.xml:54(string) tmp_strings.xml:279(string)
 msgid "Close"
 msgstr "Закрыть"
 
-#: tmp_strings.xml:47(string)
+#. Button
+#: tmp_strings.xml:56(string)
 msgid "Project page"
 msgstr "Сайт проекта"
 
-#: tmp_strings.xml:48(string)
-msgid "Save to SD card"
-msgstr "Сохранить на SD карту"
+#: tmp_strings.xml:57(string) tmp_strings.xml:162(string)
+msgid "Save"
+msgstr "Сохранить"
 
 #. note-view.xml
-#: tmp_strings.xml:51(string)
-msgid "Please wait while note loads..."
-msgstr "Пожалуйста, подождите, пока заметка загружается.."
+#: tmp_strings.xml:60(string)
+msgid "Please wait while note loads…"
+msgstr "Пожалуйста, подождите, пока заметки загрузятся…"
 
-#: tmp_strings.xml:53(string)
-msgid "Synchronization"
-msgstr "Синхронизация"
-
-#: tmp_strings.xml:54(string)
+#: tmp_strings.xml:62(string)
 msgid "Service"
 msgstr "Сервис"
 
-#: tmp_strings.xml:55(string)
+#: tmp_strings.xml:63(string)
 msgid "Server"
 msgstr "Сервер"
 
-#: tmp_strings.xml:56(string)
+#: tmp_strings.xml:64(string)
 msgid "SD Card"
 msgstr "SD карта"
 
-#: tmp_strings.xml:57(string)
+#: tmp_strings.xml:65(string)
 msgid "Online Synchronization"
 msgstr "Онлайн синхронизация"
 
-#: tmp_strings.xml:58(string)
+#: tmp_strings.xml:66(string)
 msgid "Authenticate"
 msgstr "Аутентификация"
 
-#: tmp_strings.xml:59(string)
+#: tmp_strings.xml:67(string)
 msgid "Location on SD Card"
-msgstr "Расположенно на SD карте"
+msgstr "Расположение на SD карте"
 
-#: tmp_strings.xml:60(string)
+#: tmp_strings.xml:68(string)
+msgid "Autosync on Startup"
+msgstr "Автоматическая синхронизация при запуске"
+
+#: tmp_strings.xml:69(string)
+msgid "Synchronise your notes on appstart"
+msgstr "Синхронизировать заметки при запуске программы"
+
+#. %1$s will be repaced by the folder name eg /tomdroid
+#: tmp_strings.xml:71(string)
 msgid ""
 "The folder \\\"%1$s\\\" does not exist yet. Please connect your device to "
 "the computer, create the folder and fill it with *.note files."
@@ -145,16 +155,21 @@ msgstr ""
 "Папка \\\"%1$s\\\" ещё не существует. Пожалуйста, подсоедините Ваше "
 "устройство к компьютеру, создайте папку и заполните её *.note файлами."
 
-#: tmp_strings.xml:61(string)
-msgid "\\\"%1$s\\\" contains invalid characters.\\nPlease try again!"
-msgstr ""
-"\\\"%1$s\\\" содержит неверные символы.\\n Пожалуйста, попробуйте снова!"
+#. %1$s will be repaced by the folder name eg /testfolder
+#: tmp_strings.xml:73(string)
+msgid "\\\"%1$s\\\" is not a valid folder location. Please try again!"
+msgstr "\\\"%1$s\\\" неправильный адрес папки. Пожалуйста, попробуйте снова!"
 
-#: tmp_strings.xml:63(string)
-msgid "Completing authentication. Please wait..."
-msgstr "Завершение аутентификации. Подождите..."
+#. %1$s will be replaced with an text entry the user had done
+#: tmp_strings.xml:75(string)
+msgid "\\\"%1$s\\\" is not a valid entry. Please try again!"
+msgstr "\\\"%1$s\\\" неправильный ввод. Пожалуйста, попробуйте снова!"
 
-#: tmp_strings.xml:64(string)
+#: tmp_strings.xml:76(string)
+msgid "Completing authentication. Please wait…"
+msgstr "Совершается авторизация. Пожалуйста, подождите..."
+
+#: tmp_strings.xml:77(string)
 msgid ""
 "The connection to the server has failed, please check that the address you "
 "entered is correct."
@@ -162,31 +177,33 @@ msgstr ""
 "Подключение к серверу не удалось, проверьте правильность введенного вами "
 "адреса."
 
-#: tmp_strings.xml:65(string)
+#: tmp_strings.xml:78(string)
 msgid "The server address changed but the new value is empty"
 msgstr "Адрес сервера изменен, но новое значение пустое"
 
-#: tmp_strings.xml:67(string)
+#: tmp_strings.xml:80(string)
 msgid "Choose the sync service to use"
 msgstr "Выберите Сервис Синхронизации для использования"
 
-#: tmp_strings.xml:68(string)
+#. %1$s will be replaced with "Online Synchronisation", "SD Card",...
+#: tmp_strings.xml:82(string)
 msgid "Synchronization with %1$s is complete."
 msgstr "Синхронизация с %1$s завершена."
 
-#: tmp_strings.xml:69(string)
+#. %1$s will be replaced with "SD Card",...
+#: tmp_strings.xml:84(string)
 msgid "No notes found on %1$s."
 msgstr "Не найдено записей в %1$s."
 
-#: tmp_strings.xml:70(string)
+#: tmp_strings.xml:85(string)
 msgid "You are not connected to the Internet."
 msgstr "Вы не подключены к Интернету."
 
-#: tmp_strings.xml:71(string)
+#: tmp_strings.xml:86(string)
 msgid "Sync already in progress"
 msgstr "Синхронизация уже выполняется"
 
-#: tmp_strings.xml:72(string)
+#: tmp_strings.xml:87(string)
 msgid ""
 "There was an error trying to parse your note collection. If you are able to "
 "replicate the problem, please contact us!"
@@ -194,15 +211,17 @@ msgstr ""
 "Произошла ошибка при попытке разбора вашей коллекции заметок. Если вы можете "
 "воспроизвести эту проблему, пожалуйста, свяжитесь с нами!"
 
-#: tmp_strings.xml:73(string)
+#. Altert box header
+#: tmp_strings.xml:89(string)
 msgid "Error"
 msgstr "Ошибка"
 
-#: tmp_strings.xml:74(string)
+#. Altert box header
+#: tmp_strings.xml:91(string)
 msgid "No Such Note"
 msgstr "Нет такой заметки"
 
-#: tmp_strings.xml:75(string)
+#: tmp_strings.xml:92(string)
 msgid ""
 "The requested note could not be found. Maybe it was deleted or removed "
 "through synchronization."
@@ -210,138 +229,772 @@ msgstr ""
 "Запрашиваемая заметка не может быть найдена. Может быть она была удалена или "
 "перемещена во время синхронизации."
 
-#: tmp_strings.xml:76(string)
-msgid ""
-"The requested note could not be parsed. If you are able to replicate the "
-"problem, please contact us!"
-msgstr ""
-"Запрашиваемая заметка не может быть проанализирована. Если Вы сможете её "
-"скопировать, пожалуйста, свяжитесь с нами!"
+#: tmp_strings.xml:93(string)
+msgid "Error parsing note."
+msgstr "Ошибка анализа заметки."
 
-#: tmp_strings.xml:77(string)
-msgid "Could not save the errors, please check your SD card."
-msgstr "Невозможно сохранить ошибки, пожалуйста проверьте вашу SD карту."
+#: tmp_strings.xml:94(string)
+msgid "Could not save note."
+msgstr "Не удалось сохранить заметку."
 
-#: tmp_strings.xml:78(string)
-msgid "SD card not found."
-msgstr "SD карта не найдена."
+#: tmp_strings.xml:95(string)
+msgid "SDCard storage not found."
+msgstr "SD карта не обнаружена."
 
 #. NoteSorting
-#: tmp_strings.xml:81(string)
-msgid "Change Sort"
-msgstr "Изменить метод сортировки."
+#: tmp_strings.xml:98(string)
+msgid "Choose default sorting method"
+msgstr "Выберите метод сортировки заметок по умолчанию"
 
-#: tmp_strings.xml:82(string)
-msgid "Choose the default sorting"
-msgstr "Выберите стандартный метод сортировки"
+#: tmp_strings.xml:99(string)
+msgid "Default Sort Method"
+msgstr "Метод сортировки заметок по умолчанию"
 
-#: tmp_strings.xml:83(string)
-msgid "Default sort"
-msgstr "Стандартный метод сортировки"
+#: tmp_strings.xml:100(string)
+msgid "Sort By:"
+msgstr "Упорядочить по:"
+
+#: tmp_strings.xml:101(string)
+msgid "Date Modified"
+msgstr "Дата изменения"
+
+#: tmp_strings.xml:102(string)
+msgid "Note Title"
+msgstr "Заголовок заметки"
+
+#: tmp_strings.xml:103(string)
+msgid "Sort by Date"
+msgstr "Упорядочить по дате"
+
+#: tmp_strings.xml:104(string)
+msgid "Sort by Title"
+msgstr "Упорядочить по заголовкам"
 
 #. NotebookFiltering
-#: tmp_strings.xml:86(string)
+#: tmp_strings.xml:107(string)
 msgid "Filter"
 msgstr "Фильтр"
 
-#: tmp_strings.xml:87(string)
+#: tmp_strings.xml:108(string)
 msgid "There are no notebooks in the database."
 msgstr "В базе данных нет блокнотов."
 
-#: tmp_strings.xml:88(string)
+#: tmp_strings.xml:109(string)
 msgid "All notebooks"
 msgstr "Все блокноты"
 
 #. List Longpress Menu
-#: tmp_strings.xml:91(string)
+#: tmp_strings.xml:112(string)
 msgid "View"
 msgstr "Просмотреть"
 
-#: tmp_strings.xml:92(string)
+#: tmp_strings.xml:113(string)
 msgid "Note Options"
 msgstr "Настройки заметок"
 
-#: tmp_strings.xml:93(string)
+#: tmp_strings.xml:114(string)
 msgid "Send"
 msgstr "Отправить"
 
-#. Search
-#: tmp_strings.xml:96(string)
+#. Text in input field for search
+#: tmp_strings.xml:118(string)
 msgid "Search Notes"
 msgstr "Поиск заметок"
 
-#: tmp_strings.xml:97(string)
+#. Preferences Field in global search to include notes
+#: tmp_strings.xml:120(string)
 msgid "Text in your notes"
 msgstr "Текст в ваших заметках"
 
-#: tmp_strings.xml:98(string)
+#. %s will be replaced with the search string
+#: tmp_strings.xml:122(string)
 msgid "No notes found for \\\"%s\\\""
 msgstr "Нет заметок с  \\\"%s\\\""
 
-#: tmp_strings.xml:99(string)
+#: tmp_strings.xml:123(string)
 msgid "Search"
 msgstr "Поиск"
 
-#: tmp_strings.xml:100(string)
-msgid "Search Options"
-msgstr "Настройки поиска"
-
-#: tmp_strings.xml:101(string)
+#: tmp_strings.xml:124(string)
 msgid "Search Results:"
 msgstr "Результаты поиска:"
 
-#: tmp_strings.xml:102(string)
+#: tmp_strings.xml:125(string)
 msgid "Clear search history"
 msgstr "Очистить историю поиска"
 
-#: tmp_strings.xml:103(string)
+#: tmp_strings.xml:126(string)
 msgid "Remove all the searches you have performed"
-msgstr "Удалить все совершенные поиски"
+msgstr "Очистить историю поиска"
 
-#: tmp_strings.xml:104(string)
+#: tmp_strings.xml:127(string)
 msgid "Search history has been cleared."
 msgstr "История поиска очищена"
 
 #. Date
-#: tmp_strings.xml:107(string)
+#: tmp_strings.xml:130(string)
 msgid "Modified:"
 msgstr "Изменен:"
 
-#: tmp_strings.xml:108(string)
+#: tmp_strings.xml:131(string)
 msgid "Today"
 msgstr "Сегодня"
 
-#: tmp_strings.xml:109(string)
+#: tmp_strings.xml:132(string)
 msgid "Yesterday"
 msgstr "Вчера"
 
-#. Shortcuts handling
-#: tmp_strings.xml:112(string)
+#. Header when picking a note for a new shortcut
+#: tmp_strings.xml:136(string)
 msgid "Choose a Note"
-msgstr "Выбрать Заметку"
+msgstr "Выбрать заметку"
 
-#: tmp_strings.xml:113(string)
+#: tmp_strings.xml:137(string)
 msgid "Tomdroid Note"
 msgstr "Заметка Tomdroid"
 
-#: tmp_strings.xml:114(string)
+#: tmp_strings.xml:138(string)
 msgid "Remove shortcut"
 msgstr "Удалить ярлык"
 
-#: tmp_strings.xml:115(string)
+#: tmp_strings.xml:139(string)
 msgid "Create shortcut"
 msgstr "Создать ярлык"
 
+#. deleteNote
+#: tmp_strings.xml:144(string)
+msgid "Delete"
+msgstr "Удалить"
+
+#: tmp_strings.xml:145(string)
+msgid "Delete Note"
+msgstr "Удалить заметку"
+
+#: tmp_strings.xml:146(string)
+msgid "Are you sure you want to delete this note?"
+msgstr "Вы уверены, что хотите удалить эту заметку?"
+
+#: tmp_strings.xml:147(string)
+msgid "Yes"
+msgstr "Да"
+
+#: tmp_strings.xml:148(string)
+msgid "No"
+msgstr "Нет"
+
+#: tmp_strings.xml:149(string) tmp_strings.xml:213(string)
+msgid "Clear Notes"
+msgstr "Удаление заметок"
+
+#: tmp_strings.xml:150(string)
+msgid "Are you sure you want to clear the notes database?"
+msgstr "Вы уверены, что хотите удалить заметки в базе данных?"
+
+#: tmp_strings.xml:151(string) tmp_strings.xml:215(string)
+msgid "Delete Remote Notes"
+msgstr "Удалить заметки на удалённом сервисе"
+
+#: tmp_strings.xml:152(string)
+msgid "Are you sure you want to delete all notes from the remote service?"
+msgstr "Вы уверены, что хотите удалить все заметки на удалённом сервисе?"
+
+#. newNote
+#: tmp_strings.xml:155(string)
+msgid "New"
+msgstr "Новый"
+
+#: tmp_strings.xml:156(string)
+msgid "New Note"
+msgstr "Новая заметка"
+
+#: tmp_strings.xml:157(string)
+msgid "Enter title here"
+msgstr "Введите здесь заголовок"
+
+#: tmp_strings.xml:158(string)
+msgid "Enter note here"
+msgstr "Опишите здесь заметку"
+
+#. editNote
+#: tmp_strings.xml:161(string)
+msgid "Edit"
+msgstr "Редактировать"
+
+#: tmp_strings.xml:163(string)
+msgid "Discard"
+msgstr "Отменить"
+
+#: tmp_strings.xml:164(string)
+msgid "Back"
+msgstr "Назад"
+
+#. B stands for bold (in format bar)
+#: tmp_strings.xml:166(string)
+msgid "B"
+msgstr "B"
+
+#. i stands for italic (in format bar)
+#: tmp_strings.xml:168(string)
+msgid "i"
+msgstr "i"
+
+#: tmp_strings.xml:170(strike)
+msgid "S"
+msgstr "S"
+
+#: tmp_strings.xml:171(string)
+msgid "monospace"
+msgstr "моноширинний"
+
+#: tmp_strings.xml:172(string)
+msgid "highlight"
+msgstr "подсветка"
+
+#. Button label to select font size
+#: tmp_strings.xml:174(string)
+msgid "size"
+msgstr "розмер"
+
+#: tmp_strings.xml:175(string)
+msgid "Error parsing note"
+msgstr "Ошибка анализа заметки"
+
+#: tmp_strings.xml:176(string)
+msgid "There was an error parsing the note. Please check your XML."
+msgstr ""
+"При анализе заметки имела место ошибка. Пожалуйста, ознакомьтесь с XML."
+
+#: tmp_strings.xml:177(string)
+msgid "Note saved locally."
+msgstr "Заметка сохранена в локальной базе данных."
+
+#: tmp_strings.xml:178(string)
+msgid "Note deleted locally."
+msgstr "Заметка удалена из локальной базы данных."
+
+#: tmp_strings.xml:179(string)
+msgid "Select text size"
+msgstr "Выберите размер текста."
+
+#: tmp_strings.xml:180(string)
+msgid "Small"
+msgstr "Маленький"
+
+#: tmp_strings.xml:181(string)
+msgid "Normal"
+msgstr "Нормальный"
+
+#: tmp_strings.xml:182(string)
+msgid "Large"
+msgstr "Большой"
+
+#: tmp_strings.xml:183(string)
+msgid "Huge"
+msgstr "Огромный"
+
+#: tmp_strings.xml:184(string)
+msgid ""
+"Do you really want to discard your changes and revert the note to the last "
+"saved version?"
+msgstr ""
+"Вы действительно хотите отменить изменения и откатиться к последней "
+"сохраненной версии заметки?"
+
+#: tmp_strings.xml:185(string)
+msgid "Discard Changes?"
+msgstr "Отклонить изменения?"
+
+#: tmp_strings.xml:187(b)
+msgid "&gt;"
+msgstr "&gt;"
+
+#: tmp_strings.xml:189(b)
+msgid "&lt;"
+msgstr "&lt;"
+
+#. New Titles
+#: tmp_strings.xml:192(string)
+msgid "Tomdroid - View Note"
+msgstr "Tomdroid - Просмотр заметки"
+
+#: tmp_strings.xml:193(string)
+msgid "Tomdroid - Edit Note"
+msgstr "Tomdroid - Редактирование заметки"
+
+#: tmp_strings.xml:194(string)
+msgid "Tomdroid - Search Results"
+msgstr "Tomdroid - Результат поиска"
+
+#: tmp_strings.xml:195(string)
+msgid "Tomdroid - Shortcuts"
+msgstr "Tomdroid - Ярлыки"
+
+#: tmp_strings.xml:196(string)
+msgid "Tomdroid - Settings"
+msgstr "Tomdroid - Настройки"
+
+#: tmp_strings.xml:197(string)
+msgid "Tomdroid - Note Conflict"
+msgstr "Tomdroid - Конфликт Записи"
+
+#: tmp_strings.xml:198(string)
+msgid "Tomdroid - Import Note"
+msgstr "Tomdroid - импорт заметок"
+
+#. subheader in settings
+#: tmp_strings.xml:202(string)
+msgid "Display Preferences"
+msgstr "Параметры отображения"
+
+#: tmp_strings.xml:203(string)
+msgid "Base Font Size"
+msgstr "Базовый размер шрифта"
+
+#. subheader in settings
+#: tmp_strings.xml:205(string)
+msgid "Synchronization"
+msgstr "Синхронизация"
+
+#. subheader in settings
+#: tmp_strings.xml:207(string)
+msgid "Tools"
+msgstr "инструменты"
+
+#: tmp_strings.xml:208(string)
+msgid "Save notes automatically on exiting editor."
+msgstr "Автоматически сохранять заметку при закрытии редактора."
+
+#: tmp_strings.xml:209(string)
+msgid "Show Deleted Notes"
+msgstr "Показать удалённые заметки"
+
+#: tmp_strings.xml:210(string)
+msgid "If checked, will show deleted notes in notes list."
+msgstr "Если включено, то будут отображаться удалённые заметки в списке"
+
+#: tmp_strings.xml:211(string)
+msgid "Show Note Templates"
+msgstr "Показывать шаблоны заметок"
+
+#: tmp_strings.xml:212(string)
+msgid "If checked, will show note templates in notes list."
+msgstr "Если включено, то шаблоны заметок отображаться в списке заметок."
+
+#: tmp_strings.xml:214(string)
+msgid "Clear all notes from local database"
+msgstr "Удалить все заметки из локальной базы данных"
+
+#: tmp_strings.xml:216(string)
+msgid "Delete all notes from remote service"
+msgstr "Удалить все заметки на удалённом сервисе"
+
+#: tmp_strings.xml:217(string)
+msgid "Illegal text size chosen. Please choose a number."
+msgstr "Неправильный выбор размера шрифта. Пожалуйста, введите число."
+
+#: tmp_strings.xml:218(string)
+msgid "Backup Notes"
+msgstr "Резервное копирование заметок"
+
+#: tmp_strings.xml:219(string)
+msgid "Copy all local notes to SD Card"
+msgstr "Копировать все заметки на устройсве на SD карту"
+
+#: tmp_strings.xml:220(string)
+msgid "Auto-Backup"
+msgstr "Автоматическое резервное копирование"
+
+#: tmp_strings.xml:221(string)
+msgid "Copy local note to SD Card on save"
+msgstr "Копирование локальных заметок на SD-карту для сохранения"
+
+#. subheader in settings
+#: tmp_strings.xml:223(string)
+msgid "Hyperlink Preferences"
+msgstr "Параметры гиперссылок"
+
+#. Checkbox in settings
+#: tmp_strings.xml:225(string)
+msgid "Link Titles"
+msgstr "Ссылки на заметки"
+
+#. Description for checkbox in settings
+#: tmp_strings.xml:227(string)
+msgid "Link to other note titles"
+msgstr "Создавать ссылки из названий заметок"
+
+#. Checkbox in settings
+#: tmp_strings.xml:229(string)
+msgid "Link Web Addresses\""
+msgstr "Ссылки на Web"
+
+#. Description for checkbox in settings
+#: tmp_strings.xml:231(string)
+msgid "e.g. \"www.google.com\""
+msgstr "напр. «www.google.com»"
+
+#. Checkbox in settings
+#: tmp_strings.xml:233(string)
+msgid "Link Emails"
+msgstr "Ссылки на электронную почту"
+
+#. Description for checkbox in settings
+#: tmp_strings.xml:235(string)
+msgid "e.g. name@address.com"
+msgstr "напр. «name@address.com»"
+
+#. Checkbox in settings
+#: tmp_strings.xml:237(string)
+msgid "Link Telephone Numbers"
+msgstr "Ссылки на номера телефонов"
+
+#. Description for checkbox in settings
+#: tmp_strings.xml:239(string)
+msgid "Link telephone numbers to phone app"
+msgstr "Создавать ссылки для запуска приложения телефона"
+
+#. Checkbox in settings
+#: tmp_strings.xml:241(string)
+msgid "Link Map Addresses"
+msgstr "Ссылки на адреса"
+
+#. Description for checkbox in settings
+#: tmp_strings.xml:243(string)
+msgid "Link addresses to maps app"
+msgstr "Создавать ссылки для запуска приложения карт"
+
+#. %1$s will be replaced with "Online Synchronisation", "SD card",...
+#: tmp_strings.xml:248(string)
+msgid "Syncing with %1$s"
+msgstr "Синхронизация %1$s"
+
+#: tmp_strings.xml:249(string)
+msgid "connecting to service…"
+msgstr "Соединение с сервисом..."
+
+#: tmp_strings.xml:250(string)
+msgid "getting list of remote notes…"
+msgstr "Получение списка заметок с удалённого сервиса..."
+
+#: tmp_strings.xml:251(string)
+msgid "updating local notes…"
+msgstr "Обновление локальных заметок..."
+
+#: tmp_strings.xml:252(string)
+msgid "updating remote notes…"
+msgstr "Обновление заметок на удалённом сервисе..."
+
+#: tmp_strings.xml:253(string)
+msgid "There was a conflict syncing the note '%1$s'"
+msgstr "Произошел конфликт синхронизации записи '%1$s'"
+
+#: tmp_strings.xml:254(string)
+msgid ""
+"Please choose an action to resolve the conflict. You may edit either note "
+"before choosing, or view the difference by clicking on the labels below."
+msgstr ""
+"Пожалуйста, выберите действие по урегулированию конфликта. Вы можете или "
+"редактировать запись, перед выбором или просмотреть разницу, нажав на ярлыке "
+"ниже."
+
+#: tmp_strings.xml:255(string)
+msgid ""
+"The local version was already deleted. Please choose from one of the actions "
+"below."
+msgstr ""
+"Локальная версия уже была удалена. Пожалуйста, выберите одно из действий "
+"ниже."
+
+#: tmp_strings.xml:256(string)
+msgid ""
+"A note with that title already exists in the database. Please choose an "
+"action to resolve the conflict. You may edit either note before choosing, or "
+"view the difference by clicking on the labels below."
+msgstr ""
+"Запись с таким названием уже существует в базе данных. Пожалуйста, выберите "
+"действие по урегулированию конфликта. Вы можете либо редактировать записку, "
+"перед выбором или просмотреть разницу, нажав на ярлыке ниже."
+
+#. Button (keep short!)
+#: tmp_strings.xml:258(string)
+msgid "Overwrite\\nRemote"
+msgstr "Перезаписать\\nверсию на удалённом сервисе"
+
+#. Button (keep short!)
+#: tmp_strings.xml:260(string)
+msgid "Overwrite\\nLocal"
+msgstr "Перезаписать\\nлокальную версию"
+
+#. Button (keep short!)
+#: tmp_strings.xml:262(string)
+msgid "Delete\\nRemote"
+msgstr "Удалить\\nВерсия на удалённом сервисе"
+
+#. Button (keep short!)
+#: tmp_strings.xml:264(string)
+msgid "Create\\nCopy"
+msgstr "Создать\\nКопировать"
+
+#. subheader in Conflict Dialouge (keep short!)
+#: tmp_strings.xml:266(string)
+msgid "Difference Between Files"
+msgstr "Различия между файлами"
+
+#: tmp_strings.xml:267(string)
+msgid "-- Title Differences --"
+msgstr "-- Различия в заголовке --"
+
+#: tmp_strings.xml:268(string)
+msgid "-- Content Differences --"
+msgstr "-- Различия в содержании --"
+
+#. %1$s will be replaced with a number.
+#: tmp_strings.xml:270(string)
+msgid "Line %1$s:"
+msgstr "Строка %1$s:"
+
+#. subheader in Conflict Dialouge (keep short!)
+#: tmp_strings.xml:272(string)
+msgid "Local Version"
+msgstr "Локальная версия"
+
+#. subheader in Conflict Dialouge (keep short!)
+#: tmp_strings.xml:274(string)
+msgid "Remote Version"
+msgstr "Версия на удалённом сервисе"
+
+#: tmp_strings.xml:275(string)
+msgid "Deleted"
+msgstr "Удалено"
+
+#. %1$s will be replaced with a note title.
+#: tmp_strings.xml:278(string)
+msgid "%1$s (old)"
+msgstr "%1$s (старая версия)"
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:282(string)
+msgid "Authorization with %1$s successful."
+msgstr "Авторизация через %1$s совершена."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:284(string)
+msgid "Authorization with %1$s failed. Try again later!"
+msgstr "Авторизация на сайте %1$s не удалось. Попробуйте позже!"
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:286(string)
+msgid "Note deleted from %1$s successfully."
+msgstr "Заметка удалена с %1$s."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:288(string)
+msgid "Note sent to %1$s successfully."
+msgstr "Заметка отправлена через %1$s."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:290(string)
+msgid "Note received from %1$s successfully."
+msgstr "Получена заметка с %1$s."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:292(string)
+msgid "Error deleting note from %1$s."
+msgstr "Ошибка удаления заметки с %1$s."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:294(string)
+msgid "Error sending note to %1$s."
+msgstr "Ошибка отправки заметки через %1$s."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:296(string)
+msgid "Error receiving note from %1$s."
+msgstr "Ошибка приёма заметки с %1$s."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:298(string)
+msgid "Error parsing response from %1$s."
+msgstr "Ошибка при разборе ответа от %1$s."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:300(string)
+msgid ""
+"Error connecting to %1$s. You probably need to authenticate in \"Settings\"."
+msgstr ""
+"Ошибка подключения к  %1$s. Вам, наверное, нужно проверить авторизацию в "
+"\"Настройках\"."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:302(string)
+msgid "Notes deleted from %1$s successfully."
+msgstr "Заметка удалена с %1$s."
+
+#. %1$s will be replaced with "Online Synchronization", "SD Card"...
+#: tmp_strings.xml:304(string)
+msgid "Sync with %1$s cancelled."
+msgstr "Синхронизация с %1$s отменена."
+
+#. menu items
+#: tmp_strings.xml:308(string)
+msgid "Edit Tags"
+msgstr "Редактировать теги"
+
+#: tmp_strings.xml:309(string)
+msgid "Revert"
+msgstr "Откатить"
+
+#. %1$s will be replaced with note-tag names
+#: tmp_strings.xml:311(string)
+msgid "Note '%1$s' Tags"
+msgstr "Заметка '%1$s' теперь с тегом"
+
+#: tmp_strings.xml:312(string)
+msgid "Edit the tags below, separating with commas"
+msgstr "Редактировать теги ниже, разделяя запятыми"
+
+#: tmp_strings.xml:313(string)
+msgid "Undelete Note"
+msgstr "Воссстановить заметку"
+
+#. menu item with icon
+#: tmp_strings.xml:315(string)
+msgid "Import Note"
+msgstr "Импорт Заметки"
+
+#. menu item with icon
+#: tmp_strings.xml:320(string)
+msgid "Revert All"
+msgstr "Откатить всё"
+
+#: tmp_strings.xml:321(string)
+msgid "Revert Notes"
+msgstr "Откатить заметки"
+
+#: tmp_strings.xml:322(string)
+msgid ""
+"This will revert your local notes to whatever versions exist on the remote "
+"service. Are you sure you want to do this?"
+msgstr ""
+"Это откатит ваши заметки на устройсве к версии, существующей на удаленном "
+"сервисе. Вы уверены, что хотите это сделать?"
+
+#: tmp_strings.xml:323(string)
+msgid "Revert Note"
+msgstr "Откат заметки"
+
+#: tmp_strings.xml:324(string)
+msgid ""
+"This will revert a local note to whatever version exist on the remote "
+"service. Are you sure you want to do this?"
+msgstr ""
+"Это откатит вашу заметку на устройсве к версии, существующей на удаленном "
+"сервисе. Вы уверены, что хотите это сделать?"
+
+#. backup notes
+#: tmp_strings.xml:328(string)
+msgid "Backup Notes?"
+msgstr "Выполнить резервное копирование заметок"
+
+#: tmp_strings.xml:329(string)
+msgid ""
+"Copy all local notes to SD Card? This may overwrite existing notes on the SD "
+"Card."
+msgstr ""
+"Скопировать все заметки на устройстве в SD-карту? Они могут заместить "
+"существующие заметки на SD-карте."
+
+#: tmp_strings.xml:330(string)
+msgid "Restore Notes"
+msgstr "Восстановление заметок из резервоной копии"
+
+#: tmp_strings.xml:331(string)
+msgid "Restore Notes?"
+msgstr "Восстановить заметки из резервоной копии?"
+
+#: tmp_strings.xml:332(string)
+msgid "Pull all notes from SD Card? This may overwrite your existing notes."
+msgstr ""
+"Вытащить все записи из SD-карты? Они могут заместить заметки в памяти "
+"устройства."
+
+#: tmp_strings.xml:333(string)
+msgid "Notes backed up to SD card successfully."
+msgstr "Резервное копирование на SD-карту успешно выполнено."
+
+#: tmp_strings.xml:334(string)
+msgid "Notes restored from SD card successfully."
+msgstr ""
+"Восстановление заметок из резервной копии на SD-карте успешно выполнено."
+
+#: tmp_strings.xml:335(string)
+msgid "Notes cleared successfully."
+msgstr "Очистка заметок успешно выполнена."
+
+#. send and receive notes
+#: tmp_strings.xml:339(string)
+msgid "Choose Send Method"
+msgstr "Выберите метод отправки"
+
+#: tmp_strings.xml:340(string)
+msgid "How would you like to send the note?"
+msgstr "Как бы выхотели передать заметку?"
+
+#: tmp_strings.xml:341(string)
+msgid "As Text"
+msgstr "Как текстовое сообщение"
+
+#: tmp_strings.xml:342(string)
+msgid "As File"
+msgstr "Как файл"
+
+#: tmp_strings.xml:343(string)
+msgid ""
+"The note already exists in the database. Please choose an action to resolve "
+"the conflict. You may edit either note before choosing, or view the "
+"difference by clicking on the labels below."
+msgstr ""
+"Записка уже существует в базе данных. Пожалуйста, выберите действия по "
+"урегулированию конфликта. Вы можете или редактировать записку перед выбором "
+"или просмотреть разницу, нажав на ярлыке ниже."
+
+#. Button (keep short!)
+#: tmp_strings.xml:345(string)
+msgid "Cancel\\nImport"
+msgstr "Отмена\\nИмпорт"
+
+#: tmp_strings.xml:346(string)
+msgid "File exceeds maximum import size - are you sure it is plain text?"
+msgstr ""
+"Файл превышает максимально возможный размер импорта - вы уверены, что это "
+"обычный текст?"
+
+#: tmp_strings.xml:347(string)
+msgid "Cannot read the note file."
+msgstr "Неможливо прочитати файл запису."
+
+#: tmp_strings.xml:348(string)
+msgid "No files or directories"
+msgstr "Не найден файл или папка"
+
+#: tmp_strings.xml:349(string)
+msgid ""
+"Choose a file below that is either a Tomboy note file (which will be "
+"imported) or a plain text file (which will create a new note):"
+msgstr ""
+"Выберите файл ниже, который будет импортирован (как Tomboy-заметка) или "
+"текстовый файл (из которого будет создана новая заметка):"
+
 #. Title of first Note
-#: tmp_strings.xml:117(string)
+#: tmp_strings.xml:352(string)
 msgid "Tomdroid's First Note"
 msgstr "Первая заметка Tomdroid"
 
-#: tmp_strings.xml:120(item)
+#: tmp_strings.xml:355(item)
 msgid "Welcome to Tomdroid!\\n"
 msgstr "Добро пожаловать в Tomdroid!\\n"
 
-#: tmp_strings.xml:121(item)
+#: tmp_strings.xml:356(item)
 msgid ""
 "You have no notes here yet. To get started, set your Synchronization "
 "preferences under Settings. There are two synchronization options described "
@@ -351,19 +1004,22 @@ msgstr ""
 "синхронизации в меню Настройки. Есть две опции синхронизации, описанные "
 "ниже.\\n"
 
-#: tmp_strings.xml:122(item)
+#: tmp_strings.xml:357(item)
 msgid "=Online Synchronization="
 msgstr "=Онлайн синхронизация="
 
 #. =text= makes <size:large>text</size:large>
-#: tmp_strings.xml:124(item)
+#: tmp_strings.xml:359(item)
 msgid ""
 "Online Synchronization is what you are looking for if you want to sync to "
 "Tomboy-Online, your own Rainy/Snowy server or any server supporting the "
 "Tomboy Web REST API.\\n"
 msgstr ""
+"Онлайн синхронизация — отличный выбор для синхронизации с Tomboy Online или "
+"вашим собственным сервером Rainy/Snowy, или любым другим сервером, "
+"поддерживающим Tomboy Web REST API.\\n"
 
-#: tmp_strings.xml:125(item)
+#: tmp_strings.xml:360(item)
 msgid ""
 "To use it, set Sync Service to Online Synchronization in preferences then "
 "provide a Server URL. Here are some of the public ones:"
@@ -372,16 +1028,19 @@ msgstr ""
 "Синхронизация в настройках, указав URL-адрес сервера. Вот некоторые из них:"
 
 #. -text is for list-items.
-#: tmp_strings.xml:127(item)
+#: tmp_strings.xml:362(item)
 msgid "-Tomboy Online - https://edge.tomboy-online.org/"
-msgstr ""
+msgstr "-Tomboy сайт - https://edge.tomboy-online.org/"
 
 #. -text is for list-items.
-#: tmp_strings.xml:129(item)
-msgid "-rainy.notesync.org\\n"
+#: tmp_strings.xml:364(item)
+msgid ""
+"-rainy.notesync.org - https://notesync.org:8080/[username]/[password]/\\n"
 msgstr ""
+"-Rainy.notesync.org - https://notesync.org:8080/[имя "
+"пользователя]/[пароль]/\\n"
 
-#: tmp_strings.xml:130(item)
+#: tmp_strings.xml:365(item)
 msgid ""
 "Once set, hit the Sync logo on Tomdroid's top bar to synchronize your "
 "notes.\\n"
@@ -389,38 +1048,49 @@ msgstr ""
 "После установки, нажмите кнопку Синхронизация на верхней панели Tomdroid для "
 "синхронизации заметок.\\n"
 
-#: tmp_strings.xml:131(item)
+#: tmp_strings.xml:366(item)
 msgid ""
 "Note: you might want to back up your Tomboy notes before syncing, since this "
 "app is still under development and may corrupt your Tomboy notes.\\n"
 msgstr ""
+"Примечание: Вы можете создать резервную копию заметки Tomboy перед "
+"синхронизацией. Так как это приложение находится в стадии разработки, то "
+"возможно повреждение Ваших заметок.\\n"
 
-#: tmp_strings.xml:132(item)
+#: tmp_strings.xml:367(item)
 msgid ""
 "Please see http://live.gnome.org/Tomboy/Directories for the location of the "
 "*.note files on all platforms.\\n"
 msgstr ""
+"Пожалуйста, ознакомьтесь с http://live.gnome.org/Tomboy/Directories перед "
+"размещением *. Обратите внимание, файлы на всех платформах.\\n"
 
 #. =text= makes <size:large>text</size:large>
-#: tmp_strings.xml:134(item)
+#: tmp_strings.xml:369(item)
 msgid "=SD Card="
 msgstr "=SD-Карта="
 
-#: tmp_strings.xml:135(item)
+#: tmp_strings.xml:370(item)
 msgid ""
 "Put your Tomboy notes (*.note) on your SD Card under tomdroid/. Once the "
 "notes are copied, set Sync Service to SD Card in preferences then hit the "
 "Sync logo on Tomdroid's top bar.\\n"
 msgstr ""
+"Поместите свои заметки Tomboy (*.note) на SD карту в папку tombdroid/. Когда "
+"заметки будут скопированы, установите в настройках в качестве Сервиса "
+"Синхронизации SD карту, после чего нажмите на кнопку Синхронизация на "
+"верхней панели Tomdroid.\\n"
 
-#: tmp_strings.xml:136(item)
+#: tmp_strings.xml:371(item)
 msgid ""
 "Also, Tomdroid is always looking for new contributors. If you are interested "
 "join the tomdroid-dev team on Launchpad: http://launchpad.net/~tomdroid-"
 "dev.\\n"
 msgstr ""
+"Кроме того, Tomdroid всегда ищет новых участников. Присоединяйтесь к "
+"tomdroid-dev команде на Launchpad: http://launchpad.net/~tomdroid-dev.\\n"
 
-#: tmp_strings.xml:137(item)
+#: tmp_strings.xml:372(item)
 msgid ""
 "Lastly, if you encounter any issue, please report it at: "
 "https://bugs.launchpad.net/tomdroid"
@@ -429,60 +1099,81 @@ msgstr ""
 "адресу: https://bugs.launchpad.net/tomdroid"
 
 #. 30 chars max
-#: tmp_strings.xml:144(string)
+#: tmp_strings.xml:380(string)
 msgid "Tomdroid notes"
 msgstr "Заметки Tomdroid"
 
 #. 4000 chars max
-#: tmp_strings.xml:146(string)
+#: tmp_strings.xml:382(string)
 msgid ""
 "A Tomboy client for Android. Tomboy is a desktop note-taking app using a "
-"wikiwiki approach and a simple user interface.\\n\\nNOTE: It is a READ-ONLY "
-"client for now.\\n\\n* Note format compatibility with Tomboy\\n* Online note "
-"synchronization with Rainy, Snowy or Tomboy Online\\n* SD Card importation\\"
-"n* Open source!"
+"wikiwiki approach and a simple user interface.\\n\\n* Note format "
+"compatibility with Tomboy\\n* Online note synchronization with Rainy, Snowy "
+"or Tomboy Online\\n* SD Card importation\\n* Home screen shortcuts\\n* Send "
+"and receive text or note-files from any app\\n* Open source!"
 msgstr ""
+"Tomboy это клиент для Android. Tomboy это приложение для  создания заметок, "
+"использующий  подход wikiwiki к их созданию и простой интерфейс.\\n\\n* "
+"Формат заметок совместим с Tomboy\\n* Онлайн синхронизация с Rainy, Snowy "
+"или Tomboy Online\\n* Перенос на SD карту\\n*  Ярлыки для рабочего стола \\"
+"n* Посылайте или принимайте текст или файлы из любого приложения \\n* Open "
+"source!"
 
 #. 80 chars max
-#: tmp_strings.xml:149(string)
-msgid ""
-"Note-taking application with online synchronization compatible with Tomboy"
+#: tmp_strings.xml:385(string)
+msgid "Note-taking app with online synchronization compatible with Tomboy"
 msgstr ""
-"Приложение для хранения заметок с возможностью онлайн синхронизации с "
-"Tomdroid"
+"Приложение для написания заметок с онлайн синхронизацией и совместимое с "
+"Tomboy"
 
 #. 500 chars max
-#: tmp_strings.xml:152(string)
+#: tmp_strings.xml:388(string)
 msgid ""
-"0.6.1 \\\"Polyglot\\\" release\\n* Added support for SSL sync with Rainy "
-"(www.notesync.org)\\n* New translations: bs, el, eo, fa, fi, nb, si, ta, bg, "
-"et, gl, id, la, ml, nl, sr, zh-rTW\\n* Updated translations: ar, ca, cs, da, "
-"de, en-rGB, es, eu, fo, fr, gd, hi, hu, it, ja, ko, ms, pl, pt-rBR, pt, ru, "
-"sv, te, tr, ug, uk, zh-rCN, zh\\n* Several bugfixes\\n"
+"* Notes can now be created, edited and deleted\\n* Completely redesigned for "
+"both tablets and phones\\n* Sync your notes with compatible web-services or "
+"to your SD card\\n* Send and receive note files or text from any app\\n* "
+"More configurable than before\\n* Available in even more languages\\n\\n And "
+"much more, for a complete list of changes please see "
+"https://launchpad.net/tomdroid/+announcements"
 msgstr ""
+"* Заметки не могут быть созданы, отредактированы или удалены\\n* Полностью "
+"переработан как для планшетов так и для смартфонов\\n* Синхронизируйте свою "
+"записи с подходящим веб-сервисом или сохраните на вашу SD карту\\n* "
+"Посылайте или принимайте заметки из любого приложения\\n* Более гибок чем "
+"прежде\\n* Доступен в еще большем количестве языков\\n\\n И многое другое, "
+"чтобы узнать обо всех изменениях, посетите "
+"https://launchpad.net/tomdroid/+announcements"
 
 #. Launchpad Translation String
-#: tmp_strings.xml:155(string)
+#: tmp_strings.xml:391(string)
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
 "  Alex Mr.Brightside Demurine https://launchpad.net/~extrimall90\n"
 "  Asalle Kim https://launchpad.net/~asaly12\n"
 "  Bernhard Hauer https://launchpad.net/~bernhard-hauer1\n"
+"  Eugene Marshal https://launchpad.net/~lowrider\n"
 "  Ivan Akulov https://launchpad.net/~gxoptg\n"
+"  Roman Kornev https://launchpad.net/~slasher0915\n"
+"  Roman Koshkin https://launchpad.net/~mar2008m\n"
 "  Stefan Hammer https://launchpad.net/~j-4\n"
-"  Vyacheslav Sharmanov https://launchpad.net/~vsharmanov\n"
+"  Валерий Рябошапко https://launchpad.net/~valera-m\n"
 "  Устин https://launchpad.net/~ustinershovskiy"
 
+#~ msgid "Please wait while the notes load.."
+#~ msgstr "Пожалуйста, подождите, пока заметки загружаются.."
+
+#~ msgid "Choose the default sorting"
+#~ msgstr "Выберите стандартный метод сортировки"
+
+#~ msgid "Default sort"
+#~ msgstr "Стандартный метод сортировки"
+
 #~ msgid ""
-#~ "A Tomboy client for Android. Tomboy is a desktop note-taking app using a "
-#~ "wikiwiki approach and a simple user interface.\\n\\nNOTE: It is a READ-ONLY "
-#~ "client for now.\\n\\n* Note format compatibility with Tomboy\\n* Online note "
-#~ "synchronization with Snowy, Tomboy Online or Ubuntu One\\n* SD Card "
-#~ "importation\\n* Open source!"
+#~ "Note-taking application with online synchronization compatible with Tomboy"
 #~ msgstr ""
-#~ "Tomboy-клиент для Android. Tomboy же является  приложением для компьютера "
-#~ "для хранения заметок с использованием wikiwiki-принципа и простго "
-#~ "интерфейса. \\n\\nВНИМАНИЕ: Пока это клиент ТОЛЬКО ДЛЯ ЧТЕНИЯ.\\n\\n* Формат "
-#~ "заметок совместим с Tomboy\\n* Онлайн синхронизация с Snowy Tomboy online и "
-#~ "Ubuntu One\\n*  импорт с SD-карты\\n* Open Source!"
+#~ "Приложение для хранения заметок с возможностью онлайн синхронизации с "
+#~ "Tomdroid"
+
+#~ msgid "Change Sort"
+#~ msgstr "Изменить метод сортировки."

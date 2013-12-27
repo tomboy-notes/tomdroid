@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="@string/view" android:id="@+id/view"/>
+    <item android:title="@string/edit" android:id="@+id/edit"/>
+    <item android:title="@string/undelete" android:id="@+id/undelete"/>
+    <item android:title="@string/editTags" android:visible="false" android:id="@+id/tags"/>
+    <!-- <item android:title="@string/contextRevert" android:id="@+id/revert"/> -->
+    <item android:title="@string/send" android:id="@+id/menu_send"/>
+    <item android:title="@string/createShortcut" android:id="@+id/create_shortcut"/>
+</menu>

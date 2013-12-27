@@ -25,62 +25,83 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Aplicação wikiwiki para tomar notas compatível com o Tomboy que ainda não pode tomar notas.</string>
+	<string name="app_desc">Aplicativo de anotações estilo wiki compatível com Tomboy.</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
-	<string name="strListEmptyWaiting">Por favor espere enquanto as notas carregam..</string>
+	<string name="strListEmptyWaiting">Por favor aguarde enquanto as notas carregam...</string>
 	<string name="strListEmptyNoNotes">Não há notas na base de dados do Tomdroid.</string>
 	
+	<!-- Menu entry with icon -->
 	<string name="menuSync">Sincronizar</string>
+	<!-- Menu entry with icon -->
 	<string name="menuPrefs">Configurações</string>
+	<!-- Menu entry with icon -->
 	<string name="menuAbout">Sobre</string>
+	<!-- Title of an alert box -->
 	<string name="titleWelcome">Alerta</string>
 	<string name="titleAbout">Sobre Tomdroid</string>
-	<string name="strWelcome">Bem vindo ao Tomdroid.\n\nPor favor perceba que este é um software de qualidade beta e que ele contém problemas conhecidos, como sua inabilidade de editar notas.\n\nEstamos bem cientes dessas questões e pretendemos trabalhar nelas rapidamente, mas eu também precisava conseguir e testar algo o mais rápido possível.\n\nSe você gostaria de contribuir, ajuda em todos os níveis seria apreciada. Suba a bordo em launchpad.net/tomdroid e contate-nos!\n</string>
+	<!-- First start alert box -->
+	<string name="strWelcome">Bem-vindo ao Tomdroid.\n\nPor favor perceba que este é um software de qualidade beta e que ele contém problemas conhecidos.\n\nEstamos todos bem cientes destes problemas e pretendemos trabalhar neles rapidamente mas também disponibilizar algo e testá-lo o mais rápido possível.\n\nSe você gostaria de contribuir, ajuda em todos os níveis seria apreciada. Salte à bordo de launchpad.net/tomdroid e nos contate!\n</string>
+	<!-- \n\n are linebreaks, %1$s etc are the name of the Author, the version and the license name -->
 	<string name="strAbout">%1$s\n\nAutor: %2$s\nVersão: %3$s\nLicenciado sob a GPLv3</string>
 	
-	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
+	<!-- positive Button -->
 	<string name="btnOk">OK</string>
+	<!-- negative Button -->
 	<string name="btnCancel">Cancelar</string>
+	<!-- Button -->
 	<string name="btnClose">Fechar</string>
+	<!-- Button -->
 	<string name="btnProjectPage">Página do projeto</string>
-	<string name="btnSavetoSD">Salvar no cartão SD</string>
+	<string name="btnSavetoSD">Salvar</string>
 	
 	<!-- note-view.xml -->
-	<string name="strWait">Por favor espere enquanto as notas carregam...</string>
+	<string name="strWait">Por favor aguarde enquanto as notas carregam...</string>
 	
-	<string name="prefSync">Sincronização</string>
 	<string name="prefSyncService">Serviço</string>
 	<string name="prefSyncServer">Servidor</string>
 	<string name="prefSDCard">Cartão SD</string>
 	<string name="prefTomboyWeb">Sincronização on-line</string>
 	<string name="prefAuthenticate">Autenticar</string>
 	<string name="prefLocation">Local no cartão SD</string>
+	<string name="prefSyncOnStart">Sincronização Automática na Inicialização</string>
+	<string name="prefDescSyncOnStart">Sincronizar suas anotações ao iniciar o aplicativo</string>
+	<!-- %1$s will be repaced by the folder name eg /tomdroid -->
 	<string name="prefFolderCreated">A pasta \“%1$s\“ não existe ainda. Por favor, conecte seu dispositivo ao computador, crie a pasta e a preencha com arquivos *.note.</string>
-	<string name="prefNoValidEntry">\“%1$s\“ contém caracteres inválidos.\nPor favor tente outra vez!</string>
-	
-	<string name="prefSyncCompleteAuth">Completando autenticação. Por favor, espere...</string>
+	<!-- %1$s will be repaced by the folder name eg /testfolder -->
+	<string name="prefNoValidLocation">\"%1$s\" não é um local de pasta válido. Por favor tente novamente!</string>
+	<!-- %1$s will be replaced with an text entry the user had done -->
+	<string name="prefNoValidEntry">\"%1$s\" não é uma entrada válida. Por favor tente novamente!</string>
+	<string name="prefSyncCompleteAuth">Completando autenticação. Por favor aguarde...</string>
 	<string name="prefSyncConnectionFailed">A conexão ao servidor falhou, por favor verifique se o endereço que você inseriu está correto.</string>
 	<string name="prefServerEmpty">O endereço do servidor mudou mas o novo valor está vazio</string>
-	
+			
 	<string name="titleSyncService">Escolha o serviço de sincronização a usar</string>
+	<!-- %1$s will be replaced with "Online Synchronisation", "SD Card",...-->
 	<string name="messageSyncComplete">Sincronização com %1$s está completa.</string>
+	<!-- %1$s will be replaced with "SD Card",... -->
 	<string name="messageSyncNoNote">Nenhuma nota encontrada em %1$s.</string>
 	<string name="messageSyncNoConnection">Você não está conectado à Internet.</string>
 	<string name="messageSyncAlreadyInProgress">Sincronização já em progresso</string>
 	<string name="messageSyncError">Houve um erro ao tentar analisar sua coleção de notas. Se você for capaz de replicar o problema, por favor nos contate!</string>
+	<!-- Altert box header -->
 	<string name="error">Erro</string>
+	<!-- Altert box header -->
 	<string name="titleNoteNotFound">Nota insuficiente</string>
 	<string name="messageNoteNotFound">A requisição não foi encontrada. Talvez ela teha sido deletada ou removeida através de sincronização.</string>
-	<string name="messageErrorNoteParsing">A requisição não pode ser analisada. Se você está habilitado para reportar o problema, por favor contate-nos.</string>	
-	<string name="messageCouldNotSave">Não é possível salvar o erro, por favor verifique o seu cartão SD</string>
-	<string name="messageNoSDCard">Cartão SD não encontrado</string>
+	<string name="messageErrorNoteParsing">Erro de processamento da nota.</string>
+	<string name="messageCouldNotSave">Não foi possível salvar nota.</string>
+	<string name="messageNoSDCard">Cartão de armazenamento SD não encontrado.</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">Mudar ordem</string>
-	<string name="titleDefaultSorting">Escolha a ordem padrão</string>
-	<string name="prefDefaultSorting">Ordem padrão</string>
+	<string name="titleDefaultSorting">Escolher método de ordenamento padrão</string>
+	<string name="prefDefaultSortingTitle">Método de Ordenamento Padrão</string>
+	<string name="prefSorting">Ordenar por:</string>
+	<string name="prefSortDate">Data de modificação</string>
+	<string name="prefSortTitle">Título da nota</string>
+	<string name="sortByDate">Ordenar por data</string>
+	<string name="sortByTitle">Ordenar por Título</string>
 	
 	<!-- NotebookFiltering -->
 	<string name="menuFilterNotebook">Filtrar</string>
@@ -93,11 +114,13 @@
 	<string name="send">Enviar</string>
 	
 	<!--  Search -->
+	<!-- Text in input field for search -->
 	<string name="search_hint">Pesquisar notas</string>
+	<!-- Preferences Field in global search to include notes -->
 	<string name="search_description">Texto em suas notas</string>
+	<!-- %s will be replaced with the search string -->
 	<string name="strNoResults">Nenhuma nota encontrada para \"%s\"</string>
 	<string name="menuSearch">Pesquisar</string>
-	<string name="prefSearch">Opções de pesquisa</string>
 	<string name="SearchResultTitle">Resultados da busca:</string>
 	<string name="clearSearchHistoryTitle">Limpar histórico de busca</string>
 	<string name="clearSearchHistory">Remover todas as pesquisas que você realizou</string>
@@ -109,10 +132,222 @@
 	<string name="textYexterday">Ontem</string>
 
 	<!-- Shortcuts handling -->
+	<!-- Header when picking a note for a new shortcut -->
 	<string name="shortcuts_view_caption">Escolha uma nota</string>
 	<string name="shortcut_menu_item_caption">Tomdroid Note</string>
 	<string name="btnRemoveShortcut">Remover atalho</string>
 	<string name="createShortcut">Criar atalho</string>
+
+	<!-- stuff new to edit -->
+
+	<!-- deleteNote -->
+	<string name="delete">Remover</string>
+	<string name="delete_note">Remover Nota</string>
+	<string name="delete_message">Você tem certeza que quer excluir esta nota?</string>
+	<string name="yes">Sim</string>
+	<string name="no">Não</string>
+	<string name="delete_all">Limpar notas</string>
+	<string name="delete_all_message">Você tem certeza que quer limpar as notas da base de dados?</string>
+	<string name="delete_remote_notes">Remover Notas Remotas</string>
+	<string name="delete_remote_notes_message">Você tem certeza que quer remover todas as notas do serviço remoto?</string>
+				
+	<!-- newNote -->
+	<string name="menuNew">Novo</string>
+	<string name="NewNoteTitle">Nova nota</string>
+	<string name="NewNoteTitleHint">Digite o título aqui</string>
+	<string name="NewNoteBodyHint">Digite a nota aqui</string>
+			
+	<!-- editNote -->
+	<string name="edit">Editar</string>
+	<string name="save">Salvar</string>
+	<string name="discard">Descartar</string>
+	<string name="back">Voltar</string>
+	<!-- B stands for bold (in format bar) -->
+	<string name="bold">N</string>
+	<!-- i stands for italic (in format bar) -->
+	<string name="italic">i</string>
+	<!-- S stands for strike through (in format bar) -->
+	<string name="strike"><strike>S</strike></string>
+	<string name="mono">mono espaçada</string>
+	<string name="highlight">destacar</string>
+	<!-- Button label to select font size -->
+	<string name="size">tamanho</string>
+	<string name="titleErrorParsingXML">Erro de processamento da nota</string>
+	<string name="messageErrorParsingXML">Houve um erro ao processar a nota. Por favor confira seu XML.</string>
+	<string name="messageNoteSaved">Nota salva localmente.</string>
+	<string name="messageNoteDeleted">Nota removida localmente.</string>
+	<string name="messageSelectSize">Selecione o tamanho do texto</string>
+	<string name="small">Pequeno</string>
+	<string name="normal">Normal</string>
+	<string name="large">Grande</string>
+	<string name="huge">Enorme</string>
+	<string name="messageDiscardChanges">Realmente deseja descartar suas alterações e reverter a nota para a última versão salva?</string>
+	<string name="titleDiscardChanges">Descartar alterações?</string>
+	<!-- this is the > symbol, do not change -->
+	<string name="gt"><b>&gt;</b></string>
+	<!-- this is the < symbol, do not change -->
+	<string name="lt"><b>&lt;</b></string>
+			
+	<!-- New Titles -->
+	<string name="view_title">Tomdroid - Visualizar Nota</string>
+	<string name="edit_title">Tomdroid - Editar Nota</string>
+	<string name="search_title">Tomdroid - Resultados da pesquisa</string>
+	<string name="shortcut_title">Tomdroid - Atalhos</string>
+	<string name="pref_title">Tomdroid - Configurações</string>
+	<string name="compare_title">Tomdroid - Conflito de Nota</string>
+	<string name="filePickerTitle">Tomdroid - Importar Nota</string>
+			
+	<!-- new prefs -->
+	<!-- subheader in settings -->
+	<string name="prefDisplay">Preferências de Exibição</string>
+	<string name="prefBaseSize">Tamanho de Fonte Base</string>
+	<!-- subheader in settings -->
+	<string name="prefSync">Sincronização</string>
+	<!-- subheader in settings -->
+	<string name="prefTools">Ferramentas</string>
+	<string name="prefAutoSave">Salvar notas automaticamente ao sair do editor.</string>
+	<string name="prefDeletedNotesTitle">Mostrar notas apagadas.</string>
+	<string name="prefDeletedNotes">Se marcado, exibirá as notas deletadas na lista de notas.</string>
+	<string name="prefNoteTemplatesTitle">Exibir Modelos de Nota</string>
+	<string name="prefNoteTemplates">Se marcado, exibirá amostras de notas na lista de notas.</string>
+	<string name="deleteAllNotesTitle">Limpar notas</string>
+	<string name="deleteAllNotes">Limpar todas as notas da base de dados local.</string>
+	<string name="deleteRemoteNotesTitle">Remover Notas Remotas</string>
+	<string name="deleteRemoteNotes">Remover todas as notas do serviço remoto</string>
+	<string name="illegalTextSize">Tamanho do texto escolhido ilegal. Por favor, escolha um número.</string>
+	<string name="backupPrefTitle">Notas de Backup</string>
+	<string name="backupPref">Copiar todas as notas locais para o cartão SD</string>
+	<string name="autoBackupPrefTitle">Cópia de segurança automática</string>
+	<string name="autoBackupPref">Copiar nota local para cartão SD ao salvar</string>
+	<!-- subheader in settings -->
+	<string name="prefLinks">Preferências de Hiperlink</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkTitlesTitle">Ligar Títulos</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkTitles">Lincar a outro titulo de nota</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkUrlsTitle">Link de Endereços Web"</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkUrls">ex.: "www.google.com"</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkEmailsTitle">Link de Emails</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkEmails">ex.: nome@endereco.com</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkPhonesTitle">Link de Números de Telefone</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkPhones">Vincular o número do telefone ao aplicativo</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkAddressesTitle">Link de Mapas de Endereços</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkAddresses">Lincar endereços ao apicativos de mapas</string>
+			
+	<!-- syncNotes -->
+
+	<!-- %1$s will be replaced with "Online Synchronisation", "SD card",... -->
+	<string name="syncing">Sincronizando com %1$s</string>
+	<string name="syncing_connect">conectando ao serviço...</string>
+	<string name="gettings_notes">obtendo lista de notas remotas...</string>
+	<string name="syncing_local">atualizando notas locais...</string>
+	<string name="syncing_remote">atualizando notas remotas...</string>
+	<string name="sync_conflict_description">Houve um conflito de sincronização da nota \'%1$s\'</string>
+	<string name="sync_conflict_message">Por favor, escolha uma ação para resolver o conflito. Você pode editar qualquer nota antes de escolher, ou ver a diferença clicando nas etiquetas abaixo.</string>
+	<string name="sync_conflict_deleted">A versão local já foi excluída. Por favor, escolha uma das ações a seguir.</string>
+	<string name="sync_conflict_titles_message">Uma nota com o título já existe no banco de dados. Por favor escolha uma ação para resolver o conflito. Você pode editar qualquer nota antes de escolher, ou ver a diferença clicando nas etiquetas abaixo.</string>
+	<!-- Button (keep short!) -->
+	<string name="overwrite_remote">Sobrescrever\nRemota</string>
+	<!-- Button (keep short!) -->
+	<string name="overwrite_local">Sobrescrever\nLocal</string>
+	<!-- Button (keep short!) -->
+	<string name="delete_remote">Remover\nRemota</string>
+	<!-- Button (keep short!) -->
+	<string name="copy">Creat\nCópia</string>
+	<!-- subheader in Conflict Dialouge (keep short!) -->
+	<string name="diff_label">Diferenças Entre Arquivos</string>
+	<string name="diff_titles">-- Títulos Diferentes --</string>
+	<string name="diff_content">-- Conteúdos Diferentes --</string>
+	<!-- %1$s will be replaced with a number. -->
+	<string name="line_x">Linha %1$s:</string>
+	<!-- subheader in Conflict Dialouge (keep short!) -->
+	<string name="local_label">Versão Local</string>
+	<!-- subheader in Conflict Dialouge (keep short!) -->
+	<string name="remote_label">Versão Remota</string>
+	<string name="deleted">Removido</string>
+	
+	<!-- %1$s will be replaced with a note title. -->
+	<string name="old">%1$s (velho)</string>
+	<string name="close">Fechar</string>
+	<string name="cancel">Cancelar</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageAuthComplete">Autorização em %1$s bem sucedida.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageAuthFailed">Autorização com %1$s falhou. Tente novamente mais tarde!</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNoteDeleted">Nota deletada de %1$s com sucesso.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNotePushed">Nota enviada para %1$s com sucesso.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNotePulled">Nota recebida de %1$s com sucesso.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNoteDeleteError">Erro removendo nota de %1$s.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNotePushError">Erro enviando nota para %1$s.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNotePullError">Erro recebendo nota de %1$s.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncParseFailed">Erro no processamento da resposta de %1$s.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncConnectingFailed">Erro ao conenctar com %1$s. Você provavelmente precisa autenticar em "Configurações".</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageRemoteNotesDeleted">Notas removidas de %1$s com sucesso.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncCancelled">A sincronozação com %1$s foi cancelada.</string>
+
+	<!-- menu items -->
+	
+	<string name="editTags">Editar marcadores</string>
+	<string name="contextRevert">Reverter</string>
+	<!-- %1$s will be replaced with note-tag names -->
+	<string name="note_x_tags">Marcadores da Nota \'%1$s\'</string>
+	<string name="edit_tags">Edite os marcadores abaixo, separando com vírgulas</string>
+	<string name="undelete">Nota Recuperada</string>
+	<!-- menu item with icon -->
+	<string name="menuImport">Importar Nota</string>
+					
+	<!-- revert notes -->
+	
+	<!-- menu item with icon -->
+	<string name="menuRevert">Reverter Todas</string>
+	<string name="revert_notes">Reverter Notas</string>
+	<string name="revert_notes_message">Isto reverterá suas notas locais para quaisquer versões existentes no serviço remoto. Tem certeza que quer fazer isto?</string>
+	<string name="revert_note">Reverter Nota</string>
+	<string name="revert_note_message">Isto reverterá uma nota local para quaisquer versão existente no serviço remoto. Tem certeza que quer fazer isto?</string>
+
+	<!-- backup notes -->
+	
+	<string name="backup_notes_title">Cópia de Segurança das Notas?</string>
+	<string name="backup_notes">Copiar todas as notas locais para o cartão SD? Isto pode sobrescrever notas existentes no cartão SD.</string>
+	<string name="restorePrefTitle">Restaurar Notas</string>
+	<string name="restore_notes_title">Restaurar Notas?</string>
+	<string name="restore_notes">Retirar todas as notas do Cartão SD? Isso pode substituir as notas existentes.</string>
+	<string name="messageNotesBackedUp">Cópia de segurança das notas salvas no cartão de memória com sucesso.</string>
+	<string name="messageNotesRestored">Notas restauradas do cartão SD com sucesso.</string>
+	<string name="messageDatabaseReset">Notas apagadas com sucesso.</string>
+
+	<!-- send and receive notes -->
+	
+	<string name="sendChoiceTitle">Escolha Método de Envio</string>
+	<string name="sendChoice">Como gostaria de enviar a nota?</string>
+	<string name="btnSendAsText">Como Texto</string>
+	<string name="btnSendAsFile">Como Arquivo</string>
+	<string name="sync_conflict_import_message">A nota já existe na base de dados. Por favor, escolha uma ação para resolver o conflito. Você pode editar qualquer nota antes de escolher, ou ver a diferença clicando nas etiquetas abaixo.</string>
+	<!-- Button (keep short!) -->
+	<string name="btnCancelImport">Cancelar\nImportar</string>
+	<string name="messageFileTooBig">O arquivo excede o tamanho de importação máximo - tem certeza que é de texto puro?</string>
+	<string name="messageFileNotReadable">Não é possível ler o arquivo de nota.</string>
+	<string name="noFiles">Sem arquivos ou diretórios</string>
+	<string name="chooseFile">Escolha um arquivo abaixo que seja um arquivo de nota do Tomboy (quer será importada) ou um arquivo de texto puro (quer criará uma nova nota):</string>
+
 	<!-- Title of first Note -->
 	<string name="firstNoteTitle">Primeira nota do Tomdroid</string>
 	
@@ -121,12 +356,12 @@
 		<item>Você não tem notas aqui ainda. Para começar, ajuste suas preferências de Sincronização em Configurações. Existem duas opções de sincronização descritas abaixo.\n</item>
 		<item>=Sincronização Online=</item>
 		<!-- =text= makes <size:large>text</size:large> -->
-		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
+		<item>Sincronização Online é o que você procura se quer sincronizar com o Tomboy-Online, seu próprio servidor Rainy/Snowy ou qualquer servidor que suporta o Tomboy Web REST API.\n</item>
 		<item>Para usá-lo, ajuste o Serviço de Sincronização para Sincronização Online em preferências então providencie uma URL de Servidor. Aqui estão alguns públicos:</item>
 		<!-- -text is for list-items. --> 
 		<item>-Tomboy Online - https://edge.tomboy-online.org/</item>
 		<!-- -text is for list-items. --> 
-		<item>-rainy.notesync.org\n</item>
+		<item>-rainy.notesync.org - https://notesync.org:8080/[usuario]/[senha]/\n</item>
 		<item>Quando ajustado, clique no logotipo de Sincronização na barra superior do Tomdroid para sincronizar suas notas.\n</item>
 		<item>Nota: Você pode querer fazer backup de suas notas do Tomboy antes de sincronizar, pois este aplicativo ainda está em desenvolvimento e pode corromper suas notas Tomboy.\n</item>
 		<item>Consulte http://live.gnome.org/Tomboy/Diretórios para o localização do *.note arquivos em todas as plataformas.\n</item>
@@ -136,6 +371,7 @@
 		<item>Além disso, Tomdroid está sempre procurando por novos colaboradores. Se você está interessado em se juntar à equipe tomdroid-dev no Launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
 		<item>Por fim, se encontrar qualquer problema, por favor relate-o em: https://bugs.launchpad.net/tomdroid</item>
 	</string-array>
+	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
 	I\'ve put it in here so that it\'ll get translated by translators.
@@ -143,20 +379,22 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid notas</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\nNOTE: It is a READ-ONLY client for now.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Open source!</string>
+	<string name="market_description">Um cliente Tomboy para Android. Tomboy é um aplicativo de anotações para desktop que usa uma abordagem de wiki e uma interface simples.\n\n* Formato de anotação compatível com Tomboy\n* Sincronização online de anotações com Rainy, Snowy ou Tomboy Online\n* Importação de cartão SD\n* Atalhos na tela Inicial\n* Envia e recebe texto ou notas de qualquer aplicativo\n* Open source!</string>
 	
 	<!-- 80 chars max -->
-	<string name="market_promotext">Aplicação de notas com sincronização online compatível com Tomboy</string>
+	<string name="market_promotext">Anotações do aplicativo com sincronização online compatível com Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.6.1 \"Polyglot\" release\n* Added support for SSL sync with Rainy (www.notesync.org)\n* New translations: bs, el, eo, fa, fi, nb, si, ta, bg, et, gl, id, la, ml, nl, sr, zh-rTW\n* Updated translations: ar, ca, cs, da, de, en-rGB, es, eu, fo, fr, gd, hi, hu, it, ja, ko, ms, pl, pt-rBR, pt, ru, sv, te, tr, ug, uk, zh-rCN, zh\n* Several bugfixes\n</string>
+        <string name="market_recent_changes">* Notes can now be created, edited and deleted\n* Completely redesigned for both tablets and phones\n* Sync your notes with compatible web-services or to your SD card\n* Send and receive note files or text from any app\n* More configurable than before\n* Available in even more languages\n\n And much more, for a complete list of changes please see https://launchpad.net/tomdroid/+announcements</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
   Felipe Rozelio https://launchpad.net/~feliperozelio-0
   João Santana https://launchpad.net/~joaosantana
+  Paulo Márcio da Hora https://launchpad.net/~paulohora
+  Rafael Leandro https://launchpad.net/~crf-rafa
+  Romoaldo Cordeiro https://launchpad.net/~romoaldo-cordeiro
   Stefan Hammer https://launchpad.net/~j-4
   Tarcisio Oliveira https://launchpad.net/~tarcisio
   eniomarconcini https://launchpad.net/~eniorm</string>
-	
 </resources>

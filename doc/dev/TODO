@@ -1,14 +1,9 @@
 TODO tasks
 ==========
-0.5.1 or 0.6 we'll see:
-- lp:766225 - Authenticating with U1 gives a "please check the address you entered" error on HTC Desire
-- lp:533933 - Sync folder does not remove messages from db
-- lp:724641 - Links break randomly
-- bump copyrights on files toutched since 2012
-
 After release
 - implement mandatory formatting for .java and .xml: consider http://uncrustify.sourceforge.net/ else there's eclipse
 - no more tab characters
+- get rid of this todo-list and push everything to Launchpad bugs or blueprints
 
 Unclassified:
 - define privacy policy (required for the market)

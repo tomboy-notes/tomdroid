@@ -30,6 +30,7 @@ import org.tomdroid.R;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Paint;
 import android.text.format.DateUtils;
 import android.text.format.Time;
 import android.view.LayoutInflater;
@@ -42,16 +43,25 @@ import android.widget.TextView;
 
 public class NoteListCursorAdapter extends SimpleCursorAdapter {
 
+	// static properties
+	private static final String TAG = "NoteListCursorAdapter";
+
+	
     private int layout;
     private Context context;
 
     private DateFormat localeDateFormat;
     private DateFormat localeTimeFormat;
+    
+    private int selectedIndex;
 
-    public NoteListCursorAdapter (Context context, int layout, Cursor c, String[] from, int[] to) {
+
+    public NoteListCursorAdapter (Context context, int layout, Cursor c, String[] from, int[] to, int selectedIndex) {
         super(context, layout, c, from, to);
         this.layout = layout;
         this.context = context;
+        this.selectedIndex = selectedIndex;
+        
         localeDateFormat = android.text.format.DateFormat.getDateFormat(context);
         localeTimeFormat = android.text.format.DateFormat.getTimeFormat(context);
     }
@@ -78,16 +88,42 @@ public class NoteListCursorAdapter extends SimpleCursorAdapter {
     
     @Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-    	View view = super.getView(position, convertView, parent);
-    	return view;
+    	View v = super.getView(position, convertView, parent);
+    	if(this.selectedIndex == position) {
+            TextView note_title = (TextView) v.findViewById(R.id.note_title);
+            if (note_title != null) {
+            	note_title.setTextColor(0xFFFFFFFF);
+            }
+            TextView note_modified = (TextView) v.findViewById(R.id.note_date);
+            if (note_modified != null) {
+            	note_modified.setTextColor(0xFFFFFFFF);
+            }
+    		v.setBackgroundResource(R.drawable.drop_shadow_selected);
+    		v.findViewById(R.id.triangle).setBackgroundResource(R.drawable.white_triangle);
+    	}
+    	else {
+            TextView note_title = (TextView) v.findViewById(R.id.note_title);
+            if (note_title != null) {
+            	note_title.setTextColor(0xFF000000);
+            }
+            TextView note_modified = (TextView) v.findViewById(R.id.note_date);
+            if (note_modified != null) {
+            	note_modified.setTextColor(0xFF000000);
+            }
+    		v.setBackgroundResource(0);
+    		v.findViewById(R.id.triangle).setBackgroundResource(0);
+    	}
+    	return v;
 	}
     
     private void populateFields(View v, Cursor c){
 
         int nameCol = c.getColumnIndex(Note.TITLE);
         int modifiedCol = c.getColumnIndex(Note.MODIFIED_DATE);
+        int tagCol = c.getColumnIndex(Note.TAGS);
         
         String title = c.getString(nameCol);
+        String tags = c.getString(tagCol);
         
         //Format last modified dates to be similar to desktop Tomboy
         //TODO this is messy - must be a better way than having 3 separate date types
@@ -117,6 +153,10 @@ public class NoteListCursorAdapter extends SimpleCursorAdapter {
         TextView note_title = (TextView) v.findViewById(R.id.note_title);
         if (note_title != null) {
         	note_title.setText(title);
+            if(tags.contains("system:deleted"))
+            	note_title.setPaintFlags(note_title.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            else
+            	note_title.setPaintFlags(note_title.getPaintFlags() & ~Paint.STRIKE_THRU_TEXT_FLAG);
         }
         TextView note_modified = (TextView) v.findViewById(R.id.note_date);
         if (note_modified != null) {

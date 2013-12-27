@@ -25,62 +25,83 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Tomboy compatible wikiwiki note-taking application that can\'t take notes yet.</string>
+	<string name="app_desc">Tomboy compatible wikiwiki note-taking app.</string>
 	<string name="author">ඔලිවියර් බිලොඩියු</string>
 	
 	<!-- main.xml -->
-	<string name="strListEmptyWaiting">සටහන් පූරණය වන තුරු මදක් රැදී සිටින්න..</string>
+	<string name="strListEmptyWaiting">කරුණාකර සටහන පූරණය වන තුරු රැදී සිටින්න.</string>
 	<string name="strListEmptyNoNotes">Tomdroid දත්ත ගබඩාවේ සටහන් නොමැත.</string>
 	
+	<!-- Menu entry with icon -->
 	<string name="menuSync">සමකාලික</string>
+	<!-- Menu entry with icon -->
 	<string name="menuPrefs">සැකසුම්</string>
+	<!-- Menu entry with icon -->
 	<string name="menuAbout">පිළිබඳ</string>
+	<!-- Title of an alert box -->
 	<string name="titleWelcome">අවවාදයයි</string>
 	<string name="titleAbout">Tomdroid පිළිබඳ</string>
-	<string name="strWelcome">Welcome to Tomdroid.\n\nPlease note that this is beta quality software and that it contains known problems, like its inability to edit notes.\n\nWe are well aware of these issues and intend to work on them quickly but I also wanted to get something out and tested as quickly as possible.\n\nIf you would like to contribute, help at all levels would be appreciated. Hop on board on launchpad.net/tomdroid and contact us!\n</string>
+	<!-- First start alert box -->
+	<string name="strWelcome">ටොම්ඩ්රොයිඩ් වෙත පිළිගනු ලබනවා. \n\n කරුණාකර මෙය බීටා තත්වයේ මෘදුකාංගයක් බව සහ මෙහි දන්නා ගැටළු අඩංගු වන බව සටහන් කරගන්න. \n\n අපි හොඳින් ඉක්මනින් මේ ගැටළු පිලිබඳ  පරීක්ෂාකාරී වෙමු සහ නමුත් මට අවශ්‍ය වුණා මොනවා හෝ පිටතින් ගැනීමට සහ මම අත්දැකීම් ලැබුවා  ඉක්මනින්ම වියහැකි දේ ගැන. \n\n  ඔබ දායක වීමට කැමති නම්, සෑම සංතෘප්ත අයෙකුටම මෙය තේරුම ගැනීමට උදව කරන්න ඔබට හැකිය. මඩුල්ලට පැනීම සඳහා launchpad.net/tomdroid වෙතින් අපට සම්බන්ධ වන්න!\n</string>
+	<!-- \n\n are linebreaks, %1$s etc are the name of the Author, the version and the license name -->
 	<string name="strAbout">%1$s\n\nකර්තෘ: %2$s\nඅනුවාදය: %3$s\nGPLv3 යටතේ ලියාපදිංචි කර ඇත</string>
 	
-	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
+	<!-- positive Button -->
 	<string name="btnOk">හරි</string>
+	<!-- negative Button -->
 	<string name="btnCancel">අවලංගු කරන්න</string>
+	<!-- Button -->
 	<string name="btnClose">වසන්න</string>
+	<!-- Button -->
 	<string name="btnProjectPage">ව්‍යාපෘති පිටුව</string>
-	<string name="btnSavetoSD">SD card වෙත සුරකින්න</string>
+	<string name="btnSavetoSD">සුරකින්න</string>
 	
 	<!-- note-view.xml -->
-	<string name="strWait">Please wait while note loads...</string>
+	<string name="strWait">කරුණාකර සටහන පූරණය වන තුරු රැදී සිටින්න.</string>
 	
-	<string name="prefSync">සමකාලීක කිරීම</string>
 	<string name="prefSyncService">සේවාව</string>
-	<string name="prefSyncServer">Server</string>
+	<string name="prefSyncServer">සේවාදායකය</string>
 	<string name="prefSDCard">SD Card</string>
-	<string name="prefTomboyWeb">Online Synchronization</string>
-	<string name="prefAuthenticate">Authenticate</string>
-	<string name="prefLocation">Location on SD Card</string>
-	<string name="prefFolderCreated">The folder \"%1$s\" does not exist yet. Please connect your device to the computer, create the folder and fill it with *.note files.</string>
-	<string name="prefNoValidEntry">\"%1$s\" contains invalid characters.\nPlease try again!</string>
-	
-	<string name="prefSyncCompleteAuth">Completing authentication. Please wait...</string>
-	<string name="prefSyncConnectionFailed">The connection to the server has failed, please check that the address you entered is correct.</string>
-	<string name="prefServerEmpty">The server address changed but the new value is empty</string>
-	
-	<string name="titleSyncService">Choose the sync service to use</string>
-	<string name="messageSyncComplete">Synchronization with %1$s is complete.</string>
+	<string name="prefTomboyWeb">මාර්ගගත සමමුහූර්තකරණය</string>
+	<string name="prefAuthenticate">සත්‍යාපනය කරන්න</string>
+	<string name="prefLocation">SD කර්ඩ්පතෙහි මතුපිට පිහිටීම</string>
+	<string name="prefSyncOnStart">ඉබේම ආරම්භය සමමුහුර්ත කරන්න</string>
+	<string name="prefDescSyncOnStart">ඔබේ සටහන් සහ ආරම්භක අයදුම් සමමුහුර්ත කරන්න</string>
+	<!-- %1$s will be repaced by the folder name eg /tomdroid -->
+	<string name="prefFolderCreated">\"%1$s" ෆෝල්ඩරය තවමත් නොපවතී. කරුණාකර ඔබේ උපකරණය පරිඝනකයට සම්බන්ධ කර ෆෝල්ඩරය සාදා එය *.සටහන් ෆයිල්ස් වලින් පුරවන්න.</string>
+	<!-- %1$s will be repaced by the folder name eg /testfolder -->
+	<string name="prefNoValidLocation">\"%1$s" ෆෝල්ඩරයේ ස්ථානය වලංගු නොවේ. නැවත උත්සාහ කරන්න.</string>
+	<!-- %1$s will be replaced with an text entry the user had done -->
+	<string name="prefNoValidEntry">\"%1$s" ඇතුලත් කිරීම වලංගු නොවේ. කරුණාකර නැවත උත්සාහ කරන්න.</string>
+	<string name="prefSyncCompleteAuth">සහතික කිරීම සම්පූර්ණ වෙමින් පවතී. කරුණාකර රැඳී සිටින්න...</string>
+	<string name="prefSyncConnectionFailed">සම්බන්ධතාවයෙහි සේවාදායකයා අසමත් වී ඇත. කරුණාකර ඔබ ප්‍රවිෂ්ඨ කරන ලද ලිපිනය නිවැරදි දැයි බලන්න.</string>
+	<string name="prefServerEmpty">සේවාදායකයාගේ ලිපිනය වෙනස් කළ නමුත් නව අගය ශූන්‍ය වේ.</string>
+			
+	<string name="titleSyncService">සමමුහුර්ත සේවය භාවිතයට තෝරා ගන්න</string>
+	<!-- %1$s will be replaced with "Online Synchronisation", "SD Card",...-->
+	<string name="messageSyncComplete">සමමුහූර්තකරණය සමඟ %1$s සම්පූර්ණයි.</string>
+	<!-- %1$s will be replaced with "SD Card",... -->
 	<string name="messageSyncNoNote">%1$s හි කිසිදු සටහනක් නොමැත.</string>
 	<string name="messageSyncNoConnection">ඔබ අන්තර්ජාලයට සම්බන්ධවී නොමැත.</string>
-	<string name="messageSyncAlreadyInProgress">Sync already in progress</string>
-	<string name="messageSyncError">There was an error trying to parse your note collection. If you are able to replicate the problem, please contact us!</string>
+	<string name="messageSyncAlreadyInProgress">දැනටමත් සමමුහුර්තනය කරමින් පවතී</string>
+	<string name="messageSyncError">මෙහි දෝෂයක් ඇත ඔබගේ සටහන් එකතුව විග්‍රහ කිරීමට උත්සාහ කරමින් පවතී. ඔබට ගැටලුව ප්‍රතිවලිත කළ හැකි නම්, අපට සම්බන්ධ වන්න!</string>
+	<!-- Altert box header -->
 	<string name="error">දෝෂය</string>
+	<!-- Altert box header -->
 	<string name="titleNoteNotFound">එවන් සටහනක් නොමැත</string>
-	<string name="messageNoteNotFound">The requested note could not be found. Maybe it was deleted or removed through synchronization.</string>
-	<string name="messageErrorNoteParsing">The requested note could not be parsed. If you are able to replicate the problem, please contact us!</string>	
-	<string name="messageCouldNotSave">Could not save the errors, please check your SD card.</string>
-	<string name="messageNoSDCard">SD card සොයාගත නොහැක.</string>
+	<string name="messageNoteNotFound">ඉල්ලුම් කළ සටහන සොයාගත නොහැකිය. ඇතැම් විට එය සමමුහූර්තකරණය අතරින් මකා දමා හෝ ඉවත් කර ඇත.</string>
+	<string name="messageErrorNoteParsing">සටහන දෝෂය විග්‍රහ කරමින් පවතී.</string>
+	<string name="messageCouldNotSave">සටහන සුරක්ෂිත කළ නොහැකිය.</string>
+	<string name="messageNoSDCard">SD කාඩ්පත් ගබඩා සොයාගත නොහැකිය.</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">Change Sort</string>
-	<string name="titleDefaultSorting">Choose the default sorting</string>
-	<string name="prefDefaultSorting">Default sort</string>
+	<string name="titleDefaultSorting">සාමාන්‍ය තේරීමේ ක්‍රමය තෝරාගන්න</string>
+	<string name="prefDefaultSortingTitle">සාමාන්‍ය තේරීම් ක්‍රමය</string>
+	<string name="prefSorting">වර්ග කිරීම මඟින්</string>
+	<string name="prefSortDate">වෙනස් කළ දිනය</string>
+	<string name="prefSortTitle">සටහන් මාතෘකාව</string>
+	<string name="sortByDate">වර්ග කළ දිනය</string>
+	<string name="sortByTitle">වර්ග කළ මාතෘකාව</string>
 	
 	<!-- NotebookFiltering -->
 	<string name="menuFilterNotebook">පෙරන්න</string>
@@ -89,19 +110,21 @@
 	
 	<!-- List Longpress Menu -->
 	<string name="view">දසුන</string>
-	<string name="noteOptions">Note Options</string>
+	<string name="noteOptions">සටහනේ විකල්පයන්</string>
 	<string name="send">යවන්න</string>
 	
 	<!--  Search -->
+	<!-- Text in input field for search -->
 	<string name="search_hint">සටහන් සොයන්න</string>
-	<string name="search_description">Text in your notes</string>
-	<string name="strNoResults">No notes found for \"%s\"</string>
+	<!-- Preferences Field in global search to include notes -->
+	<string name="search_description">ඔබේ සටහන් වල වගන්ති</string>
+	<!-- %s will be replaced with the search string -->
+	<string name="strNoResults">\"%s\" සඳහා සටන් සොයාගෙන නැත.</string>
 	<string name="menuSearch">සොයන්න</string>
-	<string name="prefSearch">Search Options</string>
 	<string name="SearchResultTitle">සෙවුම් ප්‍රතිඵල:</string>
-	<string name="clearSearchHistoryTitle">Clear search history</string>
-	<string name="clearSearchHistory">Remove all the searches you have performed</string>
-	<string name="deletedSearchHistory">Search history has been cleared.</string>
+	<string name="clearSearchHistoryTitle">ගවේෂණ ඉතිහාසය ඉවත් කරන්න.</string>
+	<string name="clearSearchHistory">ඔබ සහභාගී වී ඇති සියලුම ගවේෂණයන් ඉවත් කරන්න</string>
+	<string name="deletedSearchHistory">ගවේෂණ ඉතිහාසය ඉවත් කර ඇත.</string>
 	
 	<!-- Date -->
 	<string name="textModified">වෙනස් කළ:</string>
@@ -109,33 +132,246 @@
 	<string name="textYexterday">ඊයේ</string>
 
 	<!-- Shortcuts handling -->
+	<!-- Header when picking a note for a new shortcut -->
 	<string name="shortcuts_view_caption">සටහනක් තෝරන්න</string>
 	<string name="shortcut_menu_item_caption">Tomdroid සටහන</string>
-	<string name="btnRemoveShortcut">Remove shortcut</string>
-	<string name="createShortcut">Create shortcut</string>
+	<string name="btnRemoveShortcut">කෙටි මාර්ගය ඉවත් කරන්න</string>
+	<string name="createShortcut">කෙටි මාර්ගය නිර්මාණය කරන්න</string>
+
+	<!-- stuff new to edit -->
+
+	<!-- deleteNote -->
+	<string name="delete">මකා දමන්න</string>
+	<string name="delete_note">සටහන මකා දමන්න</string>
+	<string name="delete_message">ඔබට ව්ශ්වාසද ඔබට මේ සටහන මකා දැමීමට අවශ්‍ය බව?</string>
+	<string name="yes">ඔව්</string>
+	<string name="no">නැත</string>
+	<string name="delete_all">සටහන් ඉවත් කරන්න</string>
+	<string name="delete_all_message">ඔබට විශ්වාසද ඔබට පරිගණක දත්ත ගබඩාව ඉවත් කළ යුතු බව?</string>
+	<string name="delete_remote_notes">දුරස්ථ සටහන් මකා දමන්න</string>
+	<string name="delete_remote_notes_message">ඔබට විශ්වාසද දුරස්ථ සේවයේ සියලුම සටහන් ඔබට මකා දැමීමට අවශ්‍ය බව?</string>
+				
+	<!-- newNote -->
+	<string name="menuNew">නව</string>
+	<string name="NewNoteTitle">නව සටහන</string>
+	<string name="NewNoteTitleHint">මාතෘකාව මෙහි ඇතුලත් කරන්න</string>
+	<string name="NewNoteBodyHint">සටහන මෙහි ඇතුලත් කරන්න</string>
+			
+	<!-- editNote -->
+	<string name="edit">සංස්කරණය කරන්න</string>
+	<string name="save">සුරකින්න</string>
+	<string name="discard">ඉවත් කරන්න</string>
+	<string name="back">ආපසු</string>
+	<!-- B stands for bold (in format bar) -->
+	<string name="bold">B</string>
+	<!-- i stands for italic (in format bar) -->
+	<string name="italic">i</string>
+	<!-- S stands for strike through (in format bar) -->
+	<string name="strike"><strike>S</strike></string>
+	<string name="mono">අතර ස්ථාන එකක්</string>
+	<string name="highlight">ඉස්මතු කිරීම</string>
+	<!-- Button label to select font size -->
+	<string name="size">ප්‍රමාණය</string>
+	<string name="titleErrorParsingXML">සටහන දෝෂය විග්‍රහ කරමින් ඇත</string>
+	<string name="messageErrorParsingXML">සටහන විග්‍රහ කිරීමේ දෝෂයක් පවතී. කරුණාකර ඔබේ  XML පරීක්ෂා කරන්න.</string>
+	<string name="messageNoteSaved">සටහන ලඟපාත සුරකින්න.</string>
+	<string name="messageNoteDeleted">ලඟපාත සටහන මකා දමන්න.</string>
+	<string name="messageSelectSize">වගන්තියේ ප්‍රමාණය තෝරන්න</string>
+	<string name="small">කුඩා</string>
+	<string name="normal">සාමාන්‍ය</string>
+	<string name="large">විශාල</string>
+	<string name="huge">අති විශාල</string>
+	<string name="messageDiscardChanges">ඇත්තටම ඔබට ඔබ කළ වෙනස් කිරීම් බැහැර කිරීමට හෝ අවසානයට සුරැකි අනුවාදයට සටහන්  ප්‍රතිවර්තනය කිරීමට අවශ්‍යද?</string>
+	<string name="titleDiscardChanges">වෙනස් කිරීම් ඉවත් කරන්නද?</string>
+	<!-- this is the > symbol, do not change -->
+	<string name="gt"><b>&gt;</b></string>
+	<!-- this is the < symbol, do not change -->
+	<string name="lt"><b>&lt;</b></string>
+			
+	<!-- New Titles -->
+	<string name="view_title">tomdroid- සටහන බලන්න</string>
+	<string name="edit_title">tomdroid- සටහන සංස්කරණය කරන්න</string>
+	<string name="search_title">tomdroid- ප්‍රතිඵලය සොයන්න</string>
+	<string name="shortcut_title">tomdroid- කෙටි මාර්ගය</string>
+	<string name="pref_title">Tomdroid - කට්ටල අංග</string>
+	<string name="compare_title">Tomdroid - සටහන් සංඝටනය</string>
+	<string name="filePickerTitle">Tomdroid - වැදගත් සටහන</string>
+			
+	<!-- new prefs -->
+	<!-- subheader in settings -->
+	<string name="prefDisplay">වරණය ප්‍රදර්ශනය කරන්න</string>
+	<string name="prefBaseSize">මූලික මුද්‍රණ අකුරු වර්ගයේ ප්‍රමාණය</string>
+	<!-- subheader in settings -->
+	<string name="prefSync">සමකාලීක කිරීම</string>
+	<!-- subheader in settings -->
+	<string name="prefTools">මෙවලම්</string>
+	<string name="prefAutoSave">සංස්කාරක කතෘ පවතිනවිට ඉබේම සටහන් සුරකින්න</string>
+	<string name="prefDeletedNotesTitle">මකාදැමු  සටහන් පෙන්නුම්  කරන්න</string>
+	<string name="prefDeletedNotes">පරීක්ෂා කලේ නම්, මකා දැමූ සටහන් සටහන් ලැයිස්තුව තුළ පෙන්නුම් කරන්න.</string>
+	<string name="prefNoteTemplatesTitle">සටහන් අච්චු පෙන්නුම් කරන්න</string>
+	<string name="prefNoteTemplates">පරීක්ෂා කළේ නම්, සටහන් අච්චු සටහන් ලැයිස්තුව තුළ පෙන්නුම් කරන්නම්</string>
+	<string name="deleteAllNotesTitle">සටහන් ඉවත් කරන්න</string>
+	<string name="deleteAllNotes">සියලුම සටහන් ස්ථානීය පරිගණක දත්ත ගබඩාවෙන් ඉවත් කරන්න</string>
+	<string name="deleteRemoteNotesTitle">දුරස්ථ සටහන් මකා දමන්න</string>
+	<string name="deleteRemoteNotes">සියලුම සටහන් දුරස්ථ සේවයෙන් මකා දමන්න</string>
+	<string name="illegalTextSize">අනීතික වගන්ති ප්‍රමාණයක් තෝරාගෙන ඇත. කරුණාකර සංඛ්‍යාවක් තෝරන්න.</string>
+	<string name="backupPrefTitle">උපස්ථ සටහන්</string>
+	<string name="backupPref">සියලුම ස්ථානීය සටහන් SD කාඩ්පතට පිටපත් කරන්න</string>
+	<string name="autoBackupPrefTitle">උපස්ථ සටහන ඉබේම සකසන්න</string>
+	<string name="autoBackupPref">SD කාඩ්පතෙහි සුරැකි ස්ථානීය සටහන පිටපත් කරන්න</string>
+	<!-- subheader in settings -->
+	<string name="prefLinks">අතිසම්බන්ධක වරණයන්</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkTitlesTitle">ඇමිණුම් මාතෘකා</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkTitles">වෙනත් සටහන් මාතෘකා වලට අමුණන්න</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkUrlsTitle">ජාල ලිපිනයන් අමුණන්න</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkUrls">උදා: "www.google.com"</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkEmailsTitle">ඉලෙක්ට්‍රොනික තැපැල් ලිපිනයන් අමුණන්න</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkEmails">උදා: name@address.com</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkPhonesTitle">දුරකථන අංක අමුණන්න</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkPhones">දුරකථන අංක දුරකථන අයැදුමට සම්බන්ධ කරන්න</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkAddressesTitle">සිතියම් ලිපිනයන් අමුණන්න</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkAddresses">ලිපිනයන් සිතියම් අයැදුමට සම්බන්ධ කරන්න</string>
+			
+	<!-- syncNotes -->
+
+	<!-- %1$s will be replaced with "Online Synchronisation", "SD card",... -->
+	<string name="syncing">%1$s සමඟ සමමුහුර්තනය වෙමින් පවතී</string>
+	<string name="syncing_connect">සේවය සම්බන්ධ වෙමින් පවතී...</string>
+	<string name="gettings_notes">දුරස්ථ සටහන ලැයිස්තුව ලබාගනිමින් පවතී...</string>
+	<string name="syncing_local">ස්ථානීය සටහන් යාවත්කාල වෙමින් පවතී...</string>
+	<string name="syncing_remote">දුරස්ථ සටහන් යාවත්කාල වෙමින් පවතී...</string>
+	<string name="sync_conflict_description">මෙහි \'%1$s\' සමමුහුර්තනය වීමේ සංඝට්ටනයක් පවතී</string>
+	<string name="sync_conflict_message">කරුණාකර ඝට්ටනය විසඳීමට ක්‍රියාමාර්ගයක් තෝරා ගන්න. ඔබට තෝරා ගැනීමට පෙර සටහන සංස්කරණය කිරීමට හෝ පහත ලේබල් ක්ලික් කර ඒවායේ වෙනස බැලීමට හැකිය.</string>
+	<string name="sync_conflict_deleted">ස්ථානීය අනුවාදය දැනටමත් මකා දමා ඇත. කරුණාකර පහත ක්‍රියාවන්ගෙන් එකක් තෝරාගන්න.</string>
+	<string name="sync_conflict_titles_message">ඒ මාතෘකාව සහිත සටහනක් දැනටමත් පරිගණක දත්ත ගබඩාවේ පවතී. කරුණාකර ඝට්ටනය විසඳීමට ක්‍රියා මාර්ගයක් තෝරාගන්න. ඔබට තෝරාගැනීමට පෙර සටහන සංස්කරණය කිරීමට හෝ ක්ලික් කිරීමෙන් පහත ලේබල් වල වෙනස බැලීමට හැකිය.</string>
+	<!-- Button (keep short!) -->
+	<string name="overwrite_remote">උඩින් ලිවීම \n දුරස්ථ</string>
+	<!-- Button (keep short!) -->
+	<string name="overwrite_local">උඩින් ලිවීම \n ස්ථානීය</string>
+	<!-- Button (keep short!) -->
+	<string name="delete_remote">මකා දැමීම \n දුරස්ථ</string>
+	<!-- Button (keep short!) -->
+	<string name="copy">නිර්මාණය කිරීම \n පිටපත් කිරීම</string>
+	<!-- subheader in Conflict Dialouge (keep short!) -->
+	<string name="diff_label">ගොනුවන් අතර වෙනස</string>
+	<string name="diff_titles">-- මාතෘකා වෙනස්කම් --</string>
+	<string name="diff_content">-- අන්තර්ගතයේ වෙනස්කම් --</string>
+	<!-- %1$s will be replaced with a number. -->
+	<string name="line_x">පේළි %1$s:</string>
+	<!-- subheader in Conflict Dialouge (keep short!) -->
+	<string name="local_label">ස්ථානීය අනුවාදය</string>
+	<!-- subheader in Conflict Dialouge (keep short!) -->
+	<string name="remote_label">දුරස්ථ අනුවාදය</string>
+	<string name="deleted">මකා දමා ඇත.</string>
+	
+	<!-- %1$s will be replaced with a note title. -->
+	<string name="old">%1$s (පැරණි)</string>
+	<string name="close">වසන්න</string>
+	<string name="cancel">අවලංගු කරන්න</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageAuthComplete">%1$s සමඟ අවසර දීම සාර්ථකයි.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageAuthFailed">%1$s සමඟ අවසර දීම අසමත් වී ඇත. පසුව නැවත උත්සාහ කරන්න!</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNoteDeleted">%1$s න් සාර්ථකව සටහන මකා දමා ඇත.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNotePushed">%1$s ට සාර්ථකව සටහන යවා ඇත.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNotePulled">%1$s න් සටහන සාර්ථකව ලබාගෙන ඇත.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNoteDeleteError">%1$s න් සටහන මකා දැමීමේ දෝෂයකි.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNotePushError">%1$s ට සටහන යැවීමේ දෝෂයකි.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNotePullError">%1$s න් සටහන ලබා ගැනීමේ දෝෂයකි.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncParseFailed">විග්‍රහ කරමින් පවතින දෝෂයට %1$s න් ප්‍රතිචාර දක්වයි.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncConnectingFailed">%1$s ට දෝෂය සම්බන්ධ වෙමින් පවතී. ඔබට සිතෙන හැටියට කට්ටල අංග වලින් සකස් කිරීම අවශ්‍යයි.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageRemoteNotesDeleted">සටහන් සාර්ථකව %1$s න් මකාදමා ඇත.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncCancelled">%1$s සමඟ සමමුහුර්තනය අවලංගු කරන්න.</string>
+
+	<!-- menu items -->
+	
+	<string name="editTags">උපදේශ වාක්‍යයන්  සංස්කරණය කරන්න</string>
+	<string name="contextRevert">ආපසු පැමිණෙන්න</string>
+	<!-- %1$s will be replaced with note-tag names -->
+	<string name="note_x_tags">%1$s හි උපදේශ වාක්‍යයන් සටහන් කරන්න</string>
+	<string name="edit_tags">කොමාවන් වලින් වෙන්කර පහත උපදේශ වාක්‍යයන් සංස්කරණය කරන්න</string>
+	<string name="undelete">සටහන මකා නොදමන්න</string>
+	<!-- menu item with icon -->
+	<string name="menuImport">වැදගත් සටහන</string>
+					
+	<!-- revert notes -->
+	
+	<!-- menu item with icon -->
+	<string name="menuRevert">සියල්ලම ආපසු ගන්න.</string>
+	<string name="revert_notes">සටහන් ආපසු ගන්න.</string>
+	<string name="revert_notes_message">පවතින දුරස්ථ සේවයෙන් කුමන හෝ අනුවාදයකට මෙම ස්ථානීය සටහන් ආපසු ගනීවි. ඔබට විශ්වාසද එය සිදු කිරීමට අවශ්‍ය බව?</string>
+	<string name="revert_note">සටහන ආපසු ගන්න</string>
+	<string name="revert_note_message">පවතින දුරස්ථ සේවයෙන් කුමන හෝ අනුවාදයකට මෙම ස්ථානීය සටහන් ආපසු ගනීවි. ඔබට විශ්වාසද එය සිදු කිරීමට අවශ්‍ය බව?</string>
+
+	<!-- backup notes -->
+	
+	<string name="backup_notes_title">උපස්ථ සටහන් අවශ්‍යද?</string>
+	<string name="backup_notes">සියලුම ස්ථානීය සටහන් SD කාර්ඩ්පතට පිටපත් කරන්න? මෙහි දී SD කාර්ඩ්පතෙහි පවතින සටහන් නැවත ලියවිය හැකිය.</string>
+	<string name="restorePrefTitle">සටහන් නැවත ගබඩා කරන්න</string>
+	<string name="restore_notes_title">සටහන් නැවත ගබඩා කරන්නද?</string>
+	<string name="restore_notes">SD කාර්ඩ්පතෙන් සියලුම සටහන් තල්ලු කරන්න? මෙහිදී ඔබේ පවතින සටහන් නැවත ලියවිය හැකිය.</string>
+	<string name="messageNotesBackedUp">SD කාර්ඩ්පතෙහි උපස්ථ සටහන් සාර්ථකව සිදුකර ඇත.</string>
+	<string name="messageNotesRestored">සටහන් SD කාර්ඩ්පතට සාර්ථකව නැවත ගබඩා වී ඇත.</string>
+	<string name="messageDatabaseReset">සටහන් සාර්ථකව මකා දමා ඇත.</string>
+
+	<!-- send and receive notes -->
+	
+	<string name="sendChoiceTitle">යැවීමේ ක්‍රමයක් තෝරන්න</string>
+	<string name="sendChoice">ඔබ මෙම සටහන යැවීමට කැමතිද?</string>
+	<string name="btnSendAsText">වගන්තියක් ලෙස</string>
+	<string name="btnSendAsFile">ගොනුවක් ලෙස</string>
+	<string name="sync_conflict_import_message">සටහන දැනටමත් පරිගණක දත්ත ගබඩාව තුළ පවතී. කරුණාකර මෙම සංඝට්ටනය විසඳීමට ක්‍රියාවක් තෝරන්න. ඔබට සටහන තෝරා ගැනීමට පෙර සංස්කරණය කිරීමට හෝ පහත වෙනස් ලේබලයන් ක්ලික් කර බැලීමට සිදු වේ.</string>
+	<!-- Button (keep short!) -->
+	<string name="btnCancelImport">අවලංගු කරන්න\n ආනයනය කරන්න</string>
+	<string name="messageFileTooBig">ගොනුව ආනයනය කළ හැකි උපරිම ප්‍රමාණය ඉක්මවා ඇත - ඔබට එය සාමාන්‍ය වගන්තියක් බවට විශ්වාසද?</string>
+	<string name="messageFileNotReadable">සටහන් ගොනුව කියවීමට නොහැකිය.</string>
+	<string name="noFiles">ගොනු හෝ නාමාවලියන් අඩංගු නොවේ</string>
+	<string name="chooseFile">පහත ගොනුවක් හෝ දඟකාර කෙල්ල සටහන් ගොනුවක් (ආනයනය කළ) හෝ සාමාන්‍ය වගන්ති ගොනුවක් (නිර්මාණය කළ නව සටහනක්) තෝරා ගන්න:</string>
+
 	<!-- Title of first Note -->
-	<string name="firstNoteTitle">Tomdroid\'s First Note</string>
+	<string name="firstNoteTitle">ටොම්ඩ්රොයිඩ්ගේ පළමු සටහන</string>
 	
 	<string-array name="firstNoteContent">
-		<item>Welcome to Tomdroid!\n</item>
-		<item>You have no notes here yet. To get started, set your Synchronization preferences under Settings. There are two synchronization options described below.\n</item>
-		<item>=Online Synchronization=</item>
+		<item>ටොම්ඩ්රොයිඩ් වෙතට පිළිගනු ලබනවා!\n</item>
+		<item>ඔබට මෙහි තවමත් සටහන් නොමැත. ආරම්භ කිරීමට, ඔබේ සමමුහුර්තකරණය කළ වරණයන් කට්ටල අංග යටතේ සකස් කරන්න. මෙහි සමකාලීන විකල්පයන් දෙකක් පහත විස්තර කර ඇත.\n</item>
+		<item>=මාර්ගගත සමමුහුර්තකරණය=</item>
 		<!-- =text= makes <size:large>text</size:large> -->
-		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
-		<item>To use it, set Sync Service to Online Synchronization in preferences then  provide a Server URL. Here are some of the public ones:</item>
+		<item>මාර්ගගත සමමුහුර්තකරණය යනු ඔබ බලන්නේ මොනවාද ඔබට දඟකාර කෙල්ල මාර්ගගත වීමට  අවශ්‍ය නම් - ටොම්බෝයි වෙබ් REST API වලින් උදව්කරන ඔබේම වැසි සහිත/හිම සහිත සර්වර් හෝ ඕනෑම සර්වර් එකක්.\n</item>
+		<item>එය භාවිතයට, වරණයන්වලින් මාරගගත සමමුහුර්තකරණයට සමමුහුර්ත සේවය සකස් කොට Server URL එක සපයන්න. මෙහි සමහරක් පොදු එකකි:</item>
 		<!-- -text is for list-items. --> 
-		<item>-Tomboy Online - https://edge.tomboy-online.org/</item>
+		<item>-දඟකාර කෙල්ල මාර්ගගත - https://edge.tomboy-online.org/</item>
 		<!-- -text is for list-items. --> 
-		<item>-rainy.notesync.org\n</item>
-		<item>Once set, hit the Sync logo on Tomdroid\'s top bar to synchronize your notes.\n</item>
-		<item>Note: you might want to back up your Tomboy notes before syncing, since this app is still under development and may corrupt your Tomboy notes.\n</item>
-		<item>Please see http://live.gnome.org/Tomboy/Directories for the location of the *.note files on all platforms.\n</item>
+		<item>-rainy.notesync.org - https://notesync.org:8080/[භාවිත නම ]/[රහස්‍ය අංකය ]/\n</item>
+		<item>එකවරක් සකස්කරන්න, ටොම්ඩ්රොයිඩ්ගේ ඉහළ හරසෙ සමමුහුර්තකරණ ඔබේ සටහන් සමමුහුර්ත ලාංඡනය ට ගැටෙන්නට දෙන්න</item>
+		<item>සටහන: ඔබට ඔබේ දගකාර කෙල්ල සටහන් සමමුහුර්තකරණයට පෙර අවශ්‍ය විය හැකිය,මෙතැන් සිට අයදුම සංවර්ධනය කිරීම යටතේ ඔබේ දඟකාර කෙල්ල සටහන් දුෂ්ප්‍රතිපන්න විය හැකිය.\n</item>
+		<item>කරුණාකර  *.note ගොනුවල සෑම වේදිකාවක්ම පිහිටි ස්ථානය සඳහා http://live.gnome.org/Tomboy/Directories  බලන්න</item>
 		<!-- =text= makes <size:large>text</size:large> --> 
-		<item>=SD Card=</item>
-		<item>Put your Tomboy notes (*.note) on your SD Card under tomdroid/. Once the notes are copied, set Sync Service to SD Card in preferences then hit the Sync logo on Tomdroid\'s top bar.\n</item>
-		<item>Also, Tomdroid is always looking for new contributors. If you are interested join the tomdroid-dev team on Launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
-		<item>Lastly, if you encounter any issue, please report it at: https://bugs.launchpad.net/tomdroid</item>
+		<item>=SD කාර්ඩ්පත=</item>
+		<item>ටොම්ඩ්රොයිඩ් යටතේ ඔබේ දඟකාර කෙල්ල සටහන් ඔබේ SD කාර්ඩ්පතට දමන්න/. එකවර සටහන් පිටපත් කර, සම්මුහුර්තකරණ සේවාව වරණයන් වලින්  SD කාර්ඩ්පතට සකස්කර, සමමුහුර්තකරණ ලාංඡනය ටොම්ඩ්රොයිඩ්ගේ ඉහළ හරස සමඟ ගැටෙන්නට සලස්වන්න.</item>
+		<item>තවද, ටොම්ඩ්රොයිඩ් නිතරම අලුත් අධාරකරුවන් බලාගෙන සිටියි. ඔබ එය ගැන සැලකිලිමත් නම් Launchpad හි ටොම්ඩ්රොයිඩ්-dev සමඟ සම්බන්ධ වන්න: http://launchpad.net/~tomdroid-dev.\n</item>
+		<item>අවසානයේ, ඔබට ඕනෑම ප්‍රශ්නයක් මුණගැසේ නම්, කරුණාකර එය https://bugs.launchpad.net/tomdroid දී වාර්තා කරන්න.</item>
 	</string-array>
+	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
 	I\'ve put it in here so that it\'ll get translated by translators.
@@ -143,17 +379,16 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Tomdroid සටහන්</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\nNOTE: It is a READ-ONLY client for now.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Open source!</string>
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Send and receive text or note-files from any app\n* Open source!</string>
 	
 	<!-- 80 chars max -->
-	<string name="market_promotext">Note-taking application with online synchronization compatible with Tomboy</string>
+	<string name="market_promotext">සටහන - යෙදවුම සමඟ මාර්ගගත සමමුහුර්තකරණය දඟකාර කෙල්ල සමඟ සංකීර්ණය</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.6.1 \"Polyglot\" release\n* Added support for SSL sync with Rainy (www.notesync.org)\n* New translations: bs, el, eo, fa, fi, nb, si, ta, bg, et, gl, id, la, ml, nl, sr, zh-rTW\n* Updated translations: ar, ca, cs, da, de, en-rGB, es, eu, fo, fr, gd, hi, hu, it, ja, ko, ms, pl, pt-rBR, pt, ru, sv, te, tr, ug, uk, zh-rCN, zh\n* Several bugfixes\n</string>
+        <string name="market_recent_changes">* Notes can now be created, edited and deleted\n* Completely redesigned for both tablets and phones\n* Sync your notes with compatible web-services or to your SD card\n* Send and receive note files or text from any app\n* More configurable than before\n* Available in even more languages\n\n And much more, for a complete list of changes please see https://launchpad.net/tomdroid/+announcements</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
-  Mohamed Rizmi https://launchpad.net/~mhmdrizmi50
-  පසිඳු කාවින්ද https://launchpad.net/~pkavinda</string>
-	
+  Mohamed Rizmi https://launchpad.net/~mrizmi-deactivatedaccount
+  wijesekara kankanamge udayangani https://launchpad.net/~wku1225</string>
 </resources>

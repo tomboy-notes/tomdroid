@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ Tomdroid
+ Tomboy on Android
+ http://www.launchpad.net/tomdroid
+
+ Copyright 2008, 2009, 2010, 2011 Olivier Bilodeau <olivier@bottomlesspit.org>
+ 
+ This file is part of Tomdroid.
+ 
+ Tomdroid is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Tomdroid is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources>
+	
+	<!-- application details -->
+	<string name="app_name">Tomdroid</string>
+	<string name="app_desc">Tomboy compatible wikiwiki note-taking app.</string>
+	<string name="author">Olivier Bilodeau</string>
+	
+	<!-- main.xml -->
+	<string name="strListEmptyWaiting">Vinsamlegast bíddu meðan glósurnar hlaðast inn...</string>
+	<string name="strListEmptyNoNotes">Engar glósur eru í gagnagrunn Tomdroid.</string>
+	
+	<!-- Menu entry with icon -->
+	<string name="menuSync">Samstilla</string>
+	<!-- Menu entry with icon -->
+	<string name="menuPrefs">Stillingar</string>
+	<!-- Menu entry with icon -->
+	<string name="menuAbout">Um</string>
+	<!-- Title of an alert box -->
+	<string name="titleWelcome">Varúð</string>
+	<string name="titleAbout">Um Tomdroid</string>
+	<!-- First start alert box -->
+	<string name="strWelcome">Velkomin í Tomdroid.\n\nVinsamlegast athugið að þetta er hugbúnaður með forútgáfugæðum og hefur þekkt vandamál.\n\nVið erum vel vör við þessi vandamál og vinnum á þeim eins hratt og við getum en ég vildi einnig ýta einhverju út og fá það prófað við fyrsta tækifæri.\n\nEf þú vilt leggja þitt af mörkum, þá er hjálp á öllum sviðum mjög vel þegin. Hoppaðu um borð á launchpad.net/tomdroid og hafðu samband við okkur!\n</string>
+	<!-- \n\n are linebreaks, %1$s etc are the name of the Author, the version and the license name -->
+	<string name="strAbout">%1$s\n\nHöfundur: %2$s\nÚtgáfa: %3$s\nGefið út undir GPLv3 leyfi</string>
+	
+	<!-- positive Button -->
+	<string name="btnOk">Í lagi</string>
+	<!-- negative Button -->
+	<string name="btnCancel">Hætta við</string>
+	<!-- Button -->
+	<string name="btnClose">Loka</string>
+	<!-- Button -->
+	<string name="btnProjectPage">Verkefnissíða</string>
+	<string name="btnSavetoSD">Vista</string>
+	
+	<!-- note-view.xml -->
+	<string name="strWait">Vinsamlegast bíddu meðan glósan hlaðast inn...</string>
+	
+	<string name="prefSyncService">Þjónusta</string>
+	<string name="prefSyncServer">Þjónn</string>
+	<string name="prefSDCard">SD kort</string>
+	<string name="prefTomboyWeb">Samstilling yfir net</string>
+	<string name="prefAuthenticate">Auðkenna</string>
+	<string name="prefLocation">Staðsetning SD korts</string>
+	<string name="prefSyncOnStart">Samstilla sjálfkrafa í ræsingu</string>
+	<string name="prefDescSyncOnStart">Samstilla glósur í ræsungi forrits</string>
+	<!-- %1$s will be repaced by the folder name eg /tomdroid -->
+	<string name="prefFolderCreated">Mappan \"%1$s\" er ekki til enn. Vinsamlegast tengdu tækið þitt við tölvuna, gerðu möppuna og fylltu hana með *.note skrám.</string>
+	<!-- %1$s will be repaced by the folder name eg /testfolder -->
+	<string name="prefNoValidLocation">\"%1$s\" er ekki gild staðsetning möppu. Vinsamlegast reyndu aftur!</string>
+	<!-- %1$s will be replaced with an text entry the user had done -->
+	<string name="prefNoValidEntry">\"%1$s\" er ekki gild færsla. Vinsamlegast reyndu aftur!</string>
+	<string name="prefSyncCompleteAuth">Klárar auðkenningu. Vinsamlegast bíddu...</string>
+	<string name="prefSyncConnectionFailed">Tenging við þjóninn mistókst, vinsamlegast athugaðu að slóðin sem þú slóst inn sé rétt.</string>
+	<string name="prefServerEmpty">Slóð þjónsins hefur breyst en nýtt gildi er tómt</string>
+			
+	<string name="titleSyncService">Veldu samstillingaþjónustu til að nota</string>
+	<!-- %1$s will be replaced with "Online Synchronisation", "SD Card",...-->
+	<string name="messageSyncComplete">Samstilling við %1$s lokið.</string>
+	<!-- %1$s will be replaced with "SD Card",... -->
+	<string name="messageSyncNoNote">Engar glósur fundust á %1$s.</string>
+	<string name="messageSyncNoConnection">Þú ert ekki nettengd/ur.</string>
+	<string name="messageSyncAlreadyInProgress">Samstilling þegar í gangi</string>
+	<string name="messageSyncError">Villa við þáttun glósusafns þíns. Ef þú getur endurtekið vandamálið, vinsamlegast hafðu samband við okkur!</string>
+	<!-- Altert box header -->
+	<string name="error">Villa</string>
+	<!-- Altert box header -->
+	<string name="titleNoteNotFound">Engin slík glósa</string>
+	<string name="messageNoteNotFound">Glósan sem beðið var um fannst ekki. Kannski var henni eytt eða hún fjarlægð gegnum samstillingu.</string>
+	<string name="messageErrorNoteParsing">Villa við þáttun glósu.</string>
+	<string name="messageCouldNotSave">Gat ekki vistað glósu.</string>
+	<string name="messageNoSDCard">SDkortsgeymsla fannst ekki.</string>
+	
+	<!-- NoteSorting -->
+	<string name="titleDefaultSorting">Veldu sjálfgefna aðferð flokkunnar.</string>
+	<string name="prefDefaultSortingTitle">Sjálfgefin aðferð flokkunnar</string>
+	<string name="prefSorting">Raða eftir:</string>
+	<string name="prefSortDate">Síðast breytt þann</string>
+	<string name="prefSortTitle">Titill glósu</string>
+	<string name="sortByDate">Raða eftir dagsetningu</string>
+	<string name="sortByTitle">Raða eftir nafni</string>
+	
+	<!-- NotebookFiltering -->
+	<string name="menuFilterNotebook">Sía</string>
+	<string name="strListEmptyNoNotebooks">Það eru engar glósubækur í gagnagrunninum.</string>
+	<string name="allNotebooksFilter">Allar glósubækur</string>
+	
+	<!-- List Longpress Menu -->
+	<string name="view">Skoða</string>
+	<string name="noteOptions">Glósustillingar</string>
+	<string name="send">Senda</string>
+	
+	<!--  Search -->
+	<!-- Text in input field for search -->
+	<string name="search_hint">Leita í glósum</string>
+	<!-- Preferences Field in global search to include notes -->
+	<string name="search_description">Texti í glósum þínum</string>
+	<!-- %s will be replaced with the search string -->
+	<string name="strNoResults">No notes found for \"%s\"</string>
+	<string name="menuSearch">Leita</string>
+	<string name="SearchResultTitle">Leitarniðurstöður:</string>
+	<string name="clearSearchHistoryTitle">Hreinsa leitarskrá</string>
+	<string name="clearSearchHistory">Fjarlægja allar leitir sem þú hefur gert</string>
+	<string name="deletedSearchHistory">Leitarskrá hefur verið hreinsuð.</string>
+	
+	<!-- Date -->
+	<string name="textModified">Breytt þann:</string>
+	<string name="textToday">Í dag</string>
+	<string name="textYexterday">Í gær</string>
+
+	<!-- Shortcuts handling -->
+	<!-- Header when picking a note for a new shortcut -->
+	<string name="shortcuts_view_caption">Veldu glósu</string>
+	<string name="shortcut_menu_item_caption">Tomdroid glósa</string>
+	<string name="btnRemoveShortcut">Fjarlægja flýtivísi</string>
+	<string name="createShortcut">Gera flýtivísi</string>
+
+	<!-- stuff new to edit -->
+
+	<!-- deleteNote -->
+	<string name="delete">Eyða</string>
+	<string name="delete_note">Eyða glósu</string>
+	<string name="delete_message">Ertu viss um að þú viljir eyða þessari glósu?</string>
+	<string name="yes">Já</string>
+	<string name="no">Nei</string>
+	<string name="delete_all">Hreinsa glósur</string>
+	<string name="delete_all_message">Ertu viss um að þú viljir hreinsa glósugagnagrunninn?</string>
+	<string name="delete_remote_notes">Eyða ytri glósum</string>
+	<string name="delete_remote_notes_message">Ertu viss um að þú viljir eyða öllum glósum á ytri þjónustunni?</string>
+				
+	<!-- newNote -->
+	<string name="menuNew">Ný</string>
+	<string name="NewNoteTitle">Ný glósa</string>
+	<string name="NewNoteTitleHint">Sláðu inn nafn hér</string>
+	<string name="NewNoteBodyHint">Sláðu inn glósu hér</string>
+			
+	<!-- editNote -->
+	<string name="edit">Breyta</string>
+	<string name="save">Vista</string>
+	<string name="discard">Henda</string>
+	<string name="back">Til baka</string>
+	<!-- B stands for bold (in format bar) -->
+	<string name="bold">F</string>
+	<!-- i stands for italic (in format bar) -->
+	<string name="italic">s</string>
+	<!-- S stands for strike through (in format bar) -->
+	<string name="strike"><strike>Y</strike></string>
+	<string name="mono">einrými</string>
+	<string name="highlight">hápunktar</string>
+	<!-- Button label to select font size -->
+	<string name="size">stærð</string>
+	<string name="titleErrorParsingXML">Villa við þáttun glósu</string>
+	<string name="messageErrorParsingXML">Villa kom upp við þáttun glósunnar. Vinsamlegast athugaði XML þitt.</string>
+	<string name="messageNoteSaved">Glósa vistuð á tæki.</string>
+	<string name="messageNoteDeleted">Glósu eytt á tæki.</string>
+	<string name="messageSelectSize">Veldu textastærð</string>
+	<string name="small">Lítil</string>
+	<string name="normal">Venjuleg</string>
+	<string name="large">Stór</string>
+	<string name="huge">Risastór</string>
+	<string name="messageDiscardChanges">Ertu viss um að þú viljir henda breytingum þínum og endurkalla síðustu vistuðu útgáfu glósunnar?</string>
+	<string name="titleDiscardChanges">Henda breytingum?</string>
+	<!-- this is the > symbol, do not change -->
+	<string name="gt"><b>&gt;</b></string>
+	<!-- this is the < symbol, do not change -->
+	<string name="lt"><b>&lt;</b></string>
+			
+	<!-- New Titles -->
+	<string name="view_title">Tomdroid - Skoða glósu</string>
+	<string name="edit_title">Tomdroid - Skoða glósu</string>
+	<string name="search_title">Tomdroid - Leitarniðurstöður</string>
+	<string name="shortcut_title">Tomdroid - Flýtivísar</string>
+	<string name="pref_title">Tomdroid - Stillingar</string>
+	<string name="compare_title">Tomdroid - Árekstur glósa</string>
+	<string name="filePickerTitle">Tomdroid - Flytja inn glósu</string>
+			
+	<!-- new prefs -->
+	<!-- subheader in settings -->
+	<string name="prefDisplay">Skjástillingar</string>
+	<string name="prefBaseSize">Grunnstærð leturs</string>
+	<!-- subheader in settings -->
+	<string name="prefSync">Samstilling</string>
+	<!-- subheader in settings -->
+	<string name="prefTools">Tól</string>
+	<string name="prefAutoSave">Vista glósur sjálfkrafa þegar ritill er lokaður.</string>
+	<string name="prefDeletedNotesTitle">Sýna eyddar glósur</string>
+	<string name="prefDeletedNotes">Ef merkt er við, verða eyddar glósur sýndar í glósulista.</string>
+	<string name="prefNoteTemplatesTitle">Sýna glósusnið</string>
+	<string name="prefNoteTemplates">Ef merkt er við, munu glósusnið vera sýnd í glósulista.</string>
+	<string name="deleteAllNotesTitle">Hreinsa glósur</string>
+	<string name="deleteAllNotes">Hreinsa allar glósur úr gagnagrunn tækis</string>
+	<string name="deleteRemoteNotesTitle">Eyða ytri glósum</string>
+	<string name="deleteRemoteNotes">Eyða öllum glósum úr ytri þjónustu</string>
+	<string name="illegalTextSize">Ógild leturstærð valin. Vinsamlegast veldu tölu.</string>
+	<string name="backupPrefTitle">Taka afrit af glósum</string>
+	<string name="backupPref">Afritar allar glósur yfir á SD kort</string>
+	<string name="autoBackupPrefTitle">Sjálfvirk afritunartaka</string>
+	<string name="autoBackupPref">Afritar glósu á SD kort þegar vistað er</string>
+	<!-- subheader in settings -->
+	<string name="prefLinks">Stillingar tengla</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkTitlesTitle">Nöfn tengla</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkTitles">Tenglar í önnur glósunöfn</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkUrlsTitle">Tenglar á vefslóðir</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkUrls">t.d. "www.google.com"</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkEmailsTitle">Tenglar á tölvupóst</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkEmails">t.d. name@address.com</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkPhonesTitle">Tenglar á símanúmer</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkPhones">Tengja símanúmer við símaforrit</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkAddressesTitle">Tenglar á vistföng korta</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkAddresses">Tengja vistföng við kortaforrit</string>
+			
+	<!-- syncNotes -->
+
+	<!-- %1$s will be replaced with "Online Synchronisation", "SD card",... -->
+	<string name="syncing">Samstillir við %1$s</string>
+	<string name="syncing_connect">tengist þjónustu...</string>
+	<string name="gettings_notes">sækir lista ytri glósa...</string>
+	<string name="syncing_local">uppfæri innri glósur...</string>
+	<string name="syncing_remote">uppfæri ytri glósur...</string>
+	<string name="sync_conflict_description">Árekstur kom upp við samstillingu glósunnar \'%1$s\'</string>
+	<string name="sync_conflict_message">Vinsamlegast veldu aðgerð til að leysa úr árekstrinum. Þú getur breytt annarihvorri glósunni áður en þú velur, eða skoðað muninn með því að smella á merkin fyrir neðan.</string>
+	<string name="sync_conflict_deleted">Innri útgáfunni þegar eytt. Vinsamlegast veldu eina aðgerðanna fyrir neðan.</string>
+	<string name="sync_conflict_titles_message">Glósa með þessu nafni er þegar til í gagnagrunninum. Vinsamlegast veldu aðgerð til að leysa úr þessum árekstri. Þú getur breytt annarihvorri glósunni áður en þú velur, eða skoðað muninn með því að smella á merkin fyrir neðan.</string>
+	<!-- Button (keep short!) -->
+	<string name="overwrite_remote">Yfirskrifa\nYtri</string>
+	<!-- Button (keep short!) -->
+	<string name="overwrite_local">Yfirskrifa\nInnri</string>
+	<!-- Button (keep short!) -->
+	<string name="delete_remote">Eyða\nYtri</string>
+	<!-- Button (keep short!) -->
+	<string name="copy">Gera\nAfrit</string>
+	<!-- subheader in Conflict Dialouge (keep short!) -->
+	<string name="diff_label">Munur milli skráa</string>
+	<string name="diff_titles">--Nafnmunir-</string>
+	<string name="diff_content">--Innihaldsmunir-</string>
+	<!-- %1$s will be replaced with a number. -->
+	<string name="line_x">Lína %1$s:</string>
+	<!-- subheader in Conflict Dialouge (keep short!) -->
+	<string name="local_label">Innri útgáfa</string>
+	<!-- subheader in Conflict Dialouge (keep short!) -->
+	<string name="remote_label">Ytri útgáfa</string>
+	<string name="deleted">Eytt</string>
+	
+	<!-- %1$s will be replaced with a note title. -->
+	<string name="old">%1$s (gamalt)</string>
+	<string name="close">Loka</string>
+	<string name="cancel">Hætta við</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageAuthComplete">Auðkenning við %1$s tókst.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageAuthFailed">Auðkenning við %1$s mistókst. Reyndu aftur síðar!</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNoteDeleted">Tókst að eyða glósu úr %1$s.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNotePushed">Tókst að senda glósu á %1$s.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNotePulled">Tókst að taka á móti glósu frá %1$s.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNoteDeleteError">Tókst ekki að eyða glósu úr %1$s.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNotePushError">Villa við sendingu glósu á %1$s.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNotePullError">Villa við móttöku glósu frá %1$s.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncParseFailed">Villa við þáttun svars frá %1$s.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncConnectingFailed">Villa við tengingu á %1$s. Þú þart kannski að auðkenna í "Stillingar".</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageRemoteNotesDeleted">Tókst að eyða glósum úr %1$s.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncCancelled">Hætt við samstillingu við %1$s.</string>
+
+	<!-- menu items -->
+	
+	<string name="editTags">Breyta merkjum</string>
+	<string name="contextRevert">Afturkalla</string>
+	<!-- %1$s will be replaced with note-tag names -->
+	<string name="note_x_tags">Merki glósu \'%1$s\'</string>
+	<string name="edit_tags">Breyttu merkjunum fyrir neðan, aðskilin með kommu.</string>
+	<string name="undelete">Endurheimta glósu</string>
+	<!-- menu item with icon -->
+	<string name="menuImport">Flytja inn glósu</string>
+					
+	<!-- revert notes -->
+	
+	<!-- menu item with icon -->
+	<string name="menuRevert">Afturkalla allt</string>
+	<string name="revert_notes">Afturkalla glósur</string>
+	<string name="revert_notes_message">Þetta mun afturkalla innri glósur í hvaða útgáfu sem tiltækar eru á ytri þjónustunni. Ertu viss um að þú viljir gera þetta?</string>
+	<string name="revert_note">Afturkalla glósu</string>
+	<string name="revert_note_message">Þetta mun afturkalla innri glósu í hvaða útgáfu sem tiltæk er á ytri þjónustunni. Ertu viss um að þú viljir gera þetta?</string>
+
+	<!-- backup notes -->
+	
+	<string name="backup_notes_title">Taka afrit af glósum?</string>
+	<string name="backup_notes">Afrita allar glósur á SD kort? Þetta gæti yfirskrifað fyrirliggjandi glósur á SD kortinu.</string>
+	<string name="restorePrefTitle">Afturkalla glósur</string>
+	<string name="restore_notes_title">Afturkalla glósur?</string>
+	<string name="restore_notes">Taka allar glósur af SD korti? Þetta gæti yfirskrifað fyrirliggjandi glósur þínar.</string>
+	<string name="messageNotesBackedUp">Tókst að afrita glósur á SD kort.</string>
+	<string name="messageNotesRestored">Tókst að endurheimta glósur af SD korti.</string>
+	<string name="messageDatabaseReset">Tókst að hreinsa glósur.</string>
+
+	<!-- send and receive notes -->
+	
+	<string name="sendChoiceTitle">Veldu sendiaðferð</string>
+	<string name="sendChoice">Hvernig viltu senda glósuna</string>
+	<string name="btnSendAsText">Sem texta</string>
+	<string name="btnSendAsFile">Sem skjal</string>
+	<string name="sync_conflict_import_message">The note already exists in the database.  Please choose an action to resolve the conflict.  You may edit either note before choosing, or view the difference by clicking on the labels below.</string>
+	<!-- Button (keep short!) -->
+	<string name="btnCancelImport">Hætta við\nInnflutning</string>
+	<string name="messageFileTooBig">Skjal fer yfir hámarksstærð innflutnings - ertu viss um að hún sé bertexti?</string>
+	<string name="messageFileNotReadable">Gat ekki lesið glósuskjalið.</string>
+	<string name="noFiles">Engar skrár eða möppur.</string>
+	<string name="chooseFile">Veldu skrá fyrir neðan sem er annaðhvort Tomboy glósa (sem mun verða innflutt) eða bertextaskjal (sem mun gera nýja glósu):</string>
+
+	<!-- Title of first Note -->
+	<string name="firstNoteTitle">Fyrsta glósa Tomdroid</string>
+	
+	<string-array name="firstNoteContent">
+		<item>Velkomin í Tomdroid!\n</item>
+		<item>Þú hefur engar glósur hér enn. Til að byrja, stilltu samstillingar í stillingum. Það eru tveir samstillingarmöguleikar útskýrðir fyrir neðan.\n</item>
+		<item>=Samstilling yfir net=</item>
+		<!-- =text= makes <size:large>text</size:large> -->
+		<item>Samstilling yfir net er það sem þú ert að leita eftir til að samstilla við Tomboy-Online, þinn eigin Rainy/Snowy þjón eða hvaða þjón sem styður Tomboy Web REST API.\n</item>
+		<item>Til að nota það, stilltu samstillingaþjónustu á samstillingu yfir net í stillingum og veittu síðan slóð á þjón. Hér eru nokkrir opinberir:</item>
+		<!-- -text is for list-items. --> 
+		<item>-Tomboy Online - https://edge.tomboy-online.org/</item>
+		<!-- -text is for list-items. --> 
+		<item>-rainy.notesync.org - https://notesync.org:8080/[username]/[password]/\n</item>
+		<item>Þegar stillt er, smelltu á samstillingatáknið í efstu stiku Tomdroid til að samstilla glósur þínar.\n</item>
+		<item>Athugaðu: þú vilt kannski taka afrit af Tomboy glósum þínum fyrir samstillingu, þar sem þetta forrit er ennþá í þróun og gæti skemmt Tomboy glósur þínar.\n</item>
+		<item>Vinsamlegast athugaðu http://live.gnome.org/Tomboy/Directories til að sjá staðsetningu *.note skráa á öllum kerfum.\n</item>
+		<!-- =text= makes <size:large>text</size:large> --> 
+		<item>=SD kort=</item>
+		<item>Settu Tomboy glósur (*.note) á SD kortið þitt undir tomdroid/. Þegar glósurnar hafa verið afritaðar, stilltu samstillingaþjónustu á SD kort í stillingum og smelltu síðan á samstillingatáknið í efstu stiku Tomdroid.</item>
+		<item>Einnig, þá er Tomdroid alltaf að leita að nýjum framleggjendum. Ef þú hefur áhuga gakktu í tomdroid-dev liðið á Launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
+		<item>Í síðasta lagi, ef þú lendir í einhverju vandamáli, vinsamlegast tilkynntu það á: https://bugs.launchpad.net/tomdroid</item>
+	</string-array>
+	
+	<!-- 
+	Information that goes into the Android Market Application Listing. 
+	I\'ve put it in here so that it\'ll get translated by translators.
+	-->
+	<!-- 30 chars max -->
+	<string name="market_title">Tomdroid glósur</string>
+	<!-- 4000 chars max -->
+	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Home screen shortcuts\n* Send and receive text or note-files from any app\n* Open source!</string>
+	
+	<!-- 80 chars max -->
+	<string name="market_promotext">Glósutökuforrit með netsamstillingar samhæfar við Tomboy</string>
+
+	<!-- 500 chars max -->
+        <string name="market_recent_changes">* Notes can now be created, edited and deleted\n* Completely redesigned for both tablets and phones\n* Sync your notes with compatible web-services or to your SD card\n* Send and receive note files or text from any app\n* More configurable than before\n* Available in even more languages\n\n And much more, for a complete list of changes please see https://launchpad.net/tomdroid/+announcements</string>
+
+	<!-- Launchpad Translation String -->
+	<string name="about_translators">Launchpad Contributions:
+  Andri Thorlacius https://launchpad.net/~chipcius
+  Sigurpáll Sigurðsson https://launchpad.net/~icekhaos</string>
+</resources>

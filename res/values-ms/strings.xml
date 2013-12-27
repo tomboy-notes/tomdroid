@@ -25,62 +25,83 @@
 	
 	<!-- application details -->
 	<string name="app_name">Tomdroid</string>
-	<string name="app_desc">Aplikasi pengambilan-nota wikiwiki serasi dengan Tomboy tetapi tidak boleh mengambil nota lagi.</string>
+	<string name="app_desc">Apl pengambilan nota wikiwiki serasi Tomboy</string>
 	<string name="author">Olivier Bilodeau</string>
 	
 	<!-- main.xml -->
-	<string name="strListEmptyWaiting">Tunggu sebentar ketika nota dimuatkan..</string>
+	<string name="strListEmptyWaiting">Tunggu sebentar semasa memuatkan nota...</string>
 	<string name="strListEmptyNoNotes">Tiada nota didalam pengkalan data Tomdroid.</string>
 	
+	<!-- Menu entry with icon -->
 	<string name="menuSync">Segerak</string>
+	<!-- Menu entry with icon -->
 	<string name="menuPrefs">Tetapan</string>
+	<!-- Menu entry with icon -->
 	<string name="menuAbout">Perihal</string>
+	<!-- Title of an alert box -->
 	<string name="titleWelcome">Amaran</string>
 	<string name="titleAbout">Perihal Tomdroid</string>
-	<string name="strWelcome">Selamat datang ke Tomdroid.\n\nPerhatian ini merupakan perisian berkualiti beta yang mungkin mengandungi masalah, seperti tidak boleh menyunting nota.\n\nKami mengetahui isu ini dan akan menyelesaikannya dengan segera tetapi saya juga mahu mengujinya secepat yang mungkin.\n\nJika anda hendak menyumbang pembangunannta, bantuan pada semua aspek sangat-sangat diharapkan. Layari launchpad.net/tomdroid dan hubungi kami!\n</string>
+	<!-- First start alert box -->
+	<string name="strWelcome">Selamat datang ke Tomdroid.\n\nPerhatian, ini adalah perisian berkualiti beta yang mana ia mengandungi masalah.\n\nKami menyedari isu ini dan akan menyelesaikannya secepat mungkin tetapi saya juga mahukannya diuji secepat yang boleh.\n\nJika anda ingin memberi sumbangan, apa jua bantuan amat diharapkan. Sila lawati launchpad.net/Tomdroid dan hubungi kami!\n</string>
+	<!-- \n\n are linebreaks, %1$s etc are the name of the Author, the version and the license name -->
 	<string name="strAbout">%1$s\n\Pengarang: %2$s\nVersi: %3$s\nDilesen dibawah GPLv3</string>
 	
-	<!-- TODO aren\'t these available somewhere else? like in the SDK? //-->
+	<!-- positive Button -->
 	<string name="btnOk">OK</string>
+	<!-- negative Button -->
 	<string name="btnCancel">Batal</string>
+	<!-- Button -->
 	<string name="btnClose">Tutup</string>
+	<!-- Button -->
 	<string name="btnProjectPage">Halaman projek</string>
-	<string name="btnSavetoSD">Simpan ke kad SD</string>
+	<string name="btnSavetoSD">Simpan</string>
 	
 	<!-- note-view.xml -->
-	<string name="strWait">Sila tunggu ketika nota dimuatkan...</string>
+	<string name="strWait">Tunggu sebentar semasa nota dimuatkan…</string>
 	
-	<string name="prefSync">Penyegerakan</string>
 	<string name="prefSyncService">Perkhidmatan</string>
 	<string name="prefSyncServer">Pelayan</string>
 	<string name="prefSDCard">Kad SD</string>
 	<string name="prefTomboyWeb">Penyegerakan Atas Talian</string>
 	<string name="prefAuthenticate">Sahihkan</string>
 	<string name="prefLocation">Lokasi pada Kad SD</string>
+	<string name="prefSyncOnStart">Segerak Sendiri semasa Permulaan</string>
+	<string name="prefDescSyncOnStart">Segerak nota anda pada appstart</string>
+	<!-- %1$s will be repaced by the folder name eg /tomdroid -->
 	<string name="prefFolderCreated">Folder  \"%1$s\" tidak wujud lagi. Sila sambung peranti anda ke komputer, cipta folder dan isi ia dengan fail *.note.</string>
-	<string name="prefNoValidEntry">\"%1$s\" mengandungi aksara tidak sah.\nSila cuba lagi!</string>
-	
+	<!-- %1$s will be repaced by the folder name eg /testfolder -->
+	<string name="prefNoValidLocation">\"%1$s\" bukanlah lokasi folder yang sah. Sila cuba lagi!</string>
+	<!-- %1$s will be replaced with an text entry the user had done -->
+	<string name="prefNoValidEntry">\"%1$s\" bukanlah masukan yang sah. Sila cuba lagi!</string>
 	<string name="prefSyncCompleteAuth">Menyelesaikan pengesahihan. Tunggu sebentar...</string>
 	<string name="prefSyncConnectionFailed">Sambungan ke pelayan mengalami kegagalan, sila semak alamat yang anda masukkan adalah betul.</string>
 	<string name="prefServerEmpty">Alamat pelayan berubah tetapi nilai barunya kosong</string>
-	
+			
 	<string name="titleSyncService">Pilih perkhidmatan segerak yang hendak digunakan</string>
+	<!-- %1$s will be replaced with "Online Synchronisation", "SD Card",...-->
 	<string name="messageSyncComplete">Penyegerakan dengan %1$s selesai.</string>
+	<!-- %1$s will be replaced with "SD Card",... -->
 	<string name="messageSyncNoNote">Tiada nota ditemui dalam %1$s.</string>
 	<string name="messageSyncNoConnection">Anda tidak bersambung dengan Internet.</string>
 	<string name="messageSyncAlreadyInProgress">Segerak didalam proses.</string>
 	<string name="messageSyncError">Terdapat ralat semasa cuba menghurai koleksi nota anda. Jika anda boleh replikakan masalah, sila hubungi kami!</string>
+	<!-- Altert box header -->
 	<string name="error">Ralat</string>
+	<!-- Altert box header -->
 	<string name="titleNoteNotFound">Tiada Nota Sebegitu</string>
 	<string name="messageNoteNotFound">Nota dipinta tidak dapat ditemui. Mungkin ia telah dipadam atau dibuang melalui penyegerakan.</string>
-	<string name="messageErrorNoteParsing">Nota dipinta tidak dapat dihurai. Jika anda boleh replikasi masalah tersebut, sila hubungi kami!</string>	
-	<string name="messageCouldNotSave">Tidak dapat simpan ralat, sila semak kad SD anda.</string>
-	<string name="messageNoSDCard">Kad SD tidak ditemui.</string>
+	<string name="messageErrorNoteParsing">Ralat menghurai nota.</string>
+	<string name="messageCouldNotSave">Tidak dapat simpan nota.</string>
+	<string name="messageNoSDCard">Storan Kad SD tidak ditemui.</string>
 	
 	<!-- NoteSorting -->
-	<string name="menuSort">Ubah Isih</string>
-	<string name="titleDefaultSorting">Pilihan pengisihan lalai</string>
-	<string name="prefDefaultSorting">Isihan lalai</string>
+	<string name="titleDefaultSorting">Pilih kaedah pengisihan lalai</string>
+	<string name="prefDefaultSortingTitle">Kaedah Isih Lalai</string>
+	<string name="prefSorting">Isih Mengikut:</string>
+	<string name="prefSortDate">Tarikh Diubahsuai</string>
+	<string name="prefSortTitle">Tajuk Nota</string>
+	<string name="sortByDate">Isi berdasarkan Tarikh</string>
+	<string name="sortByTitle">Isi berdasarkan Tajuk</string>
 	
 	<!-- NotebookFiltering -->
 	<string name="menuFilterNotebook">Penapis</string>
@@ -93,11 +114,13 @@
 	<string name="send">Hantar</string>
 	
 	<!--  Search -->
+	<!-- Text in input field for search -->
 	<string name="search_hint">Gelintar Nota</string>
+	<!-- Preferences Field in global search to include notes -->
 	<string name="search_description">Teks dalam nota anda</string>
+	<!-- %s will be replaced with the search string -->
 	<string name="strNoResults">Tiada nota ditemui untuk \"%s\"</string>
 	<string name="menuSearch">Gelintar</string>
-	<string name="prefSearch">Pilihan Gelintar</string>
 	<string name="SearchResultTitle">Keputusan Gelintar:</string>
 	<string name="clearSearchHistoryTitle">Kosongkan sejarah gelintar</string>
 	<string name="clearSearchHistory">Buang semua penggelintaran yang anda telah lakukan</string>
@@ -109,10 +132,222 @@
 	<string name="textYexterday">Semalam</string>
 
 	<!-- Shortcuts handling -->
+	<!-- Header when picking a note for a new shortcut -->
 	<string name="shortcuts_view_caption">Pilih satu Nota</string>
 	<string name="shortcut_menu_item_caption">Nota Tomdroid</string>
 	<string name="btnRemoveShortcut">Buang pintasan</string>
 	<string name="createShortcut">Cipta pintasan</string>
+
+	<!-- stuff new to edit -->
+
+	<!-- deleteNote -->
+	<string name="delete">Padam</string>
+	<string name="delete_note">Padam Nota</string>
+	<string name="delete_message">Anda pasti hendak padam nota ini?</string>
+	<string name="yes">Ya</string>
+	<string name="no">Tidak</string>
+	<string name="delete_all">Kosongkan Nota</string>
+	<string name="delete_all_message">Anda pasti hendak kosongkan pangkalan data nota?</string>
+	<string name="delete_remote_notes">Padam Nota Jauh</string>
+	<string name="delete_remote_notes_message">Anda pasti hendak padam semua nota dari perkhidmatan jauh?</string>
+				
+	<!-- newNote -->
+	<string name="menuNew">Baru</string>
+	<string name="NewNoteTitle">Nota Baru</string>
+	<string name="NewNoteTitleHint">Masukkan tajuk disini</string>
+	<string name="NewNoteBodyHint">Masukkan nota disini</string>
+			
+	<!-- editNote -->
+	<string name="edit">Sunting</string>
+	<string name="save">Simpan</string>
+	<string name="discard">Singkir</string>
+	<string name="back">Undur</string>
+	<!-- B stands for bold (in format bar) -->
+	<string name="bold">B</string>
+	<!-- i stands for italic (in format bar) -->
+	<string name="italic">i</string>
+	<!-- S stands for strike through (in format bar) -->
+	<string name="strike"><strike>S</strike></string>
+	<string name="mono">monospace</string>
+	<string name="highlight">sorot</string>
+	<!-- Button label to select font size -->
+	<string name="size">saiz</string>
+	<string name="titleErrorParsingXML">Ralat menghurai nota</string>
+	<string name="messageErrorParsingXML">Terdapat ralat menghurai nota. Sila semak XML anda.</string>
+	<string name="messageNoteSaved">Nota disimpan secara setempat.</string>
+	<string name="messageNoteDeleted">Nota dipadam secara setempat.</string>
+	<string name="messageSelectSize">Pilih saiz teks</string>
+	<string name="small">Kecil</string>
+	<string name="normal">Biasa</string>
+	<string name="large">Besar</string>
+	<string name="huge">Sangat Besar</string>
+	<string name="messageDiscardChanges">Anda pasti hendak singkirkan perubahan yang anda buat dan kembali kepada nota versi terakhir disimpan?</string>
+	<string name="titleDiscardChanges">Singkir Perubahan?</string>
+	<!-- this is the > symbol, do not change -->
+	<string name="gt"><b>&gt;</b></string>
+	<!-- this is the < symbol, do not change -->
+	<string name="lt"><b>&lt;</b></string>
+			
+	<!-- New Titles -->
+	<string name="view_title">Tomdroid - Lihat Nota</string>
+	<string name="edit_title">Tomdroid - SuntingNota</string>
+	<string name="search_title">Tomdroid - Keputusan Gelintar</string>
+	<string name="shortcut_title">Tomdroid - Pintasan</string>
+	<string name="pref_title">Tomdroid - Tetapan</string>
+	<string name="compare_title">Tomdroid - Konflik Nota</string>
+	<string name="filePickerTitle">Tomdroid - Import Nota</string>
+			
+	<!-- new prefs -->
+	<!-- subheader in settings -->
+	<string name="prefDisplay">Keutamaan Paparan</string>
+	<string name="prefBaseSize">Saiz Fon Dasar</string>
+	<!-- subheader in settings -->
+	<string name="prefSync">Penyegerakan</string>
+	<!-- subheader in settings -->
+	<string name="prefTools">Alatan</string>
+	<string name="prefAutoSave">Simpan nota secara automatik bila tutup penyunting.</string>
+	<string name="prefDeletedNotesTitle">Papar Nota Dipadam</string>
+	<string name="prefDeletedNotes">Jika ditanda, akan papar nota dipadam dalam senarai nota.</string>
+	<string name="prefNoteTemplatesTitle">Papar Templat Nota</string>
+	<string name="prefNoteTemplates">Jika ditanda, akan papar templat nota dalam senarai nota.</string>
+	<string name="deleteAllNotesTitle">Kosongkan Nota</string>
+	<string name="deleteAllNotes">Kosongkan semua nota dari pangkalan setempat</string>
+	<string name="deleteRemoteNotesTitle">Padam Nota Jauh</string>
+	<string name="deleteRemoteNotes">Padam semua nota dari perkhidmatan jauh</string>
+	<string name="illegalTextSize">Saiz teks tidak sah dipilih. Sila pilih nombor.</string>
+	<string name="backupPrefTitle">Sandar Nota</string>
+	<string name="backupPref">Salin semua nota setempat ke Kad SD</string>
+	<string name="autoBackupPrefTitle">Sandar-Sendiri</string>
+	<string name="autoBackupPref">Salin nota setempat ke Kad SD bila simpan</string>
+	<!-- subheader in settings -->
+	<string name="prefLinks">Keutamaan Hiperpautan</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkTitlesTitle">Tajuk Pautan</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkTitles">Paut ke tajuk nota lain</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkUrlsTitle">Alamat Sesawang Pautan</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkUrls">cth. "www.google.com"</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkEmailsTitle">Emel Pautan</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkEmails">cth. nama@alamat.com</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkPhonesTitle">Nombor Telefon Pautan</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkPhones">Paut nombor telefon ke apl telefon</string>
+	<!-- Checkbox in settings -->
+	<string name="prefLinkAddressesTitle">Alamat Peta Pautan</string>
+	<!-- Description for checkbox in settings -->
+	<string name="prefLinkAddresses">Paut alamat ke apl peta</string>
+			
+	<!-- syncNotes -->
+
+	<!-- %1$s will be replaced with "Online Synchronisation", "SD card",... -->
+	<string name="syncing">Menyegerak dengan %1$s</string>
+	<string name="syncing_connect">menyambung ke perkhidmatan...</string>
+	<string name="gettings_notes">mendapatkan senarai nota jauh...</string>
+	<string name="syncing_local">mengemaskini nota setempat...</string>
+	<string name="syncing_remote">mengemaskini nota jauh...</string>
+	<string name="sync_conflict_description">Terdapat konflik menyegerak nota \'%1$s\'</string>
+	<string name="sync_conflict_message">Sila pilih satu tindakan yang meleraikan konflik. Anda boleh sunting sama ada nota sebelum memilih, atau lihat perbezaan dengan mengklik pada label dibawah.</string>
+	<string name="sync_conflict_deleted">Versi setempat sudah dipadam. Sila pilih dari salah satu tindakan dibawah.</string>
+	<string name="sync_conflict_titles_message">Satu nota dengan tajuk tersebut sudah wujud dalam pangkalan data. Sila pilih tindakan untuk meleraikan konflik. Anda boleh sunting nota sebelum memilih, atau lihat perbezaan dengan mengklik label dibawah.</string>
+	<!-- Button (keep short!) -->
+	<string name="overwrite_remote">Tulis-ganti\nBuang</string>
+	<!-- Button (keep short!) -->
+	<string name="overwrite_local">Tulis-ganti\nSetempat</string>
+	<!-- Button (keep short!) -->
+	<string name="delete_remote">Padam\njauh</string>
+	<!-- Button (keep short!) -->
+	<string name="copy">Cipta\nSalin</string>
+	<!-- subheader in Conflict Dialouge (keep short!) -->
+	<string name="diff_label">Perbezaan Diantara Fail</string>
+	<string name="diff_titles">-- Perbezaan Tajuk --</string>
+	<string name="diff_content">-- Perbezaan Kandungan --</string>
+	<!-- %1$s will be replaced with a number. -->
+	<string name="line_x">Baris %1$s:</string>
+	<!-- subheader in Conflict Dialouge (keep short!) -->
+	<string name="local_label">Veris Setempat</string>
+	<!-- subheader in Conflict Dialouge (keep short!) -->
+	<string name="remote_label">Versi Jauh</string>
+	<string name="deleted">Dipadam</string>
+	
+	<!-- %1$s will be replaced with a note title. -->
+	<string name="old">%1$s (lama)</string>
+	<string name="close">Tutup</string>
+	<string name="cancel">Batal</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageAuthComplete">Keizinan dengan %1$s berjaya.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageAuthFailed">Pengesahihan dengan %1$s. Cuba lagi kemudian!</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNoteDeleted">Nota dipadam dari %1$s telah berjaya.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNotePushed">Nota dihantar ke %1$s telah berjaya.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNotePulled">Nota diterima dari %1$s telah berjaya.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNoteDeleteError">Ralat memadam nota dari %1$s.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNotePushError">Nota dihantar ke %1$s telah berjaya.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncNotePullError">Ralat menerima nota dari %1$s.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncParseFailed">Ralat menghurai balasan dari %1$s.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncConnectingFailed">Ralat menyambung ke %1$s. Anda perlu sahihkan dalam "Tetapan".</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageRemoteNotesDeleted">Nota dipadam dari %1$s telah berjaya.</string>
+	<!-- %1$s will be replaced with "Online Synchronization", "SD Card"... -->
+	<string name="messageSyncCancelled">Segerak dengan %1$s dibatalkan.</string>
+
+	<!-- menu items -->
+	
+	<string name="editTags">Sunting Tag</string>
+	<string name="contextRevert">Kembali</string>
+	<!-- %1$s will be replaced with note-tag names -->
+	<string name="note_x_tags">Tag Nota \'%1$s\'</string>
+	<string name="edit_tags">Sunting tag dibawah, dipisah dengan tanda koma</string>
+	<string name="undelete">Nota Tidak Dipadam</string>
+	<!-- menu item with icon -->
+	<string name="menuImport">Import Nota</string>
+					
+	<!-- revert notes -->
+	
+	<!-- menu item with icon -->
+	<string name="menuRevert">Kembali Semua</string>
+	<string name="revert_notes">Kembalikan Nota</string>
+	<string name="revert_notes_message">Ia akan kembalikan nota setempat anda kepada apa jua versi yang wujud dalam perkhidmatan jauh. Anda pasti hendak buat?</string>
+	<string name="revert_note">Kembalikan Nota</string>
+	<string name="revert_note_message">Ia akan kembalikan nota setempat kepada apa jua versi yang wujud dalam perkhidmatan jauh. Anda pasti hendak buat?</string>
+
+	<!-- backup notes -->
+	
+	<string name="backup_notes_title">Sandar Nota?</string>
+	<string name="backup_notes">Salin semua nota setempat ke Kad SD? Ia akan tulis-ganti nota sedia ada dalam Kad SD.</string>
+	<string name="restorePrefTitle">Pulih Nota</string>
+	<string name="restore_notes_title">Pulih Nota?</string>
+	<string name="restore_notes">Letak semua nota dari Kad SD? Ia akan tulis-ganti nota sedia ada anda.</string>
+	<string name="messageNotesBackedUp">Nota disandar ke kad SD telah berjaya.</string>
+	<string name="messageNotesRestored">Nota dipulih dari kad SD telah berjaya.</string>
+	<string name="messageDatabaseReset">Nota dikosongkan dengan jayanya.</string>
+
+	<!-- send and receive notes -->
+	
+	<string name="sendChoiceTitle">Pilih Kaedah Hantar</string>
+	<string name="sendChoice">Bagaimana anda hendak hantarkan nota?</string>
+	<string name="btnSendAsText">Sebagai Teks</string>
+	<string name="btnSendAsFile">Sebagai Fail</string>
+	<string name="sync_conflict_import_message">Satu nota tersebut sudah wujud dalam pangkalan data. Sila pilih tindakan untuk meleraikan konflik. Anda boleh sunting nota sebelum memilih, atau lihat perbezaan dengan mengklik label dibawah.</string>
+	<!-- Button (keep short!) -->
+	<string name="btnCancelImport">Batal\nImport</string>
+	<string name="messageFileTooBig">Fail melebihi saiz import maksimum - anda pasti ia adalah teks biasa?</string>
+	<string name="messageFileNotReadable">Tidak dapat baca fail nota.</string>
+	<string name="noFiles">Tiada fail atau direktori</string>
+	<string name="chooseFile">Pilih fail dibawah sama ada fail Nota Tomboy (yang akan diimportkan) atau fail teks biasa (yang akan cipta nota baru):</string>
+
 	<!-- Title of first Note -->
 	<string name="firstNoteTitle">Nota Pertama Tomdroid</string>
 	
@@ -121,21 +356,22 @@
 		<item>Anda tidak mempunyai nota disini. Untuk mula, tetapkan keutamaan Penyegerakan anda dibawah Tetapam. Terdapat dua pilihan penyegerakan yang diterangkan dibawah.</item>
 		<item>=Penyegerakan Atas Talian=</item>
 		<!-- =text= makes <size:large>text</size:large> -->
-		<item>Online Synchronization is what you are looking for if you want to sync to Tomboy-Online, your own Rainy/Snowy server or any server supporting the Tomboy Web REST API.\n</item>
+		<item>Penyegerakan atas talian adalah apa yang anda cari jika anda mahu segerak ke Tomboy-Online, pelayan Rainy/Snowy atau mana-mana pelayan yang menyokong API REST Web Tomboy.\n</item>
 		<item>Untuk gunakannya, tetapkan Perkhidmatan kepada Penyegerakan Atas Talian dalam keutmamaan kemudian sediakan URL Pelayan. Disini terdapat beberapa pelayan awam:</item>
 		<!-- -text is for list-items. --> 
 		<item>-Tomboy Atas Talian - https://edge.tomboy-online.org/</item>
 		<!-- -text is for list-items. --> 
-		<item>-rainy.notesync.org\n</item>
+		<item>-rainy.notesync.org - https://notesync.org:8080/[username]/[password]/\n</item>
 		<item>Bila sudah ditetapkan, tekan logo segerak pada palang atas Tomdroid untuk segerakam nota anda.\n</item>
-		<item>Note: you might want to back up your Tomboy notes before syncing, since this app is still under development and may corrupt your Tomboy notes.\n</item>
-		<item>Please see http://live.gnome.org/Tomboy/Directories for the location of the *.note files on all platforms.\n</item>
+		<item>Perhatian: anda mungkin mahu sandar nota Tomboy anda sebelum menyegerak, kerana aplikasi ini masih dibawah pembangunan dan mungkin merosakkan nota Tomboy.\n</item>
+		<item>Sila rujuk http://live.gnome.org/Tomboy/Directories untuk lokasi fail *.note pada semua platform.\n</item>
 		<!-- =text= makes <size:large>text</size:large> --> 
 		<item>=Kad SD=</item>
-		<item>Put your Tomboy notes (*.note) on your SD Card under tomdroid/. Once the notes are copied, set Sync Service to SD Card in preferences then hit the Sync logo on Tomdroid\'s top bar.\n</item>
-		<item>Also, Tomdroid is always looking for new contributors. If you are interested join the tomdroid-dev team on Launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
+		<item>Letak nota Tomboy anda (*.n0ote) ke dalam Kad CD anda dibawah tomdroid/. Bila nota telah disalin, tetapkan Perkhidmatan Segerak ke Kad SD dalam keutamaan kemudian tekan logo Segerak pada palang atas Tomdroid.\n</item>
+		<item>Juga, Tomdroid juga sentiasa mencari penyumbang baru. Jika anda berminat sertai pasukan tomdroid-dev di Launchpad: http://launchpad.net/~tomdroid-dev.\n</item>
 		<item>AKhir sekali, jika anda mengalami sebarang masalah, sila laporkannya di: https://bugs.launchpad.net/tomdroid</item>
 	</string-array>
+	
 	<!-- 
 	Information that goes into the Android Market Application Listing. 
 	I\'ve put it in here so that it\'ll get translated by translators.
@@ -143,17 +379,16 @@
 	<!-- 30 chars max -->
 	<string name="market_title">Nota Tomdroid</string>
 	<!-- 4000 chars max -->
-	<string name="market_description">A Tomboy client for Android. Tomboy is a desktop note-taking app using a wikiwiki approach and a simple user interface.\n\nNOTE: It is a READ-ONLY client for now.\n\n* Note format compatibility with Tomboy\n* Online note synchronization with Rainy, Snowy or Tomboy Online\n* SD Card importation\n* Open source!</string>
+	<string name="market_description">Klien Tomboy untuk Android. Tomboy adalah apl pengambilan-nota dekstop yang menggunakan pendekatan wikiwiki dan antaramuka pengguna yang ringkas.\n\n* Keserasian format nota dengan Tomboy\n* Penyegerakan nota atas-talian dengan Rainy, Snowy atau Tomboy Atas-Talian\n* Pengimportan Kad SD\n* Pintasan skrin rumah\n* Hantar dan terima teks atau fail-nota dari mana-mana aplikasi\n* Bersumber terbuka!</string>
 	
 	<!-- 80 chars max -->
-	<string name="market_promotext">Aplikasi pengambilan-nota dengan penyegerakan atas talian yang serasi dengan Tomboy</string>
+	<string name="market_promotext">Apl pengambilang-nota dengan penyegerakan atas-talian yang serasi dengan Tomboy</string>
 
 	<!-- 500 chars max -->
-        <string name="market_recent_changes">0.6.1 \"Polyglot\" release\n* Added support for SSL sync with Rainy (www.notesync.org)\n* New translations: bs, el, eo, fa, fi, nb, si, ta, bg, et, gl, id, la, ml, nl, sr, zh-rTW\n* Updated translations: ar, ca, cs, da, de, en-rGB, es, eu, fo, fr, gd, hi, hu, it, ja, ko, ms, pl, pt-rBR, pt, ru, sv, te, tr, ug, uk, zh-rCN, zh\n* Several bugfixes\n</string>
+        <string name="market_recent_changes">* Nota kini boleh dicipta, disunting dan dipadam\n* Direka-semula sepenuhnya untuk kedua-dua tablet dan telefon\n* Segerak nota anda dengan perkhidmatan-sesawang yang serasi atau ke kad SD anda\n* Hantar dan terima fail nota atau teks dari mana-mana aplikasi\n* Lebih berkonfigurasi berbanding sebelum ini\n* Tersedia dalam banyak bahasa\n\n Dan banyak lagi, untuk senarai penuh perubahan sila rujuk https://launchpad.net/tomdroid/+announcements</string>
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
   Stefan Hammer https://launchpad.net/~j-4
   abuyop https://launchpad.net/~abuyop</string>
-	
 </resources>

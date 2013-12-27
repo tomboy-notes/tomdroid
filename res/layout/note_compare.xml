@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+ Tomdroid
+ Tomboy on Android
+ http://www.launchpad.net/tomdroid
+
+ Copyright 2008, 2009 Olivier Bilodeau <olivier@bottomlesspit.org>
+ 
+ This file is part of Tomdroid.
+ 
+ Tomdroid is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ Tomdroid is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Tomdroid.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:id="@+id/compare_parent"
+	android:orientation="vertical"
+	android:descendantFocusability="beforeDescendants"
+	android:focusableInTouchMode="true"
+	>
+	<TextView
+		android:id="@+id/description"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:padding="10dp"
+		android:paddingBottom="0dp"
+		android:scrollHorizontally="false"
+		android:gravity="center"
+		android:textIsSelectable="true"
+		/>
+	<TextView
+		android:id="@+id/message"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:paddingLeft="10dp"
+		android:paddingRight="10dp"
+		android:scrollHorizontally="false"
+		android:textIsSelectable="true"
+		/>
+    <LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/view_parent"
+		android:orientation="horizontal"
+		android:gravity="center_horizontal"
+		android:paddingTop="10dp"
+		>
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:id="@+id/localButton"
+			android:text="@string/overwrite_remote"
+			/>
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:id="@+id/remoteButton"
+			android:text="@string/overwrite_local"
+			/>	 
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:id="@+id/copyButton"
+			android:text="@string/copy"
+			/>	    
+	</LinearLayout>
+	<ScrollView
+	   	android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:overScrollMode="always"
+		android:fadingEdge="none"
+		android:background="#ffffffff"
+		>
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:id="@+id/compare"
+			android:orientation="vertical"
+			>
+			<ToggleButton
+				android:id="@+id/diff_label"
+				android:background="@drawable/button_toggle"
+				android:textOn="@string/diff_label"
+				android:textOff="@string/diff_label"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:padding="10dp"
+				/>		
+			<TextView
+				android:id="@+id/diff"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:padding="10dp"
+				android:scrollHorizontally="false"
+				android:textColor="#000000"
+				android:textIsSelectable="true" />
+			<ToggleButton
+				android:id="@+id/local_label"
+				android:background="@drawable/button_toggle"
+				android:textOn="@string/local_label"
+				android:textOff="@string/local_label"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:padding="10dp"
+				/>
+			<EditText 
+				android:id="@+id/local_title"
+				android:layout_width="match_parent" 
+				android:layout_height="wrap_content"
+				android:singleLine="true"
+				android:inputType="textCapWords"
+				android:padding="10dip"
+				android:textCursorDrawable="@null"
+				android:textColor="#000000" />
+			<EditText
+				android:id="@+id/local"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:padding="10dp"
+				android:inputType="textMultiLine|textCapSentences"
+				android:textCursorDrawable="@null"
+				android:textColor="#000000" />
+			<ToggleButton
+				android:id="@+id/remote_label"
+				android:background="@drawable/button_toggle"
+				android:textOn="@string/remote_label"
+				android:textOff="@string/remote_label"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:padding="10dp"
+				/>
+			<EditText 
+				android:id="@+id/remote_title"
+				android:layout_width="match_parent" 
+				android:layout_height="wrap_content"
+				android:singleLine="true"
+				android:inputType="textCapWords"
+				android:padding="10dip"
+				android:textCursorDrawable="@null"
+				android:textColor="#000000" />
+			<EditText
+				android:id="@+id/remote"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:padding="10dp"
+				android:inputType="textMultiLine|textCapSentences"
+				android:textCursorDrawable="@null"
+				android:textColor="#000000" />
+		</LinearLayout>
+	</ScrollView>
+</LinearLayout>
