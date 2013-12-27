@@ -163,7 +163,13 @@ public class NoteManager {
                 whereArgs,
                 null);
 		activity.startManagingCursor(cursor);
-		return (cursor != null && cursor.getCount() != 0);
+		
+		boolean returnvalue = false;
+		if (cursor != null && cursor.getCount() != 0) {
+			returnvalue = true;
+		}
+		cursor.close();
+		return returnvalue;
 	}
 	
 	public static Uri getUriByGuid (Activity activity,  String guid) {
@@ -448,6 +454,8 @@ public class NoteManager {
 			TLog.d(TAG, "Cursor returned null or 0 notes");
 		}
 		
+		cursor.close();
+		
 		return id;
 	}
 
@@ -468,6 +476,8 @@ public class NoteManager {
 			// TODO send an error to the user
 			TLog.d(TAG, "Cursor returned null or 0 notes");
 		}
+		
+		cursor.close();
 		
 		return id;
 	}
@@ -557,6 +567,8 @@ public class NoteManager {
 			}
 		}
 		
+		cursor.close();
+		
 		return noteTitle;
 	}
 
@@ -602,7 +614,8 @@ public class NoteManager {
 			// TODO send an error to the user
 			TLog.d(TAG, "Cursor returned null or 0 notes");
 		}
-	
+		cursor.close();
+		
 		return null;
 	}
 	
