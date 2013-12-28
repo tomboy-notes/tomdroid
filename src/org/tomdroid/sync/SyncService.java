@@ -25,12 +25,15 @@
 package org.tomdroid.sync;
 
 import android.app.Activity;
+import android.app.Service;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.Message;
 import android.text.format.Time;
+
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.ui.CompareNotes;
@@ -43,7 +46,7 @@ import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public abstract class SyncService {
+public abstract class SyncService extends Service {
 	
 	private static final String TAG = "SyncService";
 	
@@ -594,5 +597,11 @@ public abstract class SyncService {
 
 	public void addDeleteable(Note note) {
 		this.deleteableNotes.add(note);
+	}
+	
+	@Override
+	public IBinder onBind(Intent intent) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

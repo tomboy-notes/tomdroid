@@ -25,9 +25,12 @@
 package org.tomdroid.sync.sd;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Handler;
+import android.os.IBinder;
 import android.text.format.Time;
 import android.util.TimeFormatException;
+
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
@@ -41,6 +44,7 @@ import org.xml.sax.XMLReader;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
