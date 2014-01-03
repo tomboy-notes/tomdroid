@@ -134,6 +134,9 @@ public abstract class WebConnection {
 			e.printStackTrace();
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
+		} catch (Exception e) {
+			TLog.i(TAG, "Somethings wrong with your HTTP request. Maybe errors in SSL, certificate?");
+			e.printStackTrace();
 		}
 		
 		return null;
