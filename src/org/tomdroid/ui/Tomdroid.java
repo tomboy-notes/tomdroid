@@ -156,6 +156,7 @@ public class Tomdroid extends ActionBarListActivity {
 	// sync variables
 	private boolean creating = true;
 	private static ProgressDialog authProgressDialog;
+	private static ProgressDialog progressDialog;
 	
 	// remember that we already run onCreate before. If app is pushed out of memory, this variable will be true again
 	// It is set to false at the very end of onCreate (needed eg to sync just one time on appstart!)
@@ -441,6 +442,14 @@ public class Tomdroid extends ActionBarListActivity {
 		
 		return super.onContextItemSelected(item);
 	}
+	
+    @Override
+    protected void onDestroy() {
+    	if (progressDialog != null) {
+    		progressDialog.cancel();
+        }
+    	super.onDestroy();
+    }
 
 	public void onResume() {
 		super.onResume();
@@ -494,7 +503,7 @@ public class Tomdroid extends ActionBarListActivity {
 	    super.onCreateDialog (id);
 	    final Activity activity = this;
 		AlertDialog alertDialog;
-		final ProgressDialog progressDialog = new ProgressDialog(this);
+		progressDialog = new ProgressDialog(this);
 		SyncService currentService = SyncManager.getInstance().getCurrentService();
 		String serviceDescription = currentService.getDescription();
     	final AlertDialog.Builder builder = new AlertDialog.Builder(this);
