@@ -363,6 +363,17 @@ public class CompareNotes extends ActionBarActivity {
 			}
         });	
 	}
+	
+	@Override	
+	public void onResume() {
+		// if the SyncService was stopped because Android killed it, we should not show the progress dialog any more
+		if (SyncManager.getInstance().getCurrentService().activity == null) {
+			TLog.i(TAG, "Android killed the SyncService while in background. We will dismiss the compare view now.");
+			finish();
+		}
+		
+		super.onResume();
+	}
 
 	protected void copyNote() {
 		

@@ -156,7 +156,6 @@ public class Tomdroid extends ActionBarListActivity {
 	// sync variables
 	private boolean creating = true;
 	private static ProgressDialog authProgressDialog;
-	private static ProgressDialog progressDialog;
 	
 	// remember that we already run onCreate before. If app is pushed out of memory, this variable will be true again
 	// It is set to false at the very end of onCreate (needed eg to sync just one time on appstart!)
@@ -445,13 +444,19 @@ public class Tomdroid extends ActionBarListActivity {
 	
     @Override
     protected void onDestroy() {
-    	if (progressDialog != null) {
-    		progressDialog.cancel();
-        }
+    	SyncManager.getInstance().cancel();
+    	removeDialog(DIALOG_SYNC);
     	super.onDestroy();
     }
 
 	public void onResume() {
+		
+		// if the SyncService was stopped because Android killed it, we should not show the progress dialog any more
+		if (SyncManager.getInstance().getCurrentService().activity == null) {
+			TLog.i(TAG, "Android killed the SyncService while in background. We will remove the dialog now.");
+			removeDialog(DIALOG_SYNC);
+		}
+		
 		super.onResume();
 		Intent intent = this.getIntent();
 
@@ -503,7 +508,7 @@ public class Tomdroid extends ActionBarListActivity {
 	    super.onCreateDialog (id);
 	    final Activity activity = this;
 		AlertDialog alertDialog;
-		progressDialog = new ProgressDialog(this);
+		final ProgressDialog progressDialog = new ProgressDialog(this);
 		SyncService currentService = SyncManager.getInstance().getCurrentService();
 		String serviceDescription = currentService.getDescription();
     	final AlertDialog.Builder builder = new AlertDialog.Builder(this);

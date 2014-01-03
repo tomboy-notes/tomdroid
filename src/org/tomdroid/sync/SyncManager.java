@@ -37,6 +37,7 @@ public class SyncManager {
 	
 	public SyncManager() {
 		createServices();
+		service = getCurrentService();
 	}
 
 	public ArrayList<SyncService> getServices() {
