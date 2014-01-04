@@ -26,7 +26,6 @@ package org.tomdroid.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.text.format.Time;
 
 public class Preferences {
 	
@@ -34,7 +33,7 @@ public class Preferences {
 		SYNC_SERVICE ("sync_service", "sdcard"),
 		SYNC_SERVER_ROOT_API ("sync_server_root_api", ""),
 		SYNC_SERVER_USER_API ("sync_server_user_api", ""),
-		SYNC_SERVER ("sync_server", ""),
+		SYNC_SERVER ("sync_server", "https://"),
 		SD_LOCATION ("sd_location", "tomdroid"),
 		LAST_FILE_PATH ("last_file_path", "/"),
 		SYNC_ON_START("sync_on_start",false),
@@ -60,7 +59,7 @@ public class Preferences {
 		ACCESS_TOKEN_URL ("access_token_url", ""),
 		REQUEST_TOKEN_URL ("request_token_url", ""),
 		LATEST_SYNC_REVISION ("latest_sync_revision", -1L),
-		LATEST_SYNC_DATE ("latest_sync_date", (new Time()).format3339(false)), // will be used to tell whether we have newer notes
+		LATEST_SYNC_DATE ("latest_sync_date", (new Time()).formatTomboy()), // will be used to tell whether we have newer notes
 		SORT_ORDER ("sort_order", "sort_date"),
 		FIRST_RUN ("first_run", true),
 		BASE_TEXT_SIZE("base_text_size","18");

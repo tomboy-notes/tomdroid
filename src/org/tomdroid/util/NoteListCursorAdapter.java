@@ -32,7 +32,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Paint;
 import android.text.format.DateUtils;
-import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -128,7 +127,7 @@ public class NoteListCursorAdapter extends SimpleCursorAdapter {
         //Format last modified dates to be similar to desktop Tomboy
         //TODO this is messy - must be a better way than having 3 separate date types
         Time lastModified = new Time();
-        lastModified.parse3339(c.getString(modifiedCol));
+        lastModified.parseTomboy(c.getString(modifiedCol));
         Long lastModifiedMillis = lastModified.toMillis(false);
         Date lastModifiedDate = new Date(lastModifiedMillis);
         

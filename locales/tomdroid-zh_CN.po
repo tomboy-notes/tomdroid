@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-12-27 10:28+0000\n"
+"X-Launchpad-Export-Date: 2014-01-03 19:16+0000\n"
 "X-Generator: Launchpad (build 16877)\n"
 
 #. application details
@@ -1074,63 +1074,6 @@ msgstr ""
 "Launchpad Contributions:\n"
 "  Isabel Heger https://launchpad.net/~isabel-h1\n"
 "  Stefan Hammer https://launchpad.net/~j-4\n"
+"  Tian Jing https://launchpad.net/~oppop007\n"
 "  Wang Dianjin https://launchpad.net/~tuhaihe\n"
 "  mozillazg https://launchpad.net/~mozillazg"
-
-#~ msgid "Search Options"
-#~ msgstr "搜索选项"
-
-#~ msgid "Completing authentication. Please wait..."
-#~ msgstr "完成认证。请稍候..."
-
-#~ msgid ""
-#~ "Welcome to Tomdroid.\\n\\nPlease note that this is beta quality software and "
-#~ "that it contains known problems, like its inability to edit notes.\\n\\nWe "
-#~ "are well aware of these issues and intend to work on them quickly but I also "
-#~ "wanted to get something out and tested as quickly as possible.\\n\\nIf you "
-#~ "would like to contribute, help at all levels would be appreciated. Hop on "
-#~ "board on launchpad.net/tomdroid and contact us!\\n"
-#~ msgstr ""
-#~ "欢迎你用Tomdroid。\\n\\n请注意，软件还在发展中，还含了已知的问题，比如它还无法编辑笔记。\\n\\"
-#~ "n我们意识到这些问题，并试图快点解决它们。\\n\\"
-#~ "n如果你想作出贡献，我们欢迎各种帮助。为了联系我们，快参加launchpad.net/tomdroid!\\n"
-
-#~ msgid "SD card not found."
-#~ msgstr "未发现 SD 卡。"
-
-#~ msgid "\\\"%1$s\\\" contains invalid characters.\\nPlease try again!"
-#~ msgstr "“%1$s”包含无效字符。\\n请重试！"
-
-#~ msgid ""
-#~ "The requested note could not be parsed. If you are able to replicate the "
-#~ "problem, please contact us!"
-#~ msgstr "无法解析请求的便笺。如果您能重现该问题，请与我们联系！"
-
-#~ msgid "Save to SD card"
-#~ msgstr "保存到 SD 卡"
-
-#~ msgid "Could not save the errors, please check your SD card."
-#~ msgstr "无法保存错误，请检查您的 SD 卡。"
-
-#~ msgid "Change Sort"
-#~ msgstr "更改排序"
-
-#~ msgid "Please wait while the notes load.."
-#~ msgstr "便笺正在加载，请稍后.."
-
-#~ msgid "Choose the default sorting"
-#~ msgstr "选择默认顺序"
-
-#~ msgid "Default sort"
-#~ msgstr "默认顺序"
-
-#~ msgid ""
-#~ "Tomboy compatible wikiwiki note-taking application that can't take notes yet."
-#~ msgstr "Tomboy 兼容还不能记笔记的维基便笺应用。"
-
-#~ msgid "Please wait while note loads..."
-#~ msgstr "笔记正在加载中，请稍候"
-
-#~ msgid ""
-#~ "Note-taking application with online synchronization compatible with Tomboy"
-#~ msgstr "兼容 Tomboy 并支持在线同步的便笺应用"

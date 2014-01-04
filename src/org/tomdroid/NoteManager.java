@@ -31,12 +31,13 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.text.Html;
-import android.text.format.Time;
 import android.widget.ListAdapter;
+
 import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.NoteListCursorAdapter;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.TLog;
+import org.tomdroid.util.Time;
 import org.tomdroid.xml.XmlUtils;
 
 import java.util.ArrayList;
@@ -208,7 +209,7 @@ public class NoteManager {
 		values.put(Note.FILE, note.getFileName());
 		values.put(Note.GUID, note.getGuid().toString());
 		// Notice that we store the date in UTC because sqlite doesn't handle RFC3339 timezone information
-		values.put(Note.MODIFIED_DATE, note.getLastChangeDate().format3339(false));
+		values.put(Note.MODIFIED_DATE, note.getLastChangeDate().formatTomboy());
 		values.put(Note.NOTE_CONTENT, xmlContent);
 		values.put(Note.NOTE_CONTENT_PLAIN, plainContent);
 		values.put(Note.TAGS, note.getTags());

@@ -30,13 +30,14 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.format.Time;
+
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.ui.CompareNotes;
 import org.tomdroid.util.ErrorList;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.TLog;
+import org.tomdroid.util.Time;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -283,7 +284,7 @@ public abstract class SyncService {
 					Note note = NoteManager.getNoteByGuid(this.activity, localGuid);
 					String syncDateString = Preferences.getString(Preferences.Key.LATEST_SYNC_DATE);
 					Time syncDate = new Time();
-					syncDate.parse3339(syncDateString);
+					syncDate.parseTomboy(syncDateString);
 					int compareSync = Time.compare(syncDate, note.getLastChangeDate());
 					if(compareSync > 0) // older than last sync, means it's been deleted from server
 						deleteableNotes.add(note);
@@ -306,7 +307,7 @@ public abstract class SyncService {
 		
 		String syncDateString = Preferences.getString(Preferences.Key.LATEST_SYNC_DATE);
 		Time syncDate = new Time();
-		syncDate.parse3339(syncDateString);
+		syncDate.parseTomboy(syncDateString);
 
 		for(Note[] notes : comparableNotes) {
 			
@@ -399,7 +400,7 @@ public abstract class SyncService {
 			bundle.putString("title",remoteNote.getTitle());
 			bundle.putString("file",remoteNote.getFileName());
 			bundle.putString("guid",remoteNote.getGuid());
-			bundle.putString("date",remoteNote.getLastChangeDate().format3339(false));
+			bundle.putString("date",remoteNote.getLastChangeDate().formatTomboy());
 			bundle.putString("content", remoteNote.getXmlContent());
 			bundle.putString("tags", remoteNote.getTags());
 			bundle.putInt("datediff", compareBoth);

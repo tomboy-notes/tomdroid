@@ -26,8 +26,8 @@ package org.tomdroid.sync.sd;
 
 import android.app.Activity;
 import android.os.Handler;
-import android.text.format.Time;
 import android.util.TimeFormatException;
+
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
@@ -36,11 +36,13 @@ import org.tomdroid.ui.Tomdroid;
 import org.tomdroid.util.ErrorList;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.TLog;
+import org.tomdroid.util.Time;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -308,7 +310,7 @@ public class SdCardSyncService extends SyncService {
 			
 			path = new File(Tomdroid.NOTES_PATH + "/"+note.getGuid() + ".note");
 	
-			note.createDate = note.toTomboyFormat(note.getLastChangeDate());
+			note.createDate = note.getLastChangeDate().toString();
 			note.cursorPos = 0;
 			note.width = 0;
 			note.height = 0;
@@ -446,7 +448,7 @@ public class SdCardSyncService extends SyncService {
 		
 		Time now = new Time();
 		now.setToNow();
-		String nowString = now.format3339(false);
+		String nowString = now.formatTomboy();
 		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, nowString);
 
 		setSyncProgress(100);

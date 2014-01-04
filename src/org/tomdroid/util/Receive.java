@@ -61,7 +61,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.SpannableStringBuilder;
-import android.text.format.Time;
 import android.util.TimeFormatException;
 import android.widget.Toast;
 
@@ -204,7 +203,7 @@ public class Receive extends ActionBarActivity {
 			bundle.putString("title",remoteNote.getTitle());
 			bundle.putString("file",remoteNote.getFileName());
 			bundle.putString("guid",remoteNote.getGuid());
-			bundle.putString("date",remoteNote.getLastChangeDate().format3339(false));
+			bundle.putString("date",remoteNote.getLastChangeDate().formatTomboy());
 			bundle.putString("content", remoteNote.getXmlContent());
 			bundle.putString("tags", remoteNote.getTags());
 			bundle.putInt("datediff", compareBoth);

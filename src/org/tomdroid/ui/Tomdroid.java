@@ -46,6 +46,7 @@ import org.tomdroid.util.Receive;
 import org.tomdroid.util.SearchSuggestionProvider;
 import org.tomdroid.util.Send;
 import org.tomdroid.util.TLog;
+import org.tomdroid.util.Time;
 import org.tomdroid.xml.LinkInternalSpan;
 import org.tomdroid.xml.LinkifyPhone;
 import org.tomdroid.xml.NoteContentBuilder;
@@ -76,7 +77,6 @@ import android.os.Message;
 import android.provider.SearchRecentSuggestions;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
-import android.text.format.Time;
 import android.text.util.Linkify;
 import android.text.util.Linkify.MatchFilter;
 import android.text.util.Linkify.TransformFilter;
@@ -196,8 +196,12 @@ public class Tomdroid extends ActionBarListActivity {
         setContentView(main);
 		
 		// get the Path to the notes-folder from Preferences
-		NOTES_PATH = Environment.getExternalStorageDirectory()
+        if (Preferences.getString(Preferences.Key.SD_LOCATION).startsWith("/")) {
+        	NOTES_PATH = Preferences.getString(Preferences.Key.SD_LOCATION);
+        } else {
+        	NOTES_PATH = Environment.getExternalStorageDirectory()
 				+ "/" + Preferences.getString(Preferences.Key.SD_LOCATION) + "/";
+        }
 		
 
 		// generate the http header we want to send on syncing
@@ -1059,7 +1063,7 @@ public class Tomdroid extends ActionBarListActivity {
 	
 	private void resetSyncValues() {
 		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, (Long)Preferences.Key.LATEST_SYNC_REVISION.getDefault());
-		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, new Time().format3339(false));
+		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, new Time().formatTomboy());
 	}
 
 	public void ViewNote(long noteId) {

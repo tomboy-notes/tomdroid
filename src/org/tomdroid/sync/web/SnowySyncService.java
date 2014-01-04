@@ -27,7 +27,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
-import android.text.format.Time;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,6 +39,7 @@ import org.tomdroid.sync.SyncService;
 import org.tomdroid.util.ErrorList;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.TLog;
+import org.tomdroid.util.Time;
 import org.tomdroid.xml.XmlUtils;
 
 import java.net.UnknownHostException;
@@ -296,7 +296,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 		
 		Time now = new Time();
 		now.setToNow();
-		String nowString = now.format3339(false);
+		String nowString = now.formatTomboy();
 		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, nowString);
 		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, latestRemoteRevision);
 
@@ -374,9 +374,9 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 								Jnote.put("title", XmlUtils.escape(note.getTitle()));
 								Jnote.put("note-content", note.getXmlContent());
 								Jnote.put("note-content-version", "0.1");
-								Jnote.put("last-change-date", note.toTomboyFormat(note.getLastChangeDate()));
-								Jnote.put("create-date", note.toTomboyFormat(note.getCreateDate()));
-								Jnote.put("last-metadata-change-date", note.toTomboyFormat(note.getLastChangeDate()));  // TODO: is this different?
+								Jnote.put("last-change-date", note.getLastChangeDate());
+								Jnote.put("create-date", note.getCreateDate());
+								Jnote.put("last-metadata-change-date", note.getLastChangeDate());  // TODO: is this different?
 							}
 							Jnotes.put(Jnote);
 						}
@@ -553,7 +553,7 @@ public class SnowySyncService extends SyncService implements ServiceAuth {
 						
 						latestRemoteRevision = (int)response.getLong("latest-sync-revision");
 						Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, latestRemoteRevision);
-						Preferences.putString(Preferences.Key.LATEST_SYNC_DATE,new Time().format3339(false));
+						Preferences.putString(Preferences.Key.LATEST_SYNC_DATE,new Time().formatTomboy());
 						
 					} catch (JSONException e) {
 						TLog.e(TAG, e, "Problem parsing the server response");

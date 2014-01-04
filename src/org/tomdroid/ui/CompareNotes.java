@@ -36,11 +36,11 @@ import org.tomdroid.sync.SyncManager;
 import org.tomdroid.ui.actionbar.ActionBarActivity;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.TLog;
+import org.tomdroid.util.Time;
 
 import difflib.Delta;
 import difflib.DiffUtils;
 import difflib.Patch;
-
 import android.app.Activity;	
 import android.content.ContentValues;
 import android.content.Intent;	
@@ -50,7 +50,6 @@ import android.net.Uri;
 import android.os.Bundle;	
 import android.text.Html;
 import android.text.TextUtils;
-import android.text.format.Time;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -422,7 +421,7 @@ public class CompareNotes extends ActionBarActivity {
 		
 		Time now = new Time();
 		now.setToNow();
-		String time = now.format3339(false);
+		String time = now.formatTomboy();
 		
 		localNote.setTitle(title);
 		localNote.setXmlContent(content);

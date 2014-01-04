@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-12-27 10:28+0000\n"
+"X-Launchpad-Export-Date: 2014-01-03 19:16+0000\n"
 "X-Generator: Launchpad (build 16877)\n"
 
 #. application details
@@ -1077,71 +1077,3 @@ msgstr ""
 "Launchpad Contributions:\n"
 "  Jackseen Jeyaluck https://launchpad.net/~jackseen1988\n"
 "  Stefan Hammer https://launchpad.net/~j-4"
-
-#~ msgid ""
-#~ "Tomboy compatible wikiwiki note-taking application that can't take notes yet."
-#~ msgstr ""
-#~ "டொம்பாய் விக்கி விக்கி குறிப்பு எடுக்க  இணக்கத்தன்மையுடைய  பயன்பாட்டு "
-#~ "மென்பொருள்  எனினும் அதனுடாக இன்னும் குறிப்பு எடுக்க முடியாது"
-
-#~ msgid "Please wait while the notes load.."
-#~ msgstr "குறிப்புகள் ஏற்ற வரை காத்திருக்கவும் .."
-
-#~ msgid ""
-#~ "Welcome to Tomdroid.\\n\\nPlease note that this is beta quality software and "
-#~ "that it contains known problems, like its inability to edit notes.\\n\\nWe "
-#~ "are well aware of these issues and intend to work on them quickly but I also "
-#~ "wanted to get something out and tested as quickly as possible.\\n\\nIf you "
-#~ "would like to contribute, help at all levels would be appreciated. Hop on "
-#~ "board on launchpad.net/tomdroid and contact us!\\n"
-#~ msgstr ""
-#~ "டொம் ட்ரொயிட் உங்களை வரவேற்கிறது. \\ n\\ n இந்த பீட்டா தரம் மென்பொருள் இது "
-#~ "குறிப்புகள் திருத்த அதன் இயலாமை போன்ற அறியப்பட்ட பிரச்சினைகள், "
-#~ "கொண்டிருக்கும் என்பதை நினைவில் கொள்க. \\ n \\ n இந்த பிரச்சினைகளை நன்கு "
-#~ "அறிந்துள்ளனர், அப்பிரச்சினைகளை தீர்க்க நாம் தொடர்ந்து பணியாற்றி வருகிறோம் "
-#~ "மற்றும் இது  முடிந்தவரை விரைவாக சோதிக்கப்பட்டபதிப்பாகும்  . \\ n \\ n உங்கள் "
-#~ "பங்களிப்பை அனைத்து மட்டங்களில் இருந்து எதிர்பார்கிறேன்  . Launchpad.net / "
-#~ "tomdroid  பலகையில்  எங்களை தொடர்பு கொள்ளவும்! \\ n"
-
-#~ msgid "Please wait while note loads..."
-#~ msgstr "குறிப்பு ஏற்றும் வரை காத்திருக்கவும் ..."
-
-#~ msgid "Save to SD card"
-#~ msgstr "SD அட்டையில் சேமி"
-
-#~ msgid "\\\"%1$s\\\" contains invalid characters.\\nPlease try again!"
-#~ msgstr ""
-#~ "\\ \"% 1 $ s \\\" செல்லாத எழுத்துகள் உள்ளன. \\ n மீண்டும் முயற்சிக்கவும்!"
-
-#~ msgid "Completing authentication. Please wait..."
-#~ msgstr "அங்கீகாரிக்கும் வரை  . தயவு செய்து காத்திருக்கவும் ..."
-
-#~ msgid ""
-#~ "The requested note could not be parsed. If you are able to replicate the "
-#~ "problem, please contact us!"
-#~ msgstr ""
-#~ "கோரப்பட்ட குறிப்பு பாகுபடுத்த முடியவில்லை. உங்களுக்கு பிரச்சனை பிரதியெடுக்க "
-#~ "முடியும் என்றால், எங்களை தொடர்பு கொள்க!"
-
-#~ msgid "Change Sort"
-#~ msgstr "வரிசை மாற்ற"
-
-#~ msgid "Could not save the errors, please check your SD card."
-#~ msgstr "பிழைகள் காப்பாற்ற முடியவில்லை, உங்கள் SD அட்டையை பரிசோதியுங்கள்"
-
-#~ msgid "SD card not found."
-#~ msgstr "SD அட்டை கிடைக்கவில்லை."
-
-#~ msgid "Choose the default sorting"
-#~ msgstr "முன்னிருப்பு வரிசையாக்க தேர்வு செய்யவும்"
-
-#~ msgid "Default sort"
-#~ msgstr "முன்னிருப்பு வகை"
-
-#~ msgid "Search Options"
-#~ msgstr "தேடல் விருப்பங்கள்"
-
-#~ msgid ""
-#~ "Note-taking application with online synchronization compatible with Tomboy"
-#~ msgstr ""
-#~ "Tomboy இணக்கத்தன்மை ஆன்லைன் ஒருங்கிணைப்பின் குறிப்பு-எடுக்கும்போது பயன்பாடு"

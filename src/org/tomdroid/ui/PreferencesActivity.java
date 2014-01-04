@@ -41,11 +41,11 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.provider.SearchRecentSuggestions;
-import android.text.format.Time;
 import android.view.MenuItem;
 import android.view.Window;
 import android.webkit.URLUtil;
 import android.widget.Toast;
+
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
 import org.tomdroid.sync.SyncManager;
@@ -56,6 +56,7 @@ import org.tomdroid.util.FirstNote;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.SearchSuggestionProvider;
 import org.tomdroid.util.TLog;
+import org.tomdroid.util.Time;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -183,8 +184,13 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 					retval =  false;
 				}
 				else {
-					File path = new File(Environment.getExternalStorageDirectory()
-							+ "/" + locationUri + "/");
+					File path = new File("/");
+					if (locationUri.toString().startsWith("/")) {
+						path = new File(locationUri + "/");
+					} else {
+						path = new File(Environment.getExternalStorageDirectory()
+								+ "/" + locationUri + "/");
+					}
 	
 					if(!path.exists()) {
 						TLog.w(TAG, "Folder {0} does not exist.", path);
@@ -201,7 +207,7 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 						// last sync revision to -1 and date to 1970 to force  a complete sync
 						if (SyncManager.getService(syncService.getValue()).needsLocation()) {
 							Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, (Long)Preferences.Key.LATEST_SYNC_REVISION.getDefault());
-							Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, new Time().format3339(false));
+							Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, new Time().formatTomboy());
 						}
 					}
 				}
@@ -382,7 +388,7 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 	private void resetLocalDatabase() {
 		getContentResolver().delete(Tomdroid.CONTENT_URI, null, null);
 		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, (Long)Preferences.Key.LATEST_SYNC_REVISION.getDefault());
-		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, new Time().format3339(false));
+		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, new Time().formatTomboy());
 		
 		// add a first explanatory note
 		NoteManager.putNote(this, FirstNote.createFirstNote(this));
@@ -413,7 +419,7 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 		// not resetting database, since now we may have new notes, and want to move them from one service to another, etc.
 		// reset last sync date, so we can push local notes to the service - to pull instead, we have "revert all"
 		
-		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, new Time().format3339(false));
+		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, new Time().formatTomboy());
 		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, (Long)Preferences.Key.LATEST_SYNC_REVISION.getDefault());
 
 	}

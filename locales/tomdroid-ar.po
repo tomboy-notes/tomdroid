@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-12-27 10:28+0000\n"
+"X-Launchpad-Export-Date: 2014-01-03 19:16+0000\n"
 "X-Generator: Launchpad (build 16877)\n"
 
 #. application details
@@ -1107,43 +1107,3 @@ msgstr ""
 "  Stefan Hammer https://launchpad.net/~j-4\n"
 "  Youssef Habri https://launchpad.net/~youssef-habri\n"
 "  abdXelrhman https://launchpad.net/~popo49-abdo"
-
-#~ msgid "Choose the default sorting"
-#~ msgstr "اختيار الفرز الافتراضي"
-
-#~ msgid "Default sort"
-#~ msgstr "الفرز الافتراضي"
-
-#~ msgid "Search Options"
-#~ msgstr "خيارات البحث"
-
-#~ msgid ""
-#~ "Note-taking application with online synchronization compatible with Tomboy"
-#~ msgstr "تطبيق لتدوين الملاحظات مع مزامنة انترنت متوافق مع Tomboy"
-
-#~ msgid "Please wait while the notes load.."
-#~ msgstr "يرجى الانتظار لحين انتهاء تحميل الملاحظات.."
-
-#~ msgid ""
-#~ "Tomboy compatible wikiwiki note-taking application that can't take notes yet."
-#~ msgstr "برنامج تسجيل مُلاحظات للاندرويد متوافق مع برنامج توم بوى"
-
-#~ msgid ""
-#~ "Welcome to Tomdroid.\\n\\nPlease note that this is beta quality software and "
-#~ "that it contains known problems, like its inability to edit notes.\\n\\nWe "
-#~ "are well aware of these issues and intend to work on them quickly but I also "
-#~ "wanted to get something out and tested as quickly as possible.\\n\\nIf you "
-#~ "would like to contribute, help at all levels would be appreciated. Hop on "
-#~ "board on launchpad.net/tomdroid and contact us!\\n"
-#~ msgstr ""
-#~ "اهلاً بك فى توم درويد.\\n\\nيُرجى العلم ان هذا اﻹصدار تطويرى ويحتوى بضع "
-#~ "مشاكل.\\n\\nنحن على درايه بمعظم هذه المشاكل ونعمل عليها ولكننا رغبنا فى "
-#~ "إصدار اول إصدار تطويرى باسرع ما يمكن رغم علمنا المسبق بما سيسبب هذا من "
-#~ "مشاكل.\\n\\nإذا رغبت فى المشاركه باى شكل من اﻹشكال فتفضل بزياره منصه اﻹطلاق "
-#~ "عبر الرابط launchpad.net/tomdroid وتواصل معنا عبر بريدنا اﻹلكترونى!\\n"
-
-#~ msgid "Please wait while note loads..."
-#~ msgstr "يُرحى الإنتظار ريثما تُحضر المُلاحظه..."
-
-#~ msgid "Completing authentication. Please wait..."
-#~ msgstr "يُنِهى الاستيثاق..."

@@ -389,5 +389,6 @@
 
 	<!-- Launchpad Translation String -->
 	<string name="about_translators">Launchpad Contributions:
+  Andri Thorlacius https://launchpad.net/~chipcius
   Sigurpáll Sigurðsson https://launchpad.net/~icekhaos</string>
 </resources>
