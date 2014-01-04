@@ -1,7 +1,7 @@
 ﻿Tomdroid NEWS
 
 Copyright 2008, 2009, 2010, 2011, 2012 Olivier Bilodeau <olivier@bottomlesspit.org>
-Copyright 2013 Stefan Hammer <j.4@gmx.at>
+Copyright 2013, 2014 Stefan Hammer <j.4@gmx.at>
 
 Project hosting: https://launchpad.net/tomdroid/
 
@@ -15,6 +15,12 @@ For more details and developer visible changes see the ChangeLog
 -------------------------------------------------------------------------------
 Tomdroid 0.8.0 - "<name>" released on <date>
 
+-------------------------------------------------------------------------------
+Tomdroid 0.7.5 - "Christmas surprise" released on 2014-01-04
+
+* updated translations
+* fixed some crashes reported on Google Play (lp:1264479, lp:1264496, lp:1264499, lp:1264506, lp:1264976)
+* now you can also specify an absolute path as folder location (lp:1157396)
 
 -------------------------------------------------------------------------------
 Tomdroid 0.7.4 - "Christmas surprise" released on 2013-12-24
