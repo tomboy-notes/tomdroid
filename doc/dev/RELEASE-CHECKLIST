@@ -42,6 +42,8 @@ Releasing on the Google Play Store / Amazon Appstore
 - Take screenshots and put them in data/market-screenshots/ and upload them to the market (if relevant)
 - Publish
 
+--- for a small bugfix release you can stop here now ---
+
 Spread the word
 - Email to Tomdroid's mailing list (Tomboy/Snowy too if it's an important milestone)
 - post to identi.ca / LinkedIn status / facebook
