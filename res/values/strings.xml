@@ -253,9 +253,13 @@
 
 	<!-- placeholder-1 will be replaced with "Online Synchronisation", "SD card",... -->
 	<string name="syncing">Syncing with <xliff:g id="SyncService" example="SD Card">%1$s</xliff:g></string>
+	<!-- placeholder-1 is "..." -->
 	<string name="syncing_connect">connecting to service<xliff:g id="points">…</xliff:g></string>
+	<!-- placeholder-1 is "..." -->
 	<string name="gettings_notes">getting list of remote notes<xliff:g id="points">…</xliff:g></string>
+	<!-- placeholder-1 is "..." -->
 	<string name="syncing_local">updating local notes<xliff:g id="points">…</xliff:g></string>
+	<!-- placeholder-1 is "..." -->
 	<string name="syncing_remote">updating remote notes<xliff:g id="points">…</xliff:g></string>
 	<!-- placeholder-1 will be replaced with the note title -->
 	<string name="sync_conflict_description">There was a conflict syncing the note <xliff:g id="Notetitle" example="Note Title">\'%1$s\'</xliff:g></string>
