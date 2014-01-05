@@ -561,7 +561,8 @@ public class Tomdroid extends ActionBarListActivity {
 						);
 
 				// build and show the dialog
-				return new AlertDialog.Builder(this).setMessage(aboutDialogStr).setTitle(getString(R.string.titleAbout))
+				String aboutDialogTitle = String.format(getString(R.string.titleAbout), getString(R.string.app_name));
+				return new AlertDialog.Builder(this).setMessage(aboutDialogStr).setTitle(aboutDialogTitle)
 						.setIcon(R.drawable.icon).setNegativeButton(getString(R.string.btnProjectPage), new OnClickListener() {
 							public void onClick(DialogInterface dialog, int which) {
 								startActivity(new Intent(Intent.ACTION_VIEW, Uri
