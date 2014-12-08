@@ -33,7 +33,6 @@ import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
 import org.tomdroid.sync.SyncManager;
-import org.tomdroid.ui.actionbar.ActionBarActivity;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.TLog;
 import org.tomdroid.util.Time;
@@ -56,7 +55,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 	
-public class CompareNotes extends ActionBarActivity {	
+public class CompareNotes extends Activity {	
 	private static final String TAG = "SyncDialog";
 	
 	private Note localNote;
@@ -81,8 +80,6 @@ public class CompareNotes extends ActionBarActivity {
 		TLog.v(TAG, "starting CompareNotes");
 		
 		setContentView(R.layout.note_compare);
-		// Disable the tomdroid icon home button
-		setHomeButtonEnabled(false);
 		
 		final Bundle extras = this.getIntent().getExtras();
 

@@ -27,7 +27,6 @@ package org.tomdroid.ui;
 
 import java.io.File;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
@@ -36,9 +35,7 @@ import org.tomdroid.sync.ServiceAuth;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.sync.SyncService;
 import org.tomdroid.util.ErrorList;
-import org.tomdroid.ui.actionbar.ActionBarListActivity;
 import org.tomdroid.util.FirstNote;
-import org.tomdroid.util.Honeycomb;
 import org.tomdroid.util.NewNote;
 import org.tomdroid.util.NoteViewShortcutsHelper;
 import org.tomdroid.util.Preferences;
@@ -47,8 +44,6 @@ import org.tomdroid.util.SearchSuggestionProvider;
 import org.tomdroid.util.Send;
 import org.tomdroid.util.TLog;
 import org.tomdroid.util.Time;
-import org.tomdroid.xml.LinkInternalSpan;
-import org.tomdroid.xml.LinkifyPhone;
 import org.tomdroid.xml.NoteContentBuilder;
 
 import android.annotation.SuppressLint;
@@ -56,6 +51,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.DialogInterface;
@@ -64,10 +60,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.res.Configuration;
 import android.database.Cursor;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -75,10 +68,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.SearchRecentSuggestions;
-import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
-import android.text.util.Linkify;
-import android.text.util.Linkify.MatchFilter;
 import android.text.util.Linkify.TransformFilter;
 import android.view.*;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -90,7 +80,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Tomdroid extends ActionBarListActivity {
+public class Tomdroid extends ListActivity {
 
 	// Global definition for Tomdroid
 	public static final String	AUTHORITY			= "org.tomdroid.notes";
@@ -160,20 +150,6 @@ public class Tomdroid extends ActionBarListActivity {
 	// remember that we already run onCreate before. If app is pushed out of memory, this variable will be true again
 	// It is set to false at the very end of onCreate (needed eg to sync just one time on appstart!)
 	private static boolean first_onCreate_run = true;
-	
-	// UI for tablet
-	private LinearLayout rightPane;
-	private TextView content;
-	private TextView title;
-	
-	// other tablet-based variables
-
-	private Note note;
-	private SpannableStringBuilder noteContent;
-	private Uri uri;
-	private int lastIndex = -1;
-	public MenuItem syncMenuItem;
-	public static Tomdroid context;
 
 	// for searches
 	
@@ -187,7 +163,6 @@ public class Tomdroid extends ActionBarListActivity {
 		super.onCreate(savedInstanceState);
 
 		Preferences.init(this, CLEAR_PREFERENCES);
-		context = this;
 		SyncManager.setActivity(this);
 		SyncManager.setHandler(this.syncMessageHandler);
 		
@@ -239,40 +214,15 @@ public class Tomdroid extends ActionBarListActivity {
 	        SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
 	                SearchSuggestionProvider.AUTHORITY, SearchSuggestionProvider.MODE);
 	        suggestions.saveRecentQuery(query, null);
-		} else {
-			// if main view -> disable the tomdroid icon home button
-			setHomeButtonEnabled(false);
-		}
-	    
-		String defaultSortOrder = Preferences.getString(Preferences.Key.SORT_ORDER);
-		NoteManager.setSortOrder(defaultSortOrder);
-		
+		} 
 	    // set list adapter
 	    updateNotesList(query, -1);
 	    
 		// add note to pane for tablet
-		rightPane = (LinearLayout) findViewById(R.id.right_pane);
 		registerForContextMenu(findViewById(android.R.id.list));
-
-		// check if receiving note
-		if(getIntent().hasExtra("view_note")) {
-			uri = getIntent().getData();
-			getIntent().setData(null);
-			Intent i = new Intent(Intent.ACTION_VIEW, uri, this, ViewNote.class);
-			startActivity(i);
-		}
-		
-		if(rightPane != null) {
-			content = (TextView) findViewById(R.id.content);
-			title = (TextView) findViewById(R.id.title);
-			
-			// this we will call on resume as well.
-			updateTextAttributes();
-			showNoteInPane(0);
-		}
-		
-		// set the view shown when the list is empty
-		updateEmptyList(query);
+	    
+		String defaultSortOrder = Preferences.getString(Preferences.Key.SORT_ORDER);
+		NoteManager.setSortOrder(defaultSortOrder);
 		
 		// Syncing if SyncOnStart (pref) set AND onCreate_SyncOnStart set false for syncing only on startup
 		if (Preferences.getBoolean(Preferences.Key.SYNC_ON_START) && first_onCreate_run) {
@@ -334,8 +284,6 @@ public class Tomdroid extends ActionBarListActivity {
 				} else {
 					item.setTitle(R.string.sortByTitle);
 				}
-				updateNotesList(query, 0);
-				showNoteInPane(0);
 				return true;
 			case R.id.menuRevert:
 				showDialog(DIALOG_REVERT_ALL);
@@ -348,18 +296,6 @@ public class Tomdroid extends ActionBarListActivity {
 				startSearch(null, false, null, false);
 				return true;
 
-			// tablet
-			case R.id.menuEdit:
-				if(note != null)
-					startEditNote();
-				return true;
-			case R.id.menuDelete:
-				if(note != null) {
-			    	dialogString = note.getGuid(); // why can't we put it in the bundle?  deletes the wrong note!?
-					dialogInt = lastIndex;
-					showDialog(DIALOG_DELETE_NOTE);
-				}
-				return true;
 			case R.id.menuImport:
 				// Create a new Intent for the file picker activity
 				Intent intent = new Intent(this, FilePickerActivity.class);
@@ -384,8 +320,7 @@ public class Tomdroid extends ActionBarListActivity {
 
 	
 	@Override
-	public void onCreateContextMenu(ContextMenu menu, View v,
-			ContextMenuInfo menuInfo) {
+	public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo) {
 		MenuInflater inflater = getMenuInflater();
 
 		long noteId = ((AdapterContextMenuInfo)menuInfo).id;
@@ -424,16 +359,10 @@ public class Tomdroid extends ActionBarListActivity {
 			case R.id.tags:
 				showDialog(DIALOG_VIEW_TAGS);
 				break;
-			//case R.id.revert:
-			//	this.revertNote(dialogNote.getGuid());
-			//	break;
 			case R.id.delete:
 				dialogString = dialogNote.getGuid();
 				dialogInt = dialogPosition;
 				showDialog(DIALOG_DELETE_NOTE);
-				return true;
-			case R.id.undelete:
-				undeleteNote(dialogNote);
 				return true;
 			case R.id.create_shortcut:
                 final NoteViewShortcutsHelper helper = new NoteViewShortcutsHelper(this);
@@ -492,18 +421,7 @@ public class Tomdroid extends ActionBarListActivity {
 
 		SyncManager.setActivity(this);
 		SyncManager.setHandler(this.syncMessageHandler);
-		
-		// tablet refresh
-		if(rightPane != null) {
-			updateTextAttributes();
-			if(!creating)
-				showNoteInPane(lastIndex);
-		}
-		else 
-			updateNotesList(query, lastIndex);
-		
-		// set the view shown when the list is empty
-		updateEmptyList(query);
+
 		creating = false;
 	}
 
@@ -585,25 +503,6 @@ public class Tomdroid extends ActionBarListActivity {
 		    case DIALOG_NOT_FOUND:
 			    addCommonNoteNotFoundDialogElements(builder);
 			    return builder.create();
-		    case DIALOG_NOT_FOUND_SHORTCUT:
-			    addCommonNoteNotFoundDialogElements(builder);
-		        final Intent removeIntent = new NoteViewShortcutsHelper(this).getRemoveShortcutIntent(dialogString, uri);
-		        builder.setPositiveButton(getString(R.string.btnRemoveShortcut), new OnClickListener() {
-		            public void onClick(final DialogInterface dialogInterface, final int i) {
-		                sendBroadcast(removeIntent);
-		                finish();
-		            }
-		        });
-			    return builder.create();
-		    case DIALOG_PARSE_ERROR:
-		    	return new AlertDialog.Builder(this)
-				.setMessage(getString(R.string.messageErrorNoteParsing))
-				.setTitle(getString(R.string.error))
-				.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
-						showNote(true);
-					}})
-				.create();
 		    case DIALOG_REVERT_ALL:
 		    	return new AlertDialog.Builder(this)
 		        .setIcon(android.R.drawable.ic_dialog_alert)
@@ -696,30 +595,12 @@ public class Tomdroid extends ActionBarListActivity {
 					
 				});
 	    		break;
-		    case DIALOG_NOT_FOUND_SHORTCUT:
-		        final Intent removeIntent = new NoteViewShortcutsHelper(this).getRemoveShortcutIntent(dialogString, uri);
-		        ((AlertDialog) dialog).setButton(Dialog.BUTTON_POSITIVE, getString(R.string.btnRemoveShortcut), new OnClickListener() {
-		            public void onClick(final DialogInterface dialogInterface, final int i) {
-		                sendBroadcast(removeIntent);
-		                finish();
-		            }
-		        });
-		        break;
 		    case DIALOG_REVERT_ALL:
 		    	((AlertDialog) dialog).setButton(Dialog.BUTTON_POSITIVE, getString(R.string.yes), new OnClickListener() {
 
 		            public void onClick(DialogInterface dialog, int which) {
 		            	resetSyncValues();
 		            	startSyncing(false);
-		           }
-
-		        });
-			    break;
-		    case DIALOG_DELETE_NOTE:
-		    	((AlertDialog) dialog).setButton(Dialog.BUTTON_POSITIVE, getString(R.string.yes), new OnClickListener() {
-
-		            public void onClick(DialogInterface dialog, int which) {
-		        		deleteNote(dialogString, dialogInt);
 		           }
 
 		        });
@@ -779,200 +660,11 @@ public class Tomdroid extends ActionBarListActivity {
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
-		if (rightPane != null) {
-			if(position == lastIndex) // same index, edit
-				this.startEditNote();
-			else
-				showNoteInPane(position);
-		}
-		else {
 			Cursor item = (Cursor) adapter.getItem(position);
 			long noteId = item.getInt(item.getColumnIndexOrThrow(Note.ID));
 				this.ViewNote(noteId);
-		}
 	}
 	
-	// called when rotating screen
-	@Override
-	public void onConfigurationChanged(Configuration newConfig)
-	{
-	    super.onConfigurationChanged(newConfig);
-        main =  View.inflate(this, R.layout.main, null);
-        setContentView(main);
-
-        if (Build.VERSION.SDK_INT >= 11) {
-            Honeycomb.invalidateOptionsMenuWrapper(this); 
-        }
-		
-		registerForContextMenu(findViewById(android.R.id.list));
-
-		// add note to pane for tablet
-		rightPane = (LinearLayout) findViewById(R.id.right_pane);
-		
-		if(rightPane != null) {
-			content = (TextView) findViewById(R.id.content);
-			title = (TextView) findViewById(R.id.title);
-			updateTextAttributes();
-			showNoteInPane(lastIndex);
-		}
-		else
-			updateNotesList(query,-1);
-		
-		// set the view shown when the list is empty
-		updateEmptyList(query);
-	}
-
-	private void updateNotesList(String aquery, int aposition) {
-	    // adapter that binds the ListView UI to the notes in the note manager
-		adapter = NoteManager.getListAdapter(this, aquery, rightPane != null ? aposition : -1);
-		setListAdapter(adapter);
-		
-	}
-	
-	private void updateEmptyList(String aquery) {
-		// set the view shown when the list is empty
-		listEmptyView = (TextView) findViewById(R.id.list_empty);
-		if (rightPane == null) {
-			if (aquery != null) {
-				listEmptyView.setText(getString(R.string.strNoResults, aquery)); }
-			else if (adapter.getCount() != 0) {
-				listEmptyView.setText(getString(R.string.strListEmptyWaiting)); }
-			else {
-				listEmptyView.setText(getString(R.string.strListEmptyNoNotes)); }
-		} else {
-			if (aquery != null) {
-				title.setText(getString(R.string.strNoResults, aquery)); }
-			else if (adapter.getCount() != 0) {
-				title.setText(getString(R.string.strListEmptyWaiting)); }
-			else {
-				title.setText(getString(R.string.strListEmptyNoNotes)); }
-		}
-		getListView().setEmptyView(listEmptyView);
-	}
-	
-	private void updateTextAttributes() {
-		float baseSize = Float.parseFloat(Preferences.getString(Preferences.Key.BASE_TEXT_SIZE));
-		content.setTextSize(baseSize);
-		title.setTextSize(baseSize*1.3f);
-
-		title.setTextColor(Color.BLUE);
-		title.setPaintFlags(title.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-		title.setBackgroundColor(0xffffffff);
-
-		content.setBackgroundColor(0xffffffff);
-		content.setTextColor(Color.DKGRAY);
-	}
-	private void showNoteInPane(int position) {
-		if(rightPane == null)
-			return;
-		
-		if(position == -1)
-			position = 0;
-
-        title.setText("");
-        content.setText("");
-		
-     // save index and top position
-
-        int index = getListView().getFirstVisiblePosition();
-        View v = getListView().getChildAt(0);
-        int top = (v == null) ? 0 : v.getTop();
-
-        updateNotesList(query, position);
-
-    // restore
-	
-		getListView().setSelectionFromTop(index, top);
-		
-		if(position >= adapter.getCount())
-			position = 0;
-		
-		Cursor item = (Cursor) adapter.getItem(position);
-		if (item == null || item.getCount() == 0) {
-            TLog.d(TAG, "Index {0} not found in list", position);
-			return;
-		}
-		TLog.d(TAG, "Getting note {0}", position);
-
-		long noteId = item.getInt(item.getColumnIndexOrThrow(Note.ID));	
-		uri = Uri.parse(CONTENT_URI + "/" + noteId);
-
-        note = NoteManager.getNote(this, uri);
-		TLog.v(TAG, "Note guid: {0}", note.getGuid());
-
-        if(note != null) {
-        	TLog.d(TAG, "note {0} found", position);
-            noteContent = new NoteContentBuilder().setCaller(noteContentHandler).setInputSource(note.getXmlContent()).setTitle(note.getTitle()).build();
-    		lastIndex = position;
-        } else {
-            TLog.d(TAG, "The note {0} doesn't exist", uri);
-		    final boolean proposeShortcutRemoval;
-		    final boolean calledFromShortcut = getIntent().getBooleanExtra(CALLED_FROM_SHORTCUT_EXTRA, false);
-		    final String shortcutName = getIntent().getStringExtra(SHORTCUT_NAME);
-		    proposeShortcutRemoval = calledFromShortcut && uri != null && shortcutName != null;
-		
-		    if (proposeShortcutRemoval) {
-		    	dialogString = shortcutName;
-	            showDialog(DIALOG_NOT_FOUND_SHORTCUT);
-		    }
-		    else
-	            showDialog(DIALOG_NOT_FOUND);
-
-        }
-	}
-	private void showNote(boolean xml) {
-		
-		if(xml) {
-			content.setText(note.getXmlContent());
-			title.setText((CharSequence) note.getTitle());
-			this.setTitle(this.getTitle() + " - XML");
-			return;
-		}
-
-		LinkInternalSpan[] links = noteContent.getSpans(0, noteContent.length(), LinkInternalSpan.class);
-		MatchFilter noteLinkMatchFilter = LinkInternalSpan.getNoteLinkMatchFilter(noteContent, links);
-
-		// show the note (spannable makes the TextView able to output styled text)
-		content.setText(noteContent, TextView.BufferType.SPANNABLE);
-
-		// add links to stuff that is understood by Android except phone numbers because it's too aggressive
-		// TODO this is SLOWWWW!!!!
-		
-		int linkFlags = 0;
-		
-		if(Preferences.getBoolean(Preferences.Key.LINK_EMAILS))
-			linkFlags |= Linkify.EMAIL_ADDRESSES;
-		if(Preferences.getBoolean(Preferences.Key.LINK_URLS))
-			linkFlags |= Linkify.WEB_URLS;
-		if(Preferences.getBoolean(Preferences.Key.LINK_ADDRESSES))
-			linkFlags |= Linkify.MAP_ADDRESSES;
-		
-		Linkify.addLinks(content, linkFlags);
-
-		// Custom phone number linkifier (fixes lp:512204)
-		if(Preferences.getBoolean(Preferences.Key.LINK_PHONES))
-			Linkify.addLinks(content, LinkifyPhone.PHONE_PATTERN, "tel:", LinkifyPhone.sPhoneNumberMatchFilter, Linkify.sPhoneNumberTransformFilter);
-
-		// This will create a link every time a note title is found in the text.
-		// The pattern contains a very dumb (title1)|(title2) escaped correctly
-		// Then we transform the url from the note name to the note id to avoid characters that mess up with the URI (ex: ?)
-		if(Preferences.getBoolean(Preferences.Key.LINK_TITLES)) {
-			Pattern pattern = NoteManager.buildNoteLinkifyPattern(this, note.getTitle());
-	
-			if(pattern != null) {
-				Linkify.addLinks(
-					content,
-					pattern,
-					Tomdroid.CONTENT_URI+"/",
-					noteLinkMatchFilter,
-					noteTitleTransformFilter
-				);
-	
-				// content.setMovementMethod(LinkMovementMethod.getInstance());
-			}
-		}
-		title.setText((CharSequence) note.getTitle());
-	}
 	
 	private void addCommonNoteNotFoundDialogElements(final AlertDialog.Builder builder) {
 	    builder.setMessage(getString(R.string.messageNoteNotFound))
@@ -984,6 +676,12 @@ public class Tomdroid extends ActionBarListActivity {
 	                }
 	            });
 	}	
+	private void updateNotesList(String aquery, int aposition) {
+	    // adapter that binds the ListView UI to the notes in the note manager
+		adapter = NoteManager.getListAdapter(this, aquery);
+		setListAdapter(adapter);
+		
+	}
 	
 	private Handler noteContentHandler = new Handler() {
 	
@@ -992,7 +690,6 @@ public class Tomdroid extends ActionBarListActivity {
 	
 			//parsed ok - show
 			if(msg.what == NoteContentBuilder.PARSE_OK) {
-				showNote(false);
 	
 			//parsed not ok - error
 			} else if(msg.what == NoteContentBuilder.PARSE_ERROR) {
@@ -1073,11 +770,6 @@ public class Tomdroid extends ActionBarListActivity {
 		startActivity(i);
 	}
 	
-	protected void startEditNote() {
-		final Intent i = new Intent(Intent.ACTION_VIEW, uri, this, EditNote.class);
-		startActivity(i);
-	}
-	
 	protected void startEditNote(long noteId) {
 		Uri intentUri = getNoteIntentUri(noteId);
 		final Intent i = new Intent(Intent.ACTION_VIEW, intentUri, this, EditNote.class);
@@ -1091,30 +783,10 @@ public class Tomdroid extends ActionBarListActivity {
 		Note note = NewNote.createNewNote(this, "", "");
 		Uri uri = NoteManager.putNote(this, note);
 		
-		// recreate listAdapter
-		
-		updateNotesList(query, 0);
-
-		// show new note and update list
-
-		showNoteInPane(0);
-		
 		// view new note
-		
 		Intent i = new Intent(Intent.ACTION_VIEW, uri, this, EditNote.class);
 	    i.putExtra(IS_NEW_NOTE_EXTRA, true);
 		startActivity(i);
-
-		
-	}
-	private void deleteNote(String guid, int position) {
-		NoteManager.deleteNote(this, guid);
-		showNoteInPane(position);
-	}
-	
-	private void undeleteNote(Note anote) {
-		NoteManager.undeleteNote(this, anote);
-		updateNotesList(query,lastIndex);
 	}
 		
 	@SuppressWarnings("deprecation")
@@ -1291,8 +963,5 @@ public class Tomdroid extends ActionBarListActivity {
 		TLog.v(TAG, "Finishing Sync");
 		
 		removeDialog(DIALOG_SYNC);
-		
-		if(rightPane != null)
-			showNoteInPane(lastIndex);
 	}
 }

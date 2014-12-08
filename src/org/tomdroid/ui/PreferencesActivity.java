@@ -40,6 +40,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
+import android.preference.PreferenceActivity;
 import android.provider.SearchRecentSuggestions;
 import android.view.MenuItem;
 import android.view.Window;
@@ -51,7 +52,6 @@ import org.tomdroid.R;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.sync.SyncService;
 import org.tomdroid.sync.web.OAuthConnection;
-import org.tomdroid.ui.actionbar.ActionBarPreferenceActivity;
 import org.tomdroid.util.FirstNote;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.SearchSuggestionProvider;
@@ -61,7 +61,7 @@ import org.tomdroid.util.Time;
 import java.io.File;
 import java.util.ArrayList;
 
-public class PreferencesActivity extends ActionBarPreferenceActivity {
+public class PreferencesActivity extends PreferenceActivity {
 	
 	private static final String TAG = "PreferencesActivity";
 	

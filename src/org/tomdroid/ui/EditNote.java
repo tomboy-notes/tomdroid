@@ -36,7 +36,6 @@ import org.tomdroid.NoteManager;
 import org.tomdroid.R;
 import org.tomdroid.sync.SyncManager;
 import org.tomdroid.sync.sd.SdCardSyncService;
-import org.tomdroid.ui.actionbar.ActionBarActivity;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.TLog;
 import org.tomdroid.xml.LinkInternalSpan;
@@ -46,6 +45,7 @@ import org.tomdroid.xml.NoteContentHandler;
 import org.tomdroid.xml.NoteXMLContentBuilder;
 import org.xml.sax.InputSource;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -84,7 +84,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 // TODO this class is starting to smell
-public class EditNote extends ActionBarActivity {
+public class EditNote extends Activity {
 	
 	// UI elements
 	private EditText title;

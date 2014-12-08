@@ -45,13 +45,13 @@ import org.tomdroid.sync.sd.NoteHandler;
 import org.tomdroid.ui.CompareNotes;
 import org.tomdroid.ui.EditNote;
 import org.tomdroid.ui.Tomdroid;
-import org.tomdroid.ui.actionbar.ActionBarActivity;
 import org.tomdroid.xml.NoteContentHandler;
 import org.tomdroid.xml.NoteXMLContentBuilder;
 import org.tomdroid.xml.XmlUtils;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -64,7 +64,7 @@ import android.text.SpannableStringBuilder;
 import android.util.TimeFormatException;
 import android.widget.Toast;
 
-public class Receive extends ActionBarActivity {
+public class Receive extends Activity {
 	
 	// Logging info
 	private static final String TAG = "ReceiveActivity";

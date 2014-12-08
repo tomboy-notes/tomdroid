@@ -22,14 +22,15 @@
  */
 package org.tomdroid.ui;
 
+import android.app.ListActivity;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
-import org.tomdroid.ui.actionbar.ActionBarListActivity;
 import org.tomdroid.util.NoteViewShortcutsHelper;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.TLog;
@@ -37,7 +38,7 @@ import org.tomdroid.util.TLog;
 /**
  * @author Piotr Adamski <mcveat@gmail.com>
  */
-public class ShortcutActivity extends ActionBarListActivity {
+public class ShortcutActivity extends ListActivity {
     private final String TAG = ShortcutActivity.class.getName();
     private ListAdapter adapter;
 
@@ -48,7 +49,6 @@ public class ShortcutActivity extends ActionBarListActivity {
         TLog.d(TAG, "creating shortcut...");
         setContentView(R.layout.shortcuts_list);
 		// Disable the tomdroid icon home button
-		setHomeButtonEnabled(false);
         setTitle(R.string.shortcuts_view_caption);
         adapter = NoteManager.getListAdapter(this);
         setListAdapter(adapter);

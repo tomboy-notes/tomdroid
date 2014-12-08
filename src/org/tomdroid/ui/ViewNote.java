@@ -49,7 +49,6 @@ import android.widget.Toast;
 import org.tomdroid.Note;
 import org.tomdroid.NoteManager;
 import org.tomdroid.R;
-import org.tomdroid.ui.actionbar.ActionBarActivity;
 import org.tomdroid.util.NoteViewShortcutsHelper;
 import org.tomdroid.util.Preferences;
 import org.tomdroid.util.Send;
@@ -62,7 +61,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 // TODO this class is starting to smell
-public class ViewNote extends ActionBarActivity {
+public class ViewNote extends Activity {
 	public static final String CALLED_FROM_SHORTCUT_EXTRA = "org.tomdroid.CALLED_FROM_SHORTCUT";
     public static final String SHORTCUT_NAME = "org.tomdroid.SHORTCUT_NAME";
 
