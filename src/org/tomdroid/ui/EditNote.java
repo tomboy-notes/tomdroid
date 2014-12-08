@@ -45,7 +45,6 @@ import org.tomdroid.xml.NoteContentHandler;
 import org.tomdroid.xml.NoteXMLContentBuilder;
 import org.xml.sax.InputSource;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -56,6 +55,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.Selection;
 import android.text.Spannable;
@@ -71,11 +71,13 @@ import android.text.style.TypefaceSpan;
 import android.text.util.Linkify;
 import android.text.util.Linkify.MatchFilter;
 import android.text.util.Linkify.TransformFilter;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SlidingDrawer;
@@ -84,7 +86,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 // TODO this class is starting to smell
-public class EditNote extends Activity {
+public class EditNote extends Fragment {
 	
 	// UI elements
 	private EditText title;
@@ -123,19 +125,26 @@ public class EditNote extends Activity {
 	private boolean inBulletSpan = false;
 	private int listLevel = 1;
 	
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		return inflater.inflate(R.layout.note_edit,  container, false);
+	}
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		setHasOptionsMenu (true);
+		super.onCreate(savedInstanceState);
+	}
+	
 	// TODO extract methods in here
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-
-		Preferences.init(this, Tomdroid.CLEAR_PREFERENCES);
+	public void onStart() {
+		super.onStart();
 		
-		setContentView(R.layout.note_edit);
+		content = (EditText) getActivity().findViewById(R.id.content);
+		title = (EditText) getActivity().findViewById(R.id.title);
 		
-		content = (EditText) findViewById(R.id.content);
-		title = (EditText) findViewById(R.id.title);
-		
-		formatBar = (SlidingDrawer) findViewById(R.id.formatBar);
+		formatBar = (SlidingDrawer) getActivity().findViewById(R.id.formatBar);
 
 		content.setOnFocusChangeListener(new OnFocusChangeListener() {
 
@@ -149,9 +158,9 @@ public class EditNote extends Activity {
 		    }
 		});
 		
-		neverSaved = getIntent().getBooleanExtra(Tomdroid.IS_NEW_NOTE_EXTRA, false);
+		neverSaved = getActivity().getIntent().getBooleanExtra(Tomdroid.IS_NEW_NOTE_EXTRA, false);
 		
-        uri = getIntent().getData();
+        uri = getActivity().getIntent().getData();
 	}
 
 	private void handleNoteUri(final Uri uri) {// We were triggered by an Intent URI
@@ -161,7 +170,7 @@ public class EditNote extends Activity {
         // intent.getAction()
 
         // TODO verify that getNote is doing the proper validation
-        note = NoteManager.getNote(this, uri);
+        note = NoteManager.getNote(getActivity(), uri);
 
         if(note != null) {
 			title.setText((CharSequence) note.getTitle());
@@ -188,7 +197,7 @@ public class EditNote extends Activity {
 			//parsed not ok - error
 			} else if(msg.what == NoteContentBuilder.PARSE_ERROR) {
 
-				new AlertDialog.Builder(EditNote.this)
+				new AlertDialog.Builder(getActivity())
 					.setMessage(getString(R.string.messageErrorNoteParsing))
 					.setTitle(getString(R.string.error))
 					.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
@@ -202,36 +211,36 @@ public class EditNote extends Activity {
 	};
 	
     private void showNoteNotFoundDialog(final Uri uri) {
-    	final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    	final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage(getString(R.string.messageNoteNotFound))
                 .setTitle(getString(R.string.titleNoteNotFound))
                 .setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                         forceClose = true;
-                        finish();
+                        getActivity().finish();
                     }
                 });
         builder.show();
     }
     
     @Override
-    protected void onPause() {
+	public void onPause() {
     	if (uri != null) {
         	if(!discardChanges && textChanged) // changed and not discarding changes
        			saveNote();
         	else if (discardChanges && neverSaved)
-        		NoteManager.deleteNote(this, note);
+        		NoteManager.deleteNote(getActivity(), note);
         		neverSaved = false;
         }
     	super.onPause();
     }
 
     @Override
-    protected void onDestroy() {
+	public void onDestroy() {
     	if(!forceClose) {
     		if(note.getTitle().length() == 0 && note.getXmlContent().length() == 0 && !textChanged) // if the note is empty, e.g. new
-				NoteManager.deleteNote(this, note);
+				NoteManager.deleteNote(getActivity(), note);
     	}
     	super.onDestroy();
     }
@@ -262,14 +271,12 @@ public class EditNote extends Activity {
 		content.setTextColor(Color.DKGRAY);
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		inflater.inflate(R.menu.edit_note, menu);
 
         // Calling super after populating the menu is necessary here to ensure that the
         // action bar helpers have a chance to handle this event.
-		return super.onCreateOptionsMenu(menu);
+		super.onCreateOptionsMenu(menu, inflater);
 	}
 
 	@Override
@@ -277,15 +284,15 @@ public class EditNote extends Activity {
 		switch (item.getItemId()) {
 	        case android.R.id.home:
 	        	// app icon in action bar clicked; go home
-                Intent intent = new Intent(this, Tomdroid.class);
+                Intent intent = new Intent(getActivity(), Tomdroid.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             	return true;
 			case R.id.menuPrefs:
-				startActivity(new Intent(this, PreferencesActivity.class));
+				startActivity(new Intent(getActivity(), PreferencesActivity.class));
 				return true;
 			case R.id.edit_note_save:
-				finish();
+				getActivity().finish();
 				return true;
 			case R.id.edit_note_discard:
 				discardNoteContent();
@@ -326,7 +333,7 @@ public class EditNote extends Activity {
 			formatBar.setVisibility(View.GONE);
 			content.setText(note.getXmlContent());
 			title.setText((CharSequence) note.getTitle());
-			this.setTitle(this.getTitle() + " - XML");
+			getActivity().setTitle(getActivity().getTitle() + " - XML");
 			xmlOn = true;
 			return;
 		}
@@ -358,7 +365,7 @@ public class EditNote extends Activity {
 		// The pattern contains a very dumb (title1)|(title2) escaped correctly
 		// Then we transform the url from the note name to the note id to avoid characters that mess up with the URI (ex: ?)
 		if(Preferences.getBoolean(Preferences.Key.LINK_TITLES)) {
-			Pattern pattern = NoteManager.buildNoteLinkifyPattern(this, note.getTitle());
+			Pattern pattern = NoteManager.buildNoteLinkifyPattern(getActivity(), note.getTitle());
 	
 			if(pattern != null) {
 				Linkify.addLinks(
@@ -386,7 +393,7 @@ public class EditNote extends Activity {
 
 			//parsed not ok - error
 			} else if(msg.what == NoteContentBuilder.PARSE_ERROR) {
-				new AlertDialog.Builder(EditNote.this)
+				new AlertDialog.Builder(getActivity())
 				.setMessage(getString(R.string.messageErrorParsingXML))
 				.setTitle(getString(R.string.titleErrorParsingXML))
 				.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
@@ -408,13 +415,13 @@ public class EditNote extends Activity {
 			if(msg.what == NoteXMLContentBuilder.PARSE_OK) {
 			//parsed not ok - error
 			} else if(msg.what == NoteXMLContentBuilder.PARSE_ERROR) {
-				new AlertDialog.Builder(EditNote.this)
+				new AlertDialog.Builder(getActivity())
 					.setMessage(getString(R.string.messageErrorParsingXML))
 					.setTitle(getString(R.string.titleErrorParsingXML))
 					.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
 						public void onClick(DialogInterface dialog, int which) {
 							dialog.dismiss();
-							finish();
+							getActivity().finish();
 						}})
 					.show();
         	}
@@ -427,7 +434,7 @@ public class EditNote extends Activity {
 
 		public String transformUrl(Matcher m, String str) {
 
-			int id = NoteManager.getNoteId(EditNote.this, str);
+			int id = NoteManager.getNoteId(getActivity(), str);
 			
 			// return something like content://org.tomdroid.notes/notes/3
 			return Tomdroid.CONTENT_URI.toString()+"/"+id;
@@ -481,16 +488,16 @@ public class EditNote extends Activity {
 		
 		boolean updated = updateNoteContent(xmlOn);
 		if(!updated) {
-			Toast.makeText(this, getString(R.string.messageErrorParsingXML), Toast.LENGTH_SHORT).show();
+			Toast.makeText(getActivity(), getString(R.string.messageErrorParsingXML), Toast.LENGTH_SHORT).show();
 			return;
 		}
 		
-		String validTitle = NoteManager.validateNoteTitle(this, title.getText().toString(), note.getGuid()); 
+		String validTitle = NoteManager.validateNoteTitle(getActivity(), title.getText().toString(), note.getGuid()); 
 		title.setText(validTitle);
 		note.setTitle(validTitle);
 
 		note.setLastChangeDate();
-		NoteManager.putNote( this, note);
+		NoteManager.putNote( getActivity(), note);
 		if(!SyncManager.getInstance().getCurrentService().needsLocation() && Preferences.getBoolean(Preferences.Key.AUTO_BACKUP_NOTES)) {
 			TLog.v(TAG, "backing note up");
 			SdCardSyncService.backupNote(note);
@@ -498,21 +505,21 @@ public class EditNote extends Activity {
 		textChanged = false;
 		neverSaved = false;
 
-		Toast.makeText(this, getString(R.string.messageNoteSaved), Toast.LENGTH_SHORT).show();
+		Toast.makeText(getActivity(), getString(R.string.messageNoteSaved), Toast.LENGTH_SHORT).show();
 		TLog.v(TAG, "note saved");
 		//showNote(false);	// redraw the note, do not show XML
 		//finish();
 	}
 
 	private void discardNoteContent() {
-		new AlertDialog.Builder(EditNote.this)
+		new AlertDialog.Builder(getActivity())
 			.setMessage(getString(R.string.messageDiscardChanges))
 			.setTitle(getString(R.string.titleDiscardChanges))
 			.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog, int which) {
 			            	discardChanges = true;
 			            	dialog.dismiss();
-							finish();
+			            	getActivity().finish();
 			            }
 			        })
 			        .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
@@ -615,7 +622,7 @@ public class EditNote extends Activity {
 	private void addFormatListeners()
 	{
 		
-		final ToggleButton boldButton = (ToggleButton)findViewById(R.id.bold);
+		final ToggleButton boldButton = (ToggleButton)getActivity().findViewById(R.id.bold);
 		
 		boldButton.setOnClickListener(new Button.OnClickListener() {
 
@@ -625,7 +632,7 @@ public class EditNote extends Activity {
             }
 		});
 		
-		final ToggleButton italicButton = (ToggleButton)findViewById(R.id.italic);
+		final ToggleButton italicButton = (ToggleButton)getActivity().findViewById(R.id.italic);
 		
 		italicButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
@@ -635,7 +642,7 @@ public class EditNote extends Activity {
             }
 		});
 		
-		final ToggleButton strikeoutButton = (ToggleButton) findViewById(R.id.strike);   
+		final ToggleButton strikeoutButton = (ToggleButton) getActivity().findViewById(R.id.strike);   
 		
 		strikeoutButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
@@ -645,7 +652,7 @@ public class EditNote extends Activity {
             }
         });
 		
-		final ToggleButton highButton = (ToggleButton)findViewById(R.id.highlight);
+		final ToggleButton highButton = (ToggleButton) getActivity().findViewById(R.id.highlight);
 		
 		highButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
@@ -655,7 +662,7 @@ public class EditNote extends Activity {
             }
 		});
 		
-		final ToggleButton monoButton = (ToggleButton)findViewById(R.id.mono);
+		final ToggleButton monoButton = (ToggleButton) getActivity().findViewById(R.id.mono);
 		
 		monoButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
@@ -665,7 +672,7 @@ public class EditNote extends Activity {
             }
 		});
 		
-		final Button sizeButton = (Button)findViewById(R.id.size);
+		final Button sizeButton = (Button) getActivity().findViewById(R.id.size);
 		
 		sizeButton.setOnClickListener(new Button.OnClickListener() {
 
@@ -829,11 +836,11 @@ public class EditNote extends Activity {
 	private void showSizeDialog() {
 		final CharSequence[] items = {getString(R.string.small), getString(R.string.normal), getString(R.string.large), getString(R.string.huge)};
 
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 		builder.setTitle(R.string.messageSelectSize);
 		builder.setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
 		    public void onClick(DialogInterface dialog, int item) {
-		        Toast.makeText(getApplicationContext(), items[item], Toast.LENGTH_SHORT).show();	
+		        Toast.makeText(getActivity().getApplicationContext(), items[item], Toast.LENGTH_SHORT).show();	
 		        switch (item) {
 	        		case 0: size = 0.8f; break;
 	        		case 1: size = 1.0f; break;

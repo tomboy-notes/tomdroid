@@ -24,7 +24,6 @@
  */
 package org.tomdroid.ui;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -36,13 +35,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.Fragment;
 import android.text.SpannableStringBuilder;
 import android.text.util.Linkify;
 import android.text.util.Linkify.MatchFilter;
 import android.text.util.Linkify.TransformFilter;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,7 +64,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 // TODO this class is starting to smell
-public class ViewNote extends Activity {
+public class ViewNote extends Fragment {
 	public static final String CALLED_FROM_SHORTCUT_EXTRA = "org.tomdroid.CALLED_FROM_SHORTCUT";
     public static final String SHORTCUT_NAME = "org.tomdroid.SHORTCUT_NAME";
 
@@ -79,20 +82,27 @@ public class ViewNote extends Activity {
     // UI feedback handler
 	
 	private Uri uri;
+	
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		return inflater.inflate(R.layout.note_view,  container, false);
+	}
 
 	// TODO extract methods in here
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
+		setHasOptionsMenu (true);
 		super.onCreate(savedInstanceState);
-		Preferences.init(this, Tomdroid.CLEAR_PREFERENCES);
-		setContentView(R.layout.note_view);
-		
-		content = (TextView) findViewById(R.id.content);
-		title = (TextView) findViewById(R.id.title);
+	}
+	
+	@Override
+	public void onStart() {
+		content = (TextView) getActivity().findViewById(R.id.content);
+		title = (TextView) getActivity().findViewById(R.id.title);
 
 		// this we will call on resume as well.
 		updateTextAttributes();
-        uri = getIntent().getData();
+        uri = getActivity().getIntent().getData();
     }
 
 	private void handleNoteUri(final Uri uri) {// We were triggered by an Intent URI
@@ -102,7 +112,7 @@ public class ViewNote extends Activity {
         // intent.getAction()
 
         // TODO verify that getNote is doing the proper validation
-        note = NoteManager.getNote(this, uri);
+        note = NoteManager.getNote(getActivity(), uri);
 
         if(note != null) {
 			title.setText((CharSequence) note.getTitle());
@@ -114,7 +124,7 @@ public class ViewNote extends Activity {
     }
 
     private void showNoteNotFoundDialog(final Uri uri) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         addCommonNoteNotFoundDialogElements(builder);
         addShortcutNoteNotFoundElements(uri, builder);
         builder.show();
@@ -122,16 +132,16 @@ public class ViewNote extends Activity {
 
     private void addShortcutNoteNotFoundElements(final Uri uri, final AlertDialog.Builder builder) {
         final boolean proposeShortcutRemoval;
-        final boolean calledFromShortcut = getIntent().getBooleanExtra(CALLED_FROM_SHORTCUT_EXTRA, false);
-        final String shortcutName = getIntent().getStringExtra(SHORTCUT_NAME);
+        final boolean calledFromShortcut = getActivity().getIntent().getBooleanExtra(CALLED_FROM_SHORTCUT_EXTRA, false);
+        final String shortcutName = getActivity().getIntent().getStringExtra(SHORTCUT_NAME);
         proposeShortcutRemoval = calledFromShortcut && uri != null && shortcutName != null;
 
         if (proposeShortcutRemoval) {
-            final Intent removeIntent = new NoteViewShortcutsHelper(this).getRemoveShortcutIntent(shortcutName, uri);
+            final Intent removeIntent = new NoteViewShortcutsHelper(getActivity()).getRemoveShortcutIntent(shortcutName, uri);
             builder.setPositiveButton(getString(R.string.btnRemoveShortcut), new OnClickListener() {
                 public void onClick(final DialogInterface dialogInterface, final int i) {
-                    sendBroadcast(removeIntent);
-                    finish();
+                	getActivity().sendBroadcast(removeIntent);
+                    getActivity().finish();
                 }
             });
         }
@@ -143,7 +153,7 @@ public class ViewNote extends Activity {
                 .setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        finish();
+                        getActivity().finish();
                     }
                 });
     }
@@ -174,15 +184,14 @@ public class ViewNote extends Activity {
 	}
 	
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
 		// Create the menu based on what is defined in res/menu/noteview.xml
-		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.view_note, menu);
 		
         // Calling super after populating the menu is necessary here to ensure that the
         // action bar helpers have a chance to handle this event.
-		return super.onCreateOptionsMenu(menu);
+		super.onCreateOptionsMenu(menu, inflater);
 	}
 
 	@Override
@@ -190,15 +199,16 @@ public class ViewNote extends Activity {
 		switch (item.getItemId()) {
 	        case android.R.id.home:
 	        	// app icon in action bar clicked; go home
-                Intent intent = new Intent(this, Tomdroid.class);
+                Intent intent = new Intent(getActivity(), Tomdroid.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             	return true;
 			case R.id.menuPrefs:
-				startActivity(new Intent(this, PreferencesActivity.class));
+				startActivity(new Intent(getActivity(), PreferencesActivity.class));
 				return true;
             case R.id.view_note_send:
-            	showDialog(Tomdroid.DIALOG_SEND_CHOOSE);
+            	//showDialog(Tomdroid.DIALOG_SEND_CHOOSE);
+            	//TODO show a dialog from the dialog fragment
 				return true;
 			case R.id.view_note_edit:
 				startEditNote();
@@ -209,14 +219,14 @@ public class ViewNote extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
+/*
 	@Override
 	protected Dialog onCreateDialog(int id) {
 		TLog.i(TAG, "id: {0}, Tomdroid: {1}", id, Tomdroid.DIALOG_SEND_CHOOSE);
 	    super.onCreateDialog (id);
 		switch(id) {
 		    case Tomdroid.DIALOG_SEND_CHOOSE:
-                return new AlertDialog.Builder(this)
+                return new AlertDialog.Builder(getActivity())
 				.setMessage(getString(R.string.sendChoice))
 				.setTitle(getString(R.string.sendChoiceTitle))
 		        .setPositiveButton(getString(R.string.btnSendAsFile), null)
@@ -247,19 +257,18 @@ public class ViewNote extends Activity {
 			    break;
 	    }
 	}
-	
+	*/
 	private void deleteNote() {
-		final Activity activity = this;
-		new AlertDialog.Builder(this)
+		new AlertDialog.Builder(getActivity())
         .setIcon(android.R.drawable.ic_dialog_alert)
         .setTitle(R.string.delete_note)
         .setMessage(R.string.delete_message)
         .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int which) {
-        		NoteManager.deleteNote(activity, note);
-        		Toast.makeText(activity, getString(R.string.messageNoteDeleted), Toast.LENGTH_SHORT).show();
-        		activity.finish();
+        		NoteManager.deleteNote(getActivity(), note);
+        		Toast.makeText(getActivity(), getString(R.string.messageNoteDeleted), Toast.LENGTH_SHORT).show();
+        		getActivity().finish();
             }
 
         })
@@ -271,7 +280,7 @@ public class ViewNote extends Activity {
 		if(xml) {
 			content.setText(note.getXmlContent());
 			title.setText((CharSequence) note.getTitle());
-			this.setTitle(this.getTitle() + " - XML");
+			getActivity().setTitle(getActivity().getTitle() + " - XML");
 			return;
 		}
 		LinkInternalSpan[] links = noteContent.getSpans(0, noteContent.length(), LinkInternalSpan.class);
@@ -301,7 +310,7 @@ public class ViewNote extends Activity {
 		// The pattern contains a very dumb (title1)|(title2) escaped correctly
 		// Then we transform the url from the note name to the note id to avoid characters that mess up with the URI (ex: ?)
 		if(Preferences.getBoolean(Preferences.Key.LINK_TITLES)) {
-			Pattern pattern = NoteManager.buildNoteLinkifyPattern(this, note.getTitle());
+			Pattern pattern = NoteManager.buildNoteLinkifyPattern(getActivity(), note.getTitle());
 	
 			if(pattern != null) {
 				Linkify.addLinks(
@@ -330,7 +339,7 @@ public class ViewNote extends Activity {
 			//parsed not ok - error
 			} else if(msg.what == NoteContentBuilder.PARSE_ERROR) {
 
-				new AlertDialog.Builder(ViewNote.this)
+				new AlertDialog.Builder(getActivity())
 					.setMessage(getString(R.string.messageErrorNoteParsing))
 					.setTitle(getString(R.string.error))
 					.setNeutralButton(getString(R.string.btnOk), new OnClickListener() {
@@ -349,7 +358,7 @@ public class ViewNote extends Activity {
 
 		public String transformUrl(Matcher m, String str) {
 
-			int id = NoteManager.getNoteId(ViewNote.this, str);
+			int id = NoteManager.getNoteId(getActivity(), str);
 
 			// return something like content://org.tomdroid.notes/notes/3
 			return Tomdroid.CONTENT_URI.toString()+"/"+id;
@@ -357,7 +366,7 @@ public class ViewNote extends Activity {
 	};
 
     protected void startEditNote() {
-		final Intent i = new Intent(Intent.ACTION_VIEW, uri, this, EditNote.class);
+		final Intent i = new Intent(Intent.ACTION_VIEW, uri, getActivity(), EditNote.class);
 		startActivity(i);
 	}
 	

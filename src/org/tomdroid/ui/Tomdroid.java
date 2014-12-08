@@ -240,7 +240,7 @@ public class Tomdroid extends ListActivity {
 
 		// Create the menu based on what is defined in res/menu/main.xml
 		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.main, menu);
+		inflater.inflate(R.menu.notes_list, menu);
 
     	String sortOrder = NoteManager.getSortOrder();
 		if(sortOrder == null) {
