@@ -413,4 +413,10 @@
 	translator-credits
 	
 	</string>
+	<string name="messageSshLoginFail">SSH login failed.</string>
+	<string name="messageSshConnectFail">SSH connect failed.</string>
+	<string name="messageSshKeyfileNotFound">keyfile not found. Recheck path!</string>
+	<string name="prefIdRsaFile">path to id_rsa file</string>
+	<string name="prefSshServer">SSH Server</string>
+	<string name="messageSshPushFail">SSH push failed!</string>
 </resources>

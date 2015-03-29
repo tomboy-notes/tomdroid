@@ -1260,6 +1260,31 @@ public class Tomdroid extends ActionBarListActivity {
 					message = String.format(message,serviceDescription);
 					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 					break;
+				case SyncService.SSH_LOGIN_FAIL:
+					dismiss = true;
+					message = getString(R.string.messageSshLoginFail);
+					message = String.format(message,serviceDescription);
+					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+					break;
+				case SyncService.SSH_CONNECT_FAIL:
+					dismiss = true;
+					message = getString(R.string.messageSshConnectFail);
+					message = String.format(message,serviceDescription);
+					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+					break;
+				case SyncService.SSH_KEYFILE_NOT_FOUND:
+					dismiss = true;
+					message = getString(R.string.messageSshKeyfileNotFound);
+					message = String.format(message,serviceDescription);
+					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+					break;
+				case SyncService.SSH_PUSH_FAIL:
+					dismiss = true;
+					message = getString(R.string.messageSshPushFail);
+					message = String.format(message,serviceDescription);
+					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+					break;
+				
 				default:
 					break;
 	

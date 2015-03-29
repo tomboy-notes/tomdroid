@@ -35,6 +35,7 @@ public class Preferences {
 		SYNC_SERVER_USER_API ("sync_server_user_api", ""),
 		SYNC_SERVER ("sync_server", "https://"),
 		SD_LOCATION ("sd_location", "tomdroid"),
+		ID_RSA_FILE ("id_rsa_file",""),
 		LAST_FILE_PATH ("last_file_path", "/"),
 		SYNC_ON_START("sync_on_start",false),
 		INCLUDE_NOTE_TEMPLATES("include_note_templates", false),
@@ -62,7 +63,8 @@ public class Preferences {
 		LATEST_SYNC_DATE ("latest_sync_date", (new Time()).formatTomboy()), // will be used to tell whether we have newer notes
 		SORT_ORDER ("sort_order", "sort_date"),
 		FIRST_RUN ("first_run", true),
-		BASE_TEXT_SIZE("base_text_size","18");
+		BASE_TEXT_SIZE("base_text_size","18"),
+		CLIENT_ID ("client_id", "");
 
 		private String name = "";
 		private Object defaultValue = "";

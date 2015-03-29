@@ -61,6 +61,7 @@
                 android:title="@string/prefSyncOnStart"
                 android:summary="@string/prefDescSyncOnStart" 
                 android:defaultValue="False" />
+		 <EditTextPreference android:key="id_rsa_file" android:title="@string/prefIdRsaFile"/>
 	</PreferenceCategory>
 	<PreferenceCategory android:title="@string/prefLinks">
         <CheckBoxPreference

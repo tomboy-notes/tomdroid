@@ -50,10 +50,10 @@ import java.util.regex.Pattern;
 
 public class SdCardSyncService extends SyncService {
 	
-	private static Pattern note_content = Pattern.compile("<note-content[^>]+>(.*)<\\/note-content>", Pattern.CASE_INSENSITIVE+Pattern.DOTALL);
+	public static Pattern note_content = Pattern.compile("<note-content[^>]+>(.*)<\\/note-content>", Pattern.CASE_INSENSITIVE+Pattern.DOTALL);
 
 	// list of notes to sync
-	private ArrayList<Note> syncableNotes = new ArrayList<Note>();;
+	private ArrayList<Note> syncableNotes = new ArrayList<Note>();
 
 	// logging related
 	private final static String TAG = "SdCardSyncService";
@@ -175,7 +175,7 @@ public class SdCardSyncService extends SyncService {
 		public Worker(File f, boolean isLast, boolean push) {
 			file = f;
 			this.isLast = isLast;
-			this.push = push;
+			this.push = push; // TODO wth? never used?
 		}
 
 		public void run() {
@@ -248,7 +248,7 @@ public class SdCardSyncService extends SyncService {
 		}
 	}
 
-	private static String readFile(File file, char[] buffer) throws IOException {
+	public static String readFile(File file, char[] buffer) throws IOException {
 		StringBuilder out = new StringBuilder();
 		
 		int read;
@@ -282,20 +282,20 @@ public class SdCardSyncService extends SyncService {
 	}
 
 	// this function is a shell to allow backup function to push as well but send a different message... may not be necessary any more...
-	private void pushNote(Note note){
+	public void pushNote(Note note){
 		TLog.v(TAG, "pushing note to sdcard");
 		
-		int message = doPushNote(note);
+		int message = doPushNote(note, "");
 
 		sendMessage(message);
 	}
 
 	// actually pushes a note to sdcard, with optional subdirectory (e.g. backup)
-	private static int doPushNote(Note note) {
+	public static int doPushNote(Note note, String subdir) {
 
 		Note rnote = new Note();
 		try {
-			File path = new File(Tomdroid.NOTES_PATH);
+			File path = new File(Tomdroid.NOTES_PATH + subdir);
 			
 			if (!path.exists())
 				path.mkdir();
@@ -308,7 +308,7 @@ public class SdCardSyncService extends SyncService {
 				return NO_SD_CARD;
 			}
 			
-			path = new File(Tomdroid.NOTES_PATH + "/"+note.getGuid() + ".note");
+			path = new File(Tomdroid.NOTES_PATH + subdir + "/" + note.getGuid() + ".note");
 	
 			note.createDate = note.getLastChangeDate().toString();
 			note.cursorPos = 0;
@@ -432,13 +432,13 @@ public class SdCardSyncService extends SyncService {
 		Note[] notes = NoteManager.getAllNotesAsNotes(activity, true);
 		if(notes != null && notes.length > 0) 
 			for(Note note : notes)
-				doPushNote(note);
+				doPushNote(note, "");
 		sendMessage(NOTES_BACKED_UP);
 	}
 
 	// auto backup function on save
 	public static void backupNote(Note note) {
-		doPushNote(note);
+		doPushNote(note, "");
 	}
 	
 	@Override

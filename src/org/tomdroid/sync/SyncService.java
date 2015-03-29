@@ -103,6 +103,13 @@ public abstract class SyncService {
 	public final static int LATEST_REVISION = 24;
 	public final static int SYNC_CONNECTED = 25;
 	
+	// ssh messages
+	public final static int SSH_CONNECT_FAIL = 26;
+	public final static int SSH_LOGIN_FAIL = 27;
+	public final static int SSH_KEYFILE_NOT_FOUND = 28;
+	public final static int SSH_PUSH_FAIL = 29;
+
+	
 	public SyncService(Activity activity, Handler handler) {
 		
 		this.activity = activity;
@@ -432,6 +439,7 @@ public abstract class SyncService {
 		else { // quit
 			setSyncProgress(100);
 			sendMessage(PARSING_COMPLETE);
+			removeLock();
 			return;
 		}
 
@@ -573,6 +581,8 @@ public abstract class SyncService {
 	public boolean doCancel() {
 		TLog.v(TAG, "sync cancelled");
 		
+		removeLock(); 
+		
 		setSyncProgress(100);
 		sendMessage(SYNC_CANCELLED);
 		
@@ -595,5 +605,10 @@ public abstract class SyncService {
 
 	public void addDeleteable(Note note) {
 		this.deleteableNotes.add(note);
+	}
+
+	// this is used when the super class decided to stop Synchronisation.
+	public void removeLock() {
+		
 	}
 }
