@@ -1284,6 +1284,12 @@ public class Tomdroid extends ActionBarListActivity {
 					message = String.format(message,serviceDescription);
 					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 					break;
+				case SyncService.SSH_LOCK:
+					dismiss = true;
+					message = getString(R.string.messageSshLock);
+					message = String.format(message,serviceDescription);
+					Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+					break;
 				
 				default:
 					break;

@@ -108,6 +108,8 @@ public abstract class SyncService {
 	public final static int SSH_LOGIN_FAIL = 27;
 	public final static int SSH_KEYFILE_NOT_FOUND = 28;
 	public final static int SSH_PUSH_FAIL = 29;
+	public final static int SSH_LOCK = 30;
+	
 
 	
 	public SyncService(Activity activity, Handler handler) {

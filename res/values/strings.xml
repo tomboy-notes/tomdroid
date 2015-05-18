@@ -419,4 +419,7 @@
 	<string name="prefIdRsaFile">path to id_rsa file</string>
 	<string name="prefSshServer">SSH Server</string>
 	<string name="messageSshPushFail">SSH push failed!</string>
+	<string name="messageSshConnectionStringExample">user@server.org:22/path/to/notes</string>
+	<string name="messageTry">Try: %1$s.</string>
+	<string name="messageSshLock">Server locked. Another client is synchronizing at the moment. Try again later.</string>
 </resources>

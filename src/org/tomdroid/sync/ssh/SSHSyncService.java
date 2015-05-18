@@ -139,6 +139,9 @@ public class SSHSyncService extends SyncService {
 			
 		try {
 			scpClient.get(folder + "/lock", localPath().getPath());
+			// TODO: check for timeout! if old, overwrite!
+			//   inspect sync lock file. if exists wait at least time it says.
+			// TODO: also recreate lock file if lock timer timed out.
 			throw new Exception(SERVER_LOCKED_ERROR_STRING);
 		} catch (IOException e) {
 			// assume not locked. create lock
@@ -458,10 +461,13 @@ public class SSHSyncService extends SyncService {
 				} catch (Exception e) {
 					e.printStackTrace();
 					// TODO sometimes two messages (toasts) will be sent. Only the last one is visible! 
-					sendMessage(SSH_CONNECT_FAIL);
-					Log.e(TAG, e.getLocalizedMessage());
-					if (e.getMessage() != SERVER_LOCKED_ERROR_STRING)
+					if (e.getMessage() == SERVER_LOCKED_ERROR_STRING) {
+						sendMessage(SSH_LOCK);
+					} else {	
+						sendMessage(SSH_CONNECT_FAIL);
 						removeLock(null);
+					}
+					Log.e(TAG, e.getLocalizedMessage());
 					setSyncProgress(100);
 				} finally {
 					if (connection != null)

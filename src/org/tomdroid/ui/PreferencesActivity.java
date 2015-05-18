@@ -164,6 +164,9 @@ public class PreferencesActivity extends ActionBarPreferenceActivity {
 					// check sshPattern
 					Pattern p = org.tomdroid.sync.ssh.SSHSyncService.getConnectionStringRegex();
 					if (!p.matcher(newURL).find()){
+						String message = getString(R.string.messageTry);
+						message = String.format(message, getString(R.string.messageSshConnectionStringExample));
+						Toast.makeText(activity, message, Toast.LENGTH_LONG).show();
 						noValidEntry(newURL);
 						retval = false;
 					} else {
