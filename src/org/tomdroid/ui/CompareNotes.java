@@ -446,15 +446,19 @@ public class CompareNotes extends ActionBarActivity {
 				pushNote(remoteNote); // add for deletion
 				
 			}
-			else { // chose to keep remote, delete local, add remote, push remote back 
-				deleteNote(localNote);
+			else { // chose to keep remote, delete local, add remote, push remote back
 				remoteNote.setTitle(title);
 				remoteNote.setXmlContent(content);
 				remoteNote.setLastChangeDate(time);
 				pullNote(remoteNote);
 
-				if(!noRemote)
+				if(!noRemote) {
+					localNote.addTag("system:deleted");
+					pushNote(localNote); // push local with deleted tag to remove from server
 					pushNote(remoteNote);
+				} else {
+					deleteNote(localNote);
+				}
 			}
 		}
 		else { // just read and push modified localNote

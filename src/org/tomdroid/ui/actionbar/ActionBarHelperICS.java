@@ -33,13 +33,17 @@ public class ActionBarHelperICS extends ActionBarHelperHoneycomb {
     @SuppressLint("NewApi")
 	@Override
     public void onPostCreate(Bundle savedInstanceState) {
-        mActivity.getActionBar().setHomeButtonEnabled(showHomeButtonEnabled);
-        mActivity.getActionBar().setDisplayHomeAsUpEnabled(showHomeButtonEnabled);	
+        android.app.ActionBar actionBar = mActivity.getActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeButtonEnabled(showHomeButtonEnabled);
+            actionBar.setDisplayHomeAsUpEnabled(showHomeButtonEnabled);
+        }
     }
 
     @SuppressLint("NewApi")
 	@Override
     protected Context getActionBarThemedContext() {
-        return mActivity.getActionBar().getThemedContext();
+        android.app.ActionBar actionBar = mActivity.getActionBar();
+        return actionBar != null ? actionBar.getThemedContext() : mActivity;
     }
 }

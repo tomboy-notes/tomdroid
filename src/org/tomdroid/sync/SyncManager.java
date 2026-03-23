@@ -104,6 +104,6 @@ public class SyncManager {
 	}
 
 	public void cancel() {
-		service.setCancelled(true);
+		if (service != null) service.setCancelled(true);
 	}
 }

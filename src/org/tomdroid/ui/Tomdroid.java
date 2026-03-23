@@ -85,12 +85,26 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.CursorAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.Manifest;
 
 public class Tomdroid extends ActionBarListActivity {
+
+	// Prevent any cursor from being registered in Activity.mManagedCursors.
+	// On some Android/OEM builds the framework calls startManagingCursor()
+	// internally for ListActivity cursor adapters. When the Activity restarts
+	// (e.g. back gesture from a note), performRestart() tries to requery those
+	// cursors and crashes if they have already been closed. We manage cursor
+	// lifecycle manually, so this registration is never needed.
+	@Override
+	@Deprecated
+	public void startManagingCursor(android.database.Cursor c) {
+		// intentionally empty
+	}
 
 	// Global definition for Tomdroid
 	public static final String	AUTHORITY			= "org.tomdroid.notes";
@@ -114,6 +128,9 @@ public class Tomdroid extends ActionBarListActivity {
 	private static final int DIALOG_REVERT_NOTE = 9;
 	private static final int DIALOG_SYNC_ERRORS = 10;
 	static final int DIALOG_SEND_CHOOSE = 11;
+
+	private static final int REQUEST_STORAGE_PERMISSION = 100;
+	private boolean pendingSyncPush = false;
 	private static final int DIALOG_VIEW_TAGS = 12;
 	private static final int DIALOG_NOT_FOUND_SHORTCUT = 13;
 
@@ -393,7 +410,8 @@ public class Tomdroid extends ActionBarListActivity {
 
 		Uri intentUri = Uri.parse(Tomdroid.CONTENT_URI+"/"+noteId);
         dialogNote = NoteManager.getNote(this, intentUri);
-        
+
+        if (dialogNote == null) return;
         if(dialogNote.getTags().contains("system:deleted"))
         	inflater.inflate(R.menu.main_longclick_deleted, menu);
         else
@@ -446,27 +464,50 @@ public class Tomdroid extends ActionBarListActivity {
 		return super.onContextItemSelected(item);
 	}
 	
+	@Override
+	protected void onStop() {
+		super.onStop();
+		// Samsung's modified framework registers the list adapter's cursor in
+		// Activity.mManagedCursors via internal paths that bypass our
+		// startManagingCursor() override. performRestart() then tries to
+		// requery() the cursor after it has been closed and crashes.
+		// Clearing the list after the framework has stopped the activity
+		// (and already deactivated any cursors) ensures performRestart()
+		// finds nothing to requery.
+		try {
+			java.lang.reflect.Field f = Activity.class.getDeclaredField("mManagedCursors");
+			f.setAccessible(true);
+			((java.util.List<?>) f.get(this)).clear();
+		} catch (Exception ignored) {}
+	}
+
     @Override
     protected void onDestroy() {
     	SyncManager.getInstance().cancel();
     	removeDialog(DIALOG_SYNC);
+		if (adapter instanceof CursorAdapter) {
+			Cursor cursor = ((CursorAdapter) adapter).swapCursor(null);
+			if (cursor != null) cursor.close();
+		}
     	super.onDestroy();
     }
 
+	@Override
 	public void onResume() {
-		
+		super.onResume();
+
 		// if the SyncService was stopped because Android killed it, we should not show the progress dialog any more
-		if (SyncManager.getInstance().getCurrentService().activity == null) {
+		SyncService resumeService = SyncManager.getInstance().getCurrentService();
+		if (resumeService != null && resumeService.activity == null) {
 			TLog.i(TAG, "Android killed the SyncService while in background. We will remove the dialog now.");
 			removeDialog(DIALOG_SYNC);
 		}
-		
-		super.onResume();
+
 		Intent intent = this.getIntent();
 
 		SyncService currentService = SyncManager.getInstance().getCurrentService();
 
-		if (currentService.needsAuth() && intent != null) {
+		if (currentService != null && currentService.needsAuth() && intent != null) {
 			Uri uri = intent.getData();
 
 			if (uri != null && uri.getScheme().equals("tomdroid")) {
@@ -514,7 +555,7 @@ public class Tomdroid extends ActionBarListActivity {
 		AlertDialog alertDialog;
 		final ProgressDialog progressDialog = new ProgressDialog(this);
 		SyncService currentService = SyncManager.getInstance().getCurrentService();
-		String serviceDescription = currentService.getDescription();
+		String serviceDescription = currentService != null ? currentService.getDescription() : "";
     	final AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
 		switch(id) {
@@ -685,7 +726,7 @@ public class Tomdroid extends ActionBarListActivity {
 	    switch(id) {
 	    	case DIALOG_SYNC:
 				SyncService currentService = SyncManager.getInstance().getCurrentService();
-				String serviceDescription = currentService.getDescription();
+				String serviceDescription = currentService != null ? currentService.getDescription() : "";
 	    		((ProgressDialog) dialog).setTitle(String.format(getString(R.string.syncing),serviceDescription));
 	    		((ProgressDialog) dialog).setMessage(dialogString);
 	    		((ProgressDialog) dialog).setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -824,9 +865,13 @@ public class Tomdroid extends ActionBarListActivity {
 
 	private void updateNotesList(String aquery, int aposition) {
 	    // adapter that binds the ListView UI to the notes in the note manager
+		if (adapter instanceof CursorAdapter) {
+			Cursor oldCursor = ((CursorAdapter) adapter).swapCursor(null);
+			if (oldCursor != null) oldCursor.close();
+		}
 		adapter = NoteManager.getListAdapter(this, aquery, rightPane != null ? aposition : -1);
 		setListAdapter(adapter);
-		
+
 	}
 	
 	private void updateEmptyList(String aquery) {
@@ -1018,9 +1063,31 @@ public class Tomdroid extends ActionBarListActivity {
 	@SuppressWarnings("deprecation")
 	private void startSyncing(boolean push) {
 
+		// On API 23+ check for storage permission before SD card sync
+		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M
+				&& android.os.Build.VERSION.SDK_INT <= 28) {
+			SyncService svc = SyncManager.getInstance().getCurrentService();
+			if (svc != null && svc.needsLocation()) {
+				int perm = checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+				if (perm != android.content.pm.PackageManager.PERMISSION_GRANTED) {
+					pendingSyncPush = push;
+					requestPermissions(
+						new String[]{ Manifest.permission.WRITE_EXTERNAL_STORAGE,
+						              Manifest.permission.READ_EXTERNAL_STORAGE },
+						REQUEST_STORAGE_PERMISSION);
+					return;
+				}
+			}
+		}
+
 		String serverUri = Preferences.getString(Preferences.Key.SYNC_SERVER);
 		SyncService currentService = SyncManager.getInstance().getCurrentService();
-		
+
+		if (currentService == null) {
+			TLog.w(TAG, "No sync service configured");
+			return;
+		}
+
 		if (currentService.needsAuth()) {
 	
 			// service needs authentication
@@ -1065,6 +1132,18 @@ public class Tomdroid extends ActionBarListActivity {
 	private void resetSyncValues() {
 		Preferences.putLong(Preferences.Key.LATEST_SYNC_REVISION, (Long)Preferences.Key.LATEST_SYNC_REVISION.getDefault());
 		Preferences.putString(Preferences.Key.LATEST_SYNC_DATE, new Time().formatTomboy());
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+		if (requestCode == REQUEST_STORAGE_PERMISSION) {
+			if (grantResults.length > 0 && grantResults[0] == android.content.pm.PackageManager.PERMISSION_GRANTED) {
+				startSyncing(pendingSyncPush);
+			} else {
+				android.widget.Toast.makeText(this, "Storage permission is required for SD card sync", android.widget.Toast.LENGTH_LONG).show();
+			}
+		}
 	}
 
 	public void ViewNote(long noteId) {
@@ -1135,7 +1214,7 @@ public class Tomdroid extends ActionBarListActivity {
 		public void handleMessage(Message msg) {
 	
 			SyncService currentService = SyncManager.getInstance().getCurrentService();
-			String serviceDescription = currentService.getDescription();
+			String serviceDescription = currentService != null ? currentService.getDescription() : "";
 			String message = "";
 			boolean dismiss = false;
 
@@ -1162,7 +1241,7 @@ public class Tomdroid extends ActionBarListActivity {
 						TLog.v(TAG, "syncErrors: {0}", TextUtils.join("\n",errors.toArray()));
 						dialogString = getString(R.string.messageSyncError);
 						dialogBoolean = errors.save();
-						showDialog(DIALOG_SYNC_ERRORS);
+						safeShowDialog(DIALOG_SYNC_ERRORS);
 					}
 					break;
 				case SyncService.CONNECTING_FAILED:
@@ -1196,18 +1275,18 @@ public class Tomdroid extends ActionBarListActivity {
 					break;
 				case SyncService.SYNC_CONNECTED:
 					dialogString = getString(R.string.gettings_notes);
-					showDialog(DIALOG_SYNC);
+					safeShowDialog(DIALOG_SYNC);
 					break;
 				case SyncService.BEGIN_PROGRESS:
 					syncTotalNotes = msg.arg1;
 					syncProcessedNotes = 0;
 					dialogString = getString(R.string.syncing_local);
-					showDialog(DIALOG_SYNC);
+					safeShowDialog(DIALOG_SYNC);
 					break;
 				case SyncService.SYNC_PROGRESS:
 					if(msg.arg1 == 90) {
 						dialogString = getString(R.string.syncing_remote);						
-						showDialog(DIALOG_SYNC);
+						safeShowDialog(DIALOG_SYNC);
 					}
 					break;
 				case SyncService.NOTE_DELETED:
@@ -1283,16 +1362,30 @@ public class Tomdroid extends ActionBarListActivity {
 		}
 		else { // returning from sync conflict
 			SyncService currentService = SyncManager.getInstance().getCurrentService();
-			currentService.resolvedConflict(requestCode);			
+			if (currentService != null) currentService.resolvedConflict(requestCode);
 		}
 	}
 	
 	public void finishSync() {
 		TLog.v(TAG, "Finishing Sync");
-		
+
 		removeDialog(DIALOG_SYNC);
-		
+
 		if(rightPane != null)
 			showNoteInPane(lastIndex);
+	}
+
+	/**
+	 * Show a managed dialog only if the activity is in a valid state.
+	 * Guards against BadTokenException when called from background Handler messages.
+	 */
+	private void safeShowDialog(int id) {
+		if (isFinishing()) return;
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && isDestroyed()) return;
+		try {
+			showDialog(id);
+		} catch (Exception e) {
+			TLog.w(TAG, "safeShowDialog: could not show dialog {0}", id);
+		}
 	}
 }

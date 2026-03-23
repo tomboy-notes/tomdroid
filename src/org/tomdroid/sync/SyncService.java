@@ -201,7 +201,7 @@ public abstract class SyncService {
 		localGuids.moveToFirst();
 		do {
 			Note note = NoteManager.getNoteByGuid(activity, localGuids.getString(localGuids.getColumnIndexOrThrow(Note.GUID)));
-			
+			if (note == null) continue;
 			if(!note.getTags().contains("system:template")) // don't push templates TODO: find out what's wrong with this, if anything
 				pushableNotes.add(note);
 		} while (localGuids.moveToNext());
@@ -248,7 +248,7 @@ public abstract class SyncService {
 						}
 					} while (cursor.moveToNext());
 				}
-				cursor.close();
+				if (cursor != null) cursor.close();
 				
 				if(localNote == null)
 					pullableNotes.add(remoteNote);
@@ -282,19 +282,24 @@ public abstract class SyncService {
 				
 				if(!remoteGuids.contains(localGuid)) {
 					Note note = NoteManager.getNoteByGuid(this.activity, localGuid);
+					if (note == null) {
+						TLog.w(TAG, "getNoteByGuid returned null for guid {0}, skipping", localGuid);
+						continue;
+					}
 					String syncDateString = Preferences.getString(Preferences.Key.LATEST_SYNC_DATE);
 					Time syncDate = new Time();
 					syncDate.parseTomboy(syncDateString);
 					int compareSync = Time.compare(syncDate, note.getLastChangeDate());
 					if(compareSync > 0) // older than last sync, means it's been deleted from server
 						deleteableNotes.add(note);
-					else if(!note.getTags().contains("system:template")) // don't push templates TODO: find out what's wrong with this, if anything
+					else if(note.getTags() == null || !note.getTags().contains("system:template")) // don't push templates TODO: find out what's wrong with this, if anything
 						pushableNotes.add(note);
 				}
 				
 			} while (localGuids.moveToNext());
 
 		}
+		if (localGuids != null) localGuids.close();
 		TLog.d(TAG, "Notes to pull: {0}, Notes to push: {1}, Notes to delete: {2}, Notes to compare: {3}",pullableNotes.size(),pushableNotes.size(),deleteableNotes.size(),comparableNotes.size());
 
 		if(cancelled) {
@@ -365,7 +370,7 @@ public abstract class SyncService {
 				pullableNotes.add(remoteNote);
 			}
 			else { // both same date
-				if(localNote.getTags().contains("system:deleted") && push) { // deleted, bundle for remote deletion
+				if(localNote.getTags() != null && localNote.getTags().contains("system:deleted") && push) { // deleted, bundle for remote deletion
 					TLog.i(TAG, "Notes are same date, deleted, deleting remote: TITLE:{0} GUID:{1}", localNote.getTitle(), localNote.getGuid());
 					pushableNotes.add(localNote);
 				}

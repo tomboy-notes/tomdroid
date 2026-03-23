@@ -25,6 +25,7 @@ package org.tomdroid.ui;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CursorAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import org.tomdroid.NoteManager;
@@ -54,6 +55,15 @@ public class ShortcutActivity extends ActionBarListActivity {
         setListAdapter(adapter);
         getListView().setEmptyView(findViewById(R.id.list_empty));
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (adapter instanceof CursorAdapter) {
+            Cursor cursor = ((CursorAdapter) adapter).swapCursor(null);
+            if (cursor != null) cursor.close();
+        }
+        super.onDestroy();
     }
 
     @Override

@@ -49,16 +49,16 @@
         <item name="android:ellipsize">marquee</item>
     </style>
 
-    <style name="ActionBarCompatTitle" parent="style/ActionBarCompatTitleBase">
+    <style name="ActionBarCompatTitle" parent="@style/ActionBarCompatTitleBase">
         <item name="android:textColor">#000000</item>
     </style>
-    <style name="ActionBarCompatTitleDark" parent="style/ActionBarCompatTitleBase">
+    <style name="ActionBarCompatTitleDark" parent="@style/ActionBarCompatTitleBase">
         <item name="android:textColor">#FFFFFF</item>
     </style>
-    
-    <style name="ActionBarCompatItem" parent="style/ActionBarCompatItemBase">
+
+    <style name="ActionBarCompatItem" parent="@style/ActionBarCompatItemBase">
     </style>
 
-    <style name="ActionBarCompatHomeItem" parent="style/ActionBarCompatItemBase">
+    <style name="ActionBarCompatHomeItem" parent="@style/ActionBarCompatItemBase">
     </style>
 </resources>

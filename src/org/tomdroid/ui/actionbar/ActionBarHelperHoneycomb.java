@@ -42,8 +42,11 @@ public class ActionBarHelperHoneycomb extends ActionBarHelper {
     @SuppressLint("NewApi")
 	@Override
     public void onPostCreate(Bundle savedInstanceState) {
-        mActivity.getActionBar().setHomeButtonEnabled(showHomeButtonEnabled);
-        mActivity.getActionBar().setDisplayHomeAsUpEnabled(showHomeButtonEnabled);	
+        android.app.ActionBar actionBar = mActivity.getActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeButtonEnabled(showHomeButtonEnabled);
+            actionBar.setDisplayHomeAsUpEnabled(showHomeButtonEnabled);
+        }
     }
     
     @Override
